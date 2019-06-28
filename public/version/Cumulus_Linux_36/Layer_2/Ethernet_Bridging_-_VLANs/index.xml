@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ethernet Bridging - VLANs on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/</link>
+    <description>Recent content in Ethernet Bridging - VLANs on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>VLAN-aware Bridge Mode</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode/</guid>
+      <description>The Cumulus Linux bridge driver supports two configuration modes, one that is VLAN-aware, and one that follows a more traditional Linux bridge model.
+For traditional Linux bridges, the kernel supports VLANs in the form of VLAN subinterfaces. Enabling bridging on multiple VLANs means configuring a bridge for each VLAN and, for each member port on a bridge, creating one or more VLAN subinterfaces out of that port. This mode poses scalability challenges in terms of configuration size as well as boot time and run time state management, when the number of ports times the number of VLANs becomes large.</description>
+    </item>
+    
+    <item>
+      <title>Traditional Bridge Mode</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/Traditional_Bridge_Mode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/Traditional_Bridge_Mode/</guid>
+      <description>Cumulus Networks recommends you use a VLAN-aware bridge on your switch. You use traditional mode bridges only if you need to run more than one bridge on the switch or if you need to use PVSTP+.
+Creating a Traditional Mode Bridge You can configure a traditional mode bridge either using NCLU or manually editing the /etc/network/interfaces file.
+Using NCLU to Configure a Traditional Bridge NCLU has limited support for configuring bridges in traditional mode.</description>
+    </item>
+    
+    <item>
+      <title>VLAN Tagging</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/</guid>
+      <description>This article shows two examples of VLAN tagging, one basic and one more advanced. They both demonstrate the streamlined interface configuration from ifupdown2.
+VLAN Tagging, a Basic Example A simple configuration demonstrating VLAN tagging involves two hosts connected to a switch.
+ host1 connects to swp1 with both untagged frames and with 802.1Q frames tagged for vlan100.
+ host2 connects to swp2 with 802.1Q frames tagged for vlan120 and vlan130.</description>
+    </item>
+    
+    <item>
+      <title>VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments/</guid>
+      <description>The license could not be verified: License Certificate has expired!</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Network Command Line Utility - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="System_Configuration.html">System Configuration</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126772"> <span>Network Command Line Utility</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  >The Network Command Line Utility, or NCLU, is a command line interface for Cumulus Networks products, implemented in Cumulus Linux and VX 3.1 and later releases, with the goal of simplifying the networking configuration process for all users.    </p>
+    <p  >NCLU resides in the Linux user space, as seen below. It provides consistent access to networking commands directly via bash, thereby making configuration and troubleshooting simple and easy &mdash; no need to edit files or enter modes and sub-modes. In addition, NCLU does more than traditional command line interfaces by:    </p>
+<ul class=" "><li class=" ">    <p  >Embedding help, examples and automatic command checking with suggestions in case you&rsquo;ve entered a typo    </p>
+</li><li class=" ">    <p  >Running directly from and integrating with bash, while being interoperable with the regular way of accessing underlying configuration files and automation    </p>
+</li><li class=" ">    <p  >Automatically configuring dependent features so you don&rsquo;t have to    </p>
+</li></ul>    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126772/Linux-NCLU-Architecture.png" alt="images/download/attachments/5126772/Linux-NCLU-Architecture.png"  height="400" />
+        </p>
+    <p  >The NCLU wrapper utility is called <tt class=" ">net</tt>. <tt class=" ">net</tt> is capable of configuring L2 and L3 features of the networking stack, installing ACLs and VXLANs, rolling back and deleting snapshots, as well as providing monitoring and troubleshooting functionality for these features. <tt class=" ">/etc/network/interfaces</tt> and <tt class=" ">/etc/quagga/Quagga.conf</tt> can both be configured with <tt class=" ">net</tt>, in addition to running show and clear commands related to <tt class=" ">ifupdown2</tt> and Quagga.    </p>
+    <div class="section section-1" id="src-5126772_NetworkCommandLineUtility-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126772_NetworkCommandLineUtility-InstallingNCLU">
+        <h1 class="heading "><span>Installing NCLU</span></h1>
+    <p  >If you upgraded Cumulus Linux from a version earlier than 3.2 instead of performing a full binary install, you need to install the <tt class=" ">nclu</tt> package on your switch:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get update</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get install nclu</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get upgrade</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The <tt class=" ">nclu</tt> package installs a new bash completion script, and displays the following message when it is manually installed:    </p>
+    <div  class="confbox programlisting">
+                <div class="content">
+        <pre><code>Setting up nclu (1.0-cl3u3) ...
+To enable the newly installed bash completion for nclu in this shell, execute...
+ source /etc/bash_completion</code></pre>
+        </div>
+    </div>
+        </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126772_NetworkCommandLineUtility-GettingStarted">
+        <h1 class="heading "><span>Getting Started</span></h1>
+    <p  >NCLU uses the following workflow for staging and committing changes to Cumulus Linux:    </p>
+<ol class=" "><li class=" ">    <p  >Use the <tt class=" ">net add</tt> and <tt class=" ">net del</tt> commands to stage/remove configuration changes.    </p>
+</li><li class=" ">    <p  >Use the <tt class=" ">net pending</tt> command to review staged changes.    </p>
+</li><li class=" ">    <p  >Use <tt class=" ">net commit</tt> and <tt class=" ">net abort</tt> to commit/delete staged changes.    </p>
+</li></ol>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  ><tt class=" ">net commit</tt> applies the changes to the relevant configuration files, such as <tt class=" ">/etc/network/interfaces</tt>, then runs necessary follow on commands to enable the configuration, such as <tt class=" ">ifreload -a</tt>.    </p>
+        </div>
+    </div>
+    <p  >Once you have a running configuration, you can review and update it using:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">net show</tt>: A series of commands for viewing various parts of the network configuration, such as <tt class=" ">net show configuration</tt>, <tt class=" ">net show commit history</tt> and <tt class=" ">net show bgp</tt> to view the complete network configuration, a history of commits using NCLU and BGP status, respectively.    </p>
+</li><li class=" ">    <p  ><tt class=" ">net clear</tt>: A way to clear <tt class=" ">netstat</tt> counters, BGP and OSPF neighbor content, and more.    </p>
+</li><li class=" ">    <p  ><tt class=" ">net rollback</tt>: Provides a mechanism to revert back to an earlier configuration.    </p>
+</li></ul>    <div class="section section-2" id="src-5126772_safe-id-TmV0d29ya0NvbW1hbmRMaW5lVXRpbGl0eS1UYWJDb21wbGV0aW9uLFZlcmlmaWNhdGlvbmFuZElubGluZUhlbHA">
+        <h2 class="heading "><span>Tab Completion, Verification and Inline Help</span></h2>
+    <p  >NCLU provides a number of features to assist users. In addition to tab completion and partial keyword commands identification, verification checks are set in place to ensure correct syntax is used. The examples below show the output for incorrect commands:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp router-id 1.1.1.1/32</code></div>
+<div class="line"><code class="plain">ERROR: Command not found</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Did you mean one of the following?</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    net add bgp router-id &lt;ipv4&gt;</code></div>
+<div class="line"><code class="plain">        This command is looking for an IP address, not an IP/prefixlen</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp router-id 1.1.1.1</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add int swp10 mtu &lt;TAB&gt;</code></div>
+<div class="line"><code class="plain">    &lt;552-9216&gt; : </code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add int swp10 mtu 9300</code></div>
+<div class="line"><code class="plain">ERROR: Command not found</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">Did you mean one of the following?</code></div>
+<div class="line"><code class="plain">    net add interface &lt;interface&gt; mtu &lt;552-9216&gt;</code></div>
+</div>
+    </div>
+    <p  >NCLU has a comprehensive help system built in to assist usage. In addition to the net man page, you can use <tt class=" ">? </tt>and <tt class=" ">help</tt> to display available commands:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net help</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Usage:</code></div>
+<div class="line"><code class="plain">    # net &lt;COMMAND&gt; [&lt;ARGS&gt;] [help]</code></div>
+<div class="line"><code class="plain">    #</code></div>
+<div class="line"><code class="plain">    # net is a command line utility for networking on Cumulus Linux switches.</code></div>
+<div class="line"><code class="plain">    #</code></div>
+<div class="line"><code class="plain">    # COMMANDS are listed below and have context specific arguments which can</code></div>
+<div class="line"><code class="plain">    # be explored by typing "&lt;TAB&gt;" or "help" anytime while using net.</code></div>
+<div class="line"><code class="plain">    #</code></div>
+<div class="line"><code class="plain">    # Use 'man net' for a more comprehensive overview.</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    net abort</code></div>
+<div class="line"><code class="plain">    net commit [verbose] [confirm] [description &lt;wildcard&gt;]</code></div>
+<div class="line"><code class="plain">    net commit delete (&lt;number&gt;|&lt;number-range&gt;)</code></div>
+<div class="line"><code class="plain">    net help [verbose]</code></div>
+<div class="line"><code class="plain">    net pending</code></div>
+<div class="line"><code class="plain">    net rollback (&lt;number&gt;|last)</code></div>
+<div class="line"><code class="plain">    net show commit (history|&lt;number&gt;|&lt;number-range&gt;|last)</code></div>
+<div class="line"><code class="plain">    net show rollback (&lt;number&gt;|last)</code></div>
+<div class="line"><code class="plain">    net show configuration [commands|files|acl|bgp|ospf|ospf6|interface &lt;interface&gt;]</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Options:</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    # Help commands</code></div>
+<div class="line"><code class="plain">    help     : context sensitive information; see section below</code></div>
+<div class="line"><code class="plain">    example  : detailed examples of common workflows</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    # Configuration commands</code></div>
+<div class="line"><code class="plain">    add      : add/modify configuration</code></div>
+<div class="line"><code class="plain">    del      : remove configuration</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    # Commit buffer commands</code></div>
+<div class="line"><code class="plain">    abort    : abandon changes in the commit buffer</code></div>
+<div class="line"><code class="plain">    commit   : apply the commit buffer to the system</code></div>
+<div class="line"><code class="plain">    pending  : show changes staged in the commit buffer</code></div>
+<div class="line"><code class="plain">    rollback : revert to a previous configuration state</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    # Status commands</code></div>
+<div class="line"><code class="plain">    show     : show command output</code></div>
+<div class="line"><code class="plain">    clear    : clear counters, BGP neighbors, etc</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus@switch:~$ net help bestpath</code></div>
+<div class="line"><code class="plain">The following commands contain keyword(s) 'bestpath'</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    net (add|del) bgp bestpath as-path multipath-relax [as-set|no-as-set]</code></div>
+<div class="line"><code class="plain">    net (add|del) bgp bestpath compare-routerid</code></div>
+<div class="line"><code class="plain">    net (add|del) bgp bestpath med missing-as-worst</code></div>
+<div class="line"><code class="plain">    net (add|del) bgp vrf &lt;text&gt; bestpath as-path multipath-relax [as-set|no-as-set]</code></div>
+<div class="line"><code class="plain">    net (add|del) bgp vrf &lt;text&gt; bestpath compare-routerid</code></div>
+<div class="line"><code class="plain">    net (add|del) bgp vrf &lt;text&gt; bestpath med missing-as-worst</code></div>
+<div class="line"><code class="plain">    net add bgp debug bestpath &lt;ip/prefixlen&gt;</code></div>
+<div class="line"><code class="plain">    net del bgp debug bestpath [&lt;ip/prefixlen&gt;]</code></div>
+<div class="line"><code class="plain">    net show bgp (&lt;ipv4&gt;|&lt;ipv4/prefixlen&gt;) [bestpath|multipath] [json]</code></div>
+<div class="line"><code class="plain">    net show bgp (&lt;ipv6&gt;|&lt;ipv6/prefixlen&gt;) [bestpath|multipath] [json]</code></div>
+<div class="line"><code class="plain">    net show bgp vrf &lt;text&gt; (&lt;ipv4&gt;|&lt;ipv4/prefixlen&gt;) [bestpath|multipath] [json]</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Multiple interfaces can be configured at once:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add int swp7-9,12,15-17,22 mtu 9216</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126772_NetworkCommandLineUtility-Built-InExamples">
+        <h2 class="heading "><span>Built-In Examples</span></h2>
+    <p  >The NCLU has a number of built in examples to guide users through basic configuration setup:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net example </code></div>
+<div class="line"><code class="plain">    acl              :  access-list</code></div>
+<div class="line"><code class="plain">    bgp              :  Border Gateway Protocol</code></div>
+<div class="line"><code class="plain">    bond             :  Bond, port-channel, etc</code></div>
+<div class="line"><code class="plain">    bridge           :  interface</code></div>
+<div class="line"><code class="plain">    clag             :  Multi-Chassis Link Aggregation</code></div>
+<div class="line"><code class="plain">    link-settings    :  Physical link parameters</code></div>
+<div class="line"><code class="plain">    lnv              :  Lightweight Network Virtualization</code></div>
+<div class="line"><code class="plain">    management-vrf   :  Management VRF</code></div>
+<div class="line"><code class="plain">    ospf             :  Open Shortest Path First (OSPFv2)</code></div>
+<div class="line"><code class="plain">    vlan-interfaces  :  IP interfaces for VLANs</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus@switch:~$ net example bridge </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Scenario</code></div>
+<div class="line"><code class="plain">========</code></div>
+<div class="line"><code class="plain">We are configuring switch1 and would like to configure the following</code></div>
+<div class="line"><code class="plain">- configure switch1 as an L2 switch for host-11 and host-12</code></div>
+<div class="line"><code class="plain">- enable vlans 10-20</code></div>
+<div class="line"><code class="plain">- place host-11 in vlan 10</code></div>
+<div class="line"><code class="plain">- place host-12 in vlan 20</code></div>
+<div class="line"><code class="plain">- create an SVI interface for vlan 10</code></div>
+<div class="line"><code class="plain">- create an SVI interface for vlan 20</code></div>
+<div class="line"><code class="plain">- assign IP 10.0.0.1/24 to the SVI for vlan 10</code></div>
+<div class="line"><code class="plain">- assign IP 20.0.0.1/24 to the SVI for vlan 20</code></div>
+<div class="line"><code class="plain">- configure swp3 as a trunk for vlans 10, 11, 12 and 20</code></div>
+<div class="line"><code class="plain">              swp3</code></div>
+<div class="line"><code class="plain">     *switch1 --------- switch2</code></div>
+<div class="line"><code class="plain">        /\</code></div>
+<div class="line"><code class="plain">  swp1 /  \ swp2</code></div>
+<div class="line"><code class="plain">      /    \</code></div>
+<div class="line"><code class="plain">     /      \</code></div>
+<div class="line"><code class="plain"> host-11   host-12</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">switch1 net commands</code></div>
+<div class="line"><code class="plain">====================</code></div>
+<div class="line"><code class="plain">- enable vlans 10-20</code></div>
+<div class="line"><code class="plain">switch1# net add vlan 10-20</code></div>
+<div class="line"><code class="plain">- place host-11 in vlan 10</code></div>
+<div class="line"><code class="plain">- place host-12 in vlan 20</code></div>
+<div class="line"><code class="plain">switch1# net add int swp1 bridge access 10</code></div>
+<div class="line"><code class="plain">switch1# net add int swp2 bridge access 20</code></div>
+<div class="line"><code class="plain">- create an SVI interface for vlan 10</code></div>
+<div class="line"><code class="plain">- create an SVI interface for vlan 20</code></div>
+<div class="line"><code class="plain">- assign IP 10.0.0.1/24 to the SVI for vlan 10</code></div>
+<div class="line"><code class="plain">- assign IP 20.0.0.1/24 to the SVI for vlan 20</code></div>
+<div class="line"><code class="plain">switch1# net add vlan 10 ip address 10.0.0.1/24</code></div>
+<div class="line"><code class="plain">switch1# net add vlan 20 ip address 20.0.0.1/24</code></div>
+<div class="line"><code class="plain">- configure swp3 as a trunk for vlans 10, 11, 12 and 20</code></div>
+<div class="line"><code class="plain">switch1# net add int swp3 bridge trunk vlans 10-12,20</code></div>
+<div class="line"><code class="plain"># Review and commit changes</code></div>
+<div class="line"><code class="plain">switch1# net pending</code></div>
+<div class="line"><code class="plain">switch1# net commit</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Verification</code></div>
+<div class="line"><code class="plain">============</code></div>
+<div class="line"><code class="plain">switch1# net show interface</code></div>
+<div class="line"><code class="plain">switch1# net show bridge macs</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126772_NetworkCommandLineUtility-AddingMoreNCLUUsersorGroups">
+        <h1 class="heading "><span>Adding More NCLU Users or Groups</span></h1>
+    <p  >If you've created custom users or groups on your Cumulus Linux switches, you can configure those users to be able to run NCLU commands.    </p>
+    <p  >To do so, edit the <tt class=" ">/etc/netd.conf</tt> file, and add those users to the <i class=" ">users_with_edit</i> and <i class=" ">users_with_show</i> lines in the file, then save the file.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo nano /etc/netd.conf</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain"># Control which users/groups are allowed to run 'add', 'del',</code></div>
+<div class="line"><code class="plain"># 'clear', 'net abort', 'net commit' and restart services (quagga, etc)</code></div>
+<div class="line"><code class="plain"># to apply those changes</code></div>
+<div class="line"><code class="plain">users_with_edit = root, cumulus</code></div>
+<div class="line"><code class="plain">groups_with_edit = root, cumulus</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># Control which users/groups are allowed to run 'show' commands</code></div>
+<div class="line"><code class="plain">users_with_show = root, cumulus</code></div>
+<div class="line"><code class="plain">groups_with_show = root, cumulus</code></div>
+</div>
+    </div>
+    <p  >Similarly, to configure a new user group to use NCLU, add that group to the <i class=" ">groups_with_edit</i> and <i class=" ">groups_with_show</i> lines in the file.    </p>
+    </div>
+    <div class="section section-1" id="src-5126772_NetworkCommandLineUtility-RestartingthenetdService">
+        <h1 class="heading "><span>Restarting the netd Service</span></h1>
+    <p  >Whenever you modify <tt class=" ">netd.conf</tt>, you must restart the <tt class=" ">netd</tt> service for the changes to take effect:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl restart netd.service</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126772_NetworkCommandLineUtility-AdvancedConfiguration">
+        <h1 class="heading "><span>Advanced Configuration</span></h1>
+    <p  >NCLU needs no initial configuration; it's ready to go in Cumulus Linux. However, if you need to modify its configuration, you must manually update the <tt class=" ">/etc/netd.conf</tt> file. This file can be configured to allow different permission levels for users to edit configurations and run show commands. It also contains a blacklist that hides less frequently used terms from the tabbed autocomplete.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Configuration Variable    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Default Setting    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >show_linux_command    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >False    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >When true, displays the Linux command running in the background.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >enable_ifupdown2    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >True    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Enables <tt class=" ">net</tt> wrapping of <tt class=" ">ifupdown2</tt> commands.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >enable_quagga    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >True    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Enables <tt class=" ">net</tt> wrapping of Quagga commands.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >users_with_edit    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >root, cumulus    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Sets the Linux users with root edit privileges.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >groups_with_edit    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >root, cumulus    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Sets the Linux groups with root edit privileges.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >users_with_show    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >root, cumulus    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Controls which users are allowed to run <tt class=" ">show</tt> commands.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >groups_with_show    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >root, cumulus    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Controls which groups are allowed to run <tt class=" ">show</tt> commands.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ifupdown_blacklist    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >address-purge, bond-ad-actor-sys-prio, bond-ad-actor-system, bond-mode, bond-num-grat-arp, bond-num-unsol-na, bond-use-carrier, bond-xmit-hash-policy, bridge-bridgeprio, bridge-fd, bridge-hashel, bridge-hashmax, bridge-hello, bridge-maxage, bridge-maxwait, bridge-mclmc, bridge-mclmi, bridge-mcmi, bridge-mcqi, bridge-mcqpi, bridge-mcqri, bridge-mcrouter, bridge-mcsqc, bridge-mcsqi, bridge-pathcosts, bridge-port-pvids, bridge-port-vids, bridge-portprios, bridge-stp, bridge-waitport, broadcast, hwaddress, link-type, mstpctl-ageing, mstpctl-fdelay, mstpctl-forcevers, mstpctl-hello, mstpctl-maxage, mstpctl-maxhops, mstpctl-portp2p, mstpctl-portpathcost, mstpctl-portrestrrole, mstpctl-portrestrtcn, mstpctl-treeportcost, mstpctl-treeportprio, mstpctl-txholdcount, netmask, preferred-lifetime, scope, vxlan-ageing, vxlan-learning, up, down, bridge-ageing, bridge-gcint, bridge-mcqifaddr, bridge-mcqv4src    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Hides corner case command options from tab complete, to simplify and streamline output.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="confbox admonition admonition-info">
+                    <p class="title"> Net Tab Complete Output</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  ><tt class=" ">net</tt> provides an environment variable for setting where the <tt class=" ">net</tt> output is directed. To only use <tt class=" ">stdout</tt>, set the NCLU_TAB_STDOUT environment variable to <i class=" ">true</i>. The value is not case sensitive.    </p>
+        </div>
+    </div>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="System_Configuration.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>System Configuration</span>
+        </a>
+                <a href="Setting_Date_and_Time.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Setting Date and Time</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Static VXLAN Configurations on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/</link>
+    <description>Recent content in Static VXLAN Configurations on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Static VXLAN Tunnels</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/</guid>
+      <description>In VXLAN-based networks, there are a range of complexities and challenges in determining the destination virtual tunnel endpoints (VTEPs) for any given VXLAN. At scale, various solutions, including Lightweight Network Virtualization (LNV), controller-based options like Midokura MidoNet or VMware NSX and even new standards like EVPN are attempts to address these complexities, however do retain their own complexities.
+Enter static VXLAN tunnels, which simply serve to connect two VTEPs in a given environment.</description>
+    </item>
+    
+    <item>
+      <title>Static MAC Bindings with VXLAN</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/</guid>
+      <description>Cumulus Linux includes native Linux VXLAN kernel support.
+Requirements A VXLAN configuration requires a Broadcom switch with the Tomahawk, Trident II+, or Trident II ASIC running Cumulus Linux 2.0 or later, or a Mellanox switch with the Spectrum ASIC running Cumulus Linux 3.2.0 or later.
+For a basic VXLAN configuration, make sure that:
+ The VXLAN has a network identifier (VNI); do not use 0 or 16777215 as the VNI ID, which are reserved values under Cumulus Linux.</description>
+    </item>
+    
+  </channel>
+</rss>

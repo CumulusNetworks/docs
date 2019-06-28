@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Layer 2 on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_36/Layer_2/</link>
+    <description>Recent content in Layer 2 on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_36/Layer_2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spanning Tree and Rapid Spanning Tree</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_2/Spanning_Tree_and_Rapid_Spanning_Tree/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_2/Spanning_Tree_and_Rapid_Spanning_Tree/</guid>
+      <description>Spanning tree protocol (STP) is always recommended in layer 2 topologies, as it prevents bridge loops and broadcast radiation on a bridged network. STP also provides redundant links for automatic failover when an active link fails. STP is disabled by default on bridges in Cumulus Linux.
+Supported Modes The STP modes Cumulus Linux supports vary depending upon whether the traditional or VLAN-aware bridge driver mode is in use.
+ Bridges configured in VLAN-aware mode operate only in RSTP mode.</description>
+    </item>
+    
+    <item>
+      <title>Bonding - Link Aggregation</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_2/Bonding_-_Link_Aggregation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_2/Bonding_-_Link_Aggregation/</guid>
+      <description>Linux bonding provides a method for aggregating multiple network interfaces (slaves) into a single logical bonded interface (bond). Cumulus Linux supports two bonding modes:
+ The IEEE 802.3ad link aggregation mode, which allows one or more links to be aggregated together to form a link aggregation group (LAG), such that a media access control (MAC) client can treat the link aggregation group as if it were a single link.</description>
+    </item>
+    
+    <item>
+      <title>Multi-Chassis Link Aggregation - MLAG</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_2/Multi-Chassis_Link_Aggregation_-_MLAG/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_2/Multi-Chassis_Link_Aggregation_-_MLAG/</guid>
+      <description>Multi-Chassis Link Aggregation (MLAG), enables a server or switch with a two-port bond, such as a link aggregation group/LAG, EtherChannel, port group or trunk, to connect those ports to different switches and operate as if they are connected to a single, logical switch. This provides greater redundancy and greater system throughput.
+The Cumulus Linux implementation of MLAG is referred to by other vendors as CLAG, MC-LAG or VPC. You will even see references to CLAG in Cumulus Linux, including the management daemon, named clagd, and other options in the code, such as clag-id, which exist for historical purposes.</description>
+    </item>
+    
+    <item>
+      <title>LACP Bypass</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_2/LACP_Bypass/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_2/LACP_Bypass/</guid>
+      <description>On Cumulus Linux, LACP Bypass is a feature that allows a bond configured in 802.3ad mode to become active and forward traffic even when there is no LACP partner. A typical use case for this feature is to enable a host, without the capability to run LACP, to PXE boot while connected to a switch on a bond configured in 802.3ad mode. Once the pre-boot process finishes and the host is capable of running LACP, the normal 802.</description>
+    </item>
+    
+    <item>
+      <title>IGMP and MLD Snooping</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_2/IGMP_and_MLD_Snooping/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_2/IGMP_and_MLD_Snooping/</guid>
+      <description>IGMP (Internet Group Management Protocol) and MLD (Multicast Listener Discovery) snooping are implemented in the bridge driver in the Cumulus Linux kernel and are enabled by default. IGMP snooping processes IGMP v1/v2/v3 reports received on a bridge port in a bridge to identify the hosts which would like to receive multicast traffic destined to that group.
+When an IGMPv2 leave message is received, a group specific query is sent to identify if there are any other hosts interested in that group, before the group is deleted.</description>
+    </item>
+    
+  </channel>
+</rss>

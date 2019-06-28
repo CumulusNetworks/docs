@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Installation Management on Cumulus Networks Documentation</title>
+    <link>http://example.org/Cumulus_Linux/Installation_Management/</link>
+    <description>Recent content in Installation Management on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/Cumulus_Linux/Installation_Management/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Managing Cumulus Linux Disk Images</title>
+      <link>http://example.org/Cumulus_Linux/Installation_Management/Managing_Cumulus_Linux_Disk_Images/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Installation_Management/Managing_Cumulus_Linux_Disk_Images/</guid>
+      <description>The Cumulus Linux operating system resides on a switch as a disk image. This section discusses how to manage the disk image.
+For information on installing a new Cumulus Linux disk image, refer to Installing a New Cumulus Linux Image. For information on upgrading Cumulus Linux, refer to Upgrading Cumulus Linux.
+Determine the Switch Platform To determine if your switch is on an x86 or ARM platform, run the uname -m command.</description>
+    </item>
+    
+    <item>
+      <title>Installing a New Cumulus Linux Image</title>
+      <link>http://example.org/Cumulus_Linux/Installation_Management/Installing_a_New_Cumulus_Linux_Image/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Installation_Management/Installing_a_New_Cumulus_Linux_Image/</guid>
+      <description>This topic discusses how to install a new Cumulus Linux disk image using ONIE, an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.
+Before you install Cumulus Linux, the switch can be in two different states:
+ No image is installed on the switch (the switch is only running ONIE).
+ Cumulus Linux is already installed on the switch but you want to use ONIE to reinstall Cumulus Linux or upgrade to a newer version.</description>
+    </item>
+    
+    <item>
+      <title>Upgrading Cumulus Linux</title>
+      <link>http://example.org/Cumulus_Linux/Installation_Management/Upgrading_Cumulus_Linux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Installation_Management/Upgrading_Cumulus_Linux/</guid>
+      <description>This topic describes how to upgrade Cumulus Linux on your switches to a more recent release.
+Cumulus Networks recommends that you deploy, provision, configure, and upgrade switches using automation, even with small networks or test labs. During the upgrade process, you can quickly upgrade dozens of devices in a repeatable manner. Using tools like Ansible, Chef, or Puppet for configuration management greatly increases the speed and accuracy of the next major upgrade; these tools also enable the quick swap of failed switch hardware.</description>
+    </item>
+    
+    <item>
+      <title>Using Snapshots</title>
+      <link>http://example.org/Cumulus_Linux/Installation_Management/Using_Snapshots/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Installation_Management/Using_Snapshots/</guid>
+      <description>Cumulus Linux supports the ability to take snapshots of the complete file system as well as the ability to roll back to a previous snapshot. Snapshots are performed automatically right before and after you upgrade Cumulus Linux using package install, and right before and after you commit a switch configuration using NCLU. In addition, you can take a snapshot at any time. You can roll back the entire file system to a specific snapshot or just retrieve specific files.</description>
+    </item>
+    
+    <item>
+      <title>Adding and Updating Packages</title>
+      <link>http://example.org/Cumulus_Linux/Installation_Management/Adding_and_Updating_Packages/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Installation_Management/Adding_and_Updating_Packages/</guid>
+      <description>You use the Advanced Packaging Tool (apt) to manage additional applications (in the form of packages) and to install the latest updates.
+Updating, upgrading, and installing packages with apt causes disruptions to network services:
+ Upgrading a package might result in services being restarted or stopped as part of the upgrade process.
+ Installing a package might disrupt core services by changing core service dependency packages. In some cases, installing new packages might also upgrade additional existing packages due to dependencies.</description>
+    </item>
+    
+    <item>
+      <title>Zero Touch Provisioning - ZTP</title>
+      <link>http://example.org/Cumulus_Linux/Installation_Management/Zero_Touch_Provisioning_-_ZTP/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Installation_Management/Zero_Touch_Provisioning_-_ZTP/</guid>
+      <description>Zero touch provisioning (ZTP) enables you to deploy network devices quickly in large-scale environments. On first boot, Cumulus Linux invokes ZTP, which executes the provisioning automation used to deploy the device for its intended role in the network.
+The provisioning framework allows for a one-time, user-provided script to be executed. You can develop this script using a variety of automation tools and scripting languages, providing ample flexibility for you to design the provisioning scheme to meet your needs.</description>
+    </item>
+    
+  </channel>
+</rss>

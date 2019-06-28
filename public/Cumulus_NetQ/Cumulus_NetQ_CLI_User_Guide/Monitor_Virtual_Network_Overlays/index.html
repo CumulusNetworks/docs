@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Monitor Virtual Network Overlays | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/" >
+    Cumulus NetQ 2.1
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/"  class="active" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 1.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 2.0.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/" >
+    Upgrade from NetQ 2.1.0 to NetQ 2.1.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_BGP_Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_EVPN_Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_LLDP_Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Validate_Network_Protocol_and_Service_Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Monitor Virtual Network Overlays</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Monitor Virtual Network Overlays</h1>
+
+<p>With NetQ, a network administrator can monitor virtual network
+components in the data center, including VXLAN, EVPN, and LNV software
+constructs. NetQ provides the ability to:</p>
+
+<ul>
+<li><p>Manage virtual constructs: view the performance and status of
+VXLANs, EVPN, and LNV</p></li>
+
+<li><p>Validate overlay communication paths</p></li>
+</ul>
+
+<p>It helps answer questions such as:</p>
+
+<ul>
+<li><p>Is my overlay configured and operating correctly?</p></li>
+
+<li><p>Is my control plane configured correctly?</p></li>
+
+<li><p>Can device A reach device B?</p></li>
+</ul>
+
+<h2 id="monitor-virtual-extensible-lans">Monitor Virtual Extensible LANs</h2>
+
+<p>Virtual Extensible LANs (VXLANs) provide a way to create a virtual
+network on top of layer 2 and layer 3 technologies. It is intended for
+organizations, such as data centers, that require larger scale without
+additional infrastructure and more flexibility than is available with
+existing infrastructure equipment. With NetQ, you can monitor the
+current and historical configuration and status of your VXLANs using the
+following command:</p>
+
+<pre><code>                   
+netq [] show vxlan [vni ] [around ] [json]
+netq show interfaces type vxlan [state ] [around ] [json]
+netq  show interfaces type vxlan [state ] [around ] [count] [json]
+netq [] show events [level info|level error|level warning|level critical|level debug] type vxlan [between  and ] [json]
+   
+    
+</code></pre>
+
+
+<div class="notices info" > <p>When entering a time value, you must include a numeric value <em>and</em> the
+unit of measure:</p>
+
+<ul>
+<li><p>d: day(s)</p></li>
+
+<li><p>h: hour(s)</p></li>
+
+<li><p>m: minute(s)</p></li>
+
+<li><p>s: second(s)</p></li>
+
+<li><p>now</p></li>
+</ul>
+
+<p>For time ranges, the <code>&lt;text-time&gt;</code> is the most recent time and the
+<code>&lt;text-endtime&gt;</code> is the oldest time. The values do not have to have the
+same unit of measure.</p>
+ </div>
+
+
+<h3 id="view-all-vxlans-in-your-network">View All VXLANs in Your Network</h3>
+
+<p>You can view a list of configured VXLANs for all devices, including the
+VNI (VXLAN network identifier), protocol, address of associated VTEPs
+(VXLAN tunnel endpoint), replication list, and the last time it was
+changed. You can also view VXLAN information for a given device by
+adding a hostname to the <code>show</code> command. You can filter the results by
+VNI.</p>
+
+<p>This example shows all configured VXLANs across the network. In this
+network, there are three VNIs (13, 24, and 104001) associated with three
+VLANs (13, 24, 4001), EVPN is the virtual protocol deployed, and the
+configuration was last changed around 23 hours ago.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show vxlan
+Matching vxlan records:
+Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    Last Changed
+                             ol
+----------------- ---------- ------ ---------------- ------ ----------------------------------- -------------------------
+exit01            104001     EVPN   10.0.0.41        4001                                       Fri Feb  8 01:35:49 2019
+exit02            104001     EVPN   10.0.0.42        4001                                       Fri Feb  8 01:35:49 2019
+leaf01            13         EVPN   10.0.0.112       13     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf01            24         EVPN   10.0.0.112       24     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf01            104001     EVPN   10.0.0.112       4001                                       Fri Feb  8 01:35:49 2019
+leaf02            13         EVPN   10.0.0.112       13     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf02            24         EVPN   10.0.0.112       24     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf02            104001     EVPN   10.0.0.112       4001                                       Fri Feb  8 01:35:49 2019
+leaf03            13         EVPN   10.0.0.134       13     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf03            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf03            104001     EVPN   10.0.0.134       4001                                       Fri Feb  8 01:35:49 2019
+leaf04            13         EVPN   10.0.0.134       13     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf04            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf04            104001     EVPN   10.0.0.134       4001                                       Fri Feb  8 01:35:49 2019
+   
+    
+</code></pre>
+
+<p>This example shows the events and configuration changes that have
+occurred on the VXLANs in your network in the last 24 hours. In this
+case, the EVPN configuration was added to each of the devices in the
+last 24 hours.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show events type vxlan between now and 24h
+Matching vxlan records:
+Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    DB State   Last Changed
+                             ol
+----------------- ---------- ------ ---------------- ------ ----------------------------------- ---------- -------------------------
+exit02            104001     EVPN   10.0.0.42        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit02            104001     EVPN   10.0.0.42        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit02            104001     EVPN   10.0.0.42        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit02            104001     EVPN   10.0.0.42        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit02            104001     EVPN   10.0.0.42        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit02            104001     EVPN   10.0.0.42        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit02            104001     EVPN   10.0.0.42        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit01            104001     EVPN   10.0.0.41        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit01            104001     EVPN   10.0.0.41        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit01            104001     EVPN   10.0.0.41        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit01            104001     EVPN   10.0.0.41        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit01            104001     EVPN   10.0.0.41        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit01            104001     EVPN   10.0.0.41        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit01            104001     EVPN   10.0.0.41        4001                                       Add        Fri Feb  8 01:35:49 2019
+exit01            104001     EVPN   10.0.0.41        4001                                       Add        Fri Feb  8 01:35:49 2019
+leaf04            104001     EVPN   10.0.0.134       4001                                       Add        Fri Feb  8 01:35:49 2019
+leaf04            104001     EVPN   10.0.0.134       4001                                       Add        Fri Feb  8 01:35:49 2019
+leaf04            104001     EVPN   10.0.0.134       4001                                       Add        Fri Feb  8 01:35:49 2019
+leaf04            104001     EVPN   10.0.0.134       4001                                       Add        Fri Feb  8 01:35:49 2019
+leaf04            104001     EVPN   10.0.0.134       4001                                       Add        Fri Feb  8 01:35:49 2019
+leaf04            104001     EVPN   10.0.0.134       4001                                       Add        Fri Feb  8 01:35:49 2019
+leaf04            104001     EVPN   10.0.0.134       4001                                       Add        Fri Feb  8 01:35:49 2019
+leaf04            13         EVPN   10.0.0.134       13     10.0.0.112()                        Add        Fri Feb  8 01:35:49 2019
+leaf04            13         EVPN   10.0.0.134       13     10.0.0.112()                        Add        Fri Feb  8 01:35:49 2019
+leaf04            13         EVPN   10.0.0.134       13     10.0.0.112()                        Add        Fri Feb  8 01:35:49 2019
+leaf04            13         EVPN   10.0.0.134       13     10.0.0.112()                        Add        Fri Feb  8 01:35:49 2019
+leaf04            13         EVPN   10.0.0.134       13     10.0.0.112()                        Add        Fri Feb  8 01:35:49 2019
+leaf04            13         EVPN   10.0.0.134       13     10.0.0.112()                        Add        Fri Feb  8 01:35:49 2019
+leaf04            13         EVPN   10.0.0.134       13     10.0.0.112()                        Add        Fri Feb  8 01:35:49 2019
+...
+   
+    
+</code></pre>
+
+<p>Consequently, if you looked for the VXLAN configuration and status for
+last week, you would find either another configuration or no
+configuration. This example shows that no VXLAN configuration was
+present.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show vxlan around 7d
+ 
+No matching vxlan records found
+   
+    
+</code></pre>
+
+<p>You can filter the list of VXLANs to view only those associated with a
+particular VNI. This example shows the configured VXLANs for <em>VNI 24</em>.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show vxlan vni 24
+Matching vxlan records:
+Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    Last Changed
+                             ol
+----------------- ---------- ------ ---------------- ------ ----------------------------------- -------------------------
+leaf01            24         EVPN   10.0.0.112       24     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf02            24         EVPN   10.0.0.112       24     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf03            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf04            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+   
+    
+</code></pre>
+
+<h3 id="view-the-interfaces-associated-with-vxlans">View the Interfaces Associated with VXLANs</h3>
+
+<p>You can view detailed information about the VXLAN interfaces using the
+<code>netq show interface</code> command. You can also view this information for a
+given device by adding a hostname to the <code>show</code> command. This example
+shows the detailed VXLAN interface information for the leaf02 switch.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq leaf02 show interfaces type vxlan 
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+leaf02            vni13                     vxlan            up         default         VNI: 13, PVID: 13, Master: bridge,  Fri Feb  8 01:35:49 2019
+                                                                                        VTEP: 10.0.0.112, MTU: 9000
+leaf02            vni24                     vxlan            up         default         VNI: 24, PVID: 24, Master: bridge,  Fri Feb  8 01:35:49 2019
+                                                                                        VTEP: 10.0.0.112, MTU: 9000
+leaf02            vxlan4001                 vxlan            up         default         VNI: 104001, PVID: 4001,            Fri Feb  8 01:35:49 2019
+                                                                                        Master: bridge, VTEP: 10.0.0.112,
+                                                                                        MTU: 1500
+   
+    
+</code></pre>
+
+<h2 id="monitor-evpn">Monitor EVPN</h2>
+
+<p>EVPN (Ethernet Virtual Private Network) enables network administrators
+in the data center to deploy a virtual layer 2 bridge overlay on top of
+layer 3 IP networks creating access, or tunnel, between two locations.
+This connects devices in different layer 2 domains or sites running
+VXLANs and their associated underlays. With NetQ, you can monitor the
+configuration and status of the EVPN setup using the <code>netq show evpn</code>
+command. You can filter the EVPN information by a VNI (VXLAN network
+identifier), and view the current information or for a time in the past.
+The command also enables visibility into changes that have occurred in
+the configuration during a specific timeframe. The syntax for the
+command is:</p>
+
+<pre><code>                   
+netq [] show evpn [vni ] [around ] [json]
+netq [] show events [level info|level error|level warning|level critical|level debug] type vxlan [between  and ] [json]
+   
+    
+</code></pre>
+
+
+<div class="notices info" > <p>When entering a time value, you must include a numeric value <em>and</em> the
+unit of measure:</p>
+
+<ul>
+<li><p>d: day(s)</p></li>
+
+<li><p>h: hour(s)</p></li>
+
+<li><p>m: minute(s)</p></li>
+
+<li><p>s: second(s)</p></li>
+
+<li><p>now</p></li>
+</ul>
+
+<p>For time ranges, the <code>&lt;text-time&gt;</code> is the most recent time and the
+<code>&lt;text-endtime&gt;</code> is the oldest time. The values do not have to have the
+same unit of measure.</p>
+ </div>
+
+
+<p>For more information about and configuration of EVPN in your data
+center, refer to the <a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/display/DOCS/Ethernet+Virtual+Private+Network+-+EVPN">Cumulus Linux
+EVPN</a>
+topic.</p>
+
+<h3 id="view-the-status-of-evpn">View the Status of EVPN</h3>
+
+<p>You can view the configuration and status of your EVPN overlay across
+your network or for a particular device. This example shows the
+configuration and status for all devices, including the associated VNI,
+VTEP address, the import and export route (showing the BGP ASN and VNI
+path), and the last time a change was made for each device running EVPN.
+Use the <em>hostname</em> variable to view the configuration and status for a
+single device.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show evpn
+Matching evpn records:
+Hostname          VNI        VTEP IP          In Kernel Export RT        Import RT        Last Changed
+----------------- ---------- ---------------- --------- ---------------- ---------------- -------------------------
+leaf01            33         27.0.0.22        yes       197:33           197:33           Fri Feb  8 01:48:27 2019
+leaf01            34         27.0.0.22        yes       197:34           197:34           Fri Feb  8 01:48:27 2019
+leaf01            35         27.0.0.22        yes       197:35           197:35           Fri Feb  8 01:48:27 2019
+leaf01            36         27.0.0.22        yes       197:36           197:36           Fri Feb  8 01:48:27 2019
+leaf01            37         27.0.0.22        yes       197:37           197:37           Fri Feb  8 01:48:27 2019
+leaf01            38         27.0.0.22        yes       197:38           197:38           Fri Feb  8 01:48:27 2019
+leaf01            39         27.0.0.22        yes       197:39           197:39           Fri Feb  8 01:48:27 2019
+leaf01            40         27.0.0.22        yes       197:40           197:40           Fri Feb  8 01:48:27 2019
+leaf01            41         27.0.0.22        yes       197:41           197:41           Fri Feb  8 01:48:27 2019
+leaf01            42         27.0.0.22        yes       197:42           197:42           Fri Feb  8 01:48:27 2019
+leaf02            33         27.0.0.23        yes       198:33           198:33           Thu Feb  7 18:31:41 2019
+leaf02            34         27.0.0.23        yes       198:34           198:34           Thu Feb  7 18:31:41 2019
+leaf02            35         27.0.0.23        yes       198:35           198:35           Thu Feb  7 18:31:41 2019
+leaf02            36         27.0.0.23        yes       198:36           198:36           Thu Feb  7 18:31:41 2019
+leaf02            37         27.0.0.23        yes       198:37           198:37           Thu Feb  7 18:31:41 2019
+leaf02            38         27.0.0.23        yes       198:38           198:38           Thu Feb  7 18:31:41 2019
+leaf02            39         27.0.0.23        yes       198:39           198:39           Thu Feb  7 18:31:41 2019
+leaf02            40         27.0.0.23        yes       198:40           198:40           Thu Feb  7 18:31:41 2019
+leaf02            41         27.0.0.23        yes       198:41           198:41           Thu Feb  7 18:31:41 2019
+leaf02            42         27.0.0.23        yes       198:42           198:42           Thu Feb  7 18:31:41 2019
+...
+   
+    
+</code></pre>
+
+<h3 id="view-the-status-of-evpn-for-a-given-vni">View the Status of EVPN for a Given VNI</h3>
+
+<p>You can filter the full device view to focus on a single VNI. This
+example only shows the EVPN configuration and status for VNI 42.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show evpn vni 42
+Matching evpn records:
+Hostname          VNI        VTEP IP          In Kernel Export RT        Import RT        Last Changed
+----------------- ---------- ---------------- --------- ---------------- ---------------- -------------------------
+leaf01            42         27.0.0.22        yes       197:42           197:42           Thu Feb 14 00:48:24 2019
+leaf02            42         27.0.0.23        yes       198:42           198:42           Wed Feb 13 18:14:49 2019
+leaf11            42         36.0.0.24        yes       199:42           199:42           Wed Feb 13 18:14:22 2019
+leaf12            42         36.0.0.24        yes       200:42           200:42           Wed Feb 13 18:14:27 2019
+leaf21            42         36.0.0.26        yes       201:42           201:42           Wed Feb 13 18:14:33 2019
+leaf22            42         36.0.0.26        yes       202:42           202:42           Wed Feb 13 18:14:37 2019
+   
+    
+</code></pre>
+
+<h3 id="view-evpn-events">View EVPN Events</h3>
+
+<p>You can view status and configuration change events for the EVPN
+protocol service using the <code>netq show events</code> command. This example
+shows the events that have occurred in the last 48 hours.</p>
+
+<pre><code>                   
+cumulus@switch:/$ netq show events type evpn between now and 48h
+Matching events records:
+Hostname          Message Type Severity Message                             Timestamp
+----------------- ------------ -------- ----------------------------------- -------------------------
+torc-21           evpn         info     VNI 33 state changed from down to u 1d:8h:16m:29s
+                                        p
+torc-12           evpn         info     VNI 41 state changed from down to u 1d:8h:16m:35s
+                                        p
+torc-11           evpn         info     VNI 39 state changed from down to u 1d:8h:16m:41s
+                                        p
+tor-1             evpn         info     VNI 37 state changed from down to u 1d:8h:16m:47s
+                                        p
+tor-2             evpn         info     VNI 42 state changed from down to u 1d:8h:16m:51s
+                                        p
+torc-22           evpn         info     VNI 39 state changed from down to u 1d:8h:17m:40s
+                                        p
+...
+   
+    
+</code></pre>
+
+<h2 id="monitor-lnv">Monitor LNV</h2>
+
+<p>Lightweight Network Virtualization (LNV) is a technique for deploying
+<a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=8360752">VXLANs</a>
+without a central controller on bare metal switches. LNV enables data
+center network administrators and operators to create a data path
+between bridges on top of a layer 3 fabric. With NetQ, you can monitor
+the configuration and status of the LNV setup using the <code>netq show lnv</code>
+command. You can view the current information or for a time in the past.
+The command also enables visibility into changes that have occurred in
+the configuration during a specific timeframe. The syntax for the
+command is:</p>
+
+<pre><code>                   
+netq [] show lnv [around ] [json]
+netq [] show events [level info|level error|level warning|level critical|level debug] type lnv [between  and ] [json]
+   
+    
+</code></pre>
+
+<h3 id="view-lnv-status">View LNV Status</h3>
+
+<p>You can view the configuration and status of your LNV overlay across
+your network or for a particular device. This example shows the
+configuration and status of LNV across the network, including the role
+each node plays, replication mode, number of peers and VNIs, and the
+last time the configuration was changed.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show lnv
+Matching LNV session records are:
+Hostname          Role       ReplMode State      #Peers #VNIs  Last Changed
+----------------- ---------- -------- ---------- ------ ------ -------------------------
+spine01           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
+spine02           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
+spine03           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
+leaf01            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+leaf02            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+leaf11            RD         HER      up         0      0      Thu Feb  7 18:31:31 2019
+leaf12            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+leaf21            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+leaf22            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+   
+    
+</code></pre>
+
+<h3 id="view-lnv-status-in-the-past">View LNV Status in the Past</h3>
+
+<p>You can view the status in the past using the <code>around</code> keyword. This
+example shows the status of LNV about 30 minutes ago.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show lnv around 30m
+Matching LNV session records are:
+Hostname          Role       ReplMode State      #Peers #VNIs  Last Changed
+----------------- ---------- -------- ---------- ------ ------ -------------------------
+spine01           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
+spine02           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
+spine03           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
+leaf01            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+leaf02            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+leaf11            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+leaf12            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+leaf21            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+leaf22            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+   
+    
+</code></pre>
+
+<p>For more information about and configuration of LNV, refer to the
+<a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=8360754">Cumulus Linux LNV
+Overview</a>
+topic.</p>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#monitor-virtual-extensible-lans">Monitor Virtual Extensible LANs</a>
+<ul>
+<li><a href="#view-all-vxlans-in-your-network">View All VXLANs in Your Network</a></li>
+<li><a href="#view-the-interfaces-associated-with-vxlans">View the Interfaces Associated with VXLANs</a></li>
+</ul></li>
+<li><a href="#monitor-evpn">Monitor EVPN</a>
+<ul>
+<li><a href="#view-the-status-of-evpn">View the Status of EVPN</a></li>
+<li><a href="#view-the-status-of-evpn-for-a-given-vni">View the Status of EVPN for a Given VNI</a></li>
+<li><a href="#view-evpn-events">View EVPN Events</a></li>
+</ul></li>
+<li><a href="#monitor-lnv">Monitor LNV</a>
+<ul>
+<li><a href="#view-lnv-status">View LNV Status</a></li>
+<li><a href="#view-lnv-status-in-the-past">View LNV Status in the Past</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ethernet Bridging - VLANs on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Ethernet_Bridging_-_VLANs/</link>
+    <description>Recent content in Ethernet Bridging - VLANs on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Ethernet_Bridging_-_VLANs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>VLAN Tagging</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Ethernet_Bridging_-_VLANs/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Ethernet_Bridging_-_VLANs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Ethernet_Bridging_-_VLANs/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Ethernet_Bridging_-_VLANs/</guid>
+      <description>This article shows two examples of VLAN tagging, one basic and one more advanced. They both demonstrate the streamlined interface configuration from ifupdown2. For more information, see Configuring and Managing Network Interfaces.
+VLAN Tagging, a Basic Example A simple configuration demonstrating VLAN tagging involves two hosts connected to a switch.
+{{&amp;lt; imgOld 0 &amp;gt;}}
+ host1 connects to swp1 with both untagged frames and with 802.1Q frames tagged for vlan100.</description>
+    </item>
+    
+    <item>
+      <title>VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Ethernet_Bridging_-_VLANs/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Ethernet_Bridging_-_VLANs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Ethernet_Bridging_-_VLANs/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Ethernet_Bridging_-_VLANs/</guid>
+      <description>Cumulus Linux bridge driver supports two configuration modes, one that is VLAN-aware, and one that follows a more traditional Linux bridge model.
+For traditional Linux bridges, the kernel supports VLANs in the form of VLAN subinterfaces. Enabling bridging on multiple VLANs means configuring a bridge for each VLAN and, for each member port on a bridge, creating one or more VLAN subinterfaces out of that port. This mode poses scalability challenges in terms of configuration size as well as boot time and run time state management, when the number of ports times the number of VLANs becomes large.</description>
+    </item>
+    
+  </channel>
+</rss>

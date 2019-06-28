@@ -1,0 +1,2866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NetQ User Interface Overview | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/" >
+    Cumulus NetQ 2.1
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 1.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 2.0.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/" >
+    Upgrade from NetQ 2.1.0 to NetQ 2.1.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_BGP_Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_EVPN_Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_LLDP_Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Validate_Network_Protocol_and_Service_Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/"  class="active" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>NetQ User Interface Overview</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>NetQ User Interface Overview</h1>
+
+<p>The NetQ 2.1 graphical user interface (UI) enables you to access NetQ
+capabilities through a web browser as opposed to through a terminal
+window using the Command Line Interface (CLI). Visual representations of
+the health of the network, inventory, and system events make it easy to
+both find faults and misconfigurations and to fix them.</p>
+
+<p>The UI is supported on Google Chrome. Other popular browsers may be
+used, but have not been tested and may have some presentation issues.</p>
+
+
+<div class="notices tip" > <p>Before you get started, you should refer to the <a href="https://wiki.cumulusnetworks.com/display/PC/NetQ+2.0+EA+User+Documentation" target="_blank">release
+notes</a>
+for this version.</p>
+ </div>
+
+
+<h2 id="access-the-netq-ui">Access the NetQ UI</h2>
+
+<p>Logging in to the NetQ UI is as easy as opening any web page.</p>
+
+<p>To log in to the UI:</p>
+
+<ol>
+<li><p>Open a new Internet browser window or tab.</p></li>
+
+<li><p>Enter the following URL into the Address bar: <em>http://</em> <em>&lt;
+netq-platform/appliance-ipaddress&gt;:32666.</em></p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-26_12_17_29.png" alt = "/images/download/attachments/10457097/image2019-4-26_12_17_29.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Select your language of choice (English or Spanish) from the
+dropdown at the top of the window.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-22_10_5_20.png" alt = "/images/download/attachments/10457097/image2019-4-22_10_5_20.png"
+
+
+ />
+</li>
+
+<li><p>Enter your username and then your password ( <em>admin, admin</em> by
+default).</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-5-8_10_24_50.png" alt = "/images/download/attachments/10457097/image2019-5-8_10_24_50.png"
+
+
+width = 750
+
+ />
+
+
+<p>The default Cumulus Workbench opens, with your username showing in
+the upper right corner of the application.</p></li>
+</ol>
+
+<p>To log out of the UI:</p>
+
+<ol>
+<li><p>Click the user icon at the top right of the application.</p></li>
+
+<li><p>Select <strong>Log Out</strong>.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-4-26_12_44_35.png" alt = "/images/download/thumbnails/10457097/image2019-4-26_12_44_35.png"
+
+
+width = 175
+
+ />
+</li>
+</ol>
+
+<h2 id="application-layout">Application Layout</h2>
+
+<p>The NetQ UI contains two areas:</p>
+
+<ul>
+<li><p><strong>Application Header</strong> (1): Contains the main menu, navigation
+history, search capabilities, NetQ version, quick health status
+chart, local time zone, and user account information.</p></li>
+
+<li><p><strong>Workbench</strong> (2): Contains a task bar and content cards (with
+status and configuration information about your network and its
+various components).</p></li>
+</ul>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-5-8_10_29_46.png" alt = "/images/download/attachments/10457097/image2019-5-8_10_29_46.png"
+
+
+width = 1000
+
+ />
+
+
+<h2 id="main-menu">Main Menu</h2>
+
+<p>Found in the application header, click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2018-12-10_15_56_55.png" alt = "/images/download/thumbnails/10457097/image2018-12-10_15_56_55.png"
+
+
+width = 18
+
+ />
+
+
+<p>to open the main menu which provides navigation to:</p>
+
+<ul>
+<li><p><strong>Favorites</strong>: contains list of links to workbenches that you have
+designated as favorites; Home is listed by default</p></li>
+
+<li><p><strong>NetQ</strong>: contains list of links to all workbenches in the
+application</p></li>
+
+<li><p><strong>Network</strong>: contains list of links to tabular data about various
+network elements; return to a workbench by selecting it from the
+NetQ menu</p></li>
+
+<li><p><strong>Admin</strong>: contains link to user documentation and application
+management</p></li>
+</ul>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-26_10_56_45.png" alt = "/images/download/attachments/10457097/image2019-4-26_10_56_45.png"
+
+
+width = 450
+
+ />
+
+
+<h2 id="navigation-history">Navigation History</h2>
+
+<p>Found in the header, the navigation history keeps track of every action
+you take on your workbench. This enables the user to go back to a
+previous state or repeat an action.</p>
+
+<p>To open the navigation history, click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-5-8_10_33_44.png" alt = "/images/download/thumbnails/10457097/image2019-5-8_10_33_44.png"
+
+
+width = 16
+
+ />
+
+
+<p>. Click on any of the actions to perform that action again.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-5-8_10_35_30.png" alt = "/images/download/thumbnails/10457097/image2019-5-8_10_35_30.png"
+
+
+width = 275
+
+ />
+
+
+<h2 id="quick-network-health-view">Quick Network Health View</h2>
+
+<p>Found in the header, the graph and performance rating provide a view
+into the health of your network at a glance.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-22_10_26_35.png" alt = "/images/download/attachments/10457097/image2019-4-22_10_26_35.png"
+
+
+ />
+
+
+<h2 id="user-settings">User Settings</h2>
+
+<p>Based on where you reside and your visual preferences, you can specify
+how you want your application to look and how data is displayed.</p>
+
+<h3 id="choose-a-theme">Choose a Theme</h3>
+
+<p>There are two themes available: a Light theme and a Jade (or dark)
+theme. The screen captures in this document are all displayed with the
+Jade theme.</p>
+
+<p>To choose a theme:</p>
+
+<ol>
+<li><p>Click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-4-26_13_17_14.png" alt = "/images/download/thumbnails/10457097/image2019-4-26_13_17_14.png"
+
+
+width = 18
+
+ />
+
+
+<p>in the application header to open the <strong>User Settings</strong> options.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-4-26_13_26_32.png" alt = "/images/download/thumbnails/10457097/image2019-4-26_13_26_32.png"
+
+
+width = 175
+
+ />
+</li>
+
+<li><p>Select your choice of theme. It changes on selection. This figure
+shows the light theme.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-29_11_7_2.png" alt = "/images/download/attachments/10457097/image2019-4-29_11_7_2.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Switch back and forth as desired.</p></li>
+</ol>
+
+<h3 id="choose-a-time-zone">Choose a Time Zone</h3>
+
+<p>By default, the time zone is set to the current local time zone. All
+time values are based on this setting. This is displayed in the
+application header, and is based on Greenwich Mean Time (GMT).</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-4-26_11_7_49.png" alt = "/images/download/thumbnails/10457097/image2019-4-26_11_7_49.png"
+
+
+width = 75
+
+ />
+
+
+<p>If your deployment is not in this time zone, or if you want to view the
+data from the perspective of a data center in another time zone, you can
+change the time zone by clicking</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/V88gxOaxuUjBWw5tni0vwGrNs2JBQsz0SwWFpQCdJTOSYfuUGQnpkWz8-cHDSF-jZsE4TeZfpRhaeIhOU7UIZZE2AwtP870d78GBCwuD0Kzqb7TbAiDnX5hgQh5DC68zoKgoLd5U" alt = "/images/lh5.googleusercontent.com/V88gxOaxuUjBWw5tni0vwGrNs2JBQsz0SwWFpQCdJTOSYfuUGQnpkWz8-cHDSF-jZsE4TeZfpRhaeIhOU7UIZZE2AwtP870d78GBCwuD0Kzqb7TbAiDnX5hgQh5DC68zoKgoLd5U"
+
+
+width = 16
+
+ />
+
+
+<p>. The following table presents a sample of time zones:</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>GMT +12</td>
+<td>New Zealand Standard Time</td>
+<td>NST</td>
+</tr>
+
+<tr>
+<td>GMT +11</td>
+<td>Solomon Standard Time</td>
+<td>SST</td>
+</tr>
+
+<tr>
+<td>GMT +10</td>
+<td>Australian Eastern Time</td>
+<td>AET</td>
+</tr>
+
+<tr>
+<td>GMT +9:30</td>
+<td>Australia Central Time</td>
+<td>ACT</td>
+</tr>
+
+<tr>
+<td>GMT +9</td>
+<td>Japan Standard Time</td>
+<td>JST</td>
+</tr>
+
+<tr>
+<td>GMT +8</td>
+<td>China Taiwan Time</td>
+<td>CTT</td>
+</tr>
+
+<tr>
+<td>GMT +7</td>
+<td>Vietnam Standard Time</td>
+<td>VST</td>
+</tr>
+
+<tr>
+<td>GMT +6</td>
+<td>Bangladesh Standard Time</td>
+<td>BST</td>
+</tr>
+
+<tr>
+<td>GMT +5:30</td>
+<td>India Standard Time</td>
+<td>IST</td>
+</tr>
+
+<tr>
+<td>GMT+5</td>
+<td>Pakistan Lahore Time</td>
+<td>PLT</td>
+</tr>
+
+<tr>
+<td>GMT +4</td>
+<td>Near East Time</td>
+<td>NET</td>
+</tr>
+
+<tr>
+<td>GMT +3:30</td>
+<td>Middle East Time</td>
+<td>MET</td>
+</tr>
+
+<tr>
+<td>GMT +3</td>
+<td>Eastern African Time/Arab Standard Time</td>
+<td>EAT/AST</td>
+</tr>
+
+<tr>
+<td>GMT +2</td>
+<td>Eastern European Time</td>
+<td>EET</td>
+</tr>
+
+<tr>
+<td>GMT +1</td>
+<td>European Central Time</td>
+<td>ECT</td>
+</tr>
+
+<tr>
+<td>GMT</td>
+<td>Greenwich Mean Time</td>
+<td>GMT</td>
+</tr>
+
+<tr>
+<td>GMT -1</td>
+<td>Central African Time</td>
+<td>CAT</td>
+</tr>
+
+<tr>
+<td>GMT -2</td>
+<td>Uruguay Summer Time</td>
+<td>UYST</td>
+</tr>
+
+<tr>
+<td>GMT -3</td>
+<td>Argentina Standard/Brazil Eastern Time</td>
+<td>AGT/BET</td>
+</tr>
+
+<tr>
+<td>GMT -4</td>
+<td>Atlantic Standard Time/Puerto Rico Time</td>
+<td>AST/PRT</td>
+</tr>
+
+<tr>
+<td>GMT -5</td>
+<td>Eastern Standard Time</td>
+<td>EST</td>
+</tr>
+
+<tr>
+<td>GMT -6</td>
+<td>Central Standard Time</td>
+<td>CST</td>
+</tr>
+
+<tr>
+<td>GMT -7</td>
+<td>Mountain Standard Time</td>
+<td>MST</td>
+</tr>
+
+<tr>
+<td>GMT -8</td>
+<td>Pacific Standard Time</td>
+<td>PST</td>
+</tr>
+
+<tr>
+<td>GMT -9</td>
+<td>Alaskan Standard Time</td>
+<td>AST</td>
+</tr>
+
+<tr>
+<td>GMT -10</td>
+<td>Hawaiian Standard Time</td>
+<td>HST</td>
+</tr>
+
+<tr>
+<td>GMT -11</td>
+<td>Samoa Standard Time</td>
+<td>SST</td>
+</tr>
+
+<tr>
+<td>GMT -12</td>
+<td>New Zealand Standard Time</td>
+<td>NST</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="search">Search</h2>
+
+<p>The Global Search field in the UI header enables you to search for
+devices.</p>
+
+<h3 id="create-a-search">Create a Search</h3>
+
+<p>As with most search fields, simply begin entering the criteria in the
+search field. As you type, items that match the search criteria are
+shown in the search history dropdown along with the last time the search
+was viewed. Wildcards are not allowed, but this predictive matching
+eliminates the need for them. By default, the most recent searches are
+shown. If more have been performed, they can be accessed. This may
+provide a quicker search by reducing entry specifics and suggesting
+recent searches. Selecting a suggested search from the list provides a
+preview of the search results to the right.</p>
+
+<p>To create a new search:</p>
+
+<ol>
+<li><p>Click in the <strong>Global Search</strong> field.</p></li>
+
+<li><p>Enter your search criteria.</p></li>
+
+<li><p>Click the device hostname or card workflow in the search list to
+open the associated information.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-2-19_10_44_41.png" alt = "/images/download/thumbnails/10457097/image2019-2-19_10_44_41.png"
+
+
+width = 300
+
+ />
+
+
+
+<div class="notices info" > <pre><code>If you have more matches than fit in the window, click the **See All
+\# Results** link to view all found matches. The count represents
+the number of devices found. It does not include cards found.
+</code></pre>
+ </div>
+</li>
+</ol>
+
+<h3 id="run-a-recent-search">Run a Recent Search</h3>
+
+<p>You can re-run a recent search, saving time if you are comparing data
+from two or more devices.</p>
+
+<p>To re-run a recent search:</p>
+
+<ol>
+<li><p>Click in the <strong>Global Search</strong> field.</p></li>
+
+<li><p>When the desired search appears in the suggested searches list,
+select it.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-4-22_10_33_30.png" alt = "/images/download/thumbnails/10457097/image2019-4-22_10_33_30.png"
+
+
+width = 300
+
+ />
+
+
+
+<div class="notices info" > <pre><code>You may need to click **See All \# Results** to find the desired
+search. If you do not find it in the list, you may still be able to
+find it in the **Navigation History**.
+</code></pre>
+ </div>
+</li>
+</ol>
+
+<h2 id="workbenches">Workbenches</h2>
+
+<p>A workbench is comprised of a given set of cards. In this release, a
+preconfigured default workbench, Cumulus Workbench, is available to get
+you started. It contains Device Inventory, Switch Inventory, Alarm and
+Info Events, and Network Health cards. On initial login, this workbench
+is opened. You can modify a workbench by adding or removing cards or
+card decks, as described in <a href="/old/Cumulus_NetQ/#src-10457097_NetQUserInterfaceOverview-AddDelCard">Add or Remove a
+Card</a>
+.</p>
+
+<h2 id="cards">Cards</h2>
+
+<p>Cards present information about your network for monitoring and
+troubleshooting. This is where you can expect to spend most of your
+time. Each card describes a particular aspect of the network. Cards are
+available in multiple sizes, from small to full screen. The level of the
+content on a card varies in accordance with the size of the card, with
+the highest level of information on the smallest card to the most
+detailed information on the full-screen view. Cards are collected onto a
+workbench where you see all of the data relevant to a task or set of
+tasks. You can add and remove cards from a workbench, move between cards
+and card sizes, and make copies of cards to show different levels of
+data at the same time.</p>
+
+<h3 id="card-sizes">Card Sizes</h3>
+
+<p>The various sizes of cards enables you to view your content at just the
+right level. For each aspect that you are monitoring there is typically
+a single card, that presents increasing amounts of data over its four
+sizes. For example, a snapshot of your total inventory may be
+sufficient, but to monitor the distribution of hardware vendors may
+requires a bit more space.</p>
+
+<h4 id="small-cards">Small Cards</h4>
+
+<p>Small cards are most effective at providing a quick view of the
+performance or statistical value of a given aspect of your network. They
+are commonly comprised of an icon to identify the aspect being
+monitored, summary performance or statistics in the form of a graph
+and/or counts, and often an indication of any related events. Other
+content items may be present. Some examples include a Devices Inventory
+card, a Switch Inventory card, an Alarm Events card, an Info Events
+card, and a Network Health card, as shown here:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-26_13_32_4.png" alt = "/images/download/attachments/10457097/image2019-4-26_13_32_4.png"
+
+
+width = 900
+
+ />
+
+
+<h4 id="medium-cards">Medium Cards</h4>
+
+<p>Medium cards are most effective at providing the key measurements for a
+given aspect of your network. They are commonly comprised of an icon to
+identify the aspect being monitored, one or more key measurements that
+make up the overall performance. Often additional information is also
+included, such as related events or components. Some examples include a
+Devices Inventory card, a Switch Inventory card, an Alarm Events card,
+an Info Events card, and a Network Health card, as shown here. Compare
+these with their related small- and large-sized cards.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-26_13_33_32.png" alt = "/images/download/attachments/10457097/image2019-4-26_13_33_32.png"
+
+
+width = 900
+
+ />
+
+
+<h4 id="large-cards">Large Cards</h4>
+
+<p>Large cards are most effective at providing the detailed information for
+monitoring specific components or functions of a given aspect of your
+network. These can aid in isolating and resolving existing issues or
+preventing potential issues. They are commonly comprised of detailed
+statistics and graphics. Some large cards also have tabs for additional
+detail about a given statistic or other related information. Some
+examples include a Devices Inventory card, an Alarm Events card, and a
+Network Health card, as shown here. Compare these with their related
+small- and medium-sized cards.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-26_13_35_38.png" alt = "/images/download/attachments/10457097/image2019-4-26_13_35_38.png"
+
+
+width = 450
+
+ />
+
+
+<h4 id="full-screen-cards">Full-Screen Cards</h4>
+
+<p>Full-screen cards are most effective for viewing all available data
+about an aspect of your network all in one place. When you cannot find
+what you need in the small, medium, or large cards, it is likely on the
+full-screen card. Most full-screen cards are comprised of data grid, or
+table; however, some contain visualizations. Some examples include All
+Events card and All Switches card, as shown here.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-26_13_37_33.png" alt = "/images/download/attachments/10457097/image2019-4-26_13_37_33.png"
+
+height = 250
+
+
+ />
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-26_13_39_26.png" alt = "/images/download/attachments/10457097/image2019-4-26_13_39_26.png"
+
+
+width = 850
+
+ />
+
+
+<h4 id="data-grid-settings">Data Grid Settings</h4>
+
+<p>You can manipulate the data in a data grid in a full screen card in
+several ways.</p>
+
+<p><em>Sort Data by Column</em></p>
+
+<p>Hover over a column header and click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/3rtgOOjZrQnbTdoelUi8ABzIsqZqZGRvrggdthbirqmuJcElrlQqWsd1UDZNafvkFHeqVkkRvfS34h8HmqTVSvVIoCpoygqj2VrhKAmjrZrvw3FTkQyM1FkDgAp3ZAihUoaOuN-v" alt = "/images/lh3.googleusercontent.com/3rtgOOjZrQnbTdoelUi8ABzIsqZqZGRvrggdthbirqmuJcElrlQqWsd1UDZNafvkFHeqVkkRvfS34h8HmqTVSvVIoCpoygqj2VrhKAmjrZrvw3FTkQyM1FkDgAp3ZAihUoaOuN-v"
+
+
+width = 18
+
+ />
+
+
+<p>.</p>
+
+<p><em>Choose Columns to Display</em></p>
+
+<ol>
+<li><p>Click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w" alt = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w"
+
+
+width = 16
+
+ />
+
+
+<p>at the top right of the card.</p></li>
+
+<li><p>Click <strong>Change Columns</strong> from the <strong>Display Settings</strong>.</p></li>
+
+<li><p>Click the checkbox next to each column name to toggle on/off the
+columns you would like displayed. Columns listed under <strong>Active</strong>
+are displayed. Columns listed under <strong>Inactive</strong> are not displayed.</p>
+
+
+<div class="notices tip" > <pre><code>When you have a large number of possible columns for display, you
+can search for the column name using the **Quick Filter** to find
+and select or deselect the column more quickly.
+</code></pre>
+ </div>
+</li>
+
+<li><p>Click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T" alt = "/images/lh4.googleusercontent.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T"
+
+
+width = 16
+
+ />
+
+
+<p>to close the selection box and view the updated data grid.</p></li>
+</ol>
+
+<p><em>Change Order of Columns</em></p>
+
+<ol>
+<li><p>Click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w" alt = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w"
+
+
+width = 16
+
+ />
+
+
+<p>and then click <strong>Change Columns</strong>.</p></li>
+
+<li><p>Hover over a column name.</p></li>
+
+<li><p>Point to the six dots to the left of the checkbox.</p></li>
+
+<li><p>Click and drag the selected column up or down in the list.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-2-19_11_26_10.png" alt = "/images/download/attachments/10457097/image2019-2-19_11_26_10.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T" alt = "/images/lh4.googleusercontent.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T"
+
+
+width = 16
+
+ />
+
+
+<p>to close the selection box and view the updated data grid.</p></li>
+</ol>
+
+<p><em>Take Actions on Items</em></p>
+
+<p>In the full screen cards, you can determine which results are displayed
+in the results list, and which are exported.</p>
+
+<p>To take actions on the data, click in the blank column at the very left
+of a row. A checkbox appears, selecting that item, and an edit menu is
+shown at the bottom of the card (shown enlarged here).</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-6_16_15_26.png" alt = "/images/download/attachments/10457097/image2019-4-6_16_15_26.png"
+
+
+width = 850
+
+ />
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-3_12_19_37.png" alt = "/images/download/attachments/10457097/image2019-4-3_12_19_37.png"
+
+
+ />
+
+
+<p>You can perform the following actions on the results list:</p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Action or Behavior on Click</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Select All</td>
+<td>Selects all items in the results list</td>
+</tr>
+
+<tr>
+<td>Clear All</td>
+<td>Clears all existing selections of items in the results list. This also hides the edit menu.</td>
+</tr>
+
+<tr>
+<td>Export Selected</td>
+<td>Exports selected data into a .csv file. If you want to export to a .json file format, use the <strong>Export</strong> button.</td>
+</tr>
+
+<tr>
+<td>Show Only Selected</td>
+<td>Hide unselected switches, sessions, or alarms.</td>
+</tr>
+
+<tr>
+<td>Remove Selected</td>
+<td>Remove selected switches, sessions, or alarms from the results list.</td>
+</tr>
+</tbody>
+</table>
+
+<p>To return to original display of results, click the associated tab.</p>
+
+<h4 id="export-data">Export Data</h4>
+
+<p>You can export tabular data from a full screen card to a CSV- or
+JSON-formatted file.</p>
+
+<p>To export the data:</p>
+
+<ol>
+<li><p>If you want to export only a subset of the data listed, select those
+items first.</p></li>
+
+<li><p>Click <strong>EXPORT</strong>.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-2-19_11_35_31.png" alt = "/images/download/thumbnails/10457097/image2019-2-19_11_35_31.png"
+
+
+width = 250
+
+ />
+</li>
+
+<li><p>Select all data or selected data for export in the dialog box:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-2-13_20_51_19.png" alt = "/images/download/attachments/10457097/image2019-2-13_20_51_19.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Select the export format.</p></li>
+
+<li><p>Click <strong>EXPORT</strong> to save the file to your downloads directory.</p></li>
+</ol>
+
+
+<div class="notices tip" > <p>You can quickly export all data to a .csv file in one of two ways:</p>
+
+<ul>
+<li><p>Click <strong>Export</strong> at top of list, and click <strong>Export</strong> in the dialog,
+or</p></li>
+
+<li><p>Select one item, click <strong>Select All</strong>, click <strong>Export Selected</strong>.</p></li>
+</ul>
+ </div>
+
+
+<h4 id="card-size-summary">Card Size Summary</h4>
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Card Size</p></th>
+<th><p>Small</p></th>
+<th><p>Medium</p></th>
+<th><p>Large</p></th>
+<th><p>Full Screen</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Primary Purpose</p></td>
+<td><ul>
+<li><p>Quick view of status, typically at the level of good or bad</p></li>
+<li><p>Enable quick actions, run a validation or trace for example</p></li>
+</ul></td>
+<td><ul>
+<li><p>View key performance parameters or statistics</p></li>
+<li><p>Perform an action</p></li>
+<li><p>Look for potential issues</p></li>
+</ul></td>
+<td><ul>
+<li><p>View detailed performance and statistics</p></li>
+<li><p>Perform actions</p></li>
+<li><p>Compare and review related information</p></li>
+</ul></td>
+<td><ul>
+<li><p>View all attributes for given network aspect</p></li>
+<li><p>Free-form data analysis and visualization</p></li>
+<li><p>Export data to third-party tools</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="card-interactions">Card Interactions</h3>
+
+<p>Every card contains a standard set of interactions, including the
+ability to switch between card sizes, and change the time period of the
+presented data. Most cards also have additional actions that can be
+taken, in the form of links to other cards, scrolling, and so forth. The
+four sizes of cards for a particular aspect of the network are connected
+into a flow; however, you can have duplicate cards displayed at the
+different sizes. Cards with tabular data provide filtering, sorting, and
+export of data. The medium and large cards have descriptive text on the
+back of the cards.</p>
+
+<p>To access the time period, card size, and additional actions, hover over
+the card. These options appear, covering the card header, enabling you
+to select the desired option.</p>
+
+<h4 id="change-the-time-period-for-the-card-data">Change the Time Period for the Card Data</h4>
+
+<p>All cards have a default time period for the data shown on the card,
+typically the last 24 hours. You can change the time period to view the
+data during a different time range to aid analysis of previous or
+existing issues.</p>
+
+<p>To change the time period for a card:</p>
+
+<ol>
+<li><p>Hover over any card.</p></li>
+
+<li><p>Click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/fo-yr9tPWzyO_CQPDiddcB5tmuwuX1OS7nIlj4_9iA3_6xnmg_c-54SmAAdNJL_odR0UGjeTSxRHw2BHkeZ3YEfiwOhjpUeHVwPVd8s4F2XwOGnRWXD4NfaIzj86ETYgEU8frnzw" alt = "/images/lh4.googleusercontent.com/fo-yr9tPWzyO_CQPDiddcB5tmuwuX1OS7nIlj4_9iA3_6xnmg_c-54SmAAdNJL_odR0UGjeTSxRHw2BHkeZ3YEfiwOhjpUeHVwPVd8s4F2XwOGnRWXD4NfaIzj86ETYgEU8frnzw"
+
+
+width = 18
+
+ />
+
+
+<p>in the header .</p></li>
+
+<li><p>Select a time period from the dropdown list.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-2-19_11_47_45.png" alt = "/images/download/thumbnails/10457097/image2019-2-19_11_47_45.png"
+
+
+width = 200
+
+ />
+</li>
+</ol>
+
+
+<div class="notices tip" > <p>Changing the time period in this manner only changes the time period for
+the given card.</p>
+ </div>
+
+
+<h4 id="switch-to-a-different-card-size">Switch to a Different Card Size</h4>
+
+<p>You can switch between the different card sizes at any time. Only one
+size is visible at a time. To view the same card in different sizes,
+open a second copy of the card.</p>
+
+<p>To change the card size:</p>
+
+<ol>
+<li><p>Hover over the card.</p></li>
+
+<li><p>Hover over the Card Size Picker and move the cursor to the right or
+left until the desired size option is highlighted.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-2-19_11_50_3.png" alt = "/images/download/thumbnails/10457097/image2019-2-19_11_50_3.png"
+
+
+width = 200
+
+ />
+
+
+<p>Single width opens a small card. Double width opens a medium card.
+Triple width opens large cards. Full width opens full-screen cards.</p></li>
+
+<li><p>Click the Picker.<br />
+The card changes to the selected size, and may move its location on
+the workbench.</p></li>
+</ol>
+
+<h4 id="reposition-a-card-on-your-workbench">Reposition a Card on Your Workbench</h4>
+
+<p>You can also move cards around on the workbench, using a simple drag and
+drop method.</p>
+
+<p>To move a card:</p>
+
+<ol>
+<li><p>Simply click and drag the card to left or right of another card,
+next to where you want to place the card.</p></li>
+
+<li><p>Release your hold on the card when the other card becomes
+highlighted with a dotted line. In this example, we are moving the
+medium Network Health card to the left of the medium Devices
+Inventory card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-22_11_2_42.png" alt = "/images/download/attachments/10457097/image2019-4-22_11_2_42.png"
+
+height = 250
+
+
+ />
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-22_11_4_6.png" alt = "/images/download/attachments/10457097/image2019-4-22_11_4_6.png"
+
+height = 250
+
+
+ />
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-22_11_3_33.png" alt = "/images/download/attachments/10457097/image2019-4-22_11_3_33.png"
+
+height = 250
+
+
+ />
+</li>
+</ol>
+
+<h3 id="add-or-remove-a-card">Add or Remove a Card</h3>
+
+<p>You can add or remove cards from a workbench at any time.</p>
+
+<p>To add a card:</p>
+
+<ol>
+<li><p>Click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-1-28_16_24_47.png" alt = "/images/download/thumbnails/10457097/image2019-1-28_16_24_47.png"
+
+
+width = 16
+
+ />
+
+
+<p>.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-26_13_56_47.png" alt = "/images/download/attachments/10457097/image2019-4-26_13_56_47.png"
+
+
+width = 150
+
+ />
+</li>
+
+<li><p>Select a card from the available list.</p></li>
+</ol>
+
+<p>The card is placed at the end of the set of cards currently on the
+workbench. You might need to scroll down to see it. By default, the
+medium size of the card is added to your workbench. You can move it to
+another location as described above.</p>
+
+<p>To remove a card:</p>
+
+<ol>
+<li><p>Hover over the card you want to remove.</p></li>
+
+<li><p>Click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/2VPuKgI9RmbIKGMWYHIZEgLjxxWCG47tMpYrG3KB_60oZ6U6KdeSlUq-mh8gxLyPqLWv7SFVtoBZPxEzGhsXt79fSwNbJEGRetV44mEE33K47ysvnQHGvfYaRTBwMBmXKQVVUWCx" alt = "/images/lh4.googleusercontent.com/2VPuKgI9RmbIKGMWYHIZEgLjxxWCG47tMpYrG3KB_60oZ6U6KdeSlUq-mh8gxLyPqLWv7SFVtoBZPxEzGhsXt79fSwNbJEGRetV44mEE33K47ysvnQHGvfYaRTBwMBmXKQVVUWCx"
+
+
+width = 16
+
+ />
+
+
+<p>(<em>More Actions</em> menu).</p></li>
+
+<li><p>Click <strong>Remove</strong>.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-2-19_12_6_2.png" alt = "/images/download/thumbnails/10457097/image2019-2-19_12_6_2.png"
+
+
+width = 110
+
+ />
+</li>
+</ol>
+
+<p>The card is removed from the workbench, but not from the application.</p>
+
+<h2 id="card-workflows">Card Workflows</h2>
+
+<p>The UI provides a number of card workflows. Card workflows focus on a
+particular aspect of your network and are a linked set of each size
+card—a small card, a medium card, one or more large cards, and one or
+more full screen cards. The following card workflows are available:</p>
+
+<ul>
+<li><p>Network Health: network-wide view of network health</p></li>
+
+<li><p>Devices|Switches: health of a given switch</p></li>
+
+<li><p>Inventory|Devices: information about all switches and hosts in the
+network</p></li>
+
+<li><p>Inventory|Switches: information about the components on a given
+switch</p></li>
+
+<li><p>Events|Alarms: information about all critical severity events in the
+system</p></li>
+
+<li><p>Events|Info: information about all warning, info, and debug events
+in the system</p></li>
+
+<li><p>Network Services: information about the BGP, CLAG, EVPN, and LLDP
+services and sessions</p></li>
+
+<li><p>Validation Request (and Results): network-wide validation of network
+protocols and services</p></li>
+
+<li><p>Trace Request (and Results): find available paths between two
+devices in the network fabric</p></li>
+</ul>
+
+<h3 id="access-a-card-workflow">Access a Card Workflow</h3>
+
+<p>You can access a card workflow in multiple ways:</p>
+
+<ul>
+<li><p>For workbenches available from the main menu, open the workbench
+that contains the card flow</p></li>
+
+<li><p>Open a prior search</p></li>
+
+<li><p>Add it to a workbench</p></li>
+
+<li><p>Search for it</p></li>
+</ul>
+
+
+<div class="notices tip" > <p>If you have multiple cards open on your workbench already, you might
+need to scroll down to see the card you have just added.</p>
+ </div>
+
+
+<p>To open the card workflow through an existing workbench:</p>
+
+<ol>
+<li><p>Click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/V88gxOaxuUjBWw5tni0vwGrNs2JBQsz0SwWFpQCdJTOSYfuUGQnpkWz8-cHDSF-jZsE4TeZfpRhaeIhOU7UIZZE2AwtP870d78GBCwuD0Kzqb7TbAiDnX5hgQh5DC68zoKgoLd5U" alt = "/images/lh5.googleusercontent.com/V88gxOaxuUjBWw5tni0vwGrNs2JBQsz0SwWFpQCdJTOSYfuUGQnpkWz8-cHDSF-jZsE4TeZfpRhaeIhOU7UIZZE2AwtP870d78GBCwuD0Kzqb7TbAiDnX5hgQh5DC68zoKgoLd5U"
+
+
+width = 16
+
+ />
+
+
+<p>in the workbench header .</p></li>
+
+<li><p>Select the relevant workbench.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-4-22_11_30_27.png" alt = "/images/download/thumbnails/10457097/image2019-4-22_11_30_27.png"
+
+
+width = 175
+
+ />
+</li>
+</ol>
+
+<p>The workbench opens, hiding your previous workbench.</p>
+
+<p>To open the card workflow from a prior search:</p>
+
+<ol>
+<li><p>Browse your search list in the navigation panel.</p></li>
+
+<li><p>Look for an &ldquo;Add: &lt;card name&gt;&rdquo; item.</p></li>
+
+<li><p>If it is still available, click the item.</p></li>
+</ol>
+
+<p>The card appears on the current workbench, at the bottom.</p>
+
+<p>To access the card workflow by adding the card:</p>
+
+<ol>
+<li><p>Click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh6.googleusercontent.com/JaXSSELl_nz1tMCRgnfs7dN4bErlnOHc-uteFbWlsLyCqW2khDGqUCVZcZYusEdlvGhDj3cml3sU0YGQq0aST_mpgZe-p1d07LL4bP-GsWr7Xcozg7w7cDhpyYeCSgkrYRFDW9xx" alt = "/images/lh6.googleusercontent.com/JaXSSELl_nz1tMCRgnfs7dN4bErlnOHc-uteFbWlsLyCqW2khDGqUCVZcZYusEdlvGhDj3cml3sU0YGQq0aST_mpgZe-p1d07LL4bP-GsWr7Xcozg7w7cDhpyYeCSgkrYRFDW9xx"
+
+
+width = 18
+
+ />
+
+
+<p>.</p></li>
+
+<li><p>Select the relevant card.</p></li>
+</ol>
+
+<p>The card appears on the current workbench, at the bottom.</p>
+
+<p>To access the card workflow by searching for the card:</p>
+
+<ol>
+<li><p>Click in the <strong>Global Search</strong> field.</p></li>
+
+<li><p>Begin typing the name of the card.</p></li>
+
+<li><p>Select it from the list.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457097/image2019-4-26_13_58_54.png" alt = "/images/download/attachments/10457097/image2019-4-26_13_58_54.png"
+
+
+width = 350
+
+ />
+</li>
+</ol>
+
+<p>The card appears on a current workbench, at the bottom.</p>
+
+<h2 id="card-decks">Card Decks</h2>
+
+<p>A card deck is a collection of related cards that can be added and
+removed from a workbench all at once. They are distinct from card
+workflows, which focus on a particular aspect of your network. A card
+deck pulls multiple cards with related information to aid the user in
+performing a broader task. It also simplifies the creation of new
+workbenches when a card deck is available. The following card decks are
+provided by default:</p>
+
+<ul>
+<li><p>Inventory: includes the medium Inventory | Switches and Inventory |
+Devices cards</p></li>
+
+<li><p>Events: includes the medium Events | Alarms and Events | Info cards</p></li>
+</ul>
+
+<h2 id="basic-terminology-and-acronyms">Basic Terminology and Acronyms</h2>
+
+<p>The following table covers some basic terms used throughout the NetQ
+user documentation.</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Term</p></th>
+<th><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Agent</p></td>
+<td><p>NetQ software that resides on a host server that provides metrics about the host to the NetQ Telemetry Server for network health analysis.</p></td>
+</tr>
+<tr class="even">
+<td><p>Alarm</p></td>
+<td><p>In UI, event with critical severity.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Bridge</p></td>
+<td><p>Device that connects two communication networks or network segments. Occurs at OSI Model Layer 2, Data Link Layer.</p></td>
+</tr>
+<tr class="even">
+<td><p>Clos</p></td>
+<td><p>Multistage circuit switching network used by the telecommunications industry, first formalized by Charles Clos in 1952.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Device</p></td>
+<td><p>UI term referring to a switch, host, or chassis or combination of these. Typically used when describing hardware and components versus a software or network topology. See also Node.</p></td>
+</tr>
+<tr class="even">
+<td><p>Event</p></td>
+<td><p>Change or occurrence in network or component; may or may not trigger a notification. In the NetQ UI, there are two types of events: Alarms which indicate a critical severity event, and Info which indicate warning, informational, and debugging severity events.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Fabric</p></td>
+<td><p>Network topology where a set of network nodes is interconnected through one or more network switches.</p></td>
+</tr>
+<tr class="even">
+<td><p>Fresh</p></td>
+<td><p>Node that has been heard from in the last 90 seconds.</p></td>
+</tr>
+<tr class="odd">
+<td><p>High Availability</p></td>
+<td><p>Software used to provide a high percentage of uptime (running and available) for network devices.</p></td>
+</tr>
+<tr class="even">
+<td><p>Host</p></td>
+<td><p>Device that is connected to a TCP/IP network. May run one or more Virtual Machines.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Hypervisor</p></td>
+<td><p>Software which creates and runs Virtual Machines. Also called a Virtual Machine Monitor.</p></td>
+</tr>
+<tr class="even">
+<td><p>Info</p></td>
+<td><p>In UI, event with warning, informational, or debugging severity.</p></td>
+</tr>
+<tr class="odd">
+<td><p>IP Address</p></td>
+<td><p>An Internet Protocol address is comprised of a series of numbers assigned to a network device to uniquely identify it on a given network. Version 4 addresses are 32 bits and written in dotted decimal notation with 8-bit binary numbers separated by decimal points. Example: 10.10.10.255. Version 6 addresses are 128 bits and written in 16-bit hexadecimal numbers separated by colons. Example: 2018:3468:1B5F::6482:D673.</p></td>
+</tr>
+<tr class="even">
+<td><p>Leaf</p></td>
+<td><p>An access layer switch in a Spine-Leaf or Clos topology. An Exit-Leaf is switch that connects to services outside of the Data Center such as firewalls, load balancers, and Internet routers.</p>
+<p>See also Spine, CLOS, Top of Rack and Access Switch.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Linux</p></td>
+<td><p>Set of free and open-source software operating systems built around the Linux kernel. Cumulus Linux is one available distribution packages.</p></td>
+</tr>
+<tr class="even">
+<td><p>Node</p></td>
+<td><p>UI term referring to a switch, host or chassis in a topology.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Notification</p></td>
+<td><p>Item that informs a user of an event. In UI there are two types of notifications: Alert which is a n <span style="color: #000000;"> otification sent by system to inform a user about an event; specifically received through a third-party application, and Message which is a notification <span style="color: #000000;"> sent by a user to share content with another user. </span> </span></p></td>
+</tr>
+<tr class="even">
+<td><p>Peerlink</p></td>
+<td><p>Link, or bonded links, used to connect two switches in an MLAG pair.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Rotten</p></td>
+<td><p>Node that has not been heard from in 90 seconds or more.</p></td>
+</tr>
+<tr class="even">
+<td><p>Router</p></td>
+<td><p>Device that forwards data packets (directs traffic) from nodes on one communication network to nodes on another network. Occurs at the OSI Model Layer 3, Network Layer.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Spine</p></td>
+<td><p>Used to describe the role of a switch in a Spine-Leaf or CLOS topology. See also Aggregation switch, End of Row switch, and distribution switch.</p></td>
+</tr>
+<tr class="even">
+<td><p>Switch</p></td>
+<td><p>High-speed device that connects that receives data packets from one device or node and redirects them to other devices or nodes on a network.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Telemetry server</p></td>
+<td><p>NetQ server which receives metrics and other data from NetQ agents on leaf and spine switches and hosts.</p></td>
+</tr>
+<tr class="even">
+<td><p>Top of Rack</p></td>
+<td><p>Switch that connects to the network (versus internally)</p></td>
+</tr>
+<tr class="odd">
+<td><p>Virtual Machine</p></td>
+<td><p>Emulation of a computer system that provides all of the functions of a particular architecture.</p></td>
+</tr>
+<tr class="even">
+<td><p>Web-scale</p></td>
+<td><p>A network architecture designed to deliver capabilities of large cloud service providers within an enterprise IT environment.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Whitebox</p></td>
+<td><p>Generic, off-the-shelf, switch or router hardware used in Software Defined Networks (SDN).</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The following table covers some common acronyms used throughout the NetQ
+user documentation.</p>
+
+<table>
+<thead>
+<tr>
+<th>Acronym</th>
+<th>Meaning</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ACL</td>
+<td>Access Control Link</td>
+</tr>
+
+<tr>
+<td>ARP</td>
+<td>Address Resolution Protocol</td>
+</tr>
+
+<tr>
+<td>ASN</td>
+<td>Autonomous System Number</td>
+</tr>
+
+<tr>
+<td>BGP/eBGP/iBGP</td>
+<td>Border Gateway Protocol, External BGP, Internal BGP</td>
+</tr>
+
+<tr>
+<td>CLAG</td>
+<td>Cumulus multi-chassis Link Aggregation Group</td>
+</tr>
+
+<tr>
+<td>DHCP</td>
+<td>Dynamic Host Control Protocol</td>
+</tr>
+
+<tr>
+<td>DNS</td>
+<td>Domain Name Server</td>
+</tr>
+
+<tr>
+<td>ECMP</td>
+<td>Equal Cost Multi-Path routing</td>
+</tr>
+
+<tr>
+<td>EVPN</td>
+<td>Ethernet Virtual Private Network</td>
+</tr>
+
+<tr>
+<td>FDB</td>
+<td>Forwarding Data Base</td>
+</tr>
+
+<tr>
+<td>GNU</td>
+<td>GNU’s Not Linux</td>
+</tr>
+
+<tr>
+<td>HA</td>
+<td>High Availability</td>
+</tr>
+
+<tr>
+<td>IGMP</td>
+<td>Internet Group Management Protocol</td>
+</tr>
+
+<tr>
+<td>IPv4/IPv6</td>
+<td>Internet Protocol, version 4 or 6</td>
+</tr>
+
+<tr>
+<td>LACP</td>
+<td>Link Aggregation Control Protocol</td>
+</tr>
+
+<tr>
+<td>LAN</td>
+<td>Local Area Network</td>
+</tr>
+
+<tr>
+<td>LLDP</td>
+<td>Link Layer Data Protocol</td>
+</tr>
+
+<tr>
+<td>MAC</td>
+<td>Media Access Control</td>
+</tr>
+
+<tr>
+<td>MIB</td>
+<td>Management Information Base</td>
+</tr>
+
+<tr>
+<td>MLAG</td>
+<td>Multi-chassis Link Aggregation Group</td>
+</tr>
+
+<tr>
+<td>MLD</td>
+<td>Multicast Listener Discovery</td>
+</tr>
+
+<tr>
+<td>NTP</td>
+<td>Network Time Protocol</td>
+</tr>
+
+<tr>
+<td>OOB</td>
+<td>Out of Band (management)</td>
+</tr>
+
+<tr>
+<td>OSPF</td>
+<td>Open Shortest Path First</td>
+</tr>
+
+<tr>
+<td>RFC</td>
+<td>Remote Function Call</td>
+</tr>
+
+<tr>
+<td>SDN</td>
+<td>Software-Defined Network</td>
+</tr>
+
+<tr>
+<td>SNMP</td>
+<td>Simple Network Management Protocol</td>
+</tr>
+
+<tr>
+<td>SSH</td>
+<td>Secure SHell</td>
+</tr>
+
+<tr>
+<td>SQL</td>
+<td>Structured Query Language</td>
+</tr>
+
+<tr>
+<td>STP</td>
+<td>Spanning Tree Protocol</td>
+</tr>
+
+<tr>
+<td>TCP</td>
+<td>Transport Control Protocol</td>
+</tr>
+
+<tr>
+<td>ToR</td>
+<td>Top of Rack</td>
+</tr>
+
+<tr>
+<td>UDP</td>
+<td>User Datagram Protocol</td>
+</tr>
+
+<tr>
+<td>URL</td>
+<td>Universal Resource Locator</td>
+</tr>
+
+<tr>
+<td>USB</td>
+<td>Universal Serial Bus</td>
+</tr>
+
+<tr>
+<td>VLAN</td>
+<td>Virtual Local Area Network</td>
+</tr>
+
+<tr>
+<td>VNI</td>
+<td>Virtual Network Instance</td>
+</tr>
+
+<tr>
+<td>VPN</td>
+<td>Virtual Private Network</td>
+</tr>
+
+<tr>
+<td>VRF</td>
+<td>Virtual Routing and Forwarding</td>
+</tr>
+
+<tr>
+<td>VRR</td>
+<td>Virtual Router Redundancy</td>
+</tr>
+
+<tr>
+<td>VTEP</td>
+<td>VXLAN Tunnel EndPoint</td>
+</tr>
+
+<tr>
+<td>VXLAN</td>
+<td>Virtual Extensible Local Area Network</td>
+</tr>
+
+<tr>
+<td>ZTP</td>
+<td>Zero Touch Provisioning</td>
+</tr>
+</tbody>
+</table>
+
+<p>Format Cues</p>
+
+<p>Color is used to indicate links, options, and status within the UI.</p>
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Color</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Hover on item</td>
+<td>Blue</td>
+</tr>
+
+<tr>
+<td>Clickable item</td>
+<td>Black</td>
+</tr>
+
+<tr>
+<td>Selected item</td>
+<td>Green</td>
+</tr>
+
+<tr>
+<td>Highlighted item</td>
+<td>Blue</td>
+</tr>
+
+<tr>
+<td>Link</td>
+<td>Blue</td>
+</tr>
+
+<tr>
+<td>Good/Successful results</td>
+<td>Green</td>
+</tr>
+
+<tr>
+<td>Result with critical severity event</td>
+<td>Pink</td>
+</tr>
+
+<tr>
+<td>Result with high severity event</td>
+<td>Red</td>
+</tr>
+
+<tr>
+<td>Result with medium severity event</td>
+<td>Orange</td>
+</tr>
+
+<tr>
+<td>Result with low severity event</td>
+<td>Yellow</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="get-help">Get Help</h2>
+
+<p>You can access the user documentation for the UI from the Main Menu.
+Just click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457097/image2019-1-28_16_51_0.png" alt = "/images/download/thumbnails/10457097/image2019-1-28_16_51_0.png"
+
+
+width = 18
+
+ />
+
+
+<p>and select <em>Help Documentation</em> under the ADMIN category.</p>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#access-the-netq-ui">Access the NetQ UI</a></li>
+<li><a href="#application-layout">Application Layout</a></li>
+<li><a href="#main-menu">Main Menu</a></li>
+<li><a href="#navigation-history">Navigation History</a></li>
+<li><a href="#quick-network-health-view">Quick Network Health View</a></li>
+<li><a href="#user-settings">User Settings</a>
+<ul>
+<li><a href="#choose-a-theme">Choose a Theme</a></li>
+<li><a href="#choose-a-time-zone">Choose a Time Zone</a></li>
+</ul></li>
+<li><a href="#search">Search</a>
+<ul>
+<li><a href="#create-a-search">Create a Search</a></li>
+<li><a href="#run-a-recent-search">Run a Recent Search</a></li>
+</ul></li>
+<li><a href="#workbenches">Workbenches</a></li>
+<li><a href="#cards">Cards</a>
+<ul>
+<li><a href="#card-sizes">Card Sizes</a>
+<ul>
+<li><a href="#small-cards">Small Cards</a></li>
+<li><a href="#medium-cards">Medium Cards</a></li>
+<li><a href="#large-cards">Large Cards</a></li>
+<li><a href="#full-screen-cards">Full-Screen Cards</a></li>
+<li><a href="#data-grid-settings">Data Grid Settings</a></li>
+<li><a href="#export-data">Export Data</a></li>
+<li><a href="#card-size-summary">Card Size Summary</a></li>
+</ul></li>
+<li><a href="#card-interactions">Card Interactions</a>
+<ul>
+<li><a href="#change-the-time-period-for-the-card-data">Change the Time Period for the Card Data</a></li>
+<li><a href="#switch-to-a-different-card-size">Switch to a Different Card Size</a></li>
+<li><a href="#reposition-a-card-on-your-workbench">Reposition a Card on Your Workbench</a></li>
+</ul></li>
+<li><a href="#add-or-remove-a-card">Add or Remove a Card</a></li>
+</ul></li>
+<li><a href="#card-workflows">Card Workflows</a>
+<ul>
+<li><a href="#access-a-card-workflow">Access a Card Workflow</a></li>
+</ul></li>
+<li><a href="#card-decks">Card Decks</a></li>
+<li><a href="#basic-terminology-and-acronyms">Basic Terminology and Acronyms</a></li>
+<li><a href="#get-help">Get Help</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

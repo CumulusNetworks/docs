@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Writing Guide on Cumulus Networks Documentation</title>
+    <link>http://example.org/Writing_Guide/</link>
+    <description>Recent content in Writing Guide on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/Writing_Guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo Directory Structure</title>
+      <link>http://example.org/Writing_Guide/Hugo_Directory_Structure/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Writing_Guide/Hugo_Directory_Structure/</guid>
+      <description>/content  This directory contains all of the sections and page resources built into the main site. (.md files, images, etc.) It’s arrangement determines the structure and hierarchy of the final site. More on this folder later  /archetypes  Contains template files for new content (.md files) Builds .md file structure by calling hugo new Populates and adds default front matter  /layouts  Holds go-html templates (.html files) that build pages from /content folder Hugo will search for templates in this folder before looking in /themes  /assets  Contains .</description>
+    </item>
+    
+    <item>
+      <title>Markdown Guide</title>
+      <link>http://example.org/Writing_Guide/Markdown_Guide/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Writing_Guide/Markdown_Guide/</guid>
+      <description>Second Level Header Third Level Header Fourth Level Header Fifth Level Header The template adds the title in a level-one header by default, start all content with level two headers.
+Numbered and Bulleted Lists  The - character signifies a bulleted list Round Bullets are enabled by default The * character may also be used, we will use - by default  Nested lists are supported They will render with a,b,c Only second level nesting currently supported As in paragraphs, you can continue to add text onto the next line in markdown  A new line followed by a - signifies a new list item   Numbered lists are supported as well Very simple and self explanatory  Nested lists also supported Will display as 1,2,3,  Nested ul (bulleted list) will display differently  Bullets Are Displayed   Inline Styling Use two asterisks to bold any text</description>
+    </item>
+    
+    <item>
+      <title>Explanation of Shortcodes</title>
+      <link>http://example.org/Writing_Guide/Explanation_Of_Shortcodes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Writing_Guide/Explanation_Of_Shortcodes/</guid>
+      <description>Hugo Shortcodes Markdown is designed for speed and simplicity, therefore limited in authoring and customizing rendered content. Rather than insert raw HTML into markdown, Hugo provides Shortcodes, predefined templates callable from markdown content.
+Hugo provides some built-in shortcodes, for some standard use cases. The Hugo documentation for built-in shortcodes is located here Included in this theme is a set of custom shortcodes, built for documentation. Use of these shortcodes are explained below</description>
+    </item>
+    
+    <item>
+      <title>Adding New Content</title>
+      <link>http://example.org/Writing_Guide/Adding_New_Content/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Writing_Guide/Adding_New_Content/</guid>
+      <description>After you have installed hugo, cloned the github repository, and run the local server, it is now time to add new content to the Docs site. First, ctrl-c to quit the docs server in your terminal window.
+Adding New Pages New pages are added in Hugo using archetypes, .md templates which contain the front matter variables and defaut values.
+To create a new Cumulus Linux Page &amp;ldquo;test_post.md&amp;rdquo; run hugo new Cumulus_Linux/test_post.</description>
+    </item>
+    
+  </channel>
+</rss>

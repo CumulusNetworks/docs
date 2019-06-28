@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Chassis Default Configurations | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Chassis/" >
+    Chassis User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Chassis/Accessing_the_Console/" >
+    Accessing the Console
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Chassis/Fabric_Port_Line_Card_and_Switch_Port_Interfaces/" >
+    Fabric Port, Line Card and Switch Port Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Chassis/Chassis_Default_Configurations/"  class="active" >
+    Chassis Default Configurations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Chassis/Monitoring_and_Troubleshooting_a_Chassis/" >
+    Monitoring and Troubleshooting a Chassis
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Chassis/Chassis-specific_Commands/" >
+    Chassis-specific Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Chassis Default Configurations</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Chassis Default Configurations</h1>
+
+<p>A number of configuration files are automatically applied to all the
+nodes in the chassis the first time you boot it after installing Cumulus
+Linux on the nodes. These following actions are also performed:</p>
+
+<ul>
+<li><p>Enable Zebra and <code>bgpd</code> for FRR in the <code>/etc/frr/daemons</code> file.</p></li>
+
+<li><p>Create the default FRR configuration in the <code>/etc/frr/frr.conf</code>
+file; iBGP is used. The default configuration uses the ASN
+<em>4242424242</em> to make it easy to recognize. The router ID is set to
+<em>42.42.42.&lt;slot number&gt;</em>. Line cards redistribute connected routes
+and fabric cards are route reflectors.</p></li>
+
+<li><p>Enable and start the <code>cumulus-chassisd</code> service.</p></li>
+
+<li><p>Edit the <code>/etc/hosts</code> file to add host names for the IPv4 and IPv6
+link local addresses that are assigned to the eth0.4088 interfaces
+of all CPUs in the chassis.</p></li>
+
+<li><p>Enable and start the <code>cumulus-chassis-ssh</code> service. This service
+provides for SSH from one chassis card to another without a
+password.</p></li>
+
+<li><p>Create the following two files in the <code>/etc/network/interfaces.d</code>
+directory, which are sourced by the <code>/etc/network/interfaces</code> file:</p>
+
+<ul>
+<li><p>The first file — called <code>chassismgmt.intf</code> — creates the
+eth0.4088 interface and assigns it IPv4 and IPv6 link local
+addresses via a post-up script. This interface is used for
+intra-chassis communication.</p></li>
+
+<li><p>The second file — called <code>fabric.intf</code> — configures the fabric
+interfaces. It uses Mako templates to iterate over all of the
+fabric interfaces and set the interface properties. The
+parameters of the <code>range</code> function vary, depending on whether
+the file is installed on a fabric card or a line card. See the
+default configuration files below for the content of all of
+these files.</p></li>
+</ul></li>
+</ul>
+
+<p>You can modify these files to suit your needs after the chassis is
+running.</p>
+
+<h2 id="default-routing-configuration">Default Routing Configuration</h2>
+
+<p>The chassis has a default routing configuration that uses
+<a href="https://frrouting.org/" target="_blank">FRRouting</a> (FRR). You can modify this
+configuration to suit your needs. The configuration includes:</p>
+
+<ul>
+<li><p>Unnumbered iBGP</p></li>
+
+<li><p>Redistribute connected routes on the line cards and route reflectors</p></li>
+</ul>
+
+<p>FRR can pass routes from one line card to another.</p>
+
+<p>A firstboot script alters the <code>/etc/frr/daemons</code> file to enable zebra
+and BGP; the script also alters <code>/etc/frr/frr.conf</code> to enable the
+example configuration, where the ASN is <em>4242424242</em> and the router ID
+is <em>42.42.42.&lt;slot&gt;</em>.</p>
+
+<p>The default <code>frr.conf</code> file contents for fabric cards and line cards for
+each type of chassis appears below.</p>
+
+<h3 id="backpack-vrf-automatic-configurations">Backpack VRF Automatic Configurations</h3>
+
+<p>On a Backpack chassis, VRFs created on a line card are automatically
+propagated throughout the fabric, so you don&rsquo;t have to configure the
+same VRF on each node in the fabric individually. The VRFs are also
+added to the FRR configuration.</p>
+
+<p>You need to choose which interfaces to enslave. Fabric VLAN
+subinterfaces are enslaved to the VRF and are named something like
+fp.1000. You won’t see much as the VRFs just pass traffic through them;
+there are no available ports to access it.</p>
+
+<p>You can disable this automatic configuration by doing the following:</p>
+
+<ol>
+<li><p>Copy <code>cumulus-chassisd.service</code> to <code>/etc/systemd/system</code>:</p>
+
+<pre><code>                       
+cumulus@backpack-lc202:~$ sudo cp /lib/systemd/system/cumulus-chassisd.service /etc/systemd/system
+       
+        
+</code></pre></li>
+
+<li><p>Edit the <code>/etc/systemd/system/cumulus-chassisd.service</code> file, adding
+the <code>--noAutoVrf</code> option on the ExecStart line:</p>
+
+<pre><code>                       
+cumulus@backpack-lc202:~$ sudo nano /etc/systemd/system/cumulus-chassisd.service…[Service]Type=simpleSyslogIdentifier=chassisdExecStart=/usr/sbin/cumulus-chassisd --noAutoVrf...
+       
+        
+</code></pre></li>
+
+<li><p>Reload the daemon file and restart <code>cumulus-chassisd.service</code>:</p>
+
+<pre><code>                       
+cumulus@backpack-lc202:~$ sudo systemctl daemon-reloadcumulus@backpack-lc202:~$ sudo systemctl restart cumulus-chassisd.service
+       
+        
+</code></pre></li>
+</ol>
+
+<h3 id="avoid-layer-2-networks">Avoid Layer 2 Networks</h3>
+
+<p>The chassis is not a layer 2 device. Connections between line cards and
+fabric cards don&rsquo;t lend themselves well to a layer 2 network. You cannot
+create a bridge between the 2 CPUs in a line card, so while the one
+side&rsquo;s ports are for one CPU and can be in a bridge, the other side&rsquo;s
+ports cannot be members of that bridge.</p>
+
+<p>If you need to extend a layer 2 network between two line cards, use
+VXLANs with EVPN, for example. See the Cumulus Linux user guide for
+details.</p>
+
+<h2 id="facebook-backpack-default-configurations">Facebook Backpack Default Configurations</h2>
+
+<h3 id="interfaces-file">interfaces File</h3>
+
+<p>The <code>/etc/network/interfaces</code> file has the same content on both line
+cards and fabric cards.</p>
+
+<pre><code>                   
+cumulus@backpack-lc102:~$ cat /etc/network/interfaces
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+ 
+source /etc/network/interfaces.d/*.intf
+ 
+# The loopback network interface
+auto lo
+iface lo inet loopback
+ 
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+ 
+iface usb0 inet dhcp
+   
+    
+</code></pre>
+
+<h3 id="chassismgmt-intf-file">chassismgmt.intf File</h3>
+
+<p>The <code>/etc/network/interfaces.d/chassismgmt.intf</code> file has the same
+content on both line cards and fabric cards.</p>
+
+<pre><code>                   
+cumulus@backpack-lc102:~$ cat /etc/network/interfaces.d/chassismgmt.intf 
+#
+# This file contains the interface configuration of the chassis management VLAN
+# interface. The traffic on this VLAN is not ever forwarded out of the chassis.
+#
+ 
+auto eth0.4088
+iface eth0.4088
+    post-up /usr/lib/cumulus/setchassismgmtipaddr $IFACE
+   
+    
+</code></pre>
+
+<h3 id="fabric-intf-file">fabric.intf File</h3>
+
+<p>The <code>/etc/network/interfaces.d/fabric.intf</code> file has the same content on
+both line cards and fabric cards, with one exception: on a fabric card
+the range of interfaces is <em>0,32</em>, while the range of interfaces on a
+line card is <em>0,16</em>.</p>
+
+<pre><code>                   
+cumulus@backpack-lc102:~$ cat /etc/network/interfaces.d/fabric.intf 
+#
+# This file contains the interface configuration of the fabric ports. All fabric
+# ports are brought up.
+#
+ 
+#
+# The defaults for fabric interfaces
+#
+&lt;%def name=&quot;fabric_defaults()&quot;&gt;
+    link-speed 100000
+    link-duplex full
+    link-autoneg off
+    mtu 9216
+
+ 
+#
+# All of the fabric interfaces
+#
+% for i in range(0,16):
+auto fp${i}
+iface fp${i}
+${fabric_defaults()}
+% endfor
+   
+    
+</code></pre>
+
+<h3 id="frr-conf-file-on-a-fabric-card">frr.conf File on a Fabric Card</h3>
+
+<pre><code>                   
+cumulus@backpack-fc4:~$ cat /etc/frr/frr.conf
+log file /var/log/frr/frr.log
+log timestamp precision 6
+!!! BEGIN AUTO-ADDED LINES FOR CHASSIS FABRIC CONFIGURATION
+!
+! Default Chassis Fabric configuration
+!
+! Added on Mon Jul 24 21:50:32 UTC 2017 by /usr/lib/cumulus/firstboot.d/10_chassis_frr.firstboot
+!
+router bgp 4242424242
+ bgp router-id 42.42.42.4
+ neighbor FABRIC peer-group
+ neighbor FABRIC remote-as internal
+ neighbor fp0 interface peer-group FABRIC
+ neighbor fp1 interface peer-group FABRIC
+ neighbor fp2 interface peer-group FABRIC
+ neighbor fp3 interface peer-group FABRIC
+ neighbor fp4 interface peer-group FABRIC
+ neighbor fp5 interface peer-group FABRIC
+ neighbor fp6 interface peer-group FABRIC
+ neighbor fp7 interface peer-group FABRIC
+ neighbor fp8 interface peer-group FABRIC
+ neighbor fp9 interface peer-group FABRIC
+ neighbor fp10 interface peer-group FABRIC
+ neighbor fp11 interface peer-group FABRIC
+ neighbor fp12 interface peer-group FABRIC
+ neighbor fp13 interface peer-group FABRIC
+ neighbor fp14 interface peer-group FABRIC
+ neighbor fp15 interface peer-group FABRIC
+ neighbor fp16 interface peer-group FABRIC
+ neighbor fp17 interface peer-group FABRIC
+ neighbor fp18 interface peer-group FABRIC
+ neighbor fp19 interface peer-group FABRIC
+ neighbor fp20 interface peer-group FABRIC
+ neighbor fp21 interface peer-group FABRIC
+ neighbor fp22 interface peer-group FABRIC
+ neighbor fp23 interface peer-group FABRIC
+ neighbor fp24 interface peer-group FABRIC
+ neighbor fp25 interface peer-group FABRIC
+ neighbor fp26 interface peer-group FABRIC
+ neighbor fp27 interface peer-group FABRIC
+ neighbor fp28 interface peer-group FABRIC
+ neighbor fp29 interface peer-group FABRIC
+ neighbor fp30 interface peer-group FABRIC
+ neighbor fp31 interface peer-group FABRIC
+!
+ address-family ipv4 unicast
+  neighbor FABRIC route-reflector-client
+ exit-address-family
+!
+ address-family ipv6 unicast
+  neighbor FABRIC activate
+  neighbor FABRIC route-reflector-client
+ exit-address-family
+!
+!!! END AUTO-ADDED LINES FOR CHASSIS FABRIC CONFIGURATION
+   
+    
+</code></pre>
+
+<h3 id="frr-conf-file-on-a-line-card">frr.conf File on a Line Card</h3>
+
+<pre><code>                   
+cumulus@backpack-lc102:~$ cat /etc/frr/frr.conf
+log file /var/log/frr/frr.log
+log timestamp precision 6
+!!! BEGIN AUTO-ADDED LINES FOR CHASSIS FABRIC CONFIGURATION
+!
+! Default Chassis Fabric configuration
+!
+! Added on Mon Jul 24 21:50:40 UTC 2017 by /usr/lib/cumulus/firstboot.d/10_chassis_frr.firstboot
+!
+router bgp 4242424242
+ bgp router-id 42.42.42.6
+ neighbor FABRIC peer-group
+ neighbor FABRIC remote-as internal
+ neighbor fp0 interface peer-group FABRIC
+ neighbor fp1 interface peer-group FABRIC
+ neighbor fp2 interface peer-group FABRIC
+ neighbor fp3 interface peer-group FABRIC
+ neighbor fp4 interface peer-group FABRIC
+ neighbor fp5 interface peer-group FABRIC
+ neighbor fp6 interface peer-group FABRIC
+ neighbor fp7 interface peer-group FABRIC
+ neighbor fp8 interface peer-group FABRIC
+ neighbor fp9 interface peer-group FABRIC
+ neighbor fp10 interface peer-group FABRIC
+ neighbor fp11 interface peer-group FABRIC
+ neighbor fp12 interface peer-group FABRIC
+ neighbor fp13 interface peer-group FABRIC
+ neighbor fp14 interface peer-group FABRIC
+ neighbor fp15 interface peer-group FABRIC
+!
+ address-family ipv4 unicast
+  distance bgp 20 19 1
+  redistribute connected
+ exit-address-family
+!
+ address-family ipv6 unicast
+  neighbor FABRIC activate
+  distance bgp 20 19 1
+  redistribute connected
+ exit-address-family
+!
+!!! END AUTO-ADDED LINES FOR CHASSIS FABRIC CONFIGURATION
+   
+    
+</code></pre>
+
+<h3 id="ports-conf-file-on-a-line-card">ports.conf File on a Line Card</h3>
+
+<pre><code>                   
+cumulus@backpack-lc102:~$ cat /etc/cumulus/ports.conf 
+# ports.conf --
+#
+# The Celestica BigStone-G Right Linecard has:
+#
+#     16 QSFP28 ports numbered 1-16
+#     These ports are configurable as 100G, 50G, 40G, 2x50G, 4x25G, 4x10G
+#     or disabled.
+#
+# If you make changes to this file, you must restart switchd for the
+# changes to take effect.
+ 
+# QSFP28 ports
+#
+#  = [4x10G|4x25G|2x50G|40G|50G|100G|disabled]
+1=100G
+2=100G
+3=100G
+4=100G
+5=100G
+6=100G
+7=100G
+8=100G
+9=100G
+10=100G
+11=100G
+12=100G
+13=100G
+14=100G
+15=100G
+16=100G
+   
+    
+</code></pre>
+
+
+<div class="notices info" > <p>The Facebook Backpack fabric card has no user configurable ports, so the
+<code>ports.conf</code> file has no content.</p>
+ </div>
+
+
+<h2 id="celestica-omp-800-default-configurations">Celestica OMP-800 Default Configurations</h2>
+
+<h3 id="interfaces-file-1">interfaces File</h3>
+
+<p>The <code>/etc/network/interfaces</code> file has the same content on both line
+cards and fabric cards.</p>
+
+<pre><code>                   
+cumulus@omp-800-fc402:~$ cat /etc/network/interfaces
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+ 
+source /etc/network/interfaces.d/*.intf
+ 
+# The loopback network interface
+auto lo
+iface lo inet loopback
+ 
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+ 
+iface eth1 inet dhcp
+ 
+iface eth2 inet dhcp
+   
+    
+</code></pre>
+
+<h3 id="chassismgmt-intf-file-1">chassismgmt.intf File</h3>
+
+<p>The <code>/etc/network/interfaces.d/chassismgmt.intf</code> file has the same
+content on both line cards and fabric cards.</p>
+
+<pre><code>                   
+cumulus@omp-800-fc402:~$ cat /etc/network/interfaces.d/chassismgmt.intf 
+#
+# This file contains the interface configuration of the chassis management VLAN
+# interface. The traffic on this VLAN is not ever forwarded out of the chassis.
+#
+ 
+auto eth0.4088
+iface eth0.4088
+    post-up /usr/lib/cumulus/setchassismgmtipaddr $IFACE
+   
+    
+</code></pre>
+
+<h3 id="fabric-intf-file-1">fabric.intf File</h3>
+
+<p>The <code>/etc/network/interfaces.d/fabric.intf</code> file has the same content on
+both line cards and fabric cards, with one exception: on a fabric card
+the range of interfaces is <em>0,32</em>, while the range of interfaces on a
+line card is <em>0,16</em>.</p>
+
+<pre><code>                   
+cumulus@omp-800-fc402:~$ cat /etc/network/interfaces.d/fabric.intf 
+#
+# This file contains the interface configuration of the fabric ports. All fabric
+# ports are brought up.
+#
+ 
+#
+# The defaults for fabric interfaces
+#
+&lt;%def name=&quot;fabric_defaults()&quot;&gt;
+    link-speed 100000
+    link-duplex full
+    link-autoneg off
+    mtu 9216
+
+ 
+#
+# All of the fabric interfaces
+#
+% for i in range(0,32):
+auto fp${i}
+iface fp${i}
+${fabric_defaults()}
+% endfor
+   
+    
+</code></pre>
+
+<h3 id="frr-conf-file-on-a-fabric-card-1">frr.conf File on a Fabric Card</h3>
+
+<pre><code>                   
+cumulus@omp-800-fc402:~$ cat /etc/frr/frr.conf 
+# default to using syslog. /etc/rsyslog.d/45-frr.conf places the log
+# in /var/log/frr/frr.log
+log syslog informational
+!!! BEGIN AUTO-ADDED LINES FOR CHASSIS FABRIC CONFIGURATION
+!
+! Default Chassis Fabric configuration
+!
+! Added on Wed Jan  3 16:57:00 UTC 2018 by /usr/lib/cumulus/firstboot.d/10_chassis_frr.firstboot
+!
+router bgp 4242424242
+ bgp router-id 42.42.42.40
+ neighbor FABRIC peer-group
+ neighbor FABRIC remote-as internal
+ neighbor fp0 interface peer-group FABRIC
+ neighbor fp1 interface peer-group FABRIC
+ neighbor fp2 interface peer-group FABRIC
+ neighbor fp3 interface peer-group FABRIC
+ neighbor fp4 interface peer-group FABRIC
+ neighbor fp5 interface peer-group FABRIC
+ neighbor fp6 interface peer-group FABRIC
+ neighbor fp7 interface peer-group FABRIC
+ neighbor fp8 interface peer-group FABRIC
+ neighbor fp9 interface peer-group FABRIC
+ neighbor fp10 interface peer-group FABRIC
+ neighbor fp11 interface peer-group FABRIC
+ neighbor fp12 interface peer-group FABRIC
+ neighbor fp13 interface peer-group FABRIC
+ neighbor fp14 interface peer-group FABRIC
+ neighbor fp15 interface peer-group FABRIC
+ neighbor fp16 interface peer-group FABRIC
+ neighbor fp17 interface peer-group FABRIC
+ neighbor fp18 interface peer-group FABRIC
+ neighbor fp19 interface peer-group FABRIC
+ neighbor fp20 interface peer-group FABRIC
+ neighbor fp21 interface peer-group FABRIC
+ neighbor fp22 interface peer-group FABRIC
+ neighbor fp23 interface peer-group FABRIC
+ neighbor fp24 interface peer-group FABRIC
+ neighbor fp25 interface peer-group FABRIC
+ neighbor fp26 interface peer-group FABRIC
+ neighbor fp27 interface peer-group FABRIC
+ neighbor fp28 interface peer-group FABRIC
+ neighbor fp29 interface peer-group FABRIC
+ neighbor fp30 interface peer-group FABRIC
+ neighbor fp31 interface peer-group FABRIC
+!
+ address-family ipv4 unicast
+  neighbor FABRIC route-reflector-client
+ exit-address-family
+!
+ address-family ipv6 unicast
+  neighbor FABRIC activate
+  neighbor FABRIC route-reflector-client
+ exit-address-family
+!
+!!! END AUTO-ADDED LINES FOR CHASSIS FABRIC CONFIGURATION
+   
+    
+</code></pre>
+
+<h3 id="frr-conf-file-on-a-line-card-1">frr.conf File on a Line Card</h3>
+
+<pre><code>                   
+cumulus@omp-800-lc102:~$ cat /etc/frr/frr.conf 
+# default to using syslog. /etc/rsyslog.d/45-frr.conf places the log
+# in /var/log/frr/frr.log
+log syslog informational
+!!! BEGIN AUTO-ADDED LINES FOR CHASSIS FABRIC CONFIGURATION
+!
+! Default Chassis Fabric configuration
+!
+! Added on Wed Jan  3 16:56:46 UTC 2018 by /usr/lib/cumulus/firstboot.d/10_chassis_frr.firstboot
+!
+router bgp 4242424242
+ bgp router-id 42.42.42.2
+ neighbor FABRIC peer-group
+ neighbor FABRIC remote-as internal
+ neighbor fp0 interface peer-group FABRIC
+ neighbor fp1 interface peer-group FABRIC
+ neighbor fp2 interface peer-group FABRIC
+ neighbor fp3 interface peer-group FABRIC
+ neighbor fp4 interface peer-group FABRIC
+ neighbor fp5 interface peer-group FABRIC
+ neighbor fp6 interface peer-group FABRIC
+ neighbor fp7 interface peer-group FABRIC
+ neighbor fp8 interface peer-group FABRIC
+ neighbor fp9 interface peer-group FABRIC
+ neighbor fp10 interface peer-group FABRIC
+ neighbor fp11 interface peer-group FABRIC
+ neighbor fp12 interface peer-group FABRIC
+ neighbor fp13 interface peer-group FABRIC
+ neighbor fp14 interface peer-group FABRIC
+ neighbor fp15 interface peer-group FABRIC
+!
+ address-family ipv4 unicast
+  distance bgp 20 19 1
+  redistribute connected
+ exit-address-family
+!
+ address-family ipv6 unicast
+  neighbor FABRIC activate
+  distance bgp 20 19 1
+  redistribute connected
+ exit-address-family
+!
+!!! END AUTO-ADDED LINES FOR CHASSIS FABRIC CONFIGURATION
+   
+    
+</code></pre>
+
+<h3 id="ports-conf-file-on-a-line-card-1">ports.conf File on a Line Card</h3>
+
+<p>The <code>ports.conf</code> file has different contents depending on whether the
+line card is even or odd-numbered. Here is the configuration for line
+card 1:</p>
+
+<pre><code>                   
+cumulus@omp-800-lc101:~$ cat /etc/cumulus/ports.conf 
+# ports.conf --
+#
+# The Accton OMP800 Linecard A has:
+#
+#     16 QSFP28 ports numbered 1-16
+#     These ports are configurable as 100G, 50G, 40G, 2x50G, 4x25G, 4x10G
+#     or disabled.
+#
+# If you make changes to this file, you must restart switchd for the
+# changes to take effect.
+ 
+# QSFP28 ports
+#
+#  = [4x10G|4x25G|2x50G|40G|50G|100G|disabled]
+1=100G
+2=100G
+3=100G
+4=100G
+5=100G
+6=100G
+7=100G
+8=100G
+9=100G
+10=100G
+11=100G
+12=100G
+13=100G
+14=100G
+15=100G
+16=100G
+   
+    
+</code></pre>
+
+<p>Here is the configuration for line card 2:</p>
+
+<pre><code>                   
+cumulus@omp-800-lc102:~$ cat /etc/cumulus/ports.conf 
+# ports.conf --
+#
+# The Accton OMP800 Linecard B has:
+#
+#     16 QSFP28 ports numbered 17-32
+#     These ports are configurable as 100G, 50G, 40G, 2x50G, 4x25G, 4x10G
+#     or disabled.
+#
+# If you make changes to this file, you must restart switchd for the
+# changes to take effect.
+ 
+# QSFP28 ports
+#
+#  = [4x10G|4x25G|2x50G|40G|50G|100G|disabled]
+17=100G
+18=100G
+19=100G
+20=100G
+21=100G
+22=100G
+23=100G
+24=100G
+25=100G
+26=100G
+27=100G
+28=100G
+29=100G
+30=100G
+31=100G
+32=100G
+   
+    
+</code></pre>
+
+
+<div class="notices info" > <p>The Accton OMP800 <strong>fabric card</strong> has no user configurable ports, so the
+<code>ports.conf</code> file has no content.</p>
+ </div>
+
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#default-routing-configuration">Default Routing Configuration</a>
+<ul>
+<li><a href="#backpack-vrf-automatic-configurations">Backpack VRF Automatic Configurations</a></li>
+<li><a href="#avoid-layer-2-networks">Avoid Layer 2 Networks</a></li>
+</ul></li>
+<li><a href="#facebook-backpack-default-configurations">Facebook Backpack Default Configurations</a>
+<ul>
+<li><a href="#interfaces-file">interfaces File</a></li>
+<li><a href="#chassismgmt-intf-file">chassismgmt.intf File</a></li>
+<li><a href="#fabric-intf-file">fabric.intf File</a></li>
+<li><a href="#frr-conf-file-on-a-fabric-card">frr.conf File on a Fabric Card</a></li>
+<li><a href="#frr-conf-file-on-a-line-card">frr.conf File on a Line Card</a></li>
+<li><a href="#ports-conf-file-on-a-line-card">ports.conf File on a Line Card</a></li>
+</ul></li>
+<li><a href="#celestica-omp-800-default-configurations">Celestica OMP-800 Default Configurations</a>
+<ul>
+<li><a href="#interfaces-file-1">interfaces File</a></li>
+<li><a href="#chassismgmt-intf-file-1">chassismgmt.intf File</a></li>
+<li><a href="#fabric-intf-file-1">fabric.intf File</a></li>
+<li><a href="#frr-conf-file-on-a-fabric-card-1">frr.conf File on a Fabric Card</a></li>
+<li><a href="#frr-conf-file-on-a-line-card-1">frr.conf File on a Line Card</a></li>
+<li><a href="#ports-conf-file-on-a-line-card-1">ports.conf File on a Line Card</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Chassis/Chassis_Default_Configurations.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

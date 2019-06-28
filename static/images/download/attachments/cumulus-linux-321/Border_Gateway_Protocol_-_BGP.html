@@ -1,0 +1,2176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Border Gateway Protocol - BGP - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Layer_Three.html">Layer Three</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5127049"> <span>Border Gateway Protocol - BGP</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><span id="src-5127049_indexterm-0652B2AD0B9C9233F1384B3647E2DE17">BGP </span>is the routing protocol that runs the Internet. It is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. Specifically:    </p>
+<ul class=" "><li class=" ">    <p  >It does not require routing state to be periodically refreshed unlike OSPF.    </p>
+</li><li class=" ">    <p  >It is less chatty than its link-state siblings. For example, a link or node transition can result in a bestpath change, causing BGP to send updates.    </p>
+</li><li class=" ">    <p  >It is multi-protocol and extensible.    </p>
+</li><li class=" ">    <p  >There are many robust vendor implementations.    </p>
+</li><li class=" ">    <p  >The protocol is very mature and comes with many years of operational experience.    </p>
+</li></ul>    <p  ><a  class="external-link" href="http://tools.ietf.org/html/draft-lapukhov-bgp-routing-large-dc-04">This IETF draft</a> provides further details of the use of BGP within the data center.    </p>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5127049_safe-id-Qm9yZGVyR2F0ZXdheVByb3RvY29sLUJHUC1BdXRvbm9tb3VzU3lzdGVtTnVtYmVyKEFTTik">
+        <h1 class="heading "><span>Autonomous System Number (ASN)</span></h1>
+    <p  ><span id="src-5127049_indexterm-8E7939330C971E8F7548F9CFC59C1C1D">One of the key concepts in BGP is an </span><i class=" "><span id="src-5127049_indexterm-F02EBF9023C4AD70F5734069FFC84518">autonomous </span></i><i class=" ">system number</i> or ASN. An <a  class="external-link" href="https://en.wikipedia.org/wiki/Autonomous_System_%28Internet%29">autonomous system</a> is defined as a set of routers under a common administration. Since BGP was originally designed to peer between independently managed enterprises and/or service providers, each such enterprise is treated as an autonomous system, responsible for a set of network addresses. Each such autonomous system is given a unique number called its ASN. ASNs are handed out by a central authority (ICANN). However, ASNs between 64512 and 65535 are reserved for private use. Using BGP within the data center relies on either using this number space or else using the single ASN you own.    </p>
+    <p  ><span id="src-5127049_indexterm-83BD9B55DF497E09580FBE8BBBE36863">The ASN is central to how BGP builds a forwarding topology. A BGP route advertisement carries with it not only the originator&rsquo;s ASN, but also the list of ASNs that this </span>route advertisement has passed through. When forwarding a route advertisement, a BGP speaker adds itself to this list. This list of ASNs is called the <i class=" ">AS path</i>. BGP uses the AS path to detect and avoid loops.    </p>
+    <p  >ASNs were originally 16-bit numbers, but were later modified to be 32-bit. Quagga supports both 16-bit and 32-bit ASNs, but most implementations still run with 16-bit ASNs.    </p>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-eBGPandiBGP">
+        <h1 class="heading "><span>eBGP and iBGP</span></h1>
+    <p  ><span id="src-5127049_indexterm-60CCA7A6CCF44082E90F5C39EAC4E90B">When BGP is used to peer between autonomous systems, the peering is referred to as </span><i class=" "><span id="src-5127049_indexterm-9BDBCB0DC9363B9CFA1B2F67FE88AC0E">external </span>BGP</i><span id="src-5127049_indexterm-C1C80ED66F265F192F2230162CEDC0AC"> or eBGP. When BGP is used within an autonomous system, the peering used is referred to as </span><i class=" "><span id="src-5127049_indexterm-9542E135A378350C75D84EBC116A132E">internal </span>BGP</i> or iBGP. eBGP peers have different ASNs while iBGP peers have the same ASN.    </p>
+    <p  >While the heart of the protocol is the same when used as eBGP or iBGP, there is a key difference in the protocol behavior between use as eBGP and iBGP: an iBGP speaker does not forward routing information learned from one iBGP peer to another iBGP peer to prevent loops. eBGP prevents loops using the AS_Path attribute.    </p>
+    <p  >Therefore, all iBGP speakers need to be peered with each other in a full mesh. In a large network, this requirement can quickly become unscalable. The most popular method to scale iBGP networks is to introduce a <i class=" ">route reflector</i>.    </p>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-RouteReflectors">
+        <h1 class="heading "><span>Route Reflectors</span></h1>
+    <p  ><span id="src-5127049_indexterm-E8A42878B3A33CFA541D4A9699317647">Route </span>reflectors are quite easy to understand in a Clos topology. In a two-tier Clos network, the leaf (or tier 1) switches are the only ones connected to end stations. Subsequently, this means that the spines themselves do not have any routes to announce. They&rsquo;re merely <strong class=" ">reflecting</strong> the routes announced by one leaf to the other leaves. Thus, the spine switches function as route reflectors while the leaf switches serve as route reflector clients.    </p>
+    <p  >In a three-tier network, the tier 2 nodes (or mid-tier spines) act as both route reflector servers and route reflector clients. They act as route reflectors because they announce the routes learned from the tier 1 nodes to other tier 1 nodes and to tier 3 nodes. They also act as route reflector clients to the tier 3 nodes, receiving routes learned from other tier 2 nodes. Tier 3 nodes act only as route reflectors.    </p>
+    <p  >In the following illustration, tier 2 node 2.1 is acting as a route reflector server, announcing the routes between tier 1 nodes 1.1 and 1.2 to tier 1 node 1.3. It is also a route reflector client, learning the routes between tier 2 nodes 2.2 and 2.3 from the tier 3 node, 3.1.    </p>
+    <p  >    <img  class="confluence-embedded-image confluence-thumbnail" src="images/download/thumbnails/5127049/bgp_route_reflectors.png" alt="images/download/thumbnails/5127049/bgp_route_reflectors.png" width="300"  />
+        </p>
+    <div  class="confbox admonition admonition-note">
+                    <p class="title">Configuring route-reflector-client Requires Specific Order</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >When configuring a route to be a route reflector client, the Quagga configuration must be specified in a specific order; otherwise, the router will not be a route reflector client.    </p>
+    <p  >The <tt class=" ">net add bgp neighbor &lt;IPv4/IPV6&gt; route-reflector-client</tt> command must be done after the <tt class=" ">net add bgp neighbor &lt;IPV4/IPV6&gt; activate</tt> command; otherwise, the <tt class=" ">route-reflector-client</tt> command is ignored. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add bgp ipv4 unicast neighbor </code><code class="value">14.0</code><code class="plain">.</code><code class="value">0.9</code><code class="plain"> activate </code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add bgp neighbor </code><code class="value">14.0</code><code class="plain">.</code><code class="value">0.9</code><code class="plain"> next-hop-self</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add bgp neighbor </code><code class="value">14.0</code><code class="plain">.</code><code class="value">0.9</code><code class="plain"> route-reflector-client &gt;&gt;&gt; Must be after activate </code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add bgp neighbor </code><code class="value">2001</code><code class="plain">:ded:beef:</code><code class="value">2</code><code class="plain">::</code><code class="value">1</code><code class="plain"> remote-as </code><code class="value">65000</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add bgp ipv6 unicast redistribute connected</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add bgp maximum-paths ibgp </code><code class="value">4</code><code class="plain"> </code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add bgp neighbor </code><code class="value">2001</code><code class="plain">:ded:beef:</code><code class="value">2</code><code class="plain">::</code><code class="value">1</code><code class="plain"> activate </code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add bgp neighbor </code><code class="value">2001</code><code class="plain">:ded:beef:</code><code class="value">2</code><code class="plain">::</code><code class="value">1</code><code class="plain"> next-hop-self </code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add bgp neighbor </code><code class="value">2001</code><code class="plain">:ded:beef:</code><code class="value">2</code><code class="plain">::</code><code class="value">1</code><code class="plain"> route-reflector-client &gt;&gt;&gt; Must be after activate </code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-ECMPecmpwithBGP">
+        <h1 class="heading "><span id="src-5127049_BorderGatewayProtocol-BGP-ecmp" class="confluence-anchor-link"></span><span>ECMP with BGP</span></h1>
+    <p  ><span id="src-5127049_indexterm-6709B9F775F806FC0E25CE205AE99695">If a </span><span id="src-5127049_indexterm-167BC5DC102B822D600FF0CFA23F1414">BGP </span>node hears a prefix <strong class=" ">p</strong> from multiple peers, it has all the information necessary to program the routing table to forward traffic for that prefix <strong class=" ">p</strong> through all of these peers. Thus, BGP supports equal-cost multipathing (ECMP).    </p>
+    <p  >In order to perform ECMP in BGP, you may need to configure <tt class=" ">net add bgp bestpath as-path multipath-relax</tt> (if you're using eBGP).    </p>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-MaximumPaths">
+        <h2 class="heading "><span>Maximum Paths</span></h2>
+    <p  >In Cumulus Linux, the BGP <tt class=" ">maximum-paths</tt> setting is enabled by default, so multiple routes are already installed. The default setting is 64 paths.    </p>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-BGPforBothIPv4andIPv6">
+        <h2 class="heading "><span>BGP for Both IPv4 and IPv6</span></h2>
+    <p  ><span id="src-5127049_indexterm-EF7A8C434196093BAE1C7CEA6C259F44">Unlike OSPF, which has separate versions of the protocol to announce </span><span id="src-5127049_indexterm-C1E6D33F7A5C31B0233E16803731FE53">IPv4 and </span>IPv6 routes, BGP is a multi-protocol routing engine, capable of announcing both IPv4 and IPv6 prefixes. It supports announcing IPv4 prefixes over an IPv4 session and IPv6 prefixes over an IPv6 session. It also supports announcing prefixes of both these address families over a single IPv4 session or over a single IPv6 session.    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-config_bgpConfiguringBGP">
+        <h1 class="heading "><span id="src-5127049_BorderGatewayProtocol-BGP-config_bgp" class="confluence-anchor-link"></span><span>Configuring BGP</span></h1>
+    <p  >A basic BGP configuration looks like the following. However, the rest of this chapter discusses how to configure various other features, from unnumbered interfaces to route maps.    </p>
+<ol class=" "><li class=" ">    <p  >Enable the BGP and Zebra daemons, <tt class=" ">zebra</tt> and <tt class=" ">bgpd</tt>, then enable the Quagga service and start it, as described in <a   href="Configuring_Quagga.html">Configuring Quagga</a>.    </p>
+</li><li class=" ">    <p  >Identify the BGP node by assigning an ASN and <tt class=" ">router-id</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp autonomous-system 65000</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp router-id 10.0.0.1</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Specify to whom it must disseminate routing information:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as external</code></div>
+</div>
+    </div>
+    <p  >If it is an iBGP session, the <tt class=" ">remote-as</tt> is the same as the local AS:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as internal</code></div>
+</div>
+    </div>
+    <p  >Specifying the peer&rsquo;s IP address allows BGP to set up a TCP socket with this peer, but it doesn&rsquo;t distribute any prefixes to it, unless it is explicitly told that it must via the <tt class=" ">activate</tt> command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp ipv4 unicast neighbor 10.0.0.2 activate</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate</code></div>
+</div>
+    </div>
+    <p  >As you can see, <tt class=" ">activate</tt> has to be specified for each address family that is being announced by the BGP session.    </p>
+</li><li class=" ">    <p  >Specify some properties of the BGP session:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor 10.0.0.2 next-hop-self</code></div>
+</div>
+    </div>
+    <p  >If this is a route-reflector client, it can be specified as follows:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switchRR:~$ net add bgp neighbor 10.0.0.1 route-reflector-client</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >It is node <i class=" ">switchRR</i>, the route reflector, on which the peer is specified as a client.    </p>
+        </div>
+    </div>
+</li><li class=" ">    <p  >Specify what prefixes to originate:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp ipv4 unicast network 192.0.2.0/24</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp ipv4 unicast network 203.0.113.1/24</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-unnumberedUsingBGPUnnumberedInterfaces">
+        <h1 class="heading "><span id="src-5127049_BorderGatewayProtocol-BGP-unnumbered" class="confluence-anchor-link"></span><span>Using BGP Unnumbered Interfaces</span></h1>
+    <p  >Unnumbered interfaces are interfaces without unique IP addresses. In BGP, you configure unnumbered interfaces using <i class=" ">extended next-hop encoding</i> (ENHE), which is defined by <a  class="external-link" href="https://tools.ietf.org/html/rfc5549">RFC 5549</a>. BGP unnumbered interfaces provide a means of advertising an IPv4 route with an IPv6 next-hop. Prior to RFC 5549, an IPv4 route could be advertised only with an IPv4 next-hop.    </p>
+    <p  >BGP unnumbered interfaces are particularly useful in deployments where IPv4 prefixes are advertised through BGP over a section without any IPv4 address configuration on links. As a result, the routing entries are also IPv4 for destination lookup and have IPv6 next-hops for forwarding purposes.    </p>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-BGPandExtendedNext-hopEncoding">
+        <h2 class="heading "><span>BGP and Extended Next-hop Encoding</span></h2>
+    <p  >Once enabled and active, BGP makes use of the available IPv6 next-hops for advertising any IPv4 prefixes. BGP learns the prefixes, calculates the routes and installs them in IPv4 AFI to IPv6 AFI format. However, ENHE in Cumulus Linux does not install routes into the kernel in IPv4 prefix to IPv6 next-hop format. For link-local peerings enabled by dynamically learning the other end's link-local address using IPv6 neighbor discovery router advertisements, an IPv6 next-hop is converted into an IPv4 link-local address and a static neighbor entry is installed for this IPv4 link-local address with the MAC address derived from the link-local address of the other end.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >It is assumed that the IPv6 implementation on the peering device will use the MAC address as the interface ID when assigning the IPv6 link-local address, as suggested by RFC 4291.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-ConfiguringBGPUnnumberedInterfaces">
+        <h2 class="heading "><span>Configuring BGP Unnumbered Interfaces</span></h2>
+    <p  >Configuring a BGP unnumbered interface requires enabling IPv6 neighbor discovery router advertisements. The <tt class=" ">interval</tt> you specify is measured in seconds, and defaults to 600 seconds. Extended next-hop encoding is sent only for the link-local address peerings:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp autonomous-system 65020</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp router-id 10.0.0.21</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp bestpath as-path multipath-relax</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp bestpath compare-routerid</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor fabric peer-group</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor fabric remote-as external</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor fabric description Internal Fabric Network</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor fabric capability extended-nexthop</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp1 interface peer-group fabric</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp2 interface peer-group fabric</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp3 interface peer-group fabric</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp4 interface peer-group fabric</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp29 interface peer-group fabric</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp30 interface peer-group fabric</code></div>
+</div>
+    </div>
+    <p  >These commands create the following configuration in the <tt class=" ">/etc/quagga/Quagga.conf</tt> file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">router bgp 65020</code></div>
+<div class="line"><code class="plain"> bgp router-id 10.0.0.21</code></div>
+<div class="line"><code class="plain"> bgp bestpath as-path multipath-relax</code></div>
+<div class="line"><code class="plain"> bgp bestpath compare-routerid</code></div>
+<div class="line"><code class="plain"> neighbor fabric peer-group</code></div>
+<div class="line"><code class="plain"> neighbor fabric remote-as external</code></div>
+<div class="line"><code class="plain"> neighbor fabric description Internal Fabric Network</code></div>
+<div class="line"><code class="plain"> neighbor fabric capability extended-nexthop</code></div>
+<div class="line"><code class="plain"> neighbor swp1 interface peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp2 interface peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp3 interface peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp4 interface peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp29 interface peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp30 interface peer-group fabric</code></div>
+<div class="line"><code class="plain">!</code></div>
+</div>
+    </div>
+    <p  >Notice above, for an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a <a   href="#src-5127049_BorderGatewayProtocol-BGP-peergroups">peer group</a> (making sure to substitute for the interface and peer group below):    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor &lt;swpX&gt; interface peer-group &lt;group name&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-ManagingUnnumberedInterfaces">
+        <h2 class="heading "><span>Managing Unnumbered Interfaces</span></h2>
+    <p  >All the relevant BGP commands are now capable of showing IPv6 next-hops and/or the interface name for any IPv4 prefix:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net show bgp</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">show bgp ipv4 unicast</code></div>
+<div class="line"><code class="plain">=====================</code></div>
+<div class="line"><code class="plain">BGP table version is 6, local router ID is 10.0.0.11</code></div>
+<div class="line"><code class="plain">Status codes: s suppressed, d damped, h history, * valid, &gt; best, = multipath,</code></div>
+<div class="line"><code class="plain">              i internal, r RIB-failure, S Stale, R Removed</code></div>
+<div class="line"><code class="plain">Origin codes: i - IGP, e - EGP, ? - incomplete</code></div>
+<div class="line"><code class="plain">   Network          Next Hop            Metric LocPrf Weight Path</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.11/32     0.0.0.0                  0         32768 ?</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.12/32     swp51                         0 65020 65012 ?</code></div>
+<div class="line"><code class="plain">*=                  swp52                         0 65020 65012 ?</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.21/32     swp51           0             0 65020 ?</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.22/32     swp52           0             0 65020 ?</code></div>
+<div class="line"><code class="plain">*&gt; 172.16.1.0/24    0.0.0.0                  0         32768 i</code></div>
+<div class="line"><code class="plain">*&gt; 172.16.2.0/24    swp51                         0 65020 65012 i</code></div>
+<div class="line"><code class="plain">*=                  swp52                         0 65020 65012 i</code></div>
+<div class="line"><code class="plain">Total number of prefixes 6</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">show bgp ipv6 unicast</code></div>
+<div class="line"><code class="plain">=====================</code></div>
+<div class="line"><code class="plain">No BGP network exists</code></div>
+</div>
+    </div>
+    <p  >Quagga RIB commands are also modified:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net show route</code></div>
+<div class="line"><code class="plain">RIB entry for route</code></div>
+<div class="line"><code class="plain">===================</code></div>
+<div class="line"><code class="plain">Codes: K - kernel route, C - connected, S - static, R - RIP,</code></div>
+<div class="line"><code class="plain">       O - OSPF, I - IS-IS, B - BGP, P - PIM, T - Table,</code></div>
+<div class="line"><code class="plain">       &gt; - selected route, * - FIB route</code></div>
+<div class="line"><code class="plain">K&gt;* 0.0.0.0/0 via 192.168.0.254, eth0</code></div>
+<div class="line"><code class="plain">C&gt;* 10.0.0.11/32 is directly connected, lo</code></div>
+<div class="line"><code class="plain">B&gt;* 10.0.0.12/32 [20/0] via fe80::4638:39ff:fe00:5c, swp51, 1d01h04m</code></div>
+<div class="line"><code class="plain">  *                     via fe80::4638:39ff:fe00:2b, swp52, 1d01h04m</code></div>
+<div class="line"><code class="plain">B&gt;* 10.0.0.21/32 [20/0] via fe80::4638:39ff:fe00:5c, swp51, 1d01h04m</code></div>
+<div class="line"><code class="plain">B&gt;* 10.0.0.22/32 [20/0] via fe80::4638:39ff:fe00:2b, swp52, 1d01h04m</code></div>
+<div class="line"><code class="plain">C&gt;* 172.16.1.0/24 is directly connected, br0</code></div>
+<div class="line"><code class="plain">B&gt;* 172.16.2.0/24 [20/0] via fe80::4638:39ff:fe00:5c, swp51, 1d01h04m</code></div>
+<div class="line"><code class="plain">  *                      via fe80::4638:39ff:fe00:2b, swp52, 1d01h04m</code></div>
+<div class="line"><code class="plain">C&gt;* 192.168.0.0/24 is directly connected, eth0</code></div>
+</div>
+    </div>
+    <p  >The following commands show how the IPv4 link-local address <i class=" ">169.254.0.1</i> is used to install the route and static neighbor entry to facilitate proper forwarding without having to install an IPv4 prefix with IPv6 next-hop in the kernel:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net show route 10.0.0.12</code></div>
+<div class="line"><code class="plain">RIB entry for 10.0.0.12</code></div>
+<div class="line"><code class="plain">=======================</code></div>
+<div class="line"><code class="plain">Routing entry for 10.0.0.12/32</code></div>
+<div class="line"><code class="plain">  Known via "bgp", distance 20, metric 0, best</code></div>
+<div class="line"><code class="plain">  Last update 1d01h06m ago</code></div>
+<div class="line"><code class="plain">  * fe80::4638:39ff:fe00:5c, via swp51</code></div>
+<div class="line"><code class="plain">  * fe80::4638:39ff:fe00:2b, via swp52</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">FIB entry for 10.0.0.12</code></div>
+<div class="line"><code class="plain">=======================</code></div>
+<div class="line"><code class="plain">10.0.0.12  proto zebra  metric 20 </code></div>
+<div class="line"><code class="plain">	nexthop via 169.254.0.1  dev swp51 weight 1 onlink</code></div>
+<div class="line"><code class="plain">	nexthop via 169.254.0.1  dev swp52 weight 1 onlink</code></div>
+</div>
+    </div>
+    <p  >You can use this <tt class=" ">iproute2</tt> command to display more neighbor information:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ ip neighbor</code></div>
+<div class="line"><code class="plain">192.168.0.254 dev eth0 lladdr 44:38:39:00:00:5f REACHABLE</code></div>
+<div class="line"><code class="plain">169.254.0.1 dev swp52 lladdr 44:38:39:00:00:2b PERMANENT</code></div>
+<div class="line"><code class="plain">169.254.0.1 dev swp51 lladdr 44:38:39:00:00:5c PERMANENT</code></div>
+<div class="line"><code class="plain">fe80::4638:39ff:fe00:2b dev swp52 lladdr 44:38:39:00:00:2b router REACHABLE</code></div>
+<div class="line"><code class="plain">fe80::4638:39ff:fe00:5c dev swp51 lladdr 44:38:39:00:00:5c router REACHABLE</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-HowtracerouteInteractswithBGPUnnumberedInterfaces">
+        <h2 class="heading "><span>How traceroute Interacts with BGP Unnumbered Interfaces</span></h2>
+    <p  >Every router or end host must have an IPv4 address in order to complete a <tt class=" ">traceroute</tt> of IPv4 addresses. In this case, the IPv4 address used is that of the loopback device.    </p>
+    <p  >Even if ENHE is not used in the data center, link addresses are not typically advertised. This is because:    </p>
+<ul class=" "><li class=" ">    <p  >Link addresses take up valuable FIB resources. In a large Clos environment, the number of such addresses can be quite large.    </p>
+</li><li class=" ">    <p  >Link addresses expose an additional attack vector for intruders to use to either break in or engage in DDOS attacks.    </p>
+</li></ul>    <p  >Therefore, assigning an IP address to the loopback device is essential.    </p>
+    </div>
+    <div class="section section-2" id="src-5127049_safe-id-Qm9yZGVyR2F0ZXdheVByb3RvY29sLUJHUC1BZHZhbmNlZDpVbmRlcnN0YW5kaW5nSG93TmV4dC1ob3BGaWVsZHNBcmVTZXQ">
+        <h2 class="heading "><span>Advanced: Understanding How Next-hop Fields Are Set</span></h2>
+    <p  >This section describes how the IPv6 next-hops are set in the MP_REACH_NLRI (<a  class="external-link" href="https://www.ietf.org/rfc/rfc2858.txt">multiprotocol reachable NLRI</a>) initiated by the system, which applies whether IPv6 prefixes or IPv4 prefixes are exchanged with ENHE. There are two main aspects to determine &mdash; how many IPv6 next-hops are included in the MP_REACH_NLRI (since the RFC allows either one or two next-hops) and the values of the next-hop(s). This section also describes how a received MP_REACH_NLRI is handled as far as processing IPv6 next-hops.    </p>
+<ul class=" "><li class=" ">    <p  >Whether peering to a global IPv6 address or link-local IPv6 address, the determination whether to send one or two next-hops is as follows:    </p>
+<ol class=" "><li class=" ">    <p  >If reflecting the route, two next-hops are sent only if the peer has <tt class=" ">nexthop-local unchanged</tt> configured and the attribute of the received route has an IPv6 link-local next-hop; otherwise, only one next-hop is sent.    </p>
+</li><li class=" ">    <p  >Otherwise (if it's not reflecting the route), two next-hops are sent if explicitly configured (<tt class=" ">nexthop-local unchanged</tt>) or the peer is directly connected (that is, either peering is on link-local address or the global IPv4 or IPv6 address is <i class=" ">directly connected</i>) and the route is either a local/self-originated route or the peer is an eBGP peer.    </p>
+</li><li class=" ">    <p  >In all other cases, only one next-hop gets sent, unless an outbound route map adds another next-hop.    </p>
+</li></ol></li><li class=" ">    <p  ><tt class=" ">route-map</tt> can impose two next-hops in scenarios where Cumulus Linux would only send one next-hop &mdash; by specifying <tt class=" ">set ipv6 nexthop link-local</tt>.    </p>
+</li><li class=" ">    <p  >For all routes to eBGP peers and self-originated routes to iBGP peers, the global next-hop (first value) is the peering address of the local system. If the peering is on the link-local address, this is the global IPv6 address on the peering interface, if present; otherwise, it is the link-local IPv6 address on the peering interface.    </p>
+</li><li class=" ">    <p  >For other routes to iBGP peers (eBGP to iBGP or reflected), the global next-hop will be the global next-hop in the received attribute.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If this address were a link-local IPv6 address, it would get reset so that the link-local IPv6 address of the eBGP peer is not passed along to an iBGP peer, which most likely may be on a different link.    </p>
+        </div>
+    </div>
+</li><li class=" ">    <p  ><tt class=" ">route-map</tt> and/or the peer configuration can change the above behavior. For example, <tt class=" ">route-map</tt> can set the global IPv6 next-hop or the peer configuration can set it to <i class=" ">self</i> &mdash; which is relevant for <i class=" ">iBGP</i> peers. The route map or peer configuration can also set the next-hop to unchanged, which ensures the source IPv6 global next-hop is passed around &mdash; which is relevant for <i class=" ">eBGP</i> peers.    </p>
+</li><li class=" ">    <p  >Whenever two next-hops are being sent, the link-local next-hop (the second value of the two) is the link-local IPv6 address on the peering interface unless it is due to <tt class=" ">nh-local-unchanged</tt> or <tt class=" ">route-map</tt> has set the link-local next-hop.    </p>
+</li><li class=" ">    <p  >Network administrators cannot set <a  class="external-link" href="http://en.wikipedia.org/wiki/Martian_packet">martian values</a> for IPv6 next-hops in <tt class=" ">route-map</tt>. Also, global and link-local next-hops are validated to ensure they match the respective address types.    </p>
+</li><li class=" ">    <p  >In a received update, a martian check is imposed for the IPv6 global next-hop. If the check fails, it gets treated as an implicit withdraw.    </p>
+</li><li class=" ">    <p  >If two next-hops are received in an update and the second next-hop is not a link-local address, it gets ignored and the update is treated as if only one next-hop was received.    </p>
+</li><li class=" ">    <p  >Whenever two next-hops are received in an update, the second next-hop is used to install the route into <tt class=" ">zebra</tt>. As per the previous point, it is already assured that this is a link-local IPv6 address. Currently, this is assumed to be reachable and is not registered with NHT.    </p>
+</li><li class=" ">    <p  >When <tt class=" ">route-map</tt> specifies the next-hop as <tt class=" ">peer-address</tt>, the global IPv6 next-hop as well as the link-local IPv6 next-hop (if it's being sent) is set to the <i class=" ">peering address</i>. If the peering is on a link-local address, the former could be the link-local address on the peering interface, unless there is a global IPv6 address present on this interface.    </p>
+</li></ul>    <p  >The above rules imply that there are scenarios where a generated update has two IPv6 next-hops, and both of them are the IPv6 link-local address of the peering interface on the local system. If you are peering with a switch or router that is not running Cumulus Linux and expects the first next-hop to be a global IPv6 address, a route map can be used on the sender to specify a global IPv6 address. This conforms with the recommendations in the Internet draft <a  class="external-link" href="https://tools.ietf.org/html/draft-kato-bgp-ipv6-link-local-00">draft-kato-bgp-ipv6-link-local-00.txt</a>, &quot;BGP4+ Peering Using IPv6 Link-local Address&quot;.    </p>
+    <p  >    </p>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-Limitations">
+        <h2 class="heading "><span>Limitations</span></h2>
+<ul class=" "><li class=" ">    <p  >Interface-based peering with separate IPv4 and IPv6 sessions is not supported.    </p>
+</li><li class=" ">    <p  >ENHE is sent for IPv6 link-local peerings only.    </p>
+</li><li class=" ">    <p  >If an IPv4 /30 or /31 IP address is assigned to the interface IPv4 peering will be used over IPv6 link-local peering.    </p>
+</li><li class=" ">    <p  >If the default router lifetime in the generated IPv6 route advertisements (RA) is set to <i class=" ">0</i>, the receiving Quagga instance will drop the RA if it is on a Cumulus Linux <strong class=" ">2.5.z</strong> switch. To work around this issue, either:    </p>
+<ul class=" "><li class=" ">    <p  >Explicitly configure the switch to advertise a router lifetime of 0, unless a value is specifically set by the operator &mdash; with the assumption that the host is running Cumulus Linux 3.y.z version of Quagga. When hosts see an IPv6 RA with a router lifetime of 0, they won't make that router a default router.    </p>
+</li><li class=" ">    <p  >Use the <tt class=" ">sysctl</tt> on the host &mdash; <tt class=" ">net.ipv6.conf.all.accept_ra_defrtr</tt>. However, this requires applying this setting on all hosts, which may mean many hosts, especially if Quagga is run on the hosts.    </p>
+</li></ul></li></ul>    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-add-pathBGPadd-path">
+        <h1 class="heading "><span id="src-5127049_BorderGatewayProtocol-BGP-add-path" class="confluence-anchor-link"></span><span>BGP add-path</span></h1>
+    <p  >In Cumulus Linux 3.0 and later, BGP and static routing (IPv4 and IPv6) are supported within a VRF context. For more information, refer to <a   href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>.    </p>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-BGPadd-pathRX">
+        <h2 class="heading "><span>BGP add-path RX</span></h2>
+    <p  ><i class=" ">BGP add-path RX</i> allows BGP to receive multiple paths for the same prefix. A path identifier is used so that additional paths do not override previously advertised paths. No additional configuration is required for BGP add-path RX.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >BGP advertises the add-path RX capability by default. Add-Path TX requires an administrator to enable it. Enabling TX resets the session.    </p>
+        </div>
+    </div>
+    <p  >To view the existing capabilities, run <tt class=" ">net show bgp neighbor</tt>. They can be seen listed in the subsection <i class=" ">Add Path:</i>, below <i class=" ">Neighbor capabilities:</i>.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ net show bgp neighbor </code></div>
+<div class="line"><code class="plain">BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link</code></div>
+<div class="line"><code class="plain">Hostname: spine01</code></div>
+<div class="line"><code class="plain"> Member of peer-group fabric for session parameters</code></div>
+<div class="line"><code class="plain">  BGP version 4, remote router ID 10.0.0.21</code></div>
+<div class="line"><code class="plain">  BGP state = Established, up for 1d01h15m</code></div>
+<div class="line"><code class="plain">  Last read 00:00:00, Last write 1d01h15m</code></div>
+<div class="line"><code class="plain">  Hold time is 3, keepalive interval is 1 seconds</code></div>
+<div class="line"><code class="plain">  Configured hold time is 3, keepalive interval is 1 seconds</code></div>
+<div class="line"><code class="plain">  Neighbor capabilities:</code></div>
+<div class="line"><code class="plain">    4 Byte AS: advertised and received</code></div>
+<div class="line"><code class="plain">    AddPath:</code></div>
+<div class="line"><code class="plain">      IPv4 Unicast: RX advertised IPv4 Unicast and received</code></div>
+<div class="line"><code class="plain">    Extended nexthop: advertised and received</code></div>
+<div class="line"><code class="plain">      Address families by peer:</code></div>
+<div class="line"><code class="plain">                   IPv4 Unicast</code></div>
+<div class="line"><code class="plain">    Route refresh: advertised and received(old &amp; new)</code></div>
+<div class="line"><code class="plain">    Address family IPv4 Unicast: advertised and received</code></div>
+<div class="line"><code class="plain">    Hostname Capability: advertised and received</code></div>
+<div class="line"><code class="plain">    Graceful Restart Capabilty: advertised and received</code></div>
+<div class="line"><code class="plain">      Remote Restart timer is 120 seconds</code></div>
+<div class="line"><code class="plain">      Address families by peer:</code></div>
+<div class="line"><code class="plain">        none</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+    <p  >The example output above shows that additional BGP paths can be sent and received (TX and RX are advertised). It also shows that the BGP neighbor, fe80::4638:39ff:fe00:5c, supports both.    </p>
+    <p  >To view the current additional paths, run <tt class=" ">net show bgp &lt;network&gt;</tt>. The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ net show bgp 10.0.0.12</code></div>
+<div class="line"><code class="plain">BGP routing table entry for 10.0.0.12/32</code></div>
+<div class="line"><code class="plain">Paths: (2 available, best #1, table Default-IP-Routing-Table)</code></div>
+<div class="line"><code class="plain">  Advertised to non peer-group peers:</code></div>
+<div class="line"><code class="plain">  spine01(swp51) spine02(swp52)</code></div>
+<div class="line"><code class="plain">  65020 65012</code></div>
+<div class="line"><code class="plain">    fe80::4638:39ff:fe00:5c from spine01(swp51) (10.0.0.21)</code></div>
+<div class="line"><code class="plain">    (fe80::4638:39ff:fe00:5c) (used)</code></div>
+<div class="line"><code class="plain">      Origin incomplete, localpref 100, valid, external, multipath, bestpath-from-AS 65020, best</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 0, TX 6</code></div>
+<div class="line"><code class="plain">      Last update: Wed Nov 16 22:47:00 2016</code></div>
+<div class="line"><code class="plain">  65020 65012</code></div>
+<div class="line"><code class="plain">    fe80::4638:39ff:fe00:2b from spine02(swp52) (10.0.0.22)</code></div>
+<div class="line"><code class="plain">    (fe80::4638:39ff:fe00:2b) (used)</code></div>
+<div class="line"><code class="plain">      Origin incomplete, localpref 100, valid, external, multipath</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 0, TX 3</code></div>
+<div class="line"><code class="plain">      Last update: Wed Nov 16 22:47:00 2016</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-BGPadd-pathTX">
+        <h2 class="heading "><span>BGP add-path TX</span></h2>
+    <p  >AddPath TX allows BGP to advertise more than just the bestpath for a prefix. Consider the following topology:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">          r8</code></div>
+<div class="line"><code class="plain">          |</code></div>
+<div class="line"><code class="plain">          |</code></div>
+<div class="line"><code class="plain">  r1 ----    ---- r6</code></div>
+<div class="line"><code class="plain">  r2 ---- r7 ---- r5</code></div>
+<div class="line"><code class="plain">          ||</code></div>
+<div class="line"><code class="plain">          ||</code></div>
+<div class="line"><code class="plain">        r3 r4</code></div>
+</div>
+    </div>
+    <p  >In this topology:    </p>
+<ul class=" "><li class=" ">    <p  >r1 and r2 are in AS 100    </p>
+</li><li class=" ">    <p  >r3 and r4 are in AS 300    </p>
+</li><li class=" ">    <p  >r5 and r6 are in AS 500    </p>
+</li><li class=" ">    <p  >r7 is in AS 700    </p>
+</li><li class=" ">    <p  >r8 is in AS 800    </p>
+</li><li class=" ">    <p  >r7 learns 1.1.1.1/32 from r1, r2, r3, r4, r5, and r6. Among these r7 picks the path from r1 as the bestpath for 1.1.1.1/32    </p>
+</li></ul>    <p  >The example below configures the r7 session to advertise the bestpath learned from each AS. In this case, this means a path from AS 100, a path from AS 300, and a path from AS 500. The <tt class=" ">net show bgp 1.1.1.1/32</tt> from r7 has &quot;bestpath-from-AS 100&quot; so the user can see what the bestpath is from each AS:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@r7:~$ net add bgp autonomous-system 700</code></div>
+<div class="line"><code class="plain">cumulus@r7:~$ net add bgp neighbor 192.0.2.2 addpath-tx-bestpath-per-AS</code></div>
+</div>
+    </div>
+    <p  >The output below shows the result on r8:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@r8:~$ net show bgp 1.1.1.1/32</code></div>
+<div class="line"><code class="plain">BGP routing table entry for 1.1.1.1/32</code></div>
+<div class="line"><code class="plain">Paths: (3 available, best #3, table Default-IP-Routing-Table)</code></div>
+<div class="line"><code class="plain">  Advertised to non peer-group peers:</code></div>
+<div class="line"><code class="plain">  r7(10.7.8.1)</code></div>
+<div class="line"><code class="plain">  700 100</code></div>
+<div class="line"><code class="plain">    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)</code></div>
+<div class="line"><code class="plain">      Origin IGP, localpref 100, valid, external</code></div>
+<div class="line"><code class="plain">      Community: 1:1</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 2, TX 4</code></div>
+<div class="line"><code class="plain">      Last update: Thu Jun  2 00:57:14 2016</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  700 300</code></div>
+<div class="line"><code class="plain">    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)</code></div>
+<div class="line"><code class="plain">      Origin IGP, localpref 100, valid, external</code></div>
+<div class="line"><code class="plain">      Community: 3:3</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 4, TX 3</code></div>
+<div class="line"><code class="plain">      Last update: Thu Jun  2 00:57:14 2016</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  700 500</code></div>
+<div class="line"><code class="plain">    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)</code></div>
+<div class="line"><code class="plain">      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best</code></div>
+<div class="line"><code class="plain">      Community: 5:5</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 6, TX 2</code></div>
+<div class="line"><code class="plain">      Last update: Thu Jun  2 00:57:14 2016</code></div>
+</div>
+    </div>
+    <p  >The example below shows the results if r7 is configured to advertise all paths to r8:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@r7:~$ net add bgp autonomous-system 700</code></div>
+<div class="line"><code class="plain">cumulus@r7:~$ net add bgp neighbor 192.0.2.2 addpath-tx-all-paths</code></div>
+</div>
+    </div>
+    <p  >The output below shows the result on r8:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@r8:~$ net show bgp 1.1.1.1/32</code></div>
+<div class="line"><code class="plain">BGP routing table entry for 1.1.1.1/32</code></div>
+<div class="line"><code class="plain">Paths: (3 available, best #3, table Default-IP-Routing-Table)</code></div>
+<div class="line"><code class="plain">  Advertised to non peer-group peers:</code></div>
+<div class="line"><code class="plain">  r7(10.7.8.1)</code></div>
+<div class="line"><code class="plain">  700 100</code></div>
+<div class="line"><code class="plain">    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)</code></div>
+<div class="line"><code class="plain">      Origin IGP, localpref 100, valid, external</code></div>
+<div class="line"><code class="plain">      Community: 1:1</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 2, TX 4</code></div>
+<div class="line"><code class="plain">      Last update: Thu Jun  2 00:57:14 2016</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  700 300</code></div>
+<div class="line"><code class="plain">    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)</code></div>
+<div class="line"><code class="plain">      Origin IGP, localpref 100, valid, external</code></div>
+<div class="line"><code class="plain">      Community: 3:3</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 4, TX 3</code></div>
+<div class="line"><code class="plain">      Last update: Thu Jun  2 00:57:14 2016</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  700 500</code></div>
+<div class="line"><code class="plain">    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)</code></div>
+<div class="line"><code class="plain">      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best</code></div>
+<div class="line"><code class="plain">      Community: 5:5</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 6, TX 2</code></div>
+<div class="line"><code class="plain">      Last update: Thu Jun  2 00:57:14 2016</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-FastConvergenceDesignConsiderations">
+        <h1 class="heading "><span>Fast Convergence Design Considerations</span></h1>
+    <p  ><span id="src-5127049_indexterm-DC168057A3DB9776323C384D9D25A17D">Without </span>getting into the why (see the IETF draft cited in Useful Links below that talks about BGP use within the data center), we strongly recommend the following use of addresses in the design of a BGP-based data center network:    </p>
+<ul class=" "><li class=" ">    <p  >Use of interface addresses: Set up BGP sessions only using interface-scoped addresses. This allows BGP to react quickly to link failures.    </p>
+</li><li class=" ">    <p  >Use of next-hop-self: Every BGP node says that it knows how to forward traffic to the prefixes it is announcing. This reduces the requirement to announce interface-specific addresses and thereby reduces the size of the forwarding table.    </p>
+</li></ul>    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-SpecifyingtheInterfaceNameintheneighborCommand">
+        <h2 class="heading "><span>Specifying the Interface Name in the neighbor Command</span></h2>
+    <p  >When you are configuring BGP for the neighbors of a given interface, you can specify the interface name instead of its IP address. All the other <tt class=" ">neighbor</tt> command options remain the same.    </p>
+    <p  >This is equivalent to BGP peering to the link-local IPv6 address of the neighbor on the given interface. The link-local address is learned via IPv6 neighbor discovery router advertisements.    </p>
+    <p  >Consider the following example configuration in the <tt class=" ">/etc/quagga/Quagga.conf</tt> file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">router bgp 65000</code></div>
+<div class="line"><code class="plain">  bgp router-id 10.0.0.1</code></div>
+<div class="line"><code class="plain">  neighbor swp1 interface</code></div>
+<div class="line"><code class="plain">  neighbor swp1 remote-as internal</code></div>
+<div class="line"><code class="plain">  neighbor swp1 next-hop-self</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">  address-family ipv6</code></div>
+<div class="line"><code class="plain">  neighbor swp1 activate</code></div>
+<div class="line"><code class="plain">  exit-address-family</code></div>
+</div>
+    </div>
+    <p  >You create the above configuration with the following NCLU commands:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp autonomous-system 65000</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp router-id 10.0.0.1</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp1 interface</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp1 remote-as internal</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp1 next-hop-self</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp ipv6 unicast neighbor swp1 activate</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >By default, Cumulus Linux sends IPv6 neighbor discovery router advertisements. Cumulus Networks recommends you adjust the router advertisement's interval to a shorter value (<tt class=" ">net add interface &lt;interface&gt; ipv6 nd ra-interval &lt;interval&gt;</tt>) to address scenarios when nodes come up and miss router advertisement processing to relay the neighbor&rsquo;s link-local address to BGP. The <tt class=" ">interval</tt> is measured in seconds and defaults to 600 seconds.    </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-peergroupsUsingPeerGroupstoSimplifyConfiguration">
+        <h1 class="heading "><span id="src-5127049_BorderGatewayProtocol-BGP-peergroups" class="confluence-anchor-link"></span><span>Using Peer Groups to Simplify Configuration</span></h1>
+    <p  ><span id="src-5127049_indexterm-935EC05221FE9A98CD588474F0C943A1">When </span>there are many peers to connect to, the amount of redundant configuration becomes overwhelming. For example, repeating the <tt class=" ">activate</tt> and <tt class=" ">next-hop-self</tt> commands for even 60 neighbors makes for a very long configuration file. Using <tt class=" ">peer-group</tt> addresses this problem.    </p>
+    <p  >Instead of specifying properties of each individual peer, Quagga allows for defining one or more peer groups and associating all the attributes common to that peer session to a peer group. A peer needs to be attached to a peer group only once, when it then inherits all address families activated for that peer group.    </p>
+    <p  >After doing this, the only task is to associate an IP address with a peer group. Here is an example of defining and using peer groups:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor tier-2 peer-group</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp ipv4 unicast</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor tier-2 activate</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor tier-2 next-hop-self</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor 10.0.0.2 peer-group tier-2</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor 192.0.2.2 peer-group tier-2</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >BGP peer-group restrictions have been replaced with update-groups, which dynamically examine all peers, and group them if they have the same outbound policy.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-ConfiguringBGPDynamicNeighbors">
+        <h1 class="heading "><span>Configuring BGP Dynamic Neighbors</span></h1>
+    <p  >The <i class=" ">BGP dynamic neighbor</i> feature provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.    </p>
+    <p  >You configure dynamic neighbors using the <tt class=" ">bgp listen range &lt;IP address&gt; peer-group &lt;GROUP&gt;</tt> command. Once they are configured, a BGP speaker can listen for and form peer relationships with any neighbor in the IP address range and mapped to a peer group.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp autonomous-system 65001</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp listen range 10.1.1.0/24 peer-group SPINE</code></div>
+</div>
+    </div>
+    <p  >You can limit the number of dynamic peers by specifying that limit in the <tt class=" ">bgp listen limit</tt> command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp listen limit 5</code></div>
+</div>
+    </div>
+    <p  >Collectively, a sample configuration for IPv4 would look like this:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp autonomous-system 65001</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor SPINE peer-group</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor SPINE remote-as 65000</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp listen limit 5</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp listen range 10.1.1.0/24 peer-group SPINE</code></div>
+</div>
+    </div>
+    <p  >These commands produce an IPv4 configuration that looks like this:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">router bgp 65001 </code></div>
+<div class="line"><code class="plain"> neighbor SPINE peer-group</code></div>
+<div class="line"><code class="plain"> neighbor SPINE remote-as 65000</code></div>
+<div class="line"><code class="plain">  bgp listen limit 5</code></div>
+<div class="line"><code class="plain">  bgp listen range 10.1.1.0/24 peer-group SPINE</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-ConfiguringBGPPeeringRelationshipsacrossSwitches">
+        <h1 class="heading "><span>Configuring BGP Peering Relationships across Switches</span></h1>
+    <p  ><span id="src-5127049_indexterm-A73348BC31E0BCD1EED2B6AA9658EEB0">A </span>BGP peering relationship is typically initiated with the <tt class=" ">neighbor x.x.x.x remote-as [internal|external]</tt> command.    </p>
+    <p  >Specifying <i class=" ">internal</i> signifies an iBGP peering; that is, the neighbor will only create or accept a connection with the specified neighbor if the remote peer AS number matches this BGP's AS number.    </p>
+    <p  ><span id="src-5127049_indexterm-D148A6B193999221B503C2E873E9B7C8">Specifying </span><i class=" ">external</i> signifies an eBGP peering; that is, the neighbor will only create a connection with the neighbor if the remote peer AS number does <strong class=" ">not</strong> match this BGP AS number.    </p>
+    <p  >You can make this distinction using the <tt class=" ">neighbor</tt> command or the <tt class=" ">peer-group</tt> command.    </p>
+    <p  >In general, use the following syntax with the <tt class=" ">neighbor</tt> command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor [&lt;IP address&gt;|&lt;BGP peer&gt;|&lt;interface&gt;] remote-as [&lt;value&gt;|internal|external]</code></div>
+</div>
+    </div>
+    <p  >Some example configurations follow.    </p>
+    <div  class="confbox admonition admonition-info has-no-icon">
+                        <div class="admonition-body">
+    <p  >To connect to <strong class=" ">the same AS</strong> using the <tt class=" ">neighbor</tt> command, modify your configuration similar to the following:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp autonomous-system 500</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor 192.168.1.2 remote-as internal</code></div>
+</div>
+    </div>
+    <p  >These commands create the following configuration snippet:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">router bgp 500</code></div>
+<div class="line"><code class="plain">neighbor 192.168.1.2 remote-as internal</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-info has-no-icon">
+                        <div class="admonition-body">
+    <p  >To connect to a <strong class=" ">different AS</strong> using the <tt class=" ">neighbor</tt> command, modify your configuration similar to the following:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp autonomous-system 500</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor 192.168.1.2 remote-as external</code></div>
+</div>
+    </div>
+    <p  >These commands create the following configuration snippet:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">router bgp 500</code></div>
+<div class="line"><code class="plain">neighbor 192.168.1.2 remote-as external</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-info has-no-icon">
+                        <div class="admonition-body">
+    <p  >To connect to <strong class=" ">the same AS</strong> using the <tt class=" ">peer-group</tt> command, modify your configuration similar to the following:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp autonomous-system 500</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp1 interface</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor IBGP peer-group</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor IBGP remote-as internal</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp1 interface peer-group IBGP</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor 192.0.2.3 peer-group IBGP</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor 192.0.2.4 peer-group IBGP</code></div>
+</div>
+    </div>
+    <p  >These commands create the following configuration snippet:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">router bgp 500</code></div>
+<div class="line"><code class="plain">neighbor swp1 interface</code></div>
+<div class="line"><code class="plain">neighbor IBGP peer-group</code></div>
+<div class="line"><code class="plain">neighbor IBGP remote-as internal</code></div>
+<div class="line"><code class="plain">neighbor swp1 peer-group IBGP</code></div>
+<div class="line"><code class="plain">neighbor 192.0.2.3 peer-group IBGP</code></div>
+<div class="line"><code class="plain">neighbor 192.0.2.4 peer-group IBGP</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-info has-no-icon">
+                        <div class="admonition-body">
+    <p  >To connect to a <strong class=" ">different AS</strong> using the <tt class=" ">peer-group</tt> command, modify your configuration similar to the following:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp autonomous-system 500</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp2 interface</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor EBGP peer-group</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor EBGP remote-as external</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor 192.0.2.2 peer-group EBGP</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp2 interface peer-group EBGP</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor 192.0.2.4 peer-group EBGP</code></div>
+</div>
+    </div>
+    <p  >These commands create the following configuration snippet:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">router bgp 500</code></div>
+<div class="line"><code class="plain">neighbor swp2 interface</code></div>
+<div class="line"><code class="plain">neighbor EBGP peer-group</code></div>
+<div class="line"><code class="plain">neighbor EBGP remote-as external</code></div>
+<div class="line"><code class="plain">neighbor 192.0.2.2 peer-group EBGP</code></div>
+<div class="line"><code class="plain">neighbor swp2 peer-group EBGP</code></div>
+<div class="line"><code class="plain">neighbor 192.0.2.4 peer-group EBGP</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-ConfiguringMD5-enabledBGPNeighbors">
+        <h1 class="heading "><span>Configuring MD5-enabled BGP Neighbors</span></h1>
+    <p  >The following sections outline how to configure an MD5-enabled BGP neighbor. Each process assumes that Quagga is used as the routing platform, and consists of two switches (<tt class=" ">AS 65011</tt> and <tt class=" ">AS 65020</tt>), connected by the link 10.0.0.100/30, with the following configurations:    </p>
+    <div  class="confbox programlisting">
+                    <div class="title">switch1</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="switch1">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@leaf01</code><code class="plain">:~$ net show bgp summary </code></div>
+<div class="line"><code class="plain">show bgp ipv4 unicast summary</code></div>
+<div class="line"><code class="plain">=============================</code></div>
+<div class="line"><code class="plain">BGP router identifier </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.11</code><code class="plain">, local AS number </code><code class="value">65011</code><code class="plain"> vrf-id </code><code class="value">0</code></div>
+<div class="line"><code class="plain">BGP table version </code><code class="value">6</code></div>
+<div class="line"><code class="plain">RIB entries </code><code class="value">11</code><code class="plain">, using </code><code class="value">1320</code><code class="plain"> bytes of memory</code></div>
+<div class="line"><code class="plain">Peers </code><code class="value">2</code><code class="plain">, using </code><code class="value">36</code><code class="plain"> KiB of memory</code></div>
+<div class="line"><code class="plain">Peer groups </code><code class="value">1</code><code class="plain">, using </code><code class="value">56</code><code class="plain"> bytes of memory</code></div>
+<div class="line"><code class="plain">Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd</code></div>
+<div class="line"><code class="plain">spine01(swp51)  </code><code class="value">4</code><code class="plain"> </code><code class="value">65020</code><code class="plain">   </code><code class="value">93587</code><code class="plain">   </code><code class="value">93587</code><code class="plain">        </code><code class="value">0</code><code class="plain">    </code><code class="value">0</code><code class="plain">    </code><code class="value">0</code><code class="plain"> 1d02h00m        </code><code class="value">3</code></div>
+<div class="line"><code class="plain">spine02(swp52)  </code><code class="value">4</code><code class="plain"> </code><code class="value">65020</code><code class="plain">   </code><code class="value">93587</code><code class="plain">   </code><code class="value">93587</code><code class="plain">        </code><code class="value">0</code><code class="plain">    </code><code class="value">0</code><code class="plain">    </code><code class="value">0</code><code class="plain"> 1d02h00m        </code><code class="value">3</code></div>
+<div class="line"><code class="plain">Total number of neighbors </code><code class="value">2</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">show bgp ipv6 unicast summary</code></div>
+<div class="line"><code class="plain">=============================</code></div>
+<div class="line"><code class="plain">No IPv6 neighbor is configured</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">switch2</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="switch2">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@spine01</code><code class="plain">:~$ net show bgp summary </code></div>
+<div class="line"><code class="plain">show bgp ipv4 unicast summary</code></div>
+<div class="line"><code class="plain">=============================</code></div>
+<div class="line"><code class="plain">BGP router identifier </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain">, local AS number </code><code class="value">65020</code><code class="plain"> vrf-id </code><code class="value">0</code></div>
+<div class="line"><code class="plain">BGP table version </code><code class="value">5</code></div>
+<div class="line"><code class="plain">RIB entries </code><code class="value">9</code><code class="plain">, using </code><code class="value">1080</code><code class="plain"> bytes of memory</code></div>
+<div class="line"><code class="plain">Peers </code><code class="value">4</code><code class="plain">, using </code><code class="value">73</code><code class="plain"> KiB of memory</code></div>
+<div class="line"><code class="plain">Peer groups </code><code class="value">1</code><code class="plain">, using </code><code class="value">56</code><code class="plain"> bytes of memory</code></div>
+<div class="line"><code class="plain">Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd</code></div>
+<div class="line"><code class="plain">leaf01(swp1)    </code><code class="value">4</code><code class="plain"> </code><code class="value">65011</code><code class="plain">     </code><code class="value">782</code><code class="plain">     </code><code class="value">782</code><code class="plain">        </code><code class="value">0</code><code class="plain">    </code><code class="value">0</code><code class="plain">    </code><code class="value">0</code><code class="plain"> </code><code class="value">00</code><code class="plain">:</code><code class="value">12</code><code class="plain">:</code><code class="value">54</code><code class="plain">        </code><code class="value">2</code></div>
+<div class="line"><code class="plain">leaf02(swp2)    </code><code class="value">4</code><code class="plain"> </code><code class="value">65012</code><code class="plain">     </code><code class="value">781</code><code class="plain">     </code><code class="value">781</code><code class="plain">        </code><code class="value">0</code><code class="plain">    </code><code class="value">0</code><code class="plain">    </code><code class="value">0</code><code class="plain"> </code><code class="value">00</code><code class="plain">:</code><code class="value">12</code><code class="plain">:</code><code class="value">53</code><code class="plain">        </code><code class="value">2</code></div>
+<div class="line"><code class="plain">swp3            </code><code class="value">4</code><code class="plain">     </code><code class="value">0</code><code class="plain">       </code><code class="value">0</code><code class="plain">       </code><code class="value">0</code><code class="plain">        </code><code class="value">0</code><code class="plain">    </code><code class="value">0</code><code class="plain">    </code><code class="value">0</code><code class="plain"> never    Idle       </code></div>
+<div class="line"><code class="plain">swp4            </code><code class="value">4</code><code class="plain">     </code><code class="value">0</code><code class="plain">       </code><code class="value">0</code><code class="plain">       </code><code class="value">0</code><code class="plain">        </code><code class="value">0</code><code class="plain">    </code><code class="value">0</code><code class="plain">    </code><code class="value">0</code><code class="plain"> never    Idle       </code></div>
+<div class="line"><code class="plain">Total number of neighbors </code><code class="value">4</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">show bgp ipv6 unicast summary</code></div>
+<div class="line"><code class="plain">=============================</code></div>
+<div class="line"><code class="plain">No IPv6 neighbor is configured</code></div>
+<div class="line"><code class="plain"> </code></div>
+</div>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-ManuallyConfiguringanMD5-enabledBGPNeighbor">
+        <h2 class="heading "><span>Manually Configuring an MD5-enabled BGP Neighbor</span></h2>
+<ol class=" "><li class=" ">    <p  >SSH into leaf01.    </p>
+</li><li class=" ">    <p  >Configure the password for the neighbor:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ net add bgp neighbor 10.0.0.102 password mypassword</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Confirm the configuration has been implemented with the <tt class=" ">net show bgp summary</tt> command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ net show bgp summary </code></div>
+<div class="line"><code class="plain">show bgp ipv4 unicast summary</code></div>
+<div class="line"><code class="plain">=============================</code></div>
+<div class="line"><code class="plain">BGP router identifier 10.0.0.11, local AS number 65011 vrf-id 0</code></div>
+<div class="line"><code class="plain">BGP table version 18</code></div>
+<div class="line"><code class="plain">RIB entries 11, using 1320 bytes of memory</code></div>
+<div class="line"><code class="plain">Peers 2, using 36 KiB of memory</code></div>
+<div class="line"><code class="plain">Peer groups 1, using 56 bytes of memory</code></div>
+<div class="line"><code class="plain">Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd</code></div>
+<div class="line"><code class="plain">spine01(swp51)  4 65020   96144   96146        0    0    0 00:30:29        3</code></div>
+<div class="line"><code class="plain">spine02(swp52)  4 65020   96209   96217        0    0    0 1d02h44m        3</code></div>
+<div class="line"><code class="plain">Total number of neighbors 2</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">show bgp ipv6 unicast summary</code></div>
+<div class="line"><code class="plain">=============================</code></div>
+<div class="line"><code class="plain">No IPv6 neighbor is configured</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >SSH into spine01.    </p>
+</li><li class=" ">    <p  >Configure the password for the neighbor:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@spine01:~$ net add bgp neighbor 10.0.0.101 password mypassword</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Confirm the configuration has been implemented with the <tt class=" ">net show bgp summary</tt> command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@spine01:~$ net show bgp summary </code></div>
+<div class="line"><code class="plain">show bgp ipv4 unicast summary</code></div>
+<div class="line"><code class="plain">=============================</code></div>
+<div class="line"><code class="plain">BGP router identifier 10.0.0.21, local AS number 65020 vrf-id 0</code></div>
+<div class="line"><code class="plain">BGP table version 5</code></div>
+<div class="line"><code class="plain">RIB entries 9, using 1080 bytes of memory</code></div>
+<div class="line"><code class="plain">Peers 4, using 73 KiB of memory</code></div>
+<div class="line"><code class="plain">Peer groups 1, using 56 bytes of memory</code></div>
+<div class="line"><code class="plain">Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd</code></div>
+<div class="line"><code class="plain">leaf01(swp1)    4 65011     782     782        0    0    0 00:12:54        2</code></div>
+<div class="line"><code class="plain">leaf02(swp2)    4 65012     781     781        0    0    0 00:12:53        2</code></div>
+<div class="line"><code class="plain">swp3            4     0       0       0        0    0    0 never    Idle       </code></div>
+<div class="line"><code class="plain">swp4            4     0       0       0        0    0    0 never    Idle       </code></div>
+<div class="line"><code class="plain">Total number of neighbors 4</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">show bgp ipv6 unicast summary</code></div>
+<div class="line"><code class="plain">=============================</code></div>
+<div class="line"><code class="plain">No IPv6 neighbor is configured</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-ConfiguringBGPTTLSecurity">
+        <h1 class="heading "><span>Configuring BGP TTL Security</span></h1>
+    <p  >The steps below cover how to configure BGP ttl security on Cumulus Linux, using a leaf (<tt class=" ">leaf01</tt>), and spine (<tt class=" ">spine01</tt>) for the example output:    </p>
+<ol class=" "><li class=" ">    <p  >SSH into leaf01 and configure it for TTL security:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ net add bgp autonomous-system 65000</code></div>
+<div class="line"><code class="plain">cumulus@leaf01:~$ net add bgp neighbor [spine01-IP] ttl-security hops [value]</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >SSH into spine01 and configure it for TTL security:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@spine01:~$ net add bgp autonomous-system 65001</code></div>
+<div class="line"><code class="plain">cumulus@spine01:~$ net add bgp neighbor [leaf01-IP] ttl-security hops [value]</code></div>
+</div>
+    </div>
+</li></ol>    <p  >BGP TTL security is now configured. To review the resulting configuration, run the <tt class=" ">show ip bgp neighbor</tt> command.    </p>
+    <p  class="expand-control-text">Example net show bgp neighbor output    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@spine01:~$ net show bgp neighbor</code></div>
+<div class="line"><code class="plain">BGP neighbor on swp1: fe80::4638:39ff:fe00:5b, remote AS 65011, local AS 65020, external link</code></div>
+<div class="line"><code class="plain">Hostname: leaf01</code></div>
+<div class="line"><code class="plain"> Member of peer-group fabric for session parameters</code></div>
+<div class="line"><code class="plain">  BGP version 4, remote router ID 0.0.0.0</code></div>
+<div class="line"><code class="plain">  BGP state = Connect</code></div>
+<div class="line"><code class="plain">  Last read 19:47:43, Last write 20:27:13</code></div>
+<div class="line"><code class="plain">  Hold time is 3, keepalive interval is 1 seconds</code></div>
+<div class="line"><code class="plain">  Configured hold time is 3, keepalive interval is 1 seconds</code></div>
+<div class="line"><code class="plain">  Message statistics:</code></div>
+<div class="line"><code class="plain">    Inq depth is 0</code></div>
+<div class="line"><code class="plain">    Outq depth is 0</code></div>
+<div class="line"><code class="plain">                         Sent       Rcvd</code></div>
+<div class="line"><code class="plain">    Opens:                  2          2</code></div>
+<div class="line"><code class="plain">    Notifications:          0          2</code></div>
+<div class="line"><code class="plain">    Updates:               12         14</code></div>
+<div class="line"><code class="plain">    Keepalives:          5224       5222</code></div>
+<div class="line"><code class="plain">    Route Refresh:          0          0</code></div>
+<div class="line"><code class="plain">    Capability:             0          0</code></div>
+<div class="line"><code class="plain">    Total:               5238       5240</code></div>
+<div class="line"><code class="plain">  Minimum time between advertisement runs is 0 seconds</code></div>
+<div class="line"><code class="plain"> For address family: IPv4 Unicast</code></div>
+<div class="line"><code class="plain">  fabric peer-group member</code></div>
+<div class="line"><code class="plain">  Not part of any update group</code></div>
+<div class="line"><code class="plain">  Community attribute sent to this neighbor(both)</code></div>
+<div class="line"><code class="plain">  Inbound path policy configured</code></div>
+<div class="line"><code class="plain">  Outbound path policy configured</code></div>
+<div class="line"><code class="plain">  Incoming update prefix filter list is *dc-spine</code></div>
+<div class="line"><code class="plain">  Outgoing update prefix filter list is *dc-spine</code></div>
+<div class="line"><code class="plain">  0 accepted prefixes</code></div>
+<div class="line"><code class="plain">  Connections established 2; dropped 2</code></div>
+<div class="line"><code class="plain">  Last reset 19:47:42, due to NOTIFICATION received (Cease/Other Configuration Change)</code></div>
+<div class="line"><code class="plain">BGP Connect Retry Timer in Seconds: 3</code></div>
+<div class="line"><code class="plain">Next connect timer due in 0 seconds</code></div>
+<div class="line"><code class="plain">Read thread: on  Write thread: on</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-ConfigurationTips">
+        <h1 class="heading "><span>Configuration Tips</span></h1>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-BGPAdvertisementBestPractices">
+        <h2 class="heading "><span>BGP Advertisement Best Practices</span></h2>
+    <p  >Limiting the exchange of routing information at various parts in the network is a best practice you should follow. The following image illustrates one way you can do so in a typical Clos architecture:    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5127049/BGP_Advertisement_Best_Practices.png" alt="images/download/attachments/5127049/BGP_Advertisement_Best_Practices.png"  height="400" />
+        </p>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-UtilizingMultipleRoutingTablesandForwarding">
+        <h2 class="heading "><span>Utilizing Multiple Routing Tables and Forwarding</span></h2>
+    <p  >You can run multiple routing tables (one for in-band/data plane traffic and one for out-of-band/management plane traffic) on the same switch using <a   href="Management_VRF.html">management VRF</a> (multiple routing tables and forwarding).    </p>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-UsingBGPCommunityLists">
+        <h2 class="heading "><span>Using BGP Community Lists</span></h2>
+    <p  >You can use <a  class="external-link" href="http://www.nongnu.org/quagga/docs/docs-multi/BGP-Community-Lists.html#BGP-Community-Lists"><i class=" ">community lists</i></a> to define a BGP community to tag one or more routes. You can then use the communities to apply route policy on either egress or ingress.    </p>
+    <p  >The BGP community list can be either <i class=" ">standard</i> or <i class=" ">expanded.</i> The standard BGP community list is a pair of values (such as <i class=" ">100:100</i>) that can be tagged on a specific prefix and advertised to other neighbors or applied on route ingress. Alternately, it can be one of four BGP default communities:    </p>
+<ul class=" "><li class=" ">    <p  ><i class=" ">internet</i>: a BGP community that matches all routes    </p>
+</li><li class=" ">    <p  ><i class=" ">local-AS</i>: a BGP community that restrict routes to your confederation's sub-AS    </p>
+</li><li class=" ">    <p  ><i class=" ">no-advertise</i>: a BGP community that isn't advertised to anyone    </p>
+</li><li class=" ">    <p  ><i class=" ">no-export</i>: a BGP community that isn't advertised to the eBGP peer    </p>
+</li></ul>    <p  >An expanded BGP community list takes a regular expression of communities matches the listed communities.    </p>
+    <p  >When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.    </p>
+    <p  >Here's an example of standard community list filter:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100</code></div>
+</div>
+    </div>
+    <p  >You can apply the community list to a route map to define the routing policy:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp table-map ROUTE-MAP1</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-AdditionalDefaultSettings">
+        <h2 class="heading "><span>Additional Default Settings</span></h2>
+    <p  >Other default settings not discussed in detail in this chapter include the following; they're all enabled by default:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">bgp deterministic-med</tt>, which ensures path ordering no longer impacts bestpath selection.    </p>
+</li><li class=" ">    <p  ><tt class=" ">bgp show-hostname</tt>, which displays the hostname in show command output.    </p>
+</li><li class=" ">    <p  ><tt class=" ">bgp network import-check</tt>, which enables the advertising of the BGP network in IGP.    </p>
+</li></ul>    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-ConfiguringBGPNeighbormaximum-prefixes">
+        <h2 class="heading "><span>Configuring BGP Neighbor maximum-prefixes</span></h2>
+    <p  >The maximum number of route announcements, or prefixes, allowed by a BGP neighbor can be configured using the <tt class=" ">maximum-prefixes</tt> command in the CLI. Replace the <tt class=" ">PEER</tt> input with the relevant peer, and replace <tt class=" ">NUMBER</tt> with the maximum number of prefixes desired:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">quagga(config)# neighbor PEER maximum-prefix NUMBER</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-TroubleshootingBGP">
+        <h1 class="heading "><span>Troubleshooting BGP</span></h1>
+    <p  >The most common starting point for troubleshooting BGP is to view the summary of neighbors connected to and some information about these connections. A sample output of this command is as follows:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net show bgp summary </code></div>
+<div class="line"><code class="plain">show bgp ipv4 unicast summary</code></div>
+<div class="line"><code class="plain">=============================</code></div>
+<div class="line"><code class="plain">BGP router identifier 10.0.0.11, local AS number 65011 vrf-id 0</code></div>
+<div class="line"><code class="plain">BGP table version 8</code></div>
+<div class="line"><code class="plain">RIB entries 11, using 1320 bytes of memory</code></div>
+<div class="line"><code class="plain">Peers 2, using 36 KiB of memory</code></div>
+<div class="line"><code class="plain">Peer groups 1, using 56 bytes of memory</code></div>
+<div class="line"><code class="plain">Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd</code></div>
+<div class="line"><code class="plain">spine01(swp51)  4 65020     549     551        0    0    0 00:09:03        3</code></div>
+<div class="line"><code class="plain">spine02(swp52)  4 65020     548     550        0    0    0 00:09:02        3</code></div>
+<div class="line"><code class="plain">Total number of neighbors 2</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">show bgp ipv6 unicast summary</code></div>
+<div class="line"><code class="plain">=============================</code></div>
+<div class="line"><code class="plain">No IPv6 neighbor is configured</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >You can determine whether the sessions above are iBGP or eBGP sessions by looking at the ASNs.    </p>
+        </div>
+    </div>
+    <p  >It is also useful to view the routing table as defined by BGP:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net show bgp ipv4</code></div>
+<div class="line"><code class="plain">ERROR: Command not found</code></div>
+<div class="line"><code class="plain">Use 'net help KEYWORD(s)' to list all options that use KEYWORD(s)</code></div>
+<div class="line"><code class="plain">cumulus@leaf01:~$ net show bgp ipv4 </code></div>
+<div class="line"><code class="plain">    unicast  :  add help text</code></div>
+<div class="line"><code class="plain">cumulus@leaf01:~$ net show bgp ipv4 unicast </code></div>
+<div class="line"><code class="plain">BGP table version is 8, local router ID is 10.0.0.11</code></div>
+<div class="line"><code class="plain">Status codes: s suppressed, d damped, h history, * valid, &gt; best, = multipath,</code></div>
+<div class="line"><code class="plain">              i internal, r RIB-failure, S Stale, R Removed</code></div>
+<div class="line"><code class="plain">Origin codes: i - IGP, e - EGP, ? - incomplete</code></div>
+<div class="line"><code class="plain">   Network          Next Hop            Metric LocPrf Weight Path</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.11/32     0.0.0.0                  0         32768 ?</code></div>
+<div class="line"><code class="plain">*= 10.0.0.12/32     swp52                         0 65020 65012 ?</code></div>
+<div class="line"><code class="plain">*&gt;                  swp51                         0 65020 65012 ?</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.21/32     swp51           0             0 65020 ?</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.22/32     swp52           0             0 65020 ?</code></div>
+<div class="line"><code class="plain">*&gt; 172.16.1.0/24    0.0.0.0                  0         32768 i</code></div>
+<div class="line"><code class="plain">*= 172.16.2.0/24    swp52                         0 65020 65012 i</code></div>
+<div class="line"><code class="plain">*&gt;                  swp51                         0 65020 65012 i</code></div>
+<div class="line"><code class="plain">Total number of prefixes 6</code></div>
+</div>
+    </div>
+    <p  >A more detailed breakdown of a specific neighbor can be obtained using <tt class=" ">net show bgp neighbor &lt;neighbor&gt;</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net show bgp neighbor swp51</code></div>
+<div class="line"><code class="plain">BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link</code></div>
+<div class="line"><code class="plain">Hostname: spine01</code></div>
+<div class="line"><code class="plain"> Member of peer-group fabric for session parameters</code></div>
+<div class="line"><code class="plain">  BGP version 4, remote router ID 10.0.0.21</code></div>
+<div class="line"><code class="plain">  BGP state = Established, up for 00:11:30</code></div>
+<div class="line"><code class="plain">  Last read 00:00:00, Last write 00:11:26</code></div>
+<div class="line"><code class="plain">  Hold time is 3, keepalive interval is 1 seconds</code></div>
+<div class="line"><code class="plain">  Configured hold time is 3, keepalive interval is 1 seconds</code></div>
+<div class="line"><code class="plain">  Neighbor capabilities:</code></div>
+<div class="line"><code class="plain">    4 Byte AS: advertised and received</code></div>
+<div class="line"><code class="plain">    AddPath:</code></div>
+<div class="line"><code class="plain">      IPv4 Unicast: RX advertised IPv4 Unicast and received</code></div>
+<div class="line"><code class="plain">    Extended nexthop: advertised and received</code></div>
+<div class="line"><code class="plain">      Address families by peer:</code></div>
+<div class="line"><code class="plain">                   IPv4 Unicast</code></div>
+<div class="line"><code class="plain">    Route refresh: advertised and received(old &amp; new)</code></div>
+<div class="line"><code class="plain">    Address family IPv4 Unicast: advertised and received</code></div>
+<div class="line"><code class="plain">    Hostname Capability: advertised and received</code></div>
+<div class="line"><code class="plain">    Graceful Restart Capabilty: advertised and received</code></div>
+<div class="line"><code class="plain">      Remote Restart timer is 120 seconds</code></div>
+<div class="line"><code class="plain">      Address families by peer:</code></div>
+<div class="line"><code class="plain">        none</code></div>
+<div class="line"><code class="plain">  Graceful restart informations:</code></div>
+<div class="line"><code class="plain">    End-of-RIB send: IPv4 Unicast</code></div>
+<div class="line"><code class="plain">    End-of-RIB received: IPv4 Unicast</code></div>
+<div class="line"><code class="plain">  Message statistics:</code></div>
+<div class="line"><code class="plain">    Inq depth is 0</code></div>
+<div class="line"><code class="plain">    Outq depth is 0</code></div>
+<div class="line"><code class="plain">                         Sent       Rcvd</code></div>
+<div class="line"><code class="plain">    Opens:                  1          1</code></div>
+<div class="line"><code class="plain">    Notifications:          0          0</code></div>
+<div class="line"><code class="plain">    Updates:                7          6</code></div>
+<div class="line"><code class="plain">    Keepalives:           690        689</code></div>
+<div class="line"><code class="plain">    Route Refresh:          0          0</code></div>
+<div class="line"><code class="plain">    Capability:             0          0</code></div>
+<div class="line"><code class="plain">    Total:                698        696</code></div>
+<div class="line"><code class="plain">  Minimum time between advertisement runs is 0 seconds</code></div>
+<div class="line"><code class="plain"> For address family: IPv4 Unicast</code></div>
+<div class="line"><code class="plain">  fabric peer-group member</code></div>
+<div class="line"><code class="plain">  Update group 1, subgroup 1</code></div>
+<div class="line"><code class="plain">  Packet Queue length 0</code></div>
+<div class="line"><code class="plain">  Community attribute sent to this neighbor(both)</code></div>
+<div class="line"><code class="plain">  Inbound path policy configured</code></div>
+<div class="line"><code class="plain">  Outbound path policy configured</code></div>
+<div class="line"><code class="plain">  Incoming update prefix filter list is *dc-leaf-in</code></div>
+<div class="line"><code class="plain">  Outgoing update prefix filter list is *dc-leaf-out</code></div>
+<div class="line"><code class="plain">  3 accepted prefixes</code></div>
+<div class="line"><code class="plain">  Connections established 1; dropped 0</code></div>
+<div class="line"><code class="plain">  Last reset never</code></div>
+<div class="line"><code class="plain">Local host: fe80::4638:39ff:fe00:5b, Local port: 48424</code></div>
+<div class="line"><code class="plain">Foreign host: fe80::4638:39ff:fe00:5c, Foreign port: 179</code></div>
+<div class="line"><code class="plain">Nexthop: 10.0.0.11</code></div>
+<div class="line"><code class="plain">Nexthop global: fe80::4638:39ff:fe00:5b</code></div>
+<div class="line"><code class="plain">Nexthop local: fe80::4638:39ff:fe00:5b</code></div>
+<div class="line"><code class="plain">BGP connection: shared network</code></div>
+<div class="line"><code class="plain">BGP Connect Retry Timer in Seconds: 3</code></div>
+<div class="line"><code class="plain">Estimated round trip time: 3 ms</code></div>
+<div class="line"><code class="plain">Read thread: on  Write thread: off</code></div>
+</div>
+    </div>
+    <p  >To see the details of a specific route such as from whom it was received, to whom it was sent, and so forth, use the <tt class=" ">net show bgp &lt;ip address/prefix&gt;</tt> command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ net show bgp 10.0.0.11/32</code></div>
+<div class="line"><code class="plain">BGP routing table entry for 10.0.0.11/32</code></div>
+<div class="line"><code class="plain">Paths: (1 available, best #1, table Default-IP-Routing-Table)</code></div>
+<div class="line"><code class="plain">  Advertised to non peer-group peers:</code></div>
+<div class="line"><code class="plain">  spine01(swp51) spine02(swp52)</code></div>
+<div class="line"><code class="plain">  Local</code></div>
+<div class="line"><code class="plain">    0.0.0.0 from 0.0.0.0 (10.0.0.11)</code></div>
+<div class="line"><code class="plain">      Origin incomplete, metric 0, localpref 100, weight 32768, valid, sourced, bestpath-from-AS Local, best</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 0, TX 9</code></div>
+<div class="line"><code class="plain">      Last update: Fri Nov 18 01:48:17 2016</code></div>
+</div>
+    </div>
+    <p  >This shows that the routing table prefix seen by BGP is 10.0.0.11/32, that this route was advertised to two neighbors, and that it was not heard by any neighbors.    </p>
+    <div class="section section-2" id="src-5127049_safe-id-Qm9yZGVyR2F0ZXdheVByb3RvY29sLUJHUC1EZWJ1Z2dpbmdUaXA6TG9nZ2luZ05laWdoYm9yU3RhdGVDaGFuZ2Vz">
+        <h2 class="heading "><span>Debugging Tip: Logging Neighbor State Changes</span></h2>
+    <p  ><span id="src-5127049_indexterm-61BE8E20BD406057366C4AA62EAB88E5">It is very </span>useful to log the changes that a neighbor goes through to troubleshoot any issues associated with that neighbor. This is done using the <tt class=" ">log-neighbor-changes</tt> command, which is enabled by default.    </p>
+    <p  >The output is sent to the specified log file, usually <tt class=" ">/var/log/quagga/bgpd.log</tt>, and looks like this:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">2016/07/08 10:12:06.572827 BGP: %NOTIFICATION: sent to neighbor 10.0.0.2 6/3 (Cease/Peer Unconfigured) 0 bytes</code></div>
+<div class="line"><code class="plain">2016/07/08 10:12:06.572954 BGP: Notification sent to neighbor 10.0.0.2: type 6/3</code></div>
+<div class="line"><code class="plain">2016/07/08 10:12:16.682071 BGP: %ADJCHANGE: neighbor 192.0.2.2 Up</code></div>
+<div class="line"><code class="plain">2016/07/08 10:12:16.682660 BGP: %ADJCHANGE: neighbor 10.0.0.2 Up</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-TroubleshootingLink-localAddresses">
+        <h2 class="heading "><span>Troubleshooting Link-local Addresses</span></h2>
+    <p  >To verify that <tt class=" ">quagga</tt><span id="src-5127049_indexterm-F82992E6011FD9143A63642E0DCDFB51"> learned the neighboring </span>link-local IPv6 address via the IPv6 neighbor discovery router advertisements on a given interface, use the <tt class=" ">show interface &lt;if-name&gt;</tt> command. If <tt class=" ">ipv6 nd suppress-ra</tt> isn't enabled on both ends of the interface, then <tt class=" ">Neighbor address(s):</tt> should have the other end's link-local address. That is the address that BGP would use when BGP is enabled on that interface.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >IPv6 route advertisements (RAs) are automatically enabled on an interface with IPv6 addresses, so the step <tt class=" ">no ipv6 nd suppress-ra</tt> is no longer needed for BGP unnumbered. The timer interval for RAs remains 600s, which may need to be adjusted to bring up peers quickly.    </p>
+        </div>
+    </div>
+    <p  >Use <tt class=" ">vtysh</tt> to verify the configuration:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo vtysh</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Hello, this is Quagga (version 0.99.23.1+cl3u2).</code></div>
+<div class="line"><code class="plain">Copyright 1996-2005 Kunihiro Ishiguro, et al.</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">R7# show interface swp1</code></div>
+<div class="line"><code class="plain">Interface swp1 is up, line protocol is up</code></div>
+<div class="line"><code class="plain">  Link ups:       0    last: (never)</code></div>
+<div class="line"><code class="plain">  Link downs:     0    last: (never)</code></div>
+<div class="line"><code class="plain">  PTM status: disabled</code></div>
+<div class="line"><code class="plain">  vrf: Default-IP-Routing-Table</code></div>
+<div class="line"><code class="plain">  index 4 metric 0 mtu 1500 </code></div>
+<div class="line"><code class="plain">  flags: &lt;UP,BROADCAST,RUNNING,MULTICAST&gt;</code></div>
+<div class="line"><code class="plain">  HWaddr: 44:38:39:00:00:5c</code></div>
+<div class="line"><code class="plain">  inet6 fe80::4638:39ff:fe00:5c/64</code></div>
+<div class="line"><code class="plain">  ND advertised reachable time is 0 milliseconds</code></div>
+<div class="line"><code class="plain">  ND advertised retransmit interval is 0 milliseconds</code></div>
+<div class="line"><code class="plain">  ND router advertisements are sent every 10 seconds</code></div>
+<div class="line"><code class="plain">  ND router advertisements lifetime tracks ra-interval</code></div>
+<div class="line"><code class="plain">  ND router advertisement default router preference is medium</code></div>
+<div class="line"><code class="plain">  Hosts use stateless autoconfig for addresses.</code></div>
+<div class="line"><code class="plain">  Neighbor address(s):</code></div>
+<div class="line"><code class="plain">  inet6 fe80::4638:39ff:fe00:5b/128</code></div>
+</div>
+    </div>
+    <p  >Instead of the IPv6 address, the peering interface name is displayed in the <tt class=" ">show ip bgp summary</tt> command and wherever else applicable:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net show bgp summary</code></div>
+<div class="line"><code class="plain">BGP router identifier 10.0.0.21, local AS number 65020 vrf-id 0</code></div>
+<div class="line"><code class="plain">BGP table version 15</code></div>
+<div class="line"><code class="plain">RIB entries 17, using 2040 bytes of memory</code></div>
+<div class="line"><code class="plain">Peers 6, using 97 KiB of memory</code></div>
+<div class="line"><code class="plain">Peer groups 1, using 56 bytes of memory</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd</code></div>
+<div class="line"><code class="plain">leaf01(swp1)    4 65011    2834    2843        0    0    0 02:21:35        2</code></div>
+<div class="line"><code class="plain">leaf02(swp2)    4 65012    2834    2844        0    0    0 02:21:36        2</code></div>
+<div class="line"><code class="plain">leaf03(swp3)    4 65013    2834    2843        0    0    0 02:21:35        2</code></div>
+<div class="line"><code class="plain">leaf04(swp4)    4 65014    2834    2844        0    0    0 02:21:36        2</code></div>
+<div class="line"><code class="plain">edge01(swp29)   4 65051    8509    8505        0    0    0 02:21:37        3</code></div>
+<div class="line"><code class="plain">edge01(swp30)   4 65051    8506    8503        0    0    0 02:21:35        3</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Total number of neighbors 6</code></div>
+</div>
+    </div>
+    <p  >Most of the show commands can take the interface name instead of the IP address, if that level of specificity is needed:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ net show bgp neighbor </code></div>
+<div class="line"><code class="plain">    fabric  :  BGP neighbor or peer-group</code></div>
+<div class="line"><code class="plain">    swp51   :  BGP neighbor or peer-group</code></div>
+<div class="line"><code class="plain">    swp52   :  BGP neighbor or peer-group</code></div>
+<div class="line"><code class="plain">    &lt;ENTER&gt;</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ net show bgp neighbor swp51</code></div>
+<div class="line"><code class="plain">BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link</code></div>
+<div class="line"><code class="plain">Hostname: spine01</code></div>
+<div class="line"><code class="plain"> Member of peer-group fabric for session parameters</code></div>
+<div class="line"><code class="plain">  BGP version 4, remote router ID 0.0.0.0</code></div>
+<div class="line"><code class="plain">  BGP state = Connect</code></div>
+<div class="line"><code class="plain">  Last read 20:16:21, Last write 20:55:51</code></div>
+<div class="line"><code class="plain">  Hold time is 30, keepalive interval is 10 seconds</code></div>
+<div class="line"><code class="plain">  Configured hold time is 30, keepalive interval is 10 seconds</code></div>
+<div class="line"><code class="plain">  Message statistics:</code></div>
+<div class="line"><code class="plain">    Inq depth is 0</code></div>
+<div class="line"><code class="plain">    Outq depth is 0</code></div>
+<div class="line"><code class="plain">                         Sent       Rcvd</code></div>
+<div class="line"><code class="plain">    Opens:                  1          1</code></div>
+<div class="line"><code class="plain">    Notifications:          1          0</code></div>
+<div class="line"><code class="plain">    Updates:                7          6</code></div>
+<div class="line"><code class="plain">    Keepalives:          2374       2373</code></div>
+<div class="line"><code class="plain">    Route Refresh:          0          0</code></div>
+<div class="line"><code class="plain">    Capability:             0          0</code></div>
+<div class="line"><code class="plain">    Total:               2383       2380</code></div>
+<div class="line"><code class="plain">  Minimum time between advertisement runs is 5 seconds</code></div>
+<div class="line"><code class="plain"> For address family: IPv4 Unicast</code></div>
+<div class="line"><code class="plain">  fabric peer-group member</code></div>
+<div class="line"><code class="plain">  Not part of any update group</code></div>
+<div class="line"><code class="plain">  Community attribute sent to this neighbor(both)</code></div>
+<div class="line"><code class="plain">  Inbound path policy configured</code></div>
+<div class="line"><code class="plain">  Outbound path policy configured</code></div>
+<div class="line"><code class="plain">  Incoming update prefix filter list is *dc-leaf-in</code></div>
+<div class="line"><code class="plain">  Outgoing update prefix filter list is *dc-leaf-out</code></div>
+<div class="line"><code class="plain">  0 accepted prefixes</code></div>
+<div class="line"><code class="plain">  Connections established 1; dropped 1</code></div>
+<div class="line"><code class="plain">  Last reset 20:16:20, due to NOTIFICATION sent (Cease/Other Configuration Change)</code></div>
+<div class="line"><code class="plain">BGP Connect Retry Timer in Seconds: 3</code></div>
+<div class="line"><code class="plain">Next connect timer due in 1 seconds</code></div>
+<div class="line"><code class="plain">Read thread: on  Write thread: on</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-EnablingRead-onlyMode">
+        <h1 class="heading "><span>Enabling Read-only Mode</span></h1>
+    <p  ><span id="src-5127049_indexterm-01725DC44894DA0716411734141474B3">You can </span>enable read-only mode for when the BGP process restarts or when the BGP process is cleared using <tt class=" ">clear ip bgp *</tt>. When enabled, read-only mode begins as soon as the first peer reaches its <i class=" ">established</i> state and a timer for <tt class=" ">&lt;max-delay&gt;</tt> seconds is started.    </p>
+    <p  >While in read-only mode, BGP doesn't run best-path or generate any updates to its peers. This mode continues until:    </p>
+<ul class=" "><li class=" ">    <p  >All the configured peers, except the shutdown peers, have sent an explicit EOR (End-Of-RIB) or an implicit EOR. The first keep-alive after BGP has reached the established state is considered an implicit EOR. If the <tt class=" ">&lt;establish-wait&gt;</tt> option is specified, then BGP will wait for peers to reach the established state from the start of the <tt class=" ">update-delay</tt> until the <tt class=" ">&lt;establish-wait&gt;</tt> period is over; that is, the minimum set of established peers for which EOR is expected would be peers established during the <tt class=" ">establish-wait</tt> window, not necessarily all the configured neighbors.    </p>
+</li><li class=" ">    <p  >The <tt class=" ">max-delay</tt> period is over.    </p>
+</li></ul>    <p  >Upon reaching either of these two conditions, BGP resumes the decision process and generates updates to its peers.    </p>
+    <p  >To enable read-only mode:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:$ net add bgp update-delay &lt;max-delay in 0-3600 seconds&gt; [&lt;establish-wait in 1-3600 seconds&gt;]</code></div>
+</div>
+    </div>
+    <p  >The default <tt class=" ">&lt;max-delay&gt;</tt> is 0 &mdash; the feature is off by default.    </p>
+    <p  >Use output from <tt class=" ">show ip bgp summary</tt> for information about the state of the update delay.    </p>
+    <p  >This feature can be useful in reducing CPU/network usage as BGP restarts/clears. It's particularly useful in topologies where BGP learns a prefix from many peers. Intermediate best paths are possible for the same prefix as peers get established and start receiving updates at different times. This feature is also valuable if the network has a high number of such prefixes.    </p>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-ApplyingaRouteMapforRouteUpdates">
+        <h1 class="heading "><span>Applying a Route Map for Route Updates</span></h1>
+    <p  ><span id="src-5127049_indexterm-048677FD41F596F07DA638FFC5B78AE6">There are </span>two ways you can apply <a  class="external-link" href="http://www.nongnu.org/quagga/docs/docs-multi/Route-Map.html#Route-Map">route maps</a> for BGP:    </p>
+<ul class=" "><li class=" ">    <p  >By filtering routes from BGP into Zebra    </p>
+</li><li class=" ">    <p  >By filtering routes from Zebra into the Linux kernel    </p>
+</li></ul>    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-FilteringRoutesfromBGPintoZebra">
+        <h2 class="heading "><span>Filtering Routes from BGP into Zebra</span></h2>
+    <p  >For the first way, you can apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next-hop, communities, and so forth. Set operations for this attach-point are limited to metric and next-hop only. Any operation of this feature does not affect BGPs internal RIB.    </p>
+    <p  >Both IPv4 and IPv6 address families are supported. Route maps work on multi-paths as well. However, the metric setting is based on the best path only.    </p>
+    <p  >To apply a route map to filter route updates from BGP into Zebra:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:$ net add bgp table-map &lt;route-map-name&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-FilteringRoutesfromZebraintotheLinuxKernel">
+        <h2 class="heading "><span>Filtering Routes from Zebra into the Linux Kernel</span></h2>
+    <p  >To apply a route map to filter route updates from Zebra into the Linux kernel:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:$ net add routing protocol bgp route-map &lt;route-map-name&gt;</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-ProtocolTuning">
+        <h1 class="heading "><span>Protocol Tuning</span></h1>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-ConvergingQuicklyOnLinkFailures">
+        <h2 class="heading "><span>Converging Quickly On Link Failures</span></h2>
+    <p  ><span id="src-5127049_indexterm-D6D53F2D8908677ACE66B994C4371B27">In the Clos </span>topology, we recommend that you only use interface addresses to set up peering sessions. This means that when the link fails, the BGP session is torn down immediately, triggering route updates to propagate through the network quickly. This requires the following commands be enabled for all links: <tt class=" ">link-detect</tt> and <tt class=" ">ttl-security hops &lt;hops&gt;</tt>. <tt class=" ">ttl-security hops</tt> specifies how many hops away the neighbor is. For example, in a Clos topology, every peer is at most 1 hop away.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >See Caveats and Errata below for information regarding <tt class=" ">ttl-security hops</tt>.    </p>
+        </div>
+    </div>
+    <p  >Here is an example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor 10.0.0.2 ttl-security hops 1</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-ConvergingQuicklyOnSoftFailures">
+        <h2 class="heading "><span>Converging Quickly On Soft Failures</span></h2>
+    <p  >It is possible that the link is up, but the neighboring BGP process is hung or has crashed. If a BGP process crashes, Quagga&rsquo;s <tt class=" ">watchquagga</tt> daemon, which monitors the various <tt class=" ">quagga</tt> daemons, will attempt to restart it. If the process is also hung, <tt class=" ">watchquagga</tt> will attempt to restart the process. BGP itself has a keepalive timer that is exchanged between neighbors. By default, this keepalive timer is set to 3 seconds. This time can be increased to a higher number, which decreases CPU load, especially in the presence of a lot of neighbors. <tt class=" ">keepalive-time</tt> is the periodicity with which the keepalive message is sent. <tt class=" ">hold-time</tt> specifies how many keepalive messages can be lost before the connection is considered invalid. It is usually set to 3 times the keepalive time, so it defaults to 9 seconds. Here is an example of changing these timers:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp51 timers 10 30</code></div>
+</div>
+    </div>
+    <p  >The following display snippet shows that the default values have been modified for this neighbor:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net show bgp neighbor swp51 </code></div>
+<div class="line"><code class="plain">BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link</code></div>
+<div class="line"><code class="plain">Hostname: spine01</code></div>
+<div class="line"><code class="plain"> Member of peer-group fabric for session parameters</code></div>
+<div class="line"><code class="plain">  BGP version 4, remote router ID 0.0.0.0</code></div>
+<div class="line"><code class="plain">  BGP state = Connect</code></div>
+<div class="line"><code class="plain">  Last read 00:00:13, Last write 00:39:43</code></div>
+<div class="line"><code class="plain">  Hold time is 30, keepalive interval is 10 seconds</code></div>
+<div class="line"><code class="plain">  Configured hold time is 30, keepalive interval is 10 seconds</code></div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-ReconnectingQuickly">
+        <h2 class="heading "><span>Reconnecting Quickly</span></h2>
+    <p  >A BGP process attempts to connect to a peer after a failure (or on startup) every <tt class=" ">connect-time</tt> seconds. By default, this is 10 seconds. To modify this value, use:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp51 timers connect 30</code></div>
+</div>
+    </div>
+    <p  >This command has to be specified per each neighbor, peer-group doesn&rsquo;t support this option in <tt class=" ">quagga</tt>.    </p>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-AdvertisementInterval">
+        <h2 class="heading "><span>Advertisement Interval</span></h2>
+    <p  >BGP by default chooses stability over fast convergence. This is very useful when routing for the Internet. For example, unlike link-state protocols, BGP typically waits for a duration of <tt class=" ">advertisement-interval</tt> seconds between sending consecutive updates to a neighbor. This ensures that an unstable neighbor flapping routes won&rsquo;t be propagated throughout the network. By default, this is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. You can modify this as follows:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bgp neighbor swp51 advertisement-interval 5</code></div>
+</div>
+    </div>
+    <p  >The following output shows the modified value:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net show bgp neighbor swp51 </code></div>
+<div class="line"><code class="plain">BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link</code></div>
+<div class="line"><code class="plain">Hostname: spine01</code></div>
+<div class="line"><code class="plain"> Member of peer-group fabric for session parameters</code></div>
+<div class="line"><code class="plain">  BGP version 4, remote router ID 0.0.0.0</code></div>
+<div class="line"><code class="plain">  BGP state = Connect</code></div>
+<div class="line"><code class="plain">  Last read 00:04:37, Last write 00:44:07</code></div>
+<div class="line"><code class="plain">  Hold time is 30, keepalive interval is 10 seconds</code></div>
+<div class="line"><code class="plain">  Configured hold time is 30, keepalive interval is 10 seconds</code></div>
+<div class="line"><code class="plain">  Message statistics:</code></div>
+<div class="line"><code class="plain">    Inq depth is 0</code></div>
+<div class="line"><code class="plain">    Outq depth is 0</code></div>
+<div class="line"><code class="plain">                         Sent       Rcvd</code></div>
+<div class="line"><code class="plain">    Opens:                  1          1</code></div>
+<div class="line"><code class="plain">    Notifications:          1          0</code></div>
+<div class="line"><code class="plain">    Updates:                7          6</code></div>
+<div class="line"><code class="plain">    Keepalives:          2374       2373</code></div>
+<div class="line"><code class="plain">    Route Refresh:          0          0</code></div>
+<div class="line"><code class="plain">    Capability:             0          0</code></div>
+<div class="line"><code class="plain">    Total:               2383       2380</code></div>
+<div class="line"><code class="plain">  Minimum time between advertisement runs is 5 seconds</code></div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >This command is not supported with peer-groups.    </p>
+        </div>
+    </div>
+    <p  >See this <a  class="external-link" href="http://tools.ietf.org/html/draft-jakma-mrai-02">IETF draft</a> for more details on the use of this value.    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127049_BorderGatewayProtocol-BGP-CaveatsandErrata">
+        <h1 class="heading "><span>Caveats and Errata</span></h1>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-ttl-securityIssue">
+        <h2 class="heading "><span>ttl-security Issue</span></h2>
+    <p  >Enabling <tt class=" ">ttl-security</tt> does not cause the hardware to be programmed with the relevant information. This means that frames will come up to the CPU and be dropped there. It is recommended that you use the <tt class=" ">net add acl</tt> command to explicitly add the relevant entry to hardware.    </p>
+    <p  >For example, you can configure a file, like <tt class=" ">/etc/cumulus/acl/policy.d/01control_plane_bgp.rules</tt>, with a rule like this for TTL:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">INGRESS_INTF = swp1 </code></div>
+<div class="line"><code class="plain">    INGRESS_CHAIN = INPUT, FORWARD </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    [iptables]</code></div>
+<div class="line"><code class="plain">    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp -m ttl --ttl 255 POLICE --set-mode pkt --set-rate 2000 --set-burst 1000 </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp DROP</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >For more information about ACLs, see <a   href="Netfilter_-_ACLs.html">Netfilter (ACLs)</a>.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127049_BorderGatewayProtocol-BGP-RelatedInformation">
+        <h2 class="heading "><span>Related Information</span></h2>
+<ul class=" "><li class=" ">    <p  ><a   href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional forwarding detection</a> (BFD) and BGP    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://en.wikipedia.org/wiki/Border_Gateway_Protocol">Wikipedia entry for BGP</a> (includes list of useful RFCs)    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://www.nongnu.org/quagga/docs/docs-info.html#BGP">Quagga online documentation for BGP</a> (may not be up to date)    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://tools.ietf.org/html/draft-lapukhov-bgp-routing-large-dc-04">IETF draft discussing BGP use within data centers</a>    </p>
+</li></ul>    </div>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Open Shortest Path First v3 - OSPFv3 - Protocol</span>
+        </a>
+                <a href="Bidirectional_Forwarding_Detection_-_BFD.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Bidirectional Forwarding Detection - BFD</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,2479 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Troubleshooting the etc Directory - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a></li>
+                                                                                     <li><a href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126785"> <span>Troubleshooting the etc Directory</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  >The <a   href="Understanding_the_cl-support_Output_File.html"><tt class=" ">cl-support</tt> </a>script replicates the /<tt class=" ">etc</tt> directory.    </p>
+    <p  >Files that <tt class=" ">cl-support</tt> deliberately excludes are:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >File    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/nologin    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">nologin </tt>prevents unprivileged users from logging into the system.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/alternatives    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">update-alternatives</tt> creates, removes, maintains and displays information about the symbolic links comprising the Debian alternatives system.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >    </p>
+    <p  >This is the alphabetical of the output from running <tt class=" ">ls -l</tt> on the <tt class=" ">/etc</tt> directory structure created by <tt class=" ">cl-support</tt>. The green highlighted rows are the ones Cumulus Networks finds most important when troubleshooting problems.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+                    <colgroup>
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  ><strong class=" ">File</strong>    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Description</strong>    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Why is this important?    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >adduser.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The file <tt class=" ">/etc/adduser.conf </tt>contains defaults for the programs <tt class=" ">adduser</tt>, <tt class=" ">addgroup</tt>, <tt class=" ">deluser</tt>, and <tt class=" ">delgroup</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >adjtime    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Corrects the time to synchronize the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man3/adjtime.3.html">system clock</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >apt    </p>
+            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">apt</tt> (Advanced Package Tool) is the command-line <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man8/apt.8.html">tool for handling packages</a>. This folder contains all the configurations.    </p>
+            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">apt</tt> interactions or unsupported apps can affect machine performance.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >audisp    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory that contains <tt class=" ">audisp-remote.conf</tt>, which is the file that controls the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/lucid/man5/audisp-remote.conf.5.html">configuration of the audit remote logging subsystem</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >audit    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory that contains the <tt class=" ">/etc/audit/auditd.conf</tt>, which contains configuration information specific to the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man5/auditd.conf.5.html">audit daemon</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >bash.bashrc    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://manpages.ubuntu.com/manpages/lucid/en/man1/bash-static.1.html">Bash is an sh-compatible command language interpreter</a> that executes commands read from standard input or from a file.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >bash_completion    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This points to <tt class=" ">/usr/share/bash-completion/bash_completion</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >bash_completion.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This folder contains app-specific code for Bash completion on Cumulus Linux, such as <tt class=" ">mstpctl</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >bcm.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Broadcom-specific ASIC file structure (hardware interaction). If there are questions, <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/requests/new">contact the Cumulus Networks Support team</a>. This is unique to Cumulus Linux.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >mlx    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Mellanox-specific ASIC file structure (hardware interaction). If there are questions, <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/requests/new">contact the Cumulus Networks Support team</a>. This is unique to Cumulus Linux.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >bindresvport.blacklist    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This file contains a list of port numbers between 600 and 1024, which should not be used by <tt class=" ">bindresvport</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ca-certificates    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The folder for <tt class=" ">ca-certificates</tt>. It is empty by default on Cumulus Linux; see below for more information.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ca-certificates.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Each lines list the pathname of activated CA certificates under <tt class=" ">/usr/share/ca-certificates</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >calendar    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The system-wide <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man3/calendar.3erl.html">default calendar file</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >chef    </p>
+            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >This is an example of something that is not included by default. In this instance, <tt class=" ">cl-support</tt> included the <a  class="external-link" href="https://www.chef.io/chef/"><tt class=" ">chef</tt> folder</a> for some reason.    </p>
+            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >This is not installed by default, but this tool could have been installed or configured incorrectly, which is why it's included in the <tt class=" ">cl-support</tt> output.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >cron.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">cron</tt> is a daemon that <a  class="external-link" href="http://manpages.ubuntu.com/manpages/precise/man8/cron.8.html">executes scheduled commands</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >cron.daily    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >See above.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >cron.hourly    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >See above.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >cron.monthly    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >See above.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >cron.weekly    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >See above.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >crontab    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >See above.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >cumulus    </p>
+            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >This directory contains the following:    </p>
+<ul class=" "><li class=" ">    <p  >ACL information, stored in the <tt class=" ">acl</tt> directory.    </p>
+</li><li class=" ">    <p  ><tt class=" ">switchd</tt> configuration file, <tt class=" ">switchd.conf</tt>.    </p>
+</li><li class=" ">    <p  ><tt class=" ">qos</tt>, which is under the <tt class=" ">datapath</tt> directory.    </p>
+</li><li class=" ">    <p  >The routing protocol process priority, <tt class=" ">nice.conf</tt>.    </p>
+</li><li class=" ">    <p  >The breakout cable configuration, under <tt class=" ">ports.conf</tt>.    </p>
+</li></ul>            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >This folder is specific to Cumulus Linux and does not exist on other Linux platforms. For example, while you can configure <tt class=" ">iptables</tt>, to hardware accelerate rules into the hardware you need to use <tt class=" ">cl-acltool</tt> and have the rules under the /etc/cumulus/acl/policy.d/&lt;filename.rules)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >debconf.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Debconf is a <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/debconf.conf.5.html">configuration system for Debian packages</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >debian_version    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The complete <a  class="external-link" href="http://manpages.ubuntu.com/manpages/oneiric/man1/svn-buildpackage.1.html">Debian version string</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >debsums-ignore    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">debsums</tt> <a  class="external-link" href="https://packages.debian.org/wheezy/debsums">verifies installed package files</a> against their MD5 checksums. This file identifies the packages to ignore.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >default    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This folder contains files with configurable flags for many different applications (most installed by default or added manually). For example, <tt class=" ">/etc/default/networking</tt> has a flag for <tt class=" ">EXCLUDE_INTERFACES=</tt>, which is set to nothing by default, but a user could change it to something like swp3.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >deluser.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The file <tt class=" ">/etc/deluser.conf </tt>contains defaults for the programs <tt class=" ">deluser</tt> and <tt class=" ">delgroup</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >dhcp    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This directory contains <a  class="external-link" href="http://manpages.ubuntu.com/manpages/precise/en/man8/resolvconf.8.html">DHCP-specific information</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >dpkg    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man1/dpkg.1.html">package manager</a> for Debian.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >e2fsck.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/e2fsck.conf.5.html">configuration file for <tt class=" ">e2fsck</tt> </a>. It controls the default behavior of <tt class=" ">e2fsck</tt> while it checks ext2, ext3 or ext4 filesystems.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >environment    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Utilized by <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man8/pam_env.8.html">pam_env </a>for setting and unsetting environment variables.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ethertypes    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This file can be used to <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man8/ebtables.8.html">show readable characters</a> instead of hexadecimal numbers for the protocols. For example, 0x0800 will be represented by IPv4.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >fstab    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Static information about the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/precise/man5/fstab.5.html">filesystems</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >fstab.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory that can contain additional <tt class=" ">fstab</tt> information; it is empty by default.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >fw_env.config    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configuration file utilized by <a  class="external-link" href="http://elinux.org/U-boot_environment_variables_in_linux">U-Boot</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >gai.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configuration file for sorting the return information from <a  class="external-link" href="http://manpages.ubuntu.com/manpages/lucid/man5/gai.conf.5.html">getaddrinfo</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >groff    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory containing information for <tt class=" ">groffer</tt>, an application used for displaying <a  class="external-link" href="http://manpages.ubuntu.com/manpages/precise/man1/groffer.1.html">Unix man pages</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >group    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <tt class=" ">/etc/group</tt> file is a text file that <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/group.5.html">defines the groups</a> on the system.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >group-    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Backup for the <tt class=" ">/etc/group</tt> file.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >gshadow    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">/etc/gshadow</tt> contains the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/gshadow.5.html">shadowed information for group accounts</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >gshadow-    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Backup for the <tt class=" ">/etc/gshadow</tt> file.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >host.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://manpages.ubuntu.com/manpages/precise/man5/host.conf.5.html">Resolver configuration file</a>, which contains options like <tt class=" ">multi</tt> that determines whether <tt class=" ">/etc/hosts</tt> will respond with multiple entries for DNS names.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >hostname    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man1/hostname.1.html">system host name</a>, such as leaf1, spine1, sw1.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >hosts    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <a  class="external-link" href="http://manpages.ubuntu.com/manpages/precise/man5/hosts.5.html">static table lookup</a> for hostnames.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >hosts.allow    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The part of the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man5/hosts_access.5.html">host_access </a>program for controlling a simple access control language. <tt class=" ">hosts.allow=Access</tt> is granted when a daemon/client pair matches an entry.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >hosts.deny    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >See hosts.allow above, except that access is denied when a daemon/client pair matches an entry.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >init    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Default location of the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/saucy/man5/init.5.html">system job configuration files</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >init.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >In order for a service to start when the switch boots, you should add the <a  class="external-link" href="https://www.debian-administration.org/article/28/Making_scripts_run_at_boot_time_with_Debian">necessary script</a> to the director here. The differences between <tt class=" ">init</tt> and <tt class=" ">init.d</tt> are explained well <a  class="external-link" href="http://askubuntu.com/questions/5039/what-is-the-difference-between-etc-init-and-etc-init-d">here</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >inittab    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The format of the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man5/inittab.5.html"><tt class=" ">inittab</tt> file</a> used by the <tt class=" ">sysv</tt>-compatible <tt class=" ">init</tt> process.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >inputrc    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The initialization file utilized by <tt class=" ">readline</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >insserv    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This application <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man8/insserv.8.html">enables installed system init scripts</a>; this directory is empty by default.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >insserv.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configuration file for <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man8/insserv.8.html">insserv</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >insserv.conf.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Additional directory for <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man8/insserv.8.html">insserv configurations</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >iproute2    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Directory containing values for the Linux command line tool <tt class=" ">ip</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >issue    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">/etc/issue</tt> is a text file that contains a <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man5/issue.5.html">message or system identification</a> to be printed before the login prompt.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >issue.net    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Identification file for <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man5/issue.net.5.html">telnet sessions</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ld.so.cache    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Contains a <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man8/ld.so.8.html">compiled list of candidate libraries</a> previously found in the augmented library path.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ld.so.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Used by the <tt class=" ">ldconfig</tt> tool, which <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man8/ldconfig.8.html">configures dynamic linker run-time bindings</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ld.so.conf.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory that contains additional <tt class=" ">ld.so.conf</tt> configuration (see above).    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ldap    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory containing the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/lucid/man5/ldap.conf.5.html"><tt class=" ">ldap.conf</tt> configuration file</a> used to set the system-wide default to be applied when running LDAP clients.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >libaudit.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configuration file utilized by <a  class="external-link" href="http://manpages.ubuntu.com/manpages/natty/man3/get_auditfail_action.3.html">get_auditfail_action</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >libnl-3    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Directory for the configuration relating to the <a  class="external-link" href="http://www.carisma.slowglass.com/~tgr/libnl/"><tt class=" ">libnl</tt> library</a>, which is the core library for implementing the fundamentals required to use the netlink protocol such as socket handling, message construction and parsing, and sending and receiving of data.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >lldpd.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Directory containing configuration files whose commands are executed by <tt class=" ">lldpcli </tt>at startup.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >localtime    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Copy of the original data file for <tt class=" ">/etc/timezone</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >logcheck    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Directory containing <tt class=" ">logcheck.conf</tt> and logfiles utilized by the <tt class=" ">log check</tt> program, which scans system logs for interesting lines.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >login.defs    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/login.defs.5.html">Shadow password suite configuration</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >logrotate.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Rotates, compresses and mails <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man8/logrotate.8.html">system logs</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >logrotate.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Directory containing additional log rotate configurations.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >lsb-release    </p>
+            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >Shows the current version of <a  class="external-link" href="http://linux.die.net/man/1/lsb_release">Linux</a> on the system. Run <tt class=" ">cat /etc/lsb-release</tt> for output.    </p>
+            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >This shows you the version of the operating system you are running; also compare this to the output of <tt class=" ">onie-select</tt>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >magic    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Used by the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man1/file.1.html"><tt class=" ">file</tt> command</a> to determine file type. <tt class=" ">magic</tt> tests check for files with data in particular fixed formats.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >magic.mime    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man1/file.1.html"><tt class=" ">magic</tt> MIME type</a> causes the <tt class=" ">file</tt> command to output MIME type strings rather than the more traditional human readable ones.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >mailcap    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <tt class=" ">mailcap</tt> file is read by the metamail program to determine how to <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/mailcap.5.html">display non-text at the local site</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >mailcap.order    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/mailcap.order.5.html">order of entries</a> in the <tt class=" ">/etc/mailcap</tt> file can be altered by editing the <tt class=" ">/etc/mailcap.order</tt> file.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >manpath.config    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <a  class="external-link" href="http://manpages.ubuntu.com/manpages/lucid/man5/manpath.5.html"><tt class=" ">manpath</tt> configuration file</a> is used by the manual page utilities to assess users&rsquo; manpaths at run time, to indicate which manual page hierarchies (manpaths) are to be treated as system hierarchies and to assign them directories to be used for storing cat files.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >mime.types    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >MIME type description file for <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/mime.types.5.html">cups</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >mke2fs.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configuration file for <tt class=" ">mke2fs</tt>, which is a program that <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/mke2fs.conf.5.html">creates an ext, ext3 or ext4 filesystem</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >mlx    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Mellanox-specific ASIC file structure (hardware interaction). If there are questions, <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/requests/new">contact the Cumulus Networks Support team</a>. This is unique to Cumulus Linux.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >modprobe.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configuration directory for <tt class=" ">modprobe</tt>, which is a utility that can <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/modprobe.d.5.html">add and remove modules from the Linux kernel</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >modules    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The kernel modules to <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/modules.5.html">load at boot time</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >motd    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The contents of <tt class=" ">/etc/motd</tt> (<a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/motd.5.html">&quot;message of the day&quot;</a>) are displayed by <tt class=" ">pam_motd</tt> after a successful login but just before it executes the login shell.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >mtab    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The programs <tt class=" ">mount</tt> and <tt class=" ">umount</tt> maintain a list of <a  class="external-link" href="http://manpages.ubuntu.com/manpages/natty/man8/mount.8.html">currently mounted filesystems</a> in the <tt class=" ">/etc/mtab</tt> file. If no arguments are given to <tt class=" ">mount</tt>, this list is printed.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >nanorc    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The GNU <tt class=" ">nano rcfile</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >network    </p>
+            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >Contains the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/precise/man5/interfaces.5.html">network interface configuration</a> for <tt class=" ">ifup</tt> and <tt class=" ">ifdown</tt>.    </p>
+            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >The main configuration file is under <tt class=" ">/etc/network/interfaces</tt>. This is where you configure L2 and L3 information for all of your front panel ports (swp interfaces). Settings like MTU, link speed, IP address information, VLANs are all done here.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >networks    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/networks.5.html">Network name information</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >nsswitch.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man5/nsswitch.conf.5.html">System databases and name service switch</a> configuration file.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ntp.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/ntp.conf.5.html">NTP (network time protocol) server</a> configuration file.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >openvswitch    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory containing the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/oneiric/man1/ovsdb-server.1.html"><tt class=" ">conf.db</tt> file</a>, which is used by <tt class=" ">ovsdb-server</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >openvswitch-vtep    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configuration files used for the VTEP daemon and <tt class=" ">ovsdb-server</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >opt    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Host-specific configuration files for <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man7/hier.7.html">add-on applications</a> installed in <tt class=" ">/opt</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >os-release    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/os-release.5.html">Operating system identification</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >pam.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <a  class="external-link" href="http://en.wikipedia.org/wiki/Linux_PAM">PAM (pluggable authentication module)</a> configuration file. When a PAM-aware privilege granting application is started, it activates its attachment to the PAM-API. This activation performs a number of tasks, the most important being the reading of the configuration file(s).    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >pam.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Alternate directory to configure PAM (see above).    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >passwd    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/passwd.5.html">User account information</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >passwd-    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Backup file for <tt class=" ">/etc/passwd</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >perl    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man1/perl.1.html">Perl</a> is an available scripting language. <tt class=" ">/etc/perl</tt> contains configuration files specific to Perl.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >profile    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">/etc/profile</tt> is utilized by <tt class=" ">sysprofile</tt>, a modular centralized shell configuration.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >profile.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory version of the above, which contains configuration files.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >protocols    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man5/protocols.5.html">protocols definition file</a>, a plain ASCII file that describes the various DARPAnet protocols that are available from the TCP/IP subsystem.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >ptm.d    </p>
+            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory containing scripts that are run if <a   href="Prescriptive_Topology_Manager_-_PTM.html">PTM</a> passes or fails.    </p>
+            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >Cumulus Linux-specific folder for PTM (prescriptive topology manager).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >python    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man1/python.1.html">Python</a> is an available scripting language.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >python2.6    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The 2.6 version of <tt class=" ">python</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >python2.7    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The 2.7 version of <tt class=" ">python</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >quagga    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Contains the configuration files for the <a   href="Configuring_Quagga.html">Quagga routing suite</a>, the preferred Cumulus Linux routing engine.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rc.local    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <tt class=" ">/etc/rc.local</tt> script is used by the system administrator to <a  class="external-link" href="https://www.debian.org/doc/manuals/debian-faq/ch-customizing.en.html">execute after all the normal system services are started</a>, at the end of the process of switching to a multiuser runlevel. You can use it to start a custom service, for example, a server that's installed in <tt class=" ">/usr/local</tt>. Most installations don't need <tt class=" ">/etc/rc.local</tt>; it's provided for the minority of cases <a  class="external-link" href="http://unix.stackexchange.com/questions/49626/purpose-and-typical-usage-of-etc-rc-local">where it's needed</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rc0.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Like <tt class=" ">rc.local</tt>, these scripts are booted by default, but the number of the folder represents the <a  class="external-link" href="https://wiki.debian.org/RunLevel">Linux runlevel</a>. This folder 0 represents runlevel 0 (halt the system).    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rc1.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This is run level 1, which is single-user/minimal mode.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rc2.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Runlevels 2 through 5 are multiuser modes. Debian systems (such as Cumulus Linux) come with <tt class=" ">id=2</tt>, which indicates that the <a  class="external-link" href="https://www.debian.org/doc/manuals/debian-faq/ch-customizing.en.html">default runlevel will be 2 when the multi-user state is entered</a>, and the scripts in /etc/rc2.d/ will be run.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rc3.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >See above.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rc4.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >See above.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rc5.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >See above.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rc6.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Runlevel 6 is reboot the system.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rcS.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >S stands for <i class=" ">single</i> and is equivalent to rc1.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >resolv.conf    </p>
+            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/resolv.conf.5.html">Resolver configuration file</a>, which is where DNS is set (domain, nameserver and search).    </p>
+            </td>
+                <td  class="highlight-green confluenceTd" rowspan="1" colspan="1">
+        <p  >You need DNS to reach the Cumulus Linux repository.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rmt    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This is not a mistake. The <a  class="external-link" href="http://linux.die.net/man/8/rmt">shell script <tt class=" ">/etc/rmt</tt> </a>is provided for compatibility with other Unix-like systems, some of which have utilities that expect to find (and execute) <tt class=" ">rmt</tt> in the <tt class=" ">/etc</tt> directory on remote systems.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rpc    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <tt class=" ">rpc</tt> file contains <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/rpc.5.html">human-readable names</a> that can be used in place of RPC program numbers.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rsyslog.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <tt class=" ">rsyslog.conf</tt> file is the main configuration file for <tt class=" ">rsyslogd</tt>, which logs system messages on *nix systems.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rsyslog.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory containing additional configuration for <tt class=" ">rsyslog.conf</tt> (see above).    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >securetty    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This file lists terminals into which the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/securetty.5.html">root user can log in</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >security    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <tt class=" ">/etc/security</tt> directory contains <a  class="external-link" href="http://www.linux-tutorial.info/modules.php?name=MContent&amp;pageid=9">security-related configurations files</a>. Whereas PAM concerns itself with the methods used to authenticate any given user, the files under <tt class=" ">/etc/security</tt> are concerned with just what a user can or cannot do. For example, the <tt class=" ">/etc/security/access.conf</tt> file contains a list of which users are allowed to log in and from what host (for example, using telnet). The <tt class=" ">/etc/security/limits.conf</tt> file contains various system limits, such as maximum number of processes.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >selinux    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >NSA <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man8/selinux.8.html">Security-Enhanced Linux</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >sensors.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory from which the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man3/sensors.3.html"><tt class=" ">sensors</tt> program</a> loads its configuration; this is unique for each hardware platform. See also <a   href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >sensors3.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man5/sensors.conf.5.html"><tt class=" ">sensors.conf</tt> file</a> describes how <tt class=" ">libsensors</tt>, and thus all programs using it, should translate the raw readings from the kernel modules to real-world values.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >services    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">services </tt>is a plain ASCII file providing a mapping between human-readable textual names for internet services and their underlying assigned port numbers and protocol types.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >shadow    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >shadow is a file that <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/shadow.5.html">contains the password information</a> for the system's accounts and optional aging information.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >shadow-    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The backup for the <tt class=" ">/etc/shadow</tt> file.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >shells    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The pathnames of <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/shells.5.html">valid login shells</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >skel    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The skeleton directory (usually <tt class=" ">/etc/skel</tt>) is used to copy default files and also sets a umask for the creation used by<tt class=" "> pam_mkhomedir</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >snmp    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Interface functions to the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man3/snmp.3erl.html">SNMP</a> (simple network management protocol) toolkit.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ssh    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <a  class="external-link" href="http://manpages.ubuntu.com/manpages/precise/en/man5/sshd_config.5.html"><tt class=" ">ssh</tt> configuration</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ssl    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man3/ssl.3ssl.html">OpenSSL <tt class=" ">ssl</tt> library</a> implements the Secure Sockets Layer (SSL v2/v3) and Transport Layer Security (TLS v1) protocols. This directory holds certificates and configuration.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >staff-group-for-usr-local    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Use <tt class=" ">cat</tt> or <tt class=" ">more</tt> on this file to learn more information, see <a  class="external-link" href="http://bugs.debian.org/299007">http://bugs.debian.org/299007</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >sudoers    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <tt class=" ">sudoers</tt> policy plugin determines a user's <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/sudoers.5.html"><tt class=" ">sudo</tt> privileges</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >sudoers.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory file containing additional <tt class=" ">sudoers</tt> configuration (see above).    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >sysctl.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configures <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man5/sysctl.d.5.html">kernel parameters at boot</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >sysctl.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The directory file containing additional configuration (see above).    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >systemd    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">systemd</tt> <a  class="external-link" href="http://manpages.ubuntu.com/manpages/utopic/en/man1/systemd.1.html">system and service manager</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >terminfo    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://manpages.ubuntu.com/manpages/lucid/man5/terminfo.5.html">Terminal capability database</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >timezone    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >If this file exists, it is read and its contents are used as the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/lucid/man3/DateTime::TimeZone::Local::Unix.3pm.html">time zone name</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ucf.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The update configuration file <a  class="external-link" href="http://manpages.ubuntu.com/manpages/hardy/man1/ucf.1.html">preserves user changes</a> in configuration files.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >udev    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://manpages.ubuntu.com/manpages/lucid/en/man7/udev.7.html">Dynamic device management</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ufw    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Provides both a command line interface and a framework for managing a <a  class="external-link" href="http://manpages.ubuntu.com/manpages/precise/en/man8/ufw-framework.8.html">netfilter firewall</a>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >vim    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configuration file for command line tool <tt class=" ">vim</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >wgetrc    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configuration file for command line tool <tt class=" ">wget</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Troubleshooting_Log_Files.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Troubleshooting Log Files</span>
+        </a>
+                <a href="Troubleshooting_Network_Interfaces.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Troubleshooting Network Interfaces</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Buffer and Queue Management on Cumulus Networks Documentation</title>
+    <link>http://example.org/Cumulus_Linux/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/</link>
+    <description>Recent content in Buffer and Queue Management on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/Cumulus_Linux/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hardware-enabled DDOS Protection</title>
+      <link>http://example.org/Cumulus_Linux/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/Hardware-enabled_DDOS_Protection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/Hardware-enabled_DDOS_Protection/</guid>
+      <description>It is crucial to also protect a switch’s control plane to ensure the proper control plane applications have access to the switch’s CPU. Failure to do so could increase vulnerabilities to a Denial of Service (DOS) attack. Cumulus Linux provides control plane protection by default. It also offers a DDOS protection mechanism, which protects data plane, control plane and management plane traffic in the switch. It drops any packets that match one or more of the following criteria while incurring no performance impact:</description>
+    </item>
+    
+  </channel>
+</rss>

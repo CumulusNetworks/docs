@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network Virtualization on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/</link>
+    <description>Recent content in Network Virtualization on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_36/Network_Virtualization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ethernet Virtual Private Network - EVPN</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/</guid>
+      <description>VXLAN is the de facto technology for implementing network virtualization in the data center, enabling layer 2 segments to be extended over an IP core (the underlay). The initial definition of VXLAN (RFC 7348) did not include any control plane and relied on a flood-and-learn approach for MAC address learning. An alternate deployment model was to use a controller or a technology such as Lightweight Network Virtualization (LNV) in Cumulus Linux.</description>
+    </item>
+    
+    <item>
+      <title>VXLAN Routing</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/VXLAN_Routing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/VXLAN_Routing/</guid>
+      <description>VXLAN routing, sometimes referred to as inter-VXLAN routing, provides IP routing between VXLAN VNIs in overlay networks. The routing of traffic is based on the inner header or the overlay tenant IP address.
+Because VXLAN routing is fundamentally routing, it is most commonly deployed with a control plane, such as Ethernet Virtual Private Network (EVPN). You can set up static routing too, either with or without the Cumulus Lightweight Network Virtualization (LNV) for MAC distribution and BUM handling.</description>
+    </item>
+    
+    <item>
+      <title>VXLAN Scale</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/VXLAN_Scale/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/VXLAN_Scale/</guid>
+      <description>On Broadcom Trident II and Tomahawk switches running Cumulus Linux, there is a limit to the number of VXLANs you can configure simultaneously. The limit most often given is 2000 VXLANs, but you might want to get more specific and know exactly the limit for your specific design.
+While this limitation does apply to Trident II+ or Maverick ASICs, Cumulus Linux supports the same number of VXLANs on these ASICs as it does for Trident II or Tomahawk ASICs.</description>
+    </item>
+    
+    <item>
+      <title>Hybrid Cloud Connectivity with QinQ and VXLANs</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/</guid>
+      <description>QinQ is an amendment to the IEEE 802.1Q specification that provides the capability for multiple VLAN tags to be inserted into a single Ethernet frame.
+The primary use case for QinQ with VXLAN is where a service provider who offers multi-tenant layer 2 connectivity between different customers’ data centers (private clouds) may also need to connect those data centers to public cloud providers. Public clouds often has a mandatory QinQ handoff interface, where the outer tag is for the customer and the inner tag is for the service.</description>
+    </item>
+    
+  </channel>
+</rss>

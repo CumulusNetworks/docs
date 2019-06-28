@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Power over Ethernet - PoE - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="System_Configuration.html">System Configuration</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126768"> <span>Power over Ethernet - PoE</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  >Cumulus Linux supports Power over Ethernet (PoE) and PoE+, so certain Cumulus Linux switches can supply power from Ethernet switch ports to enabled devices over the Ethernet cables that connect them. Power over Ethernet (PoE) is capable of powering devices up to 15W, while PoE+ can power devices up to 30W.    </p>
+    <p  >The <a  class="external-link" href="http://cumulusnetworks.com/hcl/">currently supported platform</a> is the Edge-Core AS4610-54P, which supports PoE and PoE+ and configuration over Ethernet layer 2 LLDP for power negotiation.    </p>
+    <div class="section section-1" id="src-5126768_PoweroverEthernet-PoE-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126768_PoweroverEthernet-PoE-HowItWorks">
+        <h1 class="heading "><span>How It Works</span></h1>
+    <p  >PoE functionality is provided by the <tt class=" ">cumulus-poe</tt> package. When a powered device is connected to the switch via an Ethernet cable:    </p>
+<ul class=" "><li class=" ">    <p  >If the available power is greater than the power required by the connected device, power is supplied to the switch port, and the device powers on    </p>
+</li><li class=" ">    <p  >If available power is less than the power required by the connected device and the switch port's priority is less than the port priority set on all powered ports, power is <strong class=" ">not</strong> supplied to the port    </p>
+</li><li class=" ">    <p  >If available power is less than the power required by the connected device and the switch port's priority is greater than the priority of a currently powered port, power is removed from lower priority port(s) and power is supplied to the port    </p>
+</li><li class=" ">    <p  >If the total consumed power exceeds the configured power limit of the power source, low priority ports are turned off. In the case of a tie, the port with the lower port number gets priority    </p>
+</li></ul>    <p  >Power is available as follows:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >PSU 1    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >PSU 2    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >PoE Power Budget    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >920W    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >x    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >750W    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >x    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >920W    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >750W    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >920W    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >920W    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1650W    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >The AS4610-54P has an LED on the front panel to indicate PoE status:    </p>
+<ul class=" "><li class=" ">    <p  >Green: The <tt class=" ">poed</tt> daemon is running and no errors are detected    </p>
+</li><li class=" ">    <p  >Yellow: One or more errors are detected or the <tt class=" ">poed</tt> daemon is not running    </p>
+</li></ul>    <div class="section section-2" id="src-5126768_PoweroverEthernet-PoE-AboutLinkStateandPoEState">
+        <h2 class="heading "><span>About Link State and PoE State</span></h2>
+    <p  >Link state and PoE state are completely independent of each other. When a link is brought down on a particular port using <tt class=" ">ip link &lt;port&gt; down</tt>, power on that port is not turned off; however, LLDP negotiation is not possible.    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126768_PoweroverEthernet-PoE-ConfiguringPoE">
+        <h1 class="heading "><span>Configuring PoE</span></h1>
+    <p  >You use the <tt class=" ">poectl</tt> command utility to configure PoE on a <a  class="external-link" href="http://cumulusnetworks.com/hcl/">switch that supports</a> the feature. You can:    </p>
+<ul class=" "><li class=" ">    <p  >Enable or disable PoE for a given switch port    </p>
+</li><li class=" ">    <p  >Set a switch port's PoE priority to one of three values: <i class=" ">low</i>, <i class=" ">high</i> or <i class=" ">critical</i>    </p>
+</li></ul>    <p  >The PoE configuration resides in <tt class=" ">/etc/cumulus/poe.conf</tt>. The file lists all the switch ports, whether PoE is enabled for those ports and the priority for each port.    </p>
+    <p  class="expand-control-text">Sample poe.conf file ...    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">[enable]</code></div>
+<div class="line"><code class="plain">swp1 = enable</code></div>
+<div class="line"><code class="plain">swp2 = enable</code></div>
+<div class="line"><code class="plain">swp3 = enable</code></div>
+<div class="line"><code class="plain">swp4 = enable</code></div>
+<div class="line"><code class="plain">swp5 = enable</code></div>
+<div class="line"><code class="plain">swp6 = enable</code></div>
+<div class="line"><code class="plain">swp7 = enable</code></div>
+<div class="line"><code class="plain">swp8 = enable</code></div>
+<div class="line"><code class="plain">swp9 = enable</code></div>
+<div class="line"><code class="plain">swp10 = enable</code></div>
+<div class="line"><code class="plain">swp11 = enable</code></div>
+<div class="line"><code class="plain">swp12 = enable</code></div>
+<div class="line"><code class="plain">swp13 = enable</code></div>
+<div class="line"><code class="plain">swp14 = enable</code></div>
+<div class="line"><code class="plain">swp15 = enable</code></div>
+<div class="line"><code class="plain">swp16 = enable</code></div>
+<div class="line"><code class="plain">swp17 = enable</code></div>
+<div class="line"><code class="plain">swp18 = enable</code></div>
+<div class="line"><code class="plain">swp19 = enable</code></div>
+<div class="line"><code class="plain">swp20 = enable</code></div>
+<div class="line"><code class="plain">swp21 = enable</code></div>
+<div class="line"><code class="plain">swp22 = enable</code></div>
+<div class="line"><code class="plain">swp23 = enable</code></div>
+<div class="line"><code class="plain">swp24 = enable</code></div>
+<div class="line"><code class="plain">swp25 = enable</code></div>
+<div class="line"><code class="plain">swp26 = enable</code></div>
+<div class="line"><code class="plain">swp27 = enable</code></div>
+<div class="line"><code class="plain">swp28 = enable</code></div>
+<div class="line"><code class="plain">swp29 = enable</code></div>
+<div class="line"><code class="plain">swp30 = enable</code></div>
+<div class="line"><code class="plain">swp31 = enable</code></div>
+<div class="line"><code class="plain">swp32 = enable</code></div>
+<div class="line"><code class="plain">swp33 = enable</code></div>
+<div class="line"><code class="plain">swp34 = enable</code></div>
+<div class="line"><code class="plain">swp35 = enable</code></div>
+<div class="line"><code class="plain">swp36 = enable</code></div>
+<div class="line"><code class="plain">swp37 = enable</code></div>
+<div class="line"><code class="plain">swp38 = enable</code></div>
+<div class="line"><code class="plain">swp39 = enable</code></div>
+<div class="line"><code class="plain">swp40 = enable</code></div>
+<div class="line"><code class="plain">swp41 = enable</code></div>
+<div class="line"><code class="plain">swp42 = enable</code></div>
+<div class="line"><code class="plain">swp43 = enable</code></div>
+<div class="line"><code class="plain">swp44 = enable</code></div>
+<div class="line"><code class="plain">swp45 = enable</code></div>
+<div class="line"><code class="plain">swp46 = enable</code></div>
+<div class="line"><code class="plain">swp47 = enable</code></div>
+<div class="line"><code class="plain">swp48 = enable</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">[priority]</code></div>
+<div class="line"><code class="plain">swp1 = low</code></div>
+<div class="line"><code class="plain">swp2 = low</code></div>
+<div class="line"><code class="plain">swp3 = low</code></div>
+<div class="line"><code class="plain">swp4 = low</code></div>
+<div class="line"><code class="plain">swp5 = low</code></div>
+<div class="line"><code class="plain">swp6 = low</code></div>
+<div class="line"><code class="plain">swp7 = low</code></div>
+<div class="line"><code class="plain">swp8 = low</code></div>
+<div class="line"><code class="plain">swp9 = low</code></div>
+<div class="line"><code class="plain">swp10 = low</code></div>
+<div class="line"><code class="plain">swp11 = low</code></div>
+<div class="line"><code class="plain">swp12 = low</code></div>
+<div class="line"><code class="plain">swp13 = low</code></div>
+<div class="line"><code class="plain">swp14 = low</code></div>
+<div class="line"><code class="plain">swp15 = low</code></div>
+<div class="line"><code class="plain">swp16 = low</code></div>
+<div class="line"><code class="plain">swp17 = low</code></div>
+<div class="line"><code class="plain">swp18 = low</code></div>
+<div class="line"><code class="plain">swp19 = low</code></div>
+<div class="line"><code class="plain">swp20 = low</code></div>
+<div class="line"><code class="plain">swp21 = low</code></div>
+<div class="line"><code class="plain">swp22 = low</code></div>
+<div class="line"><code class="plain">swp23 = low</code></div>
+<div class="line"><code class="plain">swp24 = low</code></div>
+<div class="line"><code class="plain">swp25 = low</code></div>
+<div class="line"><code class="plain">swp26 = low</code></div>
+<div class="line"><code class="plain">swp27 = low</code></div>
+<div class="line"><code class="plain">swp28 = low</code></div>
+<div class="line"><code class="plain">swp29 = low</code></div>
+<div class="line"><code class="plain">swp30 = low</code></div>
+<div class="line"><code class="plain">swp31 = low</code></div>
+<div class="line"><code class="plain">swp32 = low</code></div>
+<div class="line"><code class="plain">swp33 = low</code></div>
+<div class="line"><code class="plain">swp34 = low</code></div>
+<div class="line"><code class="plain">swp35 = low</code></div>
+<div class="line"><code class="plain">swp36 = low</code></div>
+<div class="line"><code class="plain">swp37 = low</code></div>
+<div class="line"><code class="plain">swp38 = low</code></div>
+<div class="line"><code class="plain">swp39 = low</code></div>
+<div class="line"><code class="plain">swp40 = low</code></div>
+<div class="line"><code class="plain">swp41 = low</code></div>
+<div class="line"><code class="plain">swp42 = low</code></div>
+<div class="line"><code class="plain">swp43 = low</code></div>
+<div class="line"><code class="plain">swp44 = low</code></div>
+<div class="line"><code class="plain">swp45 = low</code></div>
+<div class="line"><code class="plain">swp46 = low</code></div>
+<div class="line"><code class="plain">swp47 = low</code></div>
+<div class="line"><code class="plain">swp48 = low</code></div>
+</div>
+    </div>
+    <p  >By default, PoE and PoE+ are enabled on all Ethernet/1G switch ports, and these ports are set with a low priority. Switch ports can have low, high or critical priority.    </p>
+    <p  >There is no additional configuration for PoE+.    </p>
+    <p  >To change the priority for one or more switch ports, run <tt class=" ">poectl -p swp# [low|high|critical]</tt>. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo poectl -p swp1-swp5,swp7 high</code></div>
+</div>
+    </div>
+    <p  >To disable PoE for one or more ports, run <tt class=" ">poectl -d [port_numbers]</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo poectl -d swp1-swp5,swp7</code></div>
+</div>
+    </div>
+    <p  >To display PoE information for a set of switch ports, run <tt class=" ">poectl -i [port_numbers]</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo poectl -i swp10-swp13</code></div>
+<div class="line"><code class="plain">Port          Status            Allocated    Priority  PD type      PD class   Voltage   Current    Power </code></div>
+<div class="line"><code class="plain">-----   --------------------   -----------   -------- -----------   --------   -------   -------   --------- </code></div>
+<div class="line"><code class="plain">swp10   connected              negotiating   low      IEEE802.3at   4          53.5 V     25 mA    3.9 W </code></div>
+<div class="line"><code class="plain">swp11   searching              n/a           low      IEEE802.3at   none        0.0 V      0 mA    0.0 W </code></div>
+<div class="line"><code class="plain">swp12   connected              n/a           low      IEEE802.3at   2          53.5 V     25 mA    1.4 W </code></div>
+<div class="line"><code class="plain">swp13   connected              51.0 W        low      IEEE802.3at   4          53.6 V     72 mA    3.8 W </code></div>
+<div class="line"><code class="plain"> </code></div>
+</div>
+    </div>
+    <p  >The <strong class=" ">Status</strong> can be one of the following:    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">searching:</strong> PoE is enabled but no device has been detected.    </p>
+</li><li class=" ">    <p  ><strong class=" ">disabled:</strong> The PoE port has been configured as disabled.    </p>
+</li><li class=" ">    <p  ><strong class=" ">connected:</strong> A powered device is connected and receiving power.    </p>
+</li><li class=" ">    <p  ><strong class=" ">power-denied:</strong> There is insufficient PoE power available to enable the connected device.    </p>
+</li></ul>    <p  >The <strong class=" ">Allocated</strong> column displays how much PoE power has been allocated to the port, which can be one of the following:    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">n/a:</strong> No device is connected or the connected device does not support LLDP negotiation.    </p>
+</li><li class=" ">    <p  ><strong class=" ">negotiating:</strong> An LLDP-capable device is connected and is negotiating for PoE power.    </p>
+</li><li class=" ">    <p  ><strong class=" ">XX.X W:</strong> An LLDP-capable device has negotiated for XX.X watts of power (for example, 51.0 watts for swp13 above).    </p>
+</li></ul>    <p  >To see all the PoE information for a switch, run <tt class=" ">poectl -s</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ poectl -s</code></div>
+<div class="line"><code class="plain">System power:</code></div>
+<div class="line"><code class="plain">  Total:      730.0 W</code></div>
+<div class="line"><code class="plain">  Used:        11.0 W</code></div>
+<div class="line"><code class="plain">  Available:  719.0 W</code></div>
+<div class="line"><code class="plain">Connected ports:</code></div>
+<div class="line"><code class="plain">  swp11, swp24, swp27, swp48</code></div>
+</div>
+    </div>
+    <p  >The set commands (priority, enable, disable) either succeed silently or display an error message if the command fails.    </p>
+    <div class="section section-2" id="src-5126768_PoweroverEthernet-PoE-argspoectlArguments">
+        <h2 class="heading "><span id="src-5126768_PoweroverEthernet-PoE-args" class="confluence-anchor-link"></span><span>poectl Arguments</span></h2>
+    <p  >The <tt class=" ">poectl</tt> command takes the following arguments:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Argument    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-h, --help    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Show this help message and exit    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-i, --port-info PORT_LIST    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Returns detailed information for the specified ports. You can specify a range of ports. For example:<br/><tt class=" ">-i swp1-swp5,swp10</tt>    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >On an Edge-Core AS4610-54P switch, the voltage reported by the <tt class=" ">poectl -i</tt> command and measured through a power meter connected to the device varies by 5V. The current and power readings are correct and no difference is seen for them.    </p>
+        </div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-a, --all    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Returns PoE status and detailed information for all ports.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-p, --priority PORT_LIST PRIORITY    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Sets priority for the specified ports: low, high, critical.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-d, --disable-ports PORT_LIST    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Disables PoE operation on the specified ports.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-e, --enable-ports PORT_LIST    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Enables PoE operation on the specified ports.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-s, --system    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Returns PoE status for the entire switch.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-r, --reset PORT_LIST    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Performs a hardware reset on the specified ports. Use this if one or more ports are stuck in an error state. This does not reset any configuration settings for the specified ports.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-v, --version    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Displays version information.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-j, --json    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Displays output in JSON format.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--save    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Saves the current configuration. The saved configuration is automatically loaded on system boot.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >--load    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Loads and applies the saved configuration.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126768_safe-id-UG93ZXJvdmVyRXRoZXJuZXQtUG9FLVRyb3VibGVzaG9vdGluZ1BvRWFuZFBvRSA">
+        <h1 class="heading "><span>Troubleshooting PoE and PoE+</span></h1>
+    <p  >You can troubleshoot PoE and PoE+ using the following utilities and files:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">poectl -s</tt>, as described above.    </p>
+</li><li class=" ">    <p  >The Cumulus Linux <tt class=" ">cl-support</tt> script, which includes PoE-related output from <tt class=" ">poed.conf</tt>, <tt class=" ">syslog</tt>, <tt class=" ">poectl --diag-info</tt> and <tt class=" ">lldpctl</tt>.<tt class=" "></tt>    </p>
+</li><li class=" ">    <p  ><tt class=" ">lldpcli show neighbors ports &lt;swp&gt; protocol lldp hidden details</tt>    </p>
+</li><li class=" ">    <p  ><tt class=" ">tcpdump -v -v -i &lt;swp&gt; ether proto 0x88cc</tt>    </p>
+</li><li class=" ">    <p  >The contents of the PoE/PoE+ <tt class=" ">/etc/lldpd.d/poed.conf</tt> configuration file, as described above.    </p>
+</li></ul>    <div class="section section-2" id="src-5126768_PoweroverEthernet-PoE-VerifytheLinkIsUp">
+        <h2 class="heading "><span>Verify the Link Is Up</span></h2>
+    <p  >LLDP requires network connectivity, so verify that the link is up.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net show interface swp20</code></div>
+<div class="line"><code class="plain">    Name    MAC                Speed      MTU  Mode</code></div>
+<div class="line"><code class="plain">--  ------  -----------------  -------  -----  ---------</code></div>
+<div class="line"><code class="plain">UP  swp20   44:38:39:00:00:04  1G        1500  Access/L2</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126768_PoweroverEthernet-PoE-ViewLLDPInformationUsinglldpcli">
+        <h2 class="heading "><span>View LLDP Information Using lldpcli</span></h2>
+    <p  >You can run <tt class=" ">lldpcli</tt> to view the LLDP information that has been received on a switch port. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo lldpcli show neighbors ports swp20 protocol lldp hidden details</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">LLDP neighbors:</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Interface:    swp20, via: LLDP, RID: 2, Time: 0 day, 00:03:34</code></div>
+<div class="line"><code class="plain">  Chassis:     </code></div>
+<div class="line"><code class="plain">    ChassisID:    mac 68:c9:0b:25:54:7c</code></div>
+<div class="line"><code class="plain">    SysName:      ihm-ubuntu</code></div>
+<div class="line"><code class="plain">    SysDescr:     Ubuntu 14.04.2 LTS Linux 3.14.4+ #1 SMP Thu Jun 26 00:54:44 UTC 2014 armv7l</code></div>
+<div class="line"><code class="plain">    MgmtIP:       fe80::6ac9:bff:fe25:547c</code></div>
+<div class="line"><code class="plain">    Capability:   Bridge, off</code></div>
+<div class="line"><code class="plain">    Capability:   Router, off</code></div>
+<div class="line"><code class="plain">    Capability:   Wlan, off</code></div>
+<div class="line"><code class="plain">    Capability:   Station, on</code></div>
+<div class="line"><code class="plain">  Port:        </code></div>
+<div class="line"><code class="plain">    PortID:       mac 68:c9:0b:25:54:7c</code></div>
+<div class="line"><code class="plain">    PortDescr:    eth0</code></div>
+<div class="line"><code class="plain">    PMD autoneg:  supported: yes, enabled: yes</code></div>
+<div class="line"><code class="plain">      Adv:          10Base-T, HD: yes, FD: yes</code></div>
+<div class="line"><code class="plain">      Adv:          100Base-TX, HD: yes, FD: yes</code></div>
+<div class="line"><code class="plain">      MAU oper type: 100BaseTXFD - 2 pair category 5 UTP, full duplex mode</code></div>
+<div class="line"><code class="plain">    MDI Power:    supported: yes, enabled: yes, pair control: no</code></div>
+<div class="line"><code class="plain">      Device type:  PD</code></div>
+<div class="line"><code class="plain">      Power pairs:  spare</code></div>
+<div class="line"><code class="plain">      Class:        class 4</code></div>
+<div class="line"><code class="plain">      Power type:   2</code></div>
+<div class="line"><code class="plain">      Power Source: Primary power source</code></div>
+<div class="line"><code class="plain">      Power Priority: low</code></div>
+<div class="line"><code class="plain">      PD requested power Value: 51000</code></div>
+<div class="line"><code class="plain">      PSE allocated power Value: 51000</code></div>
+<div class="line"><code class="plain">  UnknownTLVs: </code></div>
+<div class="line"><code class="plain">    TLV:          OUI: 00,01,42, SubType: 1, Len: 1 05</code></div>
+<div class="line"><code class="plain">    TLV:          OUI: 00,01,42, SubType: 1, Len: 1 0D</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126768_PoweroverEthernet-PoE-ViewLLDPInformationUsingtcpdump">
+        <h2 class="heading "><span>View LLDP Information Using tcpdump</span></h2>
+    <p  >You can use <tt class=" ">tcpdump</tt> to view the LLDP frames being transmitted and received. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo tcpdump -v -v -i swp20 ether proto 0x88cc</code></div>
+<div class="line"><code class="plain">tcpdump: listening on swp20, link-type EN10MB (Ethernet), capture size 262144 bytes</code></div>
+<div class="line"><code class="plain">18:41:47.559022 LLDP, length 211</code></div>
+<div class="line"><code class="plain">	Chassis ID TLV (1), length 7</code></div>
+<div class="line"><code class="plain">	  Subtype MAC address (4): 00:30:ab:f2:d7:a5 (oui Unknown)</code></div>
+<div class="line"><code class="plain">	  0x0000:  0400 30ab f2d7 a5</code></div>
+<div class="line"><code class="plain">	Port ID TLV (2), length 6</code></div>
+<div class="line"><code class="plain">	  Subtype Interface Name (5): swp20</code></div>
+<div class="line"><code class="plain">	  0x0000:  0573 7770 3230</code></div>
+<div class="line"><code class="plain">	Time to Live TLV (3), length 2: TTL 120s</code></div>
+<div class="line"><code class="plain">	  0x0000:  0078</code></div>
+<div class="line"><code class="plain">	System Name TLV (5), length 13: dni-3048up-09</code></div>
+<div class="line"><code class="plain">	  0x0000:  646e 692d 3330 3438 7570 2d30 39</code></div>
+<div class="line"><code class="plain">	System Description TLV (6), length 68</code></div>
+<div class="line"><code class="plain">	  Cumulus Linux version 3.0.1~1466303042.2265c10 running on dni 3048up</code></div>
+<div class="line"><code class="plain">	  0x0000:  4375 6d75 6c75 7320 4c69 6e75 7820 7665</code></div>
+<div class="line"><code class="plain">	  0x0010:  7273 696f 6e20 332e 302e 317e 3134 3636</code></div>
+<div class="line"><code class="plain">	  0x0020:  3330 3330 3432 2e32 3236 3563 3130 2072</code></div>
+<div class="line"><code class="plain">	  0x0030:  756e 6e69 6e67 206f 6e20 646e 6920 3330</code></div>
+<div class="line"><code class="plain">	  0x0040:  3438 7570</code></div>
+<div class="line"><code class="plain">	System Capabilities TLV (7), length 4</code></div>
+<div class="line"><code class="plain">	  System  Capabilities [Bridge, Router] (0x0014)</code></div>
+<div class="line"><code class="plain">	  Enabled Capabilities [Router] (0x0010)</code></div>
+<div class="line"><code class="plain">	  0x0000:  0014 0010</code></div>
+<div class="line"><code class="plain">	Management Address TLV (8), length 12</code></div>
+<div class="line"><code class="plain">	  Management Address length 5, AFI IPv4 (1): 10.0.3.190</code></div>
+<div class="line"><code class="plain">	  Interface Index Interface Numbering (2): 2</code></div>
+<div class="line"><code class="plain">	  0x0000:  0501 0a00 03be 0200 0000 0200</code></div>
+<div class="line"><code class="plain">	Management Address TLV (8), length 24</code></div>
+<div class="line"><code class="plain">	  Management Address length 17, AFI IPv6 (2): fe80::230:abff:fef2:d7a5</code></div>
+<div class="line"><code class="plain">	  Interface Index Interface Numbering (2): 2</code></div>
+<div class="line"><code class="plain">	  0x0000:  1102 fe80 0000 0000 0000 0230 abff fef2</code></div>
+<div class="line"><code class="plain">	  0x0010:  d7a5 0200 0000 0200</code></div>
+<div class="line"><code class="plain">	Port Description TLV (4), length 5: swp20</code></div>
+<div class="line"><code class="plain">	  0x0000:  7377 7032 30</code></div>
+<div class="line"><code class="plain">	Organization specific TLV (127), length 9: OUI IEEE 802.3 Private (0x00120f)</code></div>
+<div class="line"><code class="plain">	  Link aggregation Subtype (3)</code></div>
+<div class="line"><code class="plain">	    aggregation status [supported], aggregation port ID 0</code></div>
+<div class="line"><code class="plain">	  0x0000:  0012 0f03 0100 0000 00</code></div>
+<div class="line"><code class="plain">	Organization specific TLV (127), length 9: OUI IEEE 802.3 Private (0x00120f)</code></div>
+<div class="line"><code class="plain">	  MAC/PHY configuration/status Subtype (1)</code></div>
+<div class="line"><code class="plain">	    autonegotiation [supported, enabled] (0x03)</code></div>
+<div class="line"><code class="plain">	    PMD autoneg capability [10BASE-T fdx, 100BASE-TX fdx, 1000BASE-T fdx] (0x2401)</code></div>
+<div class="line"><code class="plain">	    MAU type 100BASEFX fdx (0x0012)</code></div>
+<div class="line"><code class="plain">	  0x0000:  0012 0f01 0324 0100 12</code></div>
+<div class="line"><code class="plain">	Organization specific TLV (127), length 12: OUI IEEE 802.3 Private (0x00120f)</code></div>
+<div class="line"><code class="plain">	  Power via MDI Subtype (2)</code></div>
+<div class="line"><code class="plain">	    MDI power support [PSE, supported, enabled], power pair spare, power class class4</code></div>
+<div class="line"><code class="plain">	  0x0000:  0012 0f02 0702 0513 01fe 01fe</code></div>
+<div class="line"><code class="plain">	Organization specific TLV (127), length 5: OUI Unknown (0x000142)</code></div>
+<div class="line"><code class="plain">	  0x0000:  0001 4201 0d</code></div>
+<div class="line"><code class="plain">	Organization specific TLV (127), length 5: OUI Unknown (0x000142)</code></div>
+<div class="line"><code class="plain">	  0x0000:  0001 4201 01</code></div>
+<div class="line"><code class="plain">	End TLV (0), length 0</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126768_PoweroverEthernet-PoE-LoggingpoedEventsinsyslog">
+        <h2 class="heading "><span>Logging poed Events in syslog</span></h2>
+    <p  >The <tt class=" ">poed</tt> service logs the following events to <tt class=" ">syslog</tt>:    </p>
+<ul class=" "><li class=" ">    <p  >When a switch provides power to a powered device    </p>
+</li><li class=" ">    <p  >When a device that was receiving power is removed    </p>
+</li><li class=" ">    <p  >When the power available to the switch changes    </p>
+</li><li class=" ">    <p  >Errors    </p>
+</li></ul>    <p  >    </p>
+    </div>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Configuring_switchd.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Configuring switchd</span>
+        </a>
+                <a href="Configuring_a_Global_Proxy.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Configuring a Global Proxy</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

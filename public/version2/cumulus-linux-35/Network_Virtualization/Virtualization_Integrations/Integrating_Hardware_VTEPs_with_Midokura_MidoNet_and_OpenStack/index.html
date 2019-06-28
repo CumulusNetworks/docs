@@ -1,0 +1,2702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Integrating Hardware VTEPs with Midokura MidoNet and OpenStack | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/" >
+    Version2s
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility/" >
+    Network Command Line Utility
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Managing_Application_Daemons/" >
+    Managing Application Daemons
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/Configuring_Hardware-enabled_DDOS_Protection/" >
+    Configuring Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Layer_1_and_Switch_Port_Attributes/" >
+    Layer 1 and Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Configuring_DHCP_Relays/" >
+    Configuring DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Configuring_DHCP_Servers/" >
+    Configuring DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/" >
+    Layer 1 and 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments/" >
+    VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/Traditional_Mode_Bridges/" >
+    Traditional Mode Bridges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/" >
+    Virtual Router Redundancy - VRR
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/" >
+    Lightweight Network Virtualization - LNV Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_VXLAN_Active-Active_Mode/" >
+    LNV VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/"  class="active" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX/" >
+    Integrating Hardware VTEPs with VMware NSX
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Open_Shortest_Path_First_-_OSPF_-_Protocol/" >
+    Open Shortest Path First - OSPF - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol/" >
+    Open Shortest Path First v3 - OSPFv3 - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/SNMP_Monitoring/" >
+    SNMP Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Buffer_Monitoring/" >
+    Buffer Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Cumulus_Linux_Index/" >
+    Cumulus Linux Index
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</h1>
+
+<p>Cumulus Linux seamlessly integrates with the MidoNet OpenStack
+infrastructure, where the switches provide the VTEP gateway for
+terminating VXLAN tunnels from within MidoNet. MidoNet connects to the
+OVSDB server running on the Cumulus Linux switch, and exchanges
+information about the VTEPs and MAC addresses associated with the
+OpenStack Neutron networks. This provides seamless Ethernet connectivity
+between virtual and physical server infrastructures.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image image-center" src = "/images/download/attachments/8357578/MidoNet.png" alt = "/images/download/attachments/8357578/MidoNet.png"
+
+
+width = 500
+
+ />
+
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>Before you create VXLANs with MidoNet, make sure you have the following
+components:</p>
+
+<ul>
+<li><p>A switch (L2 gateway) with a Tomahawk, Trident II+ or Trident II
+chipset running Cumulus Linux</p></li>
+
+<li><p>OVSDB server (<code>ovsdb-server</code>), included in Cumulus Linux</p></li>
+
+<li><p>VTEPd (<code>ovs-vtepd</code>), included in Cumulus Linux and supports
+<a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments">VLAN-aware
+bridges</a></p></li>
+</ul>
+
+<p>Integrating a VXLAN with MidoNet involves:</p>
+
+<ul>
+<li><p>Preparing for the MidoNet integration</p></li>
+
+<li><p>Bootstrapping the OVS and VTEP</p></li>
+
+<li><p>Configuring the MidoNet VTEP binding</p></li>
+
+<li><p>Verifying the VXLAN configuration</p></li>
+</ul>
+
+<h3 id="caveats-and-errata">Caveats and Errata</h3>
+
+<ul>
+<li><p>There is no support for <a href="/version2/cumulus-linux-35/Network_Virtualization/VXLAN_Routing">VXLAN
+routing</a>
+in the Trident II chipset; use a loopback interface
+(<a href="VXLAN_Routing.html#src-8357513_VXLANRouting-t2" target="_blank">hyperloop</a>)
+instead.</p></li>
+
+<li><p>For more information about MidoNet, see the MidoNet Operations
+Guide, version 1.8 or later.</p></li>
+</ul>
+
+<h3 id="preparing-for-the-midonet-integration">Preparing for the MidoNet Integration</h3>
+
+<p>Before you start configuring the MidoNet tunnel zones, VTEP binding and
+connecting virtual ports to the VXLAN, you need to complete the
+bootstrap process on each switch to which you plan to build VXLAN
+tunnels. This creates the VTEP gateway and initializes the OVS database
+server. You only need to do the bootstrapping once, before you begin the
+MidoNet integration.</p>
+
+<h4 id="enabling-the-openvswitch-vtep-package">Enabling the openvswitch-vtep Package</h4>
+
+<p>Before you start bootstrapping the integration, you need to enable the
+<code>openvswitch-vtep</code> package, since it is disabled by default in Cumulus
+Linux.</p>
+
+<ol>
+<li><p>Edit the <code>/etc/default/openvswitch-vtep</code> file, changing the <code>START</code>
+option from <em>no</em> to <em>yes</em>. This simple <code>sed</code> command does this, and
+creates a backup as well:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo sed -i.bak s/START=no/START=yes/g /etc/default/openvswitch-vtep
+       
+        
+</code></pre></li>
+
+<li><p>Start the daemon:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo systemctl start openvswitch-vtep.service
+       
+        
+</code></pre></li>
+</ol>
+
+<h3 id="bootstrapping-the-ovsdb-server-and-vtep">Bootstrapping the OVSDB Server and VTEP</h3>
+
+<p><details></p>
+
+<h4 id="automating-with-the-bootstrap-script">Automating with the Bootstrap Script</h4>
+
+<p>The <code>vtep-bootstrap</code> script is available so you can do the bootstrapping
+automatically. For information, read <code>man vtep-bootstrap</code>. This script
+requires three parameters, in this order:</p>
+
+<ul>
+<li><p>Switch name: The name of the switch that is the VTEP gateway.</p></li>
+
+<li><p>Tunnel IP address: The datapath IP address of the VTEP.</p></li>
+
+<li><p>Management IP address: The IP address of the switch&rsquo;s management
+interface.</p></li>
+</ul>
+
+<p><summary>For example, click here &hellip; </summary></p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo vtep-bootstrap sw11 10.111.1.1 10.50.20.21 --no_encryption
+Executed: 
+ define physical switch
+ ().
+Executed: 
+ define local tunnel IP address on the switch
+ ().
+Executed: 
+ define management IP address on the switch
+ ().
+Executed: 
+ restart a service
+ (Killing ovs-vtepd (28170).
+Killing ovsdb-server (28146).
+Starting ovsdb-server.
+Starting ovs-vtepd.).
+   
+    
+</code></pre>
+
+
+<div class="notices note" > <p>Since MidoNet does not have a controller, you need to use a dummy IP
+address (for example, 1.1.1.1) for the controller parameter in the
+bootstrap script. After the script completes, delete the VTEP manager,
+since it is not needed and will otherwise fill the logs with
+inconsequential error messages:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo vtep-ctl del-manager
+   
+    
+</code></pre>
+ </div>
+
+
+<p></details></p>
+
+<h4 id="manually-bootstrapping">Manually Bootstrapping</h4>
+
+<p>If you don&rsquo;t use the bootstrap script, then you must initialize the OVS
+database instance manually, and create the VTEP.</p>
+
+<p>Perform the following commands in order (see the automated bootstrapping
+example above for values):</p>
+
+<ol>
+<li><p>Define the switch in OVSDB:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo vtep-ctl add-ps 
+       
+        
+</code></pre></li>
+
+<li><p>Define the VTEP tunnel IP address:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo vtep-ctl set Physical_switch  tunnel_ips=
+       
+        
+</code></pre></li>
+
+<li><p>Define the management interface IP address:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo vtep-ctl set Physical_switch  management_ips=
+       
+        
+</code></pre></li>
+
+<li><p>Restart the OVSDB server and <code>vtepd</code>:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
+       
+        
+</code></pre></li>
+</ol>
+
+<p>At this point, the switch is ready to connect to MidoNet. The rest of
+the configuration is performed in the MidoNet Manager GUI, or using the
+MidoNet API.</p>
+
+<h3 id="configuring-midonet-vtep-and-port-bindings">Configuring MidoNet VTEP and Port Bindings</h3>
+
+<p>This part of the configuration sets up MidoNet and OpenStack to connect
+the virtualization environment to the Cumulus Linux switch. The
+<code>midonet-agent</code> is the networking component that manages the VXLAN,
+while the Open Virtual Switch (OVS) client on the OpenStack controller
+node communicates MAC address information between the <code>midonet-agent</code>
+and the Cumulus Linux OVS database (OVSDB) server.</p>
+
+<h4 id="using-the-midonet-manager-gui">Using the MidoNet Manager GUI</h4>
+
+<h5 id="creating-a-tunnel-zone">Creating a Tunnel Zone</h5>
+
+<ol>
+<li><p>Click <strong>Tunnel Zones</strong> in the menu on the left side.</p></li>
+
+<li><p>Click <strong>Add</strong>.</p></li>
+
+<li><p>Give the tunnel zone a <strong>Name</strong> and select &ldquo;<strong>VTEP</strong>&rdquo; for the
+<strong>Type</strong>.</p></li>
+
+<li><p>Click <strong>Save</strong>.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357578/Midonet_Add_Tzone.png" alt = "/images/download/attachments/8357578/Midonet_Add_Tzone.png"
+
+
+width = 500
+
+ />
+</li>
+</ol>
+
+<h5 id="adding-hosts-to-a-tunnel-zone">Adding Hosts to a Tunnel Zone</h5>
+
+<p>Once the tunnel zone is created, click the name of the tunnel zone to
+view the hosts table.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357578/MidoNet_tzone_list.png" alt = "/images/download/attachments/8357578/MidoNet_tzone_list.png"
+
+
+width = 500
+
+ />
+
+
+<p>The tunnel zone is a construct used to define the VXLAN source address
+used for the tunnel. This host&rsquo;s address is used for the source of the
+VXLAN encapsulation, and traffic will transit into the routing domain
+from this point. Thus, the host must have layer 3 reachability to the
+Cumulus Linux switch tunnel IP.</p>
+
+<p>Next, add a host entry to the tunnel zone:</p>
+
+<ol>
+<li><p>Click <strong>Add</strong>.</p></li>
+
+<li><p>Select a host from the <strong>Host</strong> list.</p></li>
+
+<li><p>Provide the tunnel source <strong>IP Address</strong> to use on the selected
+host.</p></li>
+
+<li><p>Click <strong>Save</strong>.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357578/MidoNet_tzone_add_host.png" alt = "/images/download/attachments/8357578/MidoNet_tzone_add_host.png"
+
+
+width = 500
+
+ />
+</li>
+</ol>
+
+<p>The host list now displays the new entry:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357578/MidoNet_tzone_host_done_list.png" alt = "/images/download/attachments/8357578/MidoNet_tzone_host_done_list.png"
+
+
+width = 500
+
+ />
+
+
+<h5 id="creating-the-vtep">Creating the VTEP</h5>
+
+<ol>
+<li><p>Click the <strong>Vteps</strong> menu on the left side.</p></li>
+
+<li><p>Click <strong>Add</strong>.</p></li>
+
+<li><p>Fill out the fields using the same information you used earlier on
+the switch for the bootstrap procedure:<br />
+- <strong>Management IP</strong> is typically the eth0 address of the switch.
+This tells the OVS-client to connect to the OVSDB-server on the
+Cumulus Linux switch.<br />
+- <strong>Management Port</strong> <strong>Number</strong> is the PTCP port you configured in
+the <code>ovs-ctl-vtep</code> script earlier (the example uses 6632).<br />
+- <strong>Tunnel Zone</strong> is the name of the zone you created in the
+previous procedure.</p></li>
+
+<li><p>Click <strong>Save</strong>.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357578/MidoNet_Add_VTEP.png" alt = "/images/download/attachments/8357578/MidoNet_Add_VTEP.png"
+
+
+width = 500
+
+ />
+</li>
+</ol>
+
+<p>The new VTEP appears in the list below. MidoNet then initiates a
+connection between the OpenStack Controller and the Cumulus Linux
+switch. If the OVS client is successfully connected to the OVSDB server,
+the VTEP entry should display the switch name and VXLAN tunnel IP
+address, which you specified during the bootstrapping process.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357578/MidoNet_Add_VTEP_list.png" alt = "/images/download/attachments/8357578/MidoNet_Add_VTEP_list.png"
+
+
+width = 500
+
+ />
+
+
+<h5 id="binding-ports-to-the-vtep">Binding Ports to the VTEP</h5>
+
+<p>Now that connectivity is established to the switch, you need to add a
+physical port binding to the VTEP on the Cumulus Linux switch:</p>
+
+<ol>
+<li><p>Click <strong>Add</strong>.</p></li>
+
+<li><p>In the <strong>Port Name</strong> list, select the port on the Cumulus Linux
+switch that you are using to connect to the VXLAN segment.</p></li>
+
+<li><p>Specify the <strong>VLAN ID</strong> (enter 0 for untagged).</p></li>
+
+<li><p>In the <strong>Bridge</strong> list, select the MidoNet bridge that the instances
+(VMs) are using in OpenStack.</p></li>
+
+<li><p>Click <strong>Save</strong>.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357578/MidoNet_Add_Port_Binding.png" alt = "/images/download/attachments/8357578/MidoNet_Add_Port_Binding.png"
+
+
+width = 500
+
+ />
+</li>
+</ol>
+
+<p>You should see the port binding displayed in the binding table under the
+VTEP.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357578/MidoNet_Add_Port_Binding_list.png" alt = "/images/download/attachments/8357578/MidoNet_Add_Port_Binding_list.png"
+
+
+width = 500
+
+ />
+
+
+<p>Once the port is bound, this automatically configures a VXLAN bridge
+interface, and includes the VTEP interface and the port bound to the
+bridge. Now the OpenStack instances (VMs) should be able to ping the
+hosts connected to the bound port on the Cumulus switch. The
+Troubleshooting section below demonstrates the verification of the VXLAN
+data and control planes.</p>
+
+<h4 id="using-the-midonet-cli">Using the MidoNet CLI</h4>
+
+<p>To get started with the MidoNet CLI, you can access the CLI prompt on
+the OpenStack Controller:</p>
+
+<pre><code>root@os-controller:~# midonet-cli
+midonet&gt;
+</code></pre>
+
+<p>Now from the MidoNet CLI, the commands explained in this section perform
+the same operations depicted in the previous section with the MidoNet
+Manager GUI.</p>
+
+<ol>
+<li><p>Create a tunnel zone with a name and type <em>vtep</em>:</p>
+
+<pre><code>                       
+midonet&gt; tunnel-zone create name sw12 type vtep
+tzone1
+       
+        
+</code></pre></li>
+
+<li><p>The tunnel zone is a construct used to define the VXLAN source
+address used for the tunnel. This host&rsquo;s address is used for the
+source of the VXLAN encapsulation, and traffic will transit into the
+routing domain from this point. Thus, the host must have layer 3
+reachability to the Cumulus Linux switch tunnel IP.</p>
+
+<ul>
+<li><p>First, get the list of available hosts connected to the Neutron
+network and the MidoNet bridge.</p></li>
+
+<li><p>Next, get a listing of all the interfaces.</p></li>
+
+<li><p>Finally, add a host entry to the tunnel zone ID returned in the
+previous step, and specify which interface address to use.</p>
+
+<pre><code>                           
+midonet&gt; list host
+host host0 name os-compute1 alive true
+host host1 name os-network alive true 
+midonet&gt; host host0 list interface
+iface midonet host_id host0 status 0 addresses [] mac 02:4b:38:92:dd:ce mtu 1500 type Virtual endpoint DATAPATH
+iface lo host_id host0 status 3 addresses [u'127.0.0.1', u'169.254.169.254', u'0:0:0:0:0:0:0:1'] mac 00:00:00:00:00:00 mtu 65536 type Virtual endpoint LOCALHOST
+iface virbr0 host_id host0 status 1 addresses [u'192.168.122.1'] mac 22:6e:63:90:1f:69 mtu 1500 type Virtual endpoint UNKNOWN
+iface tap7cfcf84c-26 host_id host0 status 3 addresses [u'fe80:0:0:0:e822:94ff:fee2:d41b'] mac ea:22:94:e2:d4:1b mtu 65000 type Virtual endpoint DATAPATH
+iface eth1 host_id host0 status 3 addresses [u'10.111.0.182', u'fe80:0:0:0:5054:ff:fe85:acd6'] mac 52:54:00:85:ac:d6 mtu 1500 type Physical endpoint PHYSICAL
+iface tapfd4abcea-df host_id host0 status 3 addresses [u'fe80:0:0:0:14b3:45ff:fe94:5b07'] mac 16:b3:45:94:5b:07 mtu 65000 type Virtual endpoint DATAPATH
+iface eth0 host_id host0 status 3 addresses [u'10.50.21.182', u'fe80:0:0:0:5054:ff:feef:c5dc'] mac 52:54:00:ef:c5:dc mtu 1500 type Physical endpoint PHYSICAL
+midonet&gt; tunnel-zone tzone0 add member host host0 address 10.111.0.182
+zone tzone0 host host0 address 10.111.0.182
+           
+            
+</code></pre></li>
+</ul>
+
+<p>Repeat this procedure for each OpenStack host connected to the
+Neutron network and the MidoNet bridge.</p></li>
+
+<li><p>Create a VTEP and assign it to the tunnel zone ID returned in the
+previous step. The management IP address (the destination address
+for the VXLAN/remote VTEP) and the port must be the same ones you
+configured in the <code>vtep-bootstrap</code> script or the manual
+bootstrapping:</p>
+
+<pre><code>                       
+midonet&gt; vtep add management-ip 10.50.20.22 management-port 6632 tunnel-zone tzone0
+name sw12 description sw12 management-ip 10.50.20.22 management-port 6632 tunnel-zone tzone0 connection-state CONNECTED
+       
+        
+</code></pre>
+
+<p>In this step, MidoNet initiates a connection between the OpenStack
+Controller and the Cumulus Linux switch. If the OVS client is
+successfully connected to the OVSDB server, the returned values
+should show the name and description matching the <code>switch-name</code>
+parameter specified in the bootstrap process.</p>
+
+
+<div class="notices note" > <pre><code>Verify the connection-state as CONNECTED, otherwise if ERROR is
+returned, you must debug. Typically this only fails if the
+`management-ip` and/or `management-port` settings are wrong.
+</code></pre>
+ </div>
+</li>
+
+<li><p>The VTEP binding uses the information provided to MidoNet from the
+OVSDB server, providing a list of ports that the hardware VTEP can
+use for layer 2 attachment. This binding virtually connects the
+physical interface to the overlay switch, and joins it to the
+Neutron bridged network.</p>
+
+<p>First, get the UUID of the Neutron network behind the MidoNet
+bridge:</p>
+
+<pre><code>                       
+midonet&gt; list bridge
+bridge bridge0 name internal state up
+bridge bridge1 name internal2 state up
+midonet&gt; show bridge bridge1 id
+6c9826da-6655-4fe3-a826-4dcba6477d2d
+       
+        
+</code></pre>
+
+<p>Next, create the VTEP binding, using the UUID and the switch port
+being bound to the VTEP on the remote end. If there is no VLAN ID,
+set <code>vlan</code> to 0:</p>
+
+<pre><code>                       
+midonet&gt; vtep name sw12 binding add network-id 6c9826da-6655-4fe3-a826-4dcba6477d2d physical-port swp11s0 vlan 0
+management-ip 10.50.20.22 physical-port swp11s0 vlan 0 network-id 6c9826da-6655-4fe3-a826-4dcba6477d2d
+       
+        
+</code></pre></li>
+</ol>
+
+<p>At this point, the VTEP should be connected, and the layer 2 overlay
+should be operational. From the openstack instance (VM), you should be
+able to ping a physical server connected to the port bound to the
+hardware switch VTEP.</p>
+
+<h2 id="troubleshooting-midonet-and-cumulus-vteps">Troubleshooting MidoNet and Cumulus VTEPs</h2>
+
+<p>As with any complex system, there is a control plane and data plane.</p>
+
+<h3 id="troubleshooting-the-control-plane">Troubleshooting the Control Plane</h3>
+
+<p>In this solution, the control plane consists of the connection between
+the OpenStack Controller, and each Cumulus Linux switch running the
+<code>ovsdb-server</code> and <code>vtepd</code> daemons.</p>
+
+<h4 id="verifying-vtep-and-ovsdb-services">Verifying VTEP and OVSDB Services</h4>
+
+<p>First, it is important that the OVSDB server and <code>ovs-vtep</code> daemon are
+running. Verify this is the case:</p>
+
+<pre><code>                   
+cumulus@switch12:~$ systemctl status openvswitch-vtep.service
+ovsdb-server is running with pid 17440
+ovs-vtepd is running with pid 17444
+   
+    
+</code></pre>
+
+<h4 id="verifying-ovsdb-server-connections">Verifying OVSDB-server Connections</h4>
+
+<p>From the OpenStack Controller host, verify that it can connect to the
+<code>ovsdb-server</code>. Telnet to the switch IP address on port 6632:</p>
+
+<pre><code>                   
+root@os-controller:~# telnet 10.50.20.22 6632
+Trying 10.50.20.22...
+Connected to 10.50.20.22.
+Escape character is '^]'.
+
+Connection closed by foreign host.
+   
+    
+</code></pre>
+
+<p>If the connection fails, verify IP reachability from the host to the
+switch. If that succeeds, it is likely the bootstrap process did not set
+up port 6632. Redo the bootstrapping procedures above.</p>
+
+<pre><code>                   
+root@os-controller:~# ping -c1 10.50.20.22
+PING 10.50.20.22 (10.50.20.22) 56(84) bytes of data.
+64 bytes from 10.50.20.22: icmp_seq=1 ttl=63 time=0.315 ms
+--- 10.50.20.22 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.315/0.315/0.315/0.000 ms
+   
+    
+</code></pre>
+
+<h4 id="verifying-the-vxlan-bridge-and-vtep-interfaces">Verifying the VXLAN Bridge and VTEP Interfaces</h4>
+
+<p>After creating the VTEP in MidoNet and adding an interface binding, you
+should see <strong>br-vxln</strong> and <strong>vxln</strong> interfaces on the switch. You can
+verify that the VXLAN bridge and VTEP interface are created and UP:</p>
+
+<pre><code>                   
+cumulus@switch12:~$ sudo brctl show 
+bridge name  bridge id          STP     enabled interfaces
+bridge       8000.00e0ec2749a2  no      swp11s0
+                                        vxln10006
+cumulus@switch12:~$ sudo ip -d link show vxln10006
+55: vxln10006:  mtu 1500 qdisc noqueue master br-vxln10006 state UNKNOWN mode DEFAULT 
+  link/ether 72:94:eb:b6:6c:c3 brd ff:ff:ff:ff:ff:ff
+  vxlan id 10006 local 10.111.1.2 port 32768 61000 nolearning ageing 300 svcnode 10.111.0.182 
+  bridge_slave
+   
+    
+</code></pre>
+
+<p>Next, look at the bridging table for the VTEP and the forwarding
+entries. The bound interface and the VTEP should be listed along with
+the MAC addresses of those interfaces. When the hosts attached to the
+bound port send data, those MACs are learned, and entered into the
+bridging table, as well as the OVSDB.</p>
+
+<pre><code>                   
+cumulus@switch12:~$ brctl showmacs br-vxln10006
+port name   mac addr            vlan    is local?   ageing timer
+swp11s0     00:e0:ec:27:49:a2   0       yes         0.00
+swp11s0     64:ae:0c:32:f1:41   0       no          0.01
+vxln10006   72:94:eb:b6:6c:c3   0       yes         0.00
+ 
+cumulus@switch12:~$ sudo bridge fdb show br-vxln10006
+fa:16:3e:14:04:2e dev vxln10004 dst 10.111.0.182 vlan 65535 self permanent
+00:e0:ec:27:49:a2 dev swp11s0 vlan 0 master br-vxln10004 permanent
+b6:71:33:3b:a7:83 dev vxln10004 vlan 0 master br-vxln10004 permanent
+64:ae:0c:32:f1:41 dev swp11s0 vlan 0 master br-vxln10004
+   
+    
+</code></pre>
+
+<h3 id="datapath-troubleshooting">Datapath Troubleshooting</h3>
+
+<p>If you have verified the control plane is correct, and you still cannot
+get data between the OpenStack instances and the physical nodes on the
+switch, there may be something wrong with the data plane. The data plane
+consists of the actual VXLAN encapsulated path, between one of the
+OpenStack nodes running the <code>midolman</code> service. This is typically the
+compute nodes, but can include the MidoNet gateway nodes. If the
+OpenStack instances can ping the tenant router address but cannot ping
+the physical device connected to the switch (or vice versa), then
+something is wrong in the data plane.</p>
+
+<h4 id="verifying-ip-reachability">Verifying IP Reachability</h4>
+
+<p>First, there must be IP reachability between the encapsulating node, and
+the address you bootstrapped as the tunnel IP on the switch. Verify the
+OpenStack host can ping the tunnel IP. If this doesn&rsquo;t work, check the
+routing design, and fix the layer 3 problem first.</p>
+
+<pre><code>                   
+root@os-compute1:~# ping -c1 10.111.1.2
+PING 10.111.1.2 (10.111.1.2) 56(84) bytes of data.
+64 bytes from 10.111.1.2: icmp_seq=1 ttl=62 time=0.649 ms
+--- 10.111.1.2 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.649/0.649/0.649/0.000 ms
+   
+    
+</code></pre>
+
+<h4 id="midonet-vxlan-encapsulation">MidoNet VXLAN Encapsulation</h4>
+
+<p>If the instance (VM) cannot ping the physical server, or the reply is
+not returning, look at the packets on the OpenStack node. Initiate a
+ping from the OpenStack instance, then using <code>tcpdump</code>, hopefully you
+can see the VXLAN data. This example displays what it looks like when it
+is working.</p>
+
+<pre><code>                   
+root@os-compute1:~# tcpdump -i eth1 -l -nnn -vvv -X -e port 4789
+52:54:00:85:ac:d6 &gt; 00:e0:ec:26:50:36, ethertype IPv4 (0x0800), length 148: (tos 0x0, ttl 255, id 7583, offset 0, flags [none], proto UDP (17), length 134)
+ 10.111.0.182.41568 &gt; 10.111.1.2.4789: [no cksum] VXLAN, flags [I] (0x08), vni 10008
+fa:16:3e:14:04:2e &gt; 64:ae:0c:32:f1:41, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 64058, offset 0, flags [DF], proto ICMP (1), length 84)
+ 10.111.102.104 &gt; 10.111.102.2: ICMP echo request, id 15873, seq 0, length 64
+ 0x0000: 4500 0086 1d9f 0000 ff11 8732 0a6f 00b6 E..........2.o..
+ 0x0010: 0a6f 0102 a260 12b5 0072 0000 0800 0000 .o...`...r......
+ 0x0020: 0027 1800 64ae 0c32 f141 fa16 3e14 042e .'..d..2.A..&gt;...
+ 0x0030: 0800 4500 0054 fa3a 4000 4001 5f26 0a6f ..E..T.:@.@._&amp;.o
+ 0x0040: 6668 0a6f 6602 0800 f9de 3e01 0000 4233 fh.of.....&gt;...B3
+ 0x0050: 7dec 0000 0000 0000 0000 0000 0000 0000 }...............
+ 0x0060: 0000 0000 0000 0000 0000 0000 0000 0000 ................
+ 0x0070: 0000 0000 0000 0000 0000 0000 0000 0000 ................
+ 0x0080: 0000 0000 0000 ......
+00:e0:ec:26:50:36 &gt; 52:54:00:85:ac:d6, ethertype IPv4 (0x0800), length 148: (tos 0x0, ttl 62, id 2689, offset 0, flags [none], proto UDP (17), length 134)
+ 10.111.1.2.63385 &gt; 10.111.0.182.4789: [no cksum] VXLAN, flags [I] (0x08), vni 10008
+64:ae:0c:32:f1:41 &gt; fa:16:3e:14:04:2e, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 255, id 64058, offset 0, flags [DF], proto ICMP (1), length 84)
+ 10.111.102.2 &gt; 10.111.102.104: ICMP echo reply, id 15873, seq 0, length 64
+ 0x0000: 4500 0086 0a81 0000 3e11 5b51 0a6f 0102 E.......&gt;.[Q.o..
+ 0x0010: 0a6f 00b6 f799 12b5 0072 0000 0800 0000 .o.......r......
+ 0x0020: 0027 1800 fa16 3e14 042e 64ae 0c32 f141 .'....&gt;...d..2.A
+ 0x0030: 0800 4500 0054 fa3a 4000 ff01 a025 0a6f ..E..T.:@....%.o
+ 0x0040: 6602 0a6f 6668 0000 01df 3e01 0000 4233 f..ofh....&gt;...B3
+ 0x0050: 7dec 0000 0000 0000 0000 0000 0000 0000 }...............
+ 0x0060: 0000 0000 0000 0000 0000 0000 0000 0000 ................
+ 0x0070: 0000 0000 0000 0000 0000 0000 0000 0000 ................
+ 0x0080: 0000 0000 0000 ......
+   
+    
+</code></pre>
+
+<h3 id="inspecting-the-ovsdb">Inspecting the OVSDB</h3>
+
+<h4 id="using-vtep-ctl">Using VTEP-CTL</h4>
+
+<p>These commands show you the information installed in the OVSDB. This
+database is structured using the <em>physical switch</em> ID, with one or more
+<em>logical switch</em> IDs associated with it. The bootstrap process creates
+the physical switch, and MidoNet creates the logical switch after the
+control session is established.</p>
+
+<h5 id="listing-the-physical-switch">Listing the Physical Switch</h5>
+
+<pre><code>                   
+cumulus@switch12:~$ vtep-ctl list-ps
+sw12
+   
+    
+</code></pre>
+
+<h5 id="listing-the-logical-switch">Listing the Logical Switch</h5>
+
+<pre><code>                   
+cumulus@switch12:~$ vtep-ctl list-ls
+mn-6c9826da-6655-4fe3-a826-4dcba6477d2d
+   
+    
+</code></pre>
+
+<h5 id="listing-local-or-remote-mac-addresses">Listing Local or Remote MAC Addresses</h5>
+
+<p>These commands show the MAC addresses learned from the connected port
+bound to the logical switch, or the MAC addresses advertised from
+MidoNet. The <em>unknown-dst</em> entries are installed to satisfy the ethernet
+flooding of unknown unicast, and important for learning.</p>
+
+<pre><code>                   
+cumulus@switch12:~$ vtep-ctl list-local-macs mn-6c9826da-6655-4fe3-a826-4dcba6477d2d
+ucast-mac-local
+  64:ae:0c:32:f1:41 -&gt; vxlan_over_ipv4/10.111.1.2
+mcast-mac-local
+  unknown-dst -&gt; vxlan_over_ipv4/10.111.1.2
+ 
+cumulus@switch12:~$ vtep-ctl list-remote-macs mn-6c9826da-6655-4fe3-a826-4dcba6477d2d
+ucast-mac-remote
+  fa:16:3e:14:04:2e -&gt; vxlan_over_ipv4/10.111.0.182
+mcast-mac-remote
+  unknown-dst -&gt; vxlan_over_ipv4/10.111.0.182oh 
+   
+    
+</code></pre>
+
+<p><details></p>
+
+<h4 id="getting-open-vswitch-database-ovsdb-data">Getting Open Vswitch Database (OVSDB) Data</h4>
+
+<p>The <code>ovsdb-client dump</code> command is large, but shows all of the
+information and tables that are used in communication between the OVS
+client and server.</p>
+
+<p><summary>Click to expand the output &hellip; </summary></p>
+
+<pre><code>                   
+cumulus@switch12:~$ ovsdb-client dump
+Arp_Sources_Local table
+_uuid locator src_mac
+----- ------- -------
+Arp_Sources_Remote table
+_uuid locator src_mac
+----- ------- -------
+Global table
+_uuid managers switches 
+------------------------------------ -------- --------------------------------------
+76672d6a-2740-4c8d-9618-9e8dfb4b0bd7 [] [6d459554-0c75-4170-bb3d-117eb4ce1f4d]
+Logical_Binding_Stats table
+_uuid bytes_from_local bytes_to_local packets_from_local packets_to_local
+------------------------------------ ---------------- -------------- ------------------ ----------------
+d2e378b4-61c1-4daf-9aec-a7fd352d3193 5782569 1658250 21687 14589
+Logical_Router table
+_uuid description name static_routes switch_binding
+----- ----------- ---- ------------- --------------
+Logical_Switch table
+_uuid description name tunnel_key
+------------------------------------ ----------- ----------------------------------------- ----------
+44d162dc-0372-4749-a802-5b153c7120ec &quot;&quot; &quot;mn-6c9826da-6655-4fe3-a826-4dcba6477d2d&quot; 10006
+Manager table
+_uuid inactivity_probe is_connected max_backoff other_config status target
+----- ---------------- ------------ ----------- ------------ ------ ------
+Mcast_Macs_Local table
+MAC _uuid ipaddr locator_set logical_switch 
+----------- ------------------------------------ ------ ------------------------------------ ------------------------------------
+unknown-dst 25eaf29a-c540-46e3-8806-3892070a2de5 &quot;&quot; 7a4c000a-244e-4b37-8f25-fd816c1a80dc 44d162dc-0372-4749-a802-5b153c7120ec
+Mcast_Macs_Remote table
+MAC _uuid ipaddr locator_set logical_switch 
+----------- ------------------------------------ ------ ------------------------------------ ------------------------------------
+unknown-dst b122b897-5746-449e-83ba-fa571a64b374 &quot;&quot; 6c04d477-18d0-41df-8d52-dc7b17845ebe 44d162dc-0372-4749-a802-5b153c7120ec
+Physical_Locator table
+_uuid dst_ip encapsulation_type
+------------------------------------ -------------- ------------------
+2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb &quot;10.111.0.182&quot; &quot;vxlan_over_ipv4&quot; 
+3f78dbb0-9695-42ef-a31f-aaaf525147f1 &quot;10.111.1.2&quot; &quot;vxlan_over_ipv4&quot;
+Physical_Locator_Set table
+_uuid locators 
+------------------------------------ --------------------------------------
+6c04d477-18d0-41df-8d52-dc7b17845ebe [2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb]
+7a4c000a-244e-4b37-8f25-fd816c1a80dc [3f78dbb0-9695-42ef-a31f-aaaf525147f1]
+Physical_Port table
+_uuid description name port_fault_status vlan_bindings vlan_stats 
+------------------------------------ ----------- --------- ----------------- ---------------------------------------- ----------------------------------------
+bf69fcbb-36b3-4dbc-a90d-fc7412e57076 &quot;swp1&quot; &quot;swp1&quot; [] {} {} 
+bf38137d-3a14-454e-8df0-9c56e4b4e640 &quot;swp10&quot; &quot;swp10&quot; [] {} {} 
+69585fff-4360-4177-901d-8360ade5391b &quot;swp11s0&quot; &quot;swp11s0&quot; [] {0=44d162dc-0372-4749-a802-5b153c7120ec} {0=d2e378b4-61c1-4daf-9aec-a7fd352d3193}
+2a2d04fa-7190-41fe-8cee-318fcbafb2ea &quot;swp11s1&quot; &quot;swp11s1&quot; [] {} {} 
+684f99d5-426c-45c8-b964-211489f45599 &quot;swp11s2&quot; &quot;swp11s2&quot; [] {} {} 
+47cc66fb-ef8a-4a9b-a497-1844b89f7d32 &quot;swp11s3&quot; &quot;swp11s3&quot; [] {} {} 
+5be3a052-be0f-4258-94cb-5e8be9afb896 &quot;swp12&quot; &quot;swp12&quot; [] {} {} 
+631b19bd-3022-4353-bb2d-f498b0c1cb17 &quot;swp13&quot; &quot;swp13&quot; [] {} {} 
+3001c904-b152-4dc4-9d8e-718f24ffa439 &quot;swp14&quot; &quot;swp14&quot; [] {} {} 
+a6f8a88a-3877-4f81-b9b4-d75394a09d2c &quot;swp15&quot; &quot;swp15&quot; [] {} {} 
+7cb681f4-2206-4c70-85b7-23b60963cd21 &quot;swp16&quot; &quot;swp16&quot; [] {} {} 
+3943fb6a-0b49-4806-a014-2bcd4d469537 &quot;swp17&quot; &quot;swp17&quot; [] {} {} 
+109a9911-d6c7-4142-b6c9-7c985506abb4 &quot;swp18&quot; &quot;swp18&quot; [] {} {} 
+93b85c31-be38-4384-8b7a-9696764f9ba9 &quot;swp19&quot; &quot;swp19&quot; [] {} {} 
+bcfb2920-6676-494c-9dcb-b474123b7e59 &quot;swp2&quot; &quot;swp2&quot; [] {} {} 
+4223559a-da1c-4c34-b8bf-bff7ced376ad &quot;swp20&quot; &quot;swp20&quot; [] {} {} 
+6bbccda8-d7e5-4b19-b978-4ec7f5b868e0 &quot;swp21&quot; &quot;swp21&quot; [] {} {} 
+c6876886-8386-4e34-a307-931909fca58f &quot;swp22&quot; &quot;swp22&quot; [] {} {} 
+c5a88dd6-d931-4b2c-9baa-a0abfb9d41f5 &quot;swp23&quot; &quot;swp23&quot; [] {} {} 
+124d1e01-a187-4427-819f-21de66e76f13 &quot;swp24&quot; &quot;swp24&quot; [] {} {} 
+55b49814-b5c5-405e-8e9f-898f3df4f872 &quot;swp25&quot; &quot;swp25&quot; [] {} {} 
+b2b2cd14-662d-45a5-87c1-277acbccdffd &quot;swp26&quot; &quot;swp26&quot; [] {} {} 
+c35f55f5-8ec6-4fed-bef4-49801cd0934c &quot;swp27&quot; &quot;swp27&quot; [] {} {} 
+a44c5402-6218-4f09-bf1e-518f41a5546e &quot;swp28&quot; &quot;swp28&quot; [] {} {} 
+a9294152-2b32-4058-8796-23520ffb7379 &quot;swp29&quot; &quot;swp29&quot; [] {} {} 
+e0ee993a-8383-4701-a766-d425654dbb7f &quot;swp3&quot; &quot;swp3&quot; [] {} {} 
+d9db91a6-1c10-4154-9269-84877faa79b4 &quot;swp30&quot; &quot;swp30&quot; [] {} {} 
+b26ce4dd-b771-4d7b-8647-41fa97aa40e3 &quot;swp31&quot; &quot;swp31&quot; [] {} {} 
+652c6cd1-0823-4585-bb78-658e6ca2abfc &quot;swp32&quot; &quot;swp32&quot; [] {} {} 
+5b15372b-89f0-4e14-a50b-b6c6f937d33d &quot;swp4&quot; &quot;swp4&quot; [] {} {} 
+e00741f1-ba34-47c5-ae23-9269c5d1a871 &quot;swp5&quot; &quot;swp5&quot; [] {} {} 
+7096abaf-eebf-4ee3-b0cc-276224bc3e71 &quot;swp6&quot; &quot;swp6&quot; [] {} {} 
+439afb62-067e-4bbe-a0d9-ee33a23d2a9c &quot;swp7&quot; &quot;swp7&quot; [] {} {} 
+54f6c9df-01a1-4d96-9dcf-3035a33ffb3e &quot;swp8&quot; &quot;swp8&quot; [] {} {} 
+c85ed6cd-a7d4-4016-b3e9-34df592072eb &quot;swp9s0&quot; &quot;swp9s0&quot; [] {} {} 
+cf382ed6-60d3-43f5-8586-81f4f0f2fb28 &quot;swp9s1&quot; &quot;swp9s1&quot; [] {} {} 
+c32a9ff9-fd11-4399-815f-806322f26ff5 &quot;swp9s2&quot; &quot;swp9s2&quot; [] {} {} 
+9a7e42c4-228f-4b55-b972-7c3b8352c27d &quot;swp9s3&quot; &quot;swp9s3&quot; [] {} {}
+Physical_Switch table
+_uuid description management_ips name ports switch_fault_status tunnel_ips tunnels 
+------------------------------------ ----------- --------------- ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------- -------------- --------------------------------------
+6d459554-0c75-4170-bb3d-117eb4ce1f4d &quot;sw12&quot; [&quot;10.50.20.22&quot;] &quot;sw12&quot; [109a9911-d6c7-4142-b6c9-7c985506abb4, 124d1e01-a187-4427-819f-21de66e76f13, 2a2d04fa-7190-41fe-8cee-318fcbafb2ea, 3001c904-b152-4dc4-9d8e-718f24ffa439, 3943fb6a-0b49-4806-a014-2bcd4d469537, 4223559a-da1c-4c34-b8bf-bff7ced376ad, 439afb62-067e-4bbe-a0d9-ee33a23d2a9c, 47cc66fb-ef8a-4a9b-a497-1844b89f7d32, 54f6c9df-01a1-4d96-9dcf-3035a33ffb3e, 55b49814-b5c5-405e-8e9f-898f3df4f872, 5b15372b-89f0-4e14-a50b-b6c6f937d33d, 5be3a052-be0f-4258-94cb-5e8be9afb896, 631b19bd-3022-4353-bb2d-f498b0c1cb17, 652c6cd1-0823-4585-bb78-658e6ca2abfc, 684f99d5-426c-45c8-b964-211489f45599, 69585fff-4360-4177-901d-8360ade5391b, 6bbccda8-d7e5-4b19-b978-4ec7f5b868e0, 7096abaf-eebf-4ee3-b0cc-276224bc3e71, 7cb681f4-2206-4c70-85b7-23b60963cd21, 93b85c31-be38-4384-8b7a-9696764f9ba9, 9a7e42c4-228f-4b55-b972-7c3b8352c27d, a44c5402-6218-4f09-bf1e-518f41a5546e, a6f8a88a-3877-4f81-b9b4-d75394a09d2c, a9294152-2b32-4058-8796-23520ffb7379, b26ce4dd-b771-4d7b-8647-41fa97aa40e3, b2b2cd14-662d-45a5-87c1-277acbccdffd, bcfb2920-6676-494c-9dcb-b474123b7e59, bf38137d-3a14-454e-8df0-9c56e4b4e640, bf69fcbb-36b3-4dbc-a90d-fc7412e57076, c32a9ff9-fd11-4399-815f-806322f26ff5, c35f55f5-8ec6-4fed-bef4-49801cd0934c, c5a88dd6-d931-4b2c-9baa-a0abfb9d41f5, c6876886-8386-4e34-a307-931909fca58f, c85ed6cd-a7d4-4016-b3e9-34df592072eb, cf382ed6-60d3-43f5-8586-81f4f0f2fb28, d9db91a6-1c10-4154-9269-84877faa79b4, e00741f1-ba34-47c5-ae23-9269c5d1a871, e0ee993a-8383-4701-a766-d425654dbb7f] [] [&quot;10.111.1.2&quot;] [062eaf89-9bd5-4132-8b6b-09db254325af]
+Tunnel table
+_uuid bfd_config_local bfd_config_remote bfd_params bfd_status local remote 
+------------------------------------ ----------------------------------------------------------- ----------------- ---------- ---------- ------------------------------------ ------------------------------------
+062eaf89-9bd5-4132-8b6b-09db254325af {bfd_dst_ip=&quot;169.254.1.0&quot;, bfd_dst_mac=&quot;00:23:20:00:00:01&quot;} {} {} {} 3f78dbb0-9695-42ef-a31f-aaaf525147f1 2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb
+Ucast_Macs_Local table
+MAC _uuid ipaddr locator logical_switch 
+------------------- ------------------------------------ ------ ------------------------------------ ------------------------------------
+&quot;64:ae:0c:32:f1:41&quot; 47a83a7c-bd2d-4c02-9814-8222229c592f &quot;&quot; 3f78dbb0-9695-42ef-a31f-aaaf525147f1 44d162dc-0372-4749-a802-5b153c7120ec
+Ucast_Macs_Remote table
+MAC _uuid ipaddr locator logical_switch 
+------------------- ------------------------------------ ------ ------------------------------------ ------------------------------------
+&quot;fa:16:3e:14:04:2e&quot; 65605488-9ee5-4c8e-93e5-7b1cc15cfcc7 &quot;&quot; 2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb 44d162dc-0372-4749-a802-5b153c7120ec
+   
+    
+</code></pre>
+
+<p></details></p>
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#getting-started">Getting Started</a>
+<ul>
+<li><a href="#caveats-and-errata">Caveats and Errata</a></li>
+<li><a href="#preparing-for-the-midonet-integration">Preparing for the MidoNet Integration</a>
+<ul>
+<li><a href="#enabling-the-openvswitch-vtep-package">Enabling the openvswitch-vtep Package</a></li>
+</ul></li>
+<li><a href="#bootstrapping-the-ovsdb-server-and-vtep">Bootstrapping the OVSDB Server and VTEP</a>
+<ul>
+<li><a href="#automating-with-the-bootstrap-script">Automating with the Bootstrap Script</a></li>
+<li><a href="#manually-bootstrapping">Manually Bootstrapping</a></li>
+</ul></li>
+<li><a href="#configuring-midonet-vtep-and-port-bindings">Configuring MidoNet VTEP and Port Bindings</a>
+<ul>
+<li><a href="#using-the-midonet-manager-gui">Using the MidoNet Manager GUI</a>
+<ul>
+<li><a href="#creating-a-tunnel-zone">Creating a Tunnel Zone</a></li>
+<li><a href="#adding-hosts-to-a-tunnel-zone">Adding Hosts to a Tunnel Zone</a></li>
+<li><a href="#creating-the-vtep">Creating the VTEP</a></li>
+<li><a href="#binding-ports-to-the-vtep">Binding Ports to the VTEP</a></li>
+</ul></li>
+<li><a href="#using-the-midonet-cli">Using the MidoNet CLI</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#troubleshooting-midonet-and-cumulus-vteps">Troubleshooting MidoNet and Cumulus VTEPs</a>
+<ul>
+<li><a href="#troubleshooting-the-control-plane">Troubleshooting the Control Plane</a>
+<ul>
+<li><a href="#verifying-vtep-and-ovsdb-services">Verifying VTEP and OVSDB Services</a></li>
+<li><a href="#verifying-ovsdb-server-connections">Verifying OVSDB-server Connections</a></li>
+<li><a href="#verifying-the-vxlan-bridge-and-vtep-interfaces">Verifying the VXLAN Bridge and VTEP Interfaces</a></li>
+</ul></li>
+<li><a href="#datapath-troubleshooting">Datapath Troubleshooting</a>
+<ul>
+<li><a href="#verifying-ip-reachability">Verifying IP Reachability</a></li>
+<li><a href="#midonet-vxlan-encapsulation">MidoNet VXLAN Encapsulation</a></li>
+</ul></li>
+<li><a href="#inspecting-the-ovsdb">Inspecting the OVSDB</a>
+<ul>
+<li><a href="#using-vtep-ctl">Using VTEP-CTL</a>
+<ul>
+<li><a href="#listing-the-physical-switch">Listing the Physical Switch</a></li>
+<li><a href="#listing-the-logical-switch">Listing the Logical Switch</a></li>
+<li><a href="#listing-local-or-remote-mac-addresses">Listing Local or Remote MAC Addresses</a></li>
+</ul></li>
+<li><a href="#getting-open-vswitch-database-ovsdb-data">Getting Open Vswitch Database (OVSDB) Data</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

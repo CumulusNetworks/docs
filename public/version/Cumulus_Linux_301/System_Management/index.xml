@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System Management on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_301/System_Management/</link>
+    <description>Recent content in System Management on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_301/System_Management/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Setting Date and Time</title>
+      <link>http://example.org/version/Cumulus_Linux_301/System_Management/Cumulus_Linux_301/System_Management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/System_Management/Cumulus_Linux_301/System_Management/</guid>
+      <description>Setting the time zone, date and time requires root privileges; use sudo.
+Commands  date
+ dpkg-reconfigure tzdata
+ hwclock
+ ntpd (daemon)
+ ntpq
+  Setting the Time Zone To see the current time zone, list the contents of /etc/timezone:
+cumulus@switch:~$ cat /etc/timezone US/Eastern  Edit the file to add your desired time zone. A list of valid time zones can be found at the following link.</description>
+    </item>
+    
+    <item>
+      <title>Netfilter - ACLs</title>
+      <link>http://example.org/version/Cumulus_Linux_301/System_Management/Cumulus_Linux_301/System_Management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/System_Management/Cumulus_Linux_301/System_Management/</guid>
+      <description>Netfilter is the packet filtering framework in Cumulus Linux as well as most other Linux distributions. iptables, ip6tables and ebtables are userspace tools in Linux to administer filtering rules for IPv4 packets, IPv6 packets and Ethernet frames (layer 2 using MAC addresses) respectively. cl-acltool is the userspace tool to administer filtering rules on Cumulus Linux, and is the only tool for configuring ACLs in Cumulus Linux.
+cl-acltool operates on a series of configuration files, and uses iptables, ip6tables and ebtables to install rules into the kernel.</description>
+    </item>
+    
+    <item>
+      <title>Managing Application Daemons</title>
+      <link>http://example.org/version/Cumulus_Linux_301/System_Management/Cumulus_Linux_301/System_Management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/System_Management/Cumulus_Linux_301/System_Management/</guid>
+      <description>You manage application daemons (services) in Cumulus Linux in the following ways:
+ Identifying active listener ports
+ Identifying daemons currently active or stopped
+ Identifying boot time state of a specific daemon
+ Disabling or enabling a specific daemon
+  Using systemd and the systemctl Command In general, you manage services using systemd via the systemctl command. You use it with any service on the switch to start/stop/restart/reload/enable/disable/reenable or get the status of the service.</description>
+    </item>
+    
+    <item>
+      <title>Configuring switchd</title>
+      <link>http://example.org/version/Cumulus_Linux_301/System_Management/Cumulus_Linux_301/System_Management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/System_Management/Cumulus_Linux_301/System_Management/</guid>
+      <description>switchd is the daemon at the heart of Cumulus Linux. It communicates between the switch and Cumulus Linux, and all the applications running on Cumulus Linux.
+The switchd configuration is stored in /etc/cumulus/switchd.conf.
+Versions of Cumulus Linux prior to 2.1 stored the switchd configuration at /etc/default/switchd.
+ The switchd File System switchd also exports a file system, mounted on /cumulus/switchd, that presents all the switchd configuration options as a series of files arranged in a tree structure.</description>
+    </item>
+    
+    <item>
+      <title>Power over Ethernet - PoE</title>
+      <link>http://example.org/version/Cumulus_Linux_301/System_Management/Cumulus_Linux_301/System_Management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/System_Management/Cumulus_Linux_301/System_Management/</guid>
+      <description>Cumulus Linux supports Power over Ethernet (PoE), so certain Cumulus Linux switches can supply power from Ethernet switch ports to enabled devices over the Ethernet cables that connect them.
+The currently supported platform includes:
+ Accton AS4610-54P, which supports PoE and PoE+ (an early access feature) and configuration over Ethernet layer 2 LLDP for power negotiation  How It Works When a powered device is connected to the switch via an Ethernet cable:</description>
+    </item>
+    
+    <item>
+      <title>Configuring a Global Proxy</title>
+      <link>http://example.org/version/Cumulus_Linux_301/System_Management/Cumulus_Linux_301/System_Management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/System_Management/Cumulus_Linux_301/System_Management/</guid>
+      <description>Global HTTP and HTTPS proxies are configured in the /etc/profile.d/ directory of Cumulus Linux.
+ In a terminal, create a new file in the /etc/profile.d/ directory. In the code example below, the file is called proxy, and is created using the text editor vi.
+cumulus@switch:~$ sudo vi /etc/profile.d/proxy  Add a line to the file to configure either an HTTP or an HTTPS proxy, and save the file:
+ HTTP proxy:</description>
+    </item>
+    
+  </channel>
+</rss>

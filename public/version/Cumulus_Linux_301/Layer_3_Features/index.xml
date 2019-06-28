@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Layer 3 Features on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/</link>
+    <description>Recent content in Layer 3 Features on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_301/Layer_3_Features/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Routing</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</guid>
+      <description>This chapter discusses routing on switches running Cumulus Linux.
+Commands  ip route  Static Routing via ip route The ip route command allows manipulating the kernel routing table directly from the Linux shell. See man ip(8) for details. quagga monitors the kernel routing table changes and updates its own routing table accordingly.
+To display the routing table:
+cumulus@switch:~$ ip route show default via 10.0.1.2 dev eth0 10.0.1.0/24 dev eth0 proto kernel scope link src 10.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Routing Protocols</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</guid>
+      <description>This chapter discusses the various routing protocols, and how to configure them.
+Defining Routing Protocols A routing protocol dynamically computes reachability between various end points. This enables communication to work around link and node failures, and additions and withdrawals of various addresses.
+IP routing protocols are typically distributed; that is, an instance of the routing protocol runs on each of the routers in a network.
+Cumulus Linux does not support running multiple instances of the same protocol on a router.</description>
+    </item>
+    
+    <item>
+      <title>Network Topology</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</guid>
+      <description>In computer networks, topology refers to the structure of interconnecting various nodes. Some commonly used topologies in networks are star, hub and spoke, leaf and spine, and broadcast.
+Clos Topologies In the vast majority of modern data centers, Clos or fat tree topology is very popular. This topology is shown in the figure below. It is also commonly referred to as leaf-spine topology. We shall use this topology throughout the routing protocol guide.</description>
+    </item>
+    
+    <item>
+      <title>Quagga Overview</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</guid>
+      <description>Cumulus Linux uses quagga, an open source routing software suite, to provide the routing protocols for dynamic routing. Cumulus Linux supports the l atest Quagga version, 0.99.23.1+cl3.0  . Quagga is a fork of the GNU Zebra project.
+Quagga provides many routing protocols, of which Cumulus Linux supports the following:
+ Open Shortest Path First (v2 and v3)
+ Border Gateway Protocol
+  Architecture {{&amp;lt; imgOld 0 &amp;gt;}}</description>
+    </item>
+    
+    <item>
+      <title>Open Shortest Path First - OSPF - Protocol</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</guid>
+      <description>OSPFv2 is a link-state routing protocol for IPv4. OSPF maintains the view of the network topology conceptually as a directed graph. Each router represents a vertex in the graph. Each link between neighboring routers represents a unidirectional edge. Each link has an associated weight (called cost) that is either automatically derived from its bandwidth or administratively assigned. Using the weighted topology graph, each router computes a shortest path tree (SPT) with itself as the root, and applies the results to build its forwarding table.</description>
+    </item>
+    
+    <item>
+      <title>Open Shortest Path First v3 - OSPFv3 - Protocol</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</guid>
+      <description>OSPFv3 is a revised version of OSPFv2 to support the IPv6 address family. Refer to Open Shortest Path First (OSPF) Protocol for a discussion on the basic concepts, which remain the same between the two versions.
+OSPFv3 has changed the formatting in some of the packets and LSAs either as a necessity to support IPv6 or to improve the protocol behavior based on OSPFv2 experience. Most notably, v3 defines a new LSA, called intra-area prefix LSA to separate out the advertisement of stub networks attached to a router from the router LSA.</description>
+    </item>
+    
+    <item>
+      <title>Border Gateway Protocol - BGP</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</guid>
+      <description>BGP is the routing protocol that runs the Internet. It is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. Specifically:
+ It does not require routing state to be periodically refreshed unlike OSPF.
+ It is less chatty than its link-state siblings. For example, a link or node transition can result in a bestpath change, causing BGP to send updates.</description>
+    </item>
+    
+    <item>
+      <title>Bidirectional Forwarding Detection - BFD</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</guid>
+      <description>Bidirectional Forwarding Detection (BFD) provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection.
+Cumulus Linux does not support demand mode in BFD.
+ Using BFD Multihop Routed Paths BFD multihop sessions are built over arbitrary paths between two systems, which results in some complexity that does not exist for single hop sessions.</description>
+    </item>
+    
+    <item>
+      <title>Equal Cost Multipath Load Sharing - Hardware ECMP</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</guid>
+      <description>Cumulus Linux supports hardware-based equal cost multipath (ECMP) load sharing. ECMP is enabled by default in Cumulus Linux. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
+Understanding Equal Cost Routing ECMP operates only on equal cost routes in the Linux routing table.
+In this example, the 10.1.1.0/24 route has two possible next hops that have been installed in the routing table:</description>
+    </item>
+    
+    <item>
+      <title>Redistribute Neighbor</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</guid>
+      <description>Redistribute neighbor provides a mechanism for IP subnets to span racks without forcing the end hosts to run a routing protocol.
+The fundamental premise behind redistribute neighbor is to announce individual host /32 routes in the routed fabric. Other hosts on the fabric can then use this new path to access the hosts in the fabric. If multiple equal-cost paths (ECMP) are available, traffic can load balance across the available paths natively.</description>
+    </item>
+    
+    <item>
+      <title>Virtual Routing and Forwarding - VRF</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</guid>
+      <description>Cumulus Linux provides virtual routing and forwarding (VRF) to allow for the presence of multiple independent routing tables working simultaneously on the same router or switch. This permits multiple network paths without the need for multiple switches. Think of this feature as VLAN for layer 3, but unlike VLANs, there is no field in the IP header carrying it. Other implementations call this feature VRF-Lite.
+The primary use cases for VRF in a data center are similar to VLANs at layer 2: using common physical infrastructure to carry multiple isolated traffic streams for multi-tenant environments, where these streams are allowed to cross over only at configured boundary points, typically firewalls or IDS.</description>
+    </item>
+    
+    <item>
+      <title>Management VRF</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Cumulus_Linux_301/Layer_3_Features/</guid>
+      <description>Management VRF — a subset of VRF (virtual routing tables and forwarding) — provides a separation between the out-of-band management network and the in-band data plane network. For all VRFs, the main routing table is the default table for all of the data plane switch ports. With management VRF, a second table, mgmt, is used for routing through eth0.
+Cumulus Linux only supports eth0 as the management interface. VLAN subinterfaces, bonds, bridges and the front panel switch ports are not supported as management interfaces.</description>
+    </item>
+    
+  </channel>
+</rss>

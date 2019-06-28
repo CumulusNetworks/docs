@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monitoring and Troubleshooting on Cumulus Networks Documentation</title>
+    <link>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/</link>
+    <description>Recent content in Monitoring and Troubleshooting on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Single User Mode - Boot Recovery</title>
+      <link>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/</guid>
+      <description>Use single user mode to assist in troubleshooting system boot issues or for password recovery. To enter single user mode, follow the steps below.
+ Boot the switch as soon as you see the GRUB menu.
+ GNU GRUB version 2.02~beta2-22+deb8u1 +----------------------------------------------------------------------------+ |*Cumulus Linux GNU/Linux | | Advanced options for Cumulus Linux GNU/Linux | | ONIE | | | +----------------------------------------------------------------------------+  Use the ^ and v arrow keys to select Advanced options for Cumulus Linux GNU/Linux.</description>
+    </item>
+    
+    <item>
+      <title>Resource Diagnostics Using cl-resource-query</title>
+      <link>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/</guid>
+      <description>You can use the cl-resource-query command to retrieve information about host entries, MAC entries, layer 2 and layer 3 routes, and ECMP routes that are in use. Because Cumulus Linux synchronizes routes between the kernel and the switching silicon, if the required resource pools in hardware fill up, new kernel routes can cause existing routes to move from being fully allocated to being partially allocated. To avoid this, monitor the routes in the hardware to keep them below the ASIC limits.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring Virtual Device Counters</title>
+      <link>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/</guid>
+      <description>Cumulus Linux gathers statistics for VXLANs and VLANs using virtual device counters. These counters are supported on Tomahawk, Trident II+ and Trident II-based platforms only; see the Cumulus Networks HCL for a list of supported platforms.
+You can retrieve the data from these counters using tools like ip -s link show, ifconfig, /proc/net/dev, or netstat -i.
+Sample VXLAN Statistics VXLAN statistics are available as follows:
+ Aggregate statistics are available per VNI; this includes access and network statistics.</description>
+    </item>
+    
+    <item>
+      <title>ASIC Monitoring</title>
+      <link>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/ASIC_Monitoring/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/ASIC_Monitoring/</guid>
+      <description>Cumulus Linux provides an ASIC monitoring tool that collects and distributes data about the state of the ASIC. The monitoring tool polls for data at specific intervals and takes certain actions so that you can quickly identify and respond to problems, such as:
+ Microbursts that result in longer packet latency
+ Packet buffer congestion that might lead to packet drops
+ Network problems with a particular switch, port, or traffic class</description>
+    </item>
+    
+    <item>
+      <title>Monitoring Best Practices</title>
+      <link>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/</guid>
+      <description>The following monitoring processes are considered best practices for reviewing and troubleshooting potential issues with Cumulus Linux environments. In addition, several of the more common issues have been listed, with potential solutions included.
+Overview This document describes:
+ Metrics that you can poll from Cumulus Linux and use in trend analysis
+ Critical log messages that you can monitor for triggered alerts
+  Trend Analysis Using Metrics A metric is a quantifiable measure that is used to track and assess the status of a specific infrastructure component.</description>
+    </item>
+    
+    <item>
+      <title>switchd Log Message Reference</title>
+      <link>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/switchd_Log_Message_Reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/switchd_Log_Message_Reference/</guid>
+      <description>The following table lists the log messages generated by switchd, organized by severity, then message text. These messages appear in /var/log/switchd.log.
+    Severity
+ Message Text
+ Explanation
+ Recommended Action
+    CRITICAL
+ _port_group_config_values_get: hal_list_get failed on [str]
+ List create failed.
+ File a ticket with Cumulus Support.
+  CRITICAL
+ _range_limits_get: start linux interface name buffer is NULL
+ Invalid parameter.</description>
+    </item>
+    
+    <item>
+      <title>FRRouting Log Message Reference</title>
+      <link>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/FRRouting_Log_Message_Reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Monitoring_and_Troubleshooting/FRRouting_Log_Message_Reference/</guid>
+      <description>The following table lists the HIGH severity ERROR log messages generated by FRRouting. These messages appear in /var/log/frr/frr.log.
+   Category Severity Message # Message Text Explanation Recommended Action     Babel HIGH 16777217 BABEL Memory Errors Babel has failed to allocate memory. The system is about to run out of memory. Find the process that is causing memory shortages and remediate that process. Restart FRR.   Babel HIGH 16777218 BABEL Packet Error Babel has detected a packet encode/decode problem.</description>
+    </item>
+    
+  </channel>
+</rss>

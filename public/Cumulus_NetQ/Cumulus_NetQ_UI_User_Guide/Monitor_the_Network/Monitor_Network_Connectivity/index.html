@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Monitor Network Connectivity | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/" >
+    Cumulus NetQ 2.1
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 1.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 2.0.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/" >
+    Upgrade from NetQ 2.1.0 to NetQ 2.1.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_BGP_Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_EVPN_Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_LLDP_Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Validate_Network_Protocol_and_Service_Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity/"  class="active" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Monitor Network Connectivity</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Monitor Network Connectivity</h1>
+
+<p>It is helpful to verify that communications are freely flowing between
+the various devices in your network. You can verify the connectivity
+between two devices currently or for a time in the past. You can also
+view connectivity in both an adhoc fashion and specifically define
+connectivity checks to occur on a scheduled basis. There are three card
+workflows which enable you to view connectivity, the Trace Request,
+On-demand Trace Results, and Scheduled Trace Results.</p>
+
+<h2 id="create-a-trace-request">Create a Trace Request</h2>
+
+<p>Two types of connectivity checks can be run–an immediate trace and a
+scheduled trace. The Trace Request card workflow is used to configure
+and run both of these trace types.</p>
+
+<h3 id="trace-request-card-workflow-summary">Trace Request Card Workflow Summary</h3>
+
+<p>The small Trace Request card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456855/image2019-4-1_15_39_0.png" alt = "/images/download/thumbnails/10456855/image2019-4-1_15_39_0.png"
+
+
+width = 200
+
+ />
+
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/V2kF-jD-Ef7l_bxfnW_YSHBrLRQsEGdf4fh8F9sno-X4ugLdYx_n6gOBXL3LoMqhMbUzjJfllpKe7SE09JDWLGY6aVIacC95f0A5eJKt2v7a25jeCiqpI903MS4jVjNvq8sCBfOo" alt = "/images/lh3.googleusercontent.com/V2kF-jD-Ef7l_bxfnW_YSHBrLRQsEGdf4fh8F9sno-X4ugLdYx_n6gOBXL3LoMqhMbUzjJfllpKe7SE09JDWLGY6aVIacC95f0A5eJKt2v7a25jeCiqpI903MS4jVjNvq8sCBfOo"
+
+
+width = 18
+
+ />
+</td>
+<td>Indicates a trace request</td>
+</tr>
+
+<tr>
+<td>Select Trace list</td>
+<td>Select a scheduled trace request from the list</td>
+</tr>
+
+<tr>
+<td>Go</td>
+<td>Click to start the trace now</td>
+</tr>
+</tbody>
+</table>
+
+<p>The medium Trace Request card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-5_16_42_35.png" alt = "/images/download/attachments/10456855/image2019-4-5_16_42_35.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/V2kF-jD-Ef7l_bxfnW_YSHBrLRQsEGdf4fh8F9sno-X4ugLdYx_n6gOBXL3LoMqhMbUzjJfllpKe7SE09JDWLGY6aVIacC95f0A5eJKt2v7a25jeCiqpI903MS4jVjNvq8sCBfOo" alt = "/images/lh3.googleusercontent.com/V2kF-jD-Ef7l_bxfnW_YSHBrLRQsEGdf4fh8F9sno-X4ugLdYx_n6gOBXL3LoMqhMbUzjJfllpKe7SE09JDWLGY6aVIacC95f0A5eJKt2v7a25jeCiqpI903MS4jVjNvq8sCBfOo"
+
+
+width = 18
+
+ />
+</td>
+<td>Indicates a trace request</td>
+</tr>
+
+<tr>
+<td>Title</td>
+<td>New Trace Request</td>
+</tr>
+
+<tr>
+<td>New Trace Request</td>
+<td>Create a new request</td>
+</tr>
+
+<tr>
+<td>Source</td>
+<td>(Required) Starting point for the trace using a device. Value can be a hostname or IP address.</td>
+</tr>
+
+<tr>
+<td>Destination</td>
+<td>(Required) Ending point for the trace using a device. Value must be an IP address.</td>
+</tr>
+
+<tr>
+<td>Run Trace</td>
+<td>Start the trace now</td>
+</tr>
+</tbody>
+</table>
+
+<p>The large Trace Request card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-5_16_41_51.png" alt = "/images/download/attachments/10456855/image2019-4-5_16_41_51.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/V2kF-jD-Ef7l_bxfnW_YSHBrLRQsEGdf4fh8F9sno-X4ugLdYx_n6gOBXL3LoMqhMbUzjJfllpKe7SE09JDWLGY6aVIacC95f0A5eJKt2v7a25jeCiqpI903MS4jVjNvq8sCBfOo" alt = "/images/lh3.googleusercontent.com/V2kF-jD-Ef7l_bxfnW_YSHBrLRQsEGdf4fh8F9sno-X4ugLdYx_n6gOBXL3LoMqhMbUzjJfllpKe7SE09JDWLGY6aVIacC95f0A5eJKt2v7a25jeCiqpI903MS4jVjNvq8sCBfOo"
+
+
+width = 18
+
+ />
+</td>
+<td>Indicates a trace request</td>
+</tr>
+
+<tr>
+<td>Title</td>
+<td>New Trace Request</td>
+</tr>
+
+<tr>
+<td>Trace selection</td>
+<td>The only option with this release is <em>New Trace Request</em></td>
+</tr>
+
+<tr>
+<td>Source</td>
+<td>(Required) Starting point for the trace using a device. Value can be a hostname or IP address</td>
+</tr>
+
+<tr>
+<td>Destination</td>
+<td>(Required) Ending point for the trace using a device. For layer 2 traces, value must be the MAC address. For layer 3 traces, value must be an IP address.</td>
+</tr>
+
+<tr>
+<td>VRF</td>
+<td>Optional for layer 3 traces. Virtual Route Forwarding interface to be used as part of the trace path.</td>
+</tr>
+
+<tr>
+<td>VLAN ID</td>
+<td>Optional for layer 2 traces. Virtual LAN to be used as part of the trace path.</td>
+</tr>
+
+<tr>
+<td>Schedule</td>
+<td>Sets the frequency with which to run a new trace (<strong>Run every</strong>) and when to start the trace for the first time (<strong>Starting</strong>).</td>
+</tr>
+
+<tr>
+<td>Run Trace</td>
+<td>Start the trace now</td>
+</tr>
+
+<tr>
+<td>Update</td>
+<td><strong>Update</strong> is available when a scheduled trace request is selected from the dropdown list and you make a change to its configuration. Clicking <strong>Update</strong> saves the changes to the existing scheduled trace.</td>
+</tr>
+
+<tr>
+<td>Save As New</td>
+<td><strong>Save As New</strong> is available when you enter a source, destination, and schedule for a new trace. Clicking <strong>Save As New</strong> saves this newly-defined scheduled trace without changing the original trace it was based on.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The full screen Trace Request card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_14_12_50.png" alt = "/images/download/attachments/10456855/image2019-4-8_14_12_50.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Title</p></td>
+<td><p>Trace Request</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent0.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T" alt = "/images/lh4.googleusercontent0.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Closes full screen card and returns to workbench</p></td>
+</tr>
+<tr class="odd">
+<td><p>Time period</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking</p>
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/V88gxOaxuUjBWw5tni0vwGrNs2JBQsz0SwWFpQCdJTOSYfuUGQnpkWz8-cHDSF-jZsE4TeZfpRhaeIhOU7UIZZE2AwtP870d78GBCwuD0Kzqb7TbAiDnX5hgQh5DC68zoKgoLd5U" alt = "/images/lh5.googleusercontent.com/V88gxOaxuUjBWw5tni0vwGrNs2JBQsz0SwWFpQCdJTOSYfuUGQnpkWz8-cHDSF-jZsE4TeZfpRhaeIhOU7UIZZE2AwtP870d78GBCwuD0Kzqb7TbAiDnX5hgQh5DC68zoKgoLd5U"
+
+
+width = 16
+
+ />
+</td>
+</tr>
+<tr class="even">
+<td><p>Results</p></td>
+<td><p>Number of results found for the selected tab</p></td>
+</tr>
+<tr class="odd">
+<td><p>Schedule Preview tab</p></td>
+<td><p>Displays all scheduled trace requests for the given user. By default, the listing is sorted by <strong>Start Time</strong>, with the most recently started traces listed at the top. The tab provides the following additional data about each event:</p>
+<ul>
+<li><p><strong>Active</strong>: Indicates if trace is actively running (true), or stopped from running (false)</p></li>
+<li><p><strong>Trace Name</strong>: User-defined name for a trace</p></li>
+<li><p><strong>Trace Params</strong>: Indicates source and destination, optional VLAN or VRF specified, and whether to alert on failure</p></li>
+<li><p><strong>Frequency</strong>: How often the trace is scheduled to run</p></li>
+<li><p><strong>ID</strong>: Internal system identifier for the trace job</p></li>
+<li><p><strong>Action</strong>: Indicates latest action taken on the trace job. Values include Add, Deleted, Update.</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>Export</p></td>
+<td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
+</tr>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w" alt = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="create-a-layer-2-on-demand-trace-request">Create a Layer 2 On-demand Trace Request</h3>
+
+<p>It is helpful to verify the connectivity between two devices when you
+suspect an issue is preventing proper communication between them.</p>
+
+<p>To create the trace request:</p>
+
+<ol>
+<li><p>Open the medium Trace Request card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-5_16_42_35.png" alt = "/images/download/attachments/10456855/image2019-4-5_16_42_35.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>In the <strong>Source</strong> field, enter the hostname or IP address of the
+device where you want to start the trace.</p></li>
+
+<li><p>In the <strong>Destination</strong> field, enter the MAC address for where you
+want to end the trace.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_14_37_57.png" alt = "/images/download/attachments/10456855/image2019-4-8_14_37_57.png"
+
+height = 250
+
+
+ />
+
+
+<p>In this example, we are starting our trace at <em>6.0.2.11</em> and ending
+it at <em>6.0.2.8</em>.</p>
+
+
+<div class="notices tip" > <pre><code>If you mistype an address, you must double-click it, or backspace
+over the error, and retype the address. You cannot select the
+address by dragging over it as this action attempts to move the card
+to another location.
+</code></pre>
+ </div>
+</li>
+
+<li><p>Click <strong>Run Trace</strong>. A corresponding Trace Results card is opened on
+your workbench. Refer to <a href="/old/Cumulus_NetQ/#src-10456855_MonitorNetworkConnectivity-ODTL2">View Layer 2 Trace
+Results</a>
+for details.</p></li>
+</ol>
+
+<h3 id="create-a-layer-3-on-demand-trace-request">Create a Layer 3 On-demand Trace Request</h3>
+
+<p>It is helpful to verify the connectivity between two devices when you
+suspect an issue is preventing proper communication between them.</p>
+
+<p>To create the trace request:</p>
+
+<ol>
+<li><p>Open the medium Trace Request card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-5_16_42_35.png" alt = "/images/download/attachments/10456855/image2019-4-5_16_42_35.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>In the <strong>Source</strong> field, enter the hostname or IP address of the
+device where you want to start the trace.</p></li>
+
+<li><p>In the <strong>Destination</strong> field, enter the IP address of the device
+where you want to end the trace.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_11_14_38.png" alt = "/images/download/attachments/10456855/image2019-4-8_11_14_38.png"
+
+height = 250
+
+
+ />
+
+
+<p>In this example, we are starting our trace at <em>27.0.0.22</em> and ending
+it at <em>36.0.0.24</em>.</p>
+
+
+<div class="notices tip" > <pre><code>If you mistype an address, you must double-click it, or backspace
+over the error, and retype the address. You cannot select the
+address by dragging over it as this action attempts to move the card
+to another location.
+</code></pre>
+ </div>
+</li>
+
+<li><p>Click <strong>Run Trace</strong>. A corresponding Trace Results card is opened on
+your workbench. Refer to <a href="/old/Cumulus_NetQ/#src-10456855_MonitorNetworkConnectivity-ODTL3">View Layer 3 Trace
+Results</a>
+for details.</p></li>
+</ol>
+
+<h3 id="create-a-layer-2-trace-through-a-given-vlan">Create a Layer 2 Trace Through a Given VLAN</h3>
+
+<p>If you want to guide a trace through a particular VLAN, you can do so
+using the large New Trace Request card.</p>
+
+<p>To create the trace request:</p>
+
+<ol>
+<li><p>Open the large Trace Request card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-5_16_41_51.png" alt = "/images/download/attachments/10456855/image2019-4-5_16_41_51.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>In the <strong>Source</strong> field, enter the hostname or IP address of the
+device where you want to start the trace.</p></li>
+
+<li><p>In the <strong>Destination</strong> field, enter the MAC address for where you
+want to end the trace.</p></li>
+
+<li><p>In the <strong>VLAN ID</strong> field, enter the identifier for the VLAN you want
+to use.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_14_42_51.png" alt = "/images/download/attachments/10456855/image2019-4-8_14_42_51.png"
+
+height = 250
+
+
+ />
+
+
+<p>In this example, we are starting our trace at <em>6.0.2.11</em> and ending
+it at <em>6.0.2.8</em> using VLAN <em>1008.</em></p></li>
+
+<li><p>Click <strong>Run Now</strong>. A corresponding Trace Results card is opened on
+your workbench. Refer to <a href="/old/Cumulus_NetQ/#src-10456855_MonitorNetworkConnectivity-ODTL2">View Layer 2 Trace
+Results</a>
+for details.</p></li>
+</ol>
+
+<h3 id="create-a-layer-3-trace-through-a-given-vrf">Create a Layer 3 Trace Through a Given VRF</h3>
+
+<p>If you want to guide a trace through a particular VRF interface, you can
+do so using the large New Trace Request card.</p>
+
+<p>To create the trace request:</p>
+
+<ol>
+<li><p>Open the large Trace Request card.</p></li>
+
+<li><p>In the <strong>Source</strong> field, enter the hostname or IP address of the
+device where you want to start the trace.</p></li>
+
+<li><p>In the <strong>Destination</strong> field, enter the IP address of the device
+where you want to end the trace.</p></li>
+
+<li><p>In the <strong>VRF</strong> field, enter the identifier for the VRF interface you
+want to use.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-5_17_55_19.png" alt = "/images/download/attachments/10456855/image2019-4-5_17_55_19.png"
+
+height = 250
+
+
+ />
+
+
+<p>In this example, we are starting our trace at <em>27.0.0.22</em> and ending
+it at <em>36.0.0.24</em> using VRF <em>default.</em></p></li>
+
+<li><p>Click <strong>Run Trace</strong>. A corresponding Trace Results card is opened on
+your workbench. Refer to <a href="/old/Cumulus_NetQ/#src-10456855_MonitorNetworkConnectivity-ODTL3">View Layer 3 Trace
+Results</a>
+for details.</p></li>
+</ol>
+
+<h3 id="create-a-trace-to-run-on-a-regular-basis">Create a Trace to Run on a Regular Basis</h3>
+
+<p>There may be paths through your network that you consider critical to
+your everyday or particularly important operations. In that case, it
+might be useful to create one or more traces to periodically confirm
+that at least one path is available between the relevant two devices.
+Scheduling a trace request can be performed from large Trace Request
+card.</p>
+
+<p>To schedule a trace from the large-sized card:</p>
+
+<ol>
+<li><p>Open the large Trace Request card.</p></li>
+
+<li><p>In the <strong>Source</strong> field, enter the hostname or IP address of the
+device where you want to start the trace.</p></li>
+
+<li><p>In the <strong>Destination</strong> field, enter the MAC address (layer 2) or IP
+address (layer 3) of the device where you want to end the trace.</p></li>
+
+<li><p>Optionally, enter a VLAN ID (layer 2) or VRF interface (layer 3).</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_14_48_54.png" alt = "/images/download/attachments/10456855/image2019-4-8_14_48_54.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Click <strong>Timeframe</strong> under <strong>Schedule</strong> to specify how often you want
+to run the trace.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-5_18_3_57.png" alt = "/images/download/attachments/10456855/image2019-4-5_18_3_57.png"
+
+
+width = 350
+
+ />
+</li>
+
+<li><p>Click <strong>Date/Time</strong> to specify the day you want the trace to run for
+the first time.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456855/image2019-4-5_18_8_57.png" alt = "/images/download/thumbnails/10456855/image2019-4-5_18_8_57.png"
+
+
+width = 300
+
+ />
+</li>
+
+<li><p>Click <strong>Next</strong>.</p></li>
+
+<li><p>Click the time you want the trace to run for the first time.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-5_18_14_46.png" alt = "/images/download/attachments/10456855/image2019-4-5_18_14_46.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Click <strong>OK</strong>.</p></li>
+
+<li><p>Click <strong>Save As New</strong>.</p></li>
+
+<li><p>Provide a name for the trace. *<strong>Note</strong>: This name must be unique
+for a given user.*</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456855/image2019-4-8_14_55_59.png" alt = "/images/download/thumbnails/10456855/image2019-4-8_14_55_59.png"
+
+
+width = 275
+
+ />
+</li>
+
+<li><p>Click <strong>Save</strong>. You can now run this trace on demand or wait for it
+to run on its defined schedule.</p></li>
+</ol>
+
+<h3 id="run-a-scheduled-trace-on-demand">Run a Scheduled Trace on Demand</h3>
+
+<p>You may find that, although you have a schedule for a particular trace,
+you want to have visibility into the connectivity data now. You can run
+a scheduled trace on demand from the small, medium and large Trace
+Request cards.</p>
+
+<p>To run a scheduled trace now:</p>
+
+<ol>
+<li><p>Open the small or medium Trace Request card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456855/image2019-4-8_15_2_22.png" alt = "/images/download/thumbnails/10456855/image2019-4-8_15_2_22.png"
+
+
+width = 200
+
+ />
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_15_3_51.png" alt = "/images/download/attachments/10456855/image2019-4-8_15_3_51.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Select the scheduled trace from the <strong>Select Trace</strong> or <strong>New Trace
+Request</strong> list.</p></li>
+
+<li><p>Click <strong>Go</strong> or <strong>Run Now</strong>. A corresponding Trace Results card is
+opened on your workbench.</p></li>
+</ol>
+
+<h2 id="view-on-demand-trace-results">View On-demand Trace Results</h2>
+
+<p>Once you have started an on-demand trace, the results are displayed in
+the medium Trace Results card by default. You may view the results in
+more or less detail by switching to the large or small Trace Results
+card, respectively.</p>
+
+<p>On-demand Trace Results Card Workflow Summary</p>
+
+<p>The small On-demand Trace Results card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456855/image2019-4-8_15_37_56.png" alt = "/images/download/thumbnails/10456855/image2019-4-8_15_37_56.png"
+
+
+width = 200
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/srJfFcNYmSQs-UGcE2fA5WaRyVMvGFz1EtQ9jDXk1Rk7ZbX3KhZuw2WmK9uqT3hqAwfa2ZbbEnaabXZSmXLmKni63Ma1b16diJPw7O3i_ilQdV1ybCL3gymT3bMH5xUG7HLKX_eM" alt = "/images/lh3.googleusercontent.com/srJfFcNYmSQs-UGcE2fA5WaRyVMvGFz1EtQ9jDXk1Rk7ZbX3KhZuw2WmK9uqT3hqAwfa2ZbbEnaabXZSmXLmKni63Ma1b16diJPw7O3i_ilQdV1ybCL3gymT3bMH5xUG7HLKX_eM"
+
+
+width = 18
+
+ />
+</td>
+<td><p>Indicates an on-demand trace result</p></td>
+</tr>
+<tr class="even">
+<td><p> </p></td>
+<td><p>Source and destination of the trace, identified by their address or hostname. Source is listed on top with arrow pointing to destination.</p></td>
+</tr>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh" alt = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh"
+
+
+width = 16
+
+ />
+
+,
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/jAkPOu0ODgsX_-VFbEao62gE4RMJRI6m4uacv1S6k4gUbPsinjy_tkcIp9Sz9-Xb_VCcPCuXd-p5t23NNJ92syDJd6YIBM2m8KK_yS769X4jJq1NuCwyR5pJdRyJdSAH9MnidHm2" alt = "/images/lh4.googleusercontent.com/jAkPOu0ODgsX_-VFbEao62gE4RMJRI6m4uacv1S6k4gUbPsinjy_tkcIp9Sz9-Xb_VCcPCuXd-p5t23NNJ92syDJd6YIBM2m8KK_yS769X4jJq1NuCwyR5pJdRyJdSAH9MnidHm2"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The medium On-demand Trace Results card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_15_16_14.png" alt = "/images/download/attachments/10456855/image2019-4-8_15_16_14.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/srJfFcNYmSQs-UGcE2fA5WaRyVMvGFz1EtQ9jDXk1Rk7ZbX3KhZuw2WmK9uqT3hqAwfa2ZbbEnaabXZSmXLmKni63Ma1b16diJPw7O3i_ilQdV1ybCL3gymT3bMH5xUG7HLKX_eM" alt = "/images/lh3.googleusercontent.com/srJfFcNYmSQs-UGcE2fA5WaRyVMvGFz1EtQ9jDXk1Rk7ZbX3KhZuw2WmK9uqT3hqAwfa2ZbbEnaabXZSmXLmKni63Ma1b16diJPw7O3i_ilQdV1ybCL3gymT3bMH5xUG7HLKX_eM"
+
+
+width = 18
+
+ />
+</td>
+<td><p>Indicates an on-demand trace result</p></td>
+</tr>
+<tr class="even">
+<td><p>Title</p></td>
+<td><p>On-demand Trace Result</p></td>
+</tr>
+<tr class="odd">
+<td><p> </p></td>
+<td><p>Source and destination of the trace, identified by their address or hostname. Source is listed on top with arrow pointing to destination.</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh" alt = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh"
+
+
+width = 16
+
+ />
+
+,
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/jAkPOu0ODgsX_-VFbEao62gE4RMJRI6m4uacv1S6k4gUbPsinjy_tkcIp9Sz9-Xb_VCcPCuXd-p5t23NNJ92syDJd6YIBM2m8KK_yS769X4jJq1NuCwyR5pJdRyJdSAH9MnidHm2" alt = "/images/lh4.googleusercontent.com/jAkPOu0ODgsX_-VFbEao62gE4RMJRI6m4uacv1S6k4gUbPsinjy_tkcIp9Sz9-Xb_VCcPCuXd-p5t23NNJ92syDJd6YIBM2m8KK_yS769X4jJq1NuCwyR5pJdRyJdSAH9MnidHm2"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Total Paths Found</p></td>
+<td><p>Number of paths found between the two devices</p></td>
+</tr>
+<tr class="even">
+<td><p>MTU Overall</p></td>
+<td><p>Average size of the maximum transmission unit for all paths</p></td>
+</tr>
+<tr class="odd">
+<td><p>Minimum Hops</p></td>
+<td><p>Smallest number of hops along a path between the devices</p></td>
+</tr>
+<tr class="even">
+<td><p>Maximum Hops</p></td>
+<td><p>Largest number of hops along a path between the devices</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The large On-demand Trace Results card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_15_50_24.png" alt = "/images/download/attachments/10456855/image2019-4-8_15_50_24.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/srJfFcNYmSQs-UGcE2fA5WaRyVMvGFz1EtQ9jDXk1Rk7ZbX3KhZuw2WmK9uqT3hqAwfa2ZbbEnaabXZSmXLmKni63Ma1b16diJPw7O3i_ilQdV1ybCL3gymT3bMH5xUG7HLKX_eM" alt = "/images/lh3.googleusercontent.com/srJfFcNYmSQs-UGcE2fA5WaRyVMvGFz1EtQ9jDXk1Rk7ZbX3KhZuw2WmK9uqT3hqAwfa2ZbbEnaabXZSmXLmKni63Ma1b16diJPw7O3i_ilQdV1ybCL3gymT3bMH5xUG7HLKX_eM"
+
+
+width = 18
+
+ />
+</td>
+<td><p>Indicates an on-demand trace result</p></td>
+</tr>
+<tr class="even">
+<td><p>Title</p></td>
+<td><p>On-demand Trace Result</p></td>
+</tr>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh" alt = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh"
+
+
+width = 16
+
+ />
+
+,
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/jAkPOu0ODgsX_-VFbEao62gE4RMJRI6m4uacv1S6k4gUbPsinjy_tkcIp9Sz9-Xb_VCcPCuXd-p5t23NNJ92syDJd6YIBM2m8KK_yS769X4jJq1NuCwyR5pJdRyJdSAH9MnidHm2" alt = "/images/lh4.googleusercontent.com/jAkPOu0ODgsX_-VFbEao62gE4RMJRI6m4uacv1S6k4gUbPsinjy_tkcIp9Sz9-Xb_VCcPCuXd-p5t23NNJ92syDJd6YIBM2m8KK_yS769X4jJq1NuCwyR5pJdRyJdSAH9MnidHm2"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</p></td>
+</tr>
+<tr class="even">
+<td><p> </p></td>
+<td><p>Source and destination of the trace, identified by their address or hostname. Source is listed on top with arrow pointing to destination.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Distribution by Hops chart</p></td>
+<td><p>Displays the distributions of various hop counts for the available paths</p></td>
+</tr>
+<tr class="even">
+<td><p>Distribution by MTU chart</p></td>
+<td><p>Displays the distribution of MTUs used on the interfaces used in the available paths</p></td>
+</tr>
+<tr class="odd">
+<td><p>Table</p></td>
+<td><p>Provides detailed path information, sorted by the route identifier, including:</p>
+<ul>
+<li><p><strong>Route ID</strong>: Identifier of each path</p></li>
+<li><p><strong>MTU</strong>: Average speed of the interfaces used</p></li>
+<li><p><strong>Hops</strong>: Number of hops to get from the source to the destination device</p></li>
+<li><p><strong>Warnings</strong>: Number of warnings encountered during the trace on a given path</p></li>
+<li><p><strong>Errors</strong>: Number of errors encountered during the trace on a given path</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>Total Paths Found</p></td>
+<td><p>Number of paths found between the two devices</p></td>
+</tr>
+<tr class="odd">
+<td><p>MTU Overall</p></td>
+<td><p>Average size of the maximum transmission unit for all paths</p></td>
+</tr>
+<tr class="even">
+<td><p>Minimum Hops</p></td>
+<td><p>Smallest number of hops along a path between the devices</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The full screen On-demand Trace Results card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_15_30_37.png" alt = "/images/download/attachments/10456855/image2019-4-8_15_30_37.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Title</p></td>
+<td><p>On-demand Trace Results</p></td>
+</tr>
+<tr class="even">
+<td><p>Trace Results tab</p></td>
+<td><p>Provides detailed path information, sorted by the <strong>timestamp</strong> (date and time results completed), including:</p>
+<ul>
+<li><p><strong>Job ID</strong>: Identifier of each trace job</p></li>
+<li><p><strong>Max Hop Count</strong>: Largest number of hops along a path between the devices</p></li>
+<li><p><strong>Min Hop Count</strong>: Smallest number of hops along a path between the devices</p></li>
+<li><p><strong>Total Paths</strong>: Number of paths found between the two devices</p></li>
+<li><p><strong>MTU</strong>: Average size of the maximum transmission unit for all interfaces along the paths</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>Export</p></td>
+<td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w" alt = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="view-layer-2-trace-results">View Layer 2 Trace Results</h3>
+
+<p>When you start the trace, the corresponding results card is opened on
+your workbench. While it is working on the trace, a notice is shown on
+the card indicating it is running.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_15_15_33.png" alt = "/images/download/attachments/10456855/image2019-4-8_15_15_33.png"
+
+height = 250
+
+
+ />
+
+
+<p>Once the job is completed, the results are displayed.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_15_16_140.png" alt = "/images/download/attachments/10456855/image2019-4-8_15_16_140.png"
+
+height = 250
+
+
+ />
+
+
+<p>In this example, we see that the trace was successful. Three paths were
+found between the devices, each with five hops and with an overall MTU
+of 9152. If there was a difference between the minimum and maximum
+number of hops or other failures, viewing the results on the large card
+would provide additional information.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_15_19_47.png" alt = "/images/download/attachments/10456855/image2019-4-8_15_19_47.png"
+
+height = 250
+
+
+ />
+
+
+<p>In our example, we can verify that every path option had five hops since
+the distribution chart only shows one hop count and the table indicates
+each path had a value of five hops. Similarly, you can view the MTU
+data. If there had been any warnings, the count would have been visible
+in the table.</p>
+
+<h3 id="view-layer-3-trace-results">View Layer 3 Trace Results</h3>
+
+<p>When you start the trace, the corresponding results card is opened on
+your workbench. While it is working on the trace, a notice is shown on
+the card indicating it is running.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_11_26_31.png" alt = "/images/download/attachments/10456855/image2019-4-8_11_26_31.png"
+
+height = 250
+
+
+ />
+
+
+<p>Once results are obtained, it displays them. Using our example from
+earlier, the following results are shown:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_11_22_32.png" alt = "/images/download/attachments/10456855/image2019-4-8_11_22_32.png"
+
+height = 250
+
+
+ />
+
+
+<p>In this example, we see that the trace was successful. Four paths were
+found between the devices, each with three hops and with an overall MTU
+of 9202. If there was a difference between the minimum and maximum
+number of hops or other failures, viewing the results on the large card
+would provide additional information.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_15_24_24.png" alt = "/images/download/attachments/10456855/image2019-4-8_15_24_24.png"
+
+height = 250
+
+
+ />
+
+
+<p>In our example, we can verify that every path option had three hops
+since the distribution chart only shows one hop count and the table
+indicates each path had a value of three hops. Similarly, you can view
+the MTU data. If there had been any warnings, the count would have been
+visible in the table.</p>
+
+<h3 id="view-all-on-demand-trace-results">View All On-demand Trace Results</h3>
+
+<p>If you have run multiple on-demand traces, you may find it easier to
+view the results all together in a single view. The full screen Trace
+Results card provides this information.</p>
+
+<p>To view all on-demand trace results, open the full screen On-demand
+Trace Results card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456855/image2019-4-8_15_30_37.png" alt = "/images/download/attachments/10456855/image2019-4-8_15_30_37.png"
+
+height = 250
+
+
+ />
+
+
+<p>Ordered by most recent trace, you can now view all recent traces
+together.</p>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#create-a-trace-request">Create a Trace Request</a>
+<ul>
+<li><a href="#trace-request-card-workflow-summary">Trace Request Card Workflow Summary</a></li>
+<li><a href="#create-a-layer-2-on-demand-trace-request">Create a Layer 2 On-demand Trace Request</a></li>
+<li><a href="#create-a-layer-3-on-demand-trace-request">Create a Layer 3 On-demand Trace Request</a></li>
+<li><a href="#create-a-layer-2-trace-through-a-given-vlan">Create a Layer 2 Trace Through a Given VLAN</a></li>
+<li><a href="#create-a-layer-3-trace-through-a-given-vrf">Create a Layer 3 Trace Through a Given VRF</a></li>
+<li><a href="#create-a-trace-to-run-on-a-regular-basis">Create a Trace to Run on a Regular Basis</a></li>
+<li><a href="#run-a-scheduled-trace-on-demand">Run a Scheduled Trace on Demand</a></li>
+</ul></li>
+<li><a href="#view-on-demand-trace-results">View On-demand Trace Results</a>
+<ul>
+<li><a href="#view-layer-2-trace-results">View Layer 2 Trace Results</a></li>
+<li><a href="#view-layer-3-trace-results">View Layer 3 Trace Results</a></li>
+<li><a href="#view-all-on-demand-trace-results">View All On-demand Trace Results</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

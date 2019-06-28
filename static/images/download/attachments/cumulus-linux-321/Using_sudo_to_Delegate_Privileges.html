@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Using sudo to Delegate Privileges - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="System_Configuration.html">System Configuration</a></li>
+                                                                                     <li><a href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126752"> <span>Using sudo to Delegate Privileges</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  >By default, Cumulus Linux has two user accounts: <i class=" ">root</i> and <i class=" ">cumulus</i>. The <i class=" ">cumulus</i> account is a normal user and is in the group <i class=" ">sudo</i>.    </p>
+    <p  >You can add more user accounts as needed. Like the <i class=" ">cumulus</i> account, these accounts must use <tt class=" ">sudo</tt> to execute privileged commands.    </p>
+    <div class="section section-1" id="src-5126752_UsingsudotoDelegatePrivileges-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126752_UsingsudotoDelegatePrivileges-Usingsudo">
+        <h1 class="heading "><span>Using sudo</span></h1>
+    <p  ><tt class=" ">sudo</tt><span id="src-5126752_indexterm-34C27FDFB92687C85BBC9C52C336332B"> </span>allows you to execute a command as superuser or another user as specified by the security policy. See <tt class=" ">man sudo(8)</tt> for details.    </p>
+    <p  ><span id="src-5126752_indexterm-409A393CD1911452A798D1A83AA72380">The default security policy is </span><i class=" ">sudoers</i>, which is configured using <tt class=" ">/etc/sudoers</tt>. Use <tt class=" ">/etc/sudoers.d/</tt> to add to the default sudoers policy. See <tt class=" ">man sudoers(5)</tt> for details.    </p>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  ><span id="src-5126752_indexterm-9963634D8650F72DC87B48FFC6C05324">Use </span><tt class=" ">visudo</tt> only to edit the <tt class=" ">sudoers</tt> file; do not use another editor like <tt class=" ">vi</tt> or <tt class=" ">emacs</tt>. See <tt class=" ">man</tt> <tt class=" ">visudo(8)</tt> for details.    </p>
+    <p  >Errors in the <tt class=" ">sudoers</tt> file can result in losing the ability to elevate privileges to root. You can fix this issue only by power cycling the switch and booting into single user mode. Before modifying <tt class=" ">sudoers</tt>, enable the root user by setting a password for the root user.    </p>
+        </div>
+    </div>
+    <p  >By default, users in the <i class=" ">sudo</i> group can use <tt class=" ">sudo</tt><span id="src-5126752_indexterm-DB49C15FD1D027EF7C58210933E111C0"> to execute </span>privileged commands. To add users to the sudo group, use the <tt class=" ">useradd(8)</tt> or <tt class=" ">usermod(8)</tt> command. To see which users belong to the sudo group, see <tt class=" ">/etc/group</tt> (<tt class=" ">man group(5)</tt>).    </p>
+    <p  >Any command can be run as <tt class=" ">sudo</tt>, including <tt class=" ">su</tt>. A password is required.    </p>
+    <p  >The example below shows how to use <tt class=" ">sudo</tt> as a non-privileged user <i class=" ">cumulus</i> to bring up an interface:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ ip link show dev swp1</code></div>
+<div class="line"><code class="plain">3: swp1: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc pfifo_fast master br0 state DOWN mode DEFAULT qlen 500</code></div>
+<div class="line"><code class="plain">link/ether 44:38:39:00:27:9f brd ff:ff:ff:ff:ff:ff</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus@switch:~$ ip link set dev swp1 up</code></div>
+<div class="line"><code class="plain">RTNETLINK answers: Operation not permitted</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ip link set dev swp1 up</code></div>
+<div class="line"><code class="plain">Password:</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus@switch:~$ ip link show dev swp1</code></div>
+<div class="line"><code class="plain">3: swp1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast master br0 state UP mode DEFAULT qlen 500</code></div>
+<div class="line"><code class="plain">link/ether 44:38:39:00:27:9f brd ff:ff:ff:ff:ff:ff</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126752_UsingsudotoDelegatePrivileges-sudoersExamples">
+        <h1 class="heading "><span>sudoers Examples</span></h1>
+    <p  ><span id="src-5126752_indexterm-81B484E3926C291CD4E891029C2A064F">The </span>following examples show how you grant as few privileges as necessary to a user or group of users to allow them to perform the required task. For each example, the system group <i class=" ">noc</i> is used; groups are prefixed with an %.    </p>
+    <p  >When executed by an unprivileged user, the example commands below must be prefixed with <tt class=" ">sudo.</tt>    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Category    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Privilege    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Example Command    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >sudoers Entry    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Monitoring    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Switch port info    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">ethtool -m swp1</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/sbin/ethtool</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Monitoring    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >System diagnostics    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cl-support</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-support</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Monitoring    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Routing diagnostics    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cl-resource-query</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-resource-query</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Image management    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Install images    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">onie-select http://lab/install.bin</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/onie-select</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Package management    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Any apt-get command    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">apt-get update or apt-get install</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Package management    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Just apt-get update    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">apt-get update</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get update</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Package management    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Install packages    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">apt-get install vim</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get install *</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Package management    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Upgrading    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">apt-get upgrade</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get upgrade</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Netfilter    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Install ACL policies    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cl-acltool -i</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-acltool</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Netfilter    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >List iptables rules    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">iptables -L</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/sbin/iptables</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >L1 + 2 features    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Any LLDP command    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">lldpcli show neighbors / configure</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/sbin/lldpcli</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >L1 + 2 features    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Just show neighbors    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">lldpcli show neighbors</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/sbin/lldpcli show neighbours*</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Interfaces    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Modify any interface    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">ip link set dev swp1 {up|down}</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/sbin/ip link set *</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Interfaces    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Up any interface    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">ifup swp1</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/sbin/ifup</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Interfaces    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Down any interface    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">ifdown swp1</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/sbin/ifdown</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Interfaces    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Up/down only swp2    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">ifup swp2 / ifdown swp2</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/sbin/ifup swp2,/sbin/ifdown swp2</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Interfaces    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Any IP address chg    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">ip addr {add|del} 192.0.2.1/30 dev swp1</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/sbin/ip addr *</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Interfaces    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Only set IP address    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">ip addr add 192.0.2.1/30 dev swp1</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/sbin/ip addr add *</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Ethernet bridging    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Any bridge command    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">brctl addbr br0 / brctl delif br0 swp1</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/sbin/brctl</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Ethernet bridging    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Add bridges and ints    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">brctl addbr br0 / brctl addif br0 swp1</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/sbin/brctl addbr *,/sbin/brctl addif *</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Spanning tree    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Set STP properties    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">mstpctl setmaxage br2 20</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/sbin/mstpctl</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Troubleshooting    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Restart switchd    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">systemctl restart switchd.service</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/sbin/service switchd *</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Troubleshooting    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Restart any service    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">systemctl cron switchd.service</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/sbin/service</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Troubleshooting    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Packet capture    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">tcpdump</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/sbin/tcpdump</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >L3    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Add static routes    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">ip route add 10.2.0.0/16 via 10.0.0.1</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/bin/ip route add *</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >L3    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Delete static routes    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">ip route del 10.2.0.0/16 via 10.0.0.1</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/bin/ip route del *</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >L3    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Any static route chg    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">ip route *</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/bin/ip route *</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >L3    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Any iproute command    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">ip *</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/bin/ip</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >L3    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Non-modal OSPF    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cl-ospf area 0.0.0.1 range 10.0.0.0/24</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">%noc ALL=(ALL) NOPASSWD:/usr/bin/cl-ospf</pre>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-1" id="src-5126752_UsingsudotoDelegatePrivileges-RelatedInformation">
+        <h1 class="heading "><span>Related Information</span></h1>
+<ul class=" "><li class=" ">    <p  ><a  class="external-link" href="https://wiki.debian.org/sudo">sudo</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://rubypond.com/blog/adding-yourself-to-the-sudoers-file">Adding Yourself to sudoers</a>    </p>
+</li></ul>    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="User_Accounts.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>User Accounts</span>
+        </a>
+                <a href="LDAP_Authentication_and_Authorization.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>LDAP Authentication and Authorization</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

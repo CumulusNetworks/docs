@@ -1,0 +1,2500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ASIC Monitoring | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/" >
+    Cumulus Linux 3.7.7
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Cumulus_Linux_User_Guide/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Services_and_Daemons_in_Cumulus_Linux/" >
+    Services and Daemons in Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/" >
+    Layer 1 and Switch Ports
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/Switch_Port_Attributes/" >
+    Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/Hardware-enabled_DDOS_Protection/" >
+    Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/DHCP_Relays/" >
+    DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/DHCP_Servers/" >
+    DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Facebook_Voyager_Optical_Interfaces/" >
+    Facebook Voyager Optical Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_2/" >
+    Layer 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode/" >
+    VLAN-aware Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/Traditional_Bridge_Mode/" >
+    Traditional Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Virtual_Router_Redundancy_-_VRR_and_VRRP/" >
+    Virtual Router Redundancy - VRR and VRRP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Lightweight_Network_Virtualization_Overview/" >
+    Lightweight Network Virtualization Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Lightweight_Network_Virtualization_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-MH/" >
+    Integrating Hardware VTEPs with VMware NSX-MH
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/OVSDB_Server_High_Availability/" >
+    OVSDB Server High Availability
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/VXLAN_Active-Active_Mode/" >
+    VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Troubleshooting_VXLANs/" >
+    Troubleshooting VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Address_Resolution_Protocol_-_ARP/" >
+    Address Resolution Protocol - ARP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Open_Shortest_Path_First_-_OSPF/" >
+    Open Shortest Path First - OSPF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3/" >
+    Open Shortest Path First v3 - OSPFv3
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Policy-based_Routing/" >
+    Policy-based Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/GRE_Tunneling/" >
+    GRE Tunneling
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool_-ethtool_Counter_Definitions/" >
+    Monitoring Interfaces and Transceivers Using ethtool — ethtool Counter Definitions
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/" >
+    Simple Network Management Protocol (SNMP) Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/ASIC_Monitoring/"  class="active" >
+    ASIC Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/switchd_Log_Message_Reference/" >
+    switchd Log Message Reference
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/FRRouting_Log_Message_Reference/" >
+    FRRouting Log Message Reference
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Cumulus_Hyperconverged_Solution_with_Nutanix/" >
+    Cumulus Hyperconverged Solution with Nutanix
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>ASIC Monitoring</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>ASIC Monitoring</h1>
+
+<p>Cumulus Linux provides an ASIC monitoring tool that collects and
+distributes data about the state of the ASIC. The monitoring tool polls
+for data at specific intervals and takes certain actions so that you can
+quickly identify and respond to problems, such as:</p>
+
+<ul>
+<li><p>Microbursts that result in longer packet latency</p></li>
+
+<li><p>Packet buffer congestion that might lead to packet drops</p></li>
+
+<li><p>Network problems with a particular switch, port, or traffic class</p></li>
+</ul>
+
+
+<div class="notices note" > <p>ASIC monitoring is currently supported on Mellanox switches only.</p>
+ </div>
+
+
+<p>Contents</p>
+
+<p>This topic describes &hellip;</p>
+
+<h2 id="what-type-of-statistics-can-you-collect">What Type of Statistics Can You Collect?</h2>
+
+<p>You can collect the following type of statistics with the ASIC
+monitoring tool:</p>
+
+<ul>
+<li><p>A fine-grained history of queue lengths using histograms maintained
+by the ASIC</p></li>
+
+<li><p>Packet counts per port, priority and size</p></li>
+
+<li><p>Dropped packet, pause frame, and ECN-marked packet counts</p></li>
+
+<li><p>Buffer congestion occupancy per port, priority and buffer pool, and
+at input and output ports</p></li>
+</ul>
+
+<h2 id="collecting-queue-lengths-in-histograms">Collecting Queue Lengths in Histograms</h2>
+
+<p>The Mellanox Spectrum ASIC provides a mechanism to measure and report
+egress queue lengths in histograms (a graphical representation of data,
+which is divided into intervals or bins). You can configure the ASIC to
+measure up to 64 egress queues. Each queue is reported through a
+histogram with 10 bins, where each bin represents a range of queue
+lengths.</p>
+
+<p>You configure the histogram with a minimum size boundary (Min) and a
+histogram size. You then derive the maximum size boundary (Max) by
+adding the minimum size boundary and the histogram size.</p>
+
+<p>The 10 bins are numbered 0 through 9. Bin 0 represents queue lengths up
+to the Min specified, including queue length 0. Bin 9 represents queue
+lengths of Max and above. Bins 1 through 8 represent equal-sized ranges
+between the Min and Max, which is determined by dividing the histogram
+size by 8.</p>
+
+<p>For example, consider the following histogram queue length ranges, in
+bytes:</p>
+
+<ul>
+<li><p>Min = 960</p></li>
+
+<li><p>Histogram size = 12288</p></li>
+
+<li><p>Max = 13248</p></li>
+
+<li><p>Range size = 1536</p></li>
+
+<li><p>Bin 0: 0:959</p></li>
+
+<li><p>Bin 1: 960:2495</p></li>
+
+<li><p>Bin 2: 2496:4031</p></li>
+
+<li><p>Bin 3: 4032:5567</p></li>
+
+<li><p>Bin 4: 5568:7103</p></li>
+
+<li><p>Bin 5: 7104:8639</p></li>
+
+<li><p>Bin 6: 8640:10175</p></li>
+
+<li><p>Bin 7: 10176:11711</p></li>
+
+<li><p>Bin 8: 11712:13247</p></li>
+
+<li><p>Bin 9: 13248:*</p></li>
+</ul>
+
+<p>The following illustration demonstrates a histogram showing how many
+times the queue length for a port was in the ranges specified by each
+bin. The example shows that the queue length was between 960 and 2495
+bytes 125 times within one second.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-content-image-border" src = "/images/download/attachments/8362627/histogram_queue.png" alt = "/images/download/attachments/8362627/histogram_queue.png"
+
+height = 400
+
+
+ />
+
+
+<h2 id="configure-asic-monitoring">Configure ASIC Monitoring</h2>
+
+<p>The ASIC monitoring tool is managed by the <code>asic-monitor</code> service,
+(which is managed by <code>systemd</code>). The <code>asic-monitor</code> service reads the
+<code>/etc/cumulus/datapath/monitor.conf</code>configuration file to determine
+what statistics to collect and when to trigger. The service always
+starts; however, if the configuration file is empty, the service exits.</p>
+
+<p>The <code>monitor.conf</code> configuration file provides information about the
+type of data to collect, the switch ports to monitor, how and when to
+start reading the ASIC (such as when a specific queue length or number
+of packets dropped is reached), and what actions to take (create a
+snapshot file, send a message to the <code>/var/log/syslog</code> file, or collect
+more data).</p>
+
+<p>To configure ASIC monitoring, edit the
+<code>/etc/cumulus/datapath/monitor.conf</code> file and restart the <code>asic-monitor</code>
+service. The <code>asic-monitor</code> service reads the new configuration file and
+then runs until it is stopped.</p>
+
+<p>The following procedure describes how to monitor queue lengths using a
+histogram. The settings are configured to collect data every second and
+write the results to a snapshot file. When the size of the queue reaches
+500 bytes, the system sends a message to the <code>/var/log/syslog</code> file.</p>
+
+<p>To monitor queue lengths using a histogram:</p>
+
+<ol>
+<li><p>Open the <code>/etc/cumulus/datapath/monitor.conf</code> file in a text
+editor.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
+       
+        
+</code></pre></li>
+
+<li><p>At the end of the file, add the following line to specify the name
+of the histogram monitor (port group). The example uses
+<code>histogram_pg</code>; however, you can use any name you choose. You must
+use the same name with all histogram settings.</p>
+
+<pre><code>                       
+monitor.port_group_list = [histogram_pg]
+       
+        
+</code></pre></li>
+
+<li><p>Add the following line to specify the ports you want to monitor. The
+following example sets swp1 through swp50.</p>
+
+<pre><code>                       
+monitor.histogram_pg.port_set = swp1-swp50
+       
+        
+</code></pre></li>
+
+<li><p>Add the following line to set the data type to <code>histogram</code>. This is
+the data type for histogram monitoring.</p>
+
+<pre><code>                       
+monitor.histogram_pg.stat_type = histogram 
+       
+        
+</code></pre></li>
+
+<li><p>Add the following line to set the trigger type to <code>timer</code>.
+Currently, the only trigger type available is timer.</p>
+
+<pre><code>                       
+monitor.histogram_pg.trigger_type = timer
+       
+        
+</code></pre></li>
+
+<li><p>Add the following line to set the frequency at which data collection
+starts. In the following example, the frequency is set to one
+second.</p>
+
+<pre><code>                       
+monitor.histogram_pg.timer = 1s
+       
+        
+</code></pre></li>
+
+<li><p>Add the following line to set the actions you want to take when data
+is collected. In the following example, the system writes the
+results of data collection to a snapshot file and sends a message to
+the <code>/var/log/syslog</code> file .</p>
+
+<pre><code>                       
+monitor.histogram_pg.action_list = [snapshot,log]
+       
+        
+</code></pre></li>
+
+<li><p>Add the following line to specify a name and location for the
+snapshot file. In the following example, the system writes the
+snapshot to a file called <code>histogram_stats</code> in the
+<code>/var/lib/cumulus</code> directory and adds a suffix to the file name with
+the snapshot file count (see the following step).</p>
+
+<pre><code>                       
+monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats
+       
+        
+</code></pre></li>
+
+<li><p>Add the following line to set the number of snapshots that are taken
+before the system starts overwriting the earliest snapshot files.<br />
+In the following example, because the snapshot file count is set to
+64, the first snapshot file is named <code>histogram_stats_0</code> and the
+64th snapshot is named <code>histogram_stats_63</code>. When the 65th snapshot
+is taken, the original snapshot file (<code>histogram_stats_0</code>) is
+overwritten and the sequence continues until <code>histogram_stats_63</code> is
+written. Then, the sequence restarts.</p>
+
+<pre><code>                       
+monitor.histogram_pg.snapshot.file_count = 64
+       
+        
+</code></pre></li>
+
+<li><p>Add the following line to include a threshold, which determines how
+to collect data. Setting a threshold is optional. In the following
+example, when the size of the queue reaches 500 bytes, the system
+sends a message to the <code>/var/log/syslog</code> file .</p>
+
+<pre><code>                       
+monitor.histogram_pg.log.queue_bytes = 500
+       
+        
+</code></pre></li>
+
+<li><p>Add the following lines to set the size, minimum boundary, and
+sampling time of the histogram. Adding the histogram size and the
+minimum boundary size together produces the maximum boundary size.
+These settings are used to represent the range of queue lengths per
+bin.</p>
+
+<pre><code>                       
+monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
+monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
+monitor.histogram_pg.histogram.sample_time_ns         = 1024
+       
+        
+</code></pre></li>
+
+<li><p>Save the file, then restart the <code>asic-monitor</code> service with the
+following command.</p>
+
+<pre><code>                       
+cumulus@switch:~$ systemctl restart asic-monitor.service
+       
+        
+</code></pre>
+
+
+<div class="notices note" > <pre><code>Restarting the `asic-monitor` service does not disrupt traffic or
+require you to restart `switchd`. The service is enabled by default
+when you boot the switch and restarts when you restart `switchd`.
+</code></pre>
+ </div>
+
+
+
+<div class="notices note" > <pre><code>Overhead is involved in collecting the data, which uses both the CPU
+and SDK process and can affect execution of `switchd`. Snapshots and
+logs can occupy a lot of disk space if you do not limit their
+number.
+</code></pre>
+ </div>
+</li>
+</ol>
+
+<p>To collect other data, such as all packets per port, buffer congestion,
+or packet drops due to error, follow the procedure above but change the
+port group list setting to include the port group name you want to use.
+For example, to monitor packet drops due to buffer congestion:</p>
+
+<pre><code>                   
+monitor.port_group_list = [buffers_pg]
+monitor.buffers_pg.port_set  = swp1-swp50
+monitor.buffers_pg.stat_type = buffer
+...
+   
+    
+</code></pre>
+
+<p>Certain settings in the procedure above (such as the histogram size,
+boundary size, and sampling time) only apply to the histogram monitor.
+All ASIC monitor settings are described in <a href="/old/Cumulus_Linux/#src-8362627_ASICMonitoring-ASIC_Settings">ASIC Monitoring
+Settings</a>.</p>
+
+<h2 id="configuration-examples">Configuration Examples</h2>
+
+<p>Several configuration examples are provided below.</p>
+
+<h3 id="queue-length-histograms">Queue Length Histograms</h3>
+
+<p>In the following example:</p>
+
+<ul>
+<li><p>Queue length histograms are collected every second for swp1 through
+swp50.</p></li>
+
+<li><p>The results are written to the <code>/var/lib/cumulus/histogram_stats</code>
+snapshot file.</p></li>
+
+<li><p>The size of the histogram is set to 12288 bytes, the minimum
+boundary to 960 bytes, and the sampling time to 1024 nanoseconds.</p></li>
+
+<li><p>A threshold is set so that when the size of the queue reaches 500
+bytes, the system sends a message to the <code>/var/log/syslog</code> file.</p></li>
+</ul>
+
+<!-- end list -->
+
+<pre><code>                   
+monitor.port_group_list                               = [histogram_pg]
+monitor.histogram_pg.port_set                         = swp1-swp50
+monitor.histogram_pg.stat_type                        = histogram
+monitor.histogram_pg.cos_list                         = [0]
+monitor.histogram_pg.trigger_type                     = timer
+monitor.histogram_pg.timer                            = 1s
+monitor.histogram_pg.action_list                      = [snapshot,log]
+monitor.histogram_pg.snapshot.file                    = /var/lib/cumulus/histogram_stats
+monitor.histogram_pg.snapshot.file_count              = 64
+monitor.histogram_pg.log.queue_bytes                  = 500
+monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
+monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
+monitor.histogram_pg.histogram.sample_time_ns         = 1024
+   
+    
+</code></pre>
+
+<h3 id="packet-drops-due-to-errors">Packet Drops Due to Errors</h3>
+
+<p>In the following example:</p>
+
+<ul>
+<li><p>Packet drops on swp1 through swp50 are collected every two seconds.</p></li>
+
+<li><p>If the number of packet drops is greater than 100, the results are
+written to the <code>/var/lib/cumulus/discard_stats snapshot</code> file and
+the system sends a message to the <code>/var/log/syslog</code> file.</p></li>
+</ul>
+
+<!-- end list -->
+
+<pre><code>                   
+monitor.port_group_list                            = [discards_pg]
+monitor.discards_pg.port_set                       = swp1-swp50
+monitor.discards_pg.stat_type                      = packet
+monitor.discards_pg.action_list                    = [snapshot,log]
+monitor.discards_pg.trigger_type                   = timer
+monitor.discards_pg.timer                          = 2s
+monitor.discards_pg.log.packet_error_drops         = 100
+monitor.discards_pg.snapshot.packet_error_drops    = 100
+monitor.discards_pg.snapshot.file                  = /var/lib/cumulus/discard_stats
+monitor.discards_pg.snapshot.file_count            = 16
+   
+    
+</code></pre>
+
+<h3 id="queue-length-histogram-with-collect-actions">Queue Length (Histogram) with Collect Actions</h3>
+
+<p>A collect action triggers the collection of additional information. You
+can daisy chain multiple monitors (port groups) into a single collect
+action.</p>
+
+<p>In the following example:</p>
+
+<ul>
+<li><p>Queue length histograms are collected for swp1 through swp50 every
+second.</p></li>
+
+<li><p>The results are written to the <code>/var/lib/cumulus/histogram_stats</code>
+snapshot file.</p></li>
+
+<li><p>When the queue length reaches 500 bytes, the system sends a message
+to the <code>/var/log/syslog</code> file and collects additional data; buffer
+occupancy and all packets per port.</p></li>
+
+<li><p>Buffer occupancy data is written to the
+<code>/var/lib/cumulus/buffer_stats</code> snapshot file and all packets per
+port data is written to the <code>/var/lib/cumulus/all_packet_stats</code>
+snapshot file.</p></li>
+
+<li><p>In addition, packet drops on swp1 through swp50 are collected every
+two seconds. If the number of packet drops is greater than 100, the
+results are written to the <code>/var/lib/cumulus/discard_stats</code> snapshot
+file and a message is sent to the <code>/var/log/syslog</code> file.</p></li>
+</ul>
+
+<!-- end list -->
+
+<pre><code>                   
+monitor.port_group_list                               = [histogram_pg,discards_pg]
+ 
+monitor.histogram_pg.port_set                         = swp1-swp50
+monitor.histogram_pg.stat_type                        = buffer
+monitor.histogram_pg.cos_list                         = [0]
+monitor.histogram_pg.trigger_type                     = timer
+monitor.histogram_pg.timer                            = 1s
+monitor.histogram_pg.action_list                      = [snapshot,collect,log]
+monitor.histogram_pg.snapshot.file                    = /var/lib/cumulus/histogram_stats
+monitor.histogram_pg.snapshot.file_count              = 64
+monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
+monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
+monitor.histogram_pg.histogram.sample_time_ns         = 1024
+monitor.histogram_pg.log.queue_bytes                  = 500
+monitor.histogram_pg.collect.queue_bytes              = 500
+monitor.histogram_pg.collect.port_group_list          = [buffers_pg,all_packet_pg]
+ 
+ 
+monitor.buffers_pg.port_set                           = swp1-swp50
+monitor.buffers_pg.stat_type                          = buffer
+monitor.buffers_pg.action_list                        = [snapshot]
+monitor.buffers_pg.snapshot.file                      = /var/lib/cumulus/buffer_stats
+monitor.buffers_pg.snapshot.file_count                = 8
+ 
+monitor.all_packet_pg.port_set                        = swp1-swp50
+monitor.all_packet_pg.stat_type                       = packet_all
+monitor.all_packet_pg.action_list                     = [snapshot]
+monitor.all_packet_pg.snapshot.file                   = /var/lib/cumulus/all_packet_stats
+monitor.all_packet_pg.snapshot.file_count             = 8
+ 
+monitor.discards_pg.port_set                          = swp1-swp50
+monitor.discards_pg.stat_type                         = packet
+monitor.discards_pg.action_list                       = [snapshot,log]
+monitor.discards_pg.trigger_type                      = timer
+monitor.discards_pg.timer                             = 2s
+monitor.discards_pg.log.packet_error_drops            = 100
+monitor.discards_pg.snapshot.packet_error_drops       = 100
+monitor.discards_pg.snapshot.file                     = /var/lib/cumulus/discard_stats
+monitor.discards_pg.snapshot.file_count               = 16
+   
+    
+</code></pre>
+
+
+<div class="notices note" > <p>Certain actions require additional settings. For example, if the
+<code>snapshot</code> action is specified, a snapshot file is also required. If the
+<code>log</code> action is specified, a log threshold is also required. See
+<a href="/old/Cumulus_Linux/#src-8362627_ASICMonitoring-action_setting">action_list</a>
+for additional settings required for each <em>action</em>.</p>
+ </div>
+
+
+<h2 id="example-snapshot-file">Example Snapshot File</h2>
+
+<p>A snapshot action writes a snapshot of the current state of the ASIC to
+a file. Because parsing the file and finding the information can be
+tedious, you can use a third-party analysis tool to analyze the data in
+the file. The following example shows a snapshot of queue lengths.</p>
+
+<pre><code>                   
+{&quot;timestamp_info&quot;: {&quot;start_datetime&quot;: &quot;2017-03-16 21:36:40.775026&quot;, &quot;end_datetime&quot;: &quot;2017-03-16 21:36:40.775848&quot;}, &quot;buffer_info&quot;: null, &quot;packet_info&quot;: null, &quot;histogram_info&quot;: {&quot;swp2&quot;: {&quot;0&quot;: 55531}, &quot;swp32&quot;: {&quot;0&quot;: 48668}, &quot;swp1&quot;: {&quot;0&quot;: 64578}}}
+   
+    
+</code></pre>
+
+<h2 id="example-log-message">Example Log Message</h2>
+
+<p>A log action writes out the ASIC state to the <code>/var/log/syslog</code> file. In
+the following example, when the size of the queue reaches 500 bytes, the
+system sends this message to the <code>/var/log/syslog</code> file:</p>
+
+<pre><code>                   
+2018-02-26T20:14:41.560840+00:00 cumulus asic-monitor-module INFO:  2018-02-26 20:14:41.559967: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg.
+   
+    
+</code></pre>
+
+<h2 id="asic-monitoring-settings">ASIC Monitoring Settings</h2>
+
+<p>The following table provides descriptions of the ASIC monitor settings.</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Setting</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><code>port_group_list</code></p></td>
+<td><p>Specifies the names of the monitors (port groups) you want to use to collect data, such as <code>discards_pg</code>, <code>histogram_pg</code>, <code>all_packet_pg</code>, <code>buffers_pg</code>. You can provide any name you want for the port group; the names above are just examples. You must use the same name for all the settings of a particular port group.</p>
+<p>Example:</p>
+<p><code>monitor.port_group_list = [histogram_pg,discards_pg,buffers_pg, all_packets_pg]</code></p>
+
+<div class="notices note" > <p></p>
+<p>You must specify at least one port group. If the port group list is empty, systemd shuts down the asic-monitor service.</p>
+<p></p>
+ </div>
+</td>
+</tr>
+<tr class="even">
+<td><p><code>&lt;port_group_name&gt;.port_set</code></p></td>
+<td><p>Specifies the range of ports monitored. You can specify GLOBs and comma-separated lists; for example, swp1-swp4,swp8,swp10-swp50.</p>
+<p>Example:</p>
+<p><code>monitor.histogram_pg.port_set = swp1-swp50</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><code>&lt;port_group_name&gt;.stat_type</code></p></td>
+<td><p>Specifies the type of data that the port group collects.</p>
+<ul>
+<li><p>For histograms, specify <code>histogram</code>. For example: <code>monitor.histogram_pg.stat_type = histogram</code></p></li>
+<li><p>For packet drops due to errors, specify <code>packet</code>. For example: <code>monitor.discards_pg.stat_type = packet</code></p></li>
+<li><p>For packet occupancy statistics, specify <code>buffer</code>. For example: <code>monitor.buffers_pg.stat_type = buffer</code></p></li>
+<li><p>For all packets per port, specify <code>packet_all</code>. For example: <code>monitor.all_packet_pg.stat_type = packet_all</code></p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p><code>&lt;port_group_name&gt;.cos_list</code></p></td>
+<td><p>For histogram monitoring, each CoS (Class of Service) value in the list has its own histogram on each port.The global limit on the number of histograms is an average of one histogram per port.</p>
+<p>Example:</p>
+<p><code>monitor.histogram_pg.cos_list = [0]</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><code>&lt;port_group_name&gt;.trigger_type</code></p></td>
+<td><p>Specifies the type of trigger that initiates data collection. Currently, the only option is <code>timer</code>. At least one port group must have a timer configured, otherwise no data is ever collected.</p>
+<p>Example:</p>
+<p><code>monitor.histogram_pg.trigger_type = timer</code></p></td>
+</tr>
+<tr class="even">
+<td><p><code>&lt;port_group_name&gt;.timer</code></p></td>
+<td><p>Specifies the frequency at which data is collected; for example, a setting of <code>1s</code> indicates that data is collected once per second. You can set the timer to the following:</p>
+<ul>
+<li><p>1 to 60 seconds: 1s, 2s, and so on up to 60s</p></li>
+<li><p>1 to 60 minutes: 1m, 2m, and so on up to 60m</p></li>
+<li><p>1 to 24 hours: 1h, 2h, and so on up to 24h</p></li>
+<li><p>1 to 7 days: 1d, 2d and so on up to 7d</p></li>
+</ul>
+<p>Example:</p>
+<p><code>monitor.histogram_pg.timer = 4s</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><code>&lt;port_group_name&gt;.action_list</code></p></td>
+<td><p><span id="src-8362627_ASICMonitoring-action_setting"></span>Specifies one or more actions that occur when data is collected:</p>
+<ul>
+<li><p><code>snapshot</code> writes a snapshot of the data collection results to a file. If you specify this action, you must also specify a snapshot file (described below). You can also specify a threshold that initiates the snapshot action, but this is not required. For example:<br />
+<code>monitor.histogram_pg.action_list = [snapshot]</code><br />
+<code>monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats</code></p></li>
+<li><p><code>collect</code> gathers additional data. If you specify this action, you must also specify the port groups for the additional data you want to collect. For example:<br />
+<code>monitor.histogram_pg.action_list = [collect]monitor.histogram_pg.collect.port_group_list = [buffers_pg,all_packet_pg]</code></p></li>
+<li><p><code>log</code> sends a message to the <code>/var/log/syslog</code> file. If you specify this action, you must also specify a threshold that initiates the log action. For example:<br />
+<code>monitor.histogram_pg.action_list = [log]monitor.histogram_pg.log.queue_bytes = 500</code></p></li>
+</ul>
+<p>You can use all three of these actions in one monitoring step. For example:<br />
+<code>monitor.histogram_pg.action_list = [snapshot,collect,log]</code></p>
+<p><strong>Note</strong>: If an action appears in the action list but does not have the required settings (such as a threshold for the log action), the ASIC monitor stops and reports an error.</p></td>
+</tr>
+<tr class="even">
+<td><p><code>&lt;port_group_name&gt;.snapshot.file</code></p></td>
+<td><p>Specifies the name for the snapshot file. All snapshots use this name, with a sequential number appended to it. See the <code>snapshot.file_count</code>, setting.</p>
+<p>Example:</p>
+<p><code>monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><code>&lt;port_group_name&gt;.snapshot.file_count</code></p></td>
+<td><p>Specifies the number of snapshots that can be created before the first snapshot file is overwritten.<br />
+In the following example, because the snapshot file count is set to 64, the first snapshot file is named <code>histogram_stats_0</code> and the 64th snapshot is named <code>histogram_stats_63</code>. When the 65th snapshot is taken, the original snapshot file (<code>histogram_stats_0</code>) is overwritten and the sequence restarts.</p>
+<p>Example:</p>
+<p><code>monitor.histogram_pg.snapshot.file_count = 64</code></p>
+
+<div class="notices note" > <p></p>
+<p>While more snapshots provide you with more data, they can occupy a lot of disk space on the switch.</p>
+<p></p>
+ </div>
+</td>
+</tr>
+<tr class="even">
+<td><p><code>&lt;port_group_name&gt;.&lt;action&gt;.queue_bytes</code></p></td>
+<td><p><em>For histogram monitoring</em></p>
+<p>Specifies a threshold for the histogram monitor. This is the length of the queue in bytes that initiates a specified action (snapshot, log, collect).</p>
+<p>Examples:</p>
+<p><code>monitor.histogram_pg.snapshot.queue_bytes = 500</code><br />
+<code>monitor.histogram_pg.log.queue_bytes = 500</code><br />
+<code>monitor.histogram_pg.collect.queue_bytes = 500</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><code>&lt;port_group_name&gt;.&lt;action&gt;.packet_error_drops</code></p></td>
+<td><p><em>For monitoring packet drops due to error</em></p>
+<p>Specifies a threshold for the packet drops due to error monitor. This is the number of packet drops due to error that initiates a specified action (snapshot, log, collect).</p>
+<p>Examples:</p>
+<p><code>monitor.discards_pg.snapshot.packet_error_drops = 500</code><br />
+<code>monitor.discards_pg.log.packet_error_drops = 500</code><br />
+<code>monitor.discards_pg.collect.packet_error_drops = 500</code></p></td>
+</tr>
+<tr class="even">
+<td><p><code>&lt;port_group_name&gt;.&lt;action&gt;.packet_congestion_drops</code></p></td>
+<td><p><em>For monitoring packet drops due to buffer congestion</em></p>
+<p>Specifies a threshold for the packet drops due to buffer congestion monitor. This is the number of packet drops due to buffer congestion that initiates a specified action (log or collect).</p>
+<p>Examples:</p>
+<p><code>monitor.buffers_pg.log.packet_congestion_drops = 500monitor.buffers_pg.snapshot.packet_congestion_drops = 500</code><code>monitor.buffers_pg.collect.packet_congestion_drops = 500</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><code>&lt;port_group_name&gt;.histogram.minimum_bytes_boundary</code></p></td>
+<td><p><em>For histogram monitoring</em></p>
+<p>The minimum boundary size for the histogram in bytes. On a Mellanox switch, this number must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values are used to represent the range of queue lengths per bin.</p>
+<p>Example:</p>
+<p><code>monitor.histogram_pg.histogram.minimum_bytes_boundary = 960</code></p></td>
+</tr>
+<tr class="even">
+<td><p><code>&lt;port_group_name&gt;.histogram.histogram_size_bytes</code></p></td>
+<td><p><em>For histogram monitoring</em></p>
+<p>The size of the histogram in bytes. Adding this number and the minimum_bytes_boundary value together produces the maximum boundary size. These values are used to represent the range of queue lengths per bin.</p>
+<p>Example:</p>
+<p><code>monitor.histogram_pg.histogram.histogram_size_bytes = 12288</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><code>&lt;port_group_name&gt;.histogram.sample_time_ns</code></p></td>
+<td><p><em>For histogram monitoring</em></p>
+<p>The sampling time of the histogram in nanoseconds.</p>
+<p>Example:</p>
+<p><code>monitor.histogram_pg.histogram.sample_time_ns = 1024</code></p></td>
+</tr>
+</tbody>
+</table>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#what-type-of-statistics-can-you-collect">What Type of Statistics Can You Collect?</a></li>
+<li><a href="#collecting-queue-lengths-in-histograms">Collecting Queue Lengths in Histograms</a></li>
+<li><a href="#configure-asic-monitoring">Configure ASIC Monitoring</a></li>
+<li><a href="#configuration-examples">Configuration Examples</a>
+<ul>
+<li><a href="#queue-length-histograms">Queue Length Histograms</a></li>
+<li><a href="#packet-drops-due-to-errors">Packet Drops Due to Errors</a></li>
+<li><a href="#queue-length-histogram-with-collect-actions">Queue Length (Histogram) with Collect Actions</a></li>
+</ul></li>
+<li><a href="#example-snapshot-file">Example Snapshot File</a></li>
+<li><a href="#example-log-message">Example Log Message</a></li>
+<li><a href="#asic-monitoring-settings">ASIC Monitoring Settings</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_Linux/Monitoring_and_Troubleshooting/ASIC_Monitoring.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

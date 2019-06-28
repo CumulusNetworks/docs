@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Integrating with VMware NSX - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Network_Virtualization.html">Network Virtualization</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126883"> <span>Integrating with VMware NSX</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><span id="src-5126883_indexterm-6C2CA99CC232BEA11CFEA98E1BA25C31">Switches running Cumulus Linux can integrate with </span>VMware NSX to act as VTEP gateways. The VMware NSX controller provides consistent provisioning across virtual and physical server infrastructures.    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_nsx.png" alt="images/download/attachments/5126883/vxlan_nsx.png" width="500"  />
+        </p>
+    <div class="section section-1" id="src-5126883_IntegratingwithVMwareNSX-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126883_IntegratingwithVMwareNSX-GettingStarted">
+        <h1 class="heading "><span>Getting Started</span></h1>
+    <p  >Before you integrate VXLANs with NSX, make sure you have the following components:    </p>
+<ul class=" "><li class=" ">    <p  >A switch (L2 gateway) with a Tomahawk, Trident II+ or Trident II chipset running Cumulus Linux    </p>
+</li><li class=" ">    <p  >OVSDB server (ovsdb-server), included in Cumulus Linux    </p>
+</li><li class=" ">    <p  >VTEPd (ovs-vtepd), included in Cumulus Linux    </p>
+</li></ul>    <p  ><span id="src-5126883_indexterm-23A2355F9D2BE95502FA6C1F7BA23AC4">Integrating a </span>VXLAN with NSX involves:    </p>
+<ul class=" "><li class=" ">    <p  >Bootstrapping the NSX Integration    </p>
+</li><li class=" ">    <p  >Configuring the Transport Layer    </p>
+</li><li class=" ">    <p  >Configuring the Logical Layer    </p>
+</li><li class=" ">    <p  >Verifying the VXLAN Configuration    </p>
+</li></ul>    <div class="section section-2" id="src-5126883_IntegratingwithVMwareNSX-CaveatsandErrata">
+        <h2 class="heading "><span>Caveats and Errata</span></h2>
+<ul class=" "><li class=" ">    <p id="src-5126883_indexterm-67A0F3706C435390A810C181CFA806FE" >As mentioned in <a   href="Network_Virtualization.html">Network Virtualization</a>, the switches with the source and destination VTEPs cannot reside on the same subnet; there must be at least one layer 3 hop between the VXLAN source and destination.    </p>
+</li><li class=" ">    <p  >There is no support for VXLAN routing in the Tomahawk, Trident II+ and Trident II chips; use a loopback interface or external router.    </p>
+</li><li class=" ">    <p  >The <tt class=" ">ovsdb-server</tt> cannot select the loopback interface as the source IP address, causeing TOR registration to the controller to fail. To work around this issue, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add bgp redistribute connected</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net commit</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Do not use 0 or 16777215 as the VNI ID, as they are reserved values under Cumulus Linux.    </p>
+</li><li class=" ">    <p  >For more information about NSX, see the VMware NSX User Guide, version 4.0.0 or later.    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-1" id="src-5126883_IntegratingwithVMwareNSX-BootstrappingtheNSXIntegration">
+        <h1 class="heading "><span>Bootstrapping the NSX Integration</span></h1>
+    <p  >Before you start configuring the gateway service and logical switches and ports that comprise the VXLAN, you need to complete some steps to bootstrap the process. You need to do the bootstrapping just once, before you begin the integration.    </p>
+    <div class="section section-2" id="src-5126883_IntegratingwithVMwareNSX-Enablingtheopenvswitch-vtepPackage">
+        <h2 class="heading "><span>Enabling the openvswitch-vtep Package</span></h2>
+    <p  >Before you start bootstrapping the integration, you need to enable the <tt class=" ">openvswitch-vtep</tt> package, as it is disabled by default in Cumulus Linux.    </p>
+<ol class=" "><li class=" ">    <p  >In <tt class=" ">/etc/default/openvswitch-vtep</tt>, change the <tt class=" ">START</tt> option from <i class=" ">no</i> to <i class=" ">yes</i>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">$ cat /etc/</code><code class="keyword">default</code><code class="plain">/openvswitch-vtep</code></div>
+<div class="line"><code class="plain"># This is a POSIX shell fragment                -*- sh -*-</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># Start openvswitch at boot ? yes/no</code></div>
+<div class="line"><code class="plain">START=yes</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># FORCE_COREFILES: If </code><code class="string">'yes'</code><code class="plain"> then core files will be enabled.</code></div>
+<div class="line"><code class="plain"># FORCE_COREFILES=yes</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># BRCOMPAT: If </code><code class="string">'yes'</code><code class="plain"> and the openvswitch-brcompat </code><code class="keyword">package</code><code class="plain"> is installed, then</code></div>
+<div class="line"><code class="plain"># Linux bridge compatibility will be enabled.</code></div>
+<div class="line"><code class="plain"># BRCOMPAT=no</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Start the daemon:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">$ sudo systemctl start openvswitch-vtep.service</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    <div class="section section-2" id="src-5126883_IntegratingwithVMwareNSX-UsingtheBootstrappingScript">
+        <h2 class="heading "><span>Using the Bootstrapping Script</span></h2>
+    <p  >A script is available so you can do the bootstrapping automatically. For information, read <tt class=" ">man vtep-bootstrap</tt>. The output of the script is displayed here:    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_bootstrap.screenshot.png" alt="images/download/attachments/5126883/vxlan_bootstrap.screenshot.png" width="500"  />
+        </p>
+    <p  >In the above example, the following information was passed to the <tt class=" ">vtep-bootstrap</tt> script:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">--credentials-path /var/lib/openvswitch</tt>: Is the path to where the certificate and key pairs for authenticating with the NSX controller are stored.    </p>
+</li><li class=" ">    <p  ><tt class=" ">vtep7</tt>: is the ID for the VTEP.    </p>
+</li><li class=" ">    <p  ><tt class=" ">192.168.100.17</tt>: is the IP address of the NSX controller.    </p>
+</li><li class=" ">    <p  ><tt class=" ">172.16.20.157</tt>: is the datapath IP address of the VTEP.    </p>
+</li><li class=" ">    <p  ><tt class=" ">192.168.100.157</tt>: is the IP address of the management interface on the switch.    </p>
+</li></ul>    <p  >These IP addresses will be used throughout the rest of the examples below.    </p>
+    </div>
+    <div class="section section-2" id="src-5126883_IntegratingwithVMwareNSX-ManuallyBootstrappingtheNSXIntegration">
+        <h2 class="heading "><span>Manually Bootstrapping the NSX Integration</span></h2>
+    <p  >If you don&rsquo;t use the script, then you must:    </p>
+<ul class=" "><li class=" ">    <p  >Initialize the OVS database instance    </p>
+</li><li class=" ">    <p  >Generate a certificate and key pair for authentication by NSX    </p>
+</li><li class=" ">    <p  >Configure a switch as a VTEP gateway    </p>
+</li></ul>    <p  >These steps are described next.    </p>
+    </div>
+    <div class="section section-2" id="src-5126883_IntegratingwithVMwareNSX-GeneratingtheCredentialsCertificate">
+        <h2 class="heading "><span>Generating the Credentials Certificate</span></h2>
+    <p  >First, in Cumulus Linux, you must generate a certificate that the NSX controller uses for authentication.    </p>
+<ol class=" "><li class=" ">    <p  >In a terminal session connected to the switch, run the following commands:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo ovs-pki init</code></div>
+<div class="line"><code class="plain">Creating controllerca...</code></div>
+<div class="line"><code class="plain">Creating switchca...</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo ovs-pki req+sign cumulus</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus-req.pem Wed Oct </code><code class="value">23</code><code class="plain"> </code><code class="value">05</code><code class="plain">:</code><code class="value">32</code><code class="plain">:</code><code class="value">49</code><code class="plain"> UTC </code><code class="value">2013</code></div>
+<div class="line"><code class="plain">        fingerprint b587c9fe36f09fb371750ab50c430485d33a174a</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ ls -l</code></div>
+<div class="line"><code class="plain">total </code><code class="value">12</code></div>
+<div class="line"><code class="plain">-rw-r--r-- </code><code class="value">1</code><code class="plain"> root root </code><code class="value">4028</code><code class="plain"> Oct </code><code class="value">23</code><code class="plain"> </code><code class="value">05</code><code class="plain">:</code><code class="value">32</code><code class="plain"> cumulus-cert.pem</code></div>
+<div class="line"><code class="plain">-rw------- </code><code class="value">1</code><code class="plain"> root root </code><code class="value">1679</code><code class="plain"> Oct </code><code class="value">23</code><code class="plain"> </code><code class="value">05</code><code class="plain">:</code><code class="value">32</code><code class="plain"> cumulus-privkey.pem</code></div>
+<div class="line"><code class="plain">-rw-r--r-- </code><code class="value">1</code><code class="plain"> root root </code><code class="value">3585</code><code class="plain"> Oct </code><code class="value">23</code><code class="plain"> </code><code class="value">05</code><code class="plain">:</code><code class="value">32</code><code class="plain"> cumulus-req.pem</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >In <tt class=" ">/usr/share/openvswitch/scripts/ovs-ctl-vtep</tt>, make sure the lines containing <strong class=" ">private-key</strong>, <strong class=" ">certificate</strong> and <strong class=" ">bootstrap-ca-cert</strong> point to the correct files; <strong class=" ">bootstrap-ca-cert</strong> is obtained dynamically the first time the switch talks to the controller:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># Start ovsdb-server.</code></div>
+<div class="line"><code class="plain">set ovsdb-server </code><code class="string">"$DB_FILE"</code></div>
+<div class="line"><code class="plain">set </code><code class="string">"$@"</code><code class="plain"> -vANY:CONSOLE:EMER -vANY:SYSLOG:ERR -vANY:FILE:INFO</code></div>
+<div class="line"><code class="plain">set </code><code class="string">"$@"</code><code class="plain"> --remote=punix:</code><code class="string">"$DB_SOCK"</code></div>
+<div class="line"><code class="plain">set </code><code class="string">"$@"</code><code class="plain"> --remote=db:Global,managers</code></div>
+<div class="line"><code class="plain">set </code><code class="string">"$@"</code><code class="plain"> --remote=ptcp:</code><code class="value">6633</code><code class="plain">:$LOCALIP</code></div>
+<div class="line"><code class="plain">set </code><code class="string">"$@"</code><code class="plain"> --</code><code class="keyword">private</code><code class="plain">-key=/root/cumulus-privkey.pem</code></div>
+<div class="line"><code class="plain">set </code><code class="string">"$@"</code><code class="plain"> --certificate=/root/cumulus-cert.pem</code></div>
+<div class="line"><code class="plain">set </code><code class="string">"$@"</code><code class="plain"> --bootstrap-ca-cert=/root/controller.cacert</code></div>
+</div>
+    </div>
+    <p  >If files have been moved or regenerated, restart the OVSDB server and <tt class=" ">vtepd</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl restart openvswitch-vtep.service</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Define the NSX controller cluster IP address in OVSDB. This causes the OVSDB server to start contacting the NSX controller:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtep-ctl set-manager ssl:</code><code class="value">192.168</code><code class="plain">.</code><code class="value">100.17</code><code class="plain">:</code><code class="value">6632</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Define the local IP address on the VTEP for VXLAN tunnel termination. First, find the physical switch name as recorded in OVSDB:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtep-ctl list-ps</code></div>
+<div class="line"><code class="plain">vtep7</code></div>
+</div>
+    </div>
+    <p  >Then set the tunnel source IP address of the VTEP. This is the datapath address of the VTEP, which is typically an address on a loopback interface on the switch that is reachable from the underlying L3 network:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtep-ctl set Physical_Switch vtep7 tunnel_ips=</code><code class="value">172.16</code><code class="plain">.</code><code class="value">20.157</code></div>
+</div>
+    </div>
+</li></ol>    <p  >Once you finish generating the certificate, keep the terminal session active, as you need to paste the certificate into NSX Manager when you configure the VTEP gateway.    </p>
+    </div>
+    <div class="section section-2" id="src-5126883_IntegratingwithVMwareNSX-ConfiguringtheSwitchasaVTEPGateway">
+        <h2 class="heading "><span>Configuring the Switch as a VTEP Gateway</span></h2>
+    <p  >After you create a certificate, connect to NSX Manager in a browser to configure a Cumulus Linux switch as a VTEP gateway. In this example, the IP address of the NSX manager is 192.168.100.12.    </p>
+<ol class=" "><li class=" ">    <p  >In NSX Manager, add a new gateway. Click the <strong class=" ">Network Components</strong> tab, then the <strong class=" ">Transport Layer</strong> category. Under <strong class=" ">Transport Node</strong>, click <strong class=" ">Add</strong>, then select <strong class=" ">Manually Enter All Fields</strong>. The Create Gateway wizard appears.    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_netcomponents.png" alt="images/download/attachments/5126883/vxlan_netcomponents.png" width="500"  />
+    </p>
+</li><li class=" ">    <p  >In the Create Gateway dialog, select <i class=" ">Gateway</i> for the <strong class=" ">Transport Node Type</strong>, then click <strong class=" ">Next</strong>.    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">Display Name</strong> field, give the gateway a name, then click <strong class=" ">Next</strong>.    </p>
+</li><li class=" ">    <p  >Enable the VTEP service. Select the <strong class=" ">VTEP Enabled</strong> checkbox, then click <strong class=" ">Next</strong>.    </p>
+</li><li class=" ">    <p  >From the terminal session connected to the switch where you generated the certificate, copy the certificate and paste it into the <strong class=" ">Security Certificate</strong> text field. Copy only the bottom portion, including the <tt class=" ">BEGIN CERTIFICATE</tt> and <tt class=" ">END CERTIFICATE</tt> lines. For example, copy all the highlighted text in the terminal:    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_cert_term.png" alt="images/download/attachments/5126883/vxlan_cert_term.png" width="500"  />
+    </p>
+    <p  >And paste it into NSX Manager:    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_nsx_cert.png" alt="images/download/attachments/5126883/vxlan_nsx_cert.png" width="500"  />
+    </p>
+    <p  >Then click <strong class=" ">Next</strong>.    </p>
+</li><li class=" ">    <p  >In the Connectors dialog, click <strong class=" ">Add Connector</strong> to add a transport connector. This defines the tunnel endpoint that terminates the VXLAN tunnel and connects NSX to the physical gateway. You must choose a tunnel <strong class=" ">Transport Type</strong> of <i class=" ">VXLAN</i>. Choose an existing transport zone for the connector, or click <strong class=" ">Create</strong> to create a new transport zone.    </p>
+</li><li class=" ">    <p  >Define the connector&rsquo;s IP address (that is, the underlay IP address on the switch for tunnel termination).    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">OK</strong> to save the connector, then click <strong class=" ">Save</strong> to save the gateway.    </p>
+</li></ol>    <p  >Once communication is established between the switch and the controller, a <tt class=" ">controller.cacert</tt> file will be downloaded onto the switch.    </p>
+    <p  >Verify the controller and switch handshake is successful. In a terminal connected to the switch, run this command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo ovsdb-client dump -f list | grep -A </code><code class="value">7</code><code class="plain"> </code><code class="string">"Manager"</code></div>
+<div class="line"><code class="plain">Manager table</code></div>
+<div class="line"><code class="plain">_uuid               : 505f32af-9acb-</code><code class="value">4182</code><code class="plain">-a315-022e405aa479</code></div>
+<div class="line"><code class="plain">inactivity_probe    : </code><code class="value">30000</code></div>
+<div class="line"><code class="plain">is_connected        : </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">max_backoff         : []</code></div>
+<div class="line"><code class="plain">other_config        : {}</code></div>
+<div class="line"><code class="plain">status              : {sec_since_connect=</code><code class="string">"18223"</code><code class="plain">, sec_since_disconnect=</code><code class="string">"18225"</code><code class="plain">, state=ACTIVE}</code></div>
+<div class="line"><code class="plain">target              : </code><code class="string">"ssl:192.168.100.17:6632"</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126883_IntegratingwithVMwareNSX-ConfiguringtheTransportLayer">
+        <h1 class="heading "><span>Configuring the Transport Layer</span></h1>
+    <p  >After you finish bootstrapping the NSX integration, you need to configure the transport layer. For each host-facing switch port that is to be associated with a VXLAN instance, define a <strong class=" ">Gateway Service</strong> for the port.    </p>
+<ol class=" "><li class=" ">    <p  >In NSX Manager, add a new gateway service. Click the <strong class=" ">Network Components</strong> tab, then the <strong class=" ">Services</strong> category. Under <strong class=" ">Gateway Service</strong>, click <strong class=" ">Add</strong>. The Create Gateway Service wizard appears.    </p>
+</li><li class=" ">    <p  >In the Create Gateway Service dialog, select <i class=" ">VTEP L2 Gateway Service</i> as the <strong class=" ">Gateway Service Type</strong>.    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_gwsvc_create.png" alt="images/download/attachments/5126883/vxlan_gwsvc_create.png" width="500"  />
+    </p>
+</li><li class=" ">    <p  >Give the service a <strong class=" ">Display Name</strong> to represent the VTEP in NSX.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Add Gateway</strong> to associate the service with the gateway you created earlier.    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">Transport Node</strong> field, choose the name of the gateway you created earlier.    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">Port ID</strong> field, choose the physical port on the gateway (for example, swp10) that will connect to a logical L2 segment and carry data traffic.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">OK</strong> to save this gateway in the service, then click <strong class=" ">Save</strong> to save the gateway service.    </p>
+</li></ol>    <p  >The gateway service shows up as type <i class=" ">VTEP L2</i> in NSX.    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_gwsvc.png" alt="images/download/attachments/5126883/vxlan_gwsvc.png" width="500"  />
+        </p>
+    <p  >Next, you will configure the logical layer on NSX.    </p>
+    </div>
+    <div class="section section-1" id="src-5126883_IntegratingwithVMwareNSX-ConfiguringtheLogicalLayer">
+        <h1 class="heading "><span>Configuring the Logical Layer</span></h1>
+    <p  >To complete the integration with NSX, you need to configure the logical layer, which requires defining a logical switch (the VXLAN instance) and all the logical ports needed.    </p>
+    <div class="section section-2" id="src-5126883_IntegratingwithVMwareNSX-DefiningLogicalSwitches">
+        <h2 class="heading "><span>Defining Logical Switches</span></h2>
+    <p  >To define the logical switch, do the following:    </p>
+<ol class=" "><li class=" ">    <p  >In NSX Manager, add a new logical switch. Click the <strong class=" ">Network Components</strong> tab, then the <strong class=" ">Logical Layer</strong> category. Under <strong class=" ">Logical Switch</strong>, click <strong class=" ">Add</strong>. The Create Logical Switch wizard appears.    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">Display Name</strong> field, enter a name for the logical switch, then click <strong class=" ">Next</strong>.    </p>
+    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_logswitch.png" alt="images/download/attachments/5126883/vxlan_logswitch.png" width="500" height="215" />
+    </li><li class=" ">    <p  >Under <strong class=" ">Replication Mode</strong>, select <strong class=" ">Service Nodes</strong>, then click <strong class=" ">Next</strong>.    </p>
+</li><li class=" ">    <p  >Specify the transport zone bindings for the logical switch. Click <strong class=" ">Add Binding</strong>. The Create Transport Zone Binding dialog appears.    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_addbinding.png" alt="images/download/attachments/5126883/vxlan_addbinding.png" width="500"  />
+    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">Transport Type</strong> list, select <i class=" ">VXLAN</i>, then click <strong class=" ">OK</strong> to add the binding to the logical switch.    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_createvni.png" alt="images/download/attachments/5126883/vxlan_createvni.png" width="500"  />
+    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">VNI</strong> field, assign the switch a VNI ID, then click <strong class=" ">OK</strong>.    </p>
+    <p  >    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Do not use 0 or 16777215 as the VNI ID, as they are reserved values under Cumulus Linux.    </p>
+        </div>
+    </div>
+</li><li class=" ">    <p  >Click <strong class=" ">Save</strong> to save the logical switch configuration.<br/>    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_logswitch_done.png" alt="images/download/attachments/5126883/vxlan_logswitch_done.png" width="500"  />
+        </p>
+</li></ol>    </div>
+    <div class="section section-2" id="src-5126883_IntegratingwithVMwareNSX-DefiningLogicalSwitchPorts">
+        <h2 class="heading "><span>Defining Logical Switch Ports</span></h2>
+    <p  >As the final step, define the logical switch ports. They can be virtual machine VIF interfaces from a registered OVS, or a VTEP gateway service instance on this switch, as defined above in the Configuring the Transport Layer. A VLAN binding can be defined for each VTEP gateway service associated with the particular logical switch.    </p>
+    <p  >To define the logical switch ports, do the following:    </p>
+<ol class=" "><li class=" ">    <p  >In NSX Manager, add a new logical switch port. Click the <strong class=" ">Network Components</strong> tab, then the <strong class=" ">Logical Layer</strong> category. Under <strong class=" ">Logical Switch Port</strong>, click <strong class=" ">Add</strong>. The Create Logical Switch Port wizard appears.    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_loglayer.png" alt="images/download/attachments/5126883/vxlan_loglayer.png" width="500"  />
+    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">Logical Switch UUID</strong> list, select the logical switch you created above, then click <strong class=" ">Create</strong>.    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_logswp_create.png" alt="images/download/attachments/5126883/vxlan_logswp_create.png" width="500"  />
+    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">Display Name</strong> field, give the port a name that indicates it is the port that connects the gateway, then click <strong class=" ">Next</strong>.    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">Attachment Type</strong> list, select <i class=" ">VTEP L2 Gateway</i>.    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">VTEP L2 Gateway Service UUID</strong> list, choose the name of the gateway service you created earlier.    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">VLAN</strong> list, you can optionally choose a VLAN if you wish to connect only traffic on a specific VLAN of the physical network. Leave it blank to handle all traffic.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Save</strong> to save the logical switch port. Connectivity is established. Repeat this procedure for each logical switch port you want to define.    <img  class="confluence-embedded-image" src="images/download/attachments/5126883/vxlan_logswp_done.png" alt="images/download/attachments/5126883/vxlan_logswp_done.png" width="500"  />
+    </p>
+</li></ol>    </div>
+    </div>
+    <div class="section section-1" id="src-5126883_IntegratingwithVMwareNSX-VerifyingtheVXLANConfiguration">
+        <h1 class="heading "><span>Verifying the VXLAN Configuration</span></h1>
+    <p  >Once configured, you can verify the VXLAN configuration using these Cumulus Linux commands in a terminal connected to the switch:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch1</code><code class="plain">:~$ sudo ip –d link show vxln100</code></div>
+<div class="line"><code class="value">71</code><code class="plain">: vxln100: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu </code><code class="value">1500</code><code class="plain"> qdisc noqueue master br-vxln100 state UNKNOWN mode DEFAULT</code></div>
+<div class="line"><code class="plain">    link/ether d2:ca:</code><code class="value">78</code><code class="plain">:bb:7c:9b brd ff:ff:ff:ff:ff:ff</code></div>
+<div class="line"><code class="plain">    vxlan id </code><code class="value">100</code><code class="plain"> local </code><code class="value">172.16</code><code class="plain">.</code><code class="value">20.157</code><code class="plain"> port </code><code class="value">32768</code><code class="plain"> </code><code class="value">61000</code><code class="plain"> nolearning ageing </code><code class="value">300</code><code class="plain"> svcnode </code><code class="value">172.16</code><code class="plain">.</code><code class="value">21.125</code></div>
+</div>
+    </div>
+    <p  >or    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch1</code><code class="plain">:~$ sudo bridge fdb show</code></div>
+<div class="line"><code class="value">52</code><code class="plain">:</code><code class="value">54</code><code class="plain">:</code><code class="value">00</code><code class="plain">:ae:2a:e0 dev vxln100 dst </code><code class="value">172.16</code><code class="plain">.</code><code class="value">21.150</code><code class="plain"> self permanent</code></div>
+<div class="line"><code class="plain">d2:ca:</code><code class="value">78</code><code class="plain">:bb:7c:9b dev vxln100 permanent</code></div>
+<div class="line"><code class="value">90</code><code class="plain">:e2:ba:3f:ce:</code><code class="value">34</code><code class="plain"> dev swp2s1.</code><code class="value">100</code></div>
+<div class="line"><code class="value">90</code><code class="plain">:e2:ba:3f:ce:</code><code class="value">35</code><code class="plain"> dev swp2s0.</code><code class="value">100</code></div>
+<div class="line"><code class="value">44</code><code class="plain">:</code><code class="value">38</code><code class="plain">:</code><code class="value">39</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">48</code><code class="plain">:0e dev swp2s1.</code><code class="value">100</code><code class="plain"> permanent</code></div>
+<div class="line"><code class="value">44</code><code class="plain">:</code><code class="value">38</code><code class="plain">:</code><code class="value">39</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">48</code><code class="plain">:0d dev swp2s0.</code><code class="value">100</code><code class="plain"> permanent</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126883_IntegratingwithVMwareNSX-TroubleshootingVXLANsinNSX">
+        <h1 class="heading "><span>Troubleshooting VXLANs in NSX</span></h1>
+    <p  >Use <tt class=" ">ovsdb-client dump</tt> to troubleshoot issues on the switch. It verifies that the controller and switch handshake is successful. This command works only for VXLANs integrated with NSX:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo ovsdb-client dump -f list | grep -A </code><code class="value">7</code><code class="plain"> </code><code class="string">"Manager"</code></div>
+<div class="line"><code class="plain">Manager table</code></div>
+<div class="line"><code class="plain">_uuid               : 505f32af-9acb-</code><code class="value">4182</code><code class="plain">-a315-022e405aa479</code></div>
+<div class="line"><code class="plain">inactivity_probe    : </code><code class="value">30000</code></div>
+<div class="line"><code class="plain">is_connected        : </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">max_backoff         : []</code></div>
+<div class="line"><code class="plain">other_config        : {}</code></div>
+<div class="line"><code class="plain">status              : {sec_since_connect=</code><code class="string">"18223"</code><code class="plain">, sec_since_disconnect=</code><code class="string">"18225"</code><code class="plain">, state=ACTIVE}</code></div>
+<div class="line"><code class="plain">target              : </code><code class="string">"ssl:192.168.100.17:6632"</code></div>
+</div>
+    </div>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Network_Virtualization.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Network Virtualization</span>
+        </a>
+                <a href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

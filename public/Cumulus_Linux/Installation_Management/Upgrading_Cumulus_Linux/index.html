@@ -1,0 +1,2475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Upgrading Cumulus Linux | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/" >
+    Cumulus Linux 3.7.7
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Cumulus_Linux_User_Guide/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Upgrading_Cumulus_Linux/"  class="active" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Services_and_Daemons_in_Cumulus_Linux/" >
+    Services and Daemons in Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/" >
+    Layer 1 and Switch Ports
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/Switch_Port_Attributes/" >
+    Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/Hardware-enabled_DDOS_Protection/" >
+    Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/DHCP_Relays/" >
+    DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/DHCP_Servers/" >
+    DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Facebook_Voyager_Optical_Interfaces/" >
+    Facebook Voyager Optical Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_2/" >
+    Layer 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode/" >
+    VLAN-aware Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/Traditional_Bridge_Mode/" >
+    Traditional Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Virtual_Router_Redundancy_-_VRR_and_VRRP/" >
+    Virtual Router Redundancy - VRR and VRRP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Lightweight_Network_Virtualization_Overview/" >
+    Lightweight Network Virtualization Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Lightweight_Network_Virtualization_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-MH/" >
+    Integrating Hardware VTEPs with VMware NSX-MH
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/OVSDB_Server_High_Availability/" >
+    OVSDB Server High Availability
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/VXLAN_Active-Active_Mode/" >
+    VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Troubleshooting_VXLANs/" >
+    Troubleshooting VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Address_Resolution_Protocol_-_ARP/" >
+    Address Resolution Protocol - ARP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Open_Shortest_Path_First_-_OSPF/" >
+    Open Shortest Path First - OSPF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3/" >
+    Open Shortest Path First v3 - OSPFv3
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Policy-based_Routing/" >
+    Policy-based Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/GRE_Tunneling/" >
+    GRE Tunneling
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool_-ethtool_Counter_Definitions/" >
+    Monitoring Interfaces and Transceivers Using ethtool — ethtool Counter Definitions
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/" >
+    Simple Network Management Protocol (SNMP) Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/ASIC_Monitoring/" >
+    ASIC Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/switchd_Log_Message_Reference/" >
+    switchd Log Message Reference
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/FRRouting_Log_Message_Reference/" >
+    FRRouting Log Message Reference
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Cumulus_Hyperconverged_Solution_with_Nutanix/" >
+    Cumulus Hyperconverged Solution with Nutanix
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Upgrading Cumulus Linux</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Upgrading Cumulus Linux</h1>
+
+<p>This topic describes how to upgrade Cumulus Linux on your switches to a
+more recent release.</p>
+
+<p>Cumulus Networks recommends that you deploy, provision, configure, and
+upgrade switches using automation, even with small networks or test
+labs. During the upgrade process, you can quickly upgrade dozens of
+devices in a repeatable manner. Using tools like Ansible, Chef, or
+Puppet for configuration management greatly increases the speed and
+accuracy of the next major upgrade; these tools also enable the quick
+swap of failed switch hardware.</p>
+
+<h2 id="upgrade-cumulus-linux">Upgrade Cumulus Linux</h2>
+
+<p>You can upgrade Cumulus Linux in one of two ways:</p>
+
+<ul>
+<li><p>Install a disk image of the new release, using ONIE.</p></li>
+
+<li><p>Upgrade only the changed packages using the<code>sudo -E apt-get
+update</code> and <code>sudo</code> <code>-E apt-get upgrade</code> command.</p></li>
+</ul>
+
+
+<div class="notices note" > <p>Upgrading an MLAG pair requires additional steps. If you are using MLAG
+to dual connect two Cumulus Linux switches in your environment, follow
+the steps in <a href="/old/Cumulus_Linux/#src-8362647_UpgradingCumulusLinux-mlag">Upgrade Switches in an MLAG
+Pair</a> below
+to ensure a smooth upgrade.</p>
+ </div>
+
+
+<h3 id="should-i-install-a-disk-image-or-upgrade-packages">Should I Install a Disk Image or Upgrade Packages?</h3>
+
+<p>The decision to upgrade Cumulus Linux by either installing a disk image
+or upgrading packages depends on your environment and your preferences.
+Here are some recommendations for each upgrade method.</p>
+
+<p><strong>Installing a disk image</strong> is recommended if you are performing a
+rolling upgrade in a production environment and if are using up-to-date
+and comprehensive automation scripts. This upgrade method enables you to
+choose the exact release to which you want to upgrade and is the <em>only</em>
+method available to upgrade your switch to a new release train (for
+example, from 2.5.6 to 3.7.0) or from a release earlier than 3.6.2.</p>
+
+<p>Be aware of the following when installing the disk image:</p>
+
+<ul>
+<li><p>Installing a disk image is destructive; any configuration files on
+the switch are not saved; copy them to a different server before you
+start the disk image install.</p></li>
+
+<li><p>You must move configuration data to the new OS using ZTP or
+automation while the OS is first booted, or soon afterwards using
+out-of-band management.</p></li>
+
+<li><p>Moving a configuration file might cause issues;</p>
+
+<ul>
+<li><p>Identifying all the locations of configuration data is not
+always an easy task. See <a href="/old/Cumulus_Linux/#src-8362647_UpgradingCumulusLinux-before-upgrade">Before You Upgrade Cumulus
+Linux</a>
+above.</p></li>
+
+<li><p>Merge conflicts with configuration file changes in the new
+release might go undetected.</p></li>
+</ul></li>
+
+<li><p>If configuration files are not restored correctly, you might be
+unable to ssh to the switch from in-band management. Out-of-band
+connectivity (eth0 or console) is recommended.</p></li>
+
+<li><p>You <em>must</em> reinstall and reconfigure third-party applications after
+upgrade.</p></li>
+</ul>
+
+<p><strong>Package upgrade</strong> is recommended if you are upgrading from Cumulus
+Linux 3.6.2 or later, or if you use third-party applications (package
+upgrade does not replace or remove third-party applications, unlike disk
+image install).</p>
+
+<p>Be aware of the following when upgrading packages:</p>
+
+<ul>
+<li><p>You cannot upgrade the switch to a new release train. For example,
+you <strong>cannot</strong> upgrade the switch from <strong>2</strong>.5.6 to <strong>3</strong>.y.z.</p></li>
+
+<li><p>If you are upgrading Cumulus Linux from a release earlier than
+3.6.2, you might encounter certain issues due to package changes and
+service restarts.</p></li>
+
+<li><p>You cannot choose the exact release that you want to run. When you
+upgrade, you upgrade all packages to the latest available release in
+the Cumulus Networks repository.</p></li>
+
+<li><p>If you are upgrading from a release earlier than 3.6.2, certain
+upgrade operations terminate SSH sessions and/or routing on the
+in-band (front panel) ports, leaving you unable to monitor the
+upgrade process. (As a workaround, you can use the
+<a href="https://support.cumulusnetworks.com/hc/en-us/articles/215453578" target="_blank"><span style="color: #000000;"> dtach tool
+</span></a>
+.)</p>
+
+<ul>
+<li><p>The <code>sudo</code><code>-E</code><code>apt-get upgrade</code> command might result in
+services being restarted or stopped as part of the upgrade
+process.</p></li>
+
+<li><p>The <code>sudo</code><code>-E</code><code>apt-get install</code> command might disrupt
+core services by changing core service dependency packages.</p></li>
+</ul></li>
+
+<li><p>After you upgrade, account UIDs and GIDs created by packages might
+be different on different switches, depending on the configuration
+and package installation history.</p></li>
+</ul>
+
+<h3 id="disk-image-install-onie">Disk Image Install (ONIE)</h3>
+
+<p>ONIE is an open source project (equivalent to PXE on servers) that
+enables the installation of network operating systems (NOS) on a bare
+metal switch.</p>
+
+<p>To upgrade the switch with a new disk image using ONIE:</p>
+
+<ol>
+<li><p>Back up the configurations off the switch.</p></li>
+
+<li><p>Download the Cumulus Linux image you want to install.</p></li>
+
+<li><p>Install the disk image with the <code>onie-install -a -i</code> <code>
+&lt;image-location&gt;</code> command, which boots the switch into ONIE.<br />
+The following example command installs the image from a web server,
+then reboots the switch. There are additional ways to install the
+disk image, such as using FTP, a local file, or a USB drive. For
+more information, see <a href="/old/Cumulus_Linux/Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux
+Image</a>.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-3.7.1-mlx-amd64.bin &amp;&amp; sudo reboot
+       
+        
+</code></pre></li>
+
+<li><p>Restore the configuration files to the new release — ideally with
+automation.</p></li>
+
+<li><p>Verify correct operation with the old configurations on the new
+release.</p></li>
+
+<li><p>Reinstall third party applications and associated configurations.</p></li>
+</ol>
+
+<h3 id="package-upgrade">Package Upgrade</h3>
+
+<p>Cumulus Linux completely embraces the Linux and Debian upgrade workflow,
+where you use an installer to install a base image, then perform any
+upgrades within that release train with <code>-E apt-get update and -E
+apt-get upgrade</code> commands. Any packages that have been changed since the
+base install get upgraded in place from the repository. All switch
+configuration files remain untouched, or in rare cases merged (using the
+Debian merge function) during the package upgrade.</p>
+
+<p>When you use package upgrade to upgrade your switch, configuration data
+stays in place while the packages are upgraded. If the new release
+updates a configuration file that you changed previously, you are
+prompted for the version you want to use or if you want to evaluate the
+differences.</p>
+
+<p>To upgrade the switch using package upgrade:</p>
+
+<ol>
+<li><p>Back up the configurations from the switch.</p></li>
+
+<li><p>Fetch the latest update metadata from the repository.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo -E apt-get update
+       
+        
+</code></pre></li>
+
+<li><p>Review potential upgrade issues (in some cases, upgrading new
+packages might also upgrade additional existing packages due to
+dependencies). Run the following command to see the additional
+packages that will be installed or upgraded.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo -E apt-get install --dry-run
+       
+        
+</code></pre></li>
+</ol>
+
+<!-- end list -->
+
+<ul>
+<li><p>Upgrade all the packages to the latest distribution.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo -E apt-get upgrade
+       
+        
+</code></pre>
+
+<p>If no reboot is required after the upgrade completes, the upgrade
+ends, restarts all upgraded services, and logs messages in the
+<code>/var/log/syslog</code> file similar to the ones shown below. In the
+examples below, only the <code>frr</code> package was upgraded.</p>
+
+<pre><code>                       
+Policy: Service frr.service action stop postponed
+Policy: Service frr.service action start postponed
+Policy: Restarting services: frr.service
+Policy: Finished restarting services
+Policy: Removed /usr/sbin/policy-rc.d
+Policy: Upgrade is finished
+       
+        
+</code></pre>
+
+<p>If the upgrade process encounters changed configuration files that
+have new versions in the release to which you are upgrading, you see
+a message similar to this:</p>
+
+<pre><code>                       
+Configuration file '/etc/frr/daemons'
+==&gt; Modified (by you or by a script) since installation.
+==&gt; Package distributor has shipped an updated version.
+What would you like to do about it ? Your options are:
+Y or I : install the package maintainer's version
+N or O : keep your currently-installed version
+D : show the differences between the versions
+Z : start a shell to examine the situation
+The default action is to keep your current version.
+*** daemons (Y/I/N/O/D/Z) [default=N] ?
+       
+        
+</code></pre>
+
+<p>- To see the differences between the currently installed version
+and the new version, type <code>D</code>.</p>
+
+<p>- To keep the currently installed version, type <code>N</code>. The new
+package version is installed with the suffix <code>_.dpkg-dist</code> (for
+example, <code>/etc/frr/daemons.dpkg-dist</code>). When upgrade is complete and
+<strong>before</strong> you reboot, merge your changes with the changes from the
+newly installed file.</p>
+
+<p>- To install the new version, type <code>I</code>. Your currently installed
+version is saved with the suffix <code>.dpkg-old</code>.</p>
+
+<p>When the upgrade is complete, you can search for the files with the
+<code>sudo find / -mount -type f -name '*.dpkg-*'</code> command.</p>
+
+
+<div class="notices note" > <pre><code>If you see errors for expired GPG keys that prevent you from
+upgrading packages, follow the steps in [Upgrading Expired GPG
+Keys](https://support.cumulusnetworks.com/hc/en-us/articles/360002663013-Updating-Expired-GPG-Keys).
+</code></pre>
+ </div>
+</li>
+</ul>
+
+<!-- end list -->
+
+<ol>
+<li><p>Reboot the switch if the upgrade messages indicate that a system
+restart is required.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo -E apt-get upgrade
+      ... upgrade messages here ...
+ 
+*** Caution: Service restart prior to reboot could cause unpredictable behavior
+*** System reboot required ***
+cumulus@switch:~$ sudo reboot
+       
+        
+</code></pre></li>
+
+<li><p>Verify correct operation with the old configurations on the new
+version.</p></li>
+</ol>
+
+<h3 id="upgrade-notes">Upgrade Notes</h3>
+
+<p><em>Package upgrade</em> always updates to the latest available release in the
+Cumulus Linux repository. For example, if you are currently running
+Cumulus Linux 3.0.1 and run the <code>sudo -E apt-get upgrade</code> command on
+that switch, the packages are upgraded to the latest releases contained
+in the latest 3.y.z release.</p>
+
+<p>Because Cumulus Linux is a collection of different Debian Linux
+packages, be aware of the following:</p>
+
+<ul>
+<li><p>The <code>/etc/os-release</code> and <code>/etc/lsb-release</code> files are updated to
+the currently installed Cumulus Linux release when you upgrade the
+switch using either <em>package upgrade</em> or <em>disk image install</em>. For
+example, if you run <code>sudo -E apt-get upgrade</code> and the latest Cumulus
+Linux release on the repository is 3.7.1, these two files display
+the release as 3.7.1 after the upgrade.</p></li>
+
+<li><p>The <code>/etc/image-release</code> file is updated <strong>only</strong> when you run a
+disk image install. Therefore, if you run a disk image install of
+Cumulus Linux 3.5.0, followed by a package upgrade to 3.7.1 using
+<code>sudo -E apt-get upgrade</code>, the <code>/etc/image-release</code> file continues
+to display Cumulus Linux 3.5.0, which is the originally installed
+base image.</p></li>
+</ul>
+
+<h2 id="upgrade-switches-in-an-mlag-pair">Upgrade Switches in an MLAG Pair</h2>
+
+<p>If you are using
+<a href="/old/Cumulus_Linux/Multi-Chassis_Link_Aggregation_-_MLAG.html">MLAG</a> to
+dual connect two switches in your environment, follow the steps below
+according to the version of Cumulus Linux from which you are upgrading.</p>
+
+<h3 id="upgrade-from-cumulus-linux-3-y-z-to-a-later-3-y-z-release">Upgrade from Cumulus Linux 3.y.z to a Later 3.y.z Release</h3>
+
+<p>When you upgrade Cumulus Linux from 3.y.z to a later 3.y.z release, you
+can either install a disk image using ONIE or use package upgrade. Both
+methods are included below.</p>
+
+<p>To upgrade the switches:</p>
+
+<ol>
+<li><p>Verify the switch is in the secondary role:</p>
+
+<pre><code>                       
+cumulus@switch:~$ clagctl status
+       
+        
+</code></pre></li>
+
+<li><p>If you want to install a disk image, go to the next step. If you
+want to use package upgrade, update the Cumulus Linux repositories:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo -E apt-get update
+       
+        
+</code></pre></li>
+
+<li><p>Shut down the core uplink layer 3 interfaces:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo ip link set swpX down
+       
+        
+</code></pre></li>
+
+<li><p>Shut down the peerlink:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo ip link set peerlink down
+       
+        
+</code></pre></li>
+
+<li><p>Perform the upgrade either by installing a disk image or upgrading
+packages.<br />
+To <em>install a disk image</em>, run the <code>onie-install -a -i</code> <code>
+&lt;image-location&gt;</code> command to boot the switch into ONIE. The
+following example command installs the image from a web server.
+There are additional ways to install the disk image, such as using
+FTP, a local file, or a USB drive. For more information, see
+<a href="/old/Cumulus_Linux/Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux
+Image</a>.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-3.7.1-mlx-amd64.bin
+       
+        
+</code></pre>
+
+<p>To use <em>package upgrade</em>, run the <code>-E apt-get upgrade</code> command:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo -E apt-get upgrade
+       
+        
+</code></pre></li>
+
+<li><p>Reboot the switch:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo reboot
+       
+        
+</code></pre></li>
+
+<li><p>If you were originally running Cumulus Linux 3.0.0 through 3.3.2,
+follow the steps for <a href="/old/Cumulus_Linux/Upgrading_from_Quagga_to_FRRouting.html">upgrading from Quagga to
+FRRouting</a>.</p></li>
+
+<li><p>Verify STP convergence across both switches:</p>
+
+<pre><code>                       
+cumulus@switch:~$ mstpctl showall
+       
+        
+</code></pre></li>
+
+<li><p>Verify core uplinks and peerlinks are UP:</p>
+
+<pre><code>                       
+cumulus@switch:~$ net show interface
+       
+        
+</code></pre></li>
+
+<li><p>Verify MLAG convergence:</p>
+
+<pre><code>                       
+cumulus@switch:~$ clagctl status
+       
+        
+</code></pre></li>
+
+<li><p>Make this secondary switch the primary:</p>
+
+<pre><code>                       
+cumulus@switch:~$ clagctl priority 2048
+       
+        
+</code></pre></li>
+
+<li><p>Verify the other switch is now in the secondary role.</p></li>
+
+<li><p>Repeat steps 2-10 on the new secondary switch.</p></li>
+
+<li><p>Remove the priority 2048 and restore the priority back to 32768 on
+the current primary switch:</p>
+
+<pre><code>                       
+cumulus@switch:~$ clagctl priority 32768
+       
+        
+</code></pre></li>
+</ol>
+
+<h3 id="upgrade-from-cumulus-linux-2-y-z-to-3-y-z">Upgrade from Cumulus Linux 2.y.z to 3.y.z</h3>
+
+<p>If you are using
+<a href="/old/Cumulus_Linux/Multi-Chassis_Link_Aggregation_-_MLAG.html">MLAG</a> to
+dual connect two switches in your environment and those switches are
+still running Cumulus Linux 2.5 ESR or any other release earlier than
+3.0.0, the switches are not dual-connected after you upgrade the first
+switch.</p>
+
+<p>To upgrade the switches, you <strong>must</strong> install a new disk image using
+ONIE; you cannot use package upgrade:</p>
+
+<ol>
+<li><p>Disable <code>clagd</code> in the <code>/etc/network/interfaces</code> file (set
+<code>clagd-enable</code> to <em>no</em>), then restart <code>switchd</code>, networking, and FRR
+services.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo systemctl restart switchd.service
+cumulus@switch:~$ sudo systemctl restart networking.service
+cumulus@switch:~$ sudo systemctl restart frr.service
+       
+        
+</code></pre></li>
+
+<li><p>If you are using BGP, notify the BGP neighbors that the switch is
+going down:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo vtysh -c &quot;config t&quot; -c &quot;router bgp&quot; -c &quot;neighbor X.X.X.X shutdown&quot;
+       
+        
+</code></pre></li>
+
+<li><p>Stop the Quagga service:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo systemctl stop [quagga|frr].service 
+       
+        
+</code></pre></li>
+
+<li><p>Bring down all the front panel ports:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo ip link set swp&lt;#&gt; down
+       
+        
+</code></pre></li>
+
+<li><p>Run <code>cl-img-select -fr</code> to boot the switch in the secondary role
+into ONIE, then reboot the switch.</p></li>
+
+<li><p>Install Cumulus Linux onto the secondary switch using ONIE. At this
+time, all traffic goes to the switch in the primary role.</p></li>
+
+<li><p>After the install, copy the license file and all the configuration
+files you backed up, then restart the <code>switchd</code>, networking, and
+Quagga services. All traffic is still going to the primary switch.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo systemctl restart switchd.service
+cumulus@switch:~$ sudo systemctl restart networking.service
+cumulus@switch:~$ sudo systemctl restart quagga.service
+       
+        
+</code></pre></li>
+
+<li><p>Run <code>cl-img-select -fr</code> to boot the switch in the primary role into
+ONIE, then reboot the switch. Now, all traffic is going to the
+switch in the <em>secondary role</em> that you just upgraded.</p></li>
+
+<li><p>Install Cumulus Linux onto the <em>primary switch</em> using ONIE.</p></li>
+
+<li><p>After the install, copy the license file and all the configuration
+files you backed up.</p></li>
+
+<li><p>Follow the steps for <a href="/old/Cumulus_Linux/Upgrading_from_Quagga_to_FRRouting.html">upgrading from Quagga to
+FRRouting</a>.</p></li>
+
+<li><p>Enable <code>clagd</code> again in the <code>/etc/network/interfaces</code> file (set
+<code>clagd-enable</code> to <em>yes</em>), then run <code>ifreload -a</code>.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo ifreload -a
+       
+        
+</code></pre></li>
+
+<li><p>Bring up all the front panel ports:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo ip link set swp&lt;#&gt; up 
+       
+        
+</code></pre>
+
+<p>The two switches are dual-connected again and traffic flows to both
+switches.</p></li>
+</ol>
+
+<h2 id="roll-back-a-cumulus-linux-installation">Roll Back a Cumulus Linux Installation</h2>
+
+<p>Even the most well planned and tested upgrades can result in unforeseen
+problems; sometimes the best solution is to roll back to the previous
+state.There are three main strategies; all require detailed planning and
+execution:</p>
+
+<ul>
+<li><p>Back out individual packages: If you identify the problematic
+package, you can downgrade the affected package directly. In rare
+cases, you might need to restore the configuration files from backup
+or edit to back out any changes made automatically by the upgrade
+package.</p></li>
+
+<li><p>Flatten and rebuild: If the OS becomes unusable, you can use
+orchestration tools to reinstall the previous OS release from
+scratch and then rebuild the configuration automatically.</p></li>
+
+<li><p>Backup and restore: Another common strategy is to restore to a
+previous state using a backup captured before the upgrade.</p></li>
+</ul>
+
+<p>The method you employ is specific to your deployment strategy, so
+providing detailed steps for each scenario is outside the scope of this
+document.</p>
+
+<h2 id="third-party-packages">Third Party Packages</h2>
+
+<p>Third party packages in the <em>Linux host</em> world often use the same
+package system as the distribution into which it is to be installed (for
+example, Debian uses <code>apt-get</code>). Or, the package might be compiled and
+installed by the system administrator. Configuration and executable
+files generally follow the same filesystem hierarchy standards as other
+applications.</p>
+
+<p>If you install any third party applications on a Cumulus Linux switch,
+configuration data is typically installed into the <code>/etc</code> directory, but
+it is not guaranteed. It is your responsibility to understand the
+behavior and configuration file information of any third party packages
+installed on the switch.</p>
+
+<p>After you upgrade using a full disk image install, you need to reinstall
+any third party packages or any Cumulus Linux add-on packages, such as
+<code>vxsnd</code> or <code>vxrd</code>.</p>
+
+<h2 id="related-information">Related Information</h2>
+
+<ul>
+<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/360010451353" target="_blank">Upgrades: Network Device Worldview and Linux Host Worldview
+Comparison</a></p></li>
+
+<li><p><a href="https://cumulusnetworks.com/solutions/automation/" target="_blank">Automation
+Solutions</a></p></li>
+
+<li><p><a href="http://opencomputeproject.github.io/onie/design-spec/" target="_blank">ONIE Design
+Specification</a></p></li>
+
+<li><p><a href="/old/Cumulus_Linux/Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation -
+MLAG</a></p></li>
+
+<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/360011472734-Configuration-File-Migration-Script" target="_blank">Configuration File Migration
+Script</a></p></li>
+
+<li><p><a href="/old/Cumulus_Linux/Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning -
+ZTP</a></p></li>
+</ul>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#upgrade-cumulus-linux">Upgrade Cumulus Linux</a>
+<ul>
+<li><a href="#should-i-install-a-disk-image-or-upgrade-packages">Should I Install a Disk Image or Upgrade Packages?</a></li>
+<li><a href="#disk-image-install-onie">Disk Image Install (ONIE)</a></li>
+<li><a href="#package-upgrade">Package Upgrade</a></li>
+<li><a href="#upgrade-notes">Upgrade Notes</a></li>
+</ul></li>
+<li><a href="#upgrade-switches-in-an-mlag-pair">Upgrade Switches in an MLAG Pair</a>
+<ul>
+<li><a href="#upgrade-from-cumulus-linux-3-y-z-to-a-later-3-y-z-release">Upgrade from Cumulus Linux 3.y.z to a Later 3.y.z Release</a></li>
+<li><a href="#upgrade-from-cumulus-linux-2-y-z-to-3-y-z">Upgrade from Cumulus Linux 2.y.z to 3.y.z</a></li>
+</ul></li>
+<li><a href="#roll-back-a-cumulus-linux-installation">Roll Back a Cumulus Linux Installation</a></li>
+<li><a href="#third-party-packages">Third Party Packages</a></li>
+<li><a href="#related-information">Related Information</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_Linux/Installation_Management/Upgrading_Cumulus_Linux.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

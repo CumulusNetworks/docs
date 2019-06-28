@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network Troubleshooting on Cumulus Networks Documentation</title>
+    <link>http://example.org/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/</link>
+    <description>Recent content in Network Troubleshooting on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using NCLU to Troubleshoot Your Network Configuration</title>
+      <link>http://example.org/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/</guid>
+      <description>The network command line utility (NCLU) can quickly return a lot of information about your network configuration.
+Using net show Commands Running net show and pressing TAB displays all available command line arguments usable by net. The output looks like this:
+ cumulus@switch:~$ net show bgp : Border Gateway Protocol bridge : A layer2 bridge clag : Multi-Chassis Link Aggregation commit : apply the commit buffer to the system configuration : Settings, configuration state, etc counters : show netstat counters hostname : System hostname igmp : Internet Group Management Protocol interface : An interface such as swp1, swp2, etc ip : Internet Protocol version 4 ipv6 : Internet Protocol version 6 lldp : Link Layer Discovery Protocol lnv : Lightweight Network Virtualization mroute : Configure static unicast route into MRIB for multicast RPF lookup msdp : Multicast Source Discovery Protocol ospf : Open Shortest Path First (OSPFv2) ospf6 : Open Shortest Path First (OSPFv3) pim : Protocol Independent Multicast rollback : revert to a previous configuration state route : Static routes route-map : Route-map system : System information version : Version number  Showing Interfaces To show all available interfaces that are physically UP, run net show interface:</description>
+    </item>
+    
+    <item>
+      <title>Monitoring System Statistics and Network Traffic with sFlow</title>
+      <link>http://example.org/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/</guid>
+      <description>sFlow is a monitoring protocol that samples network packets, application operations, and system counters. sFlow collects both interface counters and sampled 5-tuple packet information, enabling you to monitor your network traffic as well as your switch state and performance metrics. An outside server, known as an sFlow collector, is required to collect and analyze this data.
+hsflowd is the daemon that samples and sends sFlow data to configured collectors. hsflowd is not included in the base Cumulus Linux installation.</description>
+    </item>
+    
+  </channel>
+</rss>

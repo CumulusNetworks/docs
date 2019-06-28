@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network Solutions on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_35/Network_Solutions/</link>
+    <description>Recent content in Network Solutions on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_35/Network_Solutions/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data Center Host to ToR Architecture</title>
+      <link>http://example.org/version/Cumulus_Linux_35/Network_Solutions/Data_Center_Host_to_ToR_Architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/Network_Solutions/Data_Center_Host_to_ToR_Architecture/</guid>
+      <description>This chapter discusses the various architectures and strategies available from the top of rack (ToR) switches all the way down to the server hosts.
+Layer 3 Architecture Single-attached Hosts     Summary
+ More Information
+    The server (physical host) has only has one link to one ToR switch.
+Configurations
+leaf01 Config
+/etc/network/interfaces
+ auto swp1 iface swp1 address 172.16.1.1/30  /etc/frr/frr.conf
+ router ospf router-id 10.</description>
+    </item>
+    
+    <item>
+      <title>Cumulus Networks Services Demos</title>
+      <link>http://example.org/version/Cumulus_Linux_35/Network_Solutions/Cumulus_Networks_Services_Demos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/Network_Solutions/Cumulus_Networks_Services_Demos/</guid>
+      <description>The Cumulus Networks Services team demos provide a virtual environment built using either VirtualBox or libvirt using Vagrant to manage the VMs. This environment utilizes the reference topology shown below. Vagrant and Cumulus VX can be used together to build virtual simulations of production networks to validate configurations, develop automation code and simulate failure scenarios.
+Reference Topology The Cumulus Networks reference topology includes cabling (in DOT format for dual use with PTM), MAC addressing, IP addressing, switches and servers.</description>
+    </item>
+    
+    <item>
+      <title>Docker on Cumulus Linux</title>
+      <link>http://example.org/version/Cumulus_Linux_35/Network_Solutions/Docker_on_Cumulus_Linux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/Network_Solutions/Docker_on_Cumulus_Linux/</guid>
+      <description>Cumulus Linux 3.4 is based on Linux kernel 4.1, which supports the Docker engine. Docker can be installed directly on a Cumulus Linux switch, and Docker containers can be run natively on the switch. This section covers the installation and set up instructions for Docker.
+Setting up Docker on Cumulus Linux Configure the Repositories  Add the following line to the end of /etc/apt/sources.list.d/jessie.list in a text editor, and save the file:</description>
+    </item>
+    
+    <item>
+      <title>OpenStack Neutron ML2 and Cumulus Linux</title>
+      <link>http://example.org/version/Cumulus_Linux_35/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/</guid>
+      <description>The Modular Layer 2 (ML2) plugin is a framework that allows OpenStack Networking to utilize a variety of non-vendor-specific layer 2 networking technologies. The ML2 framework simplifies adding support for new layer 2 networking technologies, requiring much less initial and ongoing effort — specifically, it enables dynamic provisioning of VLAN/VXLAN on switches in OpenStack environment instead of manually provisioning L2 connectivity for each VM.
+The plugin supports configuration caching. The cached configuration is replayed back to the Cumulus Linux switch from Cumulus ML2 mechanism driver when a switch or process restart is detected.</description>
+    </item>
+    
+    <item>
+      <title>Anycast Design Guide</title>
+      <link>http://example.org/version/Cumulus_Linux_35/Network_Solutions/Anycast_Design_Guide/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/Network_Solutions/Anycast_Design_Guide/</guid>
+      <description>Cumulus Networks&amp;rsquo; Routing on the Host provides the ability to run OSPF or BGP directly on server hosts. This can enable a network architecture known as anycast, where many servers can provide the same service without needing layer 2 extensions or load balancer appliances.
+Anycast is not a new protocol or protocol implementation and does not require any additional network configuration. Anycast leverages the equal cost multipath (ECMP) capabilities inherent in layer 3 networks to provide stateless load sharing services.</description>
+    </item>
+    
+    <item>
+      <title>RDMA over Converged Ethernet - RoCE</title>
+      <link>http://example.org/version/Cumulus_Linux_35/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/</guid>
+      <description>RDMA over Converged Ethernet (RoCE) provides the ability to write to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux supports features that can enable lossless Ethernet for RoCE environments. Note that while Cumulus Linux can support RoCE environments, the hosts send and receive the RoCE packets.</description>
+    </item>
+    
+  </channel>
+</rss>

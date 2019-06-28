@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lightweight Network Virtualization Overview on Cumulus Networks Documentation</title>
+    <link>http://example.org/Cumulus_Linux/Network_Virtualization/Lightweight_Network_Virtualization_Overview/</link>
+    <description>Recent content in Lightweight Network Virtualization Overview on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/Cumulus_Linux/Network_Virtualization/Lightweight_Network_Virtualization_Overview/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>LNV Full Example</title>
+      <link>http://example.org/Cumulus_Linux/Network_Virtualization/Lightweight_Network_Virtualization_Overview/LNV_Full_Example/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Network_Virtualization/Lightweight_Network_Virtualization_Overview/LNV_Full_Example/</guid>
+      <description>As of Cumulus Linux 3.7.4, the lightweight network virtualization feature (LNV) has been deprecated. The feature will be removed in Cumulus Linux 4.0. Cumulus Networks recommends you use Ethernet virtual private network (EVPN) for network virtualization.
+ Lightweight Network Virtualization (LNV) is a technique for deploying VXLANs without a central controller on bare metal switches. This a full example complete with diagram. Refer to the Lightweight Network Virtualization chapter for more detailed information.</description>
+    </item>
+    
+  </channel>
+</rss>

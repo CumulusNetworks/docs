@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Layer 1 and Switch Ports on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/</link>
+    <description>Recent content in Layer 1 and Switch Ports on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DHCP Relays</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/DHCP_Relays/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/DHCP_Relays/</guid>
+      <description>You can configure DHCP relays for IPv4 and IPv6.
+To run DHCP for both IPv4 and IPv6, initiate the DHCP relay once for IPv4 and once for IPv6. Following are the configurations on the server hosts, DHCP relay and DHCP server using the following topology:
+The dhcpd and dhcrelay services are disabled by default. After you finish configuring the DHCP relays and servers, you need to start those services.</description>
+    </item>
+    
+    <item>
+      <title>DHCP Servers</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/DHCP_Servers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/DHCP_Servers/</guid>
+      <description>To run DHCP for both IPv4 and IPv6, you need to initiate the DHCP server twice: once for IPv4 and once for IPv6. The following configuration uses the following topology for the host, DHCP relay and DHCP server:
+For the configurations used in this chapter, the DHCP server is a switch running Cumulus Linux; however, the DHCP server can also be located on a dedicated server in your environment.</description>
+    </item>
+    
+    <item>
+      <title>Facebook Voyager Optical Interfaces</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Facebook_Voyager_Optical_Interfaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Facebook_Voyager_Optical_Interfaces/</guid>
+      <description>Facebook Voyager is a Broadcom Tomahawk-based switch with added Dense Wave Division Multiplexing (DWDM) ports that can connect to another switch thousands of kilometers away by adding transponders. DWDM allows many separate connections on one fiber pair by sending them over different wavelengths. Although the wavelengths are sent on the same physical fiber, they do not interact with each other, similar to VLANs on a trunk. Each wavelength can transport very high speeds over very long distances.</description>
+    </item>
+    
+    <item>
+      <title>802.1X Interfaces</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/802.1X_Interfaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/802.1X_Interfaces/</guid>
+      <description>The IEEE 802.1X protocol provides a method of authenticating a client (called a supplicant) over wired media. It also provides access for individual MAC addresses on a switch (called the authenticator) after those MAC addresses have been authenticated by an authentication server — typically a RADIUS (Remote Authentication Dial In User Service, defined by RFC 2865) server.
+A Cumulus Linux switch acts as an intermediary between the clients connected to the wired ports and the authentication server, which is reachable over the existing network.</description>
+    </item>
+    
+    <item>
+      <title>Prescriptive Topology Manager - PTM</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Prescriptive_Topology_Manager_-_PTM/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Prescriptive_Topology_Manager_-_PTM/</guid>
+      <description>In data center topologies, right cabling is a time-consuming endeavor and is error prone. Prescriptive Topology Manager (PTM) is a dynamic cabling verification tool to help detect and eliminate such errors. It takes a Graphviz-DOT specified network cabling plan (something many operators already generate), stored in a topology.dot file, and couples it with runtime information derived from LLDP to verify that the cabling matches the specification. The check is performed on every link transition on each node in the network.</description>
+    </item>
+    
+  </channel>
+</rss>

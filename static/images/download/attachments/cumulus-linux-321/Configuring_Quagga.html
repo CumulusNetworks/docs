@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Configuring Quagga - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link current" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Layer_Three.html">Layer Three</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5127042"> <span>Configuring Quagga</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  >This section provides an overview of configuring Cumulus Quagga, the Cumulus Networks-enhanced version of the Quagga routing software package that provides a suite of routing protocols so you can configure routing on your switch.    </p>
+    <div class="section section-1" id="src-5127042_ConfiguringQuagga-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5127042_ConfiguringQuagga-ConfiguringCumulusQuagga">
+        <h1 class="heading "><span>Configuring Cumulus Quagga</span></h1>
+    <p  >Cumulus Quagga does not start by default in Cumulus Linux. Before you run Cumulus Quagga, make sure all you have enabled relevant daemons that you intend to use &mdash; <tt class=" ">zebra</tt>, <tt class=" ">bgpd</tt>, <tt class=" ">ospfd</tt>, <tt class=" ">ospf6d</tt> or <tt class=" ">pimd</tt> &mdash; in the <tt class=" ">/etc/quagga/daemons</tt> file.    </p>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Cumulus Networks has not tested RIP, RIPv6, IS-IS and Babel.    </p>
+        </div>
+    </div>
+    <p  >The <tt class=" ">zebra</tt> daemon must always be enabled. The others you can enable according to how you plan to route your network &mdash; using <a   href="Border_Gateway_Protocol_-_BGP.html">BGP</a> for example, instead of <a   href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">OSPF</a>.    </p>
+    <p  ><span id="src-5127042_indexterm-B36ABDAAE23BDFC4877E7E1C08B470CF">Before you start </span>Cumulus Quagga, you need to enable the corresponding daemons. Edit the <tt class=" ">/etc/quagga/daemons</tt> file and set to <i class=" ">yes</i> each daemon you are enabling. For example, to enable BGP, set both <tt class=" ">zebra</tt> and <tt class=" ">bgpd</tt> to <i class=" ">yes</i>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">zebra=yes (* </code><code class="keyword">this</code><code class="plain"> one is mandatory to bring the others up)</code></div>
+<div class="line"><code class="plain">bgpd=yes</code></div>
+<div class="line"><code class="plain">ospfd=no</code></div>
+<div class="line"><code class="plain">ospf6d=no</code></div>
+<div class="line"><code class="plain">ripd=no</code></div>
+<div class="line"><code class="plain">ripngd=no</code></div>
+<div class="line"><code class="plain">isisd=no</code></div>
+<div class="line"><code class="plain">babeld=no</code></div>
+<div class="line"><code class="plain">pimd=no</code></div>
+</div>
+    </div>
+    <div class="section section-2" id="src-5127042_ConfiguringQuagga-EnablingandStartingCumulusQuagga">
+        <h2 class="heading "><span>Enabling and Starting Cumulus Quagga</span></h2>
+    <p  >Once you enable the appropriate daemons, then you need to enable and start the Cumulus Quagga service.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl enable quagga.service </code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl start quagga.service</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >All the routing protocol daemons (<tt class=" ">bgpd</tt>, <tt class=" ">ospfd</tt>, <tt class=" ">ospf6d</tt>, <tt class=" ">ripd</tt>, <tt class=" ">ripngd</tt>, <tt class=" ">isisd</tt> and <tt class=" ">pimd</tt>) are dependent on <tt class=" ">zebra</tt>. When you start <tt class=" ">quagga</tt>, <tt class=" ">systemd</tt> determines whether <tt class=" ">zebra</tt> is running; if <tt class=" ">zebra</tt> is not running, it starts <tt class=" ">zebra</tt>, then starts the dependent service, such as <tt class=" ">bgpd</tt>.    </p>
+    <p  >In general, if you restart a service, its dependent services also get restarted. For example, running <tt class=" ">systemctl restart quagga.service</tt> restarts any of the routing protocol daemons that are enabled and running.    </p>
+    <p  >For more information on the <tt class=" ">systemctl</tt> command and changing the state of daemons, read <a   href="Managing_Application_Daemons.html">Managing Application Daemons</a>.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127042_ConfiguringQuagga-integrated_cfgUnderstandingIntegratedConfigurations">
+        <h2 class="heading "><span id="src-5127042_ConfiguringQuagga-integrated_cfg" class="confluence-anchor-link"></span><span>Understanding Integrated Configurations</span></h2>
+    <p  >By default in Cumulus Linux, Quagga saves the configuration of all daemons in a single integrated configuration file, <tt class=" ">Quagga.conf</tt>.    </p>
+    <p  >You can disable this mode by running the following command in the <a   href="#src-5127042_ConfiguringQuagga-vtysh"><tt class=" ">vtysh</tt> Quagga CLI</a>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtysh</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain"># configure terminal</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# no service integrated-vtysh-config</code></div>
+</div>
+    </div>
+    <p  >To enable the integrated configuration file mode again, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# service integrated-vtysh-config</code></div>
+</div>
+    </div>
+    <p  >If you disable the integrated configuration mode, Quagga saves each daemon-specific configuration file in a separate file. At a minimum for a daemon to start, that daemon must be enabled and its daemon-specific configuration file must be present, even if that file is empty.    </p>
+    <p  >You save the current configuration by running:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain"># write mem</code></div>
+<div class="line"><code class="plain">Building Configuration...</code></div>
+<div class="line"><code class="plain">Integrated configuration saved to /etc/quagga/Quagga.conf</code></div>
+<div class="line"><code class="plain">[OK]</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain"># exit</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ </code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >You can use <tt class=" ">write file</tt> instead of <tt class=" ">write mem</tt>.    </p>
+        </div>
+    </div>
+    <p  >When the integrated configuration mode disabled, the output looks like this:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain"># write mem</code></div>
+<div class="line"><code class="plain">Building Configuration...</code></div>
+<div class="line"><code class="plain">Configuration saved to /etc/quagga/zebra.conf</code></div>
+<div class="line"><code class="plain">Configuration saved to /etc/quagga/bgpd.conf</code></div>
+<div class="line"><code class="plain">[OK]</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127042_ConfiguringQuagga-RestoringtheDefaultConfiguration">
+        <h2 class="heading "><span>Restoring the Default Configuration</span></h2>
+    <p  >If you need to restore the Quagga configuration to the default running configuration, you need to delete the <tt class=" ">Quagga.conf</tt> file and restart the <tt class=" ">quagga</tt> service. You should back up <tt class=" ">Quagga.conf</tt> (or any configuration files you may remove, see the note below) before proceeding.    </p>
+<ol class=" "><li class=" ">    <p  >Confirm <tt class=" ">service integrated-vtysh-config</tt> is enabled:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show configuration | grep integrated</code></div>
+<div class="line"><code class="plain">          service integrated-vtysh-config  </code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Remove <tt class=" ">/etc/quagga/Quagga.conf</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo rm /etc/quagga/Quagga.conf</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Restart Quagga:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl restart quagga.service</code></div>
+</div>
+    </div>
+</li></ol>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If for some reason you disabled <tt class=" ">service integrated-vtysh-config</tt>, then you should remove all the configuration files (such as <tt class=" ">zebra.conf</tt> or <tt class=" ">ospf6d.conf</tt>) instead of <tt class=" ">Quagga.conf</tt> in step 2 above.    </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127042_ConfiguringQuagga-InterfaceIPAddressesandVRFs">
+        <h1 class="heading "><span>Interface IP Addresses and VRFs</span></h1>
+    <p  >Quagga inherits the IP addresses and any associated routing tables for the network interfaces from the <tt class=" ">/etc/network/interfaces</tt> file. This is the recommended way to define the addresses; do <strong class=" ">not</strong> create interfaces using Quagga. For more information, see <a   href="Interface_Configuration_and_Management.html#src-5126993_InterfaceConfigurationandManagement-ip">Configuring IP Addresses</a> and <a   href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>.    </p>
+    </div>
+    <div class="section section-1" id="src-5127042_ConfiguringQuagga-vtyshUsingtheQuaggavtyshModalCLI">
+        <h1 class="heading "><span id="src-5127042_ConfiguringQuagga-vtysh" class="confluence-anchor-link"></span><span>Using the Quagga vtysh Modal CLI</span></h1>
+    <p  ><span id="src-5127042_indexterm-EE8AC899FF46AD70D3C9D87DB6BFECD1">Quagga provides a CLI &ndash; </span><tt class=" ">vtysh</tt> &ndash; for configuring and displaying the state of the protocols. It is invoked by running:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtysh</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Hello, </code><code class="keyword">this</code><code class="plain"> is Quagga (version </code><code class="value">0.99</code><code class="plain">.</code><code class="value">23.1</code><code class="plain">+cl3u2).</code></div>
+<div class="line"><code class="plain">Copyright </code><code class="value">1996</code><code class="plain">-</code><code class="value">2005</code><code class="plain"> Kunihiro Ishiguro, et al.</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">switch</code><code class="plain">#</code></div>
+</div>
+    </div>
+    <p  ><tt class=" ">vtysh</tt> provides a Cisco-like modal CLI, and many of the commands are similar to Cisco IOS commands. By modal CLI, we mean that there are different modes to the CLI, and certain commands are only available within a specific mode. Configuration is available with the <tt class=" ">configure terminal</tt> command, which is invoked thus:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain"># configure terminal</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)#</code></div>
+</div>
+    </div>
+    <p  >The prompt displays the mode the CLI is in. For example, when the interface-specific commands are invoked, the prompt changes to:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# </code><code class="keyword">interface</code><code class="plain"> swp1</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config-</code><code class="keyword">if</code><code class="plain">)#</code></div>
+</div>
+    </div>
+    <p  >When the routing protocol specific commands are invoked, the prompt changes to:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# router ospf</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config-router)#</code></div>
+</div>
+    </div>
+    <p  >At any level, &rdquo;?&rdquo; displays the list of available top-level commands at that level:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain">(config-</code><code class="keyword">if</code><code class="plain">)# ?</code></div>
+<div class="line"><code class="plain">  bandwidth    Set bandwidth informational parameter</code></div>
+<div class="line"><code class="plain">  description  Interface specific description</code></div>
+<div class="line"><code class="plain">  end          End current mode and change to enable mode</code></div>
+<div class="line"><code class="plain">  exit         Exit current mode and down to previous mode</code></div>
+<div class="line"><code class="plain">  ip           IP Information</code></div>
+<div class="line"><code class="plain">  ipv6         IPv6 Information</code></div>
+<div class="line"><code class="plain">  isis         IS-IS commands</code></div>
+<div class="line"><code class="plain">  link-detect  Enable link detection on </code><code class="keyword">interface</code></div>
+<div class="line"><code class="plain">  list         Print command list</code></div>
+<div class="line"><code class="plain">  mpls-te      MPLS-TE specific commands</code></div>
+<div class="line"><code class="plain">  multicast    Set multicast flag to </code><code class="keyword">interface</code></div>
+<div class="line"><code class="plain">  no           Negate a command or set its defaults</code></div>
+<div class="line"><code class="plain">  ptm-enable   Enable neighbor check with specified topology</code></div>
+<div class="line"><code class="plain">  quit         Exit current mode and down to previous mode</code></div>
+<div class="line"><code class="plain">  shutdown     Shutdown the selected </code><code class="keyword">interface</code></div>
+</div>
+    </div>
+    <p  >?-based completion is also available to see the parameters that a command takes:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain">(config-</code><code class="keyword">if</code><code class="plain">)# bandwidth ?</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="value">1</code><code class="plain">-</code><code class="value">10000000</code><code class="plain">&gt;  Bandwidth in kilobits</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config-</code><code class="keyword">if</code><code class="plain">)# ip ?</code></div>
+<div class="line"><code class="plain">address  Set the IP address of an </code><code class="keyword">interface</code></div>
+<div class="line"><code class="plain">irdp     Alter ICMP Router discovery preference </code><code class="keyword">this</code><code class="plain"> </code><code class="keyword">interface</code></div>
+<div class="line"><code class="plain">ospf     OSPF </code><code class="keyword">interface</code><code class="plain"> commands</code></div>
+<div class="line"><code class="plain">rip      Routing Information Protocol</code></div>
+<div class="line"><code class="plain">router   IP router </code><code class="keyword">interface</code><code class="plain"> commands</code></div>
+</div>
+    </div>
+    <p  >Displaying state can be done at any level, including the top level. For example, to see the routing table as seen by <tt class=" ">zebra</tt>, you use:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain"># show ip route</code></div>
+<div class="line"><code class="plain">Codes: K - kernel route, C - connected, S - </code><code class="keyword">static</code><code class="plain">, R - RIP,</code></div>
+<div class="line"><code class="plain">       O - OSPF, I - IS-IS, B - BGP, T - Table,</code></div>
+<div class="line"><code class="plain">       &gt; - selected route, * - FIB route</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">0</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:c, swp29, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">57</code></div>
+<div class="line"><code class="plain">  *                  via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">52</code><code class="plain">, swp30, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">57</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.1</code><code class="plain">/</code><code class="value">32</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:c, swp29, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">57</code></div>
+<div class="line"><code class="plain">  *                    via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">52</code><code class="plain">, swp30, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">57</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.11</code><code class="plain">/</code><code class="value">32</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:5b, swp1, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">57</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.12</code><code class="plain">/</code><code class="value">32</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:2e, swp2, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">58</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.13</code><code class="plain">/</code><code class="value">32</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">57</code><code class="plain">, swp3, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">59</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.14</code><code class="plain">/</code><code class="value">32</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">43</code><code class="plain">, swp4, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">59</code></div>
+<div class="line"><code class="plain">C&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain">/</code><code class="value">32</code><code class="plain"> is directly connected, lo</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.51</code><code class="plain">/</code><code class="value">32</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:c, swp29, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">57</code></div>
+<div class="line"><code class="plain">  *                     via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">52</code><code class="plain">, swp30, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">57</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">172.16</code><code class="plain">.</code><code class="value">1.0</code><code class="plain">/</code><code class="value">24</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:5b, swp1, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">57</code></div>
+<div class="line"><code class="plain">  *                      via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:2e, swp2, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">57</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">172.16</code><code class="plain">.</code><code class="value">3.0</code><code class="plain">/</code><code class="value">24</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">57</code><code class="plain">, swp3, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">59</code></div>
+<div class="line"><code class="plain">  *                      via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">43</code><code class="plain">, swp4, </code><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">59</code></div>
+</div>
+    </div>
+    <p  >To run the same command at a config level, you prepend <tt class=" ">do</tt> to it:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain">(config-router)# </code><code class="keyword">do</code><code class="plain"> show ip route</code></div>
+<div class="line"><code class="plain">Codes: K - kernel route, C - connected, S - </code><code class="keyword">static</code><code class="plain">, R - RIP,</code></div>
+<div class="line"><code class="plain">       O - OSPF, I - IS-IS, B - BGP, T - Table,</code></div>
+<div class="line"><code class="plain">       &gt; - selected route, * - FIB route</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">0</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:c, swp29, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">17</code></div>
+<div class="line"><code class="plain">  *                  via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">52</code><code class="plain">, swp30, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">17</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.1</code><code class="plain">/</code><code class="value">32</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:c, swp29, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">17</code></div>
+<div class="line"><code class="plain">  *                    via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">52</code><code class="plain">, swp30, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">17</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.11</code><code class="plain">/</code><code class="value">32</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:5b, swp1, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">17</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.12</code><code class="plain">/</code><code class="value">32</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:2e, swp2, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">18</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.13</code><code class="plain">/</code><code class="value">32</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">57</code><code class="plain">, swp3, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">18</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.14</code><code class="plain">/</code><code class="value">32</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">43</code><code class="plain">, swp4, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">18</code></div>
+<div class="line"><code class="plain">C&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain">/</code><code class="value">32</code><code class="plain"> is directly connected, lo</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.51</code><code class="plain">/</code><code class="value">32</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:c, swp29, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">17</code></div>
+<div class="line"><code class="plain">  *                     via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">52</code><code class="plain">, swp30, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">17</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">172.16</code><code class="plain">.</code><code class="value">1.0</code><code class="plain">/</code><code class="value">24</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:5b, swp1, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">17</code></div>
+<div class="line"><code class="plain">  *                      via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:2e, swp2, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">17</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">172.16</code><code class="plain">.</code><code class="value">3.0</code><code class="plain">/</code><code class="value">24</code><code class="plain"> [</code><code class="value">20</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">57</code><code class="plain">, swp3, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">18</code></div>
+<div class="line"><code class="plain">  *                      via fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:</code><code class="value">43</code><code class="plain">, swp4, </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">18</code></div>
+</div>
+    </div>
+    <p  >Running single commands with <tt class=" ">vtysh</tt> is possible using the <tt class=" ">-c</tt> option of <tt class=" ">vtysh</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtysh -c </code><code class="string">'sh ip route'</code></div>
+<div class="line"><code class="plain">Codes: K - kernel route, C - connected, S - </code><code class="keyword">static</code><code class="plain">, R - RIP,</code></div>
+<div class="line"><code class="plain">       O - OSPF, I - IS-IS, B - BGP, A - Babel,</code></div>
+<div class="line"><code class="plain">       &gt; - selected route, * - FIB route</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">K&gt;* </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">0</code><code class="plain"> via </code><code class="value">192.168</code><code class="plain">.</code><code class="value">0.2</code><code class="plain">, eth0</code></div>
+<div class="line"><code class="plain">C&gt;* </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.11</code><code class="plain">/</code><code class="value">24</code><code class="plain"> is directly connected, swp1</code></div>
+<div class="line"><code class="plain">C&gt;* </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.12</code><code class="plain">/</code><code class="value">24</code><code class="plain"> is directly connected, swp2</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">203.0</code><code class="plain">.</code><code class="value">113.30</code><code class="plain">/</code><code class="value">24</code><code class="plain"> [</code><code class="value">200</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">, swp1, </code><code class="value">11</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">10</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">203.0</code><code class="plain">.</code><code class="value">113.31</code><code class="plain">/</code><code class="value">24</code><code class="plain"> [</code><code class="value">200</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">, swp1, </code><code class="value">11</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">10</code></div>
+<div class="line"><code class="plain">B&gt;* </code><code class="value">203.0</code><code class="plain">.</code><code class="value">113.32</code><code class="plain">/</code><code class="value">24</code><code class="plain"> [</code><code class="value">200</code><code class="plain">/</code><code class="value">0</code><code class="plain">] via </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">, swp1, </code><code class="value">11</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">10</code></div>
+<div class="line"><code class="plain">C&gt;* </code><code class="value">127.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">8</code><code class="plain"> is directly connected, lo</code></div>
+<div class="line"><code class="plain">C&gt;* </code><code class="value">192.168</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">24</code><code class="plain"> is directly connected, eth0</code></div>
+</div>
+    </div>
+    <p  >Running a command multiple levels down is done thus:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtysh -c </code><code class="string">'configure terminal'</code><code class="plain"> -c </code><code class="string">'router ospf'</code><code class="plain"> -c </code><code class="string">'area 0.0.0.1 range 10.10.10.0/24'</code></div>
+</div>
+    </div>
+    <p  >Notice that the commands also take a partial command name (for example, <tt class=" ">sh ip route</tt> above) as long as the partial command name is not aliased:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtysh -c </code><code class="string">'sh ip r'</code></div>
+<div class="line"><code class="plain">% Ambiguous command.</code></div>
+</div>
+    </div>
+    <p  >A command or feature can be disabled in Quagga by prepending the command with <tt class=" ">no</tt>. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtysh </code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain"># configure terminal</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# router ospf</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config-router)# no area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.1</code><code class="plain"> range </code><code class="value">10.10</code><code class="plain">.</code><code class="value">10.0</code><code class="plain">/</code><code class="value">24</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config-router)# exit</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# exit</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain"># write mem</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain"># exit</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$</code></div>
+</div>
+    </div>
+    <p  >The current state of the configuration can be viewed using the <tt class=" ">show running-config</tt> command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain"># show running-config</code></div>
+<div class="line"><code class="plain">Building configuration...</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Current configuration:</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">username cumulus nopassword</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">service integrated-vtysh-config</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">vrf mgmt</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> lo</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp1</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval </code><code class="value">10</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp2</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval </code><code class="value">10</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp3</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval </code><code class="value">10</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp4</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval </code><code class="value">10</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp29</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval </code><code class="value">10</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp30</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval </code><code class="value">10</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp31</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp32</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> vagrant</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> eth0 vrf mgmt</code></div>
+<div class="line"><code class="plain"> ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> mgmt vrf mgmt</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">router bgp </code><code class="value">65020</code></div>
+<div class="line"><code class="plain"> bgp router-id </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code></div>
+<div class="line"><code class="plain"> bgp bestpath as-path multipath-relax</code></div>
+<div class="line"><code class="plain"> bgp bestpath compare-routerid</code></div>
+<div class="line"><code class="plain"> neighbor fabric peer-group</code></div>
+<div class="line"><code class="plain"> neighbor fabric remote-as external</code></div>
+<div class="line"><code class="plain"> neighbor fabric description Internal Fabric Network</code></div>
+<div class="line"><code class="plain"> neighbor fabric capability extended-nexthop</code></div>
+<div class="line"><code class="plain"> neighbor swp1 </code><code class="keyword">interface</code><code class="plain"> peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp2 </code><code class="keyword">interface</code><code class="plain"> peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp3 </code><code class="keyword">interface</code><code class="plain"> peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp4 </code><code class="keyword">interface</code><code class="plain"> peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp29 </code><code class="keyword">interface</code><code class="plain"> peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp30 </code><code class="keyword">interface</code><code class="plain"> peer-group fabric</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain"> address-family ipv4 unicast</code></div>
+<div class="line"><code class="plain">  network </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain">/</code><code class="value">32</code></div>
+<div class="line"><code class="plain">  neighbor fabric activate</code></div>
+<div class="line"><code class="plain">  neighbor fabric prefix-list dc-spine in</code></div>
+<div class="line"><code class="plain">  neighbor fabric prefix-list dc-spine out</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">ip prefix-list dc-spine seq </code><code class="value">10</code><code class="plain"> permit </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">0</code></div>
+<div class="line"><code class="plain">ip prefix-list dc-spine seq </code><code class="value">20</code><code class="plain"> permit </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">24</code><code class="plain"> le </code><code class="value">32</code></div>
+<div class="line"><code class="plain">ip prefix-list dc-spine seq </code><code class="value">30</code><code class="plain"> permit </code><code class="value">172.16</code><code class="plain">.</code><code class="value">1.0</code><code class="plain">/</code><code class="value">24</code></div>
+<div class="line"><code class="plain">ip prefix-list dc-spine seq </code><code class="value">40</code><code class="plain"> permit </code><code class="value">172.16</code><code class="plain">.</code><code class="value">2.0</code><code class="plain">/</code><code class="value">24</code></div>
+<div class="line"><code class="plain">ip prefix-list dc-spine seq </code><code class="value">50</code><code class="plain"> permit </code><code class="value">172.16</code><code class="plain">.</code><code class="value">3.0</code><code class="plain">/</code><code class="value">24</code></div>
+<div class="line"><code class="plain">ip prefix-list dc-spine seq </code><code class="value">60</code><code class="plain"> permit </code><code class="value">172.16</code><code class="plain">.</code><code class="value">4.0</code><code class="plain">/</code><code class="value">24</code></div>
+<div class="line"><code class="plain">ip prefix-list dc-spine seq </code><code class="value">500</code><code class="plain"> deny any</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">ip forwarding</code></div>
+<div class="line"><code class="plain">ipv6 forwarding</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">line vty</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If you attempt to configure a routing protocol that has not been started, <tt class=" ">vtysh</tt> silently ignores those commands.    </p>
+        </div>
+    </div>
+    <p  >Alternately, if you do not want to use a modal CLI to configure Quagga, you can use a suite of <a   href="Comparing_NCLU_and_vtysh_Commands.html">Cumulus Linux-specific commands</a> instead.    </p>
+    </div>
+    <div class="section section-1" id="src-5127042_ConfiguringQuagga-ReloadingtheQuaggaConfiguration">
+        <h1 class="heading "><span>Reloading the Quagga Configuration</span></h1>
+    <p  >If you make a change to your routing configuration, you need to reload Quagga so your changes take place. <i class=" ">Quagga reload</i> enables you to apply only the modifications you make to your Quagga configuration, synchronizing its running state with the configuration in <tt class=" ">/etc/quagga/Quagga.conf</tt>. This is useful for optimizing automation of Quagga in your environment or to apply changes made at runtime.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Quagga reload only applies to an integrated service configuration, where your Quagga configuration is stored in a single <tt class=" ">Quagga.conf</tt> file instead of one configuration file per Quagga daemon (like <tt class=" ">zebra</tt> or <tt class=" ">bgpd</tt>).    </p>
+        </div>
+    </div>
+    <p  >To reload your Quagga configuration after you've modified <tt class=" ">/etc/quagga/Quagga.conf</tt>, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl reload quagga.service</code></div>
+</div>
+    </div>
+    <p  >Examine the running configuration and verify that it matches the config in <tt class=" ">/etc/quagga/Quagga.conf</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show configuration</code></div>
+</div>
+    </div>
+    <div class="section section-2" id="src-5127042_ConfiguringQuagga-Debugging">
+        <h2 class="heading "><span>Debugging</span></h2>
+    <p  >If the running configuration is not what you expected, please <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/requests/new">submit a support request</a> and supply the following information:    </p>
+<ul class=" "><li class=" ">    <p  >The current running configuration (run <tt class=" ">net show configuration</tt> and output the contents to a file)    </p>
+</li><li class=" ">    <p  >The contents of <tt class=" ">/etc/quagga/Quagga.conf</tt>    </p>
+</li><li class=" ">    <p  >The contents of <tt class=" ">/var/log/quagga/quagga-reload.log</tt>    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-1" id="src-5127042_ConfiguringQuagga-RelatedInformation">
+        <h1 class="heading "><span>Related Information</span></h1>
+<ul class=" "><li class=" ">    <p  ><a  class="external-link" href="http://www.nongnu.org/quagga/docs/docs-info.html#BGP">www.nongnu.org/quagga/docs/docs-info.html#BGP</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://www.nongnu.org/quagga/docs/docs-info.html#IPv6-Support">www.nongnu.org/quagga/docs/docs-info.html#IPv6-Support</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://www.nongnu.org/quagga/docs/docs-info.html#Zebra">www.nongnu.org/quagga/docs/docs-info.html#Zebra</a>    </p>
+</li></ul>    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Quagga_Overview.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Quagga Overview</span>
+        </a>
+                <a href="Comparing_NCLU_and_vtysh_Commands.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Comparing NCLU and vtysh Commands</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

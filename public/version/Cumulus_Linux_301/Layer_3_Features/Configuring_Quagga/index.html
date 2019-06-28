@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Configuring Quagga | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <link rel="alternate" type="application/rss+xml" href="http://example.org/version/Cumulus_Linux_301/Layer_3_Features/Configuring_Quagga/index.xml" title="Cumulus Networks Documentation" />
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Configuring Quagga</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Configuring Quagga</h1>
+
+<p>This section provides an overview of configuring Cumulus Quagga, the
+Cumulus Networks-enhanced version of the Quagga routing software package
+that provides a suite of routing protocols so you can configure routing
+on your switch.</p>
+
+<h2 id="configuration-files">Configuration Files</h2>
+
+<p>At startup, Quagga reads a set of files to determine the startup
+configuration. The files and what they contain are specified below:</p>
+
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Quagga.conf</td>
+<td>The default, integrated, single configuration file for all <code>quagga</code> daemons.</td>
+</tr>
+
+<tr>
+<td>daemons</td>
+<td>Contains the list of <code>quagga</code> daemons that must be started.</td>
+</tr>
+
+<tr>
+<td>zebra.conf</td>
+<td>Configuration file for the <code>zebra</code> daemon.</td>
+</tr>
+
+<tr>
+<td>ospfd.conf</td>
+<td>Configuration file for the OSPFv2 daemon.</td>
+</tr>
+
+<tr>
+<td>ospf6d.conf</td>
+<td>Configuration file for the OSPFv3 daemon.</td>
+</tr>
+
+<tr>
+<td>bgpd.conf</td>
+<td>Configuration file for the BGP daemon.</td>
+</tr>
+
+<tr>
+<td>ripd.conf</td>
+<td>Configuration file for the RIP daemon. Cumulus Networks has not tested RIP.</td>
+</tr>
+
+<tr>
+<td>ripngd.conf</td>
+<td>Configuration file for the IPv6 RIP daemon. Cumulus Networks has not tested RIPv6.</td>
+</tr>
+
+<tr>
+<td>isisd.conf</td>
+<td>Configuration file for the IS-IS daemon. Cumulus Networks has not tested IS-IS.</td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="notices note" > <p>The individual configuration files are not present unless you disable
+<code>integrated-vtysh-config</code>; <a href="/#src-5118386_ConfiguringQuagga-integrated_cfg">see
+below</a> for details.</p>
+ </div>
+
+
+<h2 id="configuring-cumulus-quagga">Configuring Cumulus Quagga</h2>
+
+<p>Cumulus Quagga does not start by default in Cumulus Linux. Before you
+run Cumulus Quagga, make sure all you have enabled relevant daemons that
+you intend to use — <code>zebra</code>, <code>bgpd</code>, <code>ospfd</code>, <code>ospf6d</code>, <code>ripd</code>,
+<code>ripngd</code>, <code>isisd</code> — in the <code>/etc/quagga/daemons</code> file.</p>
+
+<p>The <code>zebra</code> daemon must always be enabled. The others you can enable
+according to how you plan to route your network — using
+<a href="/Border_Gateway_Protocol_-_BGP.html">BGP</a> for example, instead of
+<a href="/Open_Shortest_Path_First_-_OSPF_-_Protocol.html">OSPF</a>.</p>
+
+<p>Before you start Cumulus Quagga, you need to enable the corresponding
+daemons. Edit the <code>/etc/quagga/daemons</code> file and set to <em>yes</em> each
+daemon you are enabling.</p>
+
+<pre><code>                   
+zebra=yes (* this one is mandatory to bring the others up)
+bgpd=yes
+ospfd=no
+ospf6d=no
+ripd=no
+ripngd=no
+isisd=no
+babeld=no
+   
+    
+</code></pre>
+
+<h3 id="enabling-and-starting-cumulus-quagga">Enabling and Starting Cumulus Quagga</h3>
+
+<p>Once you enable the appropriate daemons, then you need to enable and
+start the Cumulus Quagga service.</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo systemctl enable quagga.service 
+cumulus@switch:~$ sudo systemctl start quagga.service 
+   
+    
+</code></pre>
+
+
+<div class="notices tip" > <p>All the routing protocol daemons (<code>bgpd</code>, <code>ospfd</code>, <code>ospf6d</code>, <code>ripd</code>,
+<code>ripngd</code> and <code>isisd</code>) are dependent on <code>zebra</code>. When you start <code>quagga</code>,
+<code>systemd</code> determines whether <code>zebra</code> is running; if <code>zebra</code> is not
+running, it starts <code>zebra</code>, then starts the dependent service, such as
+<code>bgpd</code>.</p>
+
+<p>In general, if you restart a service, its dependent services also get
+restarted. For example, running <code>systemctl restart quagga.service</code>
+restarts any of the routing protocol daemons that are enabled and
+running.</p>
+
+<p>For more information on the <code>systemctl</code> command and changing the state
+of daemons, read <a href="/Managing_Application_Daemons.html">Managing Application
+Daemons</a>.</p>
+ </div>
+
+
+<h3 id="understanding-integrated-configurations">Understanding Integrated Configurations</h3>
+
+<p>By default in Cumulus Linux, Quagga saves the configuration of all
+daemons in a single integrated configuration file, <code>Quagga.conf</code>.</p>
+
+<p>You can disable this mode by running:</p>
+
+<pre><code>switch(config)# no service integrated-vtysh-config
+</code></pre>
+
+<p>To enable the integrated configuration file mode again, run:</p>
+
+<pre><code>switch(config)# service integrated-vtysh-config
+</code></pre>
+
+<p>If you disable the integrated configuration mode, Quagga saves each
+daemon-specific configuration file in a separate file. At a minimum for
+a daemon to start, that daemon must be enabled and its daemon-specific
+configuration file must be present, even if that file is empty.</p>
+
+<p>You can save the current configuration by running:</p>
+
+<pre><code>switch# write mem
+Building Configuration...
+Integrated configuration saved to /etc/quagga/Quagga.conf
+[OK]
+</code></pre>
+
+
+<div class="notices note" > <p>You can use <code>write file</code> instead of <code>write mem</code>.</p>
+ </div>
+
+
+<p>When the integrated configuration mode disabled, the output looks like
+this:</p>
+
+<pre><code>switch# write mem
+Building Configuration...
+Configuration saved to /etc/quagga/zebra.conf
+Configuration saved to /etc/quagga/bgpd.conf
+[OK]
+</code></pre>
+
+<h3 id="restoring-the-default-configuration">Restoring the Default Configuration</h3>
+
+<p>If you need to restore the Quagga configuration to the default running
+configuration, you need to delete the <code>Quagga.conf</code> file and restart the
+<code>quagga</code> service. You should back up <code>Quagga.conf</code> (or any configuration
+files you may remove, see the note below) before proceeding.</p>
+
+<ol>
+<li><p>Confirm <code>service integrated-vtysh-config</code> is enabled:</p>
+
+<pre><code>cumulus@switch$ sudo cl-rctl running-config |grep integrated
+          service integrated-vtysh-config  
+</code></pre></li>
+
+<li><p>Remove <code>/etc/quagga/Quagga.conf</code>:</p>
+
+<pre><code>cumulus@switch$ sudo rm /etc/quagga/Quagga.conf
+</code></pre></li>
+
+<li><p>Restart Quagga:</p>
+
+<pre><code>cumulus@switch$ sudo systemctl restart quagga.service
+</code></pre></li>
+</ol>
+
+
+<div class="notices note" > <p>If for some reason <code>service integrated-vtysh-config</code> is not configured,
+then you should remove all the configuration files (such as <code>zebra.conf</code>
+or <code>ospf6d.conf</code>) instead of <code>Quagga.conf</code> in step 2 above.</p>
+ </div>
+
+
+<h2 id="interface-ip-addresses-and-vrfs">Interface IP Addresses and VRFs</h2>
+
+<p>Quagga inherits the IP addresses and any associated routing tables for
+the network interfaces from the <code>/etc/network/interfaces</code> file. This is
+the recommended way to define the addresses; do <strong>not</strong> create
+interfaces using Quagga. For more information, see <a href="/Configuring_and_Managing_Network_Interfaces.html#src-5118370_ConfiguringandManagingNetworkInterfaces-ip">Configuring IP
+Addresses</a>
+and <a href="/Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding -
+VRF</a>.</p>
+
+<h2 id="using-the-vtysh-modal-cli">Using the vtysh Modal CLI</h2>
+
+<p>Quagga provides a CLI – <code>vtysh</code> – for configuring and displaying the
+state of the protocols. It is invoked by running:</p>
+
+<pre><code>cumulus@switch:~$ sudo vtysh
+
+Hello, this is Quagga (version 0.99.23.1+cl3.0).
+Copyright 1996-2005 Kunihiro Ishiguro, et al.
+
+switch#
+</code></pre>
+
+<p><code>vtysh</code> provides a Cisco-like modal CLI, and many of the commands are
+similar to Cisco IOS commands. By modal CLI, we mean that there are
+different modes to the CLI, and certain commands are only available
+within a specific mode. Configuration is available with the <code>configure
+terminal</code> command, which is invoked thus:</p>
+
+<pre><code>switch# configure terminal
+switch(config)#
+</code></pre>
+
+<p>The prompt displays the mode the CLI is in. For example, when the
+interface-specific commands are invoked, the prompt changes to:</p>
+
+<pre><code>switch(config)# interface swp1
+switch(config-if)#
+</code></pre>
+
+<p>When the routing protocol specific commands are invoked, the prompt
+changes to:</p>
+
+<pre><code>switch(config)# router ospf
+switch(config-router)#
+</code></pre>
+
+<p>At any level, ”?” displays the list of available top-level commands at
+that level:</p>
+
+<pre><code>switch(config-if)# ?
+babel        Babel interface commands
+bandwidth    Set bandwidth informational parameter
+description  Interface specific description
+end          End current mode and change to enable mode
+exit         Exit current mode and down to previous mode
+ip           Interface Internet Protocol config commands
+ipv6         Interface IPv6 config commands
+isis         IS-IS commands
+link-detect  Enable link detection on interface
+list         Print command list
+mpls-te      MPLS-TE specific commands
+multicast    Set multicast flag to interface
+no           Negate a command or set its defaults
+ospf         OSPF interface commands
+quit         Exit current mode and down to previous mode
+shutdown     Shutdown the selected interface
+</code></pre>
+
+<p>?-based completion is also available to see the parameters that a
+command takes:</p>
+
+<pre><code>switch(config-if)# bandwidth ?
+&lt;1-10000000&gt;  Bandwidth in kilobits
+switch(config-if)# ip ?
+address  Set the IP address of an interface
+irdp     Alter ICMP Router discovery preference this interface
+ospf     OSPF interface commands
+rip      Routing Information Protocol
+router   IP router interface commands
+</code></pre>
+
+<p>Displaying state can be done at any level, including the top level. For
+example, to see the routing table as seen by <code>zebra</code>, you use:</p>
+
+<pre><code>switch# show ip route
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, A - Babel,
+       &gt; - selected route, * - FIB route
+
+K&gt;* 0.0.0.0/0 via 192.168.0.2, eth0
+C&gt;* 192.0.2.11/24 is directly connected, swp1
+C&gt;* 192.0.2.12/24 is directly connected, swp2
+B&gt;* 203.0.113.30/24 [200/0] via 192.0.2.2, swp1, 10:43:05
+B&gt;* 203.0.113.31/24 [200/0] via 192.0.2.2, swp1, 10:43:05
+B&gt;* 203.0.113.32/24 [200/0] via 192.0.2.2, swp1, 10:43:05
+C&gt;* 127.0.0.0/8 is directly connected, lo
+C&gt;* 192.168.0.0/24 is directly connected, eth0
+</code></pre>
+
+<p>To run the same command at a config level, you prepend <code>do</code> to it:</p>
+
+<pre><code>switch(config-router)# do show ip route
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, A - Babel,
+       &gt; - selected route, * - FIB route
+
+K&gt;* 0.0.0.0/0 via 192.168.0.2, eth0
+C&gt;* 192.0.2.11/24 is directly connected, swp1
+C&gt;* 192.0.2.12/24 is directly connected, swp2
+B&gt;* 203.0.113.30/24 [200/0] via 192.0.2.2, swp1, 10:43:05
+B&gt;* 203.0.113.31/24 [200/0] via 192.0.2.2, swp1, 10:43:05
+B&gt;* 203.0.113.32/24 [200/0] via 192.0.2.2, swp1, 10:43:05
+C&gt;* 127.0.0.0/8 is directly connected, lo
+C&gt;* 192.168.0.0/24 is directly connected, eth0
+</code></pre>
+
+<p>Running single commands with <code>vtysh</code> is possible using the <code>-c</code> option
+of <code>vtysh</code>:</p>
+
+<pre><code>cumulus@switch:~$ sudo vtysh -c 'sh ip route'
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, A - Babel,
+       &gt; - selected route, * - FIB route
+
+K&gt;* 0.0.0.0/0 via 192.168.0.2, eth0
+C&gt;* 192.0.2.11/24 is directly connected, swp1
+C&gt;* 192.0.2.12/24 is directly connected, swp2
+B&gt;* 203.0.113.30/24 [200/0] via 192.0.2.2, swp1, 11:05:10
+B&gt;* 203.0.113.31/24 [200/0] via 192.0.2.2, swp1, 11:05:10
+B&gt;* 203.0.113.32/24 [200/0] via 192.0.2.2, swp1, 11:05:10
+C&gt;* 127.0.0.0/8 is directly connected, lo
+C&gt;* 192.168.0.0/24 is directly connected, eth0
+</code></pre>
+
+<p>Running a command multiple levels down is done thus:</p>
+
+<pre><code>cumulus@switch:~$ sudo vtysh -c 'configure terminal' -c 'router ospf' -c 'area 0.0.0.1 range 10.10.10.0/24'
+</code></pre>
+
+<p>Notice that the commands also take a partial command name (for example,
+<code>sh ip route</code> above) as long as the partial command name is not aliased:</p>
+
+<pre><code>cumulus@switch:~$ sudo vtysh -c 'sh ip r'
+% Ambiguous command.
+</code></pre>
+
+<p>A command or feature can be disabled by prepending the command with
+<code>no</code>. For example:</p>
+
+<pre><code>switch(config-router)# no area 0.0.0.1 range 10.10.10.0/24
+</code></pre>
+
+<p>The current state of the configuration can be viewed using the <code>show
+running-config</code> command:</p>
+
+<pre><code>switch# show running-config
+Building configuration...
+
+Current configuration:
+!
+hostname quagga
+log file /media/node/zebra.log
+log file /media/node/bgpd.log
+log timestamp precision 6
+!
+service integrated-vtysh-config
+!
+password xxxxxx
+enable password xxxxxx
+!
+interface eth0
+ipv6 nd suppress-ra
+link-detect
+!
+interface lo
+link-detect
+!
+interface swp1
+ipv6 nd suppress-ra
+link-detect
+!
+interface swp2
+ipv6 nd suppress-ra
+link-detect
+!
+router bgp 65000
+bgp router-id 0.0.0.9
+bgp log-neighbor-changes
+bgp scan-time 20
+network 29.0.1.0/24
+timers bgp 30 90
+neighbor tier-2 peer-group
+neighbor 192.0.2.2 remote-as 65000
+neighbor 192.0.2.2 ttl-security hops 1
+neighbor 192.0.2.2 advertisement-interval 30
+neighbor 192.0.2.2 timers 30 90
+neighbor 192.0.2.2 timers connect 30
+neighbor 192.0.2.2 next-hop-self
+neighbor 192.0.2.12 remote-as 65000
+neighbor 192.0.2.12 next-hop-self
+neighbor 203.0.113.1 remote-as 65000
+!
+ip forwarding
+ipv6 forwarding
+!
+line vty
+exec-timeout 0 0
+!
+end
+</code></pre>
+
+
+<div class="notices note" > <p>If you attempt to configure a routing protocol that has not been
+started, <code>vtysh</code> silently ignores those commands.</p>
+ </div>
+
+
+<h2 id="using-the-cumulus-linux-non-modal-cli">Using the Cumulus Linux Non-Modal CLI</h2>
+
+<p>Alternately, if you do not want to use a modal CLI to configure Quagga,
+you can use a suite of <a href="/Cumulus_Linux_Quagga_Commands.html">Cumulus Linux-specific
+commands</a> instead.</p>
+
+<h2 id="reloading-the-quagga-configuration">Reloading the Quagga Configuration</h2>
+
+<p>If you make a change to your routing configuration, you need to reload
+Quagga so your changes take place. <em>Quagga reload</em> enables you to apply
+only the modifications you make to your Quagga configuration,
+synchronizing its running state with the configuration in
+<code>/etc/quagga/Quagga.conf</code>. This is useful for optimizing automation of
+Quagga in your environment or to apply changes made at runtime.</p>
+
+
+<div class="notices note" > <p>Quagga reload only applies to an integrated service configuration, where
+your Quagga configuration is stored in a single <code>Quagga.conf</code> file
+instead of one configuration file per Quagga daemon (like <code>zebra</code> or
+<code>bgpd</code>).</p>
+ </div>
+
+
+<p>To reload your Quagga configuration after you&rsquo;ve modified
+<code>/etc/quagga/Quagga.conf</code>, run:</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl reload quagga.service
+</code></pre>
+
+<p>Examine the running configuration and verify that it matches the config
+in <code>/etc/quagga/Quagga.conf</code>:</p>
+
+<pre><code>cumulus@switch:~$ sudo cl-rctl running-config
+</code></pre>
+
+<h3 id="debugging">Debugging</h3>
+
+<p>If the running configuration is not what you expected, please <a href="https://support.cumulusnetworks.com/hc/en-us/requests/new" target="_blank">submit a
+support
+request</a> and
+supply the following information:</p>
+
+<ul>
+<li><p>The current running configuration (run <code>sudo cl-rctl running-config</code>
+and output the contents to a file)</p></li>
+
+<li><p>The contents of <code>/etc/quagga/Quagga.conf</code></p></li>
+
+<li><p>The contents of <code>/var/log/quagga/quagga-reload.log</code></p></li>
+</ul>
+
+<h2 id="useful-links">Useful Links</h2>
+
+<ul>
+<li><p><a href="http://www.nongnu.org/quagga/docs/docs-info.html#BGP" target="_blank">www.nongnu.org/quagga/docs/docs-info.html#BGP</a></p></li>
+
+<li><p><a href="http://www.nongnu.org/quagga/docs/docs-info.html#IPv6-Support" target="_blank">www.nongnu.org/quagga/docs/docs-info.html#IPv6-Support</a></p></li>
+
+<li><p><a href="http://www.nongnu.org/quagga/docs/docs-info.html#Zebra" target="_blank">www.nongnu.org/quagga/docs/docs-info.html#Zebra</a></p></li>
+</ul>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#configuration-files">Configuration Files</a></li>
+<li><a href="#configuring-cumulus-quagga">Configuring Cumulus Quagga</a>
+<ul>
+<li><a href="#enabling-and-starting-cumulus-quagga">Enabling and Starting Cumulus Quagga</a></li>
+<li><a href="#understanding-integrated-configurations">Understanding Integrated Configurations</a></li>
+<li><a href="#restoring-the-default-configuration">Restoring the Default Configuration</a></li>
+</ul></li>
+<li><a href="#interface-ip-addresses-and-vrfs">Interface IP Addresses and VRFs</a></li>
+<li><a href="#using-the-vtysh-modal-cli">Using the vtysh Modal CLI</a></li>
+<li><a href="#using-the-cumulus-linux-non-modal-cli">Using the Cumulus Linux Non-Modal CLI</a></li>
+<li><a href="#reloading-the-quagga-configuration">Reloading the Quagga Configuration</a>
+<ul>
+<li><a href="#debugging">Debugging</a></li>
+</ul></li>
+<li><a href="#useful-links">Useful Links</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version/Cumulus_Linux_301/Layer_3_Features/Configuring_Quagga/_index.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

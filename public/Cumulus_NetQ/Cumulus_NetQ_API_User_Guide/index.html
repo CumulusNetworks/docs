@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cumulus NetQ API User Guide | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <link rel="alternate" type="application/rss+xml" href="http://example.org/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/index.xml" title="Cumulus Networks Documentation" />
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/" >
+    Cumulus NetQ 2.1
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/"  class="active" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 1.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 2.0.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/" >
+    Upgrade from NetQ 2.1.0 to NetQ 2.1.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_BGP_Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_EVPN_Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_LLDP_Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Validate_Network_Protocol_and_Service_Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Cumulus NetQ API User Guide</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Cumulus NetQ API User Guide</h1>
+
+<h2 id="overview">Overview</h2>
+
+<p>The NetQ API provides access to key telemetry and system monitoring data
+gathered about the performance and operation of your data center network
+and devices so that you can view that data in your internal or
+third-party analytic tools. The API gives you access to the health of
+individual switches, network protocols and services, and views of
+network-wide inventory and events.</p>
+
+<p>This guide provides an overview of the API framework and some examples
+of how to use the API to extract the data you need. Descriptions of each
+endpoint and model parameter are contained in the API .json file.</p>
+
+<h2 id="api-organization">API Organization</h2>
+
+<p>The Cumulus NetQ API provides endpoints for:</p>
+
+<ul>
+<li><p><strong>Network routing protocols</strong>: BGP, EVPN, LLDP, CLAG, MSTP,
+Neighbors, NTP, Routes</p></li>
+
+<li><p><strong>Virtual networks</strong>: VLAN</p></li>
+
+<li><p><strong>Services</strong>: Services</p></li>
+
+<li><p><strong>Interfaces</strong>: Interface, Port</p></li>
+
+<li><p><strong>Inventory and Devices</strong>: Address, Inventory, MAC Address tables,
+Node, Sensors</p></li>
+
+<li><p><strong>Events</strong>: Events</p></li>
+</ul>
+
+<p>You can make requests for all data and all devices or you can filter the
+request by a given hostname.</p>
+
+<p>Each API returns a predetermined set of data as defined in the API
+models.</p>
+
+<h2 id="get-started">Get Started</h2>
+
+<p>You can access the API gateway and execute requests from a terminal
+interface against your NetQ Platform or NetQ Appliance through port
+32708.</p>
+
+<h3 id="log-in-and-authentication">Log In and Authentication</h3>
+
+<p>Use your login credentials that were provided as part of the
+installation process. For this release, the default is username <em>admin</em>
+and password <em>admin</em>.</p>
+
+<p>To log in and obtain authorization:</p>
+
+<ol>
+<li><p>Open a terminal window.</p></li>
+
+<li><p>Enter the following curl command.</p>
+
+<pre><code>                       
+:~ $ curl --insecure -X POST &quot;https://:32708/netq/auth/v1/login&quot; -H &quot;Content-Type: application/json&quot; -d &quot;{ \&quot;username\&quot;: \&quot;admin\&quot;, \&quot;password\&quot;: \&quot;admin\&quot;}&quot;
+{&quot;premises&quot;:[{&quot;opid&quot;:0,&quot;name&quot;:&quot;OPID0&quot;}],&quot;access_token&quot;:&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJvcGlkIjowLCJyb2xlIjoiYWRtaW4iLCJleHBpcmVzQXQiOjE1NTYxMjUzNzgyODB9._D2Ibhmo_BWSfAMnF2FzddjndTn8LP8CAFFGIj5tn0A&quot;,&quot;customer_id&quot;:0,&quot;id&quot;:&quot;admin&quot;,&quot;expires_at&quot;:1556125378280,&quot;terms_of_use_accepted&quot;:true}
+       
+        
+</code></pre></li>
+
+<li><p>Copy the access token for use in making data requests.</p></li>
+</ol>
+
+<h3 id="api-requests">API Requests</h3>
+
+<p>We will use curl to execute our requests. Each request contains an API
+method (GET, POST, etc.), the address and API object to query, a variety
+of headers, and sometimes a body. In the log in step you used above:</p>
+
+<ul>
+<li><p>API method = POST</p></li>
+
+<li><p>Address and API object =
+&ldquo;https://&lt;netq.domain&gt;:32708/netq/auth/v1/login&rdquo;</p></li>
+
+<li><p>Headers = -H &ldquo;Content-Type: application/json&rdquo;</p></li>
+
+<li><p>Body = -d &ldquo;{ \&ldquo;username\&ldquo;: \&ldquo;admin\&rdquo;, \&ldquo;password\&ldquo;:
+\&ldquo;admin\&rdquo;}&rdquo;</p></li>
+</ul>
+
+
+<div class="notices info" > <p>We have used the <em>insecure</em> option to work around any certificate issues
+with our development configuration. You would likely not use this
+option.</p>
+ </div>
+
+
+<h3 id="api-responses">API Responses</h3>
+
+<p>A NetQ API response is comprised of a status code, any relevant error
+codes (if unsuccessful), and the collected data (if successful).</p>
+
+<p>The following HTTP status codes might be presented in the API responses:</p>
+
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Name</th>
+<th>Description</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+<td>Request was successfully processed.</td>
+<td>Review response</td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Invalid input was detected in request.</td>
+<td>Check the syntax of your request and make sure it matches the schema</td>
+</tr>
+
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>Authentication has failed or credentials were not provided.</td>
+<td>Provide or verify your credentials, or request access from your administrator</td>
+</tr>
+
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>Request was valid, but user may not have needed permissions.</td>
+<td>Verify your credentials or request an account from your administrator</td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>Requested resource could not be found.</td>
+<td>Try the request again after a period of time or verify status of resource</td>
+</tr>
+
+<tr>
+<td>409</td>
+<td>Conflict</td>
+<td>Request cannot be processed due to conflict in current state of the resource.</td>
+<td>Verify status of resource and remove conflict</td>
+</tr>
+
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>Unexpected condition has occurred.</td>
+<td>Perform general troubleshooting and try the request again</td>
+</tr>
+
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td>The service being requested is currently unavailable.</td>
+<td>Verify the status of the NetQ Platform or Appliance, and the associated service</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="example-requests-and-responses">Example Requests and Responses</h2>
+
+<p>Some command requests and their responses are shown here, but feel free
+to run your own requests. To run a request, you will need your
+authorization token. We have piped our responses through a python tool
+to make the responses more readable. You may chose to do so as well or
+not.</p>
+
+<p>To view all of the endpoints and their associated requests and
+responses, refer to <a href="/old/Cumulus_NetQ/#src-10457196_CumulusNetQAPIUserGuide-ViewApi">View the
+API</a>.</p>
+
+<h3 id="get-network-wide-status-of-the-bgp-service">Get Network-wide Status of the BGP Service</h3>
+
+<p>Make your request to the <em>bgp</em> endpoint to obtain status information
+from all nodes running the BGP service, as follows:</p>
+
+<pre><code>                   
+curl --insecure -X GET “:32708/netq/telemetry/v1/object/bgp” -H “Content-Type: application/json” -H “Authorization: ” | python -m json.tool
+ 
+[
+  {
+    &quot;ipv6_pfx_rcvd&quot;: 0,
+    &quot;peer_router_id&quot;: &quot;0.0.0.0&quot;,
+    &quot;objid&quot;: &quot;&quot;,
+    &quot;upd8_tx&quot;: 0,
+    &quot;hostname&quot;: &quot;exit-1&quot;,
+    &quot;timestamp&quot;: 1556037420723,
+    &quot;peer_asn&quot;: 0,
+    &quot;state&quot;: &quot;NotEstd&quot;,
+    &quot;vrf&quot;: &quot;DataVrf1082&quot;,
+    &quot;rx_families&quot;: [],
+    &quot;ipv4_pfx_rcvd&quot;: 0,
+    &quot;conn_dropped&quot;: 0,
+    &quot;db_state&quot;: &quot;Update&quot;,
+    &quot;up_time&quot;: 0,
+    &quot;last_reset_time&quot;: 0,
+    &quot;tx_families&quot;: [],
+    &quot;reason&quot;: &quot;N/A&quot;,
+    &quot;vrfid&quot;: 13,
+    &quot;asn&quot;: 655536,
+    &quot;opid&quot;: 0,
+    &quot;peer_hostname&quot;: &quot;&quot;,
+    &quot;upd8_rx&quot;: 0,
+    &quot;peer_name&quot;: &quot;swp7.4&quot;,
+    &quot;evpn_pfx_rcvd&quot;: 0,
+    &quot;conn_estd&quot;: 0
+  },
+  {
+    &quot;ipv6_pfx_rcvd&quot;: 0,
+    &quot;peer_router_id&quot;: &quot;0.0.0.0&quot;,
+    &quot;objid&quot;: &quot;&quot;,
+    &quot;upd8_tx&quot;: 0,
+    &quot;hostname&quot;: &quot;exit-1&quot;,
+    &quot;timestamp&quot;: 1556037420674,
+    &quot;peer_asn&quot;: 0,
+    &quot;state&quot;: &quot;NotEstd&quot;,
+    &quot;vrf&quot;: &quot;default&quot;,
+    &quot;rx_families&quot;: [],
+    &quot;ipv4_pfx_rcvd&quot;: 0,
+    &quot;conn_dropped&quot;: 0,
+    &quot;db_state&quot;: &quot;Update&quot;,
+    &quot;up_time&quot;: 0,
+    &quot;last_reset_time&quot;: 0,
+    &quot;tx_families&quot;: [],
+    &quot;reason&quot;: &quot;N/A&quot;,
+    &quot;vrfid&quot;: 0,
+    &quot;asn&quot;: 655536,
+    &quot;opid&quot;: 0,
+    &quot;peer_hostname&quot;: &quot;&quot;,
+    &quot;upd8_rx&quot;: 0,
+    &quot;peer_name&quot;: &quot;swp7&quot;,
+    &quot;evpn_pfx_rcvd&quot;: 0,
+    &quot;conn_estd&quot;: 0
+  },
+  {
+    &quot;ipv6_pfx_rcvd&quot;: 24,
+    &quot;peer_router_id&quot;: &quot;27.0.0.19&quot;,
+    &quot;objid&quot;: &quot;&quot;,
+    &quot;upd8_tx&quot;: 314,
+    &quot;hostname&quot;: &quot;exit-1&quot;,
+    &quot;timestamp&quot;: 1556037420665,
+    &quot;peer_asn&quot;: 655435,
+    &quot;state&quot;: &quot;Established&quot;,
+    &quot;vrf&quot;: &quot;default&quot;,
+    &quot;rx_families&quot;: [
+      &quot;ipv4&quot;,
+      &quot;ipv6&quot;,
+      &quot;evpn&quot;
+    ],
+    &quot;ipv4_pfx_rcvd&quot;: 26,
+    &quot;conn_dropped&quot;: 0,
+    &quot;db_state&quot;: &quot;Update&quot;,
+    &quot;up_time&quot;: 1556036850000,
+    &quot;last_reset_time&quot;: 0,
+    &quot;tx_families&quot;: [
+      &quot;ipv4&quot;,
+      &quot;ipv6&quot;,
+      &quot;evpn&quot;
+    ],
+    &quot;reason&quot;: &quot;N/A&quot;,
+    &quot;vrfid&quot;: 0,
+    &quot;asn&quot;: 655536,
+    &quot;opid&quot;: 0,
+    &quot;peer_hostname&quot;: &quot;spine-1&quot;,
+    &quot;upd8_rx&quot;: 321,
+    &quot;peer_name&quot;: &quot;swp3&quot;,
+    &quot;evpn_pfx_rcvd&quot;: 354,
+    &quot;conn_estd&quot;: 1
+  },
+...
+   
+    
+</code></pre>
+
+<h3 id="get-status-of-evpn-on-a-specific-switch">Get Status of EVPN on a Specific Switch</h3>
+
+<p>Make your request to the <em>evpn/hostname</em> endpoint to view the status of
+all EVPN sessions running on that node. This example uses the <em>server01</em>
+node.</p>
+
+<pre><code>                   
+curl -X GET &quot;https://:32708/netq/telemetry/v1/object/evpn/hostname/server01&quot; -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: &quot; | python -m json.tool
+ 
+[
+  {
+    &quot;import_rt&quot;: &quot;[\&quot;197:42\&quot;]&quot;,
+    &quot;vni&quot;: 42,
+    &quot;rd&quot;: &quot;27.0.0.22:2&quot;,
+    &quot;hostname&quot;: &quot;server01&quot;,
+    &quot;timestamp&quot;: 1556037403853,
+    &quot;adv_all_vni&quot;: true,
+    &quot;export_rt&quot;: &quot;[\&quot;197:42\&quot;]&quot;,
+    &quot;db_state&quot;: &quot;Update&quot;,
+    &quot;in_kernel&quot;: true,
+    &quot;adv_gw_ip&quot;: &quot;Disabled&quot;,
+    &quot;origin_ip&quot;: &quot;27.0.0.22&quot;,
+    &quot;opid&quot;: 0,
+    &quot;is_l3&quot;: false
+  },
+  {
+    &quot;import_rt&quot;: &quot;[\&quot;197:37\&quot;]&quot;,
+    &quot;vni&quot;: 37,
+    &quot;rd&quot;: &quot;27.0.0.22:8&quot;,
+    &quot;hostname&quot;: &quot;server01&quot;,
+    &quot;timestamp&quot;: 1556037403811,
+    &quot;adv_all_vni&quot;: true,
+    &quot;export_rt&quot;: &quot;[\&quot;197:37\&quot;]&quot;,
+    &quot;db_state&quot;: &quot;Update&quot;,
+    &quot;in_kernel&quot;: true,
+    &quot;adv_gw_ip&quot;: &quot;Disabled&quot;,
+    &quot;origin_ip&quot;: &quot;27.0.0.22&quot;,
+    &quot;opid&quot;: 0,
+    &quot;is_l3&quot;: false
+  },
+  {
+    &quot;import_rt&quot;: &quot;[\&quot;197:4001\&quot;]&quot;,
+    &quot;vni&quot;: 4001,
+    &quot;rd&quot;: &quot;6.0.0.194:5&quot;,
+    &quot;hostname&quot;: &quot;server01&quot;,
+    &quot;timestamp&quot;: 1556036360169,
+    &quot;adv_all_vni&quot;: true,
+    &quot;export_rt&quot;: &quot;[\&quot;197:4001\&quot;]&quot;,
+    &quot;db_state&quot;: &quot;Refresh&quot;,
+    &quot;in_kernel&quot;: true,
+    &quot;adv_gw_ip&quot;: &quot;Disabled&quot;,
+    &quot;origin_ip&quot;: &quot;27.0.0.22&quot;,
+    &quot;opid&quot;: 0,
+    &quot;is_l3&quot;: true
+  },
+...
+   
+    
+</code></pre>
+
+<h3 id="get-status-on-all-interfaces-at-a-given-time">Get Status on All Interfaces at a Given Time</h3>
+
+<p>Make your request to the <em>interfaces</em> endpoint to view the status of all
+interfaces. By specifying the <em>eq-timestamp</em> option and entering a date
+and time in epoch format, you indicate the data for that time (versus in
+the last hour by default), as follows:</p>
+
+<pre><code>                   
+curl -X GET &quot;https://:32708/netq/telemetry/v1/object/interface?eq_timestamp=1556046250&quot; -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: &quot; | python -m json.tool
+ 
+[
+  {
+    &quot;hostname&quot;: &quot;exit-1&quot;,
+    &quot;timestamp&quot;: 1556046270494,
+    &quot;state&quot;: &quot;up&quot;,
+    &quot;vrf&quot;: &quot;DataVrf1082&quot;,
+    &quot;last_changed&quot;: 1556037405259,
+    &quot;ifname&quot;: &quot;swp3.4&quot;,
+    &quot;opid&quot;: 0,
+    &quot;details&quot;: &quot;MTU: 9202&quot;,
+    &quot;type&quot;: &quot;vlan&quot;
+  },
+  {
+    &quot;hostname&quot;: &quot;exit-1&quot;,
+    &quot;timestamp&quot;: 1556046270496,
+    &quot;state&quot;: &quot;up&quot;,
+    &quot;vrf&quot;: &quot;DataVrf1081&quot;,
+    &quot;last_changed&quot;: 1556037405320,
+    &quot;ifname&quot;: &quot;swp7.3&quot;,
+    &quot;opid&quot;: 0,
+    &quot;details&quot;: &quot;MTU: 9202&quot;,
+    &quot;type&quot;: &quot;vlan&quot;
+  },
+  {
+    &quot;hostname&quot;: &quot;exit-1&quot;,
+    &quot;timestamp&quot;: 1556046270497,
+    &quot;state&quot;: &quot;up&quot;,
+    &quot;vrf&quot;: &quot;DataVrf1080&quot;,
+    &quot;last_changed&quot;: 1556037405310,
+    &quot;ifname&quot;: &quot;swp7.2&quot;,
+    &quot;opid&quot;: 0,
+    &quot;details&quot;: &quot;MTU: 9202&quot;,
+    &quot;type&quot;: &quot;vlan&quot;
+  },
+  {
+    &quot;hostname&quot;: &quot;exit-1&quot;,
+    &quot;timestamp&quot;: 1556046270499,
+    &quot;state&quot;: &quot;up&quot;,
+    &quot;vrf&quot;: &quot;&quot;,
+    &quot;last_changed&quot;: 1556037405315,
+    &quot;ifname&quot;: &quot;DataVrf1081&quot;,
+    &quot;opid&quot;: 0,
+    &quot;details&quot;: &quot;table: 1081, MTU: 65536, Members:  swp7.3,  DataVrf1081,  swp4.3,  swp6.3,  swp5.3,  swp3.3, &quot;,
+    &quot;type&quot;: &quot;vrf&quot;
+  },
+...
+   
+    
+</code></pre>
+
+<h3 id="get-a-list-of-all-devices-being-monitored">Get a List of All Devices Being Monitored</h3>
+
+<p>Make your request to the <em>inventory</em> endpoint to get a listing of all
+monitored nodes and their configuration information, as follows:</p>
+
+<pre><code>                   
+curl -X GET &quot;https://:32708/netq/telemetry/v1/object/inventory&quot; -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: &quot; | python -m json.tool
+ 
+[
+  {
+    &quot;hostname&quot;: &quot;exit-1&quot;,
+    &quot;timestamp&quot;: 1556037425658,
+    &quot;asic_model&quot;: &quot;A-Z&quot;,
+    &quot;agent_version&quot;: &quot;2.1.1-cl3u16~1556035513.afedb69&quot;,
+    &quot;os_version&quot;: &quot;A.2.0&quot;,
+    &quot;license_state&quot;: &quot;ok&quot;,
+    &quot;disk_total_size&quot;: &quot;10 GB&quot;,
+    &quot;os_version_id&quot;: &quot;A.2.0&quot;,
+    &quot;platform_model&quot;: &quot;A_VX&quot;,
+    &quot;memory_size&quot;: &quot;2048.00 MB&quot;,
+    &quot;asic_vendor&quot;: &quot;AA Inc&quot;,
+    &quot;cpu_model&quot;: &quot;A-SUBLEQ&quot;,
+    &quot;asic_model_id&quot;: &quot;N/A&quot;,
+    &quot;platform_vendor&quot;: &quot;A Systems&quot;,
+    &quot;asic_ports&quot;: &quot;N/A&quot;,
+    &quot;cpu_arch&quot;: &quot;x86_64&quot;,
+    &quot;cpu_nos&quot;: &quot;2&quot;,
+    &quot;platform_mfg_date&quot;: &quot;N/A&quot;,
+    &quot;platform_label_revision&quot;: &quot;N/A&quot;,
+    &quot;agent_state&quot;: &quot;fresh&quot;,
+    &quot;cpu_max_freq&quot;: &quot;N/A&quot;,
+    &quot;platform_part_number&quot;: &quot;3.7.6&quot;,
+    &quot;asic_core_bw&quot;: &quot;N/A&quot;,
+    &quot;os_vendor&quot;: &quot;CL&quot;,
+    &quot;platform_base_mac&quot;: &quot;00:01:00:00:01:00&quot;,
+    &quot;platform_serial_number&quot;: &quot;00:01:00:00:01:00&quot;
+  },
+  {
+    &quot;hostname&quot;: &quot;exit-2&quot;,
+    &quot;timestamp&quot;: 1556037432361,
+    &quot;asic_model&quot;: &quot;C-Z&quot;,
+    &quot;agent_version&quot;: &quot;2.1.1-cl3u16~1556035513.afedb69&quot;,
+    &quot;os_version&quot;: &quot;C.2.0&quot;,
+    &quot;license_state&quot;: &quot;N/A&quot;,
+    &quot;disk_total_size&quot;: &quot;30 GB&quot;,
+    &quot;os_version_id&quot;: &quot;C.2.0&quot;,
+    &quot;platform_model&quot;: &quot;C_VX&quot;,
+    &quot;memory_size&quot;: &quot;2048.00 MB&quot;,
+    &quot;asic_vendor&quot;: &quot;CC Inc&quot;,
+    &quot;cpu_model&quot;: &quot;C-CRAY&quot;,
+    &quot;asic_model_id&quot;: &quot;N/A&quot;,
+    &quot;platform_vendor&quot;: &quot;C Systems&quot;,
+    &quot;asic_ports&quot;: &quot;N/A&quot;,
+    &quot;cpu_arch&quot;: &quot;x86_64&quot;,
+    &quot;cpu_nos&quot;: &quot;2&quot;,
+    &quot;platform_mfg_date&quot;: &quot;N/A&quot;,
+    &quot;platform_label_revision&quot;: &quot;N/A&quot;,
+    &quot;agent_state&quot;: &quot;fresh&quot;,
+    &quot;cpu_max_freq&quot;: &quot;N/A&quot;,
+    &quot;platform_part_number&quot;: &quot;3.7.6&quot;,
+    &quot;asic_core_bw&quot;: &quot;N/A&quot;,
+    &quot;os_vendor&quot;: &quot;CL&quot;,
+    &quot;platform_base_mac&quot;: &quot;00:01:00:00:02:00&quot;,
+    &quot;platform_serial_number&quot;: &quot;00:01:00:00:02:00&quot;
+  },
+  {
+    &quot;hostname&quot;: &quot;firewall-1&quot;,
+    &quot;timestamp&quot;: 1556037438002,
+    &quot;asic_model&quot;: &quot;N/A&quot;,
+    &quot;agent_version&quot;: &quot;2.1.0-ub16.04u15~1555608012.1d98892&quot;,
+    &quot;os_version&quot;: &quot;16.04.1 LTS (Xenial Xerus)&quot;,
+    &quot;license_state&quot;: &quot;N/A&quot;,
+    &quot;disk_total_size&quot;: &quot;3.20 GB&quot;,
+    &quot;os_version_id&quot;: &quot;(hydra-poc-01 /tmp/purna/Kleen-Gui1/)\&quot;16.04&quot;,
+    &quot;platform_model&quot;: &quot;N/A&quot;,
+    &quot;memory_size&quot;: &quot;4096.00 MB&quot;,
+    &quot;asic_vendor&quot;: &quot;N/A&quot;,
+    &quot;cpu_model&quot;: &quot;QEMU Virtual  version 2.2.0&quot;,
+    &quot;asic_model_id&quot;: &quot;N/A&quot;,
+    &quot;platform_vendor&quot;: &quot;N/A&quot;,
+    &quot;asic_ports&quot;: &quot;N/A&quot;,
+    &quot;cpu_arch&quot;: &quot;x86_64&quot;,
+    &quot;cpu_nos&quot;: &quot;2&quot;,
+    &quot;platform_mfg_date&quot;: &quot;N/A&quot;,
+    &quot;platform_label_revision&quot;: &quot;N/A&quot;,
+    &quot;agent_state&quot;: &quot;fresh&quot;,
+    &quot;cpu_max_freq&quot;: &quot;N/A&quot;,
+    &quot;platform_part_number&quot;: &quot;N/A&quot;,
+    &quot;asic_core_bw&quot;: &quot;N/A&quot;,
+    &quot;os_vendor&quot;: &quot;Ubuntu&quot;,
+    &quot;platform_base_mac&quot;: &quot;N/A&quot;,
+    &quot;platform_serial_number&quot;: &quot;N/A&quot;
+  },
+...
+   
+    
+</code></pre>
+
+<h2 id="view-the-api">View the API</h2>
+
+<p>The API is available in a json-formatted file, click
+<a href="/old/Cumulus_NetQ/attachments_10457195_1_netq-210.json">netq-210.json</a>
+to open the file.</p>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#api-organization">API Organization</a></li>
+<li><a href="#get-started">Get Started</a>
+<ul>
+<li><a href="#log-in-and-authentication">Log In and Authentication</a></li>
+<li><a href="#api-requests">API Requests</a></li>
+<li><a href="#api-responses">API Responses</a></li>
+</ul></li>
+<li><a href="#example-requests-and-responses">Example Requests and Responses</a>
+<ul>
+<li><a href="#get-network-wide-status-of-the-bgp-service">Get Network-wide Status of the BGP Service</a></li>
+<li><a href="#get-status-of-evpn-on-a-specific-switch">Get Status of EVPN on a Specific Switch</a></li>
+<li><a href="#get-status-on-all-interfaces-at-a-given-time">Get Status on All Interfaces at a Given Time</a></li>
+<li><a href="#get-a-list-of-all-devices-being-monitored">Get a List of All Devices Being Monitored</a></li>
+</ul></li>
+<li><a href="#view-the-api">View the API</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/_index.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network Command Line Utility - NCLU on Cumulus Networks Documentation</title>
+    <link>http://example.org/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/</link>
+    <description>Recent content in Network Command Line Utility - NCLU on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Network Command Line Utility</title>
+      <link>http://example.org/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility/</guid>
+      <description>The license could not be verified: License Certificate has expired!
+  </description>
+    </item>
+    
+  </channel>
+</rss>

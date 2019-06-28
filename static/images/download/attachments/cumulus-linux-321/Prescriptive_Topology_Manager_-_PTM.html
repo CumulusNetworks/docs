@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Prescriptive Topology Manager - PTM - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Layer_One_and_Two.html">Layer One and Two</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126832"> <span>Prescriptive Topology Manager - PTM</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><span id="src-5126832_indexterm-345B05CA98AA049E52F482724F3C2D5E">In data center </span><span id="src-5126832_indexterm-1A135FB493DD0EBCC063456B43D98722">topologies, right cabling is a time-consuming endeavor and is error prone. </span><span id="src-5126832_indexterm-118F2058DB1C0A6CA81DBEC9865AD7EB">Prescriptive Topology Manager (</span><span id="src-5126832_indexterm-119AD40725309A18F812A28A2BE72C1E">PTM) is a dynamic </span><span id="src-5126832_indexterm-70B6C267C578CF2E2A5A1E81E9BDBD69">cabling verification tool to help detect and eliminate such errors. It takes a </span>Graphviz-DOT specified network cabling plan (something many operators already generate), stored in a <tt class=" ">topology.dot</tt> file, and couples it with runtime information derived from LLDP to verify that the cabling matches the specification. The check is performed on every link transition on each node in the network.    </p>
+    <p  >You can customize the <tt class=" ">topology.dot</tt> file to control <tt class=" ">ptmd</tt> at both the global/network level and the node/port level.    </p>
+    <p  ><span id="src-5126832_indexterm-E95F77BC5E648A9E86B1B6772EF5A1F0">PTM runs as a daemon, named </span><tt class=" ">ptmd</tt>.    </p>
+    <p  >For more information, see <tt class=" ">man ptmd(8)</tt>.    </p>
+    <div class="section section-1" id="src-5126832_PrescriptiveTopologyManager-PTM-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126832_PrescriptiveTopologyManager-PTM-SupportedFeatures">
+        <h1 class="heading "><span>Supported Features</span></h1>
+<ul class=" "><li class=" ">    <p  >Topology verification using LLDP. <tt class=" ">ptmd</tt> creates a client connection to the LLDP daemon, <tt class=" ">lldpd</tt>, and retrieves the neighbor relationship between the nodes/ports in the network and compares them against the prescribed topology specified in the <tt class=" ">topology.dot</tt> file.    </p>
+</li><li class=" ">    <p  >Only physical interfaces, like swp1 or eth0, are currently supported. Cumulus Linux does not support specifying virtual interfaces like bonds or subinterfaces like eth0.200 in the topology file.    </p>
+</li><li class=" ">    <p  >Forwarding path failure detection using <a  class="external-link" href="http://tools.ietf.org/html/rfc5880">Bidirectional Forwarding Detection</a> (BFD); however, demand mode is not supported. For more information on how BFD operates in Cumulus Linux, read the <a   href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a> chapter and read <tt class=" ">man ptmd(8)</tt>.    </p>
+</li><li class=" ">    <p  >Integration with Quagga (PTM to Quagga notification).    </p>
+</li><li class=" ">    <p  >Client management: <tt class=" ">ptmd</tt> creates an abstract named socket <tt class=" ">/var/run/ptmd.socket</tt> on startup. Other applications can connect to this socket to receive notifications and send commands.    </p>
+</li><li class=" ">    <p  >Event notifications: see Scripts below.    </p>
+</li><li class=" ">    <p  >User configuration via a <tt class=" ">topology.dot</tt> file; <a   href="#src-5126832_PrescriptiveTopologyManager-PTM-configuring">see below</a>.    </p>
+</li></ul>    </div>
+    <div class="section section-1" id="src-5126832_PrescriptiveTopologyManager-PTM-configuringConfiguringPTM">
+        <h1 class="heading "><span id="src-5126832_PrescriptiveTopologyManager-PTM-configuring" class="confluence-anchor-link"></span><span>Configuring PTM</span></h1>
+    <p  ><tt class=" ">ptmd</tt> verifies the physical network topology against a DOT-specified network graph file, <tt class=" ">/etc/ptm.d/topology.dot</tt>.    </p>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >This file must be present or else <tt class=" ">ptmd</tt> will not start. You can specify an alternate file using the <tt class=" ">-c</tt> option.    </p>
+        </div>
+    </div>
+    <p  >PTM supports <a  class="external-link" href="http://en.wikipedia.org/wiki/DOT_%28graph_description_language%29">undirected graphs</a>.    </p>
+    <p  >At startup, <tt class=" ">ptmd</tt><span id="src-5126832_indexterm-A42B5D83254839BD4863F50571887711"> connects to </span><tt class=" ">lldpd</tt>, the LLDP daemon, over a Unix socket and retrieves the neighbor name and port information. It then compares the retrieved port information with the configuration information that it read from the topology file. If there is a match, then it is a PASS, else it is a FAIL.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >PTM performs its LLDP neighbor check using the PortID ifname TLV information. Previously, it used the PortID port description TLV information.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126832_PrescriptiveTopologyManager-PTM-exampleBasicTopologyExample">
+        <h1 class="heading "><span id="src-5126832_PrescriptiveTopologyManager-PTM-example" class="confluence-anchor-link"></span><span>Basic Topology Example</span></h1>
+    <p  >This is a basic example DOT file and its corresponding topology diagram. You should use the same <tt class=" ">topology.dot</tt> file on all switches, and don't split the file per device; this allows for easy automation by pushing/pulling the same exact file on each device!    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">graph G {</code></div>
+<div class="line"><code class="plain">    </code><code class="string">"spine1"</code><code class="plain">:</code><code class="string">"swp1"</code><code class="plain"> -- </code><code class="string">"leaf1"</code><code class="plain">:</code><code class="string">"swp1"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    </code><code class="string">"spine1"</code><code class="plain">:</code><code class="string">"swp2"</code><code class="plain"> -- </code><code class="string">"leaf2"</code><code class="plain">:</code><code class="string">"swp1"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    </code><code class="string">"spine2"</code><code class="plain">:</code><code class="string">"swp1"</code><code class="plain"> -- </code><code class="string">"leaf1"</code><code class="plain">:</code><code class="string">"swp2"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    </code><code class="string">"spine2"</code><code class="plain">:</code><code class="string">"swp2"</code><code class="plain"> -- </code><code class="string">"leaf2"</code><code class="plain">:</code><code class="string">"swp2"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    </code><code class="string">"leaf1"</code><code class="plain">:</code><code class="string">"swp3"</code><code class="plain"> -- </code><code class="string">"leaf2"</code><code class="plain">:</code><code class="string">"swp3"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    </code><code class="string">"leaf1"</code><code class="plain">:</code><code class="string">"swp4"</code><code class="plain"> -- </code><code class="string">"leaf2"</code><code class="plain">:</code><code class="string">"swp4"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    </code><code class="string">"leaf1"</code><code class="plain">:</code><code class="string">"swp5s0"</code><code class="plain"> -- </code><code class="string">"server1"</code><code class="plain">:</code><code class="string">"eth1"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    </code><code class="string">"leaf2"</code><code class="plain">:</code><code class="string">"swp5s0"</code><code class="plain"> -- </code><code class="string">"server2"</code><code class="plain">:</code><code class="string">"eth1"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126832/2s2l2s_DOT.png" alt="images/download/attachments/5126832/2s2l2s_DOT.png" width="500"  />
+        </p>
+    </div>
+    <div class="section section-1" id="src-5126832_PrescriptiveTopologyManager-PTM-advancedptmdScripts">
+        <h1 class="heading "><span id="src-5126832_PrescriptiveTopologyManager-PTM-advanced" class="confluence-anchor-link"></span><span>ptmd Scripts</span></h1>
+    <p  ><tt class=" ">ptmd</tt><span id="src-5126832_indexterm-E790FD1A5C466CF294DA81D6554181F1"> executes </span>scripts at <tt class=" ">/etc/ptm.d/if-topo-pass</tt> and <tt class=" ">/etc/ptm.d/if-topo-fail </tt>for each interface that goes through a change, running <tt class=" ">if-topo-pass</tt> when an LLDP or BFD check passes and running <tt class=" ">if-topo-fails</tt> when the check fails. The scripts receive an argument string that is the result of the <tt class=" ">ptmctl</tt> command, described in the <a   href="#src-5126832_PrescriptiveTopologyManager-PTM-ptmd_commands"><tt class=" ">ptmd</tt> commands section below</a>.    </p>
+    <p  >You should modify these default scripts as needed.    </p>
+    </div>
+    <div class="section section-1" id="src-5126832_PrescriptiveTopologyManager-PTM-ConfigurationParameters">
+        <h1 class="heading "><span>Configuration Parameters</span></h1>
+    <p  >You can configure <tt class=" ">ptmd</tt> parameters in the topology file. The parameters are classified as host-only, global, per-port/node and templates.    </p>
+    <div class="section section-2" id="src-5126832_PrescriptiveTopologyManager-PTM-Host-onlyParameters">
+        <h2 class="heading "><span>Host-only Parameters</span></h2>
+    <p  ><i class=" ">Host-only parameters</i> apply to the entire host on which PTM is running. You can include the <tt class=" ">hostnametype</tt> host-only parameter, which specifies whether PTM should use only the host name (<tt class=" ">hostname</tt>) or the fully-qualified domain name (<tt class=" ">fqdn</tt>) while looking for the <tt class=" ">self-node</tt> in the graph file. For example, in the graph file below, PTM will ignore the FQDN and only look for <i class=" ">switch04</i>, since that is the host name of the switch it's running on:    </p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >It&rsquo;s a good idea to always wrap the hostname in double quotes, like <i class=" ">&quot;www.example.com&quot;</i>. Otherwise, <tt class=" ">ptmd</tt> can fail if you specify a fully-qualified domain name as the hostname and do not wrap it in double quotes.    </p>
+    <p  >Further, to avoid errors when starting the <tt class=" ">ptmd</tt> process, make sure that <tt class=" ">/etc/hosts</tt> and <tt class=" ">/etc/hostname</tt> both reflect the hostname you are using in the <tt class=" ">topology.dot</tt> file.    </p>
+        </div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">graph G {</code></div>
+<div class="line"><code class="plain">         hostnametype=</code><code class="string">"hostname"</code></div>
+<div class="line"><code class="plain">         BFD=</code><code class="string">"upMinTx=150,requiredMinRx=250"</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus"</code><code class="plain">:</code><code class="string">"swp44"</code><code class="plain"> -- </code><code class="string">"switch04.cumulusnetworks.com"</code><code class="plain">:</code><code class="string">"swp20"</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus"</code><code class="plain">:</code><code class="string">"swp46"</code><code class="plain"> -- </code><code class="string">"switch04.cumulusnetworks.com"</code><code class="plain">:</code><code class="string">"swp22"</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p  >However, in this next example, PTM will compare using the FQDN and look for <i class=" ">switch05.cumulusnetworks.com</i>, which is the FQDN of the switch it&rsquo;s running on:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">graph G {</code></div>
+<div class="line"><code class="plain">         hostnametype=</code><code class="string">"fqdn"</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus"</code><code class="plain">:</code><code class="string">"swp44"</code><code class="plain"> -- </code><code class="string">"switch05.cumulusnetworks.com"</code><code class="plain">:</code><code class="string">"swp20"</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus"</code><code class="plain">:</code><code class="string">"swp46"</code><code class="plain"> -- </code><code class="string">"switch05.cumulusnetworks.com"</code><code class="plain">:</code><code class="string">"swp22"</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126832_PrescriptiveTopologyManager-PTM-GlobalParameters">
+        <h2 class="heading "><span>Global Parameters</span></h2>
+    <p  ><i class=" ">Global parameters</i> apply to every port listed in the topology file. There are two global parameters: LLDP and BFD. LLDP is enabled by default; if no keyword is present, default values are used for all ports. However, BFD is disabled if no keyword is present, unless there is a per-port override configured. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">graph G {</code></div>
+<div class="line"><code class="plain">         LLDP=</code><code class="string">""</code></div>
+<div class="line"><code class="plain">         BFD=</code><code class="string">"upMinTx=150,requiredMinRx=250,afi=both"</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus"</code><code class="plain">:</code><code class="string">"swp44"</code><code class="plain"> -- </code><code class="string">"qct-ly2-04"</code><code class="plain">:</code><code class="string">"swp20"</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus"</code><code class="plain">:</code><code class="string">"swp46"</code><code class="plain"> -- </code><code class="string">"qct-ly2-04"</code><code class="plain">:</code><code class="string">"swp22"</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126832_PrescriptiveTopologyManager-PTM-Per-portParameters">
+        <h2 class="heading "><span>Per-port Parameters</span></h2>
+    <p  ><i class=" ">Per-port parameters</i> provide finer-grained control at the port level. These parameters override any global or compiled defaults. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">graph G {</code></div>
+<div class="line"><code class="plain">         LLDP=</code><code class="string">""</code></div>
+<div class="line"><code class="plain">         BFD=</code><code class="string">"upMinTx=300,requiredMinRx=100"</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus"</code><code class="plain">:</code><code class="string">"swp44"</code><code class="plain"> -- </code><code class="string">"qct-ly2-04"</code><code class="plain">:</code><code class="string">"swp20"</code><code class="plain"> [BFD=</code><code class="string">"upMinTx=150,requiredMinRx=250,afi=both"</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus"</code><code class="plain">:</code><code class="string">"swp46"</code><code class="plain"> -- </code><code class="string">"qct-ly2-04"</code><code class="plain">:</code><code class="string">"swp22"</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126832_PrescriptiveTopologyManager-PTM-Templates">
+        <h2 class="heading "><span>Templates</span></h2>
+    <p  ><i class=" ">Templates</i> provide flexibility in choosing different parameter combinations and applying them to a given port. A template instructs <tt class=" ">ptmd</tt> to reference a named parameter string instead of a default one. There are two parameter strings <tt class=" ">ptmd</tt> supports:    </p>
+<ul class="simple "><li class=" ">    <p  ><tt class=" ">bfdtmpl</tt>, which specifies a custom parameter tuple for BFD.    </p>
+</li><li class=" ">    <p  ><tt class=" ">lldptmpl</tt>, which specifies a custom parameter tuple for LLDP.    </p>
+</li></ul>    <p  >For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">graph G {</code></div>
+<div class="line"><code class="plain">         LLDP=</code><code class="string">""</code></div>
+<div class="line"><code class="plain">         BFD=</code><code class="string">"upMinTx=300,requiredMinRx=100"</code></div>
+<div class="line"><code class="plain">         BFD1=</code><code class="string">"upMinTx=200,requiredMinRx=200"</code></div>
+<div class="line"><code class="plain">         BFD2=</code><code class="string">"upMinTx=100,requiredMinRx=300"</code></div>
+<div class="line"><code class="plain">         LLDP1=</code><code class="string">"match_type=ifname"</code></div>
+<div class="line"><code class="plain">         LLDP2=</code><code class="string">"match_type=portdescr"</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus"</code><code class="plain">:</code><code class="string">"swp44"</code><code class="plain"> -- </code><code class="string">"qct-ly2-04"</code><code class="plain">:</code><code class="string">"swp20"</code><code class="plain"> [BFD=</code><code class="string">"bfdtmpl=BFD1"</code><code class="plain">, LLDP=</code><code class="string">"lldptmpl=LLDP1"</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus"</code><code class="plain">:</code><code class="string">"swp46"</code><code class="plain"> -- </code><code class="string">"qct-ly2-04"</code><code class="plain">:</code><code class="string">"swp22"</code><code class="plain"> [BFD=</code><code class="string">"bfdtmpl=BFD2"</code><code class="plain">, LLDP=</code><code class="string">"lldptmpl=LLDP2"</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus"</code><code class="plain">:</code><code class="string">"swp46"</code><code class="plain"> -- </code><code class="string">"qct-ly2-04"</code><code class="plain">:</code><code class="string">"swp22"</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p  >In this template, LLDP1 and LLDP2 are templates for LLDP parameters while BFD1 and BFD2 are templates for BFD parameters.    </p>
+    </div>
+    <div class="section section-2" id="src-5126832_PrescriptiveTopologyManager-PTM-SupportedBFDandLLDPParameters">
+        <h2 class="heading "><span>Supported BFD and LLDP Parameters</span></h2>
+    <p  ><tt class=" ">ptmd</tt><span id="src-5126832_indexterm-9CE5ECF490795CB56519FFF41394B21C"> supports the following </span>BFD parameters:    </p>
+<ul class="simple "><li class=" ">    <p  ><tt class=" ">upMinTx</tt>: the minimum transmit interval, which defaults to <i class=" ">300ms</i>, specified in milliseconds.    </p>
+</li><li class=" ">    <p  ><tt class=" ">requiredMinRx</tt>: the minimum interval between received BFD packets, which defaults to <i class=" ">300ms</i>, specified in milliseconds.    </p>
+</li><li class=" ">    <p  ><tt class=" ">detectMult</tt>: the detect multiplier, which defaults to <i class=" ">3</i>, and can be any non-zero value.    </p>
+</li><li class=" ">    <p  ><tt class=" ">afi</tt>: the address family to be supported for the edge. The address family must be one of the following:    </p>
+<ul class="simple "><li class=" ">    <p  ><i class=" ">v4</i>: BFD sessions will be built for only IPv4 connected peer. This is the default value.    </p>
+</li><li class=" ">    <p  ><i class=" ">v6</i>: BFD sessions will be built for only IPv6 connected peer.    </p>
+</li><li class=" ">    <p  ><i class=" ">both</i>: BFD sessions will be built for both IPv4 and IPv6 connected peers.    </p>
+</li></ul></li></ul>    <p  >The following is an example of a topology with BFD applied at the port level:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">graph G {</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus-1"</code><code class="plain">:</code><code class="string">"swp44"</code><code class="plain"> -- </code><code class="string">"cumulus-2"</code><code class="plain">:</code><code class="string">"swp20"</code><code class="plain"> [BFD=</code><code class="string">"upMinTx=300,requiredMinRx=100,afi=v6"</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus-1"</code><code class="plain">:</code><code class="string">"swp46"</code><code class="plain"> -- </code><code class="string">"cumulus-2"</code><code class="plain">:</code><code class="string">"swp22"</code><code class="plain"> [BFD=</code><code class="string">"detectMult=4"</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p  ><tt class=" ">ptmd</tt> supports the following LLDP parameters:    </p>
+<ul class="simple "><li class=" ">    <p  ><tt class=" ">match_type</tt>, which defaults to the interface name (<tt class=" ">ifname</tt>), but can accept a port description (<tt class=" ">portdescr</tt>) instead if you want <tt class=" ">lldpd</tt> to compare the topology against the port description instead of the interface name. You can set this parameter globally or at the per-port level.    </p>
+</li><li class=" ">    <p  ><tt class=" ">match_hostname</tt>, which defaults to the host name (<tt class=" ">hostname</tt>), but enables PTM to match the topology using the fully-qualified domain name (<tt class=" ">fqdn</tt>) supplied by LLDP.    </p>
+</li></ul>    <p  >The following is an example of a topology with LLDP applied at the port level:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">graph G {</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus-1"</code><code class="plain">:</code><code class="string">"swp44"</code><code class="plain"> -- </code><code class="string">"cumulus-2"</code><code class="plain">:</code><code class="string">"swp20"</code><code class="plain"> [LLDP=</code><code class="string">"match_hostname=fqdn"</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus-1"</code><code class="plain">:</code><code class="string">"swp46"</code><code class="plain"> -- </code><code class="string">"cumulus-2"</code><code class="plain">:</code><code class="string">"swp22"</code><code class="plain"> [LLDP=</code><code class="string">"match_type=portdescr"</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >When you specify <tt class=" ">match_hostname=fqdn</tt>, <tt class=" ">ptmd</tt> will match the entire FQDN, like <i class=" ">cumulus-2.domain.com</i> in the example below. If you do not specify anything for <tt class=" ">match_hostname</tt>, <tt class=" ">ptmd</tt> will match based on hostname only, like <i class=" ">cumulus-3</i> below, and ignore the rest of the URL:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">graph G { </code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus-1"</code><code class="plain">:</code><code class="string">"swp44"</code><code class="plain"> -- </code><code class="string">"cumulus-2.domain.com"</code><code class="plain">:</code><code class="string">"swp20"</code><code class="plain"> [LLDP=</code><code class="string">"match_hostname=fqdn"</code><code class="plain">] </code></div>
+<div class="line"><code class="plain">         </code><code class="string">"cumulus-1"</code><code class="plain">:</code><code class="string">"swp46"</code><code class="plain"> -- </code><code class="string">"cumulus-3"</code><code class="plain">:</code><code class="string">"swp22"</code><code class="plain"> [LLDP=</code><code class="string">"match_type=portdescr"</code><code class="plain">] </code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126832_safe-id-UHJlc2NyaXB0aXZlVG9wb2xvZ3lNYW5hZ2VyLVBUTS1iZmRCaWRpcmVjdGlvbmFsRm9yd2FyZGluZ0RldGVjdGlvbihCRkQp">
+        <h1 class="heading "><span id="src-5126832_PrescriptiveTopologyManager-PTM-bfd" class="confluence-anchor-link"></span><span>Bidirectional Forwarding Detection (BFD)</span></h1>
+    <p  >BFD provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection. For information about configuring BFD using PTM, see the <a   href="Bidirectional_Forwarding_Detection_-_BFD.html">BFD chapter</a>.    </p>
+    </div>
+    <div class="section section-1" id="src-5126832_PrescriptiveTopologyManager-PTM-quaggaCheckingLinkStatewithQuagga">
+        <h1 class="heading "><span id="src-5126832_PrescriptiveTopologyManager-PTM-quagga" class="confluence-anchor-link"></span><span>Checking Link State with Quagga</span></h1>
+    <p  ><span id="src-5126832_indexterm-9B476245E286F698A94298EA5E191E6F">The </span><span id="src-5126832_indexterm-290BCB018CFEC78B48E62691AB0E6F80">Quagga </span><span id="src-5126832_indexterm-C9DCF9E6909DD72089D37EC7DBE4940C">routing </span>suite enables additional checks to ensure that routing adjacencies are formed only on links that have connectivity conformant to the specification, as determined by <tt class=" ">ptmd</tt>.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >You only need to do this to check link state; you don't need to enable PTM to determine BFD status.    </p>
+        </div>
+    </div>
+    <p  >The check is enabled by default. Every interface has an implied <tt class=" ">ptm-enable</tt> line in the configuration stanza in the interfaces file.    </p>
+    <p  >To disable the checks, delete the <tt class=" ">ptm-enable</tt> parameter from the interface. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net del </code><code class="keyword">interface</code><code class="plain"> swp51 ptm-enable </code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net commit</code></div>
+</div>
+    </div>
+    <p  >If you need to re-enable PTM for that interface, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp51 ptm-enable </code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net commit</code></div>
+</div>
+    </div>
+    <p  >With PTM enabled on an interface, the <tt class=" ">zebra</tt> daemon connects to <tt class=" ">ptmd</tt> over a Unix socket. Any time there is a change of status for an interface, <tt class=" ">ptmd</tt> sends notifications to <tt class=" ">zebra</tt>. Zebra maintains a <tt class=" ">ptm-status</tt> flag per interface and evaluates routing adjacency based on this flag. To check the per-interface <tt class=" ">ptm-status</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show </code><code class="keyword">interface</code><code class="plain"> swp1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Interface swp1 is up, line protocol is up</code></div>
+<div class="line"><code class="plain">  Link ups:       </code><code class="value">0</code><code class="plain">    last: (never)</code></div>
+<div class="line"><code class="plain">  Link downs:     </code><code class="value">0</code><code class="plain">    last: (never)</code></div>
+<div class="line"><code class="plain">  PTM status: disabled</code></div>
+<div class="line"><code class="plain">  vrf: Default-IP-Routing-Table</code></div>
+<div class="line"><code class="plain">  index </code><code class="value">3</code><code class="plain"> metric </code><code class="value">0</code><code class="plain"> mtu </code><code class="value">1550</code><code class="plain"> </code></div>
+<div class="line"><code class="plain">  flags: &lt;UP,BROADCAST,RUNNING,MULTICAST&gt;</code></div>
+<div class="line"><code class="plain">  HWaddr: c4:</code><code class="value">54</code><code class="plain">:</code><code class="value">44</code><code class="plain">:bd:</code><code class="value">01</code><code class="plain">:</code><code class="value">41</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126832_PrescriptiveTopologyManager-PTM-ptmd_commandsUsingptmdServiceCommands">
+        <h1 class="heading "><span id="src-5126832_PrescriptiveTopologyManager-PTM-ptmd_commands" class="confluence-anchor-link"></span><span>Using ptmd Service Commands</span></h1>
+    <p  >PTM sends client notifications in CSV format.    </p>
+    <p  ><tt class=" ">cumulus@switch:~$ sudo systemctl start|restart|force-reload ptmd.service</tt>: Starts or restarts the <tt class=" ">ptmd</tt> service. The <tt class=" ">topology.dot</tt> file must be present in order for the service to start.    </p>
+    <p  ><tt class=" ">cumulus@switch:~$ sudo systemctl reload ptmd.service</tt>: Instructs <tt class=" ">ptmd</tt> to read the <tt class=" ">topology.dot</tt> file again without restarting, applying the new configuration to the running state.    </p>
+    <p  ><tt class=" ">cumulus@switch:~$ sudo systemctl stop ptmd.service</tt>: Stops the <tt class=" ">ptmd</tt> service.    </p>
+    <p  ><tt class=" ">cumulus@switch:~$ sudo systemctl status ptmd.service</tt>: Retrieves the current running state of <tt class=" ">ptmd</tt>.    </p>
+    </div>
+    <div class="section section-1" id="src-5126832_PrescriptiveTopologyManager-PTM-UsingptmctlCommands">
+        <h1 class="heading "><span>Using ptmctl Commands</span></h1>
+    <p  ><tt class=" ">ptmctl</tt><span id="src-5126832_indexterm-020E4333C34CF1F7360139E67EB1469F"> </span>is a client of <tt class=" ">ptmd</tt>; it retrieves the operational state of the ports configured on the switch and information about BFD sessions from <tt class=" ">ptmd</tt>. <tt class=" ">ptmctl</tt> parses the CSV notifications sent by <tt class=" ">ptmd</tt>.    </p>
+    <p  >See <tt class=" ">man ptmctl</tt> for more information.    </p>
+    <div class="section section-2" id="src-5126832_PrescriptiveTopologyManager-PTM-ptmctlExamples">
+        <h2 class="heading "><span>ptmctl Examples</span></h2>
+    <p  >For basic output, use <tt class=" ">ptmctl</tt> without any options:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo ptmctl</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">-------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">port  cbl     BFD     BFD                  BFD    BFD       </code></div>
+<div class="line"><code class="plain">      status  status  peer                 local  type      </code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">swp1  pass    pass    </code><code class="value">11.0</code><code class="plain">.</code><code class="value">0.2</code><code class="plain">             N/A    singlehop </code></div>
+<div class="line"><code class="plain">swp2  pass    N/A     N/A                  N/A    N/A        </code></div>
+<div class="line"><code class="plain">swp3  pass    N/A     N/A                  N/A    N/A  </code></div>
+</div>
+    </div>
+    <p  >For more detailed output, use the <tt class=" ">-d</tt> option:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo ptmctl -d</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">port  cbl    exp     act      sysname  portID  portDescr  match  last    BFD   BFD    BFD   BFD       det_mult  tx_timeout  rx_timeout  echo_tx_timeout  echo_rx_timeout  max_hop_cnt</code></div>
+<div class="line"><code class="plain">      status nbr     nbr                                  on     upd     Type  state  peer  DownDiag</code></div>
+<div class="line"><code class="plain">---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">swp45 pass   h1:swp1 h1:swp1  h1       swp1    swp1       IfName 5m: 5s  N/A   N/A    N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A</code></div>
+<div class="line"><code class="plain">swp46 fail   h2:swp1 h2:swp1  h2       swp1    swp1       IfName 5m: 5s  N/A   N/A    N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A</code></div>
+</div>
+    </div>
+    <p  >To return information on active BFD sessions <tt class=" ">ptmd</tt> is tracking, use the <tt class=" ">-b</tt> option:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo ptmctl -b</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">----------------------------------------------------------</code></div>
+<div class="line"><code class="plain">port  peer        state  local         type       diag </code></div>
+<div class="line"><code class="plain">                                                         </code></div>
+<div class="line"><code class="plain">----------------------------------------------------------</code></div>
+<div class="line"><code class="plain">swp1  </code><code class="value">11.0</code><code class="plain">.</code><code class="value">0.2</code><code class="plain">    Up     N/A           singlehop  N/A  </code></div>
+<div class="line"><code class="plain">N/A   </code><code class="value">12.12</code><code class="plain">.</code><code class="value">12.1</code><code class="plain">  Up     </code><code class="value">12.12</code><code class="plain">.</code><code class="value">12.4</code><code class="plain">    multihop   N/A    </code></div>
+</div>
+    </div>
+    <p  >To return LLDP information, use the <tt class=" ">-l</tt> option. It returns only the active neighbors currently being tracked by <tt class=" ">ptmd</tt>.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo ptmctl -l</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">---------------------------------------------</code></div>
+<div class="line"><code class="plain">port  sysname  portID  port   match  last</code></div>
+<div class="line"><code class="plain">                       descr  on     upd</code></div>
+<div class="line"><code class="plain">---------------------------------------------</code></div>
+<div class="line"><code class="plain">swp45 h1       swp1    swp1   IfName 5m:59s</code></div>
+<div class="line"><code class="plain">swp46 h2       swp1    swp1   IfName 5m:59s </code></div>
+</div>
+    </div>
+    <p  >To return detailed information on active BFD sessions <tt class=" ">ptmd</tt> is tracking, use the <tt class=" ">-b</tt> and <tt class=" ">-d</tt> options (results are for an IPv6-connected peer):    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo ptmctl -b -d</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">port  peer                 state  local  type       diag  det   tx_timeout  rx_timeout  echo        echo        max      rx_ctrl  tx_ctrl  rx_echo  tx_echo </code></div>
+<div class="line"><code class="plain">                                                          mult                          tx_timeout  rx_timeout  hop_cnt                                     </code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">swp1  fe80::</code><code class="value">202</code><code class="plain">:ff:fe00:</code><code class="value">1</code><code class="plain">  Up     N/A    singlehop  N/A   </code><code class="value">3</code><code class="plain">     </code><code class="value">300</code><code class="plain">         </code><code class="value">900</code><code class="plain">         </code><code class="value">0</code><code class="plain">           </code><code class="value">0</code><code class="plain">           N/A      </code><code class="value">187172</code><code class="plain">   </code><code class="value">185986</code><code class="plain">   </code><code class="value">0</code><code class="plain">        </code><code class="value">0</code><code class="plain">       </code></div>
+<div class="line"><code class="plain">swp1  </code><code class="value">3101</code><code class="plain">:abc:bcad::</code><code class="value">2</code><code class="plain">     Up     N/A    singlehop  N/A   </code><code class="value">3</code><code class="plain">     </code><code class="value">300</code><code class="plain">         </code><code class="value">900</code><code class="plain">         </code><code class="value">0</code><code class="plain">           </code><code class="value">0</code><code class="plain">           N/A      </code><code class="value">501</code><code class="plain">      </code><code class="value">533</code><code class="plain">      </code><code class="value">0</code><code class="plain">        </code><code class="value">0</code><code class="plain">       </code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126832_PrescriptiveTopologyManager-PTM-ptmctlErrorOutputs">
+        <h2 class="heading "><span>ptmctl Error Outputs</span></h2>
+    <p  >If there are errors in the topology file or there isn&rsquo;t a session, PTM will return appropriate outputs. Typical error strings are:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">Topology file error [/etc/ptm.d/topology.dot] [cannot find node cumulus] -</code></div>
+<div class="line"><code class="plain">please check /var/log/ptmd.log </code><code class="keyword">for</code><code class="plain"> more info</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Topology file error [/etc/ptm.d/topology.dot] [cannot open file (errno </code><code class="value">2</code><code class="plain">)] -</code></div>
+<div class="line"><code class="plain">please check /var/log/ptmd.log </code><code class="keyword">for</code><code class="plain"> more info</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">No Hostname/MgmtIP found [Check LLDPD daemon status] -</code></div>
+<div class="line"><code class="plain">please check /var/log/ptmd.log </code><code class="keyword">for</code><code class="plain"> more info</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">No BFD sessions . Check connections</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">No LLDP ports detected. Check connections</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Unsupported command</code></div>
+</div>
+    </div>
+    <p  >For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo ptmctl</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">cmd         error</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">get-status  Topology file error [/etc/ptm.d/topology.dot] [cannot open file (errno </code><code class="value">2</code><code class="plain">)] - please check /var/log/ptmd.log </code><code class="keyword">for</code><code class="plain"> more info</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If you encounter errors with the <tt class=" ">topology.dot</tt> file, you can use <tt class=" ">dot</tt> (included in the Graphviz package) to validate the syntax of the topology file.    </p>
+    <p  >By simply opening the topology file with Graphviz, you can ensure that it is readable and that the file format is correct.    </p>
+    <p  >If you edit <tt class=" ">topology.dot</tt> file from a Windows system, be sure to double check the file formatting; there may be extra characters that keep the graph from working correctly.    </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126832_PrescriptiveTopologyManager-PTM-CaveatsandErrata">
+        <h1 class="heading "><span>Caveats and Errata</span></h1>
+<ul class=" "><li class=" ">    <p  >Prior to version 2.1, Cumulus Linux stored the <tt class=" ">ptmd</tt> configuration files in <tt class=" ">/etc/cumulus/ptm.d</tt>. When you upgrade to version 2.1 or later, all the existing <tt class=" ">ptmd</tt> files are copied from their original location to <tt class=" ">/etc/ptm.d</tt> with a <tt class=" ">dpkg-old</tt> extension, except for <tt class=" ">topology.dot</tt>, which gets copied to <tt class=" ">/etc/ptm.d</tt>.    </p>
+    <p  >If you customized the <tt class=" ">if-topo-pass</tt> and <tt class=" ">if-topo-fail</tt> scripts, they are also copied to <tt class=" ">dpkg-old</tt>, and you must modify them so they can parse the CSV output correctly.    </p>
+    <p  >Sample <tt class=" ">if-topo-pass</tt> and <tt class=" ">if-topo-fail</tt> scripts are available in <tt class=" ">/etc/ptm.d</tt>. A sample <tt class=" ">topology.dot</tt> file is available in <tt class=" ">/usr/share/doc/ptmd/examples</tt>.    </p>
+</li></ul>    </div>
+    <div class="section section-1" id="src-5126832_PrescriptiveTopologyManager-PTM-RelatedInformation">
+        <h1 class="heading "><span>Related Information</span></h1>
+<ul class=" "><li class=" ">    <p  ><a  class="external-link" href="http://tools.ietf.org/html/rfc5880">Bidirectional Forwarding Detection (BFD)</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://www.graphviz.org">Graphviz</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol">LLDP on Wikipedia</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="https://github.com/CumulusNetworks/ptm">PTMd GitHub repo</a>    </p>
+</li></ul>    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Link_Layer_Discovery_Protocol.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Link Layer Discovery Protocol</span>
+        </a>
+                <a href="Bonding_-_Link_Aggregation.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Bonding - Link Aggregation</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

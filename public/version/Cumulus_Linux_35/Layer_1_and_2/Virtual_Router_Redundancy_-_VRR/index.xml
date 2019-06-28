@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Virtual Router Redundancy - VRR on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/</link>
+    <description>Recent content in Virtual Router Redundancy - VRR on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ifplugd</title>
+      <link>http://example.org/version/Cumulus_Linux_35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/ifplugd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/ifplugd/</guid>
+      <description>ifplugd is an Ethernet link-state monitoring daemon, that can execute user-specified scripts to configure an Ethernet device when a cable is plugged in, or automatically unconfigure it when a cable is removed.
+Follow the steps below to install and configure the ifplugd daemon.
+Install ifplugd  Update the switch before installing the daemon:
+ cumulus@switch:~$ sudo -E apt-get update  Install the ifplugd package:
+ cumulus@switch:~$ sudo -E apt-get install ifplugd   Configure ifplugd Once ifplugd is installed, two configuration files must be edited to set up ifplugd:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,2730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Integrate with Third-party Software and Hardware | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/" >
+    Cumulus NetQ 2.1
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 1.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 2.0.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/" >
+    Upgrade from NetQ 2.1.0 to NetQ 2.1.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/"  class="active" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_BGP_Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_EVPN_Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_LLDP_Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Validate_Network_Protocol_and_Service_Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Integrate with Third-party Software and Hardware</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Integrate with Third-party Software and Hardware</h1>
+
+<p>After you have installed NetQ applications package and the NetQ Agents,
+you may want to configure some of the additional capabilities that NetQ
+offers. This topic describes how to install, setup, and configure these
+capabilities.</p>
+
+<h2 id="integrate-netq-with-an-event-notification-application">Integrate NetQ with an Event Notification Application</h2>
+
+<p>To take advantage of the numerous event messages generated and processed
+by NetQ, you must integrate with third-party event notification
+applications . You can integrate NetQ with the PagerDuty and Slack
+tools. You may integrate with one or both of these applications.</p>
+
+<p>Each network protocol and service in the NetQ Platform receives the raw
+data stream <span style="color: #000000;"> from the NetQ Agents,
+processes the data and delivers events to the Notification function.
+Notification then stores, filters </span> and sends messages to any
+configured notification applications . Filters are based on rules you
+create. You must have at least one rule per filter.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456260/image2019-3-28_10_57_41.png" alt = "/images/download/attachments/10456260/image2019-3-28_10_57_41.png"
+
+
+width = 650
+
+ />
+
+
+<p>Notifications are generated for the following types of events:</p>
+
+<ul>
+<li><p>Network Protocols</p>
+
+<ul>
+<li><p>BGP status and session state</p></li>
+
+<li><p>CLAG (MLAG) status and session state</p></li>
+
+<li><p>EVPN status and session state</p></li>
+
+<li><p>LLDP status</p></li>
+
+<li><p>LNV status and session state *</p></li>
+
+<li><p>OSFP status and session state *</p></li>
+
+<li><p>VLAN status and session state *</p></li>
+
+<li><p>VXLAN status and session state *</p></li>
+</ul></li>
+
+<li><p>Interfaces</p>
+
+<ul>
+<li><p>Link status</p></li>
+
+<li><p>Ports and cables status</p></li>
+</ul></li>
+
+<li><p>Services status</p>
+
+<ul>
+<li><p>NetQ Agent status</p></li>
+
+<li><p>SSH *</p></li>
+
+<li><p>NTP status *</p></li>
+</ul></li>
+
+<li><p>Trace status</p></li>
+
+<li><p>Sensors</p>
+
+<ul>
+<li><p>Fan status</p></li>
+
+<li><p>PSU (power supply unit) status</p></li>
+
+<li><p>Temperature status</p></li>
+</ul></li>
+
+<li><p>System</p>
+
+<ul>
+<li><p>Configuration File changes</p></li>
+
+<li><p>Cumulus Linux License status *</p></li>
+
+<li><p>Cumulus Linux Support status</p></li>
+</ul></li>
+</ul>
+
+<p><em>* This type of event can only be viewed in the CLI with this release.</em></p>
+
+<h3 id="event-message-format">Event Message Format</h3>
+
+<p>Messages have the following structure:
+<code>&lt;message-type&gt;&lt;timestamp&gt;&lt;opid&gt;&lt;hostname&gt;&lt;severity&gt;&lt;message&gt;</code></p>
+
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>message type</td>
+<td>Category of event; <em>bgp, clag, configdiff, evpn, link, lldp, lnv, node, ntp, ospf, port, sensor, services, trace, vlan or vxlan</em></td>
+</tr>
+
+<tr>
+<td>timestamp</td>
+<td>Date and time event occurred</td>
+</tr>
+
+<tr>
+<td>opid</td>
+<td>Identifier of the service or process that generated the event</td>
+</tr>
+
+<tr>
+<td>hostname</td>
+<td>Hostname of network device where event occurred</td>
+</tr>
+
+<tr>
+<td>severity</td>
+<td>Severity level in which the given event is classified; <em>debug</em>, <em>error</em>, <em>info</em>, <em>warning,</em> or <em>critical</em></td>
+</tr>
+
+<tr>
+<td>message</td>
+<td>Text description of event</td>
+</tr>
+</tbody>
+</table>
+
+<p>For example:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456260/image2019-3-28_11_19_50.png" alt = "/images/download/attachments/10456260/image2019-3-28_11_19_50.png"
+
+
+width = 700
+
+ />
+
+
+<p>To set up the integrations, you must configure NetQ with channels, rules
+and filters to tell NetQ what messages you want to view and where to
+send them. This is accomplished using the NetQ CLI in the following
+manner:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456260/image2019-3-28_13_55_37.png" alt = "/images/download/attachments/10456260/image2019-3-28_13_55_37.png"
+
+
+width = 600
+
+ />
+
+
+<h3 id="notification-commands-overview">Notification Commands Overview</h3>
+
+<p>The NetQ Command Line Interface (CLI) is used to filter and send
+notifications to third-party tools based on severity, service,
+event-type, and device. You can use TAB completion or the <code>help</code> keyword
+to assist when needed. The command syntax is:</p>
+
+<pre><code>                   
+##Channels
+netq add notification channel slack  webhook  [severity info|severity warning|severity error|severity debug] [tag ]
+netq add notification channel pagerduty  integration-key  [severity info|severity warning|severity error|severity debug]
+ 
+##Rules and Filters
+netq add notification rule  key  value 
+netq add notification filter  [severity info|severity warning|severity error|severity debug] [rule ] [channel ] [before |after ]
+ 
+##Management
+netq del notification channel 
+netq del notification filter 
+netq del notification rule 
+netq show notification [channel|filter|rule] [json]
+   
+    
+</code></pre>
+
+<p>The options are described in the following sections where they are used.</p>
+
+<h3 id="create-channels">Create Channels</h3>
+
+<p>Create one or more PagerDuty and Slack channels to present the
+notifications.</p>
+
+<h4 id="configure-a-pagerduty-channel">Configure a PagerDuty Channel</h4>
+
+<p>NetQ sends notifications to PagerDuty as PagerDuty events.</p>
+
+<p>For example:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456260/NetQ_PagerDuty.png" alt = "/images/download/attachments/10456260/NetQ_PagerDuty.png"
+
+height = 250
+
+
+ />
+
+
+<p>To configure the NetQ notifier to send notifications to PagerDuty:</p>
+
+<ol>
+<li><p>Configure the following options using the <code>netq</code><code>add notification
+channel</code> command:</p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>CHANNEL_TYPE &lt;text-channel-name&gt;</td>
+<td>The third-party notification channel and name; use <em>pagerduty</em> in this case.</td>
+</tr>
+
+<tr>
+<td>integration-key &lt;text-integration-key&gt;</td>
+<td>The <a href="https://v2.developer.pagerduty.com/docs/events-api-v2" target="_blank">integration</a> key is also called the service_key or routing_key. The default is an empty string (&ldquo;&rdquo;).</td>
+</tr>
+
+<tr>
+<td>severity</td>
+<td>(Optional) The log level to set, which can be one of <em>info</em>, <em>warning</em>, <em>error</em>, <em>critical</em> or <em>debug</em>. The severity defaults to <em>info</em>.</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>                       
+cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
+Successfully added/updated channel pd-netq-events
+       
+        
+</code></pre></li>
+
+<li><p>Verify that the channel is configured properly.</p>
+
+<pre><code>                       
+cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+pd-netq-events  pagerduty        info             integration-key: c6d666e
+                                                  210a8425298ef7abde0d1998      
+       
+        
+</code></pre></li>
+</ol>
+
+<h4 id="configure-a-slack-channel">Configure a Slack Channel</h4>
+
+<p>NetQ Notifier sends notifications to Slack as incoming webhooks for a
+Slack channel you configure. For example:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456260/image2019-3-28_11_47_15.png" alt = "/images/download/attachments/10456260/image2019-3-28_11_47_15.png"
+
+height = 250
+
+
+ />
+
+
+<p>To configure NetQ to send notifications to Slack:</p>
+
+<ol>
+<li><p>If needed, create one or more Slack channels on which to receive the
+notifications.</p>
+
+<ol>
+<li><p>Click <strong>+</strong> next to <strong>Channels</strong>.</p></li>
+
+<li><p>Enter a name for the channel, and click <strong>Create Channel</strong>.</p></li>
+
+<li><p>Navigate to the new channel.</p></li>
+
+<li><p>Click <strong>+ Add an app</strong> link below the channel name to open the
+application directory.</p></li>
+
+<li><p>In the search box, start typing <em>incoming</em> and select **
+<strong>Incoming WebHooks</strong> when it appears.</p></li>
+
+<li><p>Click <strong>Add Configuration</strong> and enter the name of the channel
+you created (where you want to post notifications).</p></li>
+
+<li><p>Click <strong>Add Incoming WebHooks integration</strong>.</p></li>
+
+<li><p>Save WebHook URL in a text file for use in next step.</p></li>
+</ol></li>
+
+<li><p>Configure the following options in the <code>netq</code><code>config add
+notification channel</code> command:</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Option</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>CHANNEL_TYPE &lt;text-channel-name&gt;</p></td>
+<td><p>The third-party notification channel name; use <em>slack</em> in this case.</p></td>
+</tr>
+<tr class="even">
+<td><p>WEBHOOK</p></td>
+<td><p>Copy the WebHook URL from the text file OR in the desired channel, locate the initial message indicating the addition of the webhook, click <strong>incoming-webhook</strong> link, click <strong>Settings</strong>.</p>
+<p>Example URL: <code>https://hooks.slack.com/services/text/moretext/evenmoretext</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>severity</p></td>
+<td><p>The log level to set, which can be one of <em>error, warning, info,</em> or <em>debug</em>. The severity defaults to <em>info</em>.</p></td>
+</tr>
+<tr class="even">
+<td><p>tag</p></td>
+<td><p>Optional tag appended to the Slack notification to highlight particular channels or people. The tag value must be preceded by the @ sign. For example, <em>@netq-info</em>.</p></td>
+</tr>
+</tbody>
+</table>
+    
+
+<pre><code>                       
+cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+Successfully added/updated channel netq-events
+       
+        
+</code></pre></li>
+
+<li><p>Verify the channel is configured correctly.<br />
+From the CLI:</p>
+
+<pre><code>                       
+cumulus@switch:~$ netq show notification channel 
+Matching config_notify records:
+Name            Type             Severity Channel Info
+--------------- ---------------- -------- ----------------------
+slk-netq-events slack            info     webhook:https://hooks.s
+                                          lack.com/services/text/
+                                          moretext/evenmoretext                                     
+       
+        
+</code></pre>
+
+<p>From the Slack Channel:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456260/image2019-2-15_14_33_54.png" alt = "/images/download/attachments/10456260/image2019-2-15_14_33_54.png"
+
+
+width = 400
+
+ />
+</li>
+</ol>
+
+<h3 id="create-rules">Create Rules</h3>
+
+<p>Each rule is comprised of a single key-value pair. The key-value pair
+indicates what messages to include or drop from event information sent
+to a notification channel. You can create more than one rule for a
+single filter. Creating multiple rules for a given filter can provide a
+very defined filter. For example, you can specify rules around hostnames
+or interface names, enabling you to filter messages specific to those
+hosts or interfaces. You should have already defined the PagerDuty or
+Slack channels (as described earlier).</p>
+
+<p>There is a fixed set of valid rule keys. Values are entered as regular
+expressions and <em>vary according to your deployment</em>.</p>
+
+<p>Service</p>
+
+<p>Rule Key</p>
+
+<p>Description</p>
+
+<p>Example Rule Values</p>
+
+<p>BGP</p>
+
+<p>message_type</p>
+
+<p>Network protocol or service identifier</p>
+
+<p>bgp</p>
+
+<p>hostname</p>
+
+<p>User-defined, text-based name for a switch or host</p>
+
+<p>server02, leaf11, exit01, spine-4</p>
+
+<p>peer</p>
+
+<p>User-defined, text-based name for a peer switch or host</p>
+
+<p>server4, leaf-3, exit02, spine06</p>
+
+<p>desc</p>
+
+<p>Text description</p>
+
+<p> </p>
+
+<p>vrf</p>
+
+<p>Name of VRF interface</p>
+
+<p>mgmt, default</p>
+
+<p>old_state</p>
+
+<p>Previous state of the BGP service</p>
+
+<p>Established, Failed</p>
+
+<p>new_state</p>
+
+<p>Current state of the BGP service</p>
+
+<p>Established, Failed</p>
+
+<p>old_last_reset_time</p>
+
+<p>Previous time that BGP service was reset</p>
+
+<p>Apr3, 2019, 4:17 pm</p>
+
+<p>new_last_reset_time</p>
+
+<p>Most recent time that BGP service was reset</p>
+
+<p>Apr8, 2019, 11:38 am</p>
+
+<p>MLAG (CLAG)</p>
+
+<p>message_type</p>
+
+<p>Network protocol or service identifier</p>
+
+<p>clag</p>
+
+<p>hostname</p>
+
+<p>User-defined, text-based name for a switch or host</p>
+
+<p>server02, leaf-9, exit01, spine04</p>
+
+<p>old_conflicted_bonds</p>
+
+<p>Previous pair of interfaces in a conflicted bond</p>
+
+<p>swp7 swp8, swp3 swp4</p>
+
+<p>new_conflicted_bonds</p>
+
+<p>Current pair of interfaces in a conflicted bond</p>
+
+<p>swp11 swp12, swp23 swp24</p>
+
+<p>old_state_protodownbond</p>
+
+<p>Previous state of the bond</p>
+
+<p>protodown, up</p>
+
+<p>new_state_protodownbond</p>
+
+<p>Current state of the bond</p>
+
+<p>protodown, up</p>
+
+<p>ConfigDiff</p>
+
+<p>message_type</p>
+
+<p>Network protocol or service identifier</p>
+
+<p>configdiff</p>
+
+<p>hostname</p>
+
+<p>User-defined, text-based name for a switch or host</p>
+
+<p>server02, leaf11, exit01, spine-4</p>
+
+<p>vni</p>
+
+<p>Virtual Network Instance identifier</p>
+
+<p>12, 23</p>
+
+<p>old_state</p>
+
+<p>Previous state of the configuration file</p>
+
+<p>created, modified</p>
+
+<p>new_state</p>
+
+<p>Current state of the configuration file</p>
+
+<p>created, modified</p>
+
+<p>EVPN</p>
+
+<p>message_type</p>
+
+<p>Network protocol or service identifier</p>
+
+<p>evpn</p>
+
+<p>hostname</p>
+
+<p>User-defined, text-based name for a switch or host</p>
+
+<p>server02, leaf-9, exit01, spine04</p>
+
+<p>vni</p>
+
+<p>Virtual Network Instance identifier</p>
+
+<p>12, 23</p>
+
+<p>old_in_kernel_state</p>
+
+<p>Previous VNI state, in kernel or not</p>
+
+<p>true, false</p>
+
+<p>new_in_kernel_state</p>
+
+<p>Current VNI state, in kernel or not</p>
+
+<p>true, false</p>
+
+<p>old_adv_all_vni_state</p>
+
+<p>Previous VNI advertising state, advertising all or not</p>
+
+<p>true, false</p>
+
+<p>new_adv_all_vni_state</p>
+
+<p>Current VNI advertising state, advertising all or not</p>
+
+<p>true, false</p>
+
+<p>Link</p>
+
+<p>message_type</p>
+
+<p>Network protocol or service identifier</p>
+
+<p>link</p>
+
+<p>hostname</p>
+
+<p>User-defined, text-based name for a switch or host</p>
+
+<p>server02, leaf-6, exit01, spine7</p>
+
+<p>ifname</p>
+
+<p>Software interface name</p>
+
+<p>eth0, swp53</p>
+
+<p>LLDP</p>
+
+<p>message_type</p>
+
+<p>Network protocol or service identifier</p>
+
+<p>lldp</p>
+
+<p> </p>
+
+<p>hostname</p>
+
+<p>User-defined, text-based name for a switch or host</p>
+
+<p>server02, leaf41, exit01, spine-5, tor-36</p>
+
+<p> </p>
+
+<p>ifname</p>
+
+<p>Software interface name</p>
+
+<p>eth1, swp12</p>
+
+<p> </p>
+
+<p>old_peer_ifname</p>
+
+<p>Previous software interface name</p>
+
+<p>eth1, swp12, swp27</p>
+
+<p> </p>
+
+<p>new_peer_ifname</p>
+
+<p>Curent software interface name</p>
+
+<p>eth1, swp12, swp27</p>
+
+<p> </p>
+
+<p>old_peer_hostname</p>
+
+<p>Previous user-defined, text-based name for a peer switch or host</p>
+
+<p>server02, leaf41, exit01, spine-5, tor-36</p>
+
+<p> </p>
+
+<p>new_peer_hostname</p>
+
+<p>Current user-defined, text-based name for a peer switch or host</p>
+
+<p>server02, leaf41, exit01, spine-5, tor-36</p>
+
+<p>Node</p>
+
+<p>message_type</p>
+
+<p>Network protocol or service identifier</p>
+
+<p>node</p>
+
+<p> </p>
+
+<p>hostname</p>
+
+<p>User-defined, text-based name for a switch or host</p>
+
+<p>server02, leaf41, exit01, spine-5, tor-36</p>
+
+<p> </p>
+
+<p>ntp_state</p>
+
+<p>Current state of NTP service</p>
+
+<p>in sync, not sync</p>
+
+<p> </p>
+
+<p>db_state</p>
+
+<p>Current state of DB</p>
+
+<p>Add, Update, Del, Dead</p>
+
+<p>NTP</p>
+
+<p>message_type</p>
+
+<p>Network protocol or service identifier</p>
+
+<p>ntp</p>
+
+<p> </p>
+
+<p>hostname</p>
+
+<p>User-defined, text-based name for a switch or host</p>
+
+<p>server02, leaf-9, exit01, spine04</p>
+
+<p> </p>
+
+<p>old_state</p>
+
+<p>Previous state of service</p>
+
+<p>in sync, not sync</p>
+
+<p> </p>
+
+<p>new_state</p>
+
+<p>Current state of service</p>
+
+<p>in sync, not sync</p>
+
+<p>Port</p>
+
+<p>message_type</p>
+
+<p>Network protocol or service identifier</p>
+
+<p>port</p>
+
+<p> </p>
+
+<p>hostname</p>
+
+<p>User-defined, text-based name for a switch or host</p>
+
+<p>server02, leaf13, exit01, spine-8, tor-36</p>
+
+<p> </p>
+
+<p>ifname</p>
+
+<p>Interface name</p>
+
+<p>eth0, swp14</p>
+
+<p> </p>
+
+<p>old_speed</p>
+
+<p>Previous speed rating of port</p>
+
+<p>10 G, 25 G, 40 G, unknown</p>
+
+<p> </p>
+
+<p>old_transreceiver</p>
+
+<p>Previous transceiver</p>
+
+<p>40G Base-CR4, <span style="color: #000000;"> 25G Base-CR </span></p>
+
+<p> </p>
+
+<p>old_vendor_name</p>
+
+<p>Previous vendor name of installed port module</p>
+
+<p>Amphenol, OEM, Mellanox, Fiberstore, Finisar</p>
+
+<p> </p>
+
+<p>old_serial_number</p>
+
+<p>Previous serial number of installed port module</p>
+
+<p>MT1507VS05177, <span style="color: #000000;"> AVE1823402U,
+<span style="color: #000000;"> PTN1VH2 </span> </span></p>
+
+<p> </p>
+
+<p>old_supported_fec</p>
+
+<p>Previous forward error correction (FEC) support status</p>
+
+<p>none, Base R, RS</p>
+
+<p> </p>
+
+<p>old_advertised_fec</p>
+
+<p>Previous FEC advertising state</p>
+
+<p>true, false, not reported</p>
+
+<p> </p>
+
+<p>old_fec</p>
+
+<p>Previous FEC capability</p>
+
+<p>none</p>
+
+<p> </p>
+
+<p>old_autoneg</p>
+
+<p>Previous activation state of auto-negotiation</p>
+
+<p>on, off</p>
+
+<p> </p>
+
+<p>new_speed</p>
+
+<p>Current speed rating of port</p>
+
+<p>10 G, 25 G, 40 G</p>
+
+<p> </p>
+
+<p>new_transreceiver</p>
+
+<p>Current transceiver</p>
+
+<p>40G Base-CR4, 25G Base-CR</p>
+
+<p> </p>
+
+<p>new_vendor_name</p>
+
+<p>Current vendor name of installed port module</p>
+
+<p>Amphenol, OEM, Mellanox, Fiberstore, Finisar</p>
+
+<p> </p>
+
+<p>new_part_number</p>
+
+<p>Current part number of installed port module</p>
+
+<p>SFP-H10GB-CU1M, <span style="color: #000000;"> MC3309130-001,
+<span style="color: #000000;"> 603020003 </span> </span></p>
+
+<p> </p>
+
+<p>new_serial_number</p>
+
+<p>Current serial number of installed port module</p>
+
+<p>MT1507VS05177, AVE1823402U, PTN1VH2</p>
+
+<p> </p>
+
+<p>new_supported_fec</p>
+
+<p>Current FEC support status</p>
+
+<p>none, Base R, RS</p>
+
+<p> </p>
+
+<p>new_advertised_fec</p>
+
+<p>Current FEC advertising state</p>
+
+<p>true, false</p>
+
+<p> </p>
+
+<p>new_fec</p>
+
+<p>Current FEC capability</p>
+
+<p>none</p>
+
+<p> </p>
+
+<p>new_autoneg</p>
+
+<p>Current activation state of auto-negotiation</p>
+
+<p>on, off</p>
+
+<p>Sensors</p>
+
+<p>sensor</p>
+
+<p>Network protocol or service identifier</p>
+
+<p><span style="color: #000000;"> Fan: </span>
+<span style="color: #000000;"> fan1, fan-2 </span><br />
+Power Supply Unit: psu1, psu2<br />
+Temperature: psu1temp1, temp2</p>
+
+<p> </p>
+
+<p>hostname</p>
+
+<p>User-defined, text-based name for a switch or host</p>
+
+<p>server02, leaf-26, exit01, spine2-4</p>
+
+<p> </p>
+
+<p>old_state</p>
+
+<p>Previous state of a fan, power supply unit, or thermal sensor</p>
+
+<p>Fan: ok, absent, bad<br />
+PSU: ok, absent, bad<br />
+Temp: ok, busted, bad, critical</p>
+
+<p> </p>
+
+<p>new_state</p>
+
+<p>Current state of a fan, power supply unit, or thermal sensor</p>
+
+<p>Fan: ok, absent, bad<br />
+PSU: ok, absent, bad<br />
+Temp: ok, busted, bad, critical</p>
+
+<p> </p>
+
+<p>old_s_state</p>
+
+<p>Previous state of a fan or power supply unit.</p>
+
+<p>Fan: up, down<br />
+PSU: up, down</p>
+
+<p> </p>
+
+<p>new_s_state</p>
+
+<p>Current state of a fan or power supply unit.</p>
+
+<p>Fan: up, down<br />
+PSU: up, down</p>
+
+<p> </p>
+
+<p>new_s_max</p>
+
+<p>Current maximum temperature threshold value</p>
+
+<p>Temp: 110</p>
+
+<p> </p>
+
+<p>new_s_crit</p>
+
+<p>Current critical high temperature threshold value</p>
+
+<p>Temp: 85</p>
+
+<p> </p>
+
+<p>new_s_lcrit</p>
+
+<p>Current critical low temperature threshold value</p>
+
+<p>Temp: -25</p>
+
+<p> </p>
+
+<p>new_s_min</p>
+
+<p>Current minimum temperature threshold value</p>
+
+<p>Temp: -50</p>
+
+<p>Services</p>
+
+<p>message_type</p>
+
+<p>Network protocol or service identifier</p>
+
+<p>services</p>
+
+<p> </p>
+
+<p>hostname</p>
+
+<p>User-defined, text-based name for a switch or host</p>
+
+<p>server02, leaf03, exit01, spine-8</p>
+
+<p> </p>
+
+<p>name</p>
+
+<p>Name of service</p>
+
+<p>clagd, lldpd, ssh, ntp, netqd, net-agent</p>
+
+<p> </p>
+
+<p>old_pid</p>
+
+<p>Previous process or service identifier</p>
+
+<p>12323, 52941</p>
+
+<p> </p>
+
+<p>new_pid</p>
+
+<p>Current process or service identifier</p>
+
+<p>12323, 52941</p>
+
+<p> </p>
+
+<p>old_status</p>
+
+<p>Previous status of service</p>
+
+<p>up, down</p>
+
+<p> </p>
+
+<p>new_status</p>
+
+<p>Current status of service</p>
+
+<p>up, down</p>
+
+
+<div class="notices info" > <p>Rule names are case sensitive, and no wildcards are permitted. Rule
+names may contain spaces, but must be enclosed with single quotes in
+commands. It is easier to use dashes in place of spaces or mixed case
+for better readability. For example, use bgpSessionChanges or
+BGP-session-changes or BGPsessions, instead of &lsquo;BGP Session Changes&rsquo;.</p>
+
+<p>Use Tab completion to view the command options syntax.</p>
+ </div>
+
+
+<h4 id="example-rules">Example Rules</h4>
+
+<p>Create a BGP Rule Based on Hostname:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification rule bgpHostname key hostname value spine-01 
+Successfully added/updated rule bgpHostname 
+   
+    
+</code></pre>
+
+<p>Create a Rule Based on a Configuration File State Change:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification rule sysconf key configdiff value updated
+Successfully added/updated rule sysconf
+   
+    
+</code></pre>
+
+<p>Create an EVPN Rule Based on a VNI:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification rule evpnVni key vni value 42
+Successfully added/updated rule evpnVni
+   
+    
+</code></pre>
+
+<p>Create an Interface Rule Based on FEC Support:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification rule fecSupport key new_supported_fec value supported
+Successfully added/updated rule fecSupport
+   
+    
+</code></pre>
+
+<p>Create a Service Rule Based on a Status Change:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification rule svcStatus key new_status value down
+Successfully added/updated rule svcStatus
+   
+    
+</code></pre>
+
+<p>Create a Sensor Rule Based on a Threshold:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification rule overTemp key new_s_crit value 24
+Successfully added/updated rule overTemp
+   
+    
+</code></pre>
+
+<p>Create an Interface Rule Based on Port:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification rule swp52 key port value swp52 
+Successfully added/updated rule swp52 
+   
+    
+</code></pre>
+
+<h4 id="view-the-rule-configurations">View the Rule Configurations</h4>
+
+<p>Use the <code>netq show notification</code> command to view the rules on your
+platform.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show notification rule 
+ 
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+fecSupport      new_supported_fe supported
+                c
+overTemp        new_s_crit       24
+svcStatus       new_status       down
+swp52           port             swp52
+sysconf         configdiff       updated
+   
+    
+</code></pre>
+
+<h3 id="create-filters">Create Filters</h3>
+
+<p>You can limit or direct event messages using filters. Filters are
+created based on rules you define; like those in the previous section.
+Each filter contains one or more rules. When a message matches the rule,
+it is sent to the indicated destination. Before you can create filters,
+you need to have already defined the rules and configured PagerDuty
+and/or Slack channels (as described earlier).</p>
+
+<p>As filters are created, they are added to the bottom of a filter list.
+By default, filters are processed in the order they appear in this list
+(from top to bottom) until a match is found. This means that each event
+message is first evaluated by the first filter listed, and if it matches
+then it is processed, ignoring all other filters, and the system moves
+on to the next event message received. If the event does not match the
+first filter, it is tested against the second filter, and if it matches
+then it is processed and the system moves on to the next event received.
+And so forth. Events that do not match any filter are ignored.</p>
+
+<p>You may need to change the order of filters in the list to ensure you
+capture the events you want and drop the events you do not want. This is
+possible using the <em>before</em> or <em>after</em> keywords to ensure one rule is
+processed before or after another.</p>
+
+<p>This diagram shows an example with four defined filters with sample
+output results.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456260/NQ_210_Filter_Process_Flow.png" alt = "/images/download/attachments/10456260/NQ_210_Filter_Process_Flow.png"
+
+
+width = 350
+
+ />
+
+
+
+<div class="notices info" > <p>Filter names may contain spaces, but <em>must</em> be enclosed with single
+quotes in commands. It is easier to use dashes in place of spaces or
+mixed case for better readability. For example, use bgpSessionChanges or
+BGP-session-changes or BGPsessions, instead of &lsquo;BGP Session Changes&rsquo;.
+Filter names are also case sensitive.</p>
+ </div>
+
+
+<h4 id="example-filters">Example Filters</h4>
+
+<p>Create a filter for BGP Events on a Particular Device:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification filter bgpSpine rule bgpHostname channel pd-netq-events 
+Successfully added/updated filter bgpSpine
+   
+    
+</code></pre>
+
+<p>Create a Filter for a Given VNI in Your EVPN Overlay:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification filter vni42 severity warning rule evpnVni channel pd-netq-events
+Successfully added/updated filter vni42
+   
+    
+</code></pre>
+
+<p>Create a Filter for when a Configuration File has been Updated:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
+Successfully added/updated filter configChange
+   
+    
+</code></pre>
+
+<p>Create a Filter to Monitor Ports with FEC Support:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification filter newFEC rule fecSupport channel slk-netq-events
+Successfully added/updated filter newFEC
+   
+    
+</code></pre>
+
+<p>Create a Filter to Monitor for Services that Change to a Down State:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification filter svcDown severity error rule svcStatus channel slk-netq-events
+Successfully added/updated filter svcDown
+   
+    
+</code></pre>
+
+<p>Create a Filter to Monitor Overheating Platforms:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification filter critTemp severity error rule overTemp channel pd-netq-events 
+Successfully added/updated filter critTemp
+   
+    
+</code></pre>
+
+<p>Create a Filter to Drop Messages from a Given Interface, and match
+against this filter before any other filters. To create a drop style
+filter, do not specify a channel. To put the filter first, use the
+<em>before</em> option.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification filter swp52Drop severity error rule swp52 before bgpSpine
+Successfully added/updated filter swp52Drop
+   
+    
+</code></pre>
+
+<h4 id="view-the-filter-configurations">View the Filter Configurations</h4>
+
+<p>Use the <code>netq show notification</code> command to view the filters on your
+platform.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+swp52Drop       1          error            NetqDefaultChann swp52
+                                            el
+bgpSpine        2          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           3          warning          pd-netq-events   evpnVni
+configChange    4          info             slk-netq-events  sysconf
+newFEC          5          info             slk-netq-events  fecSupport
+svcDown         6          critical         slk-netq-events  svcStatus
+critTemp        7          critical         pd-netq-events   overTemp
+   
+    
+</code></pre>
+
+<h4 id="reorder-filters">Reorder Filters</h4>
+
+<p>When you look at the results of the <code>netq show notification filter</code>
+command above, you might notice that although you have the drop-based
+filter first (no point in looking at something you are going to drop
+anyway, so that is good), but the critical severity events are processed
+last, per the current definitions. If you wanted to process those before
+lesser severity events, you can reorder the list using the <em>before</em> and
+<em>after</em> options.</p>
+
+<p>For example, to put the two critical severity event filters just below
+the drop filter:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification filter critTemp after swp52Drop
+Successfully added/updated filter critTemp
+cumulus@switch:~$ netq add notification filter svcDown before bgpSpine
+Successfully added/updated filter svcDown
+   
+    
+</code></pre>
+
+
+<div class="notices tip" > <p>You do not need to reenter all the severity, channel, and rule
+information for existing rules if you only want to change their
+processing order.</p>
+ </div>
+
+
+<p>Run the <code>netq show notification</code> command again to verify the changes:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+swp52Drop       1          error            NetqDefaultChann swp52
+                                            el
+critTemp        2          critical         pd-netq-events   overTemp
+svcDown         3          critical         slk-netq-events  svcStatus
+bgpSpine        4          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           5          warning          pd-netq-events   evpnVni
+configChange    6          info             slk-netq-events  sysconf
+newFEC          7          info             slk-netq-events  fecSupport
+   
+    
+</code></pre>
+
+<h2 id="example-notification-configurations">Example Notification Configurations</h2>
+
+<p>Putting all of these channel, rule, and filter definitions together you
+create a complete notification configuration. The following are example
+notification configurations are created using the three-step process
+outlined above. Refer to <a href="/old/Cumulus_NetQ/#src-10456260_IntegratewithThird-partySoftwareandHardware-IntegrateNotification">Integrate NetQ with an Event Notification
+Application</a>
+for details and instructions for creating channels, rules, and filters.</p>
+
+<h3 id="create-a-notification-for-bgp-events-from-a-selected-switch">Create a Notification for BGP Events from a Selected Switch</h3>
+
+<p>In this example, we created a notification integration with a PagerDuty
+channel called <em>pd-netq-events</em>. We then created a rule <em>bgpHostname</em>
+and a filter called <em>4bgpSpine</em> for any notifications from <em>spine-01</em>.
+The result is that any info severity event messages from Spine-01 are
+filtered to the <em>pd-netq-events</em> ** channel.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
+Successfully added/updated channel pd-netq-events
+cumulus@switch:~$ netq add notification rule bgpHostname key node value spine-01
+Successfully added/updated rule bgpHostname
+ 
+cumulus@switch:~$ netq add notification filter bgpSpine rule bgpHostname channel pd-netq-events
+Successfully added/updated filter bgpSpine
+cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+pd-netq-events  pagerduty        info             integration-key: 1234567
+                                                  890   
+                                                                              
+cumulus@switch:~$ netq show notification rule 
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+ 
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+bgpSpine        1          info             pd-netq-events   bgpHostnam
+                                                             e
+   
+    
+</code></pre>
+
+<h3 id="create-a-notification-for-warnings-on-a-given-evpn-vni">Create a Notification for Warnings on a Given EVPN VNI</h3>
+
+<p>In this example, we created a notification integration with a PagerDuty
+channel called <em>pd-netq-events</em>. We then created a rule <em>evpnVni</em> and a
+filter called <em>3vni42</em> for any warnings messages from VNI 42 on the EVPN
+overlay network. The result is that any warning severity event messages
+from VNI 42 are filtered to the <em>pd-netq-events</em> ** channel.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
+Successfully added/updated channel pd-netq-events
+ 
+cumulus@switch:~$ netq add notification rule evpnVni key vni value 42
+Successfully added/updated rule evpnVni
+ 
+cumulus@switch:~$ netq add notification filter vni42 rule evpnVni channel pd-netq-events
+Successfully added/updated filter vni42
+ 
+cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+pd-netq-events  pagerduty        info             integration-key: 1234567
+                                                  890   
+                                                                              
+cumulus@switch:~$ netq show notification rule 
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+ 
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+bgpSpine        1          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           2          warning          pd-netq-events   evpnVni
+   
+    
+</code></pre>
+
+<h3 id="create-a-notification-for-configuration-file-changes">Create a Notification for Configuration File Changes</h3>
+
+<p>In this example, we created a notification integration with a Slack
+channel called <em>slk-netq-events</em>. We then created a rule <em>sysconf</em> and a
+filter called <em>configChange</em> for any configuration file update messages.
+The result is that any configuration update messages are filtered to the
+<em>slk-netq-events</em> ** channel.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+Successfully added/updated channel slk-netq-events
+ 
+cumulus@switch:~$ netq add notification rule sysconf key configdiff value updated
+Successfully added/updated rule sysconf
+ 
+cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
+Successfully added/updated filter configChange
+ 
+cumulus@switch:~$ netq show notification channel 
+Matching config_notify records:
+Name            Type             Severity Channel Info
+--------------- ---------------- -------- ----------------------
+slk-netq-events slack            info     webhook:https://hooks.s
+                                          lack.com/services/text/
+                                          moretext/evenmoretext     
+ 
+cumulus@switch:~$ netq show notification rule 
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+sysconf         configdiff       updated
+ 
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+bgpSpine        1          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           2          warning          pd-netq-events   evpnVni
+configChange    3          info             slk-netq-events  sysconf
+   
+    
+</code></pre>
+
+<h3 id="create-a-notification-for-when-a-service-goes-down">Create a Notification for When a Service Goes Down</h3>
+
+<p>In this example, we created a notification integration with a Slack
+channel called <em>slk-netq-events</em>. We then created a rule <em>svcStatus</em> and
+a filter called <em>svcDown</em> for any services state messages indicating a
+service is no longer operational. The result is that any service down
+messages are filtered to the <em>slk-netq-events</em> ** channel.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+Successfully added/updated channel slk-netq-events
+ 
+cumulus@switch:~$ netq add notification rule svcStatus key new_status value down
+Successfully added/updated rule svcStatus
+ 
+cumulus@switch:~$ netq add notification filter svcDown severity error rule svcStatus channel slk-netq-events
+Successfully added/updated filter svcDown
+ 
+cumulus@switch:~$ netq show notification channel 
+Matching config_notify records:
+Name            Type             Severity Channel Info
+--------------- ---------------- -------- ----------------------
+slk-netq-events slack            info     webhook:https://hooks.s
+                                          lack.com/services/text/
+                                          moretext/evenmoretext     
+ 
+cumulus@switch:~$ netq show notification rule 
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+svcStatus       new_status       down
+sysconf         configdiff       updated
+ 
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+bgpSpine        1          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           2          warning          pd-netq-events   evpnVni
+configChange    3          info             slk-netq-events  sysconf
+svcDown         4          critical         slk-netq-events  svcStatus
+   
+    
+</code></pre>
+
+<h3 id="create-a-filter-to-drop-notifications-from-a-given-interface">Create a Filter to Drop Notifications from a Given Interface</h3>
+
+<p>In this example, we created a notification integration with a Slack
+channel called <em>slk-netq-events</em>. We then created a rule <em>swp52</em> and a
+filter called <em>swp52Drop</em> that drops all notifications for events from
+interface <em>swp52</em>.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+Successfully added/updated channel slk-netq-events
+ 
+cumulus@switch:~$ netq add notification rule swp52 key port value swp52 
+Successfully added/updated rule swp52
+ 
+cumulus@switch:~$ netq add notification filter swp52Drop severity error rule swp52 before bgpSpine
+Successfully added/updated filter swp52Drop
+ 
+cumulus@switch:~$ netq show notification channel 
+Matching config_notify records:
+Name            Type             Severity Channel Info
+--------------- ---------------- -------- ----------------------
+slk-netq-events slack            info     webhook:https://hooks.s
+                                          lack.com/services/text/
+                                          moretext/evenmoretext     
+ 
+cumulus@switch:~$ netq show notification rule 
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+svcStatus       new_status       down
+swp52           port             swp52
+sysconf         configdiff       updated
+ 
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+swp52Drop       1          error            NetqDefaultChann swp52
+                                            el
+bgpSpine        2          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           3          warning          pd-netq-events   evpnVni
+configChange    4          info             slk-netq-events  sysconf
+svcDown         5          critical         slk-netq-events  svcStatus
+   
+    
+</code></pre>
+
+<h3 id="create-a-notification-for-a-given-device-that-has-a-tendency-to-overheat-using-multiple-rules">Create a Notification for a Given Device that has a Tendency to Overheat (using multiple rules)</h3>
+
+<p>In this example, we created a notification when switch <em>leaf04</em> has
+passed over the high temperature threshold. Two rules were needed to
+create this notification, one to identify the specific device and one to
+identify the temperature trigger. We sent the message to the
+<em>pd-netq-events</em> channel.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
+Successfully added/updated channel pd-netq-events
+ 
+cumulus@switch:~$ netq add notification rule switchLeaf04 key hostname value leaf04
+Successfully added/updated rule switchLeaf04
+cumulus@switch:~$ netq add notification rule overTemp key new_s_crit value 24
+Successfully added/updated rule overTemp
+ 
+cumulus@switch:~$ netq add notification filter critTemp rule switchLeaf04 channel pd-netq-events 
+Successfully added/updated filter critTemp
+cumulus@switch:~$ netq add notification filter critTemp severity critical rule overTemp channel pd-netq-events
+Successfully added/updated filter critTemp
+ 
+cumulus@switch:~$ netq show notification channel 
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+pd-netq-events  pagerduty        info             integration-key: 1234567
+                                                  890
+        
+cumulus@switch:~$ netq show notification rule 
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+overTemp        new_s_crit       24
+svcStatus       new_status       down
+switchLeaf04    hostname         leaf04
+swp52           port             swp52
+sysconf         configdiff       updated
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+swp52Drop       1          error            NetqDefaultChann swp52
+                                            el
+bgpSpine        2          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           3          warning          pd-netq-events   evpnVni
+configChange    4          info             slk-netq-events  sysconf
+svcDown         5          critical         slk-netq-events  svcStatus
+critTemp        6          critical         pd-netq-events   switchLeaf
+                                                             04
+                                                             overTemp                                                
+   
+    
+</code></pre>
+
+<h3 id="view-notification-configurations-in-json-format">View Notification Configurations in JSON Format</h3>
+
+<p>You can view configured integrations using the <code>netq show notification</code>
+commands. To view the channels, filters, and rules, run the three
+flavors of the command. Include the <code>json</code> option to display
+JSON-formatted output.</p>
+
+<p>For example:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show notification channel json
+{
+    &quot;config_notify&quot;:[
+        {
+            &quot;type&quot;:&quot;slack&quot;,
+            &quot;name&quot;:&quot;slk-netq-events&quot;,
+            &quot;channelInfo&quot;:&quot;webhook:https://hooks.slack.com/services/text/moretext/evenmoretext&quot;,
+            &quot;severity&quot;:&quot;info&quot;
+        },
+        {
+            &quot;type&quot;:&quot;pagerduty&quot;,
+            &quot;name&quot;:&quot;pd-netq-events&quot;,
+            &quot;channelInfo&quot;:&quot;integration-key: 1234567890&quot;,
+            &quot;severity&quot;:&quot;info&quot;
+    }
+    ],
+    &quot;truncatedResult&quot;:false
+}
+ 
+cumulus@switch:~$ netq show notification rule json
+{
+    &quot;config_notify&quot;:[
+        {
+            &quot;ruleKey&quot;:&quot;hostname&quot;,
+            &quot;ruleValue&quot;:&quot;spine-01&quot;,
+            &quot;name&quot;:&quot;bgpHostname&quot;
+        },
+        {
+            &quot;ruleKey&quot;:&quot;vni&quot;,
+            &quot;ruleValue&quot;:42,
+            &quot;name&quot;:&quot;evpnVni&quot;
+        },
+        {
+            &quot;ruleKey&quot;:&quot;new_supported_fec&quot;,
+            &quot;ruleValue&quot;:&quot;supported&quot;,
+            &quot;name&quot;:&quot;fecSupport&quot;
+        },
+        {
+            &quot;ruleKey&quot;:&quot;new_s_crit&quot;,
+            &quot;ruleValue&quot;:24,
+            &quot;name&quot;:&quot;overTemp&quot;
+        },
+        {
+            &quot;ruleKey&quot;:&quot;new_status&quot;,
+            &quot;ruleValue&quot;:&quot;down&quot;,
+            &quot;name&quot;:&quot;svcStatus&quot;
+        },
+        {
+            &quot;ruleKey&quot;:&quot;configdiff&quot;,
+            &quot;ruleValue&quot;:&quot;updated&quot;,
+            &quot;name&quot;:&quot;sysconf&quot;
+    }
+    ],
+    &quot;truncatedResult&quot;:false
+}
+ 
+cumulus@switch:~$ netq show notification filter json
+{
+    &quot;config_notify&quot;:[
+        {
+            &quot;channels&quot;:&quot;pd-netq-events&quot;,
+            &quot;rules&quot;:&quot;overTemp&quot;,
+            &quot;name&quot;:&quot;1critTemp&quot;,
+            &quot;severity&quot;:&quot;critical&quot;
+        },
+        {
+            &quot;channels&quot;:&quot;pd-netq-events&quot;,
+            &quot;rules&quot;:&quot;evpnVni&quot;,
+            &quot;name&quot;:&quot;3vni42&quot;,
+            &quot;severity&quot;:&quot;warning&quot;
+        },
+        {
+            &quot;channels&quot;:&quot;pd-netq-events&quot;,
+            &quot;rules&quot;:&quot;bgpHostname&quot;,
+            &quot;name&quot;:&quot;4bgpSpine&quot;,
+            &quot;severity&quot;:&quot;info&quot;
+        },
+        {
+            &quot;channels&quot;:&quot;slk-netq-events&quot;,
+            &quot;rules&quot;:&quot;sysconf&quot;,
+            &quot;name&quot;:&quot;configChange&quot;,
+            &quot;severity&quot;:&quot;info&quot;
+        },
+        {
+            &quot;channels&quot;:&quot;slk-netq-events&quot;,
+            &quot;rules&quot;:&quot;fecSupport&quot;,
+            &quot;name&quot;:&quot;newFEC&quot;,
+            &quot;severity&quot;:&quot;info&quot;
+        },
+        {
+            &quot;channels&quot;:&quot;slk-netq-events&quot;,
+            &quot;rules&quot;:&quot;svcStatus&quot;,
+            &quot;name&quot;:&quot;svcDown&quot;,
+            &quot;severity&quot;:&quot;critical&quot;
+    }
+    ],
+    &quot;truncatedResult&quot;:false
+}
+   
+    
+</code></pre>
+
+<h2 id="manage-event-notification-integrations">Manage Event Notification Integrations</h2>
+
+<p>You might need to modify event notification configurations at some point
+in the lifecycle of your deployment.</p>
+
+<h3 id="remove-an-event-notification-channel">Remove an Event Notification Channel</h3>
+
+<p>You can delete an event notification integration using the <code>netq config
+del notification</code> command. You can verify it has been removed using the
+related <code>show</code> command.</p>
+
+<p>For example, to remove a Slack integration and verify it is no longer in
+the configuration:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq del notification channel slk-netq-events
+cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+pd-netq-events  pagerduty        info             integration-key: 1234567
+                                                  890
+   
+    
+</code></pre>
+
+<h3 id="delete-an-event-notification-rule">Delete an Event Notification Rule</h3>
+
+<p>To delete a rule, use the following command, then verify it has been
+removed:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq del notification rule swp52
+cumulus@switch:~$ netq show notification rule
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+overTemp        new_s_crit       24
+svcStatus       new_status       down
+switchLeaf04    hostname         leaf04
+sysconf         configdiff       updated
+   
+    
+</code></pre>
+
+<h3 id="delete-an-event-notification-filter">Delete an Event Notification Filter</h3>
+
+<p>To delete a filter, use the following command, then verify it has been
+removed:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq del notification filter bgpSpine
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+swp52Drop       1          error            NetqDefaultChann swp52
+                                            el
+vni42           2          warning          pd-netq-events   evpnVni
+configChange    3          info             slk-netq-events  sysconf
+svcDown         4          critical         slk-netq-events  svcStatus
+critTemp        5          critical         pd-netq-events   switchLeaf
+                                                             04
+                                                             overTemp
+   
+    
+</code></pre>
+
+<h2 id="integrate-with-a-hardware-chassis">Integrate with a Hardware Chassis</h2>
+
+<p>NetQ can run within a <a href="https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/" target="_blank">Facebook Backpack
+chassis</a>,
+<a href="https://cumulusnetworks.com/products/cumulus-express/getting-started/cx10256s-omp800/" target="_blank">Cumulus Express CX-10256-S
+chassis</a>
+or <a href="https://cumulusnetworks.com/products/cumulus-express/getting-started/cx10256s-omp800/" target="_blank">Edgecore OMP-800
+chassis</a>.</p>
+
+<p>Keep the following issues in mind if you intend to use NetQ with a
+chassis:</p>
+
+<ul>
+<li><p>You must assign a unique hostname to every node that runs the NetQ
+Agent. By default, all the fabric cards in the chassis have the same
+hostname.</p></li>
+
+<li><p>The NetQ Agent must be installed on every line card.</p></li>
+
+<li><p>No information is returned about the ASIC when you run <code>netq show
+inventory asic</code>. This is a known issue.</p></li>
+
+<li><p>Since the chassis sensor information is shared, every line card and
+fabric card can report the same sensor data. By default, sensor data
+is disabled on a chassis to avoid this duplication . To enable
+sensor data on a line card, edit <code>/etc/netq/netq.yml</code> or
+<code>/etc/netq/config.d/user.yml</code> and set the <code>send_chassis_sensor_data</code>
+keyword to <em>true</em>, then restart the NetQ Agent with <code>netq config
+agent restart</code>. Configuring NetQ in this way prevents any
+duplication of data in the NetQ database.</p>
+
+<pre><code>                       
+cumulus@chassis:~$ sudo nano /etc/netq/netq.yml
+ 
+...
+netq-agent:
+  send_chassis_sensor_data: true
+...
+       
+        
+</code></pre></li>
+</ul>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#integrate-netq-with-an-event-notification-application">Integrate NetQ with an Event Notification Application</a>
+<ul>
+<li><a href="#event-message-format">Event Message Format</a></li>
+<li><a href="#notification-commands-overview">Notification Commands Overview</a></li>
+<li><a href="#create-channels">Create Channels</a>
+<ul>
+<li><a href="#configure-a-pagerduty-channel">Configure a PagerDuty Channel</a></li>
+<li><a href="#configure-a-slack-channel">Configure a Slack Channel</a></li>
+</ul></li>
+<li><a href="#create-rules">Create Rules</a>
+<ul>
+<li><a href="#example-rules">Example Rules</a></li>
+<li><a href="#view-the-rule-configurations">View the Rule Configurations</a></li>
+</ul></li>
+<li><a href="#create-filters">Create Filters</a>
+<ul>
+<li><a href="#example-filters">Example Filters</a></li>
+<li><a href="#view-the-filter-configurations">View the Filter Configurations</a></li>
+<li><a href="#reorder-filters">Reorder Filters</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#example-notification-configurations">Example Notification Configurations</a>
+<ul>
+<li><a href="#create-a-notification-for-bgp-events-from-a-selected-switch">Create a Notification for BGP Events from a Selected Switch</a></li>
+<li><a href="#create-a-notification-for-warnings-on-a-given-evpn-vni">Create a Notification for Warnings on a Given EVPN VNI</a></li>
+<li><a href="#create-a-notification-for-configuration-file-changes">Create a Notification for Configuration File Changes</a></li>
+<li><a href="#create-a-notification-for-when-a-service-goes-down">Create a Notification for When a Service Goes Down</a></li>
+<li><a href="#create-a-filter-to-drop-notifications-from-a-given-interface">Create a Filter to Drop Notifications from a Given Interface</a></li>
+<li><a href="#create-a-notification-for-a-given-device-that-has-a-tendency-to-overheat-using-multiple-rules">Create a Notification for a Given Device that has a Tendency to Overheat (using multiple rules)</a></li>
+<li><a href="#view-notification-configurations-in-json-format">View Notification Configurations in JSON Format</a></li>
+</ul></li>
+<li><a href="#manage-event-notification-integrations">Manage Event Notification Integrations</a>
+<ul>
+<li><a href="#remove-an-event-notification-channel">Remove an Event Notification Channel</a></li>
+<li><a href="#delete-an-event-notification-rule">Delete an Event Notification Rule</a></li>
+<li><a href="#delete-an-event-notification-filter">Delete an Event Notification Filter</a></li>
+</ul></li>
+<li><a href="#integrate-with-a-hardware-chassis">Integrate with a Hardware Chassis</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Zero Touch Provisioning - ZTP | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Zero Touch Provisioning - ZTP</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Zero Touch Provisioning - ZTP</h1>
+
+<p><em>Zero touch provisioning</em> (ZTP) enables network devices to be quickly
+deployed in large-scale environments. Data center engineers only need to
+rack and stack the switch, install Cumulus Linux via ONIE, then connect
+the switch to the management network — or alternatively, insert a USB
+stick and boot the switch. From here, the provisioning process can start
+automatically and deploy a configuration.</p>
+
+<p>The provisioning framework allows for a one-time, user-provided script
+to be executed. This script can be used to add the switch to a
+configuration management (CM) platform such as
+<a href="http://puppetlabs.com/puppet/what-is-puppet" target="_blank">Puppet</a>,
+<a href="http://www.opscode.com" target="_blank">Chef</a>, <a href="https://cfengine.com" target="_blank">CFEngine</a> or even
+a custom, home-grown tool.</p>
+
+<p>In addition, you can use the <code>ztp</code> command in Cumulus Linux to manually
+invoke your provisioning script.</p>
+
+<p>ZTP in Cumulus Linux can occur automatically in one of the following
+ways, in this order:</p>
+
+<ul>
+<li><p>Via a local file</p></li>
+
+<li><p>Using a USB drive inserted into the switch (ZTP-USB)</p></li>
+
+<li><p>Via DHCP</p></li>
+</ul>
+
+<p>Each method is discussed in greater detail below.</p>
+
+
+<div class="notices note" > <p>The standard Cumulus Linux license requires you to page through the
+license file before accepting the terms, which can hinder an unattended
+installation like zero touch provisioning. To request a license without
+the EULA, email
+<a href="mailto:licensing%40cumulusnetworks.com" target="_blank">licensing@cumulusnetworks.com</a>.</p>
+ </div>
+
+
+<h2 id="commands">Commands</h2>
+
+<ul>
+<li>ztp</li>
+</ul>
+
+<h2 id="zero-touch-provisioning-using-a-local-file">Zero Touch Provisioning Using a Local File</h2>
+
+<p>ZTP only looks once for a ZTP script on the local file system when the
+switch boots. ZTP searches for an install script that matches an
+<a href="http://onie.org" target="_blank">ONIE</a>-style waterfall in <code>/var/lib/cumulus/ztp</code>,
+looking for the most specific name first, and ending at the most
+generic:</p>
+
+<ul>
+<li><p><code>'cumulus-ztp-' + architecture + '-' + vendor + '_' + model + '-r' +
+revision</code></p></li>
+
+<li><p><code>'cumulus-ztp-' + architecture + '-' + vendor + '_' + model</code></p></li>
+
+<li><p><code>'cumulus-ztp-' + vendor + '_' + model</code></p></li>
+
+<li><p><code>'cumulus-ztp-' + architecture</code></p></li>
+
+<li><p><code>'cumulus-ztp'</code></p></li>
+</ul>
+
+<p>For example:</p>
+
+<pre><code>cumulus-ztp-amd64-cel_pebble-rUNKNOWN
+cumulus-ztp-amd64-cel_pebble
+cumulus-ztp-cel_pebble
+cumulus-ztp-amd64
+cumulus-ztp
+</code></pre>
+
+<p>You can also trigger the ZTP process manually by running the <code>ztp --run
+&lt;URL&gt;</code> command, where the URL is the path to the ZTP script.</p>
+
+<h2 id="zero-touch-provisioning-using-usb-ztp-usb">Zero Touch Provisioning Using USB (ZTP-USB)</h2>
+
+
+<div class="notices note" > <p>This feature has been tested only with &ldquo;thumb&rdquo; drives, not an actual
+external large USB hard drive.</p>
+ </div>
+
+
+<p>If the <code>ztp</code> process did not discover a local script, it tries once to
+locate an inserted but unmounted USB drive. If it discovers one, it
+begins the ZTP process.</p>
+
+<p>Cumulus Linux supports the use of a FAT32, FAT16, or VFAT-formatted USB
+drive as an installation source for ZTP scripts. You must plug in the
+USB stick <strong>before</strong> you power up the switch.</p>
+
+<p>At minimum, the script should:</p>
+
+<ul>
+<li><p>Install the Cumulus Linux operating system and license.</p></li>
+
+<li><p>Copy over a basic configuration to the switch.</p></li>
+
+<li><p>Restart the switch or the relevant serves to get <code>switchd</code> up and
+running with that configuration.</p></li>
+</ul>
+
+<p>Follow these steps to perform zero touch provisioning using USB:</p>
+
+<ol>
+<li><p>Copy the Cumulus Linux license and installation image to the USB
+stick.</p></li>
+
+<li><p>The <code>ztp</code> process searches the root filesystem of the newly mounted
+device for filenames matching an <a href="https://github.com/opencomputeproject/onie/wiki/Quick-Start-Guide#directly-connected-scenario" target="_blank">ONIE-style
+waterfall</a>
+(see the patterns and examples above), looking for the most specific
+name first, and ending at the most generic.</p></li>
+
+<li><p>The script&rsquo;s contents are parsed to ensure it contains the
+<code>CUMULUS-AUTOPROVISIONING</code> flag (see <a href="/#src-5118254_ZeroTouchProvisioning-ZTP-example_scripts">example
+scripts</a>).</p></li>
+</ol>
+
+
+<div class="notices note" > <p>The USB device is mounted to a temporary directory under <code>/tmp</code> (for
+example, <code>/tmp/tmpigGgjf/</code>). In order to reference files on the USB, use
+the environment variable <code>ZTP_USB_MOUNTPOINT</code> to refer to the USB root
+partition.</p>
+ </div>
+
+
+<h2 id="zero-touch-provisioning-over-dhcp">Zero Touch Provisioning over DHCP</h2>
+
+<p>If the <code>ztp</code> process did not discover a local/ONIE script or applicable
+USB drive, it checks DHCP every 10 seconds for up to 5 minutes for the
+presence of a ZTP URL specified in <code>/var/run/ztp.dhcp</code>. The URL can be
+any of HTTP, HTTPS, FTP or TFTP.</p>
+
+<p>For ZTP using DHCP, provisioning initially takes place over the
+management network and is initiated via a DHCP hook. A DHCP option is
+used to specify a configuration script. This script is then requested
+from the Web server and executed locally on the switch.</p>
+
+<p>The zero touch provisioning process over DHCP follows these steps:</p>
+
+<ol>
+<li><p>The first time you boot Cumulus Linux, eth0 is configured for DHCP
+and makes a DHCP request.</p></li>
+
+<li><p>The DHCP server offers a lease to the switch.</p></li>
+
+<li><p>If option 239 is present in the response, the zero touch
+provisioning process itself will start.</p></li>
+
+<li><p>The zero touch provisioning process requests the contents of the
+script from the URL, sending additional <a href="/#src-5118254_ZeroTouchProvisioning-ZTP-http_headers">HTTP
+headers</a>
+containing details about the switch.</p></li>
+
+<li><p>The script&rsquo;s contents are parsed to ensure it contains the
+<code>CUMULUS-AUTOPROVISIONING</code> flag (see <a href="/#src-5118254_ZeroTouchProvisioning-ZTP-example_scripts">example
+scripts</a>).</p></li>
+
+<li><p>If provisioning is necessary, then the script executes locally on
+the switch with root privileges.</p></li>
+
+<li><p>The return code of the script gets examined. If it is 0, then the
+provisioning state is marked as complete in the autoprovisioning
+configuration file.</p></li>
+</ol>
+
+<h3 id="triggering-ztp-over-dhcp">Triggering ZTP over DHCP</h3>
+
+<p>If provisioning has not already occurred, it is possible to trigger the
+zero touch provisioning process over DHCP when eth0 is set to use DHCP
+and one of the following events occur:</p>
+
+<ul>
+<li><p>Booting the switch</p></li>
+
+<li><p>Plugging a cable into or unplugging it from the eth0 port</p></li>
+
+<li><p>Disconnecting then reconnecting the switch&rsquo;s power cord</p></li>
+</ul>
+
+<p>You can also run the <code>ztp --run &lt;URL&gt;</code> command, where the URL is the
+path to the ZTP script.</p>
+
+<h3 id="configuring-the-dchp-server">Configuring The DCHP Server</h3>
+
+<p>During the DHCP process over eth0, Cumulus Linux will request DHCP
+option 239. This option is used to specify the custom provisioning
+script.</p>
+
+<p>For example, the <code>/etc/dhcp/dhcpd.conf</code> file for an ISC DHCP server
+would look like:</p>
+
+<pre><code>                   
+option cumulus-provision-url code 239 = text;
+ 
+subnet 192.0.2.0 netmask 255.255.255.0 {
+ range 192.0.2.100 192.168.0.200;
+ option cumulus-provision-url &quot;http://192.0.2.1/demo.sh&quot;;
+}
+   
+    
+</code></pre>
+
+<p>Additionally, the hostname of the switch can be specified via the
+<code>host-name</code> option:</p>
+
+<pre><code>                   
+subnet 192.168.0.0 netmask 255.255.255.0 {
+ range 192.168.0.100 192.168.0.200;
+ option cumulus-provision-url &quot;http://192.0.2.1/demo.sh&quot;;
+ host dc1-tor-sw1 { hardware ethernet 44:38:39:00:1a:6b; fixed-address 192.168.0.101; option host-name &quot;dc1-tor-sw1&quot;; }
+}
+   
+    
+</code></pre>
+
+<h3 id="detailed-look-at-http-headers">Detailed Look at HTTP Headers</h3>
+
+<p>The following HTTP headers are sent in the request to the webserver to
+retrieve the provisioning script:</p>
+
+<pre><code>                   
+Header                        Value                 Example
+------                        -----                 -------
+User-Agent                                          CumulusLinux-AutoProvision/0.4
+CUMULUS-ARCH                  CPU architecture      x86_64
+CUMULUS-BUILD                                       3.0.0-5c6829a-201309251712-final
+CUMULUS-LICENSE-INSTALLED     Either 0 or 1         1
+CUMULUS-MANUFACTURER                                odm
+CUMULUS-PRODUCTNAME                                 switch_model
+CUMULUS-SERIAL                                      XYZ123004
+CUMULUS-VERSION                                     3.0.0
+CUMULUS-PROV-COUNT                                  0
+CUMULUS-PROV-MAX                                    32
+   
+    
+</code></pre>
+
+<h2 id="writing-ztp-scripts">Writing ZTP Scripts</h2>
+
+
+<div class="notices note" > <p>Remember to include the following line in any of the supported scripts
+which are expected to be run via the autoprovisioning framework.</p>
+
+<pre><code># CUMULUS-AUTOPROVISIONING
+</code></pre>
+
+<p>This line is required somewhere in the script file in order for
+execution to occur.</p>
+ </div>
+
+
+<p>The script must contain the <code>CUMULUS-AUTOPROVISIONING</code> flag. This can be
+in a comment or remark and does not needed to be echoed or written to
+<code>stdout</code>.</p>
+
+<p>The script can be written in any language currently supported by Cumulus
+Linux, such as:</p>
+
+<ul>
+<li><p>Perl</p></li>
+
+<li><p>Python</p></li>
+
+<li><p>Ruby</p></li>
+
+<li><p>Shell</p></li>
+</ul>
+
+<p>The script must return an exit code of 0 upon success, as this triggers
+the autoprovisioning process to be marked as complete in the
+autoprovisioning configuration file.</p>
+
+<h3 id="example-ztp-scripts">Example ZTP Scripts</h3>
+
+<p>The following script install Cumulus Linux and its license from USB and
+applies a configuration:</p>
+
+<pre><code>                   
+#!/bin/bash
+function error() {
+  echo -e &quot;\e[0;33mERROR: The Zero Touch Provisioning script failed while running the command $BASH_COMMAND at line $BASH_LINENO.\e[0m&quot; &gt;&amp;2
+  exit 1
+}
+ 
+# Log all output from this script
+exec &gt;/var/log/autoprovision 2&gt;&amp;1
+ 
+trap error ERR
+ 
+#Add Debian Repositories
+echo &quot;deb http://http.us.debian.org/debian jessie main&quot; &gt;&gt; /etc/apt/sources.list
+echo &quot;deb http://security.debian.org/ jessie/updates main&quot; &gt;&gt; /etc/apt/sources.list
+ 
+#Update Package Cache
+apt-get update -y
+ 
+#Install netshow diagnostics commands
+apt-get install -y netshow htop nmap
+ 
+#Load interface config from usb
+cp ${ZTP_USB_MOUNTPOINT}/interfaces /etc/network/interfaces
+ 
+#Load port config from usb
+#   (if breakout cables are used for certain interfaces)
+cp ${ZTP_USB_MOUNTPOINT}/ports.conf /etc/cumulus/ports.conf
+ 
+#Install a License from usb and restart switchd
+cl-license -i ${ZTP_USB_MOUNTPOINT}/license.txt &amp;&amp; systemctl restart switchd.service
+ 
+#Reload interfaces to apply loaded config
+ifreload -a
+ 
+#Output state of interfaces
+netshow interface
+ 
+# CUMULUS-AUTOPROVISIONING
+exit 0
+   
+    
+</code></pre>
+
+<p>Here is a simple script to install <code>puppet</code>:</p>
+
+<pre><code>                   
+#!/bin/bash
+function error() {
+  echo -e &quot;\e[0;33mERROR: The Zero Touch Provisioning script failed while running the command $BASH_COMMAND at line $BASH_LINENO.\e[0m&quot; &gt;&amp;2
+  exit 1
+}
+trap error ERR
+apt-get update -y
+apt-get upgrade -y
+apt-get install puppet -y
+sed -i /etc/default/puppet -e 's/START=no/START=yes/'
+sed -i /etc/puppet/puppet.conf -e 's/\[main\]/\[main\]\npluginsync=true/'
+systemctl restart puppet.service
+# CUMULUS-AUTOPROVISIONING
+exit 0
+   
+    
+</code></pre>
+
+<p>This script illustrates how to specify an internal APT mirror and
+<code>puppet</code> master:</p>
+
+<pre><code>                   
+#!/bin/bash
+function error() {
+  echo -e &quot;\e[0;33mERROR: The Zero Touch Provisioning script failed while running the command $BASH_COMMAND at line $BASH_LINENO.\e[0m&quot; &gt;&amp;2
+  exit 1
+}
+trap error ERR
+sed -i /etc/apt/sources.list -e 's/repo.cumulusnetworks.com/labrepo.mycompany.com/'
+apt-get update -y
+apt-get upgrade -y
+apt-get install puppet -y
+sed -i /etc/default/puppet -e 's/START=no/START=yes/'
+sed -i /etc/puppet/puppet.conf -e 's/\[main\]/\[main\]\npluginsync=true/'
+sed -i /etc/puppet/puppet.conf -e 's/\[main\]/\[main\]\nserver=labpuppet.mycompany.com/'
+systemctl restart puppet.service
+# CUMULUS-AUTOPROVISIONING
+exit 0
+   
+    
+</code></pre>
+
+<p>Now <code>puppet</code> can take over management of the switch, configuration
+authentication, changing the default root password, and setting up
+interfaces and routing protocols.</p>
+
+<p>Several ZTP example scripts are available in the <a href="https://github.com/CumulusNetworks/example-ztp-scripts" target="_blank">Cumulus GitHub
+repository</a>.</p>
+
+<h2 id="testing-and-debugging-ztp-scripts">Testing and Debugging ZTP Scripts</h2>
+
+<p>There are a few commands you can use to test and debug your ZTP scripts.</p>
+
+<p>You can use verbose mode to debug your script and see where your script
+failed. Include the <code>-v</code> option when you run <code>ztp</code>:</p>
+
+<pre><code>cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh
+Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
+
+Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 2016):  
+
+ZTP: Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
+ZTP Manual: URL response code 200
+ZTP Manual: Found Marker CUMULUS-AUTOPROVISIONING
+ZTP Manual: Executing http://192.0.2.1/demo.sh
+error: ZTP Manual: Payload returned code 1
+error: Script returned failure
+</code></pre>
+
+<p>You can also run <code>ztp -s</code> to get more information about the current
+state of ZTP.</p>
+
+<pre><code>ZTP INFO:
+
+State              enabled
+Version            1.0
+Result             Script Failure
+Date               Tue May 10 22:42:09 2016 UTC
+Method             ZTP DHCP
+URL                http://192.0.2.1/demo.sh
+</code></pre>
+
+<p>If ZTP ran when the switch booted and not manually, you can run the
+<code>systemctl -l status ztp.service</code> then <code>journalctl -l -u ztp.service</code> to
+see if any failures occur:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo systemctl -l status ztp.service
+● ztp.service - Cumulus Linux ZTP
+   Loaded: loaded (/lib/systemd/system/ztp.service; enabled)
+   Active: failed (Result: exit-code) since Wed 2016-05-11 16:38:45 UTC; 1min 47s ago
+     Docs: man:ztp(8)
+  Process: 400 ExecStart=/usr/sbin/ztp -b (code=exited, status=1/FAILURE)
+ Main PID: 400 (code=exited, status=1/FAILURE)
+ 
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Device not found
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: URL response code 200
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Payload returned code 1
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Script returned failure
+May 11 16:38:45 dell-s6000-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE
+May 11 16:38:45 dell-s6000-01 systemd[1]: Unit ztp.service entered failed state.
+cumulus@switch:~$ 
+cumulus@switch:~$ sudo journalctl -l -u ztp.service --no-pager
+-- Logs begin at Wed 2016-05-11 16:37:42 UTC, end at Wed 2016-05-11 16:40:39 UTC. --
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/lib/cumulus/ztp: Sate Directory does not exist. Creating it...
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/run/ztp.lock: Lock File does not exist. Creating it...
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/lib/cumulus/ztp/ztp_state.log: State File does not exist. Creating it...
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Looking for ZTP local Script
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220-rUNKNOWN
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Looking for unmounted USB devices
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Parsing partitions
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Device not found
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: URL response code 200
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Payload returned code 1
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Script returned failure
+May 11 16:38:45 dell-s6000-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE
+May 11 16:38:45 dell-s6000-01 systemd[1]: Unit ztp.service entered failed state.
+   
+    
+</code></pre>
+
+<p>Instead of running <code>journalctl</code>, you can see the log history by running:</p>
+
+<pre><code>                   
+cumulus@switch:~$ cat /var/log/syslog | grep ztp
+2016-05-11T16:37:45.132583+00:00 cumulus ztp [400]: /var/lib/cumulus/ztp: State Directory does not exist. Creating it...
+2016-05-11T16:37:45.134081+00:00 cumulus ztp [400]: /var/run/ztp.lock: Lock File does not exist. Creating it...
+2016-05-11T16:37:45.135360+00:00 cumulus ztp [400]: /var/lib/cumulus/ztp/ztp_state.log: State File does not exist. Creating it...
+2016-05-11T16:37:45.185598+00:00 cumulus ztp [400]: ZTP LOCAL: Looking for ZTP local Script
+2016-05-11T16:37:45.485084+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220-rUNKNOWN
+2016-05-11T16:37:45.486394+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220
+2016-05-11T16:37:45.488385+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell
+2016-05-11T16:37:45.489665+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64
+2016-05-11T16:37:45.490854+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp
+2016-05-11T16:37:45.492296+00:00 cumulus ztp [400]: ZTP USB: Looking for unmounted USB devices
+2016-05-11T16:37:45.493525+00:00 cumulus ztp [400]: ZTP USB: Parsing partitions
+2016-05-11T16:37:45.636422+00:00 cumulus ztp [400]: ZTP USB: Device not found
+2016-05-11T16:38:43.372857+00:00 cumulus ztp [1805]: Found ZTP DHCP Request
+2016-05-11T16:38:45.696562+00:00 cumulus ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP
+2016-05-11T16:38:45.698598+00:00 cumulus ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh
+2016-05-11T16:38:45.816275+00:00 cumulus ztp [400]: ZTP DHCP: URL response code 200
+2016-05-11T16:38:45.817446+00:00 cumulus ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING
+2016-05-11T16:38:45.818402+00:00 cumulus ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh
+2016-05-11T16:38:45.834240+00:00 cumulus ztp [400]: ZTP DHCP: Payload returned code 1
+2016-05-11T16:38:45.835488+00:00 cumulus ztp [400]: Script returned failure
+2016-05-11T16:38:45.876334+00:00 cumulus systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE
+2016-05-11T16:38:45.879410+00:00 cumulus systemd[1]: Unit ztp.service entered failed state.
+   
+    
+</code></pre>
+
+<p>If you see that the issue is a script failure, you can modify the script
+and then run <code>ztp</code> manually using <code>ztp -v -r &lt;URL/path to that script&gt;</code>,
+as above.</p>
+
+<pre><code>cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh
+Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
+
+Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 2016):  
+
+ZTP: Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
+ZTP Manual: URL response code 200
+ZTP Manual: Found Marker CUMULUS-AUTOPROVISIONING
+ZTP Manual: Executing http://192.0.2.1/demo.sh
+error: ZTP Manual: Payload returned code 1
+error: Script returned failure
+cumulus@switch:~$ sudo ztp -s
+State      enabled                        
+Version    1.0                            
+Result     Script Failure                 
+Date       Tue May 10 22:44:17 2016 UTC   
+Method     ZTP Manual                     
+URL        http://192.0.2.1/demo.sh
+</code></pre>
+
+<h2 id="manually-using-the-ztp-command">Manually Using the ztp Command</h2>
+
+<p>To enable zero touch provisioning, use the <code>-e</code> option:</p>
+
+<pre><code>cumulus@switch:~$ sudo ztp -e
+</code></pre>
+
+
+<div class="notices note" > <p>Enabling <code>ztp</code> means that <code>ztp</code> will try to occur the next time the
+switch boots. However, if ZTP already occurred on a previous boot up or
+if a manual configuration has been found, ZTP will just exit without
+trying to look for any script.</p>
+
+<p>ZTP checks for these manual configurations during bootup:</p>
+
+<ul>
+<li><p>Password changes</p></li>
+
+<li><p>Users and groups changes</p></li>
+
+<li><p>Packages changes</p></li>
+
+<li><p>Interfaces changes</p></li>
+
+<li><p>The presence of an installed license</p></li>
+</ul>
+
+<p>When the switch is booted for the very first time, ZTP records the state
+of some important files that are most likely going to be modified after
+that the switch is configured. If ZTP is still enabled after a reboot,
+ZTP will compare the recorded state to the current state of these files.
+If they do not match, ZTP considers that the switch has already been
+provisioned and exits. These files are only erased after a reset.</p>
+ </div>
+
+
+<p>To reset <code>ztp</code> to its original state, use the <code>-R</code> option. This removes
+the <code>ztp</code> directory and <code>ztp</code> runs the next time the switch reboots.</p>
+
+<pre><code>cumulus@switch:~$ sudo ztp -R
+</code></pre>
+
+<p>To disable zero touch provisioning, use the <code>-d</code> option:</p>
+
+<pre><code>cumulus@switch:~$ sudo ztp -d
+</code></pre>
+
+<p>To force provisioning to occur and ignore the status listed in the
+configuration file use the <code>-r</code> option:</p>
+
+<pre><code>cumulus@switch:~$ sudo ztp -r cumulus-ztp.sh
+</code></pre>
+
+<p>To see the current <code>ztp</code> state, use the <code>-s</code> option:</p>
+
+<pre><code>cumulus@switch:~$ sudo ztp -s
+ZTP INFO:
+State disabled 
+Version 1.0 
+Result success 
+Date Thu May 5 16:49:33 2016 UTC 
+Method Switch manually configured  
+URL None
+</code></pre>
+
+<h2 id="notes">Notes</h2>
+
+<ul>
+<li><p>During the development of a provisioning script, the switch may need
+to be reset.</p></li>
+
+<li><p>You can use the Cumulus Linux <code>onie-select -i</code> command to cause the
+switch to reprovision itself and install a network operating system
+again using ONIE.</p></li>
+</ul>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#commands">Commands</a></li>
+<li><a href="#zero-touch-provisioning-using-a-local-file">Zero Touch Provisioning Using a Local File</a></li>
+<li><a href="#zero-touch-provisioning-using-usb-ztp-usb">Zero Touch Provisioning Using USB (ZTP-USB)</a></li>
+<li><a href="#zero-touch-provisioning-over-dhcp">Zero Touch Provisioning over DHCP</a>
+<ul>
+<li><a href="#triggering-ztp-over-dhcp">Triggering ZTP over DHCP</a></li>
+<li><a href="#configuring-the-dchp-server">Configuring The DCHP Server</a></li>
+<li><a href="#detailed-look-at-http-headers">Detailed Look at HTTP Headers</a></li>
+</ul></li>
+<li><a href="#writing-ztp-scripts">Writing ZTP Scripts</a>
+<ul>
+<li><a href="#example-ztp-scripts">Example ZTP Scripts</a></li>
+</ul></li>
+<li><a href="#testing-and-debugging-ztp-scripts">Testing and Debugging ZTP Scripts</a></li>
+<li><a href="#manually-using-the-ztp-command">Manually Using the ztp Command</a></li>
+<li><a href="#notes">Notes</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version/Cumulus_Linux_301/Installation,_Upgrading_and_Package_Management/Zero_Touch_Provisioning_-_ZTP.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

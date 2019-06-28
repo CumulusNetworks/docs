@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Using netq to Troubleshoot the Network - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a></li>
+                                                                                     <li><a href="Network_Troubleshooting.html">Network Troubleshooting</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126783"> <span>Using netq to Troubleshoot the Network</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <div  class="confbox admonition admonition-warning">
+                    <p class="title">Early Access Feature</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  ><tt class=" ">netq</tt> is an <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/articles/202933878">early access feature</a> in Cumulus Linux 3.2.1. Before you can install <tt class=" ">netq</tt>, you must enable the Early Access repository. For more information about the Cumulus Linux repository, read <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/articles/217422127">this knowledge base article</a>.    </p>
+        </div>
+    </div>
+    <p  ><tt class=" ">netq</tt> is a tool for troubleshooting the whole network fabric. Instead of using other tools to troubleshoot node by node, <tt class=" ">netq</tt> aggregates data from across all the nodes in a network, so you can query and diagnose issues affecting the whole network, analyze outages or discover why two or more switches cannot communicate. <tt class=" ">netq</tt> can return a wealth of data about your network for both layer 2 and the layer 3 IP fabric, including:    </p>
+<ul class=" "><li class=" ">    <p  >Interface history    </p>
+</li><li class=" ">    <p  >MLAG checks    </p>
+</li><li class=" ">    <p  >Anycast IP validation    </p>
+</li><li class=" ">    <p  >Interface address history    </p>
+</li><li class=" ">    <p  >IP neighbor history    </p>
+</li><li class=" ">    <p  >MTU validation of traceroutes    </p>
+</li><li class=" ">    <p  >Route history    </p>
+</li><li class=" ">    <p  >Route origin validation    </p>
+</li><li class=" ">    <p  >Support for VRF analysis and commands    </p>
+</li></ul>    <p  ><tt class=" ">netq</tt> provides the ability to see the output of commands on other switches, even if a switch is currently unavailable. You can even see the command history so you can go back in time before the issue arouse to debug it.    </p>
+    <p  >Because <tt class=" ">netq</tt> is a Linux application, it's easy to automate with tools like Ansible, Puppet or Chef.    </p>
+    <div class="section section-1" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-Components">
+        <h1 class="heading "><span>Components</span></h1>
+    <p  ><tt class=" ">netq</tt> has three primary components:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">netq-agent</tt>: The back end Python agent installed on every Cumulus Linux switch in the network; the agent pushes out data to a central server (a <tt class=" ">redis</tt> server, see below) periodically and when specific <tt class=" ">netlink </tt>events occur. The <tt class=" ">redis</tt> server processes the queries and sends back a response to the switch. The agent listens for these events:    </p>
+<ul class=" "><li class=" ">    <p  >address (IPv4 and IPv6)    </p>
+</li><li class=" ">    <p  >route (IPv4 and IPv6)    </p>
+</li><li class=" ">    <p  >link    </p>
+</li><li class=" ">    <p  >bridge fdb    </p>
+</li><li class=" ">    <p  >IP neighbor    </p>
+</li></ul></li><li class=" ">    <p  ><tt class=" ">netq</tt>: The command line interface to the <tt class=" ">netq-agent</tt>. You can use the <tt class=" ">netq</tt> CLI on every Cumulus Linux switch as well as the <tt class=" ">redis</tt> server.    </p>
+</li><li class=" ">    <p  ><tt class=" ">redis</tt> server: The database/key-value store where all network information sent from <tt class=" ">netq-agents</tt> running on Cumulus Linux switches is collected and aggregated. The server runs <tt class=" ">redis</tt> version 2.8.17-1.    </p>
+</li></ul>    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126783/netq.png" alt="images/download/attachments/5126783/netq.png"  height="250" />
+        </p>
+    </div>
+    <div class="section section-1" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-FeatureLimitations">
+        <h1 class="heading "><span>Feature Limitations</span></h1>
+    <p  ><tt class=" ">netq</tt> is an <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/articles/202933878">early access feature</a>. As such, the following features are limited or unavailable at this time, and should be available in a future release of Cumulus Linux:    </p>
+<ul class=" "><li class=" ">    <p  >You can check BGP health only at this time; reporting OSPF health should follow in the near future.    </p>
+</li><li class=" ">    <p  >You cannot determine the origin of static routes.    </p>
+</li><li class=" ">    <p  >Clustering the <tt class=" ">redis</tt> server for high availability has not been tested.    </p>
+</li><li class=" ">    <p  ><tt class=" ">netq</tt> has been tested with up to 20 nodes in a fabric, with 8k routes and MAC addresses per node.    </p>
+</li></ul>    <p  >If you are interested in trying out this or any other early access feature, contact your Cumulus Networks account representative to let us know you are testing it.    </p>
+    </div>
+    <div class="section section-1" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-Installingnetq">
+        <h1 class="heading "><span>Installing netq</span></h1>
+    <p  >To install the <tt class=" ">netq</tt> package &mdash; <tt class=" ">cumulus-netq</tt> &mdash; on a switch, follow the instructions below. The <tt class=" ">cumulus-netq</tt> package contains <tt class=" ">netq</tt> and the <tt class=" ">netq-agent</tt>. Cumulus Networks recommends you install the <tt class=" ">netq-agent</tt> on every Cumulus Linux switch in the network; you can also install it on the redis server.    </p>
+<ol class=" "><li class=" ">    <p  >Open the <tt class=" ">/etc/apt/sources.list</tt> file in a text editor.    </p>
+</li><li class=" ">    <p  >Uncomment the early access repository lines and save the file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">deb http://repo3.cumulusnetworks.com/repo CumulusLinux-3-early-access cumulus</code></div>
+<div class="line"><code class="plain">deb-src http://repo3.cumulusnetworks.com/repo CumulusLinux-3-early-access cumulus</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Run the following commands in a terminal to install the <tt class=" ">cumulus-netq</tt> package:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get update</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get install cumulus-netq</code></div>
+</div>
+    </div>
+</li></ol>    <div class="section section-2" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-InstallingredisServer">
+        <h2 class="heading "><span>Installing redis Server</span></h2>
+    <p  >Cumulus Networks recommends you install the <tt class=" ">redis</tt> server on its own server or VM. Ideally, you should run the <tt class=" ">redis</tt> server on a separate, powerful server for maximum usability and performance &mdash; Cumulus Networks recommends a system with a quad core CPU, 16GB of RAM (with 8GB for <tt class=" ">redis</tt> itself) and 512GB of storage.    </p>
+    <p  >You need to download and install two packages:    </p>
+<ul class=" "><li class=" ">    <p  >The <a  class="external-link" href="https://packages.debian.org/jessie/database/redis-server"><tt class=" ">redis-server</tt> package</a>, version 2.8.17-1.    </p>
+</li><li class=" ">    <p  >The <a  class="external-link" href="https://packages.debian.org/jessie/redis-tools"><tt class=" ">redis-tools</tt> package</a>, version 2.8.17-1.    </p>
+</li></ul>    <p  >Use <tt class=" ">apt-get</tt> to install the packages:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">root@redis-server:~# apt-get update</code></div>
+<div class="line"><code class="plain">root@redis-server:~# apt-get install redis-server redis-tools</code></div>
+</div>
+    </div>
+    <p  >After you install these packages, connect the server over the management network to ensure network connectivity even if the in-band network is unavailable. Note its IP address, as you need to specify it when you configure <tt class=" ">netq</tt>.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If you want to run the <tt class=" ">netq</tt> CLI on the redis server, you need to install the <tt class=" ">cumulus-netq</tt> package on the server. You'll need to update your <tt class=" ">sources.list</tt> file to include the <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/articles/217422127">Cumulus Linux repository</a>. The <tt class=" ">cumulus-netq</tt> package contains the <tt class=" ">netq</tt> client, which contains the CLI.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >You cannot specify a port number for the <tt class=" ">redis</tt> server at this time.    </p>
+        </div>
+    </div>
+    <p  >Once you install the redis server, you must configure it before you can configure <tt class=" ">netq</tt> on the switch.    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-ConfiguringtheredisServer">
+        <h1 class="heading "><span>Configuring the redis Server</span></h1>
+    <p  >Depending upon the operating system of the redis server host, you may need to modify its configuration before it can start monitoring the network. Check the <tt class=" ">/etc/redis/redis.conf</tt> file and verify that the server is listening to external-facing ports, and not the localhost.    </p>
+<ol class=" "><li class=" ">    <p  >Edit <tt class=" ">/etc/redis/redis.conf</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">root@redis-server:~# vi /etc/redis/redis.conf</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >If the bind line links to localhost (127.0.0.1), change it to the IP address of one or more external ports, such as eth0:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">bind 192.0.2.240</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Restart the <tt class=" ">redis-server</tt> service. For example, on a Debian host, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">root@redis-server:~# systemctl restart redis-server</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    <div class="section section-1" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-Configuringnetq">
+        <h1 class="heading "><span>Configuring netq</span></h1>
+    <p  >Once you install the <tt class=" ">netq</tt> packages and configure the redis server, you need to configure <tt class=" ">netq</tt> to monitor your network.    </p>
+<ol class=" "><li class=" ">    <p  >To ensure useful output, ensure that <a   href="Setting_Date_and_Time.html">NTP</a> is running.    </p>
+</li><li class=" ">    <p  >Specify the IP address of the <tt class=" ">redis</tt> server. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo netq add server 198.51.100.1</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Start the <tt class=" ">netq</tt> agent.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo netq agent start</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If you see the following error, it means you haven't added the redis server or the server wasn't configured:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo netq agent start</code></div>
+<div class="line"><code class="plain">Error: Please specify IP address of DB server</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+</li></ol>    <p  >The <tt class=" ">netq</tt> configuration is stored in the following files:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">/etc/netq/netq-agent.conf</tt>: Contains basic agent configuration, including the <tt class=" ">redis</tt> server IP address.    </p>
+</li><li class=" ">    <p  ><tt class=" ">/etc/netq/netq-agent-commands.json</tt>: Contains key-value pairs of commands whose outputs are pushed along with the key to be associated, periodicity of push and so forth.    </p>
+</li><li class=" ">    <p  ><tt class=" ">/etc/netq/netq-agent-running.json</tt>: Log of the actual commands that are being pushed to the agent, as determined when the agent starts, as well as the <tt class=" ">redis</tt> server IP address and more.    </p>
+</li></ul>    <div class="section section-2" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-ConfiguringNetQinManagementVRF">
+        <h2 class="heading "><span>Configuring NetQ in Management VRF</span></h2>
+    <p  >To configure NetQ in the management VRF, after you configure the management VRF, start the <tt class=" ">netq</tt> service as followed:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:mgmt-vrf:~$ sudo systemctl start netq-agent@mgmt.service</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Only one instance of <tt class=" ">netq-agent</tt> can run at a time. If the <tt class=" ">netq-agent@mgmt.service</tt> has not been started, check if the default <tt class=" ">netq-agent.service</tt> is running. If it is, stop the default service.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:mgmt-vrf:~$ sudo systemctl stop netq-agent</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-Usingnetq">
+        <h1 class="heading "><span>Using netq</span></h1>
+    <p  ><tt class=" ">netq</tt> has a number of options to use with the command to return various kinds of data about your network &mdash; press the <i class=" ">Tab</i> key at any time to reveal the options available to a given part of the command. Running <tt class=" ">netq</tt> on its own reveals all the options, with a brief explanation for each one:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ netq &lt;TAB&gt;</code></div>
+<div class="line"><code class="plain">add      :  Update configuration</code></div>
+<div class="line"><code class="plain">agent    :  Netq agent</code></div>
+<div class="line"><code class="plain">check    :  check health of services or correctness of parameter</code></div>
+<div class="line"><code class="plain">help     :  Show usage info</code></div>
+<div class="line"><code class="plain">resolve  :  Annotate input with names and interesting info</code></div>
+<div class="line"><code class="plain">server   :  IP address of DB server</code></div>
+<div class="line"><code class="plain">show     :  Show fabric-wide info</code></div>
+<div class="line"><code class="plain">trace    :  Control plane trace path across fabric</code></div>
+<div class="line"><code class="plain">view     :  Show output of pre-defined commands on specific node</code></div>
+</div>
+    </div>
+    <div class="section section-2" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-CheckingtheHealthoftheNetwork">
+        <h2 class="heading "><span>Checking the Health of the Network</span></h2>
+    <p  >It's best to start with <tt class=" ">netq check agents </tt>to see the status of every network node, based on the whether the agent missed receiving any heartbeats sent from the node. A node's status can be one of the following:    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">Fresh:</strong> The agent is running fine, no heartbeats were missed.    </p>
+</li><li class=" ">    <p  ><strong class=" ">Stale:</strong> The agent missed one heartbeat, which is not unusual.    </p>
+</li><li class=" ">    <p  ><strong class=" ">Rotten:</strong> The agent missed five consecutive heartbeats.    </p>
+</li></ul>    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo netq check agents</code></div>
+<div class="line"><code class="plain">Node Name    Connect Time         Last Connect    Status</code></div>
+<div class="line"><code class="plain">-----------  -------------------  --------------  --------</code></div>
+<div class="line"><code class="plain">leaf-1       2017-02-09 21:44:34  7s ago          Fresh</code></div>
+<div class="line"><code class="plain">leaf-2       2017-02-09 21:44:39  just now        Fresh</code></div>
+<div class="line"><code class="plain">leafc-11     2017-02-09 21:44:12  29s ago         Fresh</code></div>
+<div class="line"><code class="plain">leafc-12     2017-02-09 21:44:18  23s ago         Fresh</code></div>
+<div class="line"><code class="plain">leafc-21     2017-02-09 21:44:23  18s ago         Fresh</code></div>
+<div class="line"><code class="plain">leafc-22     2017-02-09 21:44:29  11s ago         Fresh</code></div>
+<div class="line"><code class="plain">noc-pr       2017-02-09 21:43:50  19s ago         Fresh</code></div>
+<div class="line"><code class="plain">noc-se       2017-02-09 21:43:56  15s ago         Fresh</code></div>
+<div class="line"><code class="plain">spine-1      2017-02-09 21:44:01  9s ago          Fresh</code></div>
+<div class="line"><code class="plain">spine-2      2017-02-09 21:44:07  4s ago          Fresh</code></div>
+</div>
+    </div>
+    <p  >You can also check the health of BGP and MLAG in the network:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf-1:~$ netq check bgp</code></div>
+<div class="line"><code class="plain">Total Sessions: 28, Failed Sessions: 0</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus@leaf-1$ netq check clag</code></div>
+<div class="line"><code class="plain">Checked Nodes: 5, Failed Nodes: 1</code></div>
+<div class="line"><code class="plain">Node             Reason</code></div>
+<div class="line"><code class="plain">---------------- ----------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">leafc-11         Peer Connectivity failed</code></div>
+<div class="line"><code class="plain">leafc-11         Singly Attached Bonds: hostbond4, hostbond5</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-Usingnetqshow">
+        <h2 class="heading "><span>Using netq show</span></h2>
+    <p  >The <tt class=" ">netq show</tt> command can return information regarding the network fabric overall, including:    </p>
+<ul class=" "><li class=" ">    <p  >Interface IP and MAC addresses across all nodes in the fabric.    </p>
+</li><li class=" ">    <p  >Interfaces across all nodes in the fabric.    </p>
+</li><li class=" ">    <p  >IPv4 and IPv6-related information.    </p>
+</li><li class=" ">    <p  >LLDP-based neighbor information.    </p>
+</li><li class=" ">    <p  >MAC address information, with VLANs if present, across the fabric.    </p>
+</li></ul>    <p  >The <tt class=" ">netq show</tt> command takes the following options:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ netq show &lt;TAB&gt;</code></div>
+<div class="line"><code class="plain">bgp          :  Check the status of all the BGP sessions across the fabric</code></div>
+<div class="line"><code class="plain">changes      :  Show changes in interface/mac/route/neighbor state between specified times</code></div>
+<div class="line"><code class="plain">clag         :  Check the status of all the CLAG daemons across the fabric</code></div>
+<div class="line"><code class="plain">interfaces   :  Interfaces across all nodes in fabric</code></div>
+<div class="line"><code class="plain">inventory    :  add help text</code></div>
+<div class="line"><code class="plain">ip           :  IPv4 related info</code></div>
+<div class="line"><code class="plain">ipv6         :  IPv6 related info</code></div>
+<div class="line"><code class="plain">lldp         :  LLDP based neighbor info</code></div>
+<div class="line"><code class="plain">macs         :  Show mac address info, with optional VLAN, across the fabric</code></div>
+<div class="line"><code class="plain">services     :  Show various system services</code></div>
+<div class="line"><code class="plain">stp          :  Spanning Tree</code></div>
+<div class="line"><code class="plain">top_talkers  :  Top interface talkers in fabric</code></div>
+</div>
+    </div>
+    <p  >To see the hardware information for all the nodes across the fabric, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ netq show inventory</code></div>
+<div class="line"><code class="plain">Node           Switch          OS             CPU     ASIC      Ports</code></div>
+<div class="line"><code class="plain">-------------  --------------  -------------  ------  --------  --------------------------------</code></div>
+<div class="line"><code class="plain">dell-z9100-05  Z9100-ON        Cumulus Linux  x86_64  Tomahawk  32 x 100G-QSFP28</code></div>
+<div class="line"><code class="plain">mlx-2100-05    SN2100          Cumulus Linux  x86_64  Spectrum  16 x 100G-QSFP28</code></div>
+<div class="line"><code class="plain">mlx-2410-03    SN2410          Cumulus Linux  x86_64  Spectrum  48 x 25G-SFP28 &amp; 8 x 100G-QSFP28</code></div>
+<div class="line"><code class="plain">mlx-2700-11    SN2700          Cumulus Linux  x86_64  Spectrum  32 x 100G-QSFP28</code></div>
+<div class="line"><code class="plain">st1-l1         Arctica 4806XP  Cumulus Linux  x86_64  Trident2  48 x 10G-SFP+ &amp; 6 x 40G-QSFP+</code></div>
+<div class="line"><code class="plain">st1-l2         Arctica 4806XP  Cumulus Linux  x86_64  Trident2  48 x 10G-SFP+ &amp; 6 x 40G-QSFP+</code></div>
+<div class="line"><code class="plain">st1-l3         Arctica 4806XP  Cumulus Linux  x86_64  Trident2  48 x 10G-SFP+ &amp; 6 x 40G-QSFP+</code></div>
+<div class="line"><code class="plain">st1-s1         S6000-ON        Cumulus Linux  x86_64  Trident2  32 x 40G-QSFP+</code></div>
+<div class="line"><code class="plain">st1-s2         S6000-ON        Cumulus Linux  x86_64  Trident2  32 x 40G-QSFP+</code></div>
+</div>
+    </div>
+    <p  >To see MAC address information for switch leaf-1, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf-1:~$ netq show macs leaf-1</code></div>
+<div class="line"><code class="plain">MAC                  VLAN     Node Name        Egress Port      Origin Last Changed</code></div>
+<div class="line"><code class="plain">-------------------- -------- ---------------- ---------------- ------ ----------------</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:16    100      leaf-1           VlanA-1          1      4m ago</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:16    101      leaf-1           VlanA-1          1      4m ago</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:16    102      leaf-1           VlanA-1          1      4m ago</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:16    103      leaf-1           VlanA-1          1      4m ago</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:16    104      leaf-1           VlanA-1          1      4m ago</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:16    105      leaf-1           VlanA-1          1      4m ago</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:16    106      leaf-1           VlanA-1          1      4m ago</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:16    Intf     leaf-1           hostbond3        1      4m ago</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:18    Intf     leaf-1           hostbond4        1      4m ago</code></div>
+<div class="line"><code class="plain">02:02:00:00:00:09    100      leaf-1           hostbond3        1      4m ago</code></div>
+</div>
+    </div>
+    <p  >You can filter the output to a given interface on a switch, in this case hostbond4 on leaf-1:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@spine-1:~$ netq show macs leaf-1 nexthop hostbond4</code></div>
+<div class="line"><code class="plain">MAC                  VLAN     Node Name        Egress Port      Origin Last Changed</code></div>
+<div class="line"><code class="plain">-------------------- -------- ---------------- ---------------- ------ ----------------</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:18    Intf     leaf-1           hostbond4        1      7m ago</code></div>
+<div class="line"><code class="plain">02:02:00:00:00:0b    100      leaf-1           hostbond4        1      7m ago</code></div>
+<div class="line"><code class="plain">02:02:00:00:00:0c    100      leaf-1           hostbond4        1      7m ago</code></div>
+</div>
+    </div>
+    <p  >To see the route information, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ netq show ip route 3.0.3.3</code></div>
+<div class="line"><code class="plain">Route info about prefix 3.0.3.3 on host *</code></div>
+<div class="line"><code class="plain">Origin Table            IP               Node             Nexthops                   Last Changed</code></div>
+<div class="line"><code class="plain">------ ---------------- ---------------- ---------------- -------------------------- ----------------</code></div>
+<div class="line"><code class="plain">0      default          0.0.0.0/0        noc-pr           192.168.0.2: eth0          11m ago</code></div>
+<div class="line"><code class="plain">0      default          0.0.0.0/0        noc-se           192.168.0.2: eth0          11m ago</code></div>
+<div class="line"><code class="plain">0      default          3.0.3.0/26       leaf-1           169.254.0.1: uplink-1,     10m ago</code></div>
+<div class="line"><code class="plain">                                                          169.254.0.1: uplink-2</code></div>
+<div class="line"><code class="plain">0      default          3.0.3.0/26       leaf-2           169.254.0.1: uplink-1,     10m ago</code></div>
+<div class="line"><code class="plain">                                                          169.254.0.1: uplink-2</code></div>
+<div class="line"><code class="plain">0      default          3.0.3.0/26       leafc-11         169.254.0.1: uplink-1,     10m ago</code></div>
+<div class="line"><code class="plain">                                                          169.254.0.1: uplink-2</code></div>
+<div class="line"><code class="plain">0      default          3.0.3.0/26       leafc-12         169.254.0.1: uplink-1,     5m ago</code></div>
+<div class="line"><code class="plain">                                                          169.254.0.1: uplink-2</code></div>
+<div class="line"><code class="plain">0      default          3.0.3.0/26       spine-1          169.254.0.1: downlink-3,   10m ago</code></div>
+<div class="line"><code class="plain">                                                          169.254.0.1: downlink-4</code></div>
+<div class="line"><code class="plain">0      default          3.0.3.0/26       spine-2          169.254.0.1: downlink-3,   10m ago</code></div>
+<div class="line"><code class="plain">                                                          169.254.0.1: downlink-4</code></div>
+<div class="line"><code class="plain">1      default          3.0.3.0/26       leafc-21         VlanA-1.105                10m ago</code></div>
+<div class="line"><code class="plain">1      default          3.0.3.3/32       leafc-22         VlanA-1.105                10m ago</code></div>
+</div>
+    </div>
+    <p  >To view the routes originated from a VRF on specific node, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf-1$ netq show ip route leafc-11 vrf DataVrf1080 origin</code></div>
+<div class="line"><code class="plain">Route info about prefix * on host leafc-11</code></div>
+<div class="line"><code class="plain">Origin Table            IP               Node             Nexthops                   Last Changed</code></div>
+<div class="line"><code class="plain">------ ---------------- ---------------- ---------------- -------------------------- ----------------</code></div>
+<div class="line"><code class="plain">1      DataVrf1080      3.0.0.0/26       leafc-11         VlanA-1-100-v0             10m ago</code></div>
+<div class="line"><code class="plain">1      DataVrf1080      3.0.0.0/32       leafc-11         VlanA-1-100-v0             10m ago</code></div>
+<div class="line"><code class="plain">1      DataVrf1080      3.0.0.1/32       leafc-11         VlanA-1-100-v0             10m ago</code></div>
+<div class="line"><code class="plain">1      DataVrf1080      3.0.0.2/32       leafc-11         VlanA-1.100                10m ago</code></div>
+<div class="line"><code class="plain">1      DataVrf1080      3.0.0.63/32      leafc-11         VlanA-1.100                10m ago</code></div>
+<div class="line"><code class="plain">1      DataVrf1080      30.0.0.15/32     leafc-11         DataVrf1080                10m ago</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The <a   href="Virtual_Router_Redundancy_-_VRR.html">VRR</a> IPv6 link local address is not displayed when you run <tt class=" ">netq show ipv6 address</tt>. <tt class=" ">netq</tt> only displays the SVI link local address.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ netq show ipv6 address qct-ly8-05 | egrep "VlanA-1-101|VlanA-1.101"</code></div>
+<div class="line"><code class="plain">2001:fee1:0:1::1/64 switch VlanA-1-101.VRR DataVrf1081 9h ago</code></div>
+<div class="line"><code class="plain">2001:fee1:0:1::2/64 switch VlanA-1.101 DataVrf1081 9h ago</code></div>
+<div class="line"><code class="plain">fe80::848:b1ff:fe22:7084/64 switch VlanA-1.101 DataVrf1081 9h ago</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-Usingnetqview">
+        <h2 class="heading "><span>Using netq view</span></h2>
+    <p  >The <tt class=" ">netq view</tt> command provides information about a specific node in the network. The available options are:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@leaf</code><code class="plain">-</code><code class="value">1</code><code class="plain">:~$ netq view leaf-</code><code class="value">2</code></div>
+<div class="line"><code class="plain">config    :  add help text</code></div>
+<div class="line"><code class="plain">counters  :  add help text</code></div>
+<div class="line"><code class="plain">ipv4      :  add help text</code></div>
+<div class="line"><code class="plain">keys      :  add help text</code></div>
+<div class="line"><code class="plain">lldp      :  LLDP based neighbor info</code></div>
+<div class="line"><code class="plain">meminfo   :  add help text</code></div>
+<div class="line"><code class="plain">top       :  add help text</code></div>
+<div class="line"><code class="plain">uptime    :  add help text</code></div>
+</div>
+    </div>
+    <p  >For example, to see the <tt class=" ">top</tt> output on leaf-2, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@leaf</code><code class="plain">-</code><code class="value">1</code><code class="plain">:~$ netq view leaf-</code><code class="value">2</code><code class="plain"> top</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">Output retrieved from 48s ago</code></div>
+<div class="line"><code class="plain">top - </code><code class="value">21</code><code class="plain">:</code><code class="value">57</code><code class="plain">:</code><code class="value">08</code><code class="plain"> up </code><code class="value">13</code><code class="plain"> min,  </code><code class="value">0</code><code class="plain"> users,  load average: </code><code class="value">0.04</code><code class="plain">, </code><code class="value">0.07</code><code class="plain">, </code><code class="value">0.03</code></div>
+<div class="line"><code class="plain">Tasks:  </code><code class="value">89</code><code class="plain"> total,   </code><code class="value">1</code><code class="plain"> running,  </code><code class="value">88</code><code class="plain"> sleeping,   </code><code class="value">0</code><code class="plain"> stopped,   </code><code class="value">0</code><code class="plain"> zombie</code></div>
+<div class="line"><code class="plain">%Cpu(s):  </code><code class="value">2.0</code><code class="plain"> us,  </code><code class="value">1.6</code><code class="plain"> sy,  </code><code class="value">0.0</code><code class="plain"> ni, </code><code class="value">96.3</code><code class="plain"> id,  </code><code class="value">0.0</code><code class="plain"> wa,  </code><code class="value">0.0</code><code class="plain"> hi,  </code><code class="value">0.0</code><code class="plain"> si,  </code><code class="value">0.0</code><code class="plain"> st</code></div>
+<div class="line"><code class="plain">KiB Mem:   </code><code class="value">1981988</code><code class="plain"> total,   </code><code class="value">317784</code><code class="plain"> used,  </code><code class="value">1664204</code><code class="plain"> free,     </code><code class="value">4124</code><code class="plain"> buffers</code></div>
+<div class="line"><code class="plain">KiB Swap:        </code><code class="value">0</code><code class="plain"> total,        </code><code class="value">0</code><code class="plain"> used,        </code><code class="value">0</code><code class="plain"> free.    </code><code class="value">92300</code><code class="plain"> cached Mem</code></div>
+<div class="line"><code class="plain">  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND</code></div>
+<div class="line"><code class="plain"> </code><code class="value">1220</code><code class="plain"> root      </code><code class="value">20</code><code class="plain">   </code><code class="value">0</code><code class="plain">  </code><code class="value">163100</code><code class="plain"> </code><code class="value">121108</code><code class="plain">   </code><code class="value">6572</code><code class="plain"> S   </code><code class="value">0.0</code><code class="plain">  </code><code class="value">6.1</code><code class="plain">   </code><code class="value">0</code><code class="plain">:</code><code class="value">02.88</code><code class="plain"> python</code></div>
+<div class="line"><code class="plain"> </code><code class="value">2808</code><code class="plain"> root      </code><code class="value">20</code><code class="plain">   </code><code class="value">0</code><code class="plain">   </code><code class="value">66620</code><code class="plain">  </code><code class="value">20972</code><code class="plain">   </code><code class="value">6956</code><code class="plain"> S   </code><code class="value">6.5</code><code class="plain">  </code><code class="value">1.1</code><code class="plain">   </code><code class="value">0</code><code class="plain">:</code><code class="value">07.97</code><code class="plain"> netq-agent</code></div>
+<div class="line"><code class="plain"> </code><code class="value">1225</code><code class="plain"> root      </code><code class="value">20</code><code class="plain">   </code><code class="value">0</code><code class="plain">  </code><code class="value">265292</code><code class="plain">  </code><code class="value">14372</code><code class="plain">   </code><code class="value">6000</code><code class="plain"> S   </code><code class="value">0.0</code><code class="plain">  </code><code class="value">0.7</code><code class="plain">   </code><code class="value">0</code><code class="plain">:</code><code class="value">06.67</code><code class="plain"> arp_refresh</code></div>
+<div class="line"><code class="plain"> </code><code class="value">1223</code><code class="plain"> root      </code><code class="value">20</code><code class="plain">   </code><code class="value">0</code><code class="plain">   </code><code class="value">42240</code><code class="plain">  </code><code class="value">12212</code><code class="plain">   </code><code class="value">5984</code><code class="plain"> S   </code><code class="value">0.0</code><code class="plain">  </code><code class="value">0.6</code><code class="plain">   </code><code class="value">0</code><code class="plain">:</code><code class="value">00.22</code><code class="plain"> python</code></div>
+<div class="line"><code class="plain"> </code><code class="value">1051</code><code class="plain"> root      </code><code class="value">20</code><code class="plain">   </code><code class="value">0</code><code class="plain">   </code><code class="value">32604</code><code class="plain">   </code><code class="value">9384</code><code class="plain">   </code><code class="value">4260</code><code class="plain"> S   </code><code class="value">0.0</code><code class="plain">  </code><code class="value">0.5</code><code class="plain">   </code><code class="value">0</code><code class="plain">:</code><code class="value">00.04</code><code class="plain"> pwmd</code></div>
+<div class="line"><code class="plain"> </code><code class="value">1049</code><code class="plain"> root      </code><code class="value">20</code><code class="plain">   </code><code class="value">0</code><code class="plain">   </code><code class="value">32628</code><code class="plain">   </code><code class="value">9368</code><code class="plain">   </code><code class="value">4236</code><code class="plain"> S   </code><code class="value">0.0</code><code class="plain">  </code><code class="value">0.5</code><code class="plain">   </code><code class="value">0</code><code class="plain">:</code><code class="value">00.06</code><code class="plain"> smond</code></div>
+<div class="line"><code class="plain"> </code><code class="value">1393</code><code class="plain"> root      </code><code class="value">20</code><code class="plain">   </code><code class="value">0</code><code class="plain">  </code><code class="value">104464</code><code class="plain">   </code><code class="value">7800</code><code class="plain">   </code><code class="value">4532</code><code class="plain"> S   </code><code class="value">0.0</code><code class="plain">  </code><code class="value">0.4</code><code class="plain">   </code><code class="value">0</code><code class="plain">:</code><code class="value">02.02</code><code class="plain"> arp_nhs</code></div>
+<div class="line"><code class="plain"> </code><code class="value">1390</code><code class="plain"> root      </code><code class="value">20</code><code class="plain">   </code><code class="value">0</code><code class="plain">  </code><code class="value">104212</code><code class="plain">   </code><code class="value">7564</code><code class="plain">   </code><code class="value">4564</code><code class="plain"> S   </code><code class="value">0.0</code><code class="plain">  </code><code class="value">0.4</code><code class="plain">   </code><code class="value">0</code><code class="plain">:</code><code class="value">00.67</code><code class="plain"> python</code></div>
+<div class="line"><code class="plain">    </code><code class="value">1</code><code class="plain"> root      </code><code class="value">20</code><code class="plain">   </code><code class="value">0</code><code class="plain">  </code><code class="value">112492</code><code class="plain">   </code><code class="value">6844</code><code class="plain">   </code><code class="value">2980</code><code class="plain"> S   </code><code class="value">0.0</code><code class="plain">  </code><code class="value">0.3</code><code class="plain">   </code><code class="value">0</code><code class="plain">:</code><code class="value">04.17</code><code class="plain"> systemd</code></div>
+<div class="line"><code class="plain"> </code><code class="value">1391</code><code class="plain"> root      </code><code class="value">20</code><code class="plain">   </code><code class="value">0</code><code class="plain">   </code><code class="value">24632</code><code class="plain">   </code><code class="value">6476</code><code class="plain">   </code><code class="value">3436</code><code class="plain"> S   </code><code class="value">0.0</code><code class="plain">  </code><code class="value">0.3</code><code class="plain">   </code><code class="value">0</code><code class="plain">:</code><code class="value">00.11</code><code class="plain"> ts</code></div>
+<div class="line"><code class="plain"> </code><code class="value">1837</code><code class="plain"> quagga    </code><code class="value">15</code><code class="plain">  -</code><code class="value">5</code><code class="plain">   </code><code class="value">48540</code><code class="plain">   </code><code class="value">5940</code><code class="plain">   </code><code class="value">3180</code><code class="plain"> S   </code><code class="value">0.0</code><code class="plain">  </code><code class="value">0.3</code><code class="plain">   </code><code class="value">0</code><code class="plain">:</code><code class="value">00.77</code><code class="plain"> bgpd</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-MonitoringtheredisServer">
+        <h1 class="heading "><span>Monitoring the redis Server</span></h1>
+    <p  >You can use the <tt class=" ">redis-cli info</tt> command to determine how much memory is consumed by the <tt class=" ">redis</tt> server, how many connections there are, and so forth.    </p>
+    <p  >Two recommended commands to use are <tt class=" ">redis-cli info </tt>and <tt class=" ">redis-cli ping </tt>.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >To use the <a  class="external-link" href="http://redis.io/topics/rediscli"><tt class=" ">redis</tt> CLI</a>, you need to <a  class="external-link" href="https://packages.debian.org/jessie/redis-tools">install</a> <tt class=" ">redis-tools</tt>.    </p>
+        </div>
+    </div>
+    <div class="section section-2" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-SpecifyingaDifferentredisServer">
+        <h2 class="heading "><span>Specifying a Different redis Server</span></h2>
+    <p  >If you need to change the IP address of the <tt class=" ">redis</tt> server, run <tt class=" ">netq add server</tt> again, specifying the IP address of the new server, then restart the <tt class=" ">netq</tt> agent. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo netq add </code><code class="value">198.51</code><code class="plain">.</code><code class="value">100.10</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo netq agent restart</code></div>
+</div>
+    </div>
+    <p  >Note that you need to specify this for every switch that you're monitoring with <tt class=" ">netq</tt>. Cumulus Networks recommends you use an automation tool like Ansible or Puppet to quickly update the server across all switches.    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126783_UsingnetqtoTroubleshoottheNetwork-Troubleshootingnetq">
+        <h1 class="heading "><span>Troubleshooting netq</span></h1>
+    <p  ><tt class=" ">netq</tt> agent logs to <tt class=" ">/var/log/netq-agent.log</tt>. The logs are logrotated.    </p>
+    <p  >To ensure that the <tt class=" ">netq</tt> agent is running, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ netq agent status</code></div>
+<div class="line"><code class="plain">Running...</code></div>
+</div>
+    </div>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Monitoring System Statistics and Network Traffic with sFlow</span>
+        </a>
+                <a href="SNMP_Monitoring.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>SNMP Monitoring</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bidirectional Forwarding Detection - BFD - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Layer_Three.html">Layer Three</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5127061"> <span>Bidirectional Forwarding Detection - BFD</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><i class=" ">Bidirectional Forwarding Detection</i> (BFD) provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Cumulus Linux does not support demand mode in BFD.    </p>
+        </div>
+    </div>
+    <div class="section section-1" id="src-5127061_BidirectionalForwardingDetection-BFD-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5127061_BidirectionalForwardingDetection-BFD-UsingBFDMultihopRoutedPaths">
+        <h1 class="heading "><span>Using BFD Multihop Routed Paths</span></h1>
+    <p  >BFD multihop sessions are built over arbitrary paths between two systems, which results in some complexity that does not exist for single hop sessions. Here are some best practices for using multihop paths:    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">Spoofing:</strong> To avoid spoofing with multihop paths, configure <tt class=" ">max_hop_cnt</tt> (maximum hop count<i class=" ">)</i> for each peer, which limits the number of hops for a BFD session. All BFD packets exceeding the max hop count will be dropped.    </p>
+</li><li class=" ">    <p  ><strong class=" ">Demultiplexing:</strong> Since multihop BFD sessions can take arbitrary paths, demultiplex the initial BFD packet based on the source/destination IP address pair. Use Quagga, which monitors connectivity to the peer, to determine the source/destination IP address pairs.    </p>
+</li></ul>    <p  >Multihop BFD sessions are supported for both IPv4 and IPv6 peers. See below for more details.    </p>
+    </div>
+    <div class="section section-1" id="src-5127061_BidirectionalForwardingDetection-BFD-BFDParameters">
+        <h1 class="heading "><span>BFD Parameters</span></h1>
+    <p  >You can configure the following BFD parameters for both IPv4 and IPv6 sessions:    </p>
+<ul class=" "><li class=" ">    <p  >The required minimum interval between the received BFD control packets.    </p>
+</li><li class=" ">    <p  >The minimum interval for transmitting BFD control packets.    </p>
+</li><li class=" ">    <p  >The detection time multiplier.    </p>
+</li></ul>    </div>
+    <div class="section section-1" id="src-5127061_BidirectionalForwardingDetection-BFD-ConfiguringBFD">
+        <h1 class="heading "><span>Configuring BFD</span></h1>
+    <p  >You configure BFD one of two ways: by specifying the configuration in the <a   href="Prescriptive_Topology_Manager_-_PTM.html">PTM <tt class=" ">topology.dot</tt> file</a>, or using <a   href="Quagga_Overview.html">Quagga</a>. However, the topology file has some limitations:    </p>
+<ul class=" "><li class=" ">    <p  >The <tt class=" ">topology.dot</tt> file supports creating BFD IPv4 and IPv6 single hop sessions only; you cannot specify IPv4 or IPv6 multihop sessions in the topology file.    </p>
+</li><li class=" ">    <p  >The topology file supports BFD sessions for only link-local IPv6 peers; BFD sessions for global IPv6 peers discovered on the link will not be created.    </p>
+</li></ul>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >You cannot specify BFD multihop sessions in the <tt class=" ">topology.dot</tt> file since you cannot specify the source and destination IP address pairs in that file. Use <a   href="Configuring_Quagga.html">Quagga</a> to configure multihop sessions.    </p>
+        </div>
+    </div>
+    <p  >The Quagga CLI can track IPv4 and IPv6 peer connectivity &mdash; both single hop and multihop, and both link-local IPv6 peers and global IPv6 peers &mdash; using BFD sessions without needing the <tt class=" ">topology.dot</tt> file. Use Quagga to register multihop peers with PTM and BFD as well as for monitoring the connectivity to the remote BGP multihop peer. Quagga can dynamically register and unregister both IPv4 and IPv6 peers with BFD when the BFD-enabled peer connectivity is established or de-established, respectively. Also, you can configure BFD parameters for each BGP or OSPF peer using Quagga.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The BFD parameter configured in the topology file is given higher precedence over the client-configured BFD parameters for a BFD session that has been created by both topology file and client (Quagga).    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >BFD requires an IP address for any interface on which it is configured. The neighbor IP address for a single hop BFD session must be in the ARP table before BFD can start sending control packets.    </p>
+        </div>
+    </div>
+    <div class="section section-2" id="src-5127061_BidirectionalForwardingDetection-BFD-BFDinBGP">
+        <h2 class="heading "><span>BFD in BGP</span></h2>
+    <p  >For Quagga when using <strong class=" ">BGP</strong>, neighbors are registered and de-registered with <a   href="Prescriptive_Topology_Manager_-_PTM.html">PTM</a> dynamically when you enable BFD in BGP:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add bgp neighbor &lt;bgp peer&gt; bfd</code></div>
+</div>
+    </div>
+    <p  >You can configure BFD parameters for each BGP neighbor. For example:    </p>
+    <div  class="confbox programlisting">
+                    <div class="title">BFD in BGP</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="eclipse syntaxhighlighter scroll-html-formatted-code" data-title="BFD in BGP">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add bgp neighbor &lt;bgp peer&gt; bfd </code><code class="value">4</code><code class="plain"> </code><code class="value">400</code><code class="plain"> </code><code class="value">400</code></div>
+</div>
+    </div>
+    <p  >To see neighbor information in BGP, including BFD status, run <tt class=" ">net show bgp neighbor &lt;interface&gt;</tt>.    </p>
+    <div  class="confbox programlisting">
+                    <div class="title">Show BGP Neighbor</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Show BGP Neighbor">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show bgp neighbor swp51 </code></div>
+<div class="line"><code class="plain">BGP neighbor on swp51: fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:5c, remote AS </code><code class="value">65020</code><code class="plain">, local AS </code><code class="value">65011</code><code class="plain">, external link</code></div>
+<div class="line"><code class="plain">Hostname: spine01</code></div>
+<div class="line"><code class="plain"> Member of peer-group fabric </code><code class="keyword">for</code><code class="plain"> session parameters</code></div>
+<div class="line"><code class="plain">  BGP version </code><code class="value">4</code><code class="plain">, remote router ID </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code></div>
+<div class="line"><code class="plain">  BGP state = Established, up </code><code class="keyword">for</code><code class="plain"> </code><code class="value">03</code><code class="plain">:</code><code class="value">09</code><code class="plain">:</code><code class="value">17</code></div>
+<div class="line"><code class="plain">  Last read </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">01</code><code class="plain">, Last write </code><code class="value">03</code><code class="plain">:</code><code class="value">09</code><code class="plain">:</code><code class="value">13</code></div>
+<div class="line"><code class="plain">  Hold time is </code><code class="value">3</code><code class="plain">, keepalive interval is </code><code class="value">1</code><code class="plain"> seconds</code></div>
+<div class="line"><code class="plain">  Configured hold time is </code><code class="value">3</code><code class="plain">, keepalive interval is </code><code class="value">1</code><code class="plain"> seconds</code></div>
+<div class="line"><code class="plain">  Neighbor capabilities:</code></div>
+<div class="line"><code class="plain">    </code><code class="value">4</code><code class="plain"> Byte AS: advertised and received</code></div>
+<div class="line"><code class="plain">    AddPath:</code></div>
+<div class="line"><code class="plain">      IPv4 Unicast: RX advertised IPv4 Unicast and received</code></div>
+<div class="line"><code class="plain">    Extended nexthop: advertised and received</code></div>
+<div class="line"><code class="plain">      Address families by peer:</code></div>
+<div class="line"><code class="plain">                   IPv4 Unicast</code></div>
+<div class="line"><code class="plain">    Route refresh: advertised and received(old &amp; </code><code class="keyword">new</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">    Address family IPv4 Unicast: advertised and received</code></div>
+<div class="line"><code class="plain">    Hostname Capability: advertised and received</code></div>
+<div class="line"><code class="plain">    Graceful Restart Capabilty: advertised and received</code></div>
+<div class="line"><code class="plain">      Remote Restart timer is </code><code class="value">120</code><code class="plain"> seconds</code></div>
+<div class="line"><code class="plain">      Address families by peer:</code></div>
+<div class="line"><code class="plain">        none</code></div>
+<div class="line"><code class="plain">  Graceful restart informations:</code></div>
+<div class="line"><code class="plain">    End-of-RIB send: IPv4 Unicast</code></div>
+<div class="line"><code class="plain">    End-of-RIB received: IPv4 Unicast</code></div>
+<div class="line"><code class="plain">  Message statistics:</code></div>
+<div class="line"><code class="plain">    Inq depth is </code><code class="value">0</code></div>
+<div class="line"><code class="plain">    Outq depth is </code><code class="value">0</code></div>
+<div class="line"><code class="plain">                         Sent       Rcvd</code></div>
+<div class="line"><code class="plain">    Opens:                  </code><code class="value">1</code><code class="plain">          </code><code class="value">1</code></div>
+<div class="line"><code class="plain">    Notifications:          </code><code class="value">0</code><code class="plain">          </code><code class="value">0</code></div>
+<div class="line"><code class="plain">    Updates:                </code><code class="value">5</code><code class="plain">          </code><code class="value">6</code></div>
+<div class="line"><code class="plain">    Keepalives:         </code><code class="value">11352</code><code class="plain">      </code><code class="value">11351</code></div>
+<div class="line"><code class="plain">    Route Refresh:          </code><code class="value">0</code><code class="plain">          </code><code class="value">0</code></div>
+<div class="line"><code class="plain">    Capability:             </code><code class="value">0</code><code class="plain">          </code><code class="value">0</code></div>
+<div class="line"><code class="plain">    Total:              </code><code class="value">11358</code><code class="plain">      </code><code class="value">11358</code></div>
+<div class="line"><code class="plain">  Minimum time between advertisement runs is </code><code class="value">0</code><code class="plain"> seconds</code></div>
+<div class="line"><code class="plain"> For address family: IPv4 Unicast</code></div>
+<div class="line"><code class="plain">  fabric peer-group member</code></div>
+<div class="line"><code class="plain">  Update group </code><code class="value">1</code><code class="plain">, subgroup </code><code class="value">1</code></div>
+<div class="line"><code class="plain">  Packet Queue length </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Community attribute sent to </code><code class="keyword">this</code><code class="plain"> neighbor(both)</code></div>
+<div class="line"><code class="plain">  Inbound path policy configured</code></div>
+<div class="line"><code class="plain">  Outbound path policy configured</code></div>
+<div class="line"><code class="plain">  Incoming update prefix filter list is *dc-leaf-in</code></div>
+<div class="line"><code class="plain">  Outgoing update prefix filter list is *dc-leaf-out</code></div>
+<div class="line"><code class="plain">  </code><code class="value">3</code><code class="plain"> accepted prefixes</code></div>
+<div class="line"><code class="plain">  Connections established </code><code class="value">1</code><code class="plain">; dropped </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Last reset never</code></div>
+<div class="line"><code class="plain">Local host: fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:5b, Local port: </code><code class="value">48390</code></div>
+<div class="line"><code class="plain">Foreign host: fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:5c, Foreign port: </code><code class="value">179</code></div>
+<div class="line"><code class="plain">Nexthop: </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.11</code></div>
+<div class="line"><code class="plain">Nexthop global: fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:5b</code></div>
+<div class="line"><code class="plain">Nexthop local: fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:5b</code></div>
+<div class="line"><code class="plain">BGP connection: shared network</code></div>
+<div class="line"><code class="plain">BGP Connect Retry Timer in Seconds: </code><code class="value">3</code></div>
+<div class="line"><code class="plain">Read thread: on  Write thread: off</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The <tt class=" ">add neighbor</tt> commands recognize the neighbor IP or the interface name (<tt class=" ">swp#</tt>).    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127061_BidirectionalForwardingDetection-BFD-BFDinOSPF">
+        <h2 class="heading "><span>BFD in OSPF</span></h2>
+    <p  >For Quagga using <strong class=" ">OSFP</strong>, neighbors are registered and de-registered dynamically with <a   href="Prescriptive_Topology_Manager_-_PTM.html">PTM</a> when you enable or disable BFD in OSPF. A neighbor is registered with BFD when two-way adjacency is established and deregistered when adjacency goes down if the BFD is enabled on the interface. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.    </p>
+    <div  class="confbox programlisting">
+                    <div class="title">BFD in OSPF</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="BFD in OSPF">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp1 ospf6 bfd </code><code class="value">5</code><code class="plain"> </code><code class="value">500</code><code class="plain"> </code><code class="value">500</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127061_BidirectionalForwardingDetection-BFD-OSPFShowCommands">
+        <h2 class="heading "><span>OSPF Show Commands</span></h2>
+    <p  >The BFD lines at the end of each code block shows the corresponding IPv6 or IPv4 OSPF interface or neighbor information.    </p>
+    <div  class="confbox programlisting">
+                    <div class="title">Show IPv6 OSPF Interface</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Show IPv6 OSPF Interface">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show ospf6 </code><code class="keyword">interface</code><code class="plain"> swp2s0</code></div>
+<div class="line"><code class="plain">swp2s0 is up, type BROADCAST</code></div>
+<div class="line"><code class="plain">  Interface ID: </code><code class="value">4</code></div>
+<div class="line"><code class="plain">  Internet Address:</code></div>
+<div class="line"><code class="plain">    inet : </code><code class="value">11.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain">/</code><code class="value">30</code></div>
+<div class="line"><code class="plain">    inet6: fe80::</code><code class="value">4638</code><code class="plain">:39ff:fe00:6c8e/</code><code class="value">64</code></div>
+<div class="line"><code class="plain">  Instance ID </code><code class="value">0</code><code class="plain">, Interface MTU </code><code class="value">1500</code><code class="plain"> (autodetect: </code><code class="value">1500</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">  MTU mismatch detection: enabled</code></div>
+<div class="line"><code class="plain">  Area ID </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">, Cost </code><code class="value">10</code></div>
+<div class="line"><code class="plain">  State PointToPoint, Transmit Delay </code><code class="value">1</code><code class="plain"> sec, Priority </code><code class="value">1</code></div>
+<div class="line"><code class="plain">  Timer intervals configured:</code></div>
+<div class="line"><code class="plain">   Hello </code><code class="value">10</code><code class="plain">, Dead </code><code class="value">40</code><code class="plain">, Retransmit </code><code class="value">5</code></div>
+<div class="line"><code class="plain">  DR: </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain"> BDR: </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain">  Number of I/F scoped LSAs is </code><code class="value">2</code></div>
+<div class="line"><code class="plain">    </code><code class="value">0</code><code class="plain"> Pending LSAs </code><code class="keyword">for</code><code class="plain"> LSUpdate in Time </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain"> [thread off]</code></div>
+<div class="line"><code class="plain">    </code><code class="value">0</code><code class="plain"> Pending LSAs </code><code class="keyword">for</code><code class="plain"> LSAck in Time </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain"> [thread off]</code></div>
+<div class="line"><code class="plain">  BFD: Detect Mul: </code><code class="value">3</code><code class="plain">, Min Rx interval: </code><code class="value">300</code><code class="plain">, Min Tx interval: </code><code class="value">300</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Show IPv6 OSPF Neighbor</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Show IPv6 OSPF Neighbor">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show ospf6 neighbor detail</code></div>
+<div class="line"><code class="plain"> Neighbor </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.4</code><code class="plain">%swp2s0</code></div>
+<div class="line"><code class="plain">    Area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain"> via </code><code class="keyword">interface</code><code class="plain"> swp2s0 (ifindex </code><code class="value">4</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">    His IfIndex: </code><code class="value">3</code><code class="plain"> Link-local address: fe80::</code><code class="value">202</code><code class="plain">:ff:fe00:a</code></div>
+<div class="line"><code class="plain">    State Full </code><code class="keyword">for</code><code class="plain"> a duration of </code><code class="value">02</code><code class="plain">:</code><code class="value">32</code><code class="plain">:</code><code class="value">33</code></div>
+<div class="line"><code class="plain">    His choice of DR/BDR </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">, Priority </code><code class="value">1</code></div>
+<div class="line"><code class="plain">    DbDesc status: Slave SeqNum: </code><code class="value">0x76000000</code></div>
+<div class="line"><code class="plain">    Summary-List: </code><code class="value">0</code><code class="plain"> LSAs</code></div>
+<div class="line"><code class="plain">    Request-List: </code><code class="value">0</code><code class="plain"> LSAs</code></div>
+<div class="line"><code class="plain">    Retrans-List: </code><code class="value">0</code><code class="plain"> LSAs</code></div>
+<div class="line"><code class="plain">    </code><code class="value">0</code><code class="plain"> Pending LSAs </code><code class="keyword">for</code><code class="plain"> DbDesc in Time </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain"> [thread off]</code></div>
+<div class="line"><code class="plain">    </code><code class="value">0</code><code class="plain"> Pending LSAs </code><code class="keyword">for</code><code class="plain"> LSReq in Time </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain"> [thread off]</code></div>
+<div class="line"><code class="plain">    </code><code class="value">0</code><code class="plain"> Pending LSAs </code><code class="keyword">for</code><code class="plain"> LSUpdate in Time </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain"> [thread off]</code></div>
+<div class="line"><code class="plain">    </code><code class="value">0</code><code class="plain"> Pending LSAs </code><code class="keyword">for</code><code class="plain"> LSAck in Time </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain"> [thread off]</code></div>
+<div class="line"><code class="plain">    BFD: Type: single hop</code></div>
+<div class="line"><code class="plain">      Detect Mul: </code><code class="value">3</code><code class="plain">, Min Rx interval: </code><code class="value">300</code><code class="plain">, Min Tx interval: </code><code class="value">300</code></div>
+<div class="line"><code class="plain">      Status: Up, Last update: </code><code class="value">0</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">20</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Show IPv4 OSPF Interface</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Show IPv4 OSPF Interface">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show ospf </code><code class="keyword">interface</code><code class="plain"> swp2s0</code></div>
+<div class="line"><code class="plain">swp2s0 is up</code></div>
+<div class="line"><code class="plain">  ifindex </code><code class="value">4</code><code class="plain">, MTU </code><code class="value">1500</code><code class="plain"> bytes, BW </code><code class="value">0</code><code class="plain"> Kbit &lt;UP,BROADCAST,RUNNING,MULTICAST&gt;</code></div>
+<div class="line"><code class="plain">  Internet Address </code><code class="value">11.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain">/</code><code class="value">30</code><code class="plain">, Area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain">  MTU mismatch detection:enabled</code></div>
+<div class="line"><code class="plain">  Router ID </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.3</code><code class="plain">, Network Type POINTOPOINT, Cost: </code><code class="value">10</code></div>
+<div class="line"><code class="plain">  Transmit Delay is </code><code class="value">1</code><code class="plain"> sec, State Point-To-Point, Priority </code><code class="value">1</code></div>
+<div class="line"><code class="plain">  No designated router on </code><code class="keyword">this</code><code class="plain"> network</code></div>
+<div class="line"><code class="plain">  No backup designated router on </code><code class="keyword">this</code><code class="plain"> network</code></div>
+<div class="line"><code class="plain">  Multicast group memberships: OSPFAllRouters</code></div>
+<div class="line"><code class="plain">  Timer intervals configured, Hello 10s, Dead 40s, Wait 40s, Retransmit </code><code class="value">5</code></div>
+<div class="line"><code class="plain">    Hello due in </code><code class="value">7</code><code class="plain">.056s</code></div>
+<div class="line"><code class="plain">  Neighbor Count is </code><code class="value">1</code><code class="plain">, Adjacent neighbor count is </code><code class="value">1</code></div>
+<div class="line"><code class="plain">  BFD: Detect Mul: </code><code class="value">5</code><code class="plain">, Min Rx interval: </code><code class="value">500</code><code class="plain">, Min Tx interval: </code><code class="value">500</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Show IPv4 OSPF Neighbor</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Show IPv4 OSPF Neighbor">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show ospf neighbor detail</code></div>
+<div class="line"><code class="plain"> Neighbor </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.4</code><code class="plain">, </code><code class="keyword">interface</code><code class="plain"> address </code><code class="value">11.0</code><code class="plain">.</code><code class="value">0.22</code></div>
+<div class="line"><code class="plain">    In the area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain"> via </code><code class="keyword">interface</code><code class="plain"> swp2s0</code></div>
+<div class="line"><code class="plain">    Neighbor priority is </code><code class="value">1</code><code class="plain">, State is Full, </code><code class="value">5</code><code class="plain"> state changes</code></div>
+<div class="line"><code class="plain">    Most recent state change statistics:</code></div>
+<div class="line"><code class="plain">      Progressive change 3h59m04s ago</code></div>
+<div class="line"><code class="plain">    DR is </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">, BDR is </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain">    Options </code><code class="value">2</code><code class="plain"> *|-|-|-|-|-|E|*</code></div>
+<div class="line"><code class="plain">    Dead timer due in </code><code class="value">38</code><code class="plain">.501s</code></div>
+<div class="line"><code class="plain">    Database Summary List </code><code class="value">0</code></div>
+<div class="line"><code class="plain">    Link State Request List </code><code class="value">0</code></div>
+<div class="line"><code class="plain">    Link State Retransmission List </code><code class="value">0</code></div>
+<div class="line"><code class="plain">    Thread Inactivity Timer on</code></div>
+<div class="line"><code class="plain">    Thread Database Description Retransmision off</code></div>
+<div class="line"><code class="plain">    Thread Link State Request Retransmission on</code></div>
+<div class="line"><code class="plain">    Thread Link State Update Retransmission on</code></div>
+<div class="line"><code class="plain">    BFD: Type: single hop</code></div>
+<div class="line"><code class="plain">      Detect Mul: </code><code class="value">5</code><code class="plain">, Min Rx interval: </code><code class="value">500</code><code class="plain">, Min Tx interval: </code><code class="value">500</code></div>
+<div class="line"><code class="plain">      Status: Down, Last update: </code><code class="value">0</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">01</code><code class="plain">:</code><code class="value">29</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127061_BidirectionalForwardingDetection-BFD-Scripts">
+        <h2 class="heading "><span>Scripts</span></h2>
+    <p  ><tt class=" ">ptmd</tt> executes scripts at <tt class=" ">/etc/ptm.d/bfd-sess-down</tt> and <tt class=" ">/etc/ptm.d/bfd-sess-up </tt>for when BFD sessions go down or up, running <tt class=" ">bfd-sess-down</tt> when a BFD session goes down and running <tt class=" ">bfd-sess-up</tt> when a BFD session goes up.    </p>
+    <p  >You should modify these default scripts as needed.    </p>
+    </div>
+    <div class="section section-2" id="src-5127061_BidirectionalForwardingDetection-BFD-EchoFunction">
+        <h2 class="heading "><span>Echo Function</span></h2>
+    <p  ><span id="src-5127061_indexterm-CD022E7E69F6EA33A79E54E214DBD158">Cumulus Linux supports the </span><i class=" "><span id="src-5127061_indexterm-B04707F32FB9665EB64EB6E5198BE3E3">echo </span>function</i><span id="src-5127061_indexterm-0DD627EBDAE36FF4E6D2D4A41B63FBFF"> </span><span id="src-5127061_indexterm-B0ABA1A8CDEA8FB8EAA03FDBC1B54143">for </span>IPv4 single hops only, and with the a synchronous operating mode only (Cumulus Linux does not support demand mode).    </p>
+    <p  >You use the echo function primarily to test the forwarding path on a remote system. To enable the echo function, set <tt class=" ">echoSupport</tt> to 1 in the topology file.    </p>
+    <p  >Once the echo packets are looped by the remote system, the BFD control packets can be sent at a much lower rate. You configure this lower rate by setting the <tt class=" ">slowMinTx</tt> parameter in the topology file to a non-zero value of milliseconds.    </p>
+    <p  >You can use more aggressive detection times for echo packets since the round-trip time is reduced because they are accessing the forwarding path. You configure the detection interval by setting the <tt class=" ">echoMinRx</tt> parameter in the topology file to a non-zero value of milliseconds; the minimum setting is 50 milliseconds. Once configured, BFD control packets are sent out at this required minimum echo Rx interval. This indicates to the peer that the local system can loop back the echo packets. Echo packets are transmitted if the peer supports receiving echo packets.    </p>
+    <div class="section section-3" id="src-5127061_BidirectionalForwardingDetection-BFD-AbouttheEchoPacket">
+        <h3 class="heading "><span>About the Echo Packet</span></h3>
+    <p  >BFD echo packets are encapsulated into UDP packets over destination and source UDP port number 3785. The BFD echo packet format is vendor-specific and has not been defined in the RFC. BFD echo packets that originate from Cumulus Linux are 8 bytes long and have the following format:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >0    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >2    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >3    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Version    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Length    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="2">
+        <p  >Reserved    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="4">
+        <p  >My Discriminator    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >Where:    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">Version</strong> is the version of the BFD echo packet.    </p>
+</li><li class=" ">    <p  ><strong class=" ">Length</strong> is the length of the BFD echo packet.    </p>
+</li><li class=" ">    <p  ><strong class=" ">My Discriminator</strong> is a non-zero value that uniquely identifies a BFD session on the transmitting side. When the originating node receives the packet after being looped back by the receiving system, this value uniquely identifies the BFD session.    </p>
+</li></ul>    </div>
+    <div class="section section-3" id="src-5127061_BidirectionalForwardingDetection-BFD-TransmittingandReceivingEchoPackets">
+        <h3 class="heading "><span>Transmitting and Receiving Echo Packets</span></h3>
+    <p  >BFD echo packets are transmitted for a BFD session only when the peer has advertised a non-zero value for the required minimum echo Rx interval (the <tt class=" ">echoMinRx</tt> setting) in the BFD control packet when the BFD session starts. The transmit rate of the echo packets is based on the peer advertised echo receive value in the control packet.    </p>
+    <p  >BFD echo packets are looped back to the originating node for a BFD session only if locally the <tt class=" ">echoMinRx</tt> and <tt class=" ">echoSupport</tt> are configured to a non-zero values.    </p>
+    </div>
+    <div class="section section-3" id="src-5127061_BidirectionalForwardingDetection-BFD-UsingEchoFunctionParameters">
+        <h3 class="heading "><span>Using Echo Function Parameters</span></h3>
+    <p  >You configure the echo function by setting the following parameters in the topology file at the global, template and port level:    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">echoSupport:</strong> Enables and disables echo mode. Set to 1 to enable the echo function. It defaults to 0 (disable).    </p>
+</li><li class=" ">    <p  ><strong class=" ">echoMinRx:</strong> The minimum interval between echo packets the local system is capable of receiving. This is advertised in the BFD control packet. When the echo function is enabled, it defaults to 50. If you disable the echo function, this parameter is automatically set to 0, which indicates the port or the node cannot process or receive echo packets.    </p>
+</li><li class=" ">    <p  ><strong class=" ">slowMinTx:</strong> The minimum interval between transmitting BFD control packets when the echo packets are being exchanged.    </p>
+</li></ul>    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127061_BidirectionalForwardingDetection-BFD-TroubleshootingBFD">
+        <h1 class="heading "><span>Troubleshooting BFD</span></h1>
+    <p  >To troubleshoot BFD, use <tt class=" ">ptmctl -b</tt>. For more information, see <a   href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>.    </p>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Border_Gateway_Protocol_-_BGP.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Border Gateway Protocol - BGP</span>
+        </a>
+                <a href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Equal Cost Multipath Load Sharing - Hardware ECMP</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

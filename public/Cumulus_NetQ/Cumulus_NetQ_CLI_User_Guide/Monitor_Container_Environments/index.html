@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Monitor Container Environments | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/" >
+    Cumulus NetQ 2.1
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/"  class="active" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 1.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 2.0.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/" >
+    Upgrade from NetQ 2.1.0 to NetQ 2.1.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_BGP_Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_EVPN_Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_LLDP_Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Validate_Network_Protocol_and_Service_Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Monitor Container Environments</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Monitor Container Environments</h1>
+
+<p>The NetQ Agent monitors container environments the same way it monitors
+<a href="/old/Cumulus_NetQ/Monitor_Linux_Hosts.html">physical servers</a>. There is
+no special implementation. The NetQ Agent pulls data from the container
+as it would pull data from a Cumulus Linux switch or Linux host. It can
+be installed on a Linux server or in a Linux VM. NetQ Agent integrates
+with the Kubernetes container orchestrator.</p>
+
+<p>NetQ monitors many aspects of containers on your network, including
+their:</p>
+
+<ul>
+<li><p><strong>Identity</strong>: The NetQ agent tracks every container&rsquo;s IP and MAC
+address, name, image, and more. NetQ can locate containers across
+the fabric based on a container&rsquo;s name, image, IP or MAC address,
+and protocol and port pair.</p></li>
+
+<li><p><strong>Port mapping on a network</strong>: The NetQ agent tracks protocol and
+ports exposed by a container. NetQ can identify containers exposing
+a specific protocol and port pair on a network.</p></li>
+
+<li><p><strong>Connectivity</strong>: NetQ can provide information on network
+connectivity for a container, including adjacency, and can identify
+containers that can be affected by a top of rack switch.</p></li>
+</ul>
+
+<p>NetQ helps answer questions such as:</p>
+
+<ul>
+<li><p>Where is this container located?</p></li>
+
+<li><p>Open ports? What image is being used?</p></li>
+
+<li><p>Which containers are part of this service? How are they connected?</p></li>
+</ul>
+
+<h2 id="use-netq-with-kubernetes-clusters">Use NetQ with Kubernetes Clusters</h2>
+
+<p>The NetQ Agent interfaces with a Kubernetes API server and listens to
+Kubernetes events. The NetQ Agent monitors network identity and physical
+network connectivity of Kubernetes resources like Pods, Daemon sets,
+Service, and so forth. NetQ works with any container network interface
+(CNI), such as Calico or Flannel.</p>
+
+<p>The NetQ Kubernetes integration enables network administrators to:</p>
+
+<ul>
+<li><p>Identify and locate pods, deployment, replica-set and services
+deployed within the network using IP, name, label, and so forth.</p></li>
+
+<li><p>Track network connectivity of all pods of a service, deployment and
+replica set.</p></li>
+
+<li><p>Locate what pods have been deployed adjacent to a top of rack (ToR)
+switch.</p></li>
+
+<li><p>Check what pod, services, replica set or deployment can be impacted
+by a specific ToR switch.</p></li>
+</ul>
+
+<p>NetQ also helps network administrators identify changes within a
+Kubernetes cluster and determine if such changes had an adverse effect
+on the network performance (caused by a noisy neighbor for example).
+Additionally, NetQ helps the infrastructure administrator determine how
+Kubernetes workloads are distributed within a network.</p>
+
+<h3 id="requirements">Requirements</h3>
+
+<p>The NetQ Agent supports Kubernetes version 1.9.2 or later.</p>
+
+<p>Due to the higher memory requirements to run containers, Cumulus
+Networks recommends you run the NetQ Platform on a host with at least
+64G RAM.</p>
+
+<h3 id="command-summary">Command Summary</h3>
+
+<p>There is a large set of commands available to monitor Kubernetes
+configurations, including the ability to monitor clusters, nodes,
+daemon-set, deployment, pods, replication, and services. Run <code>netq show
+kubernetes help</code> to see all the possible commands:</p>
+
+<pre><code>                   
+netq [] show kubernetes cluster [name ] [around ] [json]
+netq [] show kubernetes node [components] [name ] [cluster  ] [label ] [around ] [json]
+netq [] show kubernetes daemon-set [name ] [cluster ] [namespace ] [label ] [around ] [json]
+netq [] show kubernetes daemon-set [name ] [cluster ] [namespace ] [label ] connectivity [around ] [json]
+netq [] show kubernetes deployment [name ] [cluster ] [namespace ] [label ] [around ] [json]
+netq [] show kubernetes deployment [name ] [cluster ] [namespace ] [label ] connectivity [around ] [json]
+netq [] show kubernetes pod [name ] [cluster  ] [namespace ] [label ] [pod-ip ] [node ] [around ] [json]
+netq [] show kubernetes replication-controller [name ] [cluster ] [namespace ] [label ] [around ] [json]
+netq [] show kubernetes replica-set [name ] [cluster ] [namespace ] [label ] [around ] [json]
+netq [] show kubernetes replica-set [name ] [cluster ] [namespace ] [label ] connectivity [around ] [json]
+netq [] show kubernetes service [name ] [cluster ] [namespace ] [label ] [service-cluster-ip ] [service-external-ip ] [around ] [json]
+netq [] show kubernetes service [name ] [cluster ] [namespace ] [label ] [service-cluster-ip ] [service-external-ip ] connectivity [around ] [json]
+netq  show impact kubernetes service [master ] [name ] [cluster ] [namespace ] [label ] [service-cluster-ip ] [service-external-ip ] [around ] [json]
+netq  show impact kubernetes replica-set [master ] [name ] [cluster ] [namespace ] [label ] [around ] [json]
+netq  show impact kubernetes deployment [master ] [name ] [cluster ] [namespace ] [label ] [around ] [json]
+netq config add agent kubernetes-monitor [poll-period ]
+netq config del agent kubernetes-monitor
+netq config show agent kubernetes-monitor [json]
+   
+    
+</code></pre>
+
+<h3 id="enable-kubernetes-monitoring">Enable Kubernetes Monitoring</h3>
+
+<p>For NetQ to monitor the containers on a host, you must configure the
+following on the Kubernetes master node:</p>
+
+<ol>
+<li><p>Configure the host to point to the NetQ Platform by its IP address.
+See the <a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=10456209">Install NetQ (2.1.0
+version)</a>
+topic for details.</p></li>
+
+<li><p>Enable Kubernetes monitoring by NetQ. You can specify a polling
+period between 10 and 120 seconds; 15 seconds is the default.</p>
+
+<pre><code>                       
+cumulus@host:~$ netq config add agent kubernetes-monitor poll-period 20
+Successfully added kubernetes monitor. Please restart netq-agent.
+       
+        
+</code></pre></li>
+
+<li><p>Restart the NetQ agent:</p>
+
+<pre><code>                       
+cumulus@server01:~$ netq config restart agent
+       
+        
+</code></pre></li>
+</ol>
+
+<p>Next, you must enable the NetQ Agent on all the worker nodes, as
+described in the <a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/display/NETQ140DRAFT/Install+NetQ">Install
+NetQ</a>
+topic, for complete insight into your container network.</p>
+
+<h3 id="view-status-of-kubernetes-clusters">View Status of Kubernetes Clusters</h3>
+
+<p>You can get the status of all Kubernetes clusters in the fabric using
+the <code>netq show kubernetes cluster</code> command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show kubernetes cluster 
+Matching kube_cluster records:
+Master                   Cluster Name     Controller Status    Scheduler Status Nodes
+------------------------ ---------------- -------------------- ---------------- --------------------
+server11:3.0.0.68        default          Healthy              Healthy          server11 server13 se
+                                                                                rver22 server11 serv
+                                                                                er12 server23 server
+                                                                                24
+server12:3.0.0.69        default          Healthy              Healthy          server12 server21 se
+                                                                                rver23 server13 serv
+                                                                                er14 server21 server
+                                                                                22
+   
+    
+</code></pre>
+
+<p>To filter the list, you can specify the hostname of the master before
+the <code>show</code> command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq server11 show kubernetes cluster
+Matching kube_cluster records:
+Master                   Cluster Name     Controller Status    Scheduler Status Nodes
+------------------------ ---------------- -------------------- ---------------- --------------------
+server11:3.0.0.68        default          Healthy              Healthy          server11 server13 se
+                                                                                rver22 server11 serv
+                                                                                er12 server23 server
+                                                                                24
+   
+    
+</code></pre>
+
+<p>Optionally, you can output the results in JSON format:</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq show kubernetes cluster json
+{
+    &quot;kube_cluster&quot;:[
+        {
+            &quot;clusterName&quot;:&quot;default&quot;,
+            &quot;schedulerStatus&quot;:&quot;Healthy&quot;,
+            &quot;master&quot;:&quot;server12:3.0.0.69&quot;,
+            &quot;nodes&quot;:&quot;server12 server21 server23 server13 server14 server21 server22&quot;,
+            &quot;controllerStatus&quot;:&quot;Healthy&quot;
+        },
+        {
+            &quot;clusterName&quot;:&quot;default&quot;,
+            &quot;schedulerStatus&quot;:&quot;Healthy&quot;,
+            &quot;master&quot;:&quot;server11:3.0.0.68&quot;,
+            &quot;nodes&quot;:&quot;server11 server13 server22 server11 server12 server23 server24&quot;,
+            &quot;controllerStatus&quot;:&quot;Healthy&quot;
+    }
+    ],
+    &quot;truncatedResult&quot;:false
+}
+   
+    
+</code></pre>
+
+<h3 id="view-changes-to-a-cluster">View Changes to a Cluster</h3>
+
+<p>If data collection from the NetQ Agents is not occurring as it once was,
+you can verify that no changes have been made to the Kubernetes cluster
+configuration using the <em>around</em> keyword. This example shows the changes
+that have been made in the last hour.</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq show kubernetes cluster around 1h 
+Matching kube_cluster records:
+Master                   Cluster Name     Controller Status    Scheduler Status Nodes                                    DBState  Last changed
+------------------------ ---------------- -------------------- ---------------- ---------------------------------------- -------- -------------------------
+server11:3.0.0.68        default          Healthy              Healthy          server11 server13 server22 server11 serv Add      Fri Feb  8 01:50:50 2019
+                                                                                er12 server23 server24
+server12:3.0.0.69        default          Healthy              Healthy          server12 server21 server23 server13 serv Add      Fri Feb  8 01:50:50 2019
+                                                                                er14 server21 server22
+server12:3.0.0.69        default          Healthy              Healthy          server12 server21 server23 server13      Add      Fri Feb  8 01:50:50 2019
+server11:3.0.0.68        default          Healthy              Healthy          server11                                 Add      Fri Feb  8 01:50:50 2019
+server12:3.0.0.69        default          Healthy              Healthy          server12                                 Add      Fri Feb  8 01:50:50 2019
+   
+    
+</code></pre>
+
+<p>View Kubernetes Pod Information</p>
+
+<p>You can show configuration and status of the pods in a cluster,
+including the names, labels, addresses, associated cluster and
+containers, and whether the pod is running. This example shows pods for
+FRR, Nginx, Calico, various Kubernetes components sorted by master node.</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq show kubernetes pod 
+Matching kube_pod records:
+Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed
+------------------------ ------------ -------------------- ---------------- ------------ -------------------- -------- ------------------------ ----------------
+server11:3.0.0.68        default      cumulus-frr-8vssx    3.0.0.70         server13     pod-template-generat Running  cumulus-frr:f8cac70bb217 Fri Feb  8 01:50:50 2019
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+server11:3.0.0.68        default      cumulus-frr-dkkgp    3.0.5.135        server24     pod-template-generat Running  cumulus-frr:577a60d5f40c Fri Feb  8 01:50:50 2019
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+server11:3.0.0.68        default      cumulus-frr-f4bgx    3.0.3.196        server11     pod-template-generat Running  cumulus-frr:1bc73154a9f5 Fri Feb  8 01:50:50 2019
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+server11:3.0.0.68        default      cumulus-frr-gqqxn    3.0.2.5          server22     pod-template-generat Running  cumulus-frr:3ee0396d126a Fri Feb  8 01:50:50 2019
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+server11:3.0.0.68        default      cumulus-frr-kdh9f    3.0.3.197        server12     pod-template-generat Running  cumulus-frr:94b6329ecb50 Fri Feb  8 01:50:50 2019
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+server11:3.0.0.68        default      cumulus-frr-mvv8m    3.0.5.134        server23     pod-template-generat Running  cumulus-frr:b5845299ce3c Fri Feb  8 01:50:50 2019
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+server11:3.0.0.68        default      httpd-5456469bfd-bq9 10.244.49.65     server22     app:httpd            Running  httpd:79b7f532be2d       Fri Feb  8 01:50:50 2019
+                                      zm
+server11:3.0.0.68        default      influxdb-6cdb566dd-8 10.244.162.128   server13     app:influx           Running  influxdb:15dce703cdec    Fri Feb  8 01:50:50 2019
+                                      9lwn
+server11:3.0.0.68        default      nginx-8586cf59-26pj5 10.244.9.193     server24     run:nginx            Running  nginx:6e2b65070c86       Fri Feb  8 01:50:50 2019
+server11:3.0.0.68        default      nginx-8586cf59-c82ns 10.244.40.128    server12     run:nginx            Running  nginx:01b017c26725       Fri Feb  8 01:50:50 2019
+server11:3.0.0.68        default      nginx-8586cf59-wjwgp 10.244.49.64     server22     run:nginx            Running  nginx:ed2b4254e328       Fri Feb  8 01:50:50 2019
+server11:3.0.0.68        kube-system  calico-etcd-pfg9r    3.0.0.68         server11     k8s-app:calico-etcd  Running  calico-etcd:f95f44b745a7 Fri Feb  8 01:50:50 2019
+                                                                                         pod-template-generat
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:142071906
+                                                                                         5
+server11:3.0.0.68        kube-system  calico-kube-controll 3.0.2.5          server22     k8s-app:calico-kube- Running  calico-kube-controllers: Fri Feb  8 01:50:50 2019
+                                      ers-d669cc78f-4r5t2                                controllers                   3688b0c5e9c5
+server11:3.0.0.68        kube-system  calico-node-4px69    3.0.2.5          server22     k8s-app:calico-node  Running  calico-node:1d01648ebba4 Fri Feb  8 01:50:50 2019
+                                                                                         pod-template-generat          install-cni:da350802a3d2
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+server11:3.0.0.68        kube-system  calico-node-bt8w6    3.0.3.196        server11     k8s-app:calico-node  Running  calico-node:9b3358a07e5e Fri Feb  8 01:50:50 2019
+                                                                                         pod-template-generat          install-cni:d38713e6fdd8
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+server11:3.0.0.68        kube-system  calico-node-gtmkv    3.0.3.197        server12     k8s-app:calico-node  Running  calico-node:48fcc6c40a6b Fri Feb  8 01:50:50 2019
+                                                                                         pod-template-generat          install-cni:f0838a313eff
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+server11:3.0.0.68        kube-system  calico-node-mvslq    3.0.5.134        server23     k8s-app:calico-node  Running  calico-node:7b361aece76c Fri Feb  8 01:50:50 2019
+                                                                                         pod-template-generat          install-cni:f2da6bc36bf8
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+server11:3.0.0.68        kube-system  calico-node-sjj2s    3.0.5.135        server24     k8s-app:calico-node  Running  calico-node:6e13b2b73031 Fri Feb  8 01:50:50 2019
+                                                                                         pod-template-generat          install-cni:fa4b2b17fba9
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+server11:3.0.0.68        kube-system  calico-node-vdkk5    3.0.0.70         server13     k8s-app:calico-node  Running  calico-node:fb3ec9429281 Fri Feb  8 01:50:50 2019
+                                                                                         pod-template-generat          install-cni:b56980da7294
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+server11:3.0.0.68        kube-system  calico-node-zzfkr    3.0.0.68         server11     k8s-app:calico-node  Running  calico-node:c1ac399dd862 Fri Feb  8 01:50:50 2019
+                                                                                         pod-template-generat          install-cni:60a779fdc47a
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+server11:3.0.0.68        kube-system  etcd-server11        3.0.0.68         server11     tier:control-plane c Running  etcd:dde63d44a2f5        Fri Feb  8 01:50:50 2019
+                                                                                         omponent:etcd
+server11:3.0.0.68        kube-system  kube-apiserver-hostd 3.0.0.68         server11     tier:control-plane c Running  kube-apiserver:0cd557bbf Fri Feb  8 01:50:50 2019
+                                      -11                                                omponent:kube-apiser          2fe
+                                                                                         ver
+server11:3.0.0.68        kube-system  kube-controller-mana 3.0.0.68         server11     tier:control-plane c Running  kube-controller-manager: Fri Feb  8 01:50:50 2019
+                                      ger-server11                                       omponent:kube-contro          89b2323d09b2
+                                                                                         ller-manager
+server11:3.0.0.68        kube-system  kube-dns-6f4fd4bdf-p 10.244.34.64     server23     k8s-app:kube-dns     Running  dnsmasq:284d9d363999 kub Fri Feb  8 01:50:50 2019
+                                      lv7p                                                                             edns:bd8bdc49b950 sideca
+                                                                                                                       r:fe10820ffb19
+server11:3.0.0.68        kube-system  kube-proxy-4cx2t     3.0.3.197        server12     k8s-app:kube-proxy p Running  kube-proxy:49b0936a4212  Fri Feb  8 01:50:50 2019
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+server11:3.0.0.68        kube-system  kube-proxy-7674k     3.0.3.196        server11     k8s-app:kube-proxy p Running  kube-proxy:5dc2f5fe0fad  Fri Feb  8 01:50:50 2019
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+server11:3.0.0.68        kube-system  kube-proxy-ck5cn     3.0.2.5          server22     k8s-app:kube-proxy p Running  kube-proxy:6944f7ff8c18  Fri Feb  8 01:50:50 2019
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+server11:3.0.0.68        kube-system  kube-proxy-f9dt8     3.0.0.68         server11     k8s-app:kube-proxy p Running  kube-proxy:032cc82ef3f8  Fri Feb  8 01:50:50 2019
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+server11:3.0.0.68        kube-system  kube-proxy-j6qw6     3.0.5.135        server24     k8s-app:kube-proxy p Running  kube-proxy:10544e43212e  Fri Feb  8 01:50:50 2019
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+server11:3.0.0.68        kube-system  kube-proxy-lq8zz     3.0.5.134        server23     k8s-app:kube-proxy p Running  kube-proxy:1bcfa09bb186  Fri Feb  8 01:50:50 2019
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+server11:3.0.0.68        kube-system  kube-proxy-vg7kj     3.0.0.70         server13     k8s-app:kube-proxy p Running  kube-proxy:8fed384b68e5  Fri Feb  8 01:50:50 2019
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+server11:3.0.0.68        kube-system  kube-scheduler-hostd 3.0.0.68         server11     tier:control-plane c Running  kube-scheduler:c262a8071 Fri Feb  8 01:50:50 2019
+                                      -11                                                omponent:kube-schedu          3cb
+                                                                                         ler
+server12:3.0.0.69        default      cumulus-frr-2gkdv    3.0.2.4          server21     pod-template-generat Running  cumulus-frr:25d1109f8898 Fri Feb  8 01:50:50 2019
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+server12:3.0.0.69        default      cumulus-frr-b9dm5    3.0.3.199        server14     pod-template-generat Running  cumulus-frr:45063f9a095f Fri Feb  8 01:50:50 2019
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+server12:3.0.0.69        default      cumulus-frr-rtqhv    3.0.2.6          server23     pod-template-generat Running  cumulus-frr:63e802a52ea2 Fri Feb  8 01:50:50 2019
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+server12:3.0.0.69        default      cumulus-frr-tddrg    3.0.5.133        server22     pod-template-generat Running  cumulus-frr:52dd54e4ac9f Fri Feb  8 01:50:50 2019
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+server12:3.0.0.69        default      cumulus-frr-vx7jp    3.0.5.132        server21     pod-template-generat Running  cumulus-frr:1c20addfcbd3 Fri Feb  8 01:50:50 2019
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+server12:3.0.0.69        default      cumulus-frr-x7ft5    3.0.3.198        server13     pod-template-generat Running  cumulus-frr:b0f63792732e Fri Feb  8 01:50:50 2019
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+server12:3.0.0.69        kube-system  calico-etcd-btqgt    3.0.0.69         server12     k8s-app:calico-etcd  Running  calico-etcd:72b1a16968fb Fri Feb  8 01:50:50 2019
+                                                                                         pod-template-generat
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:142071906
+                                                                                         5
+server12:3.0.0.69        kube-system  calico-kube-controll 3.0.5.132        server21     k8s-app:calico-kube- Running  calico-kube-controllers: Fri Feb  8 01:50:50 2019
+                                      ers-d669cc78f-bdnzk                                controllers                   6821bf04696f
+server12:3.0.0.69        kube-system  calico-node-4g6vd    3.0.3.198        server13     k8s-app:calico-node  Running  calico-node:1046b559a50c Fri Feb  8 01:50:50 2019
+                                                                                         pod-template-generat          install-cni:0a136851da17
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:490828062
+server12:3.0.0.69        kube-system  calico-node-4hg6l    3.0.0.69         server12     k8s-app:calico-node  Running  calico-node:4e7acc83f8e8 Fri Feb  8 01:50:50 2019
+                                                                                         pod-template-generat          install-cni:a26e76de289e
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:490828062
+server12:3.0.0.69        kube-system  calico-node-4p66v    3.0.2.6          server23     k8s-app:calico-node  Running  calico-node:a7a44072e4e2 Fri Feb  8 01:50:50 2019
+                                                                                         pod-template-generat          install-cni:9a19da2b2308
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:490828062
+server12:3.0.0.69        kube-system  calico-node-5z7k4    3.0.5.133        server22     k8s-app:calico-node  Running  calico-node:9878b0606158 Fri Feb  8 01:50:50 2019
+                                                                                         pod-template-generat          install-cni:489f8f326cf9
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:490828062
+...
+   
+    
+</code></pre>
+
+<p>You can filter this information to focus on a particular pod:</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq show kubernetes pod node server11
+Matching kube_pod records:
+Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed
+------------------------ ------------ -------------------- ---------------- ------------ -------------------- -------- ------------------------ ----------------
+server11:3.0.0.68        kube-system  calico-etcd-pfg9r    3.0.0.68         server11     k8s-app:calico-etcd  Running  calico-etcd:f95f44b745a7 2d:14h:0m:59s
+                                                                                         pod-template-generat
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:142071906
+                                                                                         5
+server11:3.0.0.68        kube-system  calico-node-zzfkr    3.0.0.68         server11     k8s-app:calico-node  Running  calico-node:c1ac399dd862 2d:14h:0m:59s
+                                                                                         pod-template-generat          install-cni:60a779fdc47a
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+server11:3.0.0.68        kube-system  etcd-server11        3.0.0.68         server11     tier:control-plane c Running  etcd:dde63d44a2f5        2d:14h:1m:44s
+                                                                                         omponent:etcd
+server11:3.0.0.68        kube-system  kube-apiserver-serve 3.0.0.68         server11     tier:control-plane c Running  kube-apiserver:0cd557bbf 2d:14h:1m:44s
+                                      r11                                                omponent:kube-apiser          2fe
+                                                                                         ver
+server11:3.0.0.68        kube-system  kube-controller-mana 3.0.0.68         server11     tier:control-plane c Running  kube-controller-manager: 2d:14h:1m:44s
+                                      ger-server11                                       omponent:kube-contro          89b2323d09b2
+                                                                                         ller-manager
+server11:3.0.0.68        kube-system  kube-proxy-f9dt8     3.0.0.68         server11     k8s-app:kube-proxy p Running  kube-proxy:032cc82ef3f8  2d:14h:0m:59s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+server11:3.0.0.68        kube-system  kube-scheduler-serve 3.0.0.68         server11     tier:control-plane c Running  kube-scheduler:c262a8071 2d:14h:1m:44s
+                                      r11                                                omponent:kube-schedu          3cb
+                                                                                         ler
+   
+    
+</code></pre>
+
+<h3 id="view-kubernetes-node-information">View Kubernetes Node Information</h3>
+
+<p>You can view a lot of information about a node, including the pod CIDR
+and kubelet status.</p>
+
+<pre><code>                   
+cumulus@host:~$ netq server11 show kubernetes node
+Matching kube_cluster records:
+Master                   Cluster Name     Node Name            Role       Status           Labels               Pod CIDR                 Last Changed
+------------------------ ---------------- -------------------- ---------- ---------------- -------------------- ------------------------ ----------------
+server11:3.0.0.68        default          server11             master     KubeletReady     node-role.kubernetes 10.224.0.0/24            14h:23m:46s
+                                                                                           .io/master: kubernet
+                                                                                           es.io/hostname:hostd
+                                                                                           -11 beta.kubernetes.
+                                                                                           io/arch:amd64 beta.k
+                                                                                           ubernetes.io/os:linu
+                                                                                           x
+server11:3.0.0.68        default          server13             worker     KubeletReady     kubernetes.io/hostna 10.224.3.0/24            14h:19m:56s
+                                                                                           me:server13 beta.kub
+                                                                                           ernetes.io/arch:amd6
+                                                                                           4 beta.kubernetes.io
+                                                                                           /os:linux
+server11:3.0.0.68        default          server22             worker     KubeletReady     kubernetes.io/hostna 10.224.1.0/24            14h:24m:31s
+                                                                                           me:server22 beta.kub
+                                                                                           ernetes.io/arch:amd6
+                                                                                           4 beta.kubernetes.io
+                                                                                           /os:linux
+server11:3.0.0.68        default          server11             worker     KubeletReady     kubernetes.io/hostna 10.224.2.0/24            14h:24m:16s
+                                                                                           me:server11 beta.kub
+                                                                                           ernetes.io/arch:amd6
+                                                                                           4 beta.kubernetes.io
+                                                                                           /os:linux
+server11:3.0.0.68        default          server12             worker     KubeletReady     kubernetes.io/hostna 10.224.4.0/24            14h:24m:16s
+                                                                                           me:server12 beta.kub
+                                                                                           ernetes.io/arch:amd6
+                                                                                           4 beta.kubernetes.io
+                                                                                           /os:linux
+server11:3.0.0.68        default          server23             worker     KubeletReady     kubernetes.io/hostna 10.224.5.0/24            14h:24m:16s
+                                                                                           me:server23 beta.kub
+                                                                                           ernetes.io/arch:amd6
+                                                                                           4 beta.kubernetes.io
+                                                                                           /os:linux
+server11:3.0.0.68        default          server24             worker     KubeletReady     kubernetes.io/hostna 10.224.6.0/24            14h:24m:1s
+                                                                                           me:server24 beta.kub
+                                                                                           ernetes.io/arch:amd6
+                                                                                           4 beta.kubernetes.io
+                                                                                           /os:linux
+   
+    
+</code></pre>
+
+<p>To display the kubelet or Docker version, append <code>components</code> to the
+above command. This example lists all the details of all master and
+worker nodes because the master&rsquo;s hostname — <em>server11</em> in this case —
+was included in the query.</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq server11 show kubernetes node components 
+Matching kube_cluster records:
+                         Master           Cluster Name         Node Name    Kubelet      KubeProxy         Container Runt
+                                                                                                           ime
+------------------------ ---------------- -------------------- ------------ ------------ ----------------- --------------
+server11:3.0.0.68        default          server11             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+server11:3.0.0.68        default          server13             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+server11:3.0.0.68        default          server22             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+server11:3.0.0.68        default          server11             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+server11:3.0.0.68        default          server12             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+server11:3.0.0.68        default          server23             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+server11:3.0.0.68        default          server24             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+   
+    
+</code></pre>
+
+<p>To view only the details for a worker node, specify the hostname at the
+end of the command after the <code>name</code> command:</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq server11 show kubernetes node components name server13
+Matching kube_cluster records:
+                         Master           Cluster Name         Node Name    Kubelet      KubeProxy         Container Runt
+                                                                                                           ime
+------------------------ ---------------- -------------------- ------------ ------------ ----------------- --------------
+server11:3.0.0.68        default          server13             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+   
+    
+</code></pre>
+
+<p>You can view information about the replica set:</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq server11 show kubernetes replica-set
+Matching kube_replica records:
+Master                   Cluster Name Namespace        Replication Name               Labels               Replicas                           Ready Replicas Last Changed
+------------------------ ------------ ---------------- ------------------------------ -------------------- ---------------------------------- -------------- ----------------
+server11:3.0.0.68        default      default          influxdb-6cdb566dd             app:influx           1                                  1              14h:19m:28s
+server11:3.0.0.68        default      default          nginx-8586cf59                 run:nginx            3                                  3              14h:24m:39s
+server11:3.0.0.68        default      default          httpd-5456469bfd               app:httpd            1                                  1              14h:19m:28s
+server11:3.0.0.68        default      kube-system      kube-dns-6f4fd4bdf             k8s-app:kube-dns     1                                  1              14h:27m:9s
+server11:3.0.0.68        default      kube-system      calico-kube-controllers-d669cc k8s-app:calico-kube- 1                                  1              14h:27m:9s
+                                                       78f                            controllers
+   
+    
+</code></pre>
+
+<p>You can view information about the daemon set:</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq server11 show kubernetes daemon-set namespace default
+Matching kube_daemonset records:
+Master                   Cluster Name Namespace        Daemon Set Name                Labels               Desired Count Ready Count Last Changed
+------------------------ ------------ ---------------- ------------------------------ -------------------- ------------- ----------- ----------------
+server11:3.0.0.68        default      default          cumulus-frr                    k8s-app:cumulus-frr  6             6           14h:25m:37s
+   
+    
+</code></pre>
+
+<p>You can view information about the pod:</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq server11 show kubernetes pod namespace default label nginx
+Matching kube_pod records:
+Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed
+------------------------ ------------ -------------------- ---------------- ------------ -------------------- -------- ------------------------ ----------------
+server11:3.0.0.68        default      nginx-8586cf59-26pj5 10.244.9.193     server24     run:nginx            Running  nginx:6e2b65070c86       14h:25m:24s
+server11:3.0.0.68        default      nginx-8586cf59-c82ns 10.244.40.128    server12     run:nginx            Running  nginx:01b017c26725       14h:25m:24s
+server11:3.0.0.68        default      nginx-8586cf59-wjwgp 10.244.49.64     server22     run:nginx            Running  nginx:ed2b4254e328       14h:25m:24s
+ 
+cumulus@server11:~$ netq server11 show kubernetes pod namespace default label app
+Matching kube_pod records:
+Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed
+------------------------ ------------ -------------------- ---------------- ------------ -------------------- -------- ------------------------ ----------------
+server11:3.0.0.68        default      httpd-5456469bfd-bq9 10.244.49.65     server22     app:httpd            Running  httpd:79b7f532be2d       14h:20m:34s
+                                      zm
+server11:3.0.0.68        default      influxdb-6cdb566dd-8 10.244.162.128   server13     app:influx           Running  influxdb:15dce703cdec    14h:20m:34s
+                                      9lwn
+   
+    
+</code></pre>
+
+<p>You can view information about the replication controller:</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq server11 show kubernetes replication-controller 
+No matching kube_replica records found
+   
+    
+</code></pre>
+
+<p>You can view information about a deployment:</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq server11 show kubernetes deployment name nginx
+Matching kube_deployment records:
+Master                   Namespace       Name                 Replicas                           Ready Replicas Labels                         Last Changed
+------------------------ --------------- -------------------- ---------------------------------- -------------- ------------------------------ ----------------
+server11:3.0.0.68        default         nginx                3                                  3              run:nginx                      14h:27m:20s
+   
+    
+</code></pre>
+
+<p>You can search for information using labels as well. The label search is
+similar to a &ldquo;contains&rdquo; regular expression search. In the following
+example, we are looking for all nodes that contain <em>kube</em> in the
+replication set name or label:</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq server11 show kubernetes replica-set label kube
+Matching kube_replica records:
+Master                   Cluster Name Namespace        Replication Name               Labels               Replicas                           Ready Replicas Last Changed
+------------------------ ------------ ---------------- ------------------------------ -------------------- ---------------------------------- -------------- ----------------
+server11:3.0.0.68        default      kube-system      kube-dns-6f4fd4bdf             k8s-app:kube-dns     1                                  1              14h:30m:41s
+server11:3.0.0.68        default      kube-system      calico-kube-controllers-d669cc k8s-app:calico-kube- 1                                  1              14h:30m:41s
+                                                       78f                            controllers
+   
+    
+</code></pre>
+
+<h3 id="view-container-connectivity">View Container Connectivity</h3>
+
+<p>You can view the connectivity graph of a Kubernetes pod, seeing its
+replica set, deployment or service level. The impact/connectivity graph
+starts with the server where the pod is deployed, and shows the peer for
+each server interface.</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq server11 show kubernetes deployment name nginx connectivity
+nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                              -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                              -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
+                              -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
+      -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
+                              -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
+                              -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
+      -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
+                              -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
+                              -- server24:swp1:swp1 -- swp8:VlanA-1:tor-2
+   
+    
+</code></pre>
+
+<h3 id="view-kubernetes-service-connectivity-and-impact">View Kubernetes Service Connectivity and Impact</h3>
+
+<p>You can show the Kubernetes services in a cluster:</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq show kubernetes service 
+Matching kube_service records:
+Master                   Namespace        Service Name         Labels       Type       Cluster IP       External IP      Ports                               Last Changed
+------------------------ ---------------- -------------------- ------------ ---------- ---------------- ---------------- ----------------------------------- ----------------
+server11:3.0.0.68        default          kubernetes                        ClusterIP  10.96.0.1                         TCP:443                             2d:13h:45m:30s
+server11:3.0.0.68        kube-system      calico-etcd          k8s-app:cali ClusterIP  10.96.232.136                     TCP:6666                            2d:13h:45m:27s
+                                                               co-etcd
+server11:3.0.0.68        kube-system      kube-dns             k8s-app:kube ClusterIP  10.96.0.10                        UDP:53 TCP:53                       2d:13h:45m:28s
+                                                               -dns
+server12:3.0.0.69        default          kubernetes                        ClusterIP  10.96.0.1                         TCP:443                             2d:13h:46m:24s
+server12:3.0.0.69        kube-system      calico-etcd          k8s-app:cali ClusterIP  10.96.232.136                     TCP:6666                            2d:13h:46m:20s
+                                                               co-etcd
+server12:3.0.0.69        kube-system      kube-dns             k8s-app:kube ClusterIP  10.96.0.10                        UDP:53 TCP:53                       2d:13h:46m:20s
+                                                               -dns
+   
+    
+</code></pre>
+
+<p>And get detailed information about a Kubernetes service:</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq show kubernetes service name calico-etcd 
+Matching kube_service records:
+Master                   Namespace        Service Name         Labels       Type       Cluster IP       External IP      Ports                               Last Changed
+------------------------ ---------------- -------------------- ------------ ---------- ---------------- ---------------- ----------------------------------- ----------------
+server11:3.0.0.68        kube-system      calico-etcd          k8s-app:cali ClusterIP  10.96.232.136                     TCP:6666                            2d:13h:48m:10s
+                                                               co-etcd
+server12:3.0.0.69        kube-system      calico-etcd          k8s-app:cali ClusterIP  10.96.232.136                     TCP:6666                            2d:13h:49m:3s
+                                                               co-etcd
+   
+    
+</code></pre>
+
+<p>To see the connectivity of a given Kubernetes service, run:</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq show kubernetes service name calico-etcd connectivity 
+calico-etcd -- calico-etcd-pfg9r -- server11:swp1:torbond1 -- swp6:hostbond2:torc-11
+                                 -- server11:swp2:torbond1 -- swp6:hostbond2:torc-12
+                                 -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01
+                                 -- server11:swp4:NetQBond-2 -- swp16:NetQBond-16:edge02
+calico-etcd -- calico-etcd-btqgt -- server12:swp1:torbond1 -- swp7:hostbond3:torc-11
+                                 -- server12:swp2:torbond1 -- swp7:hostbond3:torc-12
+                                 -- server12:swp3:NetQBond-2 -- swp17:NetQBond-17:edge01
+                                 -- server12:swp4:NetQBond-2 -- swp17:NetQBond-17:edge02
+   
+    
+</code></pre>
+
+<p>To see the impact of a given Kubernetes service, run:</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq server11 show impact kubernetes service name calico-etcd 
+calico-etcd -- calico-etcd-pfg9r -- server11:swp1:torbond1 -- swp6:hostbond2:torc-11
+                                 -- server11:swp2:torbond1 -- swp6:hostbond2:torc-12
+                                 -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01
+                                 -- server11:swp4:NetQBond-2 -- swp16:NetQBond-16:edge02
+   
+    
+</code></pre>
+
+<h3 id="view-kubernetes-cluster-configuration-in-the-past">View Kubernetes Cluster Configuration in the Past</h3>
+
+<p>You can use the <a href="/old/Cumulus_NetQ/Methods_for_Diagnosing_Network_Issues.html">&ldquo;time machine&rdquo;
+features</a>
+of NetQ on a Kubernetes cluster, using the <code>around</code> keyword to go back
+in time to check the network status and identify any changes that
+occurred on the network.</p>
+
+<p>This example shows the current state of the network. Notice there is a
+node named <em>server23</em>. server23 is there because the node <em>server22</em>
+went down and Kubernetes spun up a third replica on a different host to
+satisfy the deployment requirement.</p>
+
+<pre><code>                   
+cumulus@redis-1:~$ netq server11 show kubernetes deployment name nginx connectivity
+nginx -- nginx-8586cf59-fqtnj -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
+                              -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
+                              -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
+      -- nginx-8586cf59-8g487 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
+                              -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
+                              -- server24:swp1:swp1 -- swp8:VlanA-1:tor-2
+      -- nginx-8586cf59-2hb8t -- server23:swp1:swp1 -- swp7:VlanA-1:tor-2
+                              -- server23:swp2:NetQBond-1 -- swp28:NetQBond-28:edge01
+                              -- server23:swp3:NetQBond-1 -- swp28:NetQBond-28:edge02
+   
+    
+</code></pre>
+
+<p>You can see this by going back in time 10 minutes. <em>server23</em> was not
+present, whereas <em>server22</em> <strong>was</strong> present:</p>
+
+<pre><code>                   
+cumulus@redis-1:~$ netq server11 show kubernetes deployment name nginx connectivity around 10m
+nginx -- nginx-8586cf59-fqtnj -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
+                              -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
+                              -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
+      -- nginx-8586cf59-2xxs4 -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                              -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                              -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
+                              -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
+      -- nginx-8586cf59-8g487 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
+                              -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
+                              -- server24:swp1:swp1 -- swp8:VlanA-1:tor-2
+   
+    
+</code></pre>
+
+<p>You can determine the impact on the Kubernetes deployment in the event a
+host or switch goes down. The output is color coded (not shown in the
+example below) so you can clearly see the impact: green shows no impact,
+yellow shows partial impact, and red shows full impact.</p>
+
+<pre><code>                   
+cumulus@server11:~$ netq torc-21 show impact kubernetes deployment name nginx
+nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                              -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                              -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
+                              -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
+      -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
+                              -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
+                              -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
+      -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
+                              -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
+                              -- server24:swp1:swp1 -- swp8:VlanA-1:tor-2
+cumulus@server11:~$ netq server12 show impact kubernetes deployment name nginx
+nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                              -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                              -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
+                              -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
+      -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
+                              -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
+                              -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
+      -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
+                              -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
+   
+    
+</code></pre>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#use-netq-with-kubernetes-clusters">Use NetQ with Kubernetes Clusters</a>
+<ul>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#command-summary">Command Summary</a></li>
+<li><a href="#enable-kubernetes-monitoring">Enable Kubernetes Monitoring</a></li>
+<li><a href="#view-status-of-kubernetes-clusters">View Status of Kubernetes Clusters</a></li>
+<li><a href="#view-changes-to-a-cluster">View Changes to a Cluster</a></li>
+<li><a href="#view-kubernetes-node-information">View Kubernetes Node Information</a></li>
+<li><a href="#view-container-connectivity">View Container Connectivity</a></li>
+<li><a href="#view-kubernetes-service-connectivity-and-impact">View Kubernetes Service Connectivity and Impact</a></li>
+<li><a href="#view-kubernetes-cluster-configuration-in-the-past">View Kubernetes Cluster Configuration in the Past</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

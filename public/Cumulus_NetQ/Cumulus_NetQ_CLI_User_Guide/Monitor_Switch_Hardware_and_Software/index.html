@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Monitor Switch Hardware and Software | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/" >
+    Cumulus NetQ 2.1
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/"  class="active" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 1.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 2.0.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/" >
+    Upgrade from NetQ 2.1.0 to NetQ 2.1.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_BGP_Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_EVPN_Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_LLDP_Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Validate_Network_Protocol_and_Service_Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Monitor Switch Hardware and Software</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Monitor Switch Hardware and Software</h1>
+
+<p>With NetQ, a network administrator can monitor both the switch hardware
+and software components for misconfigurations. NetQ helps answer
+questions such as:</p>
+
+<ul>
+<li><p>What switches do I have in the network?</p></li>
+
+<li><p>What hardware and software are installed on my switches?</p></li>
+
+<li><p>Are all switches licensed correctly?</p></li>
+
+<li><p>Do all switches have NetQ agents running?</p></li>
+</ul>
+
+<p>NetQ uses
+<a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/display/DOCS/Link+Layer+Discovery+Protocol">LLDP</a>
+(Link Layer Discovery Protocol) to collect port information. NetQ can
+also identify peer ports connected to DACs ( Direct Attached Cables) and
+AOCs (Active Optical Cables) without using LLDP, even if the link is not
+UP.</p>
+
+<p>The NetQ CLI provides the <code>netq show inventory</code>, <code>netq show sensors</code>,
+and <code>netq show events</code> commands to monitor switches.</p>
+
+<h2 id="monitor-switch-and-host-hardware-information">Monitor Switch and Host Hardware Information</h2>
+
+<p>You can view summary information about all switches and hosts along with
+their key components, including the motherboard, ASIC, microprocessor,
+disk and memory information.</p>
+
+<p>To view the switch and host information with the CLI, use the following
+<code>netq show</code> commands:</p>
+
+<pre><code>                   
+netq [] show inventory brief [json]
+netq [] show inventory asic [vendor |model |model-id ] [json]
+netq [] show inventory board [vendor |model ] [json]
+netq [] show inventory cpu [arch ] [json]
+netq [] show inventory disk [name |transport |vendor ] [json]
+netq [] show inventory license [cumulus] [status ok | status missing] [around ] [json]
+netq [] show inventory memory [type |vendor ] [json]
+netq [] show inventory os [version |name ] [json]
+ 
+netq [] show sensors all [around ] [json]
+netq [] show sensors psu [] [around ] [json]
+netq [] show sensors temp [] [around ] [json]
+netq [] show sensors fan [] [around ] [json]
+ 
+netq [] show events [level info | level error | level warning | level critical | level debug] [type sensors] [between  and ] [json]
+   
+    
+</code></pre>
+
+
+<div class="notices info" > <p>When entering a time value, you must include a numeric value <em>and</em> the
+unit of measure:</p>
+
+<ul>
+<li><p>w: week(s)</p></li>
+
+<li><p>d: day(s)</p></li>
+
+<li><p>h: hour(s)</p></li>
+
+<li><p>m: minute(s)</p></li>
+
+<li><p>s: second(s)</p></li>
+
+<li><p>now</p></li>
+</ul>
+
+<p>For time ranges, the <code>&lt;text-time&gt;</code> is the most recent time and the
+<code>&lt;text-endtime&gt;</code> is the oldest time. The values do not have to have the
+same unit of measure.</p>
+ </div>
+
+
+
+<div class="notices info" > <p>The keyword values for the <code>vendor</code>, <code>model</code>, <code>model-id</code>, <code>arch</code>,
+<code>name</code>, <code>transport</code>, <code>type</code>, <code>version</code>, <code>psu</code>, <code>temp</code>, and <code>fan</code>
+keywords are specific to your deployment. For example, if you have
+devices with CPU architectures of only one type, say Intel x86, then
+that is the only option available for the <code>cpu-arch</code> keyword value. If
+you have multiple CPU architectures, say you also have ARMv7, then that
+would also be an option for you.</p>
+ </div>
+
+
+<p>To view the switch and host information with the GUI, use the Devices
+Inventory card workflow which contains a small card with a count of each
+device type in your network, a medium card displaying the operating
+systems running on each set of devices, large cards with component
+information statistics, and full-screen cards displaying tables with
+attributes of all switches and all hosts in your network.</p>
+
+<h3 id="view-a-summary-of-your-network-inventory">View a Summary of Your Network Inventory</h3>
+
+<p>While the detail can be very helpful, sometimes a simple overview of the
+hardware inventory is better. This example shows the basic hardware
+information for all devices.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory brief
+ 
+Matching inventory records:
+Hostname          Switch               OS              CPU      ASIC            Ports
+----------------- -------------------- --------------- -------- --------------- -----------------------------------
+edge01            N/A                  Ubuntu          x86_64   N/A             N/A
+exit01            VX                   CL              x86_64   VX              N/A
+exit02            VX                   CL              x86_64   VX              N/A
+leaf01            VX                   CL              x86_64   VX              N/A
+leaf02            VX                   CL              x86_64   VX              N/A
+leaf03            VX                   CL              x86_64   VX              N/A
+leaf04            VX                   CL              x86_64   VX              N/A
+server01          N/A                  Ubuntu          x86_64   N/A             N/A
+server02          N/A                  Ubuntu          x86_64   N/A             N/A
+server03          N/A                  Ubuntu          x86_64   N/A             N/A
+server04          N/A                  Ubuntu          x86_64   N/A             N/A
+spine01           VX                   CL              x86_64   VX              N/A
+spine02           VX                   CL              x86_64   VX              N/A
+   
+    
+</code></pre>
+
+<h3 id="view-information-about-the-asic-on-all-switches">View Information about the ASIC on all Switches</h3>
+
+<p>You can view the vendor, model, model identifier, core bandwidth
+capability, and ports of the ASIC installed on your switch motherboard.
+This example shows all of these for all devices.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory asic
+Matching inventory records:
+Hostname          Vendor               Model                          Model ID                  Core BW        Ports
+----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
+dell-z9100-05     Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
+mlx-2100-05       Mellanox             Spectrum                       MT52132                   N/A            16 x 100G-QSFP28
+mlx-2410a1-05     Mellanox             Spectrum                       MT52132                   N/A            48 x 25G-SFP28 &amp; 8 x 100G-QSFP28
+mlx-2700-11       Mellanox             Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
+qct-ix1-08        Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
+qct-ix7-04        Broadcom             Trident3                       BCM56870                  N/A            32 x 100G-QSFP28
+qct-ix7-04        N/A                  N/A                            N/A                       N/A            N/A
+st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+st1-l2            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+st1-l3            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+st1-s1            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
+st1-s2            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
+   
+    
+</code></pre>
+
+<p>You can filter the results of the command to view devices with a
+particular characteristic. This example shows all devices that use a
+Broadcom ASIC.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory asic vendor Broadcom
+Matching inventory records:
+Hostname          Vendor               Model                          Model ID                  Core BW        Ports
+----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
+dell-z9100-05     Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
+qct-ix1-08        Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
+qct-ix7-04        Broadcom             Trident3                       BCM56870                  N/A            32 x 100G-QSFP28
+st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+st1-l2            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+st1-l3            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+st1-s1            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
+st1-s2            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
+   
+    
+</code></pre>
+
+<p>You can filter the results of the command view the ASIC information for
+a particular switch. This example shows the ASIC information for
+<em>st1-11</em> switch.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq leaf02 show inventory asic
+Matching inventory records:
+Hostname          Vendor               Model                          Model ID                  Core BW        Ports
+----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
+st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+   
+    
+</code></pre>
+
+<h3 id="view-information-about-the-motherboard-in-a-switch">View Information about the Motherboard in a Switch</h3>
+
+<p>You can view the vendor, model, base MAC address, serial number, part
+number, revision, and manufacturing date for a switch motherboard on a
+single device or on all devices. This example shows all of the
+motherboard data for all devices.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory board
+Matching inventory records:
+Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
+dell-z9100-05     DELL                 Z9100-ON                       4C:76:25:E7:42:C0  CN03GT5N779315C20001      03GT5N           A00    12/04/2015
+mlx-2100-05       Penguin              Arctica 1600cs                 7C:FE:90:F5:61:C0  MT1623X10078              MSN2100-CB2FO    N/A    06/09/2016
+mlx-2410a1-05     Mellanox             SN2410                         EC:0D:9A:4E:55:C0  MT1734X00067              MSN2410-CB2F_QP3 N/A    08/24/2017
+mlx-2700-11       Penguin              Arctica 3200cs                 44:38:39:00:AB:80  MT1604X21036              MSN2700-CS2FO    N/A    01/31/2016
+qct-ix1-08        QCT                  QuantaMesh BMS T7032-IX1       54:AB:3A:78:69:51  QTFCO7623002C             1IX1UZZ0ST6      H3B    05/30/2016
+qct-ix7-04        QCT                  IX7                            D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
+qct-ix7-04        QCT                  T7032-IX7                      D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
+st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+st1-l3            Penguin              Arctica 4806xp                 44:38:39:00:70:49  N/A                       N/A              N/A    N/A
+st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
+st1-s2            Dell                 S6000-ON                       44:38:39:00:80:81  N/A                       N/A              N/A    N/A
+   
+    
+</code></pre>
+
+<p>You can filter the results of the command to capture only those devices
+with a particular motherboard vendor. This example shows only the
+devices with <em>Celestica</em> motherboards.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory board vendor celestica
+Matching inventory records:
+Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
+st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+   
+    
+</code></pre>
+
+<p>You can filter the results of the command to view the model for a
+particular switch. This example shows the motherboard vendor for the
+<em>st1-s1</em> switch.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq st1-s1 show inventory board
+Matching inventory records:
+Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
+st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
+   
+    
+</code></pre>
+
+<h3 id="view-information-about-the-cpu-on-a-switch">View Information about the CPU on a Switch</h3>
+
+<p>You can view the architecture, model, operating frequency, and the
+number of cores for the CPU on a single device or for all devices. This
+example shows these CPU characteristics for all devices.</p>
+
+<pre><code>                   
+cumulus@nswitch:~$ netq show inventory cpu
+Matching inventory records:
+Hostname          Arch     Model                          Freq       Cores
+----------------- -------- ------------------------------ ---------- -----
+dell-z9100-05     x86_64   Intel(R) Atom(TM) C2538        2.40GHz    4
+mlx-2100-05       x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
+mlx-2410a1-05     x86_64   Intel(R) Celeron(R)  1047UE    1.40GHz    2
+mlx-2700-11       x86_64   Intel(R) Celeron(R)  1047UE    1.40GHz    2
+qct-ix1-08        x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
+qct-ix7-04        x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
+st1-l1            x86_64   Intel(R) Atom(TM) C2538        2.41GHz    4
+st1-l2            x86_64   Intel(R) Atom(TM) C2538        2.41GHz    4
+st1-l3            x86_64   Intel(R) Atom(TM) C2538        2.40GHz    4
+st1-s1            x86_64   Intel(R) Atom(TM)  S1220       1.60GHz    4
+st1-s2            x86_64   Intel(R) Atom(TM)  S1220       1.60GHz    4
+   
+    
+</code></pre>
+
+<p>You can filter the results of the command to view which switches employ
+a particular CPU architecture using the <em>arch</em> keyword. This example
+shows how to determine which architectures are deployed in your network,
+and then shows all devices with an <em>x86_64</em> architecture.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory cpu arch 
+    x86_64  :  CPU Architecture
+ 
+cumulus@switch:~$ netq show inventory cpu arch x86_64
+Matching inventory records:
+Hostname          Arch     Model                          Freq       Cores
+----------------- -------- ------------------------------ ---------- -----
+leaf01            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+leaf02            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+leaf03            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+leaf04            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+oob-mgmt-server   x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+server01          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+server03          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+server04          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+spine01           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+   
+    
+</code></pre>
+
+<p>You can filter the results to view CPU information for a single switch,
+as shown here for <em>server02</em>.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq server02 show inventory cpu
+ 
+Matching inventory records:
+Hostname          Arch     Model                          Freq       Cores
+----------------- -------- ------------------------------ ---------- -----
+server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+   
+    
+</code></pre>
+
+<h3 id="view-information-about-the-disk-on-a-switch">View Information about the Disk on a Switch</h3>
+
+<p>You can view the name or operating system, type, transport, size,
+vendor, and model of the disk on a single device or all devices. This
+example shows all of these disk characteristics for all devices.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory disk
+Matching inventory records:
+Hostname          Name            Type             Transport          Size       Vendor               Model
+----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
+leaf01            vda             disk             N/A                6G         0x1af4               N/A
+leaf02            vda             disk             N/A                6G         0x1af4               N/A
+leaf03            vda             disk             N/A                6G         0x1af4               N/A
+leaf04            vda             disk             N/A                6G         0x1af4               N/A
+oob-mgmt-server   vda             disk             N/A                256G       0x1af4               N/A
+server01          vda             disk             N/A                301G       0x1af4               N/A
+server02          vda             disk             N/A                301G       0x1af4               N/A
+server03          vda             disk             N/A                301G       0x1af4               N/A
+server04          vda             disk             N/A                301G       0x1af4               N/A
+spine01           vda             disk             N/A                6G         0x1af4               N/A
+spine02           vda             disk             N/A                6G         0x1af4               N/A
+   
+    
+</code></pre>
+
+<p>You can filter the results of the command to view the disk information
+for a particular device. This example shows disk information for
+<em>leaf03</em> switch.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq leaf03 show inventory disk
+Matching inventory records:
+Hostname          Name            Type             Transport          Size       Vendor               Model
+----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
+leaf03            vda             disk             N/A                6G         0x1af4               N/A
+   
+    
+</code></pre>
+
+<h3 id="view-memory-information-for-a-switch">View Memory Information for a Switch</h3>
+
+<p>You can view the name, type, size, speed, vendor, and serial number for
+the memory installed in a single device or all devices. This example
+shows all of these characteristics for all devices.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory memory
+Matching inventory records:
+Hostname          Name            Type             Size       Speed      Vendor               Serial No
+----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
+dell-z9100-05     DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   Hynix                14391421
+mlx-2100-05       DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   InnoDisk Corporation 00000000
+mlx-2410a1-05     ChannelA-DIMM0  DDR3             8192 MB    1600 MHz   017A                 87416232
+                  BANK 0
+mlx-2700-11       ChannelA-DIMM0  DDR3             8192 MB    1600 MHz   017A                 73215444
+                  BANK 0
+mlx-2700-11       ChannelB-DIMM0  DDR3             8192 MB    1600 MHz   017A                 73215444
+                  BANK 2
+qct-ix1-08        N/A             N/A              7907.45MB  N/A        N/A                  N/A
+qct-ix7-04        DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   Transcend            00211415
+st1-l1            DIMM0 BANK 0    DDR3             4096 MB    1333 MHz   N/A                  N/A
+st1-l2            DIMM0 BANK 0    DDR3             4096 MB    1333 MHz   N/A                  N/A
+st1-l3            DIMM0 BANK 0    DDR3             4096 MB    1600 MHz   N/A                  N/A
+st1-s1            A1_DIMM0 A1_BAN DDR3             8192 MB    1333 MHz   A1_Manufacturer0     A1_SerNum0
+                  K0
+st1-s2            A1_DIMM0 A1_BAN DDR3             8192 MB    1333 MHz   A1_Manufacturer0     A1_SerNum0
+                  K0
+   
+    
+</code></pre>
+
+<p>You can filter the results of the command to view devices with a
+particular memory type or vendor. This example shows all of the devices
+with memory from <em>QEMU</em> .</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory memory vendor QEMU
+Matching inventory records:
+Hostname          Name            Type             Size       Speed      Vendor               Serial No
+----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
+leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+leaf02            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+leaf03            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+leaf04            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+oob-mgmt-server   DIMM 0          RAM              4096 MB    Unknown    QEMU                 Not Specified
+server01          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
+server02          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
+server03          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
+server04          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
+spine01           DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+spine02           DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+   
+    
+</code></pre>
+
+<p>You can filter the results to view memory information for a single
+switch, as shown here for leaf01.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq leaf01 show inventory memory
+ 
+Matching inventory records:
+Hostname          Name            Type             Size       Speed      Vendor               Serial No
+----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
+leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+   
+    
+</code></pre>
+
+<h3 id="view-fan-health-for-all-switches">View Fan Health for All Switches</h3>
+
+<p>Fan, power supply unit, and temperature sensors are available to provide
+additional data about the NetQ Platform operation. To view the health of
+fans in your switches, use the <code>netq show sensors fan</code> command. If you
+name the fans in all of your switches consistently, you can view more
+information at once.</p>
+
+<p>In this example, we look at the state of all fans with the name <em>fan1</em>.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show sensors fan fan1
+Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
+exit01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:17 2019
+exit02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:33 2019
+leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
+leaf02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:41 2019
+leaf03            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:44 2019
+leaf04            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:36 2019
+spine01           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:52 2019
+spine02           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:08 2019
+   
+    
+</code></pre>
+
+
+<div class="notices tip" > <p>Use tab completion to determine the names of the fans in your switches:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show sensors fan &lt;&gt;
+    around : Go back in time to around ...
+    fan1 : Fan Name
+    fan2 : Fan Name
+    fan3 : Fan Name
+    fan4 : Fan Name
+    fan5 : Fan Name
+    fan6 : Fan Name
+    json : Provide output in JSON
+    psu1fan1 : Fan Name
+    psu2fan1 : Fan Name
+    
+   
+    
+</code></pre>
+ </div>
+
+
+<p>To view the status for a particular switch, use the optional <em>hostname</em>
+parameter.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq leaf01 show sensors fan fan1
+Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
+leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
+   
+    
+</code></pre>
+
+<h3 id="view-psu-health-for-all-switches">View PSU Health for All Switches</h3>
+
+<p>Fan, power supply unit, and temperature sensors are available to provide
+additional data about the NetQ Platform operation. To view the health of
+PSUs in your switches, use the <code>netq show sensors psu</code> command. If you
+name the PSUs in all of your switches consistently, you can view more
+information at once.</p>
+
+<p>In this example, we look at the state of all PSUs with the name <em>psu2</em>.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show sensors psu psu2
+Matching sensors records:
+Hostname          Name            State      Message                             Last Changed
+----------------- --------------- ---------- ----------------------------------- -------------------------
+exit01            psu2            ok                                             Fri Apr 19 16:01:17 2019
+exit02            psu2            ok                                             Fri Apr 19 16:01:33 2019
+leaf01            psu2            ok                                             Sun Apr 21 20:07:12 2019
+leaf02            psu2            ok                                             Fri Apr 19 16:01:41 2019
+leaf03            psu2            ok                                             Fri Apr 19 16:01:44 2019
+leaf04            psu2            ok                                             Fri Apr 19 16:01:36 2019
+spine01           psu2            ok                                             Fri Apr 19 16:01:52 2019
+spine02           psu2            ok                                             Fri Apr 19 16:01:08 2019
+   
+    
+</code></pre>
+
+
+<div class="notices tip" > <p>Use Tab completion to determine the names of the PSUs in your switches.
+Use the optional <em>hostname</em> parameter to view the PSU state for a given
+switch.</p>
+ </div>
+
+
+<h3 id="view-the-temperature-in-all-switches">View the Temperature in All switches</h3>
+
+<p>Fan, power supply unit, and temperature sensors are available to provide
+additional data about the NetQ Platform operation. To view the
+temperature sensor status, current temperature, and configured threshold
+values, use the <code>netq show sensors temp</code> command. If you name the
+temperature sensors in all of your switches consistently, you can view
+more information at once.</p>
+
+<p>In this example, we look at the state of all temperature sensors with
+the name <em>psu1temp1</em>.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show sensors temp psu2temp1 
+Matching sensors records:
+Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
+ 
+----------------- --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
+ 
+exit01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:17 2019
+ 
+exit02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:33 2019
+ 
+leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Sun Apr 21 20:07:12 2019
+ 
+leaf02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:41 2019
+ 
+leaf03            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:44 2019
+ 
+leaf04            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:36 2019
+ 
+spine01           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:52 2019
+ 
+spine02           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:08 2019
+   
+    
+</code></pre>
+
+
+<div class="notices tip" > <p>Use Tab completion to determine the names of the temperature sensors in
+your switches. Use the optional <em>hostname</em> parameter to view the
+temperature state, current temperature, and threshold values for a given
+switch.</p>
+ </div>
+
+
+<h3 id="view-all-sensor-data">View All Sensor Data</h3>
+
+<p>To view all fan data, all PSU data, or all temperature data from the
+sensors, you must view all of the sensor data. The more consistently you
+name your sensors, the easier it will be to view the full sensor data.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show sensors all
+Matching sensors records:
+Hostname          Name            Description                         State      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ----------------------------------- -------------------------
+exit01            fan1            fan tray 1, fan 1                   ok                                             Fri Apr 19 16:01:17 2019
+exit01            fan2            fan tray 1, fan 2                   ok                                             Fri Apr 19 16:01:17 2019
+exit01            fan3            fan tray 2, fan 1                   ok                                             Fri Apr 19 16:01:17 2019
+exit01            fan4            fan tray 2, fan 2                   ok                                             Fri Apr 19 16:01:17 2019
+exit01            fan5            fan tray 3, fan 1                   ok                                             Fri Apr 19 16:01:17 2019
+exit01            fan6            fan tray 3, fan 2                   ok                                             Fri Apr 19 16:01:17 2019
+exit01            psu1fan1        psu1 fan                            ok                                             Fri Apr 19 16:01:17 2019
+exit01            psu1temp1       psu1 temp sensor                    ok                                             Fri Apr 19 16:01:17 2019
+exit01            psu2fan1        psu2 fan                            ok                                             Fri Apr 19 16:01:17 2019
+exit01            psu2temp1       psu2 temp sensor                    ok                                             Fri Apr 19 16:01:17 2019
+exit01            temp1           board sensor near cpu               ok                                             Fri Apr 19 16:01:17 2019
+exit01            temp2           board sensor near virtual switch    ok                                             Fri Apr 19 16:01:17 2019
+exit01            temp3           board sensor at front left corner   ok                                             Fri Apr 19 16:01:17 2019
+exit01            temp4           board sensor at front right corner  ok                                             Fri Apr 19 16:01:17 2019
+exit01            temp5           board sensor near fan               ok                                             Fri Apr 19 16:01:17 2019
+exit02            fan1            fan tray 1, fan 1                   ok                                             Fri Apr 19 16:01:33 2019
+exit02            fan2            fan tray 1, fan 2                   ok                                             Fri Apr 19 16:01:33 2019
+exit02            fan3            fan tray 2, fan 1                   ok                                             Fri Apr 19 16:01:33 2019
+exit02            fan4            fan tray 2, fan 2                   ok                                             Fri Apr 19 16:01:33 2019
+exit02            fan5            fan tray 3, fan 1                   ok                                             Fri Apr 19 16:01:33 2019
+exit02            fan6            fan tray 3, fan 2                   ok                                             Fri Apr 19 16:01:33 2019
+exit02            psu1fan1        psu1 fan                            ok                                             Fri Apr 19 16:01:33 2019
+exit02            psu1temp1       psu1 temp sensor                    ok                                             Fri Apr 19 16:01:33 2019
+...
+   
+    
+</code></pre>
+
+<h3 id="view-all-sensor-related-events">View All Sensor-related Events</h3>
+
+<p>You can view the events that are triggered by the sensors using the
+<code>netq show events</code> command. You can narrow the focus to only critical
+events using the severity <em>level</em> option.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show events type sensors
+No matching events records found
+ 
+cumulus@switch:~$ netq show events level critical type sensors 
+No matching events records found
+   
+    
+</code></pre>
+
+<h2 id="monitor-switch-software-information">Monitor Switch Software Information</h2>
+
+<p>The syntax for this command is:</p>
+
+<pre><code>                   
+netq [] show agents
+netq [] show inventory brief [json]
+netq [] show inventory license [cumulus] [status ok|status missing] [around ] [json]
+netq [] show inventory os [version |name ] [json]
+netq [] show events [level info|level error|level warning|level critical|level debug] [type license|type os] [between  and ] [json]
+   
+    
+</code></pre>
+
+
+<div class="notices info" > <p>The keyword values for the <code>name</code> keyword is specific to your
+deployment. For example, if you have devices with only one type of OS,
+say Cumulus Linux, then that is the only option available for the
+<code>os-name</code> keyword value. If you have multiple OSs running, say you also
+have Ubuntu, then that would also be an option for you.</p>
+ </div>
+
+
+
+<div class="notices info" > <p>When entering a time value, you must include a numeric value <em>and</em> the
+unit of measure:</p>
+
+<ul>
+<li><p>w: week(s)</p></li>
+
+<li><p>d: day(s)</p></li>
+
+<li><p>h: hour(s)</p></li>
+
+<li><p>m: minute(s)</p></li>
+
+<li><p>s: second(s)</p></li>
+
+<li><p>now</p></li>
+</ul>
+
+<p>For time ranges, the <code>&lt;text-time&gt;</code> is the most recent time and the
+<code>&lt;text-endtime&gt;</code> is the oldest time. The values do not have to have the
+same unit of measure.</p>
+ </div>
+
+
+<h3 id="view-os-information-for-a-switch">View OS Information for a Switch</h3>
+
+<p>You can view the name and version of the OS on a switch, and when it was
+last modified. This example shows the OS information for all devices.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory os
+Matching inventory records:
+Hostname          Name            Version                              Last Changed
+----------------- --------------- ------------------------------------ -------------------------
+edge01            Ubuntu          16.04                                Fri Apr 19 16:01:18 2019
+exit01            CL              3.7.5                                Fri Apr 19 16:01:13 2019
+exit02            CL              3.7.5                                Fri Apr 19 16:01:38 2019
+leaf01            CL              3.7.5                                Sun Apr 21 20:07:09 2019
+leaf02            CL              3.7.5                                Fri Apr 19 16:01:46 2019
+leaf03            CL              3.7.5                                Fri Apr 19 16:01:41 2019
+leaf04            CL              3.7.5                                Fri Apr 19 16:01:32 2019
+server01          Ubuntu          16.04                                Fri Apr 19 16:01:55 2019
+server02          Ubuntu          16.04                                Fri Apr 19 16:01:55 2019
+server03          Ubuntu          16.04                                Fri Apr 19 16:01:55 2019
+server04          Ubuntu          16.04                                Fri Apr 19 16:01:55 2019
+spine01           CL              3.7.5                                Fri Apr 19 16:01:49 2019
+spine02           CL              3.7.5                                Fri Apr 19 16:01:05 2019
+   
+    
+</code></pre>
+
+<p>You can filter the results of the command to view only devices with a
+particular operating system or version. This can be especially helpful
+when you suspect that a particular device has not been upgraded as
+expected. This example shows all devices with the Cumulus Linux version
+3.7.5 installed.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory os version 3.7.5
+Matching inventory records:
+Hostname          Name            Version                              Last Changed
+----------------- --------------- ------------------------------------ -------------------------
+exit01            CL              3.7.5                                Fri Apr 19 16:01:13 2019
+exit02            CL              3.7.5                                Fri Apr 19 16:01:38 2019
+leaf01            CL              3.7.5                                Sun Apr 21 20:07:09 2019
+leaf02            CL              3.7.5                                Fri Apr 19 16:01:46 2019
+leaf03            CL              3.7.5                                Fri Apr 19 16:01:41 2019
+leaf04            CL              3.7.5                                Fri Apr 19 16:01:32 2019
+spine01           CL              3.7.5                                Fri Apr 19 16:01:49 2019
+spine02           CL              3.7.5                                Fri Apr 19 16:01:05 2019
+   
+    
+</code></pre>
+
+<p>This example shows changes that have been made to the OS on all devices
+between 16 and 21 days ago. Remember to use measurement units on the
+time values.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show events type os between 16d and 21d
+Matching inventory records:
+Hostname          Name            Version                              DB State   Last Changed
+----------------- --------------- ------------------------------------ ---------- -------------------------
+mlx-2410a1-05     Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:53 2019
+mlx-2700-11       Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:45 2019
+mlx-2100-05       Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:26 2019
+mlx-2100-05       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:47 2019
+mlx-2700-11       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:38 2019
+mlx-2100-05       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:42 2019
+mlx-2700-11       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:51 2019
+   
+    
+</code></pre>
+
+<h3 id="view-license-information-for-a-switch">View License Information for a Switch</h3>
+
+<p>You can view the name and current state of the license (whether it valid
+or not), and when it was last updated for one or more devices. If a
+license is no longer valid on a switch, it does not operate correctly.
+This example shows the license information for all devices.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory license
+ 
+Matching inventory records:
+Hostname          Name            State      Last Changed
+----------------- --------------- ---------- -------------------------
+edge01            Cumulus Linux   N/A        Fri Apr 19 16:01:18 2019
+exit01            Cumulus Linux   ok         Fri Apr 19 16:01:13 2019
+exit02            Cumulus Linux   ok         Fri Apr 19 16:01:38 2019
+leaf01            Cumulus Linux   ok         Sun Apr 21 20:07:09 2019
+leaf02            Cumulus Linux   ok         Fri Apr 19 16:01:46 2019
+leaf03            Cumulus Linux   ok         Fri Apr 19 16:01:41 2019
+leaf04            Cumulus Linux   ok         Fri Apr 19 16:01:32 2019
+server01          Cumulus Linux   N/A        Fri Apr 19 16:01:55 2019
+server02          Cumulus Linux   N/A        Fri Apr 19 16:01:55 2019
+server03          Cumulus Linux   N/A        Fri Apr 19 16:01:55 2019
+server04          Cumulus Linux   N/A        Fri Apr 19 16:01:55 2019
+spine01           Cumulus Linux   ok         Fri Apr 19 16:01:49 2019
+spine02           Cumulus Linux   ok         Fri Apr 19 16:01:05 2019
+   
+    
+</code></pre>
+
+<p>You can view the historical state of licenses using the around keyword.
+This example shows the license state for all devices about 7 days ago.
+Remember to use measurement units on the time values.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory license around 7d
+ 
+Matching inventory records:
+Hostname          Name            State      Last Changed
+----------------- --------------- ---------- -------------------------
+edge01            Cumulus Linux   N/A        Tue Apr 2 14:01:18 2019
+exit01            Cumulus Linux   ok         Tue Apr 2 14:01:13 2019
+exit02            Cumulus Linux   ok         Tue Apr 2 14:01:38 2019
+leaf01            Cumulus Linux   ok         Tue Apr 2 20:07:09 2019
+leaf02            Cumulus Linux   ok         Tue Apr 2 14:01:46 2019
+leaf03            Cumulus Linux   ok         Tue Apr 2 14:01:41 2019
+leaf04            Cumulus Linux   ok         Tue Apr 2 14:01:32 2019
+server01          Cumulus Linux   N/A        Tue Apr 2 14:01:55 2019
+server02          Cumulus Linux   N/A        Tue Apr 2 14:01:55 2019
+server03          Cumulus Linux   N/A        Tue Apr 2 14:01:55 2019
+server04          Cumulus Linux   N/A        Tue Apr 2 14:01:55 2019
+spine01           Cumulus Linux   ok         Tue Apr 2 14:01:49 2019
+spine02           Cumulus Linux   ok         Tue Apr 2 14:01:05 2019
+   
+    
+</code></pre>
+
+<p>You can filter the results to show license changes during a particular
+timeframe for a particular device. This example shows that there have
+been no changes to the license state on spine01 between now and 24 hours
+ago.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq spine01 show events type license between now and 24h
+No matching events records found
+   
+    
+</code></pre>
+
+<h3 id="view-summary-of-operating-system-on-a-switch">View Summary of Operating System on a Switch</h3>
+
+<p>As with the hardware information, you can view a summary of the software
+information using the <em>brief</em> keyword. Specify a hostname to view the
+summary for a specific device.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show inventory brief
+ 
+Matching inventory records:
+Hostname          Switch               OS              CPU      ASIC            Ports
+----------------- -------------------- --------------- -------- --------------- -----------------------------------
+edge01            N/A                  Ubuntu          x86_64   N/A             N/A
+exit01            VX                   CL              x86_64   VX              N/A
+exit02            VX                   CL              x86_64   VX              N/A
+leaf01            VX                   CL              x86_64   VX              N/A
+leaf02            VX                   CL              x86_64   VX              N/A
+leaf03            VX                   CL              x86_64   VX              N/A
+leaf04            VX                   CL              x86_64   VX              N/A
+server01          N/A                  Ubuntu          x86_64   N/A             N/A
+server02          N/A                  Ubuntu          x86_64   N/A             N/A
+server03          N/A                  Ubuntu          x86_64   N/A             N/A
+server04          N/A                  Ubuntu          x86_64   N/A             N/A
+spine01           VX                   CL              x86_64   VX              N/A
+spine02           VX                   CL              x86_64   VX              N/A
+   
+    
+</code></pre>
+
+<h3 id="validate-netq-agents-are-running">Validate NetQ Agents are Running</h3>
+
+<p>You can confirm that NetQ Agents are running on switches and hosts (if
+installed) using the <code>netq show agents</code> command. Viewing the <strong>Status</strong>
+column of the output indicates whether the agent is up and current,
+labelled <em>Fresh</em>, or down and stale, labelled <em>Rotten</em>. Additional
+information is provided about the agent status, including whether it is
+time synchronized, how long it has been up, and the last time its state
+changed.</p>
+
+<p>This example shows NetQ Agent state on all devices.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show agents
+Matching agents records:
+Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
+----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
+edge01            Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:7h:2m:12s              2d:7h:2m:5s               2d:7h:2m:5s                Sun Apr 21 16:00:50 2019
+exit01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:30s              2d:7h:1m:22s              2d:7h:1m:22s               Sun Apr 21 16:00:52 2019
+exit02            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:36s              2d:7h:1m:27s              2d:7h:1m:27s               Sun Apr 21 16:01:19 2019
+leaf01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:28s              2h:54m:12s                2h:54m:12s                 Sun Apr 21 20:05:45 2019
+leaf02            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:38s              2d:7h:1m:29s              2d:7h:1m:29s               Sun Apr 21 16:01:43 2019
+leaf03            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:37s              2d:7h:1m:28s              2d:7h:1m:28s               Sun Apr 21 16:01:23 2019
+leaf04            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:39s              2d:7h:1m:31s              2d:7h:1m:31s               Sun Apr 21 16:01:27 2019
+server01          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:6h:59m:35s             2d:6h:59m:27s             2d:6h:59m:27s              Sun Apr 21 16:00:43 2019
+server02          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:6h:59m:34s             2d:6h:59m:26s             2d:6h:59m:26s              Sun Apr 21 16:00:46 2019
+server03          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:6h:59m:34s             2d:6h:59m:26s             2d:6h:59m:26s              Sun Apr 21 16:00:52 2019
+server04          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:6h:59m:34s             2d:6h:59m:26s             2d:6h:59m:26s              Sun Apr 21 16:00:43 2019
+spine01           Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:40s              2d:7h:1m:32s              2d:7h:1m:32s               Sun Apr 21 16:01:33 2019
+spine02           Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:34s              2d:7h:1m:26s              2d:7h:1m:26s               Sun Apr 21 16:01:12 2019
+   
+    
+</code></pre>
+
+<p>You can narrow your focus in several ways:</p>
+
+<ul>
+<li><p>View the state of the NetQ Agent on a given device using the
+<em>hostname</em> keyword.</p></li>
+
+<li><p>View only the NetQ Agents that are fresh or rotten using the <em>fresh</em>
+or <em>rotten</em> keyword.</p></li>
+
+<li><p>View the state of NetQ Agents at an earlier time using the <em>around</em>
+keyword.</p></li>
+</ul>
+
+<h2 id="monitor-software-services">Monitor Software Services</h2>
+
+<p>Cumulus Linux and NetQ run a number of services to deliver the various
+features of these products. You can monitor their status using the <code>netq
+show services</code> command. The services related to system-level operation
+are described here. Monitoring of other services, such as those related
+to routing, are described with those topics. NetQ automatically monitors
+t he following services:</p>
+
+<ul>
+<li><p>bgpd: BGP (Border Gateway Protocol) daemon</p></li>
+
+<li><p>clagd: MLAG (Multi-chassis Link Aggregation) daemon</p></li>
+
+<li><p>helpledmgrd: Switch LED manager daemon</p></li>
+
+<li><p>lldpd: LLDP (Link Layer Discovery Protocol) daemon</p></li>
+
+<li><p>mstpd: MSTP (Multiple Spanning Tree Protocol) daemon</p></li>
+
+<li><p>neighmgrd: Neighbor Manager daemon for BGP and OSPF</p></li>
+
+<li><p>netq-agent: NetQ Agent service</p></li>
+
+<li><p>netqd: NetQ application daemon</p></li>
+
+<li><p>ntp: NTP service</p></li>
+
+<li><p>ntpd: NTP daemon</p></li>
+
+<li><p>ptmd: PTM (Prescriptive Topology Manager) daemon</p></li>
+
+<li><p>pwmd : PWM ( <span style="color: #000000;"> Password </span>
+Manager) daemon</p></li>
+
+<li><p>rsyslog: Rocket-fast system event logging processing service</p></li>
+
+<li><p>smond: System monitor daemon</p></li>
+
+<li><p>ssh: Secure Shell service for switches and servers</p></li>
+
+<li><p>status: License validation service</p></li>
+
+<li><p>syslog: System event logging service</p></li>
+
+<li><p>vrf: VRF (Virtual Route Forwarding) service</p></li>
+
+<li><p>zebra: GNU Zebra routing daemon</p></li>
+</ul>
+
+<p>The CLI syntax for viewing the status of services is:</p>
+
+<pre><code>                   
+netq [] show services [] [vrf ] [active|monitored] [around ] [json]
+netq [] show services [] [vrf ] status (ok|warning|error|fail) [around ] [json]
+netq [] show events [level info | level error | level warning | level critical | level debug] type services [between  and ] [json]
+   
+    
+</code></pre>
+
+<h3 id="view-all-services-on-all-devices">View All Services on All Devices</h3>
+
+<p>This example shows all of the available services on each device and
+whether each is enabled, active, and monitored, along with how long the
+service has been running and the last time it was changed.</p>
+
+
+<div class="notices tip" > <p>It is useful to have colored output for this show command. To configure
+colored output, run the <code>netq config add color</code> command.</p>
+ </div>
+
+
+<pre><code>                   
+cumulus@switch:~$ netq show services
+Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+leaf01            bgpd                 2872  default         yes     yes    yes       ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            clagd                n/a   default         yes     no     yes       n/a              1d:6h:43m:35s             Fri Feb 15 17:28:48 2019
+leaf01            ledmgrd              1850  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            lldpd                2651  default         yes     yes    yes       ok               1d:6h:43m:27s             Fri Feb 15 17:28:56 2019
+leaf01            mstpd                1746  default         yes     yes    yes       ok               1d:6h:43m:35s             Fri Feb 15 17:28:48 2019
+leaf01            neighmgrd            1986  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            netq-agent           8654  mgmt            yes     yes    yes       ok               1d:6h:43m:29s             Fri Feb 15 17:28:54 2019
+leaf01            netqd                8848  mgmt            yes     yes    yes       ok               1d:6h:43m:29s             Fri Feb 15 17:28:54 2019
+leaf01            ntp                  8478  mgmt            yes     yes    yes       ok               1d:6h:43m:29s             Fri Feb 15 17:28:54 2019
+leaf01            ptmd                 2743  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            pwmd                 1852  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            smond                1826  default         yes     yes    yes       ok               1d:6h:43m:27s             Fri Feb 15 17:28:56 2019
+leaf01            ssh                  2106  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            syslog               8254  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            zebra                2856  default         yes     yes    yes       ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf02            bgpd                 2867  default         yes     yes    yes       ok               1d:6h:43m:55s             Fri Feb 15 17:28:28 2019
+leaf02            clagd                n/a   default         yes     no     yes       n/a              1d:6h:43m:31s             Fri Feb 15 17:28:53 2019
+leaf02            ledmgrd              1856  default         yes     yes    no        ok               1d:6h:43m:55s             Fri Feb 15 17:28:28 2019
+leaf02            lldpd                2646  default         yes     yes    yes       ok               1d:6h:43m:30s             Fri Feb 15 17:28:53 2019
+...
+   
+    
+</code></pre>
+
+<p>You can also view services information in JSON format:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show services json
+{
+    &quot;services&quot;:[
+        {
+            &quot;status&quot;:&quot;ok&quot;,
+            &quot;uptime&quot;:1550251734.0,
+            &quot;monitored&quot;:&quot;yes&quot;,
+            &quot;service&quot;:&quot;ntp&quot;,
+            &quot;lastChanged&quot;:1550251734.4790000916,
+            &quot;pid&quot;:&quot;8478&quot;,
+            &quot;hostname&quot;:&quot;leaf01&quot;,
+            &quot;enabled&quot;:&quot;yes&quot;,
+            &quot;vrf&quot;:&quot;mgmt&quot;,
+            &quot;active&quot;:&quot;yes&quot;
+        },
+        {
+            &quot;status&quot;:&quot;ok&quot;,
+            &quot;uptime&quot;:1550251704.0,
+            &quot;monitored&quot;:&quot;no&quot;,
+            &quot;service&quot;:&quot;ssh&quot;,
+            &quot;lastChanged&quot;:1550251704.0929999352,
+            &quot;pid&quot;:&quot;2106&quot;,
+            &quot;hostname&quot;:&quot;leaf01&quot;,
+            &quot;enabled&quot;:&quot;yes&quot;,
+            &quot;vrf&quot;:&quot;default&quot;,
+            &quot;active&quot;:&quot;yes&quot;
+        },
+        {
+            &quot;status&quot;:&quot;ok&quot;,
+            &quot;uptime&quot;:1550251736.0,
+            &quot;monitored&quot;:&quot;yes&quot;,
+            &quot;service&quot;:&quot;lldpd&quot;,
+            &quot;lastChanged&quot;:1550251736.5160000324,
+            &quot;pid&quot;:&quot;2651&quot;,
+            &quot;hostname&quot;:&quot;leaf01&quot;,
+            &quot;enabled&quot;:&quot;yes&quot;,
+            &quot;vrf&quot;:&quot;default&quot;,
+            &quot;active&quot;:&quot;yes&quot;
+        },
+        {
+            &quot;status&quot;:&quot;ok&quot;,
+            &quot;uptime&quot;:1550251704.0,
+            &quot;monitored&quot;:&quot;yes&quot;,
+            &quot;service&quot;:&quot;bgpd&quot;,
+            &quot;lastChanged&quot;:1550251704.1040000916,
+            &quot;pid&quot;:&quot;2872&quot;,
+            &quot;hostname&quot;:&quot;leaf01&quot;,
+            &quot;enabled&quot;:&quot;yes&quot;,
+            &quot;vrf&quot;:&quot;default&quot;,
+            &quot;active&quot;:&quot;yes&quot;
+        },
+        {
+            &quot;status&quot;:&quot;ok&quot;,
+            &quot;uptime&quot;:1550251704.0,
+            &quot;monitored&quot;:&quot;no&quot;,
+            &quot;service&quot;:&quot;neighmgrd&quot;,
+            &quot;lastChanged&quot;:1550251704.0969998837,
+            &quot;pid&quot;:&quot;1986&quot;,
+            &quot;hostname&quot;:&quot;leaf01&quot;,
+            &quot;enabled&quot;:&quot;yes&quot;,
+            &quot;vrf&quot;:&quot;default&quot;,
+            &quot;active&quot;:&quot;yes&quot;
+        },
+...
+   
+    
+</code></pre>
+
+<p>If you want to view the service information for a given device, simply
+use the <em>hostname</em> variable when running the command.</p>
+
+<h3 id="view-information-about-a-given-service-on-all-devices">View Information about a Given Service on All Devices</h3>
+
+<p>You can view the status of a given service at the current time, at a
+prior point in time, or view the changes that have occurred for the
+service during a specified timeframe.</p>
+
+<p>This example shows how to view the status of the NTP service across the
+network. In this case, VRF is configured so the NTP service runs on both
+the default and management interface. You can perform the same command
+with the other services, such as <code>bgpd</code>, <code>lldpd</code>, and <code>clagd</code>.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show services ntp
+Matching services records:
+Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+exit01            ntp                  8478  mgmt            yes     yes    yes       ok               1d:6h:52m:41s             Fri Feb 15 17:28:54 2019
+exit02            ntp                  8497  mgmt            yes     yes    yes       ok               1d:6h:52m:36s             Fri Feb 15 17:28:59 2019
+firewall01        ntp                  n/a   default         yes     yes    yes       ok               1d:6h:53m:4s              Fri Feb 15 17:28:31 2019
+hostd-11          ntp                  n/a   default         yes     yes    yes       ok               1d:6h:52m:46s             Fri Feb 15 17:28:49 2019
+hostd-21          ntp                  n/a   default         yes     yes    yes       ok               1d:6h:52m:37s             Fri Feb 15 17:28:58 2019
+hosts-11          ntp                  n/a   default         yes     yes    yes       ok               1d:6h:52m:28s             Fri Feb 15 17:29:07 2019
+hosts-13          ntp                  n/a   default         yes     yes    yes       ok               1d:6h:52m:19s             Fri Feb 15 17:29:16 2019
+hosts-21          ntp                  n/a   default         yes     yes    yes       ok               1d:6h:52m:14s             Fri Feb 15 17:29:21 2019
+hosts-23          ntp                  n/a   default         yes     yes    yes       ok               1d:6h:52m:4s              Fri Feb 15 17:29:31 2019
+noc-pr            ntp                  2148  default         yes     yes    yes       ok               1d:6h:53m:43s             Fri Feb 15 17:27:52 2019
+noc-se            ntp                  2148  default         yes     yes    yes       ok               1d:6h:53m:38s             Fri Feb 15 17:27:57 2019
+spine01           ntp                  8414  mgmt            yes     yes    yes       ok               1d:6h:53m:30s             Fri Feb 15 17:28:05 2019
+spine02           ntp                  8419  mgmt            yes     yes    yes       ok               1d:6h:53m:27s             Fri Feb 15 17:28:08 2019
+spine03           ntp                  8443  mgmt            yes     yes    yes       ok               1d:6h:53m:22s             Fri Feb 15 17:28:13 2019
+leaf01             ntp                  8765  mgmt            yes     yes    yes       ok               1d:6h:52m:52s             Fri Feb 15 17:28:43 2019
+leaf02             ntp                  8737  mgmt            yes     yes    yes       ok               1d:6h:52m:46s             Fri Feb 15 17:28:49 2019
+leaf11            ntp                  9305  mgmt            yes     yes    yes       ok               1d:6h:49m:22s             Fri Feb 15 17:32:13 2019
+leaf12            ntp                  9339  mgmt            yes     yes    yes       ok               1d:6h:49m:9s              Fri Feb 15 17:32:26 2019
+leaf21            ntp                  9367  mgmt            yes     yes    yes       ok               1d:6h:49m:5s              Fri Feb 15 17:32:30 2019
+leaf22            ntp                  9403  mgmt            yes     yes    yes       ok               1d:6h:52m:57s             Fri Feb 15 17:28:38 2019
+   
+    
+</code></pre>
+
+<p>This example shows the status of the BGP daemon.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show services bgpd
+Matching services records:
+Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+exit01            bgpd                 2872  default         yes     yes    yes       ok               1d:6h:54m:37s             Fri Feb 15 17:28:24 2019
+exit02            bgpd                 2867  default         yes     yes    yes       ok               1d:6h:54m:33s             Fri Feb 15 17:28:28 2019
+firewall01        bgpd                 21766 default         yes     yes    yes       ok               1d:6h:54m:54s             Fri Feb 15 17:28:07 2019
+spine01           bgpd                 2953  default         yes     yes    yes       ok               1d:6h:55m:27s             Fri Feb 15 17:27:34 2019
+spine02           bgpd                 2948  default         yes     yes    yes       ok               1d:6h:55m:23s             Fri Feb 15 17:27:38 2019
+spine03           bgpd                 2953  default         yes     yes    yes       ok               1d:6h:55m:18s             Fri Feb 15 17:27:43 2019
+leaf01            bgpd                 3221  default         yes     yes    yes       ok               1d:6h:54m:48s             Fri Feb 15 17:28:13 2019
+leaf02            bgpd                 3177  default         yes     yes    yes       ok               1d:6h:54m:42s             Fri Feb 15 17:28:19 2019
+leaf11            bgpd                 3521  default         yes     yes    yes       ok               1d:6h:51m:18s             Fri Feb 15 17:31:43 2019
+leaf12            bgpd                 3527  default         yes     yes    yes       ok               1d:6h:51m:6s              Fri Feb 15 17:31:55 2019
+leaf21            bgpd                 3512  default         yes     yes    yes       ok               1d:6h:51m:1s              Fri Feb 15 17:32:00 2019
+leaf22            bgpd                 3536  default         yes     yes    yes       ok               1d:6h:54m:54s             Fri Feb 15 17:28:07 2019
+   
+    
+</code></pre>
+
+<h3 id="view-events-related-to-a-given-service">View Events Related to a Given Service</h3>
+
+<p>To view changes over a given time period, use the <code>netq</code> <code>show events</code>
+command. For more detailed information about events, refer to <a href="/old/Cumulus_NetQ/Monitor_Events.html">Monitor
+Events</a>.</p>
+
+<p>In this example, we want to view changes to the bgpd service in the last
+48 hours.</p>
+
+<pre><code>                   
+cumulus@switch:/$ netq show events type bgp between now and 48h
+Matching events records:
+Hostname          Message Type Severity Message                             Timestamp
+----------------- ------------ -------- ----------------------------------- -------------------------
+leaf01            bgp          info     BGP session with peer spine-1 swp3. 1d:6h:55m:37s
+                                        3 vrf DataVrf1081 state changed fro
+                                        m failed to Established
+leaf01            bgp          info     BGP session with peer spine-2 swp4. 1d:6h:55m:37s
+                                        3 vrf DataVrf1081 state changed fro
+                                        m failed to Established
+leaf01            bgp          info     BGP session with peer spine-3 swp5. 1d:6h:55m:37s
+                                        3 vrf DataVrf1081 state changed fro
+                                        m failed to Established
+leaf01            bgp          info     BGP session with peer spine-1 swp3. 1d:6h:55m:37s
+                                        2 vrf DataVrf1080 state changed fro
+                                        m failed to Established
+leaf01            bgp          info     BGP session with peer spine-3 swp5. 1d:6h:55m:37s
+                                        2 vrf DataVrf1080 state changed fro
+                                        m failed to Established
+leaf01            bgp          info     BGP session with peer spine-2 swp4. 1d:6h:55m:37s
+                                        2 vrf DataVrf1080 state changed fro
+                                        m failed to Established
+leaf01            bgp          info     BGP session with peer spine-3 swp5. 1d:6h:55m:37s
+                                        4 vrf DataVrf1082 state changed fro
+                                        m failed to Established
+   
+    
+</code></pre>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#monitor-switch-and-host-hardware-information">Monitor Switch and Host Hardware Information</a>
+<ul>
+<li><a href="#view-a-summary-of-your-network-inventory">View a Summary of Your Network Inventory</a></li>
+<li><a href="#view-information-about-the-asic-on-all-switches">View Information about the ASIC on all Switches</a></li>
+<li><a href="#view-information-about-the-motherboard-in-a-switch">View Information about the Motherboard in a Switch</a></li>
+<li><a href="#view-information-about-the-cpu-on-a-switch">View Information about the CPU on a Switch</a></li>
+<li><a href="#view-information-about-the-disk-on-a-switch">View Information about the Disk on a Switch</a></li>
+<li><a href="#view-memory-information-for-a-switch">View Memory Information for a Switch</a></li>
+<li><a href="#view-fan-health-for-all-switches">View Fan Health for All Switches</a></li>
+<li><a href="#view-psu-health-for-all-switches">View PSU Health for All Switches</a></li>
+<li><a href="#view-the-temperature-in-all-switches">View the Temperature in All switches</a></li>
+<li><a href="#view-all-sensor-data">View All Sensor Data</a></li>
+<li><a href="#view-all-sensor-related-events">View All Sensor-related Events</a></li>
+</ul></li>
+<li><a href="#monitor-switch-software-information">Monitor Switch Software Information</a>
+<ul>
+<li><a href="#view-os-information-for-a-switch">View OS Information for a Switch</a></li>
+<li><a href="#view-license-information-for-a-switch">View License Information for a Switch</a></li>
+<li><a href="#view-summary-of-operating-system-on-a-switch">View Summary of Operating System on a Switch</a></li>
+<li><a href="#validate-netq-agents-are-running">Validate NetQ Agents are Running</a></li>
+</ul></li>
+<li><a href="#monitor-software-services">Monitor Software Services</a>
+<ul>
+<li><a href="#view-all-services-on-all-devices">View All Services on All Devices</a></li>
+<li><a href="#view-information-about-a-given-service-on-all-devices">View Information about a Given Service on All Devices</a></li>
+<li><a href="#view-events-related-to-a-given-service">View Events Related to a Given Service</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cumulus NetQ UI User Guide on Cumulus Networks Documentation</title>
+    <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/</link>
+    <description>Recent content in Cumulus NetQ UI User Guide on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>UI Preface</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/</guid>
+      <description>A variety of resources are available for you to become familiar with Cumulus NetQ and to take advantage of its monitoring and analytic capabilities. These resources are identified here along with information about how the content is presented.
+What&amp;rsquo;s New in Cumulus NetQ 2.1 Cumulus NetQ has been reinvented to scale with the fast adoption rate of open networks and rapid network growth. In addition to the real-time data collection and fabric-wide performance analysis that are already supported in Cumulus NetQ 1.</description>
+    </item>
+    
+    <item>
+      <title>NetQ User Interface Overview</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/</guid>
+      <description>The NetQ 2.1 graphical user interface (UI) enables you to access NetQ capabilities through a web browser as opposed to through a terminal window using the Command Line Interface (CLI). Visual representations of the health of the network, inventory, and system events make it easy to both find faults and misconfigurations and to fix them.
+The UI is supported on Google Chrome. Other popular browsers may be used, but have not been tested and may have some presentation issues.</description>
+    </item>
+    
+    <item>
+      <title>NetQ Management</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/</guid>
+      <description>As an administrator, you can manage access to and various application-wide settings for the NetQ UI as well as view information about the system server, all from a single workbench.
+Individual users have the ability to set preferences specific to their workspaces. This information is covered separately. Refer to User Settings .
+NetQ Management Workbench The NetQ Management workbench is accessed from the main menu and from the header of an open workbench.</description>
+    </item>
+    
+    <item>
+      <title>Monitor Switches</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/</guid>
+      <description>With the NetQ UI, you can monitor individual switches separately from the network. You are able to view the status of services they are running, health of its various components, and connectivity performance. Being able to monitor switch component inventory aids in upgrade, compliance, and other planning tasks. Viewing individual switch health helps isolate performance issues.
+For network-wide monitoring, refer to Monitor the Network.
+Monitor Switch Performance Viewing detail about a particular switch is essential when troubleshooting performance issues.</description>
+    </item>
+    
+  </channel>
+</rss>

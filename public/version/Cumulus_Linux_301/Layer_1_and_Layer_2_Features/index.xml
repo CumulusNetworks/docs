@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Layer 1 and Layer 2 Features on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</link>
+    <description>Recent content in Layer 1 and Layer 2 Features on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spanning Tree and Rapid Spanning Tree</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</guid>
+      <description>Spanning tree protocol (STP) is always recommended in layer 2 topologies, as it prevents bridge loops and broadcast radiation on a bridged network.
+The mstpd daemon is an open source project used by Cumulus Linux to implement IEEE802.1D 2004 and IEEE802.1Q 2011. mstpctl is the utility provided by the mstpd service to configure STP. STP is disabled by default on bridges in Cumulus Linux.
+Commands  brctl
+ mstpctl</description>
+    </item>
+    
+    <item>
+      <title>Link Layer Discovery Protocol</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</guid>
+      <description>The lldpd daemon implements the IEEE802.1AB (Link Layer Discovery Protocol, or LLDP) standard. LLDP allows you to know which ports are neighbors of a given port. By default, lldpd runs as a daemon and is started at system boot. lldpd command line arguments are placed in /etc/default/lldpd. lldpd configuration options are placed in /etc/lldpd.conf or under /etc/lldpd.d/.
+For more details on the command line arguments and config options, please see man lldpd(8).</description>
+    </item>
+    
+    <item>
+      <title>Prescriptive Topology Manager - PTM</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</guid>
+      <description>In data center topologies, right cabling is a time-consuming endeavor and is error prone. Prescriptive Topology Manager (PTM) is a dynamic cabling verification tool to help detect and eliminate such errors. It takes a Graphviz-DOT specified network cabling plan (something many operators already generate), stored in a topology.dot file, and couples it with runtime information derived from LLDP to verify that the cabling matches the specification. The check is performed on every link transition on each node in the network.</description>
+    </item>
+    
+    <item>
+      <title>Bonding - Link Aggregation</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</guid>
+      <description>Linux bonding provides a method for aggregating multiple network interfaces (the slaves) into a single logical bonded interface (the bond). Cumulus Linux bonding supports the IEEE 802.3ad link aggregation mode. Link aggregation allows one or more links to be aggregated together to form a link aggregation group (LAG), such that a media access control (MAC) client can treat the link aggregation group as if it were a single link. The benefits of link aggregation are:</description>
+    </item>
+    
+    <item>
+      <title>Multi-Chassis Link Aggregation - MLAG</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</guid>
+      <description>Multi-Chassis Link Aggregation, or MLAG, enables a server or switch with a two-port bond (such as a link aggregation group/LAG, EtherChannel, port group, or trunk) to connect those ports to different switches and operate as if they are connected to a single, logical switch. This provides greater redundancy and greater system throughput.
+Dual-connected devices can create LACP bonds that contain links to each physical switch. Thus, active-active links from the dual-connected devices are supported even though they are connected to two different physical switches.</description>
+    </item>
+    
+    <item>
+      <title>LACP Bypass</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</guid>
+      <description>On Cumulus Linux, LACP Bypass is a feature that allows a bond configured in 802.3ad mode to become active and forward traffic even when there is no LACP partner. A typical use case for this feature is to enable a host, without the capability to run LACP, to PXE boot while connected to a switch on a bond configured in 802.3ad mode. Once the pre-boot process finishes and the host is capable of running LACP, the normal 802.</description>
+    </item>
+    
+    <item>
+      <title>Virtual Router Redundancy - VRR</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</guid>
+      <description>VRR provides virtualized router redundancy in network configurations, which enables the hosts to communicate with any redundant router without:
+ Needing to be reconfigured
+ Having to run dynamic router protocols
+ Having to run router redundancy protocols
+  A basic VRR-enabled network configuration is shown below. The network consists of several hosts, two routers running Cumulus Linux and configured with MLAG, and the rest of the network:</description>
+    </item>
+    
+    <item>
+      <title>IGMP and MLD Snooping</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/</guid>
+      <description>IGMP (Internet Group Management Protocol) and MLD (Multicast Listener Discovery) snooping functionality is implemented in the bridge driver in the Cumulus Linux kernel and are enabled by default. IGMP snooping processes IGMP v1/v2/v3 reports received on a bridge port in a bridge to identify the hosts which would like to receive multicast traffic destined to that group.
+When an IGMPv2 leave message is received, a group specific query is sent to identify if there are any other hosts interested in that group, before the group is deleted.</description>
+    </item>
+    
+  </channel>
+</rss>

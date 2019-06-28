@@ -1,0 +1,2765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TACACS Plus | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/" >
+    Cumulus Linux 3.7.7
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Cumulus_Linux_User_Guide/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/"  class="active" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Services_and_Daemons_in_Cumulus_Linux/" >
+    Services and Daemons in Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/" >
+    Layer 1 and Switch Ports
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/Switch_Port_Attributes/" >
+    Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/Hardware-enabled_DDOS_Protection/" >
+    Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/DHCP_Relays/" >
+    DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/DHCP_Servers/" >
+    DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Facebook_Voyager_Optical_Interfaces/" >
+    Facebook Voyager Optical Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_2/" >
+    Layer 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode/" >
+    VLAN-aware Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/Traditional_Bridge_Mode/" >
+    Traditional Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Virtual_Router_Redundancy_-_VRR_and_VRRP/" >
+    Virtual Router Redundancy - VRR and VRRP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Lightweight_Network_Virtualization_Overview/" >
+    Lightweight Network Virtualization Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Lightweight_Network_Virtualization_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-MH/" >
+    Integrating Hardware VTEPs with VMware NSX-MH
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/OVSDB_Server_High_Availability/" >
+    OVSDB Server High Availability
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/VXLAN_Active-Active_Mode/" >
+    VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Troubleshooting_VXLANs/" >
+    Troubleshooting VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Address_Resolution_Protocol_-_ARP/" >
+    Address Resolution Protocol - ARP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Open_Shortest_Path_First_-_OSPF/" >
+    Open Shortest Path First - OSPF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3/" >
+    Open Shortest Path First v3 - OSPFv3
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Policy-based_Routing/" >
+    Policy-based Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/GRE_Tunneling/" >
+    GRE Tunneling
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool_-ethtool_Counter_Definitions/" >
+    Monitoring Interfaces and Transceivers Using ethtool — ethtool Counter Definitions
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/" >
+    Simple Network Management Protocol (SNMP) Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/ASIC_Monitoring/" >
+    ASIC Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/switchd_Log_Message_Reference/" >
+    switchd Log Message Reference
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/FRRouting_Log_Message_Reference/" >
+    FRRouting Log Message Reference
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Cumulus_Hyperconverged_Solution_with_Nutanix/" >
+    Cumulus Hyperconverged Solution with Nutanix
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>TACACS Plus</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>TACACS Plus</h1>
+
+<p>Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication,
+and Authorization) in a transparent way with minimal configuration. The
+client implements the TACACS+ protocol as described in <a href="https://tools.ietf.org/html/draft-grant-tacacs-02" target="_blank">this IETF
+document</a>. There is
+no need to create accounts or directories on the switch. Accounting
+records are sent to all configured TACACS+ servers by default. Use of
+per-command authorization requires additional setup on the switch.</p>
+
+<h2 id="supported-features">Supported Features</h2>
+
+<ul>
+<li><p>Authentication using PAM; includes <code>login</code>, <code>ssh</code>, <code>sudo</code> and <code>su</code></p></li>
+
+<li><p>Runs over the eth0 management interface</p></li>
+
+<li><p>Ability to run in the <a href="/old/Cumulus_Linux/Management_VRF.html">management
+VRF</a></p></li>
+
+<li><p>TACACS+ privilege 15 users can run any command with sudo using the
+<code>/etc/sudoers.d/tacplus</code> file that is installed by the
+<code>libtacplus-map1</code> package</p></li>
+
+<li><p>Up to seven TACACS+ servers</p></li>
+</ul>
+
+<h2 id="install-the-tacacs-client-packages">Install the TACACS+ Client Packages</h2>
+
+<p>TACACS+ requires the following packages to be installed on Cumulus
+Linux. These packages are not part of the base Cumulus Linux image
+installation.</p>
+
+<p>To install all required packages, run these commands:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo -E apt-get update
+cumulus@switch:~$ sudo -E apt-get install tacplus-client
+   
+    
+</code></pre>
+
+<h2 id="configure-the-tacacs-client">Configure the TACACS+ Client</h2>
+
+<p>After installing TACACS+, edit the <code>/etc/tacplus_servers</code> file to add at
+least one server and one shared secret (key). You can specify the
+<code>server</code> and secret parameters in any order anywhere in the file.
+Whitespace (spaces or tabs) are not allowed. For example, if your
+TACACS+ server IP address is <code>192.168.0.30</code> and your shared secret is
+<code>tacacskey</code>, add these parameters to the <code>/etc/tacplus_servers</code> file:</p>
+
+<pre><code>                   
+secret=tacacskey
+server=192.168.0.30
+   
+    
+</code></pre>
+
+<p>Cumulus Linux supports a maximum of seven TACACS+ servers.</p>
+
+
+<div class="notices note" > <p>To specify multiple servers, they can be added, one per line, to the
+<code>/etc/tacplus_servers</code> file.</p>
+ </div>
+
+
+<p>Connections are made in the order in which they are listed in this file.
+In most cases, you do not need to change any other parameters. You can
+add parameters used by any of the packages to this file, which affects
+all the TACACS+ client software. For example, the timeout value for NSS
+lookups (see description below) is set to 5 seconds by default in the
+<code>/etc/tacplus_nss.conf</code> file, whereas the timeout value for other
+packages is 10 seconds and is set in the <code>/etc/tacplus_servers</code> file.
+The timeout value is per connection to the TACACS+ servers. (If
+authorization is configured per command, the timeout occurs for <em>each</em>
+command.) There are several (typically four) connections to the server
+per login attempt from PAM, as well as two or more through NSS.
+Therefore, with the default timeout values, a TACACS+ server that is not
+reachable can delay logins by a minute or more per unreachable server.
+If you must list unreachable TACACS+ servers, place them at the end of
+the server list and consider reducing the timeout values.</p>
+
+<p>When you add or remove TACACS+ servers, you must restart <code>auditd</code> (with
+the <code>systemctl restart auditd</code> command) or you must send a signal (with
+<code>killall -HUP audisp-tacplus</code>) before <code>audisp-tacplus</code> rereads the
+configuration to see the changed server list.</p>
+
+<p>You can also configure the IP address used as the source IP address when
+communicating with the TACACS+ server. See <a href="/old/Cumulus_Linux/#src-8362558_TACACSPlus-TACACS_config_params">TACACS Configuration
+Parameters</a>
+below for the full list of TACACS+ parameters.</p>
+
+<p>Following is the complete list of the TACACS+ client configuration
+files, and their use.</p>
+
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/etc/tacplus_servers</td>
+<td>This is the primary file that requires configuration after installation. The file is used by all packages with <code>include=/etc/tacplus_servers</code> parameters in the other configuration files that are installed. Typically, this file contains the shared secrets; make sure that the Linux file mode is 600.</td>
+</tr>
+
+<tr>
+<td>/etc/nsswitch.conf</td>
+<td>When the <code>libnss_tacplus</code> package is installed, this file is configured to enable tacplus lookups via <code>libnss_tacplus</code>. If you replace this file by automation or other means, you need to add tacplus as the first lookup method for the <em>passwd</em> database line.</td>
+</tr>
+
+<tr>
+<td>/etc/tacplus_nss.conf</td>
+<td>This file sets the basic parameters for <code>libnss_tacplus</code>. It includes a debug variable for debugging NSS lookups separately from other client packages.</td>
+</tr>
+
+<tr>
+<td>/usr/share/pam-configs/tacplus</td>
+<td>This is the configuration file for <code>pam-auth-update</code> to generate the files in the next row. These configurations are used at <code>login</code>, by <code>su</code>, and by <code>ssh</code>.</td>
+</tr>
+
+<tr>
+<td>/etc/pam.d/common-*</td>
+<td>The <code>/etc/pam.d/common-*</code> files are updated for <code>tacplus</code> authentication. The files are updated with <code>pam-auth-update</code>, when <code>libpam-tacplus</code> is installed or removed.</td>
+</tr>
+
+<tr>
+<td>/etc/sudoers.d/tacplus</td>
+<td>This file allows TACACS+ privilege level 15 users to run commands with <code>sudo</code>. The file includes an example (commented out) of how to enable privilege level 15 TACACS users to use <code>sudo</code> without having to enter a password and provides an example of how to enable all TACACS users to run specific commands with sudo. Only edit this wile with the command <em>visudo -f /etc/sudoers.d/tacplus.</em></td>
+</tr>
+
+<tr>
+<td>audisp-tacplus.conf</td>
+<td>This is the <code>audisp</code> plugin configuration file. Typically, no modifications are required.</td>
+</tr>
+
+<tr>
+<td>/etc/audisp/audisp-tac_plus.conf</td>
+<td>This is the TACACS+ server configuration file for accounting. Typically, no modifications are required. You can use this configuration file when you only want to debug TACACS+ accounting issues, not all TACACS+ users.</td>
+</tr>
+
+<tr>
+<td>/etc/audit/rules.d/audisp-tacplus.rules</td>
+<td>The <code>auditd</code> rules for TACACS+ accounting. The <code>augenrules</code> command uses all rule files to generate the rules file (described below).</td>
+</tr>
+
+<tr>
+<td>/etc/audit/audit.rules</td>
+<td>This is the audit rules file generated when <code>auditd</code> is installed.</td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="notices warning" > <p>You can edit the <code>/etc/pam.d/common-*</code> files manually. However, if you
+run <code>pam-auth-update</code> again after making the changes, the update fails.
+Only perform configuration in <code>/usr/share/pam-configs/tacplus</code>, then run
+<code>pam-auth-update</code>.</p>
+ </div>
+
+
+<h2 id="tacacs-authentication-login">TACACS+ Authentication (login)</h2>
+
+<p>The initial authentication configuration is done through the PAM modules
+and an updated version of the <code>libpam-tacplus</code> package. When the package
+is installed, the PAM configuration is updated in <code>/etc/pam.d</code> with the
+<code>pam-auth-update</code> command. If you have made changes to your PAM
+configuration, you need to integrate these changes yourself. If you are
+also using LDAP with the <code>libpam-ldap</code>package, you might need to edit
+the PAM configuration to ensure the LDAP and TACACS ordering that you
+prefer. The <code>libpam-tacplus</code> are configured to skip over rules and the
+values in the <code>success=2</code>might require adjustments to skip over LDAP
+rules.</p>
+
+<p>A user privilege level is determined by the TACACS+ privilege attribute
+<code>priv_lvl</code> for the user that is returned by the TACACS+ server during
+the user authorization exchange. The client accepts the attribute in
+either the mandatory or optional forms and also accepts <code>priv-lvl</code> as
+the attribute name. The attribute value must be a numeric string in the
+range 0 to 15, with 15 the most privileged level.</p>
+
+
+<div class="notices note" > <p>By default, TACACS+ users at privilege levels other than 15 are not
+allowed to run <code>sudo</code> commands and are limited to commands that can be
+run with standard Linux user permissions.</p>
+ </div>
+
+
+<h2 id="local-fallback-authentication">Local Fallback Authentication</h2>
+
+<p>If a site wants to allow local fallback authentication for a user when
+none of the TACACS servers can be reached, you can add a privileged user
+account as a local account on the switch.</p>
+
+<p>To configure local fallback authentication:</p>
+
+<ol>
+<li><p>Edit the <code>/etc/nsswitch.conf</code> file to remove the keyword <code>tacplus</code>
+from the line starting with <code>passwd</code>. (You need to add the keyword
+back in step 3.)</p>
+
+<p>An example of the <code>/etc/nsswitch.conf</code> file with the keyword
+<code>tacplus</code> removed from the line starting with <code>passwd</code> is shown
+below.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo vi /etc/nsswitch.conf
+#
+# Example configuration of GNU Name Service Switch functionality.
+# If you have the `glibc-doc-reference' and `info' packages installed, try:
+# `info libc &quot;Name Service Switch&quot;' for information about this file.
+passwd:         compat
+group:          compat
+shadow:         compat
+gshadow:        files
+...
+       
+        
+</code></pre></li>
+
+<li><p>To enable the local privileged user to run <code>sudo</code> and NCLU commands,
+run the <code>adduser</code> commands shown below. In the example commands, the
+TACACS account name is tacadmin.</p>
+
+
+<div class="notices note" > <pre><code>The first `adduser` command prompts for information and a password.
+You can skip most of the requested information by pressing ENTER.
+</code></pre>
+ </div>
+
+
+<pre><code>                       
+cumulus@switch:~$ sudo adduser --ingroup tacacs tacadmin
+cumulus@switch:~$ sudo adduser tacadmin netedit
+cumulus@switch:~$ sudo adduser tacadmin sudo
+       
+        
+</code></pre></li>
+
+<li><p>Edit the <code>/etc/nsswitch.conf</code> file to add the keyword <code>tacplus</code> back
+to the line starting with <code>passwd</code> (the keyword you removed in the
+first step).</p></li>
+
+<li><p>Restart the <code>netd</code> service with the following command:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo systemctl restart netd
+       
+        
+</code></pre></li>
+</ol>
+
+<h2 id="tacacs-accounting">TACACS+ Accounting</h2>
+
+<p>TACACS+ accounting is implemented with the <code>audisp</code> module, with an
+additional plugin for <code>auditd</code>/<code>audisp</code>. The plugin maps the auid in the
+accounting record to a TACACS login, based on the <code>auid</code> and
+<code>sessionid</code>. The <code>audisp</code> module requires <code>libnss_tacplus</code> and uses the
+<code>libtacplus_map.so</code> library interfaces as part of the modified
+<code>lipam_tacplus</code> package.</p>
+
+<p>Communication with the TACACS+ servers is done with the
+<code>libsimple-tacact1</code> library, through <code>dlopen()</code>. A maximum of 240 bytes
+of command name and arguments are sent in the accounting record, due to
+the TACACS+ field length limitation of 255 bytes.</p>
+
+
+<div class="notices note" > <p>All Linux commands result in an accounting record, including commands
+run as part of the login process or as sub-processes of other commands.
+This can sometimes generate a large number of accounting records.</p>
+ </div>
+
+
+<p>Configure the IP address and encryption key of the server in the
+<code>/etc/tacplus_servers</code> file. Minimal configuration to <code>auditd</code> and
+<code>audisp</code> is necessary to enable the audit records necessary for
+accounting. These records are installed as part of the package.</p>
+
+<p><code>audisp-tacplus</code> installs the audit rules for command accounting.
+Modifying the configuration files is not usually necessary. However,
+when a <a href="/old/Cumulus_Linux/Management_VRF.html">management VRF</a> is
+configured, the accounting configuration does need special modification
+because the <code>auditd</code> service starts prior to networking. It is necessary
+to add the <em>vrf</em> parameter and to signal the <code>audisp-tacplus</code> process to
+reread the configuration. The example below shows that the management
+VRF is named <em>mgmt</em>. You can place the <em>vrf</em> parameter in either the
+<code>/etc/tacplus_servers</code> file or in the <code>/etc/audisp/audisp-tac_plus.conf</code>
+file.</p>
+
+<pre><code>                   
+vrf=mgmt
+   
+    
+</code></pre>
+
+<p>After editing the configuration file, send the <strong>HUP</strong> signal <code>killall
+-HUP audisp-tacplus</code> to notify the accounting process to reread the
+file.</p>
+
+
+<div class="notices note" > <p>All <code>sudo</code> commands run by TACACS+ users generate accounting records
+against the original TACACS+ login name.</p>
+ </div>
+
+
+<p>For more information, refer to the <code>audisp.8</code> and <code>auditd.8</code> man pages.</p>
+
+<h2 id="configure-nclu-for-tacacs-users">Configure NCLU for TACACS+ Users</h2>
+
+<p>When you install or upgrade TACACS+ packages, mapped user accounts are
+created automatically. All <em>tacacs0</em> through <em>tacacs15</em> users are added
+to the <em>netshow</em> group.</p>
+
+<p>In order for any TACACS+ users to execute <code>net add</code>, <code>net del</code>, and <code>net
+commit</code> commands and to restart services with NCLU, you need to add
+those users to the <code>users_with_edit</code> variable in the <code>/etc/netd.conf</code>
+file. Cumulus Networks recommends you add the <em>tacacs15</em> user and,
+depending upon your policies, other users (<em>tacacs1</em> through <em>tacacs14</em>)
+to this variable.</p>
+
+<p>To give a TACACS+ user access to the show commands, add the <em>tacacs</em>
+group to the <code>groups_with_show</code> variable.</p>
+
+
+<div class="notices warning" > <p>Do not add the <em>tacacs</em> group to the <code>groups_with_edit</code> variable; this
+is dangerous and can potentially enable any user to log into the switch
+as the root user.</p>
+ </div>
+
+
+<p>To add the users, edit the <code>/etc/netd.conf</code> file:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo nano /etc/netd.conf
+  
+...
+  
+# Control which users/groups are allowed to run &quot;add&quot;, &quot;del&quot;,
+# &quot;clear&quot;, &quot;abort&quot;, and &quot;commit&quot; commands.
+users_with_edit = root, cumulus, tacacs15
+groups_with_edit = netedit
+  
+# Control which users/groups are allowed to run &quot;show&quot; commands
+users_with_show = root, cumulus
+groups_with_show = netshow, netedit, tacacs
+  
+...
+   
+    
+</code></pre>
+
+<p>After you save and exit the <code>netd.conf</code> file, restart the <code>netd</code>
+service. Run:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo systemctl restart netd
+   
+    
+</code></pre>
+
+<h2 id="tacacs-per-command-authorization">TACACS+ Per-command Authorization</h2>
+
+<p>The <code>tacplus-auth</code> command handles the per-command authorization. To
+make this an enforced authorization, you must change the TACACS+ login
+to use a restricted shell, with a very limited executable search path.
+Otherwise, the user can bypass the authorization. The <code>tacplus-restrict</code>
+utility simplifies the setup of the restricted environment. The example
+below initializes the environment for the <em>tacacs0</em> user account. This
+is the account used for TACACS+ users at privilege level <code>0</code>.</p>
+
+<pre><code>                   
+tacuser0@switch:~$ sudo tacplus-restrict -i -u tacacs0 -a command1 command2 ... commandN
+   
+    
+</code></pre>
+
+<p>If the user/command combination is not authorized by the TACACS+ server,
+a message similar to the following displays:</p>
+
+<pre><code>                   
+tacuser0@switch:~$ net show version
+net not authorized by TACACS+ with given arguments, not executing
+   
+    
+</code></pre>
+
+<p>The following table provides the command options:</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Option</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>-i</p></td>
+<td><p>Initializes the environment. You only need to issue this option once per username.</p></td>
+</tr>
+<tr class="even">
+<td><p>-a</p></td>
+<td><p>You can invoke the utility with the <code>-a</code> option as many times as desired. For each command in the <code>-a</code> list, a symbolic link is created from <code>tacplus-auth</code> to the relative portion of the command name in the local <code>bin</code> subdirectory. You also need to enable these commands on the TACACS+ server (refer to the TACACS+ server documentation). It is common to have the server allow some options to a command, but not others.</p></td>
+</tr>
+<tr class="odd">
+<td><p>-f</p></td>
+<td><p>Re-initializes the environment. If you need to restart, issue the <code>-f</code> option with <code>-i</code> to force the re-initialization; otherwise, repeated use of <code>-i</code> is ignored.</p>
+<p>As part of the initialization:</p>
+<ul>
+<li><p>The user's shell is changed to <code>/bin/rbash</code>.</p></li>
+<li><p>Any existing dot files are saved.</p></li>
+<li><p>A limited environment is set up that does not allow general command execution, but instead allows only commands from the user's local <code>bin</code> subdirectory.</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<p>For example, if you want to allow the user to be able to run the <code>net</code>
+and <code>ip</code> commands (if authorized by the TACACS+ server), use the
+command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo tacplus-restrict -i -u tacacs0 -a ip net
+   
+    
+</code></pre>
+
+<p>After running this command, examine the <code>tacacs0</code> directory::</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ls -lR ~tacacs0
+total 12
+lrwxrwxrwx 1 root root 22 Nov 21 22:07 ip -&gt; /usr/sbin/tacplus-auth
+lrwxrwxrwx 1 root root 22 Nov 21 22:07 net -&gt; /usr/sbin/tacplus-auth
+   
+    
+</code></pre>
+
+<p>Other than shell built-ins, the only two commands the privilege level 0
+TACACS users can run are the <code>ip</code> and <code>net</code> commands.</p>
+
+<p>If you mistakenly add potential commands with the <code>-a</code> option, you can
+remove them. The example below shows how to remove the <code>net</code> command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo rm ~tacacs0/bin/net
+   
+    
+</code></pre>
+
+<p>You can remove all commands as follows:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo rm ~tacacs0/bin/*
+   
+    
+</code></pre>
+
+<p>Use the <code>man</code> command on the switch for more information on
+<code>tacplus-auth</code> and <code>tacplus-restrict</code>.</p>
+
+<pre><code>                   
+cumulus@switch:~$ man tacplus-auth tacplus-restrict
+   
+    
+</code></pre>
+
+<h2 id="nss-plugin">NSS Plugin</h2>
+
+<p>When used with <code>pam_tacplus</code>, TACACS+ authenticated users can log in
+without a local account on the system using the NSS plugin that comes
+with the <code>tacplus_nss</code> package. The plugin uses the mapped <code>tacplus</code>
+information if the user is not found in the local password file,
+provides the <code>getpwnam()</code> and <code>getpwuid()</code>entry point,s and uses the
+TACACS+ authentication functions.</p>
+
+<p>The plugin asks the TACACS+ server if the user is known, and then for
+relevant attributes to determine the privilege level of the user. When
+the <code>libnss_tacplus</code> package is installed, <code>nsswitch.conf</code> is modified
+to set <code>tacplus</code> as the first lookup method for <code>passwd</code>. If the order
+is changed, lookups return the local accounts, such as <code>tacacs0</code></p>
+
+<p>If the user is not found, a mapped lookup is performed using the
+<code>libtacplus.so</code> exported functions. The privilege level is appended to
+<code>tacacs</code> and the lookup searches for the name in the local password
+file. For example, privilege level 15 searches for the tacacs15 user. If
+the user is found, the password structure is filled in with information
+for the user.</p>
+
+<p>If the user is not found, the privilege level is decremented and checked
+again until privilege level 0 (user t<code>acacs0</code>) is reached. This allows
+use of only the two local users <code>tacacs0</code> and <code>tacacs15</code>, if minimal
+configuration is desired.</p>
+
+<h2 id="tacacs-configuration-parameters">TACACS Configuration Parameters</h2>
+
+<p>The recognized configuration options are the same as the
+<code>libpam_tacplus</code> command line arguments; however, not all <code>pam_tacplus</code>
+options are supported. These configuration parameters are documented in
+the <code>tacplus_servers.5</code> man page, which is part of the <code>libpam-tacplus</code>
+package.</p>
+
+<p>The table below describes the configuration options available:</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Configuration Option</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>debug</p></td>
+<td><p>The output debugging information through <code>syslog(3)</code>.</p>
+
+<div class="notices note" > <p></p>
+<p>Debugging is heavy, including passwords. Do not leave debugging enabled on a production switch after you have completed troubleshooting.</p>
+<p></p>
+ </div>
+</td>
+</tr>
+<tr class="even">
+<td><p>secret=STRING</p></td>
+<td><p>The secret key used to encrypt and decrypt packets sent to and received from the server. You can specify the secret key more than once in any order with respect to the server= parameter. When fewer secret= parameters are specified, the last secret given is used for the remaining servers. Only use this parameter in files such as <code>/etc/tacplus_servers</code> that are not world readable.</p></td>
+</tr>
+<tr class="odd">
+<td><p>server=HOSTNAME</p>
+<p>server=IP_ADDR</p></td>
+<td><p>Adds a TACACS+ server to the servers list. Servers are queried in turn until a match is found, or no servers remain in the list. Can be specified up to 7 times. An IP address can be optionally followed by a port number, preceded by a ":". The default port is 49.</p>
+
+<div class="notices note" > <p></p>
+<p>When sending accounting records, the record is sent to all servers in the list if <code>acct_all=1,</code> which is the default.</p>
+<p></p>
+ </div>
+</td>
+</tr>
+<tr class="even">
+<td><p>source_ip=IPv4_ADDRESS</p></td>
+<td><p>Sets the IP address used as the source IP address when communicating with the TACACS+ server. You must specify an IPv4 address. IPv6 addresses and hostnames are not supported. The address must must be valid for the interface being used.</p></td>
+</tr>
+<tr class="odd">
+<td><p>timeout=SECONDS</p></td>
+<td><p>TACACS+ server(s) communication timeout. This parameter defaults to 10 seconds in the <code>/etc/tacplus_servers</code> file, but defaults to 5 seconds in the <code>/etc/tacplus_nss.conf</code> file.</p></td>
+</tr>
+<tr class="even">
+<td><p>include=/file/name</p></td>
+<td><p>A supplemental configuration file to avoid duplicating configuration information. You can include up to 8 more configuration files.</p></td>
+</tr>
+<tr class="odd">
+<td><p>min_uid=value</p></td>
+<td><p>The minimum user ID that the NSS plugin looks up. Setting it to <em>0</em> means uid 0 (root) is never looked up, which is desirable for performance reasons. The value should not be greater than the local TACACS+ user IDs (0 through 15), to ensure they can be looked up.</p></td>
+</tr>
+<tr class="even">
+<td><p>exclude_users=user1,user2,...</p></td>
+<td><p>A comma-separated list of usernames that are never looked up by the NSS plugin, set in the <code>tacplus_nss.conf</code> file. You cannot use * (asterisk) as a wild card in the list. While it's not a legal username, bash may lookup this as a user name during pathname completion, so it is included in this list as a username string.</p>
+
+<div class="notices warning" > <p></p>
+<p>Cumulus Networks strongly recommends that you do <strong>not</strong> remove the <em>cumulus</em> user from the <code>exclude_users</code> list, because doing so can make it impossible to log in as the cumulus user, which is the primary administrative account in Cumulus Linux.</p>
+<p>If you do remove the cumulus user, Cumulus Networks recommends you add some other local fallback user that does not rely on TACACS but is a member of sudo and netedit groups, so that these accounts can run <code>sudo</code> and NCLU commands.</p>
+<p></p>
+ </div>
+</td>
+</tr>
+<tr class="odd">
+<td><p>login=STRING</p></td>
+<td><p>TACACS+ authentication service (pap, chap, or login). The default value is <em>pap</em>.</p></td>
+</tr>
+<tr class="even">
+<td><p>user_homedir=1</p></td>
+<td><p>This is not enabled by default. When enabled, a separate home directory for each TACACS+ user is created when the TACACS+ user first logs in. By default, the home directory in the mapping accounts in <code>/etc/passwd</code> (<code>/home/tacacs0</code> ... <code>/home/tacacs15</code>) is used. If the home directory does not exist, it is created with the <code>mkhomedir_helper</code> program, in the same manner as <code>pam_mkhomedir</code>.</p>
+<p>This option is not honored for accounts with restricted shells when per-command authorization is enabled.</p></td>
+</tr>
+<tr class="odd">
+<td><p>acct_all=1</p></td>
+<td><p>Configuration option for <code>audisp_tacplus</code> and <code>pam_tacplus</code> sending accounting records to all supplied servers (1), or the first server to respond (0). The default value is <em>1</em>.</p></td>
+</tr>
+<tr class="even">
+<td><p>timeout=<strong>SECS</strong></p></td>
+<td><p>Sets the timeout in seconds for connections to each TACACS+ server. The default is 10 seconds for all lookups except that NSS lookups use a 5 second timeout.</p></td>
+</tr>
+<tr class="odd">
+<td><p>vrf=<strong>VRFNAME</strong></p></td>
+<td><p>If the management network is in a VRF, set this variable to the VRF name. This would usually be "mgmt". When this variable is set, the connection to the TACACS+ accounting servers is made through the named VRF.</p></td>
+</tr>
+<tr class="even">
+<td><p>service</p></td>
+<td><p>TACACS+ accounting and authorization service. Examples include shell, pap, raccess, ppp, and slip.</p>
+<p>The default value is <em>shell</em>.</p></td>
+</tr>
+<tr class="odd">
+<td><p>protocol</p></td>
+<td><p>TACACS+ protocol field. This option is use dependent.</p>
+<p>PAM uses the SSH protocol.</p></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="remove-the-tacacs-client-packages">Remove the TACACS+ Client Packages</h2>
+
+<p>To remove all of the TACACS+ client packages, use the following
+commands:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo -E apt-get remove tacplus-client
+cumulus@switch:~$ sudo -E apt-get autoremove
+   
+    
+</code></pre>
+
+<p>To remove the TACACS+ client configuration files as well as the packages
+(recommended), use this command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo -E apt-get autoremove --purge
+   
+    
+</code></pre>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="basic-server-connectivity-or-nss-issues">Basic Server Connectivity or NSS Issues</h3>
+
+<p>You can use the <code>getent</code> command to determine if TACACS+ is configured
+correctly and if the local password is stored in the configuration
+files. In the example commands below, the cumulus user represents the
+local user, while cumulusTAC represents the TACACS user.</p>
+
+<p>To look up the username within all NSS methods:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo getent passwd cumulusTAC
+cumulusTAC:x:1016:1001:TACACS+ mapped user at privilege level 15,,,:/home/tacacs15:/bin/bash
+   
+    
+</code></pre>
+
+<p>To look up the user within the local database only:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo getent -s compat passwd cumulus
+cumulus:x:1000:1000:cumulus,,,:/home/cumulus:/bin/bash
+   
+    
+</code></pre>
+
+<p>To look up the user within the TACACS+ database only:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo getent -s tacplus passwd cumulusTAC
+cumulusTAC:x:1016:1001:TACACS+ mapped user at privilege level 15,,,:/home/tacacs15:/bin/bash
+   
+    
+</code></pre>
+
+<p>If TACACS does not appear to be working correctly, debug the following
+configuration files by adding the <em>debug=1</em> parameter to one or more of
+these files:</p>
+
+<ul>
+<li><p>/etc/tacplus_servers</p></li>
+
+<li><p>/etc/tacplus_nss.conf</p></li>
+</ul>
+
+
+<div class="notices note" > <p><em><code>You can also add</code> debug=1</em> to individual <code>pam_tacplus</code> lines in
+<code>/etc/pam.d/common*</code>.</p>
+ </div>
+
+
+<p>All log messages are stored in <code>/var/log/syslog</code>.</p>
+
+<h4 id="incorrect-shared-key">Incorrect Shared Key</h4>
+
+<p>The TACACS client on the switch and the TACACS server should have the
+same shared secret key. If this key is incorrect, the following message
+is printed to <code>syslog</code>:</p>
+
+<pre><code>                   
+2017-09-05T19:57:00.356520+00:00 leaf01 sshd[3176]: nss_tacplus: TACACS+ server 192.168.0.254:49 read failed with protocol error (incorrect shared secret?) user cumulus 
+   
+    
+</code></pre>
+
+<h3 id="issues-with-per-command-authorization">Issues with Per-command Authorization</h3>
+
+<p>To debug TACACS user command authorization, have the TACACS+ user enter
+the following command at a shell prompt, then try the command again:</p>
+
+<pre><code>                   
+tacuser0@switch:~$ export TACACSAUTHDEBUG=1 
+   
+    
+</code></pre>
+
+<p>When this debugging is enabled, additional information is shown for the
+command authorization conversation with the TACACS+ server:</p>
+
+<pre><code>                   
+tacuser0@switch:~$ net pending
+tacplus-auth: found matching command (/usr/bin/net) request authorization
+tacplus-auth: error connecting to 10.0.3.195:49 to request authorization for net: Transport endpoint is not connected
+tacplus-auth: cmd not authorized (16)
+tacplus-auth: net not authorized from 192.168.3.189:49
+net not authorized by TACACS+ with given arguments, not executing
+ 
+tacuser0@switch:~$ net show version
+tacplus-auth: found matching command (/usr/bin/net) request authorization
+tacplus-auth: error connecting to 10.0.3.195:49 to request authorization for net: Transport endpoint is not connected
+tacplus-auth: 192.168.3.189:49 authorized command net
+tacplus-auth: net authorized, executing
+DISTRIB_ID=&quot;Cumulus Linux&quot;
+DISTRIB_RELEASE=3.4.0
+DISTRIB_DESCRIPTION=&quot;Cumulus Linux 3.4.0&quot;
+   
+    
+</code></pre>
+
+<p>To disable debugging:</p>
+
+<pre><code>                   
+tacuser0@switch:~$ export -n TACACSAUTHDEBUG
+   
+    
+</code></pre>
+
+<h3 id="debug-issues-with-accounting-records">Debug Issues with Accounting Records</h3>
+
+<p>If you have added or deleted TACACS+ servers from the configuration
+files, make sure you notify the <code>audisp</code> plugin with this command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo killall -HUP audisp-tacplus
+   
+    
+</code></pre>
+
+<p>If accounting records are still not being sent, add <em>debug=1</em> to the
+<code>/etc/audisp/audisp-tac_plus.conf</code>file, then issue the command above
+to notify the plugin. Ask the TACACS+ user to run a command and examine
+the end of <code>/var/log/syslog</code> for messages from the plugin. You can also
+check the auditing log file <code>/var/log/audit/audit.log</code> to be sure the
+auditing records are being written. If they are not, restart the audit
+daemon with:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo systemctl restart auditd.service
+   
+    
+</code></pre>
+
+<h3 id="tacacs-component-software-descriptions">TACACS Component Software Descriptions</h3>
+
+<p>The following table describes the different pieces of software involved
+with delivering TACACS.</p>
+
+<table>
+<thead>
+<tr>
+<th>Package Name</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>audisp-tacplus_1.0.0-1-cl3u3</td>
+<td>This package uses auditing data from <code>auditd</code> to send accounting records to the TACACS+ server and is started as part of <code>auditd</code>.</td>
+</tr>
+
+<tr>
+<td>libtac2_1.4.0-cl3u2</td>
+<td>Basic TACACS+ server utility and communications routines.</td>
+</tr>
+
+<tr>
+<td>libnss-tacplus_1.0.1-cl3u3</td>
+<td>Provides an interface between <code>libc</code> username lookups, the mapping functions, and the TACACS+ server.</td>
+</tr>
+
+<tr>
+<td>tacplus-auth-1.0.0-cl3u1</td>
+<td>This package includes the <code>tacplus-restrict</code> setup utility, which enables you to perform per-command TACACS+ authorization. Per-command authorization is not done by default.</td>
+</tr>
+
+<tr>
+<td>libpam-tacplus_1.4.0-1-cl3u2</td>
+<td>A modified version of the standard Debian package.</td>
+</tr>
+
+<tr>
+<td>libtacplus-map1_1.0.0-cl3u2</td>
+<td>The mapping functionality between local and TACACS+ users on the server. Sets the immutable <code>sessionid</code> and auditing UID to ensure the original user can be tracked through multiple processes and privilege changes. Sets the auditing <code>loginuid</code> as immutable if supported. Creates and maintains a status database in <code>/run/tacacs_client_map</code> to manage and lookup mappings.</td>
+</tr>
+
+<tr>
+<td>libsimple-tacacct1_1.0.0-cl3u2</td>
+<td>Provides an interface for programs to send accounting records to the TACACS+ server. Used by <code>audisp-tacplus</code>.</td>
+</tr>
+
+<tr>
+<td>libtac2-bin_1.4.0-cl3u2</td>
+<td>Provides the <code>tacc</code> testing program and TACACS+ man page.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="limitations">Limitations</h2>
+
+<h3 id="tacacs-client-is-only-supported-through-the-management-interface">TACACS+ Client Is only Supported through the Management Interface</h3>
+
+<p>The TACACS+ client is only supported through the management interface on
+the switch: eth0, eth1, or the VRF management interface. The TACACS+
+client is not supported through bonds, switch virtual interfaces (SVIs),
+or switch port interfaces (swp).</p>
+
+<h3 id="multiple-tacacs-users">Multiple TACACS+ Users</h3>
+
+<p>If two or more TACACS+ users are logged in simultaneously with the same
+privilege level, while the accounting records are maintained correctly,
+a lookup on either name will match both users, while a UID lookup will
+only return the user that logged in first.</p>
+
+<p>This means that any processes run by either user will be attributed to
+both, and all files created by either user will be attributed to the
+first name matched. This is similar to adding two local users to the
+password file with the same UID and GID, and is an inherent limitation
+of using the UID for the base user from the password file.</p>
+
+
+<div class="notices note" > <p>The current algorithm returns the first name matching the UID from the
+mapping file; this can be the first or the second user that logged in.</p>
+ </div>
+
+
+<p>To work around this issue, you can use the switch audit log or the
+TACACS server accounting logs to determine which processes and files are
+created by each user.</p>
+
+<ul>
+<li><p>For commands that do not execute other commands (for example,
+changes to configurations in an editor, or actions with tools like
+<code>clagctl</code> and <code>vtysh</code>), no additional accounting is done.</p></li>
+
+<li><p>Per-command authorization is implemented at the most basic level
+(commands are permitted or denied based on the standard Linux user
+permissions for the local TACACS users and only privilege level 15
+users can run <code>sudo</code> commands by default).</p></li>
+</ul>
+
+<p>The Linux <code>auditd</code> system does not always generate audit events for
+processes when terminated with a signal (with the <code>kill</code> system call or
+internal errors such as SIGSEGV). As a result, processes that exit on a
+signal that is not caught and handled, might not generate a STOP
+accounting record.</p>
+
+<h3 id="issues-with-deluser-command">Issues with deluser Command</h3>
+
+<p>TACACS+ and other non-local users that run the <code>deluser</code> command with
+the <code>--remove-home</code> option will see an error about not finding the user
+in <code>/etc/passwd</code>:</p>
+
+<pre><code>                   
+tacuser0@switch: deluser --remove-home USERNAME
+userdel: cannot remove entry ‘USERNAME’ from /etc/passwd
+/usr/sbin/deluser: `/usr/sbin/userdel USERNAME' returned error code 1. Exiting
+   
+    
+</code></pre>
+
+<p>However, the command does remove the home directory. The user can still
+log in on that account, but will not have a valid home directory. This
+is a known upstream issue with the <code>deluser</code> command for all non-local
+users.</p>
+
+<p>Only use the <code>--remove-home</code> option when the <code>user_homedir=1</code>
+configuration command is in use.</p>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#supported-features">Supported Features</a></li>
+<li><a href="#install-the-tacacs-client-packages">Install the TACACS+ Client Packages</a></li>
+<li><a href="#configure-the-tacacs-client">Configure the TACACS+ Client</a></li>
+<li><a href="#tacacs-authentication-login">TACACS+ Authentication (login)</a></li>
+<li><a href="#local-fallback-authentication">Local Fallback Authentication</a></li>
+<li><a href="#tacacs-accounting">TACACS+ Accounting</a></li>
+<li><a href="#configure-nclu-for-tacacs-users">Configure NCLU for TACACS+ Users</a></li>
+<li><a href="#tacacs-per-command-authorization">TACACS+ Per-command Authorization</a></li>
+<li><a href="#nss-plugin">NSS Plugin</a></li>
+<li><a href="#tacacs-configuration-parameters">TACACS Configuration Parameters</a></li>
+<li><a href="#remove-the-tacacs-client-packages">Remove the TACACS+ Client Packages</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a>
+<ul>
+<li><a href="#basic-server-connectivity-or-nss-issues">Basic Server Connectivity or NSS Issues</a>
+<ul>
+<li><a href="#incorrect-shared-key">Incorrect Shared Key</a></li>
+</ul></li>
+<li><a href="#issues-with-per-command-authorization">Issues with Per-command Authorization</a></li>
+<li><a href="#debug-issues-with-accounting-records">Debug Issues with Accounting Records</a></li>
+<li><a href="#tacacs-component-software-descriptions">TACACS Component Software Descriptions</a></li>
+</ul></li>
+<li><a href="#limitations">Limitations</a>
+<ul>
+<li><a href="#tacacs-client-is-only-supported-through-the-management-interface">TACACS+ Client Is only Supported through the Management Interface</a></li>
+<li><a href="#multiple-tacacs-users">Multiple TACACS+ Users</a></li>
+<li><a href="#issues-with-deluser-command">Issues with deluser Command</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_Linux/System_Configuration/Authentication,_Authorization_and_Accounting/TACACS_Plus.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

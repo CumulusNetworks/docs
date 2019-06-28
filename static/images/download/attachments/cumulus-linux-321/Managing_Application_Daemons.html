@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Managing Application Daemons - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="System_Configuration.html">System Configuration</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126770"> <span>Managing Application Daemons</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><span id="src-5126770_indexterm-5D896B6D4980CD67109A52BB053D4103">You manage application </span><span id="src-5126770_indexterm-11E3E99B89B24BA4C5ABDFE16AB558E3">daemons </span>(services) in Cumulus Linux in the following ways:    </p>
+<ul class=" "><li class=" ">    <p  >Identifying active listener ports    </p>
+</li><li class=" ">    <p  >Identifying daemons currently active or stopped    </p>
+</li><li class=" ">    <p  >Identifying boot time state of a specific daemon    </p>
+</li><li class=" ">    <p  >Disabling or enabling a specific daemon    </p>
+</li></ul>    <div class="section section-1" id="src-5126770_ManagingApplicationDaemons-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126770_ManagingApplicationDaemons-UsingsystemdandthesystemctlCommand">
+        <h1 class="heading "><span>Using systemd and the systemctl Command</span></h1>
+    <p  >In general, you manage services using <tt class=" ">systemd</tt> via the <tt class=" ">systemctl</tt> command. You use it with any service on the switch to start/stop/restart/reload/enable/disable/reenable or get the status of the service.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl start | stop | restart | status | reload | enable | disable | reenable SERVICENAME.service</code></div>
+</div>
+    </div>
+    <p  >For example to restart networking, run the command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl restart networking.service</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Unlike the <tt class=" ">service</tt> command in Debian Wheezy, the service name is written <strong class=" ">after</strong> the systemctl subcommand, not before it.    </p>
+        </div>
+    </div>
+    <div class="section section-2" id="src-5126770_ManagingApplicationDaemons-UnderstandingthesystemctlSubcommands">
+        <h2 class="heading "><span>Understanding the systemctl Subcommands</span></h2>
+    <p  ><tt class=" ">systemctl</tt> has a number of subcommands that perform a specific operation on a given daemon.    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">status</strong>: Returns the status of the specified daemon.    </p>
+</li><li class=" ">    <p  ><strong class=" ">start</strong>: Starts the daemon.    </p>
+</li><li class=" ">    <p  ><strong class=" ">stop</strong>: Stops the daemon.    </p>
+</li><li class=" ">    <p  ><strong class=" ">restart</strong>: Stops, then starts the daemon, all the while maintaining state. So if there are dependent services or services that mark the restarted service as <i class=" ">Required</i>, the other services also get restarted. For example, running <tt class=" ">systemctl restart quagga.service</tt> restarts any of the routing protocol daemons that are enabled and running, such as <tt class=" ">bgpd</tt> or <tt class=" ">ospfd</tt>.    </p>
+</li><li class=" ">    <p  ><strong class=" ">reload</strong>: Reloads a daemon's configuration.    </p>
+</li><li class=" ">    <p  ><strong class=" ">enable</strong>: Enables the daemon to start when the system boots, but does not start it unless you use the <tt class=" ">systemctl start SERVICENAME.service</tt> command or reboot the switch.    </p>
+</li><li class=" ">    <p  ><strong class=" ">disable</strong>: Disables the daemon, but does not stop it unless you use the <tt class=" ">systemctl stop SERVICENAME.service</tt> command or reboot the switch. A disabled daemon can still be started or stopped.    </p>
+</li><li class=" ">    <p  ><strong class=" ">reenable</strong>: Disables, then enables a daemon. You might need to do this so that any new <i class=" ">Wants</i> or <i class=" ">WantedBy</i> lines create the symlinks necessary for ordering. This has no side effects on other daemons.    </p>
+</li></ul>    </div>
+    <div class="section section-2" id="src-5126770_ManagingApplicationDaemons-EnsuringaServiceStartsafterMultipleRestarts">
+        <h2 class="heading "><span>Ensuring a Service Starts after Multiple Restarts</span></h2>
+    <p  >By default, <tt class=" ">systemd</tt> is configured to try to restart a particular service only a certain number of times within a given interval before the service fails to start at all. The settings for this are stored in the service script. The settings are <i class=" ">StartLimitInterval</i> (which defaults to 10 seconds) and <i class=" ">StartBurstLimit</i> (which defaults to 5 attempts), but many services override these defaults, sometimes with much longer times. <tt class=" ">switchd.service</tt>, for example, sets <i class=" ">StartLimitInterval=10m</i> and <i class=" ">StartBurstLimit=3</i>, which means if you restart switchd more than 3 times in 10 minutes, it will not start.    </p>
+    <p  >When the restart fails for this reason, a message similar to the following appears:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">Job for switchd.service failed. See 'systemctl status switchd.service' and 'journalctl -xn' for details.</code></div>
+</div>
+    </div>
+    <p  >And <tt class=" ">systemctl status switchd.service</tt> shows output similar to:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">Active: failed (Result: start-limit) since Thu 2016-04-07 21:55:14 UTC; 15s ago</code></div>
+</div>
+    </div>
+    <p  >To clear this error, run <tt class=" ">systemctl reset-failed switchd.service</tt>. If you know you are going to restart frequently (multiple times within the StartLimitInterval), you can run the same command before you issue the restart request. This also applies to stop followed by start.    </p>
+    </div>
+    <div class="section section-2" id="src-5126770_ManagingApplicationDaemons-KeepingsystemdServicesfromHangingafterStarting">
+        <h2 class="heading "><span>Keeping systemd Services from Hanging after Starting</span></h2>
+    <p  >If you start, restart or reload any <tt class=" ">systemd</tt> service that could be started from another <tt class=" ">systemd</tt> service, you must use the <tt class=" ">--no-block</tt> option with <tt class=" ">systemctl</tt>. Otherwise, that service or even the switch itself may hang after starting or restarting.    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126770_ManagingApplicationDaemons-IdentifyingActiveListenerPortsforIPv4andIPv6">
+        <h1 class="heading "><span>Identifying Active Listener Ports for IPv4 and IPv6</span></h1>
+    <p  ><span id="src-5126770_indexterm-EDFA84543CF736B6D007FFF508A5D9D8">You can identify the </span>active listener ports under both IPv4 and IPv6 using the <tt class=" ">netstat</tt> command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo netstat -nlp --inet --inet6</code></div>
+<div class="line"><code class="plain">Active Internet connections (only servers)</code></div>
+<div class="line"><code class="plain">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name</code></div>
+<div class="line"><code class="plain">tcp        0      0 0.0.0.0:53              0.0.0.0:*               LISTEN      444/dnsmasq     </code></div>
+<div class="line"><code class="plain">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      874/sshd        </code></div>
+<div class="line"><code class="plain">tcp6       0      0 :::53                   :::*                    LISTEN      444/dnsmasq     </code></div>
+<div class="line"><code class="plain">tcp6       0      0 :::22                   :::*                    LISTEN      874/sshd        </code></div>
+<div class="line"><code class="plain">udp        0      0 0.0.0.0:28450           0.0.0.0:*                           839/dhclient    </code></div>
+<div class="line"><code class="plain">udp        0      0 0.0.0.0:53              0.0.0.0:*                           444/dnsmasq     </code></div>
+<div class="line"><code class="plain">udp        0      0 0.0.0.0:68              0.0.0.0:*                           839/dhclient    </code></div>
+<div class="line"><code class="plain">udp        0      0 192.168.0.42:123        0.0.0.0:*                           907/ntpd        </code></div>
+<div class="line"><code class="plain">udp        0      0 127.0.0.1:123           0.0.0.0:*                           907/ntpd        </code></div>
+<div class="line"><code class="plain">udp        0      0 0.0.0.0:123             0.0.0.0:*                           907/ntpd        </code></div>
+<div class="line"><code class="plain">udp        0      0 0.0.0.0:4784            0.0.0.0:*                           909/ptmd        </code></div>
+<div class="line"><code class="plain">udp        0      0 0.0.0.0:3784            0.0.0.0:*                           909/ptmd        </code></div>
+<div class="line"><code class="plain">udp        0      0 0.0.0.0:3785            0.0.0.0:*                           909/ptmd        </code></div>
+<div class="line"><code class="plain">udp6       0      0 :::58352                :::*                                839/dhclient    </code></div>
+<div class="line"><code class="plain">udp6       0      0 :::53                   :::*                                444/dnsmasq     </code></div>
+<div class="line"><code class="plain">udp6       0      0 fe80::a200:ff:fe00::123 :::*                                907/ntpd        </code></div>
+<div class="line"><code class="plain">udp6       0      0 ::1:123                 :::*                                907/ntpd        </code></div>
+<div class="line"><code class="plain">udp6       0      0 :::123                  :::*                                907/ntpd        </code></div>
+<div class="line"><code class="plain">udp6       0      0 :::4784                 :::*                                909/ptmd        </code></div>
+<div class="line"><code class="plain">udp6       0      0 :::3784                 :::*                                909/ptmd</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126770_ManagingApplicationDaemons-IdentifyingDaemonsCurrentlyActiveorStopped">
+        <h1 class="heading "><span>Identifying Daemons Currently Active or Stopped</span></h1>
+    <p  >To determine which daemons are currently active or stopped, run <tt class=" ">cl-service-summary</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ cl-service-summary</code></div>
+<div class="line"><code class="plain">Service cron         enabled    active </code></div>
+<div class="line"><code class="plain">Service ssh          enabled    active </code></div>
+<div class="line"><code class="plain">Service syslog       enabled    active     </code></div>
+<div class="line"><code class="plain">Service arp_refresh  enabled    active   </code></div>
+<div class="line"><code class="plain">Service clagd        enabled    active   </code></div>
+<div class="line"><code class="plain">Service lldpd        enabled    active   </code></div>
+<div class="line"><code class="plain">Service mstpd        enabled    active   </code></div>
+<div class="line"><code class="plain">Service poed                    inactive </code></div>
+<div class="line"><code class="plain">Service portwd                  inactive </code></div>
+<div class="line"><code class="plain">Service ptmd         enabled    active   </code></div>
+<div class="line"><code class="plain">Service pwmd         enabled    active   </code></div>
+<div class="line"><code class="plain">Service smond        enabled    active   </code></div>
+<div class="line"><code class="plain">Service switchd      enabled    active   </code></div>
+<div class="line"><code class="plain">Service vxrd         disabled   inactive </code></div>
+<div class="line"><code class="plain">Service vxsnd        disabled   inactive </code></div>
+<div class="line"><code class="plain">Service bgpd         disabled   inactive </code></div>
+<div class="line"><code class="plain">Service isisd        disabled   inactive </code></div>
+<div class="line"><code class="plain">Service ospf6d       disabled   inactive </code></div>
+<div class="line"><code class="plain">Service ospfd        disabled   inactive </code></div>
+<div class="line"><code class="plain">Service rdnbrd       disabled   inactive </code></div>
+<div class="line"><code class="plain">Service ripd         disabled   inactive </code></div>
+<div class="line"><code class="plain">Service ripngd       disabled   inactive </code></div>
+<div class="line"><code class="plain">Service zebra        disabled   inactive </code></div>
+</div>
+    </div>
+    <p  >You can also run <tt class=" ">systemctl list-unit-files --type service</tt> to list all services on the switch and see which ones are enabled:    </p>
+    <p  class="expand-control-text">Click here to see output of this command ...    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ systemctl list-unit-files --type service</code></div>
+<div class="line"><code class="plain">UNIT FILE                              STATE   </code></div>
+<div class="line"><code class="plain">aclinit.service                        enabled </code></div>
+<div class="line"><code class="plain">acltool.service                        enabled </code></div>
+<div class="line"><code class="plain">acpid.service                          disabled</code></div>
+<div class="line"><code class="plain">arp_refresh.service                    enabled </code></div>
+<div class="line"><code class="plain">auditd.service                         enabled </code></div>
+<div class="line"><code class="plain">autovt@.service                        disabled</code></div>
+<div class="line"><code class="plain">bootlog.service                        enabled </code></div>
+<div class="line"><code class="plain">bootlogd.service                       masked  </code></div>
+<div class="line"><code class="plain">bootlogs.service                       masked  </code></div>
+<div class="line"><code class="plain">bootmisc.service                       masked  </code></div>
+<div class="line"><code class="plain">checkfs.service                        masked  </code></div>
+<div class="line"><code class="plain">checkroot-bootclean.service            masked  </code></div>
+<div class="line"><code class="plain">checkroot.service                      masked  </code></div>
+<div class="line"><code class="plain">clagd.service                          enabled </code></div>
+<div class="line"><code class="plain">clcmd.service                          enabled </code></div>
+<div class="line"><code class="plain">console-getty.service                  disabled</code></div>
+<div class="line"><code class="plain">console-shell.service                  disabled</code></div>
+<div class="line"><code class="plain">container-getty@.service               static  </code></div>
+<div class="line"><code class="plain">cron.service                           enabled </code></div>
+<div class="line"><code class="plain">cryptdisks-early.service               masked  </code></div>
+<div class="line"><code class="plain">cryptdisks.service                     masked  </code></div>
+<div class="line"><code class="plain">cumulus-aclcheck.service               static  </code></div>
+<div class="line"><code class="plain">cumulus-core.service                   static  </code></div>
+<div class="line"><code class="plain">cumulus-fastfailover.service           enabled </code></div>
+<div class="line"><code class="plain">cumulus-firstboot.service              disabled</code></div>
+<div class="line"><code class="plain">cumulus-platform.service               enabled </code></div>
+<div class="line"><code class="plain">cumulus-support.service                static  </code></div>
+<div class="line"><code class="plain">dbus-org.freedesktop.hostname1.service static  </code></div>
+<div class="line"><code class="plain">dbus-org.freedesktop.locale1.service   static  </code></div>
+<div class="line"><code class="plain">dbus-org.freedesktop.login1.service    static  </code></div>
+<div class="line"><code class="plain">dbus-org.freedesktop.machine1.service  static  </code></div>
+<div class="line"><code class="plain">dbus-org.freedesktop.timedate1.service static  </code></div>
+<div class="line"><code class="plain">dbus.service                           static  </code></div>
+<div class="line"><code class="plain">debian-fixup.service                   static  </code></div>
+<div class="line"><code class="plain">debug-shell.service                    disabled</code></div>
+<div class="line"><code class="plain">decode-syseeprom.service               static  </code></div>
+<div class="line"><code class="plain">dhcpd.service                          disabled</code></div>
+<div class="line"><code class="plain">dhcpd6.service                         disabled</code></div>
+<div class="line"><code class="plain">dhcpd6@.service                        disabled</code></div>
+<div class="line"><code class="plain">dhcpd@.service                         disabled</code></div>
+<div class="line"><code class="plain">dhcrelay.service                       enabled </code></div>
+<div class="line"><code class="plain">dhcrelay6.service                      disabled</code></div>
+<div class="line"><code class="plain">dhcrelay6@.service                     disabled</code></div>
+<div class="line"><code class="plain">dhcrelay@.service                      disabled</code></div>
+<div class="line"><code class="plain">dm-event.service                       disabled</code></div>
+<div class="line"><code class="plain">dns-watcher.service                    disabled</code></div>
+<div class="line"><code class="plain">dnsmasq.service                        enabled </code></div>
+<div class="line"><code class="plain">emergency.service                      static  </code></div>
+<div class="line"><code class="plain">fuse.service                           masked  </code></div>
+<div class="line"><code class="plain">getty-static.service                   static  </code></div>
+<div class="line"><code class="plain">getty@.service                         enabled </code></div>
+<div class="line"><code class="plain">halt-local.service                     static  </code></div>
+<div class="line"><code class="plain">halt.service                           masked  </code></div>
+<div class="line"><code class="plain">heartbeat-failed@.service              static  </code></div>
+<div class="line"><code class="plain">hostname.service                       masked  </code></div>
+<div class="line"><code class="plain">hsflowd.service                        enabled </code></div>
+<div class="line"><code class="plain">hsflowd@.service                       enabled </code></div>
+<div class="line"><code class="plain">hwclock-save.service                   enabled </code></div>
+<div class="line"><code class="plain">hwclock.service                        masked  </code></div>
+<div class="line"><code class="plain">hwclockfirst.service                   masked  </code></div>
+<div class="line"><code class="plain">ifup@.service                          static  </code></div>
+<div class="line"><code class="plain">initrd-cleanup.service                 static  </code></div>
+<div class="line"><code class="plain">initrd-parse-etc.service               static  </code></div>
+<div class="line"><code class="plain">initrd-switch-root.service             static  </code></div>
+<div class="line"><code class="plain">initrd-udevadm-cleanup-db.service      static  </code></div>
+<div class="line"><code class="plain">killprocs.service                      masked  </code></div>
+<div class="line"><code class="plain">kmod-static-nodes.service              static  </code></div>
+<div class="line"><code class="plain">kmod.service                           static  </code></div>
+<div class="line"><code class="plain">ledmgrd.service                        enabled </code></div>
+<div class="line"><code class="plain">lldpd.service                          enabled </code></div>
+<div class="line"><code class="plain">lm-sensors.service                     enabled </code></div>
+<div class="line"><code class="plain">lvm2-activation-early.service          enabled </code></div>
+<div class="line"><code class="plain">lvm2-activation.service                enabled </code></div>
+<div class="line"><code class="plain">lvm2-lvmetad.service                   static  </code></div>
+<div class="line"><code class="plain">lvm2-monitor.service                   enabled </code></div>
+<div class="line"><code class="plain">lvm2-pvscan@.service                   static  </code></div>
+<div class="line"><code class="plain">lvm2.service                           disabled</code></div>
+<div class="line"><code class="plain">module-init-tools.service              static  </code></div>
+<div class="line"><code class="plain">motd.service                           masked  </code></div>
+<div class="line"><code class="plain">mountall-bootclean.service             masked  </code></div>
+<div class="line"><code class="plain">mountall.service                       masked  </code></div>
+<div class="line"><code class="plain">mountdevsubfs.service                  masked  </code></div>
+<div class="line"><code class="plain">mountkernfs.service                    masked  </code></div>
+<div class="line"><code class="plain">mountnfs-bootclean.service             masked  </code></div>
+<div class="line"><code class="plain">mountnfs.service                       masked  </code></div>
+<div class="line"><code class="plain">mstpd.service                          enabled </code></div>
+<div class="line"><code class="plain">netd.service                           enabled </code></div>
+<div class="line"><code class="plain">netq-agent.service                     disabled</code></div>
+<div class="line"><code class="plain">networking.service                     enabled </code></div>
+<div class="line"><code class="plain">ntp.service                            enabled </code></div>
+<div class="line"><code class="plain">ntp@.service                           disabled</code></div>
+<div class="line"><code class="plain">openvswitch-vtep.service               disabled</code></div>
+<div class="line"><code class="plain">phy-ucode-update.service               enabled </code></div>
+<div class="line"><code class="plain">portwd.service                         enabled </code></div>
+<div class="line"><code class="plain">procps.service                         static  </code></div>
+<div class="line"><code class="plain">ptmd.service                           enabled </code></div>
+<div class="line"><code class="plain">pwmd.service                           enabled </code></div>
+<div class="line"><code class="plain">quagga.service                         enabled </code></div>
+<div class="line"><code class="plain">quotaon.service                        static  </code></div>
+<div class="line"><code class="plain">rc-local.service                       static  </code></div>
+<div class="line"><code class="plain">rc.local.service                       static  </code></div>
+<div class="line"><code class="plain">rdnbrd.service                         disabled</code></div>
+<div class="line"><code class="plain">reboot.service                         masked  </code></div>
+<div class="line"><code class="plain">rescue.service                         static  </code></div>
+<div class="line"><code class="plain">rmnologin.service                      masked  </code></div>
+<div class="line"><code class="plain">rsyslog.service                        enabled </code></div>
+<div class="line"><code class="plain">screen-cleanup.service                 masked  </code></div>
+<div class="line"><code class="plain">sendsigs.service                       masked  </code></div>
+<div class="line"><code class="plain">serial-getty@.service                  disabled</code></div>
+<div class="line"><code class="plain">single.service                         masked  </code></div>
+<div class="line"><code class="plain">smond.service                          enabled </code></div>
+<div class="line"><code class="plain">snmpd.service                          disabled</code></div>
+<div class="line"><code class="plain">snmpd@.service                         disabled</code></div>
+<div class="line"><code class="plain">snmptrapd.service                      disabled</code></div>
+<div class="line"><code class="plain">snmptrapd@.service                     disabled</code></div>
+<div class="line"><code class="plain">ssh.service                            enabled </code></div>
+<div class="line"><code class="plain">ssh@.service                           disabled</code></div>
+<div class="line"><code class="plain">sshd.service                           enabled </code></div>
+<div class="line"><code class="plain">stop-bootlogd-single.service           masked  </code></div>
+<div class="line"><code class="plain">stop-bootlogd.service                  masked  </code></div>
+<div class="line"><code class="plain">stopssh.service                        enabled </code></div>
+<div class="line"><code class="plain">sudo.service                           disabled</code></div>
+<div class="line"><code class="plain">switchd-diag.service                   static  </code></div>
+<div class="line"><code class="plain">switchd.service                        enabled </code></div>
+<div class="line"><code class="plain">syslog.service                         enabled </code></div>
+<div class="line"><code class="plain">sysmonitor.service                     static  </code></div>
+<div class="line"><code class="plain">systemd-ask-password-console.service   static  </code></div>
+<div class="line"><code class="plain">systemd-ask-password-wall.service      static  </code></div>
+<div class="line"><code class="plain">systemd-backlight@.service             static  </code></div>
+<div class="line"><code class="plain">systemd-binfmt.service                 static  </code></div>
+<div class="line"><code class="plain">systemd-fsck-root.service              static  </code></div>
+<div class="line"><code class="plain">systemd-fsck@.service                  static  </code></div>
+<div class="line"><code class="plain">systemd-halt.service                   static  </code></div>
+<div class="line"><code class="plain">systemd-hibernate.service              static  </code></div>
+<div class="line"><code class="plain">systemd-hostnamed.service              static  </code></div>
+<div class="line"><code class="plain">systemd-hybrid-sleep.service           static  </code></div>
+<div class="line"><code class="plain">systemd-initctl.service                static  </code></div>
+<div class="line"><code class="plain">systemd-journal-flush.service          static  </code></div>
+<div class="line"><code class="plain">systemd-journald.service               static  </code></div>
+<div class="line"><code class="plain">systemd-kexec.service                  static  </code></div>
+<div class="line"><code class="plain">systemd-localed.service                static  </code></div>
+<div class="line"><code class="plain">systemd-logind.service                 static  </code></div>
+<div class="line"><code class="plain">systemd-machined.service               static  </code></div>
+<div class="line"><code class="plain">systemd-modules-load.service           static  </code></div>
+<div class="line"><code class="plain">systemd-networkd-wait-online.service   disabled</code></div>
+<div class="line"><code class="plain">systemd-networkd.service               disabled</code></div>
+<div class="line"><code class="plain">systemd-nspawn@.service                disabled</code></div>
+<div class="line"><code class="plain">systemd-poweroff.service               static  </code></div>
+<div class="line"><code class="plain">systemd-quotacheck.service             static  </code></div>
+<div class="line"><code class="plain">systemd-random-seed.service            static  </code></div>
+<div class="line"><code class="plain">systemd-readahead-collect.service      disabled</code></div>
+<div class="line"><code class="plain">systemd-readahead-done.service         static  </code></div>
+<div class="line"><code class="plain">systemd-readahead-drop.service         disabled</code></div>
+<div class="line"><code class="plain">systemd-readahead-replay.service       disabled</code></div>
+<div class="line"><code class="plain">systemd-reboot.service                 static  </code></div>
+<div class="line"><code class="plain">systemd-remount-fs.service             static  </code></div>
+<div class="line"><code class="plain">systemd-resolved.service               disabled</code></div>
+<div class="line"><code class="plain">systemd-rfkill@.service                static  </code></div>
+<div class="line"><code class="plain">systemd-setup-dgram-qlen.service       static  </code></div>
+<div class="line"><code class="plain">systemd-shutdownd.service              static  </code></div>
+<div class="line"><code class="plain">systemd-suspend.service                static  </code></div>
+<div class="line"><code class="plain">systemd-sysctl.service                 static  </code></div>
+<div class="line"><code class="plain">systemd-timedated.service              static  </code></div>
+<div class="line"><code class="plain">systemd-timesyncd.service              disabled</code></div>
+<div class="line"><code class="plain">systemd-tmpfiles-clean.service         static  </code></div>
+<div class="line"><code class="plain">systemd-tmpfiles-setup-dev.service     static  </code></div>
+<div class="line"><code class="plain">systemd-tmpfiles-setup.service         static  </code></div>
+<div class="line"><code class="plain">systemd-udev-settle.service            static  </code></div>
+<div class="line"><code class="plain">systemd-udev-trigger.service           static  </code></div>
+<div class="line"><code class="plain">systemd-udevd.service                  static  </code></div>
+<div class="line"><code class="plain">systemd-update-utmp-runlevel.service   static  </code></div>
+<div class="line"><code class="plain">systemd-update-utmp.service            static  </code></div>
+<div class="line"><code class="plain">systemd-user-sessions.service          static  </code></div>
+<div class="line"><code class="plain">udev-finish.service                    static  </code></div>
+<div class="line"><code class="plain">udev.service                           static  </code></div>
+<div class="line"><code class="plain">umountfs.service                       masked  </code></div>
+<div class="line"><code class="plain">umountnfs.service                      masked  </code></div>
+<div class="line"><code class="plain">umountroot.service                     masked  </code></div>
+<div class="line"><code class="plain">update-ports.service                   enabled </code></div>
+<div class="line"><code class="plain">urandom.service                        static  </code></div>
+<div class="line"><code class="plain">user@.service                          static  </code></div>
+<div class="line"><code class="plain">uuidd.service                          static  </code></div>
+<div class="line"><code class="plain">vboxadd-service.service                enabled </code></div>
+<div class="line"><code class="plain">vboxadd-x11.service                    enabled </code></div>
+<div class="line"><code class="plain">vboxadd.service                        enabled </code></div>
+<div class="line"><code class="plain">vxrd.service                           disabled</code></div>
+<div class="line"><code class="plain">vxsnd.service                          disabled</code></div>
+<div class="line"><code class="plain">wd_keepalive.service                   enabled </code></div>
+<div class="line"><code class="plain">x11-common.service                     masked  </code></div>
+<div class="line"><code class="plain">ztp-init.service                       enabled </code></div>
+<div class="line"><code class="plain">ztp.service                            disabled</code></div>
+<div class="line"><code class="plain">191 unit files listed.</code></div>
+<div class="line"><code class="plain">lines 147-194/194 (END)</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126770_ManagingApplicationDaemons-IdentifyingEssentialServices">
+        <h1 class="heading "><span>Identifying Essential Services</span></h1>
+    <p  >If you need to know which services are required to run when the switch boots, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl list-dependencies --before basic.target</code></div>
+</div>
+    </div>
+    <p  >To see which services are needed for networking, run:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="highlight-grey confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ sudo systemctl list-dependencies --after network.target<br/>network.target</pre>    <p  >    <span style="color: #5cdd49;">
+<strong class=" ">●</strong>     </span>
+<tt class=" ">├─networking.service</tt><br/>    <span style="color: #5cdd49;">
+<strong class=" ">●</strong>     </span>
+<tt class=" ">├─switchd.service</tt><br/>    <span style="color: #5cdd49;">
+<strong class=" ">●</strong>     </span>
+<tt class=" ">├─wd_keepalive.service</tt><br/>    <span style="color: #6a0900;">
+<strong class=" ">●</strong>     </span>
+<tt class=" ">└─network-pre.target</tt>    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >To identify the services needed for a multi-user environment, run:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="highlight-grey confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@leaf01:~$ sudo systemctl list-dependencies --before multi-user.target<br/>multi-user.target</pre>    <p  >    <span style="color: #6a0900;">
+<strong class=" ">●</strong>     </span>
+<tt class=" ">├─bootlog.service</tt><br/>    <span style="color: #6a0900;">
+<strong class=" ">●</strong>     </span>
+<tt class=" ">├─systemd-readahead-done.service</tt><br/>    <span style="color: #6a0900;">
+<strong class=" ">●</strong>     </span>
+<tt class=" ">├─systemd-readahead-done.timer</tt><br/>    <span style="color: #6a0900;">
+<strong class=" ">●</strong>     </span>
+<tt class=" ">├─systemd-update-utmp-runlevel.service</tt><br/>    <span style="color: #6a0900;">
+<strong class=" ">●</strong>     </span>
+<tt class=" ">└─graphical.target</tt><br/>    <span style="color: #6a0900;">
+<strong class=" ">●</strong>     </span>
+<tt class=" ">└─systemd-update-utmp-runlevel.service</tt>    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Default_Cumulus_Linux_ACL_Configuration.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Default Cumulus Linux ACL Configuration</span>
+        </a>
+                <a href="Configuring_switchd.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Configuring switchd</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{{ define "menu"}}
+
+{{ partial "docs/menu-subsectiontree" . }}
+
+{{ end }}
+
+{{ define "main" }}
+<article class="markdown">
+<h1>  {{- .Page.Title -}} </h1>
+  {{- .Content -}}
+</article>
+{{ end }}
+{{ define "toc" }}
+
+{{ $showToC := default (default true .Site.Params.BookShowToC) .Params.bookshowtoc }}
+  {{ if and ($showToC) (.Page.TableOfContents) }}
+
+    {{ partial "docs/toc" . }}
+
+{{ end }}
+
+{{ end }}

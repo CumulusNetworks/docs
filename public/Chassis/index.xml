@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chassis User Guide on Cumulus Networks Documentation</title>
+    <link>http://example.org/Chassis/</link>
+    <description>Recent content in Chassis User Guide on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/Chassis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Accessing the Console</title>
+      <link>http://example.org/Chassis/Accessing_the_Console/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Chassis/Accessing_the_Console/</guid>
+      <description>You access the console slightly differently, depending upon whether your chassis is a Backpack or the CX-10256-S/OMP-800.
+Accessing the Console on a Backpack Chassis Every CPU in the chassis has its own console. However, for design simplicity, console access is multiplexed, so the only console ports are on the chassis management modules (CMMs) and system controller modules (SCMs).
+Accessing a Console through a CMM Each CMM has an RJ45 port for console access.</description>
+    </item>
+    
+    <item>
+      <title>Fabric Port, Line Card and Switch Port Interfaces</title>
+      <link>http://example.org/Chassis/Fabric_Port_Line_Card_and_Switch_Port_Interfaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Chassis/Fabric_Port_Line_Card_and_Switch_Port_Interfaces/</guid>
+      <description>Each line card in the chassis contains 64 100G ports, broken down into 32 switch ports, which connect to an external network, and 32 fabric ports, which connect to the fabric cards. Because each line card has two Tomahawk ASICs, each line card actually is two switches. On the Backpack chassis, one ASIC is on the left side of the line card and one is on the right side; each half of the line card has half of the switch ports and half of the fabric ports.</description>
+    </item>
+    
+    <item>
+      <title>Chassis Default Configurations</title>
+      <link>http://example.org/Chassis/Chassis_Default_Configurations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Chassis/Chassis_Default_Configurations/</guid>
+      <description>A number of configuration files are automatically applied to all the nodes in the chassis the first time you boot it after installing Cumulus Linux on the nodes. These following actions are also performed:
+ Enable Zebra and bgpd for FRR in the /etc/frr/daemons file.
+ Create the default FRR configuration in the /etc/frr/frr.conf file; iBGP is used. The default configuration uses the ASN 4242424242 to make it easy to recognize.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring and Troubleshooting a Chassis</title>
+      <link>http://example.org/Chassis/Monitoring_and_Troubleshooting_a_Chassis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Chassis/Monitoring_and_Troubleshooting_a_Chassis/</guid>
+      <description>Typically you use standard methods to monitor and troubleshoot the chassis. However, some commands work a little differently and there are some chassis-specific commands you can utilize. Those differences are discussed in this chapter.
+Generating the cl-support Script If you&amp;rsquo;re submitting a ticket to the Cumulus Networks support team for an issue with the chassis, you can generate the cl-support script for a specific node in the chassis by specifying the IPv6 address of the node in the cl-chassis command:</description>
+    </item>
+    
+    <item>
+      <title>Chassis-specific Commands</title>
+      <link>http://example.org/Chassis/Chassis-specific_Commands/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Chassis/Chassis-specific_Commands/</guid>
+      <description>In general, you use the same Cumulus Linux or Debian Linux commands on the chassis that you would use on any other Cumulus Linux switch. However, there is a new suite of commands called cl-chassis. In addition, SSH works a little differently within a chassis.
+cl-chassis Commands Cumulus Linux has a number of chassis-specific commands that can execute against one or all cards in the chassis. The cl-chassis command provides options for:</description>
+    </item>
+    
+  </channel>
+</rss>

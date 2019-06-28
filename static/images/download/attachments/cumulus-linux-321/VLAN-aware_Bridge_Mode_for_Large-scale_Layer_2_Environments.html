@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VLAN-aware Bridge Mode for Large-scale Layer 2 Environments - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Layer_One_and_Two.html">Layer One and Two</a></li>
+                                                                                     <li><a href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126846"> <span>VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><span id="src-5126846_indexterm-860880D47120CD1CA8560C22483D9164">The Cumulus Linux bridge driver supports two configuration modes, </span><span id="src-5126846_indexterm-69B0048EF3D5B8630B18437DD399FEEC">one that is </span>VLAN-aware, and one that follows a more traditional Linux bridge model.    </p>
+    <p  >For <a   href="Traditional_Mode_Bridges.html">traditional Linux bridges</a>, the kernel supports VLANs in the form of VLAN subinterfaces. Enabling bridging on multiple VLANs means configuring a bridge for each VLAN and, for each member port on a bridge, creating one or more VLAN subinterfaces out of that port. This mode poses scalability challenges in terms of configuration size as well as boot time and run time state management, when the number of ports times the number of VLANs becomes large.    </p>
+    <p  >The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale L2 environments, with <strong class=" ">one single</strong><span id="src-5126846_indexterm-46FF68AB1950FBD462593E5C6262DA8A"> </span><strong class=" ">instance</strong><span id="src-5126846_indexterm-791230F21FB1C688BD8B6DEED29B31F7"> </span>of <a   href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree</a>. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID (either PVID or native VLAN &mdash; see below). MAC address learning, filtering and forwarding are <i class=" ">VLAN-aware</i>. This significantly reduces the configuration size, and eliminates the large overhead of managing the port/VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.    </p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >You can configure both VLAN-aware and traditional mode bridges on the same network in Cumulus Linux; however you should not have more than one VLAN-aware bridge on a given switch.    </p>
+        </div>
+    </div>
+    <div class="section section-1" id="src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-ConfiguringaVLAN-awareBridge">
+        <h1 class="heading "><span>Configuring a VLAN-aware Bridge</span></h1>
+    <p  >VLAN-aware bridges can be configured with the Network Command Line Utility (<a   href="Network_Command_Line_Utility.html">NCLU</a>). The example below shows the NCLU commands required to create a VLAN-aware bridge configured for STP, that contains two switch ports, and includes 3 VLANs &mdash; the tagged VLANs 100 and 200 and the untagged (native) VLAN of 1:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >    <img  class="confluence-embedded-image confluence-thumbnail" src="images/download/thumbnails/5126846/vlan-aware_basic_trunking.png" alt="images/download/thumbnails/5126846/vlan-aware_basic_trunking.png" width="300"  />
+        </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bridge bridge ports swp1-2 </code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bridge bridge vids 100,200 </code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bridge bridge pvid 1</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net commit</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net show configuration files</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">    bridge-ports swp1 swp2</code></div>
+<div class="line"><code class="plain">    bridge-pvid 1</code></div>
+<div class="line"><code class="plain">    bridge-vids 100 200</code></div>
+<div class="line"><code class="plain">    bridge-vlan-aware yes</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >The following attributes are useful for configuring VLAN-aware bridges:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">bridge-vlan-aware</tt>: Is automatically set to <i class=" ">yes</i> to indicate that the bridge is in VLAN-aware mode.    </p>
+</li><li class=" ">    <p  ><tt class=" ">bridge-pvid</tt>: A PVID is the bridge's <i class=" ">Primary VLAN Identifer</i>. The PVID defaults to 1; specifying the PVID identifies that VLAN as the native VLAN.    </p>
+</li><li class=" ">    <p  ><tt class=" ">bridge-vids</tt>: A VID is the <i class=" ">VLAN Identifier</i>, which declares the VLANs associated with this bridge.    </p>
+</li><li class=" ">    <p  ><tt class=" ">bridge-access</tt>: Declares the physical switch port as an <i class=" ">access port</i>. Access ports ignore all tagged packets; put all untagged packets into the <tt class=" ">bridge-pvid</tt>.    </p>
+</li><li class=" ">    <p  ><tt class=" ">bridge-allow-untagged</tt>: When set to <i class=" ">no</i>, it drops any untagged frames for a given switch port.    </p>
+</li></ul>    <p  >For a definitive list of bridge attributes, run <tt class=" ">ifquery --syntax-help</tt> and look for the entries under <strong class=" ">bridge</strong>,<strong class=" "> bridgevlan</strong> and <strong class=" ">mstpctl</strong>.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The <tt class=" ">bridge-pvid 1</tt> is implied by default. You do not have to specify <tt class=" ">bridge-pvid</tt>. And while it does not hurt the configuration, it helps other users for readability.    </p>
+    <p  >The following configurations are identical to each other and the configuration above:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">    bridge-ports swp1 swp2</code></div>
+<div class="line"><code class="plain">    bridge-vids 1 100 200</code></div>
+<div class="line"><code class="plain">    bridge-vlan-aware yes</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">    bridge-ports swp1 swp2</code></div>
+<div class="line"><code class="plain">    bridge-pvid 1</code></div>
+<div class="line"><code class="plain">    bridge-vids 1 100 200</code></div>
+<div class="line"><code class="plain">    bridge-vlan-aware yes</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">    bridge-ports swp1 swp2</code></div>
+<div class="line"><code class="plain">    bridge-vids 100 200</code></div>
+<div class="line"><code class="plain">    bridge-vlan-aware yes</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Do not try to bridge the management port, eth0, with any switch ports (like swp0, swp1, and so forth). For example, if you created a bridge with eth0 and swp1, it will not work properly and may disrupt access to the management interface.    </p>
+        </div>
+    </div>
+    <p  >    </p>
+    </div>
+    <div class="section section-1" id="src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-ExampleConfigurations">
+        <h1 class="heading "><span>Example Configurations</span></h1>
+    <div class="section section-2" id="src-5126846_safe-id-VkxBTi1hd2FyZUJyaWRnZU1vZGVmb3JMYXJnZS1zY2FsZUxheWVyMkVudmlyb25tZW50cy1WTEFORmlsdGVyaW5nL1ZMQU5QcnVuaW5n">
+        <h2 class="heading "><span>VLAN Filtering/VLAN Pruning</span></h2>
+    <p  >By default, the bridge port inherits the bridge VIDs. A port's configuration can override the bridge VIDs, by using the <tt class=" ">bridge-vids</tt> attribute:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >    <img  class="confluence-embedded-image confluence-thumbnail" src="images/download/thumbnails/5126846/vlan-aware_pruned.png" alt="images/download/thumbnails/5126846/vlan-aware_pruned.png" width="300"  />
+        </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bridge bridge ports swp1-3</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bridge bridge vids 100,200</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bridge bridge pvid 1</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add interface swp3 bridge vids 200</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net commit</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net show configuration files</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">    bridge-ports swp1 swp2 swp3</code></div>
+<div class="line"><code class="plain">    bridge-pvid 1</code></div>
+<div class="line"><code class="plain">    bridge-vids 100 200</code></div>
+<div class="line"><code class="plain">    bridge-vlan-aware yes</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto swp3</code></div>
+<div class="line"><code class="plain">iface swp3</code></div>
+<div class="line"><code class="plain">  bridge-vids 200</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126846_safe-id-VkxBTi1hd2FyZUJyaWRnZU1vZGVmb3JMYXJnZS1zY2FsZUxheWVyMkVudmlyb25tZW50cy1VbnRhZ2dlZC9BY2Nlc3NQb3J0cw">
+        <h2 class="heading "><span>Untagged/Access Ports</span></h2>
+    <p  >Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are configured as access ports, while all untagged traffic goes to VLAN 100, as specified in the example below:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >    <img  class="confluence-embedded-image confluence-thumbnail" src="images/download/thumbnails/5126846/vlan-aware_untagged_access_ports.png" alt="images/download/thumbnails/5126846/vlan-aware_untagged_access_ports.png" width="300"  />
+        </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add bridge bridge ports swp1-2</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bridge bridge vids 100,200</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add bridge bridge pvid 1</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add interface swp1 bridge access 100</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net add interface swp2 bridge access 100</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net commit</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net show configuration files</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">    bridge-ports swp1 swp2</code></div>
+<div class="line"><code class="plain">    bridge-pvid 1</code></div>
+<div class="line"><code class="plain">    bridge-vids 100 200</code></div>
+<div class="line"><code class="plain">    bridge-vlan-aware yes</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">    bridge-access 100</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto swp2</code></div>
+<div class="line"><code class="plain">iface swp2</code></div>
+<div class="line"><code class="plain">    bridge-access 100</code></div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-DroppingUntaggedFrames">
+        <h2 class="heading "><span>Dropping Untagged Frames</span></h2>
+    <p  >With VLAN-aware bridge mode, a switch port can be configured to drop any untagged frames. To do this, add <tt class=" ">bridge-allow-untagged no</tt> to the switch port. This leaves the bridge port without a PVID and drops untagged packets.    </p>
+    <p  >Consider the following example bridge:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">  bridge-ports swp1 swp2</code></div>
+<div class="line"><code class="plain">  bridge-pvid </code><code class="value">1</code></div>
+<div class="line"><code class="plain">  bridge-vids </code><code class="value">10</code><code class="plain"> </code><code class="value">100</code><code class="plain"> </code><code class="value">100</code></div>
+<div class="line"><code class="plain">  bridge-vlan-aware yes</code></div>
+</div>
+    </div>
+    <p  >Here is the VLAN membership for that configuration:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show bridge vlan</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Interface      VLAN  Flags</code></div>
+<div class="line"><code class="plain">-----------  ------  ---------------------</code></div>
+<div class="line"><code class="plain">swp1              </code><code class="value">1</code><code class="plain">  PVID, Egress Untagged</code></div>
+<div class="line"><code class="plain">                </code><code class="value">100</code></div>
+<div class="line"><code class="plain">                </code><code class="value">200</code></div>
+<div class="line"><code class="plain">swp2              </code><code class="value">1</code><code class="plain">  PVID, Egress Untagged</code></div>
+<div class="line"><code class="plain">                 </code><code class="value">10</code></div>
+<div class="line"><code class="plain">                </code><code class="value">100</code></div>
+<div class="line"><code class="plain">                </code><code class="value">200</code></div>
+<div class="line"><code class="plain">bridge           </code><code class="value">10</code></div>
+</div>
+    </div>
+    <p  >To configure swp2 to drop untagged frames, add <tt class=" ">bridge-allow-untagged no</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp2 bridge allow-untagged no</code></div>
+</div>
+    </div>
+    <p  >When you check VLAN membership for that port, it shows that there is <strong class=" ">no</strong> untagged VLAN.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show bridge vlan</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Interface      VLAN  Flags</code></div>
+<div class="line"><code class="plain">-----------  ------  ---------------------</code></div>
+<div class="line"><code class="plain">swp1              </code><code class="value">1</code><code class="plain">  PVID, Egress Untagged</code></div>
+<div class="line"><code class="plain">                </code><code class="value">100</code></div>
+<div class="line"><code class="plain">                </code><code class="value">200</code></div>
+<div class="line"><code class="plain">swp2             </code><code class="value">10</code></div>
+<div class="line"><code class="plain">                </code><code class="value">100</code></div>
+<div class="line"><code class="plain">                </code><code class="value">200</code></div>
+<div class="line"><code class="plain">bridge           </code><code class="value">10</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126846_safe-id-VkxBTi1hd2FyZUJyaWRnZU1vZGVmb3JMYXJnZS1zY2FsZUxheWVyMkVudmlyb25tZW50cy1zdmlWTEFOTGF5ZXIzQWRkcmVzc2luZ-KAlFN3aXRjaFZpcnR1YWxJbnRlcmZhY2VzYW5kT3RoZXJWTEFOQXR0cmlidXRlcw">
+        <h2 class="heading "><span id="src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-svi" class="confluence-anchor-link"></span><span>VLAN Layer 3 Addressing &mdash; Switch Virtual Interfaces and Other VLAN Attributes </span></h2>
+    <p  >When configuring the VLAN attributes for the bridge, specify the attributes for each VLAN interface, each of which is named <i class=" ">vlan&lt;vlanid&gt;</i>. If you are configuring the SVI for the native VLAN, you must declare the native VLAN and specify its IP address. Specifying the IP address in the bridge stanza itself returns an error.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add vlan </code><code class="value">100</code><code class="plain"> ip address </code><code class="value">192.168</code><code class="plain">.</code><code class="value">10.1</code><code class="plain">/</code><code class="value">24</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add vlan </code><code class="value">100</code><code class="plain"> ipv6 address </code><code class="value">2001</code><code class="plain">:db8::</code><code class="value">1</code><code class="plain">/</code><code class="value">32</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net commit</code></div>
+</div>
+    </div>
+    <p  >These commands create the following configuration in the <tt class=" ">/etc/network/interfaces</tt> file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">    bridge-ports swp1 swp2</code></div>
+<div class="line"><code class="plain">    bridge-pvid 1</code></div>
+<div class="line"><code class="plain">    bridge-vids 10 100 200</code></div>
+<div class="line"><code class="plain">    bridge-vlan-aware yes</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto vlan100</code></div>
+<div class="line"><code class="plain">iface vlan100</code></div>
+<div class="line"><code class="plain">    address 192.168.10.1/24</code></div>
+<div class="line"><code class="plain">    address 2001:db8::1/32</code></div>
+<div class="line"><code class="plain">    vlan-id 100</code></div>
+<div class="line"><code class="plain">    vlan-raw-device bridge</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >In the above configuration, if your switch is configured for multicast routing, you do not need to specify <tt class=" ">bridge-igmp-querier-src</tt>, as there is no need for a static IGMP querier configuration on the switch. Otherwise, the static IGMP querier configuration helps to probe the hosts to refresh their IGMP reports.    </p>
+        </div>
+    </div>
+    <p  >You can specify a range of VLANs as well. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add vlan </code><code class="value">1</code><code class="plain">-</code><code class="value">2000</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-globConfiguringMultiplePortsinaRange">
+        <h2 class="heading "><span id="src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-glob" class="confluence-anchor-link"></span><span>Configuring Multiple Ports in a Range</span></h2>
+    <p  >The <tt class=" ">bridge-ports</tt> attribute takes a range of numbers. The &quot;swp1-52&quot; in the example below indicates that swp1 through swp52 are part of the bridge, which is a shortcut that saves you from enumerating each port individually:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add bridge bridge ports swp1-</code><code class="value">52</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net commit</code></div>
+</div>
+    </div>
+    <p  >These commands create the following configuration in the <tt class=" ">/etc/network/interfaces</tt> file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">      bridge-ports swp1 swp2 swp3 ... swp51 swp52</code></div>
+<div class="line"><code class="plain">      bridge-vids 310 700 707 712 850 910</code></div>
+<div class="line"><code class="plain">      bridge-vlan-aware yes</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-AccessPortsandPrunedVLANs">
+        <h2 class="heading "><span>Access Ports and Pruned VLANs</span></h2>
+    <p  >The following example configuration contains an access port and switch port that are <i class=" ">pruned</i>; they only sends and receive traffic tagged to/from a specific set of VLANs declared by the <tt class=" ">bridge-vids</tt> attribute. It also contains other switch ports that send and receive traffic from all the defined VLANs.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show configuration files</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"><code class="plain"># ports swp3-swp48 are trunk ports which inherit vlans from the </code><code class="string">'bridge'</code></div>
+<div class="line"><code class="plain"># ie vlans </code><code class="value">310</code><code class="plain">,</code><code class="value">700</code><code class="plain">,</code><code class="value">707</code><code class="plain">,</code><code class="value">712</code><code class="plain">,</code><code class="value">850</code><code class="plain">,</code><code class="value">910</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">      bridge-ports swp1 swp2 swp3 ... swp51 swp52</code></div>
+<div class="line"><code class="plain">      bridge-vids </code><code class="value">310</code><code class="plain"> </code><code class="value">700</code><code class="plain"> </code><code class="value">707</code><code class="plain"> </code><code class="value">712</code><code class="plain"> </code><code class="value">850</code><code class="plain"> </code><code class="value">910</code></div>
+<div class="line"><code class="plain">      bridge-vlan-aware yes</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">      bridge-access </code><code class="value">310</code></div>
+<div class="line"><code class="plain">      mstpctl-bpduguard yes</code></div>
+<div class="line"><code class="plain">      mstpctl-portadminedge yes</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># The following is a trunk port that is </code><code class="string">"pruned"</code><code class="plain">.</code></div>
+<div class="line"><code class="plain"># </code><code class="keyword">native</code><code class="plain"> vlan is </code><code class="value">1</code><code class="plain">, but only .1q tags of </code><code class="value">707</code><code class="plain">, </code><code class="value">712</code><code class="plain">, </code><code class="value">850</code><code class="plain"> are</code></div>
+<div class="line"><code class="plain"># sent and received</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">auto swp2</code></div>
+<div class="line"><code class="plain">iface swp2</code></div>
+<div class="line"><code class="plain">      mstpctl-bpduguard yes</code></div>
+<div class="line"><code class="plain">      mstpctl-portadminedge yes</code></div>
+<div class="line"><code class="plain">      bridge-vids </code><code class="value">707</code><code class="plain"> </code><code class="value">712</code><code class="plain"> </code><code class="value">850</code></div>
+<div class="line"><code class="plain">     </code></div>
+<div class="line"><code class="plain"># The following port is the trunk uplink and inherits all vlans</code></div>
+<div class="line"><code class="plain"># from </code><code class="string">'bridge'</code><code class="plain">; bridge assurance is enabled using </code><code class="string">'portnetwork'</code><code class="plain"> attribute</code></div>
+<div class="line"><code class="plain">auto swp49</code></div>
+<div class="line"><code class="plain">iface swp49</code></div>
+<div class="line"><code class="plain">      mstpctl-portnetwork yes</code></div>
+<div class="line"><code class="plain">      mstpctl-portpathcost </code><code class="value">10</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># The following port is the trunk uplink and inherits all vlans</code></div>
+<div class="line"><code class="plain"># from </code><code class="string">'bridge'</code><code class="plain">; bridge assurance is enabled using </code><code class="string">'portnetwork'</code><code class="plain"> attribute</code></div>
+<div class="line"><code class="plain">auto swp50</code></div>
+<div class="line"><code class="plain">iface swp50</code></div>
+<div class="line"><code class="plain">      mstpctl-portnetwork yes</code></div>
+<div class="line"><code class="plain">      mstpctl-portpathcost </code><code class="value">0</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-LargeBondSetConfiguration">
+        <h2 class="heading "><span>Large Bond Set Configuration</span></h2>
+    <p  >The configuration below demonstrates a VLAN-aware bridge with a large set of bonds. The bond configurations are generated from a <a  class="external-link" href="http://www.makotemplates.org/">Mako</a> template.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show configuration files</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># vlan-aware bridge with bonds example</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># uplink1, peerlink and downlink are bond interfaces.</code></div>
+<div class="line"><code class="plain"># </code><code class="string">'bridge'</code><code class="plain"> is a vlan aware bridge with ports uplink1, peerlink</code></div>
+<div class="line"><code class="plain"># and downlink (swp2-</code><code class="value">20</code><code class="plain">).</code></div>
+<div class="line"><code class="plain"># </code></div>
+<div class="line"><code class="plain"># </code><code class="keyword">native</code><code class="plain"> vlan is by </code><code class="keyword">default</code><code class="plain"> </code><code class="value">1</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># </code><code class="string">'bridge-vids'</code><code class="plain"> attribute is used to declare vlans.</code></div>
+<div class="line"><code class="plain"># </code><code class="string">'bridge-pvid'</code><code class="plain"> attribute is used to specify </code><code class="keyword">native</code><code class="plain"> vlans </code><code class="keyword">if</code><code class="plain"> other than </code><code class="value">1</code></div>
+<div class="line"><code class="plain"># </code><code class="string">'bridge-access'</code><code class="plain"> attribute is used to declare access port</code></div>
+<div class="line"><code class="plain"># </code></div>
+<div class="line"><code class="plain">auto lo</code></div>
+<div class="line"><code class="plain">iface lo</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto eth0</code></div>
+<div class="line"><code class="plain">iface eth0 inet dhcp</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># bond </code><code class="keyword">interface</code></div>
+<div class="line"><code class="plain">auto uplink1</code></div>
+<div class="line"><code class="plain">iface uplink1</code></div>
+<div class="line"><code class="plain">    bond-slaves swp32</code></div>
+<div class="line"><code class="plain">    bridge-vids </code><code class="value">2000</code><code class="plain">-</code><code class="value">2079</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># bond </code><code class="keyword">interface</code></div>
+<div class="line"><code class="plain">auto peerlink</code></div>
+<div class="line"><code class="plain">iface peerlink</code></div>
+<div class="line"><code class="plain">    bond-slaves swp30 swp31</code></div>
+<div class="line"><code class="plain">    bridge-vids </code><code class="value">2000</code><code class="plain">-</code><code class="value">2079</code><code class="plain"> </code><code class="value">4094</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># bond </code><code class="keyword">interface</code></div>
+<div class="line"><code class="plain">auto downlink</code></div>
+<div class="line"><code class="plain">iface downlink</code></div>
+<div class="line"><code class="plain">    bond-slaves swp1</code></div>
+<div class="line"><code class="plain">    bridge-vids </code><code class="value">2000</code><code class="plain">-</code><code class="value">2079</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># Declare vlans </code><code class="keyword">for</code><code class="plain"> all swp ports</code></div>
+<div class="line"><code class="plain"># swp2-</code><code class="value">20</code><code class="plain"> get vlans from </code><code class="value">2004</code><code class="plain"> to </code><code class="value">2022</code><code class="plain">.</code></div>
+<div class="line"><code class="plain"># The below uses mako templates to generate iface sections</code></div>
+<div class="line"><code class="plain"># with vlans </code><code class="keyword">for</code><code class="plain"> swp ports</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">%</code><code class="keyword">for</code><code class="plain"> port, vlanid in zip(range(</code><code class="value">2</code><code class="plain">, </code><code class="value">20</code><code class="plain">), range(</code><code class="value">2004</code><code class="plain">, </code><code class="value">2022</code><code class="plain">)) :</code></div>
+<div class="line"><code class="plain">    auto swp${port}</code></div>
+<div class="line"><code class="plain">    iface swp${port}</code></div>
+<div class="line"><code class="plain">        bridge-vids ${vlanid}</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">%endfor</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># svi vlan </code><code class="value">2000</code></div>
+<div class="line"><code class="plain">auto bridge.</code><code class="value">2000</code></div>
+<div class="line"><code class="plain">iface bridge.</code><code class="value">2000</code></div>
+<div class="line"><code class="plain">    address </code><code class="value">11.100</code><code class="plain">.</code><code class="value">1.252</code><code class="plain">/</code><code class="value">24</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># l2 attributes </code><code class="keyword">for</code><code class="plain"> vlan </code><code class="value">2000</code></div>
+<div class="line"><code class="plain">auto bridge.</code><code class="value">2000</code></div>
+<div class="line"><code class="plain">vlan bridge.</code><code class="value">2000</code></div>
+<div class="line"><code class="plain">    bridge-igmp-querier-src </code><code class="value">172.16</code><code class="plain">.</code><code class="value">101.1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># vlan-aware bridge</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">    bridge-ports uplink1 peerlink downlink swp1 swp2 swp49 swp50</code></div>
+<div class="line"><code class="plain">    bridge-vlan-aware yes</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># svi peerlink vlan</code></div>
+<div class="line"><code class="plain">auto peerlink.</code><code class="value">4094</code></div>
+<div class="line"><code class="plain">iface peerlink.</code><code class="value">4094</code></div>
+<div class="line"><code class="plain">    address </code><code class="value">192.168</code><code class="plain">.</code><code class="value">10.1</code><code class="plain">/</code><code class="value">30</code></div>
+<div class="line"><code class="plain">    broadcast </code><code class="value">192.168</code><code class="plain">.</code><code class="value">10.3</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-VXLANswithVLAN-awareBridges">
+        <h2 class="heading "><span>VXLANs with VLAN-aware Bridges</span></h2>
+    <p  >Cumulus Linux supports using VXLANs with VLAN-aware bridge configuration. This provides improved scalability, as multiple VXLANs can be added to a single VLAN-aware bridge. A 1:1 association is used between the VXLAN VNI and the VLAN, using the bridge access VLAN definition on the VXLAN, and the VLAN membership definition on the local bridge member interfaces.    </p>
+    <p  >The configuration example below shows the differences between a VXLAN configured for traditional bridge mode and one configured for VLAN-aware mode. The configurations use head end replication (HER), along with the VLAN-aware bridge to map VLANs to VNIs.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The current tested scale limit for Cumulus Linux 3.2 is 512 VNIs.    </p>
+        </div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show configuration files</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto lo</code></div>
+<div class="line"><code class="plain">iface lo inet loopback</code></div>
+<div class="line"><code class="plain">    address </code><code class="value">10.35</code><code class="plain">.</code><code class="value">0.10</code><code class="plain">/</code><code class="value">32</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">    bridge-ports uplink regex vni.*</code></div>
+<div class="line"><code class="plain">    bridge-pvid </code><code class="value">1</code></div>
+<div class="line"><code class="plain">    bridge-vids </code><code class="value">1</code><code class="plain">-</code><code class="value">100</code></div>
+<div class="line"><code class="plain">    bridge-vlan-aware yes</code></div>
+<div class="line"><code class="plain">auto vni-</code><code class="value">10000</code></div>
+<div class="line"><code class="plain">iface vni-</code><code class="value">10000</code></div>
+<div class="line"><code class="plain">    alias CUSTOMER X VLAN </code><code class="value">10</code></div>
+<div class="line"><code class="plain">    bridge-access </code><code class="value">10</code></div>
+<div class="line"><code class="plain">    vxlan-id </code><code class="value">10000</code></div>
+<div class="line"><code class="plain">    vxlan-local-tunnelip </code><code class="value">10.35</code><code class="plain">.</code><code class="value">0.10</code></div>
+<div class="line"><code class="plain">    vxlan-remoteip </code><code class="value">10.35</code><code class="plain">.</code><code class="value">0.34</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-ConfiguringaStaticMACAddressEntry">
+        <h2 class="heading "><span>Configuring a Static MAC Address Entry</span></h2>
+    <p  >You can add a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo bridge fdb add 12:34:56:12:34:56 dev swp1 vlan 150 master static</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo bridge fdb show</code></div>
+<div class="line"><code class="plain">44:38:39:00:00:7c dev swp1 master bridge permanent</code></div>
+<div class="line"><code class="plain">12:34:56:12:34:56 dev swp1 vlan 150 master bridge static</code></div>
+<div class="line"><code class="plain">44:38:39:00:00:7c dev swp1 self permanent</code></div>
+<div class="line"><code class="plain">12:12:12:12:12:12 dev swp1 self permanent</code></div>
+<div class="line"><code class="plain">12:34:12:34:12:34 dev swp1 self permanent</code></div>
+<div class="line"><code class="plain">12:34:56:12:34:56 dev swp1 self permanent</code></div>
+<div class="line"><code class="plain">12:34:12:34:12:34 dev bridge master bridge permanent</code></div>
+<div class="line"><code class="plain">44:38:39:00:00:7c dev bridge vlan 500 master bridge permanent</code></div>
+<div class="line"><code class="plain">12:12:12:12:12:12 dev bridge master bridge permanent</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-CaveatsandErrata">
+        <h1 class="heading "><span>Caveats and Errata</span></h1>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">Spanning Tree Protocol (STP):</strong> VLAN-aware mode supports a single instance of STP across all VLANs, as STP is enabled on a per-bridge basis. A common practice when using a single STP instance for all VLANs is to define every VLAN on every switch in the spanning tree instance.    </p>
+    <p  ><tt class=" ">mstpd</tt> remains the user space protocol daemon.    </p>
+    <p  >Cumulus Linux supports Rapid Spanning Tree Protocol (RSTP).    </p>
+</li><li class=" ">    <p  ><strong class=" ">IGMP Snooping:</strong> IGMP snooping and group membership are supported on a per-VLAN basis, though the IGMP snooping configuration (including enable/disable and mrouter ports) are defined on a per-bridge port basis.    </p>
+</li><li class=" ">    <p  ><strong class=" ">Reserved VLAN range:</strong> For hardware data plane internal operations, the switching silicon requires VLANs for every physical port, Linux bridge, and layer 3 subinterface. Cumulus Linux reserves a range of 1000 VLANs by default; the reserved range is 3000-3999. The reserved range can be modified if it conflicts with any user-defined VLANs, as long the new range is a contiguous set of VLANs with IDs anywhere between 2 and 4094, and the minimum size of the range is 300 VLANs.    </p>
+    <p  >To configure the reserved range:    </p>
+<ol class=" "><li class=" ">    <p  >Open <tt class=" ">/etc/cumulus/switchd.conf</tt> in a text editor.    </p>
+</li><li class=" ">    <p  >Uncomment the following line, specify a new range, and save the file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">resv_vlan_range</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Restart <tt class=" ">switchd</tt> to implement the change:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl restart switchd.service</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >While restarting <tt class=" ">switchd</tt>, all running ports will flap, and forwarding will be interrupted.    </p>
+        </div>
+    </div>
+</li></ol></li><li class=" ">    <p  ><strong class=" ">VLAN translation:</strong> A bridge in VLAN-aware mode cannot have VLAN translation enabled for it. Only traditional mode bridges can utilize VLAN translation.    </p>
+</li><li class=" ">    <p  ><strong class=" ">Converting bridges between supported modes:</strong> Traditional mode bridges cannot be automatically converted to/from a VLAN-aware bridge. The original configuration must be deleted, and all member switch ports must be brought down, then a new bridge can be created.    </p>
+</li></ul>    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Ethernet_Bridging_-_VLANs.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Ethernet Bridging - VLANs</span>
+        </a>
+                <a href="Traditional_Mode_Bridges.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Traditional Mode Bridges</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

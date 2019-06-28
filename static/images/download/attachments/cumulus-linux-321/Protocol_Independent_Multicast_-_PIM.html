@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Protocol Independent Multicast - PIM - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Layer_Three.html">Layer Three</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5127023"> <span>Protocol Independent Multicast - PIM</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  >Protocol Independent Multicast (PIM) is a multicast control plane protocol, that advertises multicast sources and receivers over a routed layer 3 network. Layer 3 multicast relies on PIM to advertise information about multicast capable routers and the location of multicast senders and receivers. For this reason, multicast cannot be sent through a routed network without PIM.    </p>
+    <p  >PIM has two modes of operation: Sparse Mode (PIM-SM) and Dense Mode (PIM-DM).    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Cumulus Linux only supports PIM Sparse Mode.    </p>
+        </div>
+    </div>
+    <div class="section section-1" id="src-5127023_ProtocolIndependentMulticast-PIM-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5127023_ProtocolIndependentMulticast-PIM-PIMOverview">
+        <h1 class="heading "><span>PIM Overview</span></h1>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5127023/05roles.png" alt="images/download/attachments/5127023/05roles.png"  height="300" />
+        </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Network Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >First Hop Router (FHR)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The FHR is the first router attached closest to the source. The FHR is responsible for the PIM register process. Each multicast source will have a single FHR.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Last Hop Router (LHR)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The LHR is the last router in the path, attached to an interested multicast receiver. There is a single LHR for each network subnet with an interested receiver, however multicast groups can have multiple LHRs throughout the network.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Rendezvous Point (RP)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The RP allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PIM Shared Tree (RP Tree) or (*,G) Tree    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The Shared Tree is the multicast tree rooted at the RP. When receivers wish to join a multicast group, messages are sent along the shared tree towards the RP.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PIM Shortest Path Tree (SPT) or (S,G) Tree    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The SPT is the multicast tree rooted at the multicast source for a given group. Each multicast source will have a unique SPT. The SPT may match the RP Tree, but this is not a requirement. The SPT represents the most efficient way to send multicast traffic from a source to the interested receivers.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Outgoing Interface (OIF)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The Outgoing interface indicates the interface a PIM or multicast packet should be sent on. OIFs are the interfaces towards the multicast receivers.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Incoming Interface (IIF)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The Incoming Interface indicates the interface a PIM or multicast packet should be received on. IIFs can be the interfaces towards the multicast, or towards the RP.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Reverse Path Forwarding Interface (RPF Interface)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Reverse Path Forwarding is the unicast route towards a source or receiver.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Multicast Route (mroute)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >A multicast route indicates the multicast source and multicast group as well as associated OIFs, IIFs, and RPF information.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Star-G mroute (*,G)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The (*,G) mroute represents the RP Tree. The * is a wildcard indicating any multicast source. The G is the multicast group. An example (*,G) would be (*, 239.1.2.9).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >S-G mroute (S,G)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This is the mroute representing the SPT. The S is the multicast source IP. The G is the multicast group. An example (S,G) would be (10.1.1.1, 239.1.2.9).    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div class="section section-2" id="src-5127023_ProtocolIndependentMulticast-PIM-PIMMessages">
+        <h2 class="heading "><span>PIM Messages</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >PIM Message    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PIM Hello    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PIM hellos announce the presence of a multicast router on a segment. PIM hellos are sent every 30 seconds by default.    </p>
+    <div  class="confbox programlisting">
+                    <div class="title">PIM Hello Example</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="PIM Hello Example">
+<div class="line"><code class="value">22.1</code><code class="plain">.</code><code class="value">2.2</code><code class="plain"> &gt; </code><code class="value">224.0</code><code class="plain">.</code><code class="value">0.13</code><code class="plain">: PIMv2, length </code><code class="value">34</code></div>
+<div class="line"><code class="plain"> Hello, cksum </code><code class="value">0xfdbb</code><code class="plain"> (correct)</code></div>
+<div class="line"><code class="plain"> Hold Time Option (</code><code class="value">1</code><code class="plain">), length </code><code class="value">2</code><code class="plain">, Value: 1m45s</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0000</code><code class="plain">: </code><code class="value">0069</code></div>
+<div class="line"><code class="plain"> LAN Prune Delay Option (</code><code class="value">2</code><code class="plain">), length </code><code class="value">4</code><code class="plain">, Value: </code></div>
+<div class="line"><code class="plain"> T-bit=</code><code class="value">0</code><code class="plain">, LAN delay 500ms, Override interval 2500ms</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0000</code><code class="plain">: 01f4 09c4</code></div>
+<div class="line"><code class="plain"> DR Priority Option (</code><code class="value">19</code><code class="plain">), length </code><code class="value">4</code><code class="plain">, Value: </code><code class="value">1</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0000</code><code class="plain">: </code><code class="value">0000</code><code class="plain"> </code><code class="value">0001</code></div>
+<div class="line"><code class="plain"> Generation ID Option (</code><code class="value">20</code><code class="plain">), length </code><code class="value">4</code><code class="plain">, Value: </code><code class="value">0x2459b190</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0000</code><code class="plain">: </code><code class="value">2459</code><code class="plain"> b190</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PIM Join/Prune (J/P)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PIM J/P messages indicate the groups that a multicast router would like to receive or no longer receive. Often PIM Join/Prune messages are described as distinct message types, but are actually a single PIM message with a list of groups to join and a second list of groups to leave. PIM J/P messages can be to join or prune from the SPT or RP trees (also called (*,G) Joins or (S,G) Joins).    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >PIM Join/Prune messages are sent to PIM neighbors on individual interfaces. Join/Prune messages are never unicast.    </p>
+        </div>
+    </div>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5127023/pim_join-prune.png" alt="images/download/attachments/5127023/pim_join-prune.png"  height="300" />
+        </p>
+    <p  >This PIM Join/Prune is for group 239.1.1.9, with 1 Join and 0 Prunes for the group. Join/Prunes for multiple groups can exist in a single packet.    </p>
+    <div  class="confbox programlisting">
+                    <div class="title">S,G Prune Example</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="S,G Prune Example">
+<div class="line"><code class="value">21</code><code class="plain">:</code><code class="value">49</code><code class="plain">:</code><code class="value">59.470885</code><code class="plain"> IP (tos </code><code class="value">0x0</code><code class="plain">, ttl </code><code class="value">255</code><code class="plain">, id </code><code class="value">138</code><code class="plain">, offset </code><code class="value">0</code><code class="plain">, flags [none], proto PIM (</code><code class="value">103</code><code class="plain">), length </code><code class="value">54</code><code class="plain">)</code></div>
+<div class="line"><code class="plain"> </code><code class="value">22.1</code><code class="plain">.</code><code class="value">2.2</code><code class="plain"> &gt; </code><code class="value">224.0</code><code class="plain">.</code><code class="value">0.13</code><code class="plain">: PIMv2, length </code><code class="value">34</code></div>
+<div class="line"><code class="plain"> Join / Prune, cksum </code><code class="value">0xb9e5</code><code class="plain"> (correct), upstream-neighbor: </code><code class="value">22.1</code><code class="plain">.</code><code class="value">2.1</code></div>
+<div class="line"><code class="plain"> </code><code class="value">1</code><code class="plain"> group(s), holdtime: 3m30s</code></div>
+<div class="line"><code class="plain"> group #</code><code class="value">1</code><code class="plain">: </code><code class="value">225.1</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">, joined sources: </code><code class="value">0</code><code class="plain">, pruned sources: </code><code class="value">1</code></div>
+<div class="line"><code class="plain"> pruned source #</code><code class="value">1</code><code class="plain">: </code><code class="value">33.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">(S)</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PIM Register    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PIM register messages are unicast packets sent from a FHR destined to the RP to advertise a new multicast group. The FHR fully encapsulates the original multicast packet in a PIM register messages. The RP is responsible for decapsulating the PIM register message and forwarding it along the (*,G) tree towards the receivers.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PIM Null Register    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PIM Null Register is a special type of PIM Register message where the &quot;Null-Register&quot; flag is set within the packet. Null Register messages are used for a FHR to signal to an RP that a source is still sending multicast traffic. Unlike normal PIM Register messages Null Register messages do not encapsulate the original data packet.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PIM Register Stop    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PIM Register Stop messages are sent by an RP to the FHR to indicate that PIM Register messages should no longer be sent.    </p>
+    <div  class="confbox programlisting">
+                    <div class="title">Register Stop Example</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Register Stop Example">
+<div class="line"><code class="value">21</code><code class="plain">:</code><code class="value">37</code><code class="plain">:</code><code class="value">00.419379</code><code class="plain"> IP (tos </code><code class="value">0x0</code><code class="plain">, ttl </code><code class="value">255</code><code class="plain">, id </code><code class="value">24</code><code class="plain">, offset </code><code class="value">0</code><code class="plain">, flags [none], proto PIM (</code><code class="value">103</code><code class="plain">), length </code><code class="value">38</code><code class="plain">)</code></div>
+<div class="line"><code class="plain"> </code><code class="value">100.1</code><code class="plain">.</code><code class="value">2.1</code><code class="plain"> &gt; </code><code class="value">33.1</code><code class="plain">.</code><code class="value">1.10</code><code class="plain">: PIMv2, length </code><code class="value">18</code></div>
+<div class="line"><code class="plain"> Register Stop, cksum </code><code class="value">0xd8db</code><code class="plain"> (correct) group=</code><code class="value">225.1</code><code class="plain">.</code><code class="value">0.0</code><code class="plain"> source=</code><code class="value">33.1</code><code class="plain">.</code><code class="value">1.1</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >IGMP Membership Report (IGMP Join)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >IGMP Membership Reports are sent by multicast receivers to tell multicast routers of their interest in a specific multicast group. IGMP Join messages trigger PIM *,G Joins. IGMP version 2 messages are sent to the All Hosts multicast address, 224.0.0.1. IGMP version 3 messages are sent to an IGMP v3 specific multicast address, 224.0.0.22.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Cumulus Linux only supports IGMP version 3 Membership Reports.    </p>
+        </div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >IGMP Leave    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >IGMP Leaves tell a multicast router that a multicast receiver no longer wants the multicast group. IGMP Leave messages trigger PIM *,G Prunes.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5127023_ProtocolIndependentMulticast-PIM-PIMNeighbors">
+        <h2 class="heading "><span>PIM Neighbors</span></h2>
+    <p  >When PIM is configured on an interface, <tt class=" ">PIM Hello</tt> messages are sent to the link local multicast group 224.0.0.13. Any other router configured with PIM on the segment that hears the PIM Hello messages will build a PIM neighbor with the sending device.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >PIM neighbors are stateless. No confirmation of neighbor relationship is exchanged between PIM endpoints.    </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127023_safe-id-UHJvdG9jb2xJbmRlcGVuZGVudE11bHRpY2FzdC1QSU0tUElNU3BhcnNlTW9kZShQSU0tU00p">
+        <h1 class="heading "><span>PIM Sparse Mode (PIM-SM)</span></h1>
+    <p  >PIM Sparse Mode (PIM-SM) is a &quot;pull&quot; multicast distribution method. This means that multicast traffic is only sent through the network if receivers explicitly ask for it. When a receiver &quot;pulls&quot; multicast traffic, the network must be periodically notified that the receiver wishes to continue the multicast stream.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >This behavior is in contrast to PIM Dense Mode (PIM-DM), where traffic is flooded, and the network must be periodically notified that the receiver wishes to stop receiving the multicast stream.    </p>
+        </div>
+    </div>
+    <p  >PIM-SM has three configuration options: Any-source Multicast (ASM), Bi-directional Multicast (BiDir), and Source Specific Multicast (SSM):    </p>
+<ul class=" "><li class=" ">    <p  >Any-source Mulitcast (ASM) is the traditional, and most commonly deployed PIM implementation. ASM relies on Rendevous Points to connect multicast senders and receivers that then dynamically determine the shortest path through the network between source and receiver, to efficiently send multicast traffic.    </p>
+</li><li class=" ">    <p  >Bidirectional PIM (BiDir) forwards all traffic through the multicast Rendezvous Point (RP), rather than tracking multicast source IPs, allowing for greater scale, while resulting in inefficient forwarding of network traffic.    </p>
+</li><li class=" ">    <p  >Source Specific Multicast (SSM) requires multicast receivers to know exactly which source they wish to receive multicast traffic from, rather than relying on multicast Rendezvous Points. SSM requires the use of IGMPv3 on the multicast clients.    </p>
+</li></ul>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Cumulus Linux only supports Any-source Multicast. PIM SSM and PIM BiDir are not currently supported.    </p>
+        </div>
+    </div>
+    <div class="section section-2" id="src-5127023_ProtocolIndependentMulticast-PIM-Any-sourceMulticastRouting">
+        <h2 class="heading "><span>Any-source Multicast Routing</span></h2>
+    <p  >Multicast routing behaves differently depending on whether the source is sending before receivers request the multicast stream, or if a receiver tries to join a stream before there are any sources.    </p>
+    <div class="section section-3" id="src-5127023_ProtocolIndependentMulticast-PIM-ReceiverJoinsFirst">
+        <h3 class="heading "><span>Receiver Joins First</span></h3>
+    <p  >When a receiver joins a group, an IGMP Membership Join message is sent to the IGMPv3 multicast group, 224.0.0.22. The PIM multicast router for the segment, listening to the IGMPv3 group, receives the IGMP Membership Join message, and becomes an LHR for this group.    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5127023/06igmp.png" alt="images/download/attachments/5127023/06igmp.png"  height="300" />
+        </p>
+    <p  >This creates a (*,G) mroute, with an OIF of the interface on which the IGMP Membership Report was received and an IIF of the RPF interface for the RP.    </p>
+    <p  >The LHR generates a PIM (*,G) Join message, and sends it from the interface towards the RP. Each multicast router between the LHR and the RP will build a (*,G) mroute with the OIF being the interface on which the PIM Join message was received and an Incoming Interface of the Reverse Path Forwarding interface for the RP.    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5127023/07pimjoin.png" alt="images/download/attachments/5127023/07pimjoin.png"  height="300" />
+        </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >When the RP receives the (*,G) Join message, it will not send any additional PIM Join messages. The RP will maintain a (*,G) state as long as the receiver wishes to receive the multicast group.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Unlike multicast receivers, multicast sources do not send IGMP (or PIM) messages to the FHR. A multicast source begins sending and the FHR will receive the traffic and build both a (*,G) and an (S,G) mroute. The FHR will then begin the PIM Register process.    </p>
+        </div>
+    </div>
+    <div class="section section-4" id="src-5127023_ProtocolIndependentMulticast-PIM-PIMRegisterProcess">
+        <h4 class="heading "><span>PIM Register Process</span></h4>
+    <p  >When a First Hop Router (FHR) receives a multicast data packet from a source, the FHR does not know if there are any interested multicast receivers in the network. The FHR encapsulates the data packet in a unicast PIM register message. This packet is sourced from the FHR and destined to the RP address. The RP will build an (S,G) mroute and decapsulate the multicast packet and forward it along the (*,G) tree.    </p>
+    <p  >As the unencapsulated multicast packet travels down the (*,G) tree towards the interested receivers. At the same time, the RP will send a PIM (S,G) Join towards the FHR. This will build an (S,G) state on each multicast router between the RP and FHR.    </p>
+    <p  >When the FHR receives a PIM (S,G) Join, it will continue encapsulating and sending PIM Register messages, but will also make a copy of the packet and send it along the (S,G) mroute.    </p>
+    <p  >The RP then receives the multicast packet along the (S,G) tree and sends a PIM Register Stop to the FHR to end the register process.    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5127023/08data.png" alt="images/download/attachments/5127023/08data.png"  height="300" />
+     <img  class="confluence-embedded-image" src="images/download/attachments/5127023/09register.png" alt="images/download/attachments/5127023/09register.png"  height="300" />
+    </p>
+    </div>
+    <div class="section section-4" id="src-5127023_ProtocolIndependentMulticast-PIM-PIMSPTSwitchover">
+        <h4 class="heading "><span>PIM SPT Switchover</span></h4>
+    <p  >When the LHR receives the first multicast packet, in order to efficiently forward traffic through the network, it will send a PIM (S,G) Join towards the FHR. This builds the Shortest Path Tree (SPT), or the tree that is the shortest path to the source.    </p>
+    <p  >When the traffic arrives over the SPT, a PIM (S,G) Prune will be sent up the Shared Tree towards the RP. This removes multicast traffic from the shared tree; multicast data will only be sent over the SPT.    </p>
+    <p  >The LHR will now send both (*,G) Joins and (S,G) Prune messages towards the RP.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Cumulus Linux PIM does not currently support SPT Switchover. All traffic will be forwarded along the shared tree.    </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5127023_ProtocolIndependentMulticast-PIM-SenderStartsBeforeReceiversJoin">
+        <h3 class="heading "><span>Sender Starts Before Receivers Join</span></h3>
+    <p  >As previously mentioned, a multicast sender can send multicast data without any additional IGMP or PIM signaling. When the FHR receives the multicast traffic it will encapsulate it and send a PIM Register to the Rendezvous Point (RP).    </p>
+    <p  >When the RP receives the PIM Register, it will build an (S,G) mroute; however, there is no (*,G) mrouter and no interested receivers.    </p>
+    <p  >The RP will drop the PIM Register message and immediately send a PIM Register Stop message to the FHR.    </p>
+    <p  >Receiving a PIM Register Stop without any associated PIM Joins leaves the FHR without any outgoing interfaces. The FHR will drop this multicast traffic until a PIM Join is received.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >PIM Register messages are sourced from the interface that received the multicast traffic and are destined to the RP address. The PIM Register is not sourced from the interface towards the RP.    </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127023_ProtocolIndependentMulticast-PIM-PIMNull-Register">
+        <h2 class="heading "><span>PIM Null-Register</span></h2>
+    <p  >In order to notify the RP that multicast traffic is still flowing when the RP has no receiver, or if the RP is not on the SPT tree, the FHR will periodically send PIM Null Register messages. The FHR sends a PIM Register with the Null-Register flag set, but without any data. This special PIM Register notifies the RP that a multicast source is still sending, should any new receivers come online.    </p>
+    <p  >After receiving a PIM Null-Register, the RP immediately sends a PIM Register Stop to acknowledge the reception of the PIM Null Register message.    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127023_ProtocolIndependentMulticast-PIM-Configuration">
+        <h1 class="heading "><span>Configuration</span></h1>
+    <div class="section section-2" id="src-5127023_ProtocolIndependentMulticast-PIM-GettingStarted">
+        <h2 class="heading "><span>Getting Started</span></h2>
+    <p  >The <tt class=" ">cumulus-pim</tt> package is included in Quagga. To configure PIM on a switch:    </p>
+<ol class=" "><li class=" ">    <p  >Open <tt class=" ">/etc/quagga/daemons</tt> in a text editor.    </p>
+</li><li class=" ">    <p  >Add the following line to the end of the file to enable <tt class=" ">pimd</tt>, and save the file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">zebra=yes</code></div>
+<div class="line"><code class="plain">pimd=yes</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Run the <tt class=" ">systemctl restart</tt> command to restart Quagga:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl restart quagga</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >In a terminal, run the <tt class=" ">vtysh</tt> command to start the Quagga CLI on the switch.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">cumulus# </code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Run the following commands to enable multicast routing:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus# configure terminal</code></div>
+<div class="line"><code class="plain">cumulus(config)# ip multicast-routing</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Run the following commands to configure the PIM interfaces:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus# configure terminal</code></div>
+<div class="line"><code class="plain">cumulus(config)# </code><code class="keyword">int</code><code class="plain"> swp1</code></div>
+<div class="line"><code class="plain">cumulus(config-</code><code class="keyword">if</code><code class="plain">)# ip pim sm</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >PIM must be enabled on all interfaces facing multicast sources or multicast receivers, as well as on the interface where the RP address is configured.    </p>
+        </div>
+    </div>
+</li><li class=" ">    <p  >Run the following commands to enable either IGMPv2 or IGMPv3 on the interfaces with hosts attached:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus# configure terminal</code></div>
+<div class="line"><code class="plain">cumulus(config)# </code><code class="keyword">int</code><code class="plain"> swp1 </code></div>
+<div class="line"><code class="plain">cumulus(config-</code><code class="keyword">if</code><code class="plain">)# ip igmp version </code><code class="value">3</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >IGMP must be configured on all interfaces where multicast receivers exist.    </p>
+        </div>
+    </div>
+</li><li class=" ">    <p  >Configure a group mapping for a static RP:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus# configure terminal </code></div>
+<div class="line"><code class="plain">cumulus(config)# ip pim rp </code><code class="value">192.168</code><code class="plain">.</code><code class="value">0.1</code><code class="plain"> </code><code class="value">224.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">4</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Each PIM-SM enabled device must configure a static RP to a group mapping, and all PIM-SM enabled devices must have the same RP to group mapping configuration.    </p>
+        </div>
+    </div>
+</li></ol>    <p  class="expand-control-text">Complete Multicast Network Configuration Example    </p>
+    <p  >The following is example configuration    </p>
+    <div  class="confbox programlisting">
+                    <div class="title">RP Configuration</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="RP Configuration">
+<div class="line"><code class="plain">RP# show run</code></div>
+<div class="line"><code class="plain">Building configuration...</code></div>
+<div class="line"><code class="plain">Current configuration:</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">log syslog</code></div>
+<div class="line"><code class="plain">ip multicast-routing</code></div>
+<div class="line"><code class="plain">ip pim rp </code><code class="value">192.168</code><code class="plain">.</code><code class="value">0.1</code><code class="plain"> </code><code class="value">224.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">4</code></div>
+<div class="line"><code class="plain">username cumulus nopassword</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> lo</code></div>
+<div class="line"><code class="plain"> description RP Address </code><code class="keyword">interface</code></div>
+<div class="line"><code class="plain"> ip ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> ip pim sm</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp1</code></div>
+<div class="line"><code class="plain"> description </code><code class="keyword">interface</code><code class="plain"> to FHR</code></div>
+<div class="line"><code class="plain"> ip ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> ip ospf network point-to-point</code></div>
+<div class="line"><code class="plain"> ip pim sm</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp2</code></div>
+<div class="line"><code class="plain"> description </code><code class="keyword">interface</code><code class="plain"> to LHR</code></div>
+<div class="line"><code class="plain"> ip ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> ip ospf network point-to-point</code></div>
+<div class="line"><code class="plain"> ip pim sm</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">router ospf</code></div>
+<div class="line"><code class="plain"> ospf router-id </code><code class="value">192.168</code><code class="plain">.</code><code class="value">0.1</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">line vty</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">FHR Configuration</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="FHR Configuration">
+<div class="line"><code class="plain">FHR# show run</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">log syslog</code></div>
+<div class="line"><code class="plain">ip multicast-routing</code></div>
+<div class="line"><code class="plain">ip pim rp </code><code class="value">192.168</code><code class="plain">.</code><code class="value">0.1</code><code class="plain"> </code><code class="value">224.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">4</code></div>
+<div class="line"><code class="plain">username cumulus nopassword</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> bridge10.</code><code class="value">1</code></div>
+<div class="line"><code class="plain"> description Interface to multicast source</code></div>
+<div class="line"><code class="plain"> ip ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> ip ospf network point-to-point</code></div>
+<div class="line"><code class="plain"> ip pim sm</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> lo</code></div>
+<div class="line"><code class="plain"> ip ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> ip pim sm</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp49</code></div>
+<div class="line"><code class="plain"> description </code><code class="keyword">interface</code><code class="plain"> to RP</code></div>
+<div class="line"><code class="plain"> ip ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> ip ospf network point-to-point</code></div>
+<div class="line"><code class="plain"> ip pim sm</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp50</code></div>
+<div class="line"><code class="plain"> description </code><code class="keyword">interface</code><code class="plain"> to LHR</code></div>
+<div class="line"><code class="plain"> ip ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> ip ospf network point-to-point</code></div>
+<div class="line"><code class="plain"> ip pim sm</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">router ospf</code></div>
+<div class="line"><code class="plain"> ospf router-id </code><code class="value">192.168</code><code class="plain">.</code><code class="value">1.1</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">line vty</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">LHR Configuration</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="LHR Configuration">
+<div class="line"><code class="plain">LHR# show run</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">log syslog</code></div>
+<div class="line"><code class="plain">ip multicast-routing</code></div>
+<div class="line"><code class="plain">ip pim rp </code><code class="value">192.168</code><code class="plain">.</code><code class="value">0.1</code><code class="plain"> </code><code class="value">224.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">4</code></div>
+<div class="line"><code class="plain">username cumulus nopassword</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> bridge10.</code><code class="value">1</code></div>
+<div class="line"><code class="plain"> description </code><code class="keyword">interface</code><code class="plain"> to multicast receivers</code></div>
+<div class="line"><code class="plain"> ip igmp</code></div>
+<div class="line"><code class="plain"> ip ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> ip ospf network point-to-point</code></div>
+<div class="line"><code class="plain"> ip pim sm</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> lo</code></div>
+<div class="line"><code class="plain"> ip ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> ip pim sm</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp49</code></div>
+<div class="line"><code class="plain"> description </code><code class="keyword">interface</code><code class="plain"> to RP</code></div>
+<div class="line"><code class="plain"> ip ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> ip ospf network point-to-point</code></div>
+<div class="line"><code class="plain"> ip pim sm</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp50</code></div>
+<div class="line"><code class="plain"> description </code><code class="keyword">interface</code><code class="plain"> to FHR</code></div>
+<div class="line"><code class="plain"> ip ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> ip ospf network point-to-point</code></div>
+<div class="line"><code class="plain"> ip pim sm</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">router ospf</code></div>
+<div class="line"><code class="plain"> ospf router-id </code><code class="value">192.168</code><code class="plain">.</code><code class="value">2.2</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">line vty</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127023_safe-id-UHJvdG9jb2xJbmRlcGVuZGVudE11bHRpY2FzdC1QSU0tTXVsdGljYXN0U291cmNlRGlzY292ZXJ5UHJvdG9jb2woTVNEUCk">
+        <h2 class="heading "><span>Multicast Source Discovery Protocol (MSDP)</span></h2>
+    <p  >The Multicast Source Discovery Protocol (MSDP) is used to connect multiple PIM-SM multicast domains together, using the PIM-SM RPs. By configuring any cast RPs with the same IP address on multiple multicast switches (primarily on the loopback interface), the PIM-SM limitation of only one RP per multicast group is relaxed. This allows for an increase in both failover and load-balancing throughout.    </p>
+    <p  >When an RP discovers a new source (typically a PIM-SM register message via TCP), a source-active (SA) message is sent to each MSDP peer. The peer then determines if any receivers are interested.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Cumulus Linux MSDP support is primarily for anycast-RP configuration, rather than multiple multicast domains. Each MSDP peer must be configured in a full mesh, as SA messages are not received and re-forwarded.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Cumulus Linux currently only supports one MSDP mesh-group.    </p>
+        </div>
+    </div>
+    <div class="section section-3" id="src-5127023_ProtocolIndependentMulticast-PIM-Configuration.1">
+        <h3 class="heading "><span>Configuration</span></h3>
+    <p  >The steps below cover configuring a Cumulus switch to use the MSDP    </p>
+<ol class=" "><li class=" ">    <p  >Add an anycast IP address to the loopback interface for each RP in the domain:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:$ net add loopback lo ip address </code><code class="value">10.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">/</code><code class="value">32</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:$ net add loopback lo ip address </code><code class="value">10.1</code><code class="plain">.</code><code class="value">1.100</code><code class="plain">/</code><code class="value">32</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:$ net pending</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:$ net commit</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >On every multicast switch, configure the group to RP mapping using the anycast address:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:$ net add pim rp </code><code class="value">100.1</code><code class="plain">.</code><code class="value">1.100</code><code class="plain"> </code><code class="value">224.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">4</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:$ net pending</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:$ net commit</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Log into the Quagga CLI:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:$ sudo vtysh</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Configure the MSDP mesh group for all active RPs:    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The mesh group should include all RPs in the domain as members, with a unique address as the source. This configuration will result in MSDP peerings between all RPs.    </p>
+        </div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain"># conf t</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# ip msdp mesh-group cumulus source </code><code class="value">100.1</code><code class="plain">.</code><code class="value">1.1</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# ip msdp mesh-group cumulus source </code><code class="value">100.1</code><code class="plain">.</code><code class="value">1.2</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# ip msdp mesh-group cumulus source </code><code class="value">100.1</code><code class="plain">.</code><code class="value">1.3</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Inject the anycast IP address into the domain's IGP.    </p>
+</li></ol>    <p  >    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If the network is unnumbered and uses unnumbered BGP as the IGP, avoid using the anycast IP address for establishing unicast or multicast peerings. For PIM-SM, ensure that the unique address is used as the PIM hello source by setting the source:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:$ sudo vtysh</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain"># conf t</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# </code><code class="keyword">interface</code><code class="plain"> lo</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config-</code><code class="keyword">if</code><code class="plain">)# ip pim use-source </code><code class="value">100.1</code><code class="plain">.</code><code class="value">1.1</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127023_ProtocolIndependentMulticast-PIM-VerifyingPIM">
+        <h2 class="heading "><span>Verifying PIM</span></h2>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The following outputs are based on the <a  class="external-link" href="https://github.com/CumulusNetworks/cldemo-vagrant">Cumulus Reference Topology</a> with cldemo-pim.    </p>
+        </div>
+    </div>
+    <div class="section section-3" id="src-5127023_ProtocolIndependentMulticast-PIM-SourceStartsFirst">
+        <h3 class="heading "><span>Source Starts First</span></h3>
+    <p  >On the FHR, an mroute is built, but the upstream state is &quot;Prune&quot;. The FHR flag is set on the interface receiving multicast.    </p>
+    <p  >Use the <tt class=" ">show ip mroute</tt> command to review detailed output for the FHR:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">exit01# show ip mroute</code></div>
+<div class="line"><code class="plain">Source          Group           Proto  Input      Output     TTL  Uptime</code></div>
+<div class="line"><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">    </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">       none   br0        none       </code><code class="value">0</code><code class="plain">    --:--:--</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">exit01# show ip pim upstream</code></div>
+<div class="line"><code class="plain">Iif Source Group State Uptime JoinTimer RSTimer KATimer RefCnt</code></div>
+<div class="line"><code class="plain">br0 </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain"> </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain"> Prune </code><code class="value">00</code><code class="plain">:</code><code class="value">07</code><code class="plain">:</code><code class="value">40</code><code class="plain"> --:--:-- </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">36</code><code class="plain"> </code><code class="value">00</code><code class="plain">:</code><code class="value">02</code><code class="plain">:</code><code class="value">50</code><code class="plain"> </code><code class="value">1</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">exit01# show ip pim upstream-join-desired</code></div>
+<div class="line"><code class="plain">Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">exit01# show ip pim </code><code class="keyword">interface</code></div>
+<div class="line"><code class="plain">Interface  State          Address  PIM Nbrs           PIM DR  FHR</code></div>
+<div class="line"><code class="plain">br0           up       </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.1</code><code class="plain">         </code><code class="value">0</code><code class="plain">            local    </code><code class="value">1</code></div>
+<div class="line"><code class="plain">swp51         up        </code><code class="value">10.1</code><code class="plain">.</code><code class="value">0.17</code><code class="plain">         </code><code class="value">1</code><code class="plain">            local    </code><code class="value">0</code></div>
+<div class="line"><code class="plain">swp52         up        </code><code class="value">10.1</code><code class="plain">.</code><code class="value">0.19</code><code class="plain">         </code><code class="value">0</code><code class="plain">            local    </code><code class="value">0</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">exit01# show ip pim state</code></div>
+<div class="line"><code class="plain">Source           Group            IIF    OIL</code></div>
+<div class="line"><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">     </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">        br0</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">exit01# show ip pim </code><code class="keyword">int</code><code class="plain"> detail</code></div>
+<div class="line"><code class="plain">Interface : br0</code></div>
+<div class="line"><code class="plain">State     : up</code></div>
+<div class="line"><code class="plain">Address   : </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.1</code></div>
+<div class="line"><code class="plain">Designated Router</code></div>
+<div class="line"><code class="plain">-----------------</code></div>
+<div class="line"><code class="plain">Address   : </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.1</code></div>
+<div class="line"><code class="plain">Priority  : </code><code class="value">1</code></div>
+<div class="line"><code class="plain">Uptime    : --:--:--</code></div>
+<div class="line"><code class="plain">Elections : </code><code class="value">2</code></div>
+<div class="line"><code class="plain">Changes   : </code><code class="value">0</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">FHR - First Hop Router</code></div>
+<div class="line"><code class="plain">----------------------</code></div>
+<div class="line"><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain"> : </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain"> is a source, uptime is </code><code class="value">00</code><code class="plain">:</code><code class="value">27</code><code class="plain">:</code><code class="value">43</code></div>
+</div>
+    </div>
+    <p  >On the Spine, no mroute state is created, but the <tt class=" ">show ip pim upstream</tt> output includes the S,G:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">spine01# show ip mroute</code></div>
+<div class="line"><code class="plain">Source          Group           Proto  Input      Output     TTL  Uptime</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">spine01# show ip pim upstream</code></div>
+<div class="line"><code class="plain">Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt</code></div>
+<div class="line"><code class="plain">swp30     </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">    </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">       Prune       </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">19</code><code class="plain"> --:--:--  --:--:--  </code><code class="value">00</code><code class="plain">:</code><code class="value">02</code><code class="plain">:</code><code class="value">46</code><code class="plain">       </code><code class="value">1</code></div>
+</div>
+    </div>
+    <p  >As a receiver joins the group, the mroute Output interface on the FHR transitions from &quot;none&quot; to the RPF interface of the RP:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">exit01# show ip mroute</code></div>
+<div class="line"><code class="plain">Source          Group           Proto  Input      Output     TTL  Uptime</code></div>
+<div class="line"><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">    </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">       PIM    br0        swp51      </code><code class="value">1</code><code class="plain">    </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">40</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">exit01# show ip pim upstream</code></div>
+<div class="line"><code class="plain">Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt</code></div>
+<div class="line"><code class="plain">br0       </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">    </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">       Prune       </code><code class="value">00</code><code class="plain">:</code><code class="value">48</code><code class="plain">:</code><code class="value">23</code><code class="plain"> --:--:--  </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">  </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">37</code><code class="plain">       </code><code class="value">2</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">exit01# show ip pim upstream-join-desired</code></div>
+<div class="line"><code class="plain">Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD</code></div>
+<div class="line"><code class="plain">swp51     </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">    </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">       no         yes   no         yes         yes</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">exit01# show ip pim state</code></div>
+<div class="line"><code class="plain">Source           Group            IIF    OIL</code></div>
+<div class="line"><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">     </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">        br0    swp51</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">spine01# show ip mroute</code></div>
+<div class="line"><code class="plain">Source          Group           Proto  Input      Output     TTL  Uptime</code></div>
+<div class="line"><code class="plain">*               </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">       PIM    lo         swp1       </code><code class="value">1</code><code class="plain">    </code><code class="value">00</code><code class="plain">:</code><code class="value">09</code><code class="plain">:</code><code class="value">59</code></div>
+<div class="line"><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">    </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">       PIM    swp30      swp1       </code><code class="value">1</code><code class="plain">    </code><code class="value">00</code><code class="plain">:</code><code class="value">09</code><code class="plain">:</code><code class="value">59</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">spine01# show ip pim upstream</code></div>
+<div class="line"><code class="plain">Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt</code></div>
+<div class="line"><code class="plain">lo        *               </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">       Joined      </code><code class="value">00</code><code class="plain">:</code><code class="value">10</code><code class="plain">:</code><code class="value">01</code><code class="plain"> </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">59</code><code class="plain">  --:--:--  --:--:--       </code><code class="value">1</code></div>
+<div class="line"><code class="plain">swp30     </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">    </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">       Joined      </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">01</code><code class="plain"> </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">59</code><code class="plain">  --:--:--  </code><code class="value">00</code><code class="plain">:</code><code class="value">02</code><code class="plain">:</code><code class="value">35</code><code class="plain">       </code><code class="value">1</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">spine01# show ip pim upstream-join-desired</code></div>
+<div class="line"><code class="plain">Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD</code></div>
+<div class="line"><code class="plain">swp1      *               </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">       no         yes   no         yes         yes</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">spine01# show ip pim state</code></div>
+<div class="line"><code class="plain">Source           Group            IIF    OIL</code></div>
+<div class="line"><code class="plain">*                </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">        lo     swp1</code></div>
+<div class="line"><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">     </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">        swp30  swp1</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5127023_ProtocolIndependentMulticast-PIM-ReceiverJoinsFirst.1">
+        <h3 class="heading "><span>Receiver Joins First</span></h3>
+    <p  >On the LHR attached to the receiver:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">leaf01# show ip mroute</code></div>
+<div class="line"><code class="plain">Source          Group           Proto  Input      Output     TTL  Uptime</code></div>
+<div class="line"><code class="plain">*               </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">       IGMP   swp51      br0        </code><code class="value">1</code><code class="plain">    </code><code class="value">00</code><code class="plain">:</code><code class="value">01</code><code class="plain">:</code><code class="value">19</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">leaf01# show ip pim local-membership</code></div>
+<div class="line"><code class="plain">Interface Address         Source          Group           Membership</code></div>
+<div class="line"><code class="plain">br0       </code><code class="value">172.16</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">      *               </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">       INCLUDE</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">leaf01# show ip pim state</code></div>
+<div class="line"><code class="plain">Source           Group            IIF    OIL</code></div>
+<div class="line"><code class="plain">*                </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">        swp51  br0</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">leaf01# show ip pim upstream</code></div>
+<div class="line"><code class="plain">Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt</code></div>
+<div class="line"><code class="plain">swp51     *               </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">       Joined      </code><code class="value">00</code><code class="plain">:</code><code class="value">02</code><code class="plain">:</code><code class="value">07</code><code class="plain"> </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">53</code><code class="plain">  --:--:--  --:--:--       </code><code class="value">1</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">leaf01# show ip pim upstream-join-desired</code></div>
+<div class="line"><code class="plain">Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD</code></div>
+<div class="line"><code class="plain">br0       *               </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">       no         no    yes        yes         yes</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">leaf01# show ip igmp groups</code></div>
+<div class="line"><code class="plain">Interface Address         Group           Mode Timer    Srcs V Uptime</code></div>
+<div class="line"><code class="plain">br0       </code><code class="value">172.16</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">      </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">       EXCL </code><code class="value">00</code><code class="plain">:</code><code class="value">04</code><code class="plain">:</code><code class="value">02</code><code class="plain">    </code><code class="value">1</code><code class="plain"> </code><code class="value">3</code><code class="plain"> </code><code class="value">00</code><code class="plain">:</code><code class="value">04</code><code class="plain">:</code><code class="value">12</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">leaf01# show ip igmp sources</code></div>
+<div class="line"><code class="plain">Interface Address         Group           Source          Timer Fwd Uptime</code></div>
+<div class="line"><code class="plain">br0       </code><code class="value">172.16</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">      </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">       *               </code><code class="value">03</code><code class="plain">:</code><code class="value">54</code><code class="plain">   Y </code><code class="value">00</code><code class="plain">:</code><code class="value">04</code><code class="plain">:</code><code class="value">21</code></div>
+</div>
+    </div>
+    <p  >On the RP:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">spine01# show ip mroute</code></div>
+<div class="line"><code class="plain">Source          Group           Proto  Input      Output     TTL  Uptime</code></div>
+<div class="line"><code class="plain">*               </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">       PIM    lo         swp1       </code><code class="value">1</code><code class="plain">    </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">03</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">spine01# show ip pim state</code></div>
+<div class="line"><code class="plain">Source           Group            IIF    OIL</code></div>
+<div class="line"><code class="plain">*                </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">        lo     swp1</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">spine01# show ip pim upstream</code></div>
+<div class="line"><code class="plain">Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt</code></div>
+<div class="line"><code class="plain">lo        *               </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">       Joined      </code><code class="value">00</code><code class="plain">:</code><code class="value">05</code><code class="plain">:</code><code class="value">17</code><code class="plain"> </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">43</code><code class="plain">  --:--:--  --:--:--       </code><code class="value">1</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">spine01# show ip pim upstream-join-desired</code></div>
+<div class="line"><code class="plain">Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD</code></div>
+<div class="line"><code class="plain">swp1      *               </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.2</code><code class="plain">       no         yes   no         yes         yes</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127023_ProtocolIndependentMulticast-PIM-TroubleshootingPIM">
+        <h1 class="heading "><span>Troubleshooting PIM</span></h1>
+    <div class="section section-2" id="src-5127023_ProtocolIndependentMulticast-PIM-FHRStuckinRegisteringProcess">
+        <h2 class="heading "><span>FHR Stuck in Registering Process</span></h2>
+    <p  >When a multicast source starts, the FHR sends unicast PIM register messages from the RPF interface towards the source. After the PIM register is received by the RP, a <tt class=" ">PIM register stop</tt> message is sent from the RP to the FHR to end the register process. If an issue with this communication, the FHR will remain stuck in the registering process, which can result in high CPU, as PIM register packets are generated by the FHR CPU, and sent to the RP CPU.    </p>
+    <p  >To assess this issue:    </p>
+<ul class=" "><li class=" ">    <p  >Review the FHR. The output interface of <tt class=" ">pimreg</tt> can be seen here. If this does not change to an interface within a few seconds, the FHR is likely stuck.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">exit01# show ip mroute</code></div>
+<div class="line"><code class="plain">Source          Group           Proto  Input      Output     TTL  Uptime</code></div>
+<div class="line"><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">    </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.3</code><code class="plain">       PIM    br0        pimreg     </code><code class="value">1</code><code class="plain">    </code><code class="value">00</code><code class="plain">:</code><code class="value">03</code><code class="plain">:</code><code class="value">59</code></div>
+</div>
+    </div>
+</li></ul>    <p  >To troubleshoot the issue:    </p>
+<ol class=" "><li class=" ">    <p  >Validate that the FHR can reach the RP. If the RP and FHR can not communicate, the Registration process will fail:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@exit01</code><code class="plain">:~$ ping </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain"> -I br0</code></div>
+<div class="line"><code class="plain">PING </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain"> (</code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain">) from </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.1</code><code class="plain"> br0: </code><code class="value">56</code><code class="plain">(</code><code class="value">84</code><code class="plain">) bytes of data.</code></div>
+<div class="line"><code class="plain">^C</code></div>
+<div class="line"><code class="plain">--- </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain"> ping statistics ---</code></div>
+<div class="line"><code class="value">4</code><code class="plain"> packets transmitted, </code><code class="value">0</code><code class="plain"> received, </code><code class="value">100</code><code class="plain">% packet loss, time 3000ms</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >On the RP, use <tt class=" ">tcpdump</tt> to see if the PIM Register packets are arriving:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@spine01</code><code class="plain">:~$ sudo tcpdump -i swp30</code></div>
+<div class="line"><code class="plain">tcpdump: verbose output suppressed, use -v or -vv </code><code class="keyword">for</code><code class="plain"> full protocol decode</code></div>
+<div class="line"><code class="plain">listening on swp30, link-type EN10MB (Ethernet), capture size </code><code class="value">262144</code><code class="plain"> bytes</code></div>
+<div class="line"><code class="value">23</code><code class="plain">:</code><code class="value">33</code><code class="plain">:</code><code class="value">17.524982</code><code class="plain"> IP </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.1</code><code class="plain"> &gt; </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain">: PIMv2, Register, length </code><code class="value">66</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >If PIM Registration packets are being received, verify that they are seen by PIM by issuing <tt class=" ">debug pim packets</tt> from within Quagga:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@spine01</code><code class="plain">:~$ sudo vtysh -c </code><code class="string">"debug pim packets"</code></div>
+<div class="line"><code class="plain">PIM Packet debugging is on</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@spine01</code><code class="plain">:~$ sudo tail /var/log/quagga/quagga.log</code></div>
+<div class="line"><code class="value">2016</code><code class="plain">/</code><code class="value">10</code><code class="plain">/</code><code class="value">19</code><code class="plain"> </code><code class="value">23</code><code class="plain">:</code><code class="value">46</code><code class="plain">:</code><code class="value">51</code><code class="plain"> PIM: Recv PIM REGISTER packet from </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.1</code><code class="plain"> to </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain"> on swp30: ttl=</code><code class="value">255</code><code class="plain"> pim_version=</code><code class="value">2</code><code class="plain"> pim_msg_size=</code><code class="value">64</code><code class="plain"> checksum=a681</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Repeat the process on the FHR to see if PIM Register Stop messages are being received on the FHR and passed to the PIM process:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@exit01</code><code class="plain">:~$ sudo tcpdump -i swp51</code></div>
+<div class="line"><code class="value">23</code><code class="plain">:</code><code class="value">58</code><code class="plain">:</code><code class="value">59.841625</code><code class="plain"> IP </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.1</code><code class="plain"> &gt; </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain">: PIMv2, Register, length </code><code class="value">28</code></div>
+<div class="line"><code class="value">23</code><code class="plain">:</code><code class="value">58</code><code class="plain">:</code><code class="value">59.842466</code><code class="plain"> IP </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain"> &gt; </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.1</code><code class="plain">: PIMv2, Register Stop, length </code><code class="value">18</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@exit01</code><code class="plain">:~$ sudo vtysh -c </code><code class="string">"debug pim packets"</code></div>
+<div class="line"><code class="plain">PIM Packet debugging is on</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@exit01</code><code class="plain">:~$ sudo tail -f /var/log/quagga/quagga.log</code></div>
+<div class="line"><code class="value">2016</code><code class="plain">/</code><code class="value">10</code><code class="plain">/</code><code class="value">19</code><code class="plain"> </code><code class="value">23</code><code class="plain">:</code><code class="value">59</code><code class="plain">:</code><code class="value">38</code><code class="plain"> PIM: Recv PIM REGSTOP packet from </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain"> to </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.1</code><code class="plain"> on swp51: ttl=</code><code class="value">255</code><code class="plain"> pim_version=</code><code class="value">2</code><code class="plain"> pim_msg_size=</code><code class="value">18</code><code class="plain"> checksum=5a39</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    <div class="section section-2" id="src-5127023_safe-id-UHJvdG9jb2xJbmRlcGVuZGVudE11bHRpY2FzdC1QSU0tTm8qLEdJc0J1aWx0b25MSFI">
+        <h2 class="heading "><span>No *,G Is Built on LHR</span></h2>
+    <p  >The most common reason for a *,G to not be built on a LHR is for both PIM <strong class=" ">and</strong> IGMP to not be enabled on an interface facing a receiver.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">leaf01# show run</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> br0</code></div>
+<div class="line"><code class="plain"> ip igmp</code></div>
+<div class="line"><code class="plain"> ip ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> ip pim sm</code></div>
+</div>
+    </div>
+    <p  >To troubleshoot this issue:    </p>
+<ol class=" "><li class=" ">    <p  >If both PIM and IGMP are enabled, ensure that IGMPv3 Joins are being sent by the receiver:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@leaf01</code><code class="plain">:~$ sudo tcpdump -i br0 igmp</code></div>
+<div class="line"><code class="plain">tcpdump: verbose output suppressed, use -v or -vv </code><code class="keyword">for</code><code class="plain"> full protocol decode</code></div>
+<div class="line"><code class="plain">listening on br0, link-type EN10MB (Ethernet), capture size </code><code class="value">262144</code><code class="plain"> bytes</code></div>
+<div class="line"><code class="value">00</code><code class="plain">:</code><code class="value">03</code><code class="plain">:</code><code class="value">55.789744</code><code class="plain"> IP </code><code class="value">172.16</code><code class="plain">.</code><code class="value">1.101</code><code class="plain"> &gt; igmp.mcast.net: igmp v3 report, </code><code class="value">1</code><code class="plain"> group record(s)</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    <div class="section section-2" id="src-5127023_ProtocolIndependentMulticast-PIM-NomrouteCreatedonFHR">
+        <h2 class="heading "><span>No mroute Created on FHR</span></h2>
+    <p  >To troubleshoot this issue:    </p>
+<ol class=" "><li class=" ">    <p  >Verify that multicast traffic is being received:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@exit01</code><code class="plain">:~$ sudo tcpdump -i br0</code></div>
+<div class="line"><code class="plain">tcpdump: verbose output suppressed, use -v or -vv </code><code class="keyword">for</code><code class="plain"> full protocol decode</code></div>
+<div class="line"><code class="plain">listening on br0, link-type EN10MB (Ethernet), capture size </code><code class="value">262144</code><code class="plain"> bytes</code></div>
+<div class="line"><code class="value">00</code><code class="plain">:</code><code class="value">11</code><code class="plain">:</code><code class="value">52.944745</code><code class="plain"> IP </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">.</code><code class="value">51570</code><code class="plain"> &gt; </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.9</code><code class="plain">.</code><code class="value">1000</code><code class="plain">: UDP, length </code><code class="value">9</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Verify that PIM is configured on the interface facing the source:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">exit01# show run</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> br0</code></div>
+<div class="line"><code class="plain"> ip ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> ip pim sm</code></div>
+</div>
+    </div>
+<ol class=" "><li class=" ">    <p  >If PIM is configured, verify that the RPF interface for the source matches the interface the multicast traffic is received on:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">exit01# show ip rpf </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code></div>
+<div class="line"><code class="plain">Routing entry </code><code class="keyword">for</code><code class="plain"> </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.0</code><code class="plain">/</code><code class="value">24</code><code class="plain"> using Multicast RIB</code></div>
+<div class="line"><code class="plain">  Known via </code><code class="string">"connected"</code><code class="plain">, distance </code><code class="value">0</code><code class="plain">, metric </code><code class="value">0</code><code class="plain">, best</code></div>
+<div class="line"><code class="plain">  * directly connected, br0</code></div>
+</div>
+    </div>
+</li></ol></li><li class=" ">    <p  >Verify that an RP is configured for the multicast group:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">exit01# show ip pim rp-info</code></div>
+<div class="line"><code class="plain">RP address       group/prefix-list   OIF         I am RP</code></div>
+<div class="line"><code class="value">10.0</code><code class="plain">.</code><code class="value">0.21</code><code class="plain">        </code><code class="value">224.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">4</code><code class="plain">         swp51       no</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    <div class="section section-2" id="src-5127023_safe-id-UHJvdG9jb2xJbmRlcGVuZGVudE11bHRpY2FzdC1QSU0tTm9TLEdvblJQZm9yYW5BY3RpdmVHcm91cA">
+        <h2 class="heading "><span>No S,G on RP for an Active Group</span></h2>
+    <p  >An RP will not build an mroute when there are no active receivers for a multicast group, even though the mroute was created on the FHR:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">spine01# show ip mroute</code></div>
+<div class="line"><code class="plain">Source          Group           Proto  Input      Output     TTL  Uptime</code></div>
+<div class="line"><code class="plain">spine01#</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">exit01# show ip mroute</code></div>
+<div class="line"><code class="plain">Source          Group           Proto  Input      Output     TTL  Uptime</code></div>
+<div class="line"><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">    </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.9</code><code class="plain">       none   br0        none       </code><code class="value">0</code><code class="plain">    --:--:--</code></div>
+</div>
+    </div>
+    <p  >This is expected behavior. The active source can be seen on the RP with <tt class=" ">show ip pim upstream</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">spine01# show ip pim upstream</code></div>
+<div class="line"><code class="plain">Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt</code></div>
+<div class="line"><code class="plain">swp30     </code><code class="value">172.16</code><code class="plain">.</code><code class="value">5.105</code><code class="plain">    </code><code class="value">239.2</code><code class="plain">.</code><code class="value">2.9</code><code class="plain">       Prune       </code><code class="value">00</code><code class="plain">:</code><code class="value">08</code><code class="plain">:</code><code class="value">03</code><code class="plain"> --:--:--  --:--:--  </code><code class="value">00</code><code class="plain">:</code><code class="value">02</code><code class="plain">:</code><code class="value">20</code><code class="plain">       </code><code class="value">1</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">spine01# show ip mroute</code></div>
+<div class="line"><code class="plain">Source          Group           Proto  Input      Output     TTL  Uptime</code></div>
+<div class="line"><code class="plain">spine01#</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127023_ProtocolIndependentMulticast-PIM-NomrouteEntryPresentinHardware">
+        <h2 class="heading "><span>No mroute Entry Present in Hardware</span></h2>
+    <p  >Please verify that the hardware IP multicast entry is the maximum value already, using the <tt class=" ">cl-resource-query</tt> command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ cl-resource-query  | grep Mcast</code></div>
+<div class="line"><code class="plain">   Total Mcast Routes:         450,   0% of maximum value    450</code></div>
+</div>
+    </div>
+    <p  >For Mellanox chipsets, please refer to <a   href="Routing.html#src-5127036_Routing-tcam">TCAM Resource Profiles for Mellanox Switches</a>.    </p>
+    </div>
+    <div class="section section-2" id="src-5127023_ProtocolIndependentMulticast-PIM-VerifyMSDPSessionState">
+        <h2 class="heading "><span>Verify MSDP Session State</span></h2>
+    <p  >Run the following commands to verify the state of MSDP sessions:    </p>
+    <div  class="confbox programlisting">
+                <div class="content">
+        <pre><code>switch# show ip msdp mesh-group 
+Mesh group : pod1
+  Source : 100.1.1.1
+  Member                 State
+  100.1.1.2        established
+  100.1.1.3        established
+spine-1# show ip msdp peer       
+Peer                       Local        State    Uptime   SaCnt
+100.1.1.2              100.1.1.1  established  00:07:21       0
+100.1.1.3              100.1.1.1  established  00:07:21       0
+spine-1# </code></pre>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127023_ProtocolIndependentMulticast-PIM-ViewtheActiveSources">
+        <h2 class="heading "><span>View the Active Sources</span></h2>
+    <p  >Review the active sources learned locally (via PIM registers) and from MSDP peers:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain"># show ip msdp sa   </code></div>
+<div class="line"><code class="plain">Source                     Group               RP  Local  SPT    Uptime</code></div>
+<div class="line"><code class="value">44.1</code><code class="plain">.</code><code class="value">11.2</code><code class="plain">              </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">        </code><code class="value">100.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">      n    n  </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">40</code></div>
+<div class="line"><code class="value">44.1</code><code class="plain">.</code><code class="value">11.2</code><code class="plain">              </code><code class="value">239.1</code><code class="plain">.</code><code class="value">1.2</code><code class="plain">        </code><code class="value">100.1</code><code class="plain">.</code><code class="value">1.1</code><code class="plain">      n    n  </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">25</code></div>
+<div class="line"><code class="plain">spine-</code><code class="value">2</code><code class="plain"># </code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127023_ProtocolIndependentMulticast-PIM-CaveatsandErrata">
+        <h1 class="heading "><span>Caveats and Errata</span></h1>
+<ul class=" "><li class=" ">    <p  >Cumulus Linux 3.2.0 only supports PIM Sparse Mode - Any-source Multicast (PIM-SM ASM). Dense Mode, Bidirectional Multicast, and Source-specific Multicast are not supported.    </p>
+</li><li class=" ">    <p  >ECMP with multicast traffic is not implemented; all multicast traffic will utilize a single link.    </p>
+</li><li class=" ">    <p  >ECMP RPF is not supported; only a single path towards the source is supported. Traffic may be dropped for RPF failure if ECMP paths towards the source exist.    </p>
+</li><li class=" ">    <p  >SPT switchover is not supported. All traffic will flow over the shared tree.    </p>
+</li><li class=" ">    <p  >S,G mroutes are not build on routers that are not the Rendezvous Point (RP) or the First-hop Router (FHR). S,G PIM Joins will be sent, but only *,G mroutes are built. As a result, all traffic will flow over the *,G tree, similar to PIM Bidirectional Multicast.    </p>
+</li><li class=" ">    <p  >Non-native forwarding (register decapsulation) is not supported. Initial packet loss is expected while the PIM *,G tree is built from the Rendezvous Point (RP) to the First-hop Router (FHR) to trigger native forwarding.    </p>
+</li><li class=" ">    <p  >Cumulus Linux does not currently build an S,G mroute when forwarding over an *,G tree.    </p>
+</li></ul>    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Management_VRF.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Management VRF</span>
+        </a>
+                <a href="Monitoring_and_Troubleshooting.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Monitoring and Troubleshooting</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

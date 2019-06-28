@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Upgrade from NetQ 2.0.x to NetQ 2.1.0 | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/" >
+    Cumulus NetQ 2.1
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 1.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/"  class="active" >
+    Upgrade from NetQ 2.0.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/" >
+    Upgrade from NetQ 2.1.0 to NetQ 2.1.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_BGP_Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_EVPN_Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_LLDP_Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Validate_Network_Protocol_and_Service_Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Upgrade from NetQ 2.0.x to NetQ 2.1.0</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Upgrade from NetQ 2.0.x to NetQ 2.1.0</h1>
+
+<p>This document describes the steps required to upgrade from NetQ 2.0.x to
+NetQ 2.1.0.</p>
+
+
+<div class="notices info" > <p>Cumulus Networks recommends only upgrading NetQ during a network
+maintenance window.</p>
+
+<p>Any data you have collected while using NetQ 2.0.x is maintained during
+this upgrade process.</p>
+ </div>
+
+
+
+<div class="notices note" > <p>Events generated during the upgrade process will not be available in the
+database. Once the upgrade process is complete, the agents re-sync with
+the current state of the Host or Cumulus Linux switch with the NetQ
+Platform.</p>
+ </div>
+
+
+<p>To upgrade from NetQ 1.x to NetQ 2.1.0, please follow the instructions
+in
+<a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=10456300">here</a>.
+Instructions for installing NetQ 2.1.0 for the first time can be found
+in
+<a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=10456209">here</a>.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>Before you begin the upgrade process, please note the following:</p>
+
+<ul>
+<li><p>The minimum supported Cumulus Linux version for NetQ 2.0.1 is 3.3.0.</p></li>
+
+<li><p>You must upgrade your NetQ Agents as well as the NetQ Platform.</p></li>
+
+<li><p>You can upgrade to NetQ 2.1.0 without upgrading Cumulus Linux.</p></li>
+
+<li><p>The NetQ installer pod <code>netq-installer</code> should be up in either the
+<em>Containercreating</em> or <em>Running</em> state. The <code>netq-installer</code> pod
+state could also be <em>ContainerCreating</em>, in which case the host&rsquo;s
+kubelet is looking to initialize SSH keys.</p></li>
+</ul>
+
+<h2 id="upgrade-the-netq-platform">Upgrade the NetQ Platform</h2>
+
+<p>To upgrade the NetQ Platform:</p>
+
+<ol>
+<li><p>Obtain the NetQ-2.1.0.tgz and NetQ-2.1.0-installer.tgz files from
+your sales engineer.</p></li>
+
+<li><p>From a terminal window, log in to the NetQ Platform
+(<em>netq-appliance</em>) using your login credentials. This example uses
+the default <em>cumulus/CumulusLinux!</em> credentials.</p>
+
+<pre><code>                       
+:~$ ssh cumulus@netq-appliance
+cumulus@netq-appliance's password: 
+cumulus@netq-appliance:~$ 
+       
+        
+</code></pre></li>
+
+<li><p>Change to the root user.</p>
+
+<pre><code>                       
+cumulus@netq-appliance:~$ sudo -i
+[sudo] password for cumulus:
+root@netq-appliance:~#
+       
+        
+</code></pre></li>
+
+<li><p>Create an <em>installables</em> subdirectory in the mount directory.</p>
+
+<pre><code>                       
+root@netq-appliance:~# mkdir -p /mnt/installables/
+root@netq-appliance:~#
+       
+        
+</code></pre></li>
+
+<li><p>Copy the NetQ-2.1.0.tgz and NetQ-2.1.0-installer.tgz files into your
+new directory.</p>
+
+<pre><code>                       
+root@netq-appliance:~# cd /mnt/installables/
+root@netq-appliance:/mnt/installables# cp /home/usr/dir/{NetQ-2.1.0.tgz,NetQ-2.1.0-installer.tgz} ./ 
+       
+        
+</code></pre></li>
+
+<li><p>Export the installer script.</p>
+
+<pre><code>                       
+root@netq-appliance:/mnt/installables#tar -xvf NetQ-2.1.0.tgz ./netq-install.sh
+       
+        
+</code></pre></li>
+
+<li><p>Verify the contents of the directory. You should have the two TGZ
+files and the <code>netq-install.sh</code> script.</p>
+
+<pre><code>                       
+root@netq-appliance:/mnt/installables# ls -l
+total 9607744
+-rw-r--r-- 1 cumulus cumulus  253283595 Apr 23 20:36 NetQ-2.1.0-installer.tgz
+-rw-r--r-- 1 cumulus cumulus 5911383922 Apr 23 11:13 NetQ-2.1.0.tgz
+-rwxr-xr-x 1 _lldpd _lldpd 4309 Apr 23 10:34 netq-install.sh
+root@netq-appliance:/mnt/installables#
+       
+        
+</code></pre></li>
+
+<li><p>Configure SSH access.</p>
+
+
+<div class="notices info" > <pre><code>If you perform the upgrade more than once, skip to step 8c.
+</code></pre>
+ </div>
+
+
+<ol>
+<li><p>Generate the SSH key to enable you to run the script.</p>
+
+
+<div class="notices info" > <pre><code>    Leave the passphrase blank to simplify running the script.
+</code></pre>
+ </div>
+
+
+<pre><code>                           
+root@netq-appliance:/mnt/installables# ssh-keygen -t rsa -b 4096
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+Created directory '/root/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again:
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+           
+            
+</code></pre></li>
+
+<li><p>Copy the key to the <code>authorized_keys</code> directory.</p>
+
+<pre><code>                           
+root@netq-appliance:/mnt/installables# cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+root@netq-appliance:/mnt/installables# chmod 0600 ~/.ssh/authorized_keys
+root@netq-appliance:/mnt/installables#
+           
+            
+</code></pre></li>
+
+<li><p>Associate the key with the installer.</p>
+
+<pre><code>                           
+root@netq-appliance:~#/mnt/installables/./netq-install.sh --usekey ~/.ssh/id_rsa
+[Fri 22 Mar 2019 06:34:47 AM UTC] - This Script can only be invoked by user: root
+[Fri 22 Mar 2019 06:34:47 AM UTC] - The logged in user is root
+[Fri 22 Mar 2019 06:34:47 AM UTC] - Install directory /mnt/installables exists on system.
+[Fri 22 Mar 2019 06:34:47 AM UTC] - File /root/.ssh/id_rsa exists on system...
+[Fri 22 Mar 2019 06:34:47 AM UTC] - checking the presence of existing instaler-ssh-keys secret/instaler-ssh-keys created
+[Fri 22 Mar 2019 06:34:48 AM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
+[Fri 22 Mar 2019 06:34:58 AM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
+[Fri 22 Mar 2019 06:35:08 AM UTC] - Able to find the netq-installer up and running...
+           
+            
+</code></pre></li>
+</ol></li>
+
+<li><p>Upgrade the netq-installer pod to the 2.1.0 version.<em>_<br />
+_</em></p>
+
+<pre><code>                       
+root@netq-appliance:/mnt/installables# ./netq-install.sh --installbundle /mnt/installables/NetQ-2.1.0-installer.tgz
+[Tue Apr 23 02:55:52 2019] - File /mnt/installables/NetQ-2.1.0-installer.tgz exists on system for updating netq installer ... 
+[Tue Apr 23 02:55:52 2019] - Updating the netq installer ... 
+[Tue Apr 23 02:55:52 2019] - Able to execute the command for updating netq installer ... 
+[Tue Apr 23 02:55:52 2019] - Checking initialization of installer update ... 
+[Tue Apr 23 02:55:57 2019] - Update of netq installer is in progress ... 
+******[Tue Apr 23 02:58:57 2019] - Finished updating the netq-installer 
+[Tue Apr 23 02:58:57 2019] - Finishshed updating netq installer ! 
+0,/mnt/installables/NetQ-2.1.0-installer.tgz
+cumulus@sm-telem-02:/mnt/installables$
+       
+        
+</code></pre>
+
+
+<div class="notices info" > <pre><code>Please allow 3-4 minutes for the installer upgrade to complete.
+</code></pre>
+ </div>
+</li>
+
+<li><p>Confirm the netq-installer has been upgraded to the 2.1.0 version.</p>
+
+<pre><code>                       
+root@netq-appliance:~# kubectl get pod -l app=netq-installer -o=jsonpath={.items[0].status.containerStatuses[0].image}
+netq-installer:2.1.0
+       
+        
+</code></pre></li>
+
+<li><p>Upgrade the NetQ software.</p>
+
+<pre><code>                       
+root@netq-appliance:/mnt/installables/# ./netq-install.sh --updateapps /mnt/installables/NetQ-2.1.0.tgz
+[Tue Apr 23 02:55:52 2019] - File /mnt/installables/NetQ-2.1.0-installer.tgz exists on system for updating netq installer ... 
+[Tue Apr 23 02:55:52 2019] - Updating the netq installer ... 
+[Tue Apr 23 02:55:52 2019] - Able to execute the command for updating netq installer ... 
+[Tue Apr 23 02:55:52 2019] - Checking initialization of installer update ... 
+[Tue Apr 23 02:55:57 2019] - Update of netq installer is in progress ... 
+******[Tue Apr 23 02:58:57 2019] - Finished updating the netq-installer 
+[Tue Apr 23 02:58:57 2019] - Finishshed updating netq installer ! 
+0,/mnt/installables/NetQ-2.1.0-installer.tgz
+cumulus@sm-telem-02:/mnt/installables$ sudo /mnt/installables/./netq-install.sh --updateapps /mnt/installables/NetQ-2.1.0.tgz
+[Tue Apr 23 03:01:13 2019] - File /mnt/installables/NetQ-2.1.0.tgz exists on system for updating netq apps... 
+[Tue Apr 23 03:01:13 2019] - User selected to update netq-apps ... 
+[Tue Apr 23 03:04:13 2019] - Able to execute the command for netq apps updates ... 
+[Tue Apr 23 03:04:13 2019] - Checking initialization of apps update ... 
+[Tue Apr 23 03:04:18 2019] - netq apps update is in progress ... 
+******************************************************************[Tue Apr 23 03:37:18 2019] - Finished updating the netq apps ... 
+[Tue Apr 23 03:37:18 2019] - Finished updating apps .... 
+       
+        
+</code></pre>
+
+
+<div class="notices info" > <pre><code>Please allow about an hour for the upgrade to complete.
+</code></pre>
+ </div>
+</li>
+</ol>
+
+<p>You are now running NetQ 2.1.0.</p>
+
+<h2 id="upgrade-the-netq-agents">Upgrade the NetQ Agents</h2>
+
+<p>Whether using the NetQ Appliance or your own hardware, the NetQ Agent
+must be upgraded on each node you want to monitor. The node can be a:</p>
+
+<ul>
+<li><p>Switch running Cumulus Linux version 3.7.0 or later</p></li>
+
+<li><p>Server running Red Hat RHEL 7.1, Ubuntu 16.04 or CentOS 7</p></li>
+
+<li><p>Linux virtual machine running any of the above Linux operating
+systems</p></li>
+</ul>
+
+<p>To upgrade the NetQ Agent you need to install the OS-specific meta
+package, <code>cumulus-netq</code>, on each switch. Optionally, you can install it
+on hosts. The meta package contains the NetQ Agent, the NetQ command
+line interface (CLI), and the NetQ library. The library contains modules
+used by both the NetQ Agent and the CLI.</p>
+
+<p>Instructions for installing the meta package on each node type are
+included here:</p>
+
+<ul>
+<li><p><a href="/old/Cumulus_NetQ/#src-10456364_UpgradefromNetQ2.0.xtoNetQ2.1.0-AgentCL">Upgrade NetQ Agent on a Cumulus Linux
+Switch</a></p></li>
+
+<li><p><a href="/old/Cumulus_NetQ/#src-10456364_UpgradefromNetQ2.0.xtoNetQ2.1.0-AgentUbuntu">Upgrade NetQ Agent on an Ubuntu
+Server</a></p></li>
+
+<li><p><a href="/old/Cumulus_NetQ/#src-10456364_UpgradefromNetQ2.0.xtoNetQ2.1.0-AgentRHC">Upgrade NetQ Agent on a Red Hat or CentOS
+Server</a></p></li>
+</ul>
+
+
+<div class="notices info" > <p>If your network uses a proxy server for external connections, you should
+first <span style="color: #339966;"> <a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/display/DOCS/Configuring+a+Global+Proxy"><span style="color: #339966;">
+configure a global proxy
+</span></a>
+</span> so <code>apt-get</code> can access the meta package on the Cumulus Networks
+repository .</p>
+ </div>
+
+
+<h3 id="upgrade-netq-agent-on-a-cumulus-linux-switch">Upgrade NetQ Agent on a Cumulus Linux Switch</h3>
+
+<p>A simple process upgrades the NetQ Agent on a Cumulus switch.</p>
+
+<ol>
+<li><p>Edit the <code>/etc/apt/sources.list</code> file to add the repository for
+Cumulus NetQ. <strong>Note</strong> that NetQ has a separate repository from
+Cumulus Linux.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo nano /etc/apt/sources.list
+...
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.1
+...
+       
+        
+</code></pre>
+
+
+<div class="notices tip" > <pre><code>The repository `deb http://apps3.cumulusnetworks.com/repos/deb
+CumulusLinux-3 netq-latest` can be used if you want to always
+retrieve the latest posted version of NetQ.
+</code></pre>
+ </div>
+</li>
+
+<li><p>Update the local <code>apt</code> repository, then install the NetQ meta
+package on the switch.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo apt-get update
+cumulus@switch:~$ sudo apt-get install cumulus-netq
+       
+        
+</code></pre></li>
+</ol>
+
+<p>Repeat these steps for each Cumulus switch, or use an automation tool to
+install NetQ Agent on multiple Cumulus Linux switches.</p>
+
+<h3 id="upgrade-netq-agent-on-an-ubuntu-server-optional">Upgrade NetQ Agent on an Ubuntu Server (Optional)</h3>
+
+<p>Before you upgrade the NetQ Agent on an Ubuntu server, make sure the
+following packages are installed and running these minimum versions:</p>
+
+<ul>
+<li><p>iproute 1:4.3.0-1ubuntu3.16.04.1 all</p></li>
+
+<li><p>iproute2 4.3.0-1ubuntu3 amd64</p></li>
+
+<li><p>lldpd 0.7.19-1 amd64</p></li>
+
+<li><p>ntp 1:4.2.8p4+dfsg-3ubuntu5.6 amd64</p>
+
+
+<div class="notices info" > <pre><code>Make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not
+include `lldpd` by default, which is required for the installation.
+To install this package, run the following commands:
+
+``` 
+
+root@ubuntu:~# apt-get update
+root@ubuntu:~# apt-get install lldpd
+root@ubuntu:~# systemctl enable lldpd.service
+root@ubuntu:~# systemctl start lldpd.service
+
+
+```
+</code></pre>
+ </div>
+</li>
+</ul>
+
+<p>To upgrade the NetQ Agent on an Ubuntu server:</p>
+
+<ol>
+<li><p>Remove the current NetQ Agent and application software from your
+switch or host.</p>
+
+<pre><code>                       
+root@ubuntu:~# sudo systemctl stop netq-agent
+root@ubuntu:~# sudo systemctl stop netqd
+root@ubuntu:~# yum remove netq-agent netq-apps
+       
+        
+</code></pre></li>
+
+<li><p>Verify you have removed all older NetQ packages. You should not see
+any older version files.</p>
+
+<pre><code>                       
+root@ubuntu:~# dpkg -l | grep netq
+       
+        
+</code></pre></li>
+
+<li><p>Reference and update the local <code>apt</code> repository.</p>
+
+<pre><code>                       
+root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+       
+        
+</code></pre></li>
+
+<li><p>Create the file
+<code>/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list</code> and add
+the following lines:</p>
+
+<pre><code>                       
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
+...
+       
+        
+</code></pre>
+
+
+<div class="notices note" > <pre><code>The use of `netq-latest` in this example means that a `get` to the
+repository always retrieves the lastest version of NetQ, even in the
+case where a major version update has been made. If you want to keep
+the repository on a specific version — such as `netq-2.1` — use that
+instead.
+</code></pre>
+ </div>
+</li>
+
+<li><p>Install NTP on the server.</p>
+
+<pre><code>                       
+root@ubuntu:~# sudo apt-get install ntp
+       
+        
+</code></pre></li>
+
+<li><p>Configure the NTP server.</p>
+
+<ol>
+<li><p>Open the <code>/etc/ntp.conf</code> file in your text editor of choice.</p></li>
+
+<li><p>Under the Server section, specify the NTP server IP address or
+hostname.</p></li>
+</ol></li>
+
+<li><p>Enable and start the NTP service.</p>
+
+<pre><code>                       
+root@ubuntu:~# sudo systemctl enable ntp.service
+root@ubuntu:~# sudo systemctl start ntp.service
+       
+        
+</code></pre></li>
+
+<li><p>Verify NTP is operating correctly. Look for an asterisk (*) or a
+plus sign (+) that indicates the clock is synchronized.</p>
+
+<pre><code>                       
+root@ubuntu:~# ntpq -pn
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
++173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
++12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
+ 2a00:7600::41   .STEP.          16 u    - 1024    0    0.000    0.000   0.000
+*129.250.35.250  249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
+       
+        
+</code></pre></li>
+
+<li><p>Install the meta package on the server.</p>
+
+<pre><code>                       
+root@ubuntu:~# apt-get update
+root@ubuntu:~# apt-get install cumulus-netq
+       
+        
+</code></pre></li>
+
+<li><p>Restart the NetQ daemon.</p>
+
+<pre><code>                       
+root@ubuntu:~# systemctl enable netqd
+root@ubuntu:~# systemctl restart netqd
+       
+        
+</code></pre></li>
+</ol>
+
+<h3 id="upgrade-netq-agent-on-a-red-hat-or-centos-server-optional">Upgrade NetQ Agent on a Red Hat or CentOS Server (Optional)</h3>
+
+<p>Before you upgrade the NetQ Agent on a Red Hat or CentOS server, make
+sure the following packages are installed and running these minimum
+versions:</p>
+
+<ul>
+<li><p>iproute-3.10.0-54.el7_2.1.x86_64</p></li>
+
+<li><p>lldpd-0.9.7-5.el7.x86_64</p>
+
+
+<div class="notices info" > <pre><code>Make sure you are running lldp**d**, not lldp**ad**.
+
+CentOS does not include `lldpd` by default, nor does it include
+`wget`, which is required for the installation. To install this
+package, run the following commands:
+
+``` 
+
+root@centos:~# yum -y install epel-release
+root@centos:~# yum -y install lldpd
+root@centos:~# systemctl enable lldpd.service
+root@centos:~# systemctl start lldpd.service
+root@centos:~# yum install wget
+
+
+```
+</code></pre>
+ </div>
+</li>
+
+<li><p>ntp-4.2.6p5-25.el7.centos.2.x86_64</p></li>
+
+<li><p>ntpdate-4.2.6p5-25.el7.centos.2.x86_64</p></li>
+</ul>
+
+<p>To upgrade the NetQ Agent on a Red Hat or CentOS server:</p>
+
+<ol>
+<li><p>Remove the current NetQ Agent and application software from your
+switch or host.</p>
+
+<pre><code>                       
+root@rhel7:~# sudo systemctl stop netq-agent
+root@rhel7:~# sudo systemctl stop netqd
+root@rhel7:~# apt-get purge --auto-remove cumulus-netq netq-agent netq-apps
+       
+        
+</code></pre></li>
+
+<li><p>Verify you have removed all older NetQ packages. You should not see
+any older version files.</p>
+
+<pre><code>                       
+root@rhel7:~# dpkg -l | grep netq
+       
+        
+</code></pre></li>
+
+<li><p>Reference and update the local <code>yum</code> repository.</p>
+
+<pre><code>                       
+root@rhel7:~# rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
+root@rhel7:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo &gt; /etc/yum.repos.d/cumulus-host-el.repo
+       
+        
+</code></pre></li>
+
+<li><p>Edit <code>/etc/yum.repos.d/cumulus-host-el.repo</code> to set the <code>enabled=1</code>
+flag for the two NetQ repositories.</p>
+
+<pre><code>                       
+root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
+... 
+[cumulus-arch-netq-2.1]
+name=Cumulus netq packages
+baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.1/$basearch 
+gpgcheck=1
+enabled=1
+[cumulus-noarch-netq-2.1]
+name=Cumulus netq architecture-independent packages
+baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.1/noarch
+gpgcheck=1
+enabled=1
+...
+       
+        
+</code></pre></li>
+
+<li><p>Install NTP on the server.</p>
+
+<pre><code>                       
+root@rhel7:~# yum install ntp
+       
+        
+</code></pre></li>
+
+<li><p>Configure the NTP server.</p>
+
+<ol>
+<li><p>Open the <code>/etc/ntp.conf</code> file in your text editor of choice.</p></li>
+
+<li><p>Under the Server section, specify the NTP server IP address or
+hostname.</p></li>
+</ol></li>
+
+<li><p>Enable and start the NTP service.</p>
+
+<pre><code>                       
+root@rhel7:~# sudo systemctl enable ntpd.service
+root@rhel7:~# sudo systemctl start ntpd.service
+       
+        
+</code></pre></li>
+
+<li><p>Verify NTP is operating correctly. Look for an asterisk (*) or a
+plus sign (+) that indicates the clock is synchronized.</p>
+
+<pre><code>                       
+root@rhel7:~# ntpq -pn
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
++173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
++12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
+ 2a00:7600::41   .STEP.          16 u    - 1024    0    0.000    0.000   0.000
+*129.250.35.250  249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
+       
+        
+</code></pre></li>
+
+<li><p>Install the Bash completion and NetQ meta packages on the server.</p>
+
+<pre><code>                       
+root@rhel7:~# yum -y install bash-completion
+root@rhel7:~# yum install cumulus-netq
+       
+        
+</code></pre></li>
+
+<li><p>Restart the NetQ daemon.</p>
+
+<pre><code>                       
+root@rhel7:~# systemctl enable netqd ; systemctl restart netqd
+       
+        
+</code></pre></li>
+</ol>
+
+<h2 id="set-up-the-netq-agents">Set Up the NetQ Agents</h2>
+
+<p>Once the NetQ Agents have been installed on the network nodes you want
+to monitor, the NetQ Agents must be configured to obtain useful and
+relevant data. The code examples shown in this section illustrate how to
+configure the NetQ Agent on a Cumulus switch, but it is exactly the same
+for the other type of nodes. Depending on your deployment, follow the
+relevant additional instructions after the basic configuration steps:</p>
+
+<ul>
+<li><p><a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/display/NETQ140DRAFT/Cumulus+NetQ+1.4+Installation+Guide#CumulusNetQ1.4InstallationGuide-BasicConfig">Basic
+Configuration</a></p></li>
+
+<li><p><a href="/old/Cumulus_NetQ/#src-10456364_UpgradefromNetQ2.0.xtoNetQ2.1.0-AgentVRF">Configuring the Agent to Use a
+VRF</a></p></li>
+
+<li><p><a href="/old/Cumulus_NetQ/#src-10456364_UpgradefromNetQ2.0.xtoNetQ2.1.0-port">Configuring the Agent to Communicate over a Specific
+Port</a></p></li>
+</ul>
+
+<h3 id="basic-configuration">Basic Configuration</h3>
+
+<p>This is the minimum configuration required to properly monitor your
+nodes.</p>
+
+<ol>
+<li><p>Verify that
+<a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/display/DOCS/Setting+Date+and+Time">NTP</a>
+is running on the host node. Nodes must be in time synchronization
+with the NetQ Platform to enable useful statistical analysis.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo systemctl status ntp
+[sudo] password for cumulus:
+● ntp.service - LSB: Start NTP daemon
+   Loaded: loaded (/etc/init.d/ntp; bad; vendor preset: enabled)
+   Active: active (running) since Fri 2018-06-01 13:49:11 EDT; 2 weeks 6 days ago
+     Docs: man:systemd-sysv-generator(8)
+   CGroup: /system.slice/ntp.service
+           └─2873 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -c /var/lib/ntp/ntp.conf.dhcp -u 109:114
+       
+        
+</code></pre></li>
+
+<li><p>Restart <code>rsyslog</code> so log files are sent to the correct destination.</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo systemctl restart rsyslog.service
+       
+        
+</code></pre></li>
+
+<li><p>Link the node to the NetQ Platform you configured above.<br />
+You must configure both the agent server and the cli server to link
+to the NetQ Platform. <strong>Note:</strong> If you intend to use VRF, skip to
+<a href="/old/Cumulus_NetQ/#src-10456364_UpgradefromNetQ2.0.xtoNetQ2.1.0-AgentVRF">Configure the Agent to Use
+VRF</a>.
+If you intend to specify a port for communication, skip to
+<a href="/old/Cumulus_NetQ/#src-10456364_UpgradefromNetQ2.0.xtoNetQ2.1.0-port">Configure the Agent to Communicate over a Specific
+Port</a>.In
+this example, the IP address for the agent and cli servers is
+<em>192.168.1.254</em>.</p>
+
+<pre><code>                       
+cumulus@switch:~$ netq config add agent server 192.168.1.254
+cumulus@switch:~$ netq config add cli server 192.168.1.254
+       
+        
+</code></pre>
+
+<p>This command updates the configuration in the <code>/etc/netq/netq.yml</code>
+file and enables the NetQ CLI.</p></li>
+
+<li><p>Restart NetQ Agent and CLI.</p>
+
+<pre><code>                       
+cumulus@switch:~$ netq config restart agent
+cumulus@switch:~$ netq config restart cli
+       
+        
+</code></pre></li>
+</ol>
+
+<h3 id="configure-the-agent-to-use-a-vrf-optional">Configure the Agent to Use a VRF (Optional)</h3>
+
+<p>While optional, Cumulus strongly recommends that you configure NetQ
+Agents to communicate with the NetQ Platform only via a
+<a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/display/DOCS/Virtual+Routing+and+Forwarding+-+VRF">VRF</a>,
+including a <a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/display/DOCS/Management+VRF">management
+VRF</a>.
+To do so, you need to specify the VRF name when configuring the NetQ
+Agent. For example, if the management VRF is configured and you want the
+agent to communicate with the NetQ Platform over it, configure the agent
+like this:</p>
+
+<pre><code>                   
+cumulus@leaf01:~$ netq config add agent server 192.168.1.254 vrf mgmt
+cumulus@leaf01:~$ netq config add cli server 192.168.254 vrf mgmt
+   
+    
+</code></pre>
+
+<p>You then restart the agent:</p>
+
+<pre><code>                   
+cumulus@leaf01:~$ netq config restart agent
+cumulus@leaf01:~$ netq config restart cli
+   
+    
+</code></pre>
+
+<h3 id="configure-the-agent-to-communicate-over-a-specific-port-optional">Configure the Agent to Communicate over a Specific Port (Optional)</h3>
+
+<p>By default, NetQ uses port 8981 for communication between the NetQ
+Platform and NetQ Agents. If you want the NetQ Agent to communicate with
+the NetQ Platform via a different port, you need to specify the port
+number when configuring the NetQ Agent like this:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq config add agent server 192.168.1.254 port 7379
+   
+    
+</code></pre>
+
+<p>You then restart the agent:</p>
+
+<pre><code>                   
+cumulus@leaf01:~$ netq config restart agent
+   
+    
+</code></pre>
+
+<h2 id="upgrade-tips">Upgrade Tips</h2>
+
+<p>After your installation is complete, the following scenarios may be
+encountered.</p>
+
+<h3 id="scenario-1-netq-appliance-ip-address-was-changed">Scenario 1: NetQ Appliance IP Address Was Changed</h3>
+
+<p>The NetQ Appliance came with a pre-configured IP address, which has
+since been changed. How do I recover the system?</p>
+
+<p>You must remove and reconfigure the Kubernetes configuration. Follow
+these steps:</p>
+
+<ol>
+<li><p>Locate the Kubernetes pods.<br />
+<code>cumulus@switch:~$ kubectl get pods</code></p></li>
+
+<li><p>Reset all Kubernetes administrative settings. Run the command twice
+to make sure all directories and files have been reset.<br />
+<code>cumulus@switch:~$ sudo kudeadm reset -f cumulus@switch:~$ sudo
+kudeadm reset -f</code></p></li>
+
+<li><p>Remove the Kubernetes configuration.<br />
+<code>cumulus@switch:~$ sudo rm /home/cumulus/.kube/config</code></p></li>
+
+<li><p>Reset the NetQ Appliance install daemon.<br />
+<code>cumulus@switch:~$ sudo systemctl reset-failed</code></p></li>
+
+<li><p>Reset the Kubernetes service.<br />
+<code>cumulus@switch:~$ sudo systemctl restart cts-kubectl-config</code><br />
+<strong>Note</strong>: Allow 15 minutes for the prompt to return.</p></li>
+</ol>
+
+<h3 id="scenario-2-no-ip-address-assigned-to-the-netq-appliance-on-boot">Scenario 2: No IP Address Assigned to the NetQ Appliance on Boot</h3>
+
+<p>A user did not configure an IP address when the system was first booted.
+Later the user assigned an IP address to eth0, but the NetQ appliance
+does not appear to be functioning.</p>
+
+<p>You must reset the install daemon and restart the Kubernetes service.
+Follow these steps:</p>
+
+<ol>
+<li><p>Reset the NetQ Appliance install daemon.<br />
+<code>cumulus@switch:~$ sudo systemctl reset-failed</code></p></li>
+
+<li><p>Restart the Kubernetes service.<br />
+<code>cumulus@switch:~$ sudo systemctl restart cts-kubectl-config</code></p></li>
+</ol>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#upgrade-the-netq-platform">Upgrade the NetQ Platform</a></li>
+<li><a href="#upgrade-the-netq-agents">Upgrade the NetQ Agents</a>
+<ul>
+<li><a href="#upgrade-netq-agent-on-a-cumulus-linux-switch">Upgrade NetQ Agent on a Cumulus Linux Switch</a></li>
+<li><a href="#upgrade-netq-agent-on-an-ubuntu-server-optional">Upgrade NetQ Agent on an Ubuntu Server (Optional)</a></li>
+<li><a href="#upgrade-netq-agent-on-a-red-hat-or-centos-server-optional">Upgrade NetQ Agent on a Red Hat or CentOS Server (Optional)</a></li>
+</ul></li>
+<li><a href="#set-up-the-netq-agents">Set Up the NetQ Agents</a>
+<ul>
+<li><a href="#basic-configuration">Basic Configuration</a></li>
+<li><a href="#configure-the-agent-to-use-a-vrf-optional">Configure the Agent to Use a VRF (Optional)</a></li>
+<li><a href="#configure-the-agent-to-communicate-over-a-specific-port-optional">Configure the Agent to Communicate over a Specific Port (Optional)</a></li>
+</ul></li>
+<li><a href="#upgrade-tips">Upgrade Tips</a>
+<ul>
+<li><a href="#scenario-1-netq-appliance-ip-address-was-changed">Scenario 1: NetQ Appliance IP Address Was Changed</a></li>
+<li><a href="#scenario-2-no-ip-address-assigned-to-the-netq-appliance-on-boot">Scenario 2: No IP Address Assigned to the NetQ Appliance on Boot</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

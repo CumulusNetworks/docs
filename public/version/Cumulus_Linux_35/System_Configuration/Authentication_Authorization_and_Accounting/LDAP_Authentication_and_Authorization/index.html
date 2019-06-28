@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LDAP Authentication and Authorization | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+            
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/" >
+    Cumulus Linux 3.5
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Cumulus_Linux_User_Guide/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility/" >
+    Network Command Line Utility
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/"  class="active" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Managing_Application_Daemons/" >
+    Managing Application Daemons
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/Configuring_Hardware-enabled_DDOS_Protection/" >
+    Configuring Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Layer_1_and_Switch_Port_Attributes/" >
+    Layer 1 and Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Configuring_DHCP_Relays/" >
+    Configuring DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Configuring_DHCP_Servers/" >
+    Configuring DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/" >
+    Layer 1 and 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments/" >
+    VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/Traditional_Mode_Bridges/" >
+    Traditional Mode Bridges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/" >
+    Virtual Router Redundancy - VRR
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/" >
+    Lightweight Network Virtualization - LNV Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_VXLAN_Active-Active_Mode/" >
+    LNV VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX/" >
+    Integrating Hardware VTEPs with VMware NSX
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Open_Shortest_Path_First_-_OSPF_-_Protocol/" >
+    Open Shortest Path First - OSPF - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol/" >
+    Open Shortest Path First v3 - OSPFv3 - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/SNMP_Monitoring/" >
+    SNMP Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Buffer_Monitoring/" >
+    Buffer Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>LDAP Authentication and Authorization</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>LDAP Authentication and Authorization</h1>
+
+<p>Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name
+Service Switch (NSS) for user authentication.</p>
+
+<p>NSS specifies the order of information sources used to resolve names for
+each service. Using this with authentication and authorization, it
+provides the order and location used for user lookup and group mapping
+on the system. PAM handles the interaction between the user and the
+system, providing login handling, session setup, authentication of users
+and authorization of a user actions.</p>
+
+<p>NSS enables PAM to use LDAP for providing user authentication, group
+mapping and information for other services on the system.</p>
+
+<h2 id="configuring-ldap-authentication">Configuring LDAP Authentication</h2>
+
+<p>There are 3 common ways of configuring LDAP authentication on Linux:</p>
+
+<ul>
+<li><p>libnss-ldap</p></li>
+
+<li><p>libnss-ldapd</p></li>
+
+<li><p>libnss-sss</p></li>
+</ul>
+
+<p>This chapter covers using <code>libnss-ldapd</code> only. From internal testing,
+this library worked best with Cumulus Linux and was the easiest to
+configure, automate and troubleshoot.</p>
+
+<h2 id="installing-libnss-ldapd">Installing libnss-ldapd</h2>
+
+<p>The <code>libpam-ldapd</code> package depends on <code>nslcd</code>, so to install
+<code>libnss-ldapd</code>, <code>libpam-ldapd</code> and <code>ldap-utils</code>, you must run:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo apt-get install libnss-ldapd libpam-ldapd ldap-utils nslcd
+   
+    
+</code></pre>
+
+<p>This brings up an interactive prompt asking questions about the LDAP
+URI, search base distinguished name (DN) and services that should have
+LDAP lookups enabled. This creates a very basic LDAP configuration,
+using anonymous bind, and initiating the search for a user under the
+base DN specified.</p>
+
+
+<div class="notices note" > <p>Alternatively, these parameters can be pre-seeded using the
+<code>debconf-utils</code>. To use this method, run <code>apt-get install debconf-utils</code>
+and create the pre-seeded parameters using <code>debconf-set-selections</code> with
+the appropriate answers. Run <code>debconf-show &lt;pkg&gt;</code> to check the settings.
+Here is an <a href="/old/Cumulus_Linux_35/attachments_8357337_1_kb_debconf.txt">example of how to preseed answers to the installer questions
+using
+<code>debconf-set-selections</code></a>
+.</p>
+ </div>
+
+
+<p>Once the install is complete, the <em>name service LDAP caching daemon</em>
+(<code>nslcd</code>) will be running. This is the service that handles all of the
+LDAP protocol interactions, and caches the information returned from the
+LDAP server. In <code>/etc/nsswitch.conf</code>, <code>ldap</code>has been appended and is
+the secondary information source for <em>passwd</em>, <em>group</em> and <em>shadow</em>. The
+local files (<code>/etc/passwd</code>, <code>/etc/groups</code> and <code>/etc/shadow</code>) are used
+first, as specified by the <code>compat</code> source.</p>
+
+<pre><code>                   
+passwd: compat ldap
+group: compat ldap
+shadow: compat ldap
+   
+    
+</code></pre>
+
+
+<div class="notices warning" > <p>You are strongly advised to keep <code>compat</code> as the first source in NSS for
+<em>passwd</em>, <em>group</em> and <em>shadow</em>. This prevents you from getting locked
+out of the system.</p>
+ </div>
+
+
+<h2 id="configuring-nslcd-conf">Configuring nslcd.conf</h2>
+
+<p>You need to update the main configuration file (<code>/etc/nslcd.conf</code>) after
+installation to accommodate the expected LDAP server settings. The
+<a href="http://linux.die.net/man/5/nslcd.conf" target="_blank">nslcd.conf man page</a> details all
+the available configuration options. Some of the more important options
+are related to security and how the queries are handled.</p>
+
+<h3 id="connection">Connection</h3>
+
+<p>The LDAP client starts a session by connecting to the LDAP server, by
+default, on TCP and UDP port 389, or on port 636 for LDAPS. Depending on
+the configuration, this connection may be unauthenticated (anonymous
+bind); otherwise, the client must provide a bind user and password. The
+variables used to define the connection to the LDAP server are the URI
+and bind credentials.</p>
+
+<p>The URI is mandatory, and specifies the LDAP server location using the
+FQDN or IP address. It also designates whether to use ldap:// for clear
+text transport, or ldaps:// for SSL/TLS encrypted transport. Optionally,
+an alternate port may also be specified in the URI. Typically, in
+production environments, it is best to utilize the LDAPS protocol.
+Otherwise all communications are clear text and not secure.</p>
+
+<p>After the connection to the server is complete, the BIND operation
+authenticates the session. The BIND credentials are optional, and if not
+specified, an anonymous bind is assumed. This is typically not allowed
+in most production environments. Configure authenticated (Simple) BIND
+by specifying the user (<em>binddn</em>) and password (<em>bindpw</em>) in the
+configuration. Another option is to use SASL (Simple Authentication and
+Security Layer) BIND, which provides authentication services using other
+mechanisms, like Kerberos. Contact your LDAP server administrator for
+this information since it depends on the configuration of the LDAP
+server and what credentials are created for the client device.</p>
+
+<pre><code>                   
+# The location at which the LDAP server(s) should be reachable.
+uri ldaps://ldap.example.com
+# The DN to bind with for normal lookups.
+binddn cn=CLswitch,ou=infra,dc=example,dc=com
+bindpw CuMuLuS
+   
+    
+</code></pre>
+
+<h3 id="search-function">Search Function</h3>
+
+<p>When an LDAP client requests information about a resource, it must
+connect and bind to the server. Then it performs one or more resource
+queries depending on what it is looking up. All search queries sent to
+the LDAP server are created using the configured search <em>base</em>,
+<em>filter</em>, and the desired entry (<em>uid=myuser</em>) being searched for. If
+the LDAP directory is large, this search may take a significant amount
+of time. It is a good idea to define a more specific search base for the
+common <em>maps</em> (<em>passwd</em> and <em>group</em>).</p>
+
+<pre><code>                   
+# The search base that will be used for all queries.
+base dc=example,dc=com
+# Mapped search bases to speed up common queries.
+base passwd ou=people,dc=example,dc=com
+base group ou=groups,dc=example,dc=com
+   
+    
+</code></pre>
+
+<h3 id="search-filters">Search Filters</h3>
+
+<p>It is also common to use search filters to specify criteria used when
+searching for objects within the directory. This is used to limit the
+search scope when authenticating users. The default filters applied are:</p>
+
+<pre><code>                   
+filter passwd (objectClass=posixAccount)
+filter group (objectClass=posixGroup) 
+   
+    
+</code></pre>
+
+<h3 id="attribute-mapping">Attribute Mapping</h3>
+
+<p>The <em>map</em> configuration allows for overriding the attributes pushed from
+LDAP. To override an attribute for a given <em>map</em>*, specify the
+attribute name and the new value. One example of how this is useful is
+ensuring the shell is <em>bash</em> and the home directory is <code>/home/cumulus</code>:</p>
+
+<pre><code>                   
+map    passwd homeDirectory &quot;/home/cumulus&quot;
+map    passwd shell &quot;/bin/bash&quot;
+   
+    
+</code></pre>
+
+
+<div class="notices note" > <p>*In LDAP, the <strong><em>map</em></strong> refers to one of the supported maps specified
+in the manpage for <code>nslcd.conf</code> (such as <em>passwd</em> or <em>group</em>).</p>
+ </div>
+
+
+<h3 id="example-configuration">Example Configuration</h3>
+
+<p>Here is an <a href="/old/Cumulus_Linux_35/attachments_8357339_1_nslcd.conf">example
+configuration </a>using
+Cumulus Linux.</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="using-nslcd-debug-mode">Using nslcd Debug Mode</h3>
+
+<p>When setting up LDAP authentication for the first time, Cumulus Networks
+recommends you turn off this service using <code>systemctl stop
+nslcd.service</code> and run it in debug mode. Debug mode works whether you
+are using LDAP over SSL (port 636) or an unencrypted LDAP connection
+(port 389).</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo systemctl stop nslcd.service
+cumulus@switch:~$ sudo nslcd -d
+   
+    
+</code></pre>
+
+<p>Once you enable debug mode, run the following command to test LDAP
+queries:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo getent myuser
+   
+    
+</code></pre>
+
+<p>If LDAP is configured correctly, the following messages appear after you
+run the <code>getent</code> command:</p>
+
+<pre><code>                   
+nslcd: DEBUG: accept() failed (ignored): Resource temporarily unavailable
+nslcd: [8e1f29] DEBUG: connection from pid=11766 uid=0 gid=0
+nslcd: [8e1f29]  DEBUG: myldap_search(base=&quot;dc=example,dc=com&quot;, filter=&quot;(objectClass=posixAccount)&quot;)
+nslcd: [8e1f29]  DEBUG: ldap_result(): uid=myuser,ou=people,dc=example,dc=com
+nslcd: [8e1f29]  DEBUG: ldap_result(): ... 152 more results
+nslcd: [8e1f29]  DEBUG: ldap_result(): end of results (162 total)
+   
+    
+</code></pre>
+
+<p>In the output above, <em>&lt;passwd(all)&gt;</em> indicates that the entire
+directory structure was queried.</p>
+
+<p>A specific user can be queried using the command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo getent passwd myuser
+   
+    
+</code></pre>
+
+<p>You can replace <em>myuser</em> with any username on the switch. The following
+debug output indicates that user <em>myuser</em> exists:</p>
+
+<pre><code>                   
+nslcd: DEBUG: add_uri(ldap://10.50.21.101)
+nslcd: version 0.8.10 starting
+nslcd: DEBUG: unlink() of /var/run/nslcd/socket failed (ignored): No such file or directory
+nslcd: DEBUG: setgroups(0,NULL) done
+nslcd: DEBUG: setgid(110) done
+nslcd: DEBUG: setuid(107) done
+nslcd: accepting connections
+nslcd: DEBUG: accept() failed (ignored): Resource temporarily unavailable
+nslcd: [8b4567] DEBUG: connection from pid=11369 uid=0 gid=0
+nslcd: [8b4567]  DEBUG: myldap_search(base=&quot;dc=cumulusnetworks,dc=com&quot;, filter=&quot;(&amp;(objectClass=posixAccount)(uid=myuser))&quot;)
+nslcd: [8b4567]  DEBUG: ldap_initialize(ldap://)
+nslcd: [8b4567]  DEBUG: ldap_set_rebind_proc()
+nslcd: [8b4567]  DEBUG: ldap_set_option(LDAP_OPT_PROTOCOL_VERSION,3)
+nslcd: [8b4567]  DEBUG: ldap_set_option(LDAP_OPT_DEREF,0)
+nslcd: [8b4567]  DEBUG: ldap_set_option(LDAP_OPT_TIMELIMIT,0)
+nslcd: [8b4567]  DEBUG: ldap_set_option(LDAP_OPT_TIMEOUT,0)
+nslcd: [8b4567]  DEBUG: ldap_set_option(LDAP_OPT_NETWORK_TIMEOUT,0)
+nslcd: [8b4567]  DEBUG: ldap_set_option(LDAP_OPT_REFERRALS,LDAP_OPT_ON)
+nslcd: [8b4567]  DEBUG: ldap_set_option(LDAP_OPT_RESTART,LDAP_OPT_ON)
+nslcd: [8b4567]  DEBUG: ldap_simple_bind_s(NULL,NULL) (uri=&quot;ldap://&quot;)
+nslcd: [8b4567]  DEBUG: ldap_result(): end of results (0 total)
+   
+    
+</code></pre>
+
+<p>Notice how the <code>&lt;passwd=&quot;myuser&quot;&gt;</code> shows that the specific <em>myuser</em> user
+was queried.</p>
+
+<h3 id="common-problems">Common Problems</h3>
+
+<h4 id="ssl-tls">SSL/TLS</h4>
+
+<ul>
+<li><p>The FQDN of the LDAP server URI does not match the FQDN in the
+CA-signed server certificate exactly.</p></li>
+
+<li><p><code>nslcd</code> cannot read the SSL certificate, and will report a
+&ldquo;Permission denied&rdquo; error in the debug during server connection
+negotiation. Check the permission on each directory in the path of
+the root SSL certificate. Ensure that it is readable by the <code>nslcd</code>
+user.</p></li>
+</ul>
+
+<h4 id="nscd">NSCD</h4>
+
+<ul>
+<li><p>If the <code>nscd cache</code> daemon is also enabled and you make some changes
+to the user from LDAP, you may want to clear the cache using the
+commands:</p>
+
+<pre><code>                       
+nscd --invalidate = passwd 
+nscd --invalidate = group
+       
+        
+</code></pre></li>
+
+<li><p>The <code>nscd</code> package works with <code>nslcd</code> to cache name entries returned
+from the LDAP server. This may cause authentication failures. To
+work around these issues:</p>
+
+<ol>
+<li><p>Disable <code>nscd</code> by running:</p>
+
+<pre><code>                           
+cumulus@switch:~$ sudo nscd -K
+           
+            
+</code></pre></li>
+
+<li><p>Restart the <code>nslcd</code> service:</p>
+
+<pre><code>                           
+cumulus@switch:~$ sudo systemctl restart nslcd.service
+           
+            
+</code></pre></li>
+
+<li><p>Try the authentication again.</p></li>
+</ol></li>
+</ul>
+
+<h4 id="ldap">LDAP</h4>
+
+<ul>
+<li><p>The search filter returns wrong results. Check for typos in the
+search filter. Use <code>ldapsearch</code> to test your filter.</p></li>
+
+<li><p>Optionally, configure the basic LDAP connection and search
+parameters in <code>/etc/ldap/ldap.conf</code>.</p>
+
+<pre><code>                       
+# ldapsearch -D 'cn=CLadmin' -w 'CuMuLuS' &quot;(&amp;(ObjectClass=inetOrgUser)(uid=myuser))&quot;
+       
+        
+</code></pre></li>
+
+<li><p>When a local username also exists in the LDAP database, the order of
+the information sources in <code>/etc/nsswitch</code> can be updated to query
+LDAP before the local user database. This is generally not
+recommended. For example, the configuration below ensures that LDAP
+is queried before the local database.</p>
+
+<pre><code>                       
+# /etc/nsswitch.conf
+passwd:         ldap compat
+       
+        
+</code></pre></li>
+</ul>
+
+<h2 id="configuring-ldap-authorization">Configuring LDAP Authorization</h2>
+
+<p>Linux uses the <em>sudo</em> command to allow non-administrator users — like
+the default <em>cumulus</em> user account — to perform privileged operations.
+To control the users authorized to use sudo, the <code>/etc/sudoers</code> file and
+files located in the <code>/etc/sudoers.d/</code> directory have a series of rules
+defined. Typically, the rules are based on groups, but can also be
+defined for specific users. Therefore, sudo rules can be added using the
+group names from LDAP. For example, if a group of users were associated
+with the group <em>netadmin</em>, a rule can be added to give those users sudo
+privileges. Refer to the sudoers manual (<code>man sudoers</code>) for a complete
+usage description. Here&rsquo;s an illustration of this in <code>/etc/sudoers</code>:</p>
+
+<pre><code>                   
+# The basic structure of a user specification is “who where = (as_whom) what”.
+%sudo ALL=(ALL:ALL) ALL
+%netadmin ALL=(ALL:ALL) ALL
+   
+    
+</code></pre>
+
+<h2 id="active-directory-configuration">Active Directory Configuration</h2>
+
+<p>Active Directory (AD) is a fully featured LDAP-based NIS server created
+by Microsoft. It offers unique features that classic OpenLDAP servers
+lack. Therefore, it can be more complicated to configure on the client
+and each version of AD is a little different in how it works with
+Linux-based LDAP clients. Some more advanced configuration examples,
+from testing LDAP clients on Cumulus Linux with Active Directory
+(AD/LDAP), are available in our <a href="https://support.cumulusnetworks.com/hc/en-us/articles/204383797" target="_blank">knowledge
+base</a>.</p>
+
+<h2 id="related-information">Related Information</h2>
+
+<ul>
+<li><p><a href="https://wiki.debian.org/LDAP/NSS" target="_blank">Debian - configuring LDAP
+authentication</a></p></li>
+
+<li><p><a href="https://wiki.debian.org/LDAP/PAM" target="_blank">Debian - configuring PAM to use
+LDAP</a></p></li>
+
+<li><p><a href="https://raw.githubusercontent.com/arthurdejong/nss-pam-ldapd/master/nslcd.conf" target="_blank">GitHub - Arthur de Jong nslcd.conf
+file</a></p></li>
+
+<li><p><a href="http://backports.debian.org/Instructions/" target="_blank">Debian backports</a></p></li>
+</ul>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#configuring-ldap-authentication">Configuring LDAP Authentication</a></li>
+<li><a href="#installing-libnss-ldapd">Installing libnss-ldapd</a></li>
+<li><a href="#configuring-nslcd-conf">Configuring nslcd.conf</a>
+<ul>
+<li><a href="#connection">Connection</a></li>
+<li><a href="#search-function">Search Function</a></li>
+<li><a href="#search-filters">Search Filters</a></li>
+<li><a href="#attribute-mapping">Attribute Mapping</a></li>
+<li><a href="#example-configuration">Example Configuration</a></li>
+</ul></li>
+<li><a href="#troubleshooting">Troubleshooting</a>
+<ul>
+<li><a href="#using-nslcd-debug-mode">Using nslcd Debug Mode</a></li>
+<li><a href="#common-problems">Common Problems</a>
+<ul>
+<li><a href="#ssl-tls">SSL/TLS</a></li>
+<li><a href="#nscd">NSCD</a></li>
+<li><a href="#ldap">LDAP</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#configuring-ldap-authorization">Configuring LDAP Authorization</a></li>
+<li><a href="#active-directory-configuration">Active Directory Configuration</a></li>
+<li><a href="#related-information">Related Information</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version/Cumulus_Linux_35/System_Configuration/Authentication,_Authorization_and_Accounting/LDAP_Authentication_and_Authorization.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

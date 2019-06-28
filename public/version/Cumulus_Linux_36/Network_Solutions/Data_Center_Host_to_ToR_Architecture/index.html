@@ -1,0 +1,2493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Data Center Host to ToR Architecture | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+            
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/" >
+    Cumulus Linux 3.6
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Cumulus_Linux_User_Guide/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility/" >
+    Network Command Line Utility
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Managing_Application_Daemons/" >
+    Managing Application Daemons
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/" >
+    Layer 1 and Switch Ports
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/Switch_Port_Attributes/" >
+    Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/Configuring_Hardware-enabled_DDOS_Protection/" >
+    Configuring Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/DHCP_Relays/" >
+    DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/DHCP_Servers/" >
+    DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Facebook_Voyager_Optical_Interfaces/" >
+    Facebook Voyager Optical Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/" >
+    Layer 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode/" >
+    VLAN-aware Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/Traditional_Bridge_Mode/" >
+    Traditional Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments/" >
+    VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Virtual_Router_Redundancy_-_VRR/" >
+    Virtual Router Redundancy - VRR
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Virtual_Router_Redundancy_-_VRR/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Lightweight_Network_Virtualization_Overview/" >
+    Lightweight Network Virtualization Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Lightweight_Network_Virtualization_Overview/LNV_VXLAN_Active-Active_Mode/" >
+    LNV VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Lightweight_Network_Virtualization_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX/" >
+    Integrating Hardware VTEPs with VMware NSX
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Address_Resolution_Protocol_-_ARP/" >
+    Address Resolution Protocol - ARP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Open_Shortest_Path_First_-_OSPF_-_Protocol/" >
+    Open Shortest Path First - OSPF - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol/" >
+    Open Shortest Path First v3 - OSPFv3 - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Policy-based_Routing/" >
+    Policy-based Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/GRE_Tunneling/" >
+    GRE Tunneling
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/" >
+    Simple Network Management Protocol (SNMP) Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/ASIC_Monitoring/" >
+    ASIC Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/switchd_Log_Message_Reference/" >
+    switchd Log Message Reference
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/FRRouting_Log_Message_Reference/" >
+    FRRouting Log Message Reference
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/Data_Center_Host_to_ToR_Architecture/"  class="active" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Data Center Host to ToR Architecture</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Data Center Host to ToR Architecture</h1>
+
+<p>This chapter discusses the various architectures and strategies
+available from the top of rack (ToR) switches all the way down to the
+server hosts.</p>
+
+<h2 id="layer-3-architecture">Layer 3 Architecture</h2>
+
+<h3 id="single-attached-hosts">Single-attached Hosts</h3>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362457/Screen_Shot_2016-04-04_at_4.00.28_PM.png" alt = "/images/download/attachments/8362457/Screen_Shot_2016-04-04_at_4.00.28_PM.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Summary</p></th>
+<th><p>More Information</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>The server (physical host) has only has one link to one ToR switch.</p>
+<p><strong>Configurations</strong></p>
+<p><strong>leaf01 Config</strong></p>
+<p><code>/etc/network/interfaces</code></p>
+<pre><code>                   
+auto swp1
+iface swp1
+  address 172.16.1.1/30
+   
+    </code></pre>
+<p><code>/etc/frr/frr.conf</code></p>
+<pre><code>                   
+router ospf
+  router-id 10.0.0.11
+interface swp1
+  ip ospf area 0
+   
+    </code></pre>
+<p><strong>leaf02 Config</strong></p>
+<p><code>/etc/network/interfaces</code></p>
+<pre><code>                   
+auto swp1
+iface swp1
+  address 172.16.2.1/30
+   
+    </code></pre>
+<p><code>/etc/frr/frr.conf</code></p>
+<pre><code>                   
+router ospf
+  router-id 10.0.0.12
+interface swp1
+  ip ospf area 0
+   
+    </code></pre>
+<p><strong>host1 Example Config (Ubuntu)</strong></p>
+<pre><code>                   
+auto eth1
+iface eth1 inet static
+  address 172.16.1.2/30
+  up ip route add 0.0.0.0/0 nexthop via 172.16.1.1
+   
+    </code></pre>
+<p><strong>host2 Example Config (Ubuntu)</strong></p>
+<pre><code>                   
+auto eth1
+iface eth1 inet static
+  address 172.16.2.2/30
+  up ip route add 0.0.0.0/0 nexthop via 172.16.2.1
+   
+    </code></pre></td>
+<td><p><strong><strong>Benefits</strong></strong></p>
+<ul>
+<li><p>Relatively simple network configuration</p></li>
+<li><p>No STP</p></li>
+<li><p>No MLAG</p></li>
+<li><p>No L2 loops</p></li>
+<li><p>No crosslink between leafs</p></li>
+<li><p>Greater route scaling and flexibility</p></li>
+</ul>
+<p><strong><strong>Caveats</strong></strong></p>
+<ul>
+<li><p>No redundancy for ToR, upgrades would cause downtime</p></li>
+<li><p>Many customers do not have software to support application layer redundancy</p></li>
+</ul>
+<p><strong>Additional Comments</strong></p>
+<ul>
+<li><p>For additional bandwidth links between host and leaf may be bonded</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
+<td><p><strong>More Information</strong></p></td>
+</tr>
+<tr class="odd">
+<td><ul>
+<li><p>No redundancy, uses single ToR as gateway.</p></li>
+</ul></td>
+<td><ul>
+<li><p><a href="https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/Big-Data-Cumulus-Linux-Validated-Design-Guide.pdf" class="external-link">Big Data validated design guide</a> uses single attached ToR</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="redistribute-neighbor">Redistribute Neighbor</h3>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362457/redisneigh.png" alt = "/images/download/attachments/8362457/redisneigh.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Summary</p></th>
+<th><p>More Information</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/204339077" class="external-link">Redistribute neighbor</a> daemon grabs ARP entries dynamically, utilizes redistribute table for FRRouting to grab these dynamic entries and redistribute them into the fabric.</p></td>
+<td><p><strong>Benefits</strong></p>
+<ul>
+<li><p>Configuration in FRRouting is simple (route-map + redist table)</p></li>
+<li><p>Supported by Cumulus Networks</p></li>
+</ul>
+<p><strong>Caveats</strong></p>
+<ul>
+<li><p>Silent hosts don't receive traffic (depending on ARP).</p></li>
+<li><p>IPv4 only.</p></li>
+<li><p>If two VMs are on same L2 domain, they could learn about each other directly rather than utilizing gateway, which causes problems (VM migration for example, or getting their network routed). Put hosts on /32 (no other L2 adjacency).</p></li>
+<li><p>VM move does not trigger route withdrawal from original leaf (4 hour timeout).</p></li>
+<li><p>Clearing ARP impacts routing. May not be obvious.</p></li>
+<li><p>No L2 adjacency between servers without VXLAN.</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
+<td><p><strong>More Information</strong></p></td>
+</tr>
+<tr class="odd">
+<td><ul>
+<li><p>Equal cost route installed on server/host/hypervisor to both ToRs to load balance evenly.</p></li>
+<li><p>For host/VM/container mobility, use the same default route on all hosts (such as x.x.x.1) but don't distribute or advertise the .1 on the ToR into the fabric. This allows the VM to use the same gateway no matter which pair of leafs it is cabled to.</p></li>
+</ul></td>
+<td><ul>
+<li><p><a href="https://cumulusnetworks.com/blog/introducing-rdnbr/" class="external-link">Cumulus Networks blog post introducing redistribute neighbor</a></p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="routing-on-the-host">Routing on the Host</h3>
+
+<hr />
+
+<p><strong>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/8362457/routingonhost.png" alt = "/images/download/thumbnails/8362457/routingonhost.png"
+
+height = 250
+
+
+ />
+</strong></p>
+
+<hr />
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Summary</p></th>
+<th><p>More Information</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Routing on the host means there is a routing application (such as <a href="/old/Cumulus_Linux_36/FRRouting_Overview.html">FRRouting</a>) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</p></td>
+<td><p><strong>Benefits</strong></p>
+<ul>
+<li><p>No requirement for MLAG</p></li>
+<li><p>No spanning-tree or layer 2 domain</p></li>
+<li><p>No loops</p></li>
+<li><p>3 or more ToRs can be used instead of usual 2</p></li>
+<li><p>Host and VM mobility</p></li>
+<li><p>Traffic engineering can be used to migrate traffic from one ToR to another for upgrading both hardware and software</p></li>
+</ul>
+<p><strong>Caveats</strong></p>
+<ul>
+<li><p>Certain hypervisors or host OSes might not support a routing application like FRRouting and will require a virtual router on the hypervisor</p></li>
+<li><p>No L2 adjacnecy between servers without VXLAN</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
+<td><p><strong>More Information</strong></p></td>
+</tr>
+<tr class="odd">
+<td><ul>
+<li><p>The first hop is still the ToR, just like redistribute neighbor</p></li>
+<li><p>A default route can be advertised by all leaf/ToRs for dynamic ECMP paths</p></li>
+</ul></td>
+<td><ul>
+<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/216805858-Routing-on-the-Host-An-Introduction" class="external-link">Routing on the Host: An Introduction</a></p></li>
+<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
+<li><p><a href="/old/Cumulus_Linux_36/Configuring_FRRouting.html">Configuring FRRouting</a></p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="routing-on-the-vm">Routing on the VM</h3>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362457/routingvm.png" alt = "/images/download/attachments/8362457/routingvm.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Summary</p></th>
+<th><p>More Information</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Instead of routing on the hypervisor, each virtual machine utilizes its own routing stack.</p></td>
+<td><p><strong>Benefits</strong></p>
+<ul>
+<li><p>In addition to routing on host:</p>
+<ul>
+<li><p>Hypervisor/base OS does not need to be able to do routing</p></li>
+<li><p>VMs can be authenticated into routing fabric</p></li>
+</ul></li>
+</ul>
+<p><strong><strong>Caveats</strong></strong></p>
+<ul>
+<li><p>All VMs must be capable of routing</p></li>
+<li><p>Scale considerations might need to be taken into an account —<br />
+instead of one routing process, there are as many as there are VMs</p></li>
+<li><p>No L2 adjacency between servers without VXLAN</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
+<td><p><strong>More Information</strong></p></td>
+</tr>
+<tr class="odd">
+<td><ul>
+<li><p>The first hop is still the ToR, just like redistribute neighbor</p></li>
+<li><p>Multiple ToRs (2+) can be used</p></li>
+</ul></td>
+<td><ul>
+<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/216805858-Routing-on-the-Host-An-Introduction" class="external-link">Routing on the host: An Introduction</a></p></li>
+<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
+<li><p><a href="/old/Cumulus_Linux_36/Configuring_FRRouting.html">Configuring FRRouting</a></p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="virtual-router">Virtual Router</h3>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362457/vrouter.png" alt = "/images/download/attachments/8362457/vrouter.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Summary</p></th>
+<th><p>More Information</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="/old/Cumulus_Linux_36/#src-8362457" class="unresolved">BGP</a> or <a href="/old/Cumulus_Linux_36/Open_Shortest_Path_First_-_OSPF_-_Protocol.html">OSPF</a>.</p></td>
+<td><p><strong><strong>Benefits</strong></strong></p>
+<p>In addition to routing on a host:</p>
+<ul>
+<li><p>Multi-tenancy can work (multiple customers sharing same racks)</p></li>
+<li><p>Base OS does not need to be routing capable</p></li>
+</ul>
+<p><strong><strong>Caveats</strong></strong></p>
+<ul>
+<li><p><a href="/old/Cumulus_Linux_36/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">ECMP</a> might not work correctly (load balancing to multiple ToRs); Linux kernel in older versions is not capable of ECMP per flow (does it per packet)</p></li>
+<li><p>No L2 adjacency between servers without VXLAN</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
+<td><p><strong>More Information</strong></p></td>
+</tr>
+<tr class="odd">
+<td><ul>
+<li><p>The gateway would be the vRouter, which has two routes out (two ToRs)</p></li>
+<li><p>Multiple vRouters could be used</p></li>
+</ul></td>
+<td><ul>
+<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/216805858-Routing-on-the-Host-An-Introduction" class="external-link">Routing on the Host: An Introduction</a></p></li>
+<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
+<li><p><a href="/old/Cumulus_Linux_36/Configuring_FRRouting.html">Configuring FRRouting</a></p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="anycast-with-manual-redistribution">Anycast with Manual Redistribution</h3>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/8362457/anycast.png" alt = "/images/download/thumbnails/8362457/anycast.png"
+
+height = 150
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Summary</p></th>
+<th><p>More Information</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>In contrast to routing on the host (preferred), this method allows a user to route <strong>to</strong> the host. The ToRs are the gateway, as with redistribute neighbor, except because there is no daemon running, the networks must be manually configured under the routing process. There is a potential to black hole unless a script is run to remove the routes when the host no longer responds.</p>
+<p><strong>Configurations</strong></p>
+<p><strong>leaf01 Config</strong></p>
+<p><code>/etc/network/interfaces</code></p>
+<pre><code>                   
+auto swp1
+iface swp1
+  address 172.16.1.1/30
+   
+    </code></pre>
+<p><code>/etc/frr/frr.conf</code></p>
+<pre><code>                   
+router ospf
+  router-id 10.0.0.11
+interface swp1
+  ip ospf area 0
+   
+    </code></pre>
+<p><strong>leaf02 Config</strong></p>
+<p><code>/etc/network/interfaces</code></p>
+<pre><code>                   
+auto swp2
+iface swp2
+  address 172.16.1.1/30
+   
+    </code></pre>
+<p><code>/etc/frr/frr.conf</code></p>
+<pre><code>                   
+router ospf
+  router-id 10.0.0.12
+interface swp1
+  ip ospf area 0
+   
+    </code></pre>
+<p><strong>Example Host Config (Ubuntu)</strong></p>
+<pre><code>                   
+auto lo
+iface lo inet loopback
+ 
+auto lo:1
+iface lo:1 inet static
+  address 172.16.1.2/32
+  up ip route add 0.0.0.0/0 nexthop via 172.16.1.1 dev eth0 onlink nexthop via 172.16.1.1 dev eth1 onlink
+ 
+auto eth1
+iface eth2 inet static
+  address 172.16.1.2/32
+ 
+auto eth2
+iface eth2 inet static
+  address 172.16.1.2/32
+   
+    </code></pre></td>
+<td><p><strong><strong>Benefits</strong></strong></p>
+<ul>
+<li><p>Most benefits of routing <strong>on</strong> the host</p></li>
+<li><p>No requirement for host to run routing</p></li>
+<li><p>No requirement for redistribute neighbor</p></li>
+</ul>
+<p><strong><strong>Caveats</strong></strong></p>
+<ul>
+<li><p>Removing a subnet from one ToR and re-adding it to another (hence, network statements from your router process) is a manual process</p></li>
+<li><p>Network team and server team would have to be in sync, or server team controls the ToR, or automation is being used whenever VM migration happens</p></li>
+<li><p>When using VMs/containers it is very easy to black hole traffic, as the leafs continue to advertise prefixes even when VM is down</p></li>
+<li><p>No L2 adjacency between servers without VXLAN</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
+<td><p><strong>More Information</strong></p></td>
+</tr>
+<tr class="odd">
+<td><ul>
+<li><p>The gateways would be the ToRs, exactly like redistribute neighbor with an equal cost route installed</p></li>
+</ul></td>
+<td><p> </p></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="network-virtualization">Network Virtualization</h2>
+
+<h3 id="lnv-with-mlag">LNV with MLAG</h3>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362457/lnvmlag.png" alt = "/images/download/attachments/8362457/lnvmlag.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p> </p></th>
+<th><p>Summary</p></th>
+<th><p>More Information</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p> </p></td>
+<td><p>The host runs LACP (Etherchannel/bond) to the pair of ToRs. <a href="/old/Cumulus_Linux_36/Lightweight_Network_Virtualization_Overview.html">LNV</a> (Lightweight Network Virtualization) then transports the L2 bridges across an L3 fabric.</p>
+<p><strong>Configurations</strong></p>
+<p><strong>leaf01 Config</strong></p>
+<p><code>/etc/network/interfaces</code></p>
+<pre><code>                   
+auto lo
+iface lo inet loopback 
+  address 10.0.0.11/32
+  vxrd-src-ip 10.0.0.11
+  vxrd-svcnode-ip 10.10.10.10
+  clagd-vxlan-anycast-ip 36.0.0.11
+ 
+auto vni-10
+iface vni-10 
+  vxlan-id 10 
+  vxlan-local-tunnelip 10.0.0.11
+ 
+auto br-10 
+iface br-10
+  bridge-ports swp1 vni-10
+   
+    </code></pre>
+<p><strong>leaf02 Config</strong></p>
+<p><code>/etc/network/interfaces</code></p>
+<pre><code>                   
+auto lo
+iface lo inet loopback 
+  address 10.0.0.12/32
+  Vxrd-src-ip 10.0.0.12
+  vxrd-svcnode-ip 10.10.10.10
+  clagd-vxlan-anycast-ip 36.0.0.11
+ 
+auto vni-10
+iface vni-10 
+  vxlan-id 10 
+  vxlan-local-tunnelip 10.0.0.12
+ 
+auto br-10 
+iface br-10
+  bridge-ports swp1 vni-10
+   
+    </code></pre></td>
+<td><p><strong><strong>Benefits</strong></strong></p>
+<ul>
+<li><p>Layer 2 domain is reduced to the pair of ToRs</p></li>
+<li><p>Aggregation layer is all L3 (VLANs do not have to exist on spine switches)</p></li>
+<li><p>Greater route scaling and flexibility</p></li>
+<li><p>High availability</p></li>
+</ul>
+<p><strong><strong>Caveats</strong></strong></p>
+<ul>
+<li><p>Needs MLAG (with the same caveats from the <a href="/old/Cumulus_Linux_36/#src-8362457_DataCenterHosttoToRArchitecture-mlag">MLAG section</a> above) and <a href="/old/Cumulus_Linux_36/Spanning_Tree_and_Rapid_Spanning_Tree.html">spanning tree</a></p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>Active-Active Mode</strong></p></th>
+<th><p><strong>Active-Passive Mode</strong></p></th>
+<th><p><strong>Demarcation</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><ul>
+<li><p><a href="/old/Cumulus_Linux_36/Virtual_Router_Redundancy_-_VRR.html">VRR</a></p></li>
+</ul></td>
+<td><p>None</p></td>
+<td><ul>
+<li><p>ToR layer or exit leafs</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p> </p></td>
+<td><p> </p></td>
+<td><p><strong>More Information</strong></p></td>
+</tr>
+<tr class="odd">
+<td><p> </p></td>
+<td><p> </p></td>
+<td><ul>
+<li><p><a href="/old/Cumulus_Linux_36/Lightweight_Network_Virtualization_Overview.html">Cumulus Linux Lightweight Network Virtualization (LNV) documentation</a></p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#layer-3-architecture">Layer 3 Architecture</a>
+<ul>
+<li><a href="#single-attached-hosts">Single-attached Hosts</a></li>
+<li><a href="#redistribute-neighbor">Redistribute Neighbor</a></li>
+<li><a href="#routing-on-the-host">Routing on the Host</a></li>
+<li><a href="#routing-on-the-vm">Routing on the VM</a></li>
+<li><a href="#virtual-router">Virtual Router</a></li>
+<li><a href="#anycast-with-manual-redistribution">Anycast with Manual Redistribution</a></li>
+</ul></li>
+<li><a href="#network-virtualization">Network Virtualization</a>
+<ul>
+<li><a href="#lnv-with-mlag">LNV with MLAG</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version/Cumulus_Linux_36/Network_Solutions/Data_Center_Host_to_ToR_Architecture.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

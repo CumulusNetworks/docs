@@ -1,0 +1,2912 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FRRouting Log Message Reference | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+            
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/" >
+    Cumulus Linux 3.6
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Cumulus_Linux_User_Guide/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility/" >
+    Network Command Line Utility
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Managing_Application_Daemons/" >
+    Managing Application Daemons
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/" >
+    Layer 1 and Switch Ports
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/Switch_Port_Attributes/" >
+    Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/Configuring_Hardware-enabled_DDOS_Protection/" >
+    Configuring Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/DHCP_Relays/" >
+    DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/DHCP_Servers/" >
+    DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Facebook_Voyager_Optical_Interfaces/" >
+    Facebook Voyager Optical Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/" >
+    Layer 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode/" >
+    VLAN-aware Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/Traditional_Bridge_Mode/" >
+    Traditional Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments/" >
+    VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Virtual_Router_Redundancy_-_VRR/" >
+    Virtual Router Redundancy - VRR
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Virtual_Router_Redundancy_-_VRR/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Lightweight_Network_Virtualization_Overview/" >
+    Lightweight Network Virtualization Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Lightweight_Network_Virtualization_Overview/LNV_VXLAN_Active-Active_Mode/" >
+    LNV VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Lightweight_Network_Virtualization_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX/" >
+    Integrating Hardware VTEPs with VMware NSX
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Address_Resolution_Protocol_-_ARP/" >
+    Address Resolution Protocol - ARP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Open_Shortest_Path_First_-_OSPF_-_Protocol/" >
+    Open Shortest Path First - OSPF - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol/" >
+    Open Shortest Path First v3 - OSPFv3 - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Policy-based_Routing/" >
+    Policy-based Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/GRE_Tunneling/" >
+    GRE Tunneling
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/" >
+    Simple Network Management Protocol (SNMP) Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/ASIC_Monitoring/" >
+    ASIC Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/switchd_Log_Message_Reference/" >
+    switchd Log Message Reference
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/FRRouting_Log_Message_Reference/"  class="active" >
+    FRRouting Log Message Reference
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>FRRouting Log Message Reference</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>FRRouting Log Message Reference</h1><p>The following table lists the HIGH severity ERROR log messages generated
+by FRRouting. These messages appear in <code>/var/log/frr/frr.log</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Severity</th>
+<th>Message #</th>
+<th>Message Text</th>
+<th>Explanation</th>
+<th>Recommended Action</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Babel</td>
+<td>HIGH</td>
+<td>16777217</td>
+<td>BABEL Memory Errors</td>
+<td>Babel has failed to allocate memory. The system is about to run out of memory.</td>
+<td>Find the process that is causing memory shortages and remediate that process. Restart FRR.</td>
+</tr>
+
+<tr>
+<td>Babel</td>
+<td>HIGH</td>
+<td>16777218</td>
+<td>BABEL Packet Error</td>
+<td>Babel has detected a packet encode/decode problem.</td>
+<td>Collect the relevant log files and report the issue for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>Babel</td>
+<td>HIGH</td>
+<td>16777219</td>
+<td>BABEL Configuration Error</td>
+<td>Babel has detected a configuration error of some sort.</td>
+<td>Ensure that the configuration is correct.</td>
+</tr>
+
+<tr>
+<td>Babel</td>
+<td>HIGH</td>
+<td>16777220</td>
+<td>BABEL Route Error</td>
+<td>Babel has detected a routing error and is in an inconsistent state.</td>
+<td>Gather data to report the issue for troubleshooting. Restart FRR.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554433</td>
+<td>BGP attribute flag is incorrect</td>
+<td>BGP attribute flag is set to the wrong value (Optional/Transitive/Partial).</td>
+<td>Determine the soure of the attribute and determine why the attribute flag has been set incorrectly.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554434</td>
+<td>BGP attribute length is incorrect</td>
+<td>BGP attribute length is incorrect.</td>
+<td>Determine the soure of the attribute and determine why the attribute length has been set incorrectly.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554435</td>
+<td>BGP attribute origin value invalid</td>
+<td>BGP attribute origin value is invalid.</td>
+<td>Determine the soure of the attribute and determine why the origin attribute has been set incorrectly.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554436</td>
+<td>BGP as path is invalid</td>
+<td>BGP AS path has been malformed.</td>
+<td>Determine the soure of the update and determine why the AS path has been set incorrectly.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554437</td>
+<td>BGP as path first as is invalid</td>
+<td>BGP update has invalid first AS in AS path.</td>
+<td>Determine the soure of the update and determine why the AS path first AS value has been set incorrectly.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554439</td>
+<td>BGP PMSI tunnel attribute type is invalid</td>
+<td>BGP update has invalid type for PMSI tunnel.</td>
+<td>Determine the soure of the update and determine why the PMSI tunnel attribute type has been set incorrectly.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554440</td>
+<td>BGP PMSI tunnel attribute length is invalid</td>
+<td>BGP update has invalid length for PMSI tunnel.</td>
+<td>Determine the soure of the update and determine why the PMSI tunnel attribute length has been set incorrectly.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554442</td>
+<td>BGP peergroup operated on in error</td>
+<td>BGP operating on peer-group instead of peers included.</td>
+<td>Ensure the configuration doesn&rsquo;t contain peer-groups contained within peer-groups.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554443</td>
+<td>BGP failed to delete peer structure</td>
+<td>BGP was unable to delete the peer structure when the address-family was removed.</td>
+<td>Determine if all expected peers are removed and restart FRR if not. This is most likely a bug.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554444</td>
+<td>BGP failed to get table chunk memory</td>
+<td>BGP unable to get chunk memory for table manager.</td>
+<td>Ensure there is adequate memory on the device to support the table requirements.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554445</td>
+<td>BGP received MACIP with invalid IP addr len</td>
+<td>BGP received MACIP with invalid IP address length from Zebra.</td>
+<td>Verify the MACIP entries inserted in Zebra are correct. This is most likely a bug.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554446</td>
+<td>BGP received invalid label manager message</td>
+<td>BGP received an invalid label manager message from the label manager.</td>
+<td>Label manager sent an invalid message to BGP for the wrong protocol instance. This is most likely a bug.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554447</td>
+<td>BGP unable to allocate memory for JSON output</td>
+<td>BGP attempted to generate JSON output and was unable to allocate the memory required.</td>
+<td>Ensure that the device has adequate memory to support the required functions.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554448</td>
+<td>BGP update had attributes too long to send</td>
+<td>BGP attempted to send an update but the attributes were too long to fit.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554449</td>
+<td>BGP update group creation failed</td>
+<td>BGP attempted to create an update group but was unable to do so.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554450</td>
+<td>BGP error creating update packet</td>
+<td>BGP attempted to create an update packet but was unable to do so.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554451</td>
+<td>BGP error receiving open packet</td>
+<td>BGP received an open from a peer that was invalid.</td>
+<td>Determine the sending peer and correct its invalid open packet.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554452</td>
+<td>BGP error sending to peer</td>
+<td>BGP attempted to respond to open from a peer and failed.</td>
+<td>BGP attempted to respond to an open and could not send the packet. Check the local IP address for the source.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554453</td>
+<td>BGP error receiving from peer</td>
+<td>BGP received an update from a peer but the status was incorrect.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554454</td>
+<td>BGP error receiving update packet</td>
+<td>BGP received an invalid update packet.</td>
+<td>Determine the source of the update and resolve the invalid update being sent.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554455</td>
+<td>BGP error due to capability not enabled</td>
+<td>BGP attempted a function that did not have the capability enabled.</td>
+<td>Enable the capability if this functionality is desired.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554456</td>
+<td>BGP error receiving notify message</td>
+<td>BGP unable to process the notification message.</td>
+<td>BGP notify received while in a stopped state. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554457</td>
+<td>BGP error receiving keepalive packet</td>
+<td>BGP unable to process a keepalive packet.</td>
+<td>BGP keepalive received while in a stopped state. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554458</td>
+<td>BGP error receiving route refresh message</td>
+<td>BGP unable to process route refresh message.</td>
+<td>BGP route refresh received while in a stopped state. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554459</td>
+<td>BGP error capability message</td>
+<td>BGP unable to process received capability.</td>
+<td>BGP capability message received while in a stopped state. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554460</td>
+<td>BGP error with nexthopo update</td>
+<td>BGP unable to process nexthop update.</td>
+<td>BGP received the nexthop update but the nexthop is not reachable in this BGP instance. Report the problem for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554461</td>
+<td>Failure to apply label</td>
+<td>BGP attempted to attempted to apply a label but could not do so.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554462</td>
+<td>Multipath specified is invalid</td>
+<td>BGP was started with an invalid ECMP/multipath value.</td>
+<td>Correct the ECMP/multipath value supplied when starting the BGP daemon.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554463</td>
+<td>Failure to process a packet</td>
+<td>BGP attempted to process a received packet but could not do so.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554464</td>
+<td>Failure to connect to peer</td>
+<td>BGP attempted to send open to a peer but couldn&rsquo;t connect.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554465</td>
+<td>BGP FSM issue</td>
+<td>BGP neighbor transition problem.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554466</td>
+<td>BGP VNI creation issue</td>
+<td>BGP could not create a new VNI.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554467</td>
+<td>BGP default instance missing</td>
+<td>BGP could not find default instance.</td>
+<td>Define a default instance of BGP since some feature requires its existence.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554468</td>
+<td>BGP remote VTEP invalid</td>
+<td>BGP remote VTEP is invalid and cannot be used.</td>
+<td>Correct the remote VTEP configuration or resolve the source of the problem.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554469</td>
+<td>BGP ES route error</td>
+<td>BGP ES route incorrect as it learned both local and remote routes.</td>
+<td>Correct the configuration or address it so that same route is not learned both local and remote.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554470</td>
+<td>BGP EVPN route delete error</td>
+<td>BGP attempted to delete an EVPN route and failed.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554471</td>
+<td>BGP EVPN install/uninstall error</td>
+<td>BGP attempted to install or uninstall an EVPN prefix and failed.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554472</td>
+<td>BGP EVPN route received with invalid contents</td>
+<td>BGP received an EVPN route with invalid contents.</td>
+<td>Determine the source of the EVPN route and resolve whatever is causing the invalid content.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554473</td>
+<td>BGP EVPN route create error</td>
+<td>BGP attempted to create an EVPN route and failed.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554474</td>
+<td>BGP EVPN ES entry create error</td>
+<td>BGP attempted to create an EVPN ES entry and failed.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554475</td>
+<td>BGP config multi-instance issue</td>
+<td>BGP configuration attempting multiple instances without enabling the feature.</td>
+<td>Correct the configuration so that BGP multiple-instance is enabled if desired.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554476</td>
+<td>BGP AS configuration issue</td>
+<td>BGP configuration attempted for a different AS than is currently configured.</td>
+<td>Correct the configuration so that the correct BGP AS number is used.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554477</td>
+<td>BGP EVPN AS and process name mismatch</td>
+<td>BGP configuration has AS and process name mismatch.</td>
+<td>Correct the configuration so that the BGP AS number and instance name are consistent.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554478</td>
+<td>BGP Flowspec packet processing error</td>
+<td>The BGP flowspec subsystem has detected an error in the sending or receiving of a packet.</td>
+<td>Gather log files from both sides of the peering relationship and report the issue for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>BGP</td>
+<td>HIGH</td>
+<td>33554479</td>
+<td>BGP Flowspec Installation/removal Error</td>
+<td>The BGP flowspec subsystem has detected that there was a failure for installation/removal/modification of Flowspec from the dataplane.</td>
+<td>Gather log files from the router and report the issue for troubleshooting. Restart FRR.</td>
+</tr>
+
+<tr>
+<td>EIGRP</td>
+<td>HIGH</td>
+<td>50331649</td>
+<td>EIGRP Packet Error</td>
+<td>EIGRP has a packet that does not correctly decode or encode.</td>
+<td>Gather log files from both sides of the neighbor relationship and report the issue for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>EIGRP</td>
+<td>HIGH</td>
+<td>50331650</td>
+<td>EIGRP Configuration Error</td>
+<td>EIGRP has detected a configuration error.</td>
+<td>Correct the configuration issue. If it still persists, report the issue for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>100663297</td>
+<td>Failure to raise or lower privileges</td>
+<td>FRR attempted to raise or lower its privileges and was unable to do so.</td>
+<td>Ensure that you are running FRR as the frr user and that the user has sufficient privileges to properly access root privileges.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>100663298</td>
+<td>VRF Failure on Start</td>
+<td>Upon startup, FRR failed to properly initialize and start up the VRF subsystem.</td>
+<td>Ensure that there is sufficient memory to start processes, then restart FRR.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>100663299</td>
+<td>Socket Error</td>
+<td>When attempting to access a socket, a system error occured and FRR was unable to properly complete the request.</td>
+<td>Ensure that there are sufficient system resources available and ensure that the frr user has sufficient permisions to work.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>100663303</td>
+<td>System Call Error</td>
+<td>FRR has detected an error from using a vital system call and has probably already exited.</td>
+<td>Ensure permissions are correct for FRR users and groups. Additionally, check that sufficient system resources are available.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>100663304</td>
+<td>VTY Subsystem Error</td>
+<td>FRR has detected a problem with the specified configuration file.</td>
+<td>Ensure the configuration file exists and has the correct permissions for operations. Additionally, ensure that all config lines are correct as well.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>100663305</td>
+<td>SNMP Subsystem Error</td>
+<td>FRR has detected a problem with the SNMP library it uses. A callback from this subsystem has indicated some error.</td>
+<td>Examine the callback message and ensure SNMP is properly set up and working.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>100663306</td>
+<td>Interface Subsystem Error</td>
+<td>FRR has detected a problem with interface data from the kernel as it deviates from what we would expect to happen via normal netlink messaging.</td>
+<td>Open an issue with all relevant log files and restart FRR.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>100663307</td>
+<td>NameSpace Subsystem Error</td>
+<td>FRR has detected a problem with namespace data from the kernel as it deviates from what we would expect to happen via normal kernel messaging.</td>
+<td>Open an issue with all relevant log files and restart FRR.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>4043309068</td>
+<td>A necessary work queue does not exist.</td>
+<td>A necessary work queue does not exist.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>100663308</td>
+<td>Developmental Escape Error</td>
+<td>FRR has detected an issue where new development has not properly updated all code paths.</td>
+<td>Open an issue with all relevant log files.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>100663309</td>
+<td>ZMQ Subsystem Error</td>
+<td>FRR has detected an issue with the ZeroMQ subsystem and ZeroMQ is not working properly now.</td>
+<td>Open an issue with all relevant log files and restart FRR.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>100663310</td>
+<td>Feature or system unavailable</td>
+<td>FRR was not compiled with support for a particular feature or it is not available on the current platform.</td>
+<td>Recompile FRR with the feature enabled or find out what platforms support the feature.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>4043309071</td>
+<td>IRDP message length mismatch</td>
+<td>The length encoded in the IP TLV does not match the length of the packet received.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>4043309073</td>
+<td>Dataplane installation failure</td>
+<td>Installation of routes to the underlying dataplane failed.</td>
+<td>Check all configuration parameters for correctness.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>4043309075</td>
+<td>Netlink backend not available</td>
+<td>FRR was not compiled with support for Netlink. Any operations that require Netlink will fail.</td>
+<td>Recompile FRR with Netlink or install a package that supports this feature.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>4043309076</td>
+<td>Protocol Buffers backend not available</td>
+<td>FRR was not compiled with support for protocol buffers. Any operations that require protobuf will fail.</td>
+<td>Recompile FRR with protobuf support or install a package that supports this feature.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>4043309087</td>
+<td>Cannot set receive buffer size</td>
+<td>The socket receive buffer size could not be set in the kernel.</td>
+<td>Ignore this error.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>4043309089</td>
+<td>Receive buffer overrun</td>
+<td>The kernel&rsquo;s buffer for a socket has been overrun, rendering the socket invalid.</td>
+<td>Zebra will restart itself. Notify a developer if this issue shows up frequently.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>4043309091</td>
+<td>Received unexpected response from kernel</td>
+<td>Received unexpected response from the kernel via Netlink.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>4043309094</td>
+<td>String could not be parsed as IP prefix</td>
+<td>There was an attempt to parse a string as an IPv4 or IPv6 prefix, but the string could not be parsed and this operation failed.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>General</td>
+<td>HIGH</td>
+<td>268435457</td>
+<td>WATCHFRR Connection Error</td>
+<td>WATCHFRR has detected a connectivity issue with one of the FRR daemons.</td>
+<td>Ensure that FRR is still running. If it isn&rsquo;t, report the issue for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>ISIS</td>
+<td>HIGH</td>
+<td>67108865</td>
+<td>ISIS Packet Error</td>
+<td>ISIS has detected an error with a packet from a peer.</td>
+<td>Gather log information and report the issue for troubleshooting. Restart FRR.</td>
+</tr>
+
+<tr>
+<td>ISIS</td>
+<td>HIGH</td>
+<td>67108866</td>
+<td>ISIS Configuration Error</td>
+<td>ISIS has detected an error within the configuration for the router.</td>
+<td>Ensure configuration is correct.</td>
+</tr>
+
+<tr>
+<td>OSPF</td>
+<td>HIGH</td>
+<td>134217729</td>
+<td>Failure to process a packet</td>
+<td>OSPF attempted to process a received packet but could not do so.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>OSPF</td>
+<td>HIGH</td>
+<td>134217730</td>
+<td>Failure to process Router LSA</td>
+<td>OSPF attempted to process a router LSA, but there was an advertising ID mismtach with the link ID.</td>
+<td>Check the OSPF network configuration for any configuration issue. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>OSPF</td>
+<td>HIGH</td>
+<td>134217731</td>
+<td>OSPF Domain Corruption</td>
+<td>OSPF attempted to process a router LSA, but there was an advertising ID mismtach with the link ID.</td>
+<td>Check OSPF network database for a corrupted LSA. If the problem persists, shut down the OSPF domain and report the problem for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>OSPF</td>
+<td>HIGH</td>
+<td>134217732</td>
+<td>OSPF Initialization failure</td>
+<td>OSPF failed to initialized the OSPF default instance.</td>
+<td>Ensure there is adequate memory on the device. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>OSPF</td>
+<td>HIGH</td>
+<td>134217733</td>
+<td>OSPF SR Invalid DB</td>
+<td>OSPF segment routing database is invalid.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>OSPF</td>
+<td>HIGH</td>
+<td>134217734</td>
+<td>OSPF SR hash node creation failed</td>
+<td>OSPF segment routing node creation failed.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>OSPF</td>
+<td>HIGH</td>
+<td>134217735</td>
+<td>OSPF SR Invalid lsa id</td>
+<td>OSPF segment routing invalid LSA ID.</td>
+<td>Restart the OSPF instance. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>OSPF</td>
+<td>HIGH</td>
+<td>134217736</td>
+<td>OSPF SR Invalid Algorithm</td>
+<td>OSPF segment routing invalid algorithm.</td>
+<td>This is most likely a bug. If the problem persists, report it for troubleshooting.</td>
+</tr>
+
+<tr>
+<td>PIM</td>
+<td>HIGH</td>
+<td>184549377</td>
+<td>PIM MSDP Packet Error</td>
+<td>PIM has received a packet from a peer that does not correctly decode.</td>
+<td>Check the MSDP peer and ensure it is correctly working.</td>
+</tr>
+
+<tr>
+<td>PIM</td>
+<td>HIGH</td>
+<td>184549378</td>
+<td>PIM Configuration Error</td>
+<td>PIM has detected a configuration error.</td>
+<td>Ensure the configuration is correct and apply the correct configuration.</td>
+</tr>
+
+<tr>
+<td>RIP</td>
+<td>HIGH</td>
+<td>201326593</td>
+<td>RIP Packet Error</td>
+<td>RIP has detected a packet encode/decode issue.</td>
+<td>Gather log files from both sides and open a Issue</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309057</td>
+<td>Error reading response from label manager</td>
+<td>Zebra could not read the ZAPI header from the label manager.</td>
+<td>Wait for the error to resolve on its own. If it does not resolve, restart Zebra.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309058</td>
+<td>Label manager could not find ZAPI client</td>
+<td>Zebra was unable to find a ZAPI client matching the given protocol and instance number.</td>
+<td>Ensure that clients that use the label manager are properly configured and running.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309059</td>
+<td>Zebra could not relay label manager response</td>
+<td>Zebra found the client and instance to relay the label manager response or request, but was unable to do so, possibly because the connection was closed.</td>
+<td>Ensure that clients that use the label manager are properly configured and running.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>100663300</td>
+<td>ZAPI Error</td>
+<td>A version mismatch has been detected between Zebra and a client protocol.</td>
+<td>Two different versions of FRR have been installed and the install is not properly set up. Completely stop FRR, remove it from the system and reinstall. Typically, only developers should see this issue.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309061</td>
+<td>Mismatch between ZAPI instance and encoded message instance</td>
+<td>While relaying a request to the external label manager, Zebra noticed that the instance number encoded in the message did not match the client instance number.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>100663301</td>
+<td>ZAPI Error</td>
+<td>The ZAPI subsystem has detected an encoding issue between Zebra and a client protocol.</td>
+<td>Restart FRR.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>100663302</td>
+<td>ZAPI Error</td>
+<td>The ZAPI subsystem has detected a socket error between Zebra and a client.</td>
+<td>Restart FRR.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309064</td>
+<td>Zebra label manager used all available labels</td>
+<td>Zebra is unable to assign additional label chunks because it has exhausted its assigned label range.</td>
+<td>Make the label range bigger and restart Zebra.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309065</td>
+<td>Daemon mismatch when releasing label chunks</td>
+<td>Zebra noticed a mismatch between a label chunk and a protocol daemon number or instance when releasing unused label chunks.</td>
+<td>Ignore this error.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309066</td>
+<td>Zebra did not free any label chunks</td>
+<td>Zebra&rsquo;s chunk cleanup procedure ran but no label chunks were released.</td>
+<td>Ignore this error.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309067</td>
+<td>Dataplane returned invalid status code</td>
+<td>The underlying dataplane responded to a Zebra message or other interaction with an unrecognized unknown or invalid status code.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309069</td>
+<td>Failed to add FEC for MPLS client</td>
+<td>A client requested a label binding for a new FEC but Zebra was unable to add the FEC to its internal table.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309070</td>
+<td>Failed to remove FEC for MPLS client</td>
+<td>Zebra was unable to find and remove an FEC in its internal table.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309072</td>
+<td>Attempted to perform nexthop update for unknown address family</td>
+<td>Zebra attempted to perform a nexthop update for unknown address family.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309074</td>
+<td>Zebra table lookup failed</td>
+<td>Zebra attempted to look up a table for a particular address family and a subsequent address family but didn&rsquo;t find anything.</td>
+<td>If you entered a command to trigger this error, make sure you entered the arguments correctly. Check your configuration file for any potential errors. If these look correct, notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309077</td>
+<td>Table manager used all available IDs</td>
+<td>Zebra&rsquo;s table manager used up all IDs available to it and can&rsquo;t assign any more.</td>
+<td>Reconfigure Zebra with a larger range of table IDs.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309078</td>
+<td>Daemon mismatch when releasing table chunks</td>
+<td>Zebra noticed a mismatch between a table ID chunk and a protocol daemon number instance when releasing unused table chunks.</td>
+<td>Ignore this error.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309079</td>
+<td>Zebra did not free any table chunks</td>
+<td>Zebra&rsquo;s table chunk cleanup procedure ran but no table chunks were released.</td>
+<td>Ignore this error.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309080</td>
+<td>Address family specifier unrecognized</td>
+<td>Zebra attempted to process information from somewhere that included an address family specifier but did not recognize the provided specifier.</td>
+<td>Ensure that your configuration is correct. If it is, notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309081</td>
+<td>Incorrect protocol for table manager client</td>
+<td>Zebra&rsquo;s table manager only accepts connections from daemons managing dynamic routing protocols, but received a connection attempt from a daemon that does not meet this criterion.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309082</td>
+<td>Mismatch between message and client protocol and/or instance</td>
+<td>Zebra detected a mismatch between a client&rsquo;s protocol and/or instance numbers versus those stored in a message transiting its socket.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309083</td>
+<td>Label manager unable to assign label chunk</td>
+<td>Zebra&rsquo;s label manager was unable to assign a label chunk to client.</td>
+<td>Ensure that Zebra has a sufficient label range available and that there is not a range collision.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309084</td>
+<td>Label request from unidentified client</td>
+<td>Zebra&rsquo;s label manager received a label request from an unidentified client.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309085</td>
+<td>Table manager unable to assign table chunk</td>
+<td>Zebra&rsquo;s table manager was unable to assign a table chunk to a client.</td>
+<td>Ensure that Zebra has sufficient table ID range available and that there is not a range collision.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309086</td>
+<td>Table request from unidentified client</td>
+<td>Zebra&rsquo;s table manager received a table request from an unidentified client.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309088</td>
+<td>Unknown Netlink message type</td>
+<td>Zebra received a Netlink message with an unrecognized type field.</td>
+<td>Verify that you are running the latest version of FRR to ensure kernel compatibility. If the problem persists, notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309090</td>
+<td>Netlink message length mismatch</td>
+<td>Zebra received a Netlink message with incorrect length fields.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309092</td>
+<td>Bad sequence number in Netlink message</td>
+<td>Zebra received a Netlink message with a bad sequence number.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309093</td>
+<td>Multipath number was out of valid range</td>
+<td>The multipath number specified to Zebra must be in the appropriate range.</td>
+<td>Provide a multipath number that is within its accepted range.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309095</td>
+<td>Failed to add MAC address to interface</td>
+<td>Zebra attempted to assign a MAC address to a VXLAN interface but failed.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309096</td>
+<td>Failed to delete VNI</td>
+<td>Zebra attempted to delete a VNI entry and failed.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309097</td>
+<td>Adding remote VTEP failed</td>
+<td>Zebra attempted to add a remote VTEP and failed.</td>
+<td>Notify a developer.</td>
+</tr>
+
+<tr>
+<td>Zebra</td>
+<td>HIGH</td>
+<td>4043309098</td>
+<td>Adding VNI failed</td>
+<td>Zebra attempted to add a VNI hash to an interface and failed.</td>
+<td>Notify a developer.</td>
+</tr>
+</tbody>
+</table>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

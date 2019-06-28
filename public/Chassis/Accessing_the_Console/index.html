@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Accessing the Console | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Chassis/" >
+    Chassis User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Chassis/Accessing_the_Console/"  class="active" >
+    Accessing the Console
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Chassis/Fabric_Port_Line_Card_and_Switch_Port_Interfaces/" >
+    Fabric Port, Line Card and Switch Port Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Chassis/Chassis_Default_Configurations/" >
+    Chassis Default Configurations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Chassis/Monitoring_and_Troubleshooting_a_Chassis/" >
+    Monitoring and Troubleshooting a Chassis
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Chassis/Chassis-specific_Commands/" >
+    Chassis-specific Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Accessing the Console</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Accessing the Console</h1>
+
+<p>You access the console slightly differently, depending upon whether your
+chassis is a Backpack or the CX-10256-S/OMP-800.</p>
+
+<h2 id="accessing-the-console-on-a-backpack-chassis">Accessing the Console on a Backpack Chassis</h2>
+
+<p>Every CPU in the chassis has its own console. However, for design
+simplicity, console access is multiplexed, so the only console ports are
+on the chassis management modules (CMMs) and system controller modules
+(SCMs).</p>
+
+<h3 id="accessing-a-console-through-a-cmm">Accessing a Console through a CMM</h3>
+
+<p>Each CMM has an RJ45 port for console access. If you connect to either
+CMM&rsquo;s console port, you can access every other console port in the
+chassis. By default, the CMM console port connects to that CMM&rsquo;s local
+baseboard management controller (BMC) ARM processor. The default
+parameters are 9600 8N1, and the default login credentials for OpenBMC
+are <em>root/0penBmc</em> (the first character of the password is the number
+zero, not a capital letter O).</p>
+
+<pre><code>                   
+OpenBMC Release wedge100-v10-1023-g6f113cb
+ 
+bmc login: root
+Password:  0penBmc
+Last login: Mon Apr 24 18:39:35 -0700 2017 on pts/0 from 10.40.10.230.
+root@bmc:~#
+   
+    
+</code></pre>
+
+<p>In order to connect to a line card, fabric card or the other CMM&rsquo;s
+console port, use the OpenBMC <code>sol.sh</code> command. When you execute this
+command on a CMM, it takes just one parameter: the name of the card to
+connect to, which is one of the following:</p>
+
+<ul>
+<li><p><em>lc101</em>, for the left side ASIC (when viewed from the front) on line
+card 1.</p></li>
+
+<li><p><em>lc102</em>, for the right side ASIC on line card 1.</p></li>
+
+<li><p><em>lc201</em>, for the left side ASIC on line card 2.</p></li>
+
+<li><p><em>lc202</em>, for the right side ASIC on line card 2.</p></li>
+
+<li><p><em>lc301</em>, for the left side ASIC on line card 3.</p></li>
+
+<li><p><em>lc302</em>, for the right side ASIC on line card 3.</p></li>
+
+<li><p><em>lc401</em>, for the left side ASIC on line card 4.</p></li>
+
+<li><p><em>lc402</em>, for the right side ASIC on line card 4.</p></li>
+
+<li><p><em>fc1</em>, for fabric card 1.</p></li>
+
+<li><p><em>fc2</em>, for fabric card 2.</p></li>
+
+<li><p><em>fc3</em>, for fabric card 3.</p></li>
+
+<li><p><em>fc4</em>, for fabric card 4.</p></li>
+
+<li><p><em>cmm</em>, for the other CMM.</p></li>
+</ul>
+
+<p>For example, to connect to the console on the right side of line card 3,
+run <code>sol.sh lc302</code>. By default, this connects to the console port of the
+BMC.</p>
+
+<pre><code>                   
+root@bmc:~# sol.sh lc302
+You are in SOL session.
+Use ctrl-x to quit.
+-----------------------
+  
+OpenBMC Release
+bmc login:
+   
+    
+</code></pre>
+
+
+<div class="notices tip" > <p>The prompts in the console can be somewhat confusing, because there is
+no indication that the console is now connected to the BMC for the right
+of line card 3 instead of the console of the CMM’s BMC to which you were
+previously connected. Since this BMC is running OpenBMC, just like the
+BMC on the CMM module, they appear identical. The default login
+credentials for OpenBMC are the same — <em>root/0penBmc</em>.</p>
+
+<pre><code>                   
+bmc login: root
+Password:  0penBmc
+root@bmc:~#
+   
+    
+</code></pre>
+ </div>
+
+
+<p>You can switch the console back to the CMM by pressing <em>ctrl-x</em>. As
+mentioned earlier, since both the line card and CMM are running OpenBMC
+and there is no indication to which instance you are currently
+connected, it can be confusing as to which BMC you are accessing.</p>
+
+<pre><code>                   
+root@bmc:~#  ctrl+x
+-----------------------
+Exit from SOL session.
+root@bmc:~#
+   
+    
+</code></pre>
+
+<p>In addition to returning to the CMM console, when connected to a line
+card or fabric card BMC, the connection can also be switched to the
+Intel Atom E3845&rsquo;s console port by running the <code>sol.sh</code> command. The
+<code>sol.sh</code> command on a line card&rsquo;s or fabric card&rsquo;s BMC does not take any
+parameters; it can only switch the connection to the Intel Atom E3845&rsquo;s
+console port for that same line card or fabric card.</p>
+
+<pre><code>                   
+root@bmc:~# sol.sh lc302
+You are in SOL session.
+Use ctrl-x to quit.
+-----------------------
+  
+root@bmc:~# sol.sh
+You are in SOL session.
+Use ctrl-x to quit.
+-----------------------
+  
+Debian GNU/Linux 8 backpack-lc302 ttyS0
+backpack-lc302 login:
+   
+    
+</code></pre>
+
+<p>Once connected to the line card or fabric card&rsquo;s Intel Atom E3845
+console port, you see one of the following:</p>
+
+<ul>
+<li><p>The ONIE prompt, if no operating system is installed.</p></li>
+
+<li><p>The Cumulus Linux prompt, if Cumulus Linux has been installed.</p></li>
+</ul>
+
+
+<div class="notices tip" > <p>The <code>sol.sh</code> command on the CMM, the line card and the fabric card BMC
+all use the same escape sequence (<em>ctrl-x</em>) to cancel the <code>sol.sh</code>
+command and return to the BMC console connection. When connected to a
+line card or fabric card&rsquo;s Intel Atom E3845 console port, typing
+<em>ctrl-x</em> cancels the CMM’s <code>sol.sh</code> command, returning the connection
+back to the CMM&rsquo;s BMC.</p>
+
+<p>A subsequent <code>sol.sh</code> command issued from the CMM that connects to the
+same card connects directly to the Intel Atom E3845&rsquo;s console port,
+since the <code>sol.sh</code> command is still running on the line card or fabric
+card BMC.</p>
+
+<p>You cannot exit the <code>sol.sh</code> command on the line card or fabric card,
+and thus cannot access the line card or fabric card BMC&rsquo;s console port
+again using this method.</p>
+ </div>
+
+
+<h3 id="accessing-a-console-through-an-scm">Accessing a Console through an SCM</h3>
+
+<p>Each SCM module has an RJ45 console port which provides access to the
+BMC and Intel Atom E3845 console ports associated with that SCM. Using
+this method prevents you from accessing the console ports of other line
+cards, fabric cards or the CMMs. The default parameters of this console
+port are <em>115200 8N1</em>.</p>
+
+<p>When you connect through an SCM&rsquo;s console port, access to the BMC and
+Intel Atom E3845 consoles is determined by entering a special
+four-character key sequence:</p>
+
+<table>
+<thead>
+<tr>
+<th>Key Sequence</th>
+<th>Switch Connection to Console Port</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ctrl+f ctrl+b ctrl+u 1</td>
+<td>Fabric card BMC or left line card BMC</td>
+</tr>
+
+<tr>
+<td>ctrl+f ctrl+b ctrl+u 2</td>
+<td>Right line card BMC</td>
+</tr>
+
+<tr>
+<td>ctrl+f ctrl+b ctrl+u 3</td>
+<td>Fabric card Intel Atom E3845 or left line card Intel Atom E3845</td>
+</tr>
+
+<tr>
+<td>ctrl+f ctrl+b ctrl+u 4</td>
+<td>Right line card Intel Atom E3845</td>
+</tr>
+</tbody>
+</table>
+
+<p>Since fabric cards have only one BMC and Intel Atom E3845, only the
+first and third key sequences are recognized. This key sequence can be
+pressed at any time to switch between the console ports associated with
+a line card or fabric card. The default power-on connection is the
+fabric card BMC/left line card BMC.</p>
+
+<pre><code>                   
+OpenBMC Release
+ 
+bmc login:  ctrl+f ctrl+b ctrl+u 2
+OpenBMC Release
+ 
+bmc login:  ctrl+f ctrl+b ctrl+u 3
+Debian GNU/Linux 8 backpack-lc301 ttyS0
+ 
+backpack-lc301 login:  ctrl+f ctrl+b ctrl+u 4
+Debian GNU/Linux 8 backpack-lc302 ttyS0
+ 
+backpack-lc302 login:  ctrl+f ctrl+b ctrl+u 1
+OpenBMC Release
+ 
+bmc login:
+   
+    
+</code></pre>
+
+<h2 id="accessing-the-console-on-a-cx-10256-s-omp-800-chassis">Accessing the Console on a CX-10256-S/OMP-800 Chassis</h2>
+
+<p>Each fabric card has 2 RJ45 console ports, one for each of the CPUs.
+Each line card also has 2 console ports, one for each CPU that connect
+via a USB type A jack — this requires a special cable from Edgecore in
+order to access the line card console ports. By default, the console
+connects at 115200 baud 8N1.</p>
+
+<p>Once connected to the line card or fabric card&rsquo;s console port, you see
+one of the following:</p>
+
+<ul>
+<li><p>The ONIE prompt, if no operating system is installed.</p></li>
+
+<li><p>The Cumulus Linux prompt, if Cumulus Linux has been installed.</p></li>
+</ul>
+
+<h3 id="line-card-naming-convention">Line Card Naming Convention</h3>
+
+<p>Each line card and fabric card has a default identifier, which is
+displayed in the console. The name is one of the following:</p>
+
+<ul>
+<li><p><em>lc101</em>, for the A side ASIC (the left side in the image below) on
+line card 1.</p></li>
+
+<li><p><em>lc102</em>, for the B side ASIC on line card 1.</p></li>
+
+<li><p><em>lc201</em>, for the A side ASIC on line card 2.</p></li>
+
+<li><p><em>lc202</em>, for the B side ASIC on line card 2.</p></li>
+
+<li><p><em>lc301</em>, for the A side ASIC on line card 3.</p></li>
+
+<li><p><em>lc302</em>, for the B side ASIC on line card 3.</p></li>
+
+<li><p><em>lc401</em>, for the A side ASIC on line card 4.</p></li>
+
+<li><p><em>lc402</em>, for the B side ASIC on line card 4.</p></li>
+
+<li><p><em>lc501</em>, for the A side ASIC on line card 5.</p></li>
+
+<li><p><em>lc502</em>, for the B side ASIC on line card 5.</p></li>
+
+<li><p><em>lc601</em>, for the A side ASIC on line card 6.</p></li>
+
+<li><p><em>lc602</em>, for the B side ASIC on line card 6.</p></li>
+
+<li><p><em>lc701</em>, for the A side ASIC on line card 7.</p></li>
+
+<li><p><em>lc702</em>, for the B side ASIC on line card 7.</p></li>
+
+<li><p><em>lc801</em>, for the A side ASIC on line card 8.</p></li>
+
+<li><p><em>lc802</em>, for the B side ASIC on line card 8.</p></li>
+
+<li><p><em>fc101</em>, for the A side ASIC (the bottom half of the leftmost fabric
+card in the image below) on fabric card 1.</p></li>
+
+<li><p><em>fc102</em>, for the B side ASIC on fabric card 1.</p></li>
+
+<li><p><em>fc201</em>, for the A side ASIC on fabric card 2.</p></li>
+
+<li><p><em>fc202</em>, for the B side ASIC on fabric card 2.</p></li>
+
+<li><p><em>fc301</em>, for the A side ASIC on fabric card 3.</p></li>
+
+<li><p><em>fc302</em>, for the B side ASIC on fabric card 3.</p></li>
+
+<li><p><em>fc401</em>, for the A side ASIC (the top half of the rightmost fabric
+card in the image below) on fabric card 4.</p></li>
+
+<li><p><em>fc402</em>, for the B side ASIC on fabric card 4.</p></li>
+</ul>
+
+<p>Note that fabric cards 3 and 4 are installed upside down relative to
+fabric cards 1 and 2.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/7766291/OMP800_f_1000pix.png" alt = "/images/download/attachments/7766291/OMP800_f_1000pix.png"
+
+height = 250
+
+
+ />
+
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#accessing-the-console-on-a-backpack-chassis">Accessing the Console on a Backpack Chassis</a>
+<ul>
+<li><a href="#accessing-a-console-through-a-cmm">Accessing a Console through a CMM</a></li>
+<li><a href="#accessing-a-console-through-an-scm">Accessing a Console through an SCM</a></li>
+</ul></li>
+<li><a href="#accessing-the-console-on-a-cx-10256-s-omp-800-chassis">Accessing the Console on a CX-10256-S/OMP-800 Chassis</a>
+<ul>
+<li><a href="#line-card-naming-convention">Line Card Naming Convention</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Chassis/Accessing_the_Console.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

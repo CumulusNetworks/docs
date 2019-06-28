@@ -1,0 +1,2435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Routing | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+            
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/" >
+    Cumulus Linux 3.5
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Cumulus_Linux_User_Guide/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility/" >
+    Network Command Line Utility
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Managing_Application_Daemons/" >
+    Managing Application Daemons
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/Configuring_Hardware-enabled_DDOS_Protection/" >
+    Configuring Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Layer_1_and_Switch_Port_Attributes/" >
+    Layer 1 and Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Configuring_DHCP_Relays/" >
+    Configuring DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Configuring_DHCP_Servers/" >
+    Configuring DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/" >
+    Layer 1 and 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments/" >
+    VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/Traditional_Mode_Bridges/" >
+    Traditional Mode Bridges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/" >
+    Virtual Router Redundancy - VRR
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/" >
+    Lightweight Network Virtualization - LNV Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_VXLAN_Active-Active_Mode/" >
+    LNV VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX/" >
+    Integrating Hardware VTEPs with VMware NSX
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Routing/"  class="active" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Open_Shortest_Path_First_-_OSPF_-_Protocol/" >
+    Open Shortest Path First - OSPF - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol/" >
+    Open Shortest Path First v3 - OSPFv3 - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/SNMP_Monitoring/" >
+    SNMP Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Buffer_Monitoring/" >
+    Buffer Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Routing</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Routing</h1>
+
+<p>This chapter discusses routing on switches running Cumulus Linux.</p>
+
+<h2 id="managing-static-routes">Managing Static Routes</h2>
+
+<p>You manage static routes using
+<a href="/old/Cumulus_Linux_35/Network_Command_Line_Utility_-_NCLU.html">NCLU</a>
+or the Cumulus Linux <code>ip route</code> command. The routes are added to the
+<a href="https://frrouting.org" target="_blank">FRRouting</a> routing table, and are then updated
+into the kernel routing table as well.</p>
+
+<p>To add a static route, run:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add routing route 203.0.113.0/24 198.51.100.2
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>These commands create the following configuration in the
+<code>/etc/frr/frr.conf</code> file:</p>
+
+<pre><code>                   
+!
+ip route 203.0.113.0/24 198.51.100.2
+!
+   
+    
+</code></pre>
+
+<p>To delete a static route, run:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net del routing route 203.0.113.0/24 198.51.100.2
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>To view static routes, run:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net show route static 
+RIB entry for static
+====================
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, P - PIM, T - Table,
+       &gt; - selected route, * - FIB route
+S&gt;* 203.0.113.0/24 [1/0] via 198.51.100.2, swp3
+   
+    
+</code></pre>
+
+<h3 id="static-multicast-routes">Static Multicast Routes</h3>
+
+<p>Static mroutes are also managed with NCLU, or with the <code>ip route</code>
+command. To add an mroute:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add routing mroute 230.0.0.0/24
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>These commands create the following configuration in the
+<code>/etc/frr/frr.conf</code> file:</p>
+
+<pre><code>                   
+!
+ip mroute 230.0.0.0/24
+!
+   
+    
+</code></pre>
+
+<p>To delete an mroute, run:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net del routing mroute 230.0.0.0/24
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>To view mroutes, open the FRRouting CLI, and run the following command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo vtysh
+switch# show ip rpf 230.0.0.0
+Routing entry for 230.0.0.0/24 using Multicast RIB
+  Known via &quot;static&quot;, distance 1, metric 0, best
+  * directly connected, swp31s0
+   
+    
+</code></pre>
+
+<h3 id="static-routing-via-ip-route">Static Routing via ip route</h3>
+
+<p>A static route can also be created by adding <code>post-up ip route add
+</code>command to a switch port configuration. For example:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add interface swp3 ip address 198.51.100.1/24
+cumulus@switch:~$ net add interface swp3 post-up routing route add 203.0.113.0/24 via 198.51.100.2
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>These commands produce the following configuration in the
+<code>/etc/network/interfaces</code> file:</p>
+
+<pre><code>                   
+auto swp3
+iface swp3
+    address 198.51.100.1/24
+    post-up ip route add 203.0.113.0/24 via 198.51.100.2
+   
+    
+</code></pre>
+
+
+<div class="notices note" > <p>If an IPv6 address is assigned to a DOWN interface, the associated route
+is still installed into the routing table. The type of IPv6 address
+doesn&rsquo;t matter: link local, site local and global all exhibit the same
+problem.</p>
+
+<p>If the interface is bounced up and down, then the routes are no longer
+in the route table.</p>
+ </div>
+
+
+<p>The <code>ip route</code> command allows manipulating the kernel routing table
+directly from the Linux shell. See <code>man ip(8)</code> for details. FRRouting
+monitors the kernel routing table changes and updates its own routing
+table accordingly.</p>
+
+<p>To display the routing table:</p>
+
+<pre><code>                   
+cumulus@switch:~$ ip route show
+default via 10.0.1.2 dev eth0
+10.0.1.0/24 dev eth0  proto kernel  scope link  src 10.0.1.52
+192.0.2.0/24 dev swp1  proto kernel  scope link  src 192.0.2.12
+192.0.2.10/24 via 192.0.2.1 dev swp1  proto zebra  metric 20
+192.0.2.20/24  proto zebra  metric 20
+     nexthop via 192.0.2.1  dev swp1 weight 1
+     nexthop via 192.0.2.2  dev swp2 weight 1
+192.0.2.30/24 via 192.0.2.1 dev swp1  proto zebra  metric 20
+192.0.2.40/24 dev swp2  proto kernel  scope link  src 192.0.2.42
+192.0.2.50/24 via 192.0.2.2 dev swp2  proto zebra  metric 20
+192.0.2.60/24 via 192.0.2.2 dev swp2  proto zebra  metric 20
+192.0.2.70/24  proto zebra  metric 30
+     nexthop via 192.0.2.1  dev swp1 weight 1
+     nexthop via 192.0.2.2  dev swp2 weight 1
+198.51.100.0/24 dev swp3  proto kernel  scope link  src 198.51.100.1
+198.51.100.10/24 dev swp4  proto kernel  scope link  src 198.51.100.11
+198.51.100.20/24 dev br0  proto kernel  scope link  src 198.51.100.21
+   
+    
+</code></pre>
+
+<h3 id="applying-a-route-map-for-route-updates">Applying a Route Map for Route Updates</h3>
+
+<p>To apply a <a href="http://www.nongnu.org/quagga/docs/docs-multi/Route-Map.html#Route-Map" target="_blank">route
+map</a>
+to filter route updates from Zebra into the Linux kernel:</p>
+
+<pre><code>                   
+cumulus@switch:$ net add ip protocol static route-map 
+   
+    
+</code></pre>
+
+<h2 id="configuring-a-gateway-or-default-route">Configuring a Gateway or Default Route</h2>
+
+<p>On each switch, it&rsquo;s a good idea to create a <em>gateway</em> or <em>default
+route</em> for traffic destined outside the switch&rsquo;s subnet, or local
+network. All such traffic passes through the gateway, which is a host on
+the same network that routes packets to their destination beyond the
+local network.</p>
+
+<p>In the following example, you create a default route in the routing
+table — 0.0.0.0/0 — which indicates any IP address can get sent to the
+gateway, which is another switch with the IP address 10.1.0.1.</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add routing route 0.0.0.0/0 10.1.0.1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<h2 id="supported-route-table-entries">Supported Route Table Entries</h2>
+
+<p>Cumulus Linux — via <code>switchd</code> — advertises the maximum number of route
+table entries that are supported on a given switch architecture,
+including:</p>
+
+<ul>
+<li><p>L3 IPv4 LPM (longest prefix match) entries, which have a mask that
+is less than /32</p></li>
+
+<li><p>L3 IPv6 LPM entries, which have a mask that is /64 or less</p></li>
+
+<li><p>L3 IPv6 LPM entries, which have a mask that is greater than /64</p></li>
+
+<li><p>L3 IPv4 neighbor (or host) entries, which are the next hops seen in
+<code>ip neighbor</code></p></li>
+
+<li><p>L3 IPv6 neighbor entries, which are the next hops seen in <code>ip -6
+neighbor</code></p></li>
+
+<li><p>ECMP next hops, which are IP address entries in a router&rsquo;s routing
+table that specify the next closest/most optimal router in its
+routing path</p></li>
+
+<li><p>MAC addresses</p></li>
+</ul>
+
+<p>In addition, switches on the Tomahawk, Trident II+ and Trident II
+platforms are configured to manage route table entries using Algorithm
+Longest Prefix Match (ALPM). In ALPM mode, the hardware can store
+significantly more route entries.</p>
+
+<p>You can use
+<a href="/old/Cumulus_Linux_35/Resource_Diagnostics_Using_cl-resource-query.html"><code>cl-resource-query</code></a>
+to determine the current table sizes on a given switch.</p>
+
+<h3 id="forwarding-table-profiles">Forwarding Table Profiles</h3>
+
+<p>Mellanox Spectrum and some Broadcom ASICs provide the ability to
+configure the allocation of forwarding table resources and mechanisms.
+Cumulus Linux provides a number of generalized profiles for the
+platforms described below. These profiles work only with layer 2 and
+layer 3 unicast forwarding.</p>
+
+<p>Cumulus Linux defines these profiles as <em>default</em>, <em>l</em> <em>2-heavy</em>,
+<em>v4-lpm-heavy</em> and <em>v6-lpm-heavy</em>. Choose the profile that best suits
+your network architecture and specify the profile name for the
+<code>forwarding_table.profile</code> variable in the
+<code>/etc/cumulus/datapath/traffic.conf</code> file.</p>
+
+<pre><code>                   
+cumulus@switch:~$ cat /etc/cumulus/datapath/traffic.conf | grep forwarding_table -B 4
+# Manage shared forwarding table allocations
+# Valid profiles - 
+# default, l2-heavy, v4-lpm-heavy, v6-lpm-heavy
+#
+forwarding_table.profile = default
+   
+    
+</code></pre>
+
+<p>After you specify a different profile, <a href="/old/Cumulus_Linux_35/Configuring_switchd.html#src-8357343_Configuringswitchd-restartswitchd">restart
+<code>switchd</code></a>
+for the change to take effect. You can see the forwarding table profile
+when you run <code>cl-resource-query</code>.</p>
+
+
+<div class="notices note" > <p>Broadcom ASICs other than Tomahawk and Trident II/Trident II+ support
+only the <em>default</em> profile.</p>
+ </div>
+
+
+
+<div class="notices note" > <p>For Broadcom ASICs, the maximum number of IP multicast entries is 8k.</p>
+ </div>
+
+
+<h3 id="tcam-resource-profiles-for-mellanox-switches">TCAM Resource Profiles for Mellanox Switches</h3>
+
+<p>The Mellanox Spectrum ASIC provides the ability to configure the TCAM
+resource allocation, which is shared between IP multicast forwarding
+entries and ACL tables. Cumulus Linux provides a number of general
+profiles for this platform: <em>default</em>, <em>ipmc-heavy</em> and <em>acl-heavy</em>.
+Choose the profile that best suits your network architecture and specify
+that profile name in the <code>tcam_resource.profile</code> variable in the
+<code>/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf</code>
+file.</p>
+
+<pre><code>                   
+cumulus@switch:~$ cat /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf | grep -B3 &quot;tcam_resource&quot;
+#TCAM resource forwarding profile
+ 
+ 
+    1. Valid profiles -
+    2. default, ipmc-heavy, acl-heavy, ipmc-max
+       tcam_resource.profile = default
+   
+    
+</code></pre>
+
+<p>After you specify a different profile, <a href="/old/Cumulus_Linux_35/https://docs.cumulusnetworks.com/display/DOCS/Configuring+switchd#Configuringswitchd-restartswitchd">restart
+<code>switchd</code></a>
+for the change to take effect.</p>
+
+<p>When <a href="/old/Cumulus_Linux_35/Netfilter_-_ACLs.html#src-8357345_Netfilter-ACLs-nonatomic">nonatomic
+updates</a>
+are enabled (that is, the <code>acl.non_atomic_update_mode</code> is set to <em>TRUE</em>
+in <code>/etc/cumulus/switchd.conf</code> file), the maximum number of mroute and
+ACL entries for each profile are as follows:</p>
+
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Mroute Entries</th>
+<th>ACL Entries</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>default</td>
+<td>1000</td>
+<td>1500 (IPv6) or 3500 (IPv4)</td>
+</tr>
+
+<tr>
+<td>ipmc-heavy</td>
+<td>8500</td>
+<td>160 (IPv6) or 400 (IPv4)</td>
+</tr>
+
+<tr>
+<td>acl-heavy</td>
+<td>450</td>
+<td>4000 (IPv6) or 8000 (IPv4)</td>
+</tr>
+
+<tr>
+<td>ipmc-max</td>
+<td>13000</td>
+<td>160 (IPv6) or 400 (IPv4)</td>
+</tr>
+</tbody>
+</table>
+
+<p>When <a href="/old/Cumulus_Linux_35/Netfilter_-_ACLs.html#src-8357345_Netfilter-ACLs-nonatomic">nonatomic
+updates</a>
+are disabled (that is, the <code>acl.non_atomic_update_mode</code> is set to
+<em>FALSE</em> in <code>/etc/cumulus/switchd.conf</code> file), the maximum number of
+mroute and ACL entries for each profile are as follows:</p>
+
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Mroute Entries</th>
+<th>ACL Entries</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>default</td>
+<td>1000</td>
+<td>750 (IPv6) or 1750 (IPv4)</td>
+</tr>
+
+<tr>
+<td>ipmc-heavy</td>
+<td>8500</td>
+<td>80 (IPv6) or 200 (IPv4)</td>
+</tr>
+
+<tr>
+<td>acl-heavy</td>
+<td>450</td>
+<td>2000 (IPv6) or 4000 (IPv4)</td>
+</tr>
+
+<tr>
+<td>ipmc-max</td>
+<td>13000</td>
+<td>80 (IPv6) or 200 (IPv4)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="number-of-supported-route-entries-by-platform">Number of Supported Route Entries, by Platform</h3>
+
+<p>The following tables list the number of MAC addresses, layer 3 neighbors
+and LPM routes validated for each forwarding table profile for the
+various supported platforms. If you are not specifying any profiles as
+described above, the <em>default</em> values are the ones that the switch will
+use.</p>
+
+
+<div class="notices tip" > <p>The values in the following tables reflect results from our testing on
+the different platforms we support, and may differ from published
+manufacturers&rsquo; specifications provided about these chipsets.</p>
+ </div>
+
+
+<h4 id="mellanox-spectrum-switches">Mellanox Spectrum Switches</h4>
+
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>MAC Addresses</th>
+<th>L3 Neighbors</th>
+<th>Longest Prefix Match (LPM)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>default</td>
+<td>40k</td>
+<td>32k (IPv4) and 16k (IPv6)</td>
+<td>64k (IPv4) or 28k (IPv6-long)</td>
+</tr>
+
+<tr>
+<td>l2-heavy</td>
+<td>88k</td>
+<td>48k (IPv4) and 40k (IPv6)</td>
+<td>8k (IPv4) and 8k (IPv6-long)</td>
+</tr>
+
+<tr>
+<td>l2-heavy-1</td>
+<td>180K</td>
+<td>8k (IPv4) and 8k (IPv6)</td>
+<td>8k (IPv4) and 8k (IPv6-long)</td>
+</tr>
+
+<tr>
+<td>v4-lpm-heavy</td>
+<td>8k</td>
+<td>8k (IPv4) and 16k (IPv6)</td>
+<td>80k (IPv4) and 16k (IPv6-long)</td>
+</tr>
+
+<tr>
+<td>v4-lpm-heavy-1</td>
+<td>8k</td>
+<td>8k (IPv4) and 2k (IPv6)</td>
+<td>176k (IPv4) and 2k (IPv6-long)</td>
+</tr>
+
+<tr>
+<td>v6-lpm-heavy</td>
+<td>40k</td>
+<td>8k (IPv4) and 40k (IPv6)</td>
+<td>8k (IPv4) and 64k (IPv6-long)</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="broadcom-tomahawk-switches">Broadcom Tomahawk Switches</h4>
+
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>MAC Addresses</th>
+<th>L3 Neighbors</th>
+<th>Longest Prefix Match (LPM)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>default</td>
+<td>40k</td>
+<td>40k</td>
+<td>64k (IPv4) or 8k (IPv6-long)</td>
+</tr>
+
+<tr>
+<td>l2-heavy</td>
+<td>72k</td>
+<td>72k</td>
+<td>8k (IPv4) or 2k (IPv6-long)</td>
+</tr>
+
+<tr>
+<td>v4-lpm-heavy, v6-lpm-heavy</td>
+<td>8k</td>
+<td>8k</td>
+<td>128k (IPv4) or 20k (IPv6-long)</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="broadcom-trident-ii-trident-ii-switches">Broadcom Trident II/Trident II+ Switches</h4>
+
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>MAC Addresses</th>
+<th>L3 Neighbors</th>
+<th>Longest Prefix Match (LPM)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>default</td>
+<td>32k</td>
+<td>16k</td>
+<td>128k (IPv4) or 20k (IPv6-long)</td>
+</tr>
+
+<tr>
+<td>l2-heavy</td>
+<td>160k</td>
+<td>96k</td>
+<td>8k (IPv4) or 2k (IPv6-long)</td>
+</tr>
+
+<tr>
+<td>v4-lpm-heavy, v6-lpm-heavy</td>
+<td>32k</td>
+<td>16k</td>
+<td>128k (IPv4) or 20k (IPv6-long)</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="broadcom-helix4-switches">Broadcom Helix4 Switches</h4>
+
+<p>Note that Helix4 switches do not have profiles</p>
+
+<table>
+<thead>
+<tr>
+<th>MAC Addresses</th>
+<th>L3 Neighbors</th>
+<th>Longest Prefix Match (LPM)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>24k</td>
+<td>12k</td>
+<td>7.8k (IPv4) or 2k (IPv6-long)</td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="notices note" > <p>For Broadcom switches, IPv4 and IPv6 entries are not carved in separate
+spaces so it is not possible to define explicit numbers in the L3
+Neighbors column of the tables shown above. However, note that an IPv6
+entry takes up twice the space of an IPv4 entry.</p>
+ </div>
+
+
+<h2 id="caveats-and-errata">Caveats and Errata</h2>
+
+<h3 id="don-t-delete-routes-via-linux-shell">Don&rsquo;t Delete Routes via Linux Shell</h3>
+
+<p>Static routes added via FRRouting can be deleted via Linux shell. This
+operation, while possible, should be avoided. Routes added by FRRouting
+should only be deleted by FRRouting, otherwise FRRouting might not be
+able to clean up all its internal state completely and incorrect routing
+can occur as a result.</p>
+
+<h3 id="adding-ipv6-default-route-with-src-address-on-eth0-fails-without-adding-delay">Adding IPv6 Default Route with src Address on eth0 Fails without Adding Delay</h3>
+
+<p>Attempting to install an IPv6 default route on eth0 with a source
+address fails at reboot or when running <code>ifup</code> on eth0.</p>
+
+<p>The first execution of <code>ifup -dv</code> returns this warning and does not
+install the route:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ifup -dv eth0
+warning: eth0: post-up cmd '/sbin/ip route add default via 2001:620:5ca1:160::1 /
+src 2001:620:5ca1:160::45 dev eth0' failed (RTNETLINK answers: Invalid argument)&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+   
+    
+</code></pre>
+
+<p>Running <code>ifup</code> a second time on eth0 successfully installs the route.</p>
+
+<p>There are two ways you can work around this issue.</p>
+
+<ul>
+<li><p>Add a sleep 2 to the eth0 interface in <code>/etc/network/interfaces</code>:</p>
+
+<pre><code>                       
+cumulus@switch:~$ net add interface eth0 ipv6 address 2001:620:5ca1:160::45/64 post-up /bin/sleep 2s
+cumulus@switch:~$ net add interface eth0 post-up /sbin/ip route add default via 2001:620:5ca1:160::1 src 2001:620:5ca11:160::45 dev eth0
+       
+        
+</code></pre></li>
+
+<li><p>Exclude the <code>src</code> parameter to the <code>ip route add</code> that causes the
+need for the delay. If the <code>src</code> parameter is removed, the route is
+added correctly.</p>
+
+<pre><code>                       
+cumulus@switch:~$ net add interface eth0 post-up /sbin/ip route add default via 2001:620:5ca1:160::1 dev eth0
+       
+        
+</code></pre>
+
+<pre><code>                       
+cumulus@switch:~$ ifdown eth0
+Stopping NTP server: ntpd.
+Starting NTP server: ntpd.
+cumulus@switch:~$ ip -6 r s
+cumulus@switch:~$ ifup eth0
+Stopping NTP server: ntpd.
+Starting NTP server: ntpd.
+cumulus@switch:~$ ip -6 r s
+2001:620:5ca1:160::/64 dev eth0  proto kernel  metric 256 
+fe80::/64 dev eth0  proto kernel  metric 256 
+default via 2001:620:5ca1:160::1 dev eth0  metric 1024 
+       
+        
+</code></pre></li>
+</ul>
+
+<h2 id="related-information">Related Information</h2>
+
+<ul>
+<li><p><a href="http://linux-ip.net/html/tools-ip-route.html" target="_blank">Linux IP - ip route
+command</a></p></li>
+
+<li><p><a href="https://frrouting.org/user-guide/Static-Route-Commands.html#Static-Route-Commands" target="_blank">FRRouting docs - static route
+commands</a></p></li>
+</ul>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#managing-static-routes">Managing Static Routes</a>
+<ul>
+<li><a href="#static-multicast-routes">Static Multicast Routes</a></li>
+<li><a href="#static-routing-via-ip-route">Static Routing via ip route</a></li>
+<li><a href="#applying-a-route-map-for-route-updates">Applying a Route Map for Route Updates</a></li>
+</ul></li>
+<li><a href="#configuring-a-gateway-or-default-route">Configuring a Gateway or Default Route</a></li>
+<li><a href="#supported-route-table-entries">Supported Route Table Entries</a>
+<ul>
+<li><a href="#forwarding-table-profiles">Forwarding Table Profiles</a></li>
+<li><a href="#tcam-resource-profiles-for-mellanox-switches">TCAM Resource Profiles for Mellanox Switches</a></li>
+<li><a href="#number-of-supported-route-entries-by-platform">Number of Supported Route Entries, by Platform</a>
+<ul>
+<li><a href="#mellanox-spectrum-switches">Mellanox Spectrum Switches</a></li>
+<li><a href="#broadcom-tomahawk-switches">Broadcom Tomahawk Switches</a></li>
+<li><a href="#broadcom-trident-ii-trident-ii-switches">Broadcom Trident II/Trident II+ Switches</a></li>
+<li><a href="#broadcom-helix4-switches">Broadcom Helix4 Switches</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#caveats-and-errata">Caveats and Errata</a>
+<ul>
+<li><a href="#don-t-delete-routes-via-linux-shell">Don&rsquo;t Delete Routes via Linux Shell</a></li>
+<li><a href="#adding-ipv6-default-route-with-src-address-on-eth0-fails-without-adding-delay">Adding IPv6 Default Route with src Address on eth0 Fails without Adding Delay</a></li>
+</ul></li>
+<li><a href="#related-information">Related Information</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version/Cumulus_Linux_35/Layer_3/Routing.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

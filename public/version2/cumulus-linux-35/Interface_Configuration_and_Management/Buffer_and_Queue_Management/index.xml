@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Buffer and Queue Management on Cumulus Networks Documentation</title>
+    <link>http://example.org/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/</link>
+    <description>Recent content in Buffer and Queue Management on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Configuring Hardware-enabled DDOS Protection</title>
+      <link>http://example.org/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/Configuring_Hardware-enabled_DDOS_Protection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/Configuring_Hardware-enabled_DDOS_Protection/</guid>
+      <description>The DDOS protection mechanism protects data plane, control plane and management plane traffic in the switch. It drops any packets that match one or more of the following criteria while incurring no performance impact:
+ Source IP address matches the destination address for IPv4 and IPv6 packets
+ Source MAC address matches the destination MAC address
+ Unfragmented or first fragment SYN packets with a source port of 0-1023</description>
+    </item>
+    
+  </channel>
+</rss>

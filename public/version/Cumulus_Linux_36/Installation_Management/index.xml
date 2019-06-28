@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Installation Management on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_36/Installation_Management/</link>
+    <description>Recent content in Installation Management on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_36/Installation_Management/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Managing Cumulus Linux Disk Images</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Installation_Management/Managing_Cumulus_Linux_Disk_Images/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Installation_Management/Managing_Cumulus_Linux_Disk_Images/</guid>
+      <description>The Cumulus Linux operating system resides on a switch as a disk image. This section discusses how to manage the image, and includes installation and upgrade information.
+Installing a New Cumulus Linux Image For details, read the chapter, Installing a New Cumulus Linux Image.
+Upgrading Cumulus Linux There are two ways you can upgrade Cumulus Linux:
+ Upgrade only the changed packages using apt-get update and apt-get upgrade. This is the preferred method.</description>
+    </item>
+    
+    <item>
+      <title>Installing a New Cumulus Linux Image</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Installation_Management/Installing_a_New_Cumulus_Linux_Image/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Installation_Management/Installing_a_New_Cumulus_Linux_Image/</guid>
+      <description>Before you install Cumulus Linux, the switch can be in two different states:
+ No image is installed on the switch (the switch is only running ONIE) or you need to perform a clean installation. In this case, you can install Cumulus Linux in one of the following ways, using:
+ DHCP/a web server with DHCP options
+ DHCP/a web server without DHCP options
+ A web server with no DHCP</description>
+    </item>
+    
+    <item>
+      <title>Upgrading Cumulus Linux</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Installation_Management/Upgrading_Cumulus_Linux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Installation_Management/Upgrading_Cumulus_Linux/</guid>
+      <description>Cumulus Networks software melds the Linux host world with the networking devices world. Each world comes with its own paradigm on how to upgrade software. Before we discuss the various ways to upgrade Cumulus Linux switches, let&amp;rsquo;s review the general considerations and strategies used to upgrade network devices and Linux hosts.
+Upgrades: Comparing the Network Device Worldview and the Linux Host Worldview Manual and Automated Configuration Historically, network devices were configured in place, and most network devices required customized configurations, which led predominantly to configuring the hardware manually.</description>
+    </item>
+    
+    <item>
+      <title>Using Snapshots</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Installation_Management/Using_Snapshots/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Installation_Management/Using_Snapshots/</guid>
+      <description>Cumulus Linux supports the ability to take snapshots of the complete file system as well as the ability to roll back to a previous snapshot. Snapshots are performed automatically right before and after you upgrade Cumulus Linux and right before and after you commit a switch configuration using NCLU. In addition, you can take a snapshot at any time. You can roll back the entire file system to a specific snapshot or just retrieve specific files.</description>
+    </item>
+    
+    <item>
+      <title>Adding and Updating Packages</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Installation_Management/Adding_and_Updating_Packages/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Installation_Management/Adding_and_Updating_Packages/</guid>
+      <description>You use the Advanced Packaging Tool (apt) to manage additional applications (in the form of packages) and to install the latest updates.
+Before running any apt-get commands or after changing the /etc/apt/sources.list file, you need to run apt-get update.
+The apt-get upgrade and apt-get install commands cause disruptions to network services:
+ The apt-get upgrade command might result in services being restarted or stopped as part of the upgrade process.</description>
+    </item>
+    
+    <item>
+      <title>Zero Touch Provisioning - ZTP</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Installation_Management/Zero_Touch_Provisioning_-_ZTP/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Installation_Management/Zero_Touch_Provisioning_-_ZTP/</guid>
+      <description>Zero touch provisioning (ZTP) enables you to deploy network devices quickly in large-scale environments. On first boot, Cumulus Linux invokes ZTP, which executes the provisioning automation used to deploy the device for its intended role in the network.
+The provisioning framework allows for a one-time, user-provided script to be executed. You can develop this script using a variety of automation tools and scripting languages, providing ample flexibility for you to design the provisioning scheme to meet your needs.</description>
+    </item>
+    
+  </channel>
+</rss>

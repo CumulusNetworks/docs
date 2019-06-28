@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Monitor Network Health | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/" >
+    Cumulus NetQ 2.1
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 1.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 2.0.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/" >
+    Upgrade from NetQ 2.1.0 to NetQ 2.1.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_BGP_Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_EVPN_Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_LLDP_Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health/"  class="active" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Validate_Network_Protocol_and_Service_Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Monitor Network Health</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Monitor Network Health</h1>
+
+<p>As with any network, one of the challenges is keeping track of all of
+the moving parts. With the NetQ GUI, you can view the overall health of
+your network at a glance and then delve deeper for periodic checks or as
+conditions arise that require attention. For a general understanding of
+how well your network is operating, the Network Health card workflow is
+the best place to start as it contains the highest view and performance
+rollups.</p>
+
+<h2 id="network-health-card-workflow-summary">Network Health Card Workflow Summary</h2>
+
+<p>The small Network Health card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456458/image2019-2-19_15_16_13.png" alt = "/images/download/thumbnails/10456458/image2019-2-19_15_16_13.png"
+
+
+width = 220
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh6.googleusercontent.com/lBqcsAlS_csR2RPZ7eyK-SXLOidTjHYZh0JfJJsF6NTR2zZ7bHlrat6pE1t8bUAz8EecWCz6FiryJ6p7kAvHuS2LZ6nHJIFX6fu472Ce7eN1xogZr4ke-4klOEczoAxp3-j7qych" alt = "/images/lh6.googleusercontent.com/lBqcsAlS_csR2RPZ7eyK-SXLOidTjHYZh0JfJJsF6NTR2zZ7bHlrat6pE1t8bUAz8EecWCz6FiryJ6p7kAvHuS2LZ6nHJIFX6fu472Ce7eN1xogZr4ke-4klOEczoAxp3-j7qych"
+
+
+width = 18
+
+ />
+</td>
+<td><p>Indicates data is for overall Network Health</p></td>
+</tr>
+<tr class="even">
+<td><p>Health trend</p></td>
+<td><p>Trend of overall network health, represented by an arrow:</p>
+<ul>
+<li><p><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</p></li>
+<li><p><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</p></li>
+<li><p><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</p></li>
+</ul>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Health score</p></td>
+<td><p>Average of health scores for system health, network services health, and interface health during the last data collection window. The health score for each category is calculated as the percentage of items which passed validations versus the number of items checked.</p>
+<p>The collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="even">
+<td><p>Health rating</p></td>
+<td><p>Performance rating based on the health score during the time window:</p>
+<ul>
+<li><p><strong>Low</strong>: Health score is less than 40%</p></li>
+<li><p><strong>Med</strong>: Health score is between 40% and 70%</p></li>
+<li><p><strong>High</strong>: Health score is greater than 70%</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>Chart</p></td>
+<td><p>Distribution of overall health status during the designated time period</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The medium Network Health card displays the distribution, score, and
+trend of the:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456458/image2019-2-19_15_18_19.png" alt = "/images/download/attachments/10456458/image2019-2-19_15_18_19.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Time period</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh6.googleusercontent.com/lBqcsAlS_csR2RPZ7eyK-SXLOidTjHYZh0JfJJsF6NTR2zZ7bHlrat6pE1t8bUAz8EecWCz6FiryJ6p7kAvHuS2LZ6nHJIFX6fu472Ce7eN1xogZr4ke-4klOEczoAxp3-j7qych" alt = "/images/lh6.googleusercontent.com/lBqcsAlS_csR2RPZ7eyK-SXLOidTjHYZh0JfJJsF6NTR2zZ7bHlrat6pE1t8bUAz8EecWCz6FiryJ6p7kAvHuS2LZ6nHJIFX6fu472Ce7eN1xogZr4ke-4klOEczoAxp3-j7qych"
+
+
+width = 18
+
+ />
+</td>
+<td><p>Indicates data is for overall Network Health</p></td>
+</tr>
+<tr class="odd">
+<td><p>Health trend</p></td>
+<td><p>Trend of system, network service, and interface health, represented by an arrow:</p>
+<ul>
+<li><p><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</p></li>
+<li><p><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</p></li>
+<li><p><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</p></li>
+</ul>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="even">
+<td><p>Health score</p></td>
+<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for:</p>
+<ul>
+<li><p><strong>System health</strong>: NetQ Agent health, Cumulus Linux license status, and sensors</p></li>
+<li><p><strong>Network services health</strong>: BGP, CLAG, EVPN, LNV, NTP, and VXLAN health</p></li>
+<li><p><strong>Interface health</strong>: interfaces MTU, VLAN health</p></li>
+</ul>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Chart</p></td>
+<td><p>Distribution of overall health status during the designated time period</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The large Network Health card contains three tabs.</p>
+
+<p>The <em>System Health</em> tab displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456458/image2019-2-19_15_26_38.png" alt = "/images/download/attachments/10456458/image2019-2-19_15_26_38.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Time period</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh6.googleusercontent.com/lBqcsAlS_csR2RPZ7eyK-SXLOidTjHYZh0JfJJsF6NTR2zZ7bHlrat6pE1t8bUAz8EecWCz6FiryJ6p7kAvHuS2LZ6nHJIFX6fu472Ce7eN1xogZr4ke-4klOEczoAxp3-j7qych" alt = "/images/lh6.googleusercontent.com/lBqcsAlS_csR2RPZ7eyK-SXLOidTjHYZh0JfJJsF6NTR2zZ7bHlrat6pE1t8bUAz8EecWCz6FiryJ6p7kAvHuS2LZ6nHJIFX6fu472Ce7eN1xogZr4ke-4klOEczoAxp3-j7qych"
+
+
+width = 18
+
+ />
+</td>
+<td><p>Indicates data is for overall Network Health</p></td>
+</tr>
+<tr class="odd">
+<td><p>Health trend</p></td>
+<td><p>Trend of NetQ Agents, Cumulus Linux licenses, and sensor health, represented by an arrow:</p>
+<ul>
+<li><p><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</p></li>
+<li><p><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</p></li>
+<li><p><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</p></li>
+</ul>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="even">
+<td><p>Health score</p></td>
+<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for NetQ Agents, Cumulus Linux license status, and platform sensors.</p>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Charts</p></td>
+<td><p>Distribution of health score for NetQ Agents, Cumulus Linux license status, and platform sensors during the designated time period</p></td>
+</tr>
+<tr class="even">
+<td><p>Table</p></td>
+<td><p>Listing of items that match the filter selection:</p>
+<ul>
+<li><p><strong>Most Failures</strong>: Devices with the most validation failures are listed at the top</p></li>
+<li><p><strong>Recent Failures</strong>: Most recent validation failures are listed at the top</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>Show All Devices</p></td>
+<td><p>Opens full screen Network Health card with a listing of all events</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The <em>Network Services Health</em> tab displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456458/image2019-2-19_15_28_2.png" alt = "/images/download/attachments/10456458/image2019-2-19_15_28_2.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Time period</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh6.googleusercontent.com/lBqcsAlS_csR2RPZ7eyK-SXLOidTjHYZh0JfJJsF6NTR2zZ7bHlrat6pE1t8bUAz8EecWCz6FiryJ6p7kAvHuS2LZ6nHJIFX6fu472Ce7eN1xogZr4ke-4klOEczoAxp3-j7qych" alt = "/images/lh6.googleusercontent.com/lBqcsAlS_csR2RPZ7eyK-SXLOidTjHYZh0JfJJsF6NTR2zZ7bHlrat6pE1t8bUAz8EecWCz6FiryJ6p7kAvHuS2LZ6nHJIFX6fu472Ce7eN1xogZr4ke-4klOEczoAxp3-j7qych"
+
+
+width = 18
+
+ />
+</td>
+<td><p>Indicates data is for overall Network Health</p></td>
+</tr>
+<tr class="odd">
+<td><p>Health trend</p></td>
+<td><p>Trend of BGP, CLAG, EVPN, LNV, NTP, and VXLAN services health, represented by an arrow:</p>
+<ul>
+<li><p><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</p></li>
+<li><p><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</p></li>
+<li><p><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</p></li>
+</ul>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="even">
+<td><p>Health score</p></td>
+<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for BGP, CLAG, EVPN, LNV, NTP, and VXLAN protocols and services.</p>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Charts</p></td>
+<td><p>Distribution of passing validations for BGP, CLAG, EVPN, LNV, NTP, and VXLAN services during the designated time period</p></td>
+</tr>
+<tr class="even">
+<td><p>Table</p></td>
+<td><p>Listing of devices that match the filter selection:</p>
+<ul>
+<li><p><strong>Most Failures</strong>: Devices with the most validation failures are listed at the top</p></li>
+<li><p><strong>Recent Failures</strong>: Most recent validation failures are listed at the top</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>Show All Devices</p></td>
+<td><p>Opens full screen Network Health card with a listing of all events</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The <em>Interfaces Health</em> tab displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456458/image2019-2-19_15_28_22.png" alt = "/images/download/attachments/10456458/image2019-2-19_15_28_22.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Time period</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh6.googleusercontent.com/lBqcsAlS_csR2RPZ7eyK-SXLOidTjHYZh0JfJJsF6NTR2zZ7bHlrat6pE1t8bUAz8EecWCz6FiryJ6p7kAvHuS2LZ6nHJIFX6fu472Ce7eN1xogZr4ke-4klOEczoAxp3-j7qych" alt = "/images/lh6.googleusercontent.com/lBqcsAlS_csR2RPZ7eyK-SXLOidTjHYZh0JfJJsF6NTR2zZ7bHlrat6pE1t8bUAz8EecWCz6FiryJ6p7kAvHuS2LZ6nHJIFX6fu472Ce7eN1xogZr4ke-4klOEczoAxp3-j7qych"
+
+
+width = 18
+
+ />
+</td>
+<td><p>Indicates data is for overall Network Health</p></td>
+</tr>
+<tr class="odd">
+<td><p>Health trend</p></td>
+<td><p>Trend of interfaces, MTU, and VLAN health, represented by an arrow:</p>
+<ul>
+<li><p><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</p></li>
+<li><p><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</p></li>
+<li><p><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</p></li>
+</ul>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="even">
+<td><p>Health score</p></td>
+<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for for interfaces, MTUs, and VLANs.</p>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Charts</p></td>
+<td><p>Distribution of health score for interfaces, MTUs, and VLANs during the designated time period</p></td>
+</tr>
+<tr class="even">
+<td><p>Table</p></td>
+<td><p>Listing of devices that match the filter selection:</p>
+<ul>
+<li><p><strong>Most Failures</strong>: Devices with the most validation failures are listed at the top</p></li>
+<li><p><strong>Recent Failures</strong>: Most recent validation failures are listed at the top</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>Show All Devices</p></td>
+<td><p>Opens full screen Network Health card with a listing of all events</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The full screen Network Health card displays all events in the network.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456458/image2019-2-19_15_54_1.png" alt = "/images/download/attachments/10456458/image2019-2-19_15_54_1.png"
+
+
+width = 800
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Title</p></td>
+<td><p>Network Health</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent0.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T" alt = "/images/lh4.googleusercontent0.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Closes full screen card and returns to workbench</p></td>
+</tr>
+<tr class="odd">
+<td><p>Default Time</p></td>
+<td><p>Range of time in which the displayed data was collected</p></td>
+</tr>
+<tr class="even">
+<td><p>Results</p></td>
+<td><p>Number of results found for the selected tab</p></td>
+</tr>
+<tr class="odd">
+<td><p>All Events</p></td>
+<td><p>Displays all events (both alarms and info) received in the time period. By default, the requests list is sorted by the date and time that the event occurred (<strong>Time</strong>). This tab provides the following additional data about each request:</p>
+<ul>
+<li><p><strong>Source</strong>: Hostname(, IP address or MAC address?) of the given event</p></li>
+<li><p><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</p></li>
+<li><p><strong>Message</strong>: Text describing the alarm or info event that occurred</p></li>
+<li><p><strong>Severity</strong>: Importance of the event–critical, warning, info, or debug</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>Export</p></td>
+<td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
+</tr>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w" alt = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="view-network-health-summary">View Network Health Summary</h2>
+
+<p>Overall network health is based on successful validation results. The
+summary includes the percentage of successful results, a trend
+indicator, and a distribution of the validation results.</p>
+
+<p>To view a summary of your network health, open the small Network Health
+card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456458/image2019-2-19_15_16_130.png" alt = "/images/download/thumbnails/10456458/image2019-2-19_15_16_130.png"
+
+
+width = 220
+
+ />
+
+
+<p>In this example, the overall health is quite low and digging further for
+causes is definitely warranted. Refer to the next section for viewing
+the key health metrics.</p>
+
+<h2 id="view-key-metrics-of-network-health">View Key Metrics of Network Health</h2>
+
+<p>Overall network health is a calculated average of several key health
+metrics: System, Network Services, and Interface health.</p>
+
+<p>To view these key metrics, open the medium Network Health card. Each
+metric is shown with the the percentage of successful validations, a
+trend indicator, and a distribution of the validation results.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456458/image2019-2-19_15_18_190.png" alt = "/images/download/attachments/10456458/image2019-2-19_15_18_190.png"
+
+height = 250
+
+
+ />
+
+
+<p>In this example, the health of each of the three key metrics are all
+good. You might choose to dig further on the system health if it did not
+continue to improve. Refer to the following section for additional
+details.</p>
+
+<h2 id="view-system-health">View System Health</h2>
+
+<p>The system health is a calculated average of the NetQ Agent, Cumulus
+Linux license, and sensor health metrics. In all cases, validation is
+performed on the agents and licenses.. If you are monitoring platform
+sensors, the calculation includes these as well. You can view the
+overall health of the system from the medium Network Health card and
+information about each component from the large Network Health card.</p>
+
+<p>To view information about each system component:</p>
+
+<ol>
+<li><p>Open the large Network Health card.</p></li>
+
+<li><p>Hover over the card and click <span style="color: #222222;"> </span></p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/y4Q-ahPQ_Gc3i80LiuccuZkrT09oEfedJB9ZXKqK9cbIoLhL7HoHrqNZrn_eIy5Ngyx24zVSZKKTjWUc7GgUHyJVnKK9pXd6XOYEpwsCmoWLMbhQBOX31krXwjAP1uQG6tCRZoaW" alt = "/images/lh4.googleusercontent.com/y4Q-ahPQ_Gc3i80LiuccuZkrT09oEfedJB9ZXKqK9cbIoLhL7HoHrqNZrn_eIy5Ngyx24zVSZKKTjWUc7GgUHyJVnKK9pXd6XOYEpwsCmoWLMbhQBOX31krXwjAP1uQG6tCRZoaW"
+
+
+width = 16
+
+ />
+
+
+<p>.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456458/image2019-2-19_15_26_380.png" alt = "/images/download/attachments/10456458/image2019-2-19_15_26_380.png"
+
+height = 250
+
+
+ />
+</li>
+</ol>
+
+<p><span style="color: #000000;"> The health of each protocol or service is
+represented on the left side of the card by a distribution of the health
+score, a trend indicator, and a percentage of successful results. The
+right side of the card provides a listing of devices running the
+services. </span></p>
+
+<h3 id="view-devices-with-the-most-issues">View Devices with the Most Issues</h3>
+
+<p>It is useful to know which devices are experiencing the most issues with
+their system services in general, as this can help focus troubleshooting
+efforts toward selected devices versus the service itself. To view
+devices with the most issues, select <strong>Most Failures</strong> from the filter
+above the table on the right.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456458/image2019-2-19_15_41_13.png" alt = "/images/download/thumbnails/10456458/image2019-2-19_15_41_13.png"
+
+
+width = 200
+
+ />
+
+
+<p>Devices with the highest number of issues are listed at the top. Scroll
+down to view those with fewer issues. To further investigate the
+critical devices, open the Event cards and filter on the indicated
+switches.</p>
+
+<h3 id="view-devices-with-recent-issues">View Devices with Recent Issues</h3>
+
+<p>It is useful to know which devices are experiencing the most issues with
+their network services right now, as this can help focus troubleshooting
+efforts toward selected devices versus the service itself. To view
+devices with recent issues, select <strong>Recent Failures</strong> from the filter
+above the table on the right. Devices with the highest number of issues
+are listed at the top. Scroll down to view those with fewer issues. To
+further investigate the critical devices, open the Switch card or the
+Event cards and filter on the indicated switches.</p>
+
+<h3 id="filter-results-by-system-service">Filter Results by System Service</h3>
+
+<p>You can focus the data in the table on the right, by unselecting one or
+more services. Click the checkbox next to the service you want to remove
+from the data. In this example, we have unchecked Licenses.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456458/image2019-4-9_11_3_32.png" alt = "/images/download/attachments/10456458/image2019-4-9_11_3_32.png"
+
+height = 250
+
+
+ />
+
+
+<p>This grays out the associated chart and temporarily removes the data
+related to that service from the table.</p>
+
+<h2 id="view-network-services-health">View Network Services Health</h2>
+
+<p>The network services health is a calculated average of the individual
+network protocol and services health metrics. In all cases, validation
+is performed on NTP. If you are running BGP, CLAG, EVPN, LNV, OSPF, or
+VXLAN protocols the calculation includes these as well. You can view the
+overall health of network services from the medium Network Health card
+and information about individual services from the large Network Health
+card.</p>
+
+<p>To view information about each network protocol or service:</p>
+
+<ol>
+<li><p>Open the large Network Health card.</p></li>
+
+<li><p>Hover over the card and click <span style="color: #222222;"> </span></p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/zs4_0N3HzXHCvBSVQ2Y2FPP6WMWZaG0d_7g8af_y2NQ-gABd4AMUkDpzO-MaTN_bG99zjZ56CUWu1mr2ThICEZ8pcjYCyE9MyKxdr-l6DeKCLqYaY-ts_yW9UDzt4LyeYAYVzY7b" alt = "/images/lh4.googleusercontent.com/zs4_0N3HzXHCvBSVQ2Y2FPP6WMWZaG0d_7g8af_y2NQ-gABd4AMUkDpzO-MaTN_bG99zjZ56CUWu1mr2ThICEZ8pcjYCyE9MyKxdr-l6DeKCLqYaY-ts_yW9UDzt4LyeYAYVzY7b"
+
+
+width = 18
+
+ />
+
+
+<p>.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456458/image2019-2-19_15_33_28.png" alt = "/images/download/attachments/10456458/image2019-2-19_15_33_28.png"
+
+height = 250
+
+
+ />
+</li>
+</ol>
+
+<p>The health of each protocol or service is represented on the left side
+of the card by a distribution of the health score, a trend indicator,
+and a percentage of successful results. The right side of the card
+provides a listing of devices running the services.</p>
+
+
+<div class="notices tip" > <p>If you have more services running than fit naturally into the chart
+area, a scroll bar appears for you to access their data.</p>
+
+<p>Use the scroll bars on the table to view more columns and rows.</p>
+ </div>
+
+
+<h3 id="view-devices-with-the-most-issues-1">View Devices with the Most Issues</h3>
+
+<p>It is useful to know which devices are experiencing the most issues with
+their network services in general, as this can help focus
+troubleshooting efforts toward selected devices versus the protocol or
+service. To view devices with the most issues, open the large Network
+Health card. Select <strong>Most Failures</strong> from the dropdown above the table
+on the right.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456458/image2019-2-19_15_41_13.png" alt = "/images/download/thumbnails/10456458/image2019-2-19_15_41_13.png"
+
+
+width = 200
+
+ />
+
+
+<p>Devices with the highest number of issues are listed at the top. Scroll
+down to view those with fewer issues. To further investigate the
+critical devices, open the Event cards and filter on the indicated
+switches.</p>
+
+<h3 id="view-devices-with-recent-issues-1">View Devices with Recent Issues</h3>
+
+<p>It is useful to know which devices are experiencing the most issues with
+their network services right now, as this can help focus troubleshooting
+efforts toward selected devices versus the protocol or service. To view
+devices with the most issues, open the large Network Health card. Select
+<strong>Recent Failures</strong> from the dropdown above the table on the right.
+Devices with the highest number of issues are listed at the top. Scroll
+down to view those with fewer issues. To further investigate the
+critical devices, open <span style="color: #000000;"> the </span>
+<span style="color: #000000;"> Switch card or the </span>
+<span style="color: #000000;"> Event cards and filter on the indicated
+switches. </span></p>
+
+<h3 id="filter-results-by-network-service">Filter Results by Network Service</h3>
+
+<p>You can focus the data in the table on the right, by unselecting one or
+more services. Click the checkbox next to the service you want to
+remove. In this example, we are removed NTP and LNV and are in the
+process of removing OSPF.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456458/image2019-4-9_11_0_18.png" alt = "/images/download/attachments/10456458/image2019-4-9_11_0_18.png"
+
+height = 250
+
+
+ />
+
+
+<p>This grays out the charts and temporarily removes the data related to
+that service from the table.</p>
+
+<h2 id="view-all-events">View All Events</h2>
+
+<p>The Network Health card workflow enables you to view all of the alarms
+and info events in the network during the designated time period.</p>
+
+<p>To view all events:</p>
+
+<ol>
+<li><p>Open the full screen Network Health card.</p></li>
+
+<li><p>Click <strong>All Events</strong> tab in the navigation panel.</p></li>
+
+<li><p>Sort event data by <strong>Time</strong> column to view events in most recent to
+least recent order.</p></li>
+</ol>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456458/image2019-2-19_15_54_1.png" alt = "/images/download/attachments/10456458/image2019-2-19_15_54_1.png"
+
+
+width = 800
+
+ />
+
+
+<p>Where to go next depends on what data you see, but a few options
+include:</p>
+
+<ul>
+<li><p>Sort or filter event data instead by severity, for example, or type.</p></li>
+
+<li><p>Export the data for use in another analytics tool, by clicking
+<strong>Export</strong> and providing a name for the data file.</p></li>
+</ul>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#network-health-card-workflow-summary">Network Health Card Workflow Summary</a></li>
+<li><a href="#view-network-health-summary">View Network Health Summary</a></li>
+<li><a href="#view-key-metrics-of-network-health">View Key Metrics of Network Health</a></li>
+<li><a href="#view-system-health">View System Health</a>
+<ul>
+<li><a href="#view-devices-with-the-most-issues">View Devices with the Most Issues</a></li>
+<li><a href="#view-devices-with-recent-issues">View Devices with Recent Issues</a></li>
+<li><a href="#filter-results-by-system-service">Filter Results by System Service</a></li>
+</ul></li>
+<li><a href="#view-network-services-health">View Network Services Health</a>
+<ul>
+<li><a href="#view-devices-with-the-most-issues-1">View Devices with the Most Issues</a></li>
+<li><a href="#view-devices-with-recent-issues-1">View Devices with Recent Issues</a></li>
+<li><a href="#filter-results-by-network-service">Filter Results by Network Service</a></li>
+</ul></li>
+<li><a href="#view-all-events">View All Events</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

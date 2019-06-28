@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Resolve Issues on Cumulus Networks Documentation</title>
+    <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/</link>
+    <description>Recent content in Resolve Issues on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Methods for Diagnosing Network Issues</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/</guid>
+      <description>NetQ provides users with the ability to go back in time to replay the network state, see fabric-wide event change logs and root cause state deviations. The NetQ Telemetry Server maintains data collected by NetQ agents in a time-series database, making fabric-wide events available for analysis. This enables you to replay and analyze network-wide events for better visibility and to correlate patterns. This allows for root-cause analysis and optimization of network configs for the future.</description>
+    </item>
+    
+    <item>
+      <title>Resolve MLAG Issues</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/</guid>
+      <description>This topic outlines a few scenarios that illustrate how you use NetQ to troubleshoot MLAG on Cumulus Linux switches. Each starts with a log message that indicates the current MLAG state.
+NetQ can monitor many aspects of an MLAG configuration, including:
+ Verifying the current state of all nodes
+ Verifying the dual connectivity state
+ Checking that the peer link is part of the bridge
+ Verifying whether MLAG bonds are not bridge members</description>
+    </item>
+    
+    <item>
+      <title>Investigate NetQ Issues</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/</guid>
+      <description>There are several paths you can take to locate and investigate issues that occur in the NetQ software itself, including viewing configuration and log files, verifying NetQ Agent health, and verifying NetQ Platform configuration. If these do not produce a resolution, you can capture a log to use in discussion with Cumulus Networks support team.
+Browse Configuration and Log Files To aid in troubleshooting issues with NetQ, there are the following configuration and log files that can provide insight into the root cause of the issue:</description>
+    </item>
+    
+  </channel>
+</rss>

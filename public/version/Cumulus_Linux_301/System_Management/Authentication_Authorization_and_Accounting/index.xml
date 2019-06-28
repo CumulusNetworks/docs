@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authentication, Authorization, and Accounting on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/</link>
+    <description>Recent content in Authentication, Authorization, and Accounting on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SSH for Remote Access</title>
+      <link>http://example.org/version/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/</guid>
+      <description>You use SSH to securely access a Cumulus Linux switch remotely.
+By default, you cannot use the root account to SSH to a Cumulus Linux switch unless you generate an SSH key or set a password for the account.
+ Access Using Passkey (Basic Setup) Cumulus Linux uses the openSSH package to provide SSH functionality. The standard mechanisms of generating passwordless access just applies. The example below has the cumulus user on a machine called management-station connecting to a switch called cumulus-switch1.</description>
+    </item>
+    
+    <item>
+      <title>User Accounts</title>
+      <link>http://example.org/version/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/</guid>
+      <description>By default, Cumulus Linux has two user accounts: cumulus and root.
+The cumulus account:
+ Default password is *CumulusLinux\!*  Is a user account in the sudo group with sudo privileges
+ User can log in to the system via all the usual channels like console and SSH
+  The root account:
+ Default password is disabled by default
+ Has the standard Linux root user access to everything on the switch</description>
+    </item>
+    
+    <item>
+      <title>Using sudo to Delegate Privileges</title>
+      <link>http://example.org/version/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/</guid>
+      <description>By default, Cumulus Linux has two user accounts: root and cumulus. The cumulus account is a normal user and is in the group sudo.
+You can add more user accounts as needed. Like the cumulus account, these accounts must use sudo to execute privileged commands.
+Commands  sudo
+ visudo
+  Using sudo sudo allows you to execute a command as superuser or another user as specified by the security policy.</description>
+    </item>
+    
+    <item>
+      <title>LDAP Authentication and Authorization</title>
+      <link>http://example.org/version/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/Cumulus_Linux_301/System_Management/Authentication_Authorization_and_Accounting/</guid>
+      <description>Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name Service Switch (NSS) for user authentication.
+NSS specifies the order of information sources used to resolve names for each service. Using this with authentication and authorization, it provides the order and location used for user lookup and group mapping on the system. PAM handles the interaction between the user and the system, providing login handling, session setup, authentication of users and authorization of a user actions.</description>
+    </item>
+    
+  </channel>
+</rss>

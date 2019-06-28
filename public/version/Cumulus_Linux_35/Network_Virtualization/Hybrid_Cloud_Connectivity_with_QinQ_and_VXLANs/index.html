@@ -1,0 +1,2256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hybrid Cloud Connectivity with QinQ and VXLANs | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+            
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/" >
+    Cumulus Linux 3.5
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Cumulus_Linux_User_Guide/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility/" >
+    Network Command Line Utility
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Managing_Application_Daemons/" >
+    Managing Application Daemons
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/Configuring_Hardware-enabled_DDOS_Protection/" >
+    Configuring Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Layer_1_and_Switch_Port_Attributes/" >
+    Layer 1 and Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Configuring_DHCP_Relays/" >
+    Configuring DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Configuring_DHCP_Servers/" >
+    Configuring DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Interface_Configuration_and_Management/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/" >
+    Layer 1 and 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments/" >
+    VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/Traditional_Mode_Bridges/" >
+    Traditional Mode Bridges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/" >
+    Virtual Router Redundancy - VRR
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_1_and_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/" >
+    Lightweight Network Virtualization - LNV Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_VXLAN_Active-Active_Mode/" >
+    LNV VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX/" >
+    Integrating Hardware VTEPs with VMware NSX
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/"  class="active" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Open_Shortest_Path_First_-_OSPF_-_Protocol/" >
+    Open Shortest Path First - OSPF - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol/" >
+    Open Shortest Path First v3 - OSPFv3 - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/SNMP_Monitoring/" >
+    SNMP Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Buffer_Monitoring/" >
+    Buffer Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_35/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Hybrid Cloud Connectivity with QinQ and VXLANs</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Hybrid Cloud Connectivity with QinQ and VXLANs</h1>
+
+<p><em>QinQ</em> is an amendment to the <a href="http://www.ieee802.org/1/pages/802.1Q.html" target="_blank">IEEE 802.1Q
+specification</a> that provides
+the capability for multiple <a href="/old/Cumulus_Linux_35/VLAN_Tagging.html">VLAN
+tags</a> to be inserted into a
+single Ethernet frame.</p>
+
+<p>The primary use case for QinQ with VXLAN is where a service provider who
+offers multi-tenant layer 2 connectivity between different customers’
+data centers (private clouds) may also need to connect those data
+centers to public cloud providers. Public clouds often has a mandatory
+QinQ handoff interface, where the outer tag is for the customer and the
+inner tag is for the service.</p>
+
+<p>In Cumulus Linux, you map QinQ packets to VXLANs through:</p>
+
+<ul>
+<li><p><em>Single tag translation</em>, where you map a customer to a VNI and
+preserve the service as an inner VLAN inside a VXLAN packet.</p></li>
+
+<li><p><em>Double tag translation</em>, where you map a customer and service to a
+VNI.</p></li>
+</ul>
+
+<p>QinQ is available on the following switches:</p>
+
+<ul>
+<li><p>Broadcom Tomahawk, Trident II+ and Trident II switches.</p></li>
+
+<li><p>Mellanox switches, only with <a href="/old/Cumulus_Linux_35/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware
+bridges</a>
+with 802.1ad and only with single tag translation.</p></li>
+</ul>
+
+<h2 id="removing-the-early-access-qinq-metapackage">Removing the Early Access QinQ Metapackage</h2>
+
+<p>If you are upgrading Cumulus Linux from a version earlier than 3.4.0 and
+had installed the early access QinQ metapackage, you need to remove the
+<code>cumulus-qinq</code> metapackage before upgrading to Cumulus Linux 3.4.0 or
+later. To remove the <code>cumulus-qinq</code> metapackage, read the <a href="https://support.cumulusnetworks.com/hc/en-us/articles/202933878" target="_blank">early access
+feature</a>
+article.</p>
+
+<h2 id="configuring-single-tag-translation">Configuring Single Tag Translation</h2>
+
+<p>Single tag translation adheres to traditional QinQ service model. The
+customer-facing interface is a QinQ access port with the outer S-tag
+being the PVID, representing the customer. The S-tag is translated to a
+VXLAN VNI. The inner C-tag, which represents the service, is transparent
+to the provider. The public cloud handoff interface is a QinQ trunk
+where packets on the wire carry both the S-tag and the C-tag.</p>
+
+<p>Single tag translation leverages <a href="/old/Cumulus_Linux_35/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Linux
+bridge</a>
+mode with the use of the 802.1ad VLAN protocol (the only supported
+protocol at the time of writing). Hence, it is more scalable.</p>
+
+<p>An example configuration could look like the following:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/undefinedimages/download/attachments/8357550/QinQ&#43;single&#43;tag&#43;translation.png" alt = "/undefinedimages/download/attachments/8357550/QinQ&#43;single&#43;tag&#43;translation.png"
+
+height = 250
+
+
+ />
+
+
+<p>You configure two switches: one at the service provider edge that faces
+the customer (the switch on the left above), and one on the public cloud
+handoff edge (the righthand switch above).</p>
+
+
+<div class="notices note" > <p>All edges need to support QinQ with VXLANs to correctly interoperate.</p>
+ </div>
+
+
+<h3 id="configuring-the-public-cloud-facing-switch">Configuring the Public Cloud-facing Switch</h3>
+
+<p>For the switch facing the public cloud:</p>
+
+<ul>
+<li><p>Configure the bridge with <code>vlan_protocol</code> set to <em>802.1ad</em>.</p></li>
+
+<li><p>The VNI maps back to S-tag (customer).</p></li>
+
+<li><p>A trunk port connected to the public cloud is the QinQ trunk, and
+packets are double tagged, where the S-tag is for the customer and
+the C-tag is for the service.</p></li>
+</ul>
+
+<p>To configure the public cloud-facing switch, run the following
+<a href="/old/Cumulus_Linux_35/Network_Command_Line_Utility_-_NCLU.html">NCLU</a>
+commands:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add vxlan vni-1000 vxlan id 1000
+cumulus@switch:~$ net add vxlan vni-1000 vxlan local-tunnelip 10.0.0.1
+cumulus@switch:~$ net add vxlan vni-1000 bridge access 100
+cumulus@switch:~$ net add vxlan vni-3000 vxlan id 3000
+cumulus@switch:~$ net add vxlan vni-3000 vxlan local-tunnelip 10.0.0.1
+cumulus@switch:~$ net add vxlan vni-3000 bridge access 200
+cumulus@switch:~$ net add vxlan vni-1000 bridge learning off
+cumulus@switch:~$ net add vxlan vni-3000 bridge learning off
+cumulus@switch:~$ net add bridge bridge vlan-protocol 802.1ad
+cumulus@switch:~$ net add bridge bridge ports swp3,vni-1000,vni-3000
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>These commands create the following configuration in the
+<code>/etc/network/interfaces</code> file:</p>
+
+<pre><code>                   
+auto vni-1000
+iface vni-1000
+    bridge-access 100
+    bridge-learning off
+    vxlan-id 1000
+    vxlan-local-tunnelip 10.0.0.1
+ 
+auto vni-3000
+iface vni-3000
+    bridge-access 200
+    bridge-learning off
+    vxlan-id 3000
+    vxlan-local-tunnelip 10.0.0.1
+    
+auto bridge
+iface bridge
+    bridge-ports swp3 vni-1000 vni-3000
+    bridge-vids 100 200
+    bridge-vlan-aware yes
+    bridge-vlan-protocol 802.1ad
+   
+    
+</code></pre>
+
+<h3 id="configuring-the-customer-facing-edge-switch">Configuring the Customer-facing Edge Switch</h3>
+
+<p>For the switch facing the customer:</p>
+
+<ul>
+<li><p>Configure the bridge with <code>vlan_protocol</code> set to <em>802.1ad</em>.</p></li>
+
+<li><p>The customer interface is the QinQ access port, the PVID is the
+S-tag (customer) and is mapped to a VNI.</p></li>
+
+<li><p>The service VLAN tags (C-tags) are preserved during VXLAN
+encapsulation.</p></li>
+</ul>
+
+<p>To configure the customer-facing switch, run the following
+<a href="/old/Cumulus_Linux_35/Network_Command_Line_Utility_-_NCLU.html">NCLU</a>
+commands:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add interface swp3 bridge access 100
+cumulus@switch:~$ net add interface swp4 bridge access 200
+cumulus@switch:~$ net add vxlan vni-1000 vxlan id 1000
+cumulus@switch:~$ net add vxlan vni-1000 vxlan local-tunnelip 10.0.0.1
+cumulus@switch:~$ net add vxlan vni-1000 bridge access 100
+cumulus@switch:~$ net add vxlan vni-3000 vxlan id 3000
+cumulus@switch:~$ net add vxlan vni-3000 vxlan local-tunnelip 10.0.0.1
+cumulus@switch:~$ net add vxlan vni-3000 bridge access 200
+cumulus@switch:~$ net add vxlan vni-1000 bridge learning off
+cumulus@switch:~$ net add vxlan vni-3000 bridge learning off
+cumulus@switch:~$ net add bridge bridge ports swp3,swp4,vni-1000,vni-3000
+cumulus@switch:~$ net add bridge bridge vlan-protocol 802.1ad
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>These commands create the following configuration in the
+<code>/etc/network/interfaces</code> file:</p>
+
+<pre><code>                   
+auto vni-1000
+iface vni-1000
+    bridge-access 100
+    bridge-learning off
+    vxlan-id 1000
+    vxlan-local-tunnelip 10.0.0.1
+    
+auto vni-3000
+iface vni-3000
+    bridge-access 200
+    bridge-learning off
+    vxlan-id 3000
+    vxlan-local-tunnelip 10.0.0.1
+ 
+auto swp3
+iface swp3
+    bridge-access 100
+ 
+auto swp4
+iface swp4
+    bridge-access 200
+  
+auto bridge
+iface bridge
+    bridge-ports swp3 swp4 vni-1000 vni-3000
+    bridge-vids 100 200
+    bridge-vlan-aware yes
+    bridge-vlan-protocol 802.1ad
+ 
+   
+    
+</code></pre>
+
+<h3 id="viewing-the-configuration">Viewing the Configuration</h3>
+
+<p>In the output below, customer A is on VLAN 100 (S-TAG) and customer B is
+on VLAN 200 (S-TAG).</p>
+
+<p>To check the public cloud-facing switch, use <code>net show bridge vlan</code>:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net show bridge vlan
+ 
+Interface      VLAN   Flags                  VNI
+-----------  ------   ---------------------  -----
+swp3               1  PVID, Egress Untagged
+                 100
+                 200
+vni-1000         100  PVID, Egress Untagged   1000
+vni-3000         200  PVID, Egress Untagged   3000
+   
+    
+</code></pre>
+
+<p>To check the customer-facing switch, use <code>net show bridge vlan</code>:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net show bridge vlan
+Interface      VLAN  Flags                  VNI
+-----------  ------  ---------------------  -----
+swp3            100  PVID, Egress Untagged
+swp4            200  PVID, Egress Untagged
+vni-1000        100  PVID, Egress Untagged  1000
+vni-3000        200  PVID, Egress Untagged  3000
+   
+    
+</code></pre>
+
+<p>To verify that the bridge is configured for QinQ, run <code>ip -d link show
+bridge</code> and look for <em>vlan_protocol 802.1ad</em> in the output:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ip -d link show bridge
+287: bridge:  mtu 1500 qdisc noqueue state UP mode DEFAULT group default 
+    link/ether 06:a2:ae:de:e3:43 brd ff:ff:ff:ff:ff:ff promiscuity 0 
+    bridge forward_delay 1500 hello_time 200 max_age 2000 ageing_time 30000 stp_state 2 priority 32768 vlan_filtering 1 vlan_protocol 802.1ad bridge_id 8000.6:a2:ae:de:e3:43 designated_root 8000.6:a2:ae:de:e3:43 root_port 0 root_path_cost 0 topology_change 0 topology_change_detected 0 hello_timer    0.00 tcn_timer    0.00 topology_change_timer    0.00 gc_timer   64.29 vlan_default_pvid 1 vlan_stats_enabled 1 group_fwd_mask 0 group_address 01:80:c2:00:00:08 mcast_snooping 0 mcast_router 1 mcast_query_use_ifaddr 0 mcast_querier 0 mcast_hash_elasticity 4096 mcast_hash_max 4096 mcast_last_member_count 2 mcast_startup_query_count 2 mcast_last_member_interval 100 mcast_membership_interval 26000 mcast_querier_interval 25500 mcast_query_interval 12500 mcast_query_response_interval 1000 mcast_startup_query_interval 3125 mcast_stats_enabled 1 mcast_igmp_version 2 mcast_mld_version 1 nf_call_iptables 0 nf_call_ip6tables 0 nf_call_arptables 0 addrgenmode eui64 
+   
+    
+</code></pre>
+
+<h2 id="configuring-double-tag-translation">Configuring Double Tag Translation</h2>
+
+<p>Double tag translation involves a bridge with double-tagged member
+interfaces, where a combination of the C-tag and S-tag map to a VNI. You
+create the configuration only at the edge facing the public cloud. The
+VXLAN configuration at the customer-facing edge doesn&rsquo;t need to change.</p>
+
+<p>The double tag is always a cloud connection. The customer-facing edge is
+either single-tagged or untagged. At the public cloud handoff point, the
+VNI maps to double VLAN tags, with the S-tag indicating the customer and
+the C-tag indicating the service.</p>
+
+
+<div class="notices note" > <p>The configuration in Cumulus Linux uses the outer tag for the customer
+and the inner tag for the service.</p>
+ </div>
+
+
+<p>You configure a double-tagged interface by stacking the VLANs in the
+following manner: &lt;port&gt;.&lt;outer tag&gt;.&lt;inner tag&gt;. For example,
+consider swp1.100.10: the outer tag is VLAN 100, which represents the
+customer, and the inner tag is VLAN 10, which represents the service.</p>
+
+<p>The outer tag or <em>TPID</em> (tagged protocol identifier) needs the
+<code>vlan_protocol</code> to be specified. It can be either <em>802.1Q</em> or <em>802.1ad</em>.
+If 802.1ad is used, it must be specified on the lower VLAN device, such
+as swp3.100 in the example below.</p>
+
+
+<div class="notices note" > <p>Double tag translation only works with bridges in <a href="/old/Cumulus_Linux_35/Traditional_Mode_Bridges.html">traditional
+mode</a> (not
+VLAN-aware). As such, you cannot use
+<a href="/old/Cumulus_Linux_35/Network_Command_Line_Utility_-_NCLU.html">NCLU</a>
+to configure it.</p>
+ </div>
+
+
+<p>An example configuration could look like the following:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/undefinedimages/download/attachments/8357550/qinq&#43;double&#43;tag&#43;translation.png" alt = "/undefinedimages/download/attachments/8357550/qinq&#43;double&#43;tag&#43;translation.png"
+
+height = 250
+
+
+ />
+
+
+<h3 id="configuring-the-switch">Configuring the Switch</h3>
+
+<p>To configure the switch for double tag translation using the above
+example, edit the <code>/etc/network/interfaces</code> file in a text editor and
+add the following:</p>
+
+<pre><code>                   
+auto swp3.100
+iface swp3.100
+    vlan_protocol 802.1ad
+  
+auto swp3.100.10
+iface swp3.100.10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+ 
+auto vni1000
+iface vni1000
+    vxlan-local-tunnelip  10.0.0.1
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    vxlan-id 1000
+ 
+auto custA-10-azr
+iface custA-10-azr
+    bridge-ports swp3.100.10 vni1000
+    bridge-vlan-aware no
+    bridge-learning vni1000=off
+ 
+   
+    
+</code></pre>
+
+<p>You can check the configuration with the <code>brctl show</code> command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo brctl show
+bridge name     bridge id               STP enabled     interfaces
+custA-10-azr    8000.00020000004b       yes             swp3.100.10                                              
+                                                        vni1000
+custB-20-azr    8000.00020000004b       yes             swp3.200.20                                                        
+                                                        vni3000
+   
+    
+</code></pre>
+
+
+<div class="notices info" > <p>If the bridge is not VXLAN-enabled, the configuration looks like this:</p>
+
+<pre><code>                   
+auto swp5.100
+iface swp5.100
+    vlan-protocol 802.1ad
+ 
+auto swp5.100.10
+iface swp5.100.10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+ 
+auto br10
+iface br10
+    bridge-ports swp3.10  swp4  swp5.100.10
+    bridge-vlan-aware no
+   
+    
+</code></pre>
+
+<p>&lt;img class = &ldquo;confluence-embedded-image&rdquo; src = &ldquo;/undefinedimages/download/attachments/8357550/qinq&#43;double&#43;tagged&#43;no&#43;vxlan.png&rdquo; alt = &ldquo;/undefinedimages/download/attachments/8357550/qinq&#43;double&#43;tagged&#43;no&#43;vxlan.png&rdquo;</p>
+
+<p>height = 250</p>
+
+<p>/&gt;</p>
+ </div>
+
+
+<h2 id="caveats-and-errata">Caveats and Errata</h2>
+
+<h3 id="feature-limitations">Feature Limitations</h3>
+
+<ul>
+<li><p><code>iptables</code> match on double-tagged interfaces is not supported.</p></li>
+
+<li><p>Single-tagged translation supports only <a href="/old/Cumulus_Linux_35/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware bridge
+mode</a>
+with the bridge’s VLAN 802.1ad protocol.</p></li>
+
+<li><p><a href="/old/Cumulus_Linux_35/Multi-Chassis_Link_Aggregation_-_MLAG.html">MLAG</a>
+is only supported with single-tagged translation.</p></li>
+
+<li><p>No layer 2 protocol (STP BPDU, LLDP) tunneling support.</p></li>
+
+<li><p>Mixing 802.1Q and 802.1ad subinterfaces on the same switch port is
+not supported.</p></li>
+
+<li><p>When using switches with Mellanox Spectrum ASICs in an MLAG pair:</p>
+
+<ul>
+<li><p>The peerlink (peerlink.4094) between the MLAG pair should be
+configured for VLAN protocol 802.1ad.</p></li>
+
+<li><p>The peerlink cannot be used as a backup datapath in the event
+that one of the MLAG peers loses all uplinks.</p></li>
+</ul></li>
+
+<li><p>For switches with the Spectrum ASIC (but not the Spectrum 2), when
+the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, either:</p>
+
+<ul>
+<li><p>All bridge ports are access ports, except for the MLAG peerlink.</p></li>
+
+<li><p>All bridge ports are VLAN trunks.</p></li>
+</ul>
+
+<p>This means the switch terminating the cloud provider connections
+(double-tagged) cannot have local clients; these clients must be on
+a separate switch.</p></li>
+</ul>
+
+<h3 id="long-interface-names">Long Interface Names</h3>
+
+<p>The Linux kernel limits interface names to 15 characters in length. For
+QinQ interfaces, this limit can be reached fairly easily.</p>
+
+<p>To work around this issue, you&rsquo;ll need to create two VLANs as nested
+VLAN raw devices, one for the outer tag and one for the inner tag. For
+example, you can&rsquo;t create an interface called swp50s0.1001.101, since it
+has 16 characters in its name. Instead, you&rsquo;ll create VLANs with IDs
+1001 and 101 as follows by editing /etc/network/interfaces and adding a
+configuration like the following:</p>
+
+<pre><code>                   
+auto vlan1001
+iface vlan1001
+       vlan-id 1001
+       vlan-raw-device swp50s0
+       vlan-protocol 802.1ad
+ 
+auto vlan1001-101
+iface vlan1001-101
+       vlan-id 101
+       vlan-raw-device vlan1001
+ 
+auto bridge101
+iface bridge101
+    bridge-ports vlan1001-101 vxlan1000101
+   
+    
+</code></pre>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#removing-the-early-access-qinq-metapackage">Removing the Early Access QinQ Metapackage</a></li>
+<li><a href="#configuring-single-tag-translation">Configuring Single Tag Translation</a>
+<ul>
+<li><a href="#configuring-the-public-cloud-facing-switch">Configuring the Public Cloud-facing Switch</a></li>
+<li><a href="#configuring-the-customer-facing-edge-switch">Configuring the Customer-facing Edge Switch</a></li>
+<li><a href="#viewing-the-configuration">Viewing the Configuration</a></li>
+</ul></li>
+<li><a href="#configuring-double-tag-translation">Configuring Double Tag Translation</a>
+<ul>
+<li><a href="#configuring-the-switch">Configuring the Switch</a></li>
+</ul></li>
+<li><a href="#caveats-and-errata">Caveats and Errata</a>
+<ul>
+<li><a href="#feature-limitations">Feature Limitations</a></li>
+<li><a href="#long-interface-names">Long Interface Names</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version/Cumulus_Linux_35/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

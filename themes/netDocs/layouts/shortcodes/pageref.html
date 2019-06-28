@@ -1,0 +1,51 @@
+{{$title := .Get 1}}
+{{$sect := .Get 0 }}
+{{ $section := where .Site.Sections "Section" $sect }}
+  {{ with index $section 0 }}
+      {{ template "find-page" (dict "Section" . "pageTitle" $title)}}
+  {{ else }}
+  {{ $section = where .Site.Sections "Section" "version" }}
+  {{ with (index $section 0 ) }}
+    {{range .Sections}}
+      {{if eq .Params.siteSlug $sect }}
+        {{ template "find-page" (dict "Section" . "pageTitle" $title)}}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ define "find-page" }}
+
+{{ with .Section }}
+  {{ if eq .Title $.pageTitle }}
+    {{ template "page-link" (dict "Page" .) }}
+  {{ end }}
+
+  {{ range .Pages }}
+    {{ if eq .Title $.pageTitle }}
+      {{ template "page-link" (dict "Page" .) }}
+    {{ end }}
+  {{ end }}
+
+  {{ range .Sections}}
+  {{ if eq .Title $.pageTitle }}
+    {{ template "page-link" (dict "Page" .) }}
+  {{ end }}
+    {{ range .Pages }}
+      {{ if eq .Title $.pageTitle }}
+        {{ template "page-link" (dict "Page" .) }}
+      {{ end }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+
+{{ end }}
+
+
+{{ define "page-link"}}
+{{ with .Page }}
+<a href = "{{.RelPermalink}}" >
+  {{.Title}}
+</a>
+{{ end }}
+{{ end }}

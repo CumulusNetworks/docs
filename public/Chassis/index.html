@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Chassis User Guide | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <link rel="alternate" type="application/rss+xml" href="http://example.org/Chassis/index.xml" title="Cumulus Networks Documentation" />
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Chassis/"  class="active" >
+    Chassis User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Chassis/Accessing_the_Console/" >
+    Accessing the Console
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Chassis/Fabric_Port_Line_Card_and_Switch_Port_Interfaces/" >
+    Fabric Port, Line Card and Switch Port Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Chassis/Chassis_Default_Configurations/" >
+    Chassis Default Configurations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Chassis/Monitoring_and_Troubleshooting_a_Chassis/" >
+    Monitoring and Troubleshooting a Chassis
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Chassis/Chassis-specific_Commands/" >
+    Chassis-specific Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Chassis User Guide</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Chassis User Guide</h1>
+
+<p>The Cumulus Express chassis is a self-contained Clos network in a single
+chassis form factor. There are two different types of chassis available
+currently:</p>
+
+<ul>
+<li><p>Cumulus Express Backpack chassis</p></li>
+
+<li><p>Cumulus Express CX-10256-S chassis, also known as the Edgecore
+OMP-800 chassis</p></li>
+</ul>
+
+<h2 id="getting-to-know-the-chassis">Getting to Know the Chassis</h2>
+
+<p>Each chassis type differs somewhat from the other.</p>
+
+<h3 id="about-the-backpack-chassis">About the Backpack Chassis</h3>
+
+<p>The Backpack chassis is like an 8 leaf/4 spine Clos network in a single
+chassis, so it&rsquo;s more complex than configuring Cumulus Linux on a single
+top of rack switch. This guide walks you through the details to get you
+up and running.</p>
+
+<p>Backpack comprises a number of components. The components pertinent to
+this guide are:</p>
+
+<ul>
+<li><p>2 chassis management modules (CMMs), one primary and one standby.
+It&rsquo;s a good idea to connect cables to both CMMs; in the event the
+primary CMM is removed, the standby takes its place. Otherwise, the
+standby CMM is idle; it can get link but won&rsquo;t receive any traffic.</p></li>
+
+<li><p>4 line cards, each with two Tomahawk ASICs and 32 100G ports each.
+The line cards are similar to leaf switches in a Clos network. Each
+line card runs 2 instances of Cumulus Linux, one for each ASIC. In
+the image below, the line cards are labeled LC1, LC2, LC3 and LC4
+from top to bottom; the left half of each line card has a white
+silkscreen around the ports, while the right half has a black
+silkscreen.</p></li>
+
+<li><p>4 fabric cards, each with a Tomahawk ASIC and 32 100G fabric ports.
+Fabric cards are similar to spine switches in a Clos network,
+although the fabric cards do not connect to nodes outside the
+chassis. Each fabric card runs 1 instance of Cumulus Linux. The
+fabric cards do not appear in the image below, except for the system
+controller modules that connect to them.</p></li>
+
+<li><p>8 system controller modules (SCMs), one for each line card (labeled
+SCM-LC1 through SCM-LC4 in the image below) and one for each fabric
+card (labeled SCM-FC1 through SCM-FC4 in the image below). The SCMs
+are interdependent on their corresponding line or fabric cards, so
+if line card 1 goes down, for example, SCM-LC1 goes down as well.</p></li>
+</ul>
+
+<p>In addition, Backpack contains horizontal and vertical control planes, a
+bus bar assembly, a fan control board, 4 power supply units (PSUs) and a
+power distribution board (PDB), but this is all beyond the scope of this
+guide.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/6488345/backpack_front_labeled.png" alt = "/images/download/attachments/6488345/backpack_front_labeled.png"
+
+height = 250
+
+
+ />
+
+
+<h3 id="about-the-cx-10256-s-omp-800-chassis">About the CX-10256-S/OMP-800 Chassis</h3>
+
+<p>Both the CX-10256-S/Edgecore OMP-800 chassis are like a 16 leaf/8 spine
+Clos network in a single chassis. The chassis comprises a number of
+components. The components pertinent to this guide are:</p>
+
+<ul>
+<li><p>8 line cards, each with 2 Tomahawk ASICs, 2 Intel Atom C2538 4 core
+2.40GHz CPUs, and 32 100G fabric ports. The line cards are similar
+to leaf switches in a Clos network. Each line card runs 2 instances
+of Cumulus Linux, one for each ASIC. In the image below, the line
+cards are in the middle of the chassis, flanked by two fabric cards
+on each side. Line card 1 is at the top of the image and line card 8
+is at the bottom.</p></li>
+
+<li><p>4 fabric cards, each with 2 Tomahawk ASICs, 2 Intel Atom C2538 4
+core 2.40GHz CPUs, and 32 100G fabric ports. Fabric cards are
+similar to spine switches in a Clos network, although the fabric
+cards do not connect to nodes outside the chassis. Each fabric card
+runs 2 instances of Cumulus Linux, one for each ASIC. The fabric
+cards flank the line cards in the image below. Fabric card 1 is the
+leftmost card and fabric card 4 is the rightmost card.</p></li>
+
+<li><p>16 fan modules, accessible from the rear.</p></li>
+
+<li><p>All line cards, fabric cards and power supplies are accessible from
+the front.</p></li>
+</ul>
+
+<p>In addition, the chassis contains horizontal and vertical control
+planes, a bus bar assembly, a fan control board, 6 power supply units
+(PSUs) and a power distribution board (PDB), but this is all beyond the
+scope of this guide.</p>
+
+<p>The chassis fits into a 21&rdquo; rack that is 10 RU in height.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/6488345/OMP800_f_1000pix.png" alt = "/images/download/attachments/6488345/OMP800_f_1000pix.png"
+
+height = 250
+
+
+ />
+
+
+<p>The CX-10256-S/OMP-800 is essentially a double-sized Backpack chassis;
+they all have 2 Tomahawk ASICs and 2 Cumulus Linux instances per line
+card.</p>
+
+<p>However, the CX-10256-S and OMP-800 differ from the Backpack chassis in
+the following ways:</p>
+
+<ul>
+<li><p>They lack CMMs, SCMs and BMCs. All CPUs are located on their
+respective line or fabric cards.</p></li>
+
+<li><p>The fabric cards each have 2 Tomahawk ASICs and 2 Cumulus Linux
+instances per card.</p></li>
+
+<li><p>All line cards, fabric cards and PSUs are accessible from the front.</p></li>
+
+<li><p>Their 16 fan modules are accessible from the rear.</p></li>
+</ul>
+
+<!-- end list -->
+
+<ul>
+<li><p><a href="/old/Chassis/Accessing_the_Console.html">Accessing the Console</a></p></li>
+
+<li><p><a href="/old/Chassis/Fabric_Port,_Line_Card_and_Switch_Port_Interfaces.html">Fabric Port, Line Card and Switch Port
+Interfaces</a></p></li>
+
+<li><p><a href="/old/Chassis/Chassis_Default_Configurations.html">Chassis Default
+Configurations</a></p></li>
+
+<li><p><a href="/old/Chassis/Monitoring_and_Troubleshooting_a_Chassis.html">Monitoring and Troubleshooting a
+Chassis</a></p></li>
+
+<li><p><a href="/old/Chassis/Chassis-specific_Commands.html">Chassis-specific
+Commands</a></p></li>
+</ul>
+
+<h2 id="recent-activity">Recent activity</h2>
+
+<ul>
+<li><p><img src="/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/profilepics/default.png" alt="/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/profilepics/default.png" /><br />
+<span class="caption">dcawley</span></p>
+
+<p><a href="/old/Chassis/https://docs.cumulusnetworks.com/display/~dcawley">Dan
+Cawley</a></p></li>
+
+<li><p><a href="/old/Chassis/#">Chassis User Guide</a>updated 28 minutes ago<a href="/old/Chassis/https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=6488345&amp;selectedPageVersions=9&amp;selectedPageVersions=8">view
+change</a></p></li>
+</ul>
+
+<!-- end list -->
+
+<ul>
+<li><p><a href="/old/Chassis/https://docs.cumulusnetworks.com/display/~pete"><img src="/images/download/attachments/1704089/pete-27211-pp-profilepic.jpg" alt="/images/download/attachments/1704089/pete-27211-pp-profilepic.jpg" /></a></p>
+
+<p><a href="/old/Chassis/https://docs.cumulusnetworks.com/display/~pete">Pete
+Bratach</a></p></li>
+
+<li><p><a href="/old/Chassis/Chassis-specific_Commands.html">Chassis-specific
+Commands</a>created Mar
+26, 2018</p></li>
+
+<li><p><a href="/old/Chassis/#">Chassis User Guide</a>updated Mar 26, 2018<a href="/old/Chassis/https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=6488345&amp;selectedPageVersions=8&amp;selectedPageVersions=7">view
+change</a></p></li>
+
+<li><p><a href="/old/Chassis/Accessing_the_Console.html">Accessing the
+Console</a>updated Mar 26,
+2018<a href="/old/Chassis/https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=7766291&amp;selectedPageVersions=3&amp;selectedPageVersions=2">view
+change</a></p></li>
+
+<li><p><a href="/old/Chassis/Monitoring_and_Troubleshooting_a_Chassis.html">Monitoring and Troubleshooting a
+Chassis</a>updated
+Mar 26, 2018<a href="/old/Chassis/https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=7113871&amp;selectedPageVersions=4&amp;selectedPageVersions=3">view
+change</a></p></li>
+</ul>
+
+<p><a href="/old/Chassis/https://docs.cumulusnetworks.com/plugins/recently-updated/changes.action?theme=social&amp;pageSize=5&amp;startIndex=5&amp;searchToken=41987&amp;spaceKeys=CHASSIS&amp;contentType=page,%20comment,%20blogpost">Show
+More</a></p>
+
+<p><img src="/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.240/_/images/icons/wait.gif" alt="/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.240/\_/images/icons/wait.gif" /><br />
+<span class="caption">Please wait</span></p>
+
+<h2 id="space-contributors">Space contributors</h2>
+
+<ul>
+<li><p><a href="/old/Chassis/https://docs.cumulusnetworks.com/display/~dcawley">Dan
+Cawley</a>
+(28 minutes ago)</p></li>
+
+<li><p><a href="/old/Chassis/https://docs.cumulusnetworks.com/display/~pete">Pete
+Bratach</a>
+(412 days ago)</p></li>
+</ul>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#getting-to-know-the-chassis">Getting to Know the Chassis</a>
+<ul>
+<li><a href="#about-the-backpack-chassis">About the Backpack Chassis</a></li>
+<li><a href="#about-the-cx-10256-s-omp-800-chassis">About the CX-10256-S/OMP-800 Chassis</a></li>
+</ul></li>
+<li><a href="#recent-activity">Recent activity</a></li>
+<li><a href="#space-contributors">Space contributors</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Chassis/_index.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

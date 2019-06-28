@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Zero Touch Provisioning - ZTP - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Installation_Management.html">Installation Management</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126812"> <span>Zero Touch Provisioning - ZTP</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><i class=" "><span id="src-5126812_indexterm-3F013CD1DE42A13FA9BA1693D4DA7465">Zero </span><span id="src-5126812_indexterm-2845BC0441E4C5870467B51E5A065876">touch </span><span id="src-5126812_indexterm-1E909BC20AE2B86FEECEB534EE426FD6">provisioning </span></i>(ZTP) enables network devices to be quickly deployed in large-scale environments. On first boot, Cumulus Linux will invoke ZTP, which executes the provisioning automation used to deploy the device for its intended role in the network.    </p>
+    <p  >The provisioning framework allows for a one-time, user-provided script to be executed. You can develop this script using a variety of automation tools and scripting languages, providing ample flexibility for you to design the provisioning scheme to meet your needs. You can also use it to add the switch to a configuration management (CM) platform such as <a  class="external-link" href="http://puppetlabs.com/puppet/what-is-puppet">Puppet</a>, <a  class="external-link" href="http://www.opscode.com">Chef</a>, <a  class="external-link" href="https://cfengine.com">CFEngine</a> or possibly a custom, proprietary tool.    </p>
+    <p  >While developing and testing the provisioning logic, you can use the <tt class=" ">ztp</tt> command in Cumulus Linux to manually invoke your provisioning script on a device.    </p>
+    <p  >ZTP in Cumulus Linux can occur automatically in one of the following ways, in this order:    </p>
+<ul class=" "><li class=" ">    <p  >Via a local file    </p>
+</li><li class=" ">    <p  >Using a USB drive inserted into the switch (ZTP-USB)    </p>
+</li><li class=" ">    <p  >Via DHCP    </p>
+</li></ul>    <p  >Each method is discussed in greater detail below.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The standard Cumulus Linux license requires you to page through the license file before accepting the terms, which can hinder an unattended installation like zero touch provisioning. To request a license without the EULA, email <a  class="external-link" href="mailto:licensing%40cumulusnetworks.com">licensing@cumulusnetworks.com</a>.    </p>
+        </div>
+    </div>
+    <div class="section section-1" id="src-5126812_ZeroTouchProvisioning-ZTP-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">Click to expand...    </p>
+    </div>
+    <div class="section section-1" id="src-5126812_ZeroTouchProvisioning-ZTP-ZeroTouchProvisioningUsingaLocalFile">
+        <h1 class="heading "><span>Zero Touch Provisioning Using a Local File</span></h1>
+    <p  >ZTP only looks once for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an <a  class="external-link" href="http://onie.org">ONIE</a>-style waterfall in <tt class=" ">/var/lib/cumulus/ztp</tt>, looking for the most specific name first, and ending at the most generic:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">'cumulus-ztp-' + architecture + '-' + vendor + '_' + model + '-r' + revision</tt>    </p>
+</li><li class=" ">    <p  ><tt class=" ">'cumulus-ztp-' + architecture + '-' + vendor + '_' + model</tt>    </p>
+</li><li class=" ">    <p  ><tt class=" ">'cumulus-ztp-' + vendor + '_' + model</tt>    </p>
+</li><li class=" ">    <p  ><tt class=" ">'cumulus-ztp-' + architecture</tt>    </p>
+</li><li class=" ">    <p  ><tt class=" ">'cumulus-ztp'</tt>    </p>
+</li></ul>    <p  >For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus-ztp-amd64-cel_pebble-rUNKNOWN</code></div>
+<div class="line"><code class="plain">cumulus-ztp-amd64-cel_pebble</code></div>
+<div class="line"><code class="plain">cumulus-ztp-cel_pebble</code></div>
+<div class="line"><code class="plain">cumulus-ztp-amd64</code></div>
+<div class="line"><code class="plain">cumulus-ztp</code></div>
+</div>
+    </div>
+    <p  >You can also trigger the ZTP process manually by running the <tt class=" ">ztp --run &lt;URL&gt;</tt> command, where the URL is the path to the ZTP script.    </p>
+    </div>
+    <div class="section section-1" id="src-5126812_safe-id-WmVyb1RvdWNoUHJvdmlzaW9uaW5nLVpUUC1aZXJvVG91Y2hQcm92aXNpb25pbmdVc2luZ1VTQihaVFAtVVNCKQ">
+        <h1 class="heading "><span>Zero Touch Provisioning Using USB (ZTP-USB)</span></h1>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >This feature has been tested only with &quot;thumb&quot; drives, not an actual external large USB hard drive.    </p>
+        </div>
+    </div>
+    <p  >If the <tt class=" ">ztp</tt> process did not discover a local script, it tries once to locate an inserted but unmounted USB drive. If it discovers one, it begins the ZTP process.    </p>
+    <p  ><span id="src-5126812_indexterm-0E0ABD241F075C880017322678C13B99">Cumulus Linux supports the use of a FAT32, FAT16, or VFAT-formatted </span>USB drive as an installation source for ZTP scripts. You must plug in the USB stick <strong class=" ">before</strong> you power up the switch.    </p>
+    <p  >At minimum, the script should:    </p>
+<ul class=" "><li class=" ">    <p  >Install the Cumulus Linux operating system and license.    </p>
+</li><li class=" ">    <p  >Copy over a basic configuration to the switch.    </p>
+</li><li class=" ">    <p  >Restart the switch or the relevant serves to get <tt class=" ">switchd</tt> up and running with that configuration.    </p>
+</li></ul>    <p  >Follow these steps to perform zero touch provisioning using USB:    </p>
+<ol class=" "><li class=" ">    <p  >Copy the Cumulus Linux license and installation image to the USB stick.    </p>
+</li><li class=" ">    <p  >The <tt class=" ">ztp</tt> process searches the root filesystem of the newly mounted device for filenames matching an <a  class="external-link" href="https://github.com/opencomputeproject/onie/wiki/Quick-Start-Guide#directly-connected-scenario">ONIE-style waterfall</a> (see the patterns and examples above), looking for the most specific name first, and ending at the most generic.    </p>
+</li><li class=" ">    <p  >The script's contents are parsed to ensure it contains the <tt class=" ">CUMULUS-AUTOPROVISIONING</tt> flag (see <a   href="#src-5126812_ZeroTouchProvisioning-ZTP-example_scripts">example scripts</a>).    </p>
+</li></ol>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The USB device is mounted to a temporary directory under <tt class=" ">/tmp</tt> (for example, <tt class=" ">/tmp/tmpigGgjf/</tt>). In order to reference files on the USB, use the environment variable <tt class=" ">ZTP_USB_MOUNTPOINT</tt> to refer to the USB root partition.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126812_ZeroTouchProvisioning-ZTP-ZeroTouchProvisioningoverDHCP">
+        <h1 class="heading "><span>Zero Touch Provisioning over DHCP</span></h1>
+    <p  >If the <tt class=" ">ztp</tt> process did not discover a local/ONIE script or applicable USB drive, it checks DHCP every 10 seconds for up to 5 minutes for the presence of a ZTP URL specified in <tt class=" ">/var/run/ztp.dhcp</tt>. The URL can be any of HTTP, HTTPS, FTP or TFTP.    </p>
+    <p  >For ZTP using DHCP, provisioning initially takes place over the management network and is initiated via a DHCP hook. A DHCP option is used to specify a configuration script. This script is then requested from the Web server and executed locally on the switch.    </p>
+    <p  >The zero touch provisioning process over DHCP follows these steps:    </p>
+<ol class=" "><li class=" ">    <p  >The first time you boot Cumulus Linux, eth0 is configured for DHCP and makes a DHCP request.    </p>
+</li><li class=" ">    <p  >The DHCP server offers a lease to the switch.    </p>
+</li><li class=" ">    <p  >If option 239 is present in the response, the zero touch provisioning process itself will start.    </p>
+</li><li class=" ">    <p  >The zero touch provisioning process requests the contents of the script from the URL, sending additional <a   href="#src-5126812_ZeroTouchProvisioning-ZTP-http_headers">HTTP headers</a> containing details about the switch.    </p>
+</li><li class=" ">    <p  >The script's contents are parsed to ensure it contains the <tt class=" ">CUMULUS-AUTOPROVISIONING</tt> flag (see <a   href="#src-5126812_ZeroTouchProvisioning-ZTP-example_scripts">example scripts</a>).    </p>
+</li><li class=" ">    <p  >If provisioning is necessary, then the script executes locally on the switch with root privileges.    </p>
+</li><li class=" ">    <p  >The return code of the script gets examined. If it is 0, then the provisioning state is marked as complete in the autoprovisioning configuration file.    </p>
+</li></ol>    <div class="section section-2" id="src-5126812_ZeroTouchProvisioning-ZTP-TriggeringZTPoverDHCP">
+        <h2 class="heading "><span>Triggering ZTP over DHCP</span></h2>
+    <p  >If provisioning has not already occurred, it is possible to trigger the zero touch provisioning process over DHCP when eth0 is set to use DHCP and one of the following events occur:    </p>
+<ul class=" "><li class=" ">    <p  >Booting the switch    </p>
+</li><li class=" ">    <p  >Plugging a cable into or unplugging it from the eth0 port    </p>
+</li><li class=" ">    <p  >Disconnecting then reconnecting the switch's power cord    </p>
+</li></ul>    <p  >You can also run the <tt class=" ">ztp --run &lt;URL&gt;</tt> command, where the URL is the path to the ZTP script.    </p>
+    </div>
+    <div class="section section-2" id="src-5126812_ZeroTouchProvisioning-ZTP-ConfiguringTheDCHPServer">
+        <h2 class="heading "><span>Configuring The DCHP Server</span></h2>
+    <p  >During the DHCP process over eth0, Cumulus Linux will request DHCP option 239. This option is used to specify the custom provisioning script.    </p>
+    <p  >For example, the <tt class=" ">/etc/dhcp/dhcpd.conf</tt> file for an ISC DHCP server would look like:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">option cumulus-provision-url code 239 = text;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">subnet 192.0.2.0 netmask 255.255.255.0 {</code></div>
+<div class="line"><code class="plain"> range 192.0.2.100 192.168.0.200;</code></div>
+<div class="line"><code class="plain"> option cumulus-provision-url "http://192.0.2.1/demo.sh";</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <p  >Additionally, the hostname of the switch can be specified via the <tt class=" ">host-name</tt> option:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">subnet 192.168.0.0 netmask 255.255.255.0 {</code></div>
+<div class="line"><code class="plain"> range 192.168.0.100 192.168.0.200;</code></div>
+<div class="line"><code class="plain"> option cumulus-provision-url "http://192.0.2.1/demo.sh";</code></div>
+<div class="line"><code class="plain"> host dc1-tor-sw1 { hardware ethernet 44:38:39:00:1a:6b; fixed-address 192.168.0.101; option host-name "dc1-tor-sw1"; }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126812_ZeroTouchProvisioning-ZTP-http_headersDetailedLookatHTTPHeaders">
+        <h2 class="heading "><span id="src-5126812_ZeroTouchProvisioning-ZTP-http_headers" class="confluence-anchor-link"></span><span>Detailed Look at HTTP Headers</span></h2>
+    <p  >The following HTTP headers are sent in the request to the webserver to retrieve the provisioning script:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">Header                        Value                 Example</code></div>
+<div class="line"><code class="plain">------                        -----                 -------</code></div>
+<div class="line"><code class="plain">User-Agent                                          CumulusLinux-AutoProvision/0.4</code></div>
+<div class="line"><code class="plain">CUMULUS-ARCH                  CPU architecture      x86_64</code></div>
+<div class="line"><code class="plain">CUMULUS-BUILD                                       3.0.0-5c6829a-201309251712-final</code></div>
+<div class="line"><code class="plain">CUMULUS-LICENSE-INSTALLED     Either 0 or 1         1</code></div>
+<div class="line"><code class="plain">CUMULUS-MANUFACTURER                                odm</code></div>
+<div class="line"><code class="plain">CUMULUS-PRODUCTNAME                                 switch_model</code></div>
+<div class="line"><code class="plain">CUMULUS-SERIAL                                      XYZ123004</code></div>
+<div class="line"><code class="plain">CUMULUS-VERSION                                     3.0.0</code></div>
+<div class="line"><code class="plain">CUMULUS-PROV-COUNT                                  0</code></div>
+<div class="line"><code class="plain">CUMULUS-PROV-MAX                                    32</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126812_ZeroTouchProvisioning-ZTP-WritingZTPScripts">
+        <h1 class="heading "><span>Writing ZTP Scripts </span></h1>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Remember to include the following line in any of the supported scripts which are expected to be run via the autoprovisioning framework.    </p>
+<pre class=" "># CUMULUS-AUTOPROVISIONING</pre>    <p  >This line is required somewhere in the script file in order for execution to occur.    </p>
+        </div>
+    </div>
+    <p  >The script must contain the <tt class=" ">CUMULUS-AUTOPROVISIONING</tt> flag. This can be in a comment or remark and does not needed to be echoed or written to <tt class=" ">stdout</tt>.    </p>
+    <p  >The script can be written in any language currently supported by Cumulus Linux, such as:    </p>
+<ul class=" "><li class=" ">    <p  >Perl    </p>
+</li><li class=" ">    <p  >Python    </p>
+</li><li class=" ">    <p  >Ruby    </p>
+</li><li class=" ">    <p  >Shell    </p>
+</li></ul>    <p  >The script must return an exit code of 0 upon success, as this triggers the autoprovisioning process to be marked as complete in the autoprovisioning configuration file.    </p>
+    <div class="section section-2" id="src-5126812_ZeroTouchProvisioning-ZTP-example_scriptsExampleZTPScripts">
+        <h2 class="heading "><span id="src-5126812_ZeroTouchProvisioning-ZTP-example_scripts" class="confluence-anchor-link"></span><span>Example ZTP Scripts</span></h2>
+    <p  >The following script install Cumulus Linux and its license from USB and applies a configuration:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">#!/bin/bash</code></div>
+<div class="line"><code class="plain">function error() {</code></div>
+<div class="line"><code class="plain">  echo -e "\e[0;33mERROR: The Zero Touch Provisioning script failed while running the command $BASH_COMMAND at line $BASH_LINENO.\e[0m" &gt;&amp;2</code></div>
+<div class="line"><code class="plain">  exit 1</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># Log all output from this script</code></div>
+<div class="line"><code class="plain">exec &gt;/var/log/autoprovision 2&gt;&amp;1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">trap error ERR</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#Add Debian Repositories</code></div>
+<div class="line"><code class="plain">echo "deb http://http.us.debian.org/debian jessie main" &gt;&gt; /etc/apt/sources.list</code></div>
+<div class="line"><code class="plain">echo "deb http://security.debian.org/ jessie/updates main" &gt;&gt; /etc/apt/sources.list</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#Update Package Cache</code></div>
+<div class="line"><code class="plain">apt-get update -y</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#Install netshow diagnostics commands</code></div>
+<div class="line"><code class="plain">apt-get install -y netshow htop nmap</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#Load interface config from usb</code></div>
+<div class="line"><code class="plain">cp ${ZTP_USB_MOUNTPOINT}/interfaces /etc/network/interfaces</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#Load port config from usb</code></div>
+<div class="line"><code class="plain">#   (if breakout cables are used for certain interfaces)</code></div>
+<div class="line"><code class="plain">cp ${ZTP_USB_MOUNTPOINT}/ports.conf /etc/cumulus/ports.conf</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#Install a License from usb and restart switchd</code></div>
+<div class="line"><code class="plain">cl-license -i ${ZTP_USB_MOUNTPOINT}/license.txt &amp;&amp; systemctl restart switchd.service</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#Reload interfaces to apply loaded config</code></div>
+<div class="line"><code class="plain">ifreload -a</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#Output state of interfaces</code></div>
+<div class="line"><code class="plain">netshow interface</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># CUMULUS-AUTOPROVISIONING</code></div>
+<div class="line"><code class="plain">exit 0</code></div>
+</div>
+    </div>
+    <p  >Here is a simple script to install <tt class=" ">puppet</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">#!/bin/bash</code></div>
+<div class="line"><code class="plain">function error() {</code></div>
+<div class="line"><code class="plain">  echo -e "\e[0;33mERROR: The Zero Touch Provisioning script failed while running the command $BASH_COMMAND at line $BASH_LINENO.\e[0m" &gt;&amp;2</code></div>
+<div class="line"><code class="plain">  exit 1</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="plain">trap error ERR</code></div>
+<div class="line"><code class="plain">apt-get update -y</code></div>
+<div class="line"><code class="plain">apt-get upgrade -y</code></div>
+<div class="line"><code class="plain">apt-get install puppet -y</code></div>
+<div class="line"><code class="plain">sed -i /etc/default/puppet -e 's/START=no/START=yes/'</code></div>
+<div class="line"><code class="plain">sed -i /etc/puppet/puppet.conf -e 's/\[main\]/\[main\]\npluginsync=true/'</code></div>
+<div class="line"><code class="plain">systemctl restart puppet.service</code></div>
+<div class="line"><code class="plain"># CUMULUS-AUTOPROVISIONING</code></div>
+<div class="line"><code class="plain">exit 0</code></div>
+</div>
+    </div>
+    <p  >This script illustrates how to specify an internal <tt class=" ">apt</tt> mirror and <tt class=" ">puppet</tt> master:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">#!/bin/bash</code></div>
+<div class="line"><code class="plain">function error() {</code></div>
+<div class="line"><code class="plain">  echo -e "\e[0;33mERROR: The Zero Touch Provisioning script failed while running the command $BASH_COMMAND at line $BASH_LINENO.\e[0m" &gt;&amp;2</code></div>
+<div class="line"><code class="plain">  exit 1</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"><code class="plain">trap error ERR</code></div>
+<div class="line"><code class="plain">sed -i /etc/apt/sources.list -e 's/repo.cumulusnetworks.com/labrepo.mycompany.com/'</code></div>
+<div class="line"><code class="plain">apt-get update -y</code></div>
+<div class="line"><code class="plain">apt-get upgrade -y</code></div>
+<div class="line"><code class="plain">apt-get install puppet -y</code></div>
+<div class="line"><code class="plain">sed -i /etc/default/puppet -e 's/START=no/START=yes/'</code></div>
+<div class="line"><code class="plain">sed -i /etc/puppet/puppet.conf -e 's/\[main\]/\[main\]\npluginsync=true/'</code></div>
+<div class="line"><code class="plain">sed -i /etc/puppet/puppet.conf -e 's/\[main\]/\[main\]\nserver=labpuppet.mycompany.com/'</code></div>
+<div class="line"><code class="plain">systemctl restart puppet.service</code></div>
+<div class="line"><code class="plain"># CUMULUS-AUTOPROVISIONING</code></div>
+<div class="line"><code class="plain">exit 0</code></div>
+</div>
+    </div>
+    <p  >Now <tt class=" ">puppet</tt> can take over management of the switch, configuration authentication, changing the default root password, and setting up interfaces and routing protocols.    </p>
+    <p  >Several ZTP example scripts are available in the <a  class="external-link" href="https://github.com/CumulusNetworks/example-ztp-scripts">Cumulus GitHub repository</a>.    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126812_ZeroTouchProvisioning-ZTP-TestingandDebuggingZTPScripts">
+        <h1 class="heading "><span>Testing and Debugging ZTP Scripts</span></h1>
+    <p  >There are a few commands you can use to test and debug your ZTP scripts.    </p>
+    <p  >You can use verbose mode to debug your script and see where your script failed. Include the <tt class=" ">-v</tt> option when you run <tt class=" ">ztp</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">                                                                               </code></div>
+<div class="line"><code class="plain">Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 2016):  </code></div>
+<div class="line"><code class="plain">                                                                               </code></div>
+<div class="line"><code class="plain">ZTP: Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">ZTP Manual: URL response code 200</code></div>
+<div class="line"><code class="plain">ZTP Manual: Found Marker CUMULUS-AUTOPROVISIONING</code></div>
+<div class="line"><code class="plain">ZTP Manual: Executing http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">error: ZTP Manual: Payload returned code 1</code></div>
+<div class="line"><code class="plain">error: Script returned failure</code></div>
+</div>
+    </div>
+    <p  >You can also run <tt class=" ">ztp -s</tt> to get more information about the current state of ZTP.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ ztp -s</code></div>
+<div class="line"><code class="plain">ZTP INFO:</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">State              enabled</code></div>
+<div class="line"><code class="plain">Version            1.0</code></div>
+<div class="line"><code class="plain">Result             Script Failure</code></div>
+<div class="line"><code class="plain">Date               Tue May 10 22:42:09 2016 UTC</code></div>
+<div class="line"><code class="plain">Method             ZTP DHCP</code></div>
+<div class="line"><code class="plain">URL                http://192.0.2.1/demo.sh</code></div>
+</div>
+    </div>
+    <p  >If ZTP ran when the switch booted and not manually, you can run the <tt class=" ">systemctl -l status ztp.service</tt> then <tt class=" ">journalctl -l -u ztp.service</tt> to see if any failures occur:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl -l status ztp.service</code></div>
+<div class="line"><code class="plain">● ztp.service - Cumulus Linux ZTP</code></div>
+<div class="line"><code class="plain">   Loaded: loaded (/lib/systemd/system/ztp.service; enabled)</code></div>
+<div class="line"><code class="plain">   Active: failed (Result: exit-code) since Wed 2016-05-11 16:38:45 UTC; 1min 47s ago</code></div>
+<div class="line"><code class="plain">     Docs: man:ztp(8)</code></div>
+<div class="line"><code class="plain">  Process: 400 ExecStart=/usr/sbin/ztp -b (code=exited, status=1/FAILURE)</code></div>
+<div class="line"><code class="plain"> Main PID: 400 (code=exited, status=1/FAILURE)</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Device not found</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: URL response code 200</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Payload returned code 1</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Script returned failure</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 systemd[1]: Unit ztp.service entered failed state.</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ </code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo journalctl -l -u ztp.service --no-pager</code></div>
+<div class="line"><code class="plain">-- Logs begin at Wed 2016-05-11 16:37:42 UTC, end at Wed 2016-05-11 16:40:39 UTC. --</code></div>
+<div class="line"><code class="plain">May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/lib/cumulus/ztp: Sate Directory does not exist. Creating it...</code></div>
+<div class="line"><code class="plain">May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/run/ztp.lock: Lock File does not exist. Creating it...</code></div>
+<div class="line"><code class="plain">May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/lib/cumulus/ztp/ztp_state.log: State File does not exist. Creating it...</code></div>
+<div class="line"><code class="plain">May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Looking for ZTP local Script</code></div>
+<div class="line"><code class="plain">May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220-rUNKNOWN</code></div>
+<div class="line"><code class="plain">May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220</code></div>
+<div class="line"><code class="plain">May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell</code></div>
+<div class="line"><code class="plain">May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64</code></div>
+<div class="line"><code class="plain">May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp</code></div>
+<div class="line"><code class="plain">May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Looking for unmounted USB devices</code></div>
+<div class="line"><code class="plain">May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Parsing partitions</code></div>
+<div class="line"><code class="plain">May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Device not found</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: URL response code 200</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Payload returned code 1</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Script returned failure</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE</code></div>
+<div class="line"><code class="plain">May 11 16:38:45 dell-s6000-01 systemd[1]: Unit ztp.service entered failed state.</code></div>
+</div>
+    </div>
+    <p  >Instead of running <tt class=" ">journalctl</tt>, you can see the log history by running:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ cat /var/log/syslog | grep ztp</code></div>
+<div class="line"><code class="plain">2016-05-11T16:37:45.132583+00:00 cumulus ztp [400]: /var/lib/cumulus/ztp: State Directory does not exist. Creating it...</code></div>
+<div class="line"><code class="plain">2016-05-11T16:37:45.134081+00:00 cumulus ztp [400]: /var/run/ztp.lock: Lock File does not exist. Creating it...</code></div>
+<div class="line"><code class="plain">2016-05-11T16:37:45.135360+00:00 cumulus ztp [400]: /var/lib/cumulus/ztp/ztp_state.log: State File does not exist. Creating it...</code></div>
+<div class="line"><code class="plain">2016-05-11T16:37:45.185598+00:00 cumulus ztp [400]: ZTP LOCAL: Looking for ZTP local Script</code></div>
+<div class="line"><code class="plain">2016-05-11T16:37:45.485084+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220-rUNKNOWN</code></div>
+<div class="line"><code class="plain">2016-05-11T16:37:45.486394+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220</code></div>
+<div class="line"><code class="plain">2016-05-11T16:37:45.488385+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell</code></div>
+<div class="line"><code class="plain">2016-05-11T16:37:45.489665+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64</code></div>
+<div class="line"><code class="plain">2016-05-11T16:37:45.490854+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp</code></div>
+<div class="line"><code class="plain">2016-05-11T16:37:45.492296+00:00 cumulus ztp [400]: ZTP USB: Looking for unmounted USB devices</code></div>
+<div class="line"><code class="plain">2016-05-11T16:37:45.493525+00:00 cumulus ztp [400]: ZTP USB: Parsing partitions</code></div>
+<div class="line"><code class="plain">2016-05-11T16:37:45.636422+00:00 cumulus ztp [400]: ZTP USB: Device not found</code></div>
+<div class="line"><code class="plain">2016-05-11T16:38:43.372857+00:00 cumulus ztp [1805]: Found ZTP DHCP Request</code></div>
+<div class="line"><code class="plain">2016-05-11T16:38:45.696562+00:00 cumulus ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP</code></div>
+<div class="line"><code class="plain">2016-05-11T16:38:45.698598+00:00 cumulus ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">2016-05-11T16:38:45.816275+00:00 cumulus ztp [400]: ZTP DHCP: URL response code 200</code></div>
+<div class="line"><code class="plain">2016-05-11T16:38:45.817446+00:00 cumulus ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING</code></div>
+<div class="line"><code class="plain">2016-05-11T16:38:45.818402+00:00 cumulus ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">2016-05-11T16:38:45.834240+00:00 cumulus ztp [400]: ZTP DHCP: Payload returned code 1</code></div>
+<div class="line"><code class="plain">2016-05-11T16:38:45.835488+00:00 cumulus ztp [400]: Script returned failure</code></div>
+<div class="line"><code class="plain">2016-05-11T16:38:45.876334+00:00 cumulus systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE</code></div>
+<div class="line"><code class="plain">2016-05-11T16:38:45.879410+00:00 cumulus systemd[1]: Unit ztp.service entered failed state.</code></div>
+</div>
+    </div>
+    <p  >If you see that the issue is a script failure, you can modify the script and then run <tt class=" ">ztp</tt> manually using <tt class=" ">ztp -v -r &lt;URL/path to that script&gt;</tt>, as above.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">                                                                               </code></div>
+<div class="line"><code class="plain">Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 2016):  </code></div>
+<div class="line"><code class="plain">                                                                               </code></div>
+<div class="line"><code class="plain">ZTP: Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">ZTP Manual: URL response code 200</code></div>
+<div class="line"><code class="plain">ZTP Manual: Found Marker CUMULUS-AUTOPROVISIONING</code></div>
+<div class="line"><code class="plain">ZTP Manual: Executing http://192.0.2.1/demo.sh</code></div>
+<div class="line"><code class="plain">error: ZTP Manual: Payload returned code 1</code></div>
+<div class="line"><code class="plain">error: Script returned failure</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ztp -s</code></div>
+<div class="line"><code class="plain">State      enabled                        </code></div>
+<div class="line"><code class="plain">Version    1.0                            </code></div>
+<div class="line"><code class="plain">Result     Script Failure                 </code></div>
+<div class="line"><code class="plain">Date       Tue May 10 22:44:17 2016 UTC   </code></div>
+<div class="line"><code class="plain">Method     ZTP Manual                     </code></div>
+<div class="line"><code class="plain">URL        http://192.0.2.1/demo.sh</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126812_ZeroTouchProvisioning-ZTP-ManuallyUsingtheztpCommand">
+        <h1 class="heading "><span>Manually Using the ztp Command</span></h1>
+    <p  >To enable zero touch provisioning, use the <tt class=" ">-e</tt> option:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ztp -e</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Enabling <tt class=" ">ztp</tt> means that <tt class=" ">ztp</tt> will try to occur the next time the switch boots. However, if ZTP already occurred on a previous boot up or if a manual configuration has been found, ZTP will just exit without trying to look for any script.    </p>
+    <p  >ZTP checks for these manual configurations during bootup:    </p>
+<ul class=" "><li class=" ">    <p  >Password changes    </p>
+</li><li class=" ">    <p  >Users and groups changes    </p>
+</li><li class=" ">    <p  >Packages changes    </p>
+</li><li class=" ">    <p  >Interfaces changes    </p>
+</li><li class=" ">    <p  >The presence of an installed license    </p>
+</li></ul>    <p  >When the switch is booted for the very first time, ZTP records the state of some important files that are most likely going to be modified after that the switch is configured. If ZTP is still enabled after a reboot, ZTP will compare the recorded state to the current state of these files. If they do not match, ZTP considers that the switch has already been provisioned and exits. These files are only erased after a reset.    </p>
+        </div>
+    </div>
+    <p  >To reset <tt class=" ">ztp</tt> to its original state, use the <tt class=" ">-R</tt> option. This removes the <tt class=" ">ztp</tt> directory and <tt class=" ">ztp</tt> runs the next time the switch reboots.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ztp -R</code></div>
+</div>
+    </div>
+    <p  >To disable zero touch provisioning, use the <tt class=" ">-d</tt> option:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ztp -d</code></div>
+</div>
+    </div>
+    <p  >To force provisioning to occur and ignore the status listed in the configuration file use the <tt class=" ">-r</tt> option:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ztp -r cumulus-ztp.sh</code></div>
+</div>
+    </div>
+    <p  >To see the current <tt class=" ">ztp</tt> state, use the <tt class=" ">-s</tt> option:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ztp -s</code></div>
+<div class="line"><code class="plain">ZTP INFO:</code></div>
+<div class="line"><code class="plain">State disabled </code></div>
+<div class="line"><code class="plain">Version 1.0 </code></div>
+<div class="line"><code class="plain">Result success </code></div>
+<div class="line"><code class="plain">Date Thu May 5 16:49:33 2016 UTC </code></div>
+<div class="line"><code class="plain">Method Switch manually configured  </code></div>
+<div class="line"><code class="plain">URL None</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126812_ZeroTouchProvisioning-ZTP-Notes">
+        <h1 class="heading "><span>Notes</span></h1>
+<ul class=" "><li class=" ">    <p  >During the development of a provisioning script, the switch may need to be rebooted.    </p>
+</li><li class=" ">    <p  >You can use the Cumulus Linux <tt class=" ">onie-select -i</tt> command to cause the switch to reprovision itself and install a network operating system again using ONIE.    </p>
+</li></ul>    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Adding_and_Updating_Packages.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Adding and Updating Packages</span>
+        </a>
+                <a href="System_Configuration.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>System Configuration</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

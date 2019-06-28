@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cumulus Linux User Guide on Cumulus Networks Documentation</title>
+    <link>http://example.org/version2/cumulus-linux-35/</link>
+    <description>Recent content in Cumulus Linux User Guide on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version2/cumulus-linux-35/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Quick Start Guide</title>
+      <link>http://example.org/version2/cumulus-linux-35/Quick_Start_Guide/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/Quick_Start_Guide/</guid>
+      <description>This quick start guide provides an end-to-end setup process for installing and running Cumulus Linux, as well as a collection of example commands for getting started once installation is complete.
+Prior intermediate Linux knowledge is assumed for this guide. You should be familiar with basic text editing, Unix file permissions, and process monitoring. A variety of text editors are pre-installed, including vi and nano.
+You must have access to a Linux or UNIX shell.</description>
+    </item>
+    
+    <item>
+      <title>Cumulus Linux Index</title>
+      <link>http://example.org/version2/cumulus-linux-35/Cumulus_Linux_Index/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/Cumulus_Linux_Index/</guid>
+      <description>A
+ aaa
+ abrs
+ abrs_stub_areas
+ abrs_summary_lsa
+ access_control_lists
+ access_ports
+ acl_policy_files
+ acls
+ active-active
+ active_listener_ports
+ addressing_interfaces
+ algorithmic_longest_prefix_match
+ alpm
+ alpm_route_entries
+ anycast
+ aoc_cables
+ api
+ application_daemons
+ apt
+ apt-get
+ area_border_routers
+ arp_requests
+ as_path
+ asic
+ asn
+ authentication
+ auto-negotiation
+ autonomous_system_number
+ autoprovision
+  B
+ bestpath
+ bfd
+ bgp
+ bidirectional_forwarding_detection</description>
+    </item>
+    
+  </channel>
+</rss>

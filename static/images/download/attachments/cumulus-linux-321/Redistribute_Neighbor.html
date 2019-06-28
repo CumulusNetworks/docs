@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Redistribute Neighbor - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Layer_Three.html">Layer Three</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5127078"> <span>Redistribute Neighbor</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><i class=" ">Redistribute neighbor</i> provides a mechanism for IP subnets to span racks without forcing the end hosts to run a routing protocol.    </p>
+    <p  >The fundamental premise behind redistribute neighbor is to announce individual host /32 routes in the routed fabric. Other hosts on the fabric can then use this new path to access the hosts in the fabric. If multiple equal-cost paths (ECMP) are available, traffic can load balance across the available paths natively.    </p>
+    <p  >The challenge is to accurately compile and update this list of reachable hosts or neighbors. Luckily, existing commonly-deployed protocols are available to solve this problem. Hosts use <a  class="external-link" href="http://en.wikipedia.org/wiki/Address_Resolution_Protocol">ARP</a> to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.    </p>
+    <p  >In the case of a leaf switch, where the default gateway is deployed for hosts within the rack, the ARP cache table contains a list of all hosts that have ARP'd for their default gateway. In many scenarios, this table contains all the layer 3 information that's needed. This is where redistribute neighbor comes in, as it is a mechanism of formatting and syncing this table into the routing protocol.    </p>
+    <div class="section section-1" id="src-5127078_RedistributeNeighbor-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5127078_RedistributeNeighbor-Availability">
+        <h1 class="heading "><span>Availability</span></h1>
+    <p  >Redistribute neighbor is distributed as <tt class=" ">python-rdnbrd</tt>.    </p>
+    </div>
+    <div class="section section-1" id="src-5127078_RedistributeNeighbor-TargetUseCasesandBestPractices">
+        <h1 class="heading "><span>Target Use Cases and Best Practices</span></h1>
+    <p  >Redistribute neighbor was created with these use cases in mind:    </p>
+<ul class=" "><li class=" ">    <p  >Virtualized clusters    </p>
+</li><li class=" ">    <p  >Hosts with service IP addresses that migrate between racks    </p>
+</li><li class=" ">    <p  >Hosts that are dual connected to two leaf nodes without using proprietary protocols such as <a   href="Multi-Chassis_Link_Aggregation_-_MLAG.html">MLAG</a>    </p>
+</li><li class=" ">    <p  >Anycast services needing dynamic advertisement from multiple hosts    </p>
+</li></ul>    <p  >Cumulus Networks recommends following these guidelines with redistribute neighbor:    </p>
+<ul class=" "><li class=" ">    <p  >Use a single logical connection from each host to each leaf.    </p>
+</li><li class=" ">    <p  >A host can connect to one or more leafs. Each leaf advertises the /32 it sees in its neighbor table.    </p>
+</li><li class=" ">    <p  >A host-bound bridge/VLAN should be local to each switch only.    </p>
+</li><li class=" ">    <p  >Leaf switches with redistribute neighbor enabled should be directly connected to the hosts.    </p>
+</li><li class=" ">    <p  >IP addressing must be non-overlapping, as the host IPs are directly advertised into the routed fabric.    </p>
+</li><li class=" ">    <p  >Run redistribute neighbor on Linux-based hosts primarily; other host operating systems may work, but Cumulus Networks has not actively tested any at this stage.    </p>
+</li></ul>    </div>
+    <div class="section section-1" id="src-5127078_RedistributeNeighbor-HowItWorks">
+        <h1 class="heading "><span>How It Works</span></h1>
+    <p  >Redistribute neighbor works as follows:    </p>
+<ol class=" "><li class=" ">    <p  >The leaf/ToR switches learn about connected hosts when the host sends an ARP request or ARP reply.    </p>
+</li><li class=" ">    <p  >An entry for the host is added to the kernel neighbor table of each leaf switch.    </p>
+</li><li class=" ">    <p  >The redistribute neighbor daemon, <tt class=" ">rdnbrd</tt>, monitors the kernel neighbor table and creates a /32 route for each neighbor entry. This /32 route is created in kernel table 10.    </p>
+</li><li class=" ">    <p  >Quagga is configured to import routes from kernel table 10.    </p>
+</li><li class=" ">    <p  >A route-map is used to control which routes from table 10 are imported.    </p>
+</li><li class=" ">    <p  >In Quagga these routes are imported as <i class=" ">table</i> routes.    </p>
+</li><li class=" ">    <p  >BGP, OSPF and so forth are then configured to redistribute the table 10 routes.    </p>
+</li></ol>    </div>
+    <div class="section section-1" id="src-5127078_RedistributeNeighbor-ConfigurationSteps">
+        <h1 class="heading "><span>Configuration Steps</span></h1>
+    <p  >The following configuration steps are based on the <a  class="external-link" href="https://github.com/cumulusnetworks/cldemo-vagrant">reference topology</a> set forth by Cumulus Networks. Here is a diagram of the topology:    </p>
+    <p  >    <img  class="confluence-embedded-image confluence-external-resource" src="images/raw.githubusercontent.com/CumulusNetworks/cldemo-vagrant/master/cldemo_topology.png" alt="images/raw.githubusercontent.com/CumulusNetworks/cldemo-vagrant/master/cldemo_topology.png"  height="400" />
+        </p>
+    <div class="section section-2" id="src-5127078_safe-id-UmVkaXN0cmlidXRlTmVpZ2hib3ItQ29uZmlndXJpbmd0aGVMZWFmKHMp">
+        <h2 class="heading "><span>Configuring the Leaf(s)</span></h2>
+    <p  >The following steps demonstrate how to configure leaf01, but the same steps can be applied to any of the leafs.    </p>
+<ol class=" "><li class=" ">    <p  >Configure the host facing ports, using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ net add loopback lo address 10.0.0.11/32</code></div>
+<div class="line"><code class="plain">cumulus@leaf01:~$ net add interface swp1 address 10.0.0.11/32</code></div>
+<div class="line"><code class="plain">cumulus@leaf01:~$ net add interface swp2 address 10.0.0.11/32</code></div>
+</div>
+    </div>
+    <p  >The commands produce the following configuration in the <tt class=" ">/etc/network/interfaces</tt> file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto lo</code></div>
+<div class="line"><code class="plain">iface lo inet loopback</code></div>
+<div class="line"><code class="plain">  address 10.0.0.11/32</code></div>
+<div class="line"><code class="plain">      </code></div>
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">  address 10.0.0.11/32</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto swp2</code></div>
+<div class="line"><code class="plain">iface swp2</code></div>
+<div class="line"><code class="plain">  address 10.0.0.11/32</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Enable the daemon so it starts at bootup:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo systemctl enable rdnbrd.service</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Start the daemon:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Configure routing:    </p>
+<ol class=" "><li class=" ">    <p  >Add the table as routes into the local routing table using the Quagga <tt class=" ">vtysh</tt> shell:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01(config)# conf t</code></div>
+<div class="line"><code class="plain">leaf01(config)# ip import-table 10</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Define a route-map that matches on the host-facing interfaces:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">leaf01(config)# route-map REDIST_NEIGHBOR permit 10</code></div>
+<div class="line"><code class="plain">leaf01(config-route-map)# match interface swp1</code></div>
+<div class="line"><code class="plain">leaf01(config-route-map)# route-map REDIST_NEIGHBOR permit 20</code></div>
+<div class="line"><code class="plain">leaf01(config-route-map)# match interface swp2</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Apply that route-map to routes imported into <i class=" ">table</i>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">leaf01(config)# ip protocol table route-map REDIST_NEIGHBOR</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Redistribute the imported <i class=" ">table</i> routes in into the appropriate routing protocol.<br/><strong class=" ">BGP:</strong>    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">leaf01(config)# router bgp 65001</code></div>
+<div class="line"><code class="plain">leaf01(config-router)# address-family ipv4 unicast</code></div>
+<div class="line"><code class="plain">leaf01(config-router-af)# redistribute table 10</code></div>
+<div class="line"><code class="plain">leaf01(config-router-af)# end</code></div>
+</div>
+    </div>
+    <p  ><strong class=" ">OSPF:</strong>    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">leaf01(config)# router ospf</code></div>
+<div class="line"><code class="plain">leaf01(config-router)# redistribute table 10</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Save the configuration and exit vtysh.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">leaf01(config)# exit</code></div>
+<div class="line"><code class="plain">leaf01# write mem</code></div>
+<div class="line"><code class="plain">leaf01# exit</code></div>
+<div class="line"><code class="plain">cumulus@leaf01:~$ </code></div>
+</div>
+    </div>
+</li></ol></li></ol>    <p  >Here are the contents of <tt class=" ">/etc/quagga/Quagga.conf</tt> from the reference topology:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01$ cat /etc/quagga/Quagga.conf</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp51</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 3</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp52</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 3</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">ip import-table 10 distance 19</code></div>
+<div class="line"><code class="plain">route-map rdarp permit 1</code></div>
+<div class="line"><code class="plain">match interface swp2</code></div>
+<div class="line"><code class="plain">route-map rdarp permit 2</code></div>
+<div class="line"><code class="plain">match interface swp1</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">ip protocol table route-map rdarp</code></div>
+<div class="line"><code class="plain">router bgp 65011</code></div>
+<div class="line"><code class="plain">    bgp router-id 10.0.0.11</code></div>
+<div class="line"><code class="plain">    network 10.0.0.11/32</code></div>
+<div class="line"><code class="plain">    bgp bestpath as-path multipath-relax</code></div>
+<div class="line"><code class="plain">    bgp bestpath compare-routerid</code></div>
+<div class="line"><code class="plain">    neighbor fabric peer-group</code></div>
+<div class="line"><code class="plain">    neighbor fabric description Internal Fabric Network</code></div>
+<div class="line"><code class="plain">    neighbor fabric capability extended-nexthop</code></div>
+<div class="line"><code class="plain">    neighbor fabric advertisement-interval 0</code></div>
+<div class="line"><code class="plain">    neighbor fabric timers 1 3</code></div>
+<div class="line"><code class="plain">    neighbor fabric timers connect 3</code></div>
+<div class="line"><code class="plain">    neighbor fabric remote-as external</code></div>
+<div class="line"><code class="plain">    neighbor swp51 interface v6only</code></div>
+<div class="line"><code class="plain">    neighbor swp51 peer-group fabric</code></div>
+<div class="line"><code class="plain">    neighbor swp52 interface v6only</code></div>
+<div class="line"><code class="plain">    neighbor swp52 peer-group fabric</code></div>
+<div class="line"><code class="plain">    redistribute table 10</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">address-family ipv6 unicast</code></div>
+<div class="line"><code class="plain">  neighbor fabric activate</code></div>
+<div class="line"><code class="plain">  neighbor swp51 activate</code></div>
+<div class="line"><code class="plain">  neighbor swp52 activate</code></div>
+<div class="line"><code class="plain">exit-address-family</code></div>
+<div class="line"><code class="plain">!</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127078_safe-id-UmVkaXN0cmlidXRlTmVpZ2hib3ItQ29uZmlndXJpbmd0aGVIb3N0KHMp">
+        <h2 class="heading "><span>Configuring the Host(s)</span></h2>
+    <p  >There are a few possible host configurations that range in complexity. This document only covers the basic use case: dual-connected Linux hosts with static IP addresses assigned.    </p>
+    <p  >Additional host configurations will be covered in future separate knowledge base articles.    </p>
+    <div class="section section-3" id="src-5127078_RedistributeNeighbor-ConfiguringaDual-connectedHost">
+        <h3 class="heading "><span>Configuring a Dual-connected Host</span></h3>
+    <p  >Configure a host with the same /32 IP address on its loopback (lo) and uplinks (in this example, eth1 and eth2). This is done so both leaf switches advertise the same /32 regardless of the interface. Cumulus Linux relies on <a   href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">ECMP</a> to load balance across the interfaces southbound, and an equal cost static route (see the configuration below) for load balancing northbound.    </p>
+    <p  >The loopback hosts the primary service IP address(es) and to which you can bind services.    </p>
+    <p  >Configure the loopback and physical interfaces. Referring back to the topology diagram, server01 is connected to leaf01 via eth1 and to leaf02 via eth2. You should note:    </p>
+<ul class=" "><li class=" ">    <p  >The loopback IP is assigned to lo, eth1 and eth2.    </p>
+</li><li class=" ">    <p  >The post-up ARPing is used to force the host to ARP as soon as its interface comes up. This allows the leaf to learn about the host as soon as possible.    </p>
+</li><li class=" ">    <p  >The post-up <tt class=" ">ip route replace</tt> is used to install a default route via one or both leaf nodes if both swp1 and swp2 are up.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@server01$ cat /etc/network/interfaces</code></div>
+<div class="line"><code class="plain"># The loopback network interface</code></div>
+<div class="line"><code class="plain">auto lo</code></div>
+<div class="line"><code class="plain">iface lo inet loopback</code></div>
+<div class="line"><code class="plain">auto lo:1</code></div>
+<div class="line"><code class="plain">iface lo:1</code></div>
+<div class="line"><code class="plain">  address 10.1.0.101/32</code></div>
+<div class="line"><code class="plain">auto eth1</code></div>
+<div class="line"><code class="plain">iface eth1</code></div>
+<div class="line"><code class="plain">  address 10.1.0.101/32</code></div>
+<div class="line"><code class="plain">  post-up for i in {1..3}; do arping -q -c 1 -w 0 -i eth1 10.0.0.11; sleep 1; done</code></div>
+<div class="line"><code class="plain">  post-up ip route add 0.0.0.0/0 nexthop via 10.0.0.11 dev eth1 onlink nexthop via 10.0.0.12 dev eth2 onlink || true</code></div>
+<div class="line"><code class="plain">      </code></div>
+<div class="line"><code class="plain">auto eth2</code></div>
+<div class="line"><code class="plain">iface eth2</code></div>
+<div class="line"><code class="plain">  address 10.1.0.101/32</code></div>
+<div class="line"><code class="plain">  post-up for i in {1..3}; do arping -q -c 1 -w 0 -i eth2 10.0.0.12; sleep 1; done</code></div>
+<div class="line"><code class="plain">  post-up ip route add 0.0.0.0/0 nexthop via 10.0.0.11 dev eth1 onlink nexthop via 10.0.0.12 dev eth2 onlink || true</code></div>
+</div>
+    </div>
+</li></ul>    </div>
+    <div class="section section-3" id="src-5127078_RedistributeNeighbor-Installingifplugd">
+        <h3 class="heading "><span>Installing ifplugd</span></h3>
+    <p  >Additionally, install and use<a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/articles/204473717"> ifplugd</a>. <tt class=" ">ifplugd</tt> modifies the behavior of the Linux routing table when an interface undergoes a link transition (carrier up/down). The Linux kernel by default leaves routes up even when the physical interface is unavailable (NO-CARRIER).    </p>
+    <p  >Install <tt class=" ">ifplugd</tt> on the host and modify the settings in <tt class=" ">/etc/default/ifplugd</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@server01:~$ sudo apt-get update </code></div>
+<div class="line"><code class="plain">cumulus@server01:~$ sudo apt-get install ifplugd</code></div>
+</div>
+    </div>
+    <p  >Edit <tt class=" ">/etc/default/ifplugd</tt> as follows, where <i class=" ">eth1</i> and <i class=" ">eth2</i> are the interface names that your host uses to connect to the leaves.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@server01$ cat /etc/default/ifplugd</code></div>
+<div class="line"><code class="plain">INTERFACES="eth1 eth2"</code></div>
+<div class="line"><code class="plain">HOTPLUG_INTERFACES=""</code></div>
+<div class="line"><code class="plain">ARGS="-q -f -u10 -d10 -w -I"</code></div>
+<div class="line"><code class="plain">SUSPEND_ACTION="stop"</code></div>
+</div>
+    </div>
+    <p  >For full instructions on installing <tt class=" ">ifplugd</tt> on Ubuntu, <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/articles/204473717">follow this guide</a>.    </p>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127078_RedistributeNeighbor-KnownLimitations">
+        <h1 class="heading "><span>Known Limitations</span></h1>
+    <div class="section section-2" id="src-5127078_RedistributeNeighbor-TCAMRouteScale">
+        <h2 class="heading "><span>TCAM Route Scale</span></h2>
+    <p  >This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Take care to keep the number of hosts minus fabric routes under the TCAM size of the switch. Review the <a  class="external-link" href="http://cumulusnetworks.com/hcl/">Cumulus Networks datasheets</a> for up to date scalability limits of your chosen hardware platforms. If in doubt, contact Cumulus Networks support or your Cumulus Networks CSE; they will be happy to help.    </p>
+    </div>
+    <div class="section section-2" id="src-5127078_RedistributeNeighbor-PossibleUnevenTrafficDistribution">
+        <h2 class="heading "><span>Possible Uneven Traffic Distribution</span></h2>
+    <p  >Linux uses <i class=" ">source</i> L3 addresses only to do load balancing on most older distributions.    </p>
+    </div>
+    <div class="section section-2" id="src-5127078_RedistributeNeighbor-SilentHostsNeverReceiveTraffic">
+        <h2 class="heading "><span>Silent Hosts Never Receive Traffic</span></h2>
+    <p  >Freshly provisioned hosts that have never sent traffic may not ARP for their default gateways. The post-up ARPing in <tt class=" ">/etc/network/interfaces</tt> on the host should take care of this. If the host does not ARP, then <tt class=" ">rdnbrd</tt> on the leaf cannot learn about the host.    </p>
+    </div>
+    <div class="section section-2" id="src-5127078_RedistributeNeighbor-SupportforIPv4Only">
+        <h2 class="heading "><span>Support for IPv4 Only</span></h2>
+    <p  >This release of redistribute neighbor supports IPv4 only.    </p>
+    </div>
+    <div class="section section-2" id="src-5127078_RedistributeNeighbor-VRFsArenotSupported">
+        <h2 class="heading "><span>VRFs Are not Supported</span></h2>
+    <p  >This release of redistribute neighbor does not support <a   href="Virtual_Routing_and_Forwarding_-_VRF.html">VRFs</a>.    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127078_RedistributeNeighbor-Troubleshooting">
+        <h1 class="heading "><span>Troubleshooting</span></h1>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">How do I determine if <tt class=" ">rdnbrd</tt> (the redistribute neighbor daemon) is running?</strong>    </p>
+    <p  >Use <tt class=" ">systemd</tt> to check:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01$ systemctl status rdnbrd.service </code></div>
+<div class="line"><code class="plain">* rdnbrd.service - Cumulus Linux Redistribute Neighbor Service</code></div>
+<div class="line"><code class="plain"> Loaded: loaded (/lib/systemd/system/rdnbrd.service; enabled)</code></div>
+<div class="line"><code class="plain"> Active: active (running) since Wed 2016-05-04 18:29:03 UTC; 1h 13min ago</code></div>
+<div class="line"><code class="plain"> Main PID: 1501 (python)</code></div>
+<div class="line"><code class="plain"> CGroup: /system.slice/rdnbrd.service</code></div>
+<div class="line"><code class="plain"> `-1501 /usr/bin/python /usr/sbin/rdnbrd -d</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  ><strong class=" ">How do I change rdnbrd's default configuration?</strong>    </p>
+    <p  >By editing <tt class=" ">/etc/rdnbrd.conf</tt> then running <tt class=" ">systemctl restart rdnbrd.service</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01$ cat /etc/rdnbrd.conf </code></div>
+<div class="line"><code class="plain"># syslog logging level CRITICAL, ERROR, WARNING, INFO, or DEBUG</code></div>
+<div class="line"><code class="plain">loglevel = INFO</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain"># TX an ARP request to known hosts every keepalive seconds</code></div>
+<div class="line"><code class="plain">keepalive = 1</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain"># If a host does not send an ARP reply for holdtime consider the host down</code></div>
+<div class="line"><code class="plain">holdtime = 3</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain"># Install /32 routes for each host into this table</code></div>
+<div class="line"><code class="plain">route_table = 10</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain"># Uncomment to enable ARP debugs on specific interfaces.</code></div>
+<div class="line"><code class="plain"># Note that ARP debugs can be very chatty.</code></div>
+<div class="line"><code class="plain"># debug_arp = swp1 swp2 swp3 br1</code></div>
+<div class="line"><code class="plain"># If we already know the MAC for a host, unicast the ARP request. This is</code></div>
+<div class="line"><code class="plain"># unusual for ARP (why ARP if you know the destination MAC) but we will be</code></div>
+<div class="line"><code class="plain"># using ARP as a keepalive mechanism and do not want to broadcast so many ARPs</code></div>
+<div class="line"><code class="plain"># if we do not have to. If a host cannot handle a unicasted ARP request, set</code></div>
+<div class="line"><code class="plain"># the following option to False.</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># Unicasting ARP requests is common practice (in some scenarios) for other</code></div>
+<div class="line"><code class="plain"># networking operating systems so it is unlikely that you will need to set</code></div>
+<div class="line"><code class="plain"># this to False.</code></div>
+<div class="line"><code class="plain">unicast_arp_requests = True</code></div>
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  ><strong class=" ">What is table 10? Why was table 10 chosen?</strong><br/>The Linux kernel supports multiple routing tables and has the ability to utilize 0 through 255 as table IDs. However, tables 0, 253, 254 and 255 are reserved, and 1 is usually the first one utilized, so <tt class=" ">rdnbrd</tt> only allows you to specify 2-252. The number 10 was chosen for no particular reason. Feel free to set it to any value between 2-252. You can see all the tables specified here:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch$ cat /etc/iproute2/rt_tables</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># reserved values</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">255 local</code></div>
+<div class="line"><code class="plain">254 main</code></div>
+<div class="line"><code class="plain">253 default</code></div>
+<div class="line"><code class="plain">0 unspec</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># local</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">#1  inr.ruhep</code></div>
+</div>
+    </div>
+    <p  >Read more information on <a  class="external-link" href="http://linux-ip.net/html/routing-tables.html">Linux route tables</a>, or you can read the <a  class="external-link" href="http://manpages.ubuntu.com/manpages/quantal/man8/ip-route.8.html">Ubuntu man pages for ip route</a>.    </p>
+</li><li class=" ">    <p  ><strong class=" ">How do I determine that the /32 redistribute neighbor routes are being advertised to my neighbor?</strong>    </p>
+    <p  >For BGP, check the advertised routes to the neighbor.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">Hello, this is Quagga (version 0.99.23.1+cl3u2).</code></div>
+<div class="line"><code class="plain">Copyright 1996-2005 Kunihiro Ishiguro, et al.</code></div>
+<div class="line"><code class="plain">leaf01# show ip bgp neighbor swp51 advertised-routes </code></div>
+<div class="line"><code class="plain">BGP table version is 5, local router ID is 10.0.0.11</code></div>
+<div class="line"><code class="plain">Status codes: s suppressed, d damped, h history, * valid, &gt; best, = multipath,</code></div>
+<div class="line"><code class="plain">              i internal, r RIB-failure, S Stale, R Removed</code></div>
+<div class="line"><code class="plain">Origin codes: i - IGP, e - EGP, ? - incomplete</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">   Network          Next Hop            Metric LocPrf Weight Path</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.11/32     0.0.0.0                  0         32768 i</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.12/32     ::                                     0 65020 65012 i</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.21/32     ::                                     0 65020 i</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.22/32     ::                                     0 65020 i</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Total number of prefixes 4</code></div>
+</div>
+    </div>
+</li></ul>    <div class="section section-2" id="src-5127078_RedistributeNeighbor-Verification">
+        <h2 class="heading "><span>Verification</span></h2>
+    <p  >The following workflow can be used to verify that the kernel routing table is being correctly populated, and that routes are being correctly imported/advertised:    </p>
+<ol class=" "><li class=" ">    <p  >Verify that ARP neighbour entries are being populated into the Kernel routing table 10.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ ip route show table 10</code></div>
+<div class="line"><code class="plain">10.0.1.101 dev swp1 scope link</code></div>
+</div>
+    </div>
+    <p  >If these routes are not being generated, verify the following:    </p>
+<ul class=" "><li class=" ">    <p  >That the <tt class=" ">rdnbrd</tt> daemon is running    </p>
+</li><li class=" ">    <p  >Check <tt class=" ">/etc/rdnbrd.conf</tt> to verify the correct table number is used    </p>
+</li></ul></li><li class=" ">    <p  >Verify that routes are being imported into Quagga from the kernel routing table 10.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">Hello, this is Quagga (version 0.99.23.1+cl3u2).</code></div>
+<div class="line"><code class="plain">Copyright 1996-2005 Kunihiro Ishiguro, et al.</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">switch# show ip route table</code></div>
+<div class="line"><code class="plain">Codes: K - kernel route, C - connected, S - static, R - RIP,</code></div>
+<div class="line"><code class="plain">       O - OSPF, I - IS-IS, B - BGP, A - Babel, T - Table,</code></div>
+<div class="line"><code class="plain">       &gt; - selected route, * - FIB route</code></div>
+<div class="line"><code class="plain"> T[10]&gt;* 10.0.1.101/32 [19/0] is directly connected, swp1, 01:25:29</code></div>
+</div>
+    </div>
+    <p  >Both the &gt; and * should be present so that table 10 routes are installed as preferred into the routing table. If the routes are not being installed, verify the following:    </p>
+<ul class=" "><li class=" ">    <p  >The imported distance of the locally imported kernel routes using the <tt class=" ">ip import 10 distance X</tt> command, where X is <strong class=" ">not</strong> less than the adminstrative distance of the routing protocol. If the distance is too low, routes learned from the protocol may overwrite the locally imported routes.    </p>
+</li><li class=" ">    <p  >The routes are in the kernel routing table.    </p>
+</li></ul></li><li class=" ">    <p  >Confirm that routes are in the BGP/OSPF database and being advertised.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">switch# show ip bgp</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Equal Cost Multipath Load Sharing - Hardware ECMP</span>
+        </a>
+                <a href="Virtual_Routing_and_Forwarding_-_VRF.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Virtual Routing and Forwarding - VRF</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

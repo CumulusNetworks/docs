@@ -1,0 +1,2661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Monitor Switches | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/" >
+    Cumulus NetQ 2.1
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 1.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 2.0.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/" >
+    Upgrade from NetQ 2.1.0 to NetQ 2.1.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_BGP_Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_EVPN_Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_LLDP_Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Validate_Network_Protocol_and_Service_Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/"  class="active" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Monitor Switches</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Monitor Switches</h1>
+
+<p>With the NetQ UI, you can monitor individual switches separately from
+the network. You are able to view the status of services they are
+running, health of its various components, and connectivity performance.
+Being able to monitor switch component inventory aids in upgrade,
+compliance, and other planning tasks. Viewing individual switch health
+helps isolate performance issues.</p>
+
+<p>For network-wide monitoring, refer to <a href="/old/Cumulus_NetQ/Monitor_the_Network.html">Monitor the
+Network</a>.</p>
+
+<h2 id="monitor-switch-performance">Monitor Switch Performance</h2>
+
+<p>Viewing detail about a particular switch is essential when
+troubleshooting performance issues. With NetQ you can view the overall
+performance and drill down to view attributes of the switch, interface
+performance and the events associated with a switch. This is
+accomplished through the Switches card.</p>
+
+<h3 id="switch-card-workflow-summary">Switch Card Workflow Summary</h3>
+
+<p>The small Switch card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457038/image2019-4-22_15_34_28.png" alt = "/images/download/thumbnails/10457038/image2019-4-22_15_34_28.png"
+
+
+width = 200
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/M-NpV0SJrKchWVsIth9b63lgI1vMHkeIRIlQaBTaK5iWqnDVDkGk-gzizsd6uiVG7HmNer8Bcb5eb3h78ZKUmZBZYPQ9amVb9LvjwhUJi4Z2TfCdginf3SaOxOzC-P_MpfoWIw3b" alt = "/images/lh3.googleusercontent.com/M-NpV0SJrKchWVsIth9b63lgI1vMHkeIRIlQaBTaK5iWqnDVDkGk-gzizsd6uiVG7HmNer8Bcb5eb3h78ZKUmZBZYPQ9amVb9LvjwhUJi4Z2TfCdginf3SaOxOzC-P_MpfoWIw3b"
+
+height = 24
+
+
+width = 24
+
+ />
+</td>
+<td><p>Indicates data is for a single switch</p></td>
+</tr>
+<tr class="even">
+<td><p>title</p></td>
+<td><p>Hostname of switch</p></td>
+</tr>
+<tr class="odd">
+<td><p>Chart</p></td>
+<td><p>Distribution of switch alarms during the designated time period</p></td>
+</tr>
+<tr class="even">
+<td><p>Trend</p></td>
+<td><p>Trend of alarm count, represented by an arrow:</p>
+<ul>
+<li><p><strong>Pointing upward and green</strong>: alarm count is higher than the last two time periods, an increasing trend</p></li>
+<li><p><strong>Pointing downward and bright pink</strong>: alarm count is lower than the last two time periods, a decreasing trend</p></li>
+<li><p><strong>No arrow</strong>: alarm count is unchanged over the last two time periods, trend is steady</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>Count</p></td>
+<td><p>Current count of alarms on the switch</p></td>
+</tr>
+<tr class="even">
+<td><p>Rating</p></td>
+<td><p>Overall performance of the switch. Determined by the count of alarms relative to the average count of alarms during the designated time period:</p>
+<ul>
+<li><p><strong>Low</strong>: Count of alarms is below the average count; a nominal count</p></li>
+<li><p><strong>Med</strong>: Count of alarms is in range of the average count; some room for improvement</p></li>
+<li><p><strong>High</strong>: Count of alarms is above the average count; user intervention recommended</p></li>
+</ul>
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-8_17_35_35.png" alt = "/images/download/attachments/10457038/image2019-4-8_17_35_35.png"
+
+
+width = 350
+
+ />
+</td>
+</tr>
+</tbody>
+</table>
+
+<p>The medium Switch card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-22_15_38_21.png" alt = "/images/download/attachments/10457038/image2019-4-22_15_38_21.png"
+
+height = 250
+
+
+ />
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-22_15_38_52.png" alt = "/images/download/attachments/10457038/image2019-4-22_15_38_52.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/M-NpV0SJrKchWVsIth9b63lgI1vMHkeIRIlQaBTaK5iWqnDVDkGk-gzizsd6uiVG7HmNer8Bcb5eb3h78ZKUmZBZYPQ9amVb9LvjwhUJi4Z2TfCdginf3SaOxOzC-P_MpfoWIw3b" alt = "/images/lh3.googleusercontent.com/M-NpV0SJrKchWVsIth9b63lgI1vMHkeIRIlQaBTaK5iWqnDVDkGk-gzizsd6uiVG7HmNer8Bcb5eb3h78ZKUmZBZYPQ9amVb9LvjwhUJi4Z2TfCdginf3SaOxOzC-P_MpfoWIw3b"
+
+height = 24
+
+
+width = 24
+
+ />
+</td>
+<td>Indicates data is for a single switch</td>
+</tr>
+
+<tr>
+<td>title</td>
+<td>Hostname of switch</td>
+</tr>
+
+<tr>
+<td>Score</td>
+<td>When selected, displays distribution and count of alarms generated by this switch during the designated time period</td>
+</tr>
+
+<tr>
+<td>Charts</td>
+<td>When selected, displays distribution of overall health score for network services, interfaces, system and trace, as well as total alarm count, during the designated time period</td>
+</tr>
+</tbody>
+</table>
+
+<p>The large Switch card contains two tabs:</p>
+
+<p>The <em>Attributes</em> tab displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-22_15_44_18.png" alt = "/images/download/attachments/10457038/image2019-4-22_15_44_18.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/M-NpV0SJrKchWVsIth9b63lgI1vMHkeIRIlQaBTaK5iWqnDVDkGk-gzizsd6uiVG7HmNer8Bcb5eb3h78ZKUmZBZYPQ9amVb9LvjwhUJi4Z2TfCdginf3SaOxOzC-P_MpfoWIw3b" alt = "/images/lh3.googleusercontent.com/M-NpV0SJrKchWVsIth9b63lgI1vMHkeIRIlQaBTaK5iWqnDVDkGk-gzizsd6uiVG7HmNer8Bcb5eb3h78ZKUmZBZYPQ9amVb9LvjwhUJi4Z2TfCdginf3SaOxOzC-P_MpfoWIw3b"
+
+height = 24
+
+
+width = 24
+
+ />
+</td>
+<td>Indicates data is for a single switch</td>
+</tr>
+
+<tr>
+<td>title</td>
+<td>&lt;Hostname&gt;</td>
+</tr>
+
+<tr>
+<td>Hostname</td>
+<td>User-defined name for this switch</td>
+</tr>
+
+<tr>
+<td>Management IP</td>
+<td>IPv4 or IPv6 address used for management of this switch</td>
+</tr>
+
+<tr>
+<td>Management MAC</td>
+<td>MAC address used for management of this switch</td>
+</tr>
+
+<tr>
+<td>Platform Vendor</td>
+<td>Manufacturer of this switch box. Cumulus Networks is identified as the vendor for a switch in the Cumulus in the Cloud (CITC) environment, as seen here.</td>
+</tr>
+
+<tr>
+<td>Platform Model</td>
+<td>Manufacturer model of this switch. VX is identified as the model for a switch in CITC environment, as seen here.</td>
+</tr>
+
+<tr>
+<td>ASIC Vendor</td>
+<td>Manufacturer of the ASIC installed on the motherboard</td>
+</tr>
+
+<tr>
+<td>ASIC Model</td>
+<td>Manufacturer model of the ASIC installed on the motherboard</td>
+</tr>
+
+<tr>
+<td>OS</td>
+<td>Operating system running on the switch. CL indicates a Cumulus Linux license.</td>
+</tr>
+
+<tr>
+<td>OS Version</td>
+<td>Version of the OS running on the switch</td>
+</tr>
+
+<tr>
+<td>NetQ Agent Version</td>
+<td>Version of the NetQ Agent running on the switch</td>
+</tr>
+
+<tr>
+<td>License State</td>
+<td>Indicates whether the license is valid (<em>ok</em>) or invalid/missing (<em>bad</em>)</td>
+</tr>
+
+<tr>
+<td>Interfaces</td>
+<td>Total number of interfaces on this switch, and the status of those, <em>up</em> or <em>down</em>.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The Utilization tab displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-22_15_45_14.png" alt = "/images/download/attachments/10457038/image2019-4-22_15_45_14.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/c71TdkeCEpXqviX637bfZtJwUspDS0BtruzP4Aq4XSTDqysd-T3hfaUHgSjPzCkEBlyiTaeFBr5BA5ML96BWsU_nl4Zz8iVJ38ovX78-Ez4AAZpxYqrepnrUbP6eMuuGvc1ojyax" alt = "/images/lh3.googleusercontent.com/c71TdkeCEpXqviX637bfZtJwUspDS0BtruzP4Aq4XSTDqysd-T3hfaUHgSjPzCkEBlyiTaeFBr5BA5ML96BWsU_nl4Zz8iVJ38ovX78-Ez4AAZpxYqrepnrUbP6eMuuGvc1ojyax"
+
+
+width = 18
+
+ />
+</td>
+<td>Indicates utilization data is for a single switch</td>
+</tr>
+
+<tr>
+<td>Title</td>
+<td>&lt;Hostname&gt;</td>
+</tr>
+
+<tr>
+<td>Performance</td>
+<td>Displays distribution of CPU usage, memory usage, and switch up time during the designated time period</td>
+</tr>
+
+<tr>
+<td>Network</td>
+<td>Displays distribution of the size of various network tables (IP, MAC, ACL, Routing, etc.) during the designated time period</td>
+</tr>
+
+<tr>
+<td>Filter</td>
+<td>Click to open filter field. Begin typing to view only charts that match the filter.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The full screen Switch card provides tabs for all IP addresses, all MAC
+addresses, and all interfaces.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-22_13_36_34.png" alt = "/images/download/attachments/10457038/image2019-4-22_13_36_34.png"
+
+
+width = 750
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Title</p></td>
+<td><p>Switches</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent0.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T" alt = "/images/lh4.googleusercontent0.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Closes full screen card and returns to workbench</p></td>
+</tr>
+<tr class="odd">
+<td><p>Default Time</p></td>
+<td><p>Displayed data is current as of this moment</p></td>
+</tr>
+<tr class="even">
+<td><p>Results</p></td>
+<td><p>Number of results found for the selected tab</p></td>
+</tr>
+<tr class="odd">
+<td><p>IP Addresses</p></td>
+<td><p>Displays all known IP addresses for the switch. This tab provides the following additional data about each address:</p>
+<ul>
+<li><p><strong>DB State</strong>: Session state of the DB; for internal use only</p></li>
+<li><p><strong>Hostname</strong>: User-defined name of the switch</p></li>
+<li><p><strong>IfName</strong>: Name of the interface</p></li>
+<li><p><strong>Is IPv6</strong>: Indicates whether the address is an IPv6 address (true) or an IPv4 address (false)</p></li>
+<li><p><strong>Mask</strong>: Mask for the address</p></li>
+<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
+<li><p><strong>Prefix</strong>: Prefix for the address</p></li>
+<li><p><strong>Time</strong>: Date and time the table was generated</p></li>
+<li><p><strong>VRF</strong>: Name of the virtual route forwarding (VRF) interface if deployed</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>MAC Addresses</p></td>
+<td><p>Displays all known MAC addresses for the switch. This tab provides the following additional data about each address:</p>
+<ul>
+<li><p><strong>DB State</strong>: Session state of the DB; for internal use only</p></li>
+<li><p><strong>Egress Port</strong>: Importance of the event–critical, warning, info, or debug</p></li>
+<li><p><strong>Hostname</strong>: User-defined name of the switch</p></li>
+<li><p><strong>Last Changed</strong>: Data and time that the address was last updated or deleted</p></li>
+<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
+<li><p><strong>Origin</strong>: Indicates whether this switch owns this address (true) or if another switch owns this address (false)</p></li>
+<li><p><strong>Remote</strong>: Indicates whether this address is reachable via a VXLAN on another switch (true) or is reachable locally on the switch (false)</p></li>
+<li><p><strong>Time</strong>: Date and time the table was generated</p></li>
+<li><p><strong>VLAN Id</strong>: Identifier of an associated VLAN if deployed</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>All Interfaces</p></td>
+<td><p>Displays all known interfaces on the switch. This tab provides the following additional data about each interface:</p>
+<ul>
+<li><p><strong>Details</strong>: Information about the interface, such as MTU, table number, members, protocols running, VLANs</p></li>
+<li><p><strong>Hostname</strong>: Hostname of the given event</p></li>
+<li><p><strong>IfName</strong>: Name of the interface</p></li>
+<li><p><strong>Last Changed</strong>: Data and time that the interface was last enabled, updated, deleted, or changed state to down</p></li>
+<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
+<li><p><strong>State</strong>: Indicates if the interface is <em>up</em> or <em>down</em></p></li>
+<li><p><strong>Time</strong>: Date and time the table was generated</p></li>
+<li><p><strong>Type</strong>: Kind of interface; for example, VRF, switch port, loopback, ethernet</p></li>
+<li><p><strong>VRF</strong>: Name of the associated virtual route forwarding (VRF) interface if deployed</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>Export</p></td>
+<td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
+</tr>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w" alt = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="view-the-overall-health-of-a-switch">View the Overall Health of a Switch</h3>
+
+<p>When you want to monitor the health of a particular switch, open the
+small Switch card. It is unlikely that you would have this card open for
+every switch in your network at the same time, but it is useful for
+tracking selected switches that may have been problematic in the recent
+past or that you have recently installed. The card shows you alarm
+status and summary performance score and trend.</p>
+
+<p>To view the summary:</p>
+
+<ol>
+<li><p>Click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh6.googleusercontent.com/JaXSSELl_nz1tMCRgnfs7dN4bErlnOHc-uteFbWlsLyCqW2khDGqUCVZcZYusEdlvGhDj3cml3sU0YGQq0aST_mpgZe-p1d07LL4bP-GsWr7Xcozg7w7cDhpyYeCSgkrYRFDW9xx" alt = "/images/lh6.googleusercontent.com/JaXSSELl_nz1tMCRgnfs7dN4bErlnOHc-uteFbWlsLyCqW2khDGqUCVZcZYusEdlvGhDj3cml3sU0YGQq0aST_mpgZe-p1d07LL4bP-GsWr7Xcozg7w7cDhpyYeCSgkrYRFDW9xx"
+
+
+width = 16
+
+ />
+
+
+<p>, and select Devices|Switch. A dialog box opens.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457038/image2019-4-22_17_10_32.png" alt = "/images/download/thumbnails/10457038/image2019-4-22_17_10_32.png"
+
+
+width = 250
+
+ />
+</li>
+
+<li><p>Begin typing the hostname of the device you are interested in.
+Select it from the suggested matches when it appears.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457038/image2019-4-22_17_12_46.png" alt = "/images/download/thumbnails/10457038/image2019-4-22_17_12_46.png"
+
+
+width = 250
+
+ />
+</li>
+
+<li><p>Select the size of the card, <em>L1</em>, to open the small size card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457038/image2019-4-22_17_13_42.png" alt = "/images/download/thumbnails/10457038/image2019-4-22_17_13_42.png"
+
+
+width = 250
+
+ />
+</li>
+
+<li><p>Click <strong>Add</strong>, or <strong>Cancel</strong> to exit the process.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-22_16_12_39.png" alt = "/images/download/attachments/10457038/image2019-4-22_16_12_39.png"
+
+
+ />
+</li>
+</ol>
+
+<p>In this example, we see that the leaf01 switch has had very few alarms
+overall, but the number is trending upward, with a total count of 24
+alarms currently.</p>
+
+<h3 id="view-health-performance-metrics">View Health Performance Metrics</h3>
+
+<p>When you are monitoring switches that have been problematic or are newly
+installed, you might want to view more than a summary. Instead, seeing
+key performance metrics can help you determine where issues might be
+occurring or how new devices are functioning in the network.</p>
+
+<p>To view the key metrics, open the medium Switch card. The card shows you
+the overall switch health score and the scores for the key metrics that
+comprise that score. The key metric scores are based on the number of
+alarms attributed to the following activities on the switch:</p>
+
+<ul>
+<li><p>network services, such as BGP, EVPN, CLAG, NTP, and so forth</p></li>
+
+<li><p>scheduled traces</p></li>
+
+<li><p>interface performance</p></li>
+
+<li><p>platform performance</p></li>
+</ul>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-22_15_38_520.png" alt = "/images/download/attachments/10457038/image2019-4-22_15_38_520.png"
+
+height = 250
+
+
+ />
+
+
+<p>Also included on the card is the total alarm count for all of these
+metrics. You can view the key performance metrics as numerical scores or
+as line charts over time, by clicking <strong>Charts</strong> or <strong>Score</strong> at the top
+of the card.</p>
+
+<h3 id="view-attributes-of-a-switch">View Attributes of a Switch</h3>
+
+<p>For a quick look at the key attributes of a particular switch, open the
+large Switch card. Attributes are displayed as the default tab.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-22_15_44_18.png" alt = "/images/download/attachments/10457038/image2019-4-22_15_44_18.png"
+
+height = 250
+
+
+ />
+
+
+<p>In this example, the items of interest might be the five interfaces that
+are down and what version of OS and NetQ Agent the switch is running.</p>
+
+<h3 id="view-current-resource-utilization-for-a-switch">View Current Resource Utilization for a Switch</h3>
+
+<p>The NetQ GUI enables you to easily view the performance of various
+hardware components and the network tables. This enables you to
+determine whether a switch is reaching its maximum load and compare its
+performance with other switches.</p>
+
+<p>To view the resource utilization on a particular switch:</p>
+
+<ol>
+<li><p>Open the large Switch card.</p></li>
+
+<li><p>Hover over the card and click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/c71TdkeCEpXqviX637bfZtJwUspDS0BtruzP4Aq4XSTDqysd-T3hfaUHgSjPzCkEBlyiTaeFBr5BA5ML96BWsU_nl4Zz8iVJ38ovX78-Ez4AAZpxYqrepnrUbP6eMuuGvc1ojyax" alt = "/images/lh3.googleusercontent.com/c71TdkeCEpXqviX637bfZtJwUspDS0BtruzP4Aq4XSTDqysd-T3hfaUHgSjPzCkEBlyiTaeFBr5BA5ML96BWsU_nl4Zz8iVJ38ovX78-Ez4AAZpxYqrepnrUbP6eMuuGvc1ojyax"
+
+
+width = 18
+
+ />
+
+
+<p>.</p></li>
+
+<li><p>The card is divided into two sections, one displaying
+hardware-related performance through a series of charts, and one
+displaying the performance of the network tables, also through a
+series of charts.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-22_15_45_14.png" alt = "/images/download/attachments/10457038/image2019-4-22_15_45_14.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Look at the hardware performance charts. Are there any that are
+reaching critical usage levels? Scroll down to view all available
+charts.</p></li>
+
+<li><p>Open a new large Switch card for the same switch and change the time
+period. Is the performance about the same? Better? Worse? The
+results can guide your decisions about upgrade options or just times
+of day when the system is more heavily used.</p></li>
+
+<li><p>Optionally, filter for a particular chart, by clicking <strong>Filter</strong>
+above the charts. Begin typing the name of the chart you want to
+focus on; the charts that match the filter remain, while the others
+are hidden from view. Delete the filter to see all charts again.</p></li>
+
+<li><p>Look at the network table performance. Are there any tables that are
+reaching their maximum size? Does it stay at that level or spike at
+peak times? Scroll down to view all available charts.</p></li>
+
+<li><p>Compare this data with that in the second card you opened in step 5.
+Is the performance about the same? Better? Worse? The results can
+guide you toward any next steps if needed.</p></li>
+
+<li><p>Optionally, filter for a particular chart, by clicking <strong>Filter</strong>
+above the charts. Begin typing the name of the chart you want to
+focus on; the charts that match the filter remain, while the others
+are hidden from view. Delete the filter to see all charts again.</p></li>
+</ol>
+
+<h3 id="view-all-addresses-for-a-switch">View All Addresses for a Switch</h3>
+
+<p>It can be useful to view all of the configured addresses that this
+switch is using. You can view all IP addresses or all MAC addresses
+using the full screen Switch card.</p>
+
+<p>To view all IP addresses:</p>
+
+<ol>
+<li><p>Open the full screen Switch card. The <strong>IP addresses</strong> tab is shown
+by default.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-22_16_45_1.png" alt = "/images/download/attachments/10457038/image2019-4-22_16_45_1.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Review the addresses for any anomalies, to obtain prefix
+information, determine if it is an IPv4 or IPv6 address, and so
+forth.</p></li>
+
+<li><p>To return to the workbench, click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T" alt = "/images/lh4.googleusercontent.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T"
+
+
+width = 16
+
+ />
+
+
+<p>in the top right corner.</p></li>
+</ol>
+
+<p>To view all MAC addresses:</p>
+
+<ol>
+<li><p>Open the full screen Switch card and click the <strong>MAC Addresses</strong>
+tab.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-22_16_50_13.png" alt = "/images/download/attachments/10457038/image2019-4-22_16_50_13.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Review the addresses for any anomalies, to see the associated egress
+port, associated VLANs, and so forth.</p></li>
+
+<li><p>To return to the workbench, click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T" alt = "/images/lh4.googleusercontent.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T"
+
+
+width = 16
+
+ />
+
+
+<p>in the top right corner.</p></li>
+</ol>
+
+<h3 id="view-all-interfaces-on-a-switch">View All Interfaces on a Switch</h3>
+
+<p>You can view all of the configured interfaces on a switch in one place
+making it easier to see inconsistencies in the configuration, quickly
+see when changes were made, and the operational status.</p>
+
+<p>To view all interfaces:</p>
+
+<ol>
+<li><p>Open the full screen Switch card and click the <strong>All Interfaces</strong>
+tab.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-22_17_0_51.png" alt = "/images/download/attachments/10457038/image2019-4-22_17_0_51.png"
+
+
+width = 700
+
+ />
+</li>
+
+<li><p>Look for interfaces that are down, shown in the <strong>State</strong> column.</p></li>
+
+<li><p>Look for recent changes to the interfaces, shown in the <strong>Last
+Changed</strong> column.</p></li>
+
+<li><p>View details about each interface, shown in the <strong>Details</strong> column.</p></li>
+
+<li><p>Verify they are of the correct kind for their intended function,
+shown in the <strong>Type</strong> column.</p></li>
+
+<li><p>Verify the correct VRF interface is assigned to an interface, shown
+in the <strong>VRF</strong> column.</p></li>
+
+<li><p>To return to the workbench, click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T" alt = "/images/lh4.googleusercontent.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T"
+
+
+width = 16
+
+ />
+
+
+<p>in the top right corner.</p></li>
+</ol>
+
+<h2 id="monitor-switch-component-inventory">Monitor Switch Component Inventory</h2>
+
+<p>Knowing what components are included on all of your switches aids in
+upgrade, compliance, and other planning tasks. Viewing this data is
+accomplished through the Switch Inventory card.</p>
+
+<h3 id="switch-inventory-card-workflow-summary">Switch Inventory Card Workflow Summary</h3>
+
+<p>The small Switch Inventory card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457038/image2019-4-9_11_33_15.png" alt = "/images/download/thumbnails/10457038/image2019-4-9_11_33_15.png"
+
+
+width = 200
+
+ />
+
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent0.com/OfRNJfGCpkESXEA4T2tuEYZVG1chb42g6W4NmXloWKKe_SDJgBaq53PtkRSkTOtiOYRZ2fW3Em5Q2IUaeexhCLTM5SJL98jOrwceTr8YeMlFaK9GS6QnCb-WGd98My0mt7jrk8vb" alt = "/images/lh4.googleusercontent0.com/OfRNJfGCpkESXEA4T2tuEYZVG1chb42g6W4NmXloWKKe_SDJgBaq53PtkRSkTOtiOYRZ2fW3Em5Q2IUaeexhCLTM5SJL98jOrwceTr8YeMlFaK9GS6QnCb-WGd98My0mt7jrk8vb"
+
+
+width = 16
+
+ />
+</td>
+<td>Indicates data is for switch inventory</td>
+</tr>
+
+<tr>
+<td>Count</td>
+<td>Total number of switches in the network inventory</td>
+</tr>
+
+<tr>
+<td>Chart</td>
+<td>Distribution of overall health status during the designated time period; fresh versus rotten</td>
+</tr>
+</tbody>
+</table>
+
+<p>The medium Switch Inventory card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_11_34_19.png" alt = "/images/download/attachments/10457038/image2019-4-9_11_34_19.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/OfRNJfGCpkESXEA4T2tuEYZVG1chb42g6W4NmXloWKKe_SDJgBaq53PtkRSkTOtiOYRZ2fW3Em5Q2IUaeexhCLTM5SJL98jOrwceTr8YeMlFaK9GS6QnCb-WGd98My0mt7jrk8vb" alt = "/images/lh4.googleusercontent.com/OfRNJfGCpkESXEA4T2tuEYZVG1chb42g6W4NmXloWKKe_SDJgBaq53PtkRSkTOtiOYRZ2fW3Em5Q2IUaeexhCLTM5SJL98jOrwceTr8YeMlFaK9GS6QnCb-WGd98My0mt7jrk8vb"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Indicates data is for switch inventory</p></td>
+</tr>
+<tr class="even">
+<td><p>Filter</p></td>
+<td><p>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card</p></td>
+</tr>
+<tr class="odd">
+<td><p>Chart</p></td>
+<td><p>Distribution of switch components (disk size, OS, ASIC, NetQ Agents, CPU, Cumulus Linux licenses, platform, and memory size) during the designated time period. Hover over chart segment to view versions of each component.</p>
+<p><strong>Note</strong>: You should only have one version of NetQ Agent running and it should match the NetQ Platform release number. If you have more than one, you likely need to upgrade the older agents.</p></td>
+</tr>
+<tr class="even">
+<td><p>Unique</p></td>
+<td><p>Number of unique versions of the various switch components. For example, for OS, you might have CL 3.7.1 and CL 3.7.4 making the unique value two.</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The large Switch Inventory card contains four tabs.</p>
+
+<p>The <em>Summary</em> tab displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_11_58_26.png" alt = "/images/download/attachments/10457038/image2019-4-9_11_58_26.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent0.com/OfRNJfGCpkESXEA4T2tuEYZVG1chb42g6W4NmXloWKKe_SDJgBaq53PtkRSkTOtiOYRZ2fW3Em5Q2IUaeexhCLTM5SJL98jOrwceTr8YeMlFaK9GS6QnCb-WGd98My0mt7jrk8vb" alt = "/images/lh4.googleusercontent0.com/OfRNJfGCpkESXEA4T2tuEYZVG1chb42g6W4NmXloWKKe_SDJgBaq53PtkRSkTOtiOYRZ2fW3Em5Q2IUaeexhCLTM5SJL98jOrwceTr8YeMlFaK9GS6QnCb-WGd98My0mt7jrk8vb"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Indicates data is for switch inventory</p></td>
+</tr>
+<tr class="even">
+<td><p>Filter</p></td>
+<td><p>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card</p></td>
+</tr>
+<tr class="odd">
+<td><p>Charts</p></td>
+<td><p>Distribution of switch components (disk size, OS, ASIC, NetQ Agents, CPU, Cumulus Linux licenses, platform, and memory size), divided into software and hardware, during the designated time period. Hover over chart segment to view versions of each component.</p>
+<p><strong>Note</strong>: You should only have one version of NetQ Agent running and it should match the NetQ Platform release number. If you have more than one, you likely need to upgrade the older agents.</p></td>
+</tr>
+<tr class="even">
+<td><p>Unique</p></td>
+<td><p>Number of unique versions of the various switch components. For example, for OS, you might have CL 3.7.1 and CL 3.7.4 making the unique value two.</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The <em>ASIC</em> tab displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_11_37_2.png" alt = "/images/download/attachments/10457038/image2019-4-9_11_37_2.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/lNbpmEz8sUWR-OpaPxJ1Fp5yatLJOTchIgAidhOz9E_GCtlrU52ZfqfyfJywL9HkAHmuipqSGWWJ2nLTe27rCt4ywlH3zNCKkVPbkK8TSBob2E1avJVBAn0oP_yLS5GspStym4WP" alt = "/images/lh4.googleusercontent.com/lNbpmEz8sUWR-OpaPxJ1Fp5yatLJOTchIgAidhOz9E_GCtlrU52ZfqfyfJywL9HkAHmuipqSGWWJ2nLTe27rCt4ywlH3zNCKkVPbkK8TSBob2E1avJVBAn0oP_yLS5GspStym4WP"
+
+
+width = 16
+
+ />
+</td>
+<td>Indicates data is for ASIC information</td>
+</tr>
+
+<tr>
+<td>Filter</td>
+<td>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card</td>
+</tr>
+
+<tr>
+<td>Vendor chart</td>
+<td>Distribution of ASIC vendors. Hover over chart segment to view the number of switches with each version.</td>
+</tr>
+
+<tr>
+<td>Model chart</td>
+<td>Distribution of ASIC models. Hover over chart segment to view the number of switches with each version.</td>
+</tr>
+
+<tr>
+<td>Show All</td>
+<td>Opens full screen card displaying all components for all switches</td>
+</tr>
+</tbody>
+</table>
+
+<p>The <em>Platform</em> tab displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_11_42_43.png" alt = "/images/download/attachments/10457038/image2019-4-9_11_42_43.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/WqlEBKzeXSnYC7CnNbep3urk8upLU1vdIf9RdKzBPOA8h6hhgFmN3wGADocSlx4gt1DkDnSkASowHrinz6BhyfZ_u_H0J6VR7ZrC5S08WlJjRL4-sSYZDRgv7wprPKdyxrA94Q5D" alt = "/images/lh3.googleusercontent.com/WqlEBKzeXSnYC7CnNbep3urk8upLU1vdIf9RdKzBPOA8h6hhgFmN3wGADocSlx4gt1DkDnSkASowHrinz6BhyfZ_u_H0J6VR7ZrC5S08WlJjRL4-sSYZDRgv7wprPKdyxrA94Q5D"
+
+
+width = 16
+
+ />
+</td>
+<td>Indicates data is for platform information</td>
+</tr>
+
+<tr>
+<td>Filter</td>
+<td>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card</td>
+</tr>
+
+<tr>
+<td>Vendor chart</td>
+<td>Distribution of platform vendors. Hover over chart segment to view the number of switches with each vendor.</td>
+</tr>
+
+<tr>
+<td>Platform chart</td>
+<td>Distribution of platform models. Hover over chart segment to view the number of switches with each model.</td>
+</tr>
+
+<tr>
+<td>License State chart</td>
+<td>Distribution of Cumulus Linux license status. Hover over chart segments to highlight the vendor and platforms that have that license status.</td>
+</tr>
+
+<tr>
+<td>Show All</td>
+<td>Opens full screen card displaying all components for all switches</td>
+</tr>
+</tbody>
+</table>
+
+<p>The <em>Software</em> tab displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_11_50_56.png" alt = "/images/download/attachments/10457038/image2019-4-9_11_50_56.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/nt7u88nPn38cfVP89OcInSnkqWUYsXnAMjIq9LY0lQUIUNXrDvY48ee0wM_Ft8cMxrQq0C_M6DEAU9KCTc2KarCdjPkAQQb4eeL9jBAnKADKSFmxQfSip1xFkhYtw__TJkGlp4uy" alt = "/images/lh4.googleusercontent.com/nt7u88nPn38cfVP89OcInSnkqWUYsXnAMjIq9LY0lQUIUNXrDvY48ee0wM_Ft8cMxrQq0C_M6DEAU9KCTc2KarCdjPkAQQb4eeL9jBAnKADKSFmxQfSip1xFkhYtw__TJkGlp4uy"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Indicates data is for software information</p></td>
+</tr>
+<tr class="even">
+<td><p>Filter</p></td>
+<td><p>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card</p></td>
+</tr>
+<tr class="odd">
+<td><p>Operating System chart</p></td>
+<td><p>Distribution of OS versions. Hover over chart segment to view the number of switches with each version.</p></td>
+</tr>
+<tr class="even">
+<td><p>Agent Version chart</p></td>
+<td><p>Distribution of NetQ Agent versions. Hover over chart segment to view the number of switches with each version.</p>
+<p><strong>Note</strong>: You should only have one version of NetQ Agent running and it should match the NetQ Platform release number. If you have more than one, you likely need to upgrade the older agents.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Show All</p></td>
+<td><p>Opens full screen card displaying all components for all switches</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The full screen Switch Inventory card provides tabs for all components,
+ASIC, platform, CPU, memory, disk, and OS components.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_11_55_41.png" alt = "/images/download/attachments/10457038/image2019-4-9_11_55_41.png"
+
+height = 250
+
+
+ />
+
+
+<p>There are a multitude of ways to view and analyze the available data
+within this workflow. A few examples are provided here.</p>
+
+<h3 id="view-a-summary-of-communication-status-for-all-switches">View a Summary of Communication Status for All Switches</h3>
+
+<p>A communication status summary for all of your switches across the
+network is available from the small Switch Inventory card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457038/image2019-4-9_11_33_15.png" alt = "/images/download/thumbnails/10457038/image2019-4-9_11_33_15.png"
+
+
+width = 200
+
+ />
+
+
+<p>In this example, we see all 13 switches have been heard from recently
+(they are fresh).</p>
+
+<h3 id="view-the-number-of-types-of-any-component-deployed">View the Number of Types of Any Component Deployed</h3>
+
+<p>For each of the components monitored on a switch, NetQ displays the
+variety of those component by way of a count. For example, if you have
+three operating systems running on your switches, say Cumulus Linux,
+Ubuntu and RHEL, NetQ indicates a total unique count of three OSs. If
+you only use Cumulus Linux, then the count shows as one.</p>
+
+<p>To view this count for all of the components on the switch:</p>
+
+<ol>
+<li><p>Open the medium Switch Inventory card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_11_34_19.png" alt = "/images/download/attachments/10457038/image2019-4-9_11_34_19.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Note the number in the <strong>Unique</strong> column for each component.<br />
+In the above example, there are four different disk sizes deployed,
+four different OSs running, four different ASIC vendors and models
+deployed, and so forth.</p></li>
+
+<li><p>Scroll down to see additional components.</p></li>
+</ol>
+
+<p>By default, the data is shown for switches with a fresh communication
+status. You can choose to look at the data for switches in the rotten
+state instead. For example, if you wanted to see if there was any
+correlation to a version of OS to the switch having a rotten status, you
+could select <strong>Rotten Switches</strong> from the dropdown at the top of the
+card and see if they all use the same OS (count would be 1). It may not
+be the cause of the lack of communication, but you get the idea.</p>
+
+<h3 id="view-the-distribution-of-any-component-deployed">View the Distribution of Any Component Deployed</h3>
+
+<p>NetQ monitors a number of switch components. For each component you can
+view the distribution of versions or models or vendors deployed across
+your network for that component.</p>
+
+<p>To view the distribution:</p>
+
+<ol>
+<li><p>Open the medium or large Switch Inventory card. Each component has a
+chart showing the distribution.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_11_34_190.png" alt = "/images/download/attachments/10457038/image2019-4-9_11_34_190.png"
+
+height = 250
+
+
+ />
+
+
+<p>OR</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_11_58_260.png" alt = "/images/download/attachments/10457038/image2019-4-9_11_58_260.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Hover over a segment of the chart to view the name, version, model
+or vendor and the number of switches that have been deployed. You
+can also see the percentage of all switches this total represents.
+On the large Switch Inventory card, hovering also highlights the
+related components for the selected component. This is shown in blue
+here.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_12_0_26.png" alt = "/images/download/attachments/10457038/image2019-4-9_12_0_26.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Point to additional segments on that component or other components
+to view their detail.</p></li>
+
+<li><p>Scroll down to view additional components.</p></li>
+</ol>
+
+<h3 id="view-the-number-of-switches-with-invalid-or-missing-licenses">View the Number of Switches with Invalid or Missing Licenses</h3>
+
+<p>It is important to know when you have switches that have invalid or
+missing Cumulus Linux licenses, as not all of the features are
+operational without a valid license. Simply open the medium or large
+Switch Inventory card, and hover over the License chart to see the
+count.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_12_1_28.png" alt = "/images/download/attachments/10457038/image2019-4-9_12_1_28.png"
+
+height = 250
+
+
+ />
+
+
+<p>To view which vendors and platforms have bad or missing licenses, open
+the large Switch Inventory card, <span style="color: #000000;"> and
+click </span></p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457038/image2019-1-21_16_42_47.png" alt = "/images/download/thumbnails/10457038/image2019-1-21_16_42_47.png"
+
+
+width = 16
+
+ />
+
+
+<p>to open the <strong>Platform Details</strong> tab. Hover over the License State bar
+chart to highlight the vendor and platforms with the various states.</p>
+
+<p>To view <em>which</em> switches have invalid or missing licenses, either:</p>
+
+<ul>
+<li><p>hover over the large Switch Inventory card and click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457038/image2019-1-21_16_42_47.png" alt = "/images/download/thumbnails/10457038/image2019-1-21_16_42_47.png"
+
+
+width = 16
+
+ />
+
+
+<p>to open the <strong>Platform Details</strong> tab. Above the Licenses State or
+the Vendor chart, click <strong>Show All</strong>.</p></li>
+
+<li><p>open the full screen Switch Inventory card .</p></li>
+</ul>
+
+<p>Then sort the <strong>All Switches</strong> tab data table by the <strong>License State</strong>
+column to locate the switches with bad or missing licenses.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_12_4_56.png" alt = "/images/download/attachments/10457038/image2019-4-9_12_4_56.png"
+
+
+width = 800
+
+ />
+
+
+<h3 id="view-the-most-commonly-deployed-asic">View the Most Commonly Deployed ASIC</h3>
+
+<p>It can be useful to know the quantity and ratio of many components
+deployed in your network to determine the scope of upgrade tasks,
+balance vendor reliance, or for detailed troubleshooting. You can view
+the most commonly deployed components in generally the same way. Some
+components have additional details contained in large card tabs.</p>
+
+<p>To view the most commonly deployed ASIC, for example:</p>
+
+<ol>
+<li><p>Open the medium or large Switch Inventory card.</p></li>
+
+<li><p>Hover over the <em>largest</em> segment in the ASIC chart. The tooltip that
+appears shows you the number of switches with the given ASIC and the
+percentage of your entire switch population with this ASIC.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-2-19_19_16_54.png" alt = "/images/download/attachments/10457038/image2019-2-19_19_16_54.png"
+
+height = 250
+
+
+ />
+
+
+<p>Click on any other component in a similar fashion to see the most
+common type of that component.</p></li>
+
+<li><p><span style="color: #000000;"> If you opened the medium
+<span style="color: #000000;"> Switch Inventory </span> card, s
+</span> witch to the large card.</p></li>
+
+<li><p>Hover over the card, and click <span style="color: #353744;">
+</span></p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/fRaDBLkWwB6gh8UtNYtGVmDbX-vgRZ6E9aJN9HTARcI7cvYLuonKdL51eHQ2A2dxZy-b5R36DuUqtDu2MZHd47uHD71U6SgOptNFepxTz0yAsKWT1dCj1jum6EZHm7MiWMTEBzoo" alt = "/images/lh5.googleusercontent.com/fRaDBLkWwB6gh8UtNYtGVmDbX-vgRZ6E9aJN9HTARcI7cvYLuonKdL51eHQ2A2dxZy-b5R36DuUqtDu2MZHd47uHD71U6SgOptNFepxTz0yAsKWT1dCj1jum6EZHm7MiWMTEBzoo"
+
+
+width = 16
+
+ />
+
+
+<p>to open the <strong>ASIC Details</strong> tab. Here you can more easily view the
+various vendors and platforms based on the ASIC deployed.</p></li>
+
+<li><p><span style="color: #353744;"> <em>Hover</em> over the <strong>Vendor</strong> pie chart
+to highlight which platforms are supported by the vendor; and vice
+versa, hover over the <strong>Platform</strong> pie chart to see which vendor
+supports that platform. Moving your cursor off of the carts removes
+the highlight.<br />
+</span></p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_12_6_36.png" alt = "/images/download/attachments/10457038/image2019-4-9_12_6_36.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p><span style="color: #353744;"> <em>Click</em> on a segment of the
+<strong>Vendor</strong> pie chart to drill down and see only that Vendor and its
+supported models. A <span style="color: #353744;"> filter tag is
+placed at the top of the charts </span> .<br />
+</span></p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_12_7_33.png" alt = "/images/download/attachments/10457038/image2019-4-9_12_7_33.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p><span style="color: #353744;"> To return to the complete view of
+vendors and platforms, click </span></p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457038/image2019-1-21_16_36_4.png" alt = "/images/download/thumbnails/10457038/image2019-1-21_16_36_4.png"
+
+
+width = 16
+
+ />
+
+
+<p>on the filter tag.</p></li>
+</ol>
+
+<h3 id="view-the-number-of-switches-with-a-particular-netq-agent">View the Number of Switches with a Particular NetQ Agent</h3>
+
+<p>It is recommended that when you upgrade NetQ that you also upgrade the
+NetQ Agents. You can determine if you have covered all of your agents
+using the medium or large Switch Inventory card. To view the NetQ Agent
+distribution by version:</p>
+
+<ol>
+<li><p>Open the medium Switch Inventory card.</p></li>
+
+<li><p>View the number in the Unique column next to Agent.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_12_8_30.png" alt = "/images/download/attachments/10457038/image2019-4-9_12_8_30.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>If the number is greater than one, you have multiple NetQ Agent
+versions deployed.</p></li>
+
+<li><p>If you have multiple versions, hover over the Agent chart to view
+the count of switches using each version.</p></li>
+
+<li><p>For more detail, switch to the large Switch Inventory card.</p></li>
+
+<li><p>Hover over the card and click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457038/image2019-1-21_16_53_37.png" alt = "/images/download/thumbnails/10457038/image2019-1-21_16_53_37.png"
+
+
+width = 16
+
+ />
+
+
+<p>to open the <strong>Software Details</strong> tab.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_11_50_560.png" alt = "/images/download/attachments/10457038/image2019-4-9_11_50_560.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Hover over the chart on the right to view the number of switches
+using the various versions of the NetQ Agent.</p></li>
+
+<li><p>Hover over the Operating System chart to see which NetQ Agent
+versions are being run on each OS.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_12_9_51.png" alt = "/images/download/attachments/10457038/image2019-4-9_12_9_51.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Click either chart to focus on a particular OS or agent version.</p></li>
+
+<li><p>To return to the full view, click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10457038/image2019-1-21_16_36_4.png" alt = "/images/download/thumbnails/10457038/image2019-1-21_16_36_4.png"
+
+
+width = 16
+
+ />
+
+
+<p>in the filter tag.</p></li>
+
+<li><p>Filter the data on the card by switches that are having trouble
+communicating, by selecting <em>Rotten Switches</em> from the dropdown
+above the charts.</p></li>
+</ol>
+
+<h3 id="view-a-list-of-all-data-for-a-specific-component">View a List of All Data for a Specific Component</h3>
+
+<p>When the small, medium and large Switch Inventory cards do not provide
+either enough information or are not organized in a fashion that
+provides the information you need, open the full screen Switch Inventory
+card. Select the component tab of interest and filter and sort as
+desired. Export the data to a third-party tool, by clicking <strong>Export</strong>.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10457038/image2019-4-9_11_55_410.png" alt = "/images/download/attachments/10457038/image2019-4-9_11_55_410.png"
+
+height = 250
+
+
+ />
+
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#monitor-switch-performance">Monitor Switch Performance</a>
+<ul>
+<li><a href="#switch-card-workflow-summary">Switch Card Workflow Summary</a></li>
+<li><a href="#view-the-overall-health-of-a-switch">View the Overall Health of a Switch</a></li>
+<li><a href="#view-health-performance-metrics">View Health Performance Metrics</a></li>
+<li><a href="#view-attributes-of-a-switch">View Attributes of a Switch</a></li>
+<li><a href="#view-current-resource-utilization-for-a-switch">View Current Resource Utilization for a Switch</a></li>
+<li><a href="#view-all-addresses-for-a-switch">View All Addresses for a Switch</a></li>
+<li><a href="#view-all-interfaces-on-a-switch">View All Interfaces on a Switch</a></li>
+</ul></li>
+<li><a href="#monitor-switch-component-inventory">Monitor Switch Component Inventory</a>
+<ul>
+<li><a href="#switch-inventory-card-workflow-summary">Switch Inventory Card Workflow Summary</a></li>
+<li><a href="#view-a-summary-of-communication-status-for-all-switches">View a Summary of Communication Status for All Switches</a></li>
+<li><a href="#view-the-number-of-types-of-any-component-deployed">View the Number of Types of Any Component Deployed</a></li>
+<li><a href="#view-the-distribution-of-any-component-deployed">View the Distribution of Any Component Deployed</a></li>
+<li><a href="#view-the-number-of-switches-with-invalid-or-missing-licenses">View the Number of Switches with Invalid or Missing Licenses</a></li>
+<li><a href="#view-the-most-commonly-deployed-asic">View the Most Commonly Deployed ASIC</a></li>
+<li><a href="#view-the-number-of-switches-with-a-particular-netq-agent">View the Number of Switches with a Particular NetQ Agent</a></li>
+<li><a href="#view-a-list-of-all-data-for-a-specific-component">View a List of All Data for a Specific Component</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

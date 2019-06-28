@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System Configuration on Cumulus Networks Documentation</title>
+    <link>http://example.org/Cumulus_Linux/System_Configuration/</link>
+    <description>Recent content in System Configuration on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/Cumulus_Linux/System_Configuration/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Network Command Line Utility - NCLU</title>
+      <link>http://example.org/Cumulus_Linux/System_Configuration/Network_Command_Line_Utility_-_NCLU/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/System_Configuration/Network_Command_Line_Utility_-_NCLU/</guid>
+      <description>The Network Command Line Utility (NCLU) is a command line interface for Cumulus Networks products that simplifies the networking configuration process for all users.
+NCLU resides in the Linux user space and provides consistent access to networking commands directly through bash, making configuration and troubleshooting simple and easy; no need to edit files or enter modes and sub-modes. NCLU provides these benefits:
+ Embeds help, examples, and automatic command checking with suggestions in case you enter a typo.</description>
+    </item>
+    
+    <item>
+      <title>Setting Date and Time</title>
+      <link>http://example.org/Cumulus_Linux/System_Configuration/Setting_Date_and_Time/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/System_Configuration/Setting_Date_and_Time/</guid>
+      <description>Setting the time zone, date and time requires root privileges; use sudo.
+Set the Time Zone You can use one of two methods to set the time zone on the switch:
+ Edit the /etc/timezone file.
+ Use the guided wizard.
+  Edit the /etc/timezone File To see the current time zone, list the contents of /etc/timezone:
+ cumulus@switch:~$ cat /etc/timezone US/Eastern  Edit the file to add your desired time zone.</description>
+    </item>
+    
+    <item>
+      <title>Services and Daemons in Cumulus Linux</title>
+      <link>http://example.org/Cumulus_Linux/System_Configuration/Services_and_Daemons_in_Cumulus_Linux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/System_Configuration/Services_and_Daemons_in_Cumulus_Linux/</guid>
+      <description>Services (also known as daemons) and processes are at the heart of how a Linux system functions. Most of the time a service takes care of itself; you just enable and start it, then let it run. However, because a Cumulus Linux switch is a Linux system, you have the ability to dig deeper if you like. Services may start multiple processes as they run. Services tend to be the most important things to monitor on a Cumulus Linux switch.</description>
+    </item>
+    
+    <item>
+      <title>Configuring switchd</title>
+      <link>http://example.org/Cumulus_Linux/System_Configuration/Configuring_switchd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/System_Configuration/Configuring_switchd/</guid>
+      <description>switchd is the daemon at the heart of Cumulus Linux. It communicates between the switch and Cumulus Linux, and all the applications running on Cumulus Linux.
+The switchd configuration is stored in /etc/cumulus/switchd.conf.
+The switchd File System switchd also exports a file system, mounted on /cumulus/switchd, that presents all the switchd configuration options as a series of files arranged in a tree structure. You can see the contents by parsing the switchd tree; run tree /cumulus/switchd.</description>
+    </item>
+    
+    <item>
+      <title>Power over Ethernet - PoE</title>
+      <link>http://example.org/Cumulus_Linux/System_Configuration/Power_over_Ethernet_-_PoE/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/System_Configuration/Power_over_Ethernet_-_PoE/</guid>
+      <description>Cumulus Linux supports Power over Ethernet (PoE) and PoE+, so certain Cumulus Linux switches can supply power from Ethernet switch ports to enabled devices over the Ethernet cables that connect them. Power over Ethernet (PoE) is capable of powering devices up to 15W, while PoE+ can power devices up to 30W.
+The currently supported platform is the Edge-Core AS4610-54P, which supports PoE and PoE+ and configuration over Ethernet layer 2 LLDP for power negotiation.</description>
+    </item>
+    
+    <item>
+      <title>Configuring a Global Proxy</title>
+      <link>http://example.org/Cumulus_Linux/System_Configuration/Configuring_a_Global_Proxy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/System_Configuration/Configuring_a_Global_Proxy/</guid>
+      <description>You configure global HTTP and HTTPS proxies in the /etc/profile.d/ directory of Cumulus Linux. To do so, set the http_proxy and https_proxy variables, which tells the switch the address of the proxy server to use to fetch URLs on the command line. This is useful for programs such as apt/apt-get, curl and wget, which can all use this proxy.
+ In a terminal, create a new file in the /etc/profile.</description>
+    </item>
+    
+    <item>
+      <title>HTTP API</title>
+      <link>http://example.org/Cumulus_Linux/System_Configuration/HTTP_API/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/System_Configuration/HTTP_API/</guid>
+      <description>Cumulus Linux implements an HTTP application programing interface to OpenStack ML2 driver and NCLU. Rather than accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL, HTTPie or a web browser.
+The HTTP API service is enabled by default on chassis hardware only. However, the associated server is configured to only listen to traffic originating from within the chassis.
+The service is not enabled by default on non-chassis hardware.</description>
+    </item>
+    
+  </channel>
+</rss>

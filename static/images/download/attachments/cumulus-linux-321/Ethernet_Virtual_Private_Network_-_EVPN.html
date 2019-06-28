@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ethernet Virtual Private Network - EVPN - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Network_Virtualization.html">Network Virtualization</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126939"> <span>Ethernet Virtual Private Network - EVPN</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >EVPN requires Cumulus Linux version 3.2.1 or newer.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Only VNI values less than 65535 are supported.    </p>
+        </div>
+    </div>
+    <p  >    </p>
+    <p  >Ethernet Virtual Private Network (EVPN) provides a control plane for <a   href="Network_Virtualization.html">VXLANs</a> in Cumulus Linux, with the following functionality:    </p>
+<ul class=" "><li class=" ">    <p  >VNI membership exchange between VTEPs using the EVPN type-3 (Inclusive Multicast Ethernet Tag) route.    </p>
+</li><li class=" ">    <p  >Exchange of MACs learned on local bridge ports using the EVPN type-2 (MAC/IP Advertisement) route.    </p>
+</li><li class=" ">    <p  >Support for MAC mobility through exchange of the MAC Mobility Extended community.    </p>
+</li><li class=" ">    <p  >Support for dual-attached hosts via VXLAN active-active mode; note that MAC synchronization between the peer switches is done using <a   href="Multi-Chassis_Link_Aggregation_-_MLAG.html">MLAG</a>.    </p>
+</li></ul>    <div class="section section-1" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-InstallingtheEVPNPackage">
+        <h1 class="heading "><span>Installing the EVPN Package</span></h1>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Any existing EVPN configuration on the system should be deleted prior to installing this version of EVPN.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Before proceeding, ensure the version of Cumulus Linux is 3.2.1 or higher.    </p>
+        </div>
+    </div>
+    <p  >To install EVPN on a switch:    </p>
+<ol class=" "><li class=" ">    <p  >Open the <tt class=" ">/etc/apt/sources.list</tt> file in a text editor.    </p>
+</li><li class=" ">    <p  >Uncomment the early access repo lines and save the file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">#deb		http://repo3.cumulusnetworks.com/repo CumulusLinux-3-early-access cumulus</code></div>
+<div class="line"><code class="plain">#deb-src	http://repo3.cumulusnetworks.com/repo CumulusLinuz-3-early-access cumulus</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >EVPN has been engineered and tested to be production-ready. However, as EVPN was made Generally Available (GA) post Cumulus Linux 3.2.1 release, the packages have been left in the Early Access (EA) repository to create minimal end-user disruption, and to ease deployment and upgrade processes. These packages will be moved to the main repository in an upcoming release, and will ship as part of the base image.    </p>
+        </div>
+    </div>
+</li><li class=" ">    <p  >Run the following commands to install the EVPN package in Cumulus Linux:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get update</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get install cumulus-evpn</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get upgrade</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Check your Quagga version using the <tt class=" ">dpkg -l quagga</tt> command. Please make sure you are running version 1.0.0+cl3eau8 or newer.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ dpkg -l quagga</code></div>
+<div class="line"><code class="plain">Desired=Unknown/Install/Remove/Purge/Hold</code></div>
+<div class="line"><code class="plain">| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend</code></div>
+<div class="line"><code class="plain">|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)</code></div>
+<div class="line"><code class="plain">||/ Name                     Version           Architecture      Description</code></div>
+<div class="line"><code class="plain">+++-========================-=================-=================-=====================================================</code></div>
+<div class="line"><code class="plain">ii  quagga                    1.0.0+cl3eau8    amd64             BGP/OSPF/RIP routing daemon</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    <div class="section section-1" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-EnablingQuagga">
+        <h1 class="heading "><span>Enabling Quagga</span></h1>
+    <p  ><a   href="Configuring_Quagga.html">Quagga</a> needs to be enabled prior to using EVPN.    </p>
+<ol class=" "><li class=" ">    <p  >Open <tt class=" ">/etc/quagga/daemons</tt> file in a text editor:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo nano /etc/quagga/daemons</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Change the <i class=" ">no</i> to <i class=" ">yes</i> for <tt class=" ">zebra</tt> and <tt class=" ">bgpd</tt>, then save the file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">zebra=yes</code></div>
+<div class="line"><code class="plain">bgpd=yes</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Enable and start Quagga using the <tt class=" ">systemctl</tt> commands:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl enable quagga.service</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl start quagga.service</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    <div class="section section-1" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-ConfiguringEVPN">
+        <h1 class="heading "><span>Configuring EVPN</span></h1>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-EnablingEVPNbetweenBGPNeighbors">
+        <h2 class="heading "><span>Enabling EVPN between BGP Neighbors</span></h2>
+    <p  >You enable EVPN between <a   href="Border_Gateway_Protocol_-_BGP.html">BGP</a> neighbors by adding the address family <i class=" ">evpn</i> to the existing neighbor address-family activation command.    </p>
+    <p  >For a non-VTEP device, such as a spine switch, that is merely participating in EVPN route exchange (as in, the network deployment uses hop-by-hop eBGP or the switch is acting as an iBGP route reflector), activating the interface for the EVPN address family is the only configuration needed.    </p>
+    <p  >This command does not result in BGP knowing about the local VNIs defined on the system and advertising them to peers. This requires additional configuration, as described below.    </p>
+    <p  >EVPN supports the configuration of only these two BGP neighbor address-family-specific configurations: <tt class=" ">allowas-in</tt> and <tt class=" ">route-reflector-client</tt>.    </p>
+    <p  >To configure an EVPN route exchange with a BGP peer, the peer or peer-group must be activated within the EVPN address-family in Quagga:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">router bgp 65000</code></div>
+<div class="line"><code class="plain"> address-family evpn</code></div>
+<div class="line"><code class="plain">  neighbor swp1 activate</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-EnablingEVPNinaniBGPEnvironmentwithanOSPFUnderlay">
+        <h2 class="heading "><span>Enabling EVPN in an iBGP Environment with an OSPF Underlay</span></h2>
+    <p  >EVPN can be deployed with an <a   href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">OSPF</a> or static route underlay if needed. This is a more complex configuration than using eBGP. In this case, iBGP advertises EVPN routes directly between VTEPs, and the spines are unaware of EVPN or BGP.    </p>
+    <p  >The leaf switches peer with each other in a full mesh within the EVPN address family without using route reflectors. The leafs generally peer to their loopback addresses, which are advertised in OSPF. The receiving VTEP imports routes into a specific VNI with a matching route target community.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">interface lo</code></div>
+<div class="line"><code class="plain"> ip ospf area 0.0.0.0</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp50</code></div>
+<div class="line"><code class="plain"> ip ospf area 0.0.0.0</code></div>
+<div class="line"><code class="plain"> ip ospf network point-to-point</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">interface swp51</code></div>
+<div class="line"><code class="plain"> ip ospf area 0.0.0.0</code></div>
+<div class="line"><code class="plain"> ip ospf network point-to-point</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">router bgp 65020</code></div>
+<div class="line"><code class="plain"> neighbor 10.1.1.2 remote-as internal</code></div>
+<div class="line"><code class="plain"> neighbor 10.1.1.3 remote-as internal</code></div>
+<div class="line"><code class="plain"> neighbor 10.1.1.4 remote-as internal</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain"> address-family evpn</code></div>
+<div class="line"><code class="plain">  neighbor 10.1.1.2 activate</code></div>
+<div class="line"><code class="plain">  neighbor 10.1.1.3 activate</code></div>
+<div class="line"><code class="plain">  neighbor 10.1.1.4 activate</code></div>
+<div class="line"><code class="plain">  advertise-all-vni</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain">Router ospf</code></div>
+<div class="line"><code class="plain">    Ospf router-id 10.1.1.1</code></div>
+<div class="line"><code class="plain">    Passive-interface lo</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-AdvertisingAllVNIs">
+        <h2 class="heading "><span>Advertising All VNIs</span></h2>
+    <p  >A single configuration variable enables the BGP control plane for all VNIs configured on the switch. Set the variable <tt class=" ">advertise-all-vni</tt> to provision all locally configured VNIs to be advertised by the BGP control plane. Quagga is not aware of any local VNIs and MACs associated with that VNI until <tt class=" ">advertise-all-vni</tt> is configured.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >This configuration is only needed on leaf switches that are VTEPs.    </p>
+        </div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">router bgp 65000</code></div>
+<div class="line"><code class="plain"> address-family evpn</code></div>
+<div class="line"><code class="plain">  neighbor swp1 activate</code></div>
+<div class="line"><code class="plain">  advertise-all-vni</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >EVPN routes received from a BGP peer do get accepted, even without <tt class=" ">advertise-all-vni</tt> configured. These routes are maintained in the global EVPN routing table. However, they only become effective (that is, imported into the per-VNI routing table and appropriate entries installed in the kernel) when the VNI corresponding to the received route is locally known.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126939_safe-id-RXRoZXJuZXRWaXJ0dWFsUHJpdmF0ZU5ldHdvcmstRVZQTi1FbmFibGluZ0VWUE53aXRoUm91dGVEaXN0aW5ndWlzaGVycyhSRHMpYW5kUm91dGVUYXJnZXRzKFJUcyk">
+        <h2 class="heading "><span>Enabling EVPN with Route Distinguishers (RDs) and Route Targets (RTs)</span></h2>
+    <p  >EVPN can be provisioned with RDs and RTs either by automatically configuring them, or by manually defining them. In each case, the <tt class=" ">advertise-vni</tt> option is used on each VTEP (as shown in the example configuration section described later in this chapter).    </p>
+    <p  >VNIs can be configured in Quagga either prior to or after enabling EVPN to advertise all VNIs (through <tt class=" ">advertise-all-vni</tt>, as described above). When a local VNI is learned and there is no explicit configuration for that VNI, the route distinguisher (RD) and import and export route targets (RTs) for this VNI are automatically derived &mdash; the RD uses &ldquo;RouterId:VNI&rdquo; and both RTs use &ldquo;AS:VNI&rdquo;.    </p>
+    <p  >For eBGP EVPN peering, since the peers are in a different AS, using an automatic RT of &quot;AS:VNI&quot; does not work for route import. Thus, the import RT is actually treated as &quot;*:VNI&quot; for determining which received routes are applicable to a particular VNI. This only applies when the import RT is auto-derived and not configured.    </p>
+    <div class="section section-3" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-EnablingEVPNwithAutomaticRDsandRTs">
+        <h3 class="heading "><span>Enabling EVPN with Automatic RDs and RTs</span></h3>
+    <p  >The <tt class=" ">advertise-all-vni</tt> option is sufficient for provisioning EVPN with RDs and RTs:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">router bgp 65000</code></div>
+<div class="line"><code class="plain"> address-family evpn</code></div>
+<div class="line"><code class="plain">  neighbor swp1 activate</code></div>
+<div class="line"><code class="plain">  advertise-all-vni</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-EnablingEVPNwithUser-definedRDsandRTsforSomeVNIs">
+        <h3 class="heading "><span>Enabling EVPN with User-defined RDs and RTs for Some VNIs</span></h3>
+    <p  >To manually define RDs and RTs, use the <tt class=" ">vni</tt> option to configure the switch:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">router bgp 65100</code></div>
+<div class="line"><code class="plain"> address-family evpn</code></div>
+<div class="line"><code class="plain">  neighbor SPINE activate</code></div>
+<div class="line"><code class="plain">  advertise-vni</code></div>
+<div class="line"><code class="plain">  vni 10200</code></div>
+<div class="line"><code class="plain">   rd 172.16.10.1:20</code></div>
+<div class="line"><code class="plain">   route-target import 65100:20</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >These commands are per VNI and must be specified under <tt class=" ">address-family evpn</tt> in BGP.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If you delete the RD or RT later, it reverts back to its corresponding default value.    </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-DisablingDataPlaneMACLearningoverVXLANTunnels">
+        <h2 class="heading "><span>Disabling Data Plane MAC Learning over VXLAN Tunnels</span></h2>
+    <p  >When EVPN is provisioned, data plane MAC learning should be disabled for VxLAN interfaces to avoid race conditions between control plane learning and data plane learning. In the <tt class=" ">/etc/network/interfaces</tt> file, configure the <tt class=" ">bridge-learning</tt> value to <i class=" ">off</i>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto vxlan200</code></div>
+<div class="line"><code class="plain">iface vxlan200</code></div>
+<div class="line"><code class="plain">    vxlan-id 10200</code></div>
+<div class="line"><code class="plain">    vxlan-local-tunnelip 10.0.0.1</code></div>
+<div class="line"><code class="plain">    bridge-learning off</code></div>
+<div class="line"><code class="plain">    bridge-access 200</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-HandlingBUMTraffic">
+        <h1 class="heading "><span>Handling BUM Traffic</span></h1>
+    <p  >With EVPN, the only method of handling BUM traffic is <a   href="Lightweight_Network_Virtualization_-_LNV_Overview.html#src-5126910_LightweightNetworkVirtualization-LNVOverview-head-end">Head End Replication (HER)</a>. HER is enabled by default, as it is when <a   href="https://docs.cumulusnetworks.com/display/DOCS/Lightweight+Network+Virtualization+-+LNV+Overview">Lightweight Network Virtualization (LNV)</a> is used.    </p>
+    </div>
+    <div class="section section-1" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-EVPNandVXLANActive-ActiveMode">
+        <h1 class="heading "><span>EVPN and VXLAN Active-Active Mode</span></h1>
+    <p  >There is no specific configuration to enable EVPN to work with VXLAN active-active mode. Both switches in the MLAG pair establish EVPN peering with other EVPN speakers (for example, with spine switches, if using hop-by-hop eBGP) and inform about their locally known VNIs and MACs. When MLAG is active, both switches announce this information with the shared anycast IP address.    </p>
+    <p  >MLAG syncs information between the two switches in the MLAG pair, EVPN does not synchronize. Therefore, Cumulus Networks recommends you do not configure EVPN peering between the MLAG switches over the peerlink.    </p>
+    </div>
+    <div class="section section-1" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-ExampleConfiguration">
+        <h1 class="heading "><span>Example Configuration</span></h1>
+    <p  >The following configurations are used throughout this chapter. You can find the flat-file configurations for the network devices in the Cumulus Networks <a  class="external-link" href="https://github.com/CumulusNetworks/cldemo-evpn/tree/master/config">GitHub repository</a>. Only a subset is shown here for brevity (not shown are configurations for leaf03, leaf04, server03, server04). Here is the topology diagram:    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126939/evpn.png" alt="images/download/attachments/5126939/evpn.png"  height="250" />
+        </p>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-leaf01andleaf02Configurations">
+        <h2 class="heading "><span>leaf01 and leaf02 Configurations</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  class="expand-control-text">leaf01 /etc/network/interfaces    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto lo</code></div>
+<div class="line"><code class="plain">iface lo inet loopback</code></div>
+<div class="line"><code class="plain">    alias loopback</code></div>
+<div class="line"><code class="plain">    address 10.0.0.11/32</code></div>
+<div class="line"><code class="plain">    clagd-vxlan-anycast-ip 10.10.10.20</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto eth0</code></div>
+<div class="line"><code class="plain">iface eth0 inet dhcp</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># uplinks</code></div>
+<div class="line"><code class="plain">auto swp51</code></div>
+<div class="line"><code class="plain">iface swp51</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto swp52</code></div>
+<div class="line"><code class="plain">iface swp52</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#host connections</code></div>
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto server01</code></div>
+<div class="line"><code class="plain">iface server01</code></div>
+<div class="line"><code class="plain">  alias server01 MLAG bond</code></div>
+<div class="line"><code class="plain">  bond-slaves swp1</code></div>
+<div class="line"><code class="plain">  clag-id 1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto peerlink</code></div>
+<div class="line"><code class="plain">iface peerlink</code></div>
+<div class="line"><code class="plain">  alias MLAG peerlink bond</code></div>
+<div class="line"><code class="plain">  bond-slaves swp49 swp50</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto peerlink.4094</code></div>
+<div class="line"><code class="plain">iface peerlink.4094</code></div>
+<div class="line"><code class="plain">  address 169.254.1.1/30</code></div>
+<div class="line"><code class="plain">  clagd-peer-ip 169.254.1.2</code></div>
+<div class="line"><code class="plain">  clagd-backup-ip 192.168.200.12</code></div>
+<div class="line"><code class="plain">  clagd-sys-mac 44:38:39:FF:40:94</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">    bridge-ports server01 peerlink vxlan10001 vxlan10100 vxlan10200</code></div>
+<div class="line"><code class="plain">    bridge-vlan-aware yes</code></div>
+<div class="line"><code class="plain">    bridge-vids 1 100 200</code></div>
+<div class="line"><code class="plain">    bridge-pvid 1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto vxlan10001</code></div>
+<div class="line"><code class="plain">iface vxlan10001</code></div>
+<div class="line"><code class="plain">    vxlan-id 10001</code></div>
+<div class="line"><code class="plain">    vxlan-local-tunnelip 10.0.0.11</code></div>
+<div class="line"><code class="plain">    bridge-access 1</code></div>
+<div class="line"><code class="plain">    bridge-learning off</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto vxlan10100</code></div>
+<div class="line"><code class="plain">iface vxlan10100</code></div>
+<div class="line"><code class="plain">     vxlan-id 10100</code></div>
+<div class="line"><code class="plain">     vxlan-local-tunnelip 10.0.0.11</code></div>
+<div class="line"><code class="plain">     bridge-access 100</code></div>
+<div class="line"><code class="plain">     bridge-learning off</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto vxlan10200</code></div>
+<div class="line"><code class="plain">iface vxlan10200</code></div>
+<div class="line"><code class="plain">     vxlan-id 10200</code></div>
+<div class="line"><code class="plain">     vxlan-local-tunnelip 10.0.0.11</code></div>
+<div class="line"><code class="plain">     bridge-access 200</code></div>
+<div class="line"><code class="plain">     bridge-learning off</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  class="expand-control-text">leaf02 /etc/network/interfaces    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto lo</code></div>
+<div class="line"><code class="plain">iface lo inet loopback</code></div>
+<div class="line"><code class="plain">    alias loopback</code></div>
+<div class="line"><code class="plain">    address 10.0.0.12/32</code></div>
+<div class="line"><code class="plain">    clagd-vxlan-anycast-ip 10.10.10.20</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto eth0</code></div>
+<div class="line"><code class="plain">iface eth0 inet dhcp</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># uplinks</code></div>
+<div class="line"><code class="plain">auto swp51</code></div>
+<div class="line"><code class="plain">iface swp51</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto swp52</code></div>
+<div class="line"><code class="plain">iface swp52</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#host connections</code></div>
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto server01</code></div>
+<div class="line"><code class="plain">iface server01</code></div>
+<div class="line"><code class="plain">  alias server01 MLAG bond</code></div>
+<div class="line"><code class="plain">  bond-slaves swp1</code></div>
+<div class="line"><code class="plain">  clag-id 1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto peerlink</code></div>
+<div class="line"><code class="plain">iface peerlink</code></div>
+<div class="line"><code class="plain">  alias MLAG peerlink bond</code></div>
+<div class="line"><code class="plain">  bond-slaves swp49 swp50</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto peerlink.4094</code></div>
+<div class="line"><code class="plain">iface peerlink.4094</code></div>
+<div class="line"><code class="plain">  address 169.254.1.2/30</code></div>
+<div class="line"><code class="plain">  clagd-peer-ip 169.254.1.1</code></div>
+<div class="line"><code class="plain">  clagd-backup-ip 192.168.200.11</code></div>
+<div class="line"><code class="plain">  clagd-sys-mac 44:38:39:FF:40:94</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">    bridge-ports server01 peerlink vxlan10001 vxlan10100 vxlan10200</code></div>
+<div class="line"><code class="plain">    bridge-vlan-aware yes</code></div>
+<div class="line"><code class="plain">    bridge-vids 1 100 200</code></div>
+<div class="line"><code class="plain">    bridge-pvid 1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto vxlan10001</code></div>
+<div class="line"><code class="plain">iface vxlan10001</code></div>
+<div class="line"><code class="plain">    vxlan-id 10001</code></div>
+<div class="line"><code class="plain">    vxlan-local-tunnelip 10.0.0.12</code></div>
+<div class="line"><code class="plain">    bridge-access 1</code></div>
+<div class="line"><code class="plain">    bridge-learning off</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto vxlan10100</code></div>
+<div class="line"><code class="plain">iface vxlan10100</code></div>
+<div class="line"><code class="plain">     vxlan-id 10100</code></div>
+<div class="line"><code class="plain">     vxlan-local-tunnelip 10.0.0.12</code></div>
+<div class="line"><code class="plain">     bridge-access 100</code></div>
+<div class="line"><code class="plain">     bridge-learning off</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto vxlan10200</code></div>
+<div class="line"><code class="plain">iface vxlan10200</code></div>
+<div class="line"><code class="plain">     vxlan-id 10200</code></div>
+<div class="line"><code class="plain">     vxlan-local-tunnelip 10.0.0.12</code></div>
+<div class="line"><code class="plain">     bridge-access 200</code></div>
+<div class="line"><code class="plain">     bridge-learning off</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  class="expand-control-text">leaf01 /etc/quagga/Quagga.conf    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp51</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 10</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp52</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 10</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">router bgp 65011</code></div>
+<div class="line"><code class="plain"> bgp router-id 10.0.0.11</code></div>
+<div class="line"><code class="plain"> bgp bestpath as-path multipath-relax</code></div>
+<div class="line"><code class="plain"> neighbor FABRIC peer-group</code></div>
+<div class="line"><code class="plain"> neighbor FABRIC remote-as external</code></div>
+<div class="line"><code class="plain"> neighbor FABRIC description Internal FABRIC Network</code></div>
+<div class="line"><code class="plain"> neighbor FABRIC capability extended-nexthop</code></div>
+<div class="line"><code class="plain"> neighbor swp51 interface peer-group FABRIC</code></div>
+<div class="line"><code class="plain"> neighbor swp52 interface peer-group FABRIC</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain"> address-family ipv4 unicast</code></div>
+<div class="line"><code class="plain">  network 10.0.0.11/32</code></div>
+<div class="line"><code class="plain">  network 10.10.10.20/32</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain"> address-family ipv6 unicast</code></div>
+<div class="line"><code class="plain">  neighbor FABRIC activate</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain"> address-family evpn</code></div>
+<div class="line"><code class="plain">  neighbor FABRIC activate</code></div>
+<div class="line"><code class="plain">  advertise-all-vni</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain"> exit</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">line vty</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  class="expand-control-text">leaf02 /etc/quagga/Quagga.conf    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp51</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 10</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp52</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 10</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">router bgp 65012</code></div>
+<div class="line"><code class="plain"> bgp router-id 10.0.0.12</code></div>
+<div class="line"><code class="plain"> bgp bestpath as-path multipath-relax</code></div>
+<div class="line"><code class="plain"> neighbor FABRIC peer-group</code></div>
+<div class="line"><code class="plain"> neighbor FABRIC remote-as external</code></div>
+<div class="line"><code class="plain"> neighbor FABRIC description Internal FABRIC Network</code></div>
+<div class="line"><code class="plain"> neighbor FABRIC capability extended-nexthop</code></div>
+<div class="line"><code class="plain"> neighbor swp51 interface peer-group FABRIC</code></div>
+<div class="line"><code class="plain"> neighbor swp52 interface peer-group FABRIC</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain"> address-family ipv4 unicast</code></div>
+<div class="line"><code class="plain">  network 10.0.0.12/32</code></div>
+<div class="line"><code class="plain">  network 10.10.10.20/32</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain"> address-family ipv6 unicast</code></div>
+<div class="line"><code class="plain">  neighbor FABRIC activate</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain"> address-family evpn</code></div>
+<div class="line"><code class="plain">  neighbor FABRIC activate</code></div>
+<div class="line"><code class="plain">  advertise-all-vni</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain"> exit</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">line vty</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-spine01andspine02Configurations">
+        <h2 class="heading "><span>spine01 and spine02 Configurations</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  class="expand-control-text">spine01 /etc/network/interfaces    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto lo</code></div>
+<div class="line"><code class="plain">iface lo inet loopback</code></div>
+<div class="line"><code class="plain">    address 10.0.0.21/32</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto eth0</code></div>
+<div class="line"><code class="plain">iface eth0 inet dhcp</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># downlinks</code></div>
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto swp2</code></div>
+<div class="line"><code class="plain">iface swp2</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto swp3</code></div>
+<div class="line"><code class="plain">iface swp3</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto swp4</code></div>
+<div class="line"><code class="plain">iface swp4</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  class="expand-control-text">spine02 /etc/network/interfaces    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto lo</code></div>
+<div class="line"><code class="plain">iface lo inet loopback</code></div>
+<div class="line"><code class="plain">    address 10.0.0.22/32</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto eth0</code></div>
+<div class="line"><code class="plain">iface eth0 inet dhcp</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># downlinks</code></div>
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto swp2</code></div>
+<div class="line"><code class="plain">iface swp2</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto swp3</code></div>
+<div class="line"><code class="plain">iface swp3</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto swp4</code></div>
+<div class="line"><code class="plain">iface swp4</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  class="expand-control-text">spine01 /etc/quagga/Quagga.conf    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">log syslog</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp1</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 10</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp2</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 10</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp3</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 10</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp4</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 10</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">router bgp 65020</code></div>
+<div class="line"><code class="plain"> bgp router-id 10.0.0.21</code></div>
+<div class="line"><code class="plain"> bgp bestpath as-path multipath-relax</code></div>
+<div class="line"><code class="plain"> neighbor fabric peer-group</code></div>
+<div class="line"><code class="plain"> neighbor fabric remote-as external</code></div>
+<div class="line"><code class="plain"> neighbor fabric description Internal Fabric Network</code></div>
+<div class="line"><code class="plain"> neighbor fabric capability extended-nexthop</code></div>
+<div class="line"><code class="plain"> neighbor swp1 interface peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp2 interface peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp3 interface peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp4 interface peer-group fabric</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain"> address-family ipv4 unicast</code></div>
+<div class="line"><code class="plain">  network 10.0.0.21/32</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain"> address-family ipv6 unicast</code></div>
+<div class="line"><code class="plain">  neighbor fabric activate</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain"> address-family evpn</code></div>
+<div class="line"><code class="plain">  neighbor fabric activate</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain"> exit</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">line vty</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  class="expand-control-text">spine02 /etc/quagga/Quagga.conf    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">log syslog</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp1</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 10</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp2</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 10</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp3</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 10</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">interface swp4</code></div>
+<div class="line"><code class="plain"> ipv6 nd ra-interval 10</code></div>
+<div class="line"><code class="plain"> no ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">router bgp 65020</code></div>
+<div class="line"><code class="plain"> bgp router-id 10.0.0.22</code></div>
+<div class="line"><code class="plain"> bgp bestpath as-path multipath-relax</code></div>
+<div class="line"><code class="plain"> neighbor fabric peer-group</code></div>
+<div class="line"><code class="plain"> neighbor fabric remote-as external</code></div>
+<div class="line"><code class="plain"> neighbor fabric description Internal Fabric Network</code></div>
+<div class="line"><code class="plain"> neighbor fabric capability extended-nexthop</code></div>
+<div class="line"><code class="plain"> neighbor swp1 interface peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp2 interface peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp3 interface peer-group fabric</code></div>
+<div class="line"><code class="plain"> neighbor swp4 interface peer-group fabric</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain"> address-family ipv4 unicast</code></div>
+<div class="line"><code class="plain">  network 10.0.0.22/32</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain"> address-family ipv6 unicast</code></div>
+<div class="line"><code class="plain">  neighbor fabric activate</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain"> !</code></div>
+<div class="line"><code class="plain"> address-family evpn</code></div>
+<div class="line"><code class="plain">  neighbor fabric activate</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+<div class="line"><code class="plain"> exit</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">line vty</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-server01andserver02Configurations">
+        <h2 class="heading "><span>server01 and server02 Configurations</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  class="expand-control-text">server01 /etc/network/interfaces    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto eth0</code></div>
+<div class="line"><code class="plain">iface eth0 inet dhcp</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto bond0</code></div>
+<div class="line"><code class="plain">iface bond0</code></div>
+<div class="line"><code class="plain">    bond-slaves eth1 eth2</code></div>
+<div class="line"><code class="plain">    address 172.16.1.101/24</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto bond0.100</code></div>
+<div class="line"><code class="plain">iface bond0.100</code></div>
+<div class="line"><code class="plain">    address 172.16.100.101/24</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto bond0.200</code></div>
+<div class="line"><code class="plain">iface bond0.200</code></div>
+<div class="line"><code class="plain">    address 172.16.200.101/24</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  class="expand-control-text">server02 /etc/network/interfaces    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto eth0</code></div>
+<div class="line"><code class="plain">iface eth0 inet dhcp</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto eth2</code></div>
+<div class="line"><code class="plain">iface eth2</code></div>
+<div class="line"><code class="plain">    address 172.16.1.102/24</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto eth2.100</code></div>
+<div class="line"><code class="plain">iface eth2.100</code></div>
+<div class="line"><code class="plain">    address 172.16.100.102/24</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto eth2.200</code></div>
+<div class="line"><code class="plain">iface eth2.200</code></div>
+<div class="line"><code class="plain">    address 172.16.200.102/24</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-TestingConnectivitybetweenServers">
+        <h1 class="heading "><span>Testing Connectivity between Servers</span></h1>
+    <p  >SSH to server01 and ping the VLAN1 IP address on server02:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">user@server01:~$ ping 172.16.1.102</code></div>
+<div class="line"><code class="plain">PING 172.16.1.102 (172.16.1.102) 56(84) bytes of data.</code></div>
+<div class="line"><code class="plain">64 bytes from 172.16.1.102: icmp_seq=1 ttl=64 time=2.52 ms</code></div>
+<div class="line"><code class="plain">64 bytes from 172.16.1.102: icmp_seq=2 ttl=64 time=2.74 ms</code></div>
+<div class="line"><code class="plain">^C</code></div>
+<div class="line"><code class="plain">--- 172.16.1.102 ping statistics ---</code></div>
+<div class="line"><code class="plain">2 packets transmitted, 2 received, 0% packet loss, time 1001ms</code></div>
+<div class="line"><code class="plain">rtt min/avg/max/mdev = 2.528/2.638/2.749/0.121 ms</code></div>
+</div>
+    </div>
+    <p  >The following table lists all the servers IP addresses to test connectivity across the L3 fabric:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >server01    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >server02    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >server03    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >server04    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >VLAN1    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >172.16.1.101    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >172.16.1.102    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >172.16.1.103    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >172.16.1.104    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >VLAN100    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >172.16.100.101    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >172.16.100.102    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >172.16.100.103    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >172.16.100.104    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >VLAN200    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >172.16.200.101    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >172.16.200.102    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >172.16.200.103    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >172.16.200.104    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-1" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-CumulusLinuxOutputCommands">
+        <h1 class="heading "><span>Cumulus Linux Output Commands</span></h1>
+    <p  >You can use various <tt class=" ">iproute2</tt> commands to examine links, VLAN mappings and displaying bridge FDB data:    </p>
+<ul class=" "><li class=" ">    <p  >ip [-d] link show    </p>
+</li><li class=" ">    <p  >bridge link show    </p>
+</li><li class=" ">    <p  >bridge vlan show    </p>
+</li><li class=" ">    <p  >bridge [-s] fdb show    </p>
+</li></ul>    <p  >For example, the output from the following <tt class=" ">bridge fdb show</tt> command reveals information relevant only for a VTEP.    </p>
+<ul class=" "><li class=" ">    <p  >3 remote VTEPs (10.0.0.5, 10.0.0.6 and 80.80.80.2) for each of the 2 VNIs.    </p>
+</li><li class=" ">    <p  >MAC address 00:02:00:00:00:03 is a local MAC learned over a bond interface while MAC address 00:02:00:00:00:08 is a remote MAC from VTEP 80.80.80.2 for VNI 10100 (vtep100).    </p>
+</li><li class=" ">    <p  >The entries with MAC &ldquo;00:00:00:00:00:00&rdquo; are for BUM traffic replication.    </p>
+</li></ul>    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ bridge fdb show</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:0f dev swp3 master bridge permanent</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:01 dev swp3 vlan 1 master bridge </code></div>
+<div class="line"><code class="plain">00:02:00:00:00:04 dev peerlink vlan 1 master bridge </code></div>
+<div class="line"><code class="plain">00:02:00:00:00:12 dev peerlink master bridge permanent</code></div>
+<div class="line"><code class="plain">92:b0:8f:b6:82:7b dev vtep100 master bridge permanent</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:08 dev vtep100 vlan 100 master bridge </code></div>
+<div class="line"><code class="plain">00:00:00:00:00:00 dev vtep100 dst 10.0.0.5 self permanent</code></div>
+<div class="line"><code class="plain">00:00:00:00:00:00 dev vtep100 dst 10.0.0.6 self permanent</code></div>
+<div class="line"><code class="plain">00:00:00:00:00:00 dev vtep100 dst 80.80.80.2 self permanent</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:08 dev vtep100 dst 80.80.80.2 self </code></div>
+<div class="line"><code class="plain">5e:75:42:b8:47:e6 dev vtep200 master bridge permanent</code></div>
+<div class="line"><code class="plain">00:00:00:00:00:00 dev vtep200 dst 10.0.0.5 self permanent</code></div>
+<div class="line"><code class="plain">00:00:00:00:00:00 dev vtep200 dst 10.0.0.6 self permanent</code></div>
+<div class="line"><code class="plain">00:00:00:00:00:00 dev vtep200 dst 80.80.80.2 self permanent</code></div>
+<div class="line"><code class="plain">00:02:00:00:00:10 dev bond0 master bridge permanent</code></div>
+<div class="line"><code class="plain">02:02:00:00:00:03 dev bond0 vlan 1 master bridge </code></div>
+<div class="line"><code class="plain">02:02:00:00:00:02 dev bond0 vlan 1 master bridge </code></div>
+<div class="line"><code class="plain">00:02:00:00:00:03 dev bond0 vlan 100 master bridge </code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-BGPOutputCommands">
+        <h1 class="heading "><span>BGP Output Commands</span></h1>
+    <p  >The following commands are not unique to EVPN but help troubleshoot connectivity and route propagation. You can display the L3 fabric by running the Quagga <tt class=" ">show ip bgp summary</tt> command on one of the spines:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@spine01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">spine01# show ip bgp sum</code></div>
+<div class="line"><code class="plain">BGP router identifier 10.0.0.21, local AS number 65020 vrf-id 0</code></div>
+<div class="line"><code class="plain">BGP table version 7</code></div>
+<div class="line"><code class="plain">RIB entries 9, using 1152 bytes of memory</code></div>
+<div class="line"><code class="plain">Peers 4, using 83 KiB of memory</code></div>
+<div class="line"><code class="plain">Peer groups 1, using 72 bytes of memory</code></div>
+<div class="line"><code class="plain">Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd</code></div>
+<div class="line"><code class="plain">leaf01(swp1)    4 65011    1038    1012        0    0    0 00:49:11        1</code></div>
+<div class="line"><code class="plain">leaf02(swp2)    4 65012    1042    1018        0    0    0 00:49:30        1</code></div>
+<div class="line"><code class="plain">leaf03(swp3)    4 65013    1013     995        0    0    0 00:41:20        1</code></div>
+<div class="line"><code class="plain">leaf04(swp4)    4 65014    1026    1012        0    0    0 00:49:10        1</code></div>
+<div class="line"><code class="plain">Total number of neighbors 4</code></div>
+</div>
+    </div>
+    <p  >You can see the loopback addresses for all the network devices participating in BGP by running the <tt class=" ">show ip bgp</tt> command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@spine01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">spine01# show ip bgp</code></div>
+<div class="line"><code class="plain">BGP table version is 7, local router ID is 10.0.0.21</code></div>
+<div class="line"><code class="plain">Status codes: s suppressed, d damped, h history, * valid, &gt; best, = multipath,</code></div>
+<div class="line"><code class="plain">              i internal, r RIB-failure, S Stale, R Removed</code></div>
+<div class="line"><code class="plain">Origin codes: i - IGP, e - EGP, ? - incomplete</code></div>
+<div class="line"><code class="plain">   Network          Next Hop            Metric LocPrf Weight Path</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.11/32     swp1            0              0 65011 i</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.12/32     swp2            0              0 65012 i</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.13/32     swp3            0              0 65013 i</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.14/32     swp4            0              0 65014 i</code></div>
+<div class="line"><code class="plain">*&gt; 10.0.0.21/32     0.0.0.0                  0          32768 i</code></div>
+<div class="line"><code class="plain">Displayed  5 out of 5 total prefixes</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-EVPNOutputCommands">
+        <h1 class="heading "><span>EVPN Output Commands</span></h1>
+    <p  >The following commands are unique to EVPN address-families and VXLAN. Note that just because two network nodes are BGP peers does not mean they are EVPN address-family peers or are exchanging VXLAN information.    </p>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-DisplayingEVPNaddress-familyPeers">
+        <h2 class="heading "><span>Displaying EVPN address-family Peers</span></h2>
+    <p  >The network device participating in BGP EVPN address-family can be shown using the <tt class=" ">show bgp evpn summary </tt>command    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01# show bgp evpn summary</code></div>
+<div class="line"><code class="plain">BGP router identifier 10.0.0.1, local AS number 65001 vrf-id 0</code></div>
+<div class="line"><code class="plain">BGP table version 0</code></div>
+<div class="line"><code class="plain">RIB entries 15, using 1920 bytes of memory</code></div>
+<div class="line"><code class="plain">Peers 2, using 42 KiB of memory</code></div>
+<div class="line"><code class="plain">Peer groups 1, using 72 bytes of memory</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd</code></div>
+<div class="line"><code class="plain">s1(swp1)        4 65100      16      22        0    0    0 00:01:29        6</code></div>
+<div class="line"><code class="plain">s2(swp2)        4 65100      16      22        0    0    0 00:01:28        6</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Total number of neighbors 2</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >You cannot configure EVPN address families within a <a   href="Virtual_Routing_and_Forwarding_-_VRF.html">VRF</a>.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-DisplayingVNIs">
+        <h2 class="heading "><span>Displaying VNIs</span></h2>
+    <p  >You can display the configured VNIs on a network device participating in BGP EVPN by running the <tt class=" ">show bgp evpn vni</tt> command. This command works only when run on a VTEP.    </p>
+    <p  >The following example examines leaf01, where 3 VNIs are configured; VNIs 10100 and 10200 are purely system-defined in <tt class=" ">/etc/network/interfaces</tt>. The RD and RT values for these VNIs have been automatically derived as described earlier. The <strong class=" ">*</strong> indicates that both VNIs exist in the kernel, whereas VNI 20100 is user-configured in BGP with a non-default RD and export RT, but does not yet exist in the kernel:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01# show bgp evpn vni</code></div>
+<div class="line"><code class="plain">Advertise All VNI flag: Enabled</code></div>
+<div class="line"><code class="plain">Number of VNIs: 3</code></div>
+<div class="line"><code class="plain">Flags: * - Kernel </code></div>
+<div class="line"><code class="plain">  VNI        Orig IP         RD                    Import RT             Export RT            </code></div>
+<div class="line"><code class="plain">* 10200      80.80.80.1      10.0.0.1:10200        65001:10200           65001:10200          </code></div>
+<div class="line"><code class="plain">  20100      10.0.0.1        65001:20100           65001:20100           1:20100              </code></div>
+<div class="line"><code class="plain">* 10100      80.80.80.1      10.0.0.1:10100        65001:10100           65001:10100</code></div>
+<div class="line"><code class="plain"> </code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">leaf01# show bgp evpn vni 10100</code></div>
+<div class="line"><code class="plain">VNI: 10100 (known to the kernel)</code></div>
+<div class="line"><code class="plain">  RD: 10.0.0.1:10100</code></div>
+<div class="line"><code class="plain">  Originator IP: 80.80.80.1</code></div>
+<div class="line"><code class="plain">  Import Route Target:</code></div>
+<div class="line"><code class="plain">    65001:10100</code></div>
+<div class="line"><code class="plain">  Export Route Target:</code></div>
+<div class="line"><code class="plain">    65001:10100</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">leaf01# show bgp evpn vni 20100</code></div>
+<div class="line"><code class="plain">VNI: 20100</code></div>
+<div class="line"><code class="plain">  RD: 65001:20100</code></div>
+<div class="line"><code class="plain">  Originator IP: 10.0.0.1</code></div>
+<div class="line"><code class="plain">  Import Route Target:</code></div>
+<div class="line"><code class="plain">    65001:20100</code></div>
+<div class="line"><code class="plain">  Export Route Target:</code></div>
+<div class="line"><code class="plain">    1:20100</code></div>
+</div>
+    </div>
+    <p  >The corresponding BGP configuration for VNI 20100 is follows (only the EVPN section is shown):    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"> address-family evpn</code></div>
+<div class="line"><code class="plain">  neighbor SPINE activate</code></div>
+<div class="line"><code class="plain">  advertise-all-vni</code></div>
+<div class="line"><code class="plain">  vni 20100</code></div>
+<div class="line"><code class="plain">   rd 65001:20100</code></div>
+<div class="line"><code class="plain">   route-target export 1:20100</code></div>
+<div class="line"><code class="plain">  exit-vni</code></div>
+<div class="line"><code class="plain"> exit-address-family</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-DisplayingEVPNVXLANs">
+        <h2 class="heading "><span>Displaying EVPN VXLANs</span></h2>
+    <p  >Run the <tt class=" ">show evpn vni [&lt;vni&gt;]</tt> command to list all local configured VXLANs and remote VTEPs. This command only works when run on a VTEP.    </p>
+    <p  >The following output indicates that VNI 10100 is present on 3 remote VTEPs (10.0.0.5, 10.0.0.6 and 80.80.80.2) while VNI 10200 is present on 2 remote VTEPs (10.0.0.6 and 80.80.80.2):    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01# show evpn vni</code></div>
+<div class="line"><code class="plain">Number of VNIs: 2</code></div>
+<div class="line"><code class="plain">VNI        VxLAN IF              VTEP IP         # MACs   Remote VTEPs   </code></div>
+<div class="line"><code class="plain">10200      vtep200               80.80.80.1      2        80.80.80.2     </code></div>
+<div class="line"><code class="plain">                                                          10.0.0.6       </code></div>
+<div class="line"><code class="plain">10100      vtep100               80.80.80.1      2        80.80.80.2     </code></div>
+<div class="line"><code class="plain">                                                          10.0.0.6       </code></div>
+<div class="line"><code class="plain">                                                          10.0.0.5       </code></div>
+</div>
+    </div>
+    <p  >To see the EVPN configuration for a single VXLAN:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01# show evpn vni 10100</code></div>
+<div class="line"><code class="plain">VNI: 10100</code></div>
+<div class="line"><code class="plain"> VxLAN interface: vtep100 ifIndex: 11 VTEP IP: 80.80.80.1</code></div>
+<div class="line"><code class="plain"> Remote VTEPs for this VNI:</code></div>
+<div class="line"><code class="plain">  80.80.80.2</code></div>
+<div class="line"><code class="plain">  10.0.0.6</code></div>
+<div class="line"><code class="plain">  10.0.0.5</code></div>
+<div class="line"><code class="plain"> Number of MACs (local and remote) known for this VNI: 2</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-ExaminingLocalandRemoteMACAddressesforaVNIinQuagga">
+        <h2 class="heading "><span>Examining Local and Remote MAC Addresses for a VNI in Quagga</span></h2>
+    <p  >You can examine all local and remote MAC addresses for a VNI by running <tt class=" ">show evpn mac vni &lt;vni&gt;</tt>.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01# show evpn mac vni 10100</code></div>
+<div class="line"><code class="plain">Number of MACs (local and remote) known for this VNI: 2</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">MAC               Type   Intf/Remote VTEP      VLAN </code></div>
+<div class="line"><code class="plain">00:02:00:00:00:03 local  bond0                 100  </code></div>
+<div class="line"><code class="plain">00:02:00:00:00:08 remote 80.80.80.2  </code></div>
+</div>
+    </div>
+    <p  >You can examine MAC addresses across VNIs using <tt class=" ">show evpn mac vni all</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01# show evpn mac vni all</code></div>
+<div class="line"><code class="plain">VNI 10200 #MACs (local and remote) 2</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">MAC               Type   Intf/Remote VTEP      VLAN </code></div>
+<div class="line"><code class="plain">00:02:00:00:00:01 local  swp3                  200  </code></div>
+<div class="line"><code class="plain">00:02:00:00:00:0b remote 10.0.0.6             </code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">VNI 10100 #MACs (local and remote) 2</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">MAC               Type   Intf/Remote VTEP      VLAN </code></div>
+<div class="line"><code class="plain">00:02:00:00:00:03 local  bond0                 100  </code></div>
+<div class="line"><code class="plain">00:02:00:00:00:08 remote 80.80.80.2    </code></div>
+</div>
+    </div>
+    <p  >You can examine MAC addresses for a remote VTEP and/or query a specific MAC address. This command only works when run on a VTEP:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01# show evpn mac vni 10100 mac 00:02:00:00:00:08</code></div>
+<div class="line"><code class="plain">MAC: 00:02:00:00:00:08</code></div>
+<div class="line"><code class="plain"> Remote VTEP: 80.80.80.2</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">leadf01# show evpn mac vni 10100 vtep 80.80.80.2</code></div>
+<div class="line"><code class="plain">MAC               Type   Intf/Remote VTEP      VLAN </code></div>
+<div class="line"><code class="plain">00:02:00:00:00:08 remote 80.80.80.2 </code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-DisplayingtheGlobalBGPEVPNRoutingTable">
+        <h2 class="heading "><span>Displaying the Global BGP EVPN Routing Table</span></h2>
+    <p  >Run the <tt class=" ">show bgp evpn route [type &lt;multicast | macip&gt;]</tt> command to display all EVPN routes at the same time:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01# show bgp evpn route</code></div>
+<div class="line"><code class="plain">BGP table version is 0, local router ID is 10.0.0.1</code></div>
+<div class="line"><code class="plain">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal</code></div>
+<div class="line"><code class="plain">Origin codes: i - IGP, e - EGP, ? - incomplete</code></div>
+<div class="line"><code class="plain">EVPN type-2 prefix: [2]:[ESI]:[EthTag]:[MAClen]:[MAC]</code></div>
+<div class="line"><code class="plain">EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]</code></div>
+<div class="line"><code class="plain">   Network          Next Hop            Metric LocPrf Weight Path</code></div>
+<div class="line"><code class="plain">Route Distinguisher: 10.0.0.1:10100</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:03]</code></div>
+<div class="line"><code class="plain">                    80.80.80.1                         32768 i</code></div>
+<div class="line"><code class="plain">*&gt; [3]:[0]:[32]:[80.80.80.1]</code></div>
+<div class="line"><code class="plain">                    80.80.80.1                         32768 i</code></div>
+<div class="line"><code class="plain">Route Distinguisher: 10.0.0.1:10200</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:01]</code></div>
+<div class="line"><code class="plain">                    80.80.80.1                         32768 i</code></div>
+<div class="line"><code class="plain">*&gt; [3]:[0]:[32]:[80.80.80.1]</code></div>
+<div class="line"><code class="plain">                    80.80.80.1                         32768 i</code></div>
+<div class="line"><code class="plain">Route Distinguisher: 10.0.0.3:10100</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:08]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65003 i</code></div>
+<div class="line"><code class="plain">*  [2]:[0]:[0]:[48]:[00:02:00:00:00:08]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65003 i</code></div>
+<div class="line"><code class="plain">*  [3]:[0]:[32]:[80.80.80.2]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65003 i</code></div>
+<div class="line"><code class="plain">*&gt; [3]:[0]:[32]:[80.80.80.2]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65003 i</code></div>
+<div class="line"><code class="plain">Route Distinguisher: 10.0.0.3:10200</code></div>
+<div class="line"><code class="plain">*  [3]:[0]:[32]:[80.80.80.2]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65003 i</code></div>
+<div class="line"><code class="plain">*&gt; [3]:[0]:[32]:[80.80.80.2]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65003 i</code></div>
+<div class="line"><code class="plain">Route Distinguisher: 10.0.0.4:10100</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:08]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65004 i</code></div>
+<div class="line"><code class="plain">*  [2]:[0]:[0]:[48]:[00:02:00:00:00:08]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65004 i</code></div>
+<div class="line"><code class="plain">*  [3]:[0]:[32]:[80.80.80.2]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65004 i</code></div>
+<div class="line"><code class="plain">*&gt; [3]:[0]:[32]:[80.80.80.2]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65004 i</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">(truncated)</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">Displayed 15 prefixes (26 paths)</code></div>
+</div>
+    </div>
+    <div class="section section-3" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-OutputExplained">
+        <h3 class="heading "><span>Output Explained</span></h3>
+<ul class=" "><li class=" ">    <p  >The output <tt class=" ">*&gt; [3]:[0]:[32]:[10.0.0.14] </tt>is explained as follows:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Output    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Explanation    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >[3]    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Type 3 EVPN route    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >[0]    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Ethernet tag    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >[32]    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >IP address length of 32 bits    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >10.0.0.14    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >IPv4 address originating this route    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+</li></ul>    </div>
+    </div>
+    <div class="section section-2" id="src-5126939_safe-id-RXRoZXJuZXRWaXJ0dWFsUHJpdmF0ZU5ldHdvcmstRVZQTi1EaXNwbGF5aW5nRVZQTlR5cGUtMihNQUMvSVApUm91dGVz">
+        <h2 class="heading "><span>Displaying EVPN Type-2 (MAC/IP) Routes</span></h2>
+    <p  >To display only EVPN type-2 (MAC/IP) routes, run <tt class=" ">show bgp evpn route type macip</tt>. The output displays the EVPN route-type fields followed by type-specific fields:    </p>
+<ul class=" "><li class=" ">    <p  >Type 2 route: [type]:[ESI]:[ET]:[MAC length]:[MAC]    </p>
+</li><li class=" ">    <p  >Type 2 route with ARP suppression: [type]:[ESI]:[ET]:[MAC length]:[MAC]:[IP length]:[IP]    </p>
+<ul class=" "><li class=" ">    <p  >The Ethernet Segment Id (ESI) and Ethernet Tag (ET) are always 0.    </p>
+</li></ul></li><li class=" ">    <p  >Type 3 route: [type]:[ET]:[Originating Router IP]    </p>
+<ul class=" "><li class=" ">    <p  >The Ethernet Tag (ET) is always 0.    </p>
+</li><li class=" ">    <p  >The &quot;Originating Router IP&quot; is the VTEP local IP for the corresponding VNI.    </p>
+</li></ul></li></ul>    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01# show bgp evpn route type macip</code></div>
+<div class="line"><code class="plain">BGP table version is 0, local router ID is 10.0.0.1</code></div>
+<div class="line"><code class="plain">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal</code></div>
+<div class="line"><code class="plain">Origin codes: i - IGP, e - EGP, ? - incomplete</code></div>
+<div class="line"><code class="plain">EVPN type-2 prefix: [2]:[ESI]:[EthTag]:[MAClen]:[MAC]</code></div>
+<div class="line"><code class="plain">EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]</code></div>
+<div class="line"><code class="plain">   Network          Next Hop            Metric LocPrf Weight Path</code></div>
+<div class="line"><code class="plain">Route Distinguisher: 10.0.0.1:10100</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:03]</code></div>
+<div class="line"><code class="plain">                    80.80.80.1                         32768 i</code></div>
+<div class="line"><code class="plain">Route Distinguisher: 10.0.0.1:10200</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:01]</code></div>
+<div class="line"><code class="plain">                    80.80.80.1                         32768 i</code></div>
+<div class="line"><code class="plain">Route Distinguisher: 10.0.0.3:10100</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:08]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65003 i</code></div>
+<div class="line"><code class="plain">*  [2]:[0]:[0]:[48]:[00:02:00:00:00:08]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65003 i</code></div>
+<div class="line"><code class="plain">Route Distinguisher: 10.0.0.4:10100</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:08]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65004 i</code></div>
+<div class="line"><code class="plain">*  [2]:[0]:[0]:[48]:[00:02:00:00:00:08]</code></div>
+<div class="line"><code class="plain">                    80.80.80.2                             0 65100 65004 i</code></div>
+<div class="line"><code class="plain">Route Distinguisher: 10.0.0.6:10200</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:0b]</code></div>
+<div class="line"><code class="plain">                    10.0.0.6                               0 65100 65006 i</code></div>
+<div class="line"><code class="plain">*  [2]:[0]:[0]:[48]:[00:02:00:00:00:0b]</code></div>
+<div class="line"><code class="plain">                    10.0.0.6                               0 65100 65006 i</code></div>
+<div class="line"><code class="plain">Displayed 5 prefixes (8 paths) (of requested type)</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-DisplayingaSpecificEVPNRoute">
+        <h2 class="heading "><span>Displaying a Specific EVPN Route</span></h2>
+    <p  >To drill down on a specific route for more information, run the <tt class=" ">show bgp evpn route rd &lt;VTEP:VXLAN&gt;</tt> command. The following example shows leaf01 receiving a type-2 route and a type-3 route from two spine switches (s1 and s2). The actual remote VTEP is 80.80.80.2, specified in the next hop of the route. Both routes contain the BGP Encapsulation extended community (ET) with value 8 (VxLAN); the type-2 route also carries the VNI (10100).    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01# show bgp evpn route rd 10.0.0.4:10100</code></div>
+<div class="line"><code class="plain">EVPN type-2 prefix: [2]:[ESI]:[EthTag]:[MAClen]:[MAC]</code></div>
+<div class="line"><code class="plain">EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">BGP routing table entry for 10.0.0.4:10100:[2]:[0]:[0]:[48]:[00:02:00:00:00:08]</code></div>
+<div class="line"><code class="plain">Paths: (2 available, best #1)</code></div>
+<div class="line"><code class="plain">  Advertised to non peer-group peers:</code></div>
+<div class="line"><code class="plain">  s1(swp1) s2(swp2)</code></div>
+<div class="line"><code class="plain">  Route [2]:[0]:[0]:[48]:[00:02:00:00:00:08] VNI 10100</code></div>
+<div class="line"><code class="plain">  65100 65004</code></div>
+<div class="line"><code class="plain">    80.80.80.2 from s1(swp1) (20.0.0.1)</code></div>
+<div class="line"><code class="plain">      Origin IGP, localpref 100, valid, external, bestpath-from-AS 65100, best</code></div>
+<div class="line"><code class="plain">      Extended Community: RT:65004:10100 ET:8</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 0, TX 45</code></div>
+<div class="line"><code class="plain">      Last update: Thu Jan 12 19:42:58 2017</code></div>
+<div class="line"><code class="plain">  Route [2]:[0]:[0]:[48]:[00:02:00:00:00:08] VNI 10100</code></div>
+<div class="line"><code class="plain">  65100 65004</code></div>
+<div class="line"><code class="plain">    80.80.80.2 from s2(swp2) (20.0.0.2)</code></div>
+<div class="line"><code class="plain">      Origin IGP, localpref 100, valid, external</code></div>
+<div class="line"><code class="plain">      Extended Community: RT:65004:10100 ET:8</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 0, TX 44</code></div>
+<div class="line"><code class="plain">      Last update: Thu Jan 12 19:42:58 2017</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">BGP routing table entry for 10.0.0.4:10100:[3]:[0]:[32]:[80.80.80.2]</code></div>
+<div class="line"><code class="plain">Paths: (2 available, best #2)</code></div>
+<div class="line"><code class="plain">  Advertised to non peer-group peers:</code></div>
+<div class="line"><code class="plain">  s1(swp1) s2(swp2)</code></div>
+<div class="line"><code class="plain">  Route [3]:[0]:[32]:[80.80.80.2]</code></div>
+<div class="line"><code class="plain">  65100 65004</code></div>
+<div class="line"><code class="plain">    80.80.80.2 from s2(swp2) (20.0.0.2)</code></div>
+<div class="line"><code class="plain">      Origin IGP, localpref 100, valid, external</code></div>
+<div class="line"><code class="plain">      Extended Community: RT:65004:10100 ET:8</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 0, TX 31</code></div>
+<div class="line"><code class="plain">      Last update: Thu Jan 12 19:04:36 2017</code></div>
+<div class="line"><code class="plain">  Route [3]:[0]:[32]:[80.80.80.2]</code></div>
+<div class="line"><code class="plain">  65100 65004</code></div>
+<div class="line"><code class="plain">    80.80.80.2 from s1(swp1) (20.0.0.1)</code></div>
+<div class="line"><code class="plain">      Origin IGP, localpref 100, valid, external, bestpath-from-AS 65100, best</code></div>
+<div class="line"><code class="plain">      Extended Community: RT:65004:10100 ET:8</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 0, TX 28</code></div>
+<div class="line"><code class="plain">      Last update: Thu Jan 12 19:04:35 2017</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Displayed 2 prefixes (4 paths) with this RD</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<ul class=" "><li class=" ">    <p  >Though the local VNI is included in the type-2 route, the receiver does not use it. It uses the received RT to match the route to an appropriate local VNI and then assumes the remote VTEP uses the same VNI value &mdash; that is, global VNIs are in use.    </p>
+</li><li class=" ">    <p  >If MAC mobility extended community is exchanged, it gets shown in the above output.    </p>
+</li><li class=" ">    <p  >If the remote MAC is dual attached, the next hop for the EVPN route is the anycast IP address of the remote <a   href="Multi-Chassis_Link_Aggregation_-_MLAG.html">MLAG</a> pair (when MLAG is active). You can see this in the above example, where 80.80.80.2 is actually the anycast IP of the MLAG pair.    </p>
+</li></ul>        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-Displayingtheper-VNIEVPNRoutingTable">
+        <h2 class="heading "><span>Displaying the per-VNI EVPN Routing Table</span></h2>
+    <p  >Received EVPN routes are maintained in the global EVPN routing table (described above), even if there are no appropriate local VNIs to <strong class=" ">import</strong> them into. For example, a spine switch maintains the global EVPN routing table even though there are no VNIs present on it. When local VNIs are present, received EVPN routes are imported into the per-VNI routing tables based on the route target attributes. The per-VNI routing table can be examined using <tt class=" ">show bgp evpn route vni &lt;vni&gt; [type &lt;multicast | macip&gt;]</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01# show bgp evpn route vni 10200</code></div>
+<div class="line"><code class="plain">BGP table version is 0, local router ID is 10.0.0.1</code></div>
+<div class="line"><code class="plain">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal</code></div>
+<div class="line"><code class="plain">Origin codes: i - IGP, e - EGP, ? - incomplete</code></div>
+<div class="line"><code class="plain">EVPN type-2 prefix: [2]:[ESI]:[EthTag]:[MAClen]:[MAC]</code></div>
+<div class="line"><code class="plain">EVPN type-3 prefix: [3]:[ESI]:[EthTag]:[IPlen]:[OrigIP]</code></div>
+<div class="line"><code class="plain">   Network          Next Hop            Metric LocPrf Weight Path</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:02]</code></div>
+<div class="line"><code class="plain">                    10.0.0.1                           32768 i</code></div>
+<div class="line"><code class="plain">*  [2]:[0]:[0]:[48]:[00:02:00:00:00:08]</code></div>
+<div class="line"><code class="plain">                    10.0.0.4                               0 121000 120004 i</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:08]</code></div>
+<div class="line"><code class="plain">                    10.0.0.4                               0 121000 120004 i</code></div>
+<div class="line"><code class="plain">*&gt; [3]:[0]:[32]:[10.0.0.1]</code></div>
+<div class="line"><code class="plain">                    10.0.0.1                           32768 i</code></div>
+<div class="line"><code class="plain">*  [3]:[0]:[32]:[10.0.0.2]</code></div>
+<div class="line"><code class="plain">                    10.0.0.2                               0 121000 120002 i</code></div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Displayed 6 prefixes (10 paths)</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-DisplayingaSpecificMACorRemoteVTEP">
+        <h2 class="heading "><span>Displaying a Specific MAC or Remote VTEP</span></h2>
+    <p  >You can examine a specific MAC or IP (remote VTEP):    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01# show bgp evpn route vni 10100 mac 00:02:00:00:00:05</code></div>
+<div class="line"><code class="plain">BGP routing table entry for [2]:[0]:[0]:[48]:[00:02:00:00:00:05]</code></div>
+<div class="line"><code class="plain">Paths: (2 available, best #2)</code></div>
+<div class="line"><code class="plain">  Not advertised to any peer</code></div>
+<div class="line"><code class="plain">  Route [2]:[0]:[0]:[48]:[00:02:00:00:00:05] VNI 10100</code></div>
+<div class="line"><code class="plain">  Imported from 10.0.0.3:10100:[2]:[0]:[0]:[48]:[00:02:00:00:00:05]</code></div>
+<div class="line"><code class="plain">  121000 120003</code></div>
+<div class="line"><code class="plain">    10.0.0.3 from s2(swp2) (20.0.0.2)</code></div>
+<div class="line"><code class="plain">      Origin IGP, localpref 100, valid, external</code></div>
+<div class="line"><code class="plain">      Extended Community: RT:120003:10100 ET:8</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 0, TX 44</code></div>
+<div class="line"><code class="plain">      Last update: Thu Feb  9 08:16:57 2017</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  Route [2]:[0]:[0]:[48]:[00:02:00:00:00:05] VNI 10100</code></div>
+<div class="line"><code class="plain">  Imported from 10.0.0.3:10100:[2]:[0]:[0]:[48]:[00:02:00:00:00:05]</code></div>
+<div class="line"><code class="plain">  121000 120003</code></div>
+<div class="line"><code class="plain">    10.0.0.3 from s1(swp1) (20.0.0.1)</code></div>
+<div class="line"><code class="plain">      Origin IGP, localpref 100, valid, external, bestpath-from-AS 121000, best</code></div>
+<div class="line"><code class="plain">      Extended Community: RT:120003:10100 ET:8</code></div>
+<div class="line"><code class="plain">      AddPath ID: RX 0, TX 42</code></div>
+<div class="line"><code class="plain">      Last update: Thu Feb  9 08:16:57 2017</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Displayed 2 paths for requested prefix</code></div>
+</div>
+    </div>
+    <p  >To display the VNI routing table for all VNIs, run <tt class=" ">show bgp evpn route vni all</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ sudo vtysh</code></div>
+<div class="line"><code class="plain">leaf01# show bgp evpn route vni all</code></div>
+<div class="line"><code class="plain">VNI: 10200</code></div>
+<div class="line"><code class="plain">BGP table version is 0, local router ID is 10.0.0.1</code></div>
+<div class="line"><code class="plain">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal</code></div>
+<div class="line"><code class="plain">Origin codes: i - IGP, e - EGP, ? - incomplete</code></div>
+<div class="line"><code class="plain">EVPN type-2 prefix: [2]:[ESI]:[EthTag]:[MAClen]:[MAC]</code></div>
+<div class="line"><code class="plain">EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]</code></div>
+<div class="line"><code class="plain">   Network          Next Hop            Metric LocPrf Weight Path</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:02]</code></div>
+<div class="line"><code class="plain">                    10.0.0.1                           32768 i</code></div>
+<div class="line"><code class="plain">*  [2]:[0]:[0]:[48]:[00:02:00:00:00:08]</code></div>
+<div class="line"><code class="plain">                    10.0.0.4                               0 65100 65004 i</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:08]</code></div>
+<div class="line"><code class="plain">                    10.0.0.4                               0 65100 65004 i</code></div>
+<div class="line"><code class="plain">*&gt; [3]:[0]:[32]:[10.0.0.1]</code></div>
+<div class="line"><code class="plain">                    10.0.0.1                           32768 i</code></div>
+<div class="line"><code class="plain">*  [3]:[0]:[32]:[10.0.0.2]</code></div>
+<div class="line"><code class="plain">                    10.0.0.2                               0 65100 65002 i</code></div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Displayed 6 prefixes (10 paths)</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">VNI: 10100</code></div>
+<div class="line"><code class="plain">BGP table version is 0, local router ID is 10.0.0.1</code></div>
+<div class="line"><code class="plain">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal</code></div>
+<div class="line"><code class="plain">Origin codes: i - IGP, e - EGP, ? - incomplete</code></div>
+<div class="line"><code class="plain">EVPN type-2 prefix: [2]:[ESI]:[EthTag]:[MAClen]:[MAC]</code></div>
+<div class="line"><code class="plain">EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]</code></div>
+<div class="line"><code class="plain">   Network          Next Hop            Metric LocPrf Weight Path</code></div>
+<div class="line"><code class="plain">*&gt; [2]:[0]:[0]:[48]:[00:02:00:00:00:01]</code></div>
+<div class="line"><code class="plain">                    10.0.0.1                           32768 i</code></div>
+<div class="line"><code class="plain">*  [2]:[0]:[0]:[48]:[00:02:00:00:00:07]</code></div>
+<div class="line"><code class="plain">                    10.0.0.4                               0 65100 65004 i</code></div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">*&gt; [3]:[0]:[32]:[10.0.0.4]</code></div>
+<div class="line"><code class="plain">                    10.0.0.4                               0 65100 65004 i</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Displayed 6 prefixes (10 paths)</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-TroubleshootingEVPN">
+        <h1 class="heading "><span>Troubleshooting EVPN</span></h1>
+    <p  >The primary way to troubleshoot EVPN is by enabling Quagga debug logs. The relevant debug options are:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">debug zebra vxlan</tt> &mdash; which traces VNI addition and deletion (local and remote) as well as MAC and neighbor addition and deletion (local and remote).    </p>
+</li><li class=" ">    <p  ><tt class=" ">debug zebra kernel</tt> &mdash; which traces actual netlink messages exchanged with the kernel, which includes everything, not just EVPN.    </p>
+</li><li class=" ">    <p  ><tt class=" ">debug bgp updates</tt> &mdash; which traces BGP update exchanges, including all updates. Output is extended to show EVPN specific information.    </p>
+</li><li class=" ">    <p  ><tt class=" ">debug bgp zebra</tt> - which traces interactions between BGP and zebra for EVPN (and other) routes.    </p>
+</li></ul>    </div>
+    <div class="section section-1" id="src-5126939_EthernetVirtualPrivateNetwork-EVPN-Caveats">
+        <h1 class="heading "><span>Caveats</span></h1>
+    <p  >The following caveat applies to EVPN in Cumulus Linux 3.2.x:    </p>
+<ul class=" "><li class=" ">    <p  >Only VNI values less than 65535 are supported.    </p>
+</li><li class=" ">    <p  >EVPN in Cumulus Linux does not support the ability to only announce certain VNIs. It supports either all locally defined VNIs (using the configuration specified here) or none of them. Provisioning options to advertise only specific VNIs will be introduced in a future release.    </p>
+</li><li class=" ">    <p  >Only one import or export RT is allowed for a VNI. Support for additional RTs (for import) will be introduced in a future release.    </p>
+</li><li class=" ">    <p  >Support for one shot configuration of import and export RTs, using <tt class=" ">route-target both &lt;rt&gt;</tt> will be added in a future release.    </p>
+</li></ul>    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Static_MAC_Bindings_with_VXLAN.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Static MAC Bindings with VXLAN</span>
+        </a>
+                <a href="VXLAN_Hyperloop.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>VXLAN Hyperloop</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

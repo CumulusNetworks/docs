@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Upgrading Cumulus Linux - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Installation_Management.html">Installation Management</a></li>
+                                                                                     <li><a href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126827"> <span>Upgrading Cumulus Linux</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  >Cumulus Networks software melds the Linux host world with the networking devices world. Each world comes with its own paradigm on how to upgrade software. Before we discuss the various ways to upgrade Cumulus Linux switches, let's review the general considerations and strategies used to upgrade network devices and Linux hosts.    </p>
+    <div class="section section-1" id="src-5126827_UpgradingCumulusLinux-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126827_safe-id-VXBncmFkaW5nQ3VtdWx1c0xpbnV4LVVwZ3JhZGVzOkNvbXBhcmluZ3RoZU5ldHdvcmtEZXZpY2VXb3JsZHZpZXd2cy50aGVMaW51eEhvc3RXb3JsZHZpZXc">
+        <h1 class="heading "><span>Upgrades: Comparing the Network Device Worldview vs. the Linux Host Worldview</span></h1>
+    <div class="section section-2" id="src-5126827_UpgradingCumulusLinux-Manualvs.AutomatedConfiguration">
+        <h2 class="heading "><span>Manual vs. Automated Configuration</span></h2>
+    <p  >Historically, <i class=" ">network devices</i> were configured in place, and most network devices required customized configurations, which led predominantly to configuring the hardware manually. A lack of standardization between vendors, device types, and device roles hampered the development of APIs and automation tools. However, in the case of very large data centers, configurations became uniform and repeatable, and therefore scriptable. Some larger enterprises had to develop their own custom scripts to roll out data center network configurations. Virtually no industry-standard provisioning tools existed.    </p>
+    <p  >In contrast to data center network devices, <i class=" ">Linux hosts</i> in the data center number in the thousands and tend to have similar configurations. This increased scale led Linux sysadmins long ago to move to common tools to automate installation and configuration, since manually installing and configuring hosts did not work at the scale of a data center. Nearly all tasks are done via commonly available provisioning and orchestration tools.    </p>
+    </div>
+    <div class="section section-2" id="src-5126827_UpgradingCumulusLinux-Pre-deploymentTestingofProductionEnvironments">
+        <h2 class="heading "><span>Pre-deployment Testing of Production Environments</span></h2>
+    <p  >Historically, the cost of <i class=" ">network device</i> testing has been hampered by the cost of a single device. Setting up an appropriately sized lab topology can be very expensive. As a result, it is difficult to do comprehensive topology-based testing of a release before deploying it. Thus, many network admins cannot or will not do comprehensive system testing of a new release before deploying it.    </p>
+    <p  >Alternatively, the cost of a <i class=" ">Linux host</i> is cheap (or nearly free when using virtualization), so rigorous testing of a release before deploying it is not encumbered by budgeting concerns. Most sysadmins extensively test new releases in the complete application environment.    </p>
+    </div>
+    <div class="section section-2" id="src-5126827_UpgradingCumulusLinux-LocationsofConfigurationDatavs.Executables">
+        <h2 class="heading "><span>Locations of Configuration Data vs. Executables</span></h2>
+    <p  ><i class=" ">Network devices</i> generally separate configuration data from the executable code. On bootup, the executable code looks into a different file system and retrieves the configuration file or files, parses the text and uses that data to configure the software options for each software subsystem. The model is very centralized, with the executables generally being packaged together, and the configuration data following a set of rules that can be read by a centralized parser. Each vendor controls the configuration format for the entire box, since each vendor generally supports only their own software. This made sense since the platform was designed as an application-specific appliance.    </p>
+    <p  >Since a <i class=" ">Linux host</i> is a general purpose platform, with applications running on top of it, the locations of the files are much more distributed. Applications install and read their configuration data from text files usually stored in the /etc directory tree. Executables are generally stored in one of several <i class=" ">bin</i> directories, but the bin and etc directories are often on the same physical device. Since each <i class=" ">module</i> (application or executable) was often developed by a different organization and shared with the world, each module was responsible for its own configuration data format. Most applications are community supported, and while there are some generally accepted guiding principles on how their configuration data is formatted, no central authority exists to control or ensure compliance.    </p>
+    </div>
+    <div class="section section-2" id="src-5126827_UpgradingCumulusLinux-UpgradeProcedure">
+        <h2 class="heading "><span>Upgrade Procedure</span></h2>
+    <p  >Both network admins and sysadmins generally plan upgrades only to gain new functionality or to get bug fixes when the workarounds become too onerous. The goal is to reduce the number of upgrades as much as possible.    </p>
+    <p  >The <i class=" ">network device</i> upgrade paradigm is to leave the configuration data in place, and <i class=" ">replace the executable files</i> either all at once from a single binary image or in large chunks (subsystems). A full release upgrade comes with risk due to unexpected behavior changes in subsystems where the admin did not anticipate or need changes.    </p>
+    <p  >The <i class=" ">Linux host</i> upgrade paradigm is to independently <i class=" ">upgrade a small list of packages</i> while leaving most of the OS untouched. Changing a small list of packages reduces the risk of unintended consequences. Usually upgrades are a &quot;forward only&quot; paradigm, where the sysadmins generally plan to move to the latest code within the same major release when needed. Every few years, when a new kernel train is released, a major upgrade is planned. A major upgrade involves wiping and replacing the entire OS and migrating configuration data.    </p>
+    </div>
+    <div class="section section-2" id="src-5126827_UpgradingCumulusLinux-RollbackProcedure">
+        <h2 class="heading "><span>Rollback Procedure</span></h2>
+    <p  >Even the most well planned and tested upgrades can result in unforeseen problems, and sometimes the best solution to new problems is to roll back to the previous state.    </p>
+    <p  >Since <i class=" ">network devices</i> clearly separate data and executables, generally the process is to <i class=" ">overwrite the new release executable</i> with the previously running executable. If the configuration was changed by the newer release, then you either have to manually back out or repair the changes, or restore from an already backed up configuration.    </p>
+    <p  >The <i class=" ">Linux host</i> scenario can be more complicated. There are three main approaches:    </p>
+<ul class=" "><li class=" ">    <p  >Back out individual packages: If the problematic package is identified, the sysadmin can downgrade the affected package directly. In rare cases the configuration files may have to be restored from backup, or edited to back out any changes that were automatically made by the upgrade package.    </p>
+</li><li class=" ">    <p  >Flatten and rebuild: If the OS becomes unusable, you can use orchestration tools to reinstall the previous OS release from scratch and then automatically rebuild the configuration.    </p>
+</li><li class=" ">    <p  >Backup and restore: Another common strategy is to restore to a previous state via a backup captured before the upgrade.    </p>
+</li></ul>    </div>
+    <div class="section section-2" id="src-5126827_UpgradingCumulusLinux-ThirdPartyPackages">
+        <h2 class="heading "><span>Third Party Packages</span></h2>
+    <p  >Third party packages are rare in the <i class=" ">network device</i> world. Because the network OS is usually proprietary, third party packages are usually packaged by the network device vendor and upgrades of those packages is handled by the network device upgrade system.    </p>
+    <p  >Third party packages in <i class=" ">Linux host</i> world often use the same package system as the distribution into which it is to be installed (for example, Debian uses <tt class=" ">apt-get</tt>). Or the package may be compiled and installed by the sysadmin. Configuration and executable files generally follow the same filesystem hierarchy standards as other applications.    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126827_safe-id-VXBncmFkaW5nQ3VtdWx1c0xpbnV4LVVwZ3JhZGluZ0N1bXVsdXNMaW51eERldmljZXM6U3RyYXRlZ2llc2FuZFByb2Nlc3Nlcw">
+        <h1 class="heading "><span>Upgrading Cumulus Linux Devices: Strategies and Processes</span></h1>
+    <p  >Because Cumulus Linux is both Linux <i class=" ">and</i> a network device, it has characteristics of both paradigms. The following describes the Cumulus Linux paradigm with respect to upgrade planning and execution.    </p>
+    <div class="section section-2" id="src-5126827_UpgradingCumulusLinux-AutomatedConfigurationIsPreferredoverManualConfiguration">
+        <h2 class="heading "><span>Automated Configuration Is Preferred over Manual Configuration</span></h2>
+    <p  >Because Cumulus Linux <i class=" ">is</i> Linux, Cumulus Networks recommends that even with small networks or test labs, network admins should make the jump to deploy, provision, configure, and upgrade switches using automation from the very beginning. The small up front investment of time spent learning an orchestration tool, even to provision a small number of Cumulus Linux devices, will pay back dividends for a long time. The biggest gain is realized during the upgrade process, where the network admin can quickly upgrade dozens of devices in a repeatable manner.    </p>
+    <p  >Switches, like servers, should be treated like <i class=" "><a  class="external-link" href="https://www.google.com/search?q=cattle+not+pets">cattle, not pets</a>.</i>    </p>
+    </div>
+    <div class="section section-2" id="src-5126827_UpgradingCumulusLinux-outofbandOut-of-BandManagementIsWorththeInvestment">
+        <h2 class="heading "><span id="src-5126827_UpgradingCumulusLinux-outofband" class="confluence-anchor-link"></span><span>Out-of-Band Management Is Worth the Investment</span></h2>
+    <p  >Because network devices are reachable via the IP addresses on the front panel ports, many network admins of small-to-medium sized networks use <i class=" ">in-band</i> networks to manage their switches. In this design, management traffic like SSH, SNMP, and console server connections use the same networks that regular network traffic traverses &mdash; there is no separation between the <i class=" ">management plane</i> and the <i class=" ">data plane</i>. Larger data centers create a separate <i class=" ">out-of-band</i> network with a completely separate subnet and reachability path to attach to the management ports &mdash; that is accessible via eth0 and the serial console.    </p>
+    <p  >This is a situation where smaller companies should learn from the big companies. A separate management network isn't free, but it is relatively cheap. With an inexpensive <a  class="external-link" href="https://cumulusnetworks.com/rmp">Cumulus RMP</a> management switch, an inexpensive console server, and a separate cable path, up to 48 devices can be completely controlled via the out-of-band network in the case of a network emergency.    </p>
+    <p  >There are many scenarios where in-band networking can fail and leave the network admin waiting for someone to drive to the data center or remote site to connect directly to the console of a misconfigured or failing device. The cost of one outage would usually more than pay for the investment in a separate network. For even more security, attach remote-controllable power distribution units (PDUs) in each rack to the management network, so you can have complete control to remote power cycle every device in that rack.    </p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >However, if an out-of-band network is not available for you to upgrade, you can use <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/articles/215453578">the dtach tool</a> instead to upgrade in band.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126827_UpgradingCumulusLinux-Pre-DeploymentTestingofNewReleasesIsAdvisedandEnabled">
+        <h2 class="heading "><span>Pre-Deployment Testing of New Releases Is Advised and Enabled </span></h2>
+    <p  >White box switches and virtualization (Cumulus VX) bring the cost of networking devices down, so the ability for network admins to test their own procedures, configurations, applications, and network topology in an appropriately-sized lab topology becomes extremely affordable.    </p>
+    </div>
+    <div class="section section-2" id="src-5126827_safe-id-VXBncmFkaW5nQ3VtdWx1c0xpbnV4LVVuZGVyc3RhbmRpbmdMb2NhdGlvbnNVbmRlcnN0YW5kaW5ndGhlTG9jYXRpb25zb2ZDb25maWd1cmF0aW9uRGF0YWlzUmVxdWlyZWRmb3JTdWNjZXNzZnVsVXBncmFkZXMsTWlncmF0aW9uLGFuZEJhY2t1cA">
+        <h2 class="heading "><span id="src-5126827_UpgradingCumulusLinux-UnderstandingLocations" class="confluence-anchor-link"></span><span>Understanding the Locations of Configuration Data is Required for Successful Upgrades, Migration, and Backup</span></h2>
+    <p  >As with other Linux distributions, the <tt class=" ">/etc</tt><span id="src-5126827_indexterm-F0373DE76B8374C6F7890C1FB50EFAD1"> directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that should be backed up and migrated to a new release, but any file that has been changed would need to be examined. Cumulus Networks </span>recommends you consider making the following files and directories part of a backup strategy.    </p>
+    <div class="section section-3" id="src-5126827_UpgradingCumulusLinux-NetworkConfigurationFiles">
+        <h3 class="heading "><span>Network Configuration Files</span></h3>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >File Name and Location    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Explanation    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Cumulus Linux Documentation    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Debian Documentation    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/network/    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Network configuration files, most notably <tt class=" ">/etc/network/interfaces</tt> and <tt class=" ">/etc/network/interfaces.d/</tt>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a   href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://wiki.debian.org/NetworkConfiguration">wiki.debian.org/NetworkConfiguration</a>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/resolv.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >DNS resolution    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Not unique to Cumulus Linux: <a  class="external-link" href="https://wiki.debian.org/NetworkConfiguration#The_resolv.conf_configuration_file">wiki.debian.org/NetworkConfiguration#The_resolv.conf_configuration_file</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://www.debian.org/doc/manuals/debian-reference/ch05.en.html">www.debian.org/doc/manuals/debian-reference/ch05.en.html</a>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/quagga/    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Routing application (responsible for BGP and OSPF)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a   href="Quagga_Overview.html">Quagga Overview</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://packages.debian.org/wheezy/quagga">packages.debian.org/wheezy/quagga</a>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/hostname    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configuration file for the hostname of the switch    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a   href="Quick_Start_Guide.html#src-5126745_QuickStartGuide-ConfiguringtheHostnameandTimeZone">Quick Start Guide#ConfiguringtheHostnameandTimeZone</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://wiki.debian.org/HowTo/ChangeHostname">wiki.debian.org/HowTo/ChangeHostname</a>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/cumulus/acl/*    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Netfilter configuration    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a   href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://wiki.debian.org/Permissions#Access_Control_Lists_in_Linux">Access Control Lists in Linux</a>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/cumulus/ports.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Breakout cable configuration file    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a   href="Layer_1_and_Switch_Port_Attributes.html#src-5126996_Layer1andSwitchPortAttributes-ConfiguringBreakoutPorts">Layer 1 and Switch Port Attributes#ConfiguringBreakoutPorts</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >N/A; please read the guide on breakout cables    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/cumulus/switchd.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Switchd configuration    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a   href="Configuring_switchd.html">Configuring switchd</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >N/A; please read the guide on switchd configuration    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-3" id="src-5126827_UpgradingCumulusLinux-AdditionalCommonlyUsedFiles">
+        <h3 class="heading "><span>Additional Commonly Used Files</span></h3>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >File Name and Location    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Explanation    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Cumulus Linux Documentation    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Debian Documentation    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/motd    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Message of the day    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Not unique to Cumulus Linux    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://wiki.debian.org/motd#Wheezy">wiki.debian.org/motd#Wheezy</a>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/passwd    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >User account information    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Not unique to Cumulus Linux    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">www.debian.org/doc/manuals/debian-reference/ch04.en.html</a>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/shadow    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Secure user account information    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Not unique to Cumulus Linux    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">www.debian.org/doc/manuals/debian-reference/ch04.en.html</a>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/group    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Defines user groups on the switch    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Not unique to Cumulus Linux    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">www.debian.org/doc/manuals/debian-reference/ch04.en.html</a>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/lldpd.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Link Layer Discover Protocol (LLDP) daemon configuration    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a   href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://packages.debian.org/wheezy/lldpd">packages.debian.org/wheezy/lldpd</a>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/lldpd.d/    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configuration directory for <tt class=" ">lldpd</tt>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a   href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://packages.debian.org/wheezy/lldpd">packages.debian.org/wheezy/lldpd</a>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/nsswitch.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Name Service Switch (NSS) configuration file    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a   href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://wiki.debian.org/LDAP/NSS">wiki.debian.org/LDAP/NSS</a>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/ssh/    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >SSH configuration files    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a   href="SSH_for_Remote_Access.html">SSH for Remote Access</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://wiki.debian.org/SSH">wiki.debian.org/SSH</a>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/ldap/ldap.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Lightweight Directory Access Protocol configuration file    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a   href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">www.debian.org/doc/manuals/debian-reference/ch04.en.html</a>    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<ul class=" "><li class=" ">    <p  >If you are using the root user account, consider including <tt class=" ">/root/</tt>.    </p>
+</li><li class=" ">    <p  >If you have custom user accounts, consider including <tt class=" ">/home/&lt;username&gt;/</tt>.    </p>
+</li></ul>    </div>
+    <div class="section section-3" id="src-5126827_UpgradingCumulusLinux-FilesToNeverMigrateFilesThatShouldNeverBeMigratedBetweenVersionsorBoxes">
+        <h3 class="heading "><span id="src-5126827_UpgradingCumulusLinux-FilesToNeverMigrate" class="confluence-anchor-link"></span><span>Files That Should Never Be Migrated Between Versions or Boxes</span></h3>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >File Name and Location    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Explanation    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/adjtime    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >System clock adjustment data. NTP manages this automatically. It is incorrect when the switch hardware is replaced. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/bcm.d/    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Per-platform hardware configuration directory, created on first boot. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/mlx/    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Per-platform hardware configuration directory, created on first boot. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/blkid.tab    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Partition table. It should not be modified manually. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/blkid.tab.old    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >A previous partition table; it should not be modified manually. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/cumulus/init    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Platform hardware-specific files. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/default/clagd    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Created and managed by <tt class=" ">ifupdown2</tt>. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/default/grub    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Grub <tt class=" ">init</tt> table; it should not be modified manually.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/default/hwclock    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Platform hardware-specific file. Created during first boot. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/init    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Platform initialization files. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/init.d/    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Platform initialization files. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/fstab    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Static info on filesystem. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/image-release    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >System version data. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/os-release    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >System version data. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/lsb-release    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >System version data. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/lvm/archive    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Filesystem files. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/lvm/backup    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Filesystem files. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/modules    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Created during first boot. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/modules-load.d/    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Created during first boot. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/sensors.d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Platform-specific sensor data. Created during first boot. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/root/.ansible    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Ansible tmp files. Do not copy.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/home/cumulus/.ansible    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Ansible tmp files. Do not copy.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126827_UpgradingCumulusLinux-UpgradingSwitchesinanMLAGPair">
+        <h2 class="heading "><span>Upgrading Switches in an MLAG Pair</span></h2>
+    <p  >If you have a pair of Cumulus Linux switches as part of an <a   href="Multi-Chassis_Link_Aggregation_-_MLAG.html">MLAG (multi-chassis link aggregation) pair</a>, you should only upgrade each switch when it is in the <i class=" ">secondary role</i>.    </p>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If you are upgrading from Cumulus Linux 2.y.z to Cumulus Linux 3.y.z, during the time when one switch in the pair is on Cumulus Linux 3.y.z and the other switch in the pair is on Cumulus Linux 2.y.z, a complete outage occurs on these switches and their associated network segments.    </p>
+        </div>
+    </div>
+    <p  >The upgrade path is as follows:    </p>
+<ol class=" "><li class=" ">    <p  >Upgrade Cumulus Linux on the switch already in the secondary role. This is the switch with the higher <tt class=" ">clagd-priority</tt> value.    </p>
+</li><li class=" ">    <p  >Set the switch in the secondary role into the primary role by setting its <tt class=" ">clagd-priority</tt> to a value lower than the <tt class=" ">clagd-priority</tt> setting on the switch in the primary role.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo clagctl priority VALUE </code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Upgrade the switch that just took on the secondary role.    </p>
+</li><li class=" ">    <p  >Put that switch into the primary role again, if you so choose.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo clagctl priority VALUE</code></div>
+</div>
+    </div>
+</li></ol>    <p  >For more information about setting the priority, see <a   href="Multi-Chassis_Link_Aggregation_-_MLAG.html#src-5126854_Multi-ChassisLinkAggregation-MLAG-roles">Understanding Switch Roles</a>.    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126827_safe-id-VXBncmFkaW5nQ3VtdWx1c0xpbnV4LVVwZ3JhZGluZ0N1bXVsdXNMaW51eDpDaG9vc2luZ2JldHdlZW5hQmluYXJ5SW5zdGFsbHZzLlBhY2thZ2VVcGdyYWRl">
+        <h1 class="heading "><span>Upgrading Cumulus Linux: Choosing between a Binary Install vs. Package Upgrade</span></h1>
+    <p  >Network admins have two ways to upgrade Cumulus Linux:    </p>
+<ul class=" "><li class=" ">    <p  >Upgrading only the changed packages, using <tt class=" ">apt-get update</tt> and <tt class=" ">apt-get upgrade</tt>. <strong class=" ">This is the preferred method</strong>.    </p>
+</li><li class=" ">    <p  >Performing a binary (full image) install of the new version, using ONIE. This is used when moving between major versions or if you want to install a clean image.    </p>
+</li></ul>    <p  >There are advantages and disadvantages to using these methods, which are outlined below.    </p>
+    <div class="section section-2" id="src-5126827_safe-id-VXBncmFkaW5nQ3VtdWx1c0xpbnV4LWFwdF91cGdyYWRlVXBncmFkaW5nVXNpbmdQYWNrYWdlSW5zdGFsbHMoYXB0LWdldHVwZGF0ZSYmYXB0LWdldHVwZ3JhZGUp">
+        <h2 class="heading "><span id="src-5126827_UpgradingCumulusLinux-apt_upgrade" class="confluence-anchor-link"></span><span>Upgrading Using Package Installs (apt-get update &amp;&amp; apt-get upgrade)</span></h2>
+    <p  >Pros:    </p>
+<ul class=" "><li class=" ">    <p  >Configuration data stays in place while the packages are upgraded.    </p>
+</li><li class=" ">    <p  >Third-party apps stay in place.    </p>
+</li></ul>    <p  >Cons:    </p>
+<ul class=" "><li class=" ">    <p  >This method works only if you are upgrading to a later minor release (like 3.1.x to 3.2.y), or to a later maintenance release from an earlier version of that minor release (for example, 2.5.2 to 2.5.5 or 3.0.0 to 3.0.1).    </p>
+</li><li class=" ">    <p  >Rollback is quite difficult and tedious.    </p>
+</li><li class=" ">    <p  >You can't choose the exact release version that you want to run.    </p>
+</li><li class=" ">    <p  >When you upgrade, you upgrade all packages to the latest available version.    </p>
+</li><li class=" ">    <p  >The upgrade process takes a while to complete, and various switch functions may be intermittently available during the upgrade.    </p>
+</li><li class=" ">    <p  >Some upgrade operations will terminate SSH sessions on the in-band (front panel) ports, leaving the user unable to monitor the upgrade process. As a workaround, use the <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/articles/215453578">dtach tool</a>.    </p>
+</li><li class=" ">    <p  >Just like the binary install method, you may have to reboot after the upgrade, lengthening the downtime.    </p>
+</li><li class=" ">    <p  >After you upgrade, user names and group names created by packages may be different on different switches, depending the configuration and package installation history.    </p>
+</li></ul>    <p  >To upgrade the switch by updating the packages:    </p>
+<ol class=" "><li class=" ">    <p  >Back up the configurations off the switch.    </p>
+</li><li class=" ">    <p  >Fetch the latest update meta-data from the repository.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch$ sudo apt-get update</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Upgrade all the packages to the latest distribution.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch$ sudo apt-get upgrade</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Reboot the switch if the upgrade messages indicate that a system restart is required.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch$ sudo apt-get upgrade</code></div>
+<div class="line"><code class="plain">      ... upgrade messages here ...</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">*** System restart required ***</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus@switch$ sudo reboot</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Verify correct operation with the old configurations on new version.    </p>
+</li></ol>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If you are curious about which packages will be upgraded, use <tt class=" ">apt-get upgrade --dry-run</tt>. This displays the list of packages that will be upgraded without upgrading anything.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >After you successfully upgrade Cumulus Linux, you may notice some some results that you may or may not have expected:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">apt-get upgrade</tt> always updates the operating system to the most current version, so if you are currently running Cumulus Linux 3.0.1 and run <tt class=" ">apt-get upgrade</tt> on that switch, the packages will get upgraded to the latest versions contained in the latest 3.y.z release.    </p>
+</li><li class=" ">    <p  >When you run <tt class=" ">cat /etc/image-release</tt>, the output still shows the version of Cumulus Linux from the last binary install. So if you installed Cumulus Linux 3.1.0 as a full image install and then upgraded to 3.2.0 using <tt class=" ">apt-get upgrade</tt>, the output from <tt class=" ">/etc/image-release</tt> still shows: <tt class=" ">IMAGE_RELEASE=3.0.0</tt>. To see the current version of all the Cumulus Linux packages running on the switch, use <tt class=" ">dpkg --list</tt> or <tt class=" ">dpkg -l</tt>.    </p>
+</li></ul>        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126827_safe-id-VXBncmFkaW5nQ3VtdWx1c0xpbnV4LWJpbmFyeV91cGdyYWRlVXBncmFkaW5ndmlhQmluYXJ5SW5zdGFsbChPTklFKQ">
+        <h2 class="heading "><span id="src-5126827_UpgradingCumulusLinux-binary_upgrade" class="confluence-anchor-link"></span><span>Upgrading via Binary Install (ONIE)</span></h2>
+    <p  >Pros:    </p>
+<ul class=" "><li class=" ">    <p  >You choose the exact version that you want to upgrade to.    </p>
+</li><li class=" ">    <p  >This is the only method for upgrading to a new major (X.0) version. For example, when you are upgrading from 2.5.5 to 3.0.    </p>
+</li></ul>    <p  >Cons:    </p>
+<ul class=" "><li class=" ">    <p  >Configuration data must be moved to the new OS via ZTP while the OS is first booted, or soon afterwards via out-of-band management.    </p>
+</li><li class=" ">    <p  >Moving the configuration file can go wrong in various ways:    </p>
+<ul class=" "><li class=" ">    <p  >Identifying all the locations of config data is not always an easy task. See section above on <a   href="#src-5126827_UpgradingCumulusLinux-UnderstandingLocations">Understanding the Locations of Configuration Data</a>.    </p>
+</li><li class=" ">    <p  >Config file changes in the new version may cause merge conflicts that go undetected.    </p>
+</li></ul></li><li class=" ">    <p  >If config files aren't restored correctly, the user may be unable to attach to the switch from in-band management. Hence, out-of-band connectivity (eth0 or console) is recommended.    </p>
+</li><li class=" ">    <p  >The installer takes a while to complete.    </p>
+</li><li class=" ">    <p  >Third-party apps must be reinstalled and reconfigured afterwards.    </p>
+</li></ul>    <p  >To upgrade the switch by running a binary install:    </p>
+<ol class=" "><li class=" ">    <p  >Back up the configurations off the switch.    </p>
+</li><li class=" ">    <p  >Install the binary image, following the instructions at <a   href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>.    </p>
+</li><li class=" ">    <p  >Restore the configuration files to the new version &mdash; ideally via automation.    </p>
+</li><li class=" ">    <p  >Verify correct operation with the old configurations on the new version.    </p>
+</li><li class=" ">    <p  >Reinstall third party apps and associated configurations.    </p>
+</li></ol>    </div>
+    </div>
+    <div class="section section-1" id="src-5126827_UpgradingCumulusLinux-RollingBackaCumulusLinuxInstallation">
+        <h1 class="heading "><span>Rolling Back a Cumulus Linux Installation</span></h1>
+    <p  >Rolling back to an earlier release after upgrading the packages on the switch follows the same procedure as described for the Linux host OS rollback above. There are three main strategies, and all require detailed planning and execution:    </p>
+<ul class=" "><li class=" ">    <p  >Back out individual packages: If the problematic package is identified, the network admin can downgrade the affected package directly. In rare cases the configuration files may have to be restored from backup, or edited to back out any changes that were automatically made by the upgrade package.    </p>
+</li><li class=" ">    <p  >Flatten and rebuild: If the OS becomes unusable, you can use orchestration tools to reinstall the previous OS release from scratch and then automatically rebuild the configuration.    </p>
+</li><li class=" ">    <p  >Backup and restore: Another common strategy is to restore to a previous state via a backup captured before the upgrade.    </p>
+</li></ul>    <p  >Which method you employ is specific to your deployment strategy, so providing detailed steps for each scenario is outside the scope of this document.    </p>
+    </div>
+    <div class="section section-1" id="src-5126827_UpgradingCumulusLinux-ThirdPartyPackageConsiderations">
+        <h1 class="heading "><span>Third Party Package Considerations</span></h1>
+    <p  >Note that if you install any third party apps on a Cumulus Linux switch, any configuration data will likely be installed into the <tt class=" ">/etc</tt> directory, but it is not guaranteed. It is the responsibility of the network admin to understand the behavior and config file information of any third party packages installed on a Cumulus Linux switch.    </p>
+    <p  >After you upgrade the OS using a full binary install, you will need to reinstall any third party packages or any Cumulus Linux add-on packages, such as <tt class=" ">vxsnd</tt> or <tt class=" ">vxrd</tt>.    </p>
+    </div>
+    <div class="section section-1" id="src-5126827_UpgradingCumulusLinux-InstallationandUpgradeWorkflowinCumulusLinux3.0andLater">
+        <h1 class="heading "><span>Installation and Upgrade Workflow in Cumulus Linux 3.0 and Later</span></h1>
+    <p  >Beginning with version 3.0, Cumulus Linux completely embraces the Linux and Debian upgrade workflow. In this paradigm, a base image is installed using an installer, then any upgrades within that release train (major version, like 3.y.z) are done using <tt class=" ">apt-get update &amp;&amp; apt-get upgrade</tt>. Any packages that have been changed since the base install get upgraded in place from the repository.    </p>
+    <p  >The huge advantage of this approach is that all switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.    </p>
+    <p  >However, when upgrading a switch from a previous release train &mdash; for example, Cumulus Linux 2.5 &mdash; a mechanism is required to migrate the configuration files over to the new installation. This is the perfect opportunity to use automation and orchestration tools to backup the configuration files, examine them to verify correctness with the new version, and then to redeploy the configuration files on the new installation.    </p>
+    </div>
+    <div class="section section-1" id="src-5126827_UpgradingCumulusLinux-UsingSnapshotsduringUpgrades">
+        <h1 class="heading "><span>Using Snapshots during Upgrades</span></h1>
+    <p  ><a   href="Using_Snapshots.html">Snapshots</a> can aid you when upgrading the switch operating system. Cumulus Linux takes two snapshots automatically during the upgrade, one right before you run <tt class=" ">apt-get upgrade</tt>, and one right after. This way, if something goes wrong with the upgrade, or you need to revert to the earlier version, you can roll back to the snapshot.    </p>
+    </div>
+    <div class="section section-1" id="src-5126827_UpgradingCumulusLinux-CaveatsWhenMigratingConfigurationFilesBetweenCumulusLinux2.5.zand3.0andLater">
+        <h1 class="heading "><span>Caveats When Migrating Configuration Files Between Cumulus Linux 2.5.z and 3.0 and Later</span></h1>
+    <p  >Generally, the configuration files in Cumulus Linux 2.5.z should be able to migrate to version 3.0 or later without any problems, but there are some known issues listed below and there may be additional issues with a customer's particular setup.    </p>
+    <p  >Known caveats when migrating files from version 2.x to 3.0 or later:    </p>
+<ul class=" "><li class=" ">    <p  >Some configuration files should never be migrated between versions or while replacing hardware. The <a   href="#src-5126827_UpgradingCumulusLinux-FilesToNeverMigrate">Files that Should Never be Migrated</a> table above contains a list of files that should never be migrated.    </p>
+</li><li class=" ">    <p  ><tt class=" ">/etc/passwd</tt> and <tt class=" ">/etc/shadow</tt> should not be migrated to the new version directly. The example below and the ansible script included with <a  class="external-link" href="https://github.com/CumulusNetworks/config-backup-upgrade-helper">Config File Migration Script </a>explicitly excludes these two files from the backup archive. The default password for the <i class=" ">cumulus</i> user must be changed, and any locally created users should be added to the new installation after the upgrade completes.    </p>
+</li><li class=" ">    <p  ><tt class=" ">/etc/apt/sources.list</tt> must be completely updated with a new 3.0 or later repository and repository structure. Repositories from Cumulus Linux 2.5 must be removed. If there are any custom repositories on the switch, they need to be migrated into the new <tt class=" ">sources.list</tt> file or the <tt class=" ">sources.d/</tt> directory.    </p>
+</li></ul>    </div>
+    <div class="section section-1" id="src-5126827_UpgradingCumulusLinux-UsingtheConfigFileMigrationScripttoIdentifyandMoveFilestoCumulusLinux3.0andLater">
+        <h1 class="heading "><span>Using the Config File Migration Script to Identify and Move Files to Cumulus Linux 3.0 and Later</span></h1>
+    <p  >You can use the <a  class="external-link" href="https://github.com/CumulusNetworks/config-backup-upgrade-helper">Config File Migration Script </a>with the <tt class=" ">--backup</tt> option to create a backup archive of configuration files in version 2.5, copy them off the box, then install them on the new version switch. Note that you need to follow the previous section about caveats when migrating configuration files.    </p>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >You <strong class=" ">cannot</strong> use the Config File Migration Script to upgrade from Cumulus Linux 3.0.0 to 3.0.1. Use <tt class=" ">apt-get</tt> instead, as documented in the <a  class="external-link" href="https://cumulusnetworks.zendesk.com/hc/en-us/articles/232013208">release notes</a>.    </p>
+        </div>
+    </div>
+    <p  >The following example excludes <tt class=" ">/etc/apt</tt>, <tt class=" ">/etc/passwd</tt> and <tt class=" ">/etc/shadow</tt> from the backup archive.    </p>
+<ol class=" "><li class=" ">    <p  >Back up the version 2.5.z files.    </p>
+    <p  ><strong class=" ">Optional:</strong> Use the Ansible playbook included with the <a  class="external-link" href="https://github.com/CumulusNetworks/config-backup-upgrade-helper">Config File Migration script</a> to automate the backup of all your Cumulus Linux 2.5 switches. See the section below on <a   href="#src-5126827_UpgradingCumulusLinux-Using_Automation_Tools">Using Automation Tools to Backup Configurations</a> for more details.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># Make a temp dir</code></div>
+<div class="line"><code class="plain">loc=$(mktemp -d)</code></div>
+<div class="line"><code class="plain"># Create a backup archive to the temp dir</code></div>
+<div class="line"><code class="plain">sudo ./config_file_changes --backup --backup_dir $loc --exclude /etc/apt,/etc/passwd,/etc/shadow</code></div>
+<div class="line"><code class="plain"># Copy the archive and log file to an external server</code></div>
+<div class="line"><code class="plain">sudo scp -r $loc/* user@my_external_server:.</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  ><a   href="Installing_a_New_Cumulus_Linux_Image.html">Install Cumulus Linux 3.0 or later onto the switch using ONIE</a>.    </p>
+</li><li class=" ">    <p  >Reinstall the files from the config file archive to the newly installed switch.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># On the switch, copy the config file archive back from the server:</code></div>
+<div class="line"><code class="plain">scp user@my_external_server:PATH/SWITCHNAME-config-archive-DATE_TIME.tar.gz .</code></div>
+<div class="line"><code class="plain"># Untar the archive to the root of the box</code></div>
+<div class="line"><code class="plain">sudo tar -C / -xvf SWITCHNAME-config-archive-DATE_TIME.tar.gz</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Be aware that version 2.5.z configurations are not guaranteed to work in Cumulus Linux 3.0 or later. You should test the restoration and proper operation of the Cumulus Linux 2.5.z configuration in Cumulus Linux 3.0 or later on a non-production switch or in a Cumulus VX image, since every deployment is unique.    </p>
+        </div>
+    </div>
+</li></ol>    </div>
+    <div class="section section-1" id="src-5126827_UpgradingCumulusLinux-Using_Automation_ToolsUsingAutomationToolstoBackUp2.5.zConfigurations">
+        <h1 class="heading "><span id="src-5126827_UpgradingCumulusLinux-Using_Automation_Tools" class="confluence-anchor-link"></span><span>Using Automation Tools to Back Up 2.5.z Configurations</span></h1>
+    <p  >Adopting the use of orchestration tools like Ansible, Chef or Puppet for configuration management greatly increases the speed and accuracy of the next major upgrade; they also enable the quick swap of failed switch hardware. Included with the <a  class="external-link" href="https://github.com/CumulusNetworks/config-backup-upgrade-helper">Config Migration Script</a> is an Ansible playbook that can be used to create a backup archive of Cumulus Linux 2.5.z switch configuration files and to retrieve them to a central server &mdash; automating step 1 of the previous section for all deployed Cumulus Linux 2.5.z switches. This is a quick start on the road to setting up automated configuration and control for your deployment. For more details on integrating automation into your Cumulus Linux deployment, see the <a  class="external-link" href="https://cumulusnetworks.com/solutions/automation/">Automation Solutions section</a> on cumulusnetworks.com.    </p>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Installing_a_New_Cumulus_Linux_Image.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Installing a New Cumulus Linux Image</span>
+        </a>
+                <a href="Using_Snapshots.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Using Snapshots</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

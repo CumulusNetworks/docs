@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Network Troubleshooting | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <link rel="alternate" type="application/rss+xml" href="http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Network_Troubleshooting/index.xml" title="Cumulus Networks Documentation" />
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Network Troubleshooting</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Network Troubleshooting</h1>
+
+<p>Cumulus Linux contains a number of command line and analytical tools to
+help you troubleshoot issues with your network.</p>
+
+<h2 id="commands">Commands</h2>
+
+<ul>
+<li><p>arp</p></li>
+
+<li><p>cl-acltool</p></li>
+
+<li><p>ip</p></li>
+
+<li><p>mz</p></li>
+
+<li><p>ping</p></li>
+
+<li><p>tcpdump</p></li>
+
+<li><p>traceroute</p></li>
+</ul>
+
+<h2 id="checking-reachability-using-ping">Checking Reachability Using ping</h2>
+
+<p><code>ping</code> is used to check reachability of a host. <code>ping</code> also calculates
+the time it takes for packets to travel the round trip. See <code>man ping</code>
+for details.</p>
+
+<p>To test the connection to an IPv4 host:</p>
+
+<pre><code>cumulus@switch:~$ ping 192.0.2.45
+PING 192.0.2.45 (192.0.2.45) 56(84) bytes of data.
+64 bytes from 192.0.2.45: icmp_req=1 ttl=53 time=40.4 ms
+64 bytes from 192.0.2.45: icmp_req=2 ttl=53 time=39.6 ms
+...
+</code></pre>
+
+<p>To test the connection to an IPv6 host:</p>
+
+<pre><code>cumulus@switch:~$ ping6 -I swp1 2001::db8:ff:fe00:2
+PING 2001::db8:ff:fe00:2(2001::db8:ff:fe00:2) from 2001::db8:ff:fe00:1 swp1: 56 data bytes
+64 bytes from 2001::db8:ff:fe00:2: icmp_seq=1 ttl=64 time=1.43 ms
+64 bytes from 2001::db8:ff:fe00:2: icmp_seq=2 ttl=64 time=0.927 ms
+</code></pre>
+
+<h2 id="printing-route-trace-using-traceroute">Printing Route Trace Using traceroute</h2>
+
+<p><code>traceroute</code> tracks the route that packets take from an IP network on
+their way to a given host. See <code>man traceroute</code> for details.</p>
+
+<p>To track the route to an IPv4 host:</p>
+
+<pre><code>cumulus@switch:~$ traceroute www.google.com
+traceroute to www.google.com (74.125.239.49), 30 hops max, 60 byte packets
+1  cumulusnetworks.com (192.168.1.1)  0.614 ms  0.863 ms  0.932 ms
+...
+5  core2-1-1-0.pao.net.google.com (198.32.176.31)  22.347 ms  22.584 ms  24.328 ms
+6  216.239.49.250 (216.239.49.250)  24.371 ms  25.757 ms  25.987 ms
+7  72.14.232.35 (72.14.232.35)  27.505 ms  22.925 ms  22.323 ms
+8  nuq04s19-in-f17.1e100.net (74.125.239.49)  23.544 ms  21.851 ms  22.604 ms
+</code></pre>
+
+<h2 id="manipulating-the-system-arp-cache">Manipulating the System ARP Cache</h2>
+
+<p><code>arp</code> manipulates or displays the kernel’s IPv4 network neighbor cache.
+See <code>man arp</code> for details.</p>
+
+<p>To display the ARP cache:</p>
+
+<pre><code>cumulus@switch:~$ arp -a
+? (11.0.2.2) at 00:02:00:00:00:10 [ether] on swp3
+? (11.0.3.2) at 00:02:00:00:00:01 [ether] on swp4
+? (11.0.0.2) at 44:38:39:00:01:c1 [ether] on swp1
+</code></pre>
+
+<p>To delete an ARP cache entry:</p>
+
+<pre><code>cumulus@switch:~$ arp -d 11.0.2.2
+cumulus@switch:~$ arp -a
+? (11.0.2.2) at &lt;incomplete&gt; on swp3
+? (11.0.3.2) at 00:02:00:00:00:01 [ether] on swp4
+? (11.0.0.2) at 44:38:39:00:01:c1 [ether] on swp1
+</code></pre>
+
+<p>To add a static ARP cache entry:</p>
+
+<pre><code>cumulus@switch:~$ arp -s 11.0.2.2 00:02:00:00:00:10
+cumulus@switch:~$ arp -a
+? (11.0.2.2) at 00:02:00:00:00:10 [ether] PERM on swp3
+? (11.0.3.2) at 00:02:00:00:00:01 [ether] on swp4
+? (11.0.0.2) at 44:38:39:00:01:c1 [ether] on swp1
+</code></pre>
+
+<h2 id="generating-traffic-using-mz">Generating Traffic Using mz</h2>
+
+<p><code>mz</code> is a fast traffic generator. It can generate a large variety of
+packet types at high speed. See <code>man mz</code> for details.</p>
+
+<p>For example, to send two sets of packets to TCP port 23 and 24, with
+source IP 11.0.0.1 and destination 11.0.0.2, do the following:</p>
+
+<pre><code>cumulus@switch:~$ sudo mz swp1 -A 11.0.0.1 -B 11.0.0.2 -c 2 -v -t tcp &quot;dp=23-24&quot;
+
+Mausezahn 0.40 - (C) 2007-2010 by Herbert Haas - http://www.perihel.at/sec/mz/
+Use at your own risk and responsibility!
+-- Verbose mode --
+
+This system supports a high resolution clock.
+ The clock resolution is 4000250 nanoseconds.
+Mausezahn will send 4 frames...
+ IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
+      payload=[see next layer]
+ TCP: sp=0, dp=23, S=42, A=42, flags=0, win=10000, len=20, sum=0,
+      payload=
+
+ IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
+      payload=[see next layer]
+ TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,
+      payload=
+
+ IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
+      payload=[see next layer]
+ TCP: sp=0, dp=23, S=42, A=42, flags=0, win=10000, len=20, sum=0,
+      payload=
+
+ IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
+      payload=[see next layer]
+ TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,
+      payload=
+</code></pre>
+
+<h2 id="creating-counter-acl-rules">Creating Counter ACL Rules</h2>
+
+<p>In Linux, all ACL rules are always counted. To create an ACL rule for
+counting purposes only, set the rule action to ACCEPT. See the
+<a href="/Netfilter_-_ACLs.html">Netfilter</a> chapter for details on how to use
+<code>cl-acltool</code> to set up iptables-/ip6tables-/ebtables-based ACLs.</p>
+
+
+<div class="notices note" > <p>Always place your rules files under <code>/etc/cumulus/acl/policy.d/</code>.</p>
+ </div>
+
+
+<p>To count all packets going to a Web server:</p>
+
+<pre><code>cumulus@switch:~$ cat sample_count.rules
+
+[iptables]
+-A FORWARD -p tcp --dport 80 -j ACCEPT
+
+cumulus@switch:~$ sudo cl-acltool -i -p sample_count.rules
+Using user provided rule file sample_count.rules
+Reading rule file sample_count.rules ...
+Processing rules in file sample_count.rules ...
+Installing acl policy... done.
+
+cumulus@switch:~$ sudo iptables -L -v
+Chain INPUT (policy ACCEPT 16 packets, 2224 bytes)
+pkts bytes target     prot opt in     out     source               destination
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+pkts bytes target     prot opt in     out     source               destination
+   2   156 ACCEPT     tcp  --  any    any     anywhere             anywhere             tcp dpt:http
+
+Chain OUTPUT (policy ACCEPT 44 packets, 8624 bytes)
+pkts bytes target     prot opt in     out     source               destination
+</code></pre>
+
+
+<div class="notices warning" > <p>The <code>-p</code> option clears out all other rules, and the <code>-i</code> option is used
+to reinstall all the rules.</p>
+ </div>
+
+
+<h2 id="configuring-span-and-erspan">Configuring SPAN and ERSPAN</h2>
+
+<p>SPAN (Switched Port Analyzer) provides for the mirroring of all packets
+coming in from or going out of an interface (the <em>SPAN source</em>), and
+being copied and transmitted out of a local port (the <em>SPAN
+destination</em>) for monitoring. The SPAN destination port is also referred
+to as a mirror-to-port (MTP). The original packet is still switched,
+while a mirrored copy of the packet is sent out of the MTP.</p>
+
+<p>ERSPAN (Encapsulated Remote SPAN) enables the mirrored packets to be
+sent to a monitoring node located anywhere across the routed network.
+The switch finds the outgoing port of the mirrored packets by doing a
+lookup of the destination IP address in its routing table. The original
+L2 packet is encapsulated with GRE for IP delivery. The encapsulated
+packets have the following format:</p>
+
+<pre><code> ----------------------------------------------------------
+| MAC_HEADER | IP_HEADER | GRE_HEADER | L2_Mirrored_Packet |
+ ----------------------------------------------------------
+</code></pre>
+
+
+<div class="notices note" > <p>Mirrored traffic is not guaranteed. If the MTP is congested, mirrored
+packets may be discarded.</p>
+ </div>
+
+
+<p>SPAN and ERSPAN are configured via <code>cl-acltool</code>, the <a href="/Netfilter_-_ACLs.html">same utility for
+security ACL configuration</a>. The match criteria
+for SPAN and ERSPAN is usually an interface; for more granular match
+terms, use <a href="/#src-5118232_NetworkTroubleshooting-selective_spanning">selective
+spanning</a>. The
+SPAN source interface can be a port, a subinterface or a bond interface.
+Both ingress and egress traffic on interfaces can be matched.</p>
+
+<p>Cumulus Linux supports a maximum of 2 SPAN destinations. Multiple rules
+(SPAN sources) can point to the same SPAN destination, although a given
+SPAN source cannot specify 2 SPAN destinations. The SPAN destination
+(MTP) interface can be a physical port, a subinterface, or a bond
+interface. The SPAN/ERSPAN action is independent of security ACL
+actions. If packets match both a security ACL rule and a SPAN rule, both
+actions will be carried out.</p>
+
+
+<div class="notices note" > <p>Always place your rules files under <code>/etc/cumulus/acl/policy.d/</code>.</p>
+ </div>
+
+
+<h3 id="configuring-span-for-switch-ports">Configuring SPAN for Switch Ports</h3>
+
+<p>This section describes how to set up, install, verify and uninstall SPAN
+rules. In the examples that follow, you will span (mirror) switch port
+swp4 input traffic and swp4 output traffic to destination switch port
+swp19.</p>
+
+<p>First, create a rules file in <code>/etc/cumulus/acl/policy.d/</code>:</p>
+
+<pre><code>cumulus@switch:~$ sudo bash -c 'cat &lt;&lt;EOF &gt; /etc/cumulus/acl/policy.d/span.rules 
+[iptables]
+-A FORWARD --in-interface swp4 -j SPAN --dport swp19
+-A FORWARD --out-interface swp4 -j SPAN --dport swp19
+EOF'
+</code></pre>
+
+
+<div class="notices note" > <p>Using <code>cl-acltool</code> with the <code>--out-interface</code> rule applies to transit
+traffic only; it does not apply to traffic sourced from the switch.</p>
+ </div>
+
+
+<p>Next, verify all the rules that are currently installed:</p>
+
+<pre><code>cumulus@switch:~$ sudo iptables -L -v
+Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 DROP       all  --  swp+   any     240.0.0.0/5          anywhere            
+    0     0 DROP       all  --  swp+   any     loopback/8           anywhere            
+    0     0 DROP       all  --  swp+   any     base-address.mcast.net/8  anywhere            
+    0     0 DROP       all  --  swp+   any     255.255.255.255      anywhere            
+    0     0 SETCLASS   ospf --  swp+   any     anywhere             anywhere             SETCLASS  class:7
+    0     0 POLICE     ospf --  any    any     anywhere             anywhere             POLICE  mode:pkt rate:2000 burst:2000
+    0     0 SETCLASS   tcp  --  swp+   any     anywhere             anywhere             tcp dpt:bgp SETCLASS  class:7
+    0     0 POLICE     tcp  --  any    any     anywhere             anywhere             tcp dpt:bgp POLICE  mode:pkt rate:2000 burst:2000
+    0     0 SETCLASS   tcp  --  swp+   any     anywhere             anywhere             tcp spt:bgp SETCLASS  class:7
+    0     0 POLICE     tcp  --  any    any     anywhere             anywhere             tcp spt:bgp POLICE  mode:pkt rate:2000 burst:2000
+    0     0 SETCLASS   tcp  --  swp+   any     anywhere             anywhere             tcp dpt:5342 SETCLASS  class:7
+    0     0 POLICE     tcp  --  any    any     anywhere             anywhere             tcp dpt:5342 POLICE  mode:pkt rate:2000 burst:2000
+    0     0 SETCLASS   tcp  --  swp+   any     anywhere             anywhere             tcp spt:5342 SETCLASS  class:7
+    0     0 POLICE     tcp  --  any    any     anywhere             anywhere             tcp spt:5342 POLICE  mode:pkt rate:2000 burst:2000
+    0     0 SETCLASS   icmp --  swp+   any     anywhere             anywhere             SETCLASS  class:2
+    0     0 POLICE     icmp --  any    any     anywhere             anywhere             POLICE  mode:pkt rate:100 burst:40
+   15  5205 SETCLASS   udp  --  swp+   any     anywhere             anywhere             udp dpts:bootps:bootpc SETCLASS  class:2
+   11  3865 POLICE     udp  --  any    any     anywhere             anywhere             udp dpt:bootps POLICE  mode:pkt rate:100 burst:100
+    0     0 POLICE     udp  --  any    any     anywhere             anywhere             udp dpt:bootpc POLICE  mode:pkt rate:100 burst:100
+    0     0 SETCLASS   tcp  --  swp+   any     anywhere             anywhere             tcp dpts:bootps:bootpc SETCLASS  class:2
+    0     0 POLICE     tcp  --  any    any     anywhere             anywhere             tcp dpt:bootps POLICE  mode:pkt rate:100 burst:100
+    0     0 POLICE     tcp  --  any    any     anywhere             anywhere             tcp dpt:bootpc POLICE  mode:pkt rate:100 burst:100
+   17  1088 SETCLASS   igmp --  swp+   any     anywhere             anywhere             SETCLASS  class:6
+   17  1156 POLICE     igmp --  any    any     anywhere             anywhere             POLICE  mode:pkt rate:300 burst:100
+  394 41060 POLICE     all  --  swp+   any     anywhere             anywhere             ADDRTYPE match dst-type LOCAL POLICE  mode:pkt rate:1000 burst:1000 class:0
+    0     0 POLICE     all  --  swp+   any     anywhere             anywhere             ADDRTYPE match dst-type IPROUTER POLICE  mode:pkt rate:400 burst:100 class:0
+  988  279K SETCLASS   all  --  swp+   any     anywhere             anywhere             SETCLASS  class:0
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 DROP       all  --  swp+   any     240.0.0.0/5          anywhere            
+    0     0 DROP       all  --  swp+   any     loopback/8           anywhere            
+    0     0 DROP       all  --  swp+   any     base-address.mcast.net/8  anywhere            
+    0     0 DROP       all  --  swp+   any     255.255.255.255      anywhere            
+26864 4672K SPAN       all  --  swp4   any     anywhere             anywhere             dport:swp19  &lt;---- input packets on swp4
+
+40722   47M SPAN       all  --  any    swp4    anywhere             anywhere             dport:swp19  &lt;---- output packets on swp4
+
+
+Chain OUTPUT (policy ACCEPT 67398 packets, 5757K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+</code></pre>
+
+<p>Install the rules:</p>
+
+<pre><code>cumulus@switch:~$ sudo cl-acltool -i 
+[sudo] password for cumulus:
+Reading rule file /etc/cumulus/acl/policy.d/00control_plane.rules ...
+Processing rules in file /etc/cumulus/acl/policy.d/00control_plane.rules ...
+Reading rule file /etc/cumulus/acl/policy.d/99control_plane_catch_all.rules ...
+Processing rules in file /etc/cumulus/acl/policy.d/99control_plane_catch_all.rules ...
+Reading rule file /etc/cumulus/acl/policy.d/span.rules ...
+Processing rules in file /etc/cumulus/acl/policy.d/span.rules ...
+Installing acl policy
+done.
+</code></pre>
+
+
+<div class="notices warning" > <p>Running the following command is incorrect and will remove <strong>all</strong>
+existing control-plane rules or other installed rules and only install
+the rules defined in <code>span.rules</code>:</p>
+
+<pre><code>cumulus@switch:~$ sudo cl-acltool -i  -P /etc/cumulus/acl/policy.d/span.rules
+</code></pre>
+ </div>
+
+
+<p>Verify that the SPAN rules were installed:</p>
+
+<pre><code>cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
+38025 7034K SPAN       all  --  swp4   any     anywhere             anywhere             dport:swp19
+50832   55M SPAN       all  --  any    swp4    anywhere             anywhere             dport:swp19
+</code></pre>
+
+<h3 id="configuring-span-for-bonds">Configuring SPAN for Bonds</h3>
+
+<p>This section describes how to configure SPAN for all packets going out
+of <code>bond0</code> locally to <code>bond1</code>.</p>
+
+<p>First, create a rules file in <code>/etc/cumulus/acl/policy.d/</code>:</p>
+
+<pre><code>cumulus@switch:~$ sudo bash -c 'cat &lt;&lt;EOF &gt; /etc/cumulus/acl/policy.d/span_bond.rules 
+[iptables]
+-A FORWARD --out-interface bond0 -j SPAN --dport bond1
+EOF'
+</code></pre>
+
+
+<div class="notices note" > <p>Using <code>cl-acltool</code> with the <code>--out-interface</code> rule applies to transit
+traffic only; it does not apply to traffic sourced from the switch.</p>
+ </div>
+
+
+<p>Install the rules:</p>
+
+<pre><code>cumulus@switch:~$ sudo cl-acltool -i 
+[sudo] password for cumulus:
+Reading rule file /etc/cumulus/acl/policy.d/00control_plane.rules ...
+Processing rules in file /etc/cumulus/acl/policy.d/00control_plane.rules ...
+Reading rule file /etc/cumulus/acl/policy.d/99control_plane_catch_all.rules ...
+Processing rules in file /etc/cumulus/acl/policy.d/99control_plane_catch_all.rules ...
+Reading rule file /etc/cumulus/acl/policy.d/span_bond.rules ...
+Processing rules in file /etc/cumulus/acl/policy.d/span_bond.rules ...
+Installing acl policy
+done.
+</code></pre>
+
+<p>Verify that the SPAN rules were installed:</p>
+
+<pre><code>cumulus@switch:~$ sudo iptables -L -v | grep SPAN
+   19  1938 SPAN       all  --  any    bond0   anywhere             anywhere             dport:bond1
+</code></pre>
+
+<h3 id="configuring-erspan">Configuring ERSPAN</h3>
+
+<p>This section describes how to configure ERSPAN for all packets coming in
+from <code>swp1</code> to 12.0.0.2:</p>
+
+<p>First, create a rules file in <code>/etc/cumulus/acl/policy.d/</code>:</p>
+
+<pre><code>cumulus@switch:~$ sudo bash -c 'cat &lt;&lt;EOF &gt; /etc/cumulus/acl/policy.d/erspan.rules 
+[iptables]
+-A FORWARD --in-interface swp1 -j ERSPAN --src-ip 12.0.0.1 --dst-ip 12.0.0.2  --ttl 64
+EOF'
+</code></pre>
+
+<p>Install the rules:</p>
+
+<pre><code>cumulus@switch:~$ sudo cl-acltool -i
+Reading rule file /etc/cumulus/acl/policy.d/00control_plane.rules ...
+Processing rules in file /etc/cumulus/acl/policy.d/00control_plane.rules ...
+Reading rule file /etc/cumulus/acl/policy.d/99control_plane_catch_all.rules ...
+Processing rules in file /etc/cumulus/acl/policy.d/99control_plane_catch_all.rules ...
+Reading rule file /etc/cumulus/acl/policy.d/erspan.rules ...
+Processing rules in file /etc/cumulus/acl/policy.d/erspan.rules ...
+Installing acl policy
+done.
+</code></pre>
+
+<p>Verify that the ERSPAN rules were installed:</p>
+
+<pre><code>cumulus@switch:~$ sudo iptables -L -v | grep SPAN
+   69  6804 ERSPAN     all  --  swp1   any     anywhere             anywhere             ERSPAN src-ip:12.0.0.1 dst-ip:12.0.0.2
+</code></pre>
+
+<p>The <code>src-ip</code> option can be any IP address, whether it exists in the
+routing table or not. The <code>dst-ip</code> option must be an IP address
+reachable via the routing table. The destination IP address must be
+reachable from a front-panel port, and not the management port. Use
+<code>ping</code> or <code>ip route get &lt;ip&gt;</code> to verify that the destination IP address
+is reachable. Setting the <code>--ttl</code> option is recommended.</p>
+
+
+<div class="notices note" > <p>When using <a href="https://www.wireshark.org" target="_blank">Wireshark</a> to review the ERSPAN
+output, Wireshark may report the message &ldquo;Unknown version, please report
+or test to use fake ERSPAN preference&rdquo;, and the trace is unreadable. To
+resolve this, go into the General preferences for Wireshark, then go to
+<strong>Protocols</strong> &gt; <strong>ERSPAN</strong> and check the <strong>Force to decode fake ERSPAN
+frame</strong> option.</p>
+ </div>
+
+
+<h3 id="selective-spanning">Selective Spanning</h3>
+
+<p>SPAN/ERSPAN traffic rules can be configured to limit the traffic that is
+spanned, to reduce the volume of copied data.</p>
+
+
+<div class="notices note" > <p>Cumulus Linux 3.0 supports selective spanning for iptables only.
+ip6ables and ebtables are not supported.</p>
+ </div>
+
+
+<p>The following matching fields are supported:</p>
+
+<ul>
+<li><p>IPv4 SIP/DIP</p></li>
+
+<li><p>IP protocol</p></li>
+
+<li><p>L4 (TCP/UDP) src/dst port</p></li>
+
+<li><p>TCP flags</p></li>
+
+<li><p>An ingress port/wildcard (swp+) can be specified in addition</p></li>
+</ul>
+
+
+<div class="notices note" > <p>Only two unique mirror targets are supported in a given rule set.</p>
+ </div>
+
+
+<h4 id="span-examples">SPAN Examples</h4>
+
+<ul>
+<li><p>To mirror forwarded packets from all ports matching SIP 20.0.1.0 and
+DIP 20.0.1.2 to port swp1s1:</p>
+
+<pre><code>-A FORWARD --in-interface swp+ -s 20.0.0.2 -d 20.0.1.2 -j SPAN --dport swp1s2
+</code></pre></li>
+
+<li><p>To mirror icmp packets from all ports to swp1s2:</p>
+
+<pre><code>-A FORWARD --in-interface swp+ -s 20.0.0.2 -p icmp -j SPAN --dport swp1s2
+</code></pre></li>
+
+<li><p>To mirror forwarded UDP packets received from port swp1s0, towards
+DIP 20.0.1.2 and destination port 53:</p>
+
+<pre><code>-A FORWARD --in-interface swp1s0 -d 20.0.1.2 -p udp --dport 53 -j SPAN --dport swp1s2
+</code></pre></li>
+
+<li><p>To mirror all forwarded TCP packets with only SYN set:</p>
+
+<pre><code>-A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL SYN -j SPAN --dport swp1s2
+</code></pre></li>
+
+<li><p>To mirror all forwarded TCP packets with only FIN set:</p>
+
+<pre><code>-A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j SPAN --dport swp1s2
+</code></pre></li>
+</ul>
+
+<h4 id="erspan-examples">ERSPAN Examples</h4>
+
+<ul>
+<li><p>To mirror forwarded packets from all ports matching SIP 20.0.1.0 and
+DIP 20.0.1.2:</p>
+
+<pre><code>-A FORWARD --in-interface swp+ -s 20.0.0.2 -d 20.0.1.2 -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
+</code></pre></li>
+
+<li><p>To mirror ICMP packets from all ports:</p>
+
+<pre><code>-A FORWARD --in-interface swp+ -s 20.0.0.2 -p icmp -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
+</code></pre></li>
+
+<li><p>To mirror forwarded UDP packets received from port swp1s0, towards
+DIP 20.0.1.2 and destination port 53:</p>
+
+<pre><code>-A FORWARD --in-interface swp1s0 -d 20.0.1.2 -p udp --dport 53 -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
+</code></pre></li>
+
+<li><p>To mirror all forwarded TCP packets with only SYN set:</p>
+
+<pre><code>-A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL SYN -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
+</code></pre></li>
+
+<li><p>To mirror all forwarded TCP packets with only FIN set:</p>
+
+<pre><code>-A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
+</code></pre></li>
+</ul>
+
+<h3 id="removing-span-rules">Removing SPAN Rules</h3>
+
+<p>To remove your SPAN rules, run:</p>
+
+<pre><code>#Remove rules file:
+cumulus@switch:~$ sudo rm  /etc/cumulus/acl/policy.d/span.rules
+#Reload the default rules
+cumulus@switch:~$ sudo cl-acltool -i
+cumulus@switch:~$
+</code></pre>
+
+<p>To verify that the SPAN rules were removed:</p>
+
+<pre><code>cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
+cumulus@switch:~$
+</code></pre>
+
+<h2 id="monitoring-control-plane-traffic-with-tcpdump">Monitoring Control Plane Traffic with tcpdump</h2>
+
+<p>You can use <code>tcpdump</code> to monitor control plane traffic — traffic sent to
+and coming from the switch CPUs. <code>tcpdump</code> does <strong>not</strong> monitor data
+plane traffic; use <code>cl-acltool</code> instead (see above).</p>
+
+<p>For more information on tcpdump, read <a href="http://www.tcpdump.org/#documentation" target="_blank">the <code>tcpdump</code>
+documentation</a> and the <a href="http://www.tcpdump.org/manpages/tcpdump.1.html" target="_blank"><code>tcpdump</code>
+man page</a>.</p>
+
+<p>The following example incorporates a few <code>tcpdump</code> options:</p>
+
+<ul>
+<li><p><code>-i bond0</code>, which captures packets from bond0 to the CPU and from
+the CPU to bond0</p></li>
+
+<li><p><code>host 169.254.0.2</code>, which filters for this IP address</p></li>
+
+<li><p><code>-c 10</code>, which captures 10 packets then stops</p></li>
+</ul>
+
+<!-- end list -->
+
+<pre><code>cumulus@switch:~$ sudo tcpdump -i bond0 host 169.254.0.2 -c 10
+tcpdump: WARNING: bond0: no IPv4 address assigned
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on bond0, link-type EN10MB (Ethernet), capture size 65535 bytes
+16:24:42.532473 IP 169.254.0.2 &gt; 169.254.0.1: ICMP echo request, id 27785, seq 6, length 64
+16:24:42.532534 IP 169.254.0.1 &gt; 169.254.0.2: ICMP echo reply, id 27785, seq 6, length 64
+16:24:42.804155 IP 169.254.0.2.40210 &gt; 169.254.0.1.5342: Flags [.], seq 266275591:266277039, ack 3813627681, win 58, options [nop,nop,TS val 590400681 ecr 530346691], length 1448
+16:24:42.804228 IP 169.254.0.1.5342 &gt; 169.254.0.2.40210: Flags [.], ack 1448, win 166, options [nop,nop,TS val 530348721 ecr 590400681], length 0
+16:24:42.804267 IP 169.254.0.2.40210 &gt; 169.254.0.1.5342: Flags [P.], seq 1448:1836, ack 1, win 58, options [nop,nop,TS val 590400681 ecr 530346691], length 388
+16:24:42.804293 IP 169.254.0.1.5342 &gt; 169.254.0.2.40210: Flags [.], ack 1836, win 165, options [nop,nop,TS val 530348721 ecr 590400681], length 0
+16:24:43.532389 IP 169.254.0.2 &gt; 169.254.0.1: ICMP echo request, id 27785, seq 7, length 64
+16:24:43.532447 IP 169.254.0.1 &gt; 169.254.0.2: ICMP echo reply, id 27785, seq 7, length 64
+16:24:43.838652 IP 169.254.0.1.59951 &gt; 169.254.0.2.5342: Flags [.], seq 2555144343:2555145791, ack 2067274882, win 58, options [nop,nop,TS val 530349755 ecr 590399688], length 1448
+16:24:43.838692 IP 169.254.0.1.59951 &gt; 169.254.0.2.5342: Flags [P.], seq 1448:1838, ack 1, win 58, options [nop,nop,TS val 530349755 ecr 590399688], length 390
+10 packets captured
+12 packets received by filter
+0 packets dropped by kernel
+</code></pre>
+
+<h2 id="configuration-files">Configuration Files</h2>
+
+<ul>
+<li>/etc/cumulus/acl/policy.conf</li>
+</ul>
+
+<h2 id="useful-links">Useful Links</h2>
+
+<ul>
+<li><p><a href="http://www.perihel.at/sec/mz/mzguide.html" target="_blank">www.perihel.at/sec/mz/mzguide.html</a></p></li>
+
+<li><p><a href="http://en.wikipedia.org/wiki/Ping" target="_blank">en.wikipedia.org/wiki/Ping</a></p></li>
+
+<li><p><a href="http://www.tcpdump.org" target="_blank">www.tcpdump.org</a></p></li>
+
+<li><p><a href="https://en.wikipedia.org/wiki/Traceroute" target="_blank">en.wikipedia.org/wiki/Traceroute</a></p></li>
+</ul>
+
+<h2 id="caveats-and-errata">Caveats and Errata</h2>
+
+<ul>
+<li><p>SPAN rules cannot match outgoing subinterfaces.</p></li>
+
+<li><p>ERSPAN rules must include <code>ttl</code> for versions 1.5.1 and earlier.</p></li>
+</ul>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#commands">Commands</a></li>
+<li><a href="#checking-reachability-using-ping">Checking Reachability Using ping</a></li>
+<li><a href="#printing-route-trace-using-traceroute">Printing Route Trace Using traceroute</a></li>
+<li><a href="#manipulating-the-system-arp-cache">Manipulating the System ARP Cache</a></li>
+<li><a href="#generating-traffic-using-mz">Generating Traffic Using mz</a></li>
+<li><a href="#creating-counter-acl-rules">Creating Counter ACL Rules</a></li>
+<li><a href="#configuring-span-and-erspan">Configuring SPAN and ERSPAN</a>
+<ul>
+<li><a href="#configuring-span-for-switch-ports">Configuring SPAN for Switch Ports</a></li>
+<li><a href="#configuring-span-for-bonds">Configuring SPAN for Bonds</a></li>
+<li><a href="#configuring-erspan">Configuring ERSPAN</a></li>
+<li><a href="#selective-spanning">Selective Spanning</a>
+<ul>
+<li><a href="#span-examples">SPAN Examples</a></li>
+<li><a href="#erspan-examples">ERSPAN Examples</a></li>
+</ul></li>
+<li><a href="#removing-span-rules">Removing SPAN Rules</a></li>
+</ul></li>
+<li><a href="#monitoring-control-plane-traffic-with-tcpdump">Monitoring Control Plane Traffic with tcpdump</a></li>
+<li><a href="#configuration-files">Configuration Files</a></li>
+<li><a href="#useful-links">Useful Links</a></li>
+<li><a href="#caveats-and-errata">Caveats and Errata</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Network_Troubleshooting/_index.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

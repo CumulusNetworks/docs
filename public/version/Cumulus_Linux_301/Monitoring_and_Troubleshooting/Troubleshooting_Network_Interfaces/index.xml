@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Troubleshooting Network Interfaces on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/</link>
+    <description>Recent content in Troubleshooting Network Interfaces on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Monitoring Interfaces and Transceivers Using ethtool</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/</guid>
+      <description>The ethtool command enables you to query or control the network driver and hardware settings. It takes the device name (like swp1) as an argument. When the device name is the only argument to ethtool, it prints the current settings of the network device. See man ethtool(8) for details. Not all options are currently supported on switch port interfaces.
+Commands  cl-netstat
+ ethtool
+  Monitoring Interface Status Using ethtool To check the status of an interface using ethtool:</description>
+    </item>
+    
+  </channel>
+</rss>

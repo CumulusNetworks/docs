@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Monitoring Interfaces and Transceivers Using ethtool - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a></li>
+                                                                                     <li><a href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126788"> <span>Monitoring Interfaces and Transceivers Using ethtool</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><span id="src-5126788_indexterm-0B3AB209835B49CB97A943E442C68D26">The </span><tt class=" ">ethtool</tt><span id="src-5126788_indexterm-3F483A7E6EFCA3F72E2978CB066300AF"> </span>command enables you to query or control the network driver and hardware settings. It takes the device name (like swp1) as an argument. When the device name is the only argument to <tt class=" ">ethtool</tt>, it prints the current settings of the network device. See <tt class=" ">man ethtool(8)</tt> for details. Not all options are currently supported on switch port interfaces.    </p>
+    <div class="section section-1" id="src-5126788_MonitoringInterfacesandTransceiversUsingethtool-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126788_MonitoringInterfacesandTransceiversUsingethtool-MonitoringInterfaceStatusUsingethtool">
+        <h1 class="heading "><span>Monitoring Interface Status Using ethtool</span></h1>
+    <p  >To check the status of an interface using <tt class=" ">ethtool</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ ethtool swp1</code></div>
+<div class="line"><code class="plain">Settings </code><code class="keyword">for</code><code class="plain"> swp1:</code></div>
+<div class="line"><code class="plain">        Supported ports: [ FIBRE ]</code></div>
+<div class="line"><code class="plain">        Supported link modes:   1000baseT/Full</code></div>
+<div class="line"><code class="plain">                                10000baseT/Full</code></div>
+<div class="line"><code class="plain">        Supported pause frame use: No</code></div>
+<div class="line"><code class="plain">        Supports auto-negotiation: No</code></div>
+<div class="line"><code class="plain">        Advertised link modes:  1000baseT/Full</code></div>
+<div class="line"><code class="plain">        Advertised pause frame use: No</code></div>
+<div class="line"><code class="plain">        Advertised auto-negotiation: No</code></div>
+<div class="line"><code class="plain">        Speed: 10000Mb/s</code></div>
+<div class="line"><code class="plain">        Duplex: Full</code></div>
+<div class="line"><code class="plain">        Port: FIBRE</code></div>
+<div class="line"><code class="plain">        PHYAD: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        Transceiver: external</code></div>
+<div class="line"><code class="plain">        Auto-negotiation: off</code></div>
+<div class="line"><code class="plain">        Current message level: </code><code class="value">0x00000000</code><code class="plain"> (</code><code class="value">0</code><code class="plain">)</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        Link detected: yes</code></div>
+</div>
+    </div>
+    <p  >To query interface statistics:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo ethtool -S swp1</code></div>
+<div class="line"><code class="plain">NIC statistics:</code></div>
+<div class="line"><code class="plain">        HwIfInOctets: </code><code class="value">1435339</code></div>
+<div class="line"><code class="plain">        HwIfInUcastPkts: </code><code class="value">11795</code></div>
+<div class="line"><code class="plain">        HwIfInBcastPkts: </code><code class="value">3</code></div>
+<div class="line"><code class="plain">        HwIfInMcastPkts: </code><code class="value">4578</code></div>
+<div class="line"><code class="plain">        HwIfOutOctets: </code><code class="value">14866246</code></div>
+<div class="line"><code class="plain">        HwIfOutUcastPkts: </code><code class="value">11791</code></div>
+<div class="line"><code class="plain">        HwIfOutMcastPkts: </code><code class="value">136493</code></div>
+<div class="line"><code class="plain">        HwIfOutBcastPkts: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        HwIfInDiscards: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        HwIfInL3Drops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        HwIfInBufferDrops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        HwIfInAclDrops: </code><code class="value">28</code></div>
+<div class="line"><code class="plain">        HwIfInDot3LengthErrors: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        HwIfInErrors: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        SoftInErrors: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        SoftInDrops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        SoftInFrameErrors: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        HwIfOutDiscards: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        HwIfOutErrors: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        HwIfOutQDrops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        HwIfOutNonQDrops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        SoftOutErrors: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        SoftOutDrops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        SoftOutTxFifoFull: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">        HwIfOutQLen: </code><code class="value">0</code></div>
+</div>
+    </div>
+    <div class="section section-2" id="src-5126788_MonitoringInterfacesandTransceiversUsingethtool-ViewingandClearingInterfaceCounters">
+        <h2 class="heading "><span>Viewing and Clearing Interface Counters</span></h2>
+    <p  ><span id="src-5126788_indexterm-E1AE22B2830775B07B3D375E77EE71EB">Interface </span><span id="src-5126788_indexterm-96759151C48906E5C2099B0DD8F0DB3C">counters contain information about an interface. You can view this information when you run </span><tt class=" ">cl-netstat</tt>, <tt class=" ">ifconfig</tt>, or <tt class=" ">cat /proc/net/dev</tt>. You can also use <tt class=" ">cl-netstat</tt> to save or clear this information:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo cl-netstat</code></div>
+<div class="line"><code class="plain">Kernel Interface table</code></div>
+<div class="line"><code class="plain">Iface   MTU Met        RX_OK RX_ERR RX_DRP RX_OVR        TX_OK TX_ERR TX_DRP TX_OVR    Flg</code></div>
+<div class="line"><code class="plain">---------------------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">eth0   </code><code class="value">1500</code><code class="plain">   </code><code class="value">0</code><code class="plain">          </code><code class="value">611</code><code class="plain">      </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">          </code><code class="value">487</code><code class="plain">      </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">   BMRU</code></div>
+<div class="line"><code class="plain">lo    </code><code class="value">16436</code><code class="plain">   </code><code class="value">0</code><code class="plain">            </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">            </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">    LRU</code></div>
+<div class="line"><code class="plain">swp1   </code><code class="value">1500</code><code class="plain">   </code><code class="value">0</code><code class="plain">            </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">            </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">      </code><code class="value">0</code><code class="plain">    BMU</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo cl-netstat -c</code></div>
+<div class="line"><code class="plain">Cleared counters</code></div>
+</div>
+    </div>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-c    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Copies and clears statistics. It does not clear counters in the kernel or hardware.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-d    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Deletes saved statistics, either the <tt class=" ">uid</tt> or the specified tag.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-D    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Deletes all saved statistics.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-l    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Lists saved tags.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-r    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Displays raw statistics (unmodified output of <tt class=" ">cl-netstat</tt>).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-t &lt;tag name&gt;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Saves statistics with <tt class=" ">&lt;tag name&gt;</tt>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-v    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Prints <tt class=" ">cl-netstat</tt> version and exits.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126788_safe-id-TW9uaXRvcmluZ0ludGVyZmFjZXNhbmRUcmFuc2NlaXZlcnNVc2luZ2V0aHRvb2wtTW9uaXRvcmluZ1N3aXRjaFBvcnRTRlAvUVNGUEhhcmR3YXJlSW5mb3JtYXRpb25Vc2luZ2V0aHRvb2w">
+        <h1 class="heading "><span>Monitoring Switch Port SFP/QSFP Hardware Information Using ethtool</span></h1>
+    <p  ><span id="src-5126788_indexterm-267F7D18C70350D25F2AB3473F720A5D">To see hardware capabilities and measurement information on the </span><span id="src-5126788_indexterm-06014160E844D090CB83AE4EA83B5934">SFP or </span>QSFP module installed in a particular port, use the <tt class=" ">ethtool -m</tt> command. If the SFP/QSFP supports Digital Optical Monitoring (that is, the <tt class=" ">Optical diagnostics support</tt> field in the output below is set to <i class=" ">Yes</i>), the optical power levels and thresholds are also printed below the standard hardware details.    </p>
+    <p  >In the sample output below, you can see that this module is a 1000BASE-SX short-range optical module, manufactured by JDSU, part number PLRXPL-VI-S24-22. The second half of the output displays the current readings of the Tx power levels (<tt class=" ">Laser output power</tt>) and Rx power (<tt class=" ">Receiver signal average optical power</tt>), temperature, voltage and alarm threshold settings.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">$ sudo ethtool -m swp3</code></div>
+<div class="line"><code class="plain">        Identifier                                : </code><code class="value">0x03</code><code class="plain"> (SFP)</code></div>
+<div class="line"><code class="plain">        Extended identifier                       : </code><code class="value">0x04</code><code class="plain"> (GBIC/SFP defined by </code><code class="value">2</code><code class="plain">-wire </code><code class="keyword">interface</code><code class="plain"> ID)</code></div>
+<div class="line"><code class="plain">        Connector                                 : </code><code class="value">0x07</code><code class="plain"> (LC)</code></div>
+<div class="line"><code class="plain">        Transceiver codes                         : </code><code class="value">0x00</code><code class="plain"> </code><code class="value">0x00</code><code class="plain"> </code><code class="value">0x00</code><code class="plain"> </code><code class="value">0x01</code><code class="plain"> </code><code class="value">0x20</code><code class="plain"> </code><code class="value">0x40</code><code class="plain"> </code><code class="value">0x0c</code><code class="plain"> </code><code class="value">0x05</code></div>
+<div class="line"><code class="plain">        Transceiver type                          : Ethernet: 1000BASE-SX</code></div>
+<div class="line"><code class="plain">        Transceiver type                          : FC: intermediate distance (I)</code></div>
+<div class="line"><code class="plain">        Transceiver type                          : FC: Shortwave laser w/o OFC (SN)</code></div>
+<div class="line"><code class="plain">        Transceiver type                          : FC: Multimode, </code><code class="value">62</code><code class="plain">.5um (M6)</code></div>
+<div class="line"><code class="plain">        Transceiver type                          : FC: Multimode, 50um (M5)</code></div>
+<div class="line"><code class="plain">        Transceiver type                          : FC: </code><code class="value">200</code><code class="plain"> MBytes/sec</code></div>
+<div class="line"><code class="plain">        Transceiver type                          : FC: </code><code class="value">100</code><code class="plain"> MBytes/sec</code></div>
+<div class="line"><code class="plain">        Encoding                                  : </code><code class="value">0x01</code><code class="plain"> (8B/10B)</code></div>
+<div class="line"><code class="plain">        BR, Nominal                               : 2100MBd</code></div>
+<div class="line"><code class="plain">        Rate identifier                           : </code><code class="value">0x00</code><code class="plain"> (unspecified)</code></div>
+<div class="line"><code class="plain">        Length (SMF,km)                           : 0km</code></div>
+<div class="line"><code class="plain">        Length (SMF)                              : 0m</code></div>
+<div class="line"><code class="plain">        Length (50um)                             : 300m</code></div>
+<div class="line"><code class="plain">        Length (</code><code class="value">62</code><code class="plain">.5um)                           : 150m</code></div>
+<div class="line"><code class="plain">        Length (Copper)                           : 0m</code></div>
+<div class="line"><code class="plain">        Length (OM3)                              : 0m</code></div>
+<div class="line"><code class="plain">        Laser wavelength                          : 850nm</code></div>
+<div class="line"><code class="plain">        Vendor name                               : JDSU            </code></div>
+<div class="line"><code class="plain">        Vendor OUI                                : </code><code class="value">00</code><code class="plain">:</code><code class="value">01</code><code class="plain">:9c</code></div>
+<div class="line"><code class="plain">        Vendor PN                                 : PLRXPL-VI-S24-</code><code class="value">22</code></div>
+<div class="line"><code class="plain">        Vendor rev                                : </code><code class="value">1</code><code class="plain">   </code></div>
+<div class="line"><code class="plain">        Optical diagnostics support               : Yes</code></div>
+<div class="line"><code class="plain">        Laser bias current                        : </code><code class="value">21.348</code><code class="plain"> mA</code></div>
+<div class="line"><code class="plain">        Laser output power                        : </code><code class="value">0.3186</code><code class="plain"> mW / -</code><code class="value">4.97</code><code class="plain"> dBm</code></div>
+<div class="line"><code class="plain">        Receiver signal average optical power     : </code><code class="value">0.3195</code><code class="plain"> mW / -</code><code class="value">4.96</code><code class="plain"> dBm</code></div>
+<div class="line"><code class="plain">        Module temperature                        : </code><code class="value">41.70</code><code class="plain"> degrees C / </code><code class="value">107.05</code><code class="plain"> degrees F</code></div>
+<div class="line"><code class="plain">        Module voltage                            : </code><code class="value">3.2947</code><code class="plain"> V</code></div>
+<div class="line"><code class="plain">        Alarm/warning flags implemented           : Yes</code></div>
+<div class="line"><code class="plain">        Laser bias current high alarm             : Off</code></div>
+<div class="line"><code class="plain">        Laser bias current low alarm              : Off</code></div>
+<div class="line"><code class="plain">        Laser bias current high warning           : Off</code></div>
+<div class="line"><code class="plain">        Laser bias current low warning            : Off</code></div>
+<div class="line"><code class="plain">        Laser output power high alarm             : Off</code></div>
+<div class="line"><code class="plain">        Laser output power low alarm              : Off</code></div>
+<div class="line"><code class="plain">        Laser output power high warning           : Off</code></div>
+<div class="line"><code class="plain">        Laser output power low warning            : Off</code></div>
+<div class="line"><code class="plain">        Module temperature high alarm             : Off</code></div>
+<div class="line"><code class="plain">        Module temperature low alarm              : Off</code></div>
+<div class="line"><code class="plain">        Module temperature high warning           : Off</code></div>
+<div class="line"><code class="plain">        Module temperature low warning            : Off</code></div>
+<div class="line"><code class="plain">        Module voltage high alarm                 : Off</code></div>
+<div class="line"><code class="plain">        Module voltage low alarm                  : Off</code></div>
+<div class="line"><code class="plain">        Module voltage high warning               : Off</code></div>
+<div class="line"><code class="plain">        Module voltage low warning                : Off</code></div>
+<div class="line"><code class="plain">        Laser rx power high alarm                 : Off</code></div>
+<div class="line"><code class="plain">        Laser rx power low alarm                  : Off</code></div>
+<div class="line"><code class="plain">        Laser rx power high warning               : Off</code></div>
+<div class="line"><code class="plain">        Laser rx power low warning                : Off</code></div>
+<div class="line"><code class="plain">        Laser bias current high alarm threshold   : </code><code class="value">10.000</code><code class="plain"> mA</code></div>
+<div class="line"><code class="plain">        Laser bias current low alarm threshold    : </code><code class="value">1.000</code><code class="plain"> mA</code></div>
+<div class="line"><code class="plain">        Laser bias current high warning threshold : </code><code class="value">9.000</code><code class="plain"> mA</code></div>
+<div class="line"><code class="plain">        Laser bias current low warning threshold  : </code><code class="value">2.000</code><code class="plain"> mA</code></div>
+<div class="line"><code class="plain">        Laser output power high alarm threshold   : </code><code class="value">0.8000</code><code class="plain"> mW / -</code><code class="value">0.97</code><code class="plain"> dBm</code></div>
+<div class="line"><code class="plain">        Laser output power low alarm threshold    : </code><code class="value">0.1000</code><code class="plain"> mW / -</code><code class="value">10.00</code><code class="plain"> dBm</code></div>
+<div class="line"><code class="plain">        Laser output power high warning threshold : </code><code class="value">0.6000</code><code class="plain"> mW / -</code><code class="value">2.22</code><code class="plain"> dBm</code></div>
+<div class="line"><code class="plain">        Laser output power low warning threshold  : </code><code class="value">0.2000</code><code class="plain"> mW / -</code><code class="value">6.99</code><code class="plain"> dBm</code></div>
+<div class="line"><code class="plain">        Module temperature high alarm threshold   : </code><code class="value">90.00</code><code class="plain"> degrees C / </code><code class="value">194.00</code><code class="plain"> degrees F</code></div>
+<div class="line"><code class="plain">        Module temperature low alarm threshold    : -</code><code class="value">40.00</code><code class="plain"> degrees C / -</code><code class="value">40.00</code><code class="plain"> degrees F</code></div>
+<div class="line"><code class="plain">        Module temperature high warning threshold : </code><code class="value">85.00</code><code class="plain"> degrees C / </code><code class="value">185.00</code><code class="plain"> degrees F</code></div>
+<div class="line"><code class="plain">        Module temperature low warning threshold  : -</code><code class="value">40.00</code><code class="plain"> degrees C / -</code><code class="value">40.00</code><code class="plain"> degrees F</code></div>
+<div class="line"><code class="plain">        Module voltage high alarm threshold       : </code><code class="value">4.0000</code><code class="plain"> V</code></div>
+<div class="line"><code class="plain">        Module voltage low alarm threshold        : </code><code class="value">0.0000</code><code class="plain"> V</code></div>
+<div class="line"><code class="plain">        Module voltage high warning threshold     : </code><code class="value">3.6450</code><code class="plain"> V</code></div>
+<div class="line"><code class="plain">        Module voltage low warning threshold      : </code><code class="value">2.9550</code><code class="plain"> V</code></div>
+<div class="line"><code class="plain">        Laser rx power high alarm threshold       : </code><code class="value">1.6000</code><code class="plain"> mW / </code><code class="value">2.04</code><code class="plain"> dBm</code></div>
+<div class="line"><code class="plain">        Laser rx power low alarm threshold        : </code><code class="value">0.0100</code><code class="plain"> mW / -</code><code class="value">20.00</code><code class="plain"> dBm</code></div>
+<div class="line"><code class="plain">        Laser rx power high warning threshold     : </code><code class="value">1.0000</code><code class="plain"> mW / </code><code class="value">0.00</code><code class="plain"> dBm</code></div>
+<div class="line"><code class="plain">        Laser rx power low warning threshold      : </code><code class="value">0.0200</code><code class="plain"> mW / -</code><code class="value">16.99</code><code class="plain"> dBm</code></div>
+</div>
+    </div>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Troubleshooting_Network_Interfaces.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Troubleshooting Network Interfaces</span>
+        </a>
+                <a href="Network_Troubleshooting.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Network Troubleshooting</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

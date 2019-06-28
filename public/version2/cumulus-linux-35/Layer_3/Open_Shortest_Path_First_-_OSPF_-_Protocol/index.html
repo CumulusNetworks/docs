@@ -1,0 +1,2670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Open Shortest Path First - OSPF - Protocol | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/" >
+    Version2s
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility/" >
+    Network Command Line Utility
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Managing_Application_Daemons/" >
+    Managing Application Daemons
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/Configuring_Hardware-enabled_DDOS_Protection/" >
+    Configuring Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Layer_1_and_Switch_Port_Attributes/" >
+    Layer 1 and Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Configuring_DHCP_Relays/" >
+    Configuring DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Configuring_DHCP_Servers/" >
+    Configuring DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/" >
+    Layer 1 and 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments/" >
+    VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/Traditional_Mode_Bridges/" >
+    Traditional Mode Bridges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/" >
+    Virtual Router Redundancy - VRR
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/" >
+    Lightweight Network Virtualization - LNV Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_VXLAN_Active-Active_Mode/" >
+    LNV VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX/" >
+    Integrating Hardware VTEPs with VMware NSX
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Open_Shortest_Path_First_-_OSPF_-_Protocol/"  class="active" >
+    Open Shortest Path First - OSPF - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol/" >
+    Open Shortest Path First v3 - OSPFv3 - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/SNMP_Monitoring/" >
+    SNMP Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Buffer_Monitoring/" >
+    Buffer Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Cumulus_Linux_Index/" >
+    Cumulus Linux Index
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Open Shortest Path First - OSPF - Protocol</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Open Shortest Path First - OSPF - Protocol</h1>
+
+<p>OSPFv2 is a <a href="http://en.wikipedia.org/wiki/Link-state_routing_protocol" target="_blank">link-state routing
+protocol</a> for
+IPv4. OSPF maintains the view of the network topology conceptually as a
+directed graph. Each router represents a vertex in the graph. Each link
+between neighboring routers represents a unidirectional edge. Each link
+has an associated weight (called cost) that is either automatically
+derived from its bandwidth or administratively assigned. Using the
+weighted topology graph, each router computes a shortest path tree (SPT)
+with itself as the root, and applies the results to build its forwarding
+table. The computation is generally referred to as <em>SPF computation</em> and
+the resultant tree as the <em>SPF tree</em>.</p>
+
+<p>An LSA (<em>link-state advertisement</em>) is the fundamental quantum of
+information that OSPF routers exchange with each other. It seeds the
+graph building process on the node and triggers SPF computation. LSAs
+originated by a node are distributed to all the other nodes in the
+network through a mechanism called <em>flooding</em>. Flooding is done
+hop-by-hop. OSPF ensures reliability by using link state acknowledgement
+packets. The set of LSAs in a router’s memory is termed <em>link-state
+database</em> (LSDB), a representation of the network graph. Thus, OSPF
+ensures a consistent view of LSDB on each node in the network in a
+distributed fashion (eventual consistency model); this is key to the
+protocol’s correctness.</p>
+
+<h2 id="scalability-and-areas">Scalability and Areas</h2>
+
+<p>An increase in the number of nodes affects OSPF scalability in the
+following ways:</p>
+
+<ul>
+<li><p>Memory footprint to hold the entire network topology,</p></li>
+
+<li><p>Flooding performance,</p></li>
+
+<li><p>SPF computation efficiency.</p></li>
+</ul>
+
+<p>The OSPF protocol advocates hierarchy as a <em>divide and conquer</em> approach
+to achieve high scale. The topology may be divided into areas, resulting
+in a two-level hierarchy. Area 0 (or 0.0.0.0), called the backbone area,
+is the top level of the hierarchy. Packets traveling from one non-zero
+area to another must go via the backbone area. As an example, the
+leaf-spine topology we have been referring to in the routing section can
+be divided into areas as follows:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357718/ospf-areas.png" alt = "/images/download/attachments/8357718/ospf-areas.png"
+
+
+width = 500
+
+ />
+
+
+<p>Here are some points to note about areas and OSPF behavior:</p>
+
+<ul>
+<li><p>Routers that have links to multiple areas are called <em>area border
+routers</em> (ABR). For example, routers R3, R4, R5, R6 are ABRs in the
+diagram. An ABR performs a set of specialized tasks, such as SPF
+computation per area and summarization of routes across areas.</p></li>
+
+<li><p>Most of the LSAs have an area-level flooding scope. These include
+router LSA, network LSA, and summary LSA.</p></li>
+</ul>
+
+
+<div class="notices note" > <p>In the diagram, we reused the same non-zero area address. This is fine
+since the area address is only a scoping parameter provided to all
+routers within that area. It has no meaning outside the area. Thus, in
+the cases where ABRs do not connect to multiple non-zero areas, the same
+area address can be used, thus reducing the operational headache of
+coming up with area addresses.</p>
+ </div>
+
+
+<h2 id="configuring-ospfv2">Configuring OSPFv2</h2>
+
+<p>Configuring OSPF involves the following tasks:</p>
+
+<ul>
+<li><p>Enabling the OSPF daemon</p></li>
+
+<li><p>Enabling OSPF</p></li>
+
+<li><p>Defining (Custom) OSPF parameters on the interfaces</p></li>
+</ul>
+
+<h3 id="enabling-the-ospf-and-zebra-daemons">Enabling the OSPF and Zebra Daemons</h3>
+
+<p>To enable OSPF, enable the <code>zebra</code> and <code>ospf</code> daemons, as described in
+<a href="/version2/cumulus-linux-35/Layer_3/Configuring_FRRouting/Configuring_FRRouting">Configuring
+FRRouting</a>,
+then start the FRRouting service:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo systemctl enable frr.service
+cumulus@switch:~$ sudo systemctl start frr.service
+   
+    
+</code></pre>
+
+<h3 id="configuring-ospf">Configuring OSPF</h3>
+
+<p>As discussed in <a href="/version2/cumulus-linux-35/Layer_3/Introduction_to_Routing_Protocols">Introduction to Routing
+Protocols</a>,
+there are three steps to the configuration:</p>
+
+<ol>
+<li><p>Identifying the router with the router ID.</p></li>
+
+<li><p>With whom should the router communicate?</p></li>
+
+<li><p>What information (most notably the prefix reachability) to
+advertise?</p></li>
+</ol>
+
+<p>There are two ways to achieve (2) and (3) in FRRouting OSPF:</p>
+
+<ol>
+<li><p>The <code>network</code> statement under <code>router ospf</code> does both. The statement
+is specified with an IP subnet prefix and an area address. All the
+interfaces on the router whose IP address matches the <code>network</code>
+subnet are put into the specified area. OSPF process starts bringing
+up peering adjacency on those interfaces. It also advertises the
+interface IP addresses formatted into LSAs (of various types) to the
+neighbors for proper reachability.</p>
+
+<pre><code>                       
+cumulus@switch:~$ net add ospf router-id 0.0.0.1
+cumulus@switch:~$ net add ospf network 10.0.0.0/16 area 0.0.0.0
+cumulus@switch:~$ net add ospf network 192.0.2.0/16 area 0.0.0.1
+       
+        
+</code></pre>
+
+<p>The subnets can be as coarse as possible to cover the most number of
+interfaces on the router that should run OSPF.</p>
+
+<p>There may be interfaces where it’s undesirable to bring up OSPF
+adjacency. For example, in a data center topology, the host-facing
+interfaces need not run OSPF; however the corresponding IP addresses
+should still be advertised to neighbors. This can be achieved using
+the <code>passive-interface</code> construct:</p>
+
+<pre><code>                       
+cumulus@switch:~$ net add ospf passive-interface swp10
+cumulus@switch:~$ net add ospf passive-interface swp11
+       
+        
+</code></pre>
+
+<p>Or use the <code>passive-interface default</code> command to put all interfaces
+as passive and selectively remove certain interfaces to bring up
+protocol adjacency:</p>
+
+<pre><code>                       
+R3# configure terminal
+R3(config)# router ospf
+R3(config-router)# passive-interface default
+R3(config-router)# no passive-interface swp1
+       
+        
+</code></pre></li>
+
+<li><p>Explicitly enable OSPF for each interface by configuring it under
+the interface configuration mode:</p>
+
+<pre><code>                       
+cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
+       
+        
+</code></pre>
+
+<p>If OSPF adjacency bringup is not desired, you should configure the
+corresponding interfaces as passive as explained above.</p>
+
+<p>This model of configuration is required for unnumbered interfaces as
+discussed later in this guide.</p>
+
+<p>For achieving step (3) alone, the FRRouting configuration provides
+another method: <em>redistribution</em>. For example:</p>
+
+<pre><code>                       
+cumulus@switch:~$ net add ospf redistribute connected
+       
+        
+</code></pre>
+
+<p>Redistribution, however, unnecessarily loads the database with
+type-5 LSAs and should be limited to generating real external
+prefixes (for example, prefixes learned from BGP). In general, it is
+a good practice to generate local prefixes using <code>network</code> and/or
+<code>passive-interface</code> statements.</p>
+
+
+<div class="notices note" > <pre><code>The OSPF setting `log-adjacency-changes` is enabled by default. It
+logs a single message when a peer transitions to/from FULL state.
+</code></pre>
+ </div>
+</li>
+</ol>
+
+<h3 id="defining-custom-ospf-parameters-on-the-interfaces">Defining (Custom) OSPF Parameters on the Interfaces</h3>
+
+<p>There are a number of custom parameters you can define for OSPF,
+including:</p>
+
+<ul>
+<li><p>Network type, such as point-to-point or broadcast.</p></li>
+
+<li><p>Timer tuning, like a hello interval.</p></li>
+
+<li><p>For unnumbered interfaces (<a href="#src-8357718_OpenShortestPathFirst-OSPF-Protocol-ospf_unnum">see
+below</a>),
+enable OSPF.</p></li>
+</ul>
+
+<p>To see the list of options, type <code>net add interface swp1 ospf</code>, then
+press <strong>Tab</strong>.</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add interface swp1 ospf network point-to-point
+cumulus@switch:~$ net add interface swp1 ospf hello-interval 5
+   
+    
+</code></pre>
+
+<p>The OSPF configuration is saved in <code>/etc/frr/ospfd.conf</code>.</p>
+
+<h3 id="ospf-spf-timer-defaults">OSPF SPF Timer Defaults</h3>
+
+<p>OSPF uses the following three timers as an exponential backoff, to
+prevent consecutive SPFs from hammering the CPU:</p>
+
+<ul>
+<li><p>0 ms from initial event until SPF runs</p></li>
+
+<li><p>50 ms between consecutive SPF runs (the number doubles with each
+SPF, until it reaches the value of C)</p></li>
+
+<li><p>5000 ms maximum between SPFs</p></li>
+</ul>
+
+<h3 id="configure-md5-authentication-for-ospf-neighbors">Configure MD5 Authentication for OSPF Neighbors</h3>
+
+<p>Simple text passwords have largely been deprecated in FRRouting, in
+favor of MD5 hash authentication.</p>
+
+<p>To configure MD5 authentication on Cumulus Linux switches, you create a
+key and key ID for MD5 using NCLU:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add interface  ospf message-digest-key  md5 
+   
+    
+</code></pre>
+
+<p>In the example command above, <code>KEYID</code> represents the key used to create
+the message digest. It&rsquo;s a value between 1-255 and must be consistent
+across all routers on a link.</p>
+
+<p><code>KEY</code> represents the actual message digest key, and is associated to the
+given <code>KEYID</code>. This value has an upper range of 16 characters; longer
+strings get truncated.</p>
+
+
+<div class="notices info" > <p>Existing MD5 authentication hashes can be removed with the <code>net del
+interface &lt;interface&gt; ospf message-digest-key &lt;1-255&gt; md5 &lt;text&gt;</code>
+command.</p>
+ </div>
+
+
+<h2 id="scaling-tips">Scaling Tips</h2>
+
+<p>Here are some tips for how to scale out OSPF.</p>
+
+<h3 id="summarization">Summarization</h3>
+
+<p>By default, an ABR creates a summary (type-3) LSA for each route in an
+area and advertises it in adjacent areas. Prefix range configuration
+optimizes this behavior by creating and advertising one summary LSA for
+multiple routes.</p>
+
+<p>To configure a range:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# router ospf
+switch(config-router)# area 0.0.0.1 range 30.0.0.0/8
+switch(config-router)# exit
+switch(config)# exit
+switch# write mem
+switch# exit
+cumulus@switch:~$ 
+   
+    
+</code></pre>
+
+
+<div class="notices tip" > <p>Summarize in the direction to the backbone. The backbone receives
+summarized routes and injects them to other areas already summarized.</p>
+ </div>
+
+
+
+<div class="notices note" > <p>Summarization can cause non-optimal forwarding of packets during
+failures. Here is an example scenario:</p>
+ </div>
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357718/ospf-summarization.png" alt = "/images/download/attachments/8357718/ospf-summarization.png"
+
+
+width = 500
+
+ />
+
+
+<p>As shown in the diagram, the ABRs in the right non-zero area summarize
+the host prefixes as 10.1.0.0/16. When the link between R5 and R10
+fails, R5 will send a worse metric for the summary route (metric for the
+summary route is the maximum of the metrics of intra-area routes that
+are covered by the summary route. Upon failure of the R5-R10 link, the
+metric for 10.1.2.0/24 goes higher at R5 as the path is R5-R9-R6-R10).
+As a result, other backbone routers shift traffic destined to
+10.1.0.0/16 towards R6. This breaks ECMP and is an under-utilization of
+network capacity for traffic destined to 10.1.1.0/24.</p>
+
+<h3 id="stub-areas">Stub Areas</h3>
+
+<p>Nodes in an area receive and store intra-area routing information and
+summarized information about other areas from the ABRs. In particular, a
+good summarization practice about inter-area routes through prefix range
+configuration helps scale the routers and keeps the network stable.</p>
+
+<p>Then there are external routes. External routes are the routes
+redistributed into OSPF from another protocol. They have an AS-wide
+flooding scope. In many cases, external link states make up a large
+percentage of the LSDB.</p>
+
+<p>*Stub *<em>areas</em> alleviate this scaling problem. A stub area is an area
+that does not receive external route advertisements.</p>
+
+<p>To configure a stub area:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add ospf area 0.0.0.1 stub
+   
+    
+</code></pre>
+
+<p>Stub areas still receive information about networks that belong to other
+areas of the same OSPF domain. Especially, if summarization is not
+configured (or is not comprehensive), the information can be
+overwhelming for the nodes. <em>Totally stubby areas</em> address this issue.
+Routers in totally stubby areas keep in their LSDB information about
+routing within their area, plus the default route.</p>
+
+<p>To configure a totally stubby area:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add ospf area 0.0.0.1 stub no-summary
+   
+    
+</code></pre>
+
+<p>Here is a brief tabular summary of the area type differences:</p>
+
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Behavior</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Normal non- zero area</td>
+<td>LSA types 1, 2, 3, 4 area-scoped, type 5 externals, inter-area routes summarized</td>
+</tr>
+
+<tr>
+<td>Stub area</td>
+<td>LSA types 1, 2, 3, 4 area-scoped, No type 5 externals, inter-area routes summarized</td>
+</tr>
+
+<tr>
+<td>Totally stubby area</td>
+<td>LSA types 1, 2 area-scoped, default summary, No type 3, 4, 5 LSA types allowed</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="running-multiple-ospfd-instances">Running Multiple ospfd Instances</h3>
+
+<p>The <code>ospfd</code> daemon is VRF-aware and a single instance of it can have
+multiple independent processes, each tied to its own VRF. The best way
+to configure multi-process (multi-VRF) OSPF is discussed in the <a href="/version2/cumulus-linux-35/Layer_3/Virtual_Routing_and_Forwarding_-_VRF">VRF
+chapter</a>.</p>
+
+<p>However, you can configure multi-process OSPF using multiple <code>ospfd</code>
+instances, but this is a legacy method and is not recommended in most
+cases because:</p>
+
+<ul>
+<li><p>Multiple <code>ospfd</code> processes are only supported in the default routing
+table/VRF.</p></li>
+
+<li><p>You can run multiple <code>ospfd</code> instances with OSPFv2 only, not with
+OSPFv3.</p></li>
+
+<li><p>FRRouting supports up to 5 instances currently, and the instance ID
+must be within the range of 1 through 65535.</p></li>
+</ul>
+
+<p>To configure multi-process OSPF with multiple <code>ospfd</code> instances, do the
+following:</p>
+
+<ol>
+<li><p>Edit <code>/etc/frr/daemons</code> and add <em>ospfd_instances=&ldquo;instance1
+instance2 &hellip;&rdquo;</em> to the <code>ospfd</code> line, specifying an instance ID for
+each separate instance. For example, the following configuration has
+OSPF enabled with 2 <code>ospfd</code> instances, 11 and 22:</p>
+
+<pre><code>                       
+cumulus@switch:~$ cat /etc/frr/daemons
+zebra=yes
+bgpd=no
+ospfd=yes ospfd_instances=&quot;11 22&quot;
+ospf6d=no
+ripd=no
+ripngd=no
+isisd=no
+       
+        
+</code></pre></li>
+
+<li><p>After you modify the <code>daemons</code> file, restart FRRouting:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo systemctl restart frr.service
+       
+        
+</code></pre></li>
+
+<li><p>Configure each instance:</p>
+
+<pre><code>                       
+cumulus@switch:~$ net add interface swp1 ospf instance-id 11 
+cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0 
+cumulus@switch:~$ net add ospf router-id 1.1.1.1
+cumulus@switch:~$ net add interface swp2 ospf instance-id 22
+cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
+cumulus@switch:~$ net add ospf router-id 1.1.1.1
+       
+        
+</code></pre></li>
+
+<li><p>Confirm the configuration:</p>
+
+<pre><code>                       
+cumulus@switch:~$ net show configuration ospf
+ 
+hostname zebra
+log file /var/log/frr/zebra.log
+username cumulus nopassword
+ 
+service integrated-vtysh-config
+ 
+interface eth0
+ ipv6 nd suppress-ra
+ link-detect
+ 
+interface lo
+ link-detect
+ 
+interface swp1
+ ip ospf 11 area 0.0.0.0
+ link-detect
+ 
+interface swp2
+ ip ospf 22 area 0.0.0.0
+ link-detect
+ 
+interface swp45
+ link-detect
+ 
+interface swp46
+ link-detect
+ 
+interface swp47
+ link-detect
+ 
+interface swp48
+ link-detect
+ 
+interface swp49
+ link-detect
+ 
+interface swp50
+ link-detect
+ 
+interface swp51
+ link-detect
+ 
+interface swp52
+ link-detect
+ 
+interface vagrant
+ link-detect
+ 
+router ospf 11
+ ospf router-id 1.1.1.1
+ 
+router ospf 22
+ ospf router-id 1.1.1.1
+ 
+ip forwarding
+ipv6 forwarding
+ 
+line vty
+ 
+end
+       
+        
+</code></pre></li>
+
+<li><p>Confirm that all the OSPF instances are running:</p>
+
+<pre><code>                       
+cumulus@switch:~$ ps -ax | grep ospf
+21135 ?        S
+</code></pre></li>
+</ol>
+
+<h4 id="caveats">Caveats</h4>
+
+<p>You can use the <code>redistribute ospf</code> option in your <code>frr.conf</code> file works
+with this so you can route between the instances. Specify the instance
+ID for the other OSPF instance. For example:</p>
+
+<pre><code>                   
+cumulus@switch:~$ cat /etc/frr/frr.conf
+hostname zebra
+log file /var/log/frr/zebra.log
+username cumulus nopassword
+!
+service integrated-vtysh-config
+!
+ 
+...
+ 
+!
+router ospf 11
+ ospf router-id 1.1.1.1
+!
+router ospf 22
+ ospf router-id 1.1.1.1
+ redistribute ospf 11
+!
+ 
+...
+   
+    
+</code></pre>
+
+
+<div class="notices note" > <p>Don&rsquo;t specify a process ID unless you are using multi-instance OSPF.</p>
+ </div>
+
+
+
+<div class="notices note" > <p>If you disabled the
+<a href="Configuring_FRRouting.html#src-8357715_ConfiguringFRRouting-integrated_cfg" target="_blank">integrated</a>
+FRRouting configuration, you must create a separate <code>ospfd</code>
+configuration file for each instance. The <code>ospfd.conf</code> file must include
+the instance ID in the file name. Continuing with our example, you would
+create <code>/etc/frr/ospfd-11.conf</code> and <code>/etc/frr/ospfd-22.conf</code>.</p>
+
+<pre><code>                   
+cumulus@switch:~$ cat /etc/frr/ospfd-11.conf 
+!
+hostname zebra
+log file /var/log/frr/zebra.log
+username cumulus nopassword
+!
+service integrated-vtysh-config
+!
+interface eth0
+ ipv6 nd suppress-ra
+ link-detect
+!
+interface lo
+ link-detect
+!
+interface swp1
+ ip ospf 11 area 0.0.0.0
+ link-detect
+!
+interface swp2
+ ip ospf 22 area 0.0.0.0
+ link-detect
+!
+interface swp45
+ link-detect
+!
+interface swp46
+ link-detect
+!
+interface swp47
+ link-detect
+!
+interface swp48
+ link-detect
+!
+interface swp49
+ link-detect
+!
+interface swp50
+ link-detect
+!
+interface swp51
+ link-detect
+!
+interface swp52
+ link-detect
+!
+interface vagrant
+ link-detect
+!
+router ospf 11
+ ospf router-id 1.1.1.1
+!
+router ospf 22
+ ospf router-id 1.1.1.1
+!
+ip forwarding
+ipv6 forwarding
+!
+line vty
+!
+   
+    
+</code></pre>
+ </div>
+
+
+<h2 id="unnumbered-interfaces">Unnumbered Interfaces</h2>
+
+<p>Unnumbered interfaces are interfaces without unique IP addresses. In
+OSPFv2, configuring unnumbered interfaces reduces the links between
+routers into pure topological elements, which dramatically simplifies
+network configuration and reconfiguration. In addition, the routing
+database contains only the real networks, so the memory footprint is
+reduced and SPF is faster.</p>
+
+
+<div class="notices note" > <p>Unnumbered is usable for point-to-point interfaces only.</p>
+ </div>
+
+
+
+<div class="notices warning" > <p>If there is a <code>network &lt;network number&gt;/&lt;mask&gt; area &lt;area ID&gt;</code> command
+present in the FRRouting configuration, the <code>ip ospf area &lt;area ID&gt;</code>
+command is rejected with the error “Please remove network command
+first.” This prevents you from configuring other areas on some of the
+unnumbered interfaces. You can use either the <code>network area</code> command or
+the <code>ospf area</code> command in the configuration, but not both.</p>
+ </div>
+
+
+
+<div class="notices tip" > <p>Unless the Ethernet media is intended to be used as a LAN with multiple
+connected routers, we recommend configuring the interface as
+point-to-point. It has the additional advantage of a simplified
+adjacency state machine; there is no need for DR/BDR election and <em>LSA
+reflection</em>. See <a href="http://tools.ietf.org/rfc/rfc5309" target="_blank">RFC5309</a> for a more
+detailed discussion.</p>
+ </div>
+
+
+<p>To configure an unnumbered interface, take the IP address of another
+interface (called the <em>anchor</em>) and use that as the IP address of the
+unnumbered interface:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add loopback lo ip address 192.0.2.1/32
+cumulus@switch:~$ net add interface swp1 ip address 192.0.2.1/32
+cumulus@switch:~$ net add interface swp2 ip address 192.0.2.1/32
+   
+    
+</code></pre>
+
+<p>These commands create the following configuration in the
+<code>/etc/network/interfaces</code> file:</p>
+
+<pre><code>                   
+auto lo
+iface lo inet loopback
+  address 192.0.2.1/32
+ 
+auto swp1
+iface swp1
+  address 192.0.2.1/32
+ 
+auto swp2
+iface swp2
+  address 192.0.2.1/32
+   
+    
+</code></pre>
+
+<p>To enable OSPF on an unnumbered interface:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.1
+   
+    
+</code></pre>
+
+<h2 id="applying-a-route-map-for-route-updates">Applying a Route Map for Route Updates</h2>
+
+<p>To apply a <a href="https://frrouting.org/user-guide/Route-Map.html#Route-Map" target="_blank">route
+map</a> to
+filter route updates from Zebra into the Linux kernel:</p>
+
+<pre><code>                   
+cumulus@switch:$ net add routing protocol ospf route-map 
+   
+    
+</code></pre>
+
+<h2 id="ecmp">ECMP</h2>
+
+<p>During SPF computation for an area, if OSPF finds multiple paths with
+equal cost (metric), all those paths are used for forwarding. For
+example, in the reference topology diagram, R8 uses both R3 and R4 as
+next hops to reach a destination attached to R9.</p>
+
+<h2 id="topology-changes-and-ospf-reconvergence">Topology Changes and OSPF Reconvergence</h2>
+
+<p>Topology changes usually occur due to one of four events:</p>
+
+<ol>
+<li><p>Maintenance of a router node</p></li>
+
+<li><p>Maintenance of a link</p></li>
+
+<li><p>Failure of a router node</p></li>
+
+<li><p>Failure of a link</p></li>
+</ol>
+
+<p>For the maintenance events, operators typically raise the OSPF
+administrative weight of the link(s) to ensure that all traffic is
+diverted from the link or the node (referred to as <em>costing out</em>). The
+speed of reconvergence does not matter. Indeed, changing the OSPF cost
+causes LSAs to be reissued, but the links remain in service during the
+SPF computation process of all routers in the network.</p>
+
+<p>For the failure events, traffic may be lost during reconvergence; that
+is, until SPF on all nodes computes an alternative path around the
+failed link or node to each of the destinations. The reconvergence
+depends on layer 1 failure detection capabilities and at the worst case
+<em>DeadInterval</em> OSPF timer.</p>
+
+<h3 id="example-configurations">Example Configurations</h3>
+
+<p>Example configuration for event 1, using <code>vtysh</code>:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# router ospf
+switch(config-router)# max-metric router-lsa administrative
+switch(config-router)# exit
+switch(config)# exit
+switch# write mem
+switch# exit
+cumulus@switch:~$ 
+   
+    
+</code></pre>
+
+<p>Example configuration for event 2:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add interface swp1 ospf cost 65535
+   
+    
+</code></pre>
+
+<h2 id="debugging-ospf">Debugging OSPF</h2>
+
+<p><a href="http://www.nongnu.org/quagga/docs/docs-info.html#Showing-OSPF-information" target="_blank">OperState</a>
+lists all the commands to view the operational state of OSPF.</p>
+
+<p>The three most important states while troubleshooting the protocol are:</p>
+
+<ol>
+<li><p>Neighbors, with <code>net show ospf neighbor</code>. This is the starting point
+to debug neighbor states (also see <code>tcpdump</code> below).</p></li>
+
+<li><p>Database, with <code>net show ospf database</code>. This is the starting point
+to verify that the LSDB is, in fact, synchronized across all routers
+in the network. For example, sweeping through the output of <code>show ip
+ospf database router</code> taken from all routers in an area will ensure
+if the topology graph building process is complete; that is, every
+node has seen all the other nodes in the area.</p></li>
+
+<li><p>Routes, with <code>net show route ospf</code>. This is the outcome of SPF
+computation that gets downloaded to the forwarding table, and is the
+starting point to debug, for example, why an OSPF route is not being
+forwarded correctly.</p></li>
+</ol>
+
+<p><a href="http://www.nongnu.org/quagga/docs/docs-info.html#Debugging-OSPF" target="_blank">Debugging-OSPF</a>
+lists all of the OSPF debug options.</p>
+
+<p>Using <code>zebra</code> under <code>vtysh</code>:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo vtysh
+switch# show [zebra]
+ 
+IOBJECT := { events | status | timers }
+OOBJECT := { interface | redistribute }
+POBJECT := { all | dd | hello | ls-ack | ls-request | ls-update }
+ZOBJECT := { all | events | kernel | packet | rib |
+   
+    
+</code></pre>
+
+<p>Using <code>tcpdump</code> to capture OSPF packets:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo tcpdump -v -i swp1 ip proto ospf
+   
+    
+</code></pre>
+
+<h2 id="related-information">Related Information</h2>
+
+<ul>
+<li><p><a href="/version2/cumulus-linux-35/Layer_3/Bidirectional_Forwarding_Detection_-_BFD">Bidirectional forwarding
+detection</a>
+(BFD) and OSPF</p></li>
+
+<li><p><a href="http://en.wikipedia.org/wiki/Open_Shortest_Path_First" target="_blank">en.wikipedia.org/wiki/Open_Shortest_Path_First</a></p></li>
+
+<li><p><a href="https://frrouting.org/user-guide/OSPFv2.html#OSPFv2" target="_blank">frrouting.org/user-guide/OSPFv2.html#OSPFv2</a></p></li>
+
+<li><p>Perlman, Radia (1999). Interconnections: Bridges, Routers, Switches,
+and Internetworking Protocols (2 ed.). Addison-Wesley.</p></li>
+
+<li><p>Moy, John T. OSPF: Anatomy of an Internet Routing Protocol.
+Addison-Wesley.</p></li>
+</ul>
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#scalability-and-areas">Scalability and Areas</a></li>
+<li><a href="#configuring-ospfv2">Configuring OSPFv2</a>
+<ul>
+<li><a href="#enabling-the-ospf-and-zebra-daemons">Enabling the OSPF and Zebra Daemons</a></li>
+<li><a href="#configuring-ospf">Configuring OSPF</a></li>
+<li><a href="#defining-custom-ospf-parameters-on-the-interfaces">Defining (Custom) OSPF Parameters on the Interfaces</a></li>
+<li><a href="#ospf-spf-timer-defaults">OSPF SPF Timer Defaults</a></li>
+<li><a href="#configure-md5-authentication-for-ospf-neighbors">Configure MD5 Authentication for OSPF Neighbors</a></li>
+</ul></li>
+<li><a href="#scaling-tips">Scaling Tips</a>
+<ul>
+<li><a href="#summarization">Summarization</a></li>
+<li><a href="#stub-areas">Stub Areas</a></li>
+<li><a href="#running-multiple-ospfd-instances">Running Multiple ospfd Instances</a>
+<ul>
+<li><a href="#caveats">Caveats</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#unnumbered-interfaces">Unnumbered Interfaces</a></li>
+<li><a href="#applying-a-route-map-for-route-updates">Applying a Route Map for Route Updates</a></li>
+<li><a href="#ecmp">ECMP</a></li>
+<li><a href="#topology-changes-and-ospf-reconvergence">Topology Changes and OSPF Reconvergence</a>
+<ul>
+<li><a href="#example-configurations">Example Configurations</a></li>
+</ul></li>
+<li><a href="#debugging-ospf">Debugging OSPF</a></li>
+<li><a href="#related-information">Related Information</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version2/cumulus-linux-35/Layer_3/Open_Shortest_Path_First_-_OSPF_-_Protocol.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Interface Configuration and Management on Cumulus Networks Documentation</title>
+    <link>http://example.org/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/</link>
+    <description>Recent content in Interface Configuration and Management on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Switch Port Attributes</title>
+      <link>http://example.org/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/Switch_Port_Attributes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/Switch_Port_Attributes/</guid>
+      <description>Cumulus Linux exposes network interfaces for several types of physical and logical devices:
+ lo, network loopback device
+ ethN, switch management port(s), for out of band management only
+ swpN, switch front panel ports
+ (optional) brN, bridges (IEEE 802.1Q VLANs)
+ (optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or port channels)
+  Each physical network interface has a number of configurable settings:
+ Auto-negotiation
+ Duplex</description>
+    </item>
+    
+    <item>
+      <title>ifplugd</title>
+      <link>http://example.org/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/ifplugd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/ifplugd/</guid>
+      <description>ifplugd is an Ethernet link-state monitoring daemon, that can execute user-specified scripts to configure an Ethernet device when a cable is plugged in, or automatically unconfigure it when a cable is removed.
+Follow the steps below to install and configure the ifplugd daemon.
+Install ifplugd  Update the switch before installing the daemon:
+ cumulus@switch:~$ sudo -E apt-get update  Install the ifplugd package:
+ cumulus@switch:~$ sudo -E apt-get install ifplugd   Configure ifplugd Once ifplugd is installed, two configuration files must be edited to set up ifplugd:</description>
+    </item>
+    
+  </channel>
+</rss>

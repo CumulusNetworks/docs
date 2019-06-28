@@ -1,0 +1,2436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Prescriptive Topology Manager - PTM | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/" >
+    Version2s
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility/" >
+    Network Command Line Utility
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Managing_Application_Daemons/" >
+    Managing Application Daemons
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/Configuring_Hardware-enabled_DDOS_Protection/" >
+    Configuring Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Layer_1_and_Switch_Port_Attributes/" >
+    Layer 1 and Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Configuring_DHCP_Relays/" >
+    Configuring DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Configuring_DHCP_Servers/" >
+    Configuring DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/" >
+    Layer 1 and 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments/" >
+    VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/Traditional_Mode_Bridges/" >
+    Traditional Mode Bridges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/" >
+    Virtual Router Redundancy - VRR
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Prescriptive_Topology_Manager_-_PTM/"  class="active" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/" >
+    Lightweight Network Virtualization - LNV Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_VXLAN_Active-Active_Mode/" >
+    LNV VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX/" >
+    Integrating Hardware VTEPs with VMware NSX
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Open_Shortest_Path_First_-_OSPF_-_Protocol/" >
+    Open Shortest Path First - OSPF - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol/" >
+    Open Shortest Path First v3 - OSPFv3 - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/SNMP_Monitoring/" >
+    SNMP Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Buffer_Monitoring/" >
+    Buffer Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Cumulus_Linux_Index/" >
+    Cumulus Linux Index
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Prescriptive Topology Manager - PTM</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Prescriptive Topology Manager - PTM</h1>
+
+<p>In data center topologies, right cabling is a time-consuming endeavor
+and is error prone. Prescriptive Topology Manager (PTM) is a dynamic
+cabling verification tool to help detect and eliminate such errors. It
+takes a Graphviz-DOT specified network cabling plan (something many
+operators already generate), stored in a <code>topology.dot</code> file, and
+couples it with runtime information derived from LLDP to verify that the
+cabling matches the specification. The check is performed on every link
+transition on each node in the network.</p>
+
+<p>You can customize the <code>topology.dot</code> file to control <code>ptmd</code> at both the
+global/network level and the node/port level.</p>
+
+<p>PTM runs as a daemon, named <code>ptmd</code>.</p>
+
+<p>For more information, see <code>man ptmd(8)</code>.</p>
+
+<h2 id="supported-features">Supported Features</h2>
+
+<ul>
+<li><p>Topology verification using LLDP. <code>ptmd</code> creates a client connection
+to the LLDP daemon, <code>lldpd</code>, and retrieves the neighbor relationship
+between the nodes/ports in the network and compares them against the
+prescribed topology specified in the <code>topology.dot</code> file.</p></li>
+
+<li><p>Only physical interfaces, like swp1 or eth0, are currently
+supported. Cumulus Linux does not support specifying virtual
+interfaces like bonds or subinterfaces like eth0.200 in the topology
+file.</p></li>
+
+<li><p>Forwarding path failure detection using <a href="http://tools.ietf.org/html/rfc5880" target="_blank">Bidirectional Forwarding
+Detection</a> (BFD); however,
+demand mode is not supported. For more information on how BFD
+operates in Cumulus Linux, read the <a href="/version2/cumulus-linux-35/Layer_3/Bidirectional_Forwarding_Detection_-_BFD">Bidirectional Forwarding
+Detection -
+BFD</a>
+chapter and read <code>man ptmd(8)</code>.</p></li>
+
+<li><p>Integration with FRRouting (PTM to FRRouting notification).</p></li>
+
+<li><p>Client management: <code>ptmd</code> creates an abstract named socket
+<code>/var/run/ptmd.socket</code> on startup. Other applications can connect to
+this socket to receive notifications and send commands.</p></li>
+
+<li><p>Event notifications: see Scripts below.</p></li>
+
+<li><p>User configuration via a <code>topology.dot</code> file; <a href="#src-8357433_PrescriptiveTopologyManager-PTM-configuring">see
+below</a>.</p></li>
+</ul>
+
+<h2 id="configuring-ptm">Configuring PTM</h2>
+
+<p><code>ptmd</code> verifies the physical network topology against a DOT-specified
+network graph file, <code>/etc/ptm.d/topology.dot</code>.</p>
+
+
+<div class="notices warning" > <p>This file must be present or else <code>ptmd</code> will not start. You can specify
+an alternate file using the <code>-c</code> option.</p>
+ </div>
+
+
+<p>PTM supports <a href="http://en.wikipedia.org/wiki/DOT_%28graph_description_language%29" target="_blank">undirected
+graphs</a>.</p>
+
+<p>At startup, <code>ptmd</code> connects to <code>lldpd</code>, the LLDP daemon, over a Unix
+socket and retrieves the neighbor name and port information. It then
+compares the retrieved port information with the configuration
+information that it read from the topology file. If there is a match,
+then it is a PASS, else it is a FAIL.</p>
+
+
+<div class="notices note" > <p>PTM performs its LLDP neighbor check using the PortID ifname TLV
+information. Previously, it used the PortID port description TLV
+information.</p>
+ </div>
+
+
+<h2 id="basic-topology-example">Basic Topology Example</h2>
+
+<p>This is a basic example DOT file and its corresponding topology diagram.
+You should use the same <code>topology.dot</code> file on all switches, and don&rsquo;t
+split the file per device; this allows for easy automation by
+pushing/pulling the same exact file on each device!</p>
+
+<pre><code>                   
+graph G {
+    &quot;spine1&quot;:&quot;swp1&quot; -- &quot;leaf1&quot;:&quot;swp1&quot;;
+    &quot;spine1&quot;:&quot;swp2&quot; -- &quot;leaf2&quot;:&quot;swp1&quot;;
+    &quot;spine2&quot;:&quot;swp1&quot; -- &quot;leaf1&quot;:&quot;swp2&quot;;
+    &quot;spine2&quot;:&quot;swp2&quot; -- &quot;leaf2&quot;:&quot;swp2&quot;;
+    &quot;leaf1&quot;:&quot;swp3&quot; -- &quot;leaf2&quot;:&quot;swp3&quot;;
+    &quot;leaf1&quot;:&quot;swp4&quot; -- &quot;leaf2&quot;:&quot;swp4&quot;;
+    &quot;leaf1&quot;:&quot;swp5s0&quot; -- &quot;server1&quot;:&quot;eth1&quot;;
+    &quot;leaf2&quot;:&quot;swp5s0&quot; -- &quot;server2&quot;:&quot;eth1&quot;;
+}
+   
+    
+</code></pre>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357433/2s2l2s_DOT.png" alt = "/images/download/attachments/8357433/2s2l2s_DOT.png"
+
+
+width = 500
+
+ />
+
+
+<h2 id="ptmd-scripts">ptmd Scripts</h2>
+
+<p><code>ptmd</code> executes scripts at <code>/etc/ptm.d/if-topo-pass</code> and
+<code>/etc/ptm.d/if-topo-fail</code>for each interface that goes through a
+change, running <code>if-topo-pass</code> when an LLDP or BFD check passes and
+running <code>if-topo-fails</code> when the check fails. The scripts receive an
+argument string that is the result of the <code>ptmctl</code> command, described in
+the <a href="#src-8357433_PrescriptiveTopologyManager-PTM-ptmd_commands"><code>ptmd</code> commands section
+below</a>.</p>
+
+<p>You should modify these default scripts as needed.</p>
+
+<h2 id="configuration-parameters">Configuration Parameters</h2>
+
+<p>You can configure <code>ptmd</code> parameters in the topology file. The parameters
+are classified as host-only, global, per-port/node and templates.</p>
+
+<h3 id="host-only-parameters">Host-only Parameters</h3>
+
+<p><em>Host-only parameters</em> apply to the entire host on which PTM is running.
+You can include the <code>hostnametype</code> host-only parameter, which specifies
+whether PTM should use only the host name (<code>hostname</code>) or the
+fully-qualified domain name (<code>fqdn</code>) while looking for the <code>self-node</code>
+in the graph file. For example, in the graph file below, PTM will ignore
+the FQDN and only look for <em>switch04</em>, since that is the host name of
+the switch it&rsquo;s running on:</p>
+
+
+<div class="notices tip" > <p>It’s a good idea to always wrap the hostname in double quotes, like
+<em>&ldquo;www.example.com&rdquo;</em>. Otherwise, <code>ptmd</code> can fail if you specify a
+fully-qualified domain name as the hostname and do not wrap it in double
+quotes.</p>
+
+<p>Further, to avoid errors when starting the <code>ptmd</code> process, make sure
+that <code>/etc/hosts</code> and <code>/etc/hostname</code> both reflect the hostname you are
+using in the <code>topology.dot</code> file.</p>
+ </div>
+
+
+<pre><code>                   
+graph G {
+         hostnametype=&quot;hostname&quot;
+         BFD=&quot;upMinTx=150,requiredMinRx=250&quot;
+         &quot;cumulus&quot;:&quot;swp44&quot; -- &quot;switch04.cumulusnetworks.com&quot;:&quot;swp20&quot;
+         &quot;cumulus&quot;:&quot;swp46&quot; -- &quot;switch04.cumulusnetworks.com&quot;:&quot;swp22&quot;
+}
+   
+    
+</code></pre>
+
+<p>However, in this next example, PTM will compare using the FQDN and look
+for <em>switch05.cumulusnetworks.com</em>, which is the FQDN of the switch it’s
+running on:</p>
+
+<pre><code>                   
+graph G {
+         hostnametype=&quot;fqdn&quot;
+         &quot;cumulus&quot;:&quot;swp44&quot; -- &quot;switch05.cumulusnetworks.com&quot;:&quot;swp20&quot;
+         &quot;cumulus&quot;:&quot;swp46&quot; -- &quot;switch05.cumulusnetworks.com&quot;:&quot;swp22&quot;
+}
+   
+    
+</code></pre>
+
+<h3 id="global-parameters">Global Parameters</h3>
+
+<p><em>Global parameters</em> apply to every port listed in the topology file.
+There are two global parameters: LLDP and BFD. LLDP is enabled by
+default; if no keyword is present, default values are used for all
+ports. However, BFD is disabled if no keyword is present, unless there
+is a per-port override configured. For example:</p>
+
+<pre><code>                   
+graph G {
+         LLDP=&quot;&quot;
+         BFD=&quot;upMinTx=150,requiredMinRx=250,afi=both&quot;
+         &quot;cumulus&quot;:&quot;swp44&quot; -- &quot;qct-ly2-04&quot;:&quot;swp20&quot;
+         &quot;cumulus&quot;:&quot;swp46&quot; -- &quot;qct-ly2-04&quot;:&quot;swp22&quot;
+}
+   
+    
+</code></pre>
+
+<h3 id="per-port-parameters">Per-port Parameters</h3>
+
+<p><em>Per-port parameters</em> provide finer-grained control at the port level.
+These parameters override any global or compiled defaults. For example:</p>
+
+<pre><code>                   
+graph G {
+         LLDP=&quot;&quot;
+         BFD=&quot;upMinTx=300,requiredMinRx=100&quot;
+         &quot;cumulus&quot;:&quot;swp44&quot; -- &quot;qct-ly2-04&quot;:&quot;swp20&quot; [BFD=&quot;upMinTx=150,requiredMinRx=250,afi=both&quot;]
+         &quot;cumulus&quot;:&quot;swp46&quot; -- &quot;qct-ly2-04&quot;:&quot;swp22&quot;
+}
+   
+    
+</code></pre>
+
+<h3 id="templates">Templates</h3>
+
+<p><em>Templates</em> provide flexibility in choosing different parameter
+combinations and applying them to a given port. A template instructs
+<code>ptmd</code> to reference a named parameter string instead of a default one.
+There are two parameter strings <code>ptmd</code> supports:</p>
+
+<ul>
+<li><p><code>bfdtmpl</code>, which specifies a custom parameter tuple for BFD.</p></li>
+
+<li><p><code>lldptmpl</code>, which specifies a custom parameter tuple for LLDP.</p></li>
+</ul>
+
+<p>For example:</p>
+
+<pre><code>                   
+graph G {
+         LLDP=&quot;&quot;
+         BFD=&quot;upMinTx=300,requiredMinRx=100&quot;
+         BFD1=&quot;upMinTx=200,requiredMinRx=200&quot;
+         BFD2=&quot;upMinTx=100,requiredMinRx=300&quot;
+         LLDP1=&quot;match_type=ifname&quot;
+         LLDP2=&quot;match_type=portdescr&quot;
+         &quot;cumulus&quot;:&quot;swp44&quot; -- &quot;qct-ly2-04&quot;:&quot;swp20&quot; [BFD=&quot;bfdtmpl=BFD1&quot;, LLDP=&quot;lldptmpl=LLDP1&quot;]
+         &quot;cumulus&quot;:&quot;swp46&quot; -- &quot;qct-ly2-04&quot;:&quot;swp22&quot; [BFD=&quot;bfdtmpl=BFD2&quot;, LLDP=&quot;lldptmpl=LLDP2&quot;]
+         &quot;cumulus&quot;:&quot;swp46&quot; -- &quot;qct-ly2-04&quot;:&quot;swp22&quot;
+}
+   
+    
+</code></pre>
+
+<p>In this template, LLDP1 and LLDP2 are templates for LLDP parameters
+while BFD1 and BFD2 are templates for BFD parameters.</p>
+
+<h3 id="supported-bfd-and-lldp-parameters">Supported BFD and LLDP Parameters</h3>
+
+<p><code>ptmd</code> supports the following BFD parameters:</p>
+
+<ul>
+<li><p><code>upMinTx</code>: the minimum transmit interval, which defaults to <em>300ms</em>,
+specified in milliseconds.</p></li>
+
+<li><p><code>requiredMinRx</code>: the minimum interval between received BFD packets,
+which defaults to <em>300ms</em>, specified in milliseconds.</p></li>
+
+<li><p><code>detectMult</code>: the detect multiplier, which defaults to <em>3</em>, and can
+be any non-zero value.</p></li>
+
+<li><p><code>afi</code>: the address family to be supported for the edge. The address
+family must be one of the following:</p>
+
+<ul>
+<li><p><em>v4</em>: BFD sessions will be built for only IPv4 connected peer.
+This is the default value.</p></li>
+
+<li><p><em>v6</em>: BFD sessions will be built for only IPv6 connected peer.</p></li>
+
+<li><p><em>both</em>: BFD sessions will be built for both IPv4 and IPv6
+connected peers.</p></li>
+</ul></li>
+</ul>
+
+<p>The following is an example of a topology with BFD applied at the port
+level:</p>
+
+<pre><code>                   
+graph G {
+         &quot;cumulus-1&quot;:&quot;swp44&quot; -- &quot;cumulus-2&quot;:&quot;swp20&quot; [BFD=&quot;upMinTx=300,requiredMinRx=100,afi=v6&quot;]
+         &quot;cumulus-1&quot;:&quot;swp46&quot; -- &quot;cumulus-2&quot;:&quot;swp22&quot; [BFD=&quot;detectMult=4&quot;]
+}
+   
+    
+</code></pre>
+
+<p><code>ptmd</code> supports the following LLDP parameters:</p>
+
+<ul>
+<li><p><code>match_type</code>, which defaults to the interface name (<code>ifname</code>), but
+can accept a port description (<code>portdescr</code>) instead if you want
+<code>lldpd</code> to compare the topology against the port description instead
+of the interface name. You can set this parameter globally or at the
+per-port level.</p></li>
+
+<li><p><code>match_hostname</code>, which defaults to the host name (<code>hostname</code>), but
+enables PTM to match the topology using the fully-qualified domain
+name (<code>fqdn</code>) supplied by LLDP.</p></li>
+</ul>
+
+<p>The following is an example of a topology with LLDP applied at the port
+level:</p>
+
+<pre><code>                   
+graph G {
+         &quot;cumulus-1&quot;:&quot;swp44&quot; -- &quot;cumulus-2&quot;:&quot;swp20&quot; [LLDP=&quot;match_hostname=fqdn&quot;]
+         &quot;cumulus-1&quot;:&quot;swp46&quot; -- &quot;cumulus-2&quot;:&quot;swp22&quot; [LLDP=&quot;match_type=portdescr&quot;]
+}
+   
+    
+</code></pre>
+
+
+<div class="notices note" > <p>When you specify <code>match_hostname=fqdn</code>, <code>ptmd</code> will match the entire
+FQDN, like <em>cumulus-2.domain.com</em> in the example below. If you do not
+specify anything for <code>match_hostname</code>, <code>ptmd</code> will match based on
+hostname only, like <em>cumulus-3</em> below, and ignore the rest of the URL:</p>
+
+<pre><code>                   
+graph G { 
+         &quot;cumulus-1&quot;:&quot;swp44&quot; -- &quot;cumulus-2.domain.com&quot;:&quot;swp20&quot; [LLDP=&quot;match_hostname=fqdn&quot;] 
+         &quot;cumulus-1&quot;:&quot;swp46&quot; -- &quot;cumulus-3&quot;:&quot;swp22&quot; [LLDP=&quot;match_type=portdescr&quot;] 
+}
+   
+    
+</code></pre>
+ </div>
+
+
+<h2 id="bidirectional-forwarding-detection-bfd">Bidirectional Forwarding Detection (BFD)</h2>
+
+<p>BFD provides low overhead and rapid detection of failures in the paths
+between two network devices. It provides a unified mechanism for link
+detection over all media and protocol layers. Use BFD to detect failures
+for IPv4 and IPv6 single or multihop paths between any two network
+devices, including unidirectional path failure detection. For
+information about configuring BFD using PTM, see the <a href="/version2/cumulus-linux-35/Layer_3/Bidirectional_Forwarding_Detection_-_BFD">BFD
+chapter</a>.</p>
+
+<h2 id="checking-link-state-with-frrouting">Checking Link State with FRRouting</h2>
+
+<p>The FRRouting routing suite enables additional checks to ensure that
+routing adjacencies are formed only on links that have connectivity
+conformant to the specification, as determined by <code>ptmd</code>.</p>
+
+
+<div class="notices note" > <p>You only need to do this to check link state; you don&rsquo;t need to enable
+PTM to determine BFD status.</p>
+ </div>
+
+
+<p>The check is enabled by default. Every interface has an implied
+<code>ptm-enable</code> line in the configuration stanza in the interfaces file.</p>
+
+<p>To disable the checks, delete the <code>ptm-enable</code> parameter from the
+interface. For example:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net del interface swp51 ptm-enable 
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>If you need to re-enable PTM for that interface, run:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add interface swp51 ptm-enable 
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>With PTM enabled on an interface, the <code>zebra</code> daemon connects to <code>ptmd</code>
+over a Unix socket. Any time there is a change of status for an
+interface, <code>ptmd</code> sends notifications to <code>zebra</code>. Zebra maintains a
+<code>ptm-status</code> flag per interface and evaluates routing adjacency based on
+this flag. To check the per-interface <code>ptm-status</code>:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net show interface swp1
+ 
+Interface swp1 is up, line protocol is up
+  Link ups:       0    last: (never)
+  Link downs:     0    last: (never)
+  PTM status: disabled
+  vrf: Default-IP-Routing-Table
+  index 3 metric 0 mtu 1550 
+  flags: 
+  HWaddr: c4:54:44:bd:01:41
+   
+    
+</code></pre>
+
+<h2 id="using-ptmd-service-commands">Using ptmd Service Commands</h2>
+
+<p>PTM sends client notifications in CSV format.</p>
+
+<p><code>cumulus@switch:~$ sudo systemctl start|restart|force-reload
+ptmd.service</code>: Starts or restarts the <code>ptmd</code> service. The <code>topology.dot</code>
+file must be present in order for the service to start.</p>
+
+<p><code>cumulus@switch:~$ sudo systemctl reload ptmd.service</code>: Instructs <code>ptmd</code>
+to read the <code>topology.dot</code> file again without restarting, applying the
+new configuration to the running state.</p>
+
+<p><code>cumulus@switch:~$ sudo systemctl stop ptmd.service</code>: Stops the <code>ptmd</code>
+service.</p>
+
+<p><code>cumulus@switch:~$ sudo systemctl status ptmd.service</code>: Retrieves the
+current running state of <code>ptmd</code>.</p>
+
+<h2 id="using-ptmctl-commands">Using ptmctl Commands</h2>
+
+<p><code>ptmctl</code> is a client of <code>ptmd</code>; it retrieves the operational state of
+the ports configured on the switch and information about BFD sessions
+from <code>ptmd</code>. <code>ptmctl</code> parses the CSV notifications sent by <code>ptmd</code>.</p>
+
+<p>See <code>man ptmctl</code> for more information.</p>
+
+<h3 id="ptmctl-examples">ptmctl Examples</h3>
+
+<p>The examples below contain the following keywords in the output of the
+cbl status column, which are described here:</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>cbl status Keyword</p></th>
+<th><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>pass</p></td>
+<td><p>The interface is defined in the topology file, LLDP information is received on the interface, and the LLDP information for the interface matches the information in the topology file.</p></td>
+</tr>
+<tr class="even">
+<td><p>fail</p></td>
+<td><p>The interface is defined in the topology file, LLDP information is received on the interface, and the LLDP information for the interface does <strong>not</strong> match the information in the topology file.</p></td>
+</tr>
+<tr class="odd">
+<td><p>N/A</p></td>
+<td><p>The interface is defined in the topology file, but no LLDP information is received on the interface. The interface may be down or disconnected, or the neighbor is not sending LLDP packets.</p>
+<p>The "N/A" and "fail" statuses may indicate a wiring problem to investigate.</p>
+<p>The "N/A" status is not shown when using the <code>-l</code> option with <code>ptmctl</code>. If you specify the <code>-l</code> option, <code>ptmctl</code> displays only those interfaces that are receiving LLDP information.</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>For basic output, use <code>ptmctl</code> without any options:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ptmctl
+ 
+-------------------------------------------------------------
+port  cbl     BFD     BFD                  BFD    BFD       
+      status  status  peer                 local  type      
+-------------------------------------------------------------
+swp1  pass    pass    11.0.0.2             N/A    singlehop 
+swp2  pass    N/A     N/A                  N/A    N/A        
+swp3  pass    N/A     N/A                  N/A    N/A  
+   
+    
+</code></pre>
+
+<p>For more detailed output, use the <code>-d</code> option:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ptmctl -d
+ 
+--------------------------------------------------------------------------------------
+port  cbl    exp     act      sysname  portID  portDescr  match  last    BFD   BFD    
+      status nbr     nbr                                  on     upd     Type  state  
+--------------------------------------------------------------------------------------
+swp45 pass   h1:swp1 h1:swp1  h1       swp1    swp1       IfName 5m: 5s  N/A   N/A    
+swp46 fail   h2:swp1 h2:swp1  h2       swp1    swp1       IfName 5m: 5s  N/A   N/A    
+ 
+#continuation of the output
+-------------------------------------------------------------------------------------------------
+BFD   BFD       det_mult  tx_timeout  rx_timeout  echo_tx_timeout  echo_rx_timeout  max_hop_cnt
+peer  DownDiag
+-------------------------------------------------------------------------------------------------
+N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A
+N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A
+ 
+   
+    
+</code></pre>
+
+<p>To return information on active BFD sessions <code>ptmd</code> is tracking, use the
+<code>-b</code> option:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ptmctl -b
+ 
+----------------------------------------------------------
+port  peer        state  local         type       diag 
+                                                         
+----------------------------------------------------------
+swp1  11.0.0.2    Up     N/A           singlehop  N/A  
+N/A   12.12.12.1  Up     12.12.12.4    multihop   N/A    
+   
+    
+</code></pre>
+
+<p>To return LLDP information, use the <code>-l</code> option. It returns only the
+active neighbors currently being tracked by <code>ptmd</code>.</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ptmctl -l
+ 
+---------------------------------------------
+port  sysname  portID  port   match  last
+                       descr  on     upd
+---------------------------------------------
+swp45 h1       swp1    swp1   IfName 5m:59s
+swp46 h2       swp1    swp1   IfName 5m:59s 
+   
+    
+</code></pre>
+
+<p>To return detailed information on active BFD sessions <code>ptmd</code> is
+tracking, use the <code>-b</code> and <code>-d</code> options (results are for an
+IPv6-connected peer):</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ptmctl -b -d
+ 
+----------------------------------------------------------------------------------------
+port  peer                 state  local  type       diag  det   tx_timeout  rx_timeout  
+                                                          mult                          
+----------------------------------------------------------------------------------------
+swp1  fe80::202:ff:fe00:1  Up     N/A    singlehop  N/A   3     300         900         
+swp1  3101:abc:bcad::2     Up     N/A    singlehop  N/A   3     300         900         
+ 
+#continuation of output
+---------------------------------------------------------------------
+echo        echo        max      rx_ctrl  tx_ctrl  rx_echo  tx_echo 
+tx_timeout  rx_timeout  hop_cnt                                     
+---------------------------------------------------------------------
+0           0           N/A      187172   185986   0        0       
+0           0           N/A      501      533      0        0       
+   
+    
+</code></pre>
+
+<h3 id="ptmctl-error-outputs">ptmctl Error Outputs</h3>
+
+<p>If there are errors in the topology file or there isn’t a session, PTM
+will return appropriate outputs. Typical error strings are:</p>
+
+<pre><code>                   
+Topology file error [/etc/ptm.d/topology.dot] [cannot find node cumulus] -
+please check /var/log/ptmd.log for more info
+ 
+Topology file error [/etc/ptm.d/topology.dot] [cannot open file (errno 2)] -
+please check /var/log/ptmd.log for more info
+ 
+No Hostname/MgmtIP found [Check LLDPD daemon status] -
+please check /var/log/ptmd.log for more info
+ 
+No BFD sessions . Check connections
+ 
+No LLDP ports detected. Check connections
+ 
+Unsupported command
+   
+    
+</code></pre>
+
+<p>For example:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ptmctl
+-------------------------------------------------------------------------
+cmd         error
+-------------------------------------------------------------------------
+get-status  Topology file error [/etc/ptm.d/topology.dot] 
+            [cannot open file (errno 2)] - please check /var/log/ptmd.log 
+            for more info
+   
+    
+</code></pre>
+
+
+<div class="notices tip" > <p>If you encounter errors with the <code>topology.dot</code> file, you can use <code>dot</code>
+(included in the Graphviz package) to validate the syntax of the
+topology file.</p>
+
+<p>By simply opening the topology file with Graphviz, you can ensure that
+it is readable and that the file format is correct.</p>
+
+<p>If you edit <code>topology.dot</code> file from a Windows system, be sure to double
+check the file formatting; there may be extra characters that keep the
+graph from working correctly.</p>
+ </div>
+
+
+<h2 id="caveats-and-errata">Caveats and Errata</h2>
+
+<ul>
+<li><p>Prior to version 2.1, Cumulus Linux stored the <code>ptmd</code> configuration
+files in <code>/etc/cumulus/ptm.d</code>. When you upgrade to version 2.1 or
+later, all the existing <code>ptmd</code> files are copied from their original
+location to <code>/etc/ptm.d</code> with a <code>dpkg-old</code> extension, except for
+<code>topology.dot</code>, which gets copied to <code>/etc/ptm.d</code>.</p>
+
+<p>If you customized the <code>if-topo-pass</code> and <code>if-topo-fail</code> scripts,
+they are also copied to <code>dpkg-old</code>, and you must modify them so they
+can parse the CSV output correctly.</p>
+
+<p>Sample <code>if-topo-pass</code> and <code>if-topo-fail</code> scripts are available in
+<code>/etc/ptm.d</code>. A sample <code>topology.dot</code> file is available in
+<code>/usr/share/doc/ptmd/examples</code>.</p></li>
+
+<li><p>When PTMD is incorrectly in a failure state and the Zebra interface
+is enabled, PIF BGP sessions are not establishing the route, but the
+subinterface on top of it does establish routes.</p>
+
+<p>If the subinterface is configured on the physical interface and the
+physical interface is incorrectly marked as being in a PTM FAIL
+state, routes on the physical interface are not processed in Quagga,
+but the subinterface is working.</p></li>
+</ul>
+
+<h2 id="related-information">Related Information</h2>
+
+<ul>
+<li><p><a href="http://tools.ietf.org/html/rfc5880" target="_blank">Bidirectional Forwarding Detection
+(BFD)</a></p></li>
+
+<li><p><a href="http://www.graphviz.org" target="_blank">Graphviz</a></p></li>
+
+<li><p><a href="http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol" target="_blank">LLDP on
+Wikipedia</a></p></li>
+
+<li><p><a href="https://github.com/CumulusNetworks/ptm" target="_blank">PTMd GitHub repo</a></p></li>
+</ul>
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#supported-features">Supported Features</a></li>
+<li><a href="#configuring-ptm">Configuring PTM</a></li>
+<li><a href="#basic-topology-example">Basic Topology Example</a></li>
+<li><a href="#ptmd-scripts">ptmd Scripts</a></li>
+<li><a href="#configuration-parameters">Configuration Parameters</a>
+<ul>
+<li><a href="#host-only-parameters">Host-only Parameters</a></li>
+<li><a href="#global-parameters">Global Parameters</a></li>
+<li><a href="#per-port-parameters">Per-port Parameters</a></li>
+<li><a href="#templates">Templates</a></li>
+<li><a href="#supported-bfd-and-lldp-parameters">Supported BFD and LLDP Parameters</a></li>
+</ul></li>
+<li><a href="#bidirectional-forwarding-detection-bfd">Bidirectional Forwarding Detection (BFD)</a></li>
+<li><a href="#checking-link-state-with-frrouting">Checking Link State with FRRouting</a></li>
+<li><a href="#using-ptmd-service-commands">Using ptmd Service Commands</a></li>
+<li><a href="#using-ptmctl-commands">Using ptmctl Commands</a>
+<ul>
+<li><a href="#ptmctl-examples">ptmctl Examples</a></li>
+<li><a href="#ptmctl-error-outputs">ptmctl Error Outputs</a></li>
+</ul></li>
+<li><a href="#caveats-and-errata">Caveats and Errata</a></li>
+<li><a href="#related-information">Related Information</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version2/cumulus-linux-35/Layer_1_and_2/Prescriptive_Topology_Manager_-_PTM.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

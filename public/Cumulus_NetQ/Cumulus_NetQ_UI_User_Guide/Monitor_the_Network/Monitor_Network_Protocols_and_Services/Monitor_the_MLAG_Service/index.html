@@ -1,0 +1,2942 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Monitor the MLAG Service | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/" >
+    Cumulus NetQ 2.1
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 1.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 2.0.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/" >
+    Upgrade from NetQ 2.1.0 to NetQ 2.1.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_BGP_Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_EVPN_Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_LLDP_Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service/"  class="active" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Validate_Network_Protocol_and_Service_Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Monitor the MLAG Service</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Monitor the MLAG Service</h1>
+
+<p>The Cumulus NetQ UI enables operators to view the health of the MLAG
+service on a network-wide and a per session basis, giving greater
+insight into all aspects of the service. This is accomplished through
+two card workflows, one for the service and one for the session. They
+are described separately here.</p>
+
+
+<div class="notices info" > <p>The Cumulus Linux implementation of MLAG is referred to by other vendors
+as CLAG, MC-LAG or VPC. The Cumulus NetQ UI uses the CLAG terminology.</p>
+ </div>
+
+
+<h2 id="monitor-the-clag-service-all-sessions">Monitor the CLAG Service (All Sessions)</h2>
+
+<p>With NetQ, you can monitor the number of nodes running the CLAG service,
+view sessions running, and view alarms triggered by the CLAG service.
+For an overview and how to configure CLAG in your data center network,
+refer to <a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/display/DOCS/Multi-Chassis+Link+Aggregation+-+MLAG">Multi-Chassis Link Aggregation -
+MLAG</a>.</p>
+
+<h3 id="clag-service-card-workflow-summary">CLAG Service Card Workflow Summary</h3>
+
+<p>The small CLAG Service card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456746/image2019-3-3_16_22_4.png" alt = "/images/download/thumbnails/10456746/image2019-3-3_16_22_4.png"
+
+
+width = 200
+
+ />
+
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/9pKK7nvSXHVZ9B7ZhBwE4tJ0yTYz1Cnblgm_0e3-KDmA8qdySLR5COAhLPZomROlRUSRTTRlXlgwEKcjuVljew1z5zd6QRMCXQXjcVbkhXJiX63LgNYuAg5nC58u_mkmYpFHFK43" alt = "/images/lh3.googleusercontent.com/9pKK7nvSXHVZ9B7ZhBwE4tJ0yTYz1Cnblgm_0e3-KDmA8qdySLR5COAhLPZomROlRUSRTTRlXlgwEKcjuVljew1z5zd6QRMCXQXjcVbkhXJiX63LgNYuAg5nC58u_mkmYpFHFK43"
+
+
+width = 16
+
+ />
+</td>
+<td>Indicates data is for all sessions of a Network Service or Protocol</td>
+</tr>
+
+<tr>
+<td>Title</td>
+<td><strong>CLAG</strong>: All CLAG Sessions, or the CLAG Service</td>
+</tr>
+
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/6savpoUbgaVzG-b8wvwDqPBL2SvepqAMmGuTy06oenbCU27_dmDBdmJobMvQD89-1iBJRpKB0lFW4cTzNEp3kdZuAOOs81DmptnyhBgCxeIwwuwkq91hLLOTSLACVkDRTfeYoMNe" alt = "/images/lh3.googleusercontent.com/6savpoUbgaVzG-b8wvwDqPBL2SvepqAMmGuTy06oenbCU27_dmDBdmJobMvQD89-1iBJRpKB0lFW4cTzNEp3kdZuAOOs81DmptnyhBgCxeIwwuwkq91hLLOTSLACVkDRTfeYoMNe"
+
+
+width = 16
+
+ />
+</td>
+<td>Total number of switches with the CLAG service enabled during the designated time period</td>
+</tr>
+
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/zfvCpsG-VHAjSrTbVj3Q9ZDhqhqlkG1MiPwZEFtSM10fC2F8AExk-7gTb3norOvIXhvQL6rLN5NWpDdrnx55YCLnzdn2Y2INmiKan-83QG6a9s4aw3LlOUm7zlOGoi4mK-yUNQDT" alt = "/images/lh3.googleusercontent.com/zfvCpsG-VHAjSrTbVj3Q9ZDhqhqlkG1MiPwZEFtSM10fC2F8AExk-7gTb3norOvIXhvQL6rLN5NWpDdrnx55YCLnzdn2Y2INmiKan-83QG6a9s4aw3LlOUm7zlOGoi4mK-yUNQDT"
+
+
+width = 16
+
+ />
+</td>
+<td>Total number of CLAG-related alarms received during the designated time period</td>
+</tr>
+
+<tr>
+<td>Chart</td>
+<td>Distribution of CLAG-related alarms received during the designated time period</td>
+</tr>
+</tbody>
+</table>
+
+<p>The medium CLAG Service card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-3-3_16_24_58.png" alt = "/images/download/attachments/10456746/image2019-3-3_16_24_58.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+</tr>
+
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/9pKK7nvSXHVZ9B7ZhBwE4tJ0yTYz1Cnblgm_0e3-KDmA8qdySLR5COAhLPZomROlRUSRTTRlXlgwEKcjuVljew1z5zd6QRMCXQXjcVbkhXJiX63LgNYuAg5nC58u_mkmYpFHFK43" alt = "/images/lh3.googleusercontent.com/9pKK7nvSXHVZ9B7ZhBwE4tJ0yTYz1Cnblgm_0e3-KDmA8qdySLR5COAhLPZomROlRUSRTTRlXlgwEKcjuVljew1z5zd6QRMCXQXjcVbkhXJiX63LgNYuAg5nC58u_mkmYpFHFK43"
+
+
+width = 16
+
+ />
+</td>
+<td>Indicates data is for all sessions of a Network Service or Protocol</td>
+</tr>
+
+<tr>
+<td>Title</td>
+<td>Network Services</td>
+</tr>
+
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/6savpoUbgaVzG-b8wvwDqPBL2SvepqAMmGuTy06oenbCU27_dmDBdmJobMvQD89-1iBJRpKB0lFW4cTzNEp3kdZuAOOs81DmptnyhBgCxeIwwuwkq91hLLOTSLACVkDRTfeYoMNe" alt = "/images/lh3.googleusercontent.com/6savpoUbgaVzG-b8wvwDqPBL2SvepqAMmGuTy06oenbCU27_dmDBdmJobMvQD89-1iBJRpKB0lFW4cTzNEp3kdZuAOOs81DmptnyhBgCxeIwwuwkq91hLLOTSLACVkDRTfeYoMNe"
+
+
+width = 16
+
+ />
+</td>
+<td>Total number of switches with the CLAG service enabled during the designated time period</td>
+</tr>
+
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/zfvCpsG-VHAjSrTbVj3Q9ZDhqhqlkG1MiPwZEFtSM10fC2F8AExk-7gTb3norOvIXhvQL6rLN5NWpDdrnx55YCLnzdn2Y2INmiKan-83QG6a9s4aw3LlOUm7zlOGoi4mK-yUNQDT" alt = "/images/lh3.googleusercontent.com/zfvCpsG-VHAjSrTbVj3Q9ZDhqhqlkG1MiPwZEFtSM10fC2F8AExk-7gTb3norOvIXhvQL6rLN5NWpDdrnx55YCLnzdn2Y2INmiKan-83QG6a9s4aw3LlOUm7zlOGoi4mK-yUNQDT"
+
+
+width = 16
+
+ />
+</td>
+<td>Total number of CLAG-related alarms received during the designated time period</td>
+</tr>
+
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/OZ7aek87vE2GR9IP49ewj7F8XTSYe4ec-eyolCoWYf3aTc79K-j1EjF0gj6EL-YqPlLxkERQ7iNHi3FHQPBwczW2SNRAOmlbDM0RbJqTSADWDKcK3VWCzPTrC_0uvHVkRrm9J2Id" alt = "/images/lh3.googleusercontent.com/OZ7aek87vE2GR9IP49ewj7F8XTSYe4ec-eyolCoWYf3aTc79K-j1EjF0gj6EL-YqPlLxkERQ7iNHi3FHQPBwczW2SNRAOmlbDM0RbJqTSADWDKcK3VWCzPTrC_0uvHVkRrm9J2Id"
+
+
+width = 16
+
+ />
+</td>
+<td>Total number of sessions with an inactive backup IP address</td>
+</tr>
+
+<tr>
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/uez2nLxgyfGtFFzPWdwXXWg-pfu5-s6bSXW7ZsXKpF7SS_ZEtRhuDuToD9ojGhz0thfzzzCDrgpJyjlelL9kWtGyaL-SaRBFvOX1qGgLv7gjuN5U0dxmAtxHIUKYLECr50heq0HN" alt = "/images/lh4.googleusercontent.com/uez2nLxgyfGtFFzPWdwXXWg-pfu5-s6bSXW7ZsXKpF7SS_ZEtRhuDuToD9ojGhz0thfzzzCDrgpJyjlelL9kWtGyaL-SaRBFvOX1qGgLv7gjuN5U0dxmAtxHIUKYLECr50heq0HN"
+
+
+width = 16
+
+ />
+</td>
+<td>Total number of bonds with only a single connection</td>
+</tr>
+
+<tr>
+<td>Total Nodes Running chart</td>
+<td>Total number and distribution of switches with CLAG service enabled during the designated time period</td>
+</tr>
+
+<tr>
+<td>Total Alarms chart</td>
+<td>Total number and distribution of CLAG-related alarms received during the designated time period</td>
+</tr>
+
+<tr>
+<td>Total Sessions chart</td>
+<td>Total number and distribution of CLAG sessions network-wide during the designated time period</td>
+</tr>
+</tbody>
+</table>
+
+<p>The large CLAG service card contains two tabs.</p>
+
+<p>The <em>All CLAG Sessions Summary</em> tab which displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-3-3_16_40_4.png" alt = "/images/download/attachments/10456746/image2019-3-3_16_40_4.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Time period</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/9pKK7nvSXHVZ9B7ZhBwE4tJ0yTYz1Cnblgm_0e3-KDmA8qdySLR5COAhLPZomROlRUSRTTRlXlgwEKcjuVljew1z5zd6QRMCXQXjcVbkhXJiX63LgNYuAg5nC58u_mkmYpFHFK43" alt = "/images/lh3.googleusercontent.com/9pKK7nvSXHVZ9B7ZhBwE4tJ0yTYz1Cnblgm_0e3-KDmA8qdySLR5COAhLPZomROlRUSRTTRlXlgwEKcjuVljew1z5zd6QRMCXQXjcVbkhXJiX63LgNYuAg5nC58u_mkmYpFHFK43"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
+</tr>
+<tr class="odd">
+<td><p>Title</p></td>
+<td><p>All CLAG Sessions Summary</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/6savpoUbgaVzG-b8wvwDqPBL2SvepqAMmGuTy06oenbCU27_dmDBdmJobMvQD89-1iBJRpKB0lFW4cTzNEp3kdZuAOOs81DmptnyhBgCxeIwwuwkq91hLLOTSLACVkDRTfeYoMNe" alt = "/images/lh3.googleusercontent.com/6savpoUbgaVzG-b8wvwDqPBL2SvepqAMmGuTy06oenbCU27_dmDBdmJobMvQD89-1iBJRpKB0lFW4cTzNEp3kdZuAOOs81DmptnyhBgCxeIwwuwkq91hLLOTSLACVkDRTfeYoMNe"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Total number of switches with the CLAG service enabled during the designated time period</p></td>
+</tr>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/zfvCpsG-VHAjSrTbVj3Q9ZDhqhqlkG1MiPwZEFtSM10fC2F8AExk-7gTb3norOvIXhvQL6rLN5NWpDdrnx55YCLnzdn2Y2INmiKan-83QG6a9s4aw3LlOUm7zlOGoi4mK-yUNQDT" alt = "/images/lh3.googleusercontent.com/zfvCpsG-VHAjSrTbVj3Q9ZDhqhqlkG1MiPwZEFtSM10fC2F8AExk-7gTb3norOvIXhvQL6rLN5NWpDdrnx55YCLnzdn2Y2INmiKan-83QG6a9s4aw3LlOUm7zlOGoi4mK-yUNQDT"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Total number of CLAG-related alarms received during the designated time period</p></td>
+</tr>
+<tr class="even">
+<td><p>Total Nodes Running chart</p></td>
+<td><p>Total number and distribution of switches with CLAG service enabled during the designated time period</p></td>
+</tr>
+<tr class="odd">
+<td><p>Total Sessions chart</p></td>
+<td><p>Total number and distribution of CLAG sessions network-wide during the designated time period</p></td>
+</tr>
+<tr class="even">
+<td><p>Total Sessions with Inactive-backup-ip chart</p></td>
+<td><p>Total number and distribution of sessions without an active backup IP defined</p></td>
+</tr>
+<tr class="odd">
+<td><p>Table/Filter options</p></td>
+<td><p>When the <strong>SWITCHES WITH MOST SESSIONS</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of session count—devices with the largest number of sessions are listed first</p>
+<p>When the <strong>SWITCHES WITH MOST UNESTABLISHED SESSIONS</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of unestablished session count—devices with the largest number of unestablished sessions are listed first</p></td>
+</tr>
+<tr class="even">
+<td><p>Show All Sessions</p></td>
+<td><p>Link to view all CLAG sessions in the full screen card</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The full screen CLAG Service card provides tabs for all switches, all
+sessions, and all alarms.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-3-3_16_49_25.png" alt = "/images/download/attachments/10456746/image2019-3-3_16_49_25.png"
+
+
+width = 850
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Title</p></td>
+<td><p>Network Services | CLAG</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent0.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T" alt = "/images/lh4.googleusercontent0.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Closes full screen card and returns to workbench</p></td>
+</tr>
+<tr class="odd">
+<td><p>Time period</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking</p>
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/V88gxOaxuUjBWw5tni0vwGrNs2JBQsz0SwWFpQCdJTOSYfuUGQnpkWz8-cHDSF-jZsE4TeZfpRhaeIhOU7UIZZE2AwtP870d78GBCwuD0Kzqb7TbAiDnX5hgQh5DC68zoKgoLd5U" alt = "/images/lh5.googleusercontent.com/V88gxOaxuUjBWw5tni0vwGrNs2JBQsz0SwWFpQCdJTOSYfuUGQnpkWz8-cHDSF-jZsE4TeZfpRhaeIhOU7UIZZE2AwtP870d78GBCwuD0Kzqb7TbAiDnX5hgQh5DC68zoKgoLd5U"
+
+
+width = 16
+
+ />
+</td>
+</tr>
+<tr class="even">
+<td><p>Results</p></td>
+<td><p>Number of results found for the selected tab</p></td>
+</tr>
+<tr class="odd">
+<td><p>All Switches tab</p></td>
+<td><p>Displays all switches and hosts running the CLAG service. By default, the device list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each device:</p>
+<ul>
+<li><p><strong>Agent</strong></p>
+<ul>
+<li><p>State: Indicates communication state of the NetQ Agent on a given device. Values include Fresh (heard from recently) and Rotten (not heard from recently).</p></li>
+<li><p>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.</p></li>
+</ul></li>
+<li><p><strong>ASIC</strong></p>
+<ul>
+<li><p>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</p></li>
+<li><p>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</p></li>
+<li><p>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</p></li>
+<li><p>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</p></li>
+<li><p>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</p></li>
+</ul></li>
+<li><p><strong>CPU</strong></p>
+<ul>
+<li><p>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</p></li>
+<li><p>Max Freq: Highest rated frequency for CPU. Example values include 2.40 GHz and 1.74 GHz.</p></li>
+<li><p>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</p></li>
+<li><p>Nos: Number of cores. Example values include 2, 4, and 8.</p></li>
+</ul></li>
+<li><p><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</p></li>
+<li><p><strong>License State</strong>: Indicator of validity. Values include ok and bad.</p></li>
+<li><p><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</p></li>
+<li><p><strong>OS</strong></p>
+<ul>
+<li><p>Vendor: Operating System manufacturer. Values include Cumulus Networks, RedHat, Ubuntu, and CentOS.</p></li>
+<li><p>Version: Software version number of the OS. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</p></li>
+<li><p>Version Id: Identifier of the OS version. For Cumulus, this is the same as the <em>Version</em> (3.7.x).</p></li>
+</ul></li>
+<li><p><strong>Platform</strong></p>
+<ul>
+<li><p>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</p></li>
+<li><p>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</p></li>
+<li><p>Model: Manufacturer's model name. Examples values include AS7712-32X and S4048-ON.</p></li>
+<li><p>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</p></li>
+<li><p>Revision: Release version of the platform</p></li>
+<li><p>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</p></li>
+<li><p>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</p></li>
+</ul></li>
+<li><p><strong>Time:</strong> Date and time the data was collected from device.</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>All Sessions tab</p></td>
+<td><p>Displays all CLAG sessions network-wide. By default, the session list is sorted by hostname. This tab provides the following additional data about each session:</p>
+<ul>
+<li><p><strong>Backup Ip</strong>: IP address of the interface to use if the peerlink (or bond) goes down</p></li>
+<li><p><strong>Backup Ip Active</strong>: Indicates whether the backup IP address has been specified and is active (true) or not (false)</p></li>
+<li><p><strong>Bonds</strong></p>
+<ul>
+<li><p>Conflicted: Identifies the set of interfaces in a bond that do not match on each end of the bond</p></li>
+<li><p>Single: Identifies a set of interfaces connecting to only one of the two switches</p></li>
+<li><p>Dual: Identifies a set of interfaces connecting to both switches</p></li>
+<li><p>Proto Down: Interface on the switch brought down by the <code>clagd</code> service. Value is blank if no interfaces are down due to <code>clagd</code> service.</p></li>
+</ul></li>
+<li><p><strong>Clag Sysmac</strong>: Unique MAC address for each bond interface pair. <strong>Note</strong>: Must be a value between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff.</p></li>
+<li><p><strong>DB State</strong>: Session state of the DB.</p></li>
+<li><p><strong>OPID</strong>: CLAG service identifier</p></li>
+<li><p><strong>Peer</strong>:</p>
+<ul>
+<li><p>If: Name of the peer interface</p></li>
+<li><p>Role: Role of the peer device. Values include primary and secondary.</p></li>
+<li><p>State: Indicates if peer device is up (true) or down (false)</p></li>
+</ul></li>
+<li><p><strong>Role</strong>: Role of the host device. Values include primary and secondary.</p></li>
+<li><p><strong>Timestamp</strong>: Date and time the CLAG session was started, deleted, updated, or marked dead (device went down)</p></li>
+<li><p><strong>Vxlan Anycast</strong>: Anycast IP address used for VXLAN termination</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>All Alarms tab</p></td>
+<td><p>Displays all CLAG events network-wide. By default, the event list is sorted by time, with the most recent events listed first. The tab provides the following additional data about each event:</p>
+<ul>
+<li><p><strong>Message</strong>: Text description of a BGP-related event. Example: Clag conflicted bond changed from swp7 swp8 to @swp9 swp10</p></li>
+<li><p><strong>Source</strong>: Hostname of network device that generated the event</p></li>
+<li><p><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</p></li>
+<li><p><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>clag</em> in this card workflow.</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>Export</p></td>
+<td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
+</tr>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w" alt = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="view-service-status-summary">View Service Status Summary</h3>
+
+<p>A summary of the CLAG service is available from the CLAG Service card
+workflow, including the number of nodes running the service, the number
+of CLAG-related alarms, and a distribution of those alarms.</p>
+
+<p>To view the summary, open the small CLAG Service card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456746/image2019-3-3_16_22_4.png" alt = "/images/download/thumbnails/10456746/image2019-3-3_16_22_4.png"
+
+
+width = 200
+
+ />
+
+
+<p>For more detail, select a different size CLAG Service card.</p>
+
+<h3 id="view-the-distribution-of-sessions-and-alarms">View the Distribution of Sessions and Alarms</h3>
+
+<p>It is useful to know the number of network nodes running the CLAG
+protocol over a period of time, as it gives you insight into the amount
+of traffic associated with and breadth of use of the protocol. It is
+also useful to compare the number of nodes running CLAG with the alarms
+present at the same time to determine if there is any correlation
+between the issues and the ability to establish an CLAG session.</p>
+
+<p>To view these distributions, open the medium CLAG Service card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-3-3_16_24_58.png" alt = "/images/download/attachments/10456746/image2019-3-3_16_24_58.png"
+
+height = 250
+
+
+ />
+
+
+<p>If a visual correlation is apparent, you can dig a little deeper with
+the large CLAG Service card tabs.</p>
+
+<h3 id="view-devices-with-the-most-clag-sessions">View Devices with the Most CLAG Sessions</h3>
+
+<p>You can view the load from CLAG on your switches using the large CLAG
+Service card. This data enables you to see which switches are handling
+the most CLAG traffic currently, validate that is what is expected based
+on your network design, and compare that with data from an earlier time
+to look for any differences.</p>
+
+<p>To view switches and hosts with the most CLAG sessions:</p>
+
+<ol>
+<li><p>Open the large CLAG Service card.</p></li>
+
+<li><p>Select <strong>SWITCHES WITH MOST SESSIONS</strong> from the filter above the
+table.<br />
+The table content is sorted by this characteristic, listing nodes
+running the most CLAG sessions at the top. Scroll down to view those
+with the fewest sessions.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-4-5_11_16_49.png" alt = "/images/download/attachments/10456746/image2019-4-5_11_16_49.png"
+
+height = 250
+
+
+ />
+</li>
+</ol>
+
+<p>To compare this data with the same data at a previous time:</p>
+
+<ol>
+<li><p>Open another large CLAG Service card.</p></li>
+
+<li><p>Move the new card next to the original card if needed.</p></li>
+
+<li><p>Change the time period for the data on the new card by hovering over
+the card and clicking</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/fo-yr9tPWzyO_CQPDiddcB5tmuwuX1OS7nIlj4_9iA3_6xnmg_c-54SmAAdNJL_odR0UGjeTSxRHw2BHkeZ3YEfiwOhjpUeHVwPVd8s4F2XwOGnRWXD4NfaIzj86ETYgEU8frnzw" alt = "/images/lh4.googleusercontent.com/fo-yr9tPWzyO_CQPDiddcB5tmuwuX1OS7nIlj4_9iA3_6xnmg_c-54SmAAdNJL_odR0UGjeTSxRHw2BHkeZ3YEfiwOhjpUeHVwPVd8s4F2XwOGnRWXD4NfaIzj86ETYgEU8frnzw"
+
+
+width = 16
+
+ />
+
+
+<p>.</p></li>
+
+<li><p>Select the time period that you want to compare with the current
+time.<br />
+You can now see whether there are significant differences between
+this time period and the previous time period.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456746/image2019-4-5_11_21_47.png" alt = "/images/download/thumbnails/10456746/image2019-4-5_11_21_47.png"
+
+
+width = 200
+
+ />
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-4-5_11_18_48.png" alt = "/images/download/attachments/10456746/image2019-4-5_11_18_48.png"
+
+height = 250
+
+
+ />
+
+
+<p>If the changes are unexpected, you can investigate further by
+looking at another time frame, determining if more nodes are now
+running CLAG than previously, looking for changes in the topology,
+and so forth.</p></li>
+</ol>
+
+<h3 id="view-devices-with-the-most-unestablished-clag-sessions">View Devices with the Most Unestablished CLAG Sessions</h3>
+
+<p>You can identify switches that are experiencing difficulties
+establishing CLAG sessions; both currently and in the past.</p>
+
+<p>To view switches with the most unestablished CLAG sessions:</p>
+
+<ol>
+<li><p>Open the large CLAG Service card.</p></li>
+
+<li><p>Select <strong>SWITCHES WITH MOST UNESTABLISHED SESSIONS</strong> from the filter
+above the table.<br />
+The table content is sorted by this characteristic, listing nodes
+with the most unestablished CLAG sessions at the top. Scroll down to
+view those with the fewest unestablished sessions.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-3-3_17_13_52.png" alt = "/images/download/attachments/10456746/image2019-3-3_17_13_52.png"
+
+height = 250
+
+
+ />
+</li>
+</ol>
+
+<p>Where to go next depends on what data you see, but a few options
+include:</p>
+
+<ul>
+<li><p>Hover over the any of the charts to focus on the number of switches
+or sessions with the chart characteristic during that smaller time
+slice.<br />
+The table content changes to match the hovered content. Click on the
+chart to persist the table changes.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-3-3_17_19_9.png" alt = "/images/download/attachments/10456746/image2019-3-3_17_19_9.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Change the time period for the data to compare with a prior time.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456746/image2019-3-3_12_34_3.png" alt = "/images/download/thumbnails/10456746/image2019-3-3_12_34_3.png"
+
+
+width = 200
+
+ />
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-3-3_17_20_6.png" alt = "/images/download/attachments/10456746/image2019-3-3_17_20_6.png"
+
+height = 250
+
+
+ />
+
+
+<p>If the same switches are consistently indicating the most
+unestablished sessions, you might want to look more carefully at
+those switches using the Switches card workflow to determine
+probable causes. Refer to <a href="/old/Cumulus_NetQ/Monitor_Switches.html">Monitor
+Switches</a>.</p></li>
+
+<li><p>Click <strong>Show All Sessions</strong> to investigate all CLAG sessions with
+events in the full screen card.</p></li>
+</ul>
+
+<h3 id="view-switches-with-the-most-clag-related-alarms">View Switches with the Most CLAG-related Alarms</h3>
+
+<p>Switches experiencing a large number of CLAG alarms may indicate a
+configuration or performance issue that needs further investigation. You
+can view the switches sorted by the number of CLAG alarms and then use
+the Switches card workflow or the Alarms card workflow to gather more
+information about possible causes for the alarms.</p>
+
+<p>To view switches with most CLAG alarms:</p>
+
+<ol>
+<li><p>Open the large CLAG Service card.</p></li>
+
+<li><p>Hover over the header and click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent0.com/zfvCpsG-VHAjSrTbVj3Q9ZDhqhqlkG1MiPwZEFtSM10fC2F8AExk-7gTb3norOvIXhvQL6rLN5NWpDdrnx55YCLnzdn2Y2INmiKan-83QG6a9s4aw3LlOUm7zlOGoi4mK-yUNQDT" alt = "/images/lh3.googleusercontent0.com/zfvCpsG-VHAjSrTbVj3Q9ZDhqhqlkG1MiPwZEFtSM10fC2F8AExk-7gTb3norOvIXhvQL6rLN5NWpDdrnx55YCLnzdn2Y2INmiKan-83QG6a9s4aw3LlOUm7zlOGoi4mK-yUNQDT"
+
+
+width = 16
+
+ />
+
+
+<p>.</p></li>
+
+<li><p>Select <strong>EVENTS BY MOST ACTIVE DEVICE</strong> from the filter above the
+table.<br />
+The table content is sorted by this characteristic, listing nodes
+with the most CLAG alarms at the top. Scroll down to view those with
+the fewest alarms.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-3-3_17_23_30.png" alt = "/images/download/attachments/10456746/image2019-3-3_17_23_30.png"
+
+height = 250
+
+
+ />
+</li>
+</ol>
+
+<p>Where to go next depends on what data you see, but a few options
+include:</p>
+
+<ul>
+<li><p>Hover over the Total Alarms chart to focus on the switches
+exhibiting alarms during that smaller time slice.<br />
+The table content changes to match the hovered content. Click on the
+chart to persist the table changes.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-3-3_17_25_29.png" alt = "/images/download/attachments/10456746/image2019-3-3_17_25_29.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Change the time period for the data to compare with a prior time. If
+the same switches are consistently indicating the most alarms, you
+might want to look more carefully at those switches using the
+Switches card workflow.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456746/image2019-3-3_12_34_3.png" alt = "/images/download/thumbnails/10456746/image2019-3-3_12_34_3.png"
+
+
+width = 150
+
+ />
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-3-3_17_26_37.png" alt = "/images/download/attachments/10456746/image2019-3-3_17_26_37.png"
+
+height = 250
+
+
+ />
+</li>
+
+<li><p>Click <strong>Show All Sessions</strong> to investigate all CLAG sessions with
+alarms in the full screen card.</p></li>
+</ul>
+
+<h3 id="view-all-clag-events">View All CLAG Events</h3>
+
+<p>The CLAG Service card workflow enables you to view all of the CLAG
+events in the designated time period.</p>
+
+<p>To view all CLAG events:</p>
+
+<ol>
+<li><p>Open the full screen CLAG Service card.</p></li>
+
+<li><p>Click <strong>All Alarms</strong> tab.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-4-5_11_33_22.png" alt = "/images/download/attachments/10456746/image2019-4-5_11_33_22.png"
+
+
+width = 800
+
+ />
+</li>
+</ol>
+
+<p>Where to go next depends on what data you see, but a few options
+include:</p>
+
+<ul>
+<li><p>Open the <strong>All Switches</strong> or <strong>All Sessions</strong> tabs to look more
+closely at the alarms from the switch or session perspective.</p></li>
+
+<li><p>Sort on other parameters:</p>
+
+<ul>
+<li><p>by <strong>Message</strong> to determine the frequency of particular events</p></li>
+
+<li><p>by <strong>Severity</strong> to determine the most critical events</p></li>
+
+<li><p>by <strong>Time</strong> to find events that may have occurred at a
+particular time to try to correlate them with other system
+events</p></li>
+</ul></li>
+
+<li><p>Export the data to a file by clicking <strong>Export</strong> or selecting a
+subset and clicking <strong>Export Selected</strong> in edit menu</p></li>
+
+<li><p>Return to your workbench by clicking</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/close-14.svg" alt = "/images/download/attachments/10456746/close-14.svg"
+
+
+ />
+
+
+<p>in the top right corner</p></li>
+</ul>
+
+<h3 id="view-detailed-information-about-all-switches-running-clag">View Detailed Information About All Switches Running CLAG</h3>
+
+<p>You can view all stored attributes of all switches running CLAG in your
+network in the full-screen card.</p>
+
+<p>To view all switch details, open the full screen CLAG Service card, and
+click the <strong>All Switches</strong> tab.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-4-5_11_32_20.png" alt = "/images/download/attachments/10456746/image2019-4-5_11_32_20.png"
+
+height = 250
+
+
+ />
+
+
+<p>To return to your workbench, click</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/close-14.svg" alt = "/images/download/attachments/10456746/close-14.svg"
+
+
+ />
+
+
+<p>in the top right corner.</p>
+
+<h3 id="take-actions-on-data-displayed-in-results-list">Take Actions on Data Displayed in Results List</h3>
+
+<p>In the full screen BGP Service card, you can determine which results are
+displayed in the results list, and which are exported.</p>
+
+<p>To take actions on the data, click in the blank column at the very left
+of a row. A checkbox appears, selecting that switch, session, or alarm,
+and an edit menu is shown at the bottom of the card (shown enlarged
+here).</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-4-5_11_36_7.png" alt = "/images/download/attachments/10456746/image2019-4-5_11_36_7.png"
+
+height = 250
+
+
+ />
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-4-3_12_19_37.png" alt = "/images/download/attachments/10456746/image2019-4-3_12_19_37.png"
+
+
+ />
+
+
+<p>You can perform the following actions on the results list:</p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Action or Behavior on Click</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Select All</td>
+<td>Selects all switches, sessions, or alarms in the results list</td>
+</tr>
+
+<tr>
+<td>Clear All</td>
+<td>Clears all existing selections of switches, sessions, or alarms in the results list. This also hides the edit menu.</td>
+</tr>
+
+<tr>
+<td>Export Selected</td>
+<td>Opens export options dialog. Exported data includes only the selected data.</td>
+</tr>
+
+<tr>
+<td>Show Only Selected</td>
+<td>Hide unselected switches, sessions, or alarms.</td>
+</tr>
+
+<tr>
+<td>Remove Selected</td>
+<td>Remove selected switches, sessions, or alarms from the results list.</td>
+</tr>
+</tbody>
+</table>
+
+<p>To return to original display of results, refresh the browser.</p>
+
+<h2 id="monitor-a-single-clag-session">Monitor a Single CLAG Session</h2>
+
+<p>With NetQ, you can monitor the number of nodes running the CLAG service,
+view switches with the most peers alive and not alive, and view alarms
+triggered by the CLAG service. For an overview and how to configure CLAG
+in your data center network, refer to <a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/display/DOCS/Multi-Chassis+Link+Aggregation+-+MLAG">Multi-Chassis Link Aggregation -
+MLAG</a>.</p>
+
+
+<div class="notices info" > <p>To access the single session cards, you must open the full screen CLAG
+Service (all sessions) card and double-click on a session.</p>
+ </div>
+
+
+<h3 id="granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</h3>
+
+<p>On the medium and large Network Services cards, the status of the runs
+is represented in heat maps stacked vertically; one for passing runs,
+one for runs with warnings, and one for runs with failures. Depending on
+the time period of data on the card, the number of smaller time blocks
+used to indicate the status varies. A vertical stack of time blocks, one
+from each map, includes the results from all checks during that time.
+The results are shown by how saturated the color is for each block. If
+all validations during that time period pass, then the top block is 100%
+saturated and the warning and failure blocks are zero % saturated. As
+warnings and errors increase in saturation, the passing block is
+proportionally reduced in saturation. The maps are divided into regions.
+The number of blocks in a region varies with the time period as well. An
+example set of heat maps for a time period of 24 hours is shown here
+with the most common time periods in the table along with the resulting
+time blocks and regions.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-1-16_14_44_42.png" alt = "/images/download/attachments/10456746/image2019-1-16_14_44_42.png"
+
+
+ />
+
+
+<table>
+<thead>
+<tr>
+<th>Time Period</th>
+<th>Number of Runs</th>
+<th>Number Time Blocks</th>
+<th>Amount of Time in Each Block</th>
+<th>Region Size</th>
+<th>Number Blocks per Region</th>
+<th>Total Number of Regions</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>15 minutes</td>
+<td>5</td>
+<td>15</td>
+<td>1 minute</td>
+<td>3 minutes</td>
+<td>3</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>1 hour</td>
+<td>15</td>
+<td>12</td>
+<td>5 minutes</td>
+<td>15 minutes</td>
+<td>3</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>6 hours</td>
+<td>18</td>
+<td>12</td>
+<td>30 minutes</td>
+<td>1 hour</td>
+<td>2</td>
+<td>6</td>
+</tr>
+
+<tr>
+<td>24 hours</td>
+<td>72</td>
+<td>24</td>
+<td>1 hour</td>
+<td>6 hours</td>
+<td>6</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>1 week</td>
+<td>504</td>
+<td>14</td>
+<td>12 hours</td>
+<td>1 day</td>
+<td>2</td>
+<td>7</td>
+</tr>
+
+<tr>
+<td>1 month</td>
+<td>2,086</td>
+<td>28</td>
+<td>1 day</td>
+<td>1 week</td>
+<td>7</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>1 quarter</td>
+<td>7,000</td>
+<td>13</td>
+<td>1 week</td>
+<td>1 week</td>
+<td>1</td>
+<td>13</td>
+</tr>
+
+<tr>
+<td>1 year</td>
+<td>26,000</td>
+<td>52</td>
+<td>1 week</td>
+<td>4 weeks</td>
+<td>4</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="clag-session-card-workflow-summary">CLAG Session Card Workflow Summary</h3>
+
+<p>The small CLAG Session card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/10456746/image2019-4-4_10_52_16.png" alt = "/images/download/thumbnails/10456746/image2019-4-4_10_52_16.png"
+
+
+width = 200
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/8UFHoFOr6nLn2EDe7ck8pxl4sD8PUveRXriidckRXurN1fJg24JdReHZPseSaLV2V2OgQByxS3HYPVBUfAeejBHYeIT1BDCPCagb3lXEp6XphglqHJCSDmYZ75uMmnsAToZVdOx8" alt = "/images/lh4.googleusercontent.com/8UFHoFOr6nLn2EDe7ck8pxl4sD8PUveRXriidckRXurN1fJg24JdReHZPseSaLV2V2OgQByxS3HYPVBUfAeejBHYeIT1BDCPCagb3lXEp6XphglqHJCSDmYZ75uMmnsAToZVdOx8"
+
+
+width = 18
+
+ />
+</td>
+<td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
+</tr>
+<tr class="even">
+<td><p>Title</p></td>
+<td><p><strong>CLAG Session</strong></p></td>
+</tr>
+<tr class="odd">
+<td><p> </p></td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer.</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh" alt = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh"
+
+
+width = 16
+
+ />
+
+,
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/aGdfLOBGXXT2lrVhBrI0kU9noHk7uyLcGDNj_0A0CB97xxzMmtnmCzt_0BxhgJ2nG_9BoSofaC5QMkYmRk8-p2Po3vDKVZsElKuq2Xk0D_pTeN4hm1aDgUaJ0rSk8x2lLDrQOhUW" alt = "/images/lh3.googleusercontent.com/aGdfLOBGXXT2lrVhBrI0kU9noHk7uyLcGDNj_0A0CB97xxzMmtnmCzt_0BxhgJ2nG_9BoSofaC5QMkYmRk8-p2Po3vDKVZsElKuq2Xk0D_pTeN4hm1aDgUaJ0rSk8x2lLDrQOhUW"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Indication of host role, primary</p>
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh" alt = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh"
+
+
+width = 16
+
+ />
+
+or secondary
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/aGdfLOBGXXT2lrVhBrI0kU9noHk7uyLcGDNj_0A0CB97xxzMmtnmCzt_0BxhgJ2nG_9BoSofaC5QMkYmRk8-p2Po3vDKVZsElKuq2Xk0D_pTeN4hm1aDgUaJ0rSk8x2lLDrQOhUW" alt = "/images/lh3.googleusercontent.com/aGdfLOBGXXT2lrVhBrI0kU9noHk7uyLcGDNj_0A0CB97xxzMmtnmCzt_0BxhgJ2nG_9BoSofaC5QMkYmRk8-p2Po3vDKVZsElKuq2Xk0D_pTeN4hm1aDgUaJ0rSk8x2lLDrQOhUW"
+
+
+width = 16
+
+ />
+</td>
+</tr>
+</tbody>
+</table>
+
+<p>The medium CLAG Session card displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-4-4_10_53_8.png" alt = "/images/download/attachments/10456746/image2019-4-4_10_53_8.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Time period</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/8UFHoFOr6nLn2EDe7ck8pxl4sD8PUveRXriidckRXurN1fJg24JdReHZPseSaLV2V2OgQByxS3HYPVBUfAeejBHYeIT1BDCPCagb3lXEp6XphglqHJCSDmYZ75uMmnsAToZVdOx8" alt = "/images/lh4.googleusercontent.com/8UFHoFOr6nLn2EDe7ck8pxl4sD8PUveRXriidckRXurN1fJg24JdReHZPseSaLV2V2OgQByxS3HYPVBUfAeejBHYeIT1BDCPCagb3lXEp6XphglqHJCSDmYZ75uMmnsAToZVdOx8"
+
+
+width = 18
+
+ />
+</td>
+<td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
+</tr>
+<tr class="odd">
+<td><p>Title</p></td>
+<td><p>Network Services | CLAG Session</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh6.googleusercontent.com/JaXSSELl_nz1tMCRgnfs7dN4bErlnOHc-uteFbWlsLyCqW2khDGqUCVZcZYusEdlvGhDj3cml3sU0YGQq0aST_mpgZe-p1d07LL4bP-GsWr7Xcozg7w7cDhpyYeCSgkrYRFDW9xx" alt = "/images/lh6.googleusercontent.com/JaXSSELl_nz1tMCRgnfs7dN4bErlnOHc-uteFbWlsLyCqW2khDGqUCVZcZYusEdlvGhDj3cml3sU0YGQq0aST_mpgZe-p1d07LL4bP-GsWr7Xcozg7w7cDhpyYeCSgkrYRFDW9xx"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click on</p>
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh6.googleusercontent.com/JaXSSELl_nz1tMCRgnfs7dN4bErlnOHc-uteFbWlsLyCqW2khDGqUCVZcZYusEdlvGhDj3cml3sU0YGQq0aST_mpgZe-p1d07LL4bP-GsWr7Xcozg7w7cDhpyYeCSgkrYRFDW9xx" alt = "/images/lh6.googleusercontent.com/JaXSSELl_nz1tMCRgnfs7dN4bErlnOHc-uteFbWlsLyCqW2khDGqUCVZcZYusEdlvGhDj3cml3sU0YGQq0aST_mpgZe-p1d07LL4bP-GsWr7Xcozg7w7cDhpyYeCSgkrYRFDW9xx"
+
+
+width = 16
+
+ />
+
+to open associated device card.</td>
+</tr>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh" alt = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh"
+
+
+width = 16
+
+ />
+
+,
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/aGdfLOBGXXT2lrVhBrI0kU9noHk7uyLcGDNj_0A0CB97xxzMmtnmCzt_0BxhgJ2nG_9BoSofaC5QMkYmRk8-p2Po3vDKVZsElKuq2Xk0D_pTeN4hm1aDgUaJ0rSk8x2lLDrQOhUW" alt = "/images/lh3.googleusercontent.com/aGdfLOBGXXT2lrVhBrI0kU9noHk7uyLcGDNj_0A0CB97xxzMmtnmCzt_0BxhgJ2nG_9BoSofaC5QMkYmRk8-p2Po3vDKVZsElKuq2Xk0D_pTeN4hm1aDgUaJ0rSk8x2lLDrQOhUW"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Indication of host role, primary</p>
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh" alt = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh"
+
+
+width = 16
+
+ />
+
+or secondary
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/aGdfLOBGXXT2lrVhBrI0kU9noHk7uyLcGDNj_0A0CB97xxzMmtnmCzt_0BxhgJ2nG_9BoSofaC5QMkYmRk8-p2Po3vDKVZsElKuq2Xk0D_pTeN4hm1aDgUaJ0rSk8x2lLDrQOhUW" alt = "/images/lh3.googleusercontent.com/aGdfLOBGXXT2lrVhBrI0kU9noHk7uyLcGDNj_0A0CB97xxzMmtnmCzt_0BxhgJ2nG_9BoSofaC5QMkYmRk8-p2Po3vDKVZsElKuq2Xk0D_pTeN4hm1aDgUaJ0rSk8x2lLDrQOhUW"
+
+
+width = 16
+
+ />
+</td>
+</tr>
+<tr class="even">
+<td><p>Time period</p></td>
+<td><p>Range of time for data displayed in peer status chart</p></td>
+</tr>
+<tr class="odd">
+<td><p>Peer Status chart</p></td>
+<td><p>Distribution of peer availability, alive or not alive, during the designated time period. The number of time segments in a time period varies according to the length of the time period.</p></td>
+</tr>
+<tr class="even">
+<td><p>Role</p></td>
+<td><p>Role that host device is playing. Values include primary and secondary.</p></td>
+</tr>
+<tr class="odd">
+<td><p>CLAG sysmac</p></td>
+<td><p>System MAC address of the CLAG session</p></td>
+</tr>
+<tr class="even">
+<td><p>Peer Role</p></td>
+<td><p>Role that peer device is playing. Values include primary and secondary.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Peer State</p></td>
+<td><p>Operational state of the peer, up (true) or down (false)</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The large CLAG Session card contains one tab.</p>
+
+<p>The <em>Session Summary</em> tab displays:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-3-29_17_44_29.png" alt = "/images/download/attachments/10456746/image2019-3-29_17_44_29.png"
+
+height = 250
+
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Time period</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/8UFHoFOr6nLn2EDe7ck8pxl4sD8PUveRXriidckRXurN1fJg24JdReHZPseSaLV2V2OgQByxS3HYPVBUfAeejBHYeIT1BDCPCagb3lXEp6XphglqHJCSDmYZ75uMmnsAToZVdOx8" alt = "/images/lh4.googleusercontent.com/8UFHoFOr6nLn2EDe7ck8pxl4sD8PUveRXriidckRXurN1fJg24JdReHZPseSaLV2V2OgQByxS3HYPVBUfAeejBHYeIT1BDCPCagb3lXEp6XphglqHJCSDmYZ75uMmnsAToZVdOx8"
+
+
+width = 18
+
+ />
+</td>
+<td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
+</tr>
+<tr class="odd">
+<td><p>Title</p></td>
+<td><p>(Network Services | CLAG Session) <strong>Session Summary</strong></p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh6.googleusercontent.com/JaXSSELl_nz1tMCRgnfs7dN4bErlnOHc-uteFbWlsLyCqW2khDGqUCVZcZYusEdlvGhDj3cml3sU0YGQq0aST_mpgZe-p1d07LL4bP-GsWr7Xcozg7w7cDhpyYeCSgkrYRFDW9xx" alt = "/images/lh6.googleusercontent.com/JaXSSELl_nz1tMCRgnfs7dN4bErlnOHc-uteFbWlsLyCqW2khDGqUCVZcZYusEdlvGhDj3cml3sU0YGQq0aST_mpgZe-p1d07LL4bP-GsWr7Xcozg7w7cDhpyYeCSgkrYRFDW9xx"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click on</p>
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh6.googleusercontent.com/JaXSSELl_nz1tMCRgnfs7dN4bErlnOHc-uteFbWlsLyCqW2khDGqUCVZcZYusEdlvGhDj3cml3sU0YGQq0aST_mpgZe-p1d07LL4bP-GsWr7Xcozg7w7cDhpyYeCSgkrYRFDW9xx" alt = "/images/lh6.googleusercontent.com/JaXSSELl_nz1tMCRgnfs7dN4bErlnOHc-uteFbWlsLyCqW2khDGqUCVZcZYusEdlvGhDj3cml3sU0YGQq0aST_mpgZe-p1d07LL4bP-GsWr7Xcozg7w7cDhpyYeCSgkrYRFDW9xx"
+
+
+width = 16
+
+ />
+
+to open associated device card.</td>
+</tr>
+<tr class="odd">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh" alt = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh"
+
+
+width = 16
+
+ />
+
+,
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/aGdfLOBGXXT2lrVhBrI0kU9noHk7uyLcGDNj_0A0CB97xxzMmtnmCzt_0BxhgJ2nG_9BoSofaC5QMkYmRk8-p2Po3vDKVZsElKuq2Xk0D_pTeN4hm1aDgUaJ0rSk8x2lLDrQOhUW" alt = "/images/lh3.googleusercontent.com/aGdfLOBGXXT2lrVhBrI0kU9noHk7uyLcGDNj_0A0CB97xxzMmtnmCzt_0BxhgJ2nG_9BoSofaC5QMkYmRk8-p2Po3vDKVZsElKuq2Xk0D_pTeN4hm1aDgUaJ0rSk8x2lLDrQOhUW"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Indication of host role, primary</p>
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh" alt = "/images/lh4.googleusercontent.com/f3fEO9qiCUVGArdmjdJDPfxXlE1VstKvmsxIK1wKvD-7KUwAdcaMgnORW8SoqGn-etCMtkZwT6zFsxTT7dxyabBJ8_kloNeGJFGepuvlaEocY0BHZmePHPePVcLpv_-K4a4CVjCh"
+
+
+width = 16
+
+ />
+
+or secondary
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh3.googleusercontent.com/aGdfLOBGXXT2lrVhBrI0kU9noHk7uyLcGDNj_0A0CB97xxzMmtnmCzt_0BxhgJ2nG_9BoSofaC5QMkYmRk8-p2Po3vDKVZsElKuq2Xk0D_pTeN4hm1aDgUaJ0rSk8x2lLDrQOhUW" alt = "/images/lh3.googleusercontent.com/aGdfLOBGXXT2lrVhBrI0kU9noHk7uyLcGDNj_0A0CB97xxzMmtnmCzt_0BxhgJ2nG_9BoSofaC5QMkYmRk8-p2Po3vDKVZsElKuq2Xk0D_pTeN4hm1aDgUaJ0rSk8x2lLDrQOhUW"
+
+
+width = 16
+
+ />
+</td>
+</tr>
+<tr class="even">
+<td><p>Peer Status chart</p></td>
+<td><p>Distribution of peer availability, alive or not alive, during the designated time period. The number of time segments in a time period varies according to the length of the time period.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Backup IP</p></td>
+<td><p>IP address of the interface to use if the peerlink (or bond) goes down</p></td>
+</tr>
+<tr class="even">
+<td><p>Backup IP Active</p></td>
+<td><p>Indicates whether the backup IP address is configured</p></td>
+</tr>
+<tr class="odd">
+<td><p>CLAG SysMAC</p></td>
+<td><p>System MAC address of the CLAG session</p></td>
+</tr>
+<tr class="even">
+<td><p>Peer State</p></td>
+<td><p>Operational state of the peer, up (true) or down (false)</p></td>
+</tr>
+<tr class="odd">
+<td><p>Count of Dual Bonds</p></td>
+<td><p>Number of bonds connecting to both switches.</p></td>
+</tr>
+<tr class="even">
+<td><p>Count of Single Bonds</p></td>
+<td><p>Number of bonds connecting to only one switch.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Count of Protocol Down Bonds</p></td>
+<td><p>Number of bonds with interfaces that were brought down by the <code>clagd</code> service.</p></td>
+</tr>
+<tr class="even">
+<td><p>Count of Conflicted Bonds</p></td>
+<td><p>Number of bonds which have a set of interfaces that are not the same on both switches</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>The full screen CLAG Session card provides tabs for all CLAG sessions
+and all events.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-4-5_11_50_13.png" alt = "/images/download/attachments/10456746/image2019-4-5_11_50_13.png"
+
+
+width = 800
+
+ />
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Title</p></td>
+<td><p>Network Services | CLAG</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh4.googleusercontent0.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T" alt = "/images/lh4.googleusercontent0.com/DO5d-BvJ-vciNs7f0SlTY72rHmQgJpxHGUYsRkK0aDIMZ2VQP9ygWJzCZH5qouUZGI3MZOvOxdfvn8dt8xMxBI_4UvJVTZMJVnmb5Za0LEdQ3lOeqs01w942HG2AJ14kJm1sY56T"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Closes full screen card and returns to workbench</p></td>
+</tr>
+<tr class="odd">
+<td><p>Time period</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking</p>
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/V88gxOaxuUjBWw5tni0vwGrNs2JBQsz0SwWFpQCdJTOSYfuUGQnpkWz8-cHDSF-jZsE4TeZfpRhaeIhOU7UIZZE2AwtP870d78GBCwuD0Kzqb7TbAiDnX5hgQh5DC68zoKgoLd5U" alt = "/images/lh5.googleusercontent.com/V88gxOaxuUjBWw5tni0vwGrNs2JBQsz0SwWFpQCdJTOSYfuUGQnpkWz8-cHDSF-jZsE4TeZfpRhaeIhOU7UIZZE2AwtP870d78GBCwuD0Kzqb7TbAiDnX5hgQh5DC68zoKgoLd5U"
+
+
+width = 16
+
+ />
+</td>
+</tr>
+<tr class="even">
+<td><p>Results</p></td>
+<td><p>Number of results found for the selected tab</p></td>
+</tr>
+<tr class="odd">
+<td><p>All CLAG Sessions tab</p></td>
+<td><p>Displays all CLAG sessions for the given session. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:</p>
+<ul>
+<li><p><strong>Backup Ip</strong>: IP address of the interface to use if the peerlink (or bond) goes down</p></li>
+<li><p><strong>Backup Ip Active</strong>: Indicates whether the backup IP address has been specified and is active (true) or not (false)</p></li>
+<li><p><strong>Bonds</strong></p>
+<ul>
+<li><p>Conflicted: Identifies the set of interfaces in a bond that do not match on each end of the bond</p></li>
+<li><p>Single: Identifies a set of interfaces connecting to only one of the two switches</p></li>
+<li><p>Dual: Identifies a set of interfaces connecting to both switches</p></li>
+<li><p>Proto Down: Interface on the switch brought down by the <code>clagd</code> service. Value is blank if no interfaces are down due to <code>clagd</code> service.</p></li>
+</ul></li>
+<li><p><strong>Clag Sysmac</strong>: Unique MAC address for each bond interface pair. <strong>Note</strong>: Must be a value between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff.</p></li>
+<li><p><strong>DB State</strong>: Session state of the DB.</p></li>
+<li><p><strong>OPID</strong>: CLAG service identifier</p></li>
+<li><p><strong>Peer</strong>:</p>
+<ul>
+<li><p>If: Name of the peer interface</p></li>
+<li><p>Role: Role of the peer device. Values include primary and secondary.</p></li>
+<li><p>State: Indicates if peer device is up (true) or down (false)</p></li>
+</ul></li>
+<li><p><strong>Role</strong>: Role of the host device. Values include primary and secondary.</p></li>
+<li><p><strong>Timestamp</strong>: Date and time the CLAG session was started, deleted, updated, or marked dead (device went down)</p></li>
+<li><p><strong>Vxlan Anycast</strong>: Anycast IP address used for VXLAN termination</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>All Events tab</p></td>
+<td><p>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:</p>
+<ul>
+<li><p><strong>Message</strong>: Text description of an event. Example: Clag conflicted bond changed from swp7 swp8 to @swp9 swp10</p></li>
+<li><p><strong>Source</strong>: Hostname of network device that generated the event</p></li>
+<li><p><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</p></li>
+<li><p><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>clag</em> in this card workflow.</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>Export</p></td>
+<td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
+</tr>
+<tr class="even">
+<td>
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-external-resource" src = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w" alt = "/images/lh5.googleusercontent.com/TxyRotE-Ks3VoU0rMfISNSl_V0m0yXqQyq8cn7CI6da54YIrMvzU8ttAOXmnbpUJdXBIQBG9OothePcEuJ-DoNYR1SdJIpW6RAlGd5wXxJdRcI0HPR3eMMcrSwotbHTrjqUNFH3w"
+
+
+width = 16
+
+ />
+</td>
+<td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="view-session-status-summary">View Session Status Summary</h3>
+
+<p>A summary of the CLAG session is available from the CLAG Session card
+workflow, showing the node and its peer and current status.</p>
+
+<p>To view the summary:</p>
+
+<ol>
+<li><p>Open the full screen CLAG Service card.</p></li>
+
+<li><p>Select a session from the listing to view.</p></li>
+
+<li><p>Close the full screen card to view the medium CLAG Session card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-4-1_14_15_13.png" alt = "/images/download/attachments/10456746/image2019-4-1_14_15_13.png"
+
+height = 250
+
+
+ />
+
+
+<p>In this example, we see that the tor1 switch plays the secondary
+role in this session with the switch at 44:38:39:ff:01:01.</p></li>
+</ol>
+
+<h3 id="view-clag-session-peering-state-changes">View CLAG Session Peering State Changes</h3>
+
+<p>You can view the peering state for a given CLAG session from the medium
+and large CLAG Session cards. For a given time period, you can determine
+the stability of the CLAG session between two devices. If you
+experienced connectivity issues at a particular time, you can use these
+cards to help verify the state of the peer. If the peer was not alive
+more than it was alive, you can then investigate further into possible
+causes.</p>
+
+<p>To view the state transitions for a given CLAG session:</p>
+
+<ol>
+<li><p>Open the full screen CLAG Service card.</p></li>
+
+<li><p>Select a session from the listing to view.</p></li>
+
+<li><p>Close the full screen card to view the medium CLAG Session card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-4-1_14_16_28.png" alt = "/images/download/attachments/10456746/image2019-4-1_14_16_28.png"
+
+height = 250
+
+
+ />
+
+
+<p>In this example, the peer switch has been alive for the entire
+24-hour period.</p></li>
+</ol>
+
+<p>From this card, you can also view the node role, peer role and state,
+and CLAG system MAC address which identify the session in more detail.</p>
+
+<p>To view the peering state transitions for a given CLAG session on the
+large CLAG Session card, open that card.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-4-1_14_17_53.png" alt = "/images/download/attachments/10456746/image2019-4-1_14_17_53.png"
+
+height = 250
+
+
+ />
+
+
+<p>From this card, you can also view the node role, peer role, state, and
+interface, CLAG system MAC address, active backup IP address, single,
+dual, conflicted, and protocol down bonds, and the VXLAN anycast address
+identifying the session in more detail.</p>
+
+<h3 id="view-all-clag-session-details">View All CLAG Session Details</h3>
+
+<p>You can view all stored attributes of all of the CLAG sessions
+associated with the two devices on this card.</p>
+
+<p>To view all session details, open the full screen CLAG Session card, and
+click the <strong>All CLAG Sessions</strong> tab.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-4-5_11_59_3.png" alt = "/images/download/attachments/10456746/image2019-4-5_11_59_3.png"
+
+height = 250
+
+
+ />
+
+
+<p>Where to go next depends on what data you see, but a few options
+include:</p>
+
+<ul>
+<li><p>Open the <strong>All Events</strong> tabs to look more closely at the alarm and
+info events fin the network.</p></li>
+
+<li><p>Sort on other parameters:</p>
+
+<ul>
+<li><p>by <strong>Single Bonds</strong> to determine which interface sets are only
+connected to one of the switches</p></li>
+
+<li><p>by <strong>Backup IP and Backup IP Active</strong> to determine if the
+correct backup IP address is specified for the service</p></li>
+</ul></li>
+
+<li><p>Export the data to a file by clicking <strong>Export</strong> or selecting a
+subset and clicking <strong>Export Selected</strong> in edit menu</p></li>
+
+<li><p>Return to your workbench by clicking</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/close-14.svg" alt = "/images/download/attachments/10456746/close-14.svg"
+
+
+ />
+
+
+<p>in the top right corner</p></li>
+</ul>
+
+<h3 id="view-all-events">View All Events</h3>
+
+<p>You can view all of the alarm and info events for the two devices on
+this card.</p>
+
+<p>To view all events, o pen the full screen CLAG Session card, and click
+the <strong>All Events</strong> tab.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/image2019-4-4_10_58_7.png" alt = "/images/download/attachments/10456746/image2019-4-4_10_58_7.png"
+
+height = 250
+
+
+ />
+
+
+<p>Where to go next depends on what data you see, but a few options
+include:</p>
+
+<ul>
+<li><p>Open the <strong>All CLAG Sessions</strong> tabs to look more closely at the
+individual sessions.</p></li>
+
+<li><p>Sort on other parameters:</p>
+
+<ul>
+<li><p>by <strong>Message</strong> to determine the frequency of particular events</p></li>
+
+<li><p>by <strong>Severity</strong> to determine the most critical events</p></li>
+
+<li><p>by <strong>Time</strong> to find events that may have occurred at a
+particular time to try to correlate them with other system
+events</p></li>
+</ul></li>
+
+<li><p>Export the data to a file by clicking <strong>Export</strong> or selecting a
+subset and clicking <strong>Export Selected</strong> in edit menu</p></li>
+
+<li><p>Return to your workbench by clicking</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/10456746/close-14.svg" alt = "/images/download/attachments/10456746/close-14.svg"
+
+
+ />
+
+
+<p>in the top right corner</p></li>
+</ul>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#monitor-the-clag-service-all-sessions">Monitor the CLAG Service (All Sessions)</a>
+<ul>
+<li><a href="#clag-service-card-workflow-summary">CLAG Service Card Workflow Summary</a></li>
+<li><a href="#view-service-status-summary">View Service Status Summary</a></li>
+<li><a href="#view-the-distribution-of-sessions-and-alarms">View the Distribution of Sessions and Alarms</a></li>
+<li><a href="#view-devices-with-the-most-clag-sessions">View Devices with the Most CLAG Sessions</a></li>
+<li><a href="#view-devices-with-the-most-unestablished-clag-sessions">View Devices with the Most Unestablished CLAG Sessions</a></li>
+<li><a href="#view-switches-with-the-most-clag-related-alarms">View Switches with the Most CLAG-related Alarms</a></li>
+<li><a href="#view-all-clag-events">View All CLAG Events</a></li>
+<li><a href="#view-detailed-information-about-all-switches-running-clag">View Detailed Information About All Switches Running CLAG</a></li>
+<li><a href="#take-actions-on-data-displayed-in-results-list">Take Actions on Data Displayed in Results List</a></li>
+</ul></li>
+<li><a href="#monitor-a-single-clag-session">Monitor a Single CLAG Session</a>
+<ul>
+<li><a href="#granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</a></li>
+<li><a href="#clag-session-card-workflow-summary">CLAG Session Card Workflow Summary</a></li>
+<li><a href="#view-session-status-summary">View Session Status Summary</a></li>
+<li><a href="#view-clag-session-peering-state-changes">View CLAG Session Peering State Changes</a></li>
+<li><a href="#view-all-clag-session-details">View All CLAG Session Details</a></li>
+<li><a href="#view-all-events">View All Events</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

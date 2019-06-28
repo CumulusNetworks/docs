@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lightweight Network Virtualization - LNV | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <link rel="alternate" type="application/rss+xml" href="http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV/index.xml" title="Cumulus Networks Documentation" />
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Lightweight Network Virtualization - LNV</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Lightweight Network Virtualization - LNV</h1>
+
+<p>Lightweight Network Virtualization (LNV) is a technique for deploying
+<a href="/Network_Virtualization.html">VXLANs</a> without a central controller on
+bare metal switches. This solution requires no external controller or
+software suite; it runs the VXLAN service and registration daemons on
+Cumulus Linux itself. The data path between bridge entities is
+established on top of a layer 3 fabric by means of a simple service node
+coupled with traditional MAC address learning.</p>
+
+<p>To see an example of a full solution before reading the following
+background information, <a href="/LNV_Full_Example.html">please read this
+chapter</a>.</p>
+
+
+<div class="notices note" > <p>LNV is a lightweight controller option. Please <a href="https://support.cumulusnetworks.com/hc/en-us/requests/new" target="_blank">contact Cumulus
+Networks</a>
+with your scale requirements so we can make sure this is the right fit
+for you. There are also other controller options that can work on
+Cumulus Linux.</p>
+ </div>
+
+
+<h2 id="understanding-lnv-concepts">Understanding LNV Concepts</h2>
+
+<p>To best describe this feature, consider the following example
+deployment:</p>
+
+<p>{{&lt; imgOld 0 &gt;}}</p>
+
+<p>The two switches running Cumulus Linux, called leaf1 and leaf2, each
+have a bridge configured. These two bridges contain the physical switch
+port interfaces connecting to the servers as well as the logical VXLAN
+interface associated with the bridge. By creating a logical VXLAN
+interface on both leaf switches, the switches become <em>VTEPs</em> (virtual
+tunnel end points). The IP address associated with this VTEP is most
+commonly configured as its loopback address — in the image above, the
+loopback address is 10.2.1.1 for leaf1 and 10.2.1.2 for leaf2.</p>
+
+<h3 id="acquiring-the-forwarding-database-at-the-service-node">Acquiring the Forwarding Database at the Service Node</h3>
+
+<p>In order to connect these two VXLANs together and forward BUM
+(Broadcast, Unknown-unicast, Multicast) packets to members of a VXLAN,
+the service node needs to acquire the addresses of all the VTEPs for
+every VXLAN it serves. The service node daemon does this through a
+registration daemon running on each leaf switch that contains a VTEP
+participating in LNV. The registration process informs the service node
+of all the VXLANs to which the switch belongs.</p>
+
+<h3 id="mac-learning-and-flooding">MAC Learning and Flooding</h3>
+
+<p>With LNV, as with traditional bridging of physical LANs or VLANs, a
+bridge automatically learns the location of hosts as a side effect of
+receiving packets on a port.</p>
+
+<p>For example, when server1 sends an L2 packet to server3, leaf2 learns
+that server1&rsquo;s MAC address is located on that particular VXLAN, and the
+VXLAN interface learns that the IP address of the VTEP for server1 is
+10.2.1.1. So when server3 sends a packet to server1, the bridge on leaf2
+forwards the packet out of the port to the VXLAN interface and the VXLAN
+interface sends it, encapsulated in a UDP packet, to the address
+10.2.1.1.</p>
+
+<p>But what if server3 sends a packet to some address that has yet to send
+it a packet (server2, for example)? In this case, the VXLAN interface
+sends the packet to the service node, which sends a copy to every other
+VTEP that belongs to the same VXLAN.</p>
+
+<h3 id="handling-bum-traffic">Handling BUM Traffic</h3>
+
+<p>Cumulus Linux has two ways of handling BUM (Broadcast Unknown-unicast
+and Multicast) traffic:</p>
+
+<ul>
+<li><p>Head end replication</p></li>
+
+<li><p>Service node replication</p></li>
+</ul>
+
+<p>Head end replication is enabled by default in Cumulus Linux.</p>
+
+
+<div class="notices warning" > <p>You cannot have both service node and head end replication configured
+simultaneously, as this causes the BUM traffic to be duplicated — both
+the source VTEP and the service node sending their own copy of each
+packet to every remote VTEP.</p>
+ </div>
+
+
+<h4 id="head-end-replication">Head End Replication</h4>
+
+<p>The Tomahawk, Trident II+ and Trident II chipsets are capable of head
+end replication — the ability to generate all the BUM traffic in
+hardware. The most scalable solution available with LNV is to have each
+VTEP (top of rack switch) generate all of its own BUM traffic rather
+than relying on an external service node.</p>
+
+<p>Cumulus Linux verified support for up to 128 VTEPs with head end
+replication.</p>
+
+<p>To disable head end replication, edit <code>/etc/vxrd.conf</code> and set
+<code>head_rep</code> to <em>False</em>.</p>
+
+<h4 id="service-node-replication">Service Node Replication</h4>
+
+<p>Cumulus Linux also supports service node replication for VXLAN BUM
+packets. This is useful with LNV if you have more than 128 VTEPs.
+However, it is not recommended because it forces the spine switches
+running the <code>vxsnd</code> (service node daemon) to replicate the packets in
+software instead of in hardware, unlike head end replication. If you&rsquo;re
+not using a controller but have more than 128 VTEPs, contact <a href="mailto:support@cumulusnetworks.com" target="_blank">Cumulus
+Networks</a>.</p>
+
+<p>To enable service node replication:</p>
+
+<ol>
+<li><p>Disable head end replication; set <code>head_rep</code> to <em>False</em> in
+<code>/etc/vxrd.conf</code>.</p></li>
+
+<li><p>Edit <code>/etc/network/interfaces</code> and configure a service node IP
+address for VXLAN interfaces using <code>vxrd-svcnode-ip &lt;&gt;</code>.</p></li>
+
+<li><p>Edit <code>/etc/vxsnd.conf</code>, and configure the following:</p>
+
+<ul>
+<li><p>Set the same service node IP address that you did in the
+previous step:<br />
+<code>svcnode_ip = &lt;&gt;</code></p></li>
+
+<li><p>To forward VXLAN data traffic, set the following variable to
+<em>True</em>:<br />
+<code>enable_vxlan_listen = true</code></p></li>
+</ul></li>
+</ol>
+
+<h2 id="requirements">Requirements</h2>
+
+<h3 id="hardware-requirements">Hardware Requirements</h3>
+
+<ul>
+<li>Switches with a Tomahawk, Trident II+ or Trident II chipset running
+Cumulus Linux 2.5.4 or later. Please refer to the Cumulus Networks
+<a href="http://cumulusnetworks.com/support/linux-hardware-compatibility-list/" target="_blank">hardware compatibility
+list</a>
+for a list of supported switch models.</li>
+</ul>
+
+<h3 id="configuration-requirements">Configuration Requirements</h3>
+
+<ul>
+<li><p>The VXLAN has an associated <strong>V</strong>XLAN <strong>N</strong>etwork <strong>I</strong>dentifier
+(VNI), also interchangeably called a VXLAN ID.</p></li>
+
+<li><p>The VNI should not be 0 or 16777215, as these two numbers are
+reserved values under Cumulus Linux.</p></li>
+
+<li><p>The VXLAN link and physical interfaces are added to the bridge to
+create the association between the port, VLAN and VXLAN instance.</p></li>
+
+<li><p>Each bridge on the switch has only one VXLAN interface. Cumulus
+Linux does not support more than one VXLAN link in a bridge;
+however, a switch can have multiple bridges.</p></li>
+
+<li><p>Only use bridges in <a href="/Ethernet_Bridging_-_VLANs.html">traditional
+mode</a>; <a href="/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware
+bridges</a>
+are not supported with VXLAN at this time.</p></li>
+
+<li><p>An SVI (Switch VLAN Interface) or L3 address on the bridge is not
+supported. For example, you can&rsquo;t ping from the leaf1 SVI to the
+leaf2 SVI via the VXLAN tunnel; you would need to use server1 and
+server2 to verify. See <a href="/#src-5118319_LightweightNetworkVirtualization-LNV-l3gateway">Creating a Layer 3
+Gateway</a>
+below for more information.</p></li>
+</ul>
+
+<h3 id="installing-the-lnv-packages">Installing the LNV Packages</h3>
+
+<p>The LNV packages are not installed automatically if you upgrade Cumulus
+Linux. You can install LNV in one of two ways:</p>
+
+<ul>
+<li><p>Do a <a href="/Managing_Cumulus_Linux_Disk_Images.html#src-5118256_ManagingCumulusLinuxDiskImages-new_image">binary image
+install</a>
+of Cumulus Linux, using <a href="http://onie.org" target="_blank">ONIE</a></p></li>
+
+<li><p>Install the LNV packages for the registration and service node
+daemons using <code>apt-get install vxfld-vxrd</code> and/or <code>apt-get install
+vxfld-vxsnd</code>, depending upon how you intend to use LNV</p></li>
+</ul>
+
+<h2 id="sample-lnv-configuration">Sample LNV Configuration</h2>
+
+<p>The following images illustrate the configuration that is referenced
+throughout this chapter.</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p>Physical Cabling Diagram</p>
+<p>{{&lt; imgOld 1 &gt;}}</p></td>
+<td><p>Network Virtualization Diagram</p>
+<p>{{&lt; imgOld 2 &gt;}}</p></td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="notices tip" > <p>Want to try out configuring LNV and don&rsquo;t have a Cumulus Linux switch?
+Sign up to use the <a href="http://cumulusnetworks.com/cumulus-workbench/" target="_blank">Cumulus
+Workbench</a>, which has
+this exact topology.</p>
+ </div>
+
+
+<h3 id="network-connectivity">Network Connectivity</h3>
+
+<p>There must be full network connectivity before you can configure LNV.
+The layer 3 IP addressing information as well as the OSPF configuration
+(<code>/etc/quagga/Quagga.conf</code>) below is provided to make the LNV example
+easier to understand.</p>
+
+
+<div class="notices info" > <p>OSPF is not a requirement for LNV, LNV just requires L3 connectivity.
+With Cumulus Linux this can be achieved with static routes, OSPF or BGP.</p>
+ </div>
+
+
+<h3 id="layer-3-ip-addressing">Layer 3 IP Addressing</h3>
+
+<p>Here is the configuration for the IP addressing information used in this
+example.</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p><strong>spine1:</strong> <code>/etc/network/interfaces</code></p>
+<pre><code>                   
+auto lo
+iface lo inet loopback
+  address 10.2.1.3/32
+ 
+auto eth0
+iface eth0 inet dhcp
+ 
+auto swp49
+iface swp49
+  address 10.1.1.2/30
+ 
+auto swp50
+iface swp50
+  address 10.1.1.6/30
+ 
+auto swp51
+iface swp51
+  address 10.1.1.50/30
+ 
+auto swp52
+iface swp52
+  address 10.1.1.54/30
+   
+    </code></pre></td>
+<td><p><strong>spine2:</strong> <code>/etc/network/interfaces</code></p>
+<pre><code>                   
+auto lo
+iface lo inet loopback
+  address 10.2.1.4/32
+ 
+auto eth0
+iface eth0 inet dhcp
+ 
+auto swp49
+iface swp49 
+ address 10.1.1.18/30
+ 
+auto swp50
+iface swp50 
+ address 10.1.1.22/30
+ 
+auto swp51
+iface swp51 
+address 10.1.1.34/30
+ 
+auto swp52
+iface swp52 
+address 10.1.1.38/30
+   
+    </code></pre></td>
+</tr>
+<tr class="even">
+<td><p><strong>leaf1:</strong> <code>/etc/network/interfaces</code></p>
+<pre><code>                   
+auto lo
+iface lo inet loopback
+  address 10.2.1.1/32
+ 
+auto eth0
+iface eth0 inet dhcp
+ 
+auto swp1s0
+iface swp1s0
+  address 10.1.1.1/30
+ 
+auto swp1s1
+iface swp1s1
+  address 10.1.1.5/30
+ 
+auto swp1s2
+iface swp1s2
+  address 10.1.1.33/30
+ 
+auto swp1s3
+iface swp1s3
+  address 10.1.1.37/30
+   
+    </code></pre></td>
+<td><p><strong>leaf2:</strong> <code>/etc/network/interfaces</code></p>
+<pre><code>                   
+auto lo
+iface lo inet loopback
+  address 10.2.1.2/32
+ 
+auto eth0
+iface eth0 inet dhcp
+ 
+auto swp1s0
+iface swp1s0
+ address 10.1.1.17/30
+              
+auto swp1s1
+iface swp1s1
+ address 10.1.1.21/30
+              
+auto swp1s2
+iface swp1s2
+ address 10.1.1.49/30
+              
+auto swp1s3
+iface swp1s3
+ address 10.1.1.53/30
+   
+    </code></pre></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="layer-3-fabric">Layer 3 Fabric</h3>
+
+<p>The service nodes and registration nodes must all be routable between
+each other. The L3 fabric on Cumulus Linux can either be
+<a href="/Border_Gateway_Protocol_-_BGP.html">BGP</a> or
+<a href="/Open_Shortest_Path_First_-_OSPF_-_Protocol.html">OSPF</a>. In this
+example, OSPF is used to demonstrate full reachability. Expand the
+Quagga configurations below.</p>
+
+<p>Quagga configuration using OSPF:</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p><strong>spine1</strong></p>
+<pre><code>interface lo
+ ip ospf area 0.0.0.0
+interface swp49
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+interface swp50
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+interface swp51
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+interface swp52
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+!
+!
+!
+!
+router-id 10.2.1.3
+router ospf
+ ospf router-id 10.2.1.3</code></pre></td>
+<td><p><strong>spine2</strong></p>
+<pre><code>interface lo
+ ip ospf area 0.0.0.0
+interface swp49
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+interface swp50
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+interface swp51
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+interface swp52
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+!
+!
+!
+!
+router-id 10.2.1.4
+router ospf
+ ospf router-id 10.2.1.4</code></pre></td>
+</tr>
+<tr class="even">
+<td><p><strong>leaf1</strong></p>
+<pre><code>                   
+interface lo
+ ip ospf area 0.0.0.0
+interface swp1s0
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+interface swp1s1
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+interface swp1s2
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+interface swp1s3
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+!
+!
+!
+!
+router-id 10.2.1.1
+router ospf
+ ospf router-id 10.2.1.1
+   
+    </code></pre></td>
+<td><p><strong>leaf2</strong></p>
+<pre><code>                   
+interface lo
+ ip ospf area 0.0.0.0
+interface swp1s0
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+interface swp1s1
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+interface swp1s2
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+interface swp1s3
+ ip ospf network point-to-point
+ ip ospf area 0.0.0.0
+!
+!
+!
+!
+!
+router-id 10.2.1.2
+router ospf
+ ospf router-id 10.2.1.2
+   
+    </code></pre></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="host-configuration">Host Configuration</h3>
+
+<p>In this example, the servers are running Ubuntu 14.04. There needs to be
+a trunk mapped from server1 and server2 to the respective switch. In
+Ubuntu this is done with subinterfaces. You can expand the
+configurations below.</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p><strong>server1</strong></p>
+<pre><code>                   
+auto eth3.10
+iface eth3.10 inet static
+  address 10.10.10.1/24
+ 
+auto eth3.20
+iface eth3.20 inet static
+  address 10.10.20.1/24
+ 
+auto eth3.30
+iface eth3.30 inet static
+  address 10.10.30.1/24
+   
+    </code></pre></td>
+<td><p><strong>server2</strong></p>
+<pre><code>                   
+auto eth3.10
+iface eth3.10 inet static
+  address 10.10.10.2/24
+ 
+auto eth3.20
+iface eth3.20 inet static
+  address 10.10.20.2/24
+ 
+auto eth3.30
+iface eth3.30 inet static
+  address 10.10.30.2/24
+   
+    </code></pre></td>
+</tr>
+</tbody>
+</table>
+
+<p>On Ubuntu it is more reliable to use <code>ifup</code> and <code>if down</code> to bring the
+interfaces up and down individually, rather than restarting networking
+entirely (that is, there is no equivalent to <code>if reload</code> like there is
+in Cumulus Linux):</p>
+
+<pre><code>                   
+cumulus@server1:~$ sudo ifup eth3.10
+Set name-type for VLAN subsystem. Should be visible in /proc/net/vlan/config
+Added VLAN with VID == 10 to IF -:eth3:-
+cumulus@server1:~$ sudo ifup eth3.20
+Set name-type for VLAN subsystem. Should be visible in /proc/net/vlan/config
+Added VLAN with VID == 20 to IF -:eth3:-
+cumulus@server1:~$ sudo ifup eth3.30
+Set name-type for VLAN subsystem. Should be visible in /proc/net/vlan/config
+Added VLAN with VID == 30 to IF -:eth3:-
+   
+    
+</code></pre>
+
+<h2 id="configuring-the-vlan-to-vxlan-mapping">Configuring the VLAN to VXLAN Mapping</h2>
+
+<p>Configure the VLANS and associated VXLANs. In this example, there are 3
+VLANs and 3 VXLAN IDs (VNIs). VLANs 10, 20 and 30 are used and
+associated with VNIs 10, 2000 and 30 respectively. The loopback address,
+used as the <code>vxlan-local-tunnelip</code>, is the only difference between leaf1
+and leaf2 for this demonstration.</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p>For leaf1:</p>
+<pre><code>                   
+cumulus@leaf1:~$ sudo nano /etc/network/interfaces
+   
+    </code></pre>
+<p>Add the following to the loopback stanza</p>
+<pre><code>                   
+auto lo
+iface lo 
+  vxrd-src-ip 10.2.1.1
+  vxrd-svcnode-ip 10.2.1.3
+   
+    </code></pre>
+<p>Now append the following for the VXLAN configuration itself:</p>
+<pre><code>                    leaf1: /etc/network/interfaces
+                   
+auto vni-10
+iface vni-10
+  vxlan-id 10
+  vxlan-local-tunnelip 10.2.1.1    
+ 
+auto vni-2000
+iface vni-2000
+  vxlan-id 2000
+  vxlan-local-tunnelip 10.2.1.1
+ 
+auto vni-30
+iface vni-30
+  vxlan-id 30
+  vxlan-local-tunnelip 10.2.1.1
+ 
+auto br-10
+iface br-10
+  bridge-ports swp32s0.10 vni-10
+ 
+auto br-20
+iface br-20
+  bridge-ports swp32s0.20 vni-2000
+ 
+auto br-30
+iface br-30
+  bridge-ports swp32s0.30 vni-30
+   
+    </code></pre>
+<p>To bring up the bridges and VNIs, use the <code>ifreload</code> command:</p>
+<pre><code>                   
+cumulus@leaf:~1$ sudo ifreload -a
+   
+    </code></pre></td>
+<td><p>For leaf2:</p>
+<pre><code>                   
+cumulus@leaf2:~$ sudo nano /etc/network/interfaces
+   
+    </code></pre>
+<p>Add the following to the loopback stanza</p>
+<pre><code>                   
+auto lo
+iface lo 
+  vxrd-src-ip 10.2.1.2
+  vxrd-svcnode-ip 10.2.1.3
+   
+    </code></pre>
+<p>Now append the following for the VXLAN configuration itself:</p>
+<pre><code>                    leaf2: /etc/network/interfaces
+                   
+auto vni-10
+iface vni-10
+  vxlan-id 10
+  vxlan-local-tunnelip 10.2.1.2    
+ 
+auto vni-2000
+iface vni-2000
+  vxlan-id 2000
+  vxlan-local-tunnelip 10.2.1.2
+ 
+auto vni-30
+iface vni-30
+  vxlan-id 30
+  vxlan-local-tunnelip 10.2.1.2
+ 
+auto br-10
+iface br-10
+  bridge-ports swp32s0.10 vni-10
+ 
+auto br-20
+iface br-20
+  bridge-ports swp32s0.20 vni-2000
+ 
+auto br-30
+iface br-30
+  bridge-ports swp32s0.30 vni-30
+   
+    </code></pre>
+<p>To bring up the bridges and VNIs, use the <code>ifreload</code> command:</p>
+<pre><code>                   
+cumulus@leaf2:~$ sudo ifreload -a
+   
+    </code></pre></td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="notices info" > <p>Why is br-20 not vni-20? For example, why not tie VLAN 20 to VNI 20, or
+why was 2000 used? VXLANs and VLANs do not need to be the same number.
+This was done on purpose to highlight this fact. However if you are
+using fewer than 4096 VLANs, there is no reason not to make it easy and
+correlate VLANs to VXLANs. It is completely up to you.</p>
+ </div>
+
+
+<h2 id="verifying-the-vlan-to-vxlan-mapping">Verifying the VLAN to VXLAN Mapping</h2>
+
+<p>Use the <code>brctl show</code> command to see the physical and logical interfaces
+associated with that bridge:</p>
+
+<pre><code>                   
+cumulus@leaf1:~$ brctl show
+bridge name bridge id           STP enabled     interfaces
+br-10       8000.443839008404   no              swp32s0.10
+                                                vni-10
+br-20       8000.443839008404   no              swp32s0.20
+                                                vni-2000
+br-30       8000.443839008404   no              swp32s0.30
+                                                vni-30
+   
+    
+</code></pre>
+
+<p>As with any logical interfaces on Linux, the name does not matter (other
+than a 15-character limit). To verify the associated VNI for the logical
+name, use the <code>ip -d link show</code> command:</p>
+
+<pre><code>                   
+cumulus@leaf1:~$ ip -d link show vni-10
+43: vni-10:  mtu 1500 qdisc noqueue master br-10 state UNKNOWN mode DEFAULT
+    link/ether 02:ec:ec:bd:7f:c6 brd ff:ff:ff:ff:ff:ff
+    vxlan id 10 srcport 32768 61000 dstport 4789 ageing 300
+    bridge_slave
+   
+    
+</code></pre>
+
+<p>The <em>vxlan id 10</em> indicates the VXLAN ID/VNI is indeed 10 as the logical
+name suggests.</p>
+
+<h2 id="enabling-and-managing-service-node-and-registration-daemons">Enabling and Managing Service Node and Registration Daemons</h2>
+
+<p>Every VTEP must run the registration daemon (<code>vxrd</code>). Typically, every
+leaf switch acts as a VTEP. A minimum of 1 switch (a switch not already
+acting as a VTEP) must run the service node daemon (<code>vxsnd</code>). The
+instructions for enabling these daemons follows.</p>
+
+<h3 id="enabling-the-service-node-daemon">Enabling the Service Node Daemon</h3>
+
+<p>The service node daemon (<code>vxsnd)</code> is included in the Cumulus Linux
+repository as <code>vxfld-vxsnd</code>. The service node daemon can run on any
+switch running Cumulus Linux as long as that switch is not also a VXLAN
+VTEP. In this example, enable the service node only on the spine1
+switch, then reboot it:</p>
+
+<pre><code>                   
+cumulus@spine1:~$ sudo systemctl enable vxsnd.service
+cumulus@spine:~1$ sudo systemctl restart vxsnd.service
+   
+    
+</code></pre>
+
+
+<div class="notices warning" > <p>Do not run <code>vxsnd</code> on a switch that is already acting as a VTEP.</p>
+ </div>
+
+
+<h3 id="enabling-the-registration-daemon">Enabling the Registration Daemon</h3>
+
+<p>The registration daemon (<code>vxrd</code>) is included in the Cumulus Linux
+package as <code>vxfld-vxrd</code>. The registration daemon must run on each VTEP
+participating in LNV, so you must enable it on every TOR (leaf) switch
+acting as a VTEP, then reboot the <code>vxrd</code> daemon. For example, on leaf1:</p>
+
+<pre><code>                   
+cumulus@leaf1:~$ sudo systemctl enable vxrd.service
+cumulus@leaf1:~$ sudo systemctl restart vxrd.service
+   
+    
+</code></pre>
+
+<p>Then enable and reboot the <code>vxrd</code> daemon on leaf2:</p>
+
+<pre><code>                   
+cumulus@leaf2:~$ sudo systemctl enable vxrd.service
+cumulus@leaf2:~$ sudo systemctl restart vxrd.service
+   
+    
+</code></pre>
+
+<h3 id="checking-the-daemon-status">Checking the Daemon Status</h3>
+
+<p>To determine if the daemon is running, use the <code>systemctl status &lt;daemon
+name&gt;.service</code> command.</p>
+
+<p>For the service node daemon:</p>
+
+<pre><code>                   
+cumulus@spine1:~$ sudo systemctl status vxsnd.service
+● vxsnd.service - Lightweight Network Virt Discovery Svc and Replicator
+   Loaded: loaded (/lib/systemd/system/vxsnd.service; enabled)
+   Active: active (running) since Wed 2016-05-11 11:42:55 UTC; 10min ago
+ Main PID: 774 (vxsnd)
+   CGroup: /system.slice/vxsnd.service
+           └─774 /usr/bin/python /usr/bin/vxsnd
+ 
+May 11 11:42:55 cumulus vxsnd[774]: INFO: Starting (pid 774) ...
+   
+    
+</code></pre>
+
+<p>For the registration daemon:</p>
+
+<pre><code>                   
+cumulus@leaf1:~$ sudo systemctl status vxrd.service 
+● vxrd.service - Lightweight Network Virtualization Peer Discovery Daemon
+   Loaded: loaded (/lib/systemd/system/vxrd.service; enabled)
+   Active: active (running) since Wed 2016-05-11 11:42:55 UTC; 10min ago
+ Main PID: 929 (vxrd)
+   CGroup: /system.slice/vxrd.service
+           └─929 /usr/bin/python /usr/bin/vxrd
+ 
+May 11 11:42:55 cumulus vxrd[929]: INFO: Starting (pid 929) ...
+   
+    
+</code></pre>
+
+<h2 id="configuring-the-service-node">Configuring the Service Node</h2>
+
+<p>To configure the service node daemon, edit the <code>/etc/vxsnd.conf</code>
+configuration file.</p>
+
+
+<div class="notices note" > <p>For the example configuration, default values are used, except for the
+<code>svcnode_ip</code> field.</p>
+ </div>
+
+
+<pre><code>                   
+cumulus@spine1:~$ sudo nano /etc/vxsnd.conf
+   
+    
+</code></pre>
+
+<p>The address field is set to the loopback address of the switch running
+the <code>vxsnd</code> dameon.</p>
+
+<pre><code>                   
+svcnode_ip = 10.2.1.3
+   
+    
+</code></pre>
+
+<p>Enable, then restart the service node daemon for the change to take
+effect:</p>
+
+<pre><code>                   
+cumulus@spine1:~$ sudo systemctl enable vxsnd.service
+cumulus@spine1:~$ sudo systemctl restart vxsnd.service
+   
+    
+</code></pre>
+
+<p>The complete list of options you can configure is listed below:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>loglevel</td>
+<td>The log level, which can be DEBUG, INFO, WARNING, ERROR, CRITICAL.</td>
+<td>INFO</td>
+</tr>
+
+<tr>
+<td>logdest</td>
+<td>Destination for log messages. It can be a file name, <code>stdout</code> or <code>syslog</code>.</td>
+<td>syslog</td>
+</tr>
+
+<tr>
+<td>logfilesize</td>
+<td>The log file size in bytes. Used when <code>logdest</code> is a file name.</td>
+<td>512000</td>
+</tr>
+
+<tr>
+<td>logbackupcount</td>
+<td>Maximum number of log files stored on disk. Used when <code>logdest</code> is a file name.</td>
+<td>14</td>
+</tr>
+
+<tr>
+<td>pidfile</td>
+<td>The PID file location for the <code>vxrd</code> daemon.</td>
+<td>/var/run/vxrd.pid</td>
+</tr>
+
+<tr>
+<td>udsfile</td>
+<td>The file name for the Unix domain socket used for management.</td>
+<td>/var/run/vxrd.sock</td>
+</tr>
+
+<tr>
+<td>vxfld_port</td>
+<td>The UDP port used for VXLAN control messages.</td>
+<td>10001</td>
+</tr>
+
+<tr>
+<td>svcnode_ip</td>
+<td>This is the address to which registration daemons send control messages for registration and/or BUM packets for replication.</td>
+<td>0.0.0.0</td>
+</tr>
+
+<tr>
+<td>holdtime</td>
+<td>Holdtime (in seconds) for soft state. It is used when sending a register message to peers in response to learning a &lt;vni, addr&gt; from a VXLAN data packet.</td>
+<td>90</td>
+</tr>
+
+<tr>
+<td>src_ip</td>
+<td>Local IP address to bind to for receiving inter-vxsnd control traffic.</td>
+<td>0.0.0.0</td>
+</tr>
+
+<tr>
+<td>svcnode_peers</td>
+<td>Space-separated list of IP addresses with which the <code>vxsnd</code> shares its state.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>enable_vxlan_listen</td>
+<td>When set to true, the service node listens for VXLAN data traffic.</td>
+<td>true</td>
+</tr>
+
+<tr>
+<td>install_svcnode_ip</td>
+<td>When set to true, the <code>snd_peer_address</code> gets installed on the loopback interface. It gets withdrawn when the <code>vxsnd</code> is not in service. If set to true, you must define the <code>snd_peer_address</code> configuration variable.</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>age_check</td>
+<td>Number of seconds to wait before checking the database to age out stale entries.</td>
+<td>90 seconds</td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="notices note" > <p>Use <em>1</em>, <em>yes</em>, <em>true</em> or <em>on</em> for True for each relevant option. Use
+<em>0</em>, <em>no</em>, <em>false</em> or <em>off</em> for False.</p>
+ </div>
+
+
+<h2 id="verification-and-troubleshooting">Verification and Troubleshooting</h2>
+
+<h3 id="verifying-the-registration-node-daemon">Verifying the Registration Node Daemon</h3>
+
+<p>Use the <code>vxrdctl vxlans</code> ****command to see the configured VNIs, the
+local address being used to source the VXLAN tunnel and the service node
+being used.</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><pre><code>                   
+cumulus@leaf1:~$ vxrdctl vxlans
+VNI     Local Addr       Svc Node
+===     ==========       ========
+ 10      10.2.1.1        10.2.1.3
+ 30      10.2.1.1        10.2.1.3
+2000      10.2.1.1        10.2.1.3
+   
+    </code></pre></td>
+<td><pre><code>                   
+cumulus@leaf2:~$ vxrdctl vxlans
+VNI     Local Addr       Svc Node
+===     ==========       ========
+ 10      10.2.1.2        10.2.1.3
+ 30      10.2.1.2        10.2.1.3
+2000      10.2.1.2        10.2.1.3
+   
+    </code></pre></td>
+</tr>
+</tbody>
+</table>
+
+<p>Use the <code>vxrdctl peers</code> command to see configured VNIs and all VTEPs
+(leaf switches) within the network that have them configured.</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><pre><code>                   
+cumulus@leaf1:~$ vxrdctl peers
+VNI         Peer Addrs
+===         ==========
+10          10.2.1.1, 10.2.1.2
+30          10.2.1.1, 10.2.1.2
+2000        10.2.1.1, 10.2.1.2
+   
+    </code></pre></td>
+<td><pre><code>                   
+cumulus@leaf2:~$ vxrdctl peers
+VNI         Peer Addrs
+===         ==========
+10          10.2.1.1, 10.2.1.2
+30          10.2.1.1, 10.2.1.2
+2000        10.2.1.1, 10.2.1.2
+   
+    </code></pre></td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="notices note" > <p>When head end replication mode is disabled, the command won&rsquo;t work.</p>
+
+<p>Use the <code>vxrdctl peers</code>command to see the other VTEPs (leaf switches)
+and what VNIs are associated with them. This does not show anything
+unless you enabled head end replication mode by setting the <code>head_rep</code>
+option to <em>True</em>. Otherwise, replication is done by the service node.</p>
+
+<pre><code>                   
+cumulus@leaf2:~$ vxrdctl peers
+Head-end replication is turned off on this device.
+This command will not provide any output
+   
+    
+</code></pre>
+ </div>
+
+
+<h3 id="verifying-the-service-node-daemon">Verifying the Service Node Daemon</h3>
+
+<p>Use the <code>vxsndctl fdb</code> command to verify which VNIs belong to which VTEP
+(leaf switches).</p>
+
+<pre><code>                   
+cumulus@spine1:~$ vxsndctl fdb
+VNI    Address     Ageout
+===    =======     ======
+ 10    10.2.1.1        82
+ 10    10.2.1.2        77
+ 30    10.2.1.1        82
+ 30    10.2.1.2        77
+2000    10.2.1.1        82
+2000    10.2.1.2        77
+   
+    
+</code></pre>
+
+<h3 id="verifying-traffic-flow-and-checking-counters">Verifying Traffic Flow and Checking Counters</h3>
+
+<p>VXLAN transit traffic information is stored in a flat file located at
+<code>/cumulus/switchd/run/stats/vxlan/all</code>.</p>
+
+<pre><code>                   
+cumulus@leaf1:~$ cat /cumulus/switchd/run/stats/vxlan/all
+VNI                             : 10
+Network In Octets               : 1090
+Network In Packets              : 8
+Network Out Octets              : 1798
+Network Out Packets             : 13
+Total In Octets                 : 2818
+Total In Packets                : 27
+Total Out Octets                : 3144
+Total Out Packets               : 39
+VN Interface                    : vni: 10, swp32s0.10
+Total In Octets                 : 1728
+Total In Packets                : 19
+Total Out Octets                : 552
+Total Out Packets               : 18
+VNI                             : 30
+Network In Octets               : 828
+Network In Packets              : 6
+Network Out Octets              : 1224
+Network Out Packets             : 9
+Total In Octets                 : 2374
+Total In Packets                : 23
+Total Out Octets                : 2300
+Total Out Packets               : 32
+VN Interface                    : vni: 30, swp32s0.30
+Total In Octets                 : 1546
+Total In Packets                : 17
+Total Out Octets                : 552
+Total Out Packets               : 17
+VNI                             : 2000
+Network In Octets               : 676
+Network In Packets              : 5
+Network Out Octets              : 1072
+Network Out Packets             : 8
+Total In Octets                 : 2030
+Total In Packets                : 20
+Total Out Octets                : 2042
+Total Out Packets               : 30
+VN Interface                    : vni: 2000, swp32s0.20
+Total In Octets                 : 1354
+Total In Packets                : 15
+Total Out Octets                : 446
+   
+    
+</code></pre>
+
+<h3 id="pinging-to-test-connectivity">Pinging to Test Connectivity</h3>
+
+<p>To test the connectivity across the VXLAN tunnel with an ICMP echo
+request (ping), make sure to ping from the server rather than the switch
+itself.</p>
+
+
+<div class="notices note" > <p>As mentioned above, SVIs (switch VLAN interfaces) are not supported when
+using VXLAN. That is, there cannot be an IP address on the bridge that
+also contains a VXLAN.</p>
+ </div>
+
+
+<p>Following is the IP address information used in this example
+configuration.</p>
+
+<table>
+<thead>
+<tr>
+<th>VNI</th>
+<th>server1</th>
+<th>server2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>10</td>
+<td>10.10.10.1</td>
+<td>10.10.10.2</td>
+</tr>
+
+<tr>
+<td>2000</td>
+<td>10.10.20.1</td>
+<td>10.10.20.2</td>
+</tr>
+
+<tr>
+<td>30</td>
+<td>10.10.30.1</td>
+<td>10.10.30.2</td>
+</tr>
+</tbody>
+</table>
+
+<p>To test connectivity between VNI 10 connected servers by pinging from
+server1:</p>
+
+<pre><code>                   
+cumulus@server1:~$ ping 10.10.10.2
+PING 10.10.10.2 (10.10.10.2) 56(84) bytes of data.
+64 bytes from 10.10.10.2: icmp_seq=1 ttl=64 time=3.90 ms
+64 bytes from 10.10.10.2: icmp_seq=2 ttl=64 time=0.202 ms
+64 bytes from 10.10.10.2: icmp_seq=3 ttl=64 time=0.195 ms
+^C
+--- 10.10.10.2 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2002ms
+rtt min/avg/max/mdev = 0.195/1.432/3.900/1.745 ms
+cumulus@server1:~$
+   
+    
+</code></pre>
+
+<p>The other VNIs were also tested and can be viewed in the expanded output
+below.</p>
+
+<p>Test connectivity between VNI-2000 connected servers by pinging from
+server1:</p>
+
+<pre><code>                   
+cumulus@server1:~$ ping 10.10.20.2
+PING 10.10.20.2 (10.10.20.2) 56(84) bytes of data.
+64 bytes from 10.10.20.2: icmp_seq=1 ttl=64 time=1.81 ms
+64 bytes from 10.10.20.2: icmp_seq=2 ttl=64 time=0.194 ms
+64 bytes from 10.10.20.2: icmp_seq=3 ttl=64 time=0.206 ms
+^C
+--- 10.10.20.2 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2000ms
+rtt min/avg/max/mdev = 0.194/0.739/1.819/0.763 ms
+   
+    
+</code></pre>
+
+<p>Test connectivity between VNI-30 connected servers by pinging from
+server1:</p>
+
+<pre><code>                   
+cumulus@server1:~$ ping 10.10.30.2
+PING 10.10.30.2 (10.10.30.2) 56(84) bytes of data.
+64 bytes from 10.10.30.2: icmp_seq=1 ttl=64 time=1.85 ms
+64 bytes from 10.10.30.2: icmp_seq=2 ttl=64 time=0.239 ms
+64 bytes from 10.10.30.2: icmp_seq=3 ttl=64 time=0.185 ms
+64 bytes from 10.10.30.2: icmp_seq=4 ttl=64 time=0.212 ms
+^C
+--- 10.10.30.2 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3000ms
+rtt min/avg/max/mdev = 0.185/0.622/1.853/0.711 ms
+   
+    
+</code></pre>
+
+<h3 id="troubleshooting-with-mac-addresses">Troubleshooting with MAC Addresses</h3>
+
+<p>Since there is no SVI, there is no way to ping from the server to the
+directly attached leaf (top of rack) switch without cabling the switch
+to itself (see <a href="/#src-5118319_LightweightNetworkVirtualization-LNV-l3gateway">Creating a Layer 3
+Gateway</a>
+below). The easiest way to see if the server can reach the leaf switch
+is to check the MAC address table of the leaf switch.</p>
+
+<p>First, get the MAC address of the server:</p>
+
+<pre><code>                   
+cumulus@server1:~$ ip addr show eth3.10 | grep ether
+    link/ether 90:e2:ba:55:f0:85 brd ff:ff:ff:ff:ff:ff
+   
+    
+</code></pre>
+
+<p>Next, check the MAC address table of the leaf switch:</p>
+
+<pre><code>                   
+cumulus@leaf1:~$ brctl showmacs br-10
+port name mac addr      vlan    is local?   ageing timer
+vni-10    46:c6:57:fc:1f:54 0   yes        0.00
+swp32s0.10 90:e2:ba:55:f0:85    0   no        75.87
+vni-10    90:e2:ba:7e:a9:c1 0   no        75.87
+swp32s0.10 ec:f4:bb:fc:67:a1    0   yes        0.00
+   
+    
+</code></pre>
+
+<p><em>90:e2:ba:55:f0:85</em> appears in the MAC address table, which indicates
+that connectivity is occurring between leaf1 and server1.</p>
+
+<h3 id="checking-the-service-node-configuration">Checking the Service Node Configuration</h3>
+
+<p>Use <code>ip -d link show</code> to verify the service node, VNI and administrative
+state of a particular logical VNI interface:</p>
+
+<pre><code>                   
+cumulus@leaf1:~$ ip -d link show vni-10
+35: vni-10:  mtu 1500 qdisc noqueue master br-10 state UNKNOWN mode DEFAULT
+    link/ether 46:c6:57:fc:1f:54 brd ff:ff:ff:ff:ff:ff
+    vxlan id 10 remote 10.2.1.3 local 10.2.1.1 srcport 32768 61000 dstport 4789 ageing 300 svcnode 10.2.1.3
+    bridge_slave
+   
+    
+</code></pre>
+
+<h2 id="creating-a-layer-3-gateway">Creating a Layer 3 Gateway</h2>
+
+<p>The Trident II ASIC has a limitation because of a restriction in the
+hardware, where an IP address cannot be configured on the same bridge of
+which a VXLAN is also a part. This limitation will not exist in future
+ASICs. For example, the Trident II+ has the <a href="https://www.broadcom.com/press/release.php?id=s907324" target="_blank">RIOT (Routing In/Out of
+Tunnels)</a>
+feature.</p>
+
+<p>For the Trident II, this limitation means a physical cable must be
+attached from one port on leaf1 to another port on leaf1. One port is an
+L3 port while the other is a member of the bridge. For example,
+following the configuration above, in order for a layer 3 address to be
+used as the gateway for vni-10, you could configure the following on
+leaf1:</p>
+
+<pre><code>                   
+auto swp47
+iface swp47
+alias l2 port connected to swp48
+ 
+auto swp48
+iface swp48
+alias gateway
+address 10.10.10.3/24
+ 
+auto vni-10
+iface vni-10
+  vxlan-id 10    
+  vxlan-local-tunnelip 10.2.1.1
+ 
+auto br-10
+iface br-10
+  bridge-ports swp47 swp32s0.10 vni-10
+   
+    
+</code></pre>
+
+<p>A loopback cable must be connected between swp47 and swp48 for this to
+work. This will be addressed in a future version of Cumulus Linux so a
+physical port does not need to be used for this purpose.</p>
+
+<p><span id="src-5118319_LightweightNetworkVirtualization-LNV-loadbalancing"></span></p>
+
+<h2 id="advanced-lnv-usage">Advanced LNV Usage</h2>
+
+<h3 id="scaling-lnv-by-load-balancing-with-anycast">Scaling LNV by Load Balancing with Anycast</h3>
+
+<p>The above configuration assumes a single service node. A single service
+node can quickly be overwhelmed by BUM traffic. To load balance BUM
+traffic across multiple service nodes, use
+<a href="http://en.wikipedia.org/wiki/Anycast" target="_blank">Anycast</a>. Anycast enables BUM
+traffic to reach the topologically nearest service node rather than
+overwhelming a single service node.</p>
+
+<h4 id="enabling-the-service-node-daemon-on-additional-spine-switches">Enabling the Service Node Daemon on Additional Spine Switches</h4>
+
+<p>In this example, spine1 already has the service node daemon enabled.
+Enable it on the spine2 switch, then reboot the <code>vxsnd</code> daemon:</p>
+
+<pre><code>                   
+cumulus@spine2:~$ sudo systemctl enable vxsnd.service
+cumulus@spine2:~$ sudo systemctl restart vxsnd.service
+   
+    
+</code></pre>
+
+<h4 id="configuring-the-anycast-address-on-all-participating-service-nodes">Configuring the AnyCast Address on All Participating Service Nodes</h4>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p><strong>spine1</strong></p>
+<p>Use a text editor to edit the network configuration:</p>
+<pre><code>                   
+cumulus@spine1:~$ sudo nano /etc/network/interfaces
+   
+    </code></pre>
+<p>Add the 10.10.10.10/32 address to the loopback address:</p>
+<pre><code>                   
+auto lo
+iface lo inet loopback
+  address 10.2.1.3/32
+  address 10.10.10.10/32
+   
+    </code></pre>
+<p>Run <code>ifreload -a</code>:</p>
+<pre><code>                   
+cumulus@spine1:~$ sudo ifreload -a
+   
+    </code></pre>
+<p>Verify the IP address is configured:</p>
+<pre><code>                   
+cumulus@spine1:~$ ip addr show lo
+1: lo:  mtu 16436 qdisc noqueue state UNKNOWN
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+    inet 10.2.1.3/32 scope global lo
+    inet 10.10.10.10/32 scope global lo
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+   
+    </code></pre></td>
+<td><p><strong>spine2</strong></p>
+<p>Use a text editor to edit the network configuration:</p>
+<pre><code>                   
+cumulus@spine2:~$ sudo nano /etc/network/interfaces
+   
+    </code></pre>
+<p>Add the 10.10.10.10/32 address to the loopback address:</p>
+<pre><code>                   
+auto lo
+iface lo inet loopback
+  address 10.2.1.4/32
+  address 10.10.10.10/32
+   
+    </code></pre>
+<p>Run <code>ifreload -a</code>:</p>
+<pre><code>                   
+cumulus@spine2:~$ sudo ifreload -a
+   
+    </code></pre>
+<p>Verify the IP address is configured:</p>
+<pre><code>                   
+cumulus@spine2:~$ ip addr show lo
+1: lo:  mtu 16436 qdisc noqueue state UNKNOWN
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+    inet 10.2.1.4/32 scope global lo
+    inet 10.10.10.10/32 scope global lo
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+   
+    </code></pre></td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="configuring-the-service-node-vxsnd-conf-file">Configuring the Service Node vxsnd.conf File</h4>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p><strong>spine1</strong></p>
+<p>Use a text editor to edit the network configuration:</p>
+<pre><code>                   
+cumulus@spine1:~$ sudo nano /etc/vxsnd.conf
+   
+    </code></pre>
+<p>Change the following values:</p>
+<pre><code>                   
+svcnode_ip = 10.10.10.10
+ 
+svcnode_peers = 10.2.1.4
+ 
+src_ip = 10.2.1.3
+   
+    </code></pre>
+
+<div class="notices info" > <p></p>
+<p>This sets the address on which the service node listens to VXLAN messages to the configured Anycast address and sets it to sync with spine2.</p>
+<p></p>
+ </div>
+
+<p>Enable, then restart the <code>vxsnd</code> daemon:</p>
+<pre><code>                   
+cumulus@spine1:~$ sudo systemctl enable vxsnd.service
+cumulus@spine1:~$ sudo systemctl restart vxsnd.service
+   
+    </code></pre></td>
+<td><p><strong>spine2</strong></p>
+<p>Use a text editor to edit the network configuration:</p>
+<pre><code>                   
+cumulus@spine2:~$ sudo nano /etc/vxsnd.conf
+   
+    </code></pre>
+<p>Change the following values:</p>
+<pre><code>                   
+svcnode_ip = 10.10.10.10
+ 
+svcnode_peers = 10.2.1.3
+ 
+src_ip = 10.2.1.4
+   
+    </code></pre>
+
+<div class="notices info" > <p></p>
+<p>This sets the address on which the service node listens to VXLAN messages to the configured Anycast address and sets it to sync with spine1.</p>
+<p></p>
+ </div>
+
+<p>Enable, then restart the <code>vxsnd</code> daemon:</p>
+<pre><code>                   
+cumulus@spine1:~$ sudo systemctl enable vxsnd.service
+cumulus@spine1:~$ sudo systemctl restart vxsnd.service
+   
+    </code></pre></td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="reconfiguring-the-vteps-leafs-to-use-the-anycast-address">Reconfiguring the VTEPs (Leafs) to Use the Anycast Address</h4>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p><strong>leaf1</strong></p>
+<p>Use a text editor to edit the network configuration:</p>
+<pre><code>                   
+cumulus@leaf1:~$ sudo nano /etc/network/interfaces
+   
+    </code></pre>
+<p>Change the <code>vxrd-svcnode-ip</code> field to the Anycast address:</p>
+<pre><code>                   
+auto lo
+iface lo inet loopback
+  address 10.2.1.1
+  vxrd-svcnode-ip 10.10.10.10
+   
+    </code></pre>
+<p>Run <code>ifreload -a</code>:</p>
+<pre><code>                   
+cumulus@leaf1:~$ sudo ifreload -a
+   
+    </code></pre>
+<p>Verify the new service node is configured:</p>
+<pre><code>                   
+cumulus@leaf1:~$ ip -d link show vni-10
+35: vni-10:  mtu 1500 qdisc noqueue master br-10 state UNKNOWN mode DEFAULT
+    link/ether 46:c6:57:fc:1f:54 brd ff:ff:ff:ff:ff:ff
+    vxlan id 10 remote 10.10.10.10 local 10.2.1.1 srcport 32768 61000 dstport 4789 ageing 300 svcnode 10.10.10.10
+    bridge_slave
+ 
+ 
+cumulus@leaf1:~$ ip -d link show vni-2000
+39: vni-2000:  mtu 1500 qdisc noqueue master br-20 state UNKNOWN mode DEFAULT
+    link/ether 4a:fd:88:c3:fa:df brd ff:ff:ff:ff:ff:ff
+    vxlan id 2000 remote 10.10.10.10 local 10.2.1.1 srcport 32768 61000 dstport 4789 ageing 300 svcnode 10.10.10.10
+    bridge_slave
+ 
+cumulus@leaf1:~$ ip -d link show vni-30
+37: vni-30:  mtu 1500 qdisc noqueue master br-30 state UNKNOWN mode DEFAULT
+    link/ether 3e:b3:dc:f3:bd:2b brd ff:ff:ff:ff:ff:ff
+    vxlan id 30 remote 10.10.10.10 local 10.2.1.1 srcport 32768 61000 dstport 4789 ageing 300 svcnode 10.10.10.10
+    bridge_slave
+   
+    </code></pre>
+
+<div class="notices note" > <p></p>
+<p>The <code>svcnode</code> 10.10.10.10 means the interface has the correct service node configured.</p>
+<p></p>
+ </div>
+
+<p>Use the <code>vxrdctl vxlans</code> command to check the service node:</p>
+<pre><code>                   
+cumulus@leaf1:~$ vxrdctl vxlans
+VNI     Local Addr       Svc Node
+===     ==========       ========
+ 10      10.2.1.1        10.2.1.3
+ 30      10.2.1.1        10.2.1.3
+2000      10.2.1.1        10.2.1.3
+   
+    </code></pre></td>
+<td><p><strong>leaf2</strong></p>
+<p>Use a text editor to edit the network configuration:</p>
+<pre><code>                   
+cumulus@leaf2:~$ sudo nano /etc/network/interfaces
+   
+    </code></pre>
+<p>Change the <code>vxrd-svcnode-ip</code> field to the Anycast address:</p>
+<pre><code>                   
+auto lo
+iface lo inet loopback
+  address 10.2.1.2
+  vxrd-svcnode-ip 10.10.10.10
+   
+    </code></pre>
+<p>Run <code>ifreload -a</code>:</p>
+<pre><code>                   
+cumulus@leaf2:~$ sudo ifreload -a
+   
+    </code></pre>
+<p>Verify the new service node is configured:</p>
+<pre><code>                   
+cumulus@leaf2:~$ ip -d link show vni-10
+35: vni-10:  mtu 1500 qdisc noqueue master br-10 state UNKNOWN mode DEFAULT
+    link/ether 4e:03:a7:47:a7:9d brd ff:ff:ff:ff:ff:ff
+    vxlan id 10 remote 10.10.10.10 local 10.2.1.2 srcport 32768 61000 dstport 4789 ageing 300 svcnode 10.10.10.10
+    bridge_slave
+ 
+cumulus@leaf2:~$ ip -d link show vni-2000
+39: vni-2000:  mtu 1500 qdisc noqueue master br-20 state UNKNOWN mode DEFAULT
+    link/ether 72:3a:bd:06:00:b7 brd ff:ff:ff:ff:ff:ff
+    vxlan id 2000 remote 10.10.10.10 local 10.2.1.2 srcport 32768 61000 dstport 4789 ageing 300 svcnode 10.10.10.10
+    bridge_slave
+ 
+ 
+cumulus@leaf2:~$ ip -d link show vni-30
+37: vni-30:  mtu 1500 qdisc noqueue master br-30 state UNKNOWN mode DEFAULT
+    link/ether 22:65:3f:63:08:bd brd ff:ff:ff:ff:ff:ff
+    vxlan id 30 remote 10.10.10.10 local 10.2.1.2 srcport 32768 61000 dstport 4789 ageing 300 svcnode 10.10.10.10
+    bridge_slave
+   
+    </code></pre>
+
+<div class="notices note" > <p></p>
+<p>The <code>svcnode</code> 10.10.10.10 means the interface has the correct service node configured.</p>
+<p></p>
+ </div>
+
+<p>Use the <code>vxrdctl vxlans</code> command to check the service node:</p>
+<pre><code>                   
+cumulus@leaf2:~$ vxrdctl vxlans
+VNI     Local Addr       Svc Node
+===     ==========       ========
+ 10      10.2.1.2        10.2.1.3
+ 30      10.2.1.2        10.2.1.3
+2000      10.2.1.2        10.2.1.3
+   
+    </code></pre></td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="testing-connectivity">Testing Connectivity</h4>
+
+<p>Repeat the ping tests from the previous section. Here is the table again
+for reference:</p>
+
+<table>
+<thead>
+<tr>
+<th>VNI</th>
+<th>server1</th>
+<th>server2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>10</td>
+<td>10.10.10.1</td>
+<td>10.10.10.2</td>
+</tr>
+
+<tr>
+<td>2000</td>
+<td>10.10.20.1</td>
+<td>10.10.20.2</td>
+</tr>
+
+<tr>
+<td>30</td>
+<td>10.10.30.1</td>
+<td>10.10.30.2</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>                   
+cumulus@server1:~$ ping 10.10.10.2
+PING 10.10.10.2 (10.10.10.2) 56(84) bytes of data.
+64 bytes from 10.10.10.2: icmp_seq=1 ttl=64 time=5.32 ms
+64 bytes from 10.10.10.2: icmp_seq=2 ttl=64 time=0.206 ms
+^C
+--- 10.10.10.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 0.206/2.767/5.329/2.562 ms
+ 
+PING 10.10.20.2 (10.10.20.2) 56(84) bytes of data.
+64 bytes from 10.10.20.2: icmp_seq=1 ttl=64 time=1.64 ms
+64 bytes from 10.10.20.2: icmp_seq=2 ttl=64 time=0.187 ms
+^C
+--- 10.10.20.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 0.187/0.914/1.642/0.728 ms
+ 
+cumulus@server1:~$ ping 10.10.30.2
+PING 10.10.30.2 (10.10.30.2) 56(84) bytes of data.
+64 bytes from 10.10.30.2: icmp_seq=1 ttl=64 time=1.63 ms
+64 bytes from 10.10.30.2: icmp_seq=2 ttl=64 time=0.191 ms
+^C
+--- 10.10.30.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 0.191/0.913/1.635/0.722 ms
+   
+    
+</code></pre>
+
+<h2 id="additional-resources">Additional Resources</h2>
+
+<p>Both <code>vxsnd</code> and <code>vxrd</code> have man pages in Cumulus Linux.</p>
+
+<p>For <code>vxsnd</code>:</p>
+
+<pre><code>                   
+cumulus@spine1:~$ man vxsnd
+   
+    
+</code></pre>
+
+<p>For <code>vxrd</code>:</p>
+
+<pre><code>                   
+cumulus@leaf1:~$ man vxrd
+   
+    
+</code></pre>
+
+<h2 id="see-also">See Also</h2>
+
+<ul>
+<li><p><a href="https://tools.ietf.org/html/rfc7348" target="_blank">tools.ietf.org/html/rfc7348</a></p></li>
+
+<li><p><a href="http://en.wikipedia.org/wiki/Anycast" target="_blank">en.wikipedia.org/wiki/Anycast</a></p></li>
+</ul>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#understanding-lnv-concepts">Understanding LNV Concepts</a>
+<ul>
+<li><a href="#acquiring-the-forwarding-database-at-the-service-node">Acquiring the Forwarding Database at the Service Node</a></li>
+<li><a href="#mac-learning-and-flooding">MAC Learning and Flooding</a></li>
+<li><a href="#handling-bum-traffic">Handling BUM Traffic</a>
+<ul>
+<li><a href="#head-end-replication">Head End Replication</a></li>
+<li><a href="#service-node-replication">Service Node Replication</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#requirements">Requirements</a>
+<ul>
+<li><a href="#hardware-requirements">Hardware Requirements</a></li>
+<li><a href="#configuration-requirements">Configuration Requirements</a></li>
+<li><a href="#installing-the-lnv-packages">Installing the LNV Packages</a></li>
+</ul></li>
+<li><a href="#sample-lnv-configuration">Sample LNV Configuration</a>
+<ul>
+<li><a href="#network-connectivity">Network Connectivity</a></li>
+<li><a href="#layer-3-ip-addressing">Layer 3 IP Addressing</a></li>
+<li><a href="#layer-3-fabric">Layer 3 Fabric</a></li>
+<li><a href="#host-configuration">Host Configuration</a></li>
+</ul></li>
+<li><a href="#configuring-the-vlan-to-vxlan-mapping">Configuring the VLAN to VXLAN Mapping</a></li>
+<li><a href="#verifying-the-vlan-to-vxlan-mapping">Verifying the VLAN to VXLAN Mapping</a></li>
+<li><a href="#enabling-and-managing-service-node-and-registration-daemons">Enabling and Managing Service Node and Registration Daemons</a>
+<ul>
+<li><a href="#enabling-the-service-node-daemon">Enabling the Service Node Daemon</a></li>
+<li><a href="#enabling-the-registration-daemon">Enabling the Registration Daemon</a></li>
+<li><a href="#checking-the-daemon-status">Checking the Daemon Status</a></li>
+</ul></li>
+<li><a href="#configuring-the-service-node">Configuring the Service Node</a></li>
+<li><a href="#verification-and-troubleshooting">Verification and Troubleshooting</a>
+<ul>
+<li><a href="#verifying-the-registration-node-daemon">Verifying the Registration Node Daemon</a></li>
+<li><a href="#verifying-the-service-node-daemon">Verifying the Service Node Daemon</a></li>
+<li><a href="#verifying-traffic-flow-and-checking-counters">Verifying Traffic Flow and Checking Counters</a></li>
+<li><a href="#pinging-to-test-connectivity">Pinging to Test Connectivity</a></li>
+<li><a href="#troubleshooting-with-mac-addresses">Troubleshooting with MAC Addresses</a></li>
+<li><a href="#checking-the-service-node-configuration">Checking the Service Node Configuration</a></li>
+</ul></li>
+<li><a href="#creating-a-layer-3-gateway">Creating a Layer 3 Gateway</a></li>
+<li><a href="#advanced-lnv-usage">Advanced LNV Usage</a>
+<ul>
+<li><a href="#scaling-lnv-by-load-balancing-with-anycast">Scaling LNV by Load Balancing with Anycast</a>
+<ul>
+<li><a href="#enabling-the-service-node-daemon-on-additional-spine-switches">Enabling the Service Node Daemon on Additional Spine Switches</a></li>
+<li><a href="#configuring-the-anycast-address-on-all-participating-service-nodes">Configuring the AnyCast Address on All Participating Service Nodes</a></li>
+<li><a href="#configuring-the-service-node-vxsnd-conf-file">Configuring the Service Node vxsnd.conf File</a></li>
+<li><a href="#reconfiguring-the-vteps-leafs-to-use-the-anycast-address">Reconfiguring the VTEPs (Leafs) to Use the Anycast Address</a></li>
+<li><a href="#testing-connectivity">Testing Connectivity</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#additional-resources">Additional Resources</a></li>
+<li><a href="#see-also">See Also</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV/_index.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

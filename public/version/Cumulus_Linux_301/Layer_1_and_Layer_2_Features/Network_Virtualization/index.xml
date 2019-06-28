@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network Virtualization on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/</link>
+    <description>Recent content in Network Virtualization on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Integrating with VMware NSX</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/</guid>
+      <description>Switches running Cumulus Linux can integrate with VMware NSX to act as VTEP gateways. The VMware NSX controller provides consistent provisioning across virtual and physical server infrastructures.
+{{&amp;lt; imgOld 0 &amp;gt;}}
+Getting Started Before you integrate VXLANs with NSX, make sure you have the following components:
+ A switch (L2 gateway) with a Tomahawk, Trident II+ or Trident II chipset running Cumulus Linux 2.0 or later;
+ OVSDB server (ovsdb-server), included in Cumulus Linux 2.</description>
+    </item>
+    
+    <item>
+      <title>Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/</guid>
+      <description>Cumulus Linux seamlessly integrates with the MidoNet OpenStack infrastructure, where the switches provide the VTEP gateway for terminating VXLAN tunnels from within MidoNet. MidoNet connects to the OVSDB server running on the Cumulus Linux switch, and exchanges information about the VTEPs and MAC addresses associated with the OpenStack Neutron networks. This provides seamless Ethernet connectivity between virtual and physical server infrastructures.
+{{&amp;lt; imgOld 0 &amp;gt;}}
+Contents Troubleshooting MidoNet and Cumulus VTEPs As with any complex system, there is a control plane and data plane.</description>
+    </item>
+    
+    <item>
+      <title>Static MAC Bindings with VXLAN</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/Cumulus_Linux_301/Layer_1_and_Layer_2_Features/Network_Virtualization/</guid>
+      <description>Cumulus Linux includes native Linux VXLAN kernel support.
+Requirements A VXLAN configuration requires a switch with a Tomahawk, Trident II+ or Trident II chipset running Cumulus Linux 2.0 or later.
+For a basic VXLAN configuration, you should ensure that:
+ The VXLAN has a network identifier (VNI); do not use 0 or 16777215 as the VNI ID, as they are reserved values under Cumulus Linux.
+ The VXLAN link and local interfaces are added to bridge to create the association between port, VLAN and VXLAN instance.</description>
+    </item>
+    
+  </channel>
+</rss>

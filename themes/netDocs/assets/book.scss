@@ -1,0 +1,361 @@
+@import "normalize";
+@import "variables";
+@import "markdown";
+@import "utils";
+@import "syntax";
+@import "notices";
+
+html {
+  font-size: $font-size-base;
+  letter-spacing: 0.31px;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  min-width: $body-min-width;
+  overflow-x: hidden;
+  height: 100%;
+
+}
+
+body {
+  color: $body-font-color;
+  background: $body-background;
+
+  font-family: helvetica, sans-serif;
+  font-weight: $body-font-weight;
+
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  box-sizing: border-box;
+  * {
+    box-sizing: inherit;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: $cumulus-font-family;
+}
+
+a {
+  text-decoration: none;
+  color: $color-link;
+
+  &:visited {
+    color: $cn-limited-spruce;
+
+
+  }
+}
+
+img {
+  vertical-align: middle;
+}
+
+//Menu Styles and Expand/Collapse
+aside nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  // transition: all 0.4s ease-in-out;
+  // font-stretch: condensed;
+
+  .expand{
+    display: block;
+    visibility: visible;
+    border-left: solid $cn-jade;
+    border-width: 1px;
+    li>a{
+      padding-left: 12px;
+    }
+  }
+  .collapse{
+    display: none;
+    visibility: hidden;
+  }
+
+  li {
+    margin: 1.3em 0;
+  }
+
+  a {
+    display: block;
+
+  }
+  a:active{
+    color: $cn-jade
+  }
+  a:hover {
+    opacity: .5;
+  }
+
+  ul {
+    padding-left: 0;
+    margin-left: 14px;
+  }
+}
+
+
+
+
+ul.pagination {
+  display: flex;
+  justify-content: center;
+
+  .page-item a {
+    padding: $padding-16;
+  }
+}
+
+.book-brand {
+  margin-top: 0;
+  display: none;
+}
+
+.book-menu {
+  flex: 0 0 $menu-width;
+  font-size: $font-size-14;
+  overflow-y: scroll;
+  nav {
+    background-color: $nav-background;
+    font-family: $cumulus-font-family;
+    font-weight: 400;
+    width: $menu-width;
+    height: 100%;
+    padding: 2.2rem 1.2rem;
+    a{
+      display: block;
+    }
+    .expand {
+      .menuControl {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  @include dark-links;
+}
+
+.book-section-flat {
+  margin-bottom: $padding-16 * 2;
+  bo
+  > a, > span {
+    font-weight: 600
+  }
+
+  > ul {
+    padding-left: 0;
+  }
+}
+
+.book-page {
+  min-width: $body-min-width;
+  flex-grow: 1;
+  padding: 3.74rem 2.7rem;
+  overflow-x: scroll;
+}
+
+.book-header {
+  margin-bottom: $padding-16;
+  display: none;
+}
+
+.book-toc {
+  border-left: 1px solid $cn-mystic;
+  flex: 0 0 $toc-width;
+  font-size: $font-size-12;
+  background-color: $white ;
+  width: $toc-width;
+  padding: $padding-16;
+  top: inherit;
+  right :0;
+
+  nav {
+    width: $toc-width;
+    padding: $padding-16;
+    background-color: transparent;
+    position: fixed;
+    top: 294px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    a {
+      color: $cn-rolling-stone;
+      font-weight: 400;
+      line-height: 22px;
+    }
+
+    >ul>li>a:first-of-type{
+      color: $cn-jade;
+      font-weight: 600;
+    }
+  }
+
+  nav ul li {
+    margin: 1em;
+  }
+
+  nav > ul > li {
+    margin: 0;
+  }
+
+  >button {
+    background: none;
+    border: 0;
+    font-size: 13px;
+    font-weight: 600;
+    position: relative;
+    top: 43px;
+    left: 7px;
+    padding: 0 8px 19px;
+    width: 100%;
+    text-align: left;
+
+    &:after {
+      content: '';
+      background-color: #e0e4ec;
+      display: block;
+      width: 169px;
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+    }
+
+    &:first-of-type {
+      display: none;
+    }
+
+    img {
+      margin-right: 4px;
+      width: 19px;
+      height: 19px;
+    }
+  }
+}
+
+.book-git-footer {
+  display: flex;
+  margin-top: $padding-16;
+  font-size: $font-size-14;
+  align-items: baseline;
+
+  img {
+    width: $font-size-14;
+    vertical-align: bottom;
+  }
+}
+
+.book-footer {
+  display: flex;
+  margin-top: $padding-16;
+  font-size: $font-size-14;
+  align-items: baseline;
+
+  img {
+    width: $font-size-14;
+    vertical-align: bottom;
+  }
+}
+
+.book-posts {
+  min-width: $body-min-width;
+  max-width: $sm-breakpoint;
+  flex-grow: 1;
+  padding: $padding-16;
+
+  article {
+    padding-bottom: $padding-16;
+  }
+}
+
+.book-home {
+  padding: $padding-16;
+}
+
+.menuControl{
+  display: inline-block;
+  float: left;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  color: $cn-limited-spruce;
+  position: relative;
+  top: -9px;
+}
+
+.menuControl.empty{
+visibility: hidden;
+}
+// Responsive styles
+aside nav,
+.book-page,
+.book-posts,
+.markdown {
+  transition: 0.2s ease-in-out;
+  transition-property: transform, margin-left, opacity;
+  will-change: transform, margin-left;
+}
+
+@media screen and (max-width: $sm-breakpoint) {
+  .book-toc {
+    display: none;
+  }
+}
+
+@media screen and (max-width: $md-breakpoint) {
+  .book-menu {
+    margin-left: -$menu-width;
+  }
+
+  .book-header {
+    display: flex;
+  }
+
+  #menu-control:checked + main {
+    .book-menu nav,
+    .book-page,
+    .book-posts {
+      transform: translateX($menu-width);
+    }
+
+    .book-header label {
+      transform: rotate(90deg);
+    }
+
+    .markdown {
+      opacity: 0.25;
+    }
+  }
+}
+
+
+// Extra space for big screens
+@media screen and (min-width: $container-max-width) {
+  main.containter{
+    justify-content: center
+
+  }
+  .book-page{
+    flex: 0 0 $body-max-width;
+  }
+  .book-posts,
+  .book-toc {
+    flex: 1 0 auto;
+  }
+  .book-menu {
+    flex: 0 0 auto;
+    flex-basis: $menu-width
+
+
+  }
+}
+
+// Add custom defined styles
+@import 'custom'

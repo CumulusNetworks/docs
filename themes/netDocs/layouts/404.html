@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Site.Title -}}</title>
+
+  <!-- Fonts for the theme -->
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  <!-- Theme stylesheet, you can customize scss by creatig `assets/custom.scss` in your website -->
+  {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
+
+  <!-- Favicon -->
+  <link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/x-icon">
+
+  <!-- RSS -->
+  {{ with .OutputFormats.Get "rss" -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{ end -}}
+
+  {{ "<!--" | safeHTML }}
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  {{ "-->" | safeHTML }}
+
+</head>
+
+
+<body>
+  <main class="flex justify-center">
+      <h1>404 Not Found</h1>
+  </main>
+
+
+  {{ template "_internal/google_analytics_async.html" . }}
+</body>
+
+</html>

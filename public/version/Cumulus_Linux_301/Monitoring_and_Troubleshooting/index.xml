@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monitoring and Troubleshooting on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/</link>
+    <description>Recent content in Monitoring and Troubleshooting on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Single User Mode - Boot Recovery</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Cumulus_Linux_301/Monitoring_and_Troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Cumulus_Linux_301/Monitoring_and_Troubleshooting/</guid>
+      <description>Use single user mode to assist in troubleshooting system boot issues or for password recovery. Entering single user mode is platform-specific, so follow the appropriate steps for your x86 or ARM switch.
+Entering Single User Mode on an x86 Switch  Boot the switch, as soon as you see the GRUB menu.
+ GNU GRUB version 2.02~beta2-22+deb8u1 +----------------------------------------------------------------------------+ |*Cumulus Linux GNU/Linux | | Advanced options for Cumulus Linux GNU/Linux | | ONIE | | | +----------------------------------------------------------------------------+  Use the ^ and v arrow keys to select Advanced options for Cumulus Linux GNU/Linux.</description>
+    </item>
+    
+    <item>
+      <title>Resource Diagnostics Using cl-resource-query</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Cumulus_Linux_301/Monitoring_and_Troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Cumulus_Linux_301/Monitoring_and_Troubleshooting/</guid>
+      <description>You can use cl-resource-queryto retrieve information about host entries, MAC entries, L2 and L3 routes, and ECMPs (equal-cost multi-path routes, see Load Balancing) that are in use. This is especially useful because Cumulus Linux syncs routes between the kernel and the switching silicon. If the required resource pools in hardware fill up, new kernel routes can cause existing routes to move from being fully allocated to being partially allocated.
+In order to avoid this, routes in the hardware should be monitored and kept below the ASIC limits.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring System Hardware</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Cumulus_Linux_301/Monitoring_and_Troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Cumulus_Linux_301/Monitoring_and_Troubleshooting/</guid>
+      <description>You monitor system hardware in these ways, using:
+ decode-syseeprom
+ sensors
+ smond
+ Net-SNMP
+ watchdog
+  Commands  decode-syseeprom
+ dmidecode
+ lshw
+ sensors
+ smond
+  Monitoring Hardware Using decode-syseeprom The decode-syseeprom command enables you to retrieve information about the switch&amp;rsquo;s EEPROM. If the EEPROM is writable, you can set values on the EEPROM.
+For example:
+cumulus@switch:~$ decode-syseeprom TlvInfo Header: Id String: TlvInfo Version: 1 Total Length: 114 TLV Name Code Len Value -------------------- ---- --- ----- Product Name 0x21 4 4804 Part Number 0x22 14 R0596-F0009-00 Device Version 0x26 1 2 Serial Number 0x23 19 D1012023918PE000012 Manufacture Date 0x25 19 10/09/2013 20:39:02 Base MAC Address 0x24 6 00:E0:EC:25:7B:D0 MAC Addresses 0x2A 2 53 Vendor Name 0x2D 17 Penguin Computing Label Revision 0x27 4 4804 Manufacture Country 0x2C 2 CN CRC-32 0xFE 4 0x96543BC5 (checksum valid)  Command Options Usage: /usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t]</description>
+    </item>
+    
+    <item>
+      <title>Monitoring Virtual Device Counters</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Cumulus_Linux_301/Monitoring_and_Troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Cumulus_Linux_301/Monitoring_and_Troubleshooting/</guid>
+      <description>Cumulus Linux gathers statistics for VXLANs and VLANs using virtual device counters. These counters are supported on Tomahawk, Trident II+ and Trident II-based platforms only; see the Cumulus Networks HCL for a list of supported platforms.
+You can retrieve the data from these counters using tools like ip -s link show, ifconfig, /proc/net/dev, or netstat -i.
+Sample VXLAN Statistics VXLAN statistics are available as follows:
+ Aggregate statistics are available per VNI; this includes access and network statistics.</description>
+    </item>
+    
+    <item>
+      <title>SNMP Monitoring</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Cumulus_Linux_301/Monitoring_and_Troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Cumulus_Linux_301/Monitoring_and_Troubleshooting/</guid>
+      <description>Cumulus Linux utilizes the open source Net-SNMP agent snmpd, v5.7.3, which provides support for most of the common industry-wide MIBs, including interface counters and TCP/UDP IP stack data.
+Cumulus Linux does not prevent customers from extending SNMP features. However, Cumulus Networks encourages the use of higher performance monitoring environments, rather than SNMP.
+ Introduction to SNMP (Simple Network Management Protocol) SNMP is an IETF standards-based network management architecture and protocol that traces its roots back to Carnegie-Mellon University in 1982.</description>
+    </item>
+    
+  </channel>
+</rss>

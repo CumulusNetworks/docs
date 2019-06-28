@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monitoring System Hardware on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/</link>
+    <description>Recent content in Monitoring System Hardware on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Network Switch Port LED and Status LED Guidelines</title>
+      <link>http://example.org/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/</guid>
+      <description>Data centers today have a large number of network switches manufactured by different hardware vendors running NOSes (network operating system) from different providers. This chapter provides a set of guidelines for how network port and status LEDs should appear on the front panel of a network switch. This provides a network operator with a standard way to identify the state of a switch and its ports by looking at its front panel, irrespective of the hardware vendor or NOS.</description>
+    </item>
+    
+  </channel>
+</rss>

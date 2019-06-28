@@ -1,0 +1,2577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Installing a New Cumulus Linux Image | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/" >
+    Version2s
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Installing_a_New_Cumulus_Linux_Image/"  class="active" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility/" >
+    Network Command Line Utility
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Managing_Application_Daemons/" >
+    Managing Application Daemons
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/Configuring_Hardware-enabled_DDOS_Protection/" >
+    Configuring Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Layer_1_and_Switch_Port_Attributes/" >
+    Layer 1 and Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Configuring_DHCP_Relays/" >
+    Configuring DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Configuring_DHCP_Servers/" >
+    Configuring DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/" >
+    Layer 1 and 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments/" >
+    VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/Traditional_Mode_Bridges/" >
+    Traditional Mode Bridges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/" >
+    Virtual Router Redundancy - VRR
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/" >
+    Lightweight Network Virtualization - LNV Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_VXLAN_Active-Active_Mode/" >
+    LNV VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX/" >
+    Integrating Hardware VTEPs with VMware NSX
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Open_Shortest_Path_First_-_OSPF_-_Protocol/" >
+    Open Shortest Path First - OSPF - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol/" >
+    Open Shortest Path First v3 - OSPFv3 - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/SNMP_Monitoring/" >
+    SNMP Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Buffer_Monitoring/" >
+    Buffer Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Cumulus_Linux_Index/" >
+    Cumulus Linux Index
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Installing a New Cumulus Linux Image</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Installing a New Cumulus Linux Image</h1>
+
+<p>Before you install Cumulus Linux, the switch can be in two different
+states:</p>
+
+<ul>
+<li><p>The switch has no image on it (so the switch is only running
+<a href="http://www.onie.org/" target="_blank">ONIE</a>) or you desire or require a clean
+installation. In this case, you can install Cumulus Linux in one of
+the following ways, using:</p>
+
+<ul>
+<li><p><a href="#src-8357423_InstallingaNewCumulusLinuxImage-dhcp_options">DHCP/a web server with DHCP
+options</a></p></li>
+
+<li><p><a href="#src-8357423_InstallingaNewCumulusLinuxImage-dhcp_noopts">DHCP/a web server without DHCP
+options</a></p></li>
+
+<li><p><a href="#src-8357423_InstallingaNewCumulusLinuxImage-web_nodhcp">A web server with no
+DHCP</a></p></li>
+
+<li><p><a href="#src-8357423_InstallingaNewCumulusLinuxImage-ftp">FTP or TFTP without a web
+server</a></p></li>
+
+<li><p><a href="#src-8357423_InstallingaNewCumulusLinuxImage-local">Local file
+installation</a></p></li>
+
+<li><p><a href="#src-8357423_InstallingaNewCumulusLinuxImage-usb">USB</a></p></li>
+</ul></li>
+
+<li><p>The switch already has Cumulus Linux installed on it, so you only
+need to <a href="/version2/cumulus-linux-35/Installation_Management/Upgrading_Cumulus_Linux">upgrade
+it</a>.</p></li>
+</ul>
+
+
+<div class="notices tip" > <p><a href="http://www.onie.org/" target="_blank">ONIE</a> is an open source project, equivalent to
+PXE on servers, that enables the installation of network operating
+systems (NOS) on bare metal switches.</p>
+ </div>
+
+
+<h2 id="understanding-these-examples">Understanding these Examples</h2>
+
+<p>The sections in this chapter are ordered from the most repeatable to the
+least repeatable methods. For instance, DHCP can scale to hundreds of
+switch installs with zero manual input, compared to something like USB
+installs. Installing via USB is fine for a single switch here and there
+but is not scalable.</p>
+
+<ul>
+<li><p>You can name your Cumulus Linux installer binary using any of the
+<a href="http://opencomputeproject.github.io/onie/docs/design-spec/discovery.html#default-file-name-search-order" target="_blank">ONIE naming schemes mentioned
+here</a>.</p></li>
+
+<li><p>In the examples below, [PLATFORM] can be any supported Cumulus
+Linux platform, such as <em>x86_64</em>, or <em>arm</em>.</p></li>
+</ul>
+
+<h2 id="installing-via-a-dhcp-web-server-method-with-dhcp-options">Installing via a DHCP/Web Server Method with DHCP Options</h2>
+
+<p>Installing Cumulus Linux in this manner is as simple as setting up a
+DHCP/web server on your laptop and connecting the eth0 management port
+of the switch to your laptop.</p>
+
+<p>Once you connect the cable, the installation proceeds as follows:</p>
+
+<ol>
+<li><p>The bare metal switch boots up and asks for an address (DHCP
+request).</p></li>
+
+<li><p>The DHCP server acknowledges and responds with DHCP option 114 and
+the location of the installation image.</p></li>
+
+<li><p>ONIE downloads the Cumulus Linux binary, installs and reboots.</p></li>
+
+<li><p>Success! You are now running Cumulus Linux.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357423/onie_install_dhcp.png" alt = "/images/download/attachments/8357423/onie_install_dhcp.png"
+
+
+ />
+</li>
+</ol>
+
+
+<div class="notices note" > <p>The most common method is for you to send DHCP option 114 with the
+entire URL to the web server (this could be the same system). However,
+there are many other ways to use DHCP even if you don&rsquo;t have full
+control over DHCP. <a href="https://github.com/opencomputeproject/onie/wiki/Design-Spec-SW-Image-Discovery#partial-installer-urls" target="_blank">See the ONIE user
+guide</a>
+for help.</p>
+ </div>
+
+
+<p>Here&rsquo;s an example DHCP configuration with an <a href="http://www.isc.org/downloads/dhcp/" target="_blank">ISC DHCP
+server</a>:</p>
+
+<pre><code>                   
+subnet 172.0.24.0 netmask 255.255.255.0 {
+  range 172.0.24.20 172.0.24.200;
+  option default-url = &quot;http://172.0.24.14/onie-installer-[PLATFORM]&quot;;
+}
+   
+    
+</code></pre>
+
+<p>Here&rsquo;s an example DHCP configuration with
+<a href="http://www.thekelleys.org.uk/dnsmasq/doc.html" target="_blank">dnsmasq</a> (static address
+assignment):</p>
+
+<pre><code>                   
+dhcp-host=sw4,192.168.100.14,6c:64:1a:00:03:ba,set:sw4
+dhcp-option=tag:sw4,114,&quot;http://roz.rtplab.test/onie-installer-[PLATFORM]&quot;
+   
+    
+</code></pre>
+
+<p>If you don&rsquo;t have a web server, you can use <a href="https://www.apachefriends.org/index.html" target="_blank">this free Apache
+example</a>.</p>
+
+<h2 id="installing-via-a-dhcp-web-server-method-without-dhcp-options">Installing via a DHCP/Web Server Method without DHCP Options</h2>
+
+<p>If you have a laptop on the same network and the switch can pull DHCP
+from the corporate network, but you cannot modify DHCP options (maybe
+it&rsquo;s controlled by another team), do the following:</p>
+
+<ol>
+<li><p>Place the Cumulus Linux binary in a directory on the web server.</p></li>
+
+<li><p>Run the installer manually, since DHCP options can&rsquo;t be modified,
+either from ONIE or the Cumulus Linux command prompt.</p>
+
+<ul>
+<li><p>From ONIE, run the <code>onie-nos-install</code> command:</p>
+
+<pre><code>                           
+ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+           
+            
+</code></pre></li>
+
+<li><p>From Cumulus Linux, run the <code>onie-install</code> command:</p>
+
+<pre><code>                           
+cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin &amp;&amp; sudo reboot
+           
+            
+</code></pre></li>
+</ul></li>
+</ol>
+
+<h2 id="installing-via-a-web-server-with-no-dhcp">Installing via a Web Server with no DHCP</h2>
+
+<p>If your laptop is on the same network as the switch eth0 interface but
+no DHCP server is available, you can still install directly from Cumulus
+Linux or using ONIE.</p>
+
+<h3 id="installing-from-cumulus-linux">Installing from Cumulus Linux</h3>
+
+<p>From Cumulus Linux, run the <code>onie-install</code> command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin &amp;&amp; sudo reboot
+   
+    
+</code></pre>
+
+<h3 id="installing-from-onie">Installing from ONIE</h3>
+
+<p>Do the following steps to run the install using ONIE. Note that ONIE is
+in <a href="http://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods" target="_blank"><em>discovery
+mode</em></a>:</p>
+
+<ol>
+<li><p>To disable discovery mode, run:</p>
+
+<pre><code>                       
+onie# onie-discovery-stop
+       
+        
+</code></pre>
+
+<p>or, on older ONIE versions if that command isn&rsquo;t supported:</p>
+
+<pre><code>                       
+onie# /etc/init.d/discover.sh stop
+       
+        
+</code></pre></li>
+
+<li><p>Assign a static address to eth0 via ONIE (using <code>ip addr add</code>):</p>
+
+<pre><code>                       
+ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
+       
+        
+</code></pre></li>
+
+<li><p>Place the Cumulus Linux installer image in a directory on your web
+server.</p></li>
+
+<li><p>Run the installer manually, since there are no DHCP options:</p>
+
+<pre><code>                       
+ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+       
+        
+</code></pre></li>
+</ol>
+
+<h2 id="installing-via-ftp-or-tftp-without-a-web-server">Installing via FTP or TFTP without a Web Server</h2>
+
+<p>If your laptop is on the same network as the switch eth0 interface but
+no DHCP server is available, you can still install directly from Cumulus
+Linux or using ONIE.</p>
+
+<h3 id="installing-from-cumulus-linux-1">Installing from Cumulus Linux</h3>
+
+<p>If you are not utilizing DHCP options, run one of the following commands
+(<code>tftp</code> for TFTP or <code>ftp</code> for FTP), from the Cumulus Linux command
+prompt:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-[PLATFORM].bin &amp;&amp; sudo reboot
+ 
+cumulus@switch:~$ sudo onie-install -a -i tftp://local-tftp-server/cumulus-install-[PLATFORM].bin &amp;&amp; sudo reboot
+   
+    
+</code></pre>
+
+<h3 id="installing-from-onie-1">Installing from ONIE</h3>
+
+<p>To install without DHCP options using ONIE, do the following:</p>
+
+<ol>
+<li><p>Set up DHCP or static addressing for eth0, as in the examples above.</p></li>
+
+<li><p>If you are utilizing static addressing, disable ONIE discovery mode.</p></li>
+
+<li><p>Place the Cumulus Linux installer image into a TFTP or FTP
+directory.</p></li>
+
+<li><p>If you are not utilizing DHCP options, run one of the following
+commands (<code>tftp</code> for TFTP or <code>ftp</code> for FTP):</p>
+
+<pre><code>                       
+ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
+ 
+ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
+       
+        
+</code></pre></li>
+</ol>
+
+<h2 id="installing-via-a-local-file">Installing via a Local File</h2>
+
+<p>You can still install referencing a local file, directly from Cumulus
+Linux or using ONIE.</p>
+
+<h3 id="installing-from-cumulus-linux-2">Installing from Cumulus Linux</h3>
+
+<p>From Cumulus Linux, run the <code>onie-install</code> command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin &amp;&amp; sudo reboot
+   
+    
+</code></pre>
+
+<h3 id="installing-from-onie-2">Installing from ONIE</h3>
+
+<ol>
+<li><p>Set up DHCP or static addressing for eth0, as in the examples above.</p></li>
+
+<li><p>If you are utilizing static addressing, disable ONIE discovery mode.</p></li>
+
+<li><p>Use <a href="http://en.wikipedia.org/wiki/Secure_copy" target="_blank">scp</a> to copy the
+Cumulus Linux binary to the switch.<br />
+<strong>Note:</strong> Windows users can use
+<a href="http://winscp.net/eng/index.php" target="_blank">WinScp</a>.</p></li>
+
+<li><p>Run the installer manually from ONIE:</p>
+
+<pre><code>                       
+ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
+       
+        
+</code></pre></li>
+</ol>
+
+<h2 id="installing-via-usb">Installing via USB</h2>
+
+<p>Following the steps below produces a clean installation of Cumulus
+Linux. This wipes out all pre-existing configuration files that may be
+present on the switch. Instructions are offered for x86 and ARM
+platforms, and also cover the installation of a license after the
+software installation.</p>
+
+
+<div class="notices note" > <p>Make sure to <a href="/version2/cumulus-linux-35/Installation_Management/Upgrading_Cumulus_Linux">back
+up</a>
+any important configuration files that you may need to restore the
+configuration of your switch after the installation finishes.</p>
+ </div>
+
+
+<h3 id="preparing-for-usb-installation">Preparing for USB Installation</h3>
+
+<ol>
+<li><p>Download the appropriate Cumulus Linux image for your x86 or ARM
+platform from the <a href="http://cumulusnetworks.com/downloads/" target="_blank">Cumulus Networks Downloads
+page</a>.</p></li>
+
+<li><p><details></p>
+
+<p>Prepare your flash drive by formatting in one of the supported
+formats: FAT32, vFAT or EXT2.</p>
+
+<p><summary>Optional: Preparing a USB Drive inside Cumulus Linux
+</summary></p>
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<div class="notices warning" > <p></p>
+    <p>It is possible that you could severely damage your system with the following utilities, so please use caution when performing the actions below!</p>
+    <p></p>
+ </div>
+
+<ol>
+<li><p>Insert your flash drive into the USB port on the switch running Cumulus Linux and log in to the switch.</p></li>
+<li><p>Determine and note at which device your flash drive can be found by using output from <code>cat /proc/partitions</code> and <code>sudo fdisk -l [device]</code>. For example, <code>sudo fdisk -l /dev/sdb</code>.</p>
+
+<div class="notices warning" > <p></p>
+    <p>These instructions assume your USB drive is the <code>/dev/sdb</code> device, which is typical if the USB stick was inserted after the machine was already booted. However, if the USB stick was plugged in during the boot process, it is possible the device could be <code>/dev/sda</code>. Make sure to modify the commands below to use the proper device for your USB drive!</p>
+    <p></p>
+ </div>
+</li>
+<li><p>Create a new partition table on the device:</p>
+<pre><code>                   
+sudo parted /dev/sdb mklabel msdos
+       
+    </code></pre>
+
+<div class="notices note" > <p></p>
+    <p>The <code>parted</code> utility should already be installed. However, if it is not, install it with: <code>sudo -E apt-get install parted</code></p>
+    <p></p>
+ </div>
+</li>
+<li><p>Create a new partition on the device:</p>
+<pre><code>                   
+sudo parted /dev/sdb -a optimal mkpart primary 0% 100%
+       
+    </code></pre></li>
+<li><p>Format the partition to your filesystem of choice using ONE of the examples below:</p>
+<pre><code>                   
+sudo mkfs.ext2 /dev/sdb1
+sudo mkfs.msdos -F 32 /dev/sdb1
+sudo mkfs.vfat /dev/sdb1
+       
+    </code></pre>
+
+<div class="notices note" > <p></p>
+    <p>To use <code>mkfs.msdos</code> or <code>mkfs.vfat</code>, you need to install the <code>dosfstools</code> package from the <a href="http://docs.cumulusnetworks.com/display/DOCS/Adding+and+Updating+Packages#AddingandUpdatingPackages-AddingPackagesfromAnotherRepository" class="external-link">Debian software repositories</a> (step 3 here shows you how to add repositories from Debian), as they are not included by default.</p>
+    <p></p>
+ </div>
+</li>
+<li><p>To continue installing Cumulus Linux, mount the USB drive in order to move files to it.</p>
+<pre><code>                   
+sudo mkdir /mnt/usb
+sudo mount /dev/sdb1 /mnt/usb
+       
+    </code></pre></li>
+</ol></td>
+</tr>
+</tbody>
+</table>
+    
+
+<p></details></p></li>
+
+<li><p>Copy the image and license files over to the flash drive and rename
+the image file to:</p>
+
+<ul>
+<li><p><code>onie-installer-x86_64</code>, if installing on an x86 platform</p></li>
+
+<li><p><code>onie-installer-arm</code>, if installing on an ARM platform</p></li>
+</ul>
+
+
+<div class="notices note" > <pre><code>You can also use any of the [ONIE naming schemes mentioned
+here](http://opencomputeproject.github.io/onie/docs/design-spec/discovery.html#default-file-name-search-order).
+</code></pre>
+ </div>
+
+
+
+<div class="notices warning" > <pre><code>When using a Mac or Windows computer to rename the installation file
+the file extension may still be present. Make sure to remove the
+file extension otherwise ONIE will not be able to detect the file\!
+</code></pre>
+ </div>
+</li>
+
+<li><p>Insert the USB stick into the switch, then continue with the
+appropriate instructions below for your x86 or ARM platform.</p></li>
+</ol>
+
+<p><details></p>
+
+<h3 id="instructions-for-x86-platforms">Instructions for x86 Platforms</h3>
+
+<p><summary>Click to expand x86 instructions&hellip; </summary></p>
+
+<ol>
+<li><p>Prepare the switch for installation:</p>
+
+<ul>
+<li><p>If the switch is offline, connect to the console and power on
+the switch.</p></li>
+
+<li><p>If the switch is already online in Cumulus Linux, connect to the
+console and reboot the switch into the ONIE environment with the
+<code>sudo onie-select -i</code> command, followed by <code>sudo reboot</code>. Then
+skip to step 4 below.</p></li>
+
+<li><p>If the switch is already online in ONIE, use the <code>reboot</code>
+command.</p></li>
+</ul>
+
+
+<div class="notices note" > <pre><code>SSH sessions to the switch get dropped after this step. To complete
+the remaining instructions, connect to the console of the switch.
+Cumulus Linux switches display their boot process to the console, so
+you need to monitor the console specifically to complete the next
+step.
+</code></pre>
+ </div>
+</li>
+
+<li><p>Monitor the console and select the ONIE option from the first GRUB
+screen shown below.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357423/png_base64c818ed9707a3041b.png" alt = "/images/download/attachments/8357423/png_base64c818ed9707a3041b.png"
+
+
+width = 500
+
+ />
+</li>
+
+<li><p>Cumulus Linux on x86 uses GRUB chainloading to present a second GRUB
+menu specific to the ONIE partition. No action is necessary in this
+menu to select the default option <em>ONIE: Install OS</em>.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8357423/png_base64fcca65644256ad41.png" alt = "/images/download/attachments/8357423/png_base64fcca65644256ad41.png"
+
+
+width = 500
+
+ />
+</li>
+
+<li><p>At this point, the USB drive should be automatically recognized and
+mounted. The image file should be located and automatic installation
+of Cumulus Linux should begin. Here is some sample output:</p>
+
+<pre><code>                       
+ONIE: OS Install Mode  ...
+     
+Version : quanta_common_rangeley-2014.05.05-6919d98-201410171013
+Build  Date: 2014-10-17T10:13+0800
+Info: Mounting kernel filesystems...  done.
+Info: Mounting LABEL=ONIE-BOOT on /mnt/onie-boot  ...
+initializing eth0...
+scsi 6:0:0:0: Direct-Access  SanDisk Cruzer Facet 1.26 PQ: 0 ANSI: 6
+sd 6:0:0:0: [sdb] 31266816 512-byte logical blocks: (16.0 GB/14.9 GiB)
+sd 6:0:0:0: [sdb] Write Protect is off
+sd 6:0:0:0: [sdb] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
+sd 6:0:0:0: [sdb] Attached SCSI disk
+     
+&lt;...snip...&gt;
+     
+ONIE:  Executing installer: file://dev/sdb1/onie-installer-x86_64
+Verifying image checksum ... OK.
+Preparing image archive ... OK.
+Dumping image info...
+Control File Contents
+=====================
+Description: Cumulus  Linux
+OS-Release:  3.0.0-3b46bef-201509041633-build
+Architecture: amd64
+Date:  Fri, 27 May 2016 17:10:30 -0700
+Installer-Version:  1.2
+Platforms: accton_as5712_54x accton_as6712_32x  mlx_sx1400_i73612 dell_s6000_s1220 dell_s4000_c2338 dell_s3000_c2338  cel_redstone_xp cel_smallstone_xp cel_pebble quanta_panther  quanta_ly8_rangeley quanta_ly6_rangeley quanta_ly9_rangeley  
+Homepage: http://www.cumulusnetworks.com/
+       
+        
+</code></pre></li>
+
+<li><p>After installation completes, the switch automatically reboots into
+the newly installed instance of Cumulus Linux.</p></li>
+
+<li><p>Determine and note at which device your flash drive can be found by
+using output from <code>cat /proc/partitions</code> and <code>sudo fdisk -l
+[device]</code>. For example, <code>sudo fdisk -l /dev/sdb</code>.</p>
+
+
+<div class="notices warning" > <pre><code>These instructions assume your USB drive is the `/dev/sdb` device,
+which is typical if the USB stick was inserted after the machine was
+already booted. However, if the USB stick was plugged in during the
+boot process, it is possible the device could be `/dev/sda`. Make
+sure to modify the commands below to use the proper device for your
+USB drive\!
+</code></pre>
+ </div>
+</li>
+
+<li><p>Create a mount point to mount the USB drive to:</p>
+
+<pre><code>                       
+sudo mkdir /mnt/mountpoint
+       
+        
+</code></pre></li>
+
+<li><p>Mount the USB drive to the newly created mount point:</p>
+
+<pre><code>                       
+sudo mount /dev/sdb1 /mnt/mountpoint
+       
+        
+</code></pre></li>
+
+<li><p>Install your license file with the <code>cl-license</code> command:</p>
+
+<pre><code>                       
+sudo cl-license -i /mnt/mountpoint/license.txt
+       
+        
+</code></pre></li>
+
+<li><p>Check that your license is installed with the <code>cl-license</code> command.</p></li>
+
+<li><p>Reboot the switch to utilize the new license.</p>
+
+<pre><code>                       
+sudo reboot
+       
+        
+</code></pre></li>
+</ol>
+
+<p></details></p>
+
+<p><details></p>
+
+<h3 id="instructions-for-arm-platforms">Instructions for ARM Platforms</h3>
+
+<p><summary>Click to expand ARM instructions&hellip; </summary></p>
+
+<ol>
+<li><p>Prepare the switch for installation:</p>
+
+<ul>
+<li><p>If the switch is offline, connect to the console and power on
+the switch.</p></li>
+
+<li><p>If the switch is already online in Cumulus Linux, connect to the
+console and reboot the switch into the ONIE environment with the
+<code>sudo onie-select -i</code> command, followed by <code>sudo reboot</code>. Then
+skip to step 4 below.</p></li>
+
+<li><p>If the switch is already online in ONIE, use the <code>reboot</code>
+command.</p></li>
+</ul>
+
+
+<div class="notices note" > <pre><code>SSH sessions to the switch get dropped after this step. To complete
+the remaining instructions, connect to the console of the switch.
+Cumulus Linux switches display their boot process to the console, so
+you need to monitor the console specifically to complete the next
+step.
+</code></pre>
+ </div>
+</li>
+
+<li><p>Interrupt the normal boot process before the countdown (shown below)
+completes. Press any key to stop the autobooting.</p>
+
+<pre><code>                       
+U-Boot 2013.01-00016-gddbf4a9-dirty (Feb 14 2014 - 16:30:46) Accton: 1.4.0.5
+     
+CPU0: P2020, Version: 2.1, (0x80e20021)
+Core: E500, Version: 5.1, (0x80211051)
+Clock Configuration:
+ CPU0:1200 MHz, CPU1:1200 MHz, 
+ CCB:600 MHz,
+ DDR:400 MHz (800 MT/s data rate) (Asynchronous), LBC:37.500 MHz
+L1: D-cache 32 kB enabled
+ I-cache 32 kB enabled
+     
+&lt;...snip…&gt;
+     
+USB: USB2513 hub OK
+Hit any key to stop autoboot: 0
+       
+        
+</code></pre></li>
+
+<li><p>A command prompt appears, so you can run commands. Execute the
+following command:</p>
+
+<pre><code>                       
+run onie_bootcmd
+       
+        
+</code></pre></li>
+
+<li><p>At this point the USB drive should be automatically recognized and
+mounted. The image file should be located and automatic installation
+of Cumulus Linux should begin. Here is some sample output:</p>
+
+<pre><code>                       
+Loading Open Network Install Environment …
+Platform: arm-as4610_54p-r0
+Version : 1.6.1.3
+WARNING: adjusting available memory to 30000000
+## Booting kernel from Legacy Image at ec040000 …
+   Image Name:   as6701_32x.1.6.1.3
+   Image Type:   ARM Linux Multi-File Image (gzip compressed)
+   Data Size:    4456555 Bytes = 4.3 MiB
+   Load Address: 00000000
+   Entry Point:  00000000
+   Contents:
+      Image 0: 3738543 Bytes = 3.6 MiB
+      Image 1: 706440 Bytes = 689.9 KiB
+      Image 2: 11555 Bytes = 11.3 KiB
+   Verifying Checksum ... OK
+## Loading init Ramdisk from multi component Legacy Image at ec040000 …
+## Flattened Device Tree from multi component Image at EC040000
+   Booting using the fdt at 0xec47d388
+   Uncompressing Multi-File Image ... OK
+   Loading Ramdisk to 2ff53000, end 2ffff788 ... OK
+   Loading Device Tree to 03ffa000, end 03fffd22 ... OK
+     
+&lt;...snip...&gt;
+     
+ONIE: Starting ONIE Service Discovery
+ONIE: Executing installer: file://dev/sdb1/onie-installer-arm
+Verifying image checksum ... OK.
+Preparing image archive ... OK.
+Dumping image info…
+Control File Contents
+=====================
+Description: Cumulus Linux
+OS-Release: 3.0.0-3b46bef-201509041633-build
+Architecture: arm
+Date: Fri, 27 May 2016 17:08:35 -0700
+Installer-Version: 1.2
+Platforms: accton_as4600_54t, accton_as6701_32x, accton_5652, accton_as5610_52x, dni_6448, dni_7448, dni_c7448n, cel_kennisis, cel_redstone, cel_smallstone, cumulus_p2020, quanta_lb9, quanta_ly2, quanta_ly2r, quanta_ly6_p2020
+Homepage: http://www.cumulusnetworks.com/
+       
+        
+</code></pre></li>
+
+<li><p>After installation completes, the switch automatically reboots into
+the newly installed instance of Cumulus Linux.</p></li>
+
+<li><p>Determine and note at which device your flash drive can be found by
+using output from <code>cat /proc/partitions</code> and <code>sudo fdisk -l
+[device]</code>. For example, <code>sudo fdisk -l /dev/sdb</code>.</p>
+
+
+<div class="notices warning" > <pre><code>These instructions assume your USB drive is the `/dev/sdb` device,
+which is typical if the USB stick was inserted after the machine was
+already booted. However, if the USB stick was plugged in during the
+boot process, it is possible the device could be `/dev/sda`. Make
+sure to modify the commands below to use the proper device for your
+USB drive\!
+</code></pre>
+ </div>
+</li>
+
+<li><p>Create a mount point to mount the USB drive to:</p>
+
+<pre><code>                       
+sudo mkdir /mnt/mountpoint
+       
+        
+</code></pre></li>
+
+<li><p>Mount the USB drive to the newly created mount point:</p>
+
+<pre><code>                       
+sudo mount /dev/sdb1 /mnt/mountpoint
+       
+        
+</code></pre></li>
+
+<li><p>Install your license file with the <code>cl-license</code> command:</p>
+
+<pre><code>                       
+sudo cl-license -i /mnt/mountpoint/license.txt
+       
+        
+</code></pre></li>
+
+<li><p>Check that your license is installed with the <code>cl-license</code> command.</p></li>
+
+<li><p>Reboot the switch to utilize the new license.</p>
+
+<pre><code>                       
+sudo reboot
+       
+        
+</code></pre></li>
+</ol>
+
+<p></details></p>
+
+<h2 id="installing-a-new-image-when-cumulus-linux-is-already-installed">Installing a New Image when Cumulus Linux Is already Installed</h2>
+
+<p>At times it may be necessary to put the switch into ONIE in order to do
+an install. This may be required when moving between major releases or
+re-installing from an early version of 3.y.z. For more information, see
+<a href="Upgrading_Cumulus_Linux.html#src-8357427_UpgradingCumulusLinux-binary_upgrade" target="_blank">Upgrading Cumulus
+Linux</a>.</p>
+
+<h3 id="entering-onie-mode-from-cumulus-linux">Entering ONIE Mode from Cumulus Linux</h3>
+
+<p>If Cumulus Linux is already installed on the switch, you can enter ONIE
+mode in one of two ways, using:</p>
+
+<ul>
+<li><p>ONIE Recovery Mode to manually install an image from the ONIE
+prompt:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo onie-select -r
+cumulus@switch:~$ sudo reboot
+       
+        
+</code></pre></li>
+
+<li><p>ONIE Install Mode to attempt to automatically discover the image
+from a DHCP server:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo onie-select -i
+cumulus@switch:~$ sudo reboot
+       
+        
+</code></pre></li>
+</ul>
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#understanding-these-examples">Understanding these Examples</a></li>
+<li><a href="#installing-via-a-dhcp-web-server-method-with-dhcp-options">Installing via a DHCP/Web Server Method with DHCP Options</a></li>
+<li><a href="#installing-via-a-dhcp-web-server-method-without-dhcp-options">Installing via a DHCP/Web Server Method without DHCP Options</a></li>
+<li><a href="#installing-via-a-web-server-with-no-dhcp">Installing via a Web Server with no DHCP</a>
+<ul>
+<li><a href="#installing-from-cumulus-linux">Installing from Cumulus Linux</a></li>
+<li><a href="#installing-from-onie">Installing from ONIE</a></li>
+</ul></li>
+<li><a href="#installing-via-ftp-or-tftp-without-a-web-server">Installing via FTP or TFTP without a Web Server</a>
+<ul>
+<li><a href="#installing-from-cumulus-linux-1">Installing from Cumulus Linux</a></li>
+<li><a href="#installing-from-onie-1">Installing from ONIE</a></li>
+</ul></li>
+<li><a href="#installing-via-a-local-file">Installing via a Local File</a>
+<ul>
+<li><a href="#installing-from-cumulus-linux-2">Installing from Cumulus Linux</a></li>
+<li><a href="#installing-from-onie-2">Installing from ONIE</a></li>
+</ul></li>
+<li><a href="#installing-via-usb">Installing via USB</a>
+<ul>
+<li><a href="#preparing-for-usb-installation">Preparing for USB Installation</a></li>
+<li><a href="#instructions-for-x86-platforms">Instructions for x86 Platforms</a></li>
+<li><a href="#instructions-for-arm-platforms">Instructions for ARM Platforms</a></li>
+</ul></li>
+<li><a href="#installing-a-new-image-when-cumulus-linux-is-already-installed">Installing a New Image when Cumulus Linux Is already Installed</a>
+<ul>
+<li><a href="#entering-onie-mode-from-cumulus-linux">Entering ONIE Mode from Cumulus Linux</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version2/cumulus-linux-35/Installation_Management/Installing_a_New_Cumulus_Linux_Image.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

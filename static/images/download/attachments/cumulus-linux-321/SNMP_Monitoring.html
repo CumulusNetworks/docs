@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SNMP Monitoring - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link current" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126792"> <span>SNMP Monitoring</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><span id="src-5126792_indexterm-E22AF0C43B258F84F333606CC034EC02">Cumulus Linux utilizes the open source </span><span id="src-5126792_indexterm-75805CFFFE41C55AF7329561DC7D60BE">Net-SNMP</span><span id="src-5126792_indexterm-737F31A16DA7C5FD0B92E9BC88D1C974"> agent </span><tt class=" ">snmpd</tt>, v5.7.3, which provides support for most of the common industry-wide MIBs, including interface counters and TCP/UDP IP stack data.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Cumulus Linux does not prevent customers from extending SNMP features. However, Cumulus Networks encourages the use of higher performance monitoring environments, rather than SNMP.    </p>
+        </div>
+    </div>
+    <div class="section section-1" id="src-5126792_SNMPMonitoring-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126792_safe-id-U05NUE1vbml0b3JpbmctSW50cm9kdWN0aW9udG9TTk1QKFNpbXBsZU5ldHdvcmtNYW5hZ2VtZW50UHJvdG9jb2wp">
+        <h1 class="heading "><span>Introduction to SNMP (Simple Network Management Protocol)</span></h1>
+    <p  >SNMP is an IETF standards-based network management architecture and protocol that traces its roots back to Carnegie-Mellon University in 1982. Since then, it's been modified by programmers at the University of California. In 1995, this code was also made publicly available as the UCD project. After that, <tt class=" ">ucd-snmp</tt> was extended by work done at the University of Liverpool as well as later in Denmark. In late 2000, the project name changed to net-snmp and became a fully-fledged collaborative open source project. The version used by Cumulus Networks is base on the latest <tt class=" ">net-snmp</tt> 5.7.3 branch with added custom MIBs and pass through and pass persist scripts.    </p>
+    </div>
+    <div class="section section-1" id="src-5126792_SNMPMonitoring-ConfiguringPortsforSNMPtoListenforRequests">
+        <h1 class="heading "><span>Configuring Ports for SNMP to Listen for Requests</span></h1>
+    <p  >For security reasons, the default port binding for <tt class=" ">snmpd</tt> is the loopback local address; consequently by default, the SNMP service does not listen for SNMP requests from outside the switch. In order to listen to requests from outside the switch, you need to change this binding to a specific IP address (or all interfaces) after configuring security access (community strings, users, and so forth). This is a change from older versions of Cumulus Linux (before version 3.0), which listened to incoming requests on all interfaces by default. The <tt class=" ">snmpd</tt> configuration file is <tt class=" ">/etc/snmp/snmpd.conf</tt> and should be modified before enabling and starting <tt class=" ">snmpd</tt>. The default configuration has no access community strings defined so <tt class=" ">snmpd</tt> will not respond to any SNMP requests until this is added.    </p>
+    </div>
+    <div class="section section-1" id="src-5126792_SNMPMonitoring-StartingtheSNMPDaemon">
+        <h1 class="heading "><span>Starting the SNMP Daemon</span></h1>
+    <p  >The following procedure is the recommended process to start <tt class=" ">snmpd</tt> and monitor it using <tt class=" ">systemctl</tt>.    </p>
+    <p  >To start the SNMP daemon:    </p>
+<ol class=" "><li class=" ">    <p  >Start the <tt class=" ">snmpd</tt> daemon:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl start snmpd.service</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Configure the <tt class=" ">snmpd</tt> daemon to start automatically after reboot:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl enable snmpd.service</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >To enable <tt class=" ">snmpd</tt> to restart automatically after failure:    </p>
+<ol class=" "><li class=" ">    <p  >Create a file called <tt class=" ">/etc/systemd/system/snmpd.service.d/restart.conf</tt>.    </p>
+</li><li class=" ">    <p  >Add the following lines:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">[Service]</code></div>
+<div class="line"><code class="plain">Restart=always</code></div>
+<div class="line"><code class="plain">RestartSec=60</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Run <tt class=" ">sudo systemctl daemon-reload</tt>.    </p>
+</li></ol></li></ol>    <p  >Once the service is started, SNMP can be used to manage various components on the Cumulus Linux switch.    </p>
+    </div>
+    <div class="section section-1" id="src-5126792_SNMPMonitoring-ConfiguringSNMP">
+        <h1 class="heading "><span>Configuring SNMP</span></h1>
+    <p  >Cumulus Linux ships with a production usable default <tt class=" ">snmpd.conf</tt> file included. This section covers a few basic configuration options in <tt class=" ">snmpd.conf</tt>. For more information regarding further configuring this file, refer to the <tt class=" ">snmpd.conf</tt> man page.    </p>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The default <tt class=" ">snmpd.conf</tt> file does not include all supported MIBs or OIDs that can be exposed.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Customers must at least change the default community string for v1 or v2c environments or the <tt class=" ">snmpd</tt> daemon will not respond to any requests.    </p>
+        </div>
+    </div>
+    <div class="section section-2" id="src-5126792_SNMPMonitoring-SettinguptheCustomCumulusNetworksMIBs">
+        <h2 class="heading "><span>Setting up the Custom Cumulus Networks MIBs</span></h2>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >No changes are required in the <tt class=" ">/etc/snmp/snmpd.conf</tt> file on the switch, in order to support the custom Cumulus Networks MIBs. The following lines are already included by default:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">view systemonly included .1.3.6.1.4.1.40310.1</code></div>
+<div class="line"><code class="plain">view systemonly included .1.3.6.1.4.1.40310.2</code></div>
+<div class="line"><code class="plain">sysObjectID 1.3.6.1.4.1.40310</code></div>
+<div class="line"><code class="plain">pass_persist .1.3.6.1.4.1.40310.1 /usr/share/snmp/resq_pp.py</code></div>
+<div class="line"><code class="plain">pass_persist .1.3.6.1.4.1.40310.2 /usr/share/snmp/cl_drop_cntrs_pp.py</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    <p  >However, several files need to be copied to the server, in order for the custom Cumulus MIB to be recognized on the destination NMS server.    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt</tt>    </p>
+</li><li class=" ">    <p  ><tt class=" ">/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt</tt>    </p>
+</li><li class=" ">    <p  ><tt class=" ">/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt</tt>    </p>
+</li></ul>    </div>
+    <div class="section section-2" id="src-5126792_SNMPMonitoring-Enablingthe.1.3.6.1.2.1Range">
+        <h2 class="heading "><span>Enabling the .1.3.6.1.2.1 Range</span></h2>
+    <p  >Some MIBs, including storage information, are not included by default in <tt class=" ">snmpd.conf</tt> in Cumulus Linux. This results in some default views on common network tools (like <tt class=" ">librenms</tt>) to return less than optimal data. More MIBs can be included, by enabling all the .1.3.6.1.2.1 range. This simplifies the configuration file, removing concern that any required MIBs will be missed by the monitoring system. Various MIBs were added to version 3.0 and include the following: ENTITY and ENTITY-SENSOR MIB and parts of the BRIDGE-MIB and Q-BRIDGE-MIBs. These are included in the default configuration.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The view of the BRIDGE-MIB and Q-BRIDGE-MIB are commented out.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >This configuration grants access to a large number of MIBs, including all MIB2 MIBs, which could reveal more data than expected. In addition to being a security vulnerability, it could consume more CPU resources.    </p>
+        </div>
+    </div>
+    <p  >To enable the .1.3.6.1.2.1 range:    </p>
+<ol class=" "><li class=" ">    <p  >Open <tt class=" ">/etc/snmp/snmpd.conf</tt> in a text editor.    </p>
+</li><li class=" ">    <p  >Make sure the following lines are included in the configuration:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">###############################################################################</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">#  ACCESS CONTROL </code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># system</code></div>
+<div class="line"><code class="plain">view   systemonly  included   .1.3.6.1.2.1</code></div>
+<div class="line"><code class="plain"># quagga ospf6</code></div>
+<div class="line"><code class="plain">view   systemonly  included   .1.3.6.1.3.102</code></div>
+<div class="line"><code class="plain"># lldpd (Note: lldpd must be restarted with the -x option</code></div>
+<div class="line"><code class="plain">#     configured in order to send info to snmpd via Agent X</code></div>
+<div class="line"><code class="plain">view   systemonly  included   .1.0.8802.1.1.2</code></div>
+<div class="line"><code class="plain"># Cumulus specific</code></div>
+<div class="line"><code class="plain">view   systemonly  included   .1.3.6.1.4.1.40310.1</code></div>
+<div class="line"><code class="plain">view   systemonly  included   .1.3.6.1.4.1.40310.2</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Restart <tt class=" ">snmpd</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl restart snmpd.service</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    <div class="section section-2" id="src-5126792_SNMPMonitoring-EnablingPublicCommunity">
+        <h2 class="heading "><span>Enabling Public Community</span></h2>
+    <p  >The <tt class=" ">snmpd</tt> authentication for versions 1 and 2 is disabled by default in Cumulus Linux. This password (called a community string) can be enabled by setting <strong class=" ">rocommunity</strong> (for read-only access) or <strong class=" ">rwcommunity</strong> (for read-write acces). To enable read-only querying by a client:    </p>
+<ol class=" "><li class=" ">    <p  >Open <tt class=" ">/etc/snmp/snmpd.conf</tt> in a text editor.    </p>
+</li><li class=" ">    <p  >To allow read-only access using a password <i class=" ">public</i> from any client IP address (<i class=" ">default</i>) for the view you defined before with <i class=" ">systemonly</i>, add the following line to the end of the file, then save it:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">rocommunity public default -V systemonly</code></div>
+</div>
+    </div>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Syntax    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Meaning    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >rocommunity    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Read-only community; (<i class=" ">rwcommunity</i> is for read-write access).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >public    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Plain text password.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >default    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&quot;default&quot; allows connections from any system. &quot;localhost&quot; allows requests only from the local host. A restricted source can either be a specific hostname (or address), or a subnet, represented as IP/MASK (like 10.10.10.0/255.255.255.0), or IP/BITS (like 10.10.10.0/24), or the IPv6 equivalents.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >systemonly    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The name of this particular SNMP view. This is a user-defined value.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+</li><li class=" ">    <p  >Restart <tt class=" ">snmpd</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl restart snmpd.service</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    <div class="section section-2" id="src-5126792_SNMPMonitoring-ConfiguringSNMPv3">
+        <h2 class="heading "><span>Configuring SNMPv3</span></h2>
+    <p  >Since community strings in versions 1 and 2c are sent in the clear, SNMPv3 is often used to enable authentication and encryption. SNMPv3 was first release around 2000. A minimal example is shown here for <tt class=" ">/etc/snmp/snmpd.conf</tt> that defines three users, each with a different combination of authentication and encryption. Please change these usernames and passwords before using this in a network:    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Make sure you change the usernames and passwords in the sample code below, as the ones used here are for explanatory purposes only.    </p>
+        </div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># simple no auth user</code></div>
+<div class="line"><code class="plain">#createUser user1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># user with MD5 authentication</code></div>
+<div class="line"><code class="plain">#createUser user2 MD5 user2password</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># user with MD5 for auth and DES for encryption</code></div>
+<div class="line"><code class="plain">#createUser user3 MD5 user3password DES user3encryption</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># user666 with SHA for authentication and AES for encryption</code></div>
+<div class="line"><code class="plain">createUser user666 SHA user666password AES user666encryption</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># user999 with MD5 for authentication and DES for encryption</code></div>
+<div class="line"><code class="plain">createUser user999 MD5 user999password DES user999encryption</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># restrict users to certain OIDs</code></div>
+<div class="line"><code class="plain"># (Note: creating rouser or rwuser will give</code></div>
+<div class="line"><code class="plain"># access regardless of the createUser command above. However,</code></div>
+<div class="line"><code class="plain"># createUser without rouser or rwuser will not provide any access).</code></div>
+<div class="line"><code class="plain">rouser user1 noauth 1.3.6.1.2.1.1</code></div>
+<div class="line"><code class="plain">rouser user2 auth 1.3.6.1.2.1</code></div>
+<div class="line"><code class="plain">rwuser user3 priv 1.3.6.1.2.1</code></div>
+<div class="line"><code class="plain">rwuser user666</code></div>
+<div class="line"><code class="plain">rwuser user999</code></div>
+</div>
+    </div>
+    <p  >Once you make this configuration and restart the <tt class=" ">snmpd</tt> daemon, the user access can be checked with a client &mdash; the Debian package called <tt class=" ">snmp</tt> contains <tt class=" ">snmpget</tt> and <tt class=" ">snmpwalk</tt>, as well as other programs that are useful for checking daemon functionality from the switch itself or from another workstation. The following commands check the access for each user defined above from the localhost (the switch itself):    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># check user1 which has no authentication or encryption (NoauthNoPriv)</code></div>
+<div class="line"><code class="plain">snmpget -v 3 -u user1 -l NoauthNoPriv localhost 1.3.6.1.2.1.1.1.0</code></div>
+<div class="line"><code class="plain">snmpwalk -v 3 -u user1 -l NoauthNoPriv localhost 1.3.6.1.2.1.1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># check user2 which has authentication but no encryption (authNoPriv)</code></div>
+<div class="line"><code class="plain">snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.1.1.0</code></div>
+<div class="line"><code class="plain">snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.2.1.0</code></div>
+<div class="line"><code class="plain">snmpwalk -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1</code></div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain"># check user3 which has both authentication and encryption (authPriv)</code></div>
+<div class="line"><code class="plain">snmpget -v 3 -u user3 -l authPriv -a MD5 -A user3password -x DES -X user3encryption localhost .1.3.6.1.2.1.1.1.0</code></div>
+<div class="line"><code class="plain">snmpwalk -v 3 -u user3 -l authPriv -a MD5 -A user3password -x DES -X user3encryption localhost .1.3.6.1.2.1</code></div>
+<div class="line"><code class="plain">snmpwalk -v 3 -u user666 -l authPriv -a SHA -x AES -A user666password -X user666encryption localhost 1.3.6.1.2.1.1</code></div>
+<div class="line"><code class="plain">snmpwalk -v 3 -u user999 -l authPriv -a MD5 -x DES -A user999password -X user999encryption localhost 1.3.6.1.2.1.1</code></div>
+</div>
+    </div>
+    <p  >A slightly more secure method of configuring SNMPv3 users without creating cleartext passwords is the following:    </p>
+<ol class=" "><li class=" ">    <p  >Install the <tt class=" ">net-snmp-config</tt> script that is in <tt class=" ">libsnmp-dev</tt> package:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get update</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get install libsnmp-dev</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Stop the daemon:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl stop snmpd.service</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Use the <tt class=" ">net-snmp-config</tt> command to create two users, one with MD5 and DES, and the next with SHA and AES.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The minimum password length is 8 characters and the arguments <tt class=" ">-a</tt> and <tt class=" ">-x</tt> to <tt class=" ">net-snmp-config</tt> have different meanings than they do for <tt class=" ">snmpwalk</tt>.    </p>
+        </div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a md5authpass -x desprivpass -A MD5 -X DES userMD5withDES </code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl start snmpd.service</code></div>
+</div>
+    </div>
+</li></ol>    <p  >This adds a <tt class=" ">createUser</tt> command in <tt class=" ">/var/lib/snmp/snmpd.conf</tt>. Do <strong class=" ">not</strong> edit this file by hand, unless you are removing usernames. It also adds the rwuser in <tt class=" ">/usr/share/snmp/snmpd.conf</tt>. You may want to edit this file and restrict access to certain parts of the MIB by adding <i class=" ">noauth</i>, <i class=" ">auth</i> or <i class=" ">priv</i> to allow unauthenticated access, require authentication or to enforce use of encryption, respectively.    </p>
+    <p  >The <tt class=" ">snmpd</tt> daemon reads the information from the <tt class=" ">/var/lib/snmp/snpmd.conf</tt> file and then the line is removed (eliminating the storage of the master password for that user) and replaced with the key that is derived from it (using the EngineID). This key is a localized key, so that if it is stolen it cannot be used to access other agents. To remove the two users userMD5withDES and userSHAwithAES, you need simply stop the <tt class=" ">snmpd</tt> daemon and edit the files <tt class=" ">/var/lib/snmp/snmpd.conf</tt> and <tt class=" ">/usr/share/snmp/snmpd.conf</tt>. Simply remove the lines containing the username. Then restart the <tt class=" ">snmpd</tt> daemon as in step 3 above.    </p>
+    <p  >From a client, you would access the MIB with the correct credentials. (Again, note that the roles of <tt class=" ">-x</tt>, <tt class=" ">-a</tt> and <tt class=" ">-X</tt> and <tt class=" ">-A</tt> are reversed on the client side as compared with the <tt class=" ">net-snmp-config</tt> command used above.)    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">snmpwalk -v 3 -u userMD5withDES -l authPriv -a MD5 -x DES -A md5authpass -X desprivpass localhost 1.3.6.1.2.1.1.1</code></div>
+<div class="line"><code class="plain">snmpwalk -v 3 -u userSHAwithAES -l authPriv -a SHA -x AES -A shaauthpass -X aesprivpass localhost 1.3.6.1.2.1.1.1</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126792_SNMPMonitoring-snmpwalkaSwitchfromAnotherLinuxDevice">
+        <h1 class="heading "><span>snmpwalk a Switch from Another Linux Device</span></h1>
+    <p  >One of the most important ways to troubleshoot is to <tt class=" ">snmpwalk</tt> the switch from another Linux device that can reach the Cumulus Linux switch. For this demonstration, another switch running Cumulus Linux within the network is used.    </p>
+<ol class=" "><li class=" ">    <p  >Open <tt class=" ">/etc/apt/sources.list</tt> in an editor.    </p>
+</li><li class=" ">    <p  >Add the following line, and save the file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">deb http://ftp.us.debian.org/debian/ jessie main non-free</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Update the switch:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get update</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Install the <tt class=" ">snmp</tt> and <tt class=" ">snmp-mibs-downloader</tt> packages:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get install snmp snmp-mibs-downloader</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Verify that the &quot;mibs :&quot; line is commented out in <tt class=" ">/etc/snmp/snmp.conf</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># As the snmp packages come without MIB files due to license reasons, loading</code></div>
+<div class="line"><code class="plain"># of MIBs is disabled by default. If you added the MIBs you can reenable</code></div>
+<div class="line"><code class="plain"># loading them by commenting out the following line.</code></div>
+<div class="line"><code class="plain">#mibs :</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Perform an <tt class=" ">snmpwalk</tt> on the switch. The switch running <tt class=" ">snmpd</tt> in the demonstration is using IP address 192.168.0.111. It is possible to <tt class=" ">snmpwalk</tt> the switch from itself. Run the following command, which rules out an SNMP problem against a networking problem.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ snmpwalk -c public -v2c 192.168.0.111</code></div>
+</div>
+    </div>
+    <p  >Here is some sample output:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.2 = STRING: 74:e6:e2:f5:a2:80</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.3 = STRING: 0:e0:ec:25:b8:54</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.4 = STRING: 74:e6:e2:f5:a2:81</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.5 = STRING: 74:e6:e2:f5:a2:82</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.6 = STRING: 74:e6:e2:f5:a2:83</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.7 = STRING: 74:e6:e2:f5:a2:84</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.8 = STRING: 74:e6:e2:f5:a2:85</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.9 = STRING: 74:e6:e2:f5:a2:86</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.10 = STRING: 74:e6:e2:f5:a2:87</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.11 = STRING: 74:e6:e2:f5:a2:88</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.12 = STRING: 74:e6:e2:f5:a2:89</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.13 = STRING: 74:e6:e2:f5:a2:8a</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.14 = STRING: 74:e6:e2:f5:a2:8b</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.15 = STRING: 74:e6:e2:f5:a2:8c</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.16 = STRING: 74:e6:e2:f5:a2:8d</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.17 = STRING: 74:e6:e2:f5:a2:8e</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.18 = STRING: 74:e6:e2:f5:a2:8f</code></div>
+<div class="line"><code class="plain">IF-MIB::ifPhysAddress.19 = STRING: 74:e6:e2:f5:a2:90</code></div>
+</div>
+    </div>
+</li></ol>    <p  >Any information gathered here should verify that <tt class=" ">snmpd</tt> is running correctly on the Cumulus Linux side, reducing locations where a problem may reside.    </p>
+    <div class="section section-2" id="src-5126792_SNMPMonitoring-TroubleshootingTipsTableforsnmpwalks">
+        <h2 class="heading "><span>Troubleshooting Tips Table for snmpwalks</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Run snmpwalk from    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >If it works    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >If it does not work    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">switch</strong> (switch to monitor)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">snmpd</tt> is serving information correctly.    </p>
+    <p  >The problem resides somewhere else. For example, network connectivity, or Prism misconfiguration.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Is snmpd misconfigured or installed incorrectly?    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">switch2</strong> (another Cumulus Linux switch in the network)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">snmpd</tt> is serving information correctly and network reachability works between <strong class=" ">switch </strong>and <strong class=" ">switch2</strong>.    </p>
+    <p  >The problem resides somewhere else. For example, Prism cannot reach <strong class=" ">switch</strong>, or there is a Prism misconfiguration.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Network connectivity is not able to grab information?<br/>Is there an <tt class=" ">iptables</tt> rule blocking? Is the <tt class=" ">snmpwalk</tt> being run correctly?    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" "><a   href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Nutanix Prism CLI</a></strong> (SSH to the cluster IP address)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">snmpd</tt> is serving information correctly and network reachability works between <strong class=" ">switch</strong> and the <strong class=" ">Nutanix Appliance</strong>.    </p>
+    <p  >The problem resides somewhere else. For example, the GUI might be misconfigured.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Is the right community name being used in the GUI? Is <tt class=" ">snmp v2c</tt> being used?    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126792_SNMPMonitoring-SNMPTraps">
+        <h1 class="heading "><span>SNMP Traps</span></h1>
+    <div class="section section-2" id="src-5126792_SNMPMonitoring-snmptrapd.conf">
+        <h2 class="heading "><span>snmptrapd.conf</span></h2>
+    <p  >The Net-SNMP trap daemon configuration file, <tt class=" ">/etc/snmp/snmptrapd.conf</tt>, is used to configure how incoming traps should be processed. For more information about specific configuration options within the file, run the following command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ man 5 snmptrapd.conf</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  ###############################################################################</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># EXAMPLE-trap.conf:</code></div>
+<div class="line"><code class="plain">#   An example configuration file for configuring the Net-SNMP snmptrapd agent.</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">###############################################################################</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># This file is intended to only be an example.  If, however, you want</code></div>
+<div class="line"><code class="plain"># to use it, it should be placed in /etc/snmp/snmptrapd.conf.</code></div>
+<div class="line"><code class="plain"># When the snmptrapd agent starts up, this is where it will look for it.</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># All lines beginning with a '#' are comments and are intended for you</code></div>
+<div class="line"><code class="plain"># to read.  All other lines are configuration commands for the agent.</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># PLEASE: read the snmptrapd.conf(5) manual page as well!</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">snmpTrapdAddr localhost</code></div>
+<div class="line"><code class="plain">forward default {{global['snmp_server']}}</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126792_SNMPMonitoring-GeneratingEventNotificationTraps">
+        <h2 class="heading "><span>Generating Event Notification Traps</span></h2>
+    <p  >The Net-SNMP agent provides a method to generate SNMP trap events, via the Distributed Management (DisMan) Event MIB, for various system events, including linkup/down, exceeding the temperature sensor threshold, CPU load, or memory threshold, or other SNMP MIBs.    </p>
+    <div class="section section-3" id="src-5126792_safe-id-U05NUE1vbml0b3JpbmctTW9uaXRvcmluZ0ZhbnMsUG93ZXJTdXBwbGllcyxvclRyYW5zZm9ybWVycw">
+        <h3 class="heading "><span>Monitoring Fans, Power Supplies, or Transformers</span></h3>
+    <p  >SNMP can be configured to monitor the operational status of an Entity MIB or Entity-Sensor MIB. The operational status, given as a value of ok(1), unavailable(2), or nonoperational(3), can be determined by adding the following example configuration to <tt class=" ">/etc/snmp/snmpd.conf</tt>, and adjusting the values:    </p>
+<ul class=" "><li class=" ">    <p  >Using the <tt class=" ">entPhySensorOperStatus</tt> integer:    </p>
+<pre class=" "># without installing extra MIBS we can check the check Fan1 status<br/># if the Fan1 index is 100011001<br/>monitor -I -r 10  -o 1.3.6.1.2.1.47.1.1.1.1.7.100011001 &quot;Fan1 Not OK&quot;  1.3.6.1.2.1.99.1.1.1.5.100011001 &gt; 1<br/># Any Entity Status non OK (greater than 1)<br/>monitor  -r 10  -o 1.3.6.1.2.1.47.1.1.1.1.7  &quot;Sensor Status Failure&quot;  1.3.6.1.2.1.99.1.1.1.5 &gt; 1</pre>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The <tt class=" ">entPhySensorOperStatus</tt> integer can be found by walking the <tt class=" ">entPhysicalName</tt> table.    </p>
+        </div>
+    </div>
+    <p  >To get all sensor information, run <tt class=" ">snmpwalk</tt> on the entPhysicalName table. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ snmpwalk -v 2c -cpublic localhost .1.3.6.1.2.1.47.1.1.1.1.7</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100000001 = STRING: "PSU1Temp1"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100000002 = STRING: "PSU2Temp1"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100000003 = STRING: "Temp1"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100000004 = STRING: "Temp2"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100000005 = STRING: "Temp3"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100000006 = STRING: "Temp4"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100000007 = STRING: "Temp5"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100011001 = STRING: "Fan1"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100011002 = STRING: "Fan2"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100011003 = STRING: "Fan3"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100011004 = STRING: "Fan4"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100011005 = STRING: "Fan5"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100011006 = STRING: "Fan6"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100011007 = STRING: "PSU1Fan1"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.100011008 = STRING: "PSU2Fan1"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.110000001 = STRING: "PSU1"</code></div>
+<div class="line"><code class="plain">iso.3.6.1.2.1.47.1.1.1.1.7.110000002 = STRING: "PSU2"</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Using the OID name:    </p>
+<pre class=" "># for a specific fan called Fan1 with an index 100011001<br/>monitor -I -r 10  -o entPhysicalName.100011001 &quot;Fan1 Not OK&quot;  entPhySensorOperStatus.100011001 &gt; 1<br/># for any Entity Status not OK ( greater than 1)<br/>monitor  -r 10  -o entPhysicalName  &quot;Sensor Status Failure&quot;  entPhySensorOperStatus &gt; 1</pre>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The OID name can be used if the <tt class=" ">snmp-mibs-download</tt> package is installed.    </p>
+        </div>
+    </div>
+</li></ul>    </div>
+    <div class="section section-3" id="src-5126792_SNMPMonitoring-EnablingMIBtoOIDTranslation">
+        <h3 class="heading "><span>Enabling MIB to OID Translation</span></h3>
+    <p  >MIB names can be used instead of OIDs, by installing the <tt class=" ">snmp-mibs-downloader</tt>, to download SNMP MIBs to the switch prior to enabling traps. This greatly improves the readability of the <tt class=" ">snmpd.conf</tt> file.    </p>
+<ol class=" "><li class=" ">    <p  >Open <tt class=" ">/etc/apt/sources.list</tt> in a text editor.    </p>
+</li><li class=" ">    <p  >Add the <tt class=" ">non-free</tt> repository, and save the file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo deb http://ftp.us.debian.org/debian/ jessie main non-free</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Update the switch:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get update</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Install the <tt class=" ">snmp-mibs-downloader</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get install snmp-mibs-downloader</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Open the <tt class=" ">/etc/snmp/snmp.conf</tt> file to verify that the <tt class=" ">mibs :</tt> line is commented out:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># As the snmp packages come without MIB files due to license reasons, loading</code></div>
+<div class="line"><code class="plain"># of MIBs is disabled by default. If you added the MIBs you can reenable</code></div>
+<div class="line"><code class="plain"># loading them by commenting out the following line.</code></div>
+<div class="line"><code class="plain">#mibs :</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Open the <tt class=" ">/etc/default/snmpd</tt> file to verify that the <tt class=" ">export MIBS=</tt> line is commented out:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># This file controls the activity of snmpd and snmptrapd</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># Don't load any MIBs by default.</code></div>
+<div class="line"><code class="plain"># You might comment this lines once you have the MIBs Downloaded.</code></div>
+<div class="line"><code class="plain">#export MIBS=</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Once the configuration has been confirmed, remove or comment out the <tt class=" ">non-free</tt> repository in <tt class=" ">/etc/apt/sources.list</tt>.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">#deb http://ftp.us.debian.org/debian/ jessie main non-free</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    <div class="section section-3" id="src-5126792_SNMPMonitoring-ConfiguringTrapEvents">
+        <h3 class="heading "><span>Configuring Trap Events</span></h3>
+    <p  >The following configurations should be made in <tt class=" ">/etc/snmp/snmp.conf</tt>, in order to enable specific types of traps. Once configured, restart the <tt class=" ">snmpd</tt> service to apply the changes.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl restart snmpd.service</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126792_SNMPMonitoring-DefiningAccessCredentials">
+        <h3 class="heading "><span>Defining Access Credentials</span></h3>
+    <p  >An SNMPv3 username is required to authorize the DisMan service. The example code below uses <tt class=" ">cumulusUser</tt> as the username.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">createUser cumulusUser</code></div>
+<div class="line"><code class="plain">iquerySecName cumulusUser</code></div>
+<div class="line"><code class="plain">rouser cumulusUser</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126792_SNMPMonitoring-DefiningTrapReceivers">
+        <h3 class="heading "><span>Defining Trap Receivers</span></h3>
+    <p  >The example code below creates a trap receiver that is capable of receiving SNMPv2 traps.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">trap2sink 192.168.1.1 public</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Although the traps are sent to an SNMPV2 receiver, the SNMPv3 user is still required.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >It is possible to define multiple trap receivers, and to use the domain name instead of IP address in the <tt class=" ">trap2sink</tt> directive.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126792_safe-id-U05NUE1vbml0b3JpbmctQ29uZmlndXJpbmdMaW5rVXAvRG93bk5vdGlmaWNhdGlvbnM">
+        <h3 class="heading "><span>Configuring LinkUp/Down Notifications</span></h3>
+    <p  >The <tt class=" ">linkUpDownNotifications</tt> directive is used to configure linkup/down notifications when the operational status of the link changes.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">linkUpDownNotifications yes</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The default frequency for checking link up/down is 60 seconds. The default frequency can be changed using the <tt class=" ">monitor</tt> directive directly instead of the <tt class=" ">linkUpDownNotifications</tt> directive. See <tt class=" ">man snmpd.conf</tt> for details.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126792_SNMPMonitoring-ConfiguringTemperatureNotifications">
+        <h3 class="heading "><span>Configuring Temperature Notifications</span></h3>
+    <p  >Temperature sensor information for each available sensor is maintained in the the lmSensors MIB. Each platform may contain a different number of temperature sensors. The example below generates a trap event when any temperature sensors exceeds a threshold of 68 degrees (centigrade). It monitors each <tt class=" ">lmTempSensorsValue</tt>. When the threshold value is checked and exceeds the <tt class=" ">lmTempSensorsValue</tt>, a trap is generated. The <tt class=" ">-o lmTempSenesorsDevice</tt> option is used to instruct SNMP to also include the lmTempSensorsDevice MIB in the generated trap. The default frequency for the <tt class=" ">monitor</tt> directive is 600 seconds. The default frequency may be changed using the <tt class=" ">-r</tt> option.:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">monitor lmTemSensor -o lmTempSensorsDevice lmTempSensorsValue &gt; 68000</code></div>
+</div>
+    </div>
+    <p  >Alternatively, temperature sensors may be monitored individually. To monitor the sensors individually, first use the <tt class=" ">sensors</tt> command to determine which sensors are available to be monitored on the platform.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo sensors</code></div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain">CY8C3245-i2c-4-2e</code></div>
+<div class="line"><code class="plain">Adapter: i2c-0-mux (chan_id 2)</code></div>
+<div class="line"><code class="plain">fan5: 7006 RPM (min = 2500 RPM, max = 23000 RPM)</code></div>
+<div class="line"><code class="plain">fan6: 6955 RPM (min = 2500 RPM, max = 23000 RPM)</code></div>
+<div class="line"><code class="plain">fan7: 6799 RPM (min = 2500 RPM, max = 23000 RPM)</code></div>
+<div class="line"><code class="plain">fan8: 6750 RPM (min = 2500 RPM, max = 23000 RPM)</code></div>
+<div class="line"><code class="plain">temp1: +34.0 C (high = +68.0 C)</code></div>
+<div class="line"><code class="plain">temp2: +28.0 C (high = +68.0 C)</code></div>
+<div class="line"><code class="plain">temp3: +33.0 C (high = +68.0 C)</code></div>
+<div class="line"><code class="plain">temp4: +31.0 C (high = +68.0 C)</code></div>
+<div class="line"><code class="plain">temp5: +23.0 C (high = +68.0 C)</code></div>
+</div>
+    </div>
+    <p  >Configure a <tt class=" ">monitor</tt> command for the specific sensor using the <tt class=" ">-I</tt> option. The <tt class=" ">-I</tt> option indicates that the monitored expression is applied to a single instance. In this example, there are five temperature sensors available. The following monitor directive can be used to monitor only temperature sensor three at five minute intervals.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">monitor -I -r 300 lmTemSensor3 -o lmTempSensorsDevice.3 lmTempSensorsValue.3 &gt; 68000</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126792_SNMPMonitoring-ConfiguringFreeMemoryNotifications">
+        <h3 class="heading "><span>Configuring Free Memory Notifications</span></h3>
+    <p  >You can monitor free memory using the following directives. The example below generates a trap when free memory drops below 1,000,000KB. The free memory trap also includes the amount of total real memory:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">monitor MemFreeTotal -o memTotalReal memTotalFree &lt;  1000000</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126792_SNMPMonitoring-ConfiguringProcessorLoadNotifications">
+        <h3 class="heading "><span>Configuring Processor Load Notifications</span></h3>
+    <p  >To monitor CPU load for 1, 5 or 15 minute intervals, use the <tt class=" ">load</tt> directive in conjunction with the <tt class=" ">monitor</tt> directive. The following example will generate a trap when the 1 minute interval reaches 12%, the 5 minute interval reaches 10% or the 15 minute interval reaches 5%.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">load 12 10 5</code></div>
+<div class="line"><code class="plain">monitor -r 60 -o laNames -o laErrMessage "laTable" laErrorFlag !=0</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126792_SNMPMonitoring-ConfiguringDiskUtilizationNotifications">
+        <h3 class="heading "><span>Configuring Disk Utilization Notifications</span></h3>
+    <p  >To monitor disk utilization for all disks, use the <tt class=" ">includeAllDisks</tt> directive in conjunction with the <tt class=" ">monitor</tt> directive. The example code below generates a trap when a disk is 99% full:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">includeAllDisks 1%</code></div>
+<div class="line"><code class="plain">monitor -r 60 -o dskPath -o DiskErrMsg "dskTable" diskErrorFlag !=0</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126792_SNMPMonitoring-ConfiguringAuthenticationNotifications">
+        <h3 class="heading "><span>Configuring Authentication Notifications</span></h3>
+    <p  >To generate authentication failure traps, use the <tt class=" ">authtrapenable</tt> directive:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">authtrapenable 1</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126792_SNMPMonitoring-supported_mibsSupportedMIBs">
+        <h1 class="heading "><span id="src-5126792_SNMPMonitoring-supported_mibs" class="confluence-anchor-link"></span><span>Supported MIBs</span></h1>
+    <p  >Below are the MIBs supported by Cumulus Linux, as well as suggested uses for them. The overall Cumulus Linux MIB is defined in <tt class=" ">/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt</tt>.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >MIB Name    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Suggested Uses    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >BRIDGE and Q-BRIDGE    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The dot1dBasePortEntry and dot1dBasePortIfIndex tables in the BRIDGE-MIB and dot1qBase, dot1qFdbEntry, dot1qTpFdbEntry, dot1qTpFdbStatus, and the dot1qVlanStaticName tables in the Q-BRIDGE-MIB tables. You must uncomment the <tt class=" ">bridge_pp.py pass_persist</tt> script in <tt class=" ">/etc/snmp/snmpd.conf</tt>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >BGP4    </p>
+<span id="src-5126792_SNMPMonitoring-bgp4"></span>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Implementation of the BGP4 MIB (RFC 4273) which includes bgpPeerTable and bgp4PathAttrTable. By default, the <tt class=" ">bgp4_pp.py</tt> script does not show the bgp4PathAttrTable since this can be very large and result in a periodic CPU spike. To enable this table, add <i class=" ">--include-paths</i> to the end of the line (as an option) after uncommenting it in the <tt class=" ">/etc/snmp/snmpd.conf</tt> configuration file.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">#pass_persist .1.3.6.1.2.1.15 /usr/share/snmp/bgp4_pp.py</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >CUMULUS-COUNTERS-MIB    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Discard counters: Cumulus Linux also includes its own counters MIB, defined in <tt class=" ">/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt</tt>. It has the OID <tt class=" ">.1.3.6.1.4.1.40310.2</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >CUMULUS-RESOURCE-QUERY-MIB    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Cumulus Linux includes its own resource utilization MIB, which is similar to using <tt class=" ">cl-resource-query </tt>. It monitors L3 entries by host, route, nexthops, ECMP groups and L2 MAC/BDPU entries. The MIB is defined in <tt class=" ">/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt</tt>, and has the OID <tt class=" ">.1.3.6.1.4.1.40310.1.</tt>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >CUMULUS-POE-MIB    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The Cumulus Networks custom <a   href="Power_over_Ethernet_-_PoE.html">Power over Ethernet</a> PoE MIB defined in <tt class=" ">/usr/share/snmp/mibs/Cumulus-POE-MIB.txt</tt>. For devices that provide PoE, this provides users with the system wide power information in poeSystemValues as well as per interface PoeObjectsEntry values for the poeObjectsTable. Most of this information comes from the <tt class=" ">poectl</tt> command. This MIB is enabled by uncommenting the following line in <tt class=" ">/etc/snmp/snmpd.conf</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">#pass_persist .1.3.6.1.4.1.40310.3 /usr/share/snmp/cl_poe_pp.py</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >DISMAN-EVENT    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Trap monitoring    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ENTITY    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >From RFC 4133, the temperature sensors, fan sensors, power sensors, and ports are covered.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ENTITY-SENSOR    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Physical sensor information (temperature, fan, and power supply) from RFC 3433.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >HOST-RESOURCES    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Users, storage, interfaces, process info, run parameters    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >IEEE8023-LAG-MIB    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Implementation of the IEEE 8023-LAG-MIB includes the dot3adAggTable and dot3adAggPortListTable tables. To enable this, edit <tt class=" ">/etc/snmp/snmpd.conf</tt> and uncomment or add the following lines:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">view systemonly included .1.2.840.10006.300.43</code></div>
+<div class="line"><code class="plain">pass_persist .1.2.840.10006.300.43 /usr/share/snmp/ieee8023_lag_pp.py</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://net-snmp.sourceforge.net/docs/mibs/interfaces.html">IF-MIB</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Interface description, type, MTU, speed, MAC, admin, operation status, counters    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://net-snmp.sourceforge.net/docs/mibs/ip.html">IP (includes ICMP)</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >IPv4, IPv4 addresses, counters, netmasks    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >IPv6    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >IPv6 counters    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >IP-FORWARD    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >IP routing table    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://www.mibdepot.com/cgi-bin/getmib3.cgi?i=1&amp;n=LLDP-MIB&amp;r=cisco&amp;f=LLDP-MIB-V1SMI.my&amp;v=v1&amp;t=tree">LLDP</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >L2 neighbor info from <tt class=" ">lldpd</tt> (note, you need to <a   href="Link_Layer_Discovery_Protocol.html#src-5126830_LinkLayerDiscoveryProtocol-snmp">enable the SNMP subagent</a> in LLDP). <tt class=" ">lldpd</tt> needs to be started with the <tt class=" ">-x</tt> option to enable connectivity to <tt class=" ">snmpd</tt> (AgentX).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://support.ipmonitor.com/mibs_byoidtree.aspx?oid=.1.3.6.1.4.1.2021.13.16">LM-SENSORS MIB</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Fan speed, temperature sensor values, voltages. This is deprecated since the ENTITY-SENSOR MIB has been added.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >NET-SNMP-AGENT    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Agent timers, user, group config    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >NET-SNMP-EXTEND    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Agent timers, user, group config    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://net-snmp.sourceforge.net/docs/mibs/netSnmpExtendMIB.html">NET-SNMP-EXTEND-MIB</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >(See also <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/articles/204507848">this knowledge base article</a> on extending NET-SNMP in Cumulus Linux to include data from power supplies, fans and temperature sensors.)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >NET-SNMP-VACM    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Agent timers, user, group config    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://www.net-snmp.org/docs/mibs/notificationLogMIB.html">NOTIFICATION-LOG</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Local logging    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://net-snmp.sourceforge.net/docs/mibs/snmpFrameworkMIB.html">SNMP-FRAMEWORK</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Users, access    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://net-snmp.sourceforge.net/docs/mibs/snmpMPDMIB.html">SNMP-MPD</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Users, access    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://www.net-snmp.org/docs/mibs/snmpTargetMIB.html">SNMP-TARGET</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://net-snmp.sourceforge.net/docs/mibs/snmpUsmMIB.html">SNMP-USER-BASED-SM</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Users, access    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://net-snmp.sourceforge.net/docs/mibs/snmpVacmMIB.html">SNMP-VIEW-BASED-ACM</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Users, access    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://net-snmp.sourceforge.net/docs/mibs/snmpMIB.html">SNMPv2</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >SNMP counters (For information on exposing CPU and memory information via SNMP, see this <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/articles/203922988">knowledge base article</a>.)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://net-snmp.sourceforge.net/docs/mibs/tcp.html">TCP</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >TCP related information    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://www.net-snmp.org/docs/mibs/UCD-SNMP-MIB.txt">UCD-SNMP</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >System memory, load, CPU, disk IO    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><a  class="external-link" href="http://net-snmp.sourceforge.net/docs/mibs/udp.html">UDP</a>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >UDP related information    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Due to licensing restrictions, SNMP support within Quagga has been disabled and not included in Cumulus Linux.    </p>
+    <p  >However, Cumulus Linux does support the BGP4 MIB (RFC 4273), which includes bgpPeerTable and bgp4PathAttrTable. By default, the pass persist script <tt class=" ">bgp4_pp.py</tt> does not show the bgp4PathAttrTable since it can be very large and result in a periodic CPU spike.    </p>
+    <p  >To enable this table, <a   href="#src-5126792_SNMPMonitoring-bgp4">see above</a>.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The ENTITY MIB does not currently show the chassis information in Cumulus Linux.    </p>
+        </div>
+    </div>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Using_netq_to_Troubleshoot_the_Network.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Using netq to Troubleshoot the Network</span>
+        </a>
+                <a href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Using Nutanix Prism as a Monitoring Tool</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

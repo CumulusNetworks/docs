@@ -1,0 +1,2625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Spanning Tree and Rapid Spanning Tree | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/" >
+    Version2s
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility/" >
+    Network Command Line Utility
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Managing_Application_Daemons/" >
+    Managing Application Daemons
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Buffer_and_Queue_Management/Configuring_Hardware-enabled_DDOS_Protection/" >
+    Configuring Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Layer_1_and_Switch_Port_Attributes/" >
+    Layer 1 and Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Configuring_DHCP_Relays/" >
+    Configuring DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/Configuring_DHCP_Servers/" >
+    Configuring DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Interface_Configuration_and_Management/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/" >
+    Layer 1 and 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments/" >
+    VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/Traditional_Mode_Bridges/" >
+    Traditional Mode Bridges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/" >
+    Virtual Router Redundancy - VRR
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Virtual_Router_Redundancy_-_VRR/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Spanning_Tree_and_Rapid_Spanning_Tree/"  class="active" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_1_and_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/" >
+    Lightweight Network Virtualization - LNV Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_VXLAN_Active-Active_Mode/" >
+    LNV VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Lightweight_Network_Virtualization_-_LNV_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX/" >
+    Integrating Hardware VTEPs with VMware NSX
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Open_Shortest_Path_First_-_OSPF_-_Protocol/" >
+    Open Shortest Path First - OSPF - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol/" >
+    Open Shortest Path First v3 - OSPFv3 - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/SNMP_Monitoring/" >
+    SNMP Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Buffer_Monitoring/" >
+    Buffer Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version2/cumulus-linux-35/Cumulus_Linux_Index/" >
+    Cumulus Linux Index
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Spanning Tree and Rapid Spanning Tree</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Spanning Tree and Rapid Spanning Tree</h1>
+
+<p>Spanning tree protocol (STP) is always recommended in layer 2
+topologies, as it prevents bridge loops and broadcast radiation on a
+bridged network. STP also provides redundant links for automatic
+failover when an active link fails. STP is disabled by default on
+bridges in Cumulus Linux.</p>
+
+<h2 id="supported-modes">Supported Modes</h2>
+
+<p>The STP modes Cumulus Linux supports vary depending upon whether the
+<a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/Ethernet_Bridging_-_VLANs">traditional or VLAN-aware bridge driver
+mode</a>
+is in use.</p>
+
+<p>Bridges configured in
+<em><a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments">VLAN-aware</a></em>
+mode operate <strong>only</strong> in RSTP mode.
+<a href="/version2/cumulus-linux-35/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility_-_NCLU">NCLU</a>,
+the network command line utility for configuring Cumulus Linux, only
+supports bridges in VLAN-aware mode.</p>
+
+<p>For a bridge configured in <em>traditional</em> mode, PVST and PVRST are
+supported, with the default set to PVRST. Each traditional bridge has
+its own separate STP instance.</p>
+
+<p>Since you cannot use NCLU to configure a traditional mode bridge, you
+must configure it directly in the <code>/etc/network/interfaces</code> file.</p>
+
+<h3 id="stp-for-a-vlan-aware-bridge">STP for a VLAN-aware Bridge</h3>
+
+<p><em><a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments">VLAN-aware</a></em>
+bridges only operate in RSTP mode. STP bridge protocol data units
+(BPDUs) are transmitted on the native VLAN.</p>
+
+<p>If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU,
+it will automatically fall back to 802.1D operation. RSTP interoperates
+with MST seamlessly, creating a single instance of spanning tree, which
+transmits BPDUs on the native VLAN. RSTP treats the MST domain as if it
+were one giant switch.</p>
+
+
+<div class="notices tip" > <p>As of version 3.2.1, STP is enabled by default in Cumulus Linux. There
+is no need to specify <code>bridge-stp on</code> for the bridge any more.</p>
+ </div>
+
+
+<h3 id="stp-within-a-traditional-mode-bridge">STP within a Traditional Mode Bridge</h3>
+
+<p>Per VLAN Spanning Tree (PVST) creates a spanning tree instance for a
+bridge. Rapid PVST (PVRST) supports RSTP enhancements for each spanning
+tree instance. In order to use PVRST with a traditional bridge, a bridge
+corresponding to the untagged native VLAN must be created, and all the
+physical switch ports must be part of the same VLAN.</p>
+
+
+<div class="notices note" > <p>When connected to a switch that has a native VLAN configuration, the
+native VLAN <strong>must</strong> be configured to be VLAN 1 only for maximum
+interoperability.</p>
+ </div>
+
+
+<p><details></p>
+
+<h2 id="viewing-bridge-and-stp-status-logs">Viewing Bridge and STP Status/Logs</h2>
+
+<p>To check STP status for a bridge, run <code>net show bridge spanning-tree</code>:</p>
+
+<p><summary>Click to reveal the output &hellip; </summary></p>
+
+<pre><code>                   
+cumulus@switch:~$ net show bridge spanning-tree 
+bridge CIST info
+  enabled         yes
+  bridge id       1.000.44:38:39:FF:40:90
+  designated root 1.000.44:38:39:FF:40:90
+  regional root   1.000.44:38:39:FF:40:90
+  root port       none
+  path cost     0          internal path cost   0
+  max age       20         bridge max age       20
+  forward delay 15         bridge forward delay 15
+  tx hold count 6          max hops             20
+  hello time    2          ageing time          300
+  force protocol version     rstp
+  time since topology change 253343s
+  topology change count      4
+  topology change            no
+  topology change port       peerlink
+  last topology change port  leaf03-04
+ 
+bridge:exit01-02 CIST info
+  enabled            no                      role                 Disabled
+  port id            8.004                   state                discarding
+  external port cost 305                     admin external cost  0
+  internal port cost 305                     admin internal cost  0
+  designated root    1.000.44:38:39:00:00:27 dsgn external cost   0
+  dsgn regional root 1.000.44:38:39:00:00:27 dsgn internal cost   0
+  designated bridge  1.000.44:38:39:00:00:27 designated port      8.004
+  admin edge port    no                      auto edge port       yes
+  oper edge port     no                      topology change ack  no
+  point-to-point     yes                     admin point-to-point auto
+  restricted role    no                      restricted TCN       no
+  port hello time    2                       disputed             no
+  bpdu guard port    no                      bpdu guard error     no
+  network port       no                      BA inconsistent      no
+  Num TX BPDU        2                       Num TX TCN           0
+  Num RX BPDU        0                       Num RX TCN           0
+  Num Transition FWD 0                       Num Transition BLK   2
+  bpdufilter port    no                     
+  clag ISL           no                      clag ISL Oper UP     no
+  clag role          primary                 clag dual conn mac   00:00:00:00:00:00
+  clag remote portID F.FFF                   clag system mac      44:38:39:FF:40:90
+bridge:leaf01-02 CIST info
+  enabled            yes                     role                 Designated
+  port id            8.003                   state                forwarding
+  external port cost 10000                   admin external cost  0
+  internal port cost 10000                   admin internal cost  0
+  designated root    1.000.44:38:39:FF:40:90 dsgn external cost   0
+  dsgn regional root 1.000.44:38:39:FF:40:90 dsgn internal cost   0
+  designated bridge  1.000.44:38:39:FF:40:90 designated port      8.003
+  admin edge port    no                      auto edge port       yes
+  oper edge port     no                      topology change ack  no
+  point-to-point     yes                     admin point-to-point auto
+  restricted role    no                      restricted TCN       no
+  port hello time    2                       disputed             no
+  bpdu guard port    no                      bpdu guard error     no
+  network port       no                      BA inconsistent      no
+  Num TX BPDU        253558                  Num TX TCN           2
+  Num RX BPDU        253373                  Num RX TCN           4
+  Num Transition FWD 126675                  Num Transition BLK   126694
+  bpdufilter port    no                     
+  clag ISL           no                      clag ISL Oper UP     no
+  clag role          primary                 clag dual conn mac   44:38:39:FF:40:94
+  clag remote portID F.FFF                   clag system mac      44:38:39:FF:40:90
+bridge:leaf03-04 CIST info
+  enabled            yes                     role                 Designated
+  port id            8.001                   state                forwarding
+  external port cost 10000                   admin external cost  0
+  internal port cost 10000                   admin internal cost  0
+  designated root    1.000.44:38:39:FF:40:90 dsgn external cost   0
+  dsgn regional root 1.000.44:38:39:FF:40:90 dsgn internal cost   0
+  designated bridge  1.000.44:38:39:FF:40:90 designated port      8.001
+  admin edge port    no                      auto edge port       yes
+  oper edge port     no                      topology change ack  no
+  point-to-point     yes                     admin point-to-point auto
+  restricted role    no                      restricted TCN       no
+  port hello time    2                       disputed             no
+  bpdu guard port    no                      bpdu guard error     no
+  network port       no                      BA inconsistent      no
+  Num TX BPDU        130960                  Num TX TCN           6
+  Num RX BPDU        4                       Num RX TCN           1
+  Num Transition FWD 2                       Num Transition BLK   1
+  bpdufilter port    no                     
+  clag ISL           no                      clag ISL Oper UP     no
+  clag role          primary                 clag dual conn mac   44:38:39:FF:40:93
+  clag remote portID F.FFF                   clag system mac      44:38:39:FF:40:90
+bridge:peerlink CIST info
+  enabled            yes                     role                 Designated
+  port id            F.002                   state                forwarding
+  external port cost 10000                   admin external cost  0
+  internal port cost 10000                   admin internal cost  0
+  designated root    1.000.44:38:39:FF:40:90 dsgn external cost   0
+  dsgn regional root 1.000.44:38:39:FF:40:90 dsgn internal cost   0
+  designated bridge  1.000.44:38:39:FF:40:90 designated port      F.002
+  admin edge port    no                      auto edge port       yes
+  oper edge port     no                      topology change ack  no
+  point-to-point     yes                     admin point-to-point auto
+  restricted role    no                      restricted TCN       no
+  port hello time    2                       disputed             no
+  bpdu guard port    no                      bpdu guard error     no
+  network port       no                      BA inconsistent      no
+  Num TX BPDU        126700                  Num TX TCN           2
+  Num RX BPDU        6                       Num RX TCN           3
+  Num Transition FWD 2                       Num Transition BLK   1
+  bpdufilter port    no                     
+  clag ISL           yes                     clag ISL Oper UP     yes
+  clag role          primary                 clag dual conn mac   00:00:00:00:00:00
+  clag remote portID F.FFF                   clag system mac      44:38:39:FF:40:90
+   
+    
+</code></pre>
+
+<h3 id="using-linux-to-check-spanning-tree-status-advanced">Using Linux to Check Spanning Tree Status (Advanced)</h3>
+
+<p><summary>Using Linux to check STP status &hellip; </summary></p>
+
+<p><code>mstpctl</code> is the utility provided by the <code>mstpd</code> service to configure
+STP. The <code>mstpd</code> daemon is an open source project used by Cumulus Linux
+to implement IEEE802.1D 2004 and IEEE802.1Q 2011.</p>
+
+<p><code>mstpd</code> is started by default when the switch boots. <code>mstpd</code> logs and
+errors are located in <code>/var/log/syslog</code>.</p>
+
+
+<div class="notices warning" > <p><code>mstpd</code> is the preferred utility for interacting with STP on Cumulus
+Linux. <code>brctl</code> also provides certain methods for configuring STP;
+however, they are not as complete as the tools offered in <code>mstpd</code> and
+<a href="https://support.cumulusnetworks.com/hc/en-us/articles/212153658-brctl-showstp-Shows-Carrier-Down-Ports-as-Blocking" target="_blank">output from brctl can be
+misleading</a>
+in some cases.</p>
+ </div>
+
+
+<p>To get the bridge state, use:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo brctl show
+ bridge name     bridge id               STP enabled     interfaces
+ bridge          8000.001401010100       yes             swp1
+                                                         swp4
+                                                         swp5
+   
+    
+</code></pre>
+
+<p>To get the <code>mstpd</code> bridge state, use:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net show bridge spanning-tree
+ bridge CIST info
+  enabled         yes
+  bridge id       F.000.00:14:01:01:01:00
+  designated root F.000.00:14:01:01:01:00
+  regional root   F.000.00:14:01:01:01:00
+  root port       none
+  path cost     0          internal path cost   0
+  max age       20         bridge max age       20
+  forward delay 15         bridge forward delay 15
+  tx hold count 6          max hops             20
+  hello time    2          ageing time          200
+  force protocol version     rstp
+  time since topology change 90843s
+  topology change count      4
+  topology change            no
+  topology change port       swp4
+  last topology change port  swp5
+   
+    
+</code></pre>
+
+<p>To get the <code>mstpd</code> bridge port state, use:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo mstpctl showport bridge
+ E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
+   swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
+ E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
+ 
+cumulus@switch:~$ net show bridge spanning-tree
+ 
+...
+ bridge:swp1 CIST info
+  enabled            yes                     role                 Designated
+  port id            8.001                   state                forwarding
+  external port cost 2000                    admin external cost  0
+  internal port cost 2000                    admin internal cost  0
+  designated root    F.000.00:14:01:01:01:00 dsgn external cost   0
+  dsgn regional root F.000.00:14:01:01:01:00 dsgn internal cost   0
+  designated bridge  F.000.00:14:01:01:01:00 designated port      8.001
+  admin edge port    no                      auto edge port       yes
+  oper edge port     yes                     topology change ack  no
+  point-to-point     yes                     admin point-to-point auto
+  restricted role    no                      restricted TCN       no
+  port hello time    2                       disputed             no
+  bpdu guard port    no                      bpdu guard error     no
+  network port       no                      BA inconsistent      no
+  Num TX BPDU        45772                   Num TX TCN           4
+  Num RX BPDU        0                       Num RX TCN           0
+  Num Transition FWD 2                       Num Transition BLK   2
+   
+    
+</code></pre>
+
+<p></details></p>
+
+<h2 id="customizing-spanning-tree-protocol">Customizing Spanning Tree Protocol</h2>
+
+<p>There are a number of ways you can customize STP in Cumulus Linux. You
+should exercise extreme caution with many of the settings below to
+prevent malfunctions in STP&rsquo;s loop avoidance.</p>
+
+<h3 id="spanning-tree-priority">Spanning Tree Priority</h3>
+
+<p>If you have an MSTI (multiple spanning tree instance), you can set the
+<em>tree priority</em> for a bridge. The bridge with the lowest priority is
+elected the <em>root bridge</em>. The priority must be a number between <em>0</em> and
+<em>65535</em> and must be a multiple of 4096; the default is <em>32768</em>.</p>
+
+
+<div class="notices warning" > <p>For <code>msti</code>, only 0 is supported currently.</p>
+ </div>
+
+
+<p>To set the tree priority, run:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add bridge stp treeprio 8192
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<h3 id="portadminedge-portfast-mode">PortAdminEdge/PortFast Mode</h3>
+
+<p><em>PortAdminEdge</em> is equivalent to the PortFast feature offered by other
+vendors. It enables or disables the <em>initial edge state</em> of a port in a
+bridge.</p>
+
+<p>All ports configured with PortAdminEdge bypass the listening and
+learning states to move immediately to forwarding.</p>
+
+
+<div class="notices warning" > <p>Using PortAdminEdge mode has the potential to cause loops if it is not
+accompanied by the <a href="#src-8357467_SpanningTreeandRapidSpanningTree-bpdu">BPDU
+guard</a> feature.</p>
+ </div>
+
+
+<p>While it is common for edge ports to be configured as access ports for a
+simple end host, this is not mandatory. In the data center, edge ports
+typically connect to servers, which may pass both tagged and untagged
+traffic.</p>
+
+
+<div class="notices info"  id="has" > <p>To configure PortAdminEdge mode, use the <code>bpduguard</code> and <code>portadminedge</code>
+NCLU configuration commands:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add interface swp5 stp bpduguard
+cumulus@switch:~$ net add interface swp5 stp portadminedge
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>The NCLU commands above create the following code snippet:</p>
+
+<pre><code>                   
+auto swp5
+iface swp5
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+   
+    
+</code></pre>
+ </div>
+
+
+
+<div class="notices info"  id="has" > <p>For a bridge in <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/Ethernet_Bridging_-_VLANs">traditional
+mode</a>,
+configure <code>PortAdminEdge</code> under the bridge stanza in
+<code>/etc/network/interfaces</code>:</p>
+
+<pre><code>                   
+auto br2
+iface br2 inet static
+  bridge-ports swp1 swp2 swp3 swp4
+  mstpctl-bpduguard swp1=yes swp2=yes swp3=yes swp4=yes
+  mstpctl-portadminedge swp1=yes swp2=yes swp3=yes swp4=yes
+   
+    
+</code></pre>
+
+<p>To load the new configuration, run <code>ifreload -a</code>:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ifreload -a
+   
+    
+</code></pre>
+ </div>
+
+
+<h3 id="portautoedge">PortAutoEdge</h3>
+
+<p><em>PortAutoEdge</em> is an enhancement to the standard PortAdminEdge
+(PortFast) mode, which allows for the automatic detection of edge ports.
+PortAutoEdge enables and disables the <em>auto transition</em> to/from the edge
+state of a port in a bridge.</p>
+
+
+<div class="notices note" > <p>Edge ports and access ports are not the same thing. Edge ports
+transition directly to the forwarding state and skip the listening and
+learning stages. Upstream topology change notifications are not
+generated when an edge port&rsquo;s link changes state. Access ports only
+forward untagged traffic; however, there is no such restriction on edge
+ports, which can forward both tagged and untagged traffic.</p>
+ </div>
+
+
+<p>When a BPDU is received on a port configured with portautoedge, the port
+ceases to be in the edge port state and transitions into a normal STP
+port.</p>
+
+<p>When BPDUs are no longer received on the interface, the port becomes an
+edge port, and transitions through the discarding and learning states
+before resuming forwarding.</p>
+
+<p>To configure PortAutoEdge for an interface:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add interface swp1 stp portautoedge
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<h3 id="bpdu-guard">BPDU Guard</h3>
+
+<p>To protect the spanning tree topology from unauthorized switches
+affecting the forwarding path, you can configure <em>BPDU guard</em> (Bridge
+Protocol Data Unit). One very common example is when someone hooks up a
+new switch to an access port off of a leaf switch. If this new switch is
+configured with a low priority, it could become the new root switch and
+affect the forwarding path for the entire layer 2 topology.</p>
+
+
+<div class="notices info"  id="has" > <p>To configure BPDU guard, set the <code>bpduguard</code> value for the interface:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add interface swp5 stp bpduguard
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>This creates the following stanza in the <code>/etc/network/interfaces</code> file:</p>
+
+<pre><code>                   
+auto swp5
+iface swp5
+    mstpctl-bpduguard yes
+   
+    
+</code></pre>
+ </div>
+
+
+<h4 id="recovering-a-port-disabled-by-bpdu-guard">Recovering a Port Disabled by BPDU Guard</h4>
+
+<p>If a BPDU is received on the port, STP will bring down the port and log
+an error in <code>/var/log/syslog</code>. The following is a sample error:</p>
+
+<pre><code>                   
+mstpd: error, MSTP_IN_rx_bpdu: bridge:bond0 Recvd BPDU on BPDU Guard Port - Port Down
+   
+    
+</code></pre>
+
+<p>To determine whether BPDU guard is configured, or if a BPDU has been
+received, run:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net show bridge spanning-tree | grep bpdu
+ bpdu guard port    yes                     bpdu guard error     yes
+   
+    
+</code></pre>
+
+<p>The only way to recover a port that has been placed in the disabled
+state is to manually un-shut or bring up the port with <code>sudo ifup
+</code><code>[port]</code>, as shown in the example below.</p>
+
+
+<div class="notices note" > <p>Bringing up the disabled port does not fix the problem if the
+configuration on the connected end-station has not been rectified.</p>
+ </div>
+
+
+<pre><code>                   
+cumulus@leaf2$ mstpctl showportdetail bridge bond0
+bridge:bond0 CIST info
+  enabled            no                      role                 Disabled
+  port id            8.001                   state                discarding
+  external port cost 305                     admin external cost  0
+  internal port cost 305                     admin internal cost  0
+  designated root    8.000.6C:64:1A:00:4F:9C dsgn external cost   0
+  dsgn regional root 8.000.6C:64:1A:00:4F:9C dsgn internal cost   0
+  designated bridge  8.000.6C:64:1A:00:4F:9C designated port      8.001
+  admin edge port    no                      auto edge port       yes
+  oper edge port     no                      topology change ack  no
+  point-to-point     yes                     admin point-to-point auto
+  restricted role    no                      restricted TCN       no
+  port hello time    10                      disputed             no
+  bpdu guard port    yes                      bpdu guard error     yes
+  network port       no                      BA inconsistent      no
+  Num TX BPDU        3                       Num TX TCN           2
+  Num RX BPDU        488                     Num RX TCN           2
+  Num Transition FWD 1                       Num Transition BLK   2
+  bpdufilter port    no                     
+  clag ISL           no                      clag ISL Oper UP     no
+  clag role          unknown                 clag dual conn mac   0:0:0:0:0:0
+  clag remote portID F.FFF                   clag system mac      0:0:0:0:0:0
+ 
+ 
+cumulus@leaf2$ sudo ifup bond0
+ 
+ 
+cumulus@leaf2$ mstpctl showportdetail bridge bond0
+bridge:bond0 CIST info
+  enabled            yes                     role                 Root
+  port id            8.001                   state                forwarding
+  external port cost 305                     admin external cost  0
+  internal port cost 305                     admin internal cost  0
+  designated root    8.000.6C:64:1A:00:4F:9C dsgn external cost   0
+  dsgn regional root 8.000.6C:64:1A:00:4F:9C dsgn internal cost   0
+  designated bridge  8.000.6C:64:1A:00:4F:9C designated port      8.001
+  admin edge port    no                      auto edge port       yes
+  oper edge port     no                      topology change ack  no
+  point-to-point     yes                     admin point-to-point auto
+  restricted role    no                      restricted TCN       no
+  port hello time    2                       disputed             no
+  bpdu guard port    no                      bpdu guard error     no
+  network port       no                      BA inconsistent      no
+  Num TX BPDU        3                       Num TX TCN           2
+  Num RX BPDU        43                      Num RX TCN           1
+  Num Transition FWD 1                       Num Transition BLK   0
+  bpdufilter port    no                     
+  clag ISL           no                      clag ISL Oper UP     no
+  clag role          unknown                 clag dual conn mac   0:0:0:0:0:0
+  clag remote portID F.FFF                   clag system mac      0:0:0:0:0:0
+   
+    
+</code></pre>
+
+<h3 id="bridge-assurance">Bridge Assurance</h3>
+
+<p>On a point-to-point link where RSTP is running, if you want to detect
+unidirectional links and put the port in a discarding state (in error),
+you can enable bridge assurance on the port by enabling a port type
+network. The port would be in a bridge assurance inconsistent state
+until a BPDU is received from the peer. You need to configure the port
+type network on both the ends of the link in order for bridge assurance
+to operate properly.</p>
+
+<p>The default setting for bridge assurance is off. This means that there
+is no difference between disabling bridge assurance on an interface and
+not configuring bridge assurance on an interface.</p>
+
+
+<div class="notices info"  id="has" > <p>To enable bridge assurance on an interface, add the <code>portnetwork</code> option
+to the interface:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add interface swp1 stp portnetwork
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>This creates the following interface stanza:</p>
+
+<pre><code>                   
+auto swp1
+iface swp1
+    mstpctl-portnetwork yes
+   
+    
+</code></pre>
+ </div>
+
+
+<p>You can monitor logs for bridge assurance messages by doing the
+following:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo grep -in assurance /var/log/syslog | grep mstp
+ 1365:Jun 25 18:03:17 mstpd: br1007:swp1.1007 Bridge assurance inconsistent
+   
+    
+</code></pre>
+
+<h3 id="bpdu-filter">BPDU Filter</h3>
+
+<p>You can enable <code>bpdufilter</code> on a switch port, which filters BPDUs in
+both directions. This effectively disables STP on the port as no BPDUs
+are transiting.</p>
+
+
+<div class="notices warning" > <p>Using BDPU filter inappropriately can cause layer 2 loops. Use this
+feature deliberately and with extreme caution.</p>
+ </div>
+
+
+
+<div class="notices info"  id="has" > <p>To configure the BPDU filter, add the <code>portbpdufilter</code> option to the
+interface:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add interface swp6 stp portbpdufilter
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>These commands create the following stanza in the
+<code>/etc/network/interfaces</code> file:</p>
+
+<pre><code>                   
+auto swp6
+iface swp6
+    mstpctl-portbpdufilter yes
+   
+    
+</code></pre>
+ </div>
+
+
+<h3 id="storm-control">Storm Control</h3>
+
+<p><em>Storm control</em> provides protection against excessive inbound BUM
+(broadcast, unknown unicast, multicast) traffic on layer 2 switch port
+interfaces, which can cause poor network performance.</p>
+
+<p>You configure storm control for each physical port by editing
+<code>/etc/cumulus/switchd.conf</code>. The configuration persists across reboots
+and restarting <code>switchd</code>. If you change the storm control configuration
+in this file after rebooting the switch, you must <a href="Configuring_switchd.html#src-8357343_Configuringswitchd-restartswitchd" target="_blank">restart
+<code>switchd</code></a>
+to activate the new configuration.</p>
+
+<p>To enable broadcast and multicast storm control at 400 packets per
+second (pps) and 3000 pps, respectively, for swp1 with
+<code>/etc/cumulus/switchd.conf</code>:</p>
+
+<pre><code>                   
+# Storm Control setting on a port, in pps, 0 means disable
+interface.swp1.storm_control.broadcast = 400
+interface.swp1.storm_control.multicast = 3000
+   
+    
+</code></pre>
+
+<h3 id="configuring-other-spanning-tree-parameters">Configuring Other Spanning Tree Parameters</h3>
+
+<p>Spanning tree parameters are defined in the IEEE
+<a href="http://standards.ieee.org/getieee802/download/802.1D-2004.pdf" target="_blank">802.1D</a>,
+<a href="http://standards.ieee.org/getieee802/download/802.1Q-2005.pdf" target="_blank">802.1Q</a>
+specifications and in the table below.</p>
+
+<p>For a comparison of STP parameter configuration between <code>mstpctl</code> and
+other vendors, <a href="https://support.cumulusnetworks.com/hc/en-us/articles/206908397" target="_blank">please read this knowledge base
+article</a>.</p>
+
+<p>The table below describes the configuration parameters available.</p>
+
+
+<div class="notices note" > <p>You configure these parameters using NCLU on the interfaces, not the
+bridge itself. Most of these parameters are blacklisted in <code>netd.conf</code>
+in the ifupdown_blacklist; blacklisted parameters are indicated with an
+asterisk (*). You can <a href="Network_Command_Line_Utility_-_NCLU.html#src-8357362_NetworkCommandLineUtility-NCLU-conf" target="_blank">edit the
+blacklist</a>
+to remove any of them.</p>
+ </div>
+
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Parameter</p></th>
+<th><p>NCLU Command<br />
+net add interface &lt;interface&gt; stp ...</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><code>mstpctl-maxage</code></p></td>
+<td><p><code>maxage*</code></p></td>
+<td><p>Sets the bridge's <em>maximum age</em> to <code>&lt;max_age&gt;</code> seconds. The default is <em>20</em>. The maximum age must meet the condition 2 * (Bridge Forward Delay - 1 second) &gt;= Bridge Max Age.</p></td>
+</tr>
+<tr class="even">
+<td><p><code>mstpctl-ageing</code></p></td>
+<td><p><code>ageing*</code></p></td>
+<td><p>Sets the Ethernet (MAC) address <em>ageing time</em> in <code>&lt;time&gt;</code> seconds for the bridge when the running version is STP, but not RSTP/MSTP. The default is <em>1800 seconds</em>.</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>mstpctl-fdelay</code></p></td>
+<td><p><code>fdelay*</code></p></td>
+<td><p>Sets the bridge's <em>bridge forward delay</em> to <code>&lt;time&gt;</code> seconds. The default is <em>15</em>. The bridge forward delay must meet the condition 2 * (Bridge Forward Delay - 1 second) &gt;= Bridge Max Age.</p></td>
+</tr>
+<tr class="even">
+<td><p><code>mstpctl-maxhops</code></p></td>
+<td><p><code>maxhops*</code></p></td>
+<td><p>Sets the bridge's <em>maximum hops</em> to <code>&lt;max_hops&gt;</code>. The default value is <em>20</em>.</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>mstpctl-txholdcount</code></p></td>
+<td><p><code>txholdcount*</code></p></td>
+<td><p>Sets the bridge's <em>bridge transmit hold count</em> to <code>&lt;tx_hold_count&gt;</code>. The default is <em>6</em>.</p></td>
+</tr>
+<tr class="even">
+<td><p><code>mstpctl-forcevers</code></p></td>
+<td><p><code>forcevers*</code></p></td>
+<td><p>Sets the bridge's <em>force STP version</em> to either RSTP/STP. MSTP is not supported currently. The default is <em>RSTP</em>.</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>mstpctl-treeprio</code></p></td>
+<td><p><code>treeprio*</code></p></td>
+<td><p>Sets the bridge's <em>tree priority</em> to <code>&lt;priority&gt;</code> for an MSTI instance. The priority value is a number between 0 and 65535 and must be a multiple of 4096. The bridge with the lowest priority is elected the <em>root bridge</em>. The default is <em>32768</em>.</p>
+
+<div class="notices warning" > <p></p>
+<p>For <code>msti</code>, only 0 is supported currently.</p>
+<p></p>
+ </div>
+</td>
+</tr>
+<tr class="even">
+<td><p><code>mstpctl-treeportprio</code></p></td>
+<td><p><code>treeportprio*</code></p></td>
+<td><p>Sets the <em>priority</em> of port <code>&lt;port&gt;</code> to <code>&lt;priority&gt;</code> for the MSTI instance. The priority value is a number between 0 and 240 and must be a multiple of 16. The default is <em>128</em>.</p>
+
+<div class="notices warning" > <p></p>
+<p>For <code>msti</code>, only <em>0</em> is supported currently.</p>
+<p></p>
+ </div>
+</td>
+</tr>
+<tr class="odd">
+<td><p><code>mstpctl-hello</code></p></td>
+<td><p><code>hello*</code></p></td>
+<td><p>Sets the bridge's <em>bridge hello time</em> to <code>&lt;time&gt;</code> seconds. The default is <em>2</em>.</p></td>
+</tr>
+<tr class="even">
+<td><p><code>mstpctl-portpathcost</code></p></td>
+<td><p><code>portpathcost*</code></p></td>
+<td><p>Sets the <em>port cost</em> of the port <code>&lt;port&gt;</code> in bridge <code>&lt;bridge&gt;</code> to <code>&lt;cost&gt;</code>. The default is <em>0</em>.</p>
+<p><code>mstpd</code> supports only long mode; that is, 32 bits for the path cost.</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>mstpctl-portadminedge</code></p></td>
+<td><p><code>portadminedge</code></p></td>
+<td><p>Enables/disables the <em>initial edge state</em> of the port <code>&lt;port&gt;</code> in bridge <code>&lt;bridge&gt;</code>. The default is <em>no</em>.</p>
+
+<div class="notices note" > <p></p>
+<p>This setting only applies to a bridge in <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/Traditional_Mode_Bridges">traditional mode</a>; it does not apply to <a href="/version2/cumulus-linux-35/Layer_1_and_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments">VLAN-aware bridges</a>.</p>
+<p></p>
+ </div>
+</td>
+</tr>
+<tr class="even">
+<td><p><code>mstpctl-portautoedge</code></p></td>
+<td><p><code>portautoedge</code></p></td>
+<td><p>Enables/disables the <em>auto transition</em> to/from the edge state of the port <code>&lt;port&gt;</code> in bridge <code>&lt;bridge&gt;</code>. The default is <em>yes</em>.</p>
+<p><em>portautoedge</em> is an enhancement to the standard PortAdminEdge (PortFast) mode, which allows for the automatic detection of edge ports.</p>
+
+<div class="notices note" > <p></p>
+<p>Edge ports and access ports are not the same thing. Edge ports transition directly to the forwarding state and skip the listening and learning stages. Upstream topology change notifications are not generated when an edge port&rsquo;s link changes state. Access ports only forward untagged traffic; however, there is no such restriction on edge ports, which can forward both tagged and untagged traffic.</p>
+<p></p>
+ </div>
+
+<p>When a BPDU is received on a port configured with portautoedge, the port ceases to be in the edge port state and transitions into a normal STP port.</p>
+<p>When BPDUs are no longer received on the interface, the port becomes an edge port, and transitions through the discarding and learning states before resuming forwarding.</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>mstpctl-portp2p</code></p></td>
+<td><p><code>portp2p*</code></p></td>
+<td><p>Enables/disables the <em>point-to-point detection mode</em> of the port <code>&lt;port&gt;</code> in bridge <code>&lt;bridge&gt;</code>. The default is <em>auto</em>.</p></td>
+</tr>
+<tr class="even">
+<td><p><code>mstpctl-portrestrrole</code></p></td>
+<td><p><code>portrestrrole*</code></p></td>
+<td><p>Enables/disables the ability of the port <code>&lt;port&gt;</code> in bridge <code>&lt;bridge&gt;</code> to take the <em>root role</em>. The default is <em>no</em>.</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>mstpctl-portrestrtcn</code></p></td>
+<td><p><code>portrestrtcn*</code></p></td>
+<td><p>Enables/disables the ability of the port <code>&lt;port&gt;</code> in bridge <code>&lt;bridge&gt;</code> to propagate <em>received topology change notifications</em>. The default is <em>no</em>.</p></td>
+</tr>
+<tr class="even">
+<td><p><code>mstpctl-portnetwork</code></p></td>
+<td><p><code>portnetwork</code></p></td>
+<td><p>Enables/disables the <em>bridge assurance capability</em> for a network port <code>&lt;port&gt;</code> in bridge <code>&lt;bridge&gt;</code>. The default is <em>no</em>.</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>mstpctl-bpduguard</code></p></td>
+<td><p><code>bpduguard</code></p></td>
+<td><p>Enables/disables the <em>BPDU guard configuration</em> of the port <code>&lt;port&gt;</code> in bridge <code>&lt;bridge&gt;</code>. The default is <em>no</em>.</p></td>
+</tr>
+<tr class="even">
+<td><p><code>mstpctl-portbpdufilter</code></p></td>
+<td><p><code>portbpdufilter</code></p></td>
+<td><p>Enables/disables the <em>BPDU filter</em> functionality for a port <code>&lt;port&gt;</code> in bridge <code>&lt;bridge&gt;</code>. The default is <em>no</em>.</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>mstpctl-treeportcost</code></p></td>
+<td><p><code>treeportcost*</code></p></td>
+<td><p>Sets the spanning tree <em>port cost</em> to a value from 0 to 255. The default is <em>0</em>.</p></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="caveats-and-errata">Caveats and Errata</h2>
+
+<ul>
+<li>MSTP is not supported currently. However, interoperability with MSTP
+networks can be accomplished using PVRSTP or PVSTP.</li>
+</ul>
+
+<h2 id="related-information">Related Information</h2>
+
+<p>The source code for <code>mstpd</code>/<code>mstpctl</code> was written by <a href="mailto:vitas%40nppfactor.kiev.ua" target="_blank">Vitalii
+Demianets</a> and is hosted at the URL
+below.</p>
+
+<ul>
+<li><p><a href="https://github.com/mstpd/mstpd" target="_blank">Sourceforge - mstpd project</a></p></li>
+
+<li><p><a href="http://en.wikipedia.org/wiki/Spanning_Tree_Protocol" target="_blank">Wikipedia - Spanning Tree
+Protocol</a></p></li>
+
+<li><p>brctl(8)</p></li>
+
+<li><p>bridge-utils-interfaces(5)</p></li>
+
+<li><p>ifupdown-addons-interfaces(5)</p></li>
+
+<li><p>mstpctl(8)</p></li>
+
+<li><p>mstpctl-utils-interfaces(5)</p></li>
+</ul>
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#supported-modes">Supported Modes</a>
+<ul>
+<li><a href="#stp-for-a-vlan-aware-bridge">STP for a VLAN-aware Bridge</a></li>
+<li><a href="#stp-within-a-traditional-mode-bridge">STP within a Traditional Mode Bridge</a></li>
+</ul></li>
+<li><a href="#viewing-bridge-and-stp-status-logs">Viewing Bridge and STP Status/Logs</a>
+<ul>
+<li><a href="#using-linux-to-check-spanning-tree-status-advanced">Using Linux to Check Spanning Tree Status (Advanced)</a></li>
+</ul></li>
+<li><a href="#customizing-spanning-tree-protocol">Customizing Spanning Tree Protocol</a>
+<ul>
+<li><a href="#spanning-tree-priority">Spanning Tree Priority</a></li>
+<li><a href="#portadminedge-portfast-mode">PortAdminEdge/PortFast Mode</a></li>
+<li><a href="#portautoedge">PortAutoEdge</a></li>
+<li><a href="#bpdu-guard">BPDU Guard</a>
+<ul>
+<li><a href="#recovering-a-port-disabled-by-bpdu-guard">Recovering a Port Disabled by BPDU Guard</a></li>
+</ul></li>
+<li><a href="#bridge-assurance">Bridge Assurance</a></li>
+<li><a href="#bpdu-filter">BPDU Filter</a></li>
+<li><a href="#storm-control">Storm Control</a></li>
+<li><a href="#configuring-other-spanning-tree-parameters">Configuring Other Spanning Tree Parameters</a></li>
+</ul></li>
+<li><a href="#caveats-and-errata">Caveats and Errata</a></li>
+<li><a href="#related-information">Related Information</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version2/cumulus-linux-35/Layer_1_and_2/Spanning_Tree_and_Rapid_Spanning_Tree.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

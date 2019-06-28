@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Interface Configuration and Management on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_35/Interface_Configuration_and_Management/</link>
+    <description>Recent content in Interface Configuration and Management on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_35/Interface_Configuration_and_Management/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Layer 1 and Switch Port Attributes</title>
+      <link>http://example.org/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Layer_1_and_Switch_Port_Attributes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Layer_1_and_Switch_Port_Attributes/</guid>
+      <description>This chapter discusses the various network interfaces on a switch running Cumulus Linux, how to configure various interface-level settings (if needed) and some troubleshooting commands.
+Interface Types Cumulus Linux exposes network interfaces for several types of physical and logical devices:
+ lo, network loopback device
+ ethN, switch management port(s), for out of band management only
+ swpN, switch front panel ports
+ (optional) brN, bridges (IEEE 802.1Q VLANs)</description>
+    </item>
+    
+    <item>
+      <title>Configuring DHCP Relays</title>
+      <link>http://example.org/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Configuring_DHCP_Relays/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Configuring_DHCP_Relays/</guid>
+      <description>You can configure DHCP relays for IPv4 and IPv6.
+To run DHCP for both IPv4 and IPv6, initiate the DHCP relay once for IPv4 and once for IPv6. Following are the configurations on the server hosts, DHCP relay and DHCP server using the following topology:
+The dhcpd and dhcrelay services are disabled by default. After you finish configuring the DHCP relays and servers, you need to start those services.</description>
+    </item>
+    
+    <item>
+      <title>Configuring DHCP Servers</title>
+      <link>http://example.org/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Configuring_DHCP_Servers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/Interface_Configuration_and_Management/Configuring_DHCP_Servers/</guid>
+      <description>To run DHCP for both IPv4 and IPv6, you need to initiate the DHCP server twice: once for IPv4 and once for IPv6. The following configuration uses the following topology for the host, DHCP relay and DHCP server:
+For the configurations used in this chapter, the DHCP server is a switch running Cumulus Linux; however, the DHCP server can also be located on a dedicated server in your environment.</description>
+    </item>
+    
+    <item>
+      <title>802.1X Interfaces</title>
+      <link>http://example.org/version/Cumulus_Linux_35/Interface_Configuration_and_Management/802.1X_Interfaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/Interface_Configuration_and_Management/802.1X_Interfaces/</guid>
+      <description>The IEEE 802.1X protocol provides a method of authenticating a client (called a supplicant) over wired media. It also provides access for individual MAC addresses on a switch (called the authenticator) after those MAC addresses have been authenticated by an authentication server — typically a RADIUS (Remote Authentication Dial In User Service, defined by RFC 2865) server.
+A Cumulus Linux switch acts as an intermediary between the clients connected to the wired ports and the authentication server, which is reachable over the existing network.</description>
+    </item>
+    
+  </channel>
+</rss>

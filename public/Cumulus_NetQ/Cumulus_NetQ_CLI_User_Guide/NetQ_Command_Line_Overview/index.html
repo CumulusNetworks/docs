@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NetQ Command Line Overview | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/" >
+    Cumulus NetQ 2.1
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/"  class="active" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 1.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 2.0.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/" >
+    Upgrade from NetQ 2.1.0 to NetQ 2.1.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_BGP_Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_EVPN_Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_LLDP_Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Validate_Network_Protocol_and_Service_Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>NetQ Command Line Overview</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>NetQ Command Line Overview</h1>
+
+<p>The NetQ CLI provides access to all of the network state and event
+information collected by the NetQ Agents. It behaves the same way most
+CLIs behave, with groups of commands used to display related
+information, the ability to use TAB completion when entering commands,
+and to get help for given commands and options. The commands are grouped
+into four categories: check and show, agent and notifier, trace, and
+resolve.</p>
+
+
+<div class="notices note" > <p>The NetQ command line interface only runs on switches and server hosts
+implemented with Intel x86 or ARM-based architectures. If you are unsure
+what architecture your switch or server employs, check the Cumulus
+<a href="https://cumulusnetworks.com/products/hardware-compatibility-list/" target="_blank">Hardware Compatibility
+List</a>
+and verify the value in the <strong>Platforms</strong> tab &gt; <strong>CPU</strong> column.</p>
+ </div>
+
+
+<h2 id="cli-access">CLI Access</h2>
+
+<p>When NetQ is installed, the CLI is also installed and enabled (refer to
+the <a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=10456209">Install NetQ (2.1.0
+version)</a>
+topic). Simply log in to any network node to access the command line.</p>
+
+<p>To access the CLI from a switch or server:</p>
+
+<ol>
+<li><p>Log in to the device. This example uses the default username of
+c<em>umulus</em> and a hostname of <em>switch</em>.</p>
+
+<pre><code>
+:~$ ssh cumulus@switch
+
+
+</code></pre></li>
+
+<li><p><span style="color: #353744;"> Enter your password to reach the
+command prompt. The default password is <em>CumulusLinux!</em> For
+example: </span></p>
+
+<pre><code>
+Enter passphrase for key '/Users//.ssh/id_rsa': 
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-112-generic x86_64)
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+Last login: Tue Feb 11 09:28:12 2019 from 10.0.0.14
+cumulus@switch:~$ 
+
+
+</code></pre></li>
+
+<li><p>Run commands. For example:</p>
+
+<pre><code>
+@:~$ netq show agents
+@:~$ netq check bgp
+
+
+</code></pre></li>
+</ol>
+
+<p>Command Line Basics</p>
+
+<p>This section describes the core structure and behavior of the NetQ CLI.
+It includes the following:</p>
+
+<ul>
+<li><p><a href="/old/Cumulus_NetQ/#src-10456367_NetQCommandLineOverview-ComStruct">Command Line
+Structure</a></p></li>
+
+<li><p><a href="/old/Cumulus_NetQ/#src-10456367_NetQCommandLineOverview-ComSyntax">Command
+Syntax</a></p></li>
+
+<li><p><a href="/old/Cumulus_NetQ/#src-10456367_NetQCommandLineOverview-ComOut">Command
+Output</a></p></li>
+
+<li><p><a href="/old/Cumulus_NetQ/#src-10456367_NetQCommandLineOverview-ComPrompt">Command
+Prompts</a></p></li>
+
+<li><p><a href="/old/Cumulus_NetQ/#src-10456367_NetQCommandLineOverview-ComComp">Command
+Completion</a></p></li>
+
+<li><p><a href="/old/Cumulus_NetQ/#src-10456367_NetQCommandLineOverview-ComHelp">Command
+Help</a></p></li>
+
+<li><p><a href="/old/Cumulus_NetQ/#src-10456367_NetQCommandLineOverview-ComHist">Command
+History</a></p></li>
+</ul>
+
+<h3 id="command-line-structure">Command Line Structure</h3>
+
+<p>The Cumulus NetQ command line has a flat structure as opposed to a modal
+structure. This means that all commands can be run from the primary
+prompt instead of only in a specific mode. For example, some command
+lines require the administrator to switch between a configuration mode
+and an operation mode. Configuration commands can only be run in the
+configuration mode and operational commands can only be run in operation
+mode. This structure requires the administrator to switch between modes
+to run commands which can be tedious and time consuming. Cumulus NetQ
+command line enables the administrator to run all of its commands at the
+same level.</p>
+
+<h3 id="command-syntax">Command Syntax</h3>
+
+<p>NetQ CLI commands all begin with <code>netq</code>. <span style="color: #000000;">
+Cumulus NetQ commands fall into one of four syntax categories: </span>
+<span style="color: #000000;"> validation (check), monitoring (show),
+configuration, and trace </span> :</p>
+
+<pre><code>
+netq check &lt;network-protocol-or-service&gt;  [options]
+netq show  [options]
+netq config   [options]
+netq trace  from  [options]
+
+
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Symbols</th>
+<th>Meaning</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Parentheses ( )</td>
+<td>Grouping of required parameters. Choose one.</td>
+</tr>
+
+<tr>
+<td>Square brackets [ ]</td>
+<td>Single or group of optional parameters. If more than one object or keyword is available, choose one.</td>
+</tr>
+
+<tr>
+<td>Angle brackets &lt; &gt;</td>
+<td>Required variable. Value for a keyword or option; enter according to your deployment nomenclature.</td>
+</tr>
+
+<tr>
+<td>Pipe |</td>
+<td>Separates object and keyword options, also separates value options; enter one object or keyword and zero or one value.</td>
+</tr>
+</tbody>
+</table>
+
+<p>For example, in the <code>netq check</code> command:</p>
+
+<ul>
+<li><p>[&lt;hostname&gt;] is an optional parameter with a variable value
+named <em>hostname</em></p></li>
+
+<li><p>&lt;network-protocol-or-service&gt; represents a number of possible key
+words, such as <em>agents, bgp, evpn,</em> and so forth</p></li>
+
+<li><p>&lt;options&gt; represents a number of possible conditions for the given
+object, such as <em>around, vrf,</em> or <em>json</em></p></li>
+</ul>
+
+<p>Thus some valid commands are:</p>
+
+<ul>
+<li><p><code>netq leaf02 check agents json</code></p></li>
+
+<li><p><code>netq show bgp</code></p></li>
+
+<li><p><code>netq config restart cli</code></p></li>
+
+<li><p><code>netq trace 10.0.0.5 from 10.0.0.35</code></p></li>
+</ul>
+
+<h3 id="command-output">Command Output</h3>
+
+<p>The command output presents results in color for many commands. Results
+with errors are shown in red , and warnings are shown in yellow .
+Results without errors or warnings are shown in either black or green .
+VTEPs are shown in blue . A node in the <em>pretty</em> output is shown in
+<strong>bold</strong>, and a router interface is wrapped in angle brackets (&lt; &gt;).
+To view the output with only black text, run the <code>netq config del color</code>
+command. You can view output with colors again by running <code>netq config
+add color</code>.</p>
+
+<p>All check and show commands are run with a default timeframe of now to
+one hour ago, unless you specify an approximate time using the <code>around</code>
+keyword . For example, running <code>netq check bgp</code> shows the status of BGP
+over the last hour. Running <code>netq show bgp around 3h</code> shows the status
+of BGP three hours ago.</p>
+
+<h3 id="command-prompts">Command Prompts</h3>
+
+<p>NetQ code examples use the following prompts:</p>
+
+<ul>
+<li><p><code>cumulus@switch:~$</code>Indicates the user <em>cumulus</em> is logged in to a
+switch to run the example command</p></li>
+
+<li><p><code>cumulus@host:~$</code>Indicates the user <em>cumulus</em> is logged in to a
+host to run the example command</p></li>
+</ul>
+
+<p>The switches must be running the Cumulus Linux operating system (OS),
+NetQ Platform software, and the NetQ Agent. The hosts must be running
+CentOS, RHEL, or Ubuntu OS and the NetQ Agent. Refer to the <a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=10456209">Install
+NetQ (2.1.0
+version)</a>
+topic for details.</p>
+
+<h3 id="command-completion">Command Completion</h3>
+
+<p><span style="color: #353744;"> As you enter commands, you can get help
+with the valid keywords or options using </span> the <strong>Tab</strong> key. For
+example, using Tab completion with <code>netq check</code> displays the possible
+objects for the command, and returns you to the command prompt to
+complete the command.</p>
+
+<pre><code>
+cumulus@switch:~$ netq check &lt;&gt;
+    agents      :  Netq agent
+    bgp         :  BGP info
+    clag        :  Cumulus Multi-chassis LAG
+    evpn        :  EVPN
+    interfaces  :  network interface port
+    license     :  License information
+    lnv         :  Lightweight Network Virtualization info
+    mtu         :  Link MTU
+    ntp         :  NTP
+    ospf        :  OSPF info
+    sensors     :  Temperature/Fan/PSU sensors
+    vlan        :  VLAN
+    vxlan       :  VXLAN data path
+cumulus@switch:~$ netq check 
+
+
+</code></pre>
+
+<h3 id="command-help">Command Help</h3>
+
+<p>As you enter commands, you can get help with command syntax by entering
+<em>help</em> at various points within a command entry. For example, to find
+out what options are available for a BGP check, enter <em>help</em> after
+entering a portion of the <code>netq check</code> command. In this example, you can
+see that there are no additional required parameters and two optional
+parameters, <em>vrf</em> and <em>around</em>, that can be used with a BGP check.</p>
+
+<pre><code>
+cumulus@switch:~$ netq check bgp help
+Commands:
+   netq check bgp [vrf ] [around ] [json]
+cumulus@switch:~$
+
+
+</code></pre>
+
+<p>To see an exhaustive list of commands, run:</p>
+
+<pre><code>
+cumulus@switch:~$ netq help list verbose
+
+
+</code></pre>
+
+<h3 id="command-history">Command History</h3>
+
+<p>The CLI stores commands issued within a session, which enables you to
+review and rerun commands that have already been run. At the command
+prompt, press the <strong>Up Arrow</strong> and <strong>Down Arrow</strong> keys to move back and
+forth through the list of commands previously entered. When you have
+found a given command, you can run the command by pressing <strong>Enter</strong>,
+just as you would if you had entered it manually. Optionally you can
+modify the command before you run it.</p>
+
+<h2 id="command-categories">Command Categories</h2>
+
+<p>While the CLI has a flat structure, the commands can be conceptually
+grouped into four functional categories:</p>
+
+<ul>
+<li><p><a href="/old/Cumulus_NetQ/#src-10456367_NetQCommandLineOverview-ChkCmds">Validation
+Commands</a></p></li>
+
+<li><p><a href="/old/Cumulus_NetQ/#src-10456367_NetQCommandLineOverview-ShowCmds">Monitoring
+Commands</a></p></li>
+
+<li><p><a href="/old/Cumulus_NetQ/#src-10456367_NetQCommandLineOverview-ConfigCmds">Configuration
+Commands</a></p></li>
+
+<li><p><a href="/old/Cumulus_NetQ/#src-10456367_NetQCommandLineOverview-TraceCmds">Trace
+Commands</a></p></li>
+</ul>
+
+<h3 id="validation-commands">Validation Commands</h3>
+
+<p>The <code>netq</code> <code>check</code> commands enable the network administrator to validate
+the current or historical state of the network by looking for errors and
+misconfigurations in the network. The commands run fabric-wide
+validations against various configured protocols and services to
+determine how well the network is operating. Validation checks can be
+performed for the following:</p>
+
+<ul>
+<li><p>agents: NetQ Agents operation on all switches and hosts</p></li>
+
+<li><p>bgp: BGP (Border Gateway Protocol) operation across the network
+fabric</p></li>
+
+<li><p>clag: Cumulus Multi-chassis LAG (link aggregation) operation</p></li>
+
+<li><p>evpn: EVPN (Ethernet Virtual Private Network) operation</p></li>
+
+<li><p>interfaces: network interface port operation</p></li>
+
+<li><p>license: License status</p></li>
+
+<li><p>lnv: Lightweight Network Virtualization operation</p></li>
+
+<li><p>mtu: Link MTU (maximum transmission unit) consistency across paths</p></li>
+
+<li><p>ntp: NTP (Network Time Protocol) operation</p></li>
+
+<li><p>ospf: OSPF (Open Shortest Path First) operation</p></li>
+
+<li><p>sensors: Temperature/Fan/PSU sensor operation</p></li>
+
+<li><p>vlan: VLAN (Virtual Local Area Network) operation</p></li>
+
+<li><p>vxlan: VXLAN (Virtual Extensible LAN) data path operation</p></li>
+</ul>
+
+<p>The commands take the form of <code>netq check &lt;network-protocol-or-service&gt;
+[options]</code>, where the options vary according to the protocol or service.</p>
+
+<p>This example shows the output for the <code>netq check bgp</code> command, followed
+by the same command using the <em>json</em> option. If there had been any
+failures, they would be have been listed below the summary results or in
+the <em>failedNodes</em> section, respectively.</p>
+
+<pre><code>
+cumulus@switch:~$ netq check bgp
+Total Nodes: 8, Failed Nodes: 0, Total Sessions: 30, Failed Sessions: 0
+ 
+cumulus@switch:~$ netq check bgp json
+{
+    &quot;failedNodes&quot;:[
+    ],
+    &quot;summary&quot;:{
+        &quot;checkedNodeCount&quot;:8,
+        &quot;failedSessionCount&quot;:0,
+        &quot;failedNodeCount&quot;:0,
+        &quot;totalSessionCount&quot;:30
+    }
+}
+
+
+</code></pre>
+
+<h3 id="monitoring-commands">Monitoring Commands</h3>
+
+<p><span style="color: #353744;"> The netq </span>
+<span style="color: #353744;"> </span> <code>show</code>
+<span style="color: #353744;"> commands enable the network administrator
+to view details about the current or historical configuration and status
+of the various protocols or services. </span> The configuration and
+status can be shown for the following:</p>
+
+<ul>
+<li><p>agents: NetQ Agents status on switches and hosts</p></li>
+
+<li><p>bgp: BGP status across the network fabric</p></li>
+
+<li><p>clag: CLAG status</p></li>
+
+<li><p>events: Display changes over time</p></li>
+
+<li><p>evpn: EVPN status</p></li>
+
+<li><p>interfaces: network interface port status</p></li>
+
+<li><p>inventory: hardware component information</p></li>
+
+<li><p>ip: IPv4 status</p></li>
+
+<li><p>ipv6: IPv6 status</p></li>
+
+<li><p>kubernetes: Kubernetes cluster, daemon, pod, node, service and
+replication status</p></li>
+
+<li><p>lldp: LLDP status</p></li>
+
+<li><p>lnv: Lightweight Network Virtualization status</p></li>
+
+<li><p>macs: MAC table or address information</p></li>
+
+<li><p>notification: Slack or PagerDuty notification configurations</p></li>
+
+<li><p>ntp: NTP status</p></li>
+
+<li><p>ospf: OSPF status</p></li>
+
+<li><p>sensors: Temperature/Fan/PSU sensor status</p></li>
+
+<li><p>services: System services status</p></li>
+
+<li><p>vlan: VLAN status</p></li>
+
+<li><p>vxlan: VXLAN data path status</p></li>
+</ul>
+
+<p>The commands take the form of <code>netq [&lt;hostname&gt;] show
+&lt;network-protocol-or-service&gt; [options]</code>, where the options vary
+according to the protocol or service. The commands can be restricted
+from showing the information for <em>all</em> devices to showing information
+for a selected device using the <em>hostname</em> variable.</p>
+
+<p>This example shows the standard and restricted output for the <code>netq show
+agents</code> command.</p>
+
+<pre><code>
+cumulus@switch:~$ netq show agents
+Matching agents records:
+Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
+----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
+edge01            Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:2h:48m:43s             2d:2h:48m:36s             2d:2h:48m:36s              Sun Apr 21 16:00:50 2019
+exit01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:1s              2d:2h:47m:53s             2d:2h:47m:53s              Sun Apr 21 16:00:52 2019
+exit02            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:7s              2d:2h:47m:58s             2d:2h:47m:58s              Sun Apr 21 16:01:19 2019
+leaf01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:47m:59s             2d:2h:47m:51s             2d:2h:47m:51s              Sun Apr 21 16:00:59 2019
+leaf02            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:9s              2d:2h:48m:0s              2d:2h:48m:0s               Sun Apr 21 16:01:43 2019
+leaf03            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:8s              2d:2h:47m:59s             2d:2h:47m:59s              Sun Apr 21 16:01:23 2019
+leaf04            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:10s             2d:2h:48m:2s              2d:2h:48m:2s               Sun Apr 21 16:01:27 2019
+server01          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:2h:46m:6s              2d:2h:45m:58s             2d:2h:45m:58s              Sun Apr 21 16:00:43 2019
+server02          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:2h:46m:5s              2d:2h:45m:57s             2d:2h:45m:57s              Sun Apr 21 16:00:46 2019
+server03          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:2h:46m:5s              2d:2h:45m:57s             2d:2h:45m:57s              Sun Apr 21 16:00:52 2019
+server04          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:2h:46m:5s              2d:2h:45m:57s             2d:2h:45m:57s              Sun Apr 21 16:00:43 2019
+spine01           Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:11s             2d:2h:48m:3s              2d:2h:48m:3s               Sun Apr 21 16:01:33 2019
+spine02           Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:5s              2d:2h:47m:57s             2d:2h:47m:57s              Sun Apr 21 16:01:12 2019
+
+cumulus@switch:~$ netq show agents json
+{
+    &quot;agents&quot;:[
+        {
+            &quot;status&quot;:&quot;Fresh&quot;,
+            &quot;lastChanged&quot;:1555862450.0,
+            &quot;reinitializeTime&quot;:1555689453.0,
+            &quot;hostname&quot;:&quot;edge01&quot;,
+            &quot;version&quot;:&quot;2.1.0-ub16.04u15~1555612152.6e34b56&quot;,
+            &quot;sysUptime&quot;:1555689446.0,
+            &quot;ntpSync&quot;:&quot;yes&quot;,
+            &quot;agentUptime&quot;:1555689453.0
+        },
+        {
+            &quot;status&quot;:&quot;Fresh&quot;,
+            &quot;lastChanged&quot;:1555862452.0,
+            &quot;reinitializeTime&quot;:1555689496.0,
+            &quot;hostname&quot;:&quot;exit01&quot;,
+            &quot;version&quot;:&quot;2.1.0-cl3u15~1555612272.6e34b56&quot;,
+            &quot;sysUptime&quot;:1555689488.0,
+            &quot;ntpSync&quot;:&quot;yes&quot;,
+            &quot;agentUptime&quot;:1555689496.0
+        },
+        {
+            &quot;status&quot;:&quot;Fresh&quot;,
+            &quot;lastChanged&quot;:1555862479.0,
+            &quot;reinitializeTime&quot;:1555689491.0,
+            &quot;hostname&quot;:&quot;exit02&quot;,
+            &quot;version&quot;:&quot;2.1.0-cl3u15~1555612272.6e34b56&quot;,
+            &quot;sysUptime&quot;:1555689482.0,
+            &quot;ntpSync&quot;:&quot;yes&quot;,
+            &quot;agentUptime&quot;:1555689491.0
+        },
+...
+
+cumulus@switch:~$ netq leaf01 show agents
+Matching agents records:
+Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
+----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
+leaf01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:49m:59s             2d:2h:49m:51s             2d:2h:49m:51s              Sun Apr 21 16:00:59 2019
+
+
+</code></pre>
+
+<h3 id="configuration-commands">Configuration Commands</h3>
+
+<p>The <code>netq config</code> and <code>netq notification</code> commands enable the network
+administrator to manage NetQ Agent and CLI server configuration, set up
+container monitoring, and event notification.</p>
+
+<h4 id="netq-agent-and-cli-server">NetQ Agent and CLI Server</h4>
+
+<p>The agent commands <span style="color: #353744;"> enable the network
+administrator to configure individual NetQ Agents. Refer to <a href="/old/Cumulus_NetQ/Cumulus_NetQ_Primer.html">Cumulus
+NetQ Primer</a> for a
+description of NetQ Agents and to <a href="/old/Cumulus_NetQ/Manage_NetQ_Agents.html">Manage NetQ
+Agents</a> for more detailed
+usage examples. </span></p>
+
+<p><span style="color: #353744;"> The agent configuration commands enable
+you to add and remove agents from switches and hosts, start and stop
+agent operations, add and remove Kubernetes container monitoring, add or
+remove sensors, debug the agent, and add or remove FRR (FRRouting).
+</span></p>
+
+
+<div class="notices info" > <p><span style="color: #353744;"> Commands apply to one agent at a time,
+and are run from the switch or host where the NetQ Agent resides.
+</span></p>
+ </div>
+
+
+<p><span style="color: #353744;"> The agent configuration commands include:
+</span></p>
+
+<pre><code>
+netq config (add|del|show) agent
+netq config (start|stop|status|restart) agent
+
+
+</code></pre>
+
+<p>This example shows how to configure the agent to send sensor data.</p>
+
+<pre><code>
+cumulus@switch~:$ netq config add agent sensors
+
+
+</code></pre>
+
+<p>This example shows how to start monitoring with Kubernetes.</p>
+
+<pre><code>
+cumulus@switch:~$ netq config add agent kubernetes-monitor poll-period 15
+
+
+</code></pre>
+
+<p>This example show how to view the NetQ Agent configuration.</p>
+
+<pre><code>
+cumulus@switch:~$ netq config show agent
+netq-agent             value      default
+---------------------  ---------  ---------
+enable-opta-discovery  True       True
+exhibitport
+agenturl
+server                 127.0.0.1  127.0.0.1
+exhibiturl
+vrf                    default    default
+agentport              8981       8981
+port                   31980      31980
+
+
+</code></pre>
+
+
+<div class="notices info" > <p>After making configuration changes to your agents, you must restart the
+agent for the changes to take effect. Use the <code>netq config restart
+agent</code> command.</p>
+ </div>
+
+
+<p>The CLI server commands enable the network administrator to configure
+and manage the CLI component. These commands enable you to add or remove
+CLI (essentially enabling/disabling the service), start and restart it,
+and view the configuration of the service.</p>
+
+
+<div class="notices info" > <p>Commands apply to one device at a time, and are run from the switch or
+host where the CLI is run.</p>
+ </div>
+
+
+<p>The CLI configuration commands include:</p>
+
+<pre><code>
+netq config (add|del|show) cli server
+netq config (start|restart) cli
+
+
+</code></pre>
+
+<p>This example shows how to start the CLI instance.</p>
+
+<pre><code>
+cumulus@switch~:$ netq config start cli
+
+
+</code></pre>
+
+<p>This example shows how to associate a NetQ platform with the device.</p>
+
+<pre><code>
+cumulus@switch~:$ netq config add cli server 10.1.3.101
+
+
+</code></pre>
+
+<h4 id="event-notification-commands">Event Notification Commands</h4>
+
+<p>The notification configuration commands enable you to add, remove and
+show notification application integrations. These commands create the
+channels, filters, and rules needed to control event messaging. The
+commands include:</p>
+
+<pre><code>
+netq (add|del|show) notification channel
+netq (add|del|show) notification rule
+netq (add|del|show) notification filter
+
+
+</code></pre>
+
+<p>An integration includes at least one channel, PagerDuty or Slack.
+Filters are optional and defined by rules you create. If you have a
+filter, it must have at least one rule.</p>
+
+<p>This example shows how to configure a PagerDuty channel:</p>
+
+<pre><code>
+cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
+Successfully added/updated channel pd-netq-events
+
+
+</code></pre>
+
+<p>Refer to <a href="/old/Cumulus_NetQ/Integrate_with_Third-party_Software_and_Hardware.html">Integrate with Third-party Software and
+Hardware</a>
+for details about using these commands and additional examples.</p>
+
+<h3 id="trace-commands">Trace Commands</h3>
+
+<p>The <code>trace</code> commands enable the network administrator to view the
+available paths between two nodes on the network currently and at a time
+in the past. You can perform a layer 2 or layer 3 trace, and view the
+output in one of three formats (<em>json, pretty,</em> and <em>detail</em>). JSON
+output provides the output in a JSON file format for ease of importing
+to other applications or software. Pretty output lines up the paths in a
+pseudo-graphical manner to help visualize multiple paths. Detail output
+is useful for traces with higher hop counts where the pretty output
+wraps lines, making it harder to interpret the results. The detail
+output displays a table with a row for each path.</p>
+
+<p>The trace command syntax is:</p>
+
+<pre><code>
+netq trace  [vlan &lt;1-4096&gt;] from (|) [vrf ] [around ] [json|detail|pretty] [debug]
+netq trace  from (|) [vrf ] [around ] [json|detail|pretty] [debug] 
+
+
+</code></pre>
+
+<p><strong>Example</strong>: Running a trace based on the destination IP address, in
+<em>pretty</em> output with a small number of resulting paths:</p>
+
+<pre><code>
+cumulus@switch:~$ netq trace 10.0.0.11 from 10.0.0.14 pretty
+Number of Paths: 6
+  Inconsistent PMTU among paths
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9000
+ leaf04 swp52 -- swp4 spine02 swp2 -- swp52 leaf02 peerlink.4094 -- peerlink.4094 leaf01 lo
+                                                   peerlink.4094 -- peerlink.4094 leaf01 lo
+ leaf04 swp51 -- swp4 spine01 swp2 -- swp51 leaf02 peerlink.4094 -- peerlink.4094 leaf01 lo
+                                                   peerlink.4094 -- peerlink.4094 leaf01 lo
+ leaf04 swp52 -- swp4 spine02 swp1 -- swp52 leaf01 lo
+ leaf04 swp51 -- swp4 spine01 swp1 -- swp51 leaf01 lo
+
+
+</code></pre>
+
+<p><strong>Example</strong>: Running a trace based on the destination IP address, in
+<em>detail</em> output with a small number of resulting paths:</p>
+
+<pre><code>
+cumulus@oob-mgmt-server:~$ netq trace 10.0.0.11 from 10.0.0.14 detail
+Number of Paths: 6
+  Inconsistent PMTU among paths
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9000
+Id  Hop Hostname        InPort          InVlan InTunnel              InRtrIf         InVRF           OutRtrIf        OutVRF          OutTunnel             OutPort         OutVlan
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+1   1   leaf04                                                                                       swp52           default                               swp52
+    2   spine02         swp4                                         swp4            default         swp2            default                               swp2
+    3   leaf02          swp52                                        swp52           default         peerlink.4094   default                               peerlink.4094
+    4   leaf01          peerlink.4094                                peerlink.4094   default                                                               lo
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+2   1   leaf04                                                                                       swp52           default                               swp52
+    2   spine02         swp4                                         swp4            default         swp2            default                               swp2
+    3   leaf02          swp52                                        swp52           default         peerlink.4094   default                               peerlink.4094
+    4   leaf01          peerlink.4094                                peerlink.4094   default                                                               lo
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+3   1   leaf04                                                                                       swp51           default                               swp51
+    2   spine01         swp4                                         swp4            default         swp2            default                               swp2
+    3   leaf02          swp51                                        swp51           default         peerlink.4094   default                               peerlink.4094
+    4   leaf01          peerlink.4094                                peerlink.4094   default                                                               lo
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+4   1   leaf04                                                                                       swp51           default                               swp51
+    2   spine01         swp4                                         swp4            default         swp2            default                               swp2
+    3   leaf02          swp51                                        swp51           default         peerlink.4094   default                               peerlink.4094
+    4   leaf01          peerlink.4094                                peerlink.4094   default                                                               lo
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+5   1   leaf04                                                                                       swp52           default                               swp52
+    2   spine02         swp4                                         swp4            default         swp1            default                               swp1
+    3   leaf01          swp52                                        swp52           default                                                               lo
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+6   1   leaf04                                                                                       swp51           default                               swp51
+    2   spine01         swp4                                         swp4            default         swp1            default                               swp1
+    3   leaf01          swp51                                        swp51           default                                                               lo
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+
+
+</code></pre>
+
+<p><strong>Example</strong>: Running a trace based on the destination MAC address, in
+<em>pretty</em> output:</p>
+
+<pre><code>
+cumulus@switch:~$ netq trace A0:00:00:00:00:11 vlan 1001 from Server03 pretty
+Number of Paths: 6
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9152
+ 
+ Server03 bond1.1001 -- swp7  Leaf02 vni: 34 swp5 -- swp4 Spine03 swp7 -- swp5 vni: 34 Leaf04 swp6 -- swp1.1001 Server03
+                                                       swp4 -- swp4 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03
+                                                       swp3 -- swp4 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03
+          bond1.1001 -- swp7  Leaf01 vni: 34 swp5 -- swp3 Spine03 swp7 -- swp5 vni: 34 Leaf04 swp6 -- swp1.1001 Server03
+                                                       swp4 -- swp3 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03
+                                                       swp3 -- swp3 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03
+
+
+</code></pre>
+
+<h2 id="command-changes">Command Changes</h2>
+
+<p>A number of commands have changed in this release to accommodate the
+addition of new keywords and options or to simplify their syntax.
+Additionally, new commands have been added and others have been removed.
+A summary of those changes is provided here.</p>
+
+<h3 id="new-commands">New Commands</h3>
+
+<p>The following table summarizes the new commands available with this
+release.</p>
+
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Summary</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>netq config (add\|del) agent server</code></td>
+<td>Adds or removes the NetQ Agent daemon to the network device where this command is run.</td>
+</tr>
+
+<tr>
+<td><code>netq config (add\|del) cli server</code></td>
+<td>Adds or removes the CLI daemon to the network device where this command is run.</td>
+</tr>
+
+<tr>
+<td><code>netq config show (agent\|all\|cli) [json]</code></td>
+<td>Displays configuration settings for the NetQ Agent, CLI, or both.</td>
+</tr>
+
+<tr>
+<td><code>netq (add\|del\|show) notification</code></td>
+<td>Configures integrations with third-party event notification tools, such as Pager Duty and Slack. This configuration was previously accomplished using the <code>netq config ts (add\|del\|show) notifier</code> commands.</td>
+</tr>
+
+<tr>
+<td><code>netq show events</code></td>
+<td>Displays events that have occurred network-wide during a given time range for a specific device, severity level, configuration file, and/or network protocol or service. Previously these events were obtained through the <code>netq show changes</code> command.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="modified-commands">Modified Commands</h3>
+
+<p>The following table summarizes the commands that have been changed with
+this release.</p>
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>New Command</p></th>
+<th><p>Old Command</p></th>
+<th><p>What Changed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><code>netq &lt;hostname&gt; show * [around &lt;text-time&gt;] [json]</code></p></td>
+<td><p><code>netq &lt;hostname&gt; show * changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [around &lt;text-time&gt;] [json]</code></p></td>
+<td><p>The <code>changes</code> and <code>between</code> options have been removed from all of the <code>netq show</code> commands. Collect this data using the new <code>netq show events</code> command.</p></td>
+</tr>
+<tr class="even">
+<td><p><code>netq [&lt;hostname&gt;] show inventory license [cumulus] [status ok | status missing] [around &lt;text-time&gt;] [json]</code></p></td>
+<td><p><code>netq [&lt;hostname&gt;] show inventory license [cumulus] [around &lt;text-time&gt;] [json]</code></p></td>
+<td><p>Added the ability to view only devices with license status of <em>ok</em> or <em>missing</em>.</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>netq trace &lt;ip&gt; from (&lt;src-hostname&gt;|&lt;ip-src&gt;) [vrf &lt;vrf&gt;] [around &lt;text-time&gt;] [json|detail|pretty]</code></p>
+<p><code>netq trace &lt;mac&gt; [vlan &lt;1-4096&gt;] from (&lt;src-hostname&gt;|&lt;ip-src&gt;) [vrf &lt;vrf&gt;] [around &lt;text-time&gt;] [json|detail|pretty]</code></p></td>
+<td><p><code>netq trace &lt;ip&gt; from (&lt;src-hostname&gt;|&lt;ip-src&gt;) [vrf &lt;vrf&gt;] [around &lt;text-time&gt;] [bidir] [json|detail|pretty]</code></p>
+<p><code>netq trace &lt;mac&gt; [vlan &lt;1-4096&gt;] from (&lt;src-hostname&gt;|&lt;ip-src&gt;) [vrf &lt;vrf&gt;] [around &lt;text-time&gt;] [bidir] [json|detail|pretty]</code></p></td>
+<td><p>The bidirectional option (<code>bidir</code>) has been deprecated. Run the command in each direction when path validation is desired for both directions.</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="deprecated-commands">Deprecated Commands</h3>
+
+<p>The following table summarizes the commands that have been removed and a
+recommended alternative, if appropriate.</p>
+
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Alternative Command</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>netq config ts (add\|del\|show) (notifier\|server)</code></td>
+<td>`netq (add</td>
+</tr>
+
+<tr>
+<td><code>netq config ts (start\|stop\|status\|restart) notifier</code></td>
+<td>None. No longer necessary.</td>
+</tr>
+
+<tr>
+<td><code>netq config ts decommission</code></td>
+<td><code>netq config del agent server</code></td>
+</tr>
+
+<tr>
+<td><code>netq [&lt;hostname&gt;] show docker</code></td>
+<td><code>netq [&lt;hostname&gt;] show kubernetes</code></td>
+</tr>
+
+<tr>
+<td><code>netq example</code></td>
+<td><code>netq help</code></td>
+</tr>
+
+<tr>
+<td><code>netq resolve</code></td>
+<td>None</td>
+</tr>
+
+<tr>
+<td><code>netq-shell</code></td>
+<td>None. The netq-shell has been removed since all NetQ commands can be run from any node where a NetQ Agent is installed.</td>
+</tr>
+</tbody>
+</table>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#cli-access">CLI Access</a>
+<ul>
+<li><a href="#command-line-structure">Command Line Structure</a></li>
+<li><a href="#command-syntax">Command Syntax</a></li>
+<li><a href="#command-output">Command Output</a></li>
+<li><a href="#command-prompts">Command Prompts</a></li>
+<li><a href="#command-completion">Command Completion</a></li>
+<li><a href="#command-help">Command Help</a></li>
+<li><a href="#command-history">Command History</a></li>
+</ul></li>
+<li><a href="#command-categories">Command Categories</a>
+<ul>
+<li><a href="#validation-commands">Validation Commands</a></li>
+<li><a href="#monitoring-commands">Monitoring Commands</a></li>
+<li><a href="#configuration-commands">Configuration Commands</a>
+<ul>
+<li><a href="#netq-agent-and-cli-server">NetQ Agent and CLI Server</a></li>
+<li><a href="#event-notification-commands">Event Notification Commands</a></li>
+</ul></li>
+<li><a href="#trace-commands">Trace Commands</a></li>
+</ul></li>
+<li><a href="#command-changes">Command Changes</a>
+<ul>
+<li><a href="#new-commands">New Commands</a></li>
+<li><a href="#modified-commands">Modified Commands</a></li>
+<li><a href="#deprecated-commands">Deprecated Commands</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

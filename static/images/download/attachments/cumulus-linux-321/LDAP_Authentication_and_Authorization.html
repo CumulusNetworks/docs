@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LDAP Authentication and Authorization - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="System_Configuration.html">System Configuration</a></li>
+                                                                                     <li><a href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126754"> <span>LDAP Authentication and Authorization</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><span id="src-5126754_indexterm-66D736DA5B5035B7D43ABC176B842EA3">Cumulus Linux uses </span><span id="src-5126754_indexterm-AA03A7796DC147A79FCF62EAEB9EFB42">Pluggable Authentication Modules (PAM) and </span><span id="src-5126754_indexterm-E2D7DCFD06E893F179419FDB4094D49A">Name Service Switch (NSS) for </span>user authentication.    </p>
+    <p  >NSS specifies the order of information sources used to resolve names for each service. Using this with authentication and authorization, it provides the order and location used for user lookup and group mapping on the system. PAM handles the interaction between the user and the system, providing login handling, session setup, authentication of users and authorization of a user actions.    </p>
+    <p  >NSS enables PAM to use LDAP for providing user authentication, group mapping and information for other services on the system.    </p>
+    <div class="section section-1" id="src-5126754_LDAPAuthenticationandAuthorization-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126754_LDAPAuthenticationandAuthorization-ConfiguringLDAPAuthentication">
+        <h1 class="heading "><span>Configuring LDAP Authentication</span></h1>
+    <p  ><span id="src-5126754_indexterm-1CF78CAA8ECD30BE2C10759BA15B0FF5">There are 3 common ways of configuring </span>LDAP authentication on Linux:    </p>
+<ul class=" "><li class=" ">    <p  >libnss-ldap    </p>
+</li><li class=" ">    <p  >libnss-ldapd    </p>
+</li><li class=" ">    <p  >libnss-sss    </p>
+</li></ul>    <p  >This chapter covers using <tt class=" ">libnss-ldapd</tt> only. From internal testing, this library worked best with Cumulus Linux and was the easiest to configure, automate and troubleshoot.    </p>
+    </div>
+    <div class="section section-1" id="src-5126754_LDAPAuthenticationandAuthorization-Installinglibnss-ldapd">
+        <h1 class="heading "><span>Installing libnss-ldapd</span></h1>
+    <p  >The <tt class=" ">libpam-ldapd</tt> package depends on <tt class=" ">nslcd</tt>, so to install <tt class=" ">libnss-ldapd</tt>, <tt class=" ">libpam-ldapd</tt> and <tt class=" ">ldap-utils</tt>, you must run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo apt-get install libnss-ldapd libpam-ldapd ldap-utils nslcd</code></div>
+</div>
+    </div>
+    <p  >This brings up an interactive prompt asking questions about the LDAP URI, search base distinguished name (DN) and services that should have LDAP lookups enabled. This creates a very basic LDAP configuration, using anonymous bind, and initiating the search for a user under the base DN specified.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Alternatively, these parameters can be pre-seeded using the <tt class=" ">debconf-utils</tt>. To use this method, run <tt class=" ">apt-get install debconf-utils</tt> and create the pre-seeded parameters using <tt class=" ">debconf-set-selections</tt> with the appropriate answers. Run <tt class=" ">debconf-show &lt;pkg&gt;</tt> to check the settings. Here is an <a   href="attachments_5126753_1_kb_debconf.txt">example of how to preseed answers to the installer questions using <tt class=" ">debconf-set-selections</tt> </a>.    </p>
+        </div>
+    </div>
+    <p  >Once the install is complete, the <i class=" ">name service LDAP caching daemon</i> (<tt class=" ">nslcd</tt>) will be running. This is the service that handles all of the LDAP protocol interactions, and caches the information returned from the LDAP server. In <tt class=" ">/etc/nsswitch.conf</tt>, <tt class=" ">ldap </tt>has been appended and is the secondary information source for <i class=" ">passwd</i>, <i class=" ">group</i> and <i class=" ">shadow</i>. The local files (<tt class=" ">/etc/passwd</tt>, <tt class=" ">/etc/groups</tt> and <tt class=" ">/etc/shadow</tt>) are used first, as specified by the <tt class=" ">compat</tt> source.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">passwd: compat ldap</code></div>
+<div class="line"><code class="plain">group: compat ldap</code></div>
+<div class="line"><code class="plain">shadow: compat ldap</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >You are strongly advised to keep <tt class=" ">compat</tt> as the first source in NSS for <i class=" ">passwd</i>, <i class=" ">group</i> and <i class=" ">shadow</i>. This prevents you from getting locked out of the system.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126754_LDAPAuthenticationandAuthorization-Configuringnslcd.conf">
+        <h1 class="heading "><span>Configuring nslcd.conf</span></h1>
+    <p  >You need to update the main configuration file (<tt class=" ">/etc/nslcd.conf</tt>) after installation to accommodate the expected LDAP server settings. The <a  class="external-link" href="http://linux.die.net/man/5/nslcd.conf">nslcd.conf man page</a> details all the available configuration options. Some of the more important options are related to security and how the queries are handled.    </p>
+    <div class="section section-2" id="src-5126754_LDAPAuthenticationandAuthorization-Connection">
+        <h2 class="heading "><span>Connection</span></h2>
+    <p  >The LDAP client starts a session by connecting to the LDAP server, by default, on TCP and UDP port 389, or on port 636 for LDAPS. Depending on the configuration, this connection may be unauthenticated (anonymous bind); otherwise, the client must provide a bind user and password. The variables used to define the connection to the LDAP server are the URI and bind credentials.    </p>
+    <p  >The URI is mandatory, and specifies the LDAP server location using the FQDN or IP address. It also designates whether to use ldap:// for clear text transport, or ldaps:// for SSL/TLS encrypted transport. Optionally, an alternate port may also be specified in the URI. Typically, in production environments, it is best to utilize the LDAPS protocol. Otherwise all communications are clear text and not secure.    </p>
+    <p  >After the connection to the server is complete, the BIND operation authenticates the session. The BIND credentials are optional, and if not specified, an anonymous bind is assumed. This is typically not allowed in most production environments. Configure authenticated (Simple) BIND by specifying the user (<i class=" ">binddn</i>) and password (<i class=" ">bindpw</i>) in the configuration. Another option is to use SASL (Simple Authentication and Security Layer) BIND, which provides authentication services using other mechanisms, like Kerberos. Contact your LDAP server administrator for this information since it depends on the configuration of the LDAP server and what credentials are created for the client device.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># The location at which the LDAP server(s) should be reachable.</code></div>
+<div class="line"><code class="plain">uri ldaps://ldap.example.com</code></div>
+<div class="line"><code class="plain"># The DN to bind with for normal lookups.</code></div>
+<div class="line"><code class="plain">binddn cn=CLswitch,ou=infra,dc=example,dc=com</code></div>
+<div class="line"><code class="plain">bindpw CuMuLuS</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126754_LDAPAuthenticationandAuthorization-SearchFunction">
+        <h2 class="heading "><span>Search Function</span></h2>
+    <p  >When an LDAP client requests information about a resource, it must connect and bind to the server. Then it performs one or more resource queries depending on what it is looking up. All search queries sent to the LDAP server are created using the configured search <i class=" ">base</i>, <i class=" ">filter</i>, and the desired entry (<i class=" ">uid=myuser</i>) being searched for. If the LDAP directory is large, this search may take a significant amount of time. It is a good idea to define a more specific search base for the common <i class=" ">maps</i> (<i class=" ">passwd</i> and <i class=" ">group</i>).    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># The search base that will be used for all queries.</code></div>
+<div class="line"><code class="plain">base dc=example,dc=com</code></div>
+<div class="line"><code class="plain"># Mapped search bases to speed up common queries.</code></div>
+<div class="line"><code class="plain">base passwd ou=people,dc=example,dc=com</code></div>
+<div class="line"><code class="plain">base group ou=groups,dc=example,dc=com</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126754_LDAPAuthenticationandAuthorization-SearchFilters">
+        <h2 class="heading "><span>Search Filters</span></h2>
+    <p  >It is also common to use search filters to specify criteria used when searching for objects within the directory. This is used to limit the search scope when authenticating users. The default filters applied are:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">filter passwd (objectClass=posixAccount)</code></div>
+<div class="line"><code class="plain">filter group (objectClass=posixGroup) </code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126754_LDAPAuthenticationandAuthorization-AttributeMapping">
+        <h2 class="heading "><span>Attribute Mapping</span></h2>
+    <p  >The <i class=" ">map</i> configuration allows for overriding the attributes pushed from LDAP. To override an attribute for a given <i class=" ">map</i>*, specify the attribute name and the new value. One example of how this is useful is ensuring the shell is <i class=" ">bash</i> and the home directory is <tt class=" ">/home/cumulus</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">map    passwd homeDirectory "/home/cumulus"</code></div>
+<div class="line"><code class="plain">map    passwd shell "/bin/bash"</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >*In LDAP, the <i class=" "><strong class=" ">map</strong> </i>refers to one of the supported maps specified in the manpage for <tt class=" ">nslcd.conf</tt> (such as <i class=" ">passwd</i> or <i class=" ">group</i>).    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126754_LDAPAuthenticationandAuthorization-ExampleConfiguration">
+        <h2 class="heading "><span>Example Configuration</span></h2>
+    <p  >Here is an <a   href="attachments_5126755_1_nslcd.conf">example configuration&nbsp;</a>using Cumulus Linux.    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126754_LDAPAuthenticationandAuthorization-Troubleshooting">
+        <h1 class="heading "><span>Troubleshooting</span></h1>
+    <div class="section section-2" id="src-5126754_LDAPAuthenticationandAuthorization-UsingnslcdDebugMode">
+        <h2 class="heading "><span>Using nslcd Debug Mode</span></h2>
+    <p  >When setting up LDAP authentication for the first time, Cumulus Networks recommends you turn off this service using <tt class=" ">systemctl stop nslcd.service</tt> and run it in debug mode. Debug mode works whether you are using LDAP over SSL (port 636) or an unencrypted LDAP connection (port 389).    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl stop nslcd.service</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo nslcd -d</code></div>
+</div>
+    </div>
+    <p  >Once you enable debug mode, run the following command to test LDAP queries:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo getent myuser</code></div>
+</div>
+    </div>
+    <p  >If LDAP is configured correctly, the following messages appear after you run the <tt class=" ">getent</tt> command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">nslcd: DEBUG: accept() failed (ignored): Resource temporarily unavailable</code></div>
+<div class="line"><code class="plain">nslcd: [8e1f29] DEBUG: connection from pid=11766 uid=0 gid=0</code></div>
+<div class="line"><code class="plain">nslcd: [8e1f29] &lt;passwd(all)&gt; DEBUG: myldap_search(base="dc=example,dc=com", filter="(objectClass=posixAccount)")</code></div>
+<div class="line"><code class="plain">nslcd: [8e1f29] &lt;passwd(all)&gt; DEBUG: ldap_result(): uid=myuser,ou=people,dc=example,dc=com</code></div>
+<div class="line"><code class="plain">nslcd: [8e1f29] &lt;passwd(all)&gt; DEBUG: ldap_result(): ... 152 more results</code></div>
+<div class="line"><code class="plain">nslcd: [8e1f29] &lt;passwd(all)&gt; DEBUG: ldap_result(): end of results (162 total)</code></div>
+</div>
+    </div>
+    <p  >In the output above, <i class=" ">&lt;passwd(all)&gt;</i> indicates that the entire directory structure was queried.    </p>
+    <p  >A specific user can be queried using the command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo getent passwd myuser</code></div>
+</div>
+    </div>
+    <p  >You can replace <i class=" ">myuser</i> with any username on the switch. The following debug output indicates that user <i class=" ">myuser</i> exists:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">nslcd: DEBUG: add_uri(ldap://10.50.21.101)</code></div>
+<div class="line"><code class="plain">nslcd: version 0.8.10 starting</code></div>
+<div class="line"><code class="plain">nslcd: DEBUG: unlink() of /var/run/nslcd/socket failed (ignored): No such file or directory</code></div>
+<div class="line"><code class="plain">nslcd: DEBUG: setgroups(0,NULL) done</code></div>
+<div class="line"><code class="plain">nslcd: DEBUG: setgid(110) done</code></div>
+<div class="line"><code class="plain">nslcd: DEBUG: setuid(107) done</code></div>
+<div class="line"><code class="plain">nslcd: accepting connections</code></div>
+<div class="line"><code class="plain">nslcd: DEBUG: accept() failed (ignored): Resource temporarily unavailable</code></div>
+<div class="line"><code class="plain">nslcd: [8b4567] DEBUG: connection from pid=11369 uid=0 gid=0</code></div>
+<div class="line"><code class="plain">nslcd: [8b4567] &lt;passwd="myuser"&gt; DEBUG: myldap_search(base="dc=cumulusnetworks,dc=com", filter="(&amp;(objectClass=posixAccount)(uid=myuser))")</code></div>
+<div class="line"><code class="plain">nslcd: [8b4567] &lt;passwd="myuser"&gt; DEBUG: ldap_initialize(ldap://&lt;ip_address&gt;)</code></div>
+<div class="line"><code class="plain">nslcd: [8b4567] &lt;passwd="myuser"&gt; DEBUG: ldap_set_rebind_proc()</code></div>
+<div class="line"><code class="plain">nslcd: [8b4567] &lt;passwd="myuser"&gt; DEBUG: ldap_set_option(LDAP_OPT_PROTOCOL_VERSION,3)</code></div>
+<div class="line"><code class="plain">nslcd: [8b4567] &lt;passwd="myuser"&gt; DEBUG: ldap_set_option(LDAP_OPT_DEREF,0)</code></div>
+<div class="line"><code class="plain">nslcd: [8b4567] &lt;passwd="myuser"&gt; DEBUG: ldap_set_option(LDAP_OPT_TIMELIMIT,0)</code></div>
+<div class="line"><code class="plain">nslcd: [8b4567] &lt;passwd="myuser"&gt; DEBUG: ldap_set_option(LDAP_OPT_TIMEOUT,0)</code></div>
+<div class="line"><code class="plain">nslcd: [8b4567] &lt;passwd="myuser"&gt; DEBUG: ldap_set_option(LDAP_OPT_NETWORK_TIMEOUT,0)</code></div>
+<div class="line"><code class="plain">nslcd: [8b4567] &lt;passwd="myuser"&gt; DEBUG: ldap_set_option(LDAP_OPT_REFERRALS,LDAP_OPT_ON)</code></div>
+<div class="line"><code class="plain">nslcd: [8b4567] &lt;passwd="myuser"&gt; DEBUG: ldap_set_option(LDAP_OPT_RESTART,LDAP_OPT_ON)</code></div>
+<div class="line"><code class="plain">nslcd: [8b4567] &lt;passwd="myuser"&gt; DEBUG: ldap_simple_bind_s(NULL,NULL) (uri="ldap://&lt;ip_address&gt;")</code></div>
+<div class="line"><code class="plain">nslcd: [8b4567] &lt;passwd="myuser"&gt; DEBUG: ldap_result(): end of results (0 total)</code></div>
+</div>
+    </div>
+    <p  >Notice how the <tt class=" ">&lt;passwd=&quot;myuser&quot;&gt;</tt> shows that the specific <i class=" ">myuser</i> user was queried.    </p>
+    </div>
+    <div class="section section-2" id="src-5126754_LDAPAuthenticationandAuthorization-CommonProblems">
+        <h2 class="heading "><span>Common Problems</span></h2>
+    <div class="section section-3" id="src-5126754_safe-id-TERBUEF1dGhlbnRpY2F0aW9uYW5kQXV0aG9yaXphdGlvbi1TU0wvVExT">
+        <h3 class="heading "><span>SSL/TLS</span></h3>
+<ul class=" "><li class=" ">    <p  >The FQDN of the LDAP server URI does not match the FQDN in the CA-signed server certificate exactly.    </p>
+</li><li class=" ">    <p  ><tt class=" ">nslcd</tt> cannot read the SSL certificate, and will report a &quot;Permission denied&quot; error in the debug during server connection negotiation. Check the permission on each directory in the path of the root SSL certificate. Ensure that it is readable by the <tt class=" ">nslcd</tt> user.    </p>
+</li></ul>    </div>
+    <div class="section section-3" id="src-5126754_LDAPAuthenticationandAuthorization-NSCD">
+        <h3 class="heading "><span>NSCD</span></h3>
+<ul class=" "><li class=" ">    <p  >If the <tt class=" ">nscd cache</tt> daemon is also enabled and you make some changes to the user from LDAP, you may want to clear the cache using the commands:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">nscd --invalidate = passwd </code></div>
+<div class="line"><code class="plain">nscd --invalidate = group</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >The <tt class=" ">nscd</tt> package works with <tt class=" ">nslcd</tt> to cache name entries returned from the LDAP server. This may cause authentication failures. To work around these issues:    </p>
+<ol class=" "><li class=" ">    <p  >Disable <tt class=" ">nscd</tt> by running:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo nscd -K</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Restart the <tt class=" ">nslcd</tt> service:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl restart nslcd.service</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Try the authentication again.    </p>
+</li></ol></li></ul>    </div>
+    <div class="section section-3" id="src-5126754_LDAPAuthenticationandAuthorization-LDAP">
+        <h3 class="heading "><span>LDAP</span></h3>
+<ul class=" "><li class=" ">    <p  >The search filter returns wrong results. Check for typos in the search filter. Use <tt class=" ">ldapsearch</tt> to test your filter.    </p>
+</li><li class=" ">    <p  >Optionally, configure the basic LDAP connection and search parameters in <tt class=" ">/etc/ldap/ldap.conf</tt>.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># ldapsearch -D 'cn=CLadmin' -w 'CuMuLuS' "(&amp;(ObjectClass=inetOrgUser)(uid=myuser))"</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >When a local username also exists in the LDAP database, the order of the information sources in <tt class=" ">/etc/nsswitch</tt> can be updated to query LDAP before the local user database. This is generally not recommended. For example, the configuration below ensures that LDAP is queried before the local database.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># /etc/nsswitch.conf</code></div>
+<div class="line"><code class="plain">passwd:         ldap compat</code></div>
+</div>
+    </div>
+</li></ul>    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126754_LDAPAuthenticationandAuthorization-ConfiguringLDAPAuthorization">
+        <h1 class="heading "><span>Configuring LDAP Authorization</span></h1>
+    <p  >Linux uses the <i class=" ">sudo</i> command to allow non-administrator users &mdash; like the default <i class=" ">cumulus</i> user account &mdash; to perform privileged operations. To control the users authorized to use sudo, the <tt class=" ">/etc/sudoers</tt> file and files located in the <tt class=" ">/etc/sudoers.d/</tt> directory have a series of rules defined. Typically, the rules are based on groups, but can also be defined for specific users. Therefore, sudo rules can be added using the group names from LDAP. For example, if a group of users were associated with the group <i class=" ">netadmin</i>, a rule can be added to give those users sudo privileges. Refer to the sudoers manual (<tt class=" ">man sudoers</tt>) for a complete usage description. Here's an illustration of this in <tt class=" ">/etc/sudoers</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># The basic structure of a user specification is “who where = (as_whom) what”.</code></div>
+<div class="line"><code class="plain">%sudo ALL=(ALL:ALL) ALL</code></div>
+<div class="line"><code class="plain">%netadmin ALL=(ALL:ALL) ALL</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126754_LDAPAuthenticationandAuthorization-ActiveDirectoryConfiguration">
+        <h1 class="heading "><span>Active Directory Configuration</span></h1>
+    <p  >Active Directory (AD) is a fully featured LDAP-based NIS server created by Microsoft. It offers unique features that classic OpenLDAP servers lack. Therefore, it can be more complicated to configure on the client and each version of AD is a little different in how it works with Linux-based LDAP clients. Some more advanced configuration examples, from testing LDAP clients on Cumulus Linux with Active Directory (AD/LDAP), are available in our <a  class="external-link" href="https://support.cumulusnetworks.com/hc/en-us/articles/204383797">knowledge base</a>.    </p>
+    </div>
+    <div class="section section-1" id="src-5126754_LDAPAuthenticationandAuthorization-LDAPVerificationTools">
+        <h1 class="heading "><span>LDAP Verification Tools</span></h1>
+    <p  >Typically, password and group information is retrieved from LDAP and cached by the LDAP client daemon. To test the LDAP interaction, these command line tools can be used to trigger an LDAP query from the device. This helps to create the best filters and verify the information sent back from the LDAP server.    </p>
+    <div class="section section-2" id="src-5126754_LDAPAuthenticationandAuthorization-IdentifyingaUserwiththeidCommand">
+        <h2 class="heading "><span>Identifying a User with the id Command</span></h2>
+    <p  >The <tt class=" ">id</tt> command performs a username lookup by following the lookup information sources in NSS for the <i class=" ">passwd</i> service. This simply returns the user ID, group ID and the group list retrieved from the information source. In the following example, the user <i class=" ">cumulus</i> is locally defined in <tt class=" ">/etc/passwd</tt>, and <i class=" ">myuser</i> is on LDAP. The NSS configuration has the passwd map configured with the sources <tt class=" ">compat ldap</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ id cumulus</code></div>
+<div class="line"><code class="plain">uid=1000(cumulus) gid=1000(cumulus) groups=1000(cumulus),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev)</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ id myuser </code></div>
+<div class="line"><code class="plain">uid=1230(myuser) gid=3000(Development) groups=3000(Development),500(Employees),27(sudo)</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126754_LDAPAuthenticationandAuthorization-Usinggetent">
+        <h2 class="heading "><span>Using getent</span></h2>
+    <p  >The <tt class=" ">getent</tt> command retrieves all records found via NSS for a given map. It can also get a specific entry under that map. Tests can be done with the passwd, group, shadow or any other map configured in <tt class=" ">/etc/nsswitch.conf</tt>. The output from this command is formatted according to the map requested. Thus, for the passwd service, the structure of the output is the same as the entries in <tt class=" ">/etc/passwd</tt>. The same can be said for the group map will output the same as <tt class=" ">/etc/group</tt>. In this example, looking up a specific user in the passwd map, the user <i class=" ">cumulus</i> is locally defined in <tt class=" ">/etc/passwd</tt>, and <i class=" ">myuser</i> is only in LDAP.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ getent passwd cumulus</code></div>
+<div class="line"><code class="plain">cumulus:x:1000:1000::/home/cumulus:/bin/bash</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ getent passwd myuser </code></div>
+<div class="line"><code class="plain">myuser:x:1230:3000:My Test User:/home/myuser:/bin/bash</code></div>
+</div>
+    </div>
+    <p  >In the next example, looking up a specific group in the group service, the group <i class=" ">cumulus</i> is locally defined in <tt class=" ">/etc/groups</tt>, and <i class=" ">netadmin</i> is on LDAP.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ getent group cumulus</code></div>
+<div class="line"><code class="plain">cumulus:x:1000:</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ getent group netadmin</code></div>
+<div class="line"><code class="plain">netadmin:*:502:larry,moe,curly,shemp</code></div>
+</div>
+    </div>
+    <p  >Running the command <tt class=" ">getent passwd</tt> or <tt class=" ">getent group</tt> without a specific request, returns <strong class=" ">all</strong> local and LDAP entries for the <i class=" ">passwd</i> and <i class=" ">group</i> maps, respectively.    </p>
+    </div>
+    <div class="section section-2" id="src-5126754_LDAPAuthenticationandAuthorization-UsingLDAPsearch">
+        <h2 class="heading "><span>Using LDAP search</span></h2>
+    <p  >The <tt class=" ">ldapsearch</tt> command performs LDAP operations directly on the LDAP server. This does not interact with NSS. This command helps display what the LDAP daemon process is receiving back from the server. The command has many options. The simplest uses anonymous bind to the host and specifies the search DN and what attribute to lookup.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ ldapsearch -H ldap://ldap.example.com -b dc=example,dc=com -x uid=myuser</code></div>
+</div>
+    </div>
+    <p  class="expand-control-text">Click to expand the command output ...    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># extended LDIF</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># LDAPv3</code></div>
+<div class="line"><code class="plain"># base &lt;dc=example,dc=com&gt; with scope subtree</code></div>
+<div class="line"><code class="plain"># filter: uid=myuser</code></div>
+<div class="line"><code class="plain"># requesting: ALL</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># myuser, people, example.com</code></div>
+<div class="line"><code class="plain">dn: uid=myuser,ou=people,dc=example,dc=com</code></div>
+<div class="line"><code class="plain">cn: My User</code></div>
+<div class="line"><code class="plain">displayName: My User</code></div>
+<div class="line"><code class="plain">gecos: myuser</code></div>
+<div class="line"><code class="plain">gidNumber: 3000</code></div>
+<div class="line"><code class="plain">givenName: My</code></div>
+<div class="line"><code class="plain">homeDirectory: /home/myuser</code></div>
+<div class="line"><code class="plain">initials: MU</code></div>
+<div class="line"><code class="plain">loginShell: /bin/bash</code></div>
+<div class="line"><code class="plain">mail: myuser@example.com</code></div>
+<div class="line"><code class="plain">objectClass: inetOrgPerson</code></div>
+<div class="line"><code class="plain">objectClass: posixAccount</code></div>
+<div class="line"><code class="plain">objectClass: shadowAccount</code></div>
+<div class="line"><code class="plain">objectClass: top</code></div>
+<div class="line"><code class="plain">shadowExpire: -1</code></div>
+<div class="line"><code class="plain">shadowFlag: 0</code></div>
+<div class="line"><code class="plain">shadowMax: 999999</code></div>
+<div class="line"><code class="plain">shadowMin: 8</code></div>
+<div class="line"><code class="plain">shadowWarning: 7</code></div>
+<div class="line"><code class="plain">sn: User</code></div>
+<div class="line"><code class="plain">uid: myuser</code></div>
+<div class="line"><code class="plain">uidNumber: 1234</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># search result</code></div>
+<div class="line"><code class="plain">search: 2</code></div>
+<div class="line"><code class="plain">result: 0 Success</code></div>
+<div class="line"><code class="plain">      </code></div>
+<div class="line"><code class="plain"># numResponses: 2</code></div>
+<div class="line"><code class="plain"># numEntries: 1</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126754_LDAPAuthenticationandAuthorization-LDAPBrowsers">
+        <h2 class="heading "><span>LDAP Browsers</span></h2>
+    <p  >There are some GUI LDAP clients that help to work with LDAP servers. These are free tools to help graphically show the structure of the LDAP database.    </p>
+<ul class=" "><li class=" ">    <p  ><a  class="external-link" href="http://directory.apache.org/studio/">Apache Directory Studio</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://ldapmanager.sourceforge.net/">LDAPManager</a>    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-1" id="src-5126754_LDAPAuthenticationandAuthorization-RelatedInformation">
+        <h1 class="heading "><span>Related Information</span></h1>
+<ul class=" "><li class=" ">    <p  ><a  class="external-link" href="https://wiki.debian.org/LDAP/NSS">Debian - configuring LDAP authentication</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="https://wiki.debian.org/LDAP/PAM">Debian - configuring PAM to use LDAP</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="https://raw.githubusercontent.com/arthurdejong/nss-pam-ldapd/master/nslcd.conf">GitHub - Arthur de Jong nslcd.conf file</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://backports.debian.org/Instructions/">Debian backports</a>    </p>
+</li></ul>    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Using_sudo_to_Delegate_Privileges.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Using sudo to Delegate Privileges</span>
+        </a>
+                <a href="TACACS_Plus.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>TACACS Plus</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Layer 1 and Switch Port Attributes - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126996"> <span>Layer 1 and Switch Port Attributes</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><span id="src-5126996_indexterm-28612A6D28186DB057BECCDCFC0266BF">This chapter discusses the various </span><span id="src-5126996_indexterm-2C5A7FEDF469137C731CED8A91A9185F">network </span>interfaces on a switch running Cumulus Linux, how to configure various interface-level settings (if needed) and some troubleshooting commands.    </p>
+    <div class="section section-1" id="src-5126996_Layer1andSwitchPortAttributes-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126996_Layer1andSwitchPortAttributes-InterfaceTypes">
+        <h1 class="heading "><span>Interface Types</span></h1>
+    <p  >Cumulus Linux exposes network interfaces for several types of physical and logical devices:    </p>
+<ul class=" "><li class=" ">    <p  >lo, network loopback device    </p>
+</li><li class=" ">    <p  >ethN, switch management port(s), for out of band management only    </p>
+</li><li class=" ">    <p  >swpN, switch front panel ports    </p>
+</li><li class=" ">    <p  >(optional) brN, bridges (IEEE 802.1Q VLANs)    </p>
+</li><li class=" ">    <p  >(optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or port channels)    </p>
+</li></ul>    </div>
+    <div class="section section-1" id="src-5126996_Layer1andSwitchPortAttributes-InterfaceSettings">
+        <h1 class="heading "><span>Interface Settings</span></h1>
+    <p  >Each physical network interface has a number of configurable settings:    </p>
+<ul class=" "><li class=" ">    <p  ><a  class="external-link" href="http://en.wikipedia.org/wiki/Autonegotiation">Auto-negotiation</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29">Duplex</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="https://en.wikipedia.org/wiki/Forward_error_correction">Forward error correction</a>    </p>
+</li><li class=" ">    <p  >Link speed    </p>
+</li><li class=" ">    <p  >MTU, or <a  class="external-link" href="https://en.wikipedia.org/wiki/Maximum_transmission_unit">maximum transmission unit</a>    </p>
+</li></ul>    <p  >Almost all of these settings are configured automatically for you, depending upon your switch ASIC, although you must always set MTU manually.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >You can only set MTU for logical interfaces. If you try to set auto-negotiation, duplex mode or link speed for a logical interface, an unsupported error gets returned.    </p>
+        </div>
+    </div>
+    <div class="section section-2" id="src-5126996_Layer1andSwitchPortAttributes-DifferencesbetweenBroadcom-basedandMellanox-basedSwitches">
+        <h2 class="heading "><span>Differences between Broadcom-based and Mellanox-based Switches</span></h2>
+    <p  >On a Broadcom-based switch, all you need to do is enable auto-negotiation. Once enabled, Cumulus Linux automatically configures the link speed, duplex mode and <a  class="external-link" href="https://en.wikipedia.org/wiki/Forward_error_correction">forward error correction</a> (FEC, if the cable or optic requires it) for every switch port, based on the switch model and cable or optic used on the port, as listed in the <a   href="#src-5126996_Layer1andSwitchPortAttributes-settings">table below</a>.    </p>
+    <p  >Ports are always automatically configured on a Mellanox-based switch, with one exception &mdash; you only need to configure is <a   href="#src-5126996_Layer1andSwitchPortAttributes-mtu">MTU</a>. You don't even need to enable auto-negotation, as the Mellanox firmware configures everything for you.    </p>
+    </div>
+    <div class="section section-2" id="src-5126996_Layer1andSwitchPortAttributes-autoneg_enableEnablingAuto-negotiation">
+        <h2 class="heading "><span id="src-5126996_Layer1andSwitchPortAttributes-autoneg_enable" class="confluence-anchor-link"></span><span>Enabling Auto-negotiation</span></h2>
+    <p  >To configure auto-negotiation for a Broadcom-based switch, set <tt class=" ">link-autoneg</tt> to <i class=" ">on</i> for all the switch ports. For example, to enable auto-negotiation for swp1 through swp52:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp1-</code><code class="value">52</code><code class="plain"> link autoneg on</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net commit</code></div>
+</div>
+    </div>
+    <p  >Any time you enable auto-negotiation, Cumulus Linux restores the default configuration settings specified in the <a   href="#src-5126996_Layer1andSwitchPortAttributes-sett">table below</a>.    </p>
+    <p  ><span id="src-5126996_indexterm-B560062094CCE793982347A8B1133CB1">By default on a Broadcom-based switch, </span>auto-negotiation is disabled &mdash; except on 10G and 1G BASE-T switches, where it's required for links to work at all. And for RJ45-SFP converters, you need to manually configure the settings as described in the <a   href="#src-5126996_Layer1andSwitchPortAttributes-sett">default settings table below</a>.    </p>
+    <p  >If you disable it later or never enable it, then you have to configure the duplex, FEC and link speed settings manually using <a   href="Network_Command_Line_Utility.html">NCLU</a> &mdash; see the relevant sections below. The default speed if you disable auto-negotiation depends on the type of connector used with the port. For example, a QSFP28 optic defaults to 100G, while a QSFP+ optic defaults to 40G and SFP+ defaults to 10G.    </p>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >You cannot or should not disable auto-negotiation off for any type of copper cable, including:    </p>
+<ul class=" "><li class=" ">    <p  >10G BASE-T    </p>
+</li><li class=" ">    <p  >10G DAC    </p>
+</li><li class=" ">    <p  >40G DAC    </p>
+</li><li class=" ">    <p  >100G DAC    </p>
+</li></ul>    <p  >However, RJ-45 (10/100/1000 BASE-T) adapters do not work with auto-negotiation enabled. You must manually configure these ports using the settings below (link-autoneg=off, link-speed=1000|100|10, link-duplex=full|half).    </p>
+        </div>
+    </div>
+    <p  >Depending upon the connector used for a port, enabling auto-negotiation also enables forward error correction (FEC), if the cable requires it (see the <a   href="#src-5126996_Layer1andSwitchPortAttributes-setting">table below</a>). FEC always adjusts for the speed of the cable. However, you <strong class=" ">cannot</strong> disable FEC separately using <a   href="Network_Command_Line_Utility.html">NCLU</a>.    </p>
+    </div>
+    <div class="section section-2" id="src-5126996_Layer1andSwitchPortAttributes-settingsDefaultInterfaceConfigurationSettings">
+        <h2 class="heading "><span id="src-5126996_Layer1andSwitchPortAttributes-settings" class="confluence-anchor-link"></span><span>Default Interface Configuration Settings</span></h2>
+    <p  >On a Broadcom-based switch, the configuration for each type of interface is described in the following table. Except as noted below, the settings for both sides of the link are expected to be the same.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If the other side of the link is running a version of Cumulus Linux earlier than 3.2, depending up on the interface type, auto-negotiation may not work on that switch. Cumulus Networks recommends you use the default settings on this switch in this case.    </p>
+        </div>
+    </div>
+    <p  >For Mellanox-based switches, the Spectrum firmware decides on the best settings based on the switch model and connector type.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Speed    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Auto-negotiation    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >FEC Setting    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Manual Configuration Steps    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Notes    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >10/100 (RJ45)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Off    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >N/A (does not apply at this speed)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ net add interface swp1 link speed 100</code></div>
+<div class="line"><code class="plain">$ net add interface swp1 link autoneg off</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Configuration in /etc/network/interfaces</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Configuration in /etc/network/interfaces">
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">  link-autoneg off</code></div>
+<div class="line"><code class="plain">  link-speed 100</code></div>
+</div>
+    </div>
+    <p  >    </p>
+    <p  >    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  >The module has two sets of electronics &mdash; the port side, which communicates to the switch ASIC, and the RJ45 side.    </p>
+</li><li class=" ">    <p  >Auto-negotiation is always used on the RJ45 side of the link by the PHY built into the module. This is independent of the switch setting. Set <tt class=" ">link-autoneg</tt> to off.    </p>
+</li><li class=" ">    <p  >Auto-negotiation needs to be enabled on the server side in this scenario.    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1000BASE-SX,<br/>1000BASE-LX,<br/>1000BASE-CX<br/>(1G Fiber)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Recommended On    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >N/A    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ net add interface swp1 link speed 1000</code></div>
+<div class="line"><code class="plain">$ net add interface swp1 link autoneg on</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Configuration in /etc/network/interfaces</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Configuration in /etc/network/interfaces">
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">  link-autoneg on</code></div>
+<div class="line"><code class="plain">  link-speed 1000</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  >Without auto-negotiation, the link stays up when there is a single fiber break.    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1000BASE-T (RJ45)    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Off    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >N/A    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ net add interface swp1 link speed 1000</code></div>
+<div class="line"><code class="plain">$ net add interface swp1 link autoneg off</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Configuration in /etc/network/interfaces</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Configuration in /etc/network/interfaces">
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">  link-autoneg off</code></div>
+<div class="line"><code class="plain">  link-speed 1000</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  >The module has two sets of electronics &mdash; the port side, which communicates to the switch ASIC, and the RJ45 side.    </p>
+</li><li class=" ">    <p  >Auto-negotiation is always used on the RJ45 side of the link by the PHY built into the module. This is independent of the switch setting. Set <tt class=" ">link-autoneg</tt> to off.    </p>
+</li><li class=" ">    <p  >Auto-negotiation needs to be enabled on the server side in this scenario.    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >10G BASE-T    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >On    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >N/A    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ net add interface swp1 link speed 10000</code></div>
+<div class="line"><code class="plain">$ net add interface swp1 link autoneg on</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Configuration in /etc/network/interfaces</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Configuration in /etc/network/interfaces">
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">  link-autoneg on</code></div>
+<div class="line"><code class="plain">  link-speed 10000</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >10G BASE-CR,<br/>10G BASE-LR,<br/>10G BASE-SR,<br/>10G AOC    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Off    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >N/A    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ net add interface swp1 link speed 10000</code></div>
+<div class="line"><code class="plain">$ net add interface swp1 link autoneg off</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Configuration in /etc/network/interfaces</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Configuration in /etc/network/interfaces">
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">  link-autoneg off</code></div>
+<div class="line"><code class="plain">  link-speed 10000</code></div>
+<div class="line"><code class="plain">  link-duplex full</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >40G BASE-CR    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Recommended On    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Disable it    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ net add interface swp1 link speed 40000</code></div>
+<div class="line"><code class="plain">$ net add interface swp1 link autoneg on</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Configuration in /etc/network/interfaces</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Configuration in /etc/network/interfaces">
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">  link-autoneg on</code></div>
+<div class="line"><code class="plain">  link-speed 40000</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >40G BASE-SR,<br/>40G BASE-LR,<br/>40G AOC    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Off    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Disable it    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ net add interface swp1 link speed 40000</code></div>
+<div class="line"><code class="plain">$ net add interface swp1 link autoneg off</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Configuration in /etc/network/interfaces</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Configuration in /etc/network/interfaces">
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">  link-autoneg off</code></div>
+<div class="line"><code class="plain">  link-speed 40000</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >100G BASE-CR    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >On    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >auto-negotiated    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ net add interface swp1 link speed 100000</code></div>
+<div class="line"><code class="plain">$ net add interface swp1 link autoneg on</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Configuration in /etc/network/interfaces</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Configuration in /etc/network/interfaces">
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">  link-autoneg on</code></div>
+<div class="line"><code class="plain">  link-speed 100000</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >100G BASE-SR,<br/>100G BASE-LR,<br/>100G AOC    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Off    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >RS    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ net add interface swp1 link speed 100000</code></div>
+<div class="line"><code class="plain">$ net add interface swp1 link autoneg off</code></div>
+<div class="line"><code class="plain">$ net add interface swp1 link fec rs</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Configuration in /etc/network/interfaces</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Configuration in /etc/network/interfaces">
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">  link-autoneg off</code></div>
+<div class="line"><code class="plain">  link-speed 100000</code></div>
+<div class="line"><code class="plain">  link-fec rs</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >25G BASE-CR    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >On    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >auto-negotiated*    </p>
+    <p  >    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ net add interface swp1 link speed 25000</code></div>
+<div class="line"><code class="plain">$ net add interface swp1 link autoneg on</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Configuration in /etc/network/interfaces</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Configuration in /etc/network/interfaces">
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">  link-autoneg on</code></div>
+<div class="line"><code class="plain">  link-speed 25000</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >25G BASE-SR,<br/>25G BASE-LR    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Off    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Base-R    </p>
+    <p  >    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">$ net add interface swp1 link speed 25000</code></div>
+<div class="line"><code class="plain">$ net add interface swp1 link autoneg off</code></div>
+<div class="line"><code class="plain">$ net add interface swp1 link fec baser</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                    <div class="title">Configuration in /etc/network/interfaces</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Configuration in /etc/network/interfaces">
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">  link-autoneg off</code></div>
+<div class="line"><code class="plain">  link-speed 25000</code></div>
+<div class="line"><code class="plain">  link-fec baser</code></div>
+</div>
+    </div>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126996_Layer1andSwitchPortAttributes-PortSpeedandDuplexing">
+        <h2 class="heading "><span>Port Speed and Duplexing</span></h2>
+    <p  ><span id="src-5126996_indexterm-B0330EB07C1CF970843410908D03554C">Cumulus Linux </span>supports both half- and <a  class="external-link" href="http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29">full-duplex</a><span id="src-5126996_indexterm-9641A4E7F3864AFC7AA3DFE9DE8D874E"> configurations. Supported </span>port speeds include 100M, 1G, 10G, 25G, 40G, 50G and 100G. If you need to manually set the speed on a Broadcom-based switch, set it in terms of Mbps, where the setting for 1G is 1000, 40G is 40000 and 100G is 100000, for example.    </p>
+    <p  >The duplex mode setting defaults to <i class=" ">full</i>. You only need to specify <tt class=" ">link duplex</tt> if you want half-duplex mode.    </p>
+    <p  >    </p>
+    <div  class="confbox admonition admonition-info">
+                    <p class="title">Example Port Speed and Duplexing Configuration</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The following NCLU commands configure the port speed for the swp1 interface:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp1 link speed </code><code class="value">10000</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net commit</code></div>
+</div>
+    </div>
+    <p  >The above commands create the following <tt class=" ">/etc/network/interfaces </tt>code snippet:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">   link-speed </code><code class="value">10000</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    <div class="section section-3" id="src-5126996_Layer1andSwitchPortAttributes-PortSpeedLimitations">
+        <h3 class="heading "><span>Port Speed Limitations</span></h3>
+    <p  >Ports can be configured to one speed less than their maximum speed.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Switch port Type    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Lowest Configurable Speed    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1G    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >100 Mb    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >10G    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1 Gigabit (1000 Mb)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >40G    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >10G*    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >100G    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >50G &amp; 40G (with or without breakout port), 25G*, 10G*    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >*Requires the port to be converted into a breakout port. <a   href="#src-5126996_Layer1andSwitchPortAttributes-breakout">See below</a>.    </p>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126996_Layer1andSwitchPortAttributes-mtuMTU">
+        <h2 class="heading "><span id="src-5126996_Layer1andSwitchPortAttributes-mtu" class="confluence-anchor-link"></span><span>MTU</span></h2>
+    <p  ><span id="src-5126996_indexterm-6CDDE1489E8ADC54A8DE2D9D8D3C84FA">Interface </span>MTU (<a  class="external-link" href="https://en.wikipedia.org/wiki/Maximum_transmission_unit">maximum transmission unit</a>) applies to traffic traversing the management port, front panel/switch ports, bridge, VLAN subinterfaces and bonds &mdash; in other words, both physical and logical interfaces.    </p>
+    <p  >MTU is the only interface setting that must be set manually.    </p>
+    <p  >In Cumulus Linux, <tt class=" ">ifupdown2</tt> assigns 1500 as the default MTU setting. You can override this default value by specifying a policy file in <tt class=" ">/etc/network/ifupdown2/policy.d/</tt>, like in the following example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ cat /etc/network/ifupdown2/policy.d/address.json</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    "address": {</code></div>
+<div class="line"><code class="plain">        "defaults": { "mtu": "9000" }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div class="section section-3" id="src-5126996_Layer1andSwitchPortAttributes-MTUforaBridge">
+        <h3 class="heading "><span>MTU for a Bridge</span></h3>
+    <p  >The MTU setting is the lowest MTU setting of any interface that is a member of that bridge (that is, every interface specified in <tt class=" ">bridge-ports</tt> in the bridge configuration in the <tt class=" ">interfaces</tt> file), even if another bridge member has a higher MTU value. There is <strong class=" ">no</strong> need to specify an MTU on the bridge. Consider this bridge configuration:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto bridge</code></div>
+<div class="line"><code class="plain">iface bridge</code></div>
+<div class="line"><code class="plain">    bridge-ports bond1 bond2 bond3 bond4 peer5</code></div>
+<div class="line"><code class="plain">    bridge-vids </code><code class="value">100</code><code class="plain">-</code><code class="value">110</code></div>
+<div class="line"><code class="plain">    bridge-vlan-aware yes</code></div>
+</div>
+    </div>
+    <p  >In order for <i class=" ">bridge</i> to have an MTU of 9000, set the MTU for each of the member interfaces (bond1 to bond 4, and peer5), to 9000 at minimum.    </p>
+    <div  class="confbox admonition admonition-tip">
+                    <p class="title">Use MTU 9216 for a bridge</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Two common MTUs for jumbo frames are 9216 and 9000 bytes. The corresponding MTUs for the VNIs would be 9166 and 8950.    </p>
+        </div>
+    </div>
+    <p  >When configuring MTU for a bond, configure the MTU value directly under the bond interface; the configured value is inherited by member links/slave interfaces. If you need a different MTU on the bond, set it on the bond interface, as this ensures the slave interfaces pick it up. There is no need to specify MTU on the slave interfaces.    </p>
+    <p  >VLAN interfaces inherit their MTU settings from their physical devices or their lower interface; for example, swp1.100 inherits its MTU setting from swp1. Hence, specifying an MTU on swp1 ensures that swp1.100 inherits swp1's MTU setting.    </p>
+    <p  ><span id="src-5126996_Layer1andSwitchPortAttributes-mtu_vxlan"></span>If you are working with <a   href="Network_Virtualization.html">VXLANs</a>, the MTU for a virtual network interface (VNI) must be 50 bytes smaller than the MTU of the physical interfaces on the switch, as those 50 bytes are required for various headers and other data. You should also consider setting the MTU much higher than the default 1500.    </p>
+    <div  class="confbox admonition admonition-info">
+                    <p class="title">Example MTU Configuration</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >In general, the policy file specified above handles default MTU settings for all interfaces on the switch. If you need to configure a different MTU setting for a subset of interfaces, use <a   href="Network_Command_Line_Utility.html">NCLU</a>.    </p>
+    <p  >The following commands configure an MTU minimum value of 9000 on swp1:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp1 mtu </code><code class="value">9000</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net commit</code></div>
+</div>
+    </div>
+    <p  >These commands create the following code snippet:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">   mtu </code><code class="value">9000</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >You must take care to ensure there are no MTU mismatches in the conversation path. MTU mismatches will result in dropped or truncated packets, degrading or blocking network performance.    </p>
+        </div>
+    </div>
+        </div>
+    </div>
+    <p  >To view the MTU setting, use <tt class=" ">net show interface &lt;interface&gt;</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show </code><code class="keyword">interface</code><code class="plain"> swp1</code></div>
+<div class="line"><code class="plain">    Name    MAC                Speed      MTU  Mode</code></div>
+<div class="line"><code class="plain">--  ------  -----------------  -------  -----  ---------</code></div>
+<div class="line"><code class="plain">UP  swp1    </code><code class="value">44</code><code class="plain">:</code><code class="value">38</code><code class="plain">:</code><code class="value">39</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">04</code><code class="plain">  1G        </code><code class="value">1500</code><code class="plain">  Access/L2</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126996_Layer1andSwitchPortAttributes-breakoutConfiguringBreakoutPorts">
+        <h1 class="heading "><span id="src-5126996_Layer1andSwitchPortAttributes-breakout" class="confluence-anchor-link"></span><span>Configuring Breakout Ports</span></h1>
+    <p  >Cumulus Linux has the ability to:    </p>
+<ul class=" "><li class=" ">    <p  >Break out 100G switch ports into the following with breakout cables:    </p>
+<ul class=" "><li class=" ">    <p  >2x50G, 4x25G, 4x10G    </p>
+</li></ul></li><li class=" ">    <p  >Break out 40G switch ports into four separate 10G ports for use with breakout cables.    </p>
+</li><li class=" ">    <p  >Combine (also called <i class=" ">aggregating</i> or <i class=" ">ganging</i>) four 10G switch ports into one 40G port for use with a breakout cable (<a   href="Bonding_-_Link_Aggregation.html">not to be confused with a bond</a>).    </p>
+</li></ul>    <p  >To configure a 4x25G breakout port, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add interface swp1 breakout 4x</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net commit</code></div>
+</div>
+    </div>
+    <p  >The breakout port configuration is stored in the <tt class=" ">/etc/cumulus/ports.conf</tt> file.    </p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  ><tt class=" ">/etc/cumulus/ports.conf</tt> varies across different hardware platforms. Check the current list of supported platforms on <a  class="external-link" href="http://www.cumulusnetworks.com/hcl">the hardware compatibility list</a>.    </p>
+    <p  >A snippet from the <tt class=" ">/etc/cumulus/ports.conf</tt> looks on a Tomahawk switch like this:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># The Dell Z9100 has:</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">#     </code><code class="value">32</code><code class="plain"> QSFP28 ports numbered </code><code class="value">1</code><code class="plain">-</code><code class="value">32</code></div>
+<div class="line"><code class="plain">#     These ports are configurable as 100G, 50G, 40G, 2x50G, 4x25G, 4x10G</code></div>
+<div class="line"><code class="plain">#     or disabled.</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">#     Two SFP+ ports. These ports are configurable as 10G or disabled.</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">#     The system can only handle </code><code class="value">128</code><code class="plain"> logical ports.</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">#     This means that </code><code class="keyword">if</code><code class="plain"> all </code><code class="value">32</code><code class="plain"> QSFP28 ports are broken out into</code></div>
+<div class="line"><code class="plain">#     4x25G or 4x10G mode, the two 10G ports (</code><code class="value">33</code><code class="plain"> and </code><code class="value">34</code><code class="plain">) must be</code></div>
+<div class="line"><code class="plain">#     set to </code><code class="string">"disabled"</code><code class="plain">.</code></div>
+<div class="line"><code class="plain"># If you make changes to </code><code class="keyword">this</code><code class="plain"> file, you must restart switchd </code><code class="keyword">for</code><code class="plain"> the</code></div>
+<div class="line"><code class="plain"># changes to take effect.</code></div>
+<div class="line"><code class="plain"># QSFP28 ports</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># &lt;port label </code><code class="value">1</code><code class="plain">-</code><code class="value">32</code><code class="plain">&gt; = [4x10G|4x25G|2x50G|40G|50G|100G|disabled]</code></div>
+<div class="line"><code class="value">1</code><code class="plain">=4x25G</code></div>
+<div class="line"><code class="value">2</code><code class="plain">=100G</code></div>
+<div class="line"><code class="value">3</code><code class="plain">=100G</code></div>
+<div class="line"><code class="value">4</code><code class="plain">=100G</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># SFP+ ports</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># &lt;port label </code><code class="value">33</code><code class="plain">-</code><code class="value">34</code><code class="plain">&gt; = [10G|disabled]</code></div>
+<div class="line"><code class="value">33</code><code class="plain">=disabled</code></div>
+<div class="line"><code class="value">34</code><code class="plain">=disabled</code></div>
+</div>
+    </div>
+    <p  >Notice that you can break out any of the 100G ports into a variety of options: four 10G ports, four 25G ports or two 50G ports. Keep in mind that you cannot have more than 128 total logical ports on a Broadcom switch.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >For both 100G and 40G switches using Mellanox Spectrum chipsets, there is a limit of 64 logical ports in total. However, the logical ports must be configured as follows:    </p>
+<ul class=" "><li class=" ">    <p  >You can only break out odd-numbered ports into 4 logical ports.    </p>
+</li><li class=" ">    <p  >You must disable the next even-numbered port.    </p>
+</li></ul>    <p  >For example, if you have a 100G Mellanox SN-2700 switch and configure port 11 as 4x25G logical ports, you must configure port 12 as disabled. In <tt class=" ">/etc/cumulus/ports.conf</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">...</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">11=4x25G</code></div>
+<div class="line"><code class="plain">12=disabled</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+        </div>
+    </div>
+    <div class="section section-2" id="src-5126996_Layer1andSwitchPortAttributes-CombiningFour10GPortsintoOne40GPort">
+        <h2 class="heading "><span>Combining Four 10G Ports into One 40G Port</span></h2>
+    <p  >You can <i class=" ">gang</i> (or aggregate) four 10G ports into one 40G port for use with a breakout cable, provided you follow these requirements:    </p>
+<ul class=" "><li class=" ">    <p  >You must gang four 10G ports in sequential order. For example, you cannot gang swp1, swp10, swp20 and swp40 together.    </p>
+</li><li class=" ">    <p  >The ports must be in increments of four, with the starting port being swp1 (or swp5, swp9, or so forth); so you cannot gang swp2, swp3, swp4 and swp5 together.    </p>
+</li></ul>    <p  >For example, to gangs swp1 through swp4 into a 40G port, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add int swp1-4 breakout /4 </code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net commit</code></div>
+</div>
+    </div>
+    <p  >These commands create the following configuration snippet in the <tt class=" ">/etc/cumulus/ports.conf</tt> file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># SFP+ ports#</code></div>
+<div class="line"><code class="plain"># &lt;port label </code><code class="value">1</code><code class="plain">-</code><code class="value">48</code><code class="plain">&gt; = [10G|40G/</code><code class="value">4</code><code class="plain">]</code></div>
+<div class="line"><code class="value">1</code><code class="plain">=40G/</code><code class="value">4</code></div>
+<div class="line"><code class="value">2</code><code class="plain">=40G/</code><code class="value">4</code></div>
+<div class="line"><code class="value">3</code><code class="plain">=40G/</code><code class="value">4</code></div>
+<div class="line"><code class="value">4</code><code class="plain">=40G/</code><code class="value">4</code></div>
+<div class="line"><code class="value">5</code><code class="plain">=10G</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126996_Layer1andSwitchPortAttributes-LogicalSwitchPortLimitations">
+        <h1 class="heading "><span>Logical Switch Port Limitations</span></h1>
+    <p  ><span id="src-5126996_indexterm-28EA2EC69667700D97C12B81B5090D71">100G and 40G </span><span id="src-5126996_indexterm-FC195363772CD9BD0123AFEF0AB818AC">switches </span>with Spectrum, Tomahawk, Trident II and Trident II+ chipsets (check the <a  class="external-link" href="http://cumulusnetworks.com/support/linux-hardware-compatibility-list/">HCL</a>) can support a certain number of logical ports, depending upon the manufacturer.    </p>
+    <p  >Before you configure any logical/unganged ports on a switch, check the limitations listed in <tt class=" ">/etc/cumulus/ports.conf</tt>; this file is specific to each manufacturer.    </p>
+    <p  >For example, the Dell S6000 <tt class=" ">ports.conf</tt> file indicates the logical port limitation like this:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># ports.conf --</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># This file controls port aggregation and subdivision.  For example, QSFP+</code></div>
+<div class="line"><code class="plain"># ports are typically configurable as either one 40G </code><code class="keyword">interface</code><code class="plain"> or four</code></div>
+<div class="line"><code class="plain"># 10G/</code><code class="value">1000</code><code class="plain">/</code><code class="value">100</code><code class="plain"> interfaces.  This file sets the number of interfaces per port</code></div>
+<div class="line"><code class="plain"># </code><code class="keyword">while</code><code class="plain"> /etc/network/interfaces and ethtool configure the link speed </code><code class="keyword">for</code><code class="plain"> each</code></div>
+<div class="line"><code class="plain"># </code><code class="keyword">interface</code><code class="plain">.</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># You must restart switchd </code><code class="keyword">for</code><code class="plain"> changes to take effect.</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># The DELL S6000 has:</code></div>
+<div class="line"><code class="plain">#     </code><code class="value">32</code><code class="plain"> QSFP ports numbered </code><code class="value">1</code><code class="plain">-</code><code class="value">32</code></div>
+<div class="line"><code class="plain">#     These ports are configurable as 40G, split into 4x10G ports or</code></div>
+<div class="line"><code class="plain">#     disabled.</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">#     The X pipeline covers QSFP ports </code><code class="value">1</code><code class="plain"> through </code><code class="value">16</code><code class="plain"> and the Y pipeline</code></div>
+<div class="line"><code class="plain">#     covers QSFP ports </code><code class="value">17</code><code class="plain"> through </code><code class="value">32</code><code class="plain">.</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">#     The Trident2 chip can only handle </code><code class="value">52</code><code class="plain"> logical ports per pipeline.</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">#     This means </code><code class="value">13</code><code class="plain"> is the maximum number of 40G ports you can ungang</code></div>
+<div class="line"><code class="plain">#     per pipeline, with the remaining three 40G ports set to</code></div>
+<div class="line"><code class="plain">#     </code><code class="string">"disabled"</code><code class="plain">. The </code><code class="value">13</code><code class="plain"> 40G ports become </code><code class="value">52</code><code class="plain"> unganged 10G ports, which</code></div>
+<div class="line"><code class="plain">#     totals </code><code class="value">52</code><code class="plain"> logical ports </code><code class="keyword">for</code><code class="plain"> that pipeline.</code></div>
+<div class="line"><code class="plain"># </code></div>
+</div>
+    </div>
+    <p  >The means the maximum number of ports for this Dell S6000 is 104.    </p>
+    <p  >For switches using Mellanox Spectrum chipsets, there is a limit of 64 logical ports in total. However, the logical ports must be configured in a specific way. See <a   href="#src-5126996_Layer1andSwitchPortAttributes-breakout">the note</a> above.    </p>
+    </div>
+    <div class="section section-1" id="src-5126996_Layer1andSwitchPortAttributes-ethtoolUsingethtooltoConfigureInterfaces">
+        <h1 class="heading "><span id="src-5126996_Layer1andSwitchPortAttributes-ethtool" class="confluence-anchor-link"></span><span>Using ethtool to Configure Interfaces</span></h1>
+    <p  >The Cumulus Linux <tt class=" ">ethtool</tt> command is an alternative for configuring interfaces as well as viewing and troubleshooting them.    </p>
+    <p  >For example, to manually set link speed, auto-negotiation, duplex mode and FEC on swp1, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ethtool -s swp1 speed 25000 autoneg off duplex full</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ethtool --set-fec swp1 encoding off</code></div>
+</div>
+    </div>
+    <p  >To view the FEC setting on an interface, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ethtool --show-fec swp1FEC parameters for swp1:</code></div>
+<div class="line"><code class="plain">Auto-negotiation: off</code></div>
+<div class="line"><code class="plain">FEC encodings : RS</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126996_Layer1andSwitchPortAttributes-VerificationandTroubleshootingCommands">
+        <h1 class="heading "><span>Verification and Troubleshooting Commands</span></h1>
+    <div class="section section-2" id="src-5126996_Layer1andSwitchPortAttributes-Statistics">
+        <h2 class="heading "><span>Statistics</span></h2>
+    <p  ><span id="src-5126996_indexterm-E16F35CD31B00E79D8385160211AC3CC">High-level </span>interface statistics are available with the <tt class=" ">net show interface</tt> command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show </code><code class="keyword">interface</code><code class="plain"> swp1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    Name    MAC                Speed      MTU  Mode</code></div>
+<div class="line"><code class="plain">--  ------  -----------------  -------  -----  ---------</code></div>
+<div class="line"><code class="plain">UP  swp1    </code><code class="value">44</code><code class="plain">:</code><code class="value">38</code><code class="plain">:</code><code class="value">39</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">04</code><code class="plain">  1G        </code><code class="value">1500</code><code class="plain">  Access/L2</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Vlans in disabled State</code></div>
+<div class="line"><code class="plain">-------------------------</code></div>
+<div class="line"><code class="plain">br0</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Counters      TX    RX</code></div>
+<div class="line"><code class="plain">----------  ----  ----</code></div>
+<div class="line"><code class="plain">errors         </code><code class="value">0</code><code class="plain">     </code><code class="value">0</code></div>
+<div class="line"><code class="plain">unicast        </code><code class="value">0</code><code class="plain">     </code><code class="value">0</code></div>
+<div class="line"><code class="plain">broadcast      </code><code class="value">0</code><code class="plain">     </code><code class="value">0</code></div>
+<div class="line"><code class="plain">multicast      </code><code class="value">0</code><code class="plain">     </code><code class="value">0</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">LLDP</code></div>
+<div class="line"><code class="plain">------  ----  ---------------------------</code></div>
+<div class="line"><code class="plain">swp1    ====  </code><code class="value">44</code><code class="plain">:</code><code class="value">38</code><code class="plain">:</code><code class="value">39</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">03</code><code class="plain">(server01)</code></div>
+</div>
+    </div>
+    <p  >Low-level interface statistics are available with <tt class=" ">ethtool</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo ethtool -S swp1</code></div>
+<div class="line"><code class="plain">NIC statistics:</code></div>
+<div class="line"><code class="plain">     HwIfInOctets: </code><code class="value">21870</code></div>
+<div class="line"><code class="plain">     HwIfInUcastPkts: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfInBcastPkts: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfInMcastPkts: </code><code class="value">243</code></div>
+<div class="line"><code class="plain">     HwIfOutOctets: </code><code class="value">1148217</code></div>
+<div class="line"><code class="plain">     HwIfOutUcastPkts: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfOutMcastPkts: </code><code class="value">11353</code></div>
+<div class="line"><code class="plain">     HwIfOutBcastPkts: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfInDiscards: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfInL3Drops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfInBufferDrops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfInAclDrops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfInBlackholeDrops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfInDot3LengthErrors: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfInErrors: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     SoftInErrors: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     SoftInDrops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     SoftInFrameErrors: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfOutDiscards: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfOutErrors: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfOutQDrops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfOutNonQDrops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     SoftOutErrors: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     SoftOutDrops: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     SoftOutTxFifoFull: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">     HwIfOutQLen: </code><code class="value">0</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126996_Layer1andSwitchPortAttributes-QueryingSFPPortInformation">
+        <h2 class="heading "><span>Querying SFP Port Information</span></h2>
+    <p  ><span id="src-5126996_indexterm-F39F9A9DC1976A3AC300058B17109956">You can verify </span><span id="src-5126996_indexterm-914DE000E55429874A2FF9604C57F186">SFP settings using </span><tt class=" ">ethtool -m</tt>. The following example shows the output for 1G and 10G modules:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~# sudo ethtool -m | egrep </code><code class="string">'(swp|RXPower :|TXPower :|EthernetComplianceCode)'</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">swp1: SFP detected</code></div>
+<div class="line"><code class="plain">              EthernetComplianceCodes : 1000BASE-LX</code></div>
+<div class="line"><code class="plain">              RXPower : -</code><code class="value">10</code><code class="plain">.4479dBm</code></div>
+<div class="line"><code class="plain">              TXPower : </code><code class="value">18</code><code class="plain">.0409dBm</code></div>
+<div class="line"><code class="plain">swp3: SFP detected</code></div>
+<div class="line"><code class="plain">              10GEthernetComplianceCode : 10G Base-LR</code></div>
+<div class="line"><code class="plain">              RXPower : -</code><code class="value">3</code><code class="plain">.2532dBm</code></div>
+<div class="line"><code class="plain">              TXPower : -</code><code class="value">2</code><code class="plain">.0817dBm</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126996_Layer1andSwitchPortAttributes-CaveatsandErrata">
+        <h1 class="heading "><span>Caveats and Errata</span></h1>
+    <div class="section section-2" id="src-5126996_Layer1andSwitchPortAttributes-TimeoutErroronQuantaLY8andLY9Switches">
+        <h2 class="heading "><span>Timeout Error on Quanta LY8 and LY9 Switches</span></h2>
+    <p  >On Quanta T5048-LY8 and T3048-LY9 switches, an &quot;Operation timed out&quot; error occurs while removing and reinserting QSFP module.    </p>
+    <p  >The QSPFx2 module cannot be removed while the switch is powered on, as it is not hot-swappable. However, if this occurs, you can get the link to come up; however, this involves <a   href="Configuring_switchd.html#src-5126758_Configuringswitchd-restartswitchd">restarting <tt class=" ">switchd</tt></a>, which disrupts your network.    </p>
+    <p  >On the T3048-LY9, run the following commands:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo echo </code><code class="value">0</code><code class="plain"> &gt; qsfpd_power_enable/value</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo rmmod quanta_ly9_rangeley_platform </code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo modprobe quanta_ly9_rangeley_platform</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl restart switchd.service</code></div>
+</div>
+    </div>
+    <p  >On the T5048-LY8, run the following commands:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo echo </code><code class="value">0</code><code class="plain"> &gt; qsfpd_power_enable/value</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl restart switchd.service</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126996_Layer1andSwitchPortAttributes-RelatedInformation">
+        <h1 class="heading "><span>Related Information</span></h1>
+<ul class=" "><li class=" ">    <p  ><a  class="external-link" href="http://wiki.debian.org/NetworkConfiguration">Debian - Network Configuration</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan">Linux Foundation - VLANs</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge">Linux Foundation - Bridges</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding">Linux Foundation - Bonds</a>    </p>
+</li></ul>    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Interface_Configuration_and_Management.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Interface Configuration and Management</span>
+        </a>
+                <a href="Buffer_and_Queue_Management.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Buffer and Queue Management</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

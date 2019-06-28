@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network Solutions on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_301/Network_Solutions/</link>
+    <description>Recent content in Network Solutions on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_301/Network_Solutions/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cumulus Networks Services Demos</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Network_Solutions/Cumulus_Linux_301/Network_Solutions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Network_Solutions/Cumulus_Linux_301/Network_Solutions/</guid>
+      <description>The Cumulus Networks Services team demos provide a virtual environment built using either VirtualBox or libvirt using Vagrant to manage the VMs. This environment utilizes the reference topology shown below. Vagrant and Cumulus VX can be used together to build virtual simulations of production networks to validate configurations, develop automation code and simulate failure scenarios.
+Contents Reference Topology The Cumulus Networks reference topology includes cabling (in DOT format for dual use with PTM), MAC addressing, IP addressing, switches and servers.</description>
+    </item>
+    
+    <item>
+      <title>Docker on Cumulus Linux</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Network_Solutions/Cumulus_Linux_301/Network_Solutions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Network_Solutions/Cumulus_Linux_301/Network_Solutions/</guid>
+      <description>Cumulus Linux 3.0 is based on Linux kernel 4.1, which supports the Docker engine. This means you can install Docker directly on a Cumulus Linux switch and you can run Docker containers natively on the switch.
+ cumulus@switch:~$ uname -r 4.1.0-cl-1-amd64  Contents Installing Docker Before installing Docker, add the Debian Jessie apt repository to Cumulus Linux:
+ cumulus@switch:~$ echo &amp;quot;deb http://ftp.us.debian.org/debian/ jessie main contrib non-free&amp;quot; | sudo tee -a /etc/apt/sources.</description>
+    </item>
+    
+  </channel>
+</rss>

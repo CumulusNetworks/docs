@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Integrating Hardware VTEPs with Midokura MidoNet and OpenStack - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Network_Virtualization.html">Network Virtualization</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126899"> <span>Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  >Cumulus Linux seamlessly integrates with the MidoNet OpenStack infrastructure, where the switches provide the VTEP gateway for terminating VXLAN tunnels from within MidoNet. MidoNet connects to the OVSDB server running on the Cumulus Linux switch, and exchanges information about the VTEPs and MAC addresses associated with the OpenStack Neutron networks. This provides seamless Ethernet connectivity between virtual and physical server infrastructures.    </p>
+    <p  >    <img  class="confluence-embedded-image image-center" src="images/download/attachments/5126899/MidoNet.png" alt="images/download/attachments/5126899/MidoNet.png" width="500"  />
+        </p>
+    <div class="section section-1" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-GettingStarted">
+        <h1 class="heading "><span>Getting Started</span></h1>
+    <p  >Before you create VXLANs with MidoNet, make sure you have the following components:    </p>
+<ul class=" "><li class=" ">    <p  >A switch (L2 gateway) with a Tomahawk, Trident II+ or Trident II chipset running Cumulus Linux 2.0 and later    </p>
+</li><li class=" ">    <p  >OVSDB server (<tt class=" ">ovsdb-server</tt>), included in Cumulus Linux 2.0 and later    </p>
+</li><li class=" ">    <p  >VTEPd (<tt class=" ">ovs-vtepd</tt>), included in Cumulus Linux 2.0 and later    </p>
+</li></ul>    <p  >Integrating a VXLAN with MidoNet involves:    </p>
+<ul class=" "><li class=" ">    <p  >Preparing for the MidoNet integration    </p>
+</li><li class=" ">    <p  >Bootstrapping the OVS and VTEP    </p>
+</li><li class=" ">    <p  >Configuring the MidoNet VTEP binding    </p>
+</li><li class=" ">    <p  >Verifying the VXLAN configuration    </p>
+</li></ul>    <div class="section section-2" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-CaveatsandErrata">
+        <h2 class="heading "><span>Caveats and Errata</span></h2>
+<ul class=" "><li class=" ">    <p  >There is no support for VXLAN routing in the Tomahawk, Trident II+ and Trident II chipsets; use a loopback interface or external router.    </p>
+</li><li class=" ">    <p  >For more information about MidoNet, see the MidoNet Operations Guide, version 1.8 or later.    </p>
+</li></ul>    </div>
+    <div class="section section-2" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-PreparingfortheMidoNetIntegration">
+        <h2 class="heading "><span>Preparing for the MidoNet Integration</span></h2>
+    <p  >Before you start configuring the MidoNet tunnel zones, VTEP binding and connecting virtual ports to the VXLAN, you need to complete the bootstrap process on each switch to which you plan to build VXLAN tunnels. This creates the VTEP gateway and initializes the OVS database server. You only need to do the bootstrapping once, before you begin the MidoNet integration.    </p>
+    <div class="section section-3" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-Enablingtheopenvswitch-vtepPackage">
+        <h3 class="heading "><span>Enabling the openvswitch-vtep Package</span></h3>
+    <p  >Before you start bootstrapping the integration, you need to enable the <tt class=" ">openvswitch-vtep</tt> package, since it is disabled by default in Cumulus Linux.    </p>
+<ol class=" "><li class=" ">    <p  >Edit the <tt class=" ">/etc/default/openvswitch-vtep</tt> file, changing the <tt class=" ">START</tt> option from <i class=" ">no</i> to <i class=" ">yes</i>. This simple <tt class=" ">sed</tt> command does this, and creates a backup as well:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo sed -i.bak s/START=no/START=yes/g /etc/</code><code class="keyword">default</code><code class="plain">/openvswitch-vtep</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Start the daemon:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl start openvswitch-vtep.service</code></div>
+</div>
+    </div>
+</li></ol>    </div>
+    </div>
+    <div class="section section-2" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-BootstrappingtheOVSDBServerandVTEP">
+        <h2 class="heading "><span>Bootstrapping the OVSDB Server and VTEP</span></h2>
+    <div class="section section-3" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-AutomatingwiththeBootstrapScript">
+        <h3 class="heading "><span>Automating with the Bootstrap Script</span></h3>
+    <p  >The <tt class=" ">vtep-bootstrap</tt> script is available so you can do the bootstrapping automatically. For information, read <tt class=" ">man vtep-bootstrap</tt>. This script requires three parameters, in this order:    </p>
+<ul class=" "><li class=" ">    <p  >Switch name: The name of the switch that is the VTEP gateway.    </p>
+</li><li class=" ">    <p  >Tunnel IP address: The datapath IP address of the VTEP.    </p>
+</li><li class=" ">    <p  >Management IP address: The IP address of the switch's management interface.    </p>
+</li></ul>    <p  class="expand-control-text">For example, click here ...    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtep-bootstrap sw11 </code><code class="value">10.111</code><code class="plain">.</code><code class="value">1.1</code><code class="plain"> </code><code class="value">10.50</code><code class="plain">.</code><code class="value">20.21</code><code class="plain"> --no_encryption</code></div>
+<div class="line"><code class="plain">Executed: </code></div>
+<div class="line"><code class="plain"> define physical </code><code class="keyword">switch</code></div>
+<div class="line"><code class="plain"> ().</code></div>
+<div class="line"><code class="plain">Executed: </code></div>
+<div class="line"><code class="plain"> define local tunnel IP address on the </code><code class="keyword">switch</code></div>
+<div class="line"><code class="plain"> ().</code></div>
+<div class="line"><code class="plain">Executed: </code></div>
+<div class="line"><code class="plain"> define management IP address on the </code><code class="keyword">switch</code></div>
+<div class="line"><code class="plain"> ().</code></div>
+<div class="line"><code class="plain">Executed: </code></div>
+<div class="line"><code class="plain"> restart a service</code></div>
+<div class="line"><code class="plain"> (Killing ovs-vtepd (</code><code class="value">28170</code><code class="plain">).</code></div>
+<div class="line"><code class="plain">Killing ovsdb-server (</code><code class="value">28146</code><code class="plain">).</code></div>
+<div class="line"><code class="plain">Starting ovsdb-server.</code></div>
+<div class="line"><code class="plain">Starting ovs-vtepd.).</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >    </p>
+    <p  >Since MidoNet does not have a controller, you need to use a dummy IP address (for example, 1.1.1.1) for the controller parameter in the bootstrap script. After the script completes, delete the VTEP manager, since it is not needed and will otherwise fill the logs with inconsequential error messages:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtep-ctl del-manager</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-ManuallyBootstrapping">
+        <h3 class="heading "><span>Manually Bootstrapping</span></h3>
+    <p  >If you don't use the bootstrap script, then you must initialize the OVS database instance manually, and create the VTEP.    </p>
+    <p  >Perform the following commands in order (see the automated bootstrapping example above for values):    </p>
+<ol class=" "><li class=" ">    <p  >Define the switch in OVSDB:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtep-ctl add-ps &lt;switch_name&gt;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Define the VTEP tunnel IP address:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtep-ctl set Physical_switch &lt;switch_name&gt; tunnel_ips=&lt;tunnel_ip&gt;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Define the management interface IP address:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtep-ctl set Physical_switch &lt;switch_name&gt; management_ips=&lt;management_ip&gt;</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Restart the OVSDB server and <tt class=" ">vtepd</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl restart openvswitch-vtep.service</code></div>
+</div>
+    </div>
+</li></ol>    <p  >At this point, the switch is ready to connect to MidoNet. The rest of the configuration is performed in the MidoNet Manager GUI, or using the MidoNet API.    </p>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-ConfiguringMidoNetVTEPandPortBindings">
+        <h2 class="heading "><span>Configuring MidoNet VTEP and Port Bindings</span></h2>
+    <p  >This part of the configuration sets up MidoNet and OpenStack to connect the virtualization environment to the Cumulus Linux switch. The <tt class=" ">midonet-agent</tt> is the networking component that manages the VXLAN, while the Open Virtual Switch (OVS) client on the OpenStack controller node communicates MAC address information between the <tt class=" ">midonet-agent</tt> and the Cumulus Linux OVS database (OVSDB) server.    </p>
+    <div class="section section-3" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-UsingtheMidoNetManagerGUI">
+        <h3 class="heading "><span>Using the MidoNet Manager GUI</span></h3>
+    <div class="section section-4" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-CreatingaTunnelZone">
+        <h4 class="heading "><span>Creating a Tunnel Zone</span></h4>
+<ol class=" "><li class=" ">    <p  >Click <strong class=" ">Tunnel Zones</strong> in the menu on the left side.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Add</strong>.    </p>
+</li><li class=" ">    <p  >Give the tunnel zone a <strong class=" ">Name</strong> and select &quot;<strong class=" ">VTEP</strong>&quot; for the <strong class=" ">Type</strong>.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Save</strong>.    </p>
+    <img  class="confluence-embedded-image" src="images/download/attachments/5126899/Midonet_Add_Tzone.png" alt="images/download/attachments/5126899/Midonet_Add_Tzone.png" width="500"  />
+    </li></ol>    </div>
+    <div class="section section-4" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-AddingHoststoaTunnelZone">
+        <h4 class="heading "><span>Adding Hosts to a Tunnel Zone</span></h4>
+    <p  >Once the tunnel zone is created, click the name of the tunnel zone to view the hosts table.    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126899/MidoNet_tzone_list.png" alt="images/download/attachments/5126899/MidoNet_tzone_list.png" width="500"  />
+        </p>
+    <p  >The tunnel zone is a construct used to define the VXLAN source address used for the tunnel. This host's address is used for the source of the VXLAN encapsulation, and traffic will transit into the routing domain from this point. Thus, the host must have layer 3 reachability to the Cumulus Linux switch tunnel IP.    </p>
+    <p  >Next, add a host entry to the tunnel zone:    </p>
+<ol class=" "><li class=" ">    <p  >Click <strong class=" ">Add</strong>.    </p>
+</li><li class=" ">    <p  >Select a host from the <strong class=" ">Host</strong> list.    </p>
+</li><li class=" ">    <p  >Provide the tunnel source <strong class=" ">IP Address</strong> to use on the selected host.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Save</strong>.    </p>
+    <img  class="confluence-embedded-image" src="images/download/attachments/5126899/MidoNet_tzone_add_host.png" alt="images/download/attachments/5126899/MidoNet_tzone_add_host.png" width="500"  />
+    </li></ol>    <p  >The host list now displays the new entry:    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126899/MidoNet_tzone_host_done_list.png" alt="images/download/attachments/5126899/MidoNet_tzone_host_done_list.png" width="500"  />
+        </p>
+    </div>
+    <div class="section section-4" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-CreatingtheVTEP">
+        <h4 class="heading "><span>Creating the VTEP</span></h4>
+<ol class=" "><li class=" ">    <p  >Click the <strong class=" ">Vteps</strong> menu on the left side.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Add</strong>.    </p>
+</li><li class=" ">    <p  >Fill out the fields using the same information you used earlier on the switch for the bootstrap procedure:<br/>- <strong class=" ">Management IP</strong> is typically the eth0 address of the switch. This tells the OVS-client to connect to the OVSDB-server on the Cumulus Linux switch.<br/>- <strong class=" ">Management Port</strong> <strong class=" ">Number</strong> is the PTCP port you configured in the <tt class=" ">ovs-ctl-vtep</tt> script earlier (the example uses 6632).<br/>- <strong class=" ">Tunnel Zone</strong> is the name of the zone you created in the previous procedure.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Save</strong>.    </p>
+    <img  class="confluence-embedded-image" src="images/download/attachments/5126899/MidoNet_Add_VTEP.png" alt="images/download/attachments/5126899/MidoNet_Add_VTEP.png" width="500"  />
+    </li></ol>    <p  >The new VTEP appears in the list below. MidoNet then initiates a connection between the OpenStack Controller and the Cumulus Linux switch. If the OVS client is successfully connected to the OVSDB server, the VTEP entry should display the switch name and VXLAN tunnel IP address, which you specified during the bootstrapping process.    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126899/MidoNet_Add_VTEP_list.png" alt="images/download/attachments/5126899/MidoNet_Add_VTEP_list.png" width="500"  />
+        </p>
+    </div>
+    <div class="section section-4" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-BindingPortstotheVTEP">
+        <h4 class="heading "><span>Binding Ports to the VTEP</span></h4>
+    <p  >Now that connectivity is established to the switch, you need to add a physical port binding to the VTEP on the Cumulus Linux switch:    </p>
+<ol class=" "><li class=" ">    <p  >Click <strong class=" ">Add</strong>.    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">Port Name</strong> list, select the port on the Cumulus Linux switch that you are using to connect to the VXLAN segment.    </p>
+</li><li class=" ">    <p  >Specify the <strong class=" ">VLAN ID</strong> (enter 0 for untagged).    </p>
+</li><li class=" ">    <p  >In the <strong class=" ">Bridge</strong> list, select the MidoNet bridge that the instances (VMs) are using in OpenStack.    </p>
+</li><li class=" ">    <p  >Click <strong class=" ">Save</strong>.    </p>
+    <img  class="confluence-embedded-image" src="images/download/attachments/5126899/MidoNet_Add_Port_Binding.png" alt="images/download/attachments/5126899/MidoNet_Add_Port_Binding.png" width="500"  />
+    </li></ol>    <p  >You should see the port binding displayed in the binding table under the VTEP.    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126899/MidoNet_Add_Port_Binding_list.png" alt="images/download/attachments/5126899/MidoNet_Add_Port_Binding_list.png" width="500"  />
+        </p>
+    <p  >Once the port is bound, this automatically configures a VXLAN bridge interface, and includes the VTEP interface and the port bound to the bridge. Now the OpenStack instances (VMs) should be able to ping the hosts connected to the bound port on the Cumulus switch. The Troubleshooting section below demonstrates the verification of the VXLAN data and control planes.    </p>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-UsingtheMidoNetCLI">
+        <h3 class="heading "><span>Using the MidoNet CLI</span></h3>
+    <p  >To get started with the MidoNet CLI, you can access the CLI prompt on the OpenStack Controller:    </p>
+<pre class=" ">root@os-controller:~# midonet-cli<br/>midonet&gt;</pre>    <p  >Now from the MidoNet CLI, the commands explained in this section perform the same operations depicted in the previous section with the MidoNet Manager GUI.    </p>
+<ol class=" "><li class=" ">    <p  >Create a tunnel zone with a name and type <i class=" ">vtep</i>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">midonet&gt; tunnel-zone create name sw12 type vtep</code></div>
+<div class="line"><code class="plain">tzone1</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >The tunnel zone is a construct used to define the VXLAN source address used for the tunnel. This host's address is used for the source of the VXLAN encapsulation, and traffic will transit into the routing domain from this point. Thus, the host must have layer 3 reachability to the Cumulus Linux switch tunnel IP.    </p>
+<ul class=" "><li class=" ">    <p  >First, get the list of available hosts connected to the Neutron network and the MidoNet bridge.    </p>
+</li><li class=" ">    <p  >Next, get a listing of all the interfaces.    </p>
+</li><li class=" ">    <p  >Finally, add a host entry to the tunnel zone ID returned in the previous step, and specify which interface address to use.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">midonet&gt; list host</code></div>
+<div class="line"><code class="plain">host host0 name os-compute1 alive </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">host host1 name os-network alive </code><code class="keyword">true</code><code class="plain"> </code></div>
+<div class="line"><code class="plain">midonet&gt; host host0 list </code><code class="keyword">interface</code></div>
+<div class="line"><code class="plain">iface midonet host_id host0 status </code><code class="value">0</code><code class="plain"> addresses [] mac </code><code class="value">02</code><code class="plain">:4b:</code><code class="value">38</code><code class="plain">:</code><code class="value">92</code><code class="plain">:dd:ce mtu </code><code class="value">1500</code><code class="plain"> type Virtual endpoint DATAPATH</code></div>
+<div class="line"><code class="plain">iface lo host_id host0 status </code><code class="value">3</code><code class="plain"> addresses [u</code><code class="string">'127.0.0.1'</code><code class="plain">, u</code><code class="string">'169.254.169.254'</code><code class="plain">, u</code><code class="string">'0:0:0:0:0:0:0:1'</code><code class="plain">] mac </code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain"> mtu </code><code class="value">65536</code><code class="plain"> type Virtual endpoint LOCALHOST</code></div>
+<div class="line"><code class="plain">iface virbr0 host_id host0 status </code><code class="value">1</code><code class="plain"> addresses [u</code><code class="string">'192.168.122.1'</code><code class="plain">] mac </code><code class="value">22</code><code class="plain">:6e:</code><code class="value">63</code><code class="plain">:</code><code class="value">90</code><code class="plain">:1f:</code><code class="value">69</code><code class="plain"> mtu </code><code class="value">1500</code><code class="plain"> type Virtual endpoint UNKNOWN</code></div>
+<div class="line"><code class="plain">iface tap7cfcf84c-</code><code class="value">26</code><code class="plain"> host_id host0 status </code><code class="value">3</code><code class="plain"> addresses [u</code><code class="string">'fe80:0:0:0:e822:94ff:fee2:d41b'</code><code class="plain">] mac ea:</code><code class="value">22</code><code class="plain">:</code><code class="value">94</code><code class="plain">:e2:d4:1b mtu </code><code class="value">65000</code><code class="plain"> type Virtual endpoint DATAPATH</code></div>
+<div class="line"><code class="plain">iface eth1 host_id host0 status </code><code class="value">3</code><code class="plain"> addresses [u</code><code class="string">'10.111.0.182'</code><code class="plain">, u</code><code class="string">'fe80:0:0:0:5054:ff:fe85:acd6'</code><code class="plain">] mac </code><code class="value">52</code><code class="plain">:</code><code class="value">54</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">85</code><code class="plain">:ac:d6 mtu </code><code class="value">1500</code><code class="plain"> type Physical endpoint PHYSICAL</code></div>
+<div class="line"><code class="plain">iface tapfd4abcea-df host_id host0 status </code><code class="value">3</code><code class="plain"> addresses [u</code><code class="string">'fe80:0:0:0:14b3:45ff:fe94:5b07'</code><code class="plain">] mac </code><code class="value">16</code><code class="plain">:b3:</code><code class="value">45</code><code class="plain">:</code><code class="value">94</code><code class="plain">:5b:</code><code class="value">07</code><code class="plain"> mtu </code><code class="value">65000</code><code class="plain"> type Virtual endpoint DATAPATH</code></div>
+<div class="line"><code class="plain">iface eth0 host_id host0 status </code><code class="value">3</code><code class="plain"> addresses [u</code><code class="string">'10.50.21.182'</code><code class="plain">, u</code><code class="string">'fe80:0:0:0:5054:ff:feef:c5dc'</code><code class="plain">] mac </code><code class="value">52</code><code class="plain">:</code><code class="value">54</code><code class="plain">:</code><code class="value">00</code><code class="plain">:ef:c5:dc mtu </code><code class="value">1500</code><code class="plain"> type Physical endpoint PHYSICAL</code></div>
+<div class="line"><code class="plain">midonet&gt; tunnel-zone tzone0 add member host host0 address </code><code class="value">10.111</code><code class="plain">.</code><code class="value">0.182</code></div>
+<div class="line"><code class="plain">zone tzone0 host host0 address </code><code class="value">10.111</code><code class="plain">.</code><code class="value">0.182</code></div>
+</div>
+    </div>
+</li></ul>    <p  >Repeat this procedure for each OpenStack host connected to the Neutron network and the MidoNet bridge.    </p>
+</li><li class=" ">    <p  >Create a VTEP and assign it to the tunnel zone ID returned in the previous step. The management IP address (the destination address for the VXLAN/remote VTEP) and the port must be the same ones you configured in the <tt class=" ">vtep-bootstrap</tt> script or the manual bootstrapping:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">midonet&gt; vtep add management-ip </code><code class="value">10.50</code><code class="plain">.</code><code class="value">20.22</code><code class="plain"> management-port </code><code class="value">6632</code><code class="plain"> tunnel-zone tzone0</code></div>
+<div class="line"><code class="plain">name sw12 description sw12 management-ip </code><code class="value">10.50</code><code class="plain">.</code><code class="value">20.22</code><code class="plain"> management-port </code><code class="value">6632</code><code class="plain"> tunnel-zone tzone0 connection-state CONNECTED</code></div>
+</div>
+    </div>
+    <p  >In this step, MidoNet initiates a connection between the OpenStack Controller and the Cumulus Linux switch. If the OVS client is successfully connected to the OVSDB server, the returned values should show the name and description matching the <tt class=" ">switch-name</tt> parameter specified in the bootstrap process.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Verify the connection-state as CONNECTED, otherwise if ERROR is returned, you must debug. Typically this only fails if the <tt class=" ">management-ip</tt> and/or <tt class=" ">management-port</tt> settings are wrong.    </p>
+        </div>
+    </div>
+</li><li class=" ">    <p  >The VTEP binding uses the information provided to MidoNet from the OVSDB server, providing a list of ports that the hardware VTEP can use for layer 2 attachment. This binding virtually connects the physical interface to the overlay switch, and joins it to the Neutron bridged network.    </p>
+    <p  >First, get the UUID of the Neutron network behind the MidoNet bridge:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">midonet&gt; list bridge</code></div>
+<div class="line"><code class="plain">bridge bridge0 name internal state up</code></div>
+<div class="line"><code class="plain">bridge bridge1 name internal2 state up</code></div>
+<div class="line"><code class="plain">midonet&gt; show bridge bridge1 id</code></div>
+<div class="line"><code class="plain">6c9826da-</code><code class="value">6655</code><code class="plain">-4fe3-a826-4dcba6477d2d</code></div>
+</div>
+    </div>
+    <p  >Next, create the VTEP binding, using the UUID and the switch port being bound to the VTEP on the remote end. If there is no VLAN ID, set <tt class=" ">vlan</tt> to 0:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">midonet&gt; vtep name sw12 binding add network-id 6c9826da-</code><code class="value">6655</code><code class="plain">-4fe3-a826-4dcba6477d2d physical-port swp11s0 vlan </code><code class="value">0</code></div>
+<div class="line"><code class="plain">management-ip </code><code class="value">10.50</code><code class="plain">.</code><code class="value">20.22</code><code class="plain"> physical-port swp11s0 vlan </code><code class="value">0</code><code class="plain"> network-id 6c9826da-</code><code class="value">6655</code><code class="plain">-4fe3-a826-4dcba6477d2d</code></div>
+</div>
+    </div>
+</li></ol>    <p  >At this point, the VTEP should be connected, and the layer 2 overlay should be operational. From the openstack instance (VM), you should be able to ping a physical server connected to the port bound to the hardware switch VTEP.    </p>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-TroubleshootingMidoNetandCumulusVTEPs">
+        <h1 class="heading "><span>Troubleshooting MidoNet and Cumulus VTEPs</span></h1>
+    <p  >As with any complex system, there is a control plane and data plane.    </p>
+    <div class="section section-2" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-TroubleshootingtheControlPlane">
+        <h2 class="heading "><span>Troubleshooting the Control Plane</span></h2>
+    <p  >In this solution, the control plane consists of the connection between the OpenStack Controller, and each Cumulus Linux switch running the <tt class=" ">ovsdb-server</tt> and <tt class=" ">vtepd</tt> daemons.    </p>
+    <div class="section section-3" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-VerifyingVTEPandOVSDBServices">
+        <h3 class="heading "><span>Verifying VTEP and OVSDB Services</span></h3>
+    <p  >First, it is important that the OVSDB server and <tt class=" ">ovs-vtep</tt> daemon are running. Verify this is the case:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch12</code><code class="plain">:~$ systemctl status openvswitch-vtep.service</code></div>
+<div class="line"><code class="plain">ovsdb-server is running with pid </code><code class="value">17440</code></div>
+<div class="line"><code class="plain">ovs-vtepd is running with pid </code><code class="value">17444</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-VerifyingOVSDB-serverConnections">
+        <h3 class="heading "><span>Verifying OVSDB-server Connections</span></h3>
+    <p  >From the OpenStack Controller host, verify that it can connect to the <tt class=" ">ovsdb-server</tt>. Telnet to the switch IP address on port 6632:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">root</code><code class="color1">@os</code><code class="plain">-controller:~# telnet </code><code class="value">10.50</code><code class="plain">.</code><code class="value">20.22</code><code class="plain"> </code><code class="value">6632</code></div>
+<div class="line"><code class="plain">Trying </code><code class="value">10.50</code><code class="plain">.</code><code class="value">20.22</code><code class="plain">...</code></div>
+<div class="line"><code class="plain">Connected to </code><code class="value">10.50</code><code class="plain">.</code><code class="value">20.22</code><code class="plain">.</code></div>
+<div class="line"><code class="plain">Escape character is </code><code class="string">'^]'</code><code class="plain">.</code></div>
+<div class="line"><code class="plain">&lt;Ctrl+c&gt;</code></div>
+<div class="line"><code class="plain">Connection closed by foreign host.</code></div>
+</div>
+    </div>
+    <p  >If the connection fails, verify IP reachability from the host to the switch. If that succeeds, it is likely the bootstrap process did not set up port 6632. Redo the bootstrapping procedures above.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">root</code><code class="color1">@os</code><code class="plain">-controller:~# ping -c1 </code><code class="value">10.50</code><code class="plain">.</code><code class="value">20.22</code></div>
+<div class="line"><code class="plain">PING </code><code class="value">10.50</code><code class="plain">.</code><code class="value">20.22</code><code class="plain"> (</code><code class="value">10.50</code><code class="plain">.</code><code class="value">20.22</code><code class="plain">) </code><code class="value">56</code><code class="plain">(</code><code class="value">84</code><code class="plain">) bytes of data.</code></div>
+<div class="line"><code class="value">64</code><code class="plain"> bytes from </code><code class="value">10.50</code><code class="plain">.</code><code class="value">20.22</code><code class="plain">: icmp_seq=</code><code class="value">1</code><code class="plain"> ttl=</code><code class="value">63</code><code class="plain"> time=</code><code class="value">0.315</code><code class="plain"> ms</code></div>
+<div class="line"><code class="plain">--- </code><code class="value">10.50</code><code class="plain">.</code><code class="value">20.22</code><code class="plain"> ping statistics ---</code></div>
+<div class="line"><code class="value">1</code><code class="plain"> packets transmitted, </code><code class="value">1</code><code class="plain"> received, </code><code class="value">0</code><code class="plain">% packet loss, time 0ms</code></div>
+<div class="line"><code class="plain">rtt min/avg/max/mdev = </code><code class="value">0.315</code><code class="plain">/</code><code class="value">0.315</code><code class="plain">/</code><code class="value">0.315</code><code class="plain">/</code><code class="value">0.000</code><code class="plain"> ms</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-VerifyingtheVXLANBridgeandVTEPInterfaces">
+        <h3 class="heading "><span>Verifying the VXLAN Bridge and VTEP Interfaces</span></h3>
+    <p  >After creating the VTEP in MidoNet and adding an interface binding, you should see <strong class=" ">br-vxln</strong> and <strong class=" ">vxln</strong> interfaces on the switch. You can verify that the VXLAN bridge and VTEP interface are created and UP:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch12</code><code class="plain">:~$ sudo brctl show </code></div>
+<div class="line"><code class="plain">bridge name  bridge id         	STP 	enabled interfaces</code></div>
+<div class="line"><code class="plain">br-vxln10006 </code><code class="value">8000</code><code class="plain">.00e0ec2749a2 	no      swp11s0</code></div>
+<div class="line"><code class="plain">                                        vxln10006</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch12</code><code class="plain">:~$ sudo ip -d link show vxln10006</code></div>
+<div class="line"><code class="value">55</code><code class="plain">: vxln10006: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu </code><code class="value">1500</code><code class="plain"> qdisc noqueue master br-vxln10006 state UNKNOWN mode DEFAULT </code></div>
+<div class="line"><code class="plain">  link/ether </code><code class="value">72</code><code class="plain">:</code><code class="value">94</code><code class="plain">:eb:b6:6c:c3 brd ff:ff:ff:ff:ff:ff</code></div>
+<div class="line"><code class="plain">  vxlan id </code><code class="value">10006</code><code class="plain"> local </code><code class="value">10.111</code><code class="plain">.</code><code class="value">1.2</code><code class="plain"> port </code><code class="value">32768</code><code class="plain"> </code><code class="value">61000</code><code class="plain"> nolearning ageing </code><code class="value">300</code><code class="plain"> svcnode </code><code class="value">10.111</code><code class="plain">.</code><code class="value">0.182</code><code class="plain"> </code></div>
+<div class="line"><code class="plain">  bridge_slave</code></div>
+</div>
+    </div>
+    <p  >Next, look at the bridging table for the VTEP and the forwarding entries. The bound interface and the VTEP should be listed along with the MAC addresses of those interfaces. When the hosts attached to the bound port send data, those MACs are learned, and entered into the bridging table, as well as the OVSDB.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch12</code><code class="plain">:~$ brctl showmacs br-vxln10006</code></div>
+<div class="line"><code class="plain">port name 	mac addr 			vlan 	is local? 	ageing timer</code></div>
+<div class="line"><code class="plain">swp11s0 	</code><code class="value">00</code><code class="plain">:e0:ec:</code><code class="value">27</code><code class="plain">:</code><code class="value">49</code><code class="plain">:a2 	</code><code class="value">0</code><code class="plain"> 		yes 		</code><code class="value">0.00</code></div>
+<div class="line"><code class="plain">swp11s0 	</code><code class="value">64</code><code class="plain">:ae:0c:</code><code class="value">32</code><code class="plain">:f1:</code><code class="value">41</code><code class="plain"> 	</code><code class="value">0</code><code class="plain"> 		no 			</code><code class="value">0.01</code></div>
+<div class="line"><code class="plain">vxln10006 	</code><code class="value">72</code><code class="plain">:</code><code class="value">94</code><code class="plain">:eb:b6:6c:c3 	</code><code class="value">0</code><code class="plain"> 		yes 		</code><code class="value">0.00</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch12</code><code class="plain">:~$ sudo bridge fdb show br-vxln10006</code></div>
+<div class="line"><code class="plain">fa:</code><code class="value">16</code><code class="plain">:3e:</code><code class="value">14</code><code class="plain">:</code><code class="value">04</code><code class="plain">:2e dev vxln10004 dst </code><code class="value">10.111</code><code class="plain">.</code><code class="value">0.182</code><code class="plain"> vlan </code><code class="value">65535</code><code class="plain"> self permanent</code></div>
+<div class="line"><code class="value">00</code><code class="plain">:e0:ec:</code><code class="value">27</code><code class="plain">:</code><code class="value">49</code><code class="plain">:a2 dev swp11s0 vlan </code><code class="value">0</code><code class="plain"> master br-vxln10004 permanent</code></div>
+<div class="line"><code class="plain">b6:</code><code class="value">71</code><code class="plain">:</code><code class="value">33</code><code class="plain">:3b:a7:</code><code class="value">83</code><code class="plain"> dev vxln10004 vlan </code><code class="value">0</code><code class="plain"> master br-vxln10004 permanent</code></div>
+<div class="line"><code class="value">64</code><code class="plain">:ae:0c:</code><code class="value">32</code><code class="plain">:f1:</code><code class="value">41</code><code class="plain"> dev swp11s0 vlan </code><code class="value">0</code><code class="plain"> master br-vxln10004</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-DatapathTroubleshooting">
+        <h2 class="heading "><span>Datapath Troubleshooting</span></h2>
+    <p  >If you have verified the control plane is correct, and you still cannot get data between the OpenStack instances and the physical nodes on the switch, there may be something wrong with the data plane. The data plane consists of the actual VXLAN encapsulated path, between one of the OpenStack nodes running the <tt class=" ">midolman</tt> service. This is typically the compute nodes, but can include the MidoNet gateway nodes. If the OpenStack instances can ping the tenant router address but cannot ping the physical device connected to the switch (or vice versa), then something is wrong in the data plane.    </p>
+    <div class="section section-3" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-VerifyingIPReachability">
+        <h3 class="heading "><span>Verifying IP Reachability</span></h3>
+    <p  >First, there must be IP reachability between the encapsulating node, and the address you bootstrapped as the tunnel IP on the switch. Verify the OpenStack host can ping the tunnel IP. If this doesn't work, check the routing design, and fix the layer 3 problem first.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">root</code><code class="color1">@os</code><code class="plain">-compute1:~# ping -c1 </code><code class="value">10.111</code><code class="plain">.</code><code class="value">1.2</code></div>
+<div class="line"><code class="plain">PING </code><code class="value">10.111</code><code class="plain">.</code><code class="value">1.2</code><code class="plain"> (</code><code class="value">10.111</code><code class="plain">.</code><code class="value">1.2</code><code class="plain">) </code><code class="value">56</code><code class="plain">(</code><code class="value">84</code><code class="plain">) bytes of data.</code></div>
+<div class="line"><code class="value">64</code><code class="plain"> bytes from </code><code class="value">10.111</code><code class="plain">.</code><code class="value">1.2</code><code class="plain">: icmp_seq=</code><code class="value">1</code><code class="plain"> ttl=</code><code class="value">62</code><code class="plain"> time=</code><code class="value">0.649</code><code class="plain"> ms</code></div>
+<div class="line"><code class="plain">--- </code><code class="value">10.111</code><code class="plain">.</code><code class="value">1.2</code><code class="plain"> ping statistics ---</code></div>
+<div class="line"><code class="value">1</code><code class="plain"> packets transmitted, </code><code class="value">1</code><code class="plain"> received, </code><code class="value">0</code><code class="plain">% packet loss, time 0ms</code></div>
+<div class="line"><code class="plain">rtt min/avg/max/mdev = </code><code class="value">0.649</code><code class="plain">/</code><code class="value">0.649</code><code class="plain">/</code><code class="value">0.649</code><code class="plain">/</code><code class="value">0.000</code><code class="plain"> ms</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-MidoNetVXLANEncapsulation">
+        <h3 class="heading "><span>MidoNet VXLAN Encapsulation</span></h3>
+    <p  >If the instance (VM) cannot ping the physical server, or the reply is not returning, look at the packets on the OpenStack node. Initiate a ping from the OpenStack instance, then using <tt class=" ">tcpdump</tt>, hopefully you can see the VXLAN data. This example displays what it looks like when it is working.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">root</code><code class="color1">@os</code><code class="plain">-compute1:~# tcpdump -i eth1 -l -nnn -vvv -X -e port </code><code class="value">4789</code></div>
+<div class="line"><code class="value">52</code><code class="plain">:</code><code class="value">54</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">85</code><code class="plain">:ac:d6 &gt; </code><code class="value">00</code><code class="plain">:e0:ec:</code><code class="value">26</code><code class="plain">:</code><code class="value">50</code><code class="plain">:</code><code class="value">36</code><code class="plain">, ethertype IPv4 (</code><code class="value">0x0800</code><code class="plain">), length </code><code class="value">148</code><code class="plain">: (tos </code><code class="value">0x0</code><code class="plain">, ttl </code><code class="value">255</code><code class="plain">, id </code><code class="value">7583</code><code class="plain">, offset </code><code class="value">0</code><code class="plain">, flags [none], proto UDP (</code><code class="value">17</code><code class="plain">), length </code><code class="value">134</code><code class="plain">)</code></div>
+<div class="line"><code class="plain"> </code><code class="value">10.111</code><code class="plain">.</code><code class="value">0.182</code><code class="plain">.</code><code class="value">41568</code><code class="plain"> &gt; </code><code class="value">10.111</code><code class="plain">.</code><code class="value">1.2</code><code class="plain">.</code><code class="value">4789</code><code class="plain">: [no cksum] VXLAN, flags [I] (</code><code class="value">0x08</code><code class="plain">), vni </code><code class="value">10008</code></div>
+<div class="line"><code class="plain">fa:</code><code class="value">16</code><code class="plain">:3e:</code><code class="value">14</code><code class="plain">:</code><code class="value">04</code><code class="plain">:2e &gt; </code><code class="value">64</code><code class="plain">:ae:0c:</code><code class="value">32</code><code class="plain">:f1:</code><code class="value">41</code><code class="plain">, ethertype IPv4 (</code><code class="value">0x0800</code><code class="plain">), length </code><code class="value">98</code><code class="plain">: (tos </code><code class="value">0x0</code><code class="plain">, ttl </code><code class="value">64</code><code class="plain">, id </code><code class="value">64058</code><code class="plain">, offset </code><code class="value">0</code><code class="plain">, flags [DF], proto ICMP (</code><code class="value">1</code><code class="plain">), length </code><code class="value">84</code><code class="plain">)</code></div>
+<div class="line"><code class="plain"> </code><code class="value">10.111</code><code class="plain">.</code><code class="value">102.104</code><code class="plain"> &gt; </code><code class="value">10.111</code><code class="plain">.</code><code class="value">102.2</code><code class="plain">: ICMP echo request, id </code><code class="value">15873</code><code class="plain">, seq </code><code class="value">0</code><code class="plain">, length </code><code class="value">64</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0000</code><code class="plain">: </code><code class="value">4500</code><code class="plain"> </code><code class="value">0086</code><code class="plain"> 1d9f </code><code class="value">0000</code><code class="plain"> ff11 </code><code class="value">8732</code><code class="plain"> 0a6f 00b6 E..........</code><code class="value">2</code><code class="plain">.o..</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0010</code><code class="plain">: 0a6f </code><code class="value">0102</code><code class="plain"> a260 12b5 </code><code class="value">0072</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0800</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> .o...`...r......</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0020</code><code class="plain">: </code><code class="value">0027</code><code class="plain"> </code><code class="value">1800</code><code class="plain"> 64ae 0c32 f141 fa16 3e14 042e .'..d..</code><code class="value">2</code><code class="plain">.A..&gt;...</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0030</code><code class="plain">: </code><code class="value">0800</code><code class="plain"> </code><code class="value">4500</code><code class="plain"> </code><code class="value">0054</code><code class="plain"> fa3a </code><code class="value">4000</code><code class="plain"> </code><code class="value">4001</code><code class="plain"> 5f26 0a6f ..E..T.:@.@._&amp;.o</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0040</code><code class="plain">: </code><code class="value">6668</code><code class="plain"> 0a6f </code><code class="value">6602</code><code class="plain"> </code><code class="value">0800</code><code class="plain"> f9de 3e01 </code><code class="value">0000</code><code class="plain"> </code><code class="value">4233</code><code class="plain"> fh.of.....&gt;...B3</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0050</code><code class="plain">: 7dec </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> }...............</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0060</code><code class="plain">: </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> ................</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0070</code><code class="plain">: </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> ................</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0080</code><code class="plain">: </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> ......</code></div>
+<div class="line"><code class="value">00</code><code class="plain">:e0:ec:</code><code class="value">26</code><code class="plain">:</code><code class="value">50</code><code class="plain">:</code><code class="value">36</code><code class="plain"> &gt; </code><code class="value">52</code><code class="plain">:</code><code class="value">54</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">85</code><code class="plain">:ac:d6, ethertype IPv4 (</code><code class="value">0x0800</code><code class="plain">), length </code><code class="value">148</code><code class="plain">: (tos </code><code class="value">0x0</code><code class="plain">, ttl </code><code class="value">62</code><code class="plain">, id </code><code class="value">2689</code><code class="plain">, offset </code><code class="value">0</code><code class="plain">, flags [none], proto UDP (</code><code class="value">17</code><code class="plain">), length </code><code class="value">134</code><code class="plain">)</code></div>
+<div class="line"><code class="plain"> </code><code class="value">10.111</code><code class="plain">.</code><code class="value">1.2</code><code class="plain">.</code><code class="value">63385</code><code class="plain"> &gt; </code><code class="value">10.111</code><code class="plain">.</code><code class="value">0.182</code><code class="plain">.</code><code class="value">4789</code><code class="plain">: [no cksum] VXLAN, flags [I] (</code><code class="value">0x08</code><code class="plain">), vni </code><code class="value">10008</code></div>
+<div class="line"><code class="value">64</code><code class="plain">:ae:0c:</code><code class="value">32</code><code class="plain">:f1:</code><code class="value">41</code><code class="plain"> &gt; fa:</code><code class="value">16</code><code class="plain">:3e:</code><code class="value">14</code><code class="plain">:</code><code class="value">04</code><code class="plain">:2e, ethertype IPv4 (</code><code class="value">0x0800</code><code class="plain">), length </code><code class="value">98</code><code class="plain">: (tos </code><code class="value">0x0</code><code class="plain">, ttl </code><code class="value">255</code><code class="plain">, id </code><code class="value">64058</code><code class="plain">, offset </code><code class="value">0</code><code class="plain">, flags [DF], proto ICMP (</code><code class="value">1</code><code class="plain">), length </code><code class="value">84</code><code class="plain">)</code></div>
+<div class="line"><code class="plain"> </code><code class="value">10.111</code><code class="plain">.</code><code class="value">102.2</code><code class="plain"> &gt; </code><code class="value">10.111</code><code class="plain">.</code><code class="value">102.104</code><code class="plain">: ICMP echo reply, id </code><code class="value">15873</code><code class="plain">, seq </code><code class="value">0</code><code class="plain">, length </code><code class="value">64</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0000</code><code class="plain">: </code><code class="value">4500</code><code class="plain"> </code><code class="value">0086</code><code class="plain"> 0a81 </code><code class="value">0000</code><code class="plain"> 3e11 5b51 0a6f </code><code class="value">0102</code><code class="plain"> E.......&gt;.[Q.o..</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0010</code><code class="plain">: 0a6f 00b6 f799 12b5 </code><code class="value">0072</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0800</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> .o.......r......</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0020</code><code class="plain">: </code><code class="value">0027</code><code class="plain"> </code><code class="value">1800</code><code class="plain"> fa16 3e14 042e 64ae 0c32 f141 .'....&gt;...d..</code><code class="value">2</code><code class="plain">.A</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0030</code><code class="plain">: </code><code class="value">0800</code><code class="plain"> </code><code class="value">4500</code><code class="plain"> </code><code class="value">0054</code><code class="plain"> fa3a </code><code class="value">4000</code><code class="plain"> ff01 a025 0a6f ..E..T.:@....%.o</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0040</code><code class="plain">: </code><code class="value">6602</code><code class="plain"> 0a6f </code><code class="value">6668</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> 01df 3e01 </code><code class="value">0000</code><code class="plain"> </code><code class="value">4233</code><code class="plain"> f..ofh....&gt;...B3</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0050</code><code class="plain">: 7dec </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> }...............</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0060</code><code class="plain">: </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> ................</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0070</code><code class="plain">: </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> ................</code></div>
+<div class="line"><code class="plain"> </code><code class="value">0x0080</code><code class="plain">: </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> </code><code class="value">0000</code><code class="plain"> ......</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-InspectingtheOVSDB">
+        <h2 class="heading "><span>Inspecting the OVSDB</span></h2>
+    <div class="section section-3" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-UsingVTEP-CTL">
+        <h3 class="heading "><span>Using VTEP-CTL</span></h3>
+    <p  >These commands show you the information installed in the OVSDB. This database is structured using the <i class=" ">physical switch</i> ID, with one or more <i class=" ">logical switch</i> IDs associated with it. The bootstrap process creates the physical switch, and MidoNet creates the logical switch after the control session is established.    </p>
+    <div class="section section-4" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-ListingthePhysicalSwitch">
+        <h4 class="heading "><span>Listing the Physical Switch</span></h4>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch12</code><code class="plain">:~$ vtep-ctl list-ps</code></div>
+<div class="line"><code class="plain">sw12</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-ListingtheLogicalSwitch">
+        <h4 class="heading "><span>Listing the Logical Switch</span></h4>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch12</code><code class="plain">:~$ vtep-ctl list-ls</code></div>
+<div class="line"><code class="plain">mn-6c9826da-</code><code class="value">6655</code><code class="plain">-4fe3-a826-4dcba6477d2d</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-4" id="src-5126899_IntegratingHardwareVTEPswithMidokuraMidoNetandOpenStack-ListingLocalorRemoteMACAddresses">
+        <h4 class="heading "><span>Listing Local or Remote MAC Addresses</span></h4>
+    <p  >These commands show the MAC addresses learned from the connected port bound to the logical switch, or the MAC addresses advertised from MidoNet. The <i class=" ">unknown-dst</i> entries are installed to satisfy the ethernet flooding of unknown unicast, and important for learning.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch12</code><code class="plain">:~$ vtep-ctl list-local-macs mn-6c9826da-</code><code class="value">6655</code><code class="plain">-4fe3-a826-4dcba6477d2d</code></div>
+<div class="line"><code class="plain">ucast-mac-local</code></div>
+<div class="line"><code class="plain">  </code><code class="value">64</code><code class="plain">:ae:0c:</code><code class="value">32</code><code class="plain">:f1:</code><code class="value">41</code><code class="plain"> -&gt; vxlan_over_ipv4/</code><code class="value">10.111</code><code class="plain">.</code><code class="value">1.2</code></div>
+<div class="line"><code class="plain">mcast-mac-local</code></div>
+<div class="line"><code class="plain">  unknown-dst -&gt; vxlan_over_ipv4/</code><code class="value">10.111</code><code class="plain">.</code><code class="value">1.2</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch12</code><code class="plain">:~$ vtep-ctl list-remote-macs mn-6c9826da-</code><code class="value">6655</code><code class="plain">-4fe3-a826-4dcba6477d2d</code></div>
+<div class="line"><code class="plain">ucast-mac-remote</code></div>
+<div class="line"><code class="plain">  fa:</code><code class="value">16</code><code class="plain">:3e:</code><code class="value">14</code><code class="plain">:</code><code class="value">04</code><code class="plain">:2e -&gt; vxlan_over_ipv4/</code><code class="value">10.111</code><code class="plain">.</code><code class="value">0.182</code></div>
+<div class="line"><code class="plain">mcast-mac-remote</code></div>
+<div class="line"><code class="plain">  unknown-dst -&gt; vxlan_over_ipv4/</code><code class="value">10.111</code><code class="plain">.</code><code class="value">0</code><code class="plain">.182oh </code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-5126899_safe-id-SW50ZWdyYXRpbmdIYXJkd2FyZVZURVBzd2l0aE1pZG9rdXJhTWlkb05ldGFuZE9wZW5TdGFjay1HZXR0aW5nT3BlblZzd2l0Y2hEYXRhYmFzZShPVlNEQilEYXRh">
+        <h3 class="heading "><span>Getting Open Vswitch Database (OVSDB) Data</span></h3>
+    <p  >The <tt class=" ">ovsdb-client dump</tt> command is large, but shows all of the information and tables that are used in communication between the OVS client and server.    </p>
+    <p  class="expand-control-text">Click to expand the output ...    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch12</code><code class="plain">:~$ ovsdb-client dump</code></div>
+<div class="line"><code class="plain">Arp_Sources_Local table</code></div>
+<div class="line"><code class="plain">_uuid locator src_mac</code></div>
+<div class="line"><code class="plain">----- ------- -------</code></div>
+<div class="line"><code class="plain">Arp_Sources_Remote table</code></div>
+<div class="line"><code class="plain">_uuid locator src_mac</code></div>
+<div class="line"><code class="plain">----- ------- -------</code></div>
+<div class="line"><code class="plain">Global table</code></div>
+<div class="line"><code class="plain">_uuid managers switches </code></div>
+<div class="line"><code class="plain">------------------------------------ -------- --------------------------------------</code></div>
+<div class="line"><code class="plain">76672d6a-</code><code class="value">2740</code><code class="plain">-4c8d-</code><code class="value">9618</code><code class="plain">-9e8dfb4b0bd7 [] [6d459554-0c75-</code><code class="value">4170</code><code class="plain">-bb3d-117eb4ce1f4d]</code></div>
+<div class="line"><code class="plain">Logical_Binding_Stats table</code></div>
+<div class="line"><code class="plain">_uuid bytes_from_local bytes_to_local packets_from_local packets_to_local</code></div>
+<div class="line"><code class="plain">------------------------------------ ---------------- -------------- ------------------ ----------------</code></div>
+<div class="line"><code class="plain">d2e378b4-61c1-4daf-9aec-a7fd352d3193 </code><code class="value">5782569</code><code class="plain"> </code><code class="value">1658250</code><code class="plain"> </code><code class="value">21687</code><code class="plain"> </code><code class="value">14589</code></div>
+<div class="line"><code class="plain">Logical_Router table</code></div>
+<div class="line"><code class="plain">_uuid description name static_routes switch_binding</code></div>
+<div class="line"><code class="plain">----- ----------- ---- ------------- --------------</code></div>
+<div class="line"><code class="plain">Logical_Switch table</code></div>
+<div class="line"><code class="plain">_uuid description name tunnel_key</code></div>
+<div class="line"><code class="plain">------------------------------------ ----------- ----------------------------------------- ----------</code></div>
+<div class="line"><code class="plain">44d162dc-</code><code class="value">0372</code><code class="plain">-</code><code class="value">4749</code><code class="plain">-a802-5b153c7120ec </code><code class="string">""</code><code class="plain"> </code><code class="string">"mn-6c9826da-6655-4fe3-a826-4dcba6477d2d"</code><code class="plain"> </code><code class="value">10006</code></div>
+<div class="line"><code class="plain">Manager table</code></div>
+<div class="line"><code class="plain">_uuid inactivity_probe is_connected max_backoff other_config status target</code></div>
+<div class="line"><code class="plain">----- ---------------- ------------ ----------- ------------ ------ ------</code></div>
+<div class="line"><code class="plain">Mcast_Macs_Local table</code></div>
+<div class="line"><code class="plain">MAC _uuid ipaddr locator_set logical_switch </code></div>
+<div class="line"><code class="plain">----------- ------------------------------------ ------ ------------------------------------ ------------------------------------</code></div>
+<div class="line"><code class="plain">unknown-dst 25eaf29a-c540-46e3-</code><code class="value">8806</code><code class="plain">-3892070a2de5 </code><code class="string">""</code><code class="plain"> 7a4c000a-244e-4b37-8f25-fd816c1a80dc 44d162dc-</code><code class="value">0372</code><code class="plain">-</code><code class="value">4749</code><code class="plain">-a802-5b153c7120ec</code></div>
+<div class="line"><code class="plain">Mcast_Macs_Remote table</code></div>
+<div class="line"><code class="plain">MAC _uuid ipaddr locator_set logical_switch </code></div>
+<div class="line"><code class="plain">----------- ------------------------------------ ------ ------------------------------------ ------------------------------------</code></div>
+<div class="line"><code class="plain">unknown-dst b122b897-</code><code class="value">5746</code><code class="plain">-449e-83ba-fa571a64b374 </code><code class="string">""</code><code class="plain"> 6c04d477-18d0-41df-8d52-dc7b17845ebe 44d162dc-</code><code class="value">0372</code><code class="plain">-</code><code class="value">4749</code><code class="plain">-a802-5b153c7120ec</code></div>
+<div class="line"><code class="plain">Physical_Locator table</code></div>
+<div class="line"><code class="plain">_uuid dst_ip encapsulation_type</code></div>
+<div class="line"><code class="plain">------------------------------------ -------------- ------------------</code></div>
+<div class="line"><code class="plain">2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb </code><code class="string">"10.111.0.182"</code><code class="plain"> </code><code class="string">"vxlan_over_ipv4"</code><code class="plain"> </code></div>
+<div class="line"><code class="plain">3f78dbb0-</code><code class="value">9695</code><code class="plain">-42ef-a31f-aaaf525147f1 </code><code class="string">"10.111.1.2"</code><code class="plain"> </code><code class="string">"vxlan_over_ipv4"</code></div>
+<div class="line"><code class="plain">Physical_Locator_Set table</code></div>
+<div class="line"><code class="plain">_uuid locators </code></div>
+<div class="line"><code class="plain">------------------------------------ --------------------------------------</code></div>
+<div class="line"><code class="plain">6c04d477-18d0-41df-8d52-dc7b17845ebe [2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb]</code></div>
+<div class="line"><code class="plain">7a4c000a-244e-4b37-8f25-fd816c1a80dc [3f78dbb0-</code><code class="value">9695</code><code class="plain">-42ef-a31f-aaaf525147f1]</code></div>
+<div class="line"><code class="plain">Physical_Port table</code></div>
+<div class="line"><code class="plain">_uuid description name port_fault_status vlan_bindings vlan_stats </code></div>
+<div class="line"><code class="plain">------------------------------------ ----------- --------- ----------------- ---------------------------------------- ----------------------------------------</code></div>
+<div class="line"><code class="plain">bf69fcbb-36b3-4dbc-a90d-fc7412e57076 </code><code class="string">"swp1"</code><code class="plain"> </code><code class="string">"swp1"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">bf38137d-3a14-454e-8df0-9c56e4b4e640 </code><code class="string">"swp10"</code><code class="plain"> </code><code class="string">"swp10"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">69585fff-</code><code class="value">4360</code><code class="plain">-</code><code class="value">4177</code><code class="plain">-901d-8360ade5391b </code><code class="string">"swp11s0"</code><code class="plain"> </code><code class="string">"swp11s0"</code><code class="plain"> [] {</code><code class="value">0</code><code class="plain">=44d162dc-</code><code class="value">0372</code><code class="plain">-</code><code class="value">4749</code><code class="plain">-a802-5b153c7120ec} {</code><code class="value">0</code><code class="plain">=d2e378b4-61c1-4daf-9aec-a7fd352d3193}</code></div>
+<div class="line"><code class="plain">2a2d04fa-</code><code class="value">7190</code><code class="plain">-41fe-8cee-318fcbafb2ea </code><code class="string">"swp11s1"</code><code class="plain"> </code><code class="string">"swp11s1"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">684f99d5-426c-45c8-b964-211489f45599 </code><code class="string">"swp11s2"</code><code class="plain"> </code><code class="string">"swp11s2"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">47cc66fb-ef8a-4a9b-a497-1844b89f7d32 </code><code class="string">"swp11s3"</code><code class="plain"> </code><code class="string">"swp11s3"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">5be3a052-be0f-</code><code class="value">4258</code><code class="plain">-94cb-5e8be9afb896 </code><code class="string">"swp12"</code><code class="plain"> </code><code class="string">"swp12"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">631b19bd-</code><code class="value">3022</code><code class="plain">-</code><code class="value">4353</code><code class="plain">-bb2d-f498b0c1cb17 </code><code class="string">"swp13"</code><code class="plain"> </code><code class="string">"swp13"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">3001c904-b152-4dc4-9d8e-718f24ffa439 </code><code class="string">"swp14"</code><code class="plain"> </code><code class="string">"swp14"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">a6f8a88a-</code><code class="value">3877</code><code class="plain">-4f81-b9b4-d75394a09d2c </code><code class="string">"swp15"</code><code class="plain"> </code><code class="string">"swp15"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">7cb681f4-</code><code class="value">2206</code><code class="plain">-4c70-85b7-23b60963cd21 </code><code class="string">"swp16"</code><code class="plain"> </code><code class="string">"swp16"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">3943fb6a-0b49-</code><code class="value">4806</code><code class="plain">-a014-2bcd4d469537 </code><code class="string">"swp17"</code><code class="plain"> </code><code class="string">"swp17"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">109a9911-d6c7-</code><code class="value">4142</code><code class="plain">-b6c9-7c985506abb4 </code><code class="string">"swp18"</code><code class="plain"> </code><code class="string">"swp18"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">93b85c31-be38-</code><code class="value">4384</code><code class="plain">-8b7a-9696764f9ba9 </code><code class="string">"swp19"</code><code class="plain"> </code><code class="string">"swp19"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">bcfb2920-</code><code class="value">6676</code><code class="plain">-494c-9dcb-b474123b7e59 </code><code class="string">"swp2"</code><code class="plain"> </code><code class="string">"swp2"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">4223559a-da1c-4c34-b8bf-bff7ced376ad </code><code class="string">"swp20"</code><code class="plain"> </code><code class="string">"swp20"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">6bbccda8-d7e5-4b19-b978-4ec7f5b868e0 </code><code class="string">"swp21"</code><code class="plain"> </code><code class="string">"swp21"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">c6876886-</code><code class="value">8386</code><code class="plain">-4e34-a307-931909fca58f </code><code class="string">"swp22"</code><code class="plain"> </code><code class="string">"swp22"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">c5a88dd6-d931-4b2c-9baa-a0abfb9d41f5 </code><code class="string">"swp23"</code><code class="plain"> </code><code class="string">"swp23"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">124d1e01-a187-</code><code class="value">4427</code><code class="plain">-819f-21de66e76f13 </code><code class="string">"swp24"</code><code class="plain"> </code><code class="string">"swp24"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">55b49814-b5c5-405e-8e9f-898f3df4f872 </code><code class="string">"swp25"</code><code class="plain"> </code><code class="string">"swp25"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">b2b2cd14-662d-45a5-87c1-277acbccdffd </code><code class="string">"swp26"</code><code class="plain"> </code><code class="string">"swp26"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">c35f55f5-8ec6-4fed-bef4-49801cd0934c </code><code class="string">"swp27"</code><code class="plain"> </code><code class="string">"swp27"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">a44c5402-</code><code class="value">6218</code><code class="plain">-4f09-bf1e-518f41a5546e </code><code class="string">"swp28"</code><code class="plain"> </code><code class="string">"swp28"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">a9294152-2b32-</code><code class="value">4058</code><code class="plain">-</code><code class="value">8796</code><code class="plain">-23520ffb7379 </code><code class="string">"swp29"</code><code class="plain"> </code><code class="string">"swp29"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">e0ee993a-</code><code class="value">8383</code><code class="plain">-</code><code class="value">4701</code><code class="plain">-a766-d425654dbb7f </code><code class="string">"swp3"</code><code class="plain"> </code><code class="string">"swp3"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">d9db91a6-1c10-</code><code class="value">4154</code><code class="plain">-</code><code class="value">9269</code><code class="plain">-84877faa79b4 </code><code class="string">"swp30"</code><code class="plain"> </code><code class="string">"swp30"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">b26ce4dd-b771-4d7b-</code><code class="value">8647</code><code class="plain">-41fa97aa40e3 </code><code class="string">"swp31"</code><code class="plain"> </code><code class="string">"swp31"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">652c6cd1-</code><code class="value">0823</code><code class="plain">-</code><code class="value">4585</code><code class="plain">-bb78-658e6ca2abfc </code><code class="string">"swp32"</code><code class="plain"> </code><code class="string">"swp32"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">5b15372b-89f0-4e14-a50b-b6c6f937d33d </code><code class="string">"swp4"</code><code class="plain"> </code><code class="string">"swp4"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">e00741f1-ba34-47c5-ae23-9269c5d1a871 </code><code class="string">"swp5"</code><code class="plain"> </code><code class="string">"swp5"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">7096abaf-eebf-4ee3-b0cc-276224bc3e71 </code><code class="string">"swp6"</code><code class="plain"> </code><code class="string">"swp6"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">439afb62-067e-4bbe-a0d9-ee33a23d2a9c </code><code class="string">"swp7"</code><code class="plain"> </code><code class="string">"swp7"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">54f6c9df-01a1-4d96-9dcf-3035a33ffb3e </code><code class="string">"swp8"</code><code class="plain"> </code><code class="string">"swp8"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">c85ed6cd-a7d4-</code><code class="value">4016</code><code class="plain">-b3e9-34df592072eb </code><code class="string">"swp9s0"</code><code class="plain"> </code><code class="string">"swp9s0"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">cf382ed6-60d3-43f5-</code><code class="value">8586</code><code class="plain">-81f4f0f2fb28 </code><code class="string">"swp9s1"</code><code class="plain"> </code><code class="string">"swp9s1"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">c32a9ff9-fd11-</code><code class="value">4399</code><code class="plain">-815f-806322f26ff5 </code><code class="string">"swp9s2"</code><code class="plain"> </code><code class="string">"swp9s2"</code><code class="plain"> [] {} {} </code></div>
+<div class="line"><code class="plain">9a7e42c4-228f-4b55-b972-7c3b8352c27d </code><code class="string">"swp9s3"</code><code class="plain"> </code><code class="string">"swp9s3"</code><code class="plain"> [] {} {}</code></div>
+<div class="line"><code class="plain">Physical_Switch table</code></div>
+<div class="line"><code class="plain">_uuid description management_ips name ports switch_fault_status tunnel_ips tunnels </code></div>
+<div class="line"><code class="plain">------------------------------------ ----------- --------------- ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------- -------------- --------------------------------------</code></div>
+<div class="line"><code class="plain">6d459554-0c75-</code><code class="value">4170</code><code class="plain">-bb3d-117eb4ce1f4d </code><code class="string">"sw12"</code><code class="plain"> [</code><code class="string">"10.50.20.22"</code><code class="plain">] </code><code class="string">"sw12"</code><code class="plain"> [109a9911-d6c7-</code><code class="value">4142</code><code class="plain">-b6c9-7c985506abb4, 124d1e01-a187-</code><code class="value">4427</code><code class="plain">-819f-21de66e76f13, 2a2d04fa-</code><code class="value">7190</code><code class="plain">-41fe-8cee-318fcbafb2ea, 3001c904-b152-4dc4-9d8e-718f24ffa439, 3943fb6a-0b49-</code><code class="value">4806</code><code class="plain">-a014-2bcd4d469537, 4223559a-da1c-4c34-b8bf-bff7ced376ad, 439afb62-067e-4bbe-a0d9-ee33a23d2a9c, 47cc66fb-ef8a-4a9b-a497-1844b89f7d32, 54f6c9df-01a1-4d96-9dcf-3035a33ffb3e, 55b49814-b5c5-405e-8e9f-898f3df4f872, 5b15372b-89f0-4e14-a50b-b6c6f937d33d, 5be3a052-be0f-</code><code class="value">4258</code><code class="plain">-94cb-5e8be9afb896, 631b19bd-</code><code class="value">3022</code><code class="plain">-</code><code class="value">4353</code><code class="plain">-bb2d-f498b0c1cb17, 652c6cd1-</code><code class="value">0823</code><code class="plain">-</code><code class="value">4585</code><code class="plain">-bb78-658e6ca2abfc, 684f99d5-426c-45c8-b964-211489f45599, 69585fff-</code><code class="value">4360</code><code class="plain">-</code><code class="value">4177</code><code class="plain">-901d-8360ade5391b, 6bbccda8-d7e5-4b19-b978-4ec7f5b868e0, 7096abaf-eebf-4ee3-b0cc-276224bc3e71, 7cb681f4-</code><code class="value">2206</code><code class="plain">-4c70-85b7-23b60963cd21, 93b85c31-be38-</code><code class="value">4384</code><code class="plain">-8b7a-9696764f9ba9, 9a7e42c4-228f-4b55-b972-7c3b8352c27d, a44c5402-</code><code class="value">6218</code><code class="plain">-4f09-bf1e-518f41a5546e, a6f8a88a-</code><code class="value">3877</code><code class="plain">-4f81-b9b4-d75394a09d2c, a9294152-2b32-</code><code class="value">4058</code><code class="plain">-</code><code class="value">8796</code><code class="plain">-23520ffb7379, b26ce4dd-b771-4d7b-</code><code class="value">8647</code><code class="plain">-41fa97aa40e3, b2b2cd14-662d-45a5-87c1-277acbccdffd, bcfb2920-</code><code class="value">6676</code><code class="plain">-494c-9dcb-b474123b7e59, bf38137d-3a14-454e-8df0-9c56e4b4e640, bf69fcbb-36b3-4dbc-a90d-fc7412e57076, c32a9ff9-fd11-</code><code class="value">4399</code><code class="plain">-815f-806322f26ff5, c35f55f5-8ec6-4fed-bef4-49801cd0934c, c5a88dd6-d931-4b2c-9baa-a0abfb9d41f5, c6876886-</code><code class="value">8386</code><code class="plain">-4e34-a307-931909fca58f, c85ed6cd-a7d4-</code><code class="value">4016</code><code class="plain">-b3e9-34df592072eb, cf382ed6-60d3-43f5-</code><code class="value">8586</code><code class="plain">-81f4f0f2fb28, d9db91a6-1c10-</code><code class="value">4154</code><code class="plain">-</code><code class="value">9269</code><code class="plain">-84877faa79b4, e00741f1-ba34-47c5-ae23-9269c5d1a871, e0ee993a-</code><code class="value">8383</code><code class="plain">-</code><code class="value">4701</code><code class="plain">-a766-d425654dbb7f] [] [</code><code class="string">"10.111.1.2"</code><code class="plain">] [062eaf89-9bd5-</code><code class="value">4132</code><code class="plain">-8b6b-09db254325af]</code></div>
+<div class="line"><code class="plain">Tunnel table</code></div>
+<div class="line"><code class="plain">_uuid bfd_config_local bfd_config_remote bfd_params bfd_status local remote </code></div>
+<div class="line"><code class="plain">------------------------------------ ----------------------------------------------------------- ----------------- ---------- ---------- ------------------------------------ ------------------------------------</code></div>
+<div class="line"><code class="plain">062eaf89-9bd5-</code><code class="value">4132</code><code class="plain">-8b6b-09db254325af {bfd_dst_ip=</code><code class="string">"169.254.1.0"</code><code class="plain">, bfd_dst_mac=</code><code class="string">"00:23:20:00:00:01"</code><code class="plain">} {} {} {} 3f78dbb0-</code><code class="value">9695</code><code class="plain">-42ef-a31f-aaaf525147f1 2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb</code></div>
+<div class="line"><code class="plain">Ucast_Macs_Local table</code></div>
+<div class="line"><code class="plain">MAC _uuid ipaddr locator logical_switch </code></div>
+<div class="line"><code class="plain">------------------- ------------------------------------ ------ ------------------------------------ ------------------------------------</code></div>
+<div class="line"><code class="string">"64:ae:0c:32:f1:41"</code><code class="plain"> 47a83a7c-bd2d-4c02-</code><code class="value">9814</code><code class="plain">-8222229c592f </code><code class="string">""</code><code class="plain"> 3f78dbb0-</code><code class="value">9695</code><code class="plain">-42ef-a31f-aaaf525147f1 44d162dc-</code><code class="value">0372</code><code class="plain">-</code><code class="value">4749</code><code class="plain">-a802-5b153c7120ec</code></div>
+<div class="line"><code class="plain">Ucast_Macs_Remote table</code></div>
+<div class="line"><code class="plain">MAC _uuid ipaddr locator logical_switch </code></div>
+<div class="line"><code class="plain">------------------- ------------------------------------ ------ ------------------------------------ ------------------------------------</code></div>
+<div class="line"><code class="string">"fa:16:3e:14:04:2e"</code><code class="plain"> </code><code class="value">65605488</code><code class="plain">-9ee5-4c8e-93e5-7b1cc15cfcc7 </code><code class="string">""</code><code class="plain"> 2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb 44d162dc-</code><code class="value">0372</code><code class="plain">-</code><code class="value">4749</code><code class="plain">-a802-5b153c7120ec</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Integrating_with_VMware_NSX.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Integrating with VMware NSX</span>
+        </a>
+                <a href="Lightweight_Network_Virtualization_-_LNV_Overview.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Lightweight Network Virtualization - LNV Overview</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

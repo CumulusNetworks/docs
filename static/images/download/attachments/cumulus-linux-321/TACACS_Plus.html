@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TACACS Plus - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="System_Configuration.html">System Configuration</a></li>
+                                                                                     <li><a href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126756"> <span>TACACS Plus</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  >Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication, and Authorization) in a transparent way with minimal configuration. There is no need to create accounts or directories on the switch. Authentication is handled via PAM, and includes login, ssh, sudo, and su. Accounting records are sent to all configuredTACACS+ servers by default. Use of per-command authorization requires additional setup on the switch.    </p>
+    <p  >By default, TACACS+ privilege 15 users are allowed to run any command with sudo via the <tt class=" ">/etc/sudoers.d/tacplus</tt> file that is installed by the libtacplus-map1 package.    </p>
+    <div class="section section-1" id="src-5126756_TACACSPlus-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126756_safe-id-VEFDQUNTUGx1cy1JbnN0YWxsaW5ndGhlVEFDQUNTIENsaWVudFBhY2thZ2Vz">
+        <h1 class="heading "><span>Installing the TACACS+ Client Packages</span></h1>
+    <p  >TACACS+ requires the following packages to be installed on Cumulus Linux. They are not part of the base Cumulus Linux image installation. All required packages can be installed easily with these commands:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo apt-get update</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo apt-get install tacplus-client</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126756_safe-id-VEFDQUNTUGx1cy1Db25maWd1cmluZ3RoZVRBQ0FDUyBDbGllbnQ">
+        <h1 class="heading "><span>Configuring the TACACS+ Client</span></h1>
+    <p  >Post-installation TACACS+ configuration requires (at minimum) editting only one file, /etc/tacplus_servers. It is necessary add at least one server, and usually one shared secret (key). The <tt class=" ">server</tt> and secret parameters can be given in any order, and must not include any whitespace (spaces or tabs), and can be added anywhere in the file. For example, if your TACACS+ server IP address is <tt class=" ">192.168.0.30</tt>, and your shared secret is <tt class=" ">tacacskey </tt>then you would add these parameters to<tt class=" "> /etc/tacplus_servers:</tt>    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">secret=tacacskey</code></div>
+<div class="line"><code class="plain">server=</code><code class="value">192.168</code><code class="plain">.</code><code class="value">0.30</code></div>
+</div>
+    </div>
+    <p  >Up to 7 TACACS+ servers are supported. Connections are made in the order in which they are listed in this file. In most cases, no other parameters need to be changed. All parameters used by any of the packages can be added to this file, and will affect all the TACACS+ client software. It is also possible to configure some of the packages through individual configuration files. For example, the timeout value (see description below) is set to 5 seconds by default for NSS lookups in <tt class=" ">/etc/tacplus_nss.conf</tt>, while other packages use a value of 10 seconds, set in /<tt class=" ">etc/tacplus_servers.</tt>    </p>
+    <p  >When TACACS+ servers or secrets are added or removed, <tt class=" ">auditd</tt> must be restarted (with <tt class=" ">systemctl restart auditd</tt>) or a signal must be sent (with <tt class=" ">killall -HUP audisp-tacplus</tt>) before <tt class=" ">audisp-tacplus</tt> will reread the configuration to see the changed server list. Usually this is an issue only at first change to the configuration.    </p>
+    <p  >At this point, the Cumulus Linux switch should be able to query the TACACS server.    </p>
+    <p  >This is the complete list of the TACACS+ client configuration files, and their use. The full list of TACACS+ parameters is below at <strong class=" ">TACACS Parameters</strong> below.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Filename    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/tacplus_servers    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This is the primary file that requires configuration post-installation, and is used by all packages via <tt class=" ">include=/etc/tacplus_servers parameters in the other configuration files, </tt>when installed. Since this is usually the file with the shared secrets, it should not be world readable (should be Linux file mode 600).    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/nsswitch.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >When the <tt class=" ">libnss_tacplus</tt> package is installed, this file is configured to enable tacplus lookups via <tt class=" ">libnss_tacplus</tt>. If this file is replaced by automation or other means, you will need to add tacplus as the first lookup method for the <i class=" ">passwd </i>database line.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/tacplus_nss.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This file sets the basic parameters for <tt class=" ">libnss_tacplus</tt>. It includes a debug variable for debugging NSS lookups separately from other client packages.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/usr/share/pam-configs/tacplus    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configuration file for <tt class=" ">pam-auth-update</tt> to generate the files in the next row. These configurations are used at <tt class=" ">login</tt>, by <tt class=" ">su</tt>, and by <tt class=" ">ssh</tt>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/pam.d/common-*    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <tt class=" ">/etc/pam.d/common-*</tt> files are updated for <tt class=" ">tacplus</tt> authentication. The files are updated with <tt class=" ">pam-auth-update</tt>, when <tt class=" ">libpam-tacplus</tt> is installed or removed.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/sudoers.d/tacplus    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This file allows TACACS+ privilege level 15 users to run commands with <tt class=" ">sudo</tt>. It also includes an example (commented out) showing how to enable privilege level 15 TACACS users to use <tt class=" ">sudo</tt> without having to enter a password, and an example of how to enable all TACACS users to run specific commands via sudo. It should only be editted with the command: <i class=" ">visudo -f /etc/sudoers.d/tacplus</i>    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >audisp-tacplus.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><tt class=" ">audisp</tt> plugin configuration file. In general, no modifications are required.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/audisp/audisp-tac_plus.conf    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >TACACS+ server configuration file for accounting. In general, no modifications are required. It may be useful to use this configuration file when you only want to debug TACACS+ accounting issues, not all TACACS+ users.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/audit/rules.d/audisp-tacplus.rules    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The <tt class=" ">auditd</tt> rules for TACACS+ accounting. The <tt class=" ">augenrules</tt> command uses all rules files to generate the file rules file (below)    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >/etc/audit/audit.rules    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Audit rules file generated during <tt class=" ">auditd</tt> installation.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The <tt class=" ">/etc/pam.d/common-*</tt> files can be edited manually. However, if <tt class=" ">pam-auth-update</tt> is run again after the changes are made, the update will fail. Configuration should be done in <tt class=" ">/usr/share/pam-configs/tacplus</tt> instead, followed by running <tt class=" ">pam-auth-update</tt>.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126756_safe-id-VEFDQUNTUGx1cy1UQUNBQ1MgQXV0aGVudGljYXRpb24obG9naW4p">
+        <h1 class="heading "><span>TACACS+ Authentication (login)</span></h1>
+    <p  >The initial authentication configuration is done through the PAM modules, and an updated version of the <tt class=" ">libpam-tacplus</tt> package. When the package is installed, the PAM configuration is updated in <tt class=" ">/etc/pam.d</tt> with the <tt class=" ">pam-auth-update</tt> command. If you have made changes to your PAM configuration, you may need to integrate these changes yourself. If you are also using LDAP with the <tt class=" ">libpam-ldap </tt>package, you will need to edit the PAM configuration to ensure the LDAP and TACACS ordering that you prefer. The <tt class=" ">libpam-tacplus</tt> are configured to skip over rules, and the values in the <tt class=" ">success=2 </tt>may require adjustments to skip over LDAP rules.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >TACACS+ users at privilege levels other than 15 are not allowed to run <tt class=" ">sudo</tt> commands by default, and are limited to commands that can be run with standard Linux user permissions.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126756_safe-id-VEFDQUNTUGx1cy1UQUNBQ1MgQWNjb3VudGluZw">
+        <h1 class="heading "><span>TACACS+ Accounting</span></h1>
+    <p  >TACACS+ accounting is implemented with the <tt class=" ">audisp</tt> module, with an additional plugin for <tt class=" ">auditd</tt>/<tt class=" ">audisp</tt>. The plugin maps the auid in the accounting record to a TACACS login, based on the auid and sessionid. The <tt class=" ">audisp</tt> module requires <tt class=" ">libnss_tacplus</tt>, and uses the <tt class=" ">libtacplus_map.so</tt> library interfaces as part of the modified <tt class=" ">lipam_tacplus</tt> package.    </p>
+    <p  >Communication with the TACACS+ servers is done via the <tt class=" ">libsimple-tacact1</tt> library, through <tt class=" ">dlopen()</tt>. A maximum of 240 bytes of command name and arguments are sent in the accounting record, due to the TACACS+ field length limitation of 255 bytes.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >All Linux commands result in an accounting record, including commands run as part of the login process or as a sub-processes of other commands. This can sometimes generate a large number of accounting records.    </p>
+        </div>
+    </div>
+    <p  >The IP address and encryption key of the server should be configured in the <tt class=" ">/etc/tacplus_servers</tt> file. Minimal configuration to <tt class=" ">auditd</tt> and <tt class=" ">audisp</tt> is necessary to enable the audit records necessary for accounting. These records are installed as part of the package.    </p>
+    <p  ><tt class=" ">audisp-tacplus</tt> installs the audit rules for command accounting. Modifying the configuration files is not usually necessary. However, when a <a   href="Management_VRF.html">management VRF</a> is configured, the accounting configuration does need special modification, because the <tt class=" ">auditd</tt> service starts prior to networking. It is necessary add the <i class=" ">vrf</i> parameter, and to signal the <tt class=" ">audisp-tacplus</tt> process to reread the configuration. The example below shows that the management VRF is named <i class=" ">mgmt</i>. The <i class=" ">vrf</i> parameter can be placed in either <tt class=" ">/etc/tacplus_servers</tt> or in <tt class=" ">/etc/audisp/audisp-tac_plus.conf</tt>.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">vrf=mgmt</code></div>
+</div>
+    </div>
+    <p  >After editing the configuration file, notify the accounting process to reread it by sending the <strong class=" ">HUP</strong> signal: <tt class=" ">killall -HUP audisp-tacplus</tt>.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >All <tt class=" ">sudo</tt> commands run by TACACS+ users generate accounting records against the original TACACS+ login name.    </p>
+        </div>
+    </div>
+    <p  >For more information, refer to the <tt class=" ">audisp.8</tt> and <tt class=" ">auditd.8</tt> man pages.    </p>
+    </div>
+    <div class="section section-1" id="src-5126756_safe-id-VEFDQUNTUGx1cy1UQUNBQ1MgUGVyLWNvbW1hbmRBdXRob3JpemF0aW9u">
+        <h1 class="heading "><span>TACACS+ Per-command Authorization</span></h1>
+    <p  >Per-command authorization is handled with the <tt class=" ">tacplus-auth</tt> command. To make this an enforced authorization, the TACACS+ login must be changed to use a restricted shell, with a very limited executable search path. Otherwise, the user can bypass the authorization. The <tt class=" ">tacplus-restrict</tt> utility simplifies the setup of the restricted environment. The example below initializes the environment for the <i class=" ">tacacs0</i> user account. This is the account used for TACACS+ users at privilege level <tt class=" ">0</tt>.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">tacuser0</code><code class="color1">@switch</code><code class="plain">:~$ sudo tacplus-restrict -i -u tacacs0 -a command1 command2 ... commandN</code></div>
+</div>
+    </div>
+    <div class="section section-2" id="src-5126756_TACACSPlus-CommandOptions">
+        <h2 class="heading "><span>Command Options</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-i    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Initializes the environment. It only needs to be issued once per username.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-a    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The utility can be invoked with the <tt class=" ">-a</tt> option as many times as desired. For each command in the <tt class=" ">-a</tt> list, a symbolic link is created from <tt class=" ">tacplus-auth</tt> to the relative portion of the command name in the local <tt class=" ">bin</tt> subdirectory. These commands also need to be enabled on the TACACS+ server. See the server documentation for how to do that. It is common to have the server allow some options to a command, but not others.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >-f    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Re-initializes the environment. If you need to start over, issue the <tt class=" ">-f</tt> option with the <tt class=" ">-i</tt> to force the re-initialization; otherwise, repeated use of <tt class=" ">-i</tt> is ignored. As part of the initialization:    </p>
+<ul class=" "><li class=" ">    <p  >The user's shell is changed to <tt class=" ">/bin/rbash</tt>.    </p>
+</li><li class=" ">    <p  >Any existing dot files are saved.    </p>
+</li><li class=" ">    <p  >A limited environment is set up that does not allow general command execution, but instead allows only commands from the user's local <tt class=" ">bin</tt> subdirectory.    </p>
+</li></ul>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >As a full example, if you want to allow the user to be able to run the <tt class=" ">net</tt> and <tt class=" ">ip</tt> commands (potentially, if the TACACS+ server authorizes), use the command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo tacplus-restrict -i -u tacacs0 -a ip net</code></div>
+</div>
+    </div>
+    <p  >After running this command, examining the <tt class=" ">tacacs0</tt> directory should show something similar to the following:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo ls -lR ~tacacs0</code></div>
+<div class="line"><code class="plain">total </code><code class="value">12</code></div>
+<div class="line"><code class="plain">lrwxrwxrwx </code><code class="value">1</code><code class="plain"> root root </code><code class="value">22</code><code class="plain"> Nov </code><code class="value">21</code><code class="plain"> </code><code class="value">22</code><code class="plain">:</code><code class="value">07</code><code class="plain"> ip -&gt; /usr/sbin/tacplus-auth</code></div>
+<div class="line"><code class="plain">lrwxrwxrwx </code><code class="value">1</code><code class="plain"> root root </code><code class="value">22</code><code class="plain"> Nov </code><code class="value">21</code><code class="plain"> </code><code class="value">22</code><code class="plain">:</code><code class="value">07</code><code class="plain"> net -&gt; /usr/sbin/tacplus-auth</code></div>
+</div>
+    </div>
+    <p  >Other than shell built-ins, the only two commands the privilege level 0 TACACS users can run are the <tt class=" ">ip</tt> and <tt class=" ">net</tt> commands. If the user/command combination is not authorized by the TACACS+ server, a message similar to the following gets displayed:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">tacuser0</code><code class="color1">@switch</code><code class="plain">:~$ net pending</code></div>
+<div class="line"><code class="plain">net not authorized by TACACS+ with given arguments, not executing</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The <tt class=" ">net</tt> command has its own configuration file to enable users to run the <tt class=" ">net</tt> command. For the above command to enable TACACS+ privilege level 0 users to run the <tt class=" ">net</tt> <tt class=" ">show</tt> commands, edit the file <tt class=" ">/etc/netd.conf</tt> and add <tt class=" ">tacacs0</tt> to the <tt class=" ">users_with_show</tt> line. See the <a   href="Network_Command_Line_Utility.html">NCLU</a> documentation for more details.    </p>
+        </div>
+    </div>
+    <p  >If you mistakenly add potential commands with the <tt class=" ">-a</tt> option, you can remove the commands that you don't want (the example below shows the <tt class=" ">net</tt> command):    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo rm ~tacacs0/bin/net</code></div>
+</div>
+    </div>
+    <p  >Or you can remove all the commands with:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo rm ~tacacs0/bin/*</code></div>
+</div>
+    </div>
+    <p  >Use the <tt class=" ">man</tt> command on the switch for more information on <tt class=" ">tacplus-auth</tt> and <tt class=" ">tacplus-restrict</tt>.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ man tacplus-auth tacplus-restrict</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126756_TACACSPlus-NSSPlugin">
+        <h1 class="heading "><span>NSS Plugin</span></h1>
+    <p  >When used with <tt class=" ">pam_tacplus</tt>, TACACS+ authenticated users are able to log in without a local account on the system via the NSS plugin that comes with the <tt class=" ">tacplus_nss</tt> package. The plugin uses the mapped <tt class=" ">tacplus</tt> information if the user is not found in the local password file, provides the <tt class=" ">getpwnam()</tt> and <tt class=" ">getpwuid()</tt>entry point,s and uses the TACACS+ authentication functions.    </p>
+    <p  >The plugin asks the TACACS+ server if the user is known, and then for relevant attributes to determine the user&rsquo;s privilege level. When the <tt class=" ">libnss_tacplus</tt> package is installed, <tt class=" ">nsswitch.conf</tt> is be modified to set <tt class=" ">tacplus</tt> as the first lookup method for <tt class=" ">passwd</tt>. If the order is changed, lookups will return the local accounts such as <tt class=" ">tacacs0</tt>    </p>
+    <p  >If the user is not found, a mapped lookup is performed using the <tt class=" ">libtacplus_map.so</tt> exported functions. The privilege level is appended to &ldquo;tacacs&rdquo;, and the lookup searches for the name in the local password file. For example, privilege level 15 will search for the tacacs15 user. If the user is found, the password structure is filled in with the user&rsquo;s information.    </p>
+    <p  >If it is not found, the privilege level is decremented and checked again, until privilege level 0 (user t<tt class=" ">acacs0</tt>) is reached. This allows use of only the two local users <tt class=" ">tacacs0</tt> and <tt class=" ">tacacs15</tt>, if minimal configuration is desired.    </p>
+    </div>
+    <div class="section section-1" id="src-5126756_TACACSPlus-TACACSConfigurationParameters">
+        <h1 class="heading "><span>TACACS Configuration Parameters</span></h1>
+    <p  >The recognized configuration options are the same as the <tt class=" ">libpam_tacplus</tt> command line arguments; not all <tt class=" ">pam_tacplus</tt> options are supported, however. The table below describes the configuration options available:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Configuration Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >debug    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Output debugging information via <tt class=" ">syslog(3)</tt>.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Debugging is heavy, including passwords. Do not leave debugging enabled on a production switch once you have completed troubleshooting.    </p>
+        </div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >secret=STRING    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Secret key used to encrypt/decrypt packets sent to/received from the server. Can be specified more than once, and can be in any order with respect to the server= parameter. When fewer secret= parameters are specified, the last secret given is used for the remaining servers. This parameter should only be put into files such as /etc/tacplus_servers that are not world readable.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >server=HOSTNAME    </p>
+    <p  >server=IP_ADDR    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Adds a TACACS+ server to the servers list. Servers will be queried in turn until a match is found, or no servers remain in the list. Can be specified up to 7 times. When the IP_ADDR form is used, it can be optionally followed by a port number, preceded by a &quot;:&quot;. The default port is 49.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >When sending accounting records, the record is sent to all servers in the list if <tt class=" ">acct_all=1,</tt> which is the default.    </p>
+        </div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >timeout=SECONDS    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >TACACS+ server(s) communication timeout. The default value is 5 seconds.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >login=STRING    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >TACACS+ authentication service (pap, chap, or login). The default value is <i class=" ">pap</i>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >acct_all=1    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Configuration option for <tt class=" ">audisp_tacplus</tt> and <tt class=" ">pam_tacplus</tt> sending accounting records to all supplied servers (1), or the first server to respond (0). The default value is <i class=" ">1</i>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >timeout=<strong class=" ">SECS</strong>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Sets the timeout in seconds for connections to each TACACS+ server. The default is 10 seconds for all lookups except that NSS lookups use a 5 second timeout.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >vrf=<strong class=" ">VRFNAME</strong>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >If the management network is in a VRF, set this variable to the VRF name. This would usually be &quot;mgmt&quot;. When this variable is set, the connection to the TACACS+ accounting servers is made through the named VRF.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >service    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >TACACS+ accounting and authorization service. Examples include shell, pap, raccess, ppp, and slip.    </p>
+    <p  >The default value is <i class=" ">shell</i>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >protocol    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >TACACS+ protocol field. This option is use dependent.    </p>
+    <p  >PAM uses the SSH protocol.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-1" id="src-5126756_safe-id-VEFDQUNTUGx1cy1SZW1vdmluZ3RoZVRBQ0FDUyBDbGllbnRQYWNrYWdlcw">
+        <h1 class="heading "><span>Removing the TACACS+ Client Packages</span></h1>
+    <p  >To remove all of the TACACS+ client packages, use the following commands:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo apt-get remove tacplus-client</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo apt-get autoremove</code></div>
+</div>
+    </div>
+    <p  >To remove the TACACS+ client configuration files as well as the packages (recommended), use this command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo apt-get autoremove --purge</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126756_safe-id-VEFDQUNTUGx1cy1Ucm91Ymxlc2hvb3RpbmdUQUNBQ1Mg">
+        <h1 class="heading "><span>Troubleshooting TACACS+</span></h1>
+    <div class="section section-2" id="src-5126756_TACACSPlus-DebuggingBasicServerConnectivityorNSSIssues">
+        <h2 class="heading "><span>Debugging Basic Server Connectivity or NSS Issues</span></h2>
+    <p  >The <tt class=" ">getent</tt> command can be used to determine whether TACACS+ is configured correctly, and the local password is stored in the configuration files. In the example commands below, the cumulus user represents the local user, while cumulusTAC represents the TACACS user.    </p>
+    <p  >To look up the username within all NSS methods:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo getent password cumulusTAC</code></div>
+<div class="line"><code class="plain">cumulusTAC:x:</code><code class="value">1016</code><code class="plain">:</code><code class="value">1001</code><code class="plain">:TACACS+ mapped user at privilege level </code><code class="value">15</code><code class="plain">,,,:/home/tacacs15:/bin/bash</code></div>
+</div>
+    </div>
+    <p  >To look up the user within the local database only:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo getent -s compat passwd cumulus</code></div>
+<div class="line"><code class="plain">cumulus:x:</code><code class="value">1000</code><code class="plain">:</code><code class="value">1000</code><code class="plain">:cumulus,,,:/home/cumulus:/bin/bash</code></div>
+</div>
+    </div>
+    <p  >To look up the user within the TACACS+ database only:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo getent -s tacplus passwd cumulusTAC</code></div>
+<div class="line"><code class="plain">cumulusTAC:x:</code><code class="value">1016</code><code class="plain">:</code><code class="value">1001</code><code class="plain">:TACACS+ mapped user at privilege level </code><code class="value">15</code><code class="plain">,,,:/home/tacacs15:/bin/bash</code></div>
+</div>
+    </div>
+    <p  >If TACACS does not appear to be working correctly, the following configuration files should be debugged by adding the <i class=" ">debug=1</i> parameter to one or more of these files:    </p>
+<ul class=" "><li class=" ">    <p  >/etc/tacplus_servers    </p>
+</li><li class=" ">    <p  >/etc/tacplus_nss.conf    </p>
+</li></ul>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  ><i class=" ">debug=1</i> can also be added to individual <tt class=" ">pam_tacplus</tt> lines in <tt class=" ">/etc/pam.d/common*</tt>.    </p>
+        </div>
+    </div>
+    <p  >All log messages are stored in <tt class=" ">/var/log/syslog</tt>.    </p>
+    </div>
+    <div class="section section-2" id="src-5126756_TACACSPlus-DebuggingIssueswithPer-commandAuthorization">
+        <h2 class="heading "><span>Debugging Issues with Per-command Authorization</span></h2>
+    <p  >To debug TACACS user command authorization, have the TACACS+ user enter the following command at a shell prompt, and then try the command again:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">tacuser0</code><code class="color1">@switch</code><code class="plain">:~$ export TACACSAUTHDEBUG=</code><code class="value">1</code><code class="plain"> </code></div>
+</div>
+    </div>
+    <p  >When this debugging is enabled, additional information is shown for the command authorization conversation with the TACACS+ server:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">tacuser0</code><code class="color1">@switch</code><code class="plain">:~$ net pending</code></div>
+<div class="line"><code class="plain">tacplus-auth: found matching command (/usr/bin/net) request authorization</code></div>
+<div class="line"><code class="plain">tacplus-auth: error connecting to </code><code class="value">10.0</code><code class="plain">.</code><code class="value">3.195</code><code class="plain">:</code><code class="value">49</code><code class="plain"> to request authorization </code><code class="keyword">for</code><code class="plain"> net: Transport endpoint is not connected</code></div>
+<div class="line"><code class="plain">tacplus-auth: cmd not authorized (</code><code class="value">16</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">tacplus-auth: net not authorized from </code><code class="value">192.168</code><code class="plain">.</code><code class="value">3.189</code><code class="plain">:</code><code class="value">49</code></div>
+<div class="line"><code class="plain">net not authorized by TACACS+ with given arguments, not executing</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">tacuser0</code><code class="color1">@switch</code><code class="plain">:~$ net show version</code></div>
+<div class="line"><code class="plain">tacplus-auth: found matching command (/usr/bin/net) request authorization</code></div>
+<div class="line"><code class="plain">tacplus-auth: error connecting to </code><code class="value">10.0</code><code class="plain">.</code><code class="value">3.195</code><code class="plain">:</code><code class="value">49</code><code class="plain"> to request authorization </code><code class="keyword">for</code><code class="plain"> net: Transport endpoint is not connected</code></div>
+<div class="line"><code class="plain">tacplus-auth: </code><code class="value">192.168</code><code class="plain">.</code><code class="value">3.189</code><code class="plain">:</code><code class="value">49</code><code class="plain"> authorized command net</code></div>
+<div class="line"><code class="plain">tacplus-auth: net authorized, executing</code></div>
+<div class="line"><code class="plain">DISTRIB_ID=</code><code class="string">"Cumulus Linux"</code></div>
+<div class="line"><code class="plain">DISTRIB_RELEASE=</code><code class="value">3.2</code><code class="plain">.</code><code class="value">1</code></div>
+<div class="line"><code class="plain">DISTRIB_DESCRIPTION=</code><code class="string">"Cumulus Linux 3.2.1"</code></div>
+</div>
+    </div>
+    <p  >To disable debugging:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">tacuser0</code><code class="color1">@switch</code><code class="plain">:~$ export -n TACACSAUTHDEBUG</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126756_TACACSPlus-DebugIssueswithAccountingRecords">
+        <h2 class="heading "><span>Debug Issues with Accounting Records</span></h2>
+    <p  >If TACACS+ servers have been added or deleted from the configuration files, make sure you notify the audisp plugin with this command:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo killall -HUP audisp-tacplus</code></div>
+</div>
+    </div>
+    <p  >If accounting records still are not being sent, add <i class=" ">debug=1</i> to the file <tt class=" ">/etc/audisp/audisp-tac_plus.conf</tt>, and then issue the command above to notify the plugin. Then have the TACACS+ user run a command, and examine the end of <tt class=" ">/var/log/syslog</tt> for messages from the plugin. You can also check the auditing log file <tt class=" ">/var/log/audit/audit.log</tt> to be sure the auditing records are being written. If they are not, restart the audit daemon with:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl restart auditd.service</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126756_TACACSPlus-TACACSComponentSoftwareDescriptions">
+        <h2 class="heading "><span>TACACS Component Software Descriptions</span></h2>
+    <p  >These different pieces of software are involved with delivering TACACS. Provided below is a brief description of their functionalities.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Package Name    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >audisp-tacplus_1.0.0-1-cl3u3    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This package uses auditing data from <tt class=" ">auditd</tt> to send accounting records to the TACACS+ server and is started as part of <tt class=" ">auditd</tt>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >libtac2_1.4.0-cl3u2    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Basic TACACS+ server utility and communications routines.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >libnss-tacplus_1.0.1-cl3u3    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Provides an interface between <tt class=" ">libc</tt> username lookups, the mapping functions, and the TACACS+ server.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >tacplus-auth-1.0.0-cl3u1    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >This package provides the ability to do per-command TACACS+ authorization, and a setup utility tacplus-restrict to enable that. Per-command authorization is not done by default.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >libpam-tacplus_1.4.0-1-cl3u2    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >A modified version of the standard Debian package.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >libtacplus-map1_1.0.0-cl3u2    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The mapping functionality between local and TACACS+ users on the server. Sets the immutable <tt class=" ">sessionid</tt> and auditing UID to ensure the original user can be tracked through multiple processes and privilege changes. Sets the auditing <tt class=" ">loginuid</tt> as immutable if supported. Creates and maintains a status database in <tt class=" ">/run/tacacs_client_map</tt> to manage and lookup mappings.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >libsimple-tacacct1_1.0.0-cl3u2    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Provides an interface for programs to send accounting records to the TACACS+ server. Used by <tt class=" ">audisp-tacplus</tt>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >libtac2-bin_1.4.0-cl3u2    </p>
+    <p  >    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Provides the &ldquo;tacc&rdquo; testing program and TACACS+ man page.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126756_TACACSPlus-Limitations">
+        <h1 class="heading "><span>Limitations</span></h1>
+    <p  >If two or more TACACS+ users are logged in simultaneously, with the same privilege level, while the accounting records are maintained correctly, a lookup on either name will match both users, while a UID lookup will only return the user that logged in first.    </p>
+    <p  >This means that any processes run by either user will be attributed to both, and all files created by either user will be attributed to the first name matched. This is similar to adding two local users to the password file with the same UID and GID, and is an inherent limitation of using the UID for the base user from the password file.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The current algorithm returns the first name matching the UID from the mapping file; this could be the first or second user that logged in.    </p>
+        </div>
+    </div>
+    <p  >To work around this issue, the switch&rsquo;s audit log or the TACACS server accounting logs can be used to determine which processes and files were created by each user.    </p>
+<ul class=" "><li class=" ">    <p  >For commands that do not execute other commands (for example, changes to configurations in an editor, or actions with tools like <tt class=" ">clagctl</tt> and <tt class=" ">vtysh</tt>), no additional accounting is done.    </p>
+</li><li class=" ">    <p  >Per-command authorization is not implemented in this release except at the most basic level (commands are permitted or denied based on the standard Linux user permissions for the local TACACS users, and only privilege level 15 users can run <tt class=" ">sudo</tt> commands by default).    </p>
+</li></ul>    <p  >The Linux <tt class=" ">auditd</tt> system does not always generate audit events for processes when terminated with a signal (via the <tt class=" ">kill</tt> system call or internal errors such as SIGSEGV). As a result, processes that exit on a signal that isn&rsquo;t caught and handled may not generate a STOP accounting record.    </p>
+    <p  >    </p>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="LDAP_Authentication_and_Authorization.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>LDAP Authentication and Authorization</span>
+        </a>
+                <a href="Netfilter_-_ACLs.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Netfilter - ACLs</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

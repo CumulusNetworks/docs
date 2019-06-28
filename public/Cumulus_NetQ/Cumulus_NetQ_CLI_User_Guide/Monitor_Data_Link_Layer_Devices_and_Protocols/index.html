@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Monitor Data Link Layer Devices and Protocols | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/" >
+    Cumulus NetQ 2.1
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_API_User_Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Methods_for_Diagnosing_Network_Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Resolve_MLAG_Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Resolve_Issues/Investigate_NetQ_Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/"  class="active" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 1.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/" >
+    Upgrade from NetQ 2.0.x to NetQ 2.1.0
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/" >
+    Upgrade from NetQ 2.1.0 to NetQ 2.1.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_BGP_Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_EVPN_Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_LLDP_Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Protocols_and_Services/Monitor_the_MLAG_Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Validate_Network_Protocol_and_Service_Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_the_Network/Monitor_Network_Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/UI_Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_User_Interface_Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/NetQ_Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_NetQ/Cumulus_NetQ_UI_User_Guide/Monitor_Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Monitor Data Link Layer Devices and Protocols</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Monitor Data Link Layer Devices and Protocols</h1>
+
+<p>With NetQ, a network administrator can monitor OSI Layer 2 devices and
+protocols, including switches, bridges, link control, and physical media
+access. Keeping track of the various data link layer devices in your
+network ensures consistent and error-free communications between
+devices. NetQ provides the ability to:</p>
+
+<ul>
+<li><p>Monitor and validate device and protocol configurations</p></li>
+
+<li><p>View available communication paths between devices</p></li>
+</ul>
+
+<p>It helps answer questions such as:</p>
+
+<ul>
+<li><p>Is a VLAN misconfigured?</p></li>
+
+<li><p>Is there an MTU mismatch in my network?</p></li>
+
+<li><p>Is MLAG configured correctly?</p></li>
+
+<li><p>Is there an STP loop?</p></li>
+
+<li><p>Can device A reach device B using MAC addresses?</p></li>
+</ul>
+
+<h2 id="monitor-lldp-operation">Monitor LLDP Operation</h2>
+
+<p>LLDP is used by network devices for advertising their identity,
+capabilities, and neighbors on a LAN. You can view this information for
+one or more devices. You can also view the information at an earlier
+point in time or view changes that have occurred to the information
+during a specified timeframe. NetQ enables you to view LLDP information
+for your devices using the <code>netq show lldp</code> command. The syntax for this
+command is:</p>
+
+<pre><code>                   
+netq [] show lldp [] [around ] [json]
+netq [] show events [level info|level error|level warning|level critical|level debug] type lldp [between  and ] [json]
+   
+    
+</code></pre>
+
+<h3 id="view-lldp-information-for-all-devices">View LLDP Information for All Devices</h3>
+
+<p>This example shows the interface and peer information that is advertised
+for each device.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show lldp 
+ 
+Matching lldp records:
+Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
+----------------- ------------------------- ----------------- ------------------------- -------------------------
+exit01            swp1                      edge01            swp5                      Thu Feb  7 18:31:53 2019
+exit01            swp2                      edge02            swp5                      Thu Feb  7 18:31:53 2019
+exit01            swp3                      spine01           swp9                      Thu Feb  7 18:31:53 2019
+exit01            swp4                      spine02           swp9                      Thu Feb  7 18:31:53 2019
+exit01            swp5                      spine03           swp9                      Thu Feb  7 18:31:53 2019
+exit01            swp6                      firewall01        mac:00:02:00:00:00:11     Thu Feb  7 18:31:53 2019
+exit01            swp7                      firewall02        swp3                      Thu Feb  7 18:31:53 2019
+exit02            swp1                      edge01            swp6                      Thu Feb  7 18:31:49 2019
+exit02            swp2                      edge02            swp6                      Thu Feb  7 18:31:49 2019
+exit02            swp3                      spine01           swp10                     Thu Feb  7 18:31:49 2019
+exit02            swp4                      spine02           swp10                     Thu Feb  7 18:31:49 2019
+exit02            swp5                      spine03           swp10                     Thu Feb  7 18:31:49 2019
+exit02            swp6                      firewall01        mac:00:02:00:00:00:12     Thu Feb  7 18:31:49 2019
+exit02            swp7                      firewall02        swp4                      Thu Feb  7 18:31:49 2019
+firewall01        swp1                      edge01            swp14                     Thu Feb  7 18:31:26 2019
+firewall01        swp2                      edge02            swp14                     Thu Feb  7 18:31:26 2019
+firewall01        swp3                      exit01            swp6                      Thu Feb  7 18:31:26 2019
+firewall01        swp4                      exit02            swp6                      Thu Feb  7 18:31:26 2019
+firewall02        swp1                      edge01            swp15                     Thu Feb  7 18:31:31 2019
+firewall02        swp2                      edge02            swp15                     Thu Feb  7 18:31:31 2019
+firewall02        swp3                      exit01            swp7                      Thu Feb  7 18:31:31 2019
+firewall02        swp4                      exit02            swp7                      Thu Feb  7 18:31:31 2019
+server11          swp1                      leaf01            swp7                      Thu Feb  7 18:31:43 2019
+server11          swp2                      leaf02            swp7                      Thu Feb  7 18:31:43 2019
+server11          swp3                      edge01            swp16                     Thu Feb  7 18:31:43 2019
+server11          swp4                      edge02            swp16                     Thu Feb  7 18:31:43 2019
+server12          swp1                      leaf01            swp8                      Thu Feb  7 18:31:47 2019
+server12          swp2                      leaf02            swp8                      Thu Feb  7 18:31:47 2019
+   
+    
+</code></pre>
+
+<h2 id="monitor-interface-health">Monitor Interface Health</h2>
+
+<p>Interface (link) health can be monitored using the <code>netq show
+interfaces</code> command. You can view status of the links, whether they are
+operating over a VRF interface, the MTU of the link, and so forth. Using
+the <em>hostname</em> keyword enables you to view only the interfaces for a
+given device. View changes to interfaces using the <code>netq show events</code>
+command.</p>
+
+<p>The syntax for these commands is:</p>
+
+<pre><code>                   
+netq [] show interfaces [type bond|type bridge|type eth|type loopback|type macvlan|type swp|type vlan|type vrf|type vxlan] [state ] [around ] [json]
+netq  show interfaces [type bond|type bridge|type eth|type loopback|type macvlan|type swp|type vlan|type vrf|type vxlan] [state ] [around ] [count] [json]
+netq [] show events [level info | level error | level warning | level critical | level debug] type interfaces [between  and ] [json]
+   
+    
+</code></pre>
+
+<h3 id="view-status-for-all-interfaces">View Status for All Interfaces</h3>
+
+<p>Viewing the status of all interfaces at once can be helpful when you are
+trying to compare configuration or status of a set of links, or
+generally when changes have been made.</p>
+
+<p>This example shows all interfaces network-wide.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show interfaces 
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+exit01            bridge                    bridge           up         default         , Root bridge:  exit01,             Mon Apr 29 20:57:59 2019
+                                                                                        Root port: , Members:  vxlan4001,
+                                                                                        bridge,
+exit01            eth0                      eth              up         mgmt            MTU: 1500                           Mon Apr 29 20:57:59 2019
+exit01            lo                        loopback         up         default         MTU: 65536                          Mon Apr 29 20:57:58 2019
+exit01            mgmt                      vrf              up                         table: 1001, MTU: 65536,            Mon Apr 29 20:57:58 2019
+                                                                                        Members:  mgmt,  eth0,
+exit01            swp1                      swp              down       default         VLANs: , PVID: 0 MTU: 1500          Mon Apr 29 20:57:59 2019
+exit01            swp44                     swp              up         vrf1            VLANs: ,                            Mon Apr 29 20:57:58 2019
+                                                                                        PVID: 0 MTU: 1500 LLDP: internet:sw
+                                                                                        p1
+exit01            swp45                     swp              down       default         VLANs: , PVID: 0 MTU: 1500          Mon Apr 29 20:57:59 2019
+exit01            swp46                     swp              down       default         VLANs: , PVID: 0 MTU: 1500          Mon Apr 29 20:57:59 2019
+exit01            swp47                     swp              down       default         VLANs: , PVID: 0 MTU: 1500          Mon Apr 29 20:57:59 2019
+ 
+...
+ 
+leaf01            bond01                    bond             up         default         Slave:swp1 LLDP: server01:eth1      Mon Apr 29 20:57:59 2019
+leaf01            bond02                    bond             up         default         Slave:swp2 LLDP: server02:eth1      Mon Apr 29 20:57:59 2019
+leaf01            bridge                    bridge           up         default         , Root bridge:  leaf01,             Mon Apr 29 20:57:59 2019
+                                                                                        Root port: , Members:  vxlan4001,
+                                                                                        bond02,  vni24,  vni13,  bond01,
+                                                                                        bridge,  peerlink,
+leaf01            eth0                      eth              up         mgmt            MTU: 1500                           Mon Apr 29 20:58:00 2019
+leaf01            lo                        loopback         up         default         MTU: 65536                          Mon Apr 29 20:57:59 2019
+leaf01            mgmt                      vrf              up                         table: 1001, MTU: 65536,            Mon Apr 29 20:57:59 2019
+                                                                                        Members:  mgmt,  eth0,
+leaf01            peerlink                  bond             up         default         Slave:swp50 LLDP: leaf02:swp49 LLDP Mon Apr 29 20:58:00 2019
+                                                                                        : leaf02:swp50
+...
+   
+    
+</code></pre>
+
+<h3 id="view-interface-status-for-a-given-device">View Interface Status for a Given Device</h3>
+
+<p>If you are interested in only a the interfaces on a specific device, you
+can view only those.</p>
+
+<p>This example shows all interfaces on the <em>spine01</em> device.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq spine01 show interfaces
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+spine01           eth0                      eth              up         mgmt            MTU: 1500                           Mon Apr 29 21:12:47 2019
+spine01           lo                        loopback         up         default         MTU: 65536                          Mon Apr 29 21:12:47 2019
+spine01           mgmt                      vrf              up                         table: 1001, MTU: 65536,            Mon Apr 29 21:12:46 2019
+                                                                                        Members:  mgmt,  eth0,
+spine01           swp1                      swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf01:swp5
+                                                                                        1
+spine01           swp2                      swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf02:swp5
+                                                                                        1
+spine01           swp29                     swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
+                                                                                        PVID: 0 MTU: 9216 LLDP: exit02:swp5
+                                                                                        1
+spine01           swp3                      swp              up         default         VLANs: ,                            Mon Apr 29 21:12:46 2019
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf03:swp5
+                                                                                        1
+spine01           swp30                     swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
+                                                                                        PVID: 0 MTU: 9216 LLDP: exit01:swp5
+                                                                                        1
+spine01           swp31                     swp              up         default         VLANs: ,                            Mon Apr 29 21:12:46 2019
+                                                                                        PVID: 0 MTU: 9216 LLDP: spine02:swp
+                                                                                        31
+spine01           swp32                     swp              up         default         VLANs: ,                            Mon Apr 29 21:12:46 2019
+                                                                                        PVID: 0 MTU: 9216 LLDP: spine02:swp
+                                                                                        32
+spine01           swp4                      swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf04:swp5
+                                                                                        1
+   
+    
+</code></pre>
+
+<h3 id="view-all-interfaces-of-a-given-type">View All Interfaces of a Given Type</h3>
+
+<p>It can be can be useful to see the status of a particular type of
+interface.</p>
+
+<p>This example shows all bond interfaces that are down, and then those
+that are up.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show interfaces type bond state down
+No matching link records found
+ 
+cumulus@switch:~$ netq show interfaces type bond state up
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+leaf01            bond01                    bond             up         default         Slave:swp1 LLDP: server01:eth1      Mon Apr 29 21:19:07 2019
+leaf01            bond02                    bond             up         default         Slave:swp2 LLDP: server02:eth1      Mon Apr 29 21:19:07 2019
+leaf01            peerlink                  bond             up         default         Slave:swp50 LLDP: leaf02:swp49 LLDP Mon Apr 29 21:19:07 2019
+                                                                                        : leaf02:swp50
+leaf02            bond01                    bond             up         default         Slave:swp1 LLDP: server01:eth2      Mon Apr 29 21:19:07 2019
+leaf02            bond02                    bond             up         default         Slave:swp2 LLDP: server02:eth2      Mon Apr 29 21:19:07 2019
+leaf02            peerlink                  bond             up         default         Slave:swp50 LLDP: leaf01:swp49 LLDP Mon Apr 29 21:19:07 2019
+                                                                                        : leaf01:swp50
+leaf03            bond03                    bond             up         default         Slave:swp1 LLDP: server03:eth1      Mon Apr 29 21:19:07 2019
+leaf03            bond04                    bond             up         default         Slave:swp2 LLDP: server04:eth1      Mon Apr 29 21:19:07 2019
+leaf03            peerlink                  bond             up         default         Slave:swp50 LLDP: leaf04:swp49 LLDP Mon Apr 29 21:19:07 2019
+                                                                                        : leaf04:swp50
+leaf04            bond03                    bond             up         default         Slave:swp1 LLDP: server03:eth2      Mon Apr 29 21:19:07 2019
+leaf04            bond04                    bond             up         default         Slave:swp2 LLDP: server04:eth2      Mon Apr 29 21:19:07 2019
+leaf04            peerlink                  bond             up         default         Slave:swp50 LLDP: leaf03:swp49 LLDP Mon Apr 29 21:19:07 2019
+                                                                                        : leaf03:swp50
+server01          bond0                     bond             up         default         Slave:bond0 LLDP: leaf02:swp1       Mon Apr 29 21:19:07 2019
+server02          bond0                     bond             up         default         Slave:bond0 LLDP: leaf02:swp2       Mon Apr 29 21:19:07 2019
+server03          bond0                     bond             up         default         Slave:bond0 LLDP: leaf04:swp1       Mon Apr 29 21:19:07 2019
+server04          bond0                     bond             up         default         Slave:bond0 LLDP: leaf04:swp2       Mon Apr 29 21:19:07 2019
+   
+    
+</code></pre>
+
+<h3 id="view-the-total-number-of-interfaces">View the Total Number of Interfaces</h3>
+
+<p>For a quick view of the amount of interfaces currently operating on a
+device, use the <em>hostname</em> and <em>count</em> keywords together.</p>
+
+<p>This example shows the count of interfaces on the <em>leaf03</em> switch.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq leaf03 show interfaces count
+Count of matching link records: 28
+   
+    
+</code></pre>
+
+<h3 id="view-the-total-number-of-a-given-interface-type">View the Total Number of a Given Interface Type</h3>
+
+<p>It can be useful to see how many interfaces of a particular type you
+have on a device.</p>
+
+<p>This example shows the count of swp interfaces are on the <em>leaf03</em>
+switch.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq leaf03 show interfaces type swp count
+Count of matching link records: 11
+   
+    
+</code></pre>
+
+<h3 id="view-changes-to-interfaces">View Changes to Interfaces</h3>
+
+<p>If you suspect that an interface is not working as expected, seeing a
+drop in performance or a large number of dropped messages for example,
+you can view changes that have been made to interfaces network-wide.</p>
+
+<p>This example shows info level events for all interfaces in your network:</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show events level info type interfaces between now and 30d
+Matching events records:
+Hostname          Message Type             Severity         Message                             Timestamp
+----------------- ------------------------ ---------------- ----------------------------------- -------------------------
+server03          link                     info             HostName server03 changed state fro 3d:12h:8m:28s
+                                                            m down to up Interface:eth2
+server03          link                     info             HostName server03 changed state fro 3d:12h:8m:28s
+                                                            m down to up Interface:eth1
+server01          link                     info             HostName server01 changed state fro 3d:12h:8m:30s
+                                                            m down to up Interface:eth2
+server01          link                     info             HostName server01 changed state fro 3d:12h:8m:30s
+                                                            m down to up Interface:eth1
+server02          link                     info             HostName server02 changed state fro 3d:12h:8m:34s
+                                                            m down to up Interface:eth2
+...
+   
+    
+</code></pre>
+
+<h2 id="check-for-mtu-inconsistencies">Check for MTU Inconsistencies</h2>
+
+<p>The maximum transmission unit (MTU) determines the largest size packet
+or frame that can be transmitted across a given communication link. When
+the MTU is not configured to the same value on both ends of the link,
+communication problems can occur. With NetQ, you can verify that the MTU
+is correctly specified for each link using the netq check mtu command.</p>
+
+<p>This example shows that four switches have inconsistently specified link
+MTUs. Now the network administrator or operator can reconfigure the
+switches and eliminate the communication issues associated with this
+misconfiguration.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq check mtu
+Checked Nodes: 15, Checked Links: 215, Failed Nodes: 4, Failed Links: 7
+MTU mismatch found on following links
+Hostname          Interface                 MTU    Peer              Peer Interface            Peer MTU Error
+----------------- ------------------------- ------ ----------------- ------------------------- -------- ---------------
+spine01           swp30                     9216   exit01            swp51                     1500     MTU Mismatch
+exit01            swp51                     1500   spine01           swp30                     9216     MTU Mismatch
+spine01           swp29                     9216   exit02            swp51                     1500     MTU Mismatch
+exit02            -                         -      -                 -                         -        Rotten Agent
+exit01            swp52                     1500   spine02           swp30                     9216     MTU Mismatch
+spine02           swp30                     9216   exit01            swp52                     1500     MTU Mismatch
+spine02           swp29                     9216   exit02            swp52                     1500     MTU Mismatch
+   
+    
+</code></pre>
+
+<h2 id="monitor-vlan-configurations">Monitor VLAN Configurations</h2>
+
+<p>A VLAN (Virtual Local Area Network) enables devices on one or more LANs
+to communicate as if they were on the same network, without being
+physically connected. The VLAN enables network administrators to
+partition a network for functional or security requirements without
+changing physical infrastructure. With NetQ, you can view the operation
+of VLANs for one or all devices. You can also view the information at an
+earlier point in time or view changes that have occurred to the
+information during a specified timeframe. NetQ enables you to view basic
+VLAN information for your devices using the <code>netq show vlan</code> command.
+Additional show commands enable you to view VLAN information associated
+with interfaces and MAC addresses. The syntax for these commands is:</p>
+
+<pre><code>                   
+netq [] show interfaces [type vlan] [state ] [around ] [json]
+netq  show interfaces [type vlan] [state ] [around ] [count] [json]
+netq [] show events [level info | level error | level warning | level critical | level debug] type vlan [between  and ] [json]
+netq show macs [] [vlan &lt;1-4096&gt;] [origin] [around ] [json]
+netq  show macs [] [vlan &lt;1-4096&gt;] [origin | count] [around ] [json]
+netq  show macs egress-port  [] [vlan &lt;1-4096&gt;] [origin] [around ] [json]
+netq [] show vlan [&lt;1-4096&gt;] [around ] [json]
+   
+    
+</code></pre>
+
+
+<div class="notices info" > <p>When entering a time value, you must include a numeric value <em>and</em> the
+unit of measure:</p>
+
+<ul>
+<li><p>d: day(s)</p></li>
+
+<li><p>h: hour(s)</p></li>
+
+<li><p>m: minute(s)</p></li>
+
+<li><p>s: second(s)</p></li>
+
+<li><p>now</p></li>
+</ul>
+
+<p>For time ranges, the <code>&lt;text-time&gt;</code> is the most recent time and the
+<code>&lt;text-endtime&gt;</code> is the oldest time. The values do not have to have the
+same unit of measure.</p>
+ </div>
+
+
+<h3 id="view-vlan-information-for-all-devices">View VLAN Information for All Devices</h3>
+
+<p>This example shows the VLANs configured across your network.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show vlan
+Matching vlan records:
+Hostname          VLANs                     SVIs                      Last Changed
+----------------- ------------------------- ------------------------- -------------------------
+exit01            4001                      4001                      Thu Feb  7 18:31:38 2019
+exit02            4001                      4001                      Thu Feb  7 18:31:38 2019
+leaf01            1,13,24,4001              13 24 4001                Thu Feb  7 18:31:38 2019
+leaf02            1,13,24,4001              13 24 4001                Thu Feb  7 18:31:38 2019
+leaf03            1,13,24,4001              13 24 4001                Thu Feb  7 18:31:38 2019
+leaf04            1,13,24,4001              13 24 4001                Thu Feb  7 18:31:38 2019
+   
+    
+</code></pre>
+
+<h3 id="view-vlan-interface-information">View VLAN Interface Information</h3>
+
+<p>You can view the current or past state of the interfaces associated with
+VLANs using the <code>netq show interfaces</code> command. This provides the status
+of the interface, its specified MTU, whether it is running over a VRF,
+and the last time it was changed.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show interfaces type vlan 
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+exit01            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+exit02            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+leaf01            peerlink.4094             vlan             up         default         MTU:9000                            Fri Feb  8 00:24:28 2019
+leaf01            vlan13                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+leaf01            vlan24                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+leaf01            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+leaf02            peerlink.4094             vlan             up         default         MTU:9000                            Fri Feb  8 00:24:28 2019
+leaf02            vlan13                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+leaf02            vlan24                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+leaf02            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+leaf03            peerlink.4094             vlan             up         default         MTU:9000                            Fri Feb  8 00:24:28 2019
+leaf03            vlan13                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+leaf03            vlan24                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+leaf03            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+leaf04            peerlink.4094             vlan             up         default         MTU:9000                            Fri Feb  8 00:24:28 2019
+leaf04            vlan13                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+leaf04            vlan24                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+leaf04            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+   
+    
+</code></pre>
+
+<h3 id="view-mac-addresses-associated-with-a-vlan">View MAC Addresses Associated with a VLAN</h3>
+
+<p>You can determine the MAC addresses associated with a given VLAN using
+the <code>netq show macs vlan</code> command. The command also provides the
+hostname of the devices, the egress port for the interface, whether the
+MAC address originated from the given device, whether it learns the MAC
+address from the peer (remote=yes), and the last time the configuration
+was changed.</p>
+
+<p>This example shows the MAC addresses associated with <em>VLAN13</em>.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show macs vlan 13 
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port          Remote Last Changed
+------ ------------------ ------ ----------------- -------------------- ------ -------------------------
+no     00:03:00:11:11:01  13     leaf01            bond01:server01      no     Fri Feb  8 00:24:28 2019
+no     00:03:00:11:11:01  13     leaf02            bond01:server01      no     Fri Feb  8 00:24:28 2019
+no     00:03:00:11:11:01  13     leaf03            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
+no     00:03:00:11:11:01  13     leaf04            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
+no     00:03:00:33:33:01  13     leaf01            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
+no     00:03:00:33:33:01  13     leaf02            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
+no     00:03:00:33:33:01  13     leaf03            bond03:server03      no     Fri Feb  8 00:24:28 2019
+no     00:03:00:33:33:01  13     leaf04            bond03:server03      no     Fri Feb  8 00:24:28 2019
+no     02:03:00:11:11:01  13     leaf01            bond01:server01      no     Fri Feb  8 00:24:28 2019
+no     02:03:00:11:11:01  13     leaf02            bond01:server01      no     Fri Feb  8 00:24:28 2019
+no     02:03:00:11:11:01  13     leaf03            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
+no     02:03:00:11:11:01  13     leaf04            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
+no     02:03:00:11:11:02  13     leaf01            bond01:server01      no     Fri Feb  8 00:24:28 2019
+no     02:03:00:11:11:02  13     leaf02            bond01:server01      no     Fri Feb  8 00:24:28 2019
+no     02:03:00:11:11:02  13     leaf03            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
+no     02:03:00:11:11:02  13     leaf04            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
+no     02:03:00:33:33:01  13     leaf01            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
+no     02:03:00:33:33:01  13     leaf02            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
+no     02:03:00:33:33:01  13     leaf03            bond03:server03      no     Fri Feb  8 00:24:28 2019
+no     02:03:00:33:33:01  13     leaf04            bond03:server03      no     Fri Feb  8 00:24:28 2019
+no     02:03:00:33:33:02  13     leaf01            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
+no     02:03:00:33:33:02  13     leaf02            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
+no     02:03:00:33:33:02  13     leaf03            bond03:server03      no     Fri Feb  8 00:24:28 2019
+no     02:03:00:33:33:02  13     leaf04            bond03:server03      no     Fri Feb  8 00:24:28 2019
+yes    44:38:39:00:00:03  13     leaf01            bridge               no     Fri Feb  8 00:24:28 2019
+yes    44:38:39:00:00:15  13     leaf02            bridge               no     Fri Feb  8 00:24:28 2019
+yes    44:38:39:00:00:23  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
+yes    44:38:39:00:00:5c  13     leaf04            bridge               no     Fri Feb  8 00:24:28 2019
+yes    44:39:39:ff:00:13  13     leaf01            bridge               no     Fri Feb  8 00:24:28 2019
+yes    44:39:39:ff:00:13  13     leaf02            bridge               no     Fri Feb  8 00:24:28 2019
+yes    44:39:39:ff:00:13  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
+yes    44:39:39:ff:00:13  13     leaf04            bridge               no     Fri Feb  8 00:24:28 2019
+   
+    
+</code></pre>
+
+<h3 id="view-mac-addresses-associated-with-an-egress-port">View MAC Addresses Associated with an Egress Port</h3>
+
+<p>You can filter that information down to just the MAC addresses that are
+associated with a given VLAN that use a particular egress port. This
+example shows MAC addresses associated with the <em>leaf03</em> switch and
+<em>VLAN 13</em> that use the <em>bridge</em> port.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq leaf03 show macs egress-port bridge vlan 13
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port          Remote Last Changed
+------ ------------------ ------ ----------------- -------------------- ------ -------------------------
+yes    44:38:39:00:00:23  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
+yes    44:39:39:ff:00:13  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
+   
+    
+</code></pre>
+
+<h3 id="view-the-mac-addresses-associated-with-vrr-configurations">View the MAC Addresses Associated with VRR Configurations</h3>
+
+<p>You can view all of the MAC addresses associated with your VRR (virtual
+router reflector) interface configuration using the <code>netq show
+interfaces type macvlan</code> command. This is useful for determining if the
+specified MAC address inside a VLAN is the same or different across your
+VRR configuration.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show interfaces type macvlan
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+leaf01            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             Fri Feb  8 00:28:09 2019
+                                                                                        Mode: Private
+leaf01            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
+                                                                                        Mode: Private
+leaf02            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             Fri Feb  8 00:28:09 2019
+                                                                                        Mode: Private
+leaf02            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
+                                                                                        Mode: Private
+leaf03            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             Fri Feb  8 00:28:09 2019
+                                                                                        Mode: Private
+leaf03            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
+                                                                                        Mode: Private
+leaf04            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             Fri Feb  8 00:28:09 2019
+                                                                                        Mode: Private
+leaf04            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
+                                                                                        Mode: Private
+   
+    
+</code></pre>
+
+<h2 id="monitor-mlag-configurations">Monitor MLAG Configurations</h2>
+
+<p>Multi-Chassis Link Aggregation (MLAG) is used to enable a server or
+switch with a two-port bond (such as a link aggregation group/LAG,
+EtherChannel, port group or trunk) to connect those ports to different
+switches and operate as if they are connected to a single, logical
+switch. This provides greater redundancy and greater system throughput.
+Dual-connected devices can create LACP bonds that contain links to each
+physical switch. Therefore, active-active links from the dual-connected
+devices are supported even though they are connected to two different
+physical switches.</p>
+
+
+<div class="notices tip" > <p>The Cumulus Linux implementation of MLAG is referred to by other vendors
+as CLAG, MC-LAG or VPC. You will even see references to CLAG in Cumulus
+Linux, including the management daemon, named <code>clagd</code>, and other options
+in the code, such as <code>clag-id</code>, which exist for historical purposes. The
+Cumulus Linux implementation is truly a multi-chassis link aggregation
+protocol, so we call it MLAG.</p>
+ </div>
+
+
+<p>For instructions on configuring MLAG, refer to the
+<a href="/old/Cumulus_NetQ/https://docs.cumulusnetworks.com/display/DOCS/Multi-Chassis+Link+Aggregation+-+MLAG">MLAG</a>
+topic in the Cumulus Linux User Guide.</p>
+
+<p>With NetQ, you can view the configuration and operation of devices using
+MLAG using the <code>netq show clag</code> command. You can view the current
+configuration and the configuration at a prior point in time, as well as
+view any changes that have been made within a timeframe. The syntax for
+the show command is:</p>
+
+<pre><code>                   
+netq [] show clag [around ] [json]
+netq [] show events [level info|level error|level warning|level critical|level debug] type clag [between  and ] [json]
+   
+    
+</code></pre>
+
+<h3 id="view-mlag-configuration-and-status-for-all-devices">View MLAG Configuration and Status for all Devices</h3>
+
+<p>This example shows the configuration and status of MLAG for all devices.
+In this case, three MLAG pairs are seen between leaf11 and leaf12 (which
+happens to be down), edge01(P) and edge02, and leaf21(P) and leaf22.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show clag
+Matching clag records:
+Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
+                                                                          s
+----------------- ----------------- ------------------ ---------- ------ ----- ----- -------------------------
+leaf11                              44:38:39:ff:ff:01  down       n/a    0     0     Thu Feb  7 18:30:49 2019
+leaf12                              44:38:39:ff:ff:01  down       down   8     0     Thu Feb  7 18:30:53 2019
+edge01(P)         edge02            00:01:01:10:00:01  up         up     25    25    Thu Feb  7 18:31:02 2019
+edge02            edge01(P)         00:01:01:10:00:01  up         up     25    25    Thu Feb  7 18:31:15 2019
+leaf21(P)         leaf22            44:38:39:ff:ff:02  up         up     8     8     Thu Feb  7 18:31:20 2019
+leaf22            leaf21(P)         44:38:39:ff:ff:02  up         up     8     8     Thu Feb  7 18:31:30 2019
+   
+    
+</code></pre>
+
+<p>You can go back in time to see when this first MLAG pair went down.
+These results indicate that the pair became disconnected some time in
+the last five minutes.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show clag around 5m
+Matching clag records:
+Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
+                                                                         s
+----------------- ----------------- ------------------ ---------- ------ ----- ----- -------------------------
+edge01(P)         edge02            00:01:01:10:00:01  up         up     25    25    Thu Feb  7 18:31:30 2019
+edge02            edge01(P)         00:01:01:10:00:01  up         up     25    25    Thu Feb  7 18:31:30 2019
+leaf11(P)         leaf12            44:38:39:ff:ff:01  up         up     8     8     Thu Feb  7 18:31:30 2019
+leaf12            leaf11(P)         44:38:39:ff:ff:01  up         up     8     8     Thu Feb  7 18:31:30 2019
+leaf21(P)         leaf22            44:38:39:ff:ff:02  up         up     8     8     Thu Feb  7 18:31:30 2019
+leaf22            leaf21(P)         44:38:39:ff:ff:02  up         up     8     8     Thu Feb  7 18:31:30 2019
+   
+    
+</code></pre>
+
+<h3 id="view-mlag-configuration-and-status-for-given-devices">View MLAG Configuration and Status for Given Devices</h3>
+
+<p>This example shows that xxx device is up and MLAG properly configured
+with a peer connection to yyy and 8 bonds, all of which are dual bonded.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq leaf22 show clag
+Matching CLAG session records are:
+Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
+                                                                          s
+----------------- ----------------- ------------------ ---------- ------ ----- ----- -------------------------
+leaf22            leaf21(P)         44:38:39:ff:ff:02  up         up     8     8     Thu Feb  7 18:31:30 2019
+   
+    
+</code></pre>
+
+<p>When you&rsquo;re directly on the switch, you can run <code>clagctl</code> to get the
+state:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo clagctl
+ 
+The peer is alive
+Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
+Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
+Peer Interface and IP: peerlink-3.4094 169.254.0.9 
+VxLAN Anycast IP: 36.0.0.20
+Backup IP: 27.0.0.20 (active)
+System MAC: 44:38:39:ff:ff:01
+ 
+CLAG Interfaces
+Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
+---------------- ---------------- ------- -------------------- -----------------
+vx-38            vx-38            -       -                    - 
+vx-33            vx-33            -       -                    - 
+hostbond4        hostbond4        1       -                    - 
+hostbond5        hostbond5        2       -                    - 
+vx-37            vx-37            -       -                    - 
+vx-36            vx-36            -       -                    - 
+vx-35            vx-35            -       -                    - 
+vx-34            vx-34            -       -                    -
+   
+    
+</code></pre>
+
+<h2 id="monitor-time-synchronization-status-for-devices">Monitor Time Synchronization Status for Devices</h2>
+
+<p>It is important that the switches and hosts remain in time
+synchronization with the NetQ Platform to ensure collected data is
+properly captured and processed. You can use the <code>netq show ntp</code> command
+to view the time synchronization status for all devices or filter for
+devices that are either in synchronization or out of synchronization,
+currently or at a time in the past. The syntax for the show command is:</p>
+
+<pre><code>                   
+netq [] show ntp [out-of-sync|in-sync] [around ] [json]
+netq [] show events [level info|level error|level warning|level critical|level debug] type ntp [between  and ] [json]
+   
+    
+</code></pre>
+
+<p>This example shows the time synchronization status for all devices in
+the network.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show ntp
+ 
+Matching ntp records:
+Hostname          NTP Sync Current Server    Stratum NTP App
+----------------- -------- ----------------- ------- ---------------------
+edge01            yes      services01.it.c   3       ntpq
+exit01            yes      time.tritn.com    2       ntpq
+exit02            yes      time.tritn.com    2       ntpq
+internet          no       -                 16      ntpq
+leaf01            yes      services01.it.c   2       ntpq
+leaf02            yes      services01.it.c   2       ntpq
+leaf03            yes      107.181.191.189   2       ntpq
+leaf04            yes      grom.polpo.org    2       ntpq
+oob-mgmt-server   yes      linode227395.st   2       ntpq
+server01          yes      192.168.0.254     3       ntpq
+server02          yes      192.168.0.254     3       ntpq
+server03          yes      192.168.0.254     3       ntpq
+server04          yes      192.168.0.254     3       ntpq
+spine01           yes      107.181.191.189   2       ntpq
+spine02           yes      t2.time.bf1.yah   2       ntpq
+   
+    
+</code></pre>
+
+<p>This example shows all devices in the network that are out of time
+synchronization, and consequently might need to be investigated.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq show ntp out-of-sync
+ 
+Matching ntp records:
+Hostname          NTP Sync Current Server    Stratum NTP App
+----------------- -------- ----------------- ------- ---------------------
+internet          no       -                 16      ntpq
+   
+    
+</code></pre>
+
+<p>This example shows the time synchronization status for <em>leaf01</em>.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq leaf01 show ntp
+ 
+Matching ntp records:
+Hostname          NTP Sync Current Server    Stratum NTP App
+----------------- -------- ----------------- ------- ---------------------
+leaf01            yes      kilimanjaro       2       ntpq
+   
+    
+</code></pre>
+
+<h2 id="monitor-spanning-tree-protocol-configuration">Monitor Spanning Tree Protocol Configuration</h2>
+
+<p>The Spanning Tree Protocol (STP) is used in Ethernet-based networks to
+prevent communication loops when you have redundant paths on a bridge or
+switch. Loops cause excessive broadcast messages greatly impacting the
+network performance. With NetQ, you can view the STP topology on a
+bridge or switch to ensure no loops have been created using the <code>netq
+show stp topology</code> command. You can also view the topology information
+for a prior point in time to see if any changes were made around then.
+The syntax for the show command is:</p>
+
+<pre><code>                   
+netq  show stp topology [around ] [json]
+   
+    
+</code></pre>
+
+<p>This example shows the STP topology as viewed from the <em>spine1</em> switch.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq spine1 show stp topology
+Root(spine1) -- spine1:sw_clag200 -- leaf2:EdgeIntf(sng_hst2) -- hsleaf21
+                                  -- leaf2:EdgeIntf(dual_host2) -- hdleaf2
+                                  -- leaf2:EdgeIntf(dual_host1) -- hdleaf1
+                                  -- leaf2:ClagIsl(peer-bond1) -- leaf1
+                                  -- leaf1:EdgeIntf(sng_hst2) -- hsleaf11
+                                  -- leaf1:EdgeIntf(dual_host2) -- hdleaf2
+                                  -- leaf1:EdgeIntf(dual_host1) -- hdleaf1
+                                  -- leaf1:ClagIsl(peer-bond1) -- leaf2
+             -- spine1:ClagIsl(peer-bond1) -- spine2
+             -- spine1:sw_clag300 -- edge1:EdgeIntf(sng_hst2) -- hsedge11
+                                  -- edge1:EdgeIntf(dual_host2) -- hdedge2
+                                  -- edge1:EdgeIntf(dual_host1) -- hdedge1
+                                  -- edge1:ClagIsl(peer-bond1) -- edge2
+                                  -- edge2:EdgeIntf(sng_hst2) -- hsedge21
+                                  -- edge2:EdgeIntf(dual_host2) -- hdedge2
+                                  -- edge2:EdgeIntf(dual_host1) -- hdedge1
+                                  -- edge2:ClagIsl(peer-bond1) -- edge1
+Root(spine2) -- spine2:sw_clag200 -- leaf2:EdgeIntf(sng_hst2) -- hsleaf21
+                                  -- leaf2:EdgeIntf(dual_host2) -- hdleaf2
+                                  -- leaf2:EdgeIntf(dual_host1) -- hdleaf1
+                                  -- leaf2:ClagIsl(peer-bond1) -- leaf1
+                                  -- leaf1:EdgeIntf(sng_hst2) -- hsleaf11
+                                  -- leaf1:EdgeIntf(dual_host2) -- hdleaf2
+                                  -- leaf1:EdgeIntf(dual_host1) -- hdleaf1
+                                  -- leaf1:ClagIsl(peer-bond1) -- leaf2
+             -- spine2:ClagIsl(peer-bond1) -- spine1
+             -- spine2:sw_clag300 -- edge2:EdgeIntf(sng_hst2) -- hsedge21
+                                  -- edge2:EdgeIntf(dual_host2) -- hdedge2
+                                  -- edge2:EdgeIntf(dual_host1) -- hdedge1
+                                  -- edge2:ClagIsl(peer-bond1) -- edge1
+                                  -- edge1:EdgeIntf(sng_hst2) -- hsedge11
+                                  -- edge1:EdgeIntf(dual_host2) -- hdedge2
+                                  -- edge1:EdgeIntf(dual_host1) -- hdedge1
+                                  -- edge1:ClagIsl(peer-bond1) -- edge2
+   
+    
+</code></pre>
+
+<h2 id="validate-paths-between-devices">Validate Paths between Devices</h2>
+
+<p>If you have VLANs configured, you can view the available paths between
+two devices on the VLAN currently and at a time in the past using their
+MAC addresses . You can view the output in one of three formats ( <em>json,
+pretty,</em> and <em>detail</em> ). JSON output provides the output in a JSON file
+format for ease of importing to other applications or software. Pretty
+output lines up the paths in a pseudo-graphical manner to help visualize
+multiple paths. Detail output is useful for traces with higher hop
+counts where the pretty output wraps lines, making it harder to
+interpret the results. The detail output displays a table with a row for
+each path.</p>
+
+<p><span style="color: #353744;"> <span style="color: #000000;"> To view
+the paths: </span> </span></p>
+
+<ol>
+<li><p><span style="color: #353744;"> <span style="color: #000000;">
+Identify the MAC address and VLAN ID for the destination device
+</span> </span></p></li>
+
+<li><p><span style="color: #353744;"> <span style="color: #000000;">
+Identify the IP address or hostname for the source device </span>
+</span></p></li>
+
+<li><p><span style="color: #353744;"> <span style="color: #000000;"> Use
+the </span> <code>netq trace</code> <span style="color: #000000;"> command to
+see the available paths between those devices. </span> </span></p></li>
+</ol>
+
+<p>The trace command syntax is:</p>
+
+<pre><code>                   
+netq trace  [vlan &lt;1-4096&gt;] from (|) [vrf ] [around ] [json|detail|pretty] [debug]
+   
+    
+</code></pre>
+
+
+<div class="notices info" > <p>The syntax requires the destination device address first, <em>&lt;mac&gt;</em>, and
+then the source device address or hostname. Additionally, the <em>vlan</em>
+keyword-value pair is required for layer 2 traces even though the syntax
+indicates it is optional.</p>
+
+<p>The tracing function only knows about addresses that have already been
+learned. If you find that a path is invalid or incomplete, you may need
+to ping the identified device so that its address becomes known.</p>
+ </div>
+
+
+<h3 id="view-paths-between-two-switches-with-pretty-output">View Paths between Two Switches with Pretty Output</h3>
+
+<p>This example shows the available paths between a top of rack switch,
+<em>tor-1</em>, and a server, <em>server11</em>. The request is to go through VLAN
+<em>1001</em> from the VRF <em>vrf1</em>. The results include a summary of the trace,
+including the total number of paths available, those with errors and
+warnings, and the MTU of the paths. In this case, the results are
+displayed in pseudo-graphical output.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq trace 00:02:00:00:00:02 vlan 1001 from leaf01 vrf vrf1 pretty
+Number of Paths: 4
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9152
+ leaf01 vni: 34 uplink-2 -- downlink-5 spine02 downlink-2 -- uplink-2 vni: 34 leaf12 hostbond4 -- swp2 server11  
+               uplink-2 -- downlink-5 spine02 downlink-1 -- uplink-2 vni: 34 leaf11 hostbond4 -- swp1 server11  
+ leaf01 vni: 34 uplink-1 -- downlink-5 spine01 downlink-2 -- uplink-1 vni: 34 leaf12 hostbond4 -- swp2 server11  
+               uplink-1 -- downlink-5 spine01 downlink-1 -- uplink-1 vni: 34 leaf11 hostbond4 -- swp1 server11    
+   
+    
+</code></pre>
+
+<p>Alternately, you can use the IP address of the source device, as shown
+in this example.</p>
+
+<pre><code>                   
+cumulus@redis-1:~$  netq trace 00:02:00:00:00:02 vlan 1001 from 10.0.0.8 vrf vrf1 pretty 
+Number of Paths: 4
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9152
+ server11 swp1 -- swp5  tor-1  vni: 34 uplink-2 -- downlink-5 spine02 downlink-2 -- uplink-2 vni: 34  leaf12 hostbond4 -- swp2 server11  
+                                                           uplink-2 -- downlink-5 spine02 downlink-1 -- uplink-2 vni: 34  leaf11 hostbond4 -- swp1 server11  
+          swp1 -- swp5  tor-1  vni: 34 uplink-1 -- downlink-5 spine01 downlink-2 -- uplink-1 vni: 34  leaf12 hostbond4 -- swp2 server11  
+                                                           uplink-1 -- downlink-5 spine01 downlink-1 -- uplink-1 vni: 34  leaf11 hostbond4 -- swp1 server11
+   
+    
+</code></pre>
+
+<h3 id="view-paths-between-two-switches-with-detailed-output">View Paths between Two Switches with Detailed Output</h3>
+
+<p>This example provides the same path information as the pretty output,
+but displays the information in a tabular output.</p>
+
+<pre><code>                   
+cumulus@switch:~$ netq trace 00:02:00:00:00:02 vlan 1001 from 10.0.0.8 vrf vrf1 detail
+Number of Paths: 4
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9152
+Id  Hop Hostname        InPort          InVlan InTunnel              InRtrIf         InVRF           OutRtrIf        OutVRF          OutTunnel             OutPort         OutVlan
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+1   1   server11                                                                                                                                           swp1            1000
+    2   leaf01          swp5            1000                         vlan1000        vrf1            vlan1001        vrf1            vni: 34               uplink-2
+    3   spine02         downlink-5                                   downlink-5      default         downlink-2      default                               downlink-2
+    4   leaf12          uplink-2               vni: 34               vlan1001        vrf1                                                                  hostbond4       1001
+    5   server11        swp2
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+2   1   server11                                                                                                                                           swp1            1000
+    2   leaf01          swp5            1000                         vlan1000        vrf1            vlan1001        vrf1            vni: 34               uplink-2
+    3   spine02         downlink-5                                   downlink-5      default         downlink-1      default                               downlink-1
+    4   leaf11          uplink-2               vni: 34               vlan1001        vrf1                                                                  hostbond4       1001
+    5   server11        swp1
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+3   1   server11                                                                                                                                           swp1            1000
+    2   leaf01          swp5            1000                         vlan1000        vrf1            vlan1001        vrf1            vni: 34               uplink-1
+    3   spine01         downlink-5                                   downlink-5      default         downlink-2      default                               downlink-2
+    4   leaf12          uplink-1               vni: 34               vlan1001        vrf1                                                                  hostbond4       1001
+    5   server11        swp2
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+4   1   server11                                                                                                                                           swp1            1000
+    2   leaf01          swp5            1000                         vlan1000        vrf1            vlan1001        vrf1            vni: 34               uplink-1
+    3   spine01         downlink-5                                   downlink-5      default         downlink-1      default                               downlink-1
+    4   leaf11          uplink-1               vni: 34               vlan1001        vrf1                                                                  hostbond4       1001
+    5   server11        swp1
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+   
+    
+</code></pre>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#monitor-lldp-operation">Monitor LLDP Operation</a>
+<ul>
+<li><a href="#view-lldp-information-for-all-devices">View LLDP Information for All Devices</a></li>
+</ul></li>
+<li><a href="#monitor-interface-health">Monitor Interface Health</a>
+<ul>
+<li><a href="#view-status-for-all-interfaces">View Status for All Interfaces</a></li>
+<li><a href="#view-interface-status-for-a-given-device">View Interface Status for a Given Device</a></li>
+<li><a href="#view-all-interfaces-of-a-given-type">View All Interfaces of a Given Type</a></li>
+<li><a href="#view-the-total-number-of-interfaces">View the Total Number of Interfaces</a></li>
+<li><a href="#view-the-total-number-of-a-given-interface-type">View the Total Number of a Given Interface Type</a></li>
+<li><a href="#view-changes-to-interfaces">View Changes to Interfaces</a></li>
+</ul></li>
+<li><a href="#check-for-mtu-inconsistencies">Check for MTU Inconsistencies</a></li>
+<li><a href="#monitor-vlan-configurations">Monitor VLAN Configurations</a>
+<ul>
+<li><a href="#view-vlan-information-for-all-devices">View VLAN Information for All Devices</a></li>
+<li><a href="#view-vlan-interface-information">View VLAN Interface Information</a></li>
+<li><a href="#view-mac-addresses-associated-with-a-vlan">View MAC Addresses Associated with a VLAN</a></li>
+<li><a href="#view-mac-addresses-associated-with-an-egress-port">View MAC Addresses Associated with an Egress Port</a></li>
+<li><a href="#view-the-mac-addresses-associated-with-vrr-configurations">View the MAC Addresses Associated with VRR Configurations</a></li>
+</ul></li>
+<li><a href="#monitor-mlag-configurations">Monitor MLAG Configurations</a>
+<ul>
+<li><a href="#view-mlag-configuration-and-status-for-all-devices">View MLAG Configuration and Status for all Devices</a></li>
+<li><a href="#view-mlag-configuration-and-status-for-given-devices">View MLAG Configuration and Status for Given Devices</a></li>
+</ul></li>
+<li><a href="#monitor-time-synchronization-status-for-devices">Monitor Time Synchronization Status for Devices</a></li>
+<li><a href="#monitor-spanning-tree-protocol-configuration">Monitor Spanning Tree Protocol Configuration</a></li>
+<li><a href="#validate-paths-between-devices">Validate Paths between Devices</a>
+<ul>
+<li><a href="#view-paths-between-two-switches-with-pretty-output">View Paths between Two Switches with Pretty Output</a></li>
+<li><a href="#view-paths-between-two-switches-with-detailed-output">View Paths between Two Switches with Detailed Output</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

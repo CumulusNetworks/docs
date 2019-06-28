@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Netfilter - ACLs on Cumulus Networks Documentation</title>
+    <link>http://example.org/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/</link>
+    <description>Recent content in Netfilter - ACLs on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Default Cumulus Linux ACL Configuration</title>
+      <link>http://example.org/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/</guid>
+      <description>The Cumulus Linux default ACL configuration is split into three parts, as outlined in the netfilter ACL documentation: IP tables, IPv6 tables, and EB tables. The sections below cover the default configurations for each part, while the default file can be seen by clicking the Default ACL Configuration link:
+Default ACL Configuration 
+ cumulus@switch:~$ sudo cl-acltool -L all ------------------------------- Listing rules of type iptables: ------------------------------- TABLE filter : Chain INPUT (policy ACCEPT 167 packets, 16481 bytes) pkts bytes target prot opt in out source destination 0 0 DROP all -- swp+ any 240.</description>
+    </item>
+    
+    <item>
+      <title>Filtering Learned MAC Addresses</title>
+      <link>http://example.org/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/</guid>
+      <description>On Broadcom switches, a MAC address is learned on a bridge regardless of whether or not a received packet is dropped by an ACL. This is due to how the hardware learns MAC addresses and occurs before the ACL lookup. This can be a security or resource problem as the MAC address table has the potential to get filled with bogus MAC addresses, so a malfunctioning host, network error, loop or malicious attack on a shared L2 platform can create an outage for other hosts if the same MAC address is learned on another port.</description>
+    </item>
+    
+  </channel>
+</rss>

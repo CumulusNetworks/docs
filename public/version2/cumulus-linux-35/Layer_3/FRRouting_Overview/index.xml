@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FRRouting Overview on Cumulus Networks Documentation</title>
+    <link>http://example.org/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/</link>
+    <description>Recent content in FRRouting Overview on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Upgrading from Quagga to FRRouting</title>
+      <link>http://example.org/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/</guid>
+      <description>Cumulus Linux 3.4 and later releases replace Quagga with FRRouting. This section outlines the upgrade process for users currently using Quagga.
+These instructions only apply to upgrading to Cumulus Linux 3.4 or later from releases earlier than 3.4. New image installations contain frr instead of quagga or quagga-compat. If you are using any automation tools to configure your network and are installing a new Cumulus Linux image, make sure your automation tools refer to FRR and not to Quagga.</description>
+    </item>
+    
+  </channel>
+</rss>

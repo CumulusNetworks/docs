@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Buffer and Queue Management - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link current" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5127004"> <span>Buffer and Queue Management</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><span id="src-5127004_indexterm-2A796344CD96448CB123DB33F6AA9E31">Hardware </span><span id="src-5127004_indexterm-FEBBDB3A5FAA92FF54A311602BDC3756">datapath configuration manages </span><span id="src-5127004_indexterm-10563381CA94A65B479AC41E10692A9B">packet buffering, </span><span id="src-5127004_indexterm-DF5BEA96BB17286553B1FFAF4F9F9AB6">queueing and </span>scheduling in hardware. There are two configuration input files:    </p>
+<ul class=" "><li class=" ">    <p id="src-5127004_indexterm-C066905FB7650118E025B940F93392A8" ><tt class=" ">/etc/cumulus/datapath/traffic.conf</tt>, which describes priority groups and assigns the scheduling algorithm and weights    </p>
+</li><li class=" ">    <p id="src-5127004_indexterm-36FEA6AD7AB6BFDA3BA8DDF93CE7BA82" ><tt class=" ">/usr/lib/python2.7/dist-packages/cumulus/__chip_config/[bcm|mlx]/datapath.conf</tt>, which assigns buffer space and egress queues    </p>
+</li></ul>    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Versions of these files prior to Cumulus Linux 2.1 are incompatible with Cumulus Linux 2.1 and later; using older files causes <tt class=" ">switchd</tt> to fail to start and, on Broadcom switches, returns an error that it cannot find the <tt class=" ">/var/lib/cumulus/rc.datapath</tt> file.    </p>
+        </div>
+    </div>
+    <p  ><span id="src-5127004_indexterm-034D833D2CCB1B650FA30181FB23AD5E">Each packet is assigned to an ASIC </span><span id="src-5127004_indexterm-DBA1595A478CDE54FFCD6C48A0AEB8D8">Class of Service (CoS) value based on the packet's priority value stored in the </span><span id="src-5127004_indexterm-6300320C8B01C4A4B30D4B4A7C7BC94B">802.1p (Class of Service) or </span><span id="src-5127004_indexterm-50EFE71A3C88783D3989C72719247A39">DSCP (</span>Differentiated Services Code Point) header field. The choice to schedule packets based on COS or DSCP is a configurable option in the <tt id="src-5127004_indexterm-E15E3D6BD1699175049E636E3C026F7E" class=" ">/etc/cumulus/datapath/traffic.conf</tt> file.    </p>
+    <p id="src-5127004_indexterm-7F37D3E4199280E0A080A5CD7B3E39AF" >Priority groups include:    </p>
+<ul class=" "><li class=" ">    <p  ><i class=" ">Control</i>: Highest priority traffic    </p>
+</li><li class=" ">    <p  ><i class=" ">Service</i>: Second-highest priority traffic    </p>
+</li><li class=" ">    <p  ><i class=" ">Bulk</i>: All remaining traffic    </p>
+</li></ul>    <p  >The scheduler is configured to use a hybrid scheduling algorithm. It applies strict priority to control traffic queues and a weighted round robin selection from the remaining queues. Unicast packets and multicast packets with the same priority value are assigned to separate queues, which are assigned equal scheduling weights.    </p>
+    <p  >Datapath configuration takes effect when you initialize <tt class=" ">switchd</tt>. Changes to the <tt class=" ">traffic.conf</tt> file require you to <a   href="Configuring_switchd.html#src-5126758_Configuringswitchd-restartswitchd">restart the <tt class=" ">switchd</tt> </a>service.    </p>
+    <div class="section section-1" id="src-5127004_BufferandQueueManagement-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5127004_BufferandQueueManagement-Commands">
+        <h1 class="heading "><span>Commands</span></h1>
+    <p  >If you modify the configuration in the <tt class=" ">/etc/cumulus/datapath/traffic.conf</tt> file, you must <a   href="Configuring_switchd.html#src-5126758_Configuringswitchd-restartswitchd">restart <tt class=" ">switchd</tt> </a>for the changes to take effect:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl restart switchd.service</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127004_BufferandQueueManagement-ConfigurationFiles">
+        <h1 class="heading "><span>Configuration Files</span></h1>
+    <p  >The following configuration applies to 10G, 40G, and 100G switches on Tomahawk, Trident II+ or Trident II <a  class="external-link" href="http://cumulusnetworks.com/hcl/">platforms</a> only.    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">/etc/cumulus/datapath/traffic.conf</tt>: The datapath configuration file.    </p>
+</li></ul>    <p  class="expand-control-text">Click to view sample traffic.conf file ...    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ cat /etc/cumulus/datapath/traffic.conf</code></div>
+<div class="line"><code class="plain"># </code></div>
+<div class="line"><code class="plain"># /etc/cumulus/datapath/traffic.conf</code></div>
+<div class="line"><code class="plain">#                                                                              </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain"># packet header field used to determine the packet priority level          </code></div>
+<div class="line"><code class="plain"># fields include {</code><code class="value">802</code><code class="plain">.1p, dscp}                                            </code></div>
+<div class="line"><code class="plain">traffic.packet_priority_source = </code><code class="value">802</code><code class="plain">.1p                                    </code></div>
+<div class="line"><code class="plain">                                        </code></div>
+<div class="line"><code class="plain"># remark packet priority value                                             </code></div>
+<div class="line"><code class="plain"># fields include {</code><code class="value">802</code><code class="plain">.1p, none}                                            </code></div>
+<div class="line"><code class="plain">traffic.remark_packet_priority = none                              </code></div>
+<div class="line"><code class="plain">                                                                             </code></div>
+<div class="line"><code class="plain"># packet priority values assigned to each internal cos value              </code></div>
+<div class="line"><code class="plain"># internal cos values {cos_0..cos_7}                                   </code></div>
+<div class="line"><code class="plain"># (internal cos </code><code class="value">3</code><code class="plain"> has been reserved </code><code class="keyword">for</code><code class="plain"> CPU-generated traffic)         </code></div>
+<div class="line"><code class="plain"># </code><code class="value">802</code><code class="plain">.1p values = {</code><code class="value">0</code><code class="plain">..</code><code class="value">7</code><code class="plain">}, dscp values = {</code><code class="value">0</code><code class="plain">..</code><code class="value">63</code><code class="plain">}                         </code></div>
+<div class="line"><code class="plain">traffic.cos_0.packet_priorities = [</code><code class="value">0</code><code class="plain">]                                 </code></div>
+<div class="line"><code class="plain">traffic.cos_1.packet_priorities = [</code><code class="value">1</code><code class="plain">]                            </code></div>
+<div class="line"><code class="plain">traffic.cos_2.packet_priorities = [</code><code class="value">2</code><code class="plain">]                              </code></div>
+<div class="line"><code class="plain">traffic.cos_3.packet_priorities = []                            </code></div>
+<div class="line"><code class="plain">traffic.cos_4.packet_priorities = [</code><code class="value">3</code><code class="plain">,</code><code class="value">4</code><code class="plain">]                                    </code></div>
+<div class="line"><code class="plain">traffic.cos_5.packet_priorities = [</code><code class="value">5</code><code class="plain">] </code></div>
+<div class="line"><code class="plain">traffic.cos_6.packet_priorities = [</code><code class="value">6</code><code class="plain">]                         </code></div>
+<div class="line"><code class="plain">traffic.cos_7.packet_priorities = [</code><code class="value">7</code><code class="plain">]                         </code></div>
+<div class="line"><code class="plain">                                                              </code></div>
+<div class="line"><code class="plain"># priority groups                                             </code></div>
+<div class="line"><code class="plain">traffic.priority_group_list = [control, service, bulk]        </code></div>
+<div class="line"><code class="plain">                                                              </code></div>
+<div class="line"><code class="plain"># internal cos values assigned to each priority group         </code></div>
+<div class="line"><code class="plain"># each cos value should be assigned exactly once              </code></div>
+<div class="line"><code class="plain"># internal cos values {</code><code class="value">0</code><code class="plain">..</code><code class="value">7</code><code class="plain">}                                  </code></div>
+<div class="line"><code class="plain">priority_group.control.cos_list = [</code><code class="value">7</code><code class="plain">]                         </code></div>
+<div class="line"><code class="plain">priority_group.service.cos_list = [</code><code class="value">2</code><code class="plain">]                         </code></div>
+<div class="line"><code class="plain">priority_group.bulk.cos_list = [</code><code class="value">0</code><code class="plain">,</code><code class="value">1</code><code class="plain">,</code><code class="value">3</code><code class="plain">,</code><code class="value">4</code><code class="plain">,</code><code class="value">5</code><code class="plain">,</code><code class="value">6</code><code class="plain">] </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain"># to configure priority flow control on a group of ports:</code></div>
+<div class="line"><code class="plain"># -- assign cos value(s) to the cos list</code></div>
+<div class="line"><code class="plain"># -- add or replace a port group names in the port group list</code></div>
+<div class="line"><code class="plain"># -- </code><code class="keyword">for</code><code class="plain"> each port group in the list</code></div>
+<div class="line"><code class="plain">#    -- populate the port set, e.g.</code></div>
+<div class="line"><code class="plain">#       swp1-swp4,swp8,swp50s0-swp50s3</code></div>
+<div class="line"><code class="plain">#    -- set a PFC buffer size in bytes </code><code class="keyword">for</code><code class="plain"> each port in the group</code></div>
+<div class="line"><code class="plain">#    -- set the xoff </code><code class="keyword">byte</code><code class="plain"> limit (buffer limit that triggers PFC frame transmit to start)</code></div>
+<div class="line"><code class="plain">#    -- set the xon </code><code class="keyword">byte</code><code class="plain"> delta (buffer limit that triggers PFC frame transmit to stop)</code></div>
+<div class="line"><code class="plain">#    -- enable PFC frame transmit and/or PFC frame receive</code></div>
+<div class="line"><code class="plain"># priority flow control</code></div>
+<div class="line"><code class="plain"># pfc.port_group_list = [pfc_port_group]</code></div>
+<div class="line"><code class="plain"># pfc.pfc_port_group.cos_list = []</code></div>
+<div class="line"><code class="plain"># pfc.pfc_port_group.port_set = swp1-swp4,swp6</code></div>
+<div class="line"><code class="plain"># pfc.pfc_port_group.port_buffer_bytes = </code><code class="value">25000</code></div>
+<div class="line"><code class="plain"># pfc.pfc_port_group.xoff_size = </code><code class="value">10000</code></div>
+<div class="line"><code class="plain"># pfc.pfc_port_group.xon_delta = </code><code class="value">2000</code></div>
+<div class="line"><code class="plain"># pfc.pfc_port_group.tx_enable = </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain"># pfc.pfc_port_group.rx_enable = </code><code class="keyword">true</code><code class="plain">                 </code></div>
+<div class="line"><code class="plain">                                                              </code></div>
+<div class="line"><code class="plain"># to configure pause on a group of ports: </code></div>
+<div class="line"><code class="plain"># -- add or replace port group names in the port group list</code></div>
+<div class="line"><code class="plain"># -- </code><code class="keyword">for</code><code class="plain"> each port group in the list</code></div>
+<div class="line"><code class="plain">#    -- populate the port set, e.g.</code></div>
+<div class="line"><code class="plain">#       swp1-swp4,swp8,swp50s0-swp50s3</code></div>
+<div class="line"><code class="plain">#    -- set a pause buffer size in bytes </code><code class="keyword">for</code><code class="plain"> each port in the group</code></div>
+<div class="line"><code class="plain">#    -- set the xoff </code><code class="keyword">byte</code><code class="plain"> limit (buffer limit that triggers pause frames transmit to start)</code></div>
+<div class="line"><code class="plain">#    -- set the xon </code><code class="keyword">byte</code><code class="plain"> delta (buffer limit that triggers pause frames transmit to stop)</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain"># link pause </code></div>
+<div class="line"><code class="plain"># link_pause.port_group_list = [pause_port_group]</code></div>
+<div class="line"><code class="plain"># link_pause.pause_port_group.port_set = swp1-swp4,swp6</code></div>
+<div class="line"><code class="plain"># link_pause.pause_port_group.port_buffer_bytes = </code><code class="value">25000</code></div>
+<div class="line"><code class="plain"># link_pause.pause_port_group.xoff_size = </code><code class="value">10000</code></div>
+<div class="line"><code class="plain"># link_pause.pause_port_group.xon_delta = </code><code class="value">2000</code></div>
+<div class="line"><code class="plain"># link_pause.pause_port_group.rx_enable = </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain"># link_pause.pause_port_group.tx_enable = </code><code class="keyword">true</code><code class="plain">                   </code></div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain"># scheduling algorithm: algorithm values = {dwrr}</code></div>
+<div class="line"><code class="plain">scheduling.algorithm = dwrr </code></div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain"># traffic group scheduling weight</code></div>
+<div class="line"><code class="plain"># weight values = {</code><code class="value">0</code><code class="plain">..</code><code class="value">127</code><code class="plain">}     </code></div>
+<div class="line"><code class="plain"># </code><code class="string">'0'</code><code class="plain"> indicates strict priority</code></div>
+<div class="line"><code class="plain">priority_group.control.weight = </code><code class="value">0</code></div>
+<div class="line"><code class="plain">priority_group.service.weight = </code><code class="value">32</code></div>
+<div class="line"><code class="plain">priority_group.bulk.weight = </code><code class="value">16</code><code class="plain">                     </code></div>
+<div class="line"><code class="plain">                                                          </code></div>
+<div class="line"><code class="plain"># To turn on/off Denial of service (DOS) prevention checks</code></div>
+<div class="line"><code class="plain">dos_enable = </code><code class="keyword">false</code><code class="plain">                                </code></div>
+<div class="line"><code class="plain">                                                  </code></div>
+<div class="line"><code class="plain"># Cut-through is disabled by </code><code class="keyword">default</code><code class="plain"> on all chips with the exception of</code></div>
+<div class="line"><code class="plain"># Spectrum. On Spectrum cut-through cannot be disabled.</code></div>
+<div class="line"><code class="plain">#cut_through_enable = </code><code class="keyword">false</code></div>
+<div class="line"><code class="plain">                                                  </code></div>
+<div class="line"><code class="plain"># Enable resilient hashing                        </code></div>
+<div class="line"><code class="plain">#resilient_hash_enable = FALSE                    </code></div>
+<div class="line"><code class="plain">                                                  </code></div>
+<div class="line"><code class="plain"># Resilient hashing flowset entries per ECMP group</code></div>
+<div class="line"><code class="plain"># Valid values - </code><code class="value">64</code><code class="plain">, </code><code class="value">128</code><code class="plain">, </code><code class="value">256</code><code class="plain">, </code><code class="value">512</code><code class="plain">, </code><code class="value">1024</code></div>
+<div class="line"><code class="plain">#resilient_hash_entries_ecmp = </code><code class="value">128</code><code class="plain">   </code></div>
+<div class="line"><code class="plain">                             </code></div>
+<div class="line"><code class="plain"># Enable symmetric hashing   </code></div>
+<div class="line"><code class="plain">#symmetric_hash_enable = TRUE</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain"># Set sflow/sample ingress cpu packet rate and burst in packets/sec </code></div>
+<div class="line"><code class="plain"># Values: {</code><code class="value">0</code><code class="plain">..</code><code class="value">16384</code><code class="plain">} </code></div>
+<div class="line"><code class="plain">#sflow.rate = </code><code class="value">16384</code><code class="plain">  </code></div>
+<div class="line"><code class="plain">#sflow.burst = </code><code class="value">16384</code><code class="plain"> </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">#Specify the maximum number of paths per route entry. </code></div>
+<div class="line"><code class="plain">#  Maximum paths supported is </code><code class="value">200</code><code class="plain">. </code></div>
+<div class="line"><code class="plain">#  Default value </code><code class="value">0</code><code class="plain"> takes the number of physical ports as the max path size. </code></div>
+<div class="line"><code class="plain">#ecmp_max_paths = </code><code class="value">0</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">#Specify the hash seed </code><code class="keyword">for</code><code class="plain"> Equal cost multipath entries</code></div>
+<div class="line"><code class="plain"># Default value </code><code class="value">0</code></div>
+<div class="line"><code class="plain"># Value Rang: {</code><code class="value">0</code><code class="plain">..</code><code class="value">4294967295</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">#ecmp_hash_seed = </code><code class="value">42</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain"># Specify the forwarding table resource allocation profile, applicable</code></div>
+<div class="line"><code class="plain"># only on platforms that support universal forwarding resources.</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain"># /usr/cumulus/sbin/cl-rsource-query reports the allocated table sizes</code></div>
+<div class="line"><code class="plain"># based on the profile setting.</code></div>
+<div class="line"><code class="plain"># </code></div>
+<div class="line"><code class="plain">#   Values: one of {</code><code class="string">'default'</code><code class="plain">, </code><code class="string">'l2-heavy'</code><code class="plain">, </code><code class="string">'v4-lpm-heavy'</code><code class="plain">, </code><code class="string">'v6-lpm-heavy'</code><code class="plain">}</code></div>
+<div class="line"><code class="plain">#   Default value: </code><code class="string">'default'</code></div>
+<div class="line"><code class="plain">#   Note: some devices may support more modes, please consult user</code></div>
+<div class="line"><code class="plain">#         guide </code><code class="keyword">for</code><code class="plain"> more details</code></div>
+<div class="line"><code class="plain">#</code></div>
+<div class="line"><code class="plain">#forwarding_table.profile = </code><code class="keyword">default</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127004_BufferandQueueManagement-ConfiguringTrafficMarkingthroughACLRules">
+        <h1 class="heading "><span>Configuring Traffic Marking through ACL Rules</span></h1>
+    <p  ><span id="src-5127004_indexterm-38A8267F1A704317B6936DDA3FD376E4">You can </span>mark traffic for egress packets through <tt class=" ">iptables</tt> or <tt class=" ">ip6tables</tt><span id="src-5127004_indexterm-B09506D986F6034423D97E4F32E677A1"> rule classifications. To enable these </span>rules, you do one of the following:    </p>
+<ul class=" "><li class=" ">    <p id="src-5127004_indexterm-FA6D06C147D43B5B9220A40500B71DAC" >Mark DSCP values in egress packets.    </p>
+</li><li class=" ">    <p  >Mark 802.1p CoS values in egress packets.    </p>
+</li></ul>    <p  ><span id="src-5127004_indexterm-462CAD09339EC547C971B707F3BA05DE">To enable traffic marking, use </span><tt class=" ">cl-acltool</tt>. Add the <tt class=" ">-p</tt> option to specify the location of the policy file. By default, if you don't include the <tt class=" ">-p</tt> option, <tt class=" ">cl-acltool</tt> looks for the policy file in <tt class=" ">/etc/cumulus/acl/policy.d/</tt>.    </p>
+    <p  >The iptables-/ip6tables-based marking is supported via the following action extension:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-j SETQOS --set-dscp </code><code class="value">10</code><code class="plain"> --set-cos </code><code class="value">5</code></div>
+</div>
+    </div>
+    <p  >You can specify one of the following targets for SETQOS:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Option    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Description    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&ndash;set-cos INT    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Sets the datapath resource/queuing class value. Values are defined in <a  class="external-link" href="http://en.wikipedia.org/wiki/IEEE_P802.1p">IEEE_P802.1p</a>.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&ndash;set-dscp value    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Sets the DSCP field in packet header to a value, which can be either a decimal or hex value.    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&ndash;set-dscp-class class    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Sets the DSCP field in the packet header to the value represented by the DiffServ class value. This class can be EF, BE or any of the CSxx or AFxx classes.    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >You can specify either <tt class=" ">--set-dscp</tt> or <tt class=" ">--set-dscp-class</tt>, but not both.    </p>
+        </div>
+    </div>
+    <p  >Here are two example rules:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">[iptables]</code></div>
+<div class="line"><code class="plain">-t mangle -A FORWARD --in-</code><code class="keyword">interface</code><code class="plain"> swp+ -p tcp --dport bgp -j SETQOS --set-dscp </code><code class="value">10</code><code class="plain"> --set-cos </code><code class="value">5</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">[ip6tables]</code></div>
+<div class="line"><code class="plain">-t mangle -A FORWARD --in-</code><code class="keyword">interface</code><code class="plain"> swp+ -j SETQOS --set-dscp </code><code class="value">10</code></div>
+</div>
+    </div>
+    <p  ><span id="src-5127004_indexterm-6DE6D7470C1A7AAD62C2B2E1A30073B7">You can put the rule in either the </span><i class=" ">mangle</i> table or the default <i class=" ">filter</i> table; the mangle table and filter table are put into separate TCAM slices in the hardware.    </p>
+    <p  >To put the rule in the mangle table, include <tt class=" ">-t mangle</tt>; to put the rule in the filter table, omit <tt class=" ">-t mangle</tt>.    </p>
+    </div>
+    <div class="section section-1" id="src-5127004_BufferandQueueManagement-pfcConfiguringPriorityFlowControl">
+        <h1 class="heading "><span id="src-5127004_BufferandQueueManagement-pfc" class="confluence-anchor-link"></span><span>Configuring Priority Flow Control</span></h1>
+    <p  ><i class=" "><span id="src-5127004_indexterm-1A057F39E072C99424603E526F971539">Priority </span><span id="src-5127004_indexterm-CDDEDAC1B424E46187B8E5DD8D8C8A53">flow </span>control</i>, as defined in the <a  class="external-link" href="http://www.ieee802.org/1/pages/802.1bb.html">IEEE 802.1Qbb standard</a>, provides a link-level flow control mechanism that can be controlled independently for each Class of Service (CoS) with the intention to ensure no data frames are lost when congestion occurs in a bridged network.    </p>
+    <p  >PFC is a layer 2 mechanism that prevents congestion by throttling packet transmission. When PFC is enabled for received packets on a set of switch ports, the switch detects congestion in the ingress buffer of the receiving port and signals the upstream switch to stop sending traffic. If the upstream switch has PFC enabled for packet transmission on the designated priorities, it responds to the downstream switch and stops sending those packets for a period of time.    </p>
+    <p  >PFC operates between two adjacent neighbor switches; it does not provide end-to-end flow control. However, when an upstream neighbor throttles packet transmission, it could build up packet congestion and propagate PFC frames further upstream: eventually the sending server could receive PFC frames and stop sending traffic for a time.    </p>
+    <p  >The PFC mechanism can be enabled for individual switch priorities on specific switch ports for RX and/or TX traffic. The switch port&rsquo;s ingress buffer occupancy is used to measure congestion. If congestion is present, the switch transmits flow control frames to the upstream switch. Packets with priority values that do not have PFC configured are not counted during congestion detection; neither do they get throttled by the upstream switch when it receives flow control frames.    </p>
+    <p  >PFC congestion detection is implemented on the switch using xoff and xon threshold values for the specific ingress buffer which is used by the targeted switch priorities. When a packet enters the buffer and the buffer occupancy is above the xoff threshold, the switch transmits an Ethernet PFC frame to the upstream switch to signal packet transmission should stop. When the buffer occupancy drops below the xon threshold, the switch sends another PFC frame upstream to signal that packet transmission can resume. (PFC frames contain a quanta value to indicate a timeout value for the upstream switch: packet transmission can resume after the timer has expired, or when a PFC frame with quanta == 0 is received from the downstream switch.)    </p>
+    <p  >After the downstream switch has sent a PFC frame upstream, it continues to receive packets until the upstream switch receives and responds to the PFC frame. The downstream ingress buffer must be large enough to store those additional packets after the xoff threshold has been reached.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Before Cumulus Linux 3.1.1, PFC was designated as a <i class=" ">lossless</i> priority group. The lossless priority group has been removed from Cumulus Linux.    </p>
+        </div>
+    </div>
+    <p  >Priority flow control is fully supported on both <a  class="external-link" href="https://cumulusnetworks.com/support/linux-hardware-compatibility-list/?CPUType=x86_64&amp;Brand=broadcomtrident&amp;Brand=broadcomtridentplus&amp;SwitchSilicon=broadcomtrident2&amp;Brand=broadcomtrident2plus&amp;Brand=broadcomtriumph2">Broadcom</a> and <a  class="external-link" href="https://cumulusnetworks.com/support/linux-hardware-compatibility-list/?Brand=mellanox">Mellanox switches</a>.    </p>
+    <p  >PFC is disabled by default in Cumulus Linux. Enabling priority flow control (PFC) requires configuring the following settings in <tt class=" ">/etc/cumulus/datapath/traffic.conf</tt> on the switch:    </p>
+<ul class=" "><li class=" ">    <p  >Specifying the name of the port group in <tt class=" ">pfc.port_group_list</tt> in brackets; for example, <i class=" ">pfc.port_group_list = [pfc_port_group]</i>.    </p>
+</li><li class=" ">    <p  >Assigning a CoS value to the port group in <tt class=" ">pfc.pfc_port_group.cos_list</tt> setting. Note that <i class=" ">pfc_port_group</i> is the name of a port group you specified above and is used throughout the following settings.    </p>
+</li><li class=" ">    <p  >Populating the port group with its member ports in <tt class=" ">pfc.pfc_port_group.port_set</tt>.    </p>
+</li><li class=" ">    <p  >Setting a PFC buffer size in <tt class=" ">pfc.pfc_port_group.port_buffer_bytes</tt>. This is the maximum number of bytes allocated for storing bursts of packets, guaranteed at the ingress port. The default is <i class=" ">25000</i> bytes.    </p>
+</li><li class=" ">    <p  >Setting the xoff byte limit in <tt class=" ">pfc.pfc_port_group.xoff_size</tt>. This is a threshold for the PFC buffer; when this limit is reached, an xoff transition is initiated, signaling the upstream port to stop sending traffic, during which time packets continue to arrive due to the latency of the communication. The default is <i class=" ">10000</i> bytes.    </p>
+</li><li class=" ">    <p  >Setting the xon delta limit in <tt class=" ">pfc.pfc_port_group.xon_delta</tt>. This is the number of bytes to subtract from the xoff limit, which results in a second threshold at which the egress port resumes sending traffic. After the xoff limit is reached and the upstream port stops sending traffic, the buffer begins to drain. When the buffer reaches 8000 bytes (assuming default xoff and xon settings), the egress port signals that it can start receiving traffic again. The default is <i class=" ">2000</i> bytes.    </p>
+</li><li class=" ">    <p  >Enabling the egress port to signal the upstream port to stop sending traffic (<tt class=" ">pfc.pfc_port_group.tx_enable</tt>). The default is <i class=" ">true</i>.    </p>
+</li><li class=" ">    <p  >Enabling the egress port to receive notifications and act on them (<tt class=" ">pfc.pfc_port_group.rx_enable</tt>). The default is <i class=" ">true</i>.    </p>
+</li><li class=" ">    <p  >The switch priority value(s) are mapped to the specific ingress buffer for each targeted switch port. Cumulus Linux looks at either the 802.1p bits or the IP layer DSCP bits depending on which is configured in the <tt class=" ">traffic.conf</tt> file to map packets to internal switch priority values.    </p>
+</li></ul>    <p  >The following configuration example shows PFC configured for ports swp1 through swp4 and swp6:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># to configure priority flow control on a group of ports:</code></div>
+<div class="line"><code class="plain"># -- assign cos value(s) to the cos list</code></div>
+<div class="line"><code class="plain"># -- add or replace a port group names in the port group list</code></div>
+<div class="line"><code class="plain"># -- </code><code class="keyword">for</code><code class="plain"> each port group in the list</code></div>
+<div class="line"><code class="plain">#    -- populate the port set, e.g.</code></div>
+<div class="line"><code class="plain">#       swp1-swp4,swp8,swp50s0-swp50s3</code></div>
+<div class="line"><code class="plain">#    -- set a PFC buffer size in bytes </code><code class="keyword">for</code><code class="plain"> each port in the group</code></div>
+<div class="line"><code class="plain">#    -- set the xoff </code><code class="keyword">byte</code><code class="plain"> limit (buffer limit that triggers PFC frame transmit to start)</code></div>
+<div class="line"><code class="plain">#    -- set the xon </code><code class="keyword">byte</code><code class="plain"> delta (buffer limit that triggers PFC frame transmit to stop)</code></div>
+<div class="line"><code class="plain">#    -- enable PFC frame transmit and/or PFC frame receive</code></div>
+<div class="line"><code class="plain"># priority flow control</code></div>
+<div class="line"><code class="plain">pfc.port_group_list = [pfc_port_group]</code></div>
+<div class="line"><code class="plain">pfc.pfc_port_group.cos_list = []</code></div>
+<div class="line"><code class="plain">pfc.pfc_port_group.port_set = swp1-swp4,swp6</code></div>
+<div class="line"><code class="plain">pfc.pfc_port_group.port_buffer_bytes = </code><code class="value">25000</code></div>
+<div class="line"><code class="plain">pfc.pfc_port_group.xoff_size = </code><code class="value">10000</code></div>
+<div class="line"><code class="plain">pfc.pfc_port_group.xon_delta = </code><code class="value">2000</code></div>
+<div class="line"><code class="plain">pfc.pfc_port_group.tx_enable = </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">pfc.pfc_port_group.rx_enable = </code><code class="keyword">true</code><code class="plain">       </code></div>
+</div>
+    </div>
+    <div class="section section-2" id="src-5127004_BufferandQueueManagement-UnderstandingPortGroups">
+        <h2 class="heading "><span>Understanding Port Groups</span></h2>
+    <p  >A <i class=" ">port group</i> refers to one or more sequences of contiguous ports. Multiple port groups can be defined by:    </p>
+<ul class=" "><li class=" ">    <p  >Adding a comma-separated list of port group names to the port_group_list.    </p>
+</li><li class=" ">    <p  >Adding the port_set, rx_enable, and tx_enable configuration lines for each port group.    </p>
+</li></ul>    <p  >You can specify the set of ports in a port group in comma-separated sequences of contiguous ports; you can see which ports are contiguous in <tt class=" ">/var/lib/cumulus/porttab</tt>. The syntax supports:    </p>
+<ul class=" "><li class=" ">    <p  >A single port (swp1s0 or swp5)    </p>
+</li><li class=" ">    <p  >A sequence of regular swp ports (swp2-swp5)    </p>
+</li><li class=" ">    <p  >A sequence within a breakout swp port (swp6s0-swp6s3)    </p>
+</li><li class=" ">    <p  >A sequence of regular and breakout ports, provided they are all in a contiguous range. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">...</code></div>
+<div class="line"><code class="plain">swp2</code></div>
+<div class="line"><code class="plain">swp3</code></div>
+<div class="line"><code class="plain">swp4</code></div>
+<div class="line"><code class="plain">swp5</code></div>
+<div class="line"><code class="plain">swp6s0</code></div>
+<div class="line"><code class="plain">swp6s1</code></div>
+<div class="line"><code class="plain">swp6s2</code></div>
+<div class="line"><code class="plain">swp6s3</code></div>
+<div class="line"><code class="plain">swp7</code></div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+</li></ul>    <p  ><a   href="Configuring_switchd.html#src-5126758_Configuringswitchd-restartswitchd">Restart <tt class=" ">switchd</tt> </a>to allow the PFC configuration changes to take effect:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl restart switchd.service</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127004_BufferandQueueManagement-pauseConfiguringLinkPause">
+        <h1 class="heading "><span id="src-5127004_BufferandQueueManagement-pause" class="confluence-anchor-link"></span><span>Configuring Link Pause</span></h1>
+    <p  ><span id="src-5127004_indexterm-40CDB7AC7C6A5BE83E0F7DFD39D33466">The </span><span id="src-5127004_indexterm-4AB266E69CB843844411575AE5A0B43D">PAUSE </span>frame is a flow control mechanism that halts the transmission of the transmitter for a specified period of time. A server or other network node within the data center may be receiving traffic faster than it can handle it, thus the PAUSE frame. In Cumulus Linux, individual ports can be configured to execute link pause by:    </p>
+<ul class=" "><li class=" ">    <p  >Transmitting pause frames when its ingress buffers become congested (TX pause enable) and/or    </p>
+</li><li class=" ">    <p  >Responding to received pause frames (RX pause enable).    </p>
+</li></ul>    <p  >Link pause is disabled by default. Enabling link pause requires configuring settings in <tt class=" ">/etc/cumulus/datapath/traffic.conf</tt>, similar to how you configure <a   href="#">priority flow control</a>. The settings are explained in that section as well.    </p>
+    <p  >Here is an example configuration which turns of both types of link pause for swp1 through swp4 and swp6:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># to configure pause on a group of ports: </code></div>
+<div class="line"><code class="plain"># -- add or replace port group names in the port group list</code></div>
+<div class="line"><code class="plain"># -- </code><code class="keyword">for</code><code class="plain"> each port group in the list</code></div>
+<div class="line"><code class="plain">#    -- populate the port set, e.g.</code></div>
+<div class="line"><code class="plain">#       swp1-swp4,swp8,swp50s0-swp50s3</code></div>
+<div class="line"><code class="plain">#    -- set a pause buffer size in bytes </code><code class="keyword">for</code><code class="plain"> each port in the group</code></div>
+<div class="line"><code class="plain">#    -- set the xoff </code><code class="keyword">byte</code><code class="plain"> limit (buffer limit that triggers pause frames transmit to start)</code></div>
+<div class="line"><code class="plain">#    -- set the xon </code><code class="keyword">byte</code><code class="plain"> delta (buffer limit that triggers pause frames transmit to stop)</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># link pause </code></div>
+<div class="line"><code class="plain">link_pause.port_group_list = [pause_port_group]</code></div>
+<div class="line"><code class="plain">link_pause.pause_port_group.port_set = swp1-swp4,swp6</code></div>
+<div class="line"><code class="plain">link_pause.pause_port_group.port_buffer_bytes = </code><code class="value">25000</code></div>
+<div class="line"><code class="plain">link_pause.pause_port_group.xoff_size = </code><code class="value">10000</code></div>
+<div class="line"><code class="plain">link_pause.pause_port_group.xon_delta = </code><code class="value">2000</code></div>
+<div class="line"><code class="plain">link_pause.pause_port_group.rx_enable = </code><code class="keyword">true</code></div>
+<div class="line"><code class="plain">link_pause.pause_port_group.tx_enable = </code><code class="keyword">true</code><code class="plain">                   </code></div>
+</div>
+    </div>
+    <p  ><a   href="Configuring_switchd.html#src-5126758_Configuringswitchd-restartswitchd">Restart <tt class=" ">switchd</tt> </a>to allow link pause configuration changes to take effect:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl restart switchd.service</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127004_BufferandQueueManagement-ecnConfiguringExplicitCongestionNotification">
+        <h1 class="heading "><span id="src-5127004_BufferandQueueManagement-ecn" class="confluence-anchor-link"></span><span>Configuring Explicit Congestion Notification</span></h1>
+    <p  ><i class=" ">Explicit Congestion Notification</i> (ECN) is defined by <a  class="external-link" href="https://tools.ietf.org/html/rfc3168">RFC 3168</a>. ECN gives a Cumulus Linux switch the ability to mark a packet to signal impending congestion instead of dropping the packet outright, which is how TCP typically behaves when ECN is not enabled.    </p>
+    <p  >ECN is a layer 3 end-to-end congestion notification mechanism only. Packets can be marked as <i class=" ">ECN-capable transport</i> (ECT) by the sending server. If congestion is observed by any switch while the packet is getting forwarded, the ECT-enabled packet can be marked by the switch to indicate the congestion. The end receiver can respond to the ECN-marked packets by signaling the sending server to slow down transmission. The sending server marks a packet <i class=" ">ECT</i> by setting the least 2 significant bits in an IP header <tt class=" ">DiffServ</tt> (ToS) field to <i class=" ">01</i> or <i class=" ">10</i>. A packet that has the least 2 significant bits set to <i class=" ">00</i> indicates a non-ECT-enabled packet.    </p>
+    <p  >The ECN mechanism on a switch only marks packets to notify the end receiver. It does not take any other action or change packet handling in any way, nor does it respond to packets that have already been marked ECN by an upstream switch.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  ><strong class=" ">On Trident-II switches only</strong>, if ECN is enabled on a specific queue, the ASIC also enables WRED on the same queue. If the packet is ECT marked (the ECN bits are 01 or 10), the ECN mechanism executes as described above. However, if it is entering an ECN-enabled queue but is not ECT marked (the ECN bits are 00), then the WRED mechanism uses the same threshold and probability values to decide whether to drop the packet. Packets entering a non-ECN-enabled queue do not get marked or dropped due to ECN or WRED in any case.    </p>
+        </div>
+    </div>
+    <p  >ECN is implemented on the switch using minimum and maximum threshold values for the egress queue length. When a packet enters the queue and the average queue length is between the minimum and maximum threshold values, a configurable probability value will determine whether the packet will be marked. If the average queue length is above the maximum threshold value, the packet is always marked.    </p>
+    <p  >The downstream switches with ECN enabled perform the same actions as the traffic is received. If the ECN bits are set, they remain set. The only way to overwrite ECN bits is to enable it &mdash; that is, set the ECN bits to <i class=" ">11</i>.    </p>
+    <p  >ECN is supported on <a  class="external-link" href="https://cumulusnetworks.com/hcl">Broadcom Tomahawk, Trident II+ and Trident II, and Mellanox Spectrum switches</a> only.    </p>
+    <div class="section section-2" id="src-5127004_BufferandQueueManagement-config_ecnConfiguringECN">
+        <h2 class="heading "><span>Configuring ECN</span></h2>
+    <p  class="expand-control-text">Click to learn how to configure ECN ...    </p>
+    <p  >ECN is disabled by default in Cumulus Linux. You can enable ECN for individual switch priorities on specific switch ports. ECN requires configuring the following settings in <tt class=" ">/etc/cumulus/datapath/traffic.conf</tt> on the switch:    </p>
+<ul class=" "><li class=" ">    <p  >Specifying the name of the port group in <tt class=" ">ecn.port_group_list</tt> in brackets; for example, <tt class=" ">ecn.port_group_list = [ecn_port_group]</tt>.    </p>
+</li><li class=" ">    <p  >Assigning a CoS value to the port group in <tt class=" ">ecn.ecn_port_group.cos_list</tt>. Note that <i class=" ">ecn_port_group</i> is the name of a port group you specified above.    </p>
+</li><li class=" ">    <p  >Populating the port group with its member ports (<tt class=" ">ecn.ecn_port_group.port_set</tt>), where <i class=" ">ecn_port_group</i> is the name of the port group you specified above. Congestion is measured on the egress port queue for the ports listed here, using the average queue length: if congestion is present, a packet entering the queue may be marked to indicate that congestion was observed. Marking a packet involves setting the least 2 significant bits in the IP header DiffServ (ToS) field to <i class=" ">11</i>.    </p>
+</li><li class=" ">    <p  >The switch priority value(s) are mapped to specific egress queues for the target switch ports.    </p>
+</li><li class=" ">    <p  >The <tt class=" ">ecn.ecn_port_group.probability</tt> value indicates the probability of a packet being marked if congestion is experienced.    </p>
+</li></ul>    <p  >The following configuration example shows ECN configured for ports swp1 through swp4 and swp6:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># Explicit Congestion Notification</code></div>
+<div class="line"><code class="plain"># to configure ECN on a group of ports:</code></div>
+<div class="line"><code class="plain"># -- add or replace port group names in the port group list</code></div>
+<div class="line"><code class="plain"># -- assign cos value(s) to the cos list</code></div>
+<div class="line"><code class="plain"># -- for each port group in the list</code></div>
+<div class="line"><code class="plain">#    -- populate the port set, e.g.</code></div>
+<div class="line"><code class="plain">#       swp1-swp4,swp8,swp50s0-swp50s3</code></div>
+<div class="line"><code class="plain"> ecn.port_group_list = [ecn_port_group]</code></div>
+<div class="line"><code class="plain"> ecn.ecn_port_group.cos_list = [3]</code></div>
+<div class="line"><code class="plain"> ecn.ecn_port_group.port_set = swp1-swp4,swp6</code></div>
+<div class="line"><code class="plain"> ecn.ecn_port_group.min_threshold_bytes = 40000</code></div>
+<div class="line"><code class="plain"> ecn.ecn_port_group.max_threshold_bytes = 200000</code></div>
+<div class="line"><code class="plain"> ecn.ecn_port_group.probability = 100</code></div>
+</div>
+    </div>
+    <p  ><a   href="Configuring_switchd.html#src-5126758_Configuringswitchd-restartswitchd">Restart <tt class=" ">switchd</tt> </a>to allow the ECN configuration changes to take effect:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl restart switchd.service</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127004_BufferandQueueManagement-CaveatsandErrata">
+        <h1 class="heading "><span>Caveats and Errata</span></h1>
+<ul class=" "><li class=" ">    <p id="src-5127004_indexterm-9241C0E9708B069B43AA7F5B241C5AF5" >You can configure Quality of Service (QoS) for 10G, 40G, and 100G switches on the Broadcom Tomahawk, Trident II+ or Trident II platforms and Mellanox Spectrum platform only.    </p>
+</li></ul>    </div>
+    <div class="section section-1" id="src-5127004_BufferandQueueManagement-RelatedInformation">
+        <h1 class="heading "><span>Related Information</span></h1>
+<ul class=" "><li class=" ">    <p  ><a  class="external-link" href="http://ipset.netfilter.org/iptables-extensions.man.html">iptables-extensions man page</a>    </p>
+</li></ul>    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Layer_1_and_Switch_Port_Attributes.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Layer 1 and Switch Port Attributes</span>
+        </a>
+                <a href="Configuring_Hardware-enabled_DDOS_Protection.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Configuring Hardware-enabled DDOS Protection</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

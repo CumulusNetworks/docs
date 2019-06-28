@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authentication, Authorization and Accounting on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/</link>
+    <description>Recent content in Authentication, Authorization and Accounting on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SSH for Remote Access</title>
+      <link>http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/</guid>
+      <description>Authentication keys can be generated for securely accessing a Cumulus Linux switch with the ssh-keygen component of the Secure Shell (SSH) protocol. Cumulus Linux uses the OpenSSH package to provide this functionality. The section below covers how to generate a SSH key pair.
+Generate an SSH Key Pair  Run the ssh-keygen command, and follow the prompts, to generate the key pair:
+To configure a completely passwordless system, do not enter a passphrase when prompted in the following step.</description>
+    </item>
+    
+    <item>
+      <title>User Accounts</title>
+      <link>http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/</guid>
+      <description>By default, Cumulus Linux has two user accounts: cumulus and root.
+The cumulus account:
+ Default password is *CumulusLinux\!*  Is a user account in the sudo group with sudo privileges
+ User can log in to the system via all the usual channels like console and SSH
+ Along with the cumulus group, has both show and edit rights for NCLU
+  The root account:
+ Default password is disabled by default</description>
+    </item>
+    
+    <item>
+      <title>Using sudo to Delegate Privileges</title>
+      <link>http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/</guid>
+      <description>By default, Cumulus Linux has two user accounts: root and cumulus. The cumulus account is a normal user and is in the group sudo.
+You can add more user accounts as needed. Like the cumulus account, these accounts must use sudo to execute privileged commands.
+Using sudo sudo allows you to execute a command as superuser or another user as specified by the security policy. See man sudo(8) for details.</description>
+    </item>
+    
+    <item>
+      <title>LDAP Authentication and Authorization</title>
+      <link>http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/</guid>
+      <description>Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name Service Switch (NSS) for user authentication.
+NSS specifies the order of information sources used to resolve names for each service. Using this with authentication and authorization, it provides the order and location used for user lookup and group mapping on the system. PAM handles the interaction between the user and the system, providing login handling, session setup, authentication of users and authorization of a user actions.</description>
+    </item>
+    
+    <item>
+      <title>TACACS Plus</title>
+      <link>http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/</guid>
+      <description>Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication, and Authorization) in a transparent way with minimal configuration. The client implements the TACACS+ protocol as described in this IETF document. There is no need to create accounts or directories on the switch. Accounting records are sent to all configuredTACACS+ servers by default. Use of per-command authorization requires additional setup on the switch.
+Supported Features  Authentication via PAM; includes login, ssh, sudo and su</description>
+    </item>
+    
+    <item>
+      <title>RADIUS AAA</title>
+      <link>http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_35/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/</guid>
+      <description>Cumulus Networks offers add-on packages that provide the ability for RADIUS users to log in to Cumulus Linux switches in a transparent way with minimal configuration. There is no need to create accounts or directories on the switch. Authentication is handled via PAM, and includes login, ssh, sudo and su.
+Installing and Configuring the RADIUS Packages The plugin is installed from two RADIUS packages, which are not in the base Cumulus Linux image.</description>
+    </item>
+    
+  </channel>
+</rss>

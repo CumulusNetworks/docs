@@ -1,0 +1,2262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Netfilter - ACLs - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link current" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="System_Configuration.html">System Configuration</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126760"> <span>Netfilter - ACLs</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><a  class="external-link" href="http://www.netfilter.org/">Netfilter</a><span id="src-5126760_indexterm-703D53F4B2E1ED3C8A1F4F7F4865AA60"> </span><span id="src-5126760_indexterm-246F04315FCF05AEA7C4EDB29FBD361D">is the packet filtering framework in Cumulus Linux as well as most other Linux distributions. There are a number of tools available for configuring </span><span id="src-5126760_indexterm-B68721DC274B9ED1FF16B279ACBBC68D">ACLs in </span>Cumulus Linux, including:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">iptables</tt>, <tt class=" ">ip6tables</tt> and <tt class=" ">ebtables</tt> are Linux userspace tools to administer filtering rules for IPv4 packets, IPv6 packets and Ethernet frames (layer 2 using MAC addresses) respectively.    </p>
+</li><li class=" ">    <p  ><a   href="Network_Command_Line_Utility.html">NCLU</a>, a Cumulus Linux-specific userspace tool for configuring custom ACLs.    </p>
+</li><li class=" ">    <p  ><tt class=" ">cl-acltool</tt>, another Cumulus Linux-specific userspace tool to administer filtering rules and for configuring the default ACLs.    </p>
+</li></ul>    <p  >NCLU and <tt class=" ">cl-acltool</tt><span id="src-5126760_indexterm-E8C6B3ECBB06CC3E1CB149149F54BC38"> </span><span id="src-5126760_indexterm-7DC480596A3E5E2F93D2955ECC53D5E8">operate on various configuration files, and use </span><tt class=" ">iptables</tt><span id="src-5126760_indexterm-278B513C32AAB2CBECB7155AADDA692C">, </span><tt class=" ">ip6tables</tt><span id="src-5126760_indexterm-F3FF59F950789D9A7206FD973F144642"> and </span><tt class=" ">ebtables</tt> to install rules into the kernel. In addition to programming rules in the kernel, NCLU and <tt class=" ">cl-acltool</tt> program rules in hardware for interfaces involving switch port interfaces, which <tt class=" ">iptables</tt>, <tt class=" ">ip6tables</tt> and <tt class=" ">ebtables</tt> cannot do on their own.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >In many instances, you can use NCLU to configure ACLs; however, <tt class=" ">cl-acltool</tt> must be used in some cases. The examples below show when to use which tool.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If you need help getting started setting up ACLs, run <tt class=" ">net example acl</tt> to see a basic configuration:    </p>
+    <p  class="expand-control-text">Click to see the example ...    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@leaf01:~$ net example acl </code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Scenario</code></div>
+<div class="line"><code class="plain">========</code></div>
+<div class="line"><code class="plain">We would like to use access-lists on 'switch' to</code></div>
+<div class="line"><code class="plain">- Restrict inbound traffic on swp1 to traffic from 10.1.1.0/24 destined for 10.1.2.0/24</code></div>
+<div class="line"><code class="plain">- Restrict outbound traffic on swp2 to http, https, or ssh</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">     *switch</code></div>
+<div class="line"><code class="plain">        /\</code></div>
+<div class="line"><code class="plain">  swp1 /  \ swp2</code></div>
+<div class="line"><code class="plain">      /    \</code></div>
+<div class="line"><code class="plain">     /      \</code></div>
+<div class="line"><code class="plain"> host-11   host-12</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">switch net commands</code></div>
+<div class="line"><code class="plain">====================</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Create an ACL that accepts traffic from 10.1.1.0/24 destined for 10.1.2.0/24</code></div>
+<div class="line"><code class="plain">and drops all other traffic</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">switch# net add acl ipv4 MYACL accept source-ip 10.1.1.0/24 dest-ip 10.1.2.0/24</code></div>
+<div class="line"><code class="plain">switch# net add acl ipv4 MYACL drop source-ip any dest-ip any</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Apply MYACL inbound on swp1</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">switch# net add interface swp1 acl ipv4 MYACL inbound</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Create an ACL that accepts http, https, or ssh traffic and drops all</code></div>
+<div class="line"><code class="plain">other traffic.</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port http</code></div>
+<div class="line"><code class="plain">switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port http dest-ip any dest-port any</code></div>
+<div class="line"><code class="plain">switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port https</code></div>
+<div class="line"><code class="plain">switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port https dest-ip any dest-port any</code></div>
+<div class="line"><code class="plain">switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port ssh</code></div>
+<div class="line"><code class="plain">switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port ssh dest-ip any dest-port any</code></div>
+<div class="line"><code class="plain">switch# net add acl ipv4 WEB_OR_SSH drop source-ip any dest-ip any</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Apply WEB_OR_SSH outbound on swp2</code></div>
+<div class="line"><code class="plain">switch# net add interface swp2 acl ipv4 WEB_OR_SSH outbound</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">commit the staged changes</code></div>
+<div class="line"><code class="plain">switch# net commit</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">Verification</code></div>
+<div class="line"><code class="plain">============</code></div>
+<div class="line"><code class="plain">switch# net show configuration acl</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    <p  >    </p>
+    <div class="section section-1" id="src-5126760_Netfilter-ACLs-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126760_Netfilter-ACLs-UnderstandingTrafficRulesInCumulusLinux">
+        <h1 class="heading "><span>Understanding Traffic Rules In Cumulus Linux</span></h1>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-UnderstandingChains">
+        <h2 class="heading "><span>Understanding Chains</span></h2>
+    <p  >Netfilter describes the mechanism for which packets are classified and controlled in the Linux kernel. Cumulus Linux uses the Netfilter framework to control the flow of traffic to, from and across the switch. Netfilter does not require a separate software daemon to run because it is part of the Linux kernel itself. Netfilter asserts policies at layers 2, 3 and 4 of the <a  class="external-link" href="https://en.wikipedia.org/wiki/OSI_model">OSI model</a> by inspecting packet and frame headers based on a list of rules. Rules are defined using syntax provided by the <tt class=" ">iptables</tt>, <tt class=" ">ip6tables</tt> and <tt class=" ">ebtables</tt> userspace applications.    </p>
+    <p  ><span id="src-5126760_indexterm-D1E0B4FDDD84665658450FA7D30F4C42">The rules created by these programs inspect or operate on packets at several points in the life of the packet through the system. These five points are known as </span><i class=" "><span id="src-5126760_indexterm-E8A6617424CCF15DDF8A966391A766C7">chains</span> </i>and are shown here:    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126760/Linux_Traffic_Inspection_Points_%28Chains%29.png" alt="images/download/attachments/5126760/Linux_Traffic_Inspection_Points_%28Chains%29.png"  height="400" />
+        </p>
+    <p  >The chains and their uses are:    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">PREROUTING</strong>: Touches packets before they are routed    </p>
+</li><li class=" ">    <p  ><strong class=" ">INPUT:</strong> Touches packets once they are determined to be destined for the local system but before they are received by the control plane software    </p>
+</li><li class=" ">    <p  ><strong class=" ">FORWARD</strong>: Touches transit traffic as it moves through the box    </p>
+</li><li class=" ">    <p  ><strong class=" ">OUTPUT</strong>: Touches packets that are sourced by the control plane software before they are put on the wire    </p>
+</li><li class=" ">    <p  ><strong class=" ">POSTROUTING</strong>: Touches packets immediately before they are put on the wire but after the routing decision has been made    </p>
+</li></ul>    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-UnderstandingTables">
+        <h2 class="heading "><span>Understanding Tables</span></h2>
+    <p  >When building rules to affect the flow of traffic, the individual chains can be accessed by <i class=" ">tables</i>. Linux provides three tables by default:    </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">Filter</strong>: Classifies traffic or filters traffic    </p>
+</li><li class=" ">    <p  ><strong class=" ">NAT</strong>: Applies Network Address Translation rules    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Cumulus Linux does not support NAT.    </p>
+        </div>
+    </div>
+</li><li class=" ">    <p  ><strong class=" ">Mangle</strong>: Alters packets as they move through the switch    </p>
+</li></ul>    <p  >Each table has a set of default chains that can be used to modify or inspect packets at different points of the path through the switch. Chains contain the individual rules to influence traffic. Each table and the default chains they support are shown below. Tables and chains in green are supported by Cumulus Linux, those in red are not supported (that is, they are not hardware accelerated) at this time.    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126760/Linux_IPtables_Default_Tables.png" alt="images/download/attachments/5126760/Linux_IPtables_Default_Tables.png"  height="400" />
+     <img  class="confluence-embedded-image" src="images/download/attachments/5126760/Linux_EBtables_Default_Tables.png" alt="images/download/attachments/5126760/Linux_EBtables_Default_Tables.png"  height="400" />
+    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126760/Legend_%281%29.png" alt="images/download/attachments/5126760/Legend_%281%29.png"  height="150" />
+        </p>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-UnderstandingRules">
+        <h2 class="heading "><span>Understanding Rules</span></h2>
+    <p  >Rules are the items that actually classify traffic to be acted upon. Rules are applied to chains, which are attached to tables, similar to the graphic below.    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126760/Tables_Chains_Rules.png" alt="images/download/attachments/5126760/Tables_Chains_Rules.png"  height="250" />
+        </p>
+    <p  >Rules have several different components; the examples below highlight those different components.    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126760/Anatomy_of_a_Rule.png" alt="images/download/attachments/5126760/Anatomy_of_a_Rule.png"  height="250" />
+        </p>
+<ul class=" "><li class=" ">    <p  ><strong class=" ">Table:</strong> The first argument is the <i class=" ">table</i>. Notice the second example does not specify a table, that is because the filter table is implied if a table is not specified.    </p>
+</li><li class=" ">    <p  ><strong class=" ">Chain:</strong> The second argument is the <i class=" ">chain</i>. Each table supports several different chains. See Understanding Tables above.    </p>
+</li><li class=" ">    <p  ><strong class=" ">Matches:</strong> The third argument(s) are called the <i class=" ">matches</i>. You can specify multiple matches in a single rule. However, the more matches you use in a rule, the more memory that rule consumes.    </p>
+</li><li class=" ">    <p  ><strong class=" ">Jump: </strong>The <i class=" ">jump</i> specifies the target of the rule; that is, what action to take if the packet matches the rule. If this option is omitted in a rule, then matching the rule will have no effect on the packet's fate, but the counters on the rule will be incremented.    </p>
+</li><li class=" ">    <p  ><strong class=" ">Target(s):</strong> The <i class=" ">target</i> can be a user-defined chain (other than the one this rule is in), one of the special built-in targets that decides the fate of the packet immediately (like DROP), or an extended target. See the <a   href="#src-5126760_Netfilter-ACLs-supported">Supported Rule Types and Common Usages</a> section below for examples of different targets.    </p>
+</li></ul>    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-HowRulesAreParsedandApplied">
+        <h2 class="heading "><span>How Rules Are Parsed and Applied</span></h2>
+    <p  >All the rules from each chain are read from <tt class=" ">iptables</tt>, <tt class=" ">ip6tables</tt> and <tt class=" ">ebtables</tt> and entered in order into either the filter table or the mangle table. The rules are read from the kernel in the following order:    </p>
+<ul class=" "><li class=" ">    <p  >IPv6 (<tt class=" ">ip6tables</tt>)    </p>
+</li><li class=" ">    <p  >IPv4 (<tt class=" ">iptables</tt>)    </p>
+</li><li class=" ">    <p  ><tt class=" ">ebtables</tt>    </p>
+</li></ul>    <p  >When rules are combined and put into one table, the order determines the relative priority of the rules; <tt class=" ">iptables</tt> and <tt class=" ">ip6tables</tt> have the highest precedence and <tt class=" ">ebtables</tt> has the lowest.    </p>
+    <p  >The Linux packet forwarding construct is an overlay for how the silicon underneath processes packets; to that end, here are some things to be aware of:    </p>
+<ul class=" "><li class=" ">    <p  >The order of operations for how rules are processed is not perfectly maintained when you compare how <tt class=" ">iptables</tt> and the switch silicon process packets. The switch silicon reorders rules when <tt class=" ">switchd</tt> writes to the ASIC, whereas traditional <tt class=" ">iptables</tt> executes the list of rules in order.    </p>
+</li><li class=" ">    <p  >All rules are terminating. This means once a rule is matched, the action is carried out, and no more rules are processed. The exception to this is when a SETCLASS rule is placed immediately before another rule; this exists multiple times in the default ACL configuration.<br/>In the example below, the SETCLASS action applied with the <tt class=" ">--in-interface</tt> option, creates the internal ASIC classification, and <strong class=" ">continues to process</strong> the next rule, which does the rate-limiting for the matched protocol:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport $BFD_ECHO_PORT -j SETCLASS --class 7</code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN -p udp --dport $BFD_ECHO_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If multiple contiguous rules with the same match criteria are applied to <tt class=" ">--in-interface</tt>, <strong class=" ">only</strong> the first rule gets processed and then terminates processing. This would also be a misconfiguration, because there is no reason to have duplicate rules with different actions.    </p>
+        </div>
+    </div>
+</li><li class=" ">    <p  >When processing traffic, rules affecting the FORWARD chain that specify an ingress interface are performed prior to rules that match on an egress interface. As a workaround, rules that only affect the egress interface can have an ingress interface wildcard (currently, only <i class=" ">swp+</i> and <i class=" ">bond+</i> are supported as wildcard names; see below) that matches any interface applied so that you can maintain order of operations with other input interface rules. Take the following rules, for example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-A FORWARD -i $PORTA -j ACCEPT</code></div>
+<div class="line"><code class="plain">-A FORWARD -o $PORTA -j ACCEPT   &lt;-- This rule is performed LAST (because of egress interface matching)</code></div>
+<div class="line"><code class="plain">-A FORWARD -i $PORTB -j DROP</code></div>
+</div>
+    </div>
+    <p  >If you modify the rules like this, they are performed in order:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-A FORWARD -i $PORTA -j ACCEPT</code></div>
+<div class="line"><code class="plain">-A FORWARD -i swp+ -o $PORTA -j ACCEPT   &lt;-- These rules are performed in order (because of wildcard match on ingress interface)</code></div>
+<div class="line"><code class="plain">-A FORWARD -i $PORTB -j DROP</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >When using rules that do a mangle and a filter lookup for a packet, Cumulus Linux does them in parallel and combines the action.    </p>
+</li><li class=" ">    <p  >If a switch port is assigned to a bond, any egress rules must be assigned to the bond.    </p>
+</li><li class=" ">    <p  >When using the OUTPUT chain, rules must be assigned to the source. For example, if a rule is assigned to the switch port in the direction of traffic but the source is a bridge (VLAN), the traffic won't be affected by the rule and must be applied to the bridge.    </p>
+</li><li class=" ">    <p  >If all transit traffic needs to have a rule applied, use the FORWARD chain, not the OUTPUT chain.    </p>
+</li><li class=" ">    <p id="src-5126760_indexterm-0DFC6A7658CA1A9307978C99F69D681D" ><tt class=" ">ebtables</tt> rules are put into either the IPv4 or IPv6 memory space depending on whether the rule utilizes IPv4 or IPv6 to make a decision. Layer 2-only rules, which match the MAC address, are put into the IPv4 memory space.    </p>
+</li></ul>    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-RulePlacementinMemory">
+        <h2 class="heading "><span>Rule Placement in Memory</span></h2>
+    <p  >INPUT and ingress (<tt class=" ">FORWARD -i</tt>) rules occupy the same memory space. A rule counts as ingress if the <tt class=" ">-i</tt> option is set. If both input and output options (<tt class=" ">-i</tt> and <tt class=" ">-o</tt>) are set, the rule is considered as ingress and occupies that memory space. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-A FORWARD -i swp1 -o swp2 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If you set an output flag with the INPUT chain you will get an error. For example, running <tt class=" ">cl-acltool -i</tt> on the following rule:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-A FORWARD,INPUT -i swp1 -o swp2 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT</code></div>
+</div>
+    </div>
+    <p  >generates the following error:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">error: line 2 : output interface specified with INPUT chain error processing rule '-A FORWARD,INPUT -i swp1 -o swp2 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT'</code></div>
+</div>
+    </div>
+    <p  >However, simply removing the <tt class=" ">-o</tt> option and interface would make it a valid rule.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-nonatomicEnablingNonatomicUpdates">
+        <h2 class="heading "><span id="src-5126760_Netfilter-ACLs-nonatomic" class="confluence-anchor-link"></span><span>Enabling Nonatomic Updates</span></h2>
+    <p  ><span id="src-5126760_indexterm-08E1251ECEDA64B858A13484AB176B05">You can enable </span><span id="src-5126760_indexterm-DC6DBE2DA80040A8B25F285729C5B043">nonatomic updates for </span><tt class=" ">switchd</tt>, which offer better scaling because all TCAM resources are used to actively impact traffic. With atomic updates, half of the hardware resources are on standby and do not actively impact traffic.    </p>
+    <p  >Nonatomic updates are now table based, so they don't interrupt network traffic when new rules are installed. The rules are mapped into the following tables and are updated in this order:    </p>
+<ul class=" "><li class=" ">    <p  >mirror (ingress only)    </p>
+</li><li class=" ">    <p  >ipv4-mac (can be both ingress and egress)    </p>
+</li><li class=" ">    <p  >ipv6 (ingress only)    </p>
+</li></ul>    <p  >Updates are done incrementally, one table at a time without stopping traffic. Cumulus Linux checks if a table's rules have changed since the last time they were installed; if a table does not have any changes, then it is not reinstalled. If there are changes in a table, then the new rules are populated in new groups or slices in hardware, then that table is switched over to the new groups or slices. Finally, old resources for that table are freed. This process is repeated for each of the tables listed above. If a failure occurs during an update, the regular nonatomic mode is attempted, which interrupts network traffic. If that also fails, Cumulus Linux reverts back to the previous rules.    </p>
+    <p  >To always start <tt class=" ">switchd</tt> with nonatomic updates:    </p>
+<ol class=" "><li class=" ">    <p  >Edit <tt class=" ">/etc/cumulus/switchd.conf</tt>.    </p>
+</li><li class=" ">    <p  >Add the following line to the file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">acl.non_atomic_update_mode = TRUE </code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  ><a   href="https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5114824">Restart <tt class=" ">switchd</tt> </a>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo systemctl restart switchd.service</code></div>
+</div>
+    </div>
+</li></ol>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >During nonatomic updates, traffic is stopped first, and enabled after the new configuration is written into the hardware completely.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_safe-id-TmV0ZmlsdGVyLUFDTHMtVXNpbmdpcHRhYmxlcy9pcDZ0YWJsZXMvZWJ0YWJsZXNEaXJlY3RseQ">
+        <h2 class="heading "><span>Using iptables/ip6tables/ebtables Directly</span></h2>
+    <p  >Using <tt class=" ">iptables</tt>/<tt class=" ">ip6tables</tt>/<tt class=" ">ebtables</tt> directly is not recommended because any rules installed in these cases only are applied to the Linux kernel and are not hardware accelerated via synchronization to the switch silicon. Also running <tt class=" ">cl-acltool -i</tt> (the installation command) resets all rules and deletes anything that is not stored in <tt class=" ">/etc/cumulus/acl/policy.conf</tt>.    </p>
+    <p  >For example, performing:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP</code></div>
+</div>
+    </div>
+    <p  >Appears to work, and the rule appears when you run <tt class=" ">cl-acltool -L</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo cl-acltool -L ip</code></div>
+<div class="line"><code class="plain">-------------------------------</code></div>
+<div class="line"><code class="plain">Listing rules of type iptables: </code></div>
+<div class="line"><code class="plain">------------------------------- </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">TABLE filter :</code></div>
+<div class="line"><code class="plain">Chain INPUT (policy ACCEPT 72 packets, 5236 bytes) </code></div>
+<div class="line"><code class="plain">pkts bytes target prot opt in out source destination </code></div>
+<div class="line"><code class="plain">0 0 DROP icmp -- any any anywhere anywhere icmp echo-request</code></div>
+</div>
+    </div>
+    <p  >However, the rule is not synced to hardware when applied in this fashion and running <tt class=" ">cl-acltool -i</tt> or <tt class=" ">reboot</tt> removes the rule without replacing it. To ensure all rules that can be in hardware are hardware accelerated, place them in <tt class=" ">/etc/cumulus/acl/policy.conf</tt> and install them by running <tt class=" ">cl-acltool -i</tt>.    </p>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-EstimatingtheNumberofRules">
+        <h2 class="heading "><span>Estimating the Number of Rules</span></h2>
+    <p  >To estimate the number of rules that could be created from an ACL entry, first determine if that entry is an ingress or an egress. Then determine if it is IPv4-mac or IPv6 type rule. This determines the slice to which the rule belongs. Then use the following to determine how many entries are used up for each type.    </p>
+    <p  >By default, each entry occupies one double wide entry, except if the entry is one of the following:    </p>
+<ul class=" "><li class=" ">    <p  >An entry with multiple comma-separated input interfaces is split into one rule for each input interface (listed after <tt class=" ">--in-interface</tt> below). For example, this entry splits into two rules:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-A FORWARD --in-interface swp1s0,swp1s1 -p icmp -j ACCEPT</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >An entry with multiple comma-separated output interfaces is split into one rule for each output interface (listed after <tt class=" ">--out-interface</tt> below). this entry splits into two rules:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-A FORWARD --in-interface swp+ --out-interface swp1s0,swp1s1 -p icmp -j ACCEPT</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >An entry with both input and output comma-separated interfaces is split into one rule for each combination of input and output interface (listed after <tt class=" ">--in-interface</tt> and <tt class=" ">--out-interface</tt> below). For example, this entry splits into four rules:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-A FORWARD --in-interface swp1s0,swp1s1 --out-interface swp1s2,swp1s3 -p icmp -j ACCEPT</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >An entry with multiple L4 port ranges is split into one rule for each range (listed after <tt class=" ">--dports</tt> below). For example, this entry splits into two rules:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-A FORWARD --in-interface swp+ -p tcp -m multiport --dports 1050:1051,1055:1056 -j ACCEPT</code></div>
+</div>
+    </div>
+</li></ul>    </div>
+    </div>
+    <div class="section section-1" id="src-5126760_Netfilter-ACLs-InstallingandManagingACLRuleswithNCLU">
+        <h1 class="heading "><span>Installing and Managing ACL Rules with NCLU</span></h1>
+    <p  >NCLU provides an easy way to create custom ACLs in Cumulus Linux. The rules you create live in the <tt class=" ">/var/lib/cumulus/nclu/nclu_acl.conf</tt> file, which gets converted to a rules file, <tt class=" ">/etc/cumulus/acl/policy.d/50_nclu_acl.rules</tt>. This way, the rules you create with NCLU are independent of the two default files in <tt class=" ">/etc/cumulus/acl/policy.d</tt>, <tt class=" ">00control_plane.rules</tt> and <tt class=" ">99control_plane_catch_all.rules</tt>, as the content in these files may get updated after you upgrade Cumulus Linux.    </p>
+    <p  >Instead of crafting a rule by hand then installing it using <tt class=" ">cl-acltool</tt>, NCLU handles many of the options automatically. For example, consider the following <tt class=" ">iptables</tt> rule:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-A FORWARD -i swp1 -o swp2 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT</code></div>
+</div>
+    </div>
+    <p  >You would create this rule, called <i class=" ">EXAMPLE1</i>, using NCLU like this:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add acl ipv4 EXAMPLE1 accept tcp source-ip 10.0.14.2/32 source-port dest-ip 10.0.15.8/32 dest-port any</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net commit</code></div>
+</div>
+    </div>
+    <p  >All options, such as the <tt class=" ">-j</tt> and <tt class=" ">-p</tt>, even <tt class=" ">FORWARD</tt> in the above rule, are added automatically when you apply the rule to the control plane; NCLU figures it all out for you.    </p>
+    <p  >You can also set a priority value, which specifies the order in which the rules get executed, and the order in which they appear in the rules file. Lower numbers are executed first. To add a new rule in the middle, first run <tt class=" ">net show config acl</tt>, which displays the priority numbers. Otherwise, new rules get appended to the end of the list of rules in the <tt class=" ">nclu_acl.conf</tt> and <tt class=" ">50_nclu_acl.rules</tt> files.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If you need to hand edit a rule, don&rsquo;t edit the <tt class=" ">50_nclu_acl.rules</tt> file. Instead, edit the <tt class=" ">nclu_acl.conf</tt> file.    </p>
+        </div>
+    </div>
+    <p  >After you add the rule, you need to apply it to an inbound or outbound interface using <tt class=" ">net add int acl</tt>; swp1 is the inbound interface in our example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add int swp1 acl ipv4 EXAMPLE1 inbound</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net commit</code></div>
+</div>
+    </div>
+    <p  >After you commit your changes, you can verify the rule you created with NCLU by running <tt class=" ">net show configuration acl</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net show configuration acl </code></div>
+<div class="line"><code class="plain">acl ipv4 EXAMPLEv4 priority 10 accept tcp source-ip 10.0.14.2/32 source-port any dest-ip 10.0.15.8/32 dest-port any</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">interface swp1</code></div>
+<div class="line"><code class="plain">  acl ipv4 EXAMPLE1 inbound</code></div>
+</div>
+    </div>
+    <p  >Or you can see all of the rules installed by running <tt class=" ">cat</tt> on the <tt class=" ">50_nclu_acl.rules</tt> file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/50_nclu_acl.rules </code></div>
+<div class="line"><code class="plain">[iptables]</code></div>
+<div class="line"><code class="plain"># swp1: acl ipv4 EXAMPLE1 inbound</code></div>
+<div class="line"><code class="plain">-A FORWARD --in-interface swp1 --out-interface swp2 -j ACCEPT -p tcp -s 10.0.14.2/32 -d 10.0.15.8/32 --dport 110</code></div>
+</div>
+    </div>
+    <p  >For INPUT and FORWARD rules, apply the rule to a control plane interface using <tt class=" ">net add control-plane</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add control-plane acl ipv4 EXAMPLE1 inbound</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net commit</code></div>
+</div>
+    </div>
+    <p  >To remove a rule, use <tt class=" ">net del acl ipv4|ipv6|mac RULENAME</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net del acl ipv4 EXAMPLE1</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net pending</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ net commit</code></div>
+</div>
+    </div>
+    <p  >This deletes all rules from the <tt class=" ">50_nclu_acl.rules</tt> file with that name. It also deletes the interfaces referenced in the <tt class=" ">nclu_acl.conf</tt> file.    </p>
+    </div>
+    <div class="section section-1" id="src-5126760_Netfilter-ACLs-InstallingandManagingACLRuleswithcl-acltool">
+        <h1 class="heading "><span>Installing and Managing ACL Rules with cl-acltool</span></h1>
+    <p  >You can manage Cumulus Linux ACLs with <tt class=" ">cl-acltool</tt>. Rules are first written to the <tt class=" ">iptables</tt> chains, as described above, and then synced to hardware via <tt class=" ">switchd</tt>.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Use <tt class=" ">iptables</tt>/<tt class=" ">ip6tables</tt>/<tt class=" ">ebtables</tt> and <tt class=" ">cl-acltool</tt> to manage rules in the default files, <tt class=" ">00control_plane.rules</tt> and <tt class=" ">99control_plane_catch_all.rules</tt>; they&rsquo;re not aware of rules created using NCLU.    </p>
+        </div>
+    </div>
+    <p  >To examine the current state of chains and list all installed rules, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo cl-acltool -L all </code></div>
+<div class="line"><code class="plain">------------------------------- </code></div>
+<div class="line"><code class="plain">Listing rules of type iptables: </code></div>
+<div class="line"><code class="plain">------------------------------- </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">TABLE filter : </code></div>
+<div class="line"><code class="plain">Chain INPUT (policy ACCEPT 90 packets, 14456 bytes) </code></div>
+<div class="line"><code class="plain">pkts bytes target prot opt in out source destination </code></div>
+<div class="line"><code class="plain">0 0 DROP all -- swp+ any 240.0.0.0/5 anywhere </code></div>
+<div class="line"><code class="plain">0 0 DROP all -- swp+ any loopback/8 anywhere </code></div>
+<div class="line"><code class="plain">0 0 DROP all -- swp+ any base-address.mcast.net/8 anywhere </code></div>
+<div class="line"><code class="plain">0 0 DROP all -- swp+ any 255.255.255.255 anywhere ...</code></div>
+</div>
+    </div>
+    <p  >To list installed rules using native <tt class=" ">iptables</tt>, <tt class=" ">ip6tables</tt> and <tt class=" ">ebtables</tt>, use the <tt class=" ">-L</tt> option with the respective commands:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo iptables -L </code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ip6tables -L </code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ sudo ebtables -L</code></div>
+</div>
+    </div>
+    <p  >To flush all installed rules, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo cl-acltool -F all</code></div>
+</div>
+    </div>
+    <p  >To flush only the IPv4 <tt class=" ">iptables</tt> rules, run:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo cl-acltool -F ip</code></div>
+</div>
+    </div>
+    <p  >If the install fails, ACL rules in the kernel and hardware are rolled back to the previous state. Errors from programming rules in the kernel or ASIC are reported appropriately.    </p>
+    </div>
+    <div class="section section-1" id="src-5126760_safe-id-TmV0ZmlsdGVyLUFDTHMtSW5zdGFsbGluZ1BhY2tldEZpbHRlcmluZyhBQ0wpUnVsZXM">
+        <h1 class="heading "><span>Installing Packet Filtering (ACL) Rules</span></h1>
+    <p  ><tt class=" ">cl-acltool</tt> takes access control list (ACL) rules input in files. Each ACL policy file contains <tt class=" ">iptables</tt>, <tt class=" ">ip6tables</tt> and <tt class=" ">ebtables</tt> categories under the tags <tt class=" ">[iptables]</tt>, <tt class=" ">[ip6tables]</tt> and <tt class=" ">[ebtables]</tt> respectively.    </p>
+    <p  ><span id="src-5126760_indexterm-0516942A2E9B2FAD3E7D492DA06184D0">Each rule in an </span>ACL policy must be assigned to one of the rule categories above.    </p>
+    <p  >See <tt class=" ">man cl-acltool(5)</tt> for ACL rule details. For <tt class=" ">iptables</tt> rule syntax, see <tt class=" ">man iptables(8)</tt>. For <tt class=" ">ip6tables</tt> rule syntax, see <tt class=" ">man ip6tables(8)</tt>. For <tt class=" ">ebtables</tt> rule syntax, see <tt class=" ">man ebtables(8)</tt>.    </p>
+    <p  >See <tt class=" ">man cl-acltool(5)</tt> and <tt class=" ">man cl-acltool(8)</tt> for further details on using <tt class=" ">cl-acltool</tt>; however, some examples are listed here, and more are listed <a   href="#src-5126760_Netfilter-ACLs-exm">later in this chapter</a>.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >By default:    </p>
+<ul class=" "><li class=" ">    <p  >ACL policy files are located in <tt class=" ">/etc/cumulus/acl/policy.d/</tt>.    </p>
+</li><li class=" ">    <p  >All <tt class=" ">*.rules</tt> files in this directory are included in <tt class=" ">/etc/cumulus/acl/policy.conf</tt>.    </p>
+</li><li class=" ">    <p  >All files included in this <tt class=" ">policy.conf</tt> file are installed when the switch boots up.    </p>
+</li><li class=" ">    <p  >The <tt class=" ">policy.conf</tt> file expects rules files to have a <tt class=" ">.rules</tt> suffix as part of the file name.    </p>
+</li></ul>        </div>
+    </div>
+    <p  >Here is an example ACL policy file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">[iptables] </code></div>
+<div class="line"><code class="plain">-A INPUT --in-interface swp1 -p tcp --dport 80 -j ACCEPT </code></div>
+<div class="line"><code class="plain">-A FORWARD --in-interface swp1 -p tcp --dport 80 -j ACCEPT </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain">[ip6tables] </code></div>
+<div class="line"><code class="plain">-A INPUT --in-interface swp1 -p tcp --dport 80 -j ACCEPT </code></div>
+<div class="line"><code class="plain">-A FORWARD --in-interface swp1 -p tcp --dport 80 -j ACCEPT </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain">[ebtables] </code></div>
+<div class="line"><code class="plain">-A INPUT -p IPv4 -j ACCEPT </code></div>
+<div class="line"><code class="plain">-A FORWARD -p IPv4 -j ACCEPT</code></div>
+</div>
+    </div>
+    <p  >You can use wildcards or variables to specify chain and interface lists to ease administration of rules.    </p>
+    <div  class="confbox admonition admonition-note">
+                    <p class="title">Interface Wildcards</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Currently only <i class=" ">swp+</i> and <i class=" ">bond+</i> are supported as wildcard names. There may be kernel restrictions in supporting more complex wildcards likes <i class=" ">swp1+ etc</i>.    </p>
+        </div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">INGRESS = swp+ </code></div>
+<div class="line"><code class="plain">INPUT_PORT_CHAIN = INPUT,FORWARD </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain">[iptables] </code></div>
+<div class="line"><code class="plain">-A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain">[ip6tables] </code></div>
+<div class="line"><code class="plain">-A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain">[ebtables] </code></div>
+<div class="line"><code class="plain">-A INPUT -p IPv4 -j ACCEPT</code></div>
+</div>
+    </div>
+    <p  >ACL rules for the system can be written into multiple files under the default <tt class=" ">/etc/cumulus/acl/policy.d/</tt> directory. The ordering of rules during installation follows the sort order of the files based on their file names.    </p>
+    <p  >Use multiple files to stack rules. The example below shows two rules files separating rules for management and datapath traffic:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ ls /etc/cumulus/acl/policy.d/ </code></div>
+<div class="line"><code class="plain">00sample_mgmt.rules 01sample_datapath.rules </code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/00sample_mgmt.rules </code></div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain">INGRESS_INTF = swp+ </code></div>
+<div class="line"><code class="plain">INGRESS_CHAIN = INPUT </code></div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain">[iptables] </code></div>
+<div class="line"><code class="plain"># protect the switch management </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 10.0.11.2 -d 10.0.12.8 -p tcp -j ACCEPT </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -d 10.0.16.8 -p udp -j DROP </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain">cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/01sample_datapath.rules </code></div>
+<div class="line"><code class="plain">INGRESS_INTF = swp+ </code></div>
+<div class="line"><code class="plain">INGRESS_CHAIN = INPUT, FORWARD </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">[iptables] </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.5 -p icmp -j ACCEPT </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.6 -d 192.0.2.4 -j DROP </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.2 -d 192.0.2.8 -j DROP</code></div>
+</div>
+    </div>
+    <p  >Install all ACL policies under a directory:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo cl-acltool -i -P ./rules </code></div>
+<div class="line"><code class="plain">Reading files under rules </code></div>
+<div class="line"><code class="plain">Reading rule file ./rules/01_http_rules.txt ... </code></div>
+<div class="line"><code class="plain">Processing rules in file ./rules/01_http_rules.txt ... </code></div>
+<div class="line"><code class="plain">Installing acl policy ... </code></div>
+<div class="line"><code class="plain">Done.</code></div>
+</div>
+    </div>
+    <p  >Install all rules and policies included in <tt class=" ">/etc/cumulus/acl/policy.conf</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo cl-acltool -i</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126760_Netfilter-ACLs-SpecifyingwhichPolicyFilestoInstall">
+        <h1 class="heading "><span>Specifying which Policy Files to Install</span></h1>
+    <p  ><span id="src-5126760_indexterm-DFBBCCD9E402E874A6D86F5665E91787">By </span>default, any <tt class=" ">.rules</tt> file you configure in <tt class=" ">/etc/cumulus/acl/policy.d/</tt> get installed by Cumulus Linux. To add other policy files to an ACL, you need to include them in <tt class=" ">/etc/cumulus/acl/policy.conf</tt>. For example, in order for Cumulus Linux to install a rule in a policy file called <tt class=" ">01_new.datapathacl</tt>, you would add <tt class=" ">include /etc/cumulus/acl/policy.d/01_new.rules</tt> to <tt class=" ">policy.conf</tt>, as in this example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.conf </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># </code></div>
+<div class="line"><code class="plain"># This file is a master file for acl policy file inclusion </code></div>
+<div class="line"><code class="plain"># </code></div>
+<div class="line"><code class="plain"># Note: This is not a file where you list acl rules. </code></div>
+<div class="line"><code class="plain"># </code></div>
+<div class="line"><code class="plain"># This file can contain: </code></div>
+<div class="line"><code class="plain"># - include lines with acl policy files </code></div>
+<div class="line"><code class="plain">#   example: </code></div>
+<div class="line"><code class="plain">#     include &lt;filepath&gt; </code></div>
+<div class="line"><code class="plain"># </code></div>
+<div class="line"><code class="plain"># see manpage cl-acltool(5) and cl-acltool(8) for how to write policy files </code></div>
+<div class="line"><code class="plain"># </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">include /etc/cumulus/acl/policy.d/01_new.datapathacl</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126760_Netfilter-ACLs-HardwareLimitationsonNumberofRules">
+        <h1 class="heading "><span>Hardware Limitations on Number of Rules</span></h1>
+    <p  >The maximum number of rules that can be handled in hardware is a function of the platform type (switch silicon, like Tomahawk) and a mix of IPv4 and/or IPv6. See the <a  class="external-link" href="http://cumulusnetworks.com/support/hcl">HCL </a>to determine which platform type applies to a particular switch.    </p>
+    <p  >If the maximum number of rules for a particular table is exceeded, <tt class=" ">cl-acltool -i</tt> generates the following error:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">error: hw sync failed (sync_acl hardware installation failed) Rolling back .. failed.</code></div>
+</div>
+    </div>
+    <p  >The nonatomic mode rules are used when nonatomic updates are enabled (<a   href="#src-5126760_Netfilter-ACLs-nonatomic">see above</a>).    </p>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-BroadcomTomahawkLimits">
+        <h2 class="heading "><span>Broadcom Tomahawk Limits</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Direction    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Atomic Mode IPv4 Rules    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Atomic Mode IPv6 Rules    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Nonatomic Mode IPv4 Rules    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Nonatomic Mode IPv6 Rules    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Ingress    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >512    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >512    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1024    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1024    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Egress    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >512    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >256    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1024    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >512    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126760_safe-id-TmV0ZmlsdGVyLUFDTHMtQnJvYWRjb21UcmlkZW50SUkgTGltaXRz">
+        <h2 class="heading "><span>Broadcom Trident II+ Limits</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Direction    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Atomic Mode IPv4 Rules    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Atomic Mode IPv6 Rules    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Nonatomic Mode IPv4 Rules    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Nonatomic Mode IPv6 Rules    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Ingress    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >4096    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >4096    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >8192    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >8192    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Egress    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >512    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >256    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1024    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >512    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-BroadcomTridentIIandHelix4Limits">
+        <h2 class="heading "><span>Broadcom Trident II and Helix4 Limits</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Direction    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Atomic Mode IPv4 Rules    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Atomic Mode IPv6 Rules    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Nonatomic Mode IPv4 Rules    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Nonatomic Mode IPv6 Rules    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Ingress    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1024    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1024    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >2048    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >2048    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Egress    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >512    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >256    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1024    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >512    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-MellanoxSpectrumLimits">
+        <h2 class="heading "><span>Mellanox Spectrum Limits</span></h2>
+    <p  >The Mellanox Spectrum ASIC has one common <a  class="external-link" href="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs">TCAM</a> for both ingress and egress, and it may be used for other non-ACL-related resources. However, the number of supported rules varies with the <a   href="Routing.html#src-5127036_Routing-tcam">TCAM profile</a> specified for the switch.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Profile    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Atomic Mode IPv4 Rules    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Atomic Mode IPv6 Rules    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Nonatomic Mode IPv4 Rules    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Nonatomic Mode IPv6 Rules    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >default    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1750    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >750    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >3500    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >1500    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >ipmc-heavy    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >200    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >80    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >400    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >160    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >acl-heavy    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >3000    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >2000    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >6000    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >2500    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126760_Netfilter-ACLs-supportedSupportedRuleTypes">
+        <h1 class="heading "><span id="src-5126760_Netfilter-ACLs-supported" class="confluence-anchor-link"></span><span>Supported Rule Types</span></h1>
+    <p  >The <tt class=" ">iptables</tt>/<tt class=" ">ip6tables</tt>/<tt class=" ">ebtables</tt> construct tries to layer the Linux implementation on top of the underlying hardware but they are not always directly compatible. Here are the supported rules for chains in <tt class=" ">iptables</tt>, <tt class=" ">ip6tables</tt> and <tt class=" ">ebtables</tt>.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >To learn more about any of the options shown in the tables below, run <tt class=" ">iptables -h [name of option]</tt>. The same help syntax works for options for <tt class=" ">ip6tables</tt> and <tt class=" ">ebtables</tt>.    </p>
+    <p  class="expand-control-text">Click to see an example of help syntax for an ebtables target    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">root@leaf1# ebtables -h tricolorpolice</code></div>
+<div class="line"><code class="plain">&lt;...snip...&gt;</code></div>
+<div class="line"><code class="plain">tricolorpolice option:</code></div>
+<div class="line"><code class="plain"> --set-color-mode STRING setting the mode in blind or aware</code></div>
+<div class="line"><code class="plain"> --set-cir INT setting committed information rate in kbits per second</code></div>
+<div class="line"><code class="plain"> --set-cbs INT setting committed burst size in kbyte</code></div>
+<div class="line"><code class="plain"> --set-pir INT setting peak information rate in kbits per second</code></div>
+<div class="line"><code class="plain"> --set-ebs INT setting excess burst size in kbyte</code></div>
+<div class="line"><code class="plain"> --set-conform-action-dscp INT setting dscp value if the action is accept for conforming packets</code></div>
+<div class="line"><code class="plain"> --set-exceed-action-dscp INT setting dscp value if the action is accept for exceeding packets</code></div>
+<div class="line"><code class="plain"> --set-violate-action STRING setting the action (accept/drop) for violating packets</code></div>
+<div class="line"><code class="plain"> --set-violate-action-dscp INT setting dscp value if the action is accept for violating packets</code></div>
+<div class="line"><code class="plain">Supported chains for the filter table:</code></div>
+<div class="line"><code class="plain">INPUT FORWARD OUTPUT</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    <div class="section section-2" id="src-5126760_safe-id-TmV0ZmlsdGVyLUFDTHMtaXB0YWJsZXMvaXA2dGFibGVzUnVsZVN1cHBvcnQ">
+        <h2 class="heading "><span>iptables/ip6tables Rule Support</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Rule Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Supported    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Unsupported    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Matches</strong>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  >Src/Dst, IP protocol    </p>
+</li><li class=" ">    <p  >In/out interface    </p>
+</li><li class=" ">    <p  >IPv4: icmp, ttl,    </p>
+</li><li class=" ">    <p  >IPv6: icmp6, frag, hl,    </p>
+</li><li class=" ">    <p  >IP common: tcp (<a   href="#src-5126760_Netfilter-ACLs-filteringtcp">with flags</a>), udp, multiport,TOS, DSCP, addrtype    </p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  >Rules with input/output Ethernet interfaces are ignored    </p>
+</li><li class=" ">    <p  >Inverse matches    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Standard Targets</strong>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  >ACCEPT, DROP    </p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  >RETURN, QUEUE, STOP, Fall Thru, Jump    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Extended Targets</strong>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  >LOG (IPv4/IPv6); UID is not supported for LOG    </p>
+</li><li class=" ">    <p  >TCP SEQ, TCP options or IP options    </p>
+</li><li class=" ">    <p  >ULOG    </p>
+</li><li class=" ">    <p  >SETQOS    </p>
+</li><li class=" ">    <p  >DSCP    </p>
+</li></ul>    <p  ><i class=" ">Unique to Cumulus Linux:</i>    </p>
+<ul class=" "><li class=" ">    <p  >SPAN    </p>
+</li><li class=" ">    <p  >ERSPAN (IPv4/IPv6)    </p>
+</li><li class=" ">    <p  >POLICE    </p>
+</li><li class=" ">    <p  >TRICOLORPOLICE    </p>
+</li><li class=" ">    <p  >SETCLASS    </p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-ebtablesRuleSupport">
+        <h2 class="heading "><span>ebtables Rule Support</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Rule Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Supported    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Unsupported    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Matches</strong>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  >ether type    </p>
+</li><li class=" ">    <p  >input interface/wildcard    </p>
+</li><li class=" ">    <p  >output interface/wildcard    </p>
+</li><li class=" ">    <p  >src/dst MAC    </p>
+</li><li class=" ">    <p  >IP: src, dest, tos, proto, sport, dport    </p>
+</li><li class=" ">    <p  >IPv6: tclass, icmp6: type, icmp6: code range, src/dst addr, sport, dport    </p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  >Inverse matches    </p>
+</li><li class=" ">    <p  >Proto length    </p>
+</li><li class=" ">    <p  >VLAN    </p>
+</li><li class=" ">    <p  >802.1p (CoS)    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Standard Targets</strong>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  >ACCEPT, DROP    </p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  >Return, Continue, Jump, Fall Thru    </p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  ><strong class=" ">Extended Targets</strong>    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" ">    <p  >Ulog    </p>
+</li><li class=" ">    <p  >log    </p>
+</li></ul>    <p  ><i class=" ">Unique to Cumulus Linux:</i>    </p>
+<ul class=" "><li class=" ">    <p  >span    </p>
+</li><li class=" ">    <p  >erspan    </p>
+</li><li class=" ">    <p  >police    </p>
+</li><li class=" ">    <p  >tricolorpolice    </p>
+</li><li class=" ">    <p  >setclass    </p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-OtherUnsupportedRules">
+        <h2 class="heading "><span>Other Unsupported Rules</span></h2>
+<ul class=" "><li class=" ">    <p  >Rules that have no matches and accept all packets in a chain are currently ignored. This probably has side effects in the sense that the rules below them do get hit, when normally they wouldn't.    </p>
+</li><li class=" ">    <p  >Chain default rules (which are ACCEPT) are also ignored.    </p>
+</li></ul>    </div>
+    </div>
+    <div class="section section-1" id="src-5126760_Netfilter-ACLs-CommonExamples">
+        <h1 class="heading "><span>Common Examples</span></h1>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-PolicingControlPlaneandDataPlaneTraffic">
+        <h2 class="heading "><span>Policing Control Plane and Data Plane Traffic</span></h2>
+    <p  ><span id="src-5126760_indexterm-BF26304A2BB8B918A399806F77BDD02A">You can configure </span><span id="src-5126760_indexterm-36C979AA268C4F1C7EA60445EA4ED793">quality of service for traffic on both the control plane and the data plane. By using </span>QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Counters on POLICE ACL rules in <tt class=" ">iptables</tt> do not currently show the packets that are dropped due to those rules.    </p>
+        </div>
+    </div>
+    <p  >Use the <tt class=" ">POLICE</tt> target with <tt class=" ">iptables</tt>. <tt class=" ">POLICE</tt> takes these arguments:    </p>
+<ul class=" "><li class=" ">    <p  ><tt class=" ">--set-class value</tt>: Sets the system internal class of service queue configuration to <i class=" ">value</i>.    </p>
+</li><li class=" ">    <p  ><tt class=" ">--set-rate value</tt>: Specifies the maximum rate in kilobytes (KB) or packets.    </p>
+</li><li class=" ">    <p  ><tt class=" ">--set-burst value</tt>: Specifies the number of packets or kilobytes (KB) allowed to arrive sequentially.    </p>
+</li><li class=" ">    <p  ><tt class=" ">--set-mode string</tt>: Sets the mode in <i class=" ">KB</i> (kilobytes) or <i class=" ">pkt</i> (packets) for rate and burst size.    </p>
+</li></ul>    <p  >For example, to rate limit the incoming traffic on swp1 to 400 packets/second with a burst of 100 packets/second and set the class of the queue for the policed traffic as 0, set this rule in your appropriate <tt class=" ">.rules</tt> file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-A INPUT --in-interface swp1 -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 --set-class 0</code></div>
+</div>
+    </div>
+    <p  >Here is another example of control plane ACL rules to lock down the switch. You specify them in <tt class=" ">/etc/cumulus/acl/policy.d/00control_plane.rules</tt>:    </p>
+    <p  class="expand-control-text">View the contents of the file ...    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">INGRESS_INTF = swp+ </code></div>
+<div class="line"><code class="plain">INGRESS_CHAIN = INPUT </code></div>
+<div class="line"><code class="plain">INNFWD_CHAIN = INPUT,FORWARD </code></div>
+<div class="line"><code class="plain">MARTIAN_SOURCES_4 = "240.0.0.0/5,127.0.0.0/8,224.0.0.0/8,255.255.255.255/32" </code></div>
+<div class="line"><code class="plain">MARTIAN_SOURCES_6 = "ff00::/8,::/128,::ffff:0.0.0.0/96,::1/128" </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain"># Custom Policy Section </code></div>
+<div class="line"><code class="plain">SSH_SOURCES_4 = "192.168.0.0/24" </code></div>
+<div class="line"><code class="plain">NTP_SERVERS_4 = "192.168.0.1/32,192.168.0.4/32" </code></div>
+<div class="line"><code class="plain">DNS_SERVERS_4 = "192.168.0.1/32,192.168.0.4/32" </code></div>
+<div class="line"><code class="plain">SNMP_SERVERS_4 = "192.168.0.1/32" </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain">[iptables] </code></div>
+<div class="line"><code class="plain">-A $INNFWD_CHAIN --in-interface $INGRESS_INTF -s $MARTIAN_SOURCES_4 -j DROP </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p ospf -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7 </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7 </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --sport bgp -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7 </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p icmp -j POLICE --set-mode pkt --set-rate 100 --set-burst 40 --set-class 2 </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport bootps:bootpc -j POLICE --set-mode pkt --set-rate 100 --set-burst 100 --set-class 2 </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bootps:bootpc -j POLICE --set-mode pkt --set-rate 100 --set-burst 100 --set-class 2 </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p igmp -j POLICE --set-mode pkt --set-rate 300 --set-burst 100 --set-class 6 </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain"># Custom policy </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport 22 -s $SSH_SOURCES_4 -j ACCEPT </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --sport 123 -s $NTP_SERVERS_4 -j ACCEPT </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --sport 53 -s $DNS_SERVERS_4 -j ACCEPT </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport 161 -s $SNMP_SERVERS_4 -j ACCEPT </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain"># Allow UDP traceroute when we are the current TTL expired hop </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport 1024:65535 -m ttl --ttl-eq 1 -j ACCEPT </code></div>
+<div class="line"><code class="plain">-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -j DROP</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-SettingDSCPonTransitTraffic">
+        <h2 class="heading "><span>Setting DSCP on Transit Traffic</span></h2>
+    <p  >The examples here use the <i class=" ">mangle</i> table to modify the packet as it transits the switch. DSCP is expressed in <a  class="external-link" href="https://en.wikipedia.org/wiki/Differentiated_services#Commonly_used_DSCP_values">decimal notation</a> in the examples below.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">[iptables]</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">#Set SSH as high priority traffic.</code></div>
+<div class="line"><code class="plain">-t mangle -A FORWARD -p tcp --dport 22  -j DSCP --set-dscp 46 </code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#Set everything coming in SWP1 as AF13</code></div>
+<div class="line"><code class="plain">-t mangle -A FORWARD --in-interface swp1 -j DSCP --set-dscp 14</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#Set Packets destined for 10.0.100.27 as best effort</code></div>
+<div class="line"><code class="plain">-t mangle -A FORWARD -d 10.0.100.27/32 -j DSCP --set-dscp 0</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#Example using a range of ports for TCP traffic</code></div>
+<div class="line"><code class="plain">-t mangle -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -j DSCP --set-dscp 34</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-VerifyingDSCPValuesonTransitTraffic">
+        <h2 class="heading "><span>Verifying DSCP Values on Transit Traffic</span></h2>
+    <p  >The examples here use the DSCP match criteria in combination with other IP, TCP and interface matches to identify traffic and count the number of packets.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">[iptables]</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">#Match and count the packets that match SSH traffic with DSCP EF</code></div>
+<div class="line"><code class="plain">-A FORWARD -p tcp --dport 22 -m dscp --dscp 46 -j ACCEPT</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#Match and count the packets coming in SWP1 as AF13</code></div>
+<div class="line"><code class="plain">-A FORWARD --in-interface swp1 -m dscp --dscp 14 -j ACCEPT</code></div>
+<div class="line"><code class="plain">#Match and count the packets with a destination 10.0.0.17 marked best effort</code></div>
+<div class="line"><code class="plain">-A FORWARD -d 10.0.100.27/32 -m dscp --dscp 0 -j ACCEPT</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">#Match and count the packets in a port range with DSCP AF41</code></div>
+<div class="line"><code class="plain">-A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -m dscp --dscp 34 -j ACCEPT</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-CheckingthePacketandByteCountersforACLRules">
+        <h2 class="heading "><span>Checking the Packet and Byte Counters for ACL Rules</span></h2>
+    <p  >To verify the counters, using the above example rules, first send test traffic matching the patterns through the network. The following example generates traffic with <a  class="external-link" href="http://www.perihel.at/sec/mz/">mz</a>, which can be installed on host servers or even on Cumulus Linux switches. Once traffic is sent to validate the counters, they are matched on switch1 use <tt class=" ">cl-acltool</tt>.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># Send 100 TCP packets on host1 with a DSCP value of EF with a destination of host2 TCP port 22:</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">cumulus@host1$ mz eth1 -A 10.0.0.17 -B 10.0.100.27 -c 100 -v -t tcp "dp=22,dscp=46"</code></div>
+<div class="line"><code class="plain"> IP:  ver=4, len=40, tos=184, id=0, frag=0, ttl=255, proto=6, sum=0, SA=10.0.0.17, DA=10.0.100.27,</code></div>
+<div class="line"><code class="plain">      payload=[see next layer]</code></div>
+<div class="line"><code class="plain"> TCP: sp=0, dp=22, S=42, A=42, flags=0, win=10000, len=20, sum=0,</code></div>
+<div class="line"><code class="plain">      payload=</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain"># Verify the 100 packets are matched on switch1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus@switch1$ sudo cl-acltool -L ip</code></div>
+<div class="line"><code class="plain">-------------------------------</code></div>
+<div class="line"><code class="plain">Listing rules of type iptables:</code></div>
+<div class="line"><code class="plain">-------------------------------</code></div>
+<div class="line"><code class="plain">TABLE filter :</code></div>
+<div class="line"><code class="plain">Chain INPUT (policy ACCEPT 9314 packets, 753K bytes)</code></div>
+<div class="line"><code class="plain"> pkts bytes target     prot opt in     out     source               destination</code></div>
+<div class="line"><code class="plain">Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)</code></div>
+<div class="line"><code class="plain"> pkts bytes target     prot opt in     out     source               destination</code></div>
+<div class="line"><code class="plain">  100  6400 ACCEPT     tcp  --  any    any     anywhere             anywhere             tcp dpt:ssh DSCP match 0x2e</code></div>
+<div class="line"><code class="plain">    0     0 ACCEPT     all  --  swp1   any     anywhere             anywhere             DSCP match 0x0e</code></div>
+<div class="line"><code class="plain">    0     0 ACCEPT     all  --  any    any     10.0.0.17            anywhere             DSCP match 0x00</code></div>
+<div class="line"><code class="plain">    0     0 ACCEPT     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000 dpts:webmin:2002</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain"># Send 100 packets with a small payload on host1 with a DSCP value of AF13 with a destination of host2:</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus@host1$ mz eth1 -A 10.0.0.17 -B 10.0.100.27 -c 100 -v -t ip</code></div>
+<div class="line"><code class="plain"> IP:  ver=4, len=20, tos=0, id=0, frag=0, ttl=255, proto=0, sum=0, SA=10.0.0.17, DA=10.0.100.27,</code></div>
+<div class="line"><code class="plain">      payload=</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># Verify the 100 packets are matched on switch1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus@switch1$ sudo cl-acltool -L ip</code></div>
+<div class="line"><code class="plain">-------------------------------</code></div>
+<div class="line"><code class="plain">Listing rules of type iptables:</code></div>
+<div class="line"><code class="plain">-------------------------------</code></div>
+<div class="line"><code class="plain">TABLE filter :</code></div>
+<div class="line"><code class="plain">Chain INPUT (policy ACCEPT 9314 packets, 753K bytes)</code></div>
+<div class="line"><code class="plain"> pkts bytes target     prot opt in     out     source               destination</code></div>
+<div class="line"><code class="plain">Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)</code></div>
+<div class="line"><code class="plain"> pkts bytes target     prot opt in     out     source               destination</code></div>
+<div class="line"><code class="plain">  100  6400 ACCEPT     tcp  --  any    any     anywhere             anywhere             tcp dpt:ssh DSCP match 0x2e</code></div>
+<div class="line"><code class="plain">  100  7000 ACCEPT     all  --  swp3   any     anywhere             anywhere             DSCP match 0x0e</code></div>
+<div class="line"><code class="plain">  100  6400 ACCEPT     all  --  any    any     10.0.0.17            anywhere             DSCP match 0x00</code></div>
+<div class="line"><code class="plain">    0     0 ACCEPT     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000 dpts:webmin:2002</code></div>
+</div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="comments"># Send 100 packets on host1 with a destination of host2:</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus</code><code class="variable">@host1</code><code class="plain">$ mz eth1 -A 10.0.0.17 -B 10.0.100.27 -c 100 -v -t ip</code></div>
+<div class="line"><code class="plain"> IP:  ver=4, len=20, tos=56, id=0, frag=0, ttl=255, proto=0, sum=0, SA=10.0.0.17, DA=10.0.100.27,</code></div>
+<div class="line"><code class="plain">      payload=</code></div>
+<div class="line"> </div>
+<div class="line"><code class="comments"># Verify the 100 packets are matched on switch1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">cumulus</code><code class="variable">@switch1</code><code class="plain">$ sudo cl-acltool -L ip</code></div>
+<div class="line"><code class="plain">-------------------------------</code></div>
+<div class="line"><code class="plain">Listing rules of type iptables:</code></div>
+<div class="line"><code class="plain">-------------------------------</code></div>
+<div class="line"><code class="plain">TABLE filter :</code></div>
+<div class="line"><code class="plain">Chain INPUT (policy </code><code class="functions">ACCEPT</code><code class="plain"> 9314 packets, 753K bytes)</code></div>
+<div class="line"><code class="plain"> pkts bytes target     prot opt in     out     source               destination</code></div>
+<div class="line"><code class="plain">Chain FORWARD (policy </code><code class="functions">ACCEPT</code><code class="plain"> 0 packets, 0 bytes)</code></div>
+<div class="line"><code class="plain"> pkts bytes target     prot opt in     out     source               destination</code></div>
+<div class="line"><code class="plain">  100  6400 </code><code class="functions">ACCEPT</code><code class="plain">     tcp  --  any    any     anywhere             anywhere             tcp dpt:ssh DSCP match 0x2e</code></div>
+<div class="line"><code class="plain">  100  7000 </code><code class="functions">ACCEPT</code><code class="plain">     all  --  swp3   any     anywhere             anywhere             DSCP match 0x0e</code></div>
+<div class="line"><code class="plain">    0     0 </code><code class="functions">ACCEPT</code><code class="plain">     all  --  any    any     10.0.0.17            anywhere             DSCP match 0x00</code></div>
+<div class="line"><code class="plain">    0     0 </code><code class="functions">ACCEPT</code><code class="plain">     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000 dpts:webmin:2002Still working</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-filteringtcpFilteringSpecificTCPFlags">
+        <h2 class="heading "><span id="src-5126760_Netfilter-ACLs-filteringtcp" class="confluence-anchor-link"></span><span>Filtering Specific TCP Flags</span></h2>
+    <p  >The example solution below creates rules on the INPUT and FORWARD chains to drop ingress IPv4 and IPv6 TCP packets when the SYN bit is set and the RST, ACK and FIN bits are reset. The default for the INPUT and FORWARD chains allows all other packets. The ACL is applied to ports swp20 and swp21. After configuring this ACL, new TCP sessions that originate from ingress ports swp20 and swp21 will not be allowed. TCP sessions that originate from any other port are allowed.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">INGRESS_INTF = swp20,swp21</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">[iptables]</code></div>
+<div class="line"><code class="plain">-A INPUT,FORWARD --in-interface $INGRESS_INTF -p tcp --syn -j DROP</code></div>
+<div class="line"><code class="plain">[ip6tables]</code></div>
+<div class="line"><code class="plain">-A INPUT,FORWARD --in-interface $INGRESS_INTF -p tcp --syn -j DROP</code></div>
+</div>
+    </div>
+    <p  >The <tt class=" ">--syn</tt> flag in the above rule matches packets with the SYN bit set and the ACK, RST and FIN bits are cleared. It is equivalent to using <tt class=" ">-tcp-flags SYN,RST,ACK,FIN SYN</tt>. For example, the above rule could be re-written as:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">-A INPUT,FORWARD --in-interface $INGRESS_INTF -p tcp --tcp-flags SYN,RST,ACK,FIN SYN -j DROP</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126760_Netfilter-ACLs-ExampleScenario">
+        <h1 class="heading "><span>Example Scenario</span></h1>
+    <p  ><span id="src-5126760_Netfilter-ACLs-examples"></span>The following example scenario demonstrates where several different rules are applied to show what is possible.    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5126760/acl-diagram.png" alt="images/download/attachments/5126760/acl-diagram.png"   />
+        </p>
+    <p  >Following are the configurations for the two switches used in these examples. The configuration for each switch appears in <tt class=" ">/etc/network/interfaces</tt> on that switch.    </p>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-Switch1Configuration">
+        <h2 class="heading "><span>Switch 1 Configuration</span></h2>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch1:~$ net show configuration files</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">/etc/network/interfaces</code></div>
+<div class="line"><code class="plain">=======================</code></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto swp1 </code></div>
+<div class="line"><code class="plain">iface swp1 </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto swp2 </code></div>
+<div class="line"><code class="plain">iface swp2 </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto swp3 </code></div>
+<div class="line"><code class="plain">iface swp3 </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto swp4 </code></div>
+<div class="line"><code class="plain">iface swp4 </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto bond2 </code></div>
+<div class="line"><code class="plain">iface bond2 </code></div>
+<div class="line"><code class="plain">	bond-slaves swp3 swp4 </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto br-untagged </code></div>
+<div class="line"><code class="plain">iface br-untagged </code></div>
+<div class="line"><code class="plain">	address 10.0.0.1/24</code></div>
+<div class="line"><code class="plain">	bridge_ports swp1 bond2 </code></div>
+<div class="line"><code class="plain">	bridge_stp on</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto br-tag100 </code></div>
+<div class="line"><code class="plain">iface br-tag100 </code></div>
+<div class="line"><code class="plain">	address 10.0.100.1/24</code></div>
+<div class="line"><code class="plain">	bridge_ports swp2.100 bond2.100 </code></div>
+<div class="line"><code class="plain">	bridge_stp on </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-Switch2Configuration">
+        <h2 class="heading "><span>Switch 2 Configuration</span></h2>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch2:~$ net show configuration files</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">/etc/network/interfaces</code></div>
+<div class="line"><code class="plain">=======================</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto swp3 </code></div>
+<div class="line"><code class="plain">iface swp3 </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto swp4 </code></div>
+<div class="line"><code class="plain">iface swp4 </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto br-untagged </code></div>
+<div class="line"><code class="plain">iface br-untagged </code></div>
+<div class="line"><code class="plain">	address 10.0.0.2/24</code></div>
+<div class="line"><code class="plain">	bridge_ports bond2 </code></div>
+<div class="line"><code class="plain">	bridge_stp on </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto br-tag100 </code></div>
+<div class="line"><code class="plain">iface br-tag100 </code></div>
+<div class="line"><code class="plain">	address 10.0.100.2/24 </code></div>
+<div class="line"><code class="plain">	bridge_ports bond2.100 </code></div>
+<div class="line"><code class="plain">	bridge_stp on </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">auto bond2 </code></div>
+<div class="line"><code class="plain">iface bond2 </code></div>
+<div class="line"><code class="plain">	bond-slaves swp3 swp4 </code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-EgressRule">
+        <h2 class="heading "><span>Egress Rule</span></h2>
+    <p  >The following rule blocks any TCP with destination port 200 traffic going from host1 or host2 through the switch (corresponding to rule 1 in the diagram above).    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">[iptables] -A FORWARD -o bond2 -p tcp --dport 200 -j DROP</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-IngressRule">
+        <h2 class="heading "><span>Ingress Rule</span></h2>
+    <p  >The following rule blocks any UDP traffic with source port 200 going from host1 through the switch (corresponding to rule 2 in the diagram above).    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">[iptables] -A FORWARD -i swp2 -p udp --sport 200 -j DROP</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-InputRule">
+        <h2 class="heading "><span>Input Rule</span></h2>
+    <p  >The following rule blocks any UDP traffic with source port 200 and destination port 50 going from host1 to the switch (corresponding to rule 3 in the diagram above).    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">[iptables] -A INPUT -i swp1 -p udp --sport 200 --dport 50 -j DROP</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-OutputRule">
+        <h2 class="heading "><span>Output Rule</span></h2>
+    <p  >The following rule blocks any TCP traffic with source port 123 and destination port 123 going from Switch 1 to host2 (corresponding to rule 4 in the diagram above).    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">[iptables] -A OUTPUT -o br-tag100 -p tcp --sport 123 --dport 123 -j DROP</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-CombinedRules">
+        <h2 class="heading "><span>Combined Rules</span></h2>
+    <p  >The following rule blocks any TCP traffic with source port 123 and destination port 123 going from any switch port egress or generated from Switch 1 to host1 or host2 (corresponding to rules 1 and 4 in the diagram above).    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">[iptables] -A OUTPUT,FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP</code></div>
+</div>
+    </div>
+    <p  >This also becomes 2 ACLs, and is effectively the same as:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">[iptables]</code></div>
+<div class="line"><code class="plain">-A FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP </code></div>
+<div class="line"><code class="plain">-A OUTPUT -o swp+ -p tcp --sport 123 --dport 123 -j DROP</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_safe-id-TmV0ZmlsdGVyLUFDTHMtTGF5ZXIyLW9ubHlSdWxlcy9lYnRhYmxlcw">
+        <h2 class="heading "><span>Layer 2-only Rules/ebtables</span></h2>
+    <p  >The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going from any switch port egress/ingress.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">[ebtables] -A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126760_Netfilter-ACLs-UsefulLinks">
+        <h1 class="heading "><span>Useful Links</span></h1>
+<ul class=" "><li class=" ">    <p  ><a  class="external-link" href="http://www.netfilter.org/">www.netfilter.org</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://www.netfilter.org/documentation/HOWTO//packet-filtering-HOWTO-6.html">Netfilter.org packet filtering how-to</a>    </p>
+</li></ul>    </div>
+    <div class="section section-1" id="src-5126760_Netfilter-ACLs-CaveatsandErrata">
+        <h1 class="heading "><span>Caveats and Errata</span></h1>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-NotAllRulesSupported">
+        <h2 class="heading "><span>Not All Rules Supported</span></h2>
+    <p  >As mentioned in the <a   href="#src-5126760_Netfilter-ACLs-supported">Supported Rules section</a> above, not all <tt class=" ">iptables</tt>, <tt class=" ">ip6tables</tt> or <tt class=" ">ebtables</tt> rules are supported. Refer to that section for specific rule support.    </p>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-BridgeTrafficLimitations">
+        <h2 class="heading "><span>Bridge Traffic Limitations</span></h2>
+    <p  >Bridge traffic that matches LOG ACTION rules are not logged in syslog, as the kernel and hardware identify packets using different information.    </p>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-LogActionsCannotBeForwarded">
+        <h2 class="heading "><span>Log Actions Cannot Be Forwarded</span></h2>
+    <p  >Logged packets cannot be forwarded. The hardware cannot both forward a packet and send the packet to the control plane (or kernel) for logging. To emphasize this, a log action must also have a drop action.    </p>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-TomahawkHardwareLimitations">
+        <h2 class="heading "><span>Tomahawk Hardware Limitations</span></h2>
+    <div class="section section-3" id="src-5126760_safe-id-TmV0ZmlsdGVyLUFDTHMtUmF0ZUxpbWl0aW5ncGVyUGlwZWxpbmUsTm90R2xvYmFs">
+        <h3 class="heading "><span>Rate Limiting per Pipeline, Not Global</span></h3>
+    <p  >On Tomahawk switches, the field processor (FP) polices on a per-pipeline basis instead of globally, as with a Trident II switch. If packets come in to different switch ports that are on different pipelines on the ASIC, they may be rate limited differently.    </p>
+    <p  >For example, your switch is set so BFD if rate limited to 2000 packets per second. When the BFD packets are received on port1/pipe1 and port2/pipe2, they would each be rate limited at 2000 pps, thus the switch is rate limiting at 4000 pps overall. Since there are four pipelines on a Tomahawk switch, you could see a 4 increase of your configured rate limits.    </p>
+    </div>
+    <div class="section section-3" id="src-5126760_Netfilter-ACLs-Ping-pongModeEnabledbyDefault">
+        <h3 class="heading "><span>Ping-pong Mode Enabled by Default</span></h3>
+    <p  >In Cumulus Linux, the ping-pong atomic policy update mode is enabled by default. If you have Tomahawk switches and plan to use SPAN and/or mangle rules, you must disable ping-pong mode.    </p>
+    <p  >To do so, set the value for <tt class=" ">acl.non_atomic_update_mode</tt> to true in <tt class=" ">/etc/cumulus/switchd.conf</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">acl.non_atomic_update_mode = TRUE</code></div>
+</div>
+    </div>
+    <p  >Then <a   href="https://docs.cumulusnetworks.com/display/CL30/Configuring+switchd#Configuringswitchd-restartswitchd">restart <tt class=" ">switchd</tt></a>.    </p>
+    </div>
+    <div class="section section-3" id="src-5126760_Netfilter-ACLs-PacketsUndercountedduringACLUpdates">
+        <h3 class="heading "><span>Packets Undercounted during ACL Updates</span></h3>
+    <p  >On Tomahawk switches, when updating egress FP rules, some packets do not get counted. This results in an underreporting of counts during ping-pong/incremental switchover.    </p>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-iptablesInteractionswithcl-acltool">
+        <h2 class="heading "><span>iptables Interactions with cl-acltool</span></h2>
+    <p  >Since Cumulus Linux is a Linux operating system, the <tt class=" ">iptables</tt> commands can be used directly and does work. However, you should consider using <tt class=" ">cl-acltool</tt> instead because:    </p>
+<ul class=" "><li class=" ">    <p  >Without using <tt class=" ">cl-acltool</tt>, rules are not installed into hardware.    </p>
+</li><li class=" ">    <p  >Running <tt class=" ">cl-acltool -i</tt> (the installation command) resets all rules and deletes anything that is not stored in <tt class=" ">/etc/cumulus/acl/policy.conf</tt>.    </p>
+    <p  >For example, running the following command works:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP</code></div>
+</div>
+    </div>
+    <p  >And the rules appear when you run <tt class=" ">cl-acltool -L</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ sudo cl-acltool -L ip</code></div>
+<div class="line"><code class="plain">-------------------------------</code></div>
+<div class="line"><code class="plain">Listing rules of type iptables:</code></div>
+<div class="line"><code class="plain">-------------------------------</code></div>
+<div class="line"><code class="plain">TABLE filter :</code></div>
+<div class="line"><code class="plain">Chain INPUT (policy ACCEPT 72 packets, 5236 bytes)</code></div>
+<div class="line"><code class="plain"> pkts bytes target     prot opt in     out     source               destination</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    0     0 DROP       icmp --  any    any     anywhere             anywhere             icmp echo-request</code></div>
+</div>
+    </div>
+    <p  >However, running <tt class=" ">cl-acltool -i</tt> or <tt class=" ">reboot</tt> removes them. To ensure all rules that can be in hardware are hardware accelerated, place them in <tt class=" ">/etc/cumulus/acl/policy.conf</tt> and run <tt class=" ">cl-acltool -i</tt>.    </p>
+</li></ul>    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-WheretoAssignRules">
+        <h2 class="heading "><span>Where to Assign Rules</span></h2>
+<ul class=" "><li class=" ">    <p  >If a switch port is assigned to a bond, any egress rules must be assigned to the bond.    </p>
+</li><li class=" ">    <p  >When using the OUTPUT chain, rules must be assigned to the source. For example, if a rule is assigned to the switch port in the direction of traffic but the source is a bridge (VLAN), the traffic won&rsquo;t be affected by the rule and must be applied to the bridge.    </p>
+</li><li class=" ">    <p  >If all transit traffic needs to have a rule applied, use the FORWARD chain, not the OUTPUT chain.    </p>
+</li></ul>    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-GenericErrorMessageDisplayedafterACLRuleInstallationFailure">
+        <h2 class="heading "><span>Generic Error Message Displayed after ACL Rule Installation Failure</span></h2>
+    <p  >After an ACL rule installation failure, a generic error message like the following is displayed:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:$ sudo cl-acltool -i -p 00control_plane.rules</code></div>
+<div class="line"><code class="plain">Using user provided rule file 00control_plane.rules</code></div>
+<div class="line"><code class="plain">Reading rule file 00control_plane.rules ...</code></div>
+<div class="line"><code class="plain">Processing rules in file 00control_plane.rules ...</code></div>
+<div class="line"><code class="plain">error: hw sync failed (sync_acl hardware installation failed)</code></div>
+<div class="line"><code class="plain">Installing acl policy... Rolling back ..</code></div>
+<div class="line"><code class="plain">failed.</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5126760_Netfilter-ACLs-DellS3048-ONSupportsonly24KMACAddresses">
+        <h2 class="heading "><span>Dell S3048-ON Supports only 24K MAC Addresses</span></h2>
+    <p  >The Dell S3048-ON has a limit of 24576 MAC address entries, instead of 32K for other 1G switches.    </p>
+    </div>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="TACACS_Plus.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>TACACS Plus</span>
+        </a>
+                <a href="Default_Cumulus_Linux_ACL_Configuration.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Default Cumulus Linux ACL Configuration</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,3651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Netfilter - ACLs | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <link rel="alternate" type="application/rss+xml" href="http://example.org/version/Cumulus_Linux_36/System_Configuration/Netfilter_-_ACLs/index.xml" title="Cumulus Networks Documentation" />
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+            
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/" >
+    Cumulus Linux 3.6
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Cumulus_Linux_User_Guide/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Network_Command_Line_Utility_-_NCLU/Network_Command_Line_Utility/" >
+    Network Command Line Utility
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Netfilter_-_ACLs/"  class="active" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Managing_Application_Daemons/" >
+    Managing Application Daemons
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/" >
+    Layer 1 and Switch Ports
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/Switch_Port_Attributes/" >
+    Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/Configuring_Hardware-enabled_DDOS_Protection/" >
+    Configuring Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/DHCP_Relays/" >
+    DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/DHCP_Servers/" >
+    DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Facebook_Voyager_Optical_Interfaces/" >
+    Facebook Voyager Optical Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_1_and_Switch_Ports/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/" >
+    Layer 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode/" >
+    VLAN-aware Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/Traditional_Bridge_Mode/" >
+    Traditional Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments/" >
+    VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Virtual_Router_Redundancy_-_VRR/" >
+    Virtual Router Redundancy - VRR
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Virtual_Router_Redundancy_-_VRR/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Lightweight_Network_Virtualization_Overview/" >
+    Lightweight Network Virtualization Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Lightweight_Network_Virtualization_Overview/LNV_VXLAN_Active-Active_Mode/" >
+    LNV VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Lightweight_Network_Virtualization_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX/" >
+    Integrating Hardware VTEPs with VMware NSX
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Address_Resolution_Protocol_-_ARP/" >
+    Address Resolution Protocol - ARP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Open_Shortest_Path_First_-_OSPF_-_Protocol/" >
+    Open Shortest Path First - OSPF - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol/" >
+    Open Shortest Path First v3 - OSPFv3 - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Policy-based_Routing/" >
+    Policy-based Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/GRE_Tunneling/" >
+    GRE Tunneling
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/" >
+    Simple Network Management Protocol (SNMP) Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/ASIC_Monitoring/" >
+    ASIC Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/switchd_Log_Message_Reference/" >
+    switchd Log Message Reference
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Monitoring_and_Troubleshooting/FRRouting_Log_Message_Reference/" >
+    FRRouting Log Message Reference
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/version/Cumulus_Linux_36/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Netfilter - ACLs</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Netfilter - ACLs</h1>
+
+<p><a href="http://www.netfilter.org/" target="_blank">Netfilter</a> is the packet filtering framework
+in Cumulus Linux as well as most other Linux distributions. There are a
+number of tools available for configuring ACLs in Cumulus Linux:</p>
+
+<ul>
+<li><p><code>iptables</code>, <code>ip6tables</code>, and <code>ebtables</code> are Linux userspace tools
+used to administer filtering rules for IPv4 packets, IPv6 packets,
+and Ethernet frames (layer 2 using MAC addresses).</p></li>
+
+<li><p><a href="/old/Cumulus_Linux_36/Network_Command_Line_Utility_-_NCLU.html">NCLU</a>
+is a Cumulus Linux-specific userspace tool used to configure custom
+ACLs.</p></li>
+
+<li><p><code>cl-acltool</code> is a Cumulus Linux-specific userspace tool used to
+administer filtering rules and configure default ACLs.</p></li>
+</ul>
+
+<p>NCLU and <code>cl-acltool</code> operate on various configuration files and use
+<code>iptables</code>, <code>ip6tables</code>, and <code>ebtables</code> to install rules into the
+kernel. In addition, NCLU and <code>cl-acltool</code> program rules in hardware for
+interfaces involving switch port interfaces, which <code>iptables</code>,
+<code>ip6tables</code> and <code>ebtables</code> cannot do on their own.</p>
+
+
+<div class="notices note" > <p>In many instances, you can use NCLU to configure ACLs; however, in some
+cases, you must use <code>cl-acltool</code>. The examples below specify when to use
+which tool.</p>
+ </div>
+
+
+
+<div class="notices tip" > <p>If you need help to configure ACLs, run <code>net example acl</code> to see a basic
+configuration:</p>
+
+<p>Click to see the example &hellip;</p>
+
+<pre><code>                   
+cumulus@leaf01:~$ net example acl 
+ 
+Scenario
+========
+We would like to use access-lists on 'switch' to
+- Restrict inbound traffic on swp1 to traffic from 10.1.1.0/24 destined for 10.1.2.0/24
+- Restrict outbound traffic on swp2 to http, https, or ssh
+ 
+ 
+     *switch
+        /\
+  swp1 /  \ swp2
+      /    \
+     /      \
+ host-11   host-12
+ 
+ 
+ 
+switch net commands
+====================
+ 
+Create an ACL that accepts traffic from 10.1.1.0/24 destined for 10.1.2.0/24
+and drops all other traffic
+ 
+switch# net add acl ipv4 MYACL accept source-ip 10.1.1.0/24 dest-ip 10.1.2.0/24
+switch# net add acl ipv4 MYACL drop source-ip any dest-ip any
+ 
+Apply MYACL inbound on swp1
+ 
+switch# net add interface swp1 acl ipv4 MYACL inbound
+ 
+Create an ACL that accepts http, https, or ssh traffic and drops all
+other traffic.
+ 
+switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port http
+switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port http dest-ip any dest-port any
+switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port https
+switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port https dest-ip any dest-port any
+switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port ssh
+switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port ssh dest-ip any dest-port any
+switch# net add acl ipv4 WEB_OR_SSH drop source-ip any dest-ip any
+ 
+Apply WEB_OR_SSH outbound on swp2
+switch# net add interface swp2 acl ipv4 WEB_OR_SSH outbound
+ 
+commit the staged changes
+switch# net commit
+ 
+Verification
+============
+switch# net show configuration acl
+   
+    
+</code></pre>
+ </div>
+
+
+<h2 id="understanding-traffic-rules-in-cumulus-linux">Understanding Traffic Rules In Cumulus Linux</h2>
+
+<h3 id="understanding-chains">Understanding Chains</h3>
+
+<p>Netfilter describes the mechanism for which packets are classified and
+controlled in the Linux kernel. Cumulus Linux uses the Netfilter
+framework to control the flow of traffic to, from, and across the
+switch. Netfilter does not require a separate software daemon to run; it
+is part of the Linux kernel itself. Netfilter asserts policies at layers
+2, 3 and 4 of the <a href="https://en.wikipedia.org/wiki/OSI_model" target="_blank">OSI model</a>
+by inspecting packet and frame headers based on a list of rules. Rules
+are defined using syntax provided by the <code>iptables</code>, <code>ip6tables</code> and
+<code>ebtables</code> userspace applications.</p>
+
+<p>The rules created by these programs inspect or operate on packets at
+several points in the life of the packet through the system. These five
+points are known as <em>chains</em> and are shown here:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362058/Linux_Traffic_Inspection_Points_%28Chains%29.png" alt = "/images/download/attachments/8362058/Linux_Traffic_Inspection_Points_%28Chains%29.png"
+
+height = 250
+
+
+ />
+
+
+<p>The chains and their uses are:</p>
+
+<ul>
+<li><p><strong>PREROUTING</strong> touches packets before they are routed</p></li>
+
+<li><p><strong>INPUT</strong> touches packets after they are determined to be destined
+for the local system but before they are received by the control
+plane software</p></li>
+
+<li><p><strong>FORWARD</strong> touches transit traffic as it moves through the box</p></li>
+
+<li><p><strong>OUTPUT</strong> touches packets that are sourced by the control plane
+software before they are put on the wire</p></li>
+
+<li><p><strong>POSTROUTING</strong> touches packets immediately before they are put on
+the wire but after the routing decision has been made</p></li>
+</ul>
+
+<h3 id="understanding-tables">Understanding Tables</h3>
+
+<p>When building rules to affect the flow of traffic, the individual chains
+can be accessed by <em>tables</em>. Linux provides three tables by default:</p>
+
+<ul>
+<li><p><strong>Filter</strong> classifies traffic or filters traffic</p></li>
+
+<li><p><strong>NAT</strong> applies Network Address Translation rules</p>
+
+
+<div class="notices note" > <pre><code>Cumulus Linux does not support NAT.
+</code></pre>
+ </div>
+</li>
+
+<li><p><strong>Mangle</strong> alters packets as they move through the switch</p></li>
+</ul>
+
+<p>Each table has a set of default chains that can be used to modify or
+inspect packets at different points of the path through the switch.
+Chains contain the individual rules to influence traffic. Each table and
+the default chains they support are shown below. Tables and chains in
+green are supported by Cumulus Linux, those in red are not supported
+(that is, they are not hardware accelerated) at this time.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/8362058/Linux_IPtables_Default_Tables.png" alt = "/images/download/thumbnails/8362058/Linux_IPtables_Default_Tables.png"
+
+height = 250
+
+
+ />
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/8362058/Linux_EBtables_Default_Tables.png" alt = "/images/download/thumbnails/8362058/Linux_EBtables_Default_Tables.png"
+
+height = 250
+
+
+ />
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362058/Legend_%281%29.png" alt = "/images/download/attachments/8362058/Legend_%281%29.png"
+
+height = 150
+
+
+ />
+
+
+<h3 id="understanding-rules">Understanding Rules</h3>
+
+<p>Rules are the items that actually classify traffic to be acted upon.
+Rules are applied to chains, which are attached to tables, similar to
+the graphic below.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image confluence-thumbnail" src = "/images/download/thumbnails/8362058/Tables_Chains_Rules.png" alt = "/images/download/thumbnails/8362058/Tables_Chains_Rules.png"
+
+height = 150
+
+
+ />
+
+
+<p>Rules have several different components; the examples below highlight
+those different components.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362058/Anatomy_of_a_Rule.png" alt = "/images/download/attachments/8362058/Anatomy_of_a_Rule.png"
+
+height = 250
+
+
+ />
+
+
+<ul>
+<li><p><strong>Table:</strong> The first argument is the <em>table</em>. Notice the second
+example does not specify a table, that is because the filter table
+is implied if a table is not specified.</p></li>
+
+<li><p><strong>Chain:</strong> The second argument is the <em>chain</em>. Each table supports
+several different chains. See Understanding Tables above.</p></li>
+
+<li><p><strong>Matches:</strong> The third argument(s) are called the <em>matches</em>. You can
+specify multiple matches in a single rule. However, the more matches
+you use in a rule, the more memory that rule consumes.</p></li>
+
+<li><p><strong>Jump:</strong> The <em>jump</em> specifies the target of the rule; that is, what
+action to take if the packet matches the rule. If this option is
+omitted in a rule, then matching the rule will have no effect on the
+packet&rsquo;s fate, but the counters on the rule will be incremented.</p></li>
+
+<li><p><strong>Target(s):</strong> The <em>target</em> can be a user-defined chain (other than
+the one this rule is in), one of the special built-in targets that
+decides the fate of the packet immediately (like DROP), or an
+extended target. See the <a href="/old/Cumulus_Linux_36/#src-8362058_Netfilter-ACLs-supported">Supported Rule Types and Common
+Usages</a>
+section below for examples of different targets.</p></li>
+</ul>
+
+<h3 id="how-rules-are-parsed-and-applied">How Rules Are Parsed and Applied</h3>
+
+<p>All the rules from each chain are read from <code>iptables</code>, <code>ip6tables</code>, and
+<code>ebtables</code> and entered in order into either the filter table or the
+mangle table. The rules are read from the kernel in the following order:</p>
+
+<ul>
+<li><p>IPv6 (<code>ip6tables</code>)</p></li>
+
+<li><p>IPv4 (<code>iptables</code>)</p></li>
+
+<li><p><code>ebtables</code></p></li>
+</ul>
+
+<p>When rules are combined and put into one table, the order determines the
+relative priority of the rules; <code>iptables</code> and <code>ip6tables</code> have the
+highest precedence and <code>ebtables</code> has the lowest.</p>
+
+<p>The Linux packet forwarding construct is an overlay for how the silicon
+underneath processes packets. Be aware of the following:</p>
+
+<ul>
+<li><p>The order of operations for how rules are processed is not perfectly
+maintained when you compare how <code>iptables</code> and the switch silicon
+process packets. The switch silicon reorders rules when <code>switchd</code>
+writes to the ASIC, whereas traditional <code>iptables</code> execute the list
+of rules in order.</p></li>
+
+<li><p>All rules are terminating; after a rule matches, the action is
+carried out and no more rules are processed. The exception to this
+is when a SETCLASS rule is placed immediately before another rule;
+this exists multiple times in the default ACL configuration.<br />
+In the example below, the SETCLASS action applied with the
+<code>--in-interface</code> option, creates the internal ASIC classification,
+and <strong>continues to process</strong> the next rule, which does the
+rate-limiting for the matched protocol:</p>
+
+<pre><code>                       
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport $BFD_ECHO_PORT -j SETCLASS --class 7
+-A $INGRESS_CHAIN -p udp --dport $BFD_ECHO_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000
+       
+        
+</code></pre>
+
+
+<div class="notices warning" > <pre><code>If multiple contiguous rules with the same match criteria are
+applied to `--in-interface`, **only** the first rule gets processed
+and then terminates processing. This is a misconfiguration; there is
+no reason to have duplicate rules with different actions.
+</code></pre>
+ </div>
+</li>
+
+<li><p>When processing traffic, rules affecting the FORWARD chain that
+specify an ingress interface are performed prior to rules that match
+on an egress interface. As a workaround, rules that only affect the
+egress interface can have an ingress interface wildcard (currently,
+only <em>swp+</em> and <em>bond+</em> are supported as wildcard names; see below)
+that matches any interface applied so that you can maintain order of
+operations with other input interface rules. For example, with the
+following rules:</p>
+
+<pre><code>                       
+-A FORWARD -i $PORTA -j ACCEPT
+-A FORWARD -o $PORTA -j ACCEPT   &lt;-- This rule is performed LAST (because of egress interface matching)
+-A FORWARD -i $PORTB -j DROP
+       
+        
+</code></pre>
+
+<p>If you modify the rules like this, they are performed in order:</p>
+
+<pre><code>                       
+-A FORWARD -i $PORTA -j ACCEPT
+-A FORWARD -i swp+ -o $PORTA -j ACCEPT   &lt;-- These rules are performed in order (because of wildcard match on ingress interface)
+-A FORWARD -i $PORTB -j DROP
+       
+        
+</code></pre></li>
+
+<li><p>When using rules that do a mangle and a filter lookup for a packet,
+Cumulus Linux processes them in parallel and combines the action.</p></li>
+
+<li><p>If a switch port is assigned to a bond, any egress rules must be
+assigned to the bond.</p></li>
+
+<li><p>When using the OUTPUT chain, rules must be assigned to the source.
+For example, if a rule is assigned to the switch port in the
+direction of traffic but the source is a bridge (VLAN), the traffic
+is not affected by the rule and must be applied to the bridge.</p></li>
+
+<li><p>If all transit traffic needs to have a rule applied, use the FORWARD
+chain, not the OUTPUT chain.</p></li>
+
+<li><p><code>ebtables</code>rules are put into either the IPv4 or IPv6 memory space
+depending on whether the rule utilizes IPv4 or IPv6 to make a
+decision. Layer 2-only rules that match the MAC address are put into
+the IPv4 memory space.</p></li>
+</ul>
+
+
+<div class="notices note" > <p>On Broadcom switches, the ingress INPUT chain rules match layer 2 and
+layer 3 multicast packets <strong>before</strong> multicast packet replication has
+occurred; therefore, a DROP rule affects all copies.</p>
+ </div>
+
+
+<h3 id="rule-placement-in-memory">Rule Placement in Memory</h3>
+
+<p>INPUT and ingress (<code>FORWARD -i</code>) rules occupy the same memory space. A
+rule counts as ingress if the <code>-i</code> option is set. If both input and
+output options (<code>-i</code> and <code>-o</code>) are set, the rule is considered as
+ingress and occupies that memory space. For example:</p>
+
+<pre><code>                   
+-A FORWARD -i swp1 -o swp2 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
+   
+    
+</code></pre>
+
+
+<div class="notices note" > <p>If you set an output flag with the INPUT chain, you see an error. For
+example, running <code>cl-acltool -i</code> on the following rule:</p>
+
+<pre><code>                   
+-A FORWARD,INPUT -i swp1 -o swp2 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
+   
+    
+</code></pre>
+
+<p>generates the following error:</p>
+
+<pre><code>                   
+error: line 2 : output interface specified with INPUT chain error processing rule '-A FORWARD,INPUT -i swp1 -o swp2 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT'
+   
+    
+</code></pre>
+
+<p>However, removing the <code>-o</code> option and interface make it a valid rule.</p>
+ </div>
+
+
+<h3 id="nonatomic-update-mode-and-atomic-update-mode">Nonatomic Update Mode and Atomic Update Mode</h3>
+
+<p>In Cumulus Linux, <em>atomic update mode</em> is enabled by default. However,
+this mode limits the number of ACL rules that you can configure.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362058/TCAM_ACL_update_operation_atomic.png" alt = "/images/download/attachments/8362058/TCAM_ACL_update_operation_atomic.png"
+
+height = 400
+
+
+ />
+
+
+<p>To increase the number of ACL rules that can be configured, configure
+the switch to operate in <em>nonatomic mode</em>.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362058/TCAM_ACL_update_operation_nonatomic.png" alt = "/images/download/attachments/8362058/TCAM_ACL_update_operation_nonatomic.png"
+
+height = 400
+
+
+ />
+
+
+<p>How the Rules Get Installed</p>
+
+<p>Instead of reserving 50% of your TCAM space for atomic updates,
+incremental update uses the available free space to write the new TCAM
+rules and swap over to the new rules after this is complete. Cumulus
+Linux then deletes the old rules and frees up the original TCAM space.
+If there is insufficient free space to complete this task, the original
+nonatomic update is performed, which interrupts traffic.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362058/TCAM_ACL_update_del.png" alt = "/images/download/attachments/8362058/TCAM_ACL_update_del.png"
+
+height = 250
+
+
+ />
+
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362058/TCAM_ACL_update_add.png" alt = "/images/download/attachments/8362058/TCAM_ACL_update_add.png"
+
+
+ />
+
+
+<h4 id="enabling-nonatomic-update-mode">Enabling Nonatomic Update Mode</h4>
+
+<p>You can enable nonatomic updates for <code>switchd</code>, which offer better
+scaling because all TCAM resources are used to actively impact traffic.
+With atomic updates, half of the hardware resources are on standby and
+do not actively impact traffic.</p>
+
+<p><em>Incremental nonatomic updates</em> are table based, so they do not
+interrupt network traffic when new rules are installed. The rules are
+mapped into the following tables and are updated in this order:</p>
+
+<ul>
+<li><p>mirror (ingress only)</p></li>
+
+<li><p>ipv4-mac (can be both ingress and egress)</p></li>
+
+<li><p>ipv6 (ingress only)</p></li>
+</ul>
+
+
+<div class="notices warning" > <p>Only Broadcom-based switches support incremental nonatomic updates.
+Mellanox-based switches do <strong>not</strong> support incremental updates;
+therefore traffic <strong>is</strong> affected and gets stopped.</p>
+ </div>
+
+
+<p>The incremental nonatomic update operation follows this order:</p>
+
+<ol>
+<li><p>Updates are performed incrementally, one table at a time without
+stopping traffic.</p></li>
+
+<li><p>Cumulus Linux checks if the rules in a table have changed since the
+last time they were installed; if a table does not have any changes,
+it is not reinstalled.</p></li>
+
+<li><p>If there are changes in a table, the new rules are populated in new
+groups or slices in hardware, then that table is switched over to
+the new groups or slices.</p></li>
+
+<li><p>Finally, old resources for that table are freed. This process is
+repeated for each of the tables listed above.</p></li>
+
+<li><p>If sufficient resources do not exist to hold both the new rule set
+and old rule set, the regular nonatomic mode is attempted. This
+interrupts network traffic.</p></li>
+
+<li><p>If the regular nonatomic update fails, Cumulus Linux reverts back to
+the previous rules.</p></li>
+</ol>
+
+<p>To always start <code>switchd</code> with nonatomic updates:</p>
+
+<ol>
+<li><p>Edit <code>/etc/cumulus/switchd.conf</code>.</p></li>
+
+<li><p>Add the following line to the file:</p>
+
+<pre><code>                       
+acl.non_atomic_update_mode = TRUE 
+       
+        
+</code></pre></li>
+
+<li><p><a href="/old/Cumulus_Linux_36/https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5114824">Restart
+<code>switchd</code></a>:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo systemctl restart switchd.service
+       
+        
+</code></pre></li>
+</ol>
+
+
+<div class="notices note" > <p>During regular <em>non-incremental nonatomic updates</em>, traffic is stopped
+first, then enabled after the new configuration is written into the
+hardware completely.</p>
+ </div>
+
+
+<h3 id="using-iptables-ip6tables-and-ebtables-directly">Using iptables, ip6tables, and ebtables Directly</h3>
+
+<p>Using <code>iptables,</code><code>ip6tables,</code><code>ebtables</code> directly is not
+recommended because any rules installed in these cases only are applied
+to the Linux kernel and are not hardware accelerated using
+synchronization to the switch silicon. Running <code>cl-acltool -i</code> (the
+installation command) resets all rules and deletes anything that is not
+stored in <code>/etc/cumulus/acl/policy.conf</code>.</p>
+
+<p>For example, performing:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+   
+    
+</code></pre>
+
+<p>Appears to work, and the rule appears when you run <code>cl-acltool -L</code>:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo cl-acltool -L ip
+-------------------------------
+Listing rules of type iptables: 
+------------------------------- 
+ 
+TABLE filter :
+Chain INPUT (policy ACCEPT 72 packets, 5236 bytes) 
+pkts bytes target prot opt in out source destination 
+0 0 DROP icmp -- any any anywhere anywhere icmp echo-request
+   
+    
+</code></pre>
+
+<p>However, the rule is not synced to hardware when applied in this way and
+running <code>cl-acltool -i</code> or <code>reboot</code> removes the rule without replacing
+it. To ensure all rules that can be in hardware are hardware
+accelerated, place them in <code>/etc/cumulus/acl/policy.conf</code> and install
+them by running <code>cl-acltool -i</code>.</p>
+
+<h3 id="estimating-the-number-of-rules">Estimating the Number of Rules</h3>
+
+<p>To estimate the number of rules you can create from an ACL entry, first
+determine if that entry is an ingress or an egress. Then, determine if
+it is an IPv4-mac or IPv6 type rule. This determines the slice to which
+the rule belongs. Use the following to determine how many entries are
+used up for each type.</p>
+
+<p>By default, each entry occupies one double wide entry, except if the
+entry is one of the following:</p>
+
+<ul>
+<li><p>An entry with multiple comma-separated input interfaces is split
+into one rule for each input interface (listed after
+<code>--in-interface</code> below). For example, this entry splits into two
+rules:</p>
+
+<pre><code>                       
+-A FORWARD --in-interface swp1s0,swp1s1 -p icmp -j ACCEPT
+       
+        
+</code></pre></li>
+
+<li><p>An entry with multiple comma-separated output interfaces is split
+into one rule for each output interface (listed after
+<code>--out-interface</code> below). This entry splits into two rules:</p>
+
+<pre><code>                       
+-A FORWARD --in-interface swp+ --out-interface swp1s0,swp1s1 -p icmp -j ACCEPT
+       
+        
+</code></pre></li>
+
+<li><p>An entry with both input and output comma-separated interfaces is
+split into one rule for each combination of input and output
+interface (listed after <code>--in-interface</code> and <code>--out-interface</code>
+below). This entry splits into four rules:</p>
+
+<pre><code>                       
+-A FORWARD --in-interface swp1s0,swp1s1 --out-interface swp1s2,swp1s3 -p icmp -j ACCEPT
+       
+        
+</code></pre></li>
+
+<li><p>An entry with multiple layer 4 port ranges is split into one rule
+for each range (listed after <code>--dports</code> below). For example, this
+entry splits into two rules:</p>
+
+<pre><code>                       
+-A FORWARD --in-interface swp+ -p tcp -m multiport --dports 1050:1051,1055:1056 -j ACCEPT
+       
+        
+</code></pre>
+
+
+<div class="notices note" > <pre><code>Port ranges are only allowed for ingress rules.
+</code></pre>
+ </div>
+</li>
+</ul>
+
+<h3 id="matching-svi-and-bridged-interfaces-in-rules">Matching SVI and Bridged Interfaces in Rules</h3>
+
+<p>Cumulus Linux supports matching ACL rules for both ingress and egress
+interfaces on both
+<a href="/old/Cumulus_Linux_36/VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware</a>
+and <a href="/old/Cumulus_Linux_36/Traditional_Bridge_Mode.html">traditional
+mode</a> bridges,
+including bridge SVIs (<a href="/old/Cumulus_Linux_36/Ethernet_Bridging_-_VLANs.html#src-8362150_EthernetBridging-VLANs-svi">switch VLAN
+interfaces</a>)
+for input and output. However, keep the following in mind:</p>
+
+<ul>
+<li><p>If a traditional mode bridge has a mix of different VLANs, or has
+both access and trunk members, output interface matching is not
+supported.</p></li>
+
+<li><p>For <code>iptables</code> rules, all IP packets in a bridge are matched, not
+just routed packets.</p></li>
+
+<li><p>You cannot match both input and output interfaces in a rule.</p></li>
+
+<li><p>For routed packets, Cumulus Linux cannot match the output bridge for
+SPAN/ERSPAN.</p></li>
+
+<li><p>Matching SVI interfaces in <code>ebtable</code> rules is supported on switches
+based on Broadcom ASICs. This feature is not currently supported on
+switches with Mellanox Spectrum ASICs.</p></li>
+</ul>
+
+<p>Following are example rules for a VLAN-aware bridge:</p>
+
+<pre><code>                   
+[ebtables]
+-A FORWARD -i br0.100 -p IPv4 --ip-protocol icmp -j DROP
+-A FORWARD -o br0.100 -p IPv4 --ip-protocol icmp -j ACCEPT
+ 
+[iptables]
+-A FORWARD -i br0.100 -p icmp -j DROP
+-A FORWARD --out-interface br0.100 -p icmp -j ACCEPT
+-A FORWARD --in-interface br0.100 -j POLICE --set-mode  pkt  --set-rate  1 --set-burst 1 --set-class 0
+   
+    
+</code></pre>
+
+<p>And here are example rules for a traditional mode bridge:</p>
+
+<pre><code>                   
+[ebtables]
+-A FORWARD -i br0 -p IPv4 --ip-protocol icmp -j DROP
+-A FORWARD -o br0 -p IPv4 --ip-protocol icmp -j ACCEPT
+ 
+ 
+[iptables]
+-A FORWARD -i br0 -p icmp -j DROP
+-A FORWARD --out-interface br0 -p icmp -j ACCEPT
+-A FORWARD --in-interface br0 -j POLICE --set-mode  pkt  --set-rate  1 --set-burst 1 --set-class 0
+   
+    
+</code></pre>
+
+<h2 id="installing-and-managing-acl-rules-with-nclu">Installing and Managing ACL Rules with NCLU</h2>
+
+<p>NCLU provides an easy way to create custom ACLs in Cumulus Linux. The
+rules you create live in the <code>/var/lib/cumulus/nclu/nclu_acl.conf</code> file,
+which gets converted to a rules file,
+<code>/etc/cumulus/acl/policy.d/50_nclu_acl.rules</code>. This way, the rules you
+create with NCLU are independent of the two default files in
+<code>/etc/cumulus/acl/policy.d/</code><code>00control_plane.rules</code> and
+<code>99control_plane_catch_all.rules</code>, as the content in these files might
+get updated after you upgrade Cumulus Linux.</p>
+
+<p>Instead of crafting a rule by hand then installing it using
+<code>cl-acltool</code>, NCLU handles many of the options automatically. For
+example, consider the following <code>iptables</code> rule:</p>
+
+<pre><code>                   
+-A FORWARD -i swp1 -o swp2 -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
+   
+    
+</code></pre>
+
+<p>You create this rule, called <em>EXAMPLE1</em>, using NCLU like this:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add acl ipv4 EXAMPLE1 accept tcp source-ip 10.0.14.2/32 source-port any dest-ip 10.0.15.8/32 dest-port any
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>All options, such as the <code>-j</code> and <code>-p</code>, even <code>FORWARD</code> in the above
+rule, are added automatically when you apply the rule to the control
+plane; NCLU figures it all out for you.</p>
+
+<p>You can also set a priority value, which specifies the order in which
+the rules get executed and the order in which they appear in the rules
+file. Lower numbers are executed first. To add a new rule in the middle,
+first run <code>net show config acl</code>, which displays the priority numbers.
+Otherwise, new rules get appended to the end of the list of rules in the
+<code>nclu_acl.conf</code> and <code>50_nclu_acl.rules</code> files.</p>
+
+
+<div class="notices note" > <p>If you need to hand edit a rule, do not edit the <code>50_nclu_acl.rules</code>
+file. Instead, edit the <code>nclu_acl.conf</code> file.</p>
+ </div>
+
+
+<p>After you add the rule, you need to apply it to an inbound or outbound
+interface using <code>net add int acl</code>. The inbound interface in our example
+is swp1:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add int swp1 acl ipv4 EXAMPLE1 inbound
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>After you commit your changes, you can verify the rule you created with
+NCLU by running <code>net show configuration acl</code>:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net show configuration acl 
+acl ipv4 EXAMPLEv4 priority 10 accept tcp source-ip 10.0.14.2/32 source-port any dest-ip 10.0.15.8/32 dest-port any
+ 
+interface swp1
+  acl ipv4 EXAMPLE1 inbound
+   
+    
+</code></pre>
+
+<p>Or you can see all of the rules installed by running <code>cat</code> on the
+<code>50_nclu_acl.rules</code> file:</p>
+
+<pre><code>                   
+cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/50_nclu_acl.rules 
+[iptables]
+# swp1: acl ipv4 EXAMPLE1 inbound
+-A FORWARD --in-interface swp1 --out-interface swp2 -j ACCEPT -p tcp -s 10.0.14.2/32 -d 10.0.15.8/32 --dport 110
+   
+    
+</code></pre>
+
+<p>For INPUT and FORWARD rules, apply the rule to a control plane interface
+using <code>net add control-plane</code>:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net add control-plane acl ipv4 EXAMPLE1 inbound
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>To remove a rule, use <code>net del acl ipv4|ipv6|mac RULENAME</code>:</p>
+
+<pre><code>                   
+cumulus@switch:~$ net del acl ipv4 EXAMPLE1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+   
+    
+</code></pre>
+
+<p>This deletes all rules from the <code>50_nclu_acl.rules</code> file with that name.
+It also deletes the interfaces referenced in the <code>nclu_acl.conf</code> file.</p>
+
+<h2 id="installing-and-managing-acl-rules-with-cl-acltool">Installing and Managing ACL Rules with cl-acltool</h2>
+
+<p>You can manage Cumulus Linux ACLs with <code>cl-acltool</code>. Rules are first
+written to the <code>iptables</code> chains, as described above, and then synced to
+hardware via <code>switchd</code>.</p>
+
+
+<div class="notices note" > <p>Use <code>iptables</code>/<code>ip6tables</code>/<code>ebtables</code> and <code>cl-acltool</code> to manage rules
+in the default files, <code>00control_plane.rules</code> and
+<code>99control_plane_catch_all.rules</code>; they are not aware of rules created
+using NCLU.</p>
+ </div>
+
+
+<p>To examine the current state of chains and list all installed rules,
+run:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo cl-acltool -L all 
+------------------------------- 
+Listing rules of type iptables: 
+------------------------------- 
+ 
+TABLE filter : 
+Chain INPUT (policy ACCEPT 90 packets, 14456 bytes) 
+pkts bytes target prot opt in out source destination 
+0 0 DROP all -- swp+ any 240.0.0.0/5 anywhere 
+0 0 DROP all -- swp+ any loopback/8 anywhere 
+0 0 DROP all -- swp+ any base-address.mcast.net/8 anywhere 
+0 0 DROP all -- swp+ any 255.255.255.255 anywhere ...
+   
+    
+</code></pre>
+
+<p>To list installed rules using native <code>iptables</code>, <code>ip6tables</code> and
+<code>ebtables</code>, use the <code>-L</code> option with the respective commands:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo iptables -L 
+cumulus@switch:~$ sudo ip6tables -L 
+cumulus@switch:~$ sudo ebtables -L
+   
+    
+</code></pre>
+
+<p>To flush all installed rules, run:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo cl-acltool -F all
+   
+    
+</code></pre>
+
+<p>To flush only the IPv4 <code>iptables</code> rules, run:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo cl-acltool -F ip
+   
+    
+</code></pre>
+
+<p>If the install fails, ACL rules in the kernel and hardware are rolled
+back to the previous state. Errors from programming rules in the kernel
+or ASIC are reported appropriately.</p>
+
+<h2 id="installing-packet-filtering-acl-rules">Installing Packet Filtering (ACL) Rules</h2>
+
+<p><code>cl-acltool</code> takes access control list (ACL) rules input in files. Each
+ACL policy file contains <code>iptables</code>, <code>ip6tables</code> and <code>ebtables</code>
+categories under the tags <code>[iptables]</code>, <code>[ip6tables]</code> and <code>[ebtables]</code>
+respectively.</p>
+
+<p>Each rule in an ACL policy must be assigned to one of the rule
+categories above.</p>
+
+<p>See <code>man cl-acltool(5)</code> for ACL rule details. For <code>iptables</code> rule
+syntax, see <code>man iptables(8)</code>. For <code>ip6tables</code> rule syntax, see <code>man
+ip6tables(8)</code>. For <code>ebtables</code> rule syntax, see <code>man ebtables(8)</code>.</p>
+
+<p>See <code>man cl-acltool(5)</code> and <code>man cl-acltool(8)</code> for further details on
+using <code>cl-acltool</code>. Some examples are listed here and more are listed
+<a href="/old/Cumulus_Linux_36/#src-8362058_Netfilter-ACLs-exm">later in this
+chapter</a>.</p>
+
+
+<div class="notices note" > <p>By default:</p>
+
+<ul>
+<li><p>ACL policy files are located in <code>/etc/cumulus/acl/policy.d/</code>.</p></li>
+
+<li><p>All <code>*.rules</code> files in this directory are included in
+<code>/etc/cumulus/acl/policy.conf</code>.</p></li>
+
+<li><p>All files included in this <code>policy.conf</code> file are installed when the
+switch boots up.</p></li>
+
+<li><p>The <code>policy.conf</code> file expects rules files to have a <code>.rules</code> suffix
+as part of the file name.</p></li>
+</ul>
+ </div>
+
+
+<p>Here is an example ACL policy file:</p>
+
+<pre><code>                   
+[iptables] 
+-A INPUT --in-interface swp1 -p tcp --dport 80 -j ACCEPT 
+-A FORWARD --in-interface swp1 -p tcp --dport 80 -j ACCEPT 
+ 
+[ip6tables] 
+-A INPUT --in-interface swp1 -p tcp --dport 80 -j ACCEPT 
+-A FORWARD --in-interface swp1 -p tcp --dport 80 -j ACCEPT 
+  
+[ebtables] 
+-A INPUT -p IPv4 -j ACCEPT 
+-A FORWARD -p IPv4 -j ACCEPT
+   
+    
+</code></pre>
+
+<p>You can use wildcards or variables to specify chain and interface lists
+to ease administration of rules.</p>
+
+
+<div class="notices note" > <p>Currently only <em>swp+</em> and <em>bond+</em> are supported as wildcard names. There
+might be kernel restrictions in supporting more complex wildcards likes
+<em>swp1+ etc</em>.</p>
+ </div>
+
+
+<pre><code>                   
+INGRESS = swp+ 
+INPUT_PORT_CHAIN = INPUT,FORWARD 
+ 
+[iptables] 
+-A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT 
+  
+[ip6tables] 
+-A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT 
+ 
+[ebtables] 
+-A INPUT -p IPv4 -j ACCEPT
+   
+    
+</code></pre>
+
+<p>You can write ACL rules for the system into multiple files under the
+default <code>/etc/cumulus/acl/policy.d/</code> directory. The ordering of rules
+during installation follows the sort order of the files based on their
+file names.</p>
+
+<p>Use multiple files to stack rules. The example below shows two rules
+files separating rules for management and datapath traffic:</p>
+
+<pre><code>                   
+cumulus@switch:~$ ls /etc/cumulus/acl/policy.d/ 
+00sample_mgmt.rules 01sample_datapath.rules 
+cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/00sample_mgmt.rules 
+  
+INGRESS_INTF = swp+ 
+INGRESS_CHAIN = INPUT 
+  
+[iptables] 
+# protect the switch management 
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT 
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 10.0.11.2 -d 10.0.12.8 -p tcp -j ACCEPT 
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -d 10.0.16.8 -p udp -j DROP 
+ 
+cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/01sample_datapath.rules 
+INGRESS_INTF = swp+ 
+INGRESS_CHAIN = INPUT, FORWARD 
+ 
+[iptables] 
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.5 -p icmp -j ACCEPT 
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.6 -d 192.0.2.4 -j DROP 
+-A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.2 -d 192.0.2.8 -j DROP
+   
+    
+</code></pre>
+
+<p>Install all ACL policies under a directory:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo cl-acltool -i -P ./rules 
+Reading files under rules 
+Reading rule file ./rules/01_http_rules.txt ... 
+Processing rules in file ./rules/01_http_rules.txt ... 
+Installing acl policy ... 
+Done.
+   
+    
+</code></pre>
+
+<p>Install all rules and policies included in
+<code>/etc/cumulus/acl/policy.conf</code>:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo cl-acltool -i
+   
+    
+</code></pre>
+
+<h2 id="specifying-which-policy-files-to-install">Specifying which Policy Files to Install</h2>
+
+<p>By default, Cumulus Linux installs any <code>.rules</code> file you configure in
+<code>/etc/cumulus/acl/policy.d/</code>. To add other policy files to an ACL, you
+need to include them in <code>/etc/cumulus/acl/policy.conf</code>. For example, for
+Cumulus Linux to install a rule in a policy file called
+<code>01_new.datapathacl</code>, add <code>include
+/etc/cumulus/acl/policy.d/01_new.rules</code> to <code>policy.conf</code>, as in this
+example:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.conf 
+ 
+# 
+# This file is a master file for acl policy file inclusion 
+# 
+# Note: This is not a file where you list acl rules. 
+# 
+# This file can contain: 
+# - include lines with acl policy files 
+#   example: 
+#     include  
+# 
+# see manpage cl-acltool(5) and cl-acltool(8) for how to write policy files 
+# 
+ 
+include /etc/cumulus/acl/policy.d/01_new.datapathacl
+   
+    
+</code></pre>
+
+<h2 id="hardware-limitations-on-number-of-rules">Hardware Limitations on Number of Rules</h2>
+
+<p>The maximum number of rules that can be handled in hardware is a
+function of the following factors:</p>
+
+<ul>
+<li><p>The platform type (switch silicon, like Tomahawk or Spectrum — see
+the <a href="http://cumulusnetworks.com/support/hcl" target="_blank">HCL</a> to determine which
+platform type applies to a particular switch).</p></li>
+
+<li><p>The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the
+maximum number of rules for both IPv4 and IPv6 simultaneously.</p></li>
+
+<li><p>The number of default rules provided by Cumulus Linux.</p></li>
+
+<li><p>Whether the rules are applied on ingress or egress.</p></li>
+
+<li><p>Whether the rules are in atomic or nonatomic mode; nonatomic mode
+rules are used when nonatomic updates are enabled (<a href="/old/Cumulus_Linux_36/#src-8362058_Netfilter-ACLs-nonatomic">see
+above</a>).</p></li>
+</ul>
+
+<p>If the maximum number of rules for a particular table is exceeded,
+<code>cl-acltool -i</code> generates the following error:</p>
+
+<pre><code>                   
+error: hw sync failed (sync_acl hardware installation failed) Rolling back .. failed.
+   
+    
+</code></pre>
+
+
+<div class="notices note" > <p>On Broadcom platforms, IPv6 egress rules are not supported. In certain
+cases the <code>ebtables</code> egress rules can match switched IPv6 packets based
+on the <code>etype</code> field of the packet.</p>
+ </div>
+
+
+<p>In the tables below, the default rules count toward the limits listed.
+The raw limits below assume only one ingress and one egress table are
+present.</p>
+
+<h3 id="broadcom-tomahawk-limits">Broadcom Tomahawk Limits</h3>
+
+<table>
+<thead>
+<tr>
+<th>Direction</th>
+<th>Atomic Mode IPv4 Rules</th>
+<th>Atomic Mode IPv6 Rules</th>
+<th>Nonatomic Mode IPv4 Rules</th>
+<th>Nonatomic Mode IPv6 Rules</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Ingress raw limit</td>
+<td>512</td>
+<td>512</td>
+<td>1024</td>
+<td>1024</td>
+</tr>
+
+<tr>
+<td>Ingress limit with default rules</td>
+<td>256 (36 default)</td>
+<td>256 (29 default)</td>
+<td>768 (36 default)</td>
+<td>768 (29 default)</td>
+</tr>
+
+<tr>
+<td>Egress raw limit</td>
+<td>256</td>
+<td>0</td>
+<td>512</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>Egress limit with default rules</td>
+<td>256 (29 default)</td>
+<td>0</td>
+<td>512 (29 default)</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="broadcom-trident-ii-limits">Broadcom Trident II+ Limits</h3>
+
+<table>
+<thead>
+<tr>
+<th>Direction</th>
+<th>Atomic Mode IPv4 Rules</th>
+<th>Atomic Mode IPv6 Rules</th>
+<th>Nonatomic Mode IPv4 Rules</th>
+<th>Nonatomic Mode IPv6 Rules</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Ingress raw limit</td>
+<td>4096</td>
+<td>4096</td>
+<td>8192</td>
+<td>8192</td>
+</tr>
+
+<tr>
+<td>Ingress limit with default rules</td>
+<td>2048 (36 default)</td>
+<td>3072 (29 default)</td>
+<td>6144 (36 default)</td>
+<td>6144 (29 default)</td>
+</tr>
+
+<tr>
+<td>Egress raw limit</td>
+<td>256</td>
+<td>0</td>
+<td>512</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>Egress limit with default rules</td>
+<td>256 (29 default)</td>
+<td>0</td>
+<td>512 (29 default)</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="broadcom-trident-ii-limits-1">Broadcom Trident II Limits</h3>
+
+<table>
+<thead>
+<tr>
+<th>Direction</th>
+<th>Atomic Mode IPv4 Rules</th>
+<th>Atomic Mode IPv6 Rules</th>
+<th>Nonatomic Mode IPv4 Rules</th>
+<th>Nonatomic Mode IPv6 Rules</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Ingress raw limit</td>
+<td>1024</td>
+<td>1024</td>
+<td>2048</td>
+<td>2048</td>
+</tr>
+
+<tr>
+<td>Ingress limit with default rules</td>
+<td>512 (36 default)</td>
+<td>768 (29 default)</td>
+<td>1536 (36 default)</td>
+<td>1536 (29 default)</td>
+</tr>
+
+<tr>
+<td>Egress raw limit</td>
+<td>256</td>
+<td>0</td>
+<td>512</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>Egress limit with default rules</td>
+<td>256 (29 default)</td>
+<td>0</td>
+<td>512 (29 default)</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="broadcom-helix4-limits">Broadcom Helix4 Limits</h3>
+
+<table>
+<thead>
+<tr>
+<th>Direction</th>
+<th>Atomic Mode IPv4 Rules</th>
+<th>Atomic Mode IPv6 Rules</th>
+<th>Nonatomic Mode IPv4 Rules</th>
+<th>Nonatomic Mode IPv6 Rules</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Ingress raw limit</td>
+<td>1024</td>
+<td>512</td>
+<td>2048</td>
+<td>1024</td>
+</tr>
+
+<tr>
+<td>Ingress limit with default rules</td>
+<td>768 (36 default)</td>
+<td>384 (29 default)</td>
+<td>1792 (36 default)</td>
+<td>896 (29 default)</td>
+</tr>
+
+<tr>
+<td>Egress raw limit</td>
+<td>256</td>
+<td>0</td>
+<td>512</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>Egress limit with default rules</td>
+<td>256 (29 default)</td>
+<td>0</td>
+<td>512 (29 default)</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="mellanox-spectrum-limits">Mellanox Spectrum Limits</h3>
+
+<p>The Mellanox Spectrum ASIC has one common
+<a href="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" target="_blank">TCAM</a>
+for both ingress and egress, which can be used for other non-ACL-related
+resources. However, the number of supported rules varies with the <a href="/old/Cumulus_Linux_36/Routing.html#src-8362382_Routing-tcam">TCAM
+profile</a>
+specified for the switch.</p>
+
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Atomic Mode IPv4 Rules</th>
+<th>Atomic Mode IPv6 Rules</th>
+<th>Nonatomic Mode IPv4 Rules</th>
+<th>Nonatomic Mode IPv6 Rules</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>default</td>
+<td>500</td>
+<td>250</td>
+<td>1000</td>
+<td>500</td>
+</tr>
+
+<tr>
+<td>ipmc-heavy</td>
+<td>750</td>
+<td>500</td>
+<td>1500</td>
+<td>1000</td>
+</tr>
+
+<tr>
+<td>acl-heavy</td>
+<td>1750</td>
+<td>1000</td>
+<td>3500</td>
+<td>2000</td>
+</tr>
+
+<tr>
+<td>ipmc-max</td>
+<td>1000</td>
+<td>500</td>
+<td>2000</td>
+<td>1000</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="example-scenario">Example Scenario</h2>
+
+<p><span id="src-8362058_Netfilter-ACLs-examples"></span>The following
+example scenario demonstrates how several different rules are applied.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362058/acl-diagram.png" alt = "/images/download/attachments/8362058/acl-diagram.png"
+
+
+ />
+
+
+<p>Following are the configurations for the two switches used in these
+examples. The configuration for each switch appears in
+<code>/etc/network/interfaces</code> on that switch.</p>
+
+<h3 id="switch-1-configuration">Switch 1 Configuration</h3>
+
+<pre><code>                   
+cumulus@switch1:~$ net show configuration files
+ 
+...
+ 
+/etc/network/interfaces
+=======================
+ 
+ 
+auto swp1 
+iface swp1 
+ 
+auto swp2 
+iface swp2 
+ 
+auto swp3 
+iface swp3 
+ 
+auto swp4 
+iface swp4 
+ 
+auto bond2 
+iface bond2 
+    bond-slaves swp3 swp4 
+ 
+auto br-untagged 
+iface br-untagged 
+    address 10.0.0.1/24
+    bridge_ports swp1 bond2 
+    bridge_stp on
+ 
+auto br-tag100 
+iface br-tag100 
+    address 10.0.100.1/24
+    bridge_ports swp2.100 bond2.100 
+    bridge_stp on 
+ 
+...
+   
+    
+</code></pre>
+
+<h3 id="switch-2-configuration">Switch 2 Configuration</h3>
+
+<pre><code>                   
+cumulus@switch2:~$ net show configuration files
+ 
+...
+ 
+/etc/network/interfaces
+=======================
+ 
+auto swp3 
+iface swp3 
+ 
+auto swp4 
+iface swp4 
+ 
+auto br-untagged 
+iface br-untagged 
+    address 10.0.0.2/24
+    bridge_ports bond2 
+    bridge_stp on 
+ 
+auto br-tag100 
+iface br-tag100 
+    address 10.0.100.2/24 
+    bridge_ports bond2.100 
+    bridge_stp on 
+ 
+auto bond2 
+iface bond2 
+    bond-slaves swp3 swp4 
+ 
+...
+   
+    
+</code></pre>
+
+<h3 id="egress-rule">Egress Rule</h3>
+
+<p>The following rule blocks any TCP traffic with destination port 200
+going from host1 or host2 through the switch (corresponding to rule 1 in
+the diagram above).</p>
+
+<pre><code>                   
+[iptables] -A FORWARD -o bond2 -p tcp --dport 200 -j DROP
+   
+    
+</code></pre>
+
+<h3 id="ingress-rule">Ingress Rule</h3>
+
+<p>The following rule blocks any UDP traffic with source port 200 going
+from host1 through the switch (corresponding to rule 2 in the diagram
+above).</p>
+
+<pre><code>                   
+[iptables] -A FORWARD -i swp2 -p udp --sport 200 -j DROP
+   
+    
+</code></pre>
+
+<h3 id="input-rule">Input Rule</h3>
+
+<p>The following rule blocks any UDP traffic with source port 200 and
+destination port 50 going from host1 to the switch (corresponding to
+rule 3 in the diagram above).</p>
+
+<pre><code>                   
+[iptables] -A INPUT -i swp1 -p udp --sport 200 --dport 50 -j DROP
+   
+    
+</code></pre>
+
+<h3 id="output-rule">Output Rule</h3>
+
+<p>The following rule blocks any TCP traffic with source port 123 and
+destination port 123 going from Switch 1 to host2 (corresponding to rule
+4 in the diagram above).</p>
+
+<pre><code>                   
+[iptables] -A OUTPUT -o br-tag100 -p tcp --sport 123 --dport 123 -j DROP
+   
+    
+</code></pre>
+
+<h3 id="combined-rules">Combined Rules</h3>
+
+<p>The following rule blocks any TCP traffic with source port 123 and
+destination port 123 going from any switch port egress or generated from
+Switch 1 to host1 or host2 (corresponding to rules 1 and 4 in the
+diagram above).</p>
+
+<pre><code>                   
+[iptables] -A OUTPUT,FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP
+   
+    
+</code></pre>
+
+<p>This also becomes two ACLs and is the same as:</p>
+
+<pre><code>                   
+[iptables]
+-A FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP 
+-A OUTPUT -o swp+ -p tcp --sport 123 --dport 123 -j DROP
+   
+    
+</code></pre>
+
+<h3 id="layer-2-only-rules-ebtables">Layer 2-only Rules/ebtables</h3>
+
+<p>The following rule blocks any traffic with source MAC address
+00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going
+from any switch port egress/ingress.</p>
+
+<pre><code>                   
+[ebtables] -A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
+   
+    
+</code></pre>
+
+<h2 id="useful-links">Useful Links</h2>
+
+<ul>
+<li><p><a href="http://www.netfilter.org/" target="_blank">www.netfilter.org</a></p></li>
+
+<li><p><a href="http://www.netfilter.org/documentation/HOWTO//packet-filtering-HOWTO-6.html" target="_blank">Netfilter.org packet filtering
+how-to</a></p></li>
+</ul>
+
+<h2 id="caveats-and-errata">Caveats and Errata</h2>
+
+<h3 id="not-all-rules-supported">Not All Rules Supported</h3>
+
+<p>Not all <code>iptables</code>, <code>ip6tables</code>, or <code>ebtables</code> rules are supported.
+Refer to the <a href="/old/Cumulus_Linux_36/#src-8362058_Netfilter-ACLs-supported">Supported Rules
+section</a>
+above for specific rule support.</p>
+
+<h3 id="acl-log-policer-limits-traffic">ACL Log Policer Limits Traffic</h3>
+
+<p>To protect the CPU from overloading, traffic copied to the CPU is
+limited to 1 pkt/s by an ACL Log Policer.</p>
+
+<h3 id="bridge-traffic-limitations">Bridge Traffic Limitations</h3>
+
+<p>Bridge traffic that matches LOG ACTION rules are not logged in syslog;
+the kernel and hardware identify packets using different information.</p>
+
+<h3 id="log-actions-cannot-be-forwarded">Log Actions Cannot Be Forwarded</h3>
+
+<p>Logged packets cannot be forwarded. The hardware cannot both forward a
+packet and send the packet to the control plane (or kernel) for logging.
+To emphasize this, a log action must also have a drop action.</p>
+
+<h3 id="broadcom-range-checker-limitations">Broadcom Range Checker Limitations</h3>
+
+<p>Broadcom platforms have only 24 range checkers. This is a separate
+resource from the total number of ACLs allowed. If you are creating a
+large ACL configuration, use port ranges for large ranges of more than 5
+ports.</p>
+
+<h3 id="inbound-log-actions-only-for-broadcom-switches">Inbound LOG Actions Only for Broadcom Switches</h3>
+
+<p>On Broadcom-based switches, LOG actions can only be done on inbound
+interfaces (the ingress direction), not on outbound interfaces (the
+egress direction).</p>
+
+<h3 id="tomahawk-hardware-limitations">Tomahawk Hardware Limitations</h3>
+
+<h4 id="rate-limiting-per-pipeline-not-global">Rate Limiting per Pipeline, Not Global</h4>
+
+<p>On Tomahawk switches, the field processor (FP) polices on a per-pipeline
+basis instead of globally, as with a Trident II switch. If packets come
+in to different switch ports that are on different pipelines on the
+ASIC, they might be rate limited differently.</p>
+
+<p>For example, your switch is set so BFD is rate limited to 2000 packets
+per second. When the BFD packets are received on port1/pipe1 and
+port2/pipe2, they are each rate limited at 2000 pps; the switch is rate
+limiting at 4000 pps overall. Because there are four pipelines on a
+Tomahawk switch, you might see a 4 increase of your configured rate
+limits.</p>
+
+<h4 id="atomic-update-mode-enabled-by-default">Atomic Update Mode Enabled by Default</h4>
+
+<p>In Cumulus Linux, atomic update mode is enabled by default. If you have
+Tomahawk switches and plan to use SPAN and/or mangle rules, you must
+disable atomic update mode.</p>
+
+<p>To do so, enable non-atomic update mode by setting the value for
+<code>acl.non_atomic_update_mode</code> to TRUE in <code>/etc/cumulus/switchd.conf</code>,
+then <a href="/old/Cumulus_Linux_36/https://docs.cumulusnetworks.com/display/CL30/Configuring+switchd#Configuringswitchd-restartswitchd">restart
+<code>switchd</code></a>.</p>
+
+<pre><code>                   
+acl.non_atomic_update_mode = TRUE
+   
+    
+</code></pre>
+
+<h4 id="packets-undercounted-during-acl-updates">Packets Undercounted during ACL Updates</h4>
+
+<p>On Tomahawk switches, when updating egress FP rules, some packets do not
+get counted. This results in an underreporting of counts during
+ping-pong or incremental switchover.</p>
+
+<h3 id="trident-ii-hardware-limitations">Trident II+ Hardware Limitations</h3>
+
+<p>On a Trident II+ switch, the TCAM allocation for ACLs is limited to 2048
+rules in atomic mode for a default setup instead of 4096, as advertised
+for ingress rules.</p>
+
+<h3 id="iptables-interactions-with-cl-acltool">iptables Interactions with cl-acltool</h3>
+
+<p>Because Cumulus Linux is a Linux operating system, the <code>iptables</code>
+commands can be used directly. However, consider using <code>cl-acltool</code>
+instead because:</p>
+
+<ul>
+<li><p>Without using <code>cl-acltool</code>, rules are not installed into hardware.</p></li>
+
+<li><p>Running <code>cl-acltool -i</code> (the installation command) resets all rules
+and deletes anything that is not stored in
+<code>/etc/cumulus/acl/policy.conf</code>.</p>
+
+<p>For example, running the following command works:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+       
+        
+</code></pre>
+
+<p>And the rules appear when you run <code>cl-acltool -L</code>:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo cl-acltool -L ip
+-------------------------------
+Listing rules of type iptables:
+-------------------------------
+TABLE filter :
+Chain INPUT (policy ACCEPT 72 packets, 5236 bytes)
+ pkts bytes target  prot opt in   out   source    destination
+ 
+    0     0 DROP    icmp --  any  any   anywhere  anywhere      icmp echo-request
+       
+        
+</code></pre>
+
+<p>However, running <code>cl-acltool -i</code> or <code>reboot</code> removes them. To ensure
+all rules that can be in hardware are hardware accelerated, place
+them in the <code>/etc/cumulus/acl/policy.conf</code> file, then run
+<code>cl-acltool -i</code>.</p></li>
+</ul>
+
+<h3 id="where-to-assign-rules">Where to Assign Rules</h3>
+
+<ul>
+<li><p>If a switch port is assigned to a bond, any egress rules must be
+assigned to the bond.</p></li>
+
+<li><p>When using the OUTPUT chain, rules must be assigned to the source.
+For example, if a rule is assigned to the switch port in the
+direction of traffic but the source is a bridge (VLAN), the traffic
+is not affected by the rule and must be applied to the bridge.</p></li>
+
+<li><p>If all transit traffic needs to have a rule applied, use the FORWARD
+chain, not the OUTPUT chain.</p></li>
+</ul>
+
+<h3 id="generic-error-message-displayed-after-acl-rule-installation-failure">Generic Error Message Displayed after ACL Rule Installation Failure</h3>
+
+<p>After an ACL rule installation failure, a generic error message like the
+following is displayed:</p>
+
+<pre><code>                   
+cumulus@switch:$ sudo cl-acltool -i -p 00control_plane.rules
+Using user provided rule file 00control_plane.rules
+Reading rule file 00control_plane.rules ...
+Processing rules in file 00control_plane.rules ...
+error: hw sync failed (sync_acl hardware installation failed)
+Installing acl policy... Rolling back ..
+failed.
+   
+    
+</code></pre>
+
+<h3 id="dell-s3048-on-supports-only-24k-mac-addresses">Dell S3048-ON Supports only 24K MAC Addresses</h3>
+
+<p>The Dell S3048-ON has a limit of 24576 MAC address entries instead of
+32K for other 1G switches.</p>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#understanding-traffic-rules-in-cumulus-linux">Understanding Traffic Rules In Cumulus Linux</a>
+<ul>
+<li><a href="#understanding-chains">Understanding Chains</a></li>
+<li><a href="#understanding-tables">Understanding Tables</a></li>
+<li><a href="#understanding-rules">Understanding Rules</a></li>
+<li><a href="#how-rules-are-parsed-and-applied">How Rules Are Parsed and Applied</a></li>
+<li><a href="#rule-placement-in-memory">Rule Placement in Memory</a></li>
+<li><a href="#nonatomic-update-mode-and-atomic-update-mode">Nonatomic Update Mode and Atomic Update Mode</a>
+<ul>
+<li><a href="#enabling-nonatomic-update-mode">Enabling Nonatomic Update Mode</a></li>
+</ul></li>
+<li><a href="#using-iptables-ip6tables-and-ebtables-directly">Using iptables, ip6tables, and ebtables Directly</a></li>
+<li><a href="#estimating-the-number-of-rules">Estimating the Number of Rules</a></li>
+<li><a href="#matching-svi-and-bridged-interfaces-in-rules">Matching SVI and Bridged Interfaces in Rules</a></li>
+</ul></li>
+<li><a href="#installing-and-managing-acl-rules-with-nclu">Installing and Managing ACL Rules with NCLU</a></li>
+<li><a href="#installing-and-managing-acl-rules-with-cl-acltool">Installing and Managing ACL Rules with cl-acltool</a></li>
+<li><a href="#installing-packet-filtering-acl-rules">Installing Packet Filtering (ACL) Rules</a></li>
+<li><a href="#specifying-which-policy-files-to-install">Specifying which Policy Files to Install</a></li>
+<li><a href="#hardware-limitations-on-number-of-rules">Hardware Limitations on Number of Rules</a>
+<ul>
+<li><a href="#broadcom-tomahawk-limits">Broadcom Tomahawk Limits</a></li>
+<li><a href="#broadcom-trident-ii-limits">Broadcom Trident II+ Limits</a></li>
+<li><a href="#broadcom-trident-ii-limits-1">Broadcom Trident II Limits</a></li>
+<li><a href="#broadcom-helix4-limits">Broadcom Helix4 Limits</a></li>
+<li><a href="#mellanox-spectrum-limits">Mellanox Spectrum Limits</a></li>
+</ul></li>
+<li><a href="#example-scenario">Example Scenario</a>
+<ul>
+<li><a href="#switch-1-configuration">Switch 1 Configuration</a></li>
+<li><a href="#switch-2-configuration">Switch 2 Configuration</a></li>
+<li><a href="#egress-rule">Egress Rule</a></li>
+<li><a href="#ingress-rule">Ingress Rule</a></li>
+<li><a href="#input-rule">Input Rule</a></li>
+<li><a href="#output-rule">Output Rule</a></li>
+<li><a href="#combined-rules">Combined Rules</a></li>
+<li><a href="#layer-2-only-rules-ebtables">Layer 2-only Rules/ebtables</a></li>
+</ul></li>
+<li><a href="#useful-links">Useful Links</a></li>
+<li><a href="#caveats-and-errata">Caveats and Errata</a>
+<ul>
+<li><a href="#not-all-rules-supported">Not All Rules Supported</a></li>
+<li><a href="#acl-log-policer-limits-traffic">ACL Log Policer Limits Traffic</a></li>
+<li><a href="#bridge-traffic-limitations">Bridge Traffic Limitations</a></li>
+<li><a href="#log-actions-cannot-be-forwarded">Log Actions Cannot Be Forwarded</a></li>
+<li><a href="#broadcom-range-checker-limitations">Broadcom Range Checker Limitations</a></li>
+<li><a href="#inbound-log-actions-only-for-broadcom-switches">Inbound LOG Actions Only for Broadcom Switches</a></li>
+<li><a href="#tomahawk-hardware-limitations">Tomahawk Hardware Limitations</a>
+<ul>
+<li><a href="#rate-limiting-per-pipeline-not-global">Rate Limiting per Pipeline, Not Global</a></li>
+<li><a href="#atomic-update-mode-enabled-by-default">Atomic Update Mode Enabled by Default</a></li>
+<li><a href="#packets-undercounted-during-acl-updates">Packets Undercounted during ACL Updates</a></li>
+</ul></li>
+<li><a href="#trident-ii-hardware-limitations">Trident II+ Hardware Limitations</a></li>
+<li><a href="#iptables-interactions-with-cl-acltool">iptables Interactions with cl-acltool</a></li>
+<li><a href="#where-to-assign-rules">Where to Assign Rules</a></li>
+<li><a href="#generic-error-message-displayed-after-acl-rule-installation-failure">Generic Error Message Displayed after ACL Rule Installation Failure</a></li>
+<li><a href="#dell-s3048-on-supports-only-24k-mac-addresses">Dell S3048-ON Supports only 24K MAC Addresses</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version/Cumulus_Linux_36/System_Configuration/Netfilter_-_ACLs/_index.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

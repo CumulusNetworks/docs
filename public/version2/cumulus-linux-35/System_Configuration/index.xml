@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System Configuration on Cumulus Networks Documentation</title>
+    <link>http://example.org/version2/cumulus-linux-35/System_Configuration/</link>
+    <description>Recent content in System Configuration on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version2/cumulus-linux-35/System_Configuration/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Setting Date and Time</title>
+      <link>http://example.org/version2/cumulus-linux-35/System_Configuration/Setting_Date_and_Time/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/System_Configuration/Setting_Date_and_Time/</guid>
+      <description>Setting the time zone, date and time requires root privileges; use sudo.
+Setting the Time Zone To see the current time zone, list the contents of /etc/timezone:
+ cumulus@switch:~$ cat /etc/timezone US/Eastern  Edit the file to add your desired time zone. A list of valid time zones can be found at the following link.
+Use the following command to apply the new time zone immediately.
+ cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata  Alternative: Use the Guided Wizard to Find and Apply a Time Zone To set the time zone, run dpkg-reconfigure tzdata as root:</description>
+    </item>
+    
+    <item>
+      <title>Managing Application Daemons</title>
+      <link>http://example.org/version2/cumulus-linux-35/System_Configuration/Managing_Application_Daemons/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/System_Configuration/Managing_Application_Daemons/</guid>
+      <description>You manage application daemons (services) in Cumulus Linux in the following ways:
+ Identifying active listener ports
+ Identifying daemons currently active or stopped
+ Identifying boot time state of a specific daemon
+ Disabling or enabling a specific daemon
+  Using systemd and the systemctl Command In general, you manage services using systemd via the systemctl command. You use it with any service on the switch to start/stop/restart/reload/enable/disable/reenable or get the status of the service.</description>
+    </item>
+    
+    <item>
+      <title>Configuring switchd</title>
+      <link>http://example.org/version2/cumulus-linux-35/System_Configuration/Configuring_switchd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/System_Configuration/Configuring_switchd/</guid>
+      <description>switchd is the daemon at the heart of Cumulus Linux. It communicates between the switch and Cumulus Linux, and all the applications running on Cumulus Linux.
+The switchd configuration is stored in /etc/cumulus/switchd.conf.
+Versions of Cumulus Linux prior to 2.1 stored the switchd configuration at /etc/default/switchd.
+ The switchd File System switchd also exports a file system, mounted on /cumulus/switchd, that presents all the switchd configuration options as a series of files arranged in a tree structure.</description>
+    </item>
+    
+    <item>
+      <title>Power over Ethernet - PoE</title>
+      <link>http://example.org/version2/cumulus-linux-35/System_Configuration/Power_over_Ethernet_-_PoE/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/System_Configuration/Power_over_Ethernet_-_PoE/</guid>
+      <description>Cumulus Linux supports Power over Ethernet (PoE) and PoE+, so certain Cumulus Linux switches can supply power from Ethernet switch ports to enabled devices over the Ethernet cables that connect them. Power over Ethernet (PoE) is capable of powering devices up to 15W, while PoE+ can power devices up to 30W.
+The currently supported platform is the Edge-Core AS4610-54P, which supports PoE and PoE+ and configuration over Ethernet layer 2 LLDP for power negotiation.</description>
+    </item>
+    
+    <item>
+      <title>Configuring a Global Proxy</title>
+      <link>http://example.org/version2/cumulus-linux-35/System_Configuration/Configuring_a_Global_Proxy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/System_Configuration/Configuring_a_Global_Proxy/</guid>
+      <description>You configure global HTTP and HTTPS proxies in the /etc/profile.d/ directory of Cumulus Linux. To do so, set the http_proxy and https_proxy variables, which tells the switch the address of the proxy server to use to fetch URLs on the command line. This is useful for programs such as apt/apt-get, curl and wget, which can all use this proxy.
+ In a terminal, create a new file in the /etc/profile.</description>
+    </item>
+    
+    <item>
+      <title>HTTP API</title>
+      <link>http://example.org/version2/cumulus-linux-35/System_Configuration/HTTP_API/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version2/cumulus-linux-35/System_Configuration/HTTP_API/</guid>
+      <description>Cumulus Linux 3.4+ implements an HTTP application programing interface to OpenStack ML2 driver and NCLU. Rather than accessing a Cumulus Linux host with SSH, you can interact with a server with a HTTP client, such as cURL, HTTPie or a web browser.
+The HTTP API service is enabled by default on chassis hardware only. However, the associated server is configured to only listen to traffic originating from within the chassis.</description>
+    </item>
+    
+  </channel>
+</rss>

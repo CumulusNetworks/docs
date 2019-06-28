@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cumulus NetQ CLI User Guide on Cumulus Networks Documentation</title>
+    <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/</link>
+    <description>Recent content in Cumulus NetQ CLI User Guide on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CLI Preface</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/CLI_Preface/</guid>
+      <description>A variety of resources are available for you to become familiar with Cumulus NetQ and to take advantage of its monitoring and analytic capabilities. These resources are identified here along with information about how the content is presented.
+What&amp;rsquo;s New in Cumulus NetQ 2.1 Cumulus NetQ has been reinvented to scale with the fast adoption rate of open networks and rapid network growth. In addition to the real-time data collection and fabric-wide performance analysis that are already supported in Cumulus NetQ 1.</description>
+    </item>
+    
+    <item>
+      <title>NetQ Command Line Overview</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/NetQ_Command_Line_Overview/</guid>
+      <description>The NetQ CLI provides access to all of the network state and event information collected by the NetQ Agents. It behaves the same way most CLIs behave, with groups of commands used to display related information, the ability to use TAB completion when entering commands, and to get help for given commands and options. The commands are grouped into four categories: check and show, agent and notifier, trace, and resolve.</description>
+    </item>
+    
+    <item>
+      <title>Monitor Overall Network Health</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Overall_Network_Health/</guid>
+      <description>NetQ provides the information you need to monitor the health of your network fabric, devices, and interfaces. You are able to easily validate the operation and view the configuration across the entire network from switches to hosts to containers. For example, you can monitor the operation of routing protocols and virtual network configurations, the status of NetQ Agents and hardware components, and the operation and efficiency of interfaces. When issues are present, NetQ makes it easy to identify and resolve them.</description>
+    </item>
+    
+    <item>
+      <title>Monitor Switch Hardware and Software</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Switch_Hardware_and_Software/</guid>
+      <description>With NetQ, a network administrator can monitor both the switch hardware and software components for misconfigurations. NetQ helps answer questions such as:
+ What switches do I have in the network?
+ What hardware and software are installed on my switches?
+ Are all switches licensed correctly?
+ Do all switches have NetQ agents running?
+  NetQ uses LLDP (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs ( Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP.</description>
+    </item>
+    
+    <item>
+      <title>Monitor Physical Layer Components</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Physical_Layer_Components/</guid>
+      <description>With NetQ, a network administrator can monitor OSI Layer 1 physical components on network devices, including interfaces, ports, links, and peers. NetQ provides the ability to:
+ Manage physical inventory: view the performance and status of various components of a switch or host server
+ Validate configurations: verify the configuration of network peers and ports
+  It helps answer questions such as:
+ Are any individual or bonded links down?</description>
+    </item>
+    
+    <item>
+      <title>Monitor Data Link Layer Devices and Protocols</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Data_Link_Layer_Devices_and_Protocols/</guid>
+      <description>With NetQ, a network administrator can monitor OSI Layer 2 devices and protocols, including switches, bridges, link control, and physical media access. Keeping track of the various data link layer devices in your network ensures consistent and error-free communications between devices. NetQ provides the ability to:
+ Monitor and validate device and protocol configurations
+ View available communication paths between devices
+  It helps answer questions such as:</description>
+    </item>
+    
+    <item>
+      <title>Monitor Network Layer Protocols</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Network_Layer_Protocols/</guid>
+      <description>With NetQ, a network administrator can monitor OSI Layer 3 network protocols running on Linux-based hosts, including IP (Internet Protocol), BGP (Border Gateway Protocol) and OSPF (Open Shortest Path First). NetQ provides the ability to:
+ Validate protocol configurations
+ Validate layer 3 communication paths
+  It helps answer questions such as:
+ Who are the IP neighbors for a switch?
+ How many IPv4 and IPv6 addresses am I using?</description>
+    </item>
+    
+    <item>
+      <title>Monitor Virtual Network Overlays</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Virtual_Network_Overlays/</guid>
+      <description>With NetQ, a network administrator can monitor virtual network components in the data center, including VXLAN, EVPN, and LNV software constructs. NetQ provides the ability to:
+ Manage virtual constructs: view the performance and status of VXLANs, EVPN, and LNV
+ Validate overlay communication paths
+  It helps answer questions such as:
+ Is my overlay configured and operating correctly?
+ Is my control plane configured correctly?
+ Can device A reach device B?</description>
+    </item>
+    
+    <item>
+      <title>Monitor Linux Hosts</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Linux_Hosts/</guid>
+      <description>Running NetQ on Linux hosts provides unprecedented network visibility, giving the network operator a complete view of the entire infastrucutre’s network connectivity instead of just from the network devices.
+The NetQ Agent is supported on the following Linux hosts:
+ CentOS 7
+ Red Hat Enterprise Linux 7.1
+ Ubuntu 16.04
+  You need to install the OS-specific NetQ metapack on every host you want to monitor with NetQ.</description>
+    </item>
+    
+    <item>
+      <title>Monitor Container Environments</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_CLI_User_Guide/Monitor_Container_Environments/</guid>
+      <description>The NetQ Agent monitors container environments the same way it monitors physical servers. There is no special implementation. The NetQ Agent pulls data from the container as it would pull data from a Cumulus Linux switch or Linux host. It can be installed on a Linux server or in a Linux VM. NetQ Agent integrates with the Kubernetes container orchestrator.
+NetQ monitors many aspects of containers on your network, including their:</description>
+    </item>
+    
+  </channel>
+</rss>

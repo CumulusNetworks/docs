@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Upgrading Cumulus Linux | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Upgrading Cumulus Linux</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Upgrading Cumulus Linux</h1>
+
+<p>Cumulus Networks software melds the Linux host world with the networking
+devices world. Each world comes with its own paradigm on how to upgrade
+software. Before we discuss the various ways to upgrade Cumulus Linux
+switches, let&rsquo;s review the general considerations and strategies used to
+upgrade network devices and Linux hosts.</p>
+
+<h2 id="upgrades-comparing-the-network-device-worldview-vs-the-linux-host-worldview">Upgrades: Comparing the Network Device Worldview vs. the Linux Host Worldview</h2>
+
+<h3 id="manual-vs-automated-configuration">Manual vs. Automated Configuration</h3>
+
+<p>Historically, <em>network devices</em> were configured in place, and most
+network devices required customized configurations, which led
+predominantly to configuring the hardware manually. A lack of
+standardization between vendors, device types, and device roles hampered
+the development of APIs and automation tools. However, in the case of
+very large data centers, configurations became uniform and repeatable,
+and therefore scriptable. Some larger enterprises had to develop their
+own custom scripts to roll out data center network configurations.
+Virtually no industry-standard provisioning tools existed.</p>
+
+<p>In contrast to data center network devices, <em>Linux hosts</em> in the data
+center number in the thousands and tend to have similar configurations.
+This increased scale led Linux sysadmins long ago to move to common
+tools to automate installation and configuration, since manually
+installing and configuring hosts did not work at the scale of a data
+center. Nearly all tasks are done via commonly available provisioning
+and orchestration tools.</p>
+
+<h3 id="pre-deployment-testing-of-production-environments">Pre-deployment Testing of Production Environments</h3>
+
+<p>Historically, the cost of <em>network device</em> testing has been hampered by
+the cost of a single device. Setting up an appropriately sized lab
+topology can be very expensive. As a result, it is difficult to do
+comprehensive topology-based testing of a release before deploying it.
+Thus, many network admins cannot or will not do comprehensive system
+testing of a new release before deploying it.</p>
+
+<p>Alternatively, the cost of a <em>Linux host</em> is cheap (or nearly free when
+using virtualization), so rigorous testing of a release before deploying
+it is not encumbered by budgeting concerns. Most sysadmins extensively
+test new releases in the complete application environment.</p>
+
+<h3 id="locations-of-configuration-data-vs-executables">Locations of Configuration Data vs. Executables</h3>
+
+<p><em>Network devices</em> generally separate configuration data from the
+executable code. On bootup, the executable code looks into a different
+file system and retrieves the configuration file or files, parses the
+text and uses that data to configure the software options for each
+software subsystem. The model is very centralized, with the executables
+generally being packaged together, and the configuration data following
+a set of rules that can be read by a centralized parser. Each vendor
+controls the configuration format for the entire box, since each vendor
+generally supports only their own software. This made sense since the
+platform was designed as an application-specific appliance.</p>
+
+<p>Since a <em>Linux host</em> is a general purpose platform, with applications
+running on top of it, the locations of the files are much more
+distributed. Applications install and read their configuration data from
+text files usually stored in the /etc directory tree. Executables are
+generally stored in one of several <em>bin</em> directories, but the bin and
+etc directories are often on the same physical device. Since each
+<em>module</em> (application or executable) was often developed by a different
+organization and shared with the world, each module was responsible for
+its own configuration data format. Most applications are community
+supported, and while there are some generally accepted guiding
+principles on how their configuration data is formatted, no central
+authority exists to control or ensure compliance.</p>
+
+<h3 id="upgrade-procedure">Upgrade Procedure</h3>
+
+<p>Both network admins and sysadmins generally plan upgrades only to gain
+new functionality or to get bug fixes when the workarounds become too
+onerous. The goal is to reduce the number of upgrades as much as
+possible.</p>
+
+<p>The <em>network device</em> upgrade paradigm is to leave the configuration data
+in place, and <em>replace the executable files</em> either all at once from a
+single binary image or in large chunks (subsystems). A full release
+upgrade comes with risk due to unexpected behavior changes in subsystems
+where the admin did not anticipate or need changes.</p>
+
+<p>The <em>Linux host</em> upgrade paradigm is to independently <em>upgrade a small
+list of packages</em> while leaving most of the OS untouched. Changing a
+small list of packages reduces the risk of unintended consequences.
+Usually upgrades are a &ldquo;forward only&rdquo; paradigm, where the sysadmins
+generally plan to move to the latest code within the same major release
+when needed. Every few years, when a new kernel train is released, a
+major upgrade is planned. A major upgrade involves wiping and replacing
+the entire OS and migrating configuration data.</p>
+
+<h3 id="rollback-procedure">Rollback Procedure</h3>
+
+<p>Even the most well planned and tested upgrades can result in unforeseen
+problems, and sometimes the best solution to new problems is to roll
+back to the previous state.</p>
+
+<p>Since <em>network devices</em> clearly separate data and executables, generally
+the process is to <em>overwrite the new release executable</em> with the
+previously running executable. If the configuration was changed by the
+newer release, then you either have to manually back out or repair the
+changes, or restore from an already backed up configuration.</p>
+
+<p>The <em>Linux host</em> scenario can be more complicated. There are three main
+approaches:</p>
+
+<ul>
+<li><p>Back out individual packages: If the problematic package is
+identified, the sysadmin can downgrade the affected package
+directly. In rare cases the configuration files may have to be
+restored from backup, or edited to back out any changes that were
+automatically made by the upgrade package.</p></li>
+
+<li><p>Flatten and rebuild: If the OS becomes unusable, you can use
+orchestration tools to reinstall the previous OS release from
+scratch and then automatically rebuild the configuration.</p></li>
+
+<li><p>Backup and restore: Another common strategy is to restore to a
+previous state via a backup captured before the upgrade.</p></li>
+</ul>
+
+<h3 id="third-party-packages">Third Party Packages</h3>
+
+<p>Third party packages are rare in the <em>network device</em> world. Because the
+network OS is usually proprietary, third party packages are usually
+packaged by the network device vendor and upgrades of those packages is
+handled by the network device upgrade system.</p>
+
+<p>Third party packages in <em>Linux host</em> world often use the same package
+system as the distribution into which it is to be installed (for
+example, Debian uses <code>apt-get</code>). Or the package may be compiled and
+installed by the sysadmin. Configuration and executable files generally
+follow the same filesystem hierarchy standards as other applications.</p>
+
+<h2 id="upgrading-cumulus-linux-devices-strategies-and-processes">Upgrading Cumulus Linux Devices: Strategies and Processes</h2>
+
+<p>Because Cumulus Linux is both Linux <em>and</em> a network device, it has
+characteristics of both paradigms. The following describes the Cumulus
+Linux paradigm with respect to upgrade planning and execution.</p>
+
+<h3 id="automated-configuration-is-preferred-over-manual-configuration">Automated Configuration Is Preferred over Manual Configuration</h3>
+
+<p>Because Cumulus Linux <em>is</em> Linux, Cumulus Networks recommends that even
+with small networks or test labs, network admins should make the jump to
+deploy, provision, configure, and upgrade switches using automation from
+the very beginning. The small up front investment of time spent learning
+an orchestration tool, even to provision a small number of Cumulus Linux
+devices, will pay back dividends for a long time. The biggest gain is
+realized during the upgrade process, where the network admin can quickly
+upgrade dozens of devices in a repeatable manner.</p>
+
+<p>Switches, like servers, should be treated like <em><a href="https://www.google.com/search?q=cattle+not+pets" target="_blank">cattle, not
+pets</a>.</em></p>
+
+<h3 id="out-of-band-management-is-worth-the-investment">Out-of-Band Management Is Worth the Investment</h3>
+
+<p>Because network devices are reachable via the IP addresses on the front
+panel ports, many network admins of small-to-medium sized networks use
+<em>in-band</em> networks to manage their switches. In this design, management
+traffic like SSH, SNMP, and console server connections use the same
+networks that regular network traffic traverses — there is no separation
+between the <em>management plane</em> and the <em>data plane</em>. Larger data centers
+create a separate <em>out-of-band</em> network with a completely separate
+subnet and reachability path to attach to the management ports — that is
+accessible via eth0 and the serial console.</p>
+
+<p>This is a situation where smaller companies should learn from the big
+companies. A separate management network isn&rsquo;t free, but it is
+relatively cheap. With an inexpensive <a href="https://cumulusnetworks.com/rmp" target="_blank">Cumulus
+RMP</a> management switch, an inexpensive
+console server, and a separate cable path, up to 48 devices can be
+completely controlled via the out-of-band network in the case of a
+network emergency.</p>
+
+<p>There are many scenarios where in-band networking can fail and leave the
+network admin waiting for someone to drive to the data center or remote
+site to connect directly to the console of a misconfigured or failing
+device. The cost of one outage would usually more than pay for the
+investment in a separate network. For even more security, attach
+remote-controllable power distribution units (PDUs) in each rack to the
+management network, so you can have complete control to remote power
+cycle every device in that rack.</p>
+
+<h3 id="pre-deployment-testing-of-new-releases-is-advised-and-enabled">Pre-Deployment Testing of New Releases Is Advised and Enabled</h3>
+
+<p>White box switches and virtualization (Cumulus VX) bring the cost of
+networking devices down, so the ability for network admins to test their
+own procedures, configurations, applications, and network topology in an
+appropriately-sized lab topology becomes extremely affordable.</p>
+
+<h3 id="understanding-the-locations-of-configuration-data-is-required-for-successful-upgrades-migration-and-backup">Understanding the Locations of Configuration Data is Required for Successful Upgrades, Migration, and Backup</h3>
+
+<p>As with other Linux distributions, the <code>/etc</code> directory is the primary
+location for all configuration data in Cumulus Linux. The following list
+is a likely set of files that should be backed up and migrated to a new
+release, but any file that has been changed would need to be examined.
+Cumulus Networks recommends you consider making the following files and
+directories part of a backup strategy.</p>
+
+<h4 id="network-configuration-files">Network Configuration Files</h4>
+
+<table>
+<thead>
+<tr>
+<th>File Name and Location</th>
+<th>Explanation</th>
+<th>Cumulus Linux Documentation</th>
+<th>Debian Documentation</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/etc/network/</td>
+<td>Network configuration files, most notably <code>/etc/network/interfaces</code> and <code>/etc/network/interfaces.d/</code></td>
+<td><a href="/Configuring_and_Managing_Network_Interfaces.html">Configuring and Managing Network Interfaces</a></td>
+<td><a href="https://wiki.debian.org/NetworkConfiguration" target="_blank">wiki.debian.org/NetworkConfiguration</a></td>
+</tr>
+
+<tr>
+<td>/etc/resolv.conf</td>
+<td>DNS resolution</td>
+<td>Not unique to Cumulus Linux: <a href="https://wiki.debian.org/NetworkConfiguration#The_resolv.conf_configuration_file" target="_blank">wiki.debian.org/NetworkConfiguration#The_resolv.conf_configuration_file</a></td>
+<td><a href="https://www.debian.org/doc/manuals/debian-reference/ch05.en.html" target="_blank">www.debian.org/doc/manuals/debian-reference/ch05.en.html</a></td>
+</tr>
+
+<tr>
+<td>/etc/quagga/</td>
+<td>Routing application (responsible for BGP and OSPF)</td>
+<td><a href="/Quagga_Overview.html">Quagga Overview</a></td>
+<td><a href="https://packages.debian.org/wheezy/quagga" target="_blank">packages.debian.org/wheezy/quagga</a></td>
+</tr>
+
+<tr>
+<td>/etc/hostname</td>
+<td>Configuration file for the hostname of the switch</td>
+<td><a href="/Quick_Start_Guide.html#src-5118207_QuickStartGuide-ConfiguringtheHostnameandTimeZone">Quick Start Guide#ConfiguringtheHostnameandTimeZone</a></td>
+<td><a href="https://wiki.debian.org/HowTo/ChangeHostname" target="_blank">wiki.debian.org/HowTo/ChangeHostname</a></td>
+</tr>
+
+<tr>
+<td>/etc/cumulus/ports.conf</td>
+<td>Breakout cable configuration file</td>
+<td><a href="/Layer_1_and_Switch_Port_Attributes.html#src-5118373_Layer1andSwitchPortAttributes-ConfiguringBreakoutPorts">Layer 1 and Switch Port Attributes#ConfiguringBreakoutPorts</a></td>
+<td>N/A; please read the guide on breakout cables</td>
+</tr>
+
+<tr>
+<td>/etc/cumulus/switchd.conf</td>
+<td>Switchd configuration</td>
+<td><a href="/Configuring_switchd.html">Configuring switchd</a></td>
+<td>N/A; please read the guide on switchd configuration</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="additional-commonly-used-files">Additional Commonly Used Files</h4>
+
+<table>
+<thead>
+<tr>
+<th>File Name and Location</th>
+<th>Explanation</th>
+<th>Cumulus Linux Documentation</th>
+<th>Debian Documentation</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/etc/motd</td>
+<td>Message of the day</td>
+<td>Not unique to Cumulus Linux</td>
+<td><a href="https://wiki.debian.org/motd#Wheezy" target="_blank">wiki.debian.org/motd#Wheezy</a></td>
+</tr>
+
+<tr>
+<td>/etc/passwd</td>
+<td>User account information</td>
+<td>Not unique to Cumulus Linux</td>
+<td><a href="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html" target="_blank">www.debian.org/doc/manuals/debian-reference/ch04.en.html</a></td>
+</tr>
+
+<tr>
+<td>/etc/shadow</td>
+<td>Secure user account information</td>
+<td>Not unique to Cumulus Linux</td>
+<td><a href="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html" target="_blank">www.debian.org/doc/manuals/debian-reference/ch04.en.html</a></td>
+</tr>
+
+<tr>
+<td>/etc/group</td>
+<td>Defines user groups on the switch</td>
+<td>Not unique to Cumulus Linux</td>
+<td><a href="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html" target="_blank">www.debian.org/doc/manuals/debian-reference/ch04.en.html</a></td>
+</tr>
+
+<tr>
+<td>/etc/lldpd.conf</td>
+<td>Link Layer Discover Protocol (LLDP) daemon configuration</td>
+<td><a href="/Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a></td>
+<td><a href="https://packages.debian.org/wheezy/lldpd" target="_blank">packages.debian.org/wheezy/lldpd</a></td>
+</tr>
+
+<tr>
+<td>/etc/lldpd.d/</td>
+<td>Configuration directory for <code>lldpd</code></td>
+<td><a href="/Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a></td>
+<td><a href="https://packages.debian.org/wheezy/lldpd" target="_blank">packages.debian.org/wheezy/lldpd</a></td>
+</tr>
+
+<tr>
+<td>/etc/nsswitch.conf</td>
+<td>Name Service Switch (NSS) configuration file</td>
+<td><a href="/LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a></td>
+<td><a href="https://wiki.debian.org/LDAP/NSS" target="_blank">wiki.debian.org/LDAP/NSS</a></td>
+</tr>
+
+<tr>
+<td>/etc/ssh/</td>
+<td>SSH configuration files</td>
+<td><a href="/SSH_for_Remote_Access.html">SSH for Remote Access</a></td>
+<td><a href="https://wiki.debian.org/SSH" target="_blank">wiki.debian.org/SSH</a></td>
+</tr>
+
+<tr>
+<td>/etc/ldap/ldap.conf</td>
+<td>Lightweight Directory Access Protocol configuration file</td>
+<td><a href="/LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a></td>
+<td><a href="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html" target="_blank">www.debian.org/doc/manuals/debian-reference/ch04.en.html</a></td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><p>If you are using the root user account, consider including <code>/root/</code>.</p></li>
+
+<li><p>If you have custom user accounts, consider including
+<code>/home/&lt;username&gt;/</code>.</p></li>
+</ul>
+
+<h4 id="files-that-should-never-be-migrated-between-versions-or-boxes">Files That Should Never Be Migrated Between Versions or Boxes</h4>
+
+<table>
+<thead>
+<tr>
+<th>File Name and Location</th>
+<th>Explanation</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/etc/adjtime</td>
+<td>System clock adjustment data. NTP manages this automatically. It is incorrect when the switch hardware is replaced. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/bcm.d/</td>
+<td>Per-platform hardware configuration directory, created on first boot. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/blkid.tab</td>
+<td>Partition table. It should not be modified manually. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/blkid.tab.old</td>
+<td>A previous partition table; it should not be modified manually. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/cumulus/init</td>
+<td>Platform hardware-specific files. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/default/clagd</td>
+<td>Created and managed by <code>ifupdown2</code>. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/default/grub</td>
+<td>Grub <code>init</code> table; it should not be modified manually.</td>
+</tr>
+
+<tr>
+<td>/etc/default/hwclock</td>
+<td>Platform hardware-specific file. Created during first boot. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/init</td>
+<td>Platform initialization files. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/init.d/</td>
+<td>Platform initialization files. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/fstab</td>
+<td>Static info on filesystem. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/image-release</td>
+<td>System version data. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/os-release</td>
+<td>System version data. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/lsb-release</td>
+<td>System version data. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/lvm/archive</td>
+<td>Filesystem files. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/lvm/backup</td>
+<td>Filesystem files. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/modules</td>
+<td>Created during first boot. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/modules-load.d/</td>
+<td>Created during first boot. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/etc/sensors.d</td>
+<td>Platform-specific sensor data. Created during first boot. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/root/.ansible</td>
+<td>Ansible tmp files. Do not copy.</td>
+</tr>
+
+<tr>
+<td>/home/cumulus/.ansible</td>
+<td>Ansible tmp files. Do not copy.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="upgrading-switches-in-an-mlag-pair">Upgrading Switches in an MLAG Pair</h3>
+
+<p>If you have a pair of Cumulus Linux switches as part of an <a href="/Multi-Chassis_Link_Aggregation_-_MLAG.html">MLAG
+(multi-chassis link aggregation)
+pair</a>, you should only
+upgrade each switch when it is in the <em>secondary role</em>. The upgrade path
+is as follows:</p>
+
+<ol>
+<li><p>Upgrade Cumulus Linux on the switch already in the secondary role.
+This is the switch with the higher <code>clagd-priority</code> value.</p></li>
+
+<li><p>Set the switch in the secondary role into the primary role by
+setting its <code>clagd-priority</code> to a value lower than the
+<code>clagd-priority</code> setting on the switch in the primary role.</p>
+
+<pre><code>cumulus@switch:~$ sudo clagctl priority VALUE 
+</code></pre></li>
+
+<li><p>Upgrade the switch that just took on the secondary role.</p></li>
+
+<li><p>Put that switch into the primary role again, if you so choose.</p>
+
+<pre><code>cumulus@switch:~$ sudo clagctl priority VALUE
+</code></pre></li>
+</ol>
+
+<p>For more information about setting the priority, see <a href="/Multi-Chassis_Link_Aggregation_-_MLAG.html#src-5118344_Multi-ChassisLinkAggregation-MLAG-roles">Understanding
+Switch
+Roles</a>.</p>
+
+<h2 id="upgrading-cumulus-linux-choosing-between-a-binary-install-vs-package-upgrade">Upgrading Cumulus Linux: Choosing between a Binary Install vs. Package Upgrade</h2>
+
+<p>Network admins have two ways to upgrade Cumulus Linux:</p>
+
+<ul>
+<li><p>Upgrading only the changed packages, using <code>apt-get update</code> and
+<code>apt-get upgrade</code>. <strong>This is the preferred method</strong>.</p></li>
+
+<li><p>Performing a binary (full image) install of the new version, using
+ONIE. This is used when moving between major versions or if you want
+to install a clean image.</p></li>
+</ul>
+
+<p>There are advantages and disadvantages to using these methods, which are
+outlined below.</p>
+
+<h3 id="upgrading-using-package-installs-apt-get-update-apt-get-upgrade">Upgrading Using Package Installs (apt-get update &amp;&amp; apt-get upgrade)</h3>
+
+<p>Pros:</p>
+
+<ul>
+<li><p>Configuration data stays in place while the binaries are upgraded.</p></li>
+
+<li><p>Third-party apps stay in place.</p></li>
+</ul>
+
+<p>Cons:</p>
+
+<ul>
+<li><p>This method works only if you are upgrading to a later minor release
+(like 3.0.x to 3.1.y) or a later maintenance release (like 3.0.1 to
+3.0.2) from an earlier release in the same major release family
+<strong>only</strong> (like 2.5.2 to 2.5.5 or 3.0.0 to 3.0.1).</p></li>
+
+<li><p>Rollback is quite difficult and tedious.</p></li>
+
+<li><p>You can&rsquo;t choose the exact release version that you want to run.</p></li>
+
+<li><p>When you upgrade, you upgrade all packages to the latest available
+version.</p></li>
+
+<li><p>The upgrade process takes a while to complete, and various switch
+functions may be intermittently available during the upgrade.</p></li>
+
+<li><p>Some upgrade operations will terminate SSH sessions on the in-band
+(front panel) ports, leaving the user unable to monitor the upgrade
+process. As a workaround, use the <a href="https://support.cumulusnetworks.com/hc/en-us/articles/215453578" target="_blank">dtach
+tool</a>.</p></li>
+
+<li><p>Just like the binary install method, you may have to reboot after
+the upgrade, lengthening the downtime.</p></li>
+
+<li><p>After you upgrade, user names and group names created by packages
+may be different on different switches, depending the configuration
+and package installation history.</p></li>
+</ul>
+
+<p>To upgrade the switch by updating the packages:</p>
+
+<ol>
+<li><p>Back up the configurations off the switch.</p></li>
+
+<li><p>Fetch the latest update meta-data from the repository.</p>
+
+<pre><code>                       
+cumulus@switch$ sudo apt-get update
+       
+        
+</code></pre></li>
+
+<li><p>Upgrade all the packages to the latest distribution.</p>
+
+<pre><code>                       
+cumulus@switch$ sudo apt-get upgrade
+       
+        
+</code></pre></li>
+
+<li><p>Reboot the switch if you are notified by the upgrade messages that a
+System restart is required.</p>
+
+<pre><code>                       
+cumulus@switch$ sudo apt-get upgrade
+      ... upgrade messages here ...
+ 
+*** System restart required ***
+ 
+cumulus@switch$ sudo reboot
+       
+        
+</code></pre></li>
+
+<li><p>Verify correct operation with the old configurations on new version.</p></li>
+</ol>
+
+
+<div class="notices note" > <p>If you are curious about which packages will be upgraded, use <code>apt-get
+upgrade --dry-run</code>. This will display the list of packages that will be
+upgraded without upgrading anything.</p>
+ </div>
+
+
+
+<div class="notices note" > <p>After you successfully upgrade Cumulus Linux, you may notice some some
+results that you may or may not have expected:</p>
+
+<ul>
+<li><p><code>apt-get upgrade</code> always updates the operating system to the most
+current version, so if you are currently running Cumulus Linux 3.0.1
+and run <code>apt-get upgrade</code> on that switch, the packages will get
+upgraded to the latest versions contained in the latest 3.y.z
+release.</p></li>
+
+<li><p>When you run <code>cat /etc/image-release</code>, the output still shows the
+version of Cumulus Linux from the last binary install. So if you
+installed Cumulus Linux 3.0.0 as a full image install and then
+upgraded to 3.0.2 using <code>apt-get upgrade</code>, the output from
+<code>/etc/image-release</code> still shows: <code>IMAGE_RELEASE=3.0.0</code>. To see the
+current version of all the Cumulus Linux packages running on the
+switch, use <code>dpkg --list</code> or <code>dpkg -l</code>.</p></li>
+</ul>
+ </div>
+
+
+<h3 id="upgrading-via-binary-install-onie">Upgrading via Binary Install (ONIE)</h3>
+
+<p>Pros:</p>
+
+<ul>
+<li><p>You choose the exact version that you want to upgrade to.</p></li>
+
+<li><p>This is the only method for upgrading to a new major (X.0) version.
+For example, when you are upgrading from 2.5.5 to 3.0.</p></li>
+</ul>
+
+<p>Cons:</p>
+
+<ul>
+<li><p>Configuration data must be moved to the new OS via ZTP while the OS
+is first booted, or soon afterwards via out-of-band management.</p></li>
+
+<li><p>Moving the configuration file can go wrong in various ways:</p>
+
+<ul>
+<li><p>Identifying all the locations of config data is not always an
+easy task. See section above on <a href="/#src-5118269_UpgradingCumulusLinux-UnderstandingLocations">Understanding the Locations of
+Configuration
+Data</a>.</p></li>
+
+<li><p>Config file changes in the new version may cause merge conflicts
+that go undetected.</p></li>
+</ul></li>
+
+<li><p>If config files aren&rsquo;t restored correctly, the user may be unable to
+attach to the switch from in-band management. Hence, out-of-band
+connectivity (eth0 or console) is recommended.</p></li>
+
+<li><p>The installer takes a while to complete.</p></li>
+
+<li><p>Third-party apps must be reinstalled and reconfigured afterwards.</p></li>
+</ul>
+
+<p>To upgrade the switch by running a binary install:</p>
+
+<ol>
+<li><p>Back up the configurations off the switch.</p></li>
+
+<li><p>Install the binary image, following the instructions at <a href="/Installing_a_New_Cumulus_Linux_Image.html">Installing
+a New Cumulus Linux
+Image</a>.</p></li>
+
+<li><p>Restore the configuration files to the new version — ideally via
+automation.</p></li>
+
+<li><p>Verify correct operation with the old configurations on the new
+version.</p></li>
+
+<li><p>Reinstall third party apps and associated configurations.</p></li>
+</ol>
+
+<h2 id="rolling-back-a-cumulus-linux-installation">Rolling Back a Cumulus Linux Installation</h2>
+
+<p>Rolling back to an earlier release after upgrading the packages on the
+switch follows the same procedure as described for the Linux host OS
+rollback above. There are three main strategies, and all require
+detailed planning and execution:</p>
+
+<ul>
+<li><p>Back out individual packages: If the problematic package is
+identified, the network admin can downgrade the affected package
+directly. In rare cases the configuration files may have to be
+restored from backup, or edited to back out any changes that were
+automatically made by the upgrade package.</p></li>
+
+<li><p>Flatten and rebuild: If the OS becomes unusable, you can use
+orchestration tools to reinstall the previous OS release from
+scratch and then automatically rebuild the configuration.</p></li>
+
+<li><p>Backup and restore: Another common strategy is to restore to a
+previous state via a backup captured before the upgrade.</p></li>
+</ul>
+
+<p>Which method you employ is specific to your deployment strategy, so
+providing detailed steps for each scenario is outside the scope of this
+document.</p>
+
+<h2 id="third-party-package-considerations">Third Party Package Considerations</h2>
+
+<p>Note that if you install any third party apps on a Cumulus Linux switch,
+any configuration data will likely be installed into the <code>/etc</code>
+directory, but it is not guaranteed. It is the responsibility of the
+network admin to understand the behavior and config file information of
+any third party packages installed on a Cumulus Linux switch.</p>
+
+<p>After you upgrade the OS using a full binary install, you will need to
+reinstall any third party packages or any Cumulus Linux add-on packages,
+such as <code>vxsnd</code> or <code>vxrd</code>.</p>
+
+<h2 id="installation-and-upgrade-workflow-in-cumulus-linux-3-0">Installation and Upgrade Workflow in Cumulus Linux 3.0</h2>
+
+<p>Cumulus Linux 3.0 completely embraces the Linux and Debian upgrade
+workflow. In this paradigm, a base image is installed using an
+installer, then any upgrades within that release train (major version,
+like 3.y.z) are done using <code>apt-get update &amp;&amp; apt-get upgrade</code>. Any
+packages that have been changed since the base install get upgraded in
+place from the repository.</p>
+
+<p>The huge advantage of this approach is that all switch configuration
+files remain untouched, or in rare cases merged (using the Debian merge
+function) during the package upgrade.</p>
+
+<p>However, when upgrading a switch from a previous release train — for
+example, Cumulus Linux 2.5 — a mechanism is required to migrate the
+configuration files over to the new 3.0 installation. This is the
+perfect opportunity to use automation and orchestration tools to backup
+the configuration files, examine them to verify correctness with 3.0,
+and then to redeploy the configuration files on the new 3.0
+installation.</p>
+
+<h2 id="caveats-when-migrating-configuration-files-between-cumulus-linux-2-5-z-and-3-0">Caveats When Migrating Configuration Files Between Cumulus Linux 2.5.z and 3.0</h2>
+
+<p>Generally, the configuration files in Cumulus Linux 2.5.z should be able
+to migrate to version 3.0 without any problems, but there are some known
+issues listed below and there may be additional issues with a customer&rsquo;s
+particular setup.</p>
+
+<p>Known caveats when migrating files from version 2.x to 3.0:</p>
+
+<ul>
+<li><p>Some configuration files should never be migrated between versions
+or while replacing hardware. The <a href="/#src-5118269_UpgradingCumulusLinux-FilesToNeverMigrate">Files that Should Never be
+Migrated</a>
+table above contains a list of files that should never be migrated.</p></li>
+
+<li><p><code>/etc/passwd</code> and <code>/etc/shadow</code> should not be migrated to 3.0
+directly. The example below and the ansible script included with
+<a href="https://github.com/CumulusNetworks/config-backup-upgrade-helper" target="_blank">Config File Migration
+Script</a>
+explicitly excludes these two files from the backup archive. The
+default password for the &lsquo;cumulus&rsquo; user will need to be changed, and
+any locally created users should be added to the 3.0 installation
+after upgrade.</p></li>
+
+<li><p><code>/etc/apt/sources.list</code> must be completely updated with a new 3.0
+repository and repository structure. Repositories from Cumulus Linux
+2.5 must be removed. If there are any custom repositories on the
+switch, they need to be migrated into the 3.0 <code>sources.list</code> file or
+the <code>sources.d/</code> directory.</p></li>
+</ul>
+
+<h2 id="using-the-config-file-migration-script-to-identify-and-move-files-to-cumulus-linux-3-0">Using the Config File Migration Script to Identify and Move Files to Cumulus Linux 3.0</h2>
+
+<p>You can use the <a href="https://github.com/CumulusNetworks/config-backup-upgrade-helper" target="_blank">Config File Migration
+Script</a>
+with the <code>--backup</code> option to create a backup archive of configuration
+files in version 2.5, copy them off the box, then install them on the
+version 3.0 switch. Note that you need to follow the previous section
+about caveats when migrating configuration files.</p>
+
+
+<div class="notices warning" > <p>You <strong>cannot</strong> use the Config File Migration Script to upgrade from
+Cumulus Linux 3.0.0 to 3.0.1. Use apt-get instead, as documented in the
+<a href="https://support.cumulusnetworks.com/hc/en-us/articles/222822047" target="_blank">release
+notes</a>.</p>
+ </div>
+
+
+<p>The example provided below excludes <code>/etc/apt</code>, <code>/etc/passwd</code> and
+<code>/etc/shadow</code> from the backup archive.</p>
+
+<ol>
+<li><p>Back up the version 2.5.z files.</p>
+
+<p><strong>Optional:</strong> Use the Ansible playbook included with the <a href="https://github.com/CumulusNetworks/config-backup-upgrade-helper" target="_blank">Config
+File Migration
+script</a>
+to automate the backup of all your Cumulus Linux 2.5 switches. See
+the section below on <a href="/#src-5118269_UpgradingCumulusLinux-Using_Automation_Tools">Using Automation Tools to Backup
+Configurations</a>
+for more details.</p>
+
+<pre><code>                       
+# Make a temp dir
+loc=$(mktemp -d)
+# Create a backup archive to the temp dir
+sudo ./config_file_changes --backup --backup_dir $loc --exclude /etc/apt,/etc/passwd,/etc/shadow
+# Copy the archive and log file to an external server
+sudo scp -r $loc/* user@my_external_server:.
+       
+        
+</code></pre></li>
+
+<li><p><a href="/Installing_a_New_Cumulus_Linux_Image.html">Install Cumulus Linux 3.0 onto the switch using
+ONIE</a>.</p></li>
+
+<li><p>Reinstall the files from the config file archive to the newly
+installed 3.0 switch.</p>
+
+<pre><code>                       
+# On the switch, copy the config file archive back from the server:
+scp user@my_external_server:PATH/SWITCHNAME-config-archive-DATE_TIME.tar.gz .
+# Untar the archive to the root of the box
+sudo tar -C / -xvf SWITCHNAME-config-archive-DATE_TIME.tar.gz
+       
+        
+</code></pre>
+
+
+<div class="notices warning" > <pre><code>Be aware that version 2.5.z configurations are not guaranteed to
+work in Cumulus Linux 3.0. You should test the restoration and
+proper operation of the Cumulus Linux 2.5.z configuration in Cumulus
+Linux 3.0 on a non-production switch or in a Cumulus VX image, since
+every deployment is unique.
+</code></pre>
+ </div>
+</li>
+</ol>
+
+<h2 id="using-automation-tools-to-back-up-2-5-z-configurations">Using Automation Tools to Back Up 2.5.z Configurations</h2>
+
+<p>Adopting the use of orchestration tools like Ansible, Chef or Puppet for
+configuration management greatly increases the speed and accuracy of the
+next major upgrade; they also enable the quick swap of failed switch
+hardware. Included with the <a href="https://github.com/CumulusNetworks/config-backup-upgrade-helper" target="_blank">Config Migration
+Script</a>
+is an Ansible playbook that can be used to create a backup archive of
+Cumulus Linux 2.5.z switch configuration files and to retrieve them to a
+central server — automating step 1 of the previous section for all
+deployed Cumulus Linux 2.5.z switches. This is a quick start on the road
+to setting up automated configuration and control for your deployment.
+For more details on integrating automation into your Cumulus Linux
+deployment, see the <a href="https://cumulusnetworks.com/solutions/automation/" target="_blank">Automation Solutions section on
+cumulusnetworks.com</a>
+.</p>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#upgrades-comparing-the-network-device-worldview-vs-the-linux-host-worldview">Upgrades: Comparing the Network Device Worldview vs. the Linux Host Worldview</a>
+<ul>
+<li><a href="#manual-vs-automated-configuration">Manual vs. Automated Configuration</a></li>
+<li><a href="#pre-deployment-testing-of-production-environments">Pre-deployment Testing of Production Environments</a></li>
+<li><a href="#locations-of-configuration-data-vs-executables">Locations of Configuration Data vs. Executables</a></li>
+<li><a href="#upgrade-procedure">Upgrade Procedure</a></li>
+<li><a href="#rollback-procedure">Rollback Procedure</a></li>
+<li><a href="#third-party-packages">Third Party Packages</a></li>
+</ul></li>
+<li><a href="#upgrading-cumulus-linux-devices-strategies-and-processes">Upgrading Cumulus Linux Devices: Strategies and Processes</a>
+<ul>
+<li><a href="#automated-configuration-is-preferred-over-manual-configuration">Automated Configuration Is Preferred over Manual Configuration</a></li>
+<li><a href="#out-of-band-management-is-worth-the-investment">Out-of-Band Management Is Worth the Investment</a></li>
+<li><a href="#pre-deployment-testing-of-new-releases-is-advised-and-enabled">Pre-Deployment Testing of New Releases Is Advised and Enabled</a></li>
+<li><a href="#understanding-the-locations-of-configuration-data-is-required-for-successful-upgrades-migration-and-backup">Understanding the Locations of Configuration Data is Required for Successful Upgrades, Migration, and Backup</a>
+<ul>
+<li><a href="#network-configuration-files">Network Configuration Files</a></li>
+<li><a href="#additional-commonly-used-files">Additional Commonly Used Files</a></li>
+<li><a href="#files-that-should-never-be-migrated-between-versions-or-boxes">Files That Should Never Be Migrated Between Versions or Boxes</a></li>
+</ul></li>
+<li><a href="#upgrading-switches-in-an-mlag-pair">Upgrading Switches in an MLAG Pair</a></li>
+</ul></li>
+<li><a href="#upgrading-cumulus-linux-choosing-between-a-binary-install-vs-package-upgrade">Upgrading Cumulus Linux: Choosing between a Binary Install vs. Package Upgrade</a>
+<ul>
+<li><a href="#upgrading-using-package-installs-apt-get-update-apt-get-upgrade">Upgrading Using Package Installs (apt-get update &amp;&amp; apt-get upgrade)</a></li>
+<li><a href="#upgrading-via-binary-install-onie">Upgrading via Binary Install (ONIE)</a></li>
+</ul></li>
+<li><a href="#rolling-back-a-cumulus-linux-installation">Rolling Back a Cumulus Linux Installation</a></li>
+<li><a href="#third-party-package-considerations">Third Party Package Considerations</a></li>
+<li><a href="#installation-and-upgrade-workflow-in-cumulus-linux-3-0">Installation and Upgrade Workflow in Cumulus Linux 3.0</a></li>
+<li><a href="#caveats-when-migrating-configuration-files-between-cumulus-linux-2-5-z-and-3-0">Caveats When Migrating Configuration Files Between Cumulus Linux 2.5.z and 3.0</a></li>
+<li><a href="#using-the-config-file-migration-script-to-identify-and-move-files-to-cumulus-linux-3-0">Using the Config File Migration Script to Identify and Move Files to Cumulus Linux 3.0</a></li>
+<li><a href="#using-automation-tools-to-back-up-2-5-z-configurations">Using Automation Tools to Back Up 2.5.z Configurations</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version/Cumulus_Linux_301/Installation,_Upgrading_and_Package_Management/Managing_Cumulus_Linux_Disk_Images/Upgrading_Cumulus_Linux.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Monitoring and Troubleshooting | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <link rel="alternate" type="application/rss+xml" href="http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/index.xml" title="Cumulus Networks Documentation" />
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Monitoring and Troubleshooting</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Monitoring and Troubleshooting</h1>
+
+<p>This chapter introduces monitoring and troubleshooting Cumulus Linux.</p>
+
+<h2 id="commands">Commands</h2>
+
+<ul>
+<li><p>cl-support</p></li>
+
+<li><p>fw_setenv (ARM switches only)</p></li>
+</ul>
+
+<h2 id="using-the-serial-console">Using the Serial Console</h2>
+
+<p>The serial console can be a useful tool for debugging issues, especially
+when you find yourself rebooting the switch often or if you don’t have a
+reliable network connection.</p>
+
+<p>The default serial console baud rate is 115200, which is the baud rate
+<a href="http://opencomputeproject.github.io/onie/" target="_blank">ONIE</a> uses.</p>
+
+<h3 id="configuring-the-serial-console-on-arm-switches">Configuring the Serial Console on ARM Switches</h3>
+
+<p>On ARM switches, the U-Boot environment variable <code>baudrate</code> identifies
+the baud rate of the serial console. To change the <code>baudrate</code> variable,
+use the <code>fw_setenv</code> command:</p>
+
+<pre><code>cumulus@switch:~$ sudo fw_setenv baudrate 9600
+Updating environment variable: `baudrate'
+Proceed with update [N/y]? y
+</code></pre>
+
+<p>You must reboot the switch for the <code>baudrate</code> change to take effect.</p>
+
+<p>The valid values for <code>baudrate</code> are:</p>
+
+<ul>
+<li><p>300</p></li>
+
+<li><p>600</p></li>
+
+<li><p>1200</p></li>
+
+<li><p>2400</p></li>
+
+<li><p>4800</p></li>
+
+<li><p>9600</p></li>
+
+<li><p>19200</p></li>
+
+<li><p>38400</p></li>
+
+<li><p>115200</p></li>
+</ul>
+
+<h3 id="configuring-the-serial-console-on-x86-switches">Configuring the Serial Console on x86 Switches</h3>
+
+<p>On x86 switches, you configure serial console baud rate by editing
+<code>grub</code>.</p>
+
+
+<div class="notices warning" > <p>Incorrect configuration settings in <code>grub</code> can cause the switch to be
+inaccessible via the console. Grub changes should be carefully reviewed
+before implementation.</p>
+ </div>
+
+
+<p>The valid values for the baud rate are:</p>
+
+<ul>
+<li><p>300</p></li>
+
+<li><p>600</p></li>
+
+<li><p>1200</p></li>
+
+<li><p>2400</p></li>
+
+<li><p>4800</p></li>
+
+<li><p>9600</p></li>
+
+<li><p>19200</p></li>
+
+<li><p>38400</p></li>
+
+<li><p>115200</p></li>
+</ul>
+
+<p>To change the serial console baud rate:</p>
+
+<ol>
+<li><p>Edit <code>/etc/default/grub</code>. The two relevant lines in
+<code>/etc/default/grub</code> are as follows; replace the <em>115200</em> value with
+a valid value specified above in the <code>--speed</code> variable in the first
+line and in the <code>console</code> variable in the second line:</p>
+
+<pre><code>GRUB_SERIAL_COMMAND=&quot;serial --port=0x2f8 --speed=115200 --word=8 --parity=no --stop=1&quot;              
+GRUB_CMDLINE_LINUX=&quot;console=ttyS1,115200n8 cl_platform=accton_as5712_54x&quot;
+</code></pre></li>
+
+<li><p>After you save your changes to the grub configuration, type the
+following at the command prompt:</p>
+
+<pre><code>cumulus@switch:~$ update-grub
+</code></pre></li>
+
+<li><p>If you plan on accessing your switch&rsquo;s BIOS over the serial console,
+you need to update the baud rate in the switch BIOS. For more
+information, see <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203884473" target="_blank">this knowledge base
+article</a>.</p></li>
+
+<li><p>Reboot the switch.</p></li>
+</ol>
+
+<h2 id="diagnostics-using-cl-support">Diagnostics Using cl-support</h2>
+
+<p>You can use <code>cl-support</code> to generate a single export file that contains
+various details and the configuration from a switch. This is useful for
+remote debugging and troubleshooting.</p>
+
+<p>You should run <code>cl-support</code> before you submit a support request to
+Cumulus Networks as this file helps in the investigation of issues:</p>
+
+<pre><code>cumulus@switch:~$ sudo cl-support -h
+Usage: cl-support [-h] [-s] [-t] [-v] [reason]...
+Args:
+[reason]: Optional reason to give for invoking cl-support.
+         Saved into tarball's cmdline.args file.
+Options:
+-h: Print this usage statement
+-s: Security sensitive collection
+-t: User filename tag
+-v: Verbose
+-e MODULES: Enable modules. Comma separated module list (run with -e help for module names)
+-d MODULES: Disable modules. Comma separated module list (run with -d help for module names)
+</code></pre>
+
+<p>Example output:</p>
+
+<pre><code>cumulus@switch:~$ ls /var/support
+cl_support_20130806_032720.tar.xz
+</code></pre>
+
+<p>The directory structure is compressed using LZMA2 compression and can be
+extracted using the <code>tar</code> command:</p>
+
+<pre><code>cumulus@switch:~$ cd /var/support
+cumulus@switch:~$ sudo tar xf cl_support_20160527_140040.tar
+cumulus@switch:~$ ls -l cl_support_20160529_140040/
+
+-rwxr-xr-x  1 root root 7724 May 27 14:00 cl-support
+-rw-r--r--  1 root root   52 May 27 14:00 cmdline.args
+drwxr-xr-x  2 root root 4096 May 27 14:00 core
+drwxr-xr-x 64 root root 4096 May 27 13:51 etc
+drwxr-xr-x  4 root root 4096 May 27 14:00 proc
+drwxr-xr-x  2 root root 4096 May 27 14:01 support
+drwxr-xr-x  3 root root 4096 May 27 14:00 sys
+drwxr-xr-x  3 root root 4096 Mar  8 15:22 var
+</code></pre>
+
+<p>The directory contains the following elements:</p>
+
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>core</td>
+<td>Contains the core files on the switch, including those generated from <code>switchd</code>.</td>
+</tr>
+
+<tr>
+<td>etc</td>
+<td>Is a replica of the switch’s <code>/etc</code> directory. <code>/etc</code> contains all the general Linux configuration files, as well as configurations for the system’s network interfaces, <code>quagga</code> and other packages.</td>
+</tr>
+
+<tr>
+<td>log</td>
+<td>Is a replica of the switch&rsquo;s <code>/var/log</code> directory. Most Cumulus Linux log files are located in this directory. Notable log files include <code>switchd.log</code>, <code>daemon.log</code>, <code>quagga</code> log files, and <code>syslog</code>. For more information, read this <a href="https://support.cumulusnetworks.com/entries/24125147-Relevant-Log-Files-in-Cumulus-Linux" target="_blank">knowledge base article</a>.</td>
+</tr>
+
+<tr>
+<td>proc</td>
+<td>Is a replica of the switch’s <code>/proc</code> directory. In Linux, <code>/proc</code> contains runtime system information (like system memory, devices mounted, and hardware configuration). These files are not actual files but the current state of the system.</td>
+</tr>
+
+<tr>
+<td>support</td>
+<td>Is a set of files containing further system information, which is obtained by <code>cl-support</code> running commands such as <code>ps -aux</code>, <code>netstat -i</code>, and so forth — even the routing tables.</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>cl-support</code>, when untarred, contains a <code>cmdline.args</code> file. This file
+indicates what reason triggered it. When contacting Cumulus Networks
+technical support, please attach the <code>cl-support</code> file if possible. For
+more information about <code>cl-support</code>, read <a href="/Understanding_and_Decoding_the_cl-support_Output_File.html">Understanding and Decoding
+the cl-support Output
+File</a>.</p>
+
+
+<div class="notices note" > <p>If you have issues extracting the script with the <code>tar</code> command, like an
+error saying the file does not look like tar archive, try using the
+<code>unxz</code> command first:</p>
+
+<pre><code>cumulus@switch:~$ sudo unxz cl_support_20130729_140040.tar.xz
+</code></pre>
+
+<p>You can save a lot of disk space and perhaps some time if you do not run
+<code>unxz</code> on the tar file.</p>
+ </div>
+
+
+<h2 id="sending-log-files-to-a-syslog-server">Sending Log Files to a syslog Server</h2>
+
+<p>All logging on Cumulus Linux is done with
+<a href="http://www.rsyslog.com/" target="_blank">rsyslog</a>. <code>rsyslog</code> provides both local
+logging to the <code>syslog</code> file as well as the ability to export logs to an
+external <code>syslog</code> server. High precision timestamps are enabled for all
+<code>rsyslog</code> log files; here&rsquo;s an example:</p>
+
+<pre><code class="language-diff-block-target">2015-08-14T18:21:43.337804+00:00 cumulus switchd[3629]: 
+ switchd.c:1409 switchd version 1.0-cl2.5+5
+</code></pre>
+
+<p><strong>Local logging:</strong> Most logs within Cumulus Linux are sent to files in
+the <code>/var/log</code> directory. Most relevant information is placed within the
+<code>/var/log/syslog</code> file. For more information on specific log files, see
+<a href="/Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>.</p>
+
+<p><strong>Export logging:</strong> To send <code>syslog</code> files to an external <code>syslog</code>
+server, add a rule specifying to copy all messages (*.*) to the IP
+address and switch port of your <code>syslog</code> server in the <code>rsyslog</code>
+configuration files as described below.</p>
+
+<p>In the following example, <em>192.168.1.2</em> is the remote <code>syslog</code> server
+and <em>514</em> is the port number. For UDP-based syslog, use a single @
+before the IP address: <em>@192.168.1.2:514</em>. For TCP-based syslog, use two
+@@ before the IP address: <em>@@192.168.1.2:514</em>.</p>
+
+<ol>
+<li><p>Create a file called something like
+<code>/etc/rsyslog.d/90-remotesyslog.conf</code>. Make sure it starts with a
+number lower than 99 so that it executes before <code>99-syslog.conf</code>.
+Add content like the following:</p>
+
+<pre><code>## Copy all messages to the remote syslog server at 192.168.1.2 port 514
+*.*                             @192.168.1.2:514
+</code></pre></li>
+
+<li><p>Restart <code>rsyslog</code>.</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl restart rsyslog.service
+</code></pre></li>
+</ol>
+
+
+<div class="notices note" > <p>All Cumulus Linux rules are stored in separate files in
+<code>/etc/rsyslog.d/</code>, which are called at the end of the <code>GLOBAL
+DIRECTIVES</code> section of <code>/etc/rsyslog.conf</code>. As a result, the <code>RULES</code>
+section at the end of <code>rsyslog.conf</code> is ignored because the messages
+have to be processed by the rules in <code>/etc/rsyslog.d</code> and then dropped
+by the last line in <code>/etc/rsyslog.d/99-syslog.conf</code>.</p>
+ </div>
+
+
+
+<div class="notices note" > <p>In the case of the <code>switchd</code> rules file, the file must be numbered lower
+than 25. For example, <code>13-switchd-remote.conf</code>.</p>
+ </div>
+
+
+<p>If you need to send other log files (e.g. switchd logs) to a <code>syslog</code>
+server, configure a new file in <code>/etc/rsyslog.d</code>, as described above,
+and add lines similar to the following lines:</p>
+
+<pre><code>## Logging switchd messages to remote syslog server
+$ModLoad imfile
+$InputFileName /var/log/switchd.log
+$InputFileStateFile logfile-log
+$InputFileTag switchd:
+$InputFileSeverity info
+$InputFileFacility local7
+$InputFilePollInterval 5
+$InputRunFileMonitor
+
+if $programname == 'switchd' then @192.168.1.2:514
+</code></pre>
+
+<p>Then restart <code>syslog</code>:</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl restart rsyslog.service
+</code></pre>
+
+<p>In the above configuration, each setting is defined as follows:</p>
+
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>$ModLoad <em>imfile</em></td>
+<td>Enables the <code>rsyslog</code> module to watch file contents.</td>
+</tr>
+
+<tr>
+<td>$InputFileName</td>
+<td>The file to be sent to the <code>syslog</code> server. In this example, you are going to send changes made to <code>/var/log/switchd.log</code> to the <code>syslog</code> server.</td>
+</tr>
+
+<tr>
+<td>$InputFileStateFile</td>
+<td>This is used by <code>rsyslog</code> to track state of the file being monitored. This must be unique for each file being monitored.</td>
+</tr>
+
+<tr>
+<td>$InputFileTag</td>
+<td>Defines the <code>syslog</code> tag that will precede the <code>syslog</code> messages. In this example, all logs are prefaced with <em>switchd</em>.</td>
+</tr>
+
+<tr>
+<td>$InputFileSeverity</td>
+<td>Defines the logging severity level sent to the <code>syslog</code> server.</td>
+</tr>
+
+<tr>
+<td>$InputFileFacility</td>
+<td>Defines the logging format. <em>local7</em> is common.</td>
+</tr>
+
+<tr>
+<td>$InputFilePollInterval</td>
+<td>Defines how frequently in seconds <code>rsyslog</code> looks for new information in the file. Lower values provide faster updates but create slightly more load on the CPU.</td>
+</tr>
+
+<tr>
+<td>$InputRunFileMonitor</td>
+<td>Enables the file monitor module with the configured settings.</td>
+</tr>
+</tbody>
+</table>
+
+<p>In most cases, the settings to customize include:</p>
+
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>$InputFileName</td>
+<td>The file to stream to the <code>syslog</code> server.</td>
+</tr>
+
+<tr>
+<td>$InputFileStateFile</td>
+<td>A unique name for each file being watched.</td>
+</tr>
+
+<tr>
+<td>$InputFileTag</td>
+<td>A prefix to the log message on the server.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Finally, the <code>if $programname</code> line is what sends the log files to the
+<code>syslog</code> server. It follows the same syntax as the <code>/var/log/syslog</code>
+file, where <em>@</em> indicates UDP, <em>192.168.1.2</em> is the IP address of the
+<code>syslog</code> server, and <em>514</em> is the UDP port. The value <em>switchd</em> must
+match the value in <code>$InputFileTag</code>.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>The links below discuss more specific monitoring topics.</p>
+
+<ul>
+<li><p><a href="/Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot
+Recovery</a></p></li>
+
+<li><p><a href="/Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using
+cl-resource-query</a></p></li>
+
+<li><p><a href="/Monitoring_System_Hardware.html">Monitoring System Hardware</a></p></li>
+
+<li><p><a href="/Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device
+Counters</a></p></li>
+
+<li><p><a href="/Understanding_and_Decoding_the_cl-support_Output_File.html">Understanding and Decoding the cl-support Output
+File</a></p></li>
+
+<li><p><a href="/Troubleshooting_Network_Interfaces.html">Troubleshooting Network
+Interfaces</a></p></li>
+
+<li><p><a href="/Network_Troubleshooting.html">Network Troubleshooting</a></p></li>
+
+<li><p><a href="/SNMP_Monitoring.html">SNMP Monitoring</a></p></li>
+</ul>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#commands">Commands</a></li>
+<li><a href="#using-the-serial-console">Using the Serial Console</a>
+<ul>
+<li><a href="#configuring-the-serial-console-on-arm-switches">Configuring the Serial Console on ARM Switches</a></li>
+<li><a href="#configuring-the-serial-console-on-x86-switches">Configuring the Serial Console on x86 Switches</a></li>
+</ul></li>
+<li><a href="#diagnostics-using-cl-support">Diagnostics Using cl-support</a></li>
+<li><a href="#sending-log-files-to-a-syslog-server">Sending Log Files to a syslog Server</a></li>
+<li><a href="#next-steps">Next Steps</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/_index.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

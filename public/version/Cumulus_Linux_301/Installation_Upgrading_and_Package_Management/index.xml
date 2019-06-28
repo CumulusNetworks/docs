@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Installation, Upgrading and Package Management on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/</link>
+    <description>Recent content in Installation, Upgrading and Package Management on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Adding and Updating Packages</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/</guid>
+      <description>You use the Advanced Packaging Tool (APT) to manage additional applications (in the form of packages) and to install the latest updates.
+Commands  apt-get
+ apt-cache
+ dpkg
+  Updating the Package Cache To work properly, APT relies on a local cache of the available packages. You must populate the cache initially, and then periodically update it with apt-get update:
+cumulus@switch:~$ sudo apt-get update Get:1 http://repo3.cumulusnetworks.com CumulusLinux-3 InRelease [7,624 B] Get:2 http://repo3.</description>
+    </item>
+    
+    <item>
+      <title>Zero Touch Provisioning - ZTP</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/</guid>
+      <description>Zero touch provisioning (ZTP) enables network devices to be quickly deployed in large-scale environments. Data center engineers only need to rack and stack the switch, install Cumulus Linux via ONIE, then connect the switch to the management network — or alternatively, insert a USB stick and boot the switch. From here, the provisioning process can start automatically and deploy a configuration.
+The provisioning framework allows for a one-time, user-provided script to be executed.</description>
+    </item>
+    
+  </channel>
+</rss>

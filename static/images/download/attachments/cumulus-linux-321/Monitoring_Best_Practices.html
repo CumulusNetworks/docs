@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Monitoring Best Practices - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126809"> <span>Monitoring Best Practices</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  >The following monitoring processes are considered best practices for reviewing and troubleshooting potential issues with Cumulus Linux environments. In addition, several of the more common issues have been listed, with potential solutions included.    </p>
+    <div class="section section-1" id="src-5126809_MonitoringBestPractices-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126809_MonitoringBestPractices-Overview">
+        <h1 class="heading "><span>Overview</span></h1>
+    <p  >This document aims to provide two sets of outputs:    </p>
+<ul class=" "><li class=" ">    <p  >Metrics that can be polled from Cumulus Linux and used in trend analysis    </p>
+</li><li class=" ">    <p  >Critical log messages that can be monitored for triggered alerts    </p>
+</li></ul>    <div class="section section-2" id="src-5126809_MonitoringBestPractices-TrendAnalysisviaMetrics">
+        <h2 class="heading "><span>Trend Analysis via Metrics</span></h2>
+    <p  >A metric is a quantifiable measure that is used to track and assess the status of a specific infrastructure component. It is a check collected over time. Examples of metrics include bytes on an interface, CPU utilization and total number of routes.    </p>
+    <p  >Metrics are more valuable when used for trend analysis.    </p>
+    </div>
+    <div class="section section-2" id="src-5126809_MonitoringBestPractices-AlertingviaTriggeredLogging">
+        <h2 class="heading "><span>Alerting via Triggered Logging</span></h2>
+    <p  >Triggered issues are normally sent to <tt class=" ">syslog</tt>, but could go to another log file depending on the feature. On Cumulus Linux, <tt class=" ">rsyslog</tt> handles all logging including local and remote logging. Logs are the best method to use for generating alerts when the system transitions from a stable steady state.    </p>
+    <p  >Sending logs to a centralized collector, then creating an alerts based on critical logs is optimal solution for alerting.    </p>
+    </div>
+    <div class="section section-2" id="src-5126809_MonitoringBestPractices-LogFormatting">
+        <h2 class="heading "><span>Log Formatting</span></h2>
+    <p  >Most log files in Cumulus Linux use a standard presentation format. For example, consider this <tt class=" ">syslog</tt> entry:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">2017-03-08T06:26:43.569681+00:00 leaf01 sysmonitor: Critically high CPU use: 99%</code></div>
+</div>
+    </div>
+<ul class=" "><li class=" ">    <p  ><i class=" ">2017-03-08T06:26:43.569681+00:00</i> is the timestamp.    </p>
+</li><li class=" ">    <p  ><i class=" ">leaf01</i> is the hostname.    </p>
+</li><li class=" ">    <p  ><i class=" ">sysmonitor</i> is the process that is the source of the message.    </p>
+</li><li class=" ">    <p  ><i class=" ">Critically high CPU use: 99%</i> is the message.    </p>
+</li></ul>    <p  >For brevity and legibility, the timestamp and hostname have been omitted from the examples in this chapter.    </p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126809_MonitoringBestPractices-Hardware">
+        <h1 class="heading "><span>Hardware</span></h1>
+    <p  >The <tt class=" ">smond</tt> process provides monitoring functionality for various switch hardware elements. Minimum/maximum values are output, depending on the flags applied to the basic command. The hardware elements and applicable commands/flags are listed in the table below:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Hardware Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Monitoring Command/s    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Interval Poll    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Temperature    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ smonctl -j<br/>cumulus@switch:~$ smonctl -j -s TEMP[X]</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >600 seconds    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Fan    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ smonctl -j<br/>cumulus@switch:~$ smonctl -j -s FAN[X]</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >600 seconds    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PSU    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ smonctl -j<br/>cumulus@switch:~$ smonctl -j -s PSU[X]</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >600 seconds    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PSU Fan    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ smonctl -j<br/>cumulus@switch:~$ smonctl -j -s PSU[X]Fan[X]</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >600 seconds    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PSU Temperature    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ smonctl -j<br/>cumulus@switch:~$ smonctl -j -s PSU[X]Temp[X]</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >600 seconds    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Voltage    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ smonctl -j<br/>cumulus@switch:~$ smonctl -j -s Volt[X]</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >600 seconds    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Front Panel LED    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ ledmgrd -d<br/>cumulus@switch:~$ ledmgrd -j</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >600 seconds    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Hardware Logs    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Location    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Entries    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >High temperature    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">/usr/sbin/smond : : Temp1(Board Sensor near CPU): state changed from UNKNOWN to OK</code></div>
+<div class="line"><code class="plain">/usr/sbin/smond : : Temp2(Board Sensor Near Virtual Switch): state changed from UNKNOWN to OK</code></div>
+<div class="line"><code class="plain">/usr/sbin/smond : : Temp3(Board Sensor at Front Left Corner): state changed from UNKNOWN to OK</code></div>
+<div class="line"><code class="plain">/usr/sbin/smond : : Temp4(Board Sensor at Front Right Corner): state changed from UNKNOWN to OK</code></div>
+<div class="line"><code class="plain">/usr/sbin/smond : : Temp5(Board Sensor near Fan): state changed from UNKNOWN to OK</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Fan speed issues    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">/usr/sbin/smond : : Fan1(Fan Tray 1, Fan 1): state changed from UNKNOWN to OK</code></div>
+<div class="line"><code class="plain">/usr/sbin/smond : : Fan2(Fan Tray 1, Fan 2): state changed from UNKNOWN to OK</code></div>
+<div class="line"><code class="plain">/usr/sbin/smond : : Fan3(Fan Tray 2, Fan 1): state changed from UNKNOWN to OK</code></div>
+<div class="line"><code class="plain">/usr/sbin/smond : : Fan4(Fan Tray 2, Fan 2): state changed from UNKNOWN to OK</code></div>
+<div class="line"><code class="plain">/usr/sbin/smond : : Fan5(Fan Tray 3, Fan 1): state changed from UNKNOWN to OK</code></div>
+<div class="line"><code class="plain">/usr/sbin/smond : : Fan6(Fan Tray 3, Fan 2): state changed from UNKNOWN to OK</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >PSU failure    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">/usr/sbin/smond : : PSU1Fan1(PSU1 Fan): state changed from UNKNOWN to OK</code></div>
+<div class="line"><code class="plain">/usr/sbin/smond : : PSU2Fan1(PSU2 Fan): state changed from UNKNOWN to BAD</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-1" id="src-5126809_MonitoringBestPractices-SystemData">
+        <h1 class="heading "><span>System Data</span></h1>
+    <p  >Cumulus Linux includes a number of ways to monitor various aspects of system data. In addition, alerts are issued in high risk situations.    </p>
+    <div class="section section-2" id="src-5126809_MonitoringBestPractices-CPUIdleTime">
+        <h2 class="heading "><span>CPU Idle Time</span></h2>
+    <p  >When a CPU reports five high CPU alerts within a span of 5 minutes, an alert is logged.    </p>
+    <div  class="confbox admonition admonition-warning">
+                    <p class="title">Short High CPU Bursts</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Short bursts of high CPU can occur during switchd churn or routing protocol startup. Do not set alerts for these short bursts.    </p>
+        </div>
+    </div>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >System Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Monitoring Command/s    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Interval Poll    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >CPU utilization    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ cat /proc/stat<br/>cumulus@switch:~$ top -b -n 1</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >30 seconds    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >CPU Logs    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Location    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Entries    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >High CPU    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">sysmonitor: Critically high CPU use: 99%</code></div>
+<div class="line"><code class="plain">systemd[1]: Starting Monitor system resources (cpu, memory, disk)...</code></div>
+<div class="line"><code class="plain">systemd[1]: Started Monitor system resources (cpu, memory, disk).</code></div>
+<div class="line"><code class="plain">sysmonitor: High CPU use: 89%</code></div>
+<div class="line"><code class="plain">systemd[1]: Starting Monitor system resources (cpu, memory, disk)...</code></div>
+<div class="line"><code class="plain">systemd[1]: Started Monitor system resources (cpu, memory, disk).</code></div>
+<div class="line"><code class="plain">sysmonitor: CPU use no longer high: 77%</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >Cumulus Linux 3.0 and later monitors CPU, memory and disk space via <tt class=" ">sysmonitor</tt>. The configurations for the thresholds are stored in <tt class=" ">/etc/cumulus/sysmonitor.conf</tt>. More information is available via <tt class=" ">man sysmonitor</tt>.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >CPU measure    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Thresholds    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Use    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Alert: 90% Crit: 95%    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Process Load    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Alarm: 95% Crit: 125%    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  class="expand-control-text">Click here to see differences between Cumulus Linux 2.5 ESR and 3.0 and later...    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >CPU Logs    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Location    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Entries    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >High CPU    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">jdoo[2803]: 'localhost' cpu system usage of 41.1% matches resource limit [cpu system usage&gt;30.0%]</code></div>
+<div class="line"><code class="plain">jdoo[4727]: 'localhost' sysloadavg(15min) of 111.0 matches resource limit [sysloadavg(15min)&gt;110.0]</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >In Cumulus Linux 2.5, CPU logs are created with each unique threshold:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >CPU measure    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >&lt; 2.5 Threshold    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >User    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >70%    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >System    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >30%    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Wait    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >20%    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >Cumulus Linux 2.5, CPU and memory warnings are generated via <tt class=" ">jdoo</tt>. The configuration for the thresholds are stored in <tt class=" ">/etc/jdoo/jdoorc.d/cl-utilities.rc</tt>.    </p>
+    </div>
+    <div class="section section-2" id="src-5126809_MonitoringBestPractices-DiskUsage">
+        <h2 class="heading "><span>Disk Usage</span></h2>
+    <p  >When monitoring disk utilization, you can exclude <tt class=" ">tmpfs</tt> from monitoring.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >System Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Monitoring Command/s    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Interval Poll    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Disk utilization    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ /bin/df -x tmpfs</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >300 seconds    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126809_MonitoringBestPractices-ProcessRestart">
+        <h1 class="heading "><span>Process Restart </span></h1>
+    <p  >In Cumulus Linux 3.0 and later, <tt class=" ">systemd</tt> is responsible for monitoring and restarting processes.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Process Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Monitoring Command/s    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >View processes monitored by systemd    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ systemctl status</pre>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  class="expand-control-text">Click here to changes from Cumulus Linux 2.5 ESR to 3.0 and later...    </p>
+    <p  >Cumulus Linux 2.5.2 through 2.5 ESR uses a forked version of <tt class=" ">monit</tt> called <tt class=" ">jdoo</tt> to monitor processes. If the process ever fails, <tt class=" ">jdoo</tt> then invokes <tt class=" ">init.d</tt> to restart the process.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Process Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Monitoring Command/s    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >View processes monitored by jdoo    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ jdoo summary</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >View process restarts    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ sudo cat /var/log/syslog</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >View current process state    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ ps -aux</pre>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-1" id="src-5126809_MonitoringBestPractices-Layer1ProtocolsandInterfaces">
+        <h1 class="heading "><span>Layer 1 Protocols and Interfaces</span></h1>
+    <p  >Link and port state interface transitions are logged to <tt class=" ">/var/log/syslog</tt> and <tt class=" ">/var/log/switchd.log</tt>.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Interface Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Monitoring Command/s    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Link state    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ cat /sys/class/net/[iface]/operstate          <br/>cumulus@switch:~$ net show interface all json</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Link speed    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ cat /sys/class/net/[iface]/speed           <br/>cumulus@switch:~$ net show interface all json</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Port state    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ ip link show<br/>cumulus@switch:~$ net show interface all json</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Bond state    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ cat /proc/net/bonding/[bond]<br/>cumulus@switch:~$ net show interface all json</pre>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >Interface counters are obtained from either querying the hardware or the Linux kernel. The two outputs should align, but the Linux kernel aggregates the output from the hardware.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Interface Counter Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Monitoring Command/s    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Interval Poll    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Interface counters    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ cat /sys/class/net/[iface]/statistics/[stat_name]<br/>cumulus@switch:~$ net show counters json<br/>cumulus@switch:~$ cl-netstat -j<br/>cumulus@switch:~$ ethtool -S [iface]</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >10 seconds    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Layer 1 Logs    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Location    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Entries    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Link failure/Link flap    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/switchd.log</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">switchd[5692]: nic.c:213 nic_set_carrier: swp17: setting kernel carrier: down</code></div>
+<div class="line"><code class="plain">switchd[5692]: netlink.c:291 libnl: swp1, family 0, ifi 20, oper down</code></div>
+<div class="line"><code class="plain">switchd[5692]: nic.c:213 nic_set_carrier: swp1: setting kernel carrier: up</code></div>
+<div class="line"><code class="plain">switchd[5692]: netlink.c:291 libnl: swp17, family 0, ifi 20, oper up</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Unidirectional link    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/switchd.log<br/>/var/log/ptm.log</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">ptmd[7146]: ptm_bfd.c:2471 Created new session 0x1 with peer 10.255.255.11 port swp1</code></div>
+<div class="line"><code class="plain">ptmd[7146]: ptm_bfd.c:2471 Created new session 0x2 with peer fe80::4638:39ff:fe00:5b port swp1</code></div>
+<div class="line"><code class="plain">ptmd[7146]: ptm_bfd.c:2471 Session 0x1 down to peer 10.255.255.11, Reason 8</code></div>
+<div class="line"><code class="plain">ptmd[7146]: ptm_bfd.c:2471 Detect timeout on session 0x1 with peer 10.255.255.11, in state 1</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Bond Negotiation    </p>
+<ul class=" "><li class=" ">    <p  >Working    </p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">kernel: [85412.763193] bonding: bond0 is being created...</code></div>
+<div class="line"><code class="plain">kernel: [85412.770014] bond0: Enslaving swp2 as a backup interface with an up link</code></div>
+<div class="line"><code class="plain">kernel: [85412.775216] bond0: Enslaving swp1 as a backup interface with an up link</code></div>
+<div class="line"><code class="plain">kernel: [85412.797393] IPv6: ADDRCONF(NETDEV_UP): bond0: link is not ready</code></div>
+<div class="line"><code class="plain">kernel: [85412.799425] IPv6: ADDRCONF(NETDEV_CHANGE): bond0: link becomes ready</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Bond Negotiation    </p>
+<ul class=" "><li class=" ">    <p  >Failing    </p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">kernel: [85412.763193] bonding: bond0 is being created...</code></div>
+<div class="line"><code class="plain">kernel: [85412.770014] bond0: Enslaving swp2 as a backup interface with an up link</code></div>
+<div class="line"><code class="plain">kernel: [85412.775216] bond0: Enslaving swp1 as a backup interface with an up link</code></div>
+<div class="line"><code class="plain">kernel: [85412.797393] IPv6: ADDRCONF(NETDEV_UP): bond0: link is not ready</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >MLAG peerlink negotiation    </p>
+<ul class=" "><li class=" ">    <p  >Working    </p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">lldpd[998]: error while receiving frame on swp50: Network is down</code></div>
+<div class="line"><code class="plain">lldpd[998]: error while receiving frame on swp49: Network is down</code></div>
+<div class="line"><code class="plain">kernel: [76174.262893] peerlink: Setting ad_actor_system to 44:38:39:00:00:11</code></div>
+<div class="line"><code class="plain">kernel: [76174.264205] 8021q: adding VLAN 0 to HW filter on device peerlink</code></div>
+<div class="line"><code class="plain">mstpd: one_clag_cmd: setting (1) peer link: peerlink</code></div>
+<div class="line"><code class="plain">mstpd: one_clag_cmd: setting (1) clag state: up</code></div>
+<div class="line"><code class="plain">mstpd: one_clag_cmd: setting system-mac 44:39:39:ff:40:94</code></div>
+<div class="line"><code class="plain">mstpd: one_clag_cmd: setting clag-role secondary</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/clagd.log</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">clagd[14003]: Cleanup is executing.</code></div>
+<div class="line"><code class="plain">clagd[14003]: Cannot open file "/tmp/pre-clagd.q7XiO</code></div>
+<div class="line"><code class="plain">clagd[14003]: Cleanup is finished</code></div>
+<div class="line"><code class="plain">clagd[14003]: Beginning execution of clagd version 1</code></div>
+<div class="line"><code class="plain">clagd[14003]: Invoked with: /usr/sbin/clagd --daemon</code></div>
+<div class="line"><code class="plain">clagd[14003]: Role is now secondary</code></div>
+<div class="line"><code class="plain">clagd[14003]: HealthCheck: role via backup is second</code></div>
+<div class="line"><code class="plain">clagd[14003]: HealthCheck: backup active</code></div>
+<div class="line"><code class="plain">clagd[14003]: Initial config loaded</code></div>
+<div class="line"><code class="plain">clagd[14003]: The peer switch is active.</code></div>
+<div class="line"><code class="plain">clagd[14003]: Initial data sync from peer done.</code></div>
+<div class="line"><code class="plain">clagd[14003]: Initial handshake done.</code></div>
+<div class="line"><code class="plain">clagd[14003]: Initial data sync to peer done.</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >MLAG peerlink negotiation    </p>
+<ul class=" "><li class=" ">    <p  >Failing    </p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">lldpd[998]: error while receiving frame on swp50: Network is down</code></div>
+<div class="line"><code class="plain">lldpd[998]: error while receiving frame on swp49: Network is down</code></div>
+<div class="line"><code class="plain">kernel: [76174.262893] peerlink: Setting ad_actor_system to 44:38:39:00:00:11</code></div>
+<div class="line"><code class="plain">kernel: [76174.264205] 8021q: adding VLAN 0 to HW filter on device peerlink</code></div>
+<div class="line"><code class="plain">mstpd: one_clag_cmd: setting (1) peer link: peerlink</code></div>
+<div class="line"><code class="plain">mstpd: one_clag_cmd: setting (1) clag state: down</code></div>
+<div class="line"><code class="plain">mstpd: one_clag_cmd: setting system-mac 44:39:39:ff:40:94</code></div>
+<div class="line"><code class="plain">mstpd: one_clag_cmd: setting clag-role secondary</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/clagd.log</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">clagd[26916]: Cleanup is executing.</code></div>
+<div class="line"><code class="plain">clagd[26916]: Cannot open file "/tmp/pre-clagd.6M527vvGX0/brbatch" for reading: No such file or directory</code></div>
+<div class="line"><code class="plain">clagd[26916]: Cleanup is finished</code></div>
+<div class="line"><code class="plain">clagd[26916]: Beginning execution of clagd version 1.3.0</code></div>
+<div class="line"><code class="plain">clagd[26916]: Invoked with: /usr/sbin/clagd --daemon 169.254.1.2 peerlink.4094 44:38:39:FF:01:01 --priority 1000 --backupIp 10.0.0.2</code></div>
+<div class="line"><code class="plain">clagd[26916]: Role is now secondary</code></div>
+<div class="line"><code class="plain">clagd[26916]: Initial config loaded</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >MLAG port negotiation    </p>
+<ul class=" "><li class=" ">    <p  >Working    </p>
+</li></ul>    <p  >    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">kernel: [77419.112195] bonding: server01 is being created...</code></div>
+<div class="line"><code class="plain">lldpd[998]: error while receiving frame on swp1: Network is down</code></div>
+<div class="line"><code class="plain">kernel: [77419.122707] 8021q: adding VLAN 0 to HW filter on device swp1</code></div>
+<div class="line"><code class="plain">kernel: [77419.126408] server01: Enslaving swp1 as a backup interface with a down link</code></div>
+<div class="line"><code class="plain">kernel: [77419.177175] server01: Setting ad_actor_system to 44:39:39:ff:40:94</code></div>
+<div class="line"><code class="plain">kernel: [77419.190874] server01: Warning: No 802.3ad response from the link partner for any adapters in the bond</code></div>
+<div class="line"><code class="plain">kernel: [77419.191448] IPv6: ADDRCONF(NETDEV_UP): server01: link is not ready</code></div>
+<div class="line"><code class="plain">kernel: [77419.191452] 8021q: adding VLAN 0 to HW filter on device server01</code></div>
+<div class="line"><code class="plain">kernel: [77419.192060] server01: link status definitely up for interface swp1, 1000 Mbps full duplex</code></div>
+<div class="line"><code class="plain">kernel: [77419.192065] server01: now running without any active interface!</code></div>
+<div class="line"><code class="plain">kernel: [77421.491811] IPv6: ADDRCONF(NETDEV_CHANGE): server01: link becomes ready</code></div>
+<div class="line"><code class="plain">mstpd: one_clag_cmd: setting (1) mac 44:38:39:00:00:17 &lt;server01, None&gt;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/clagd.log</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">clagd[14003]: server01 is now dual connected.</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >MLAG port negotiation    </p>
+<ul class=" "><li class=" ">    <p  >Failing    </p>
+</li></ul>    <p  >    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">kernel: [79290.290999] bonding: server01 is being created...</code></div>
+<div class="line"><code class="plain">kernel: [79290.299645] 8021q: adding VLAN 0 to HW filter on device swp1</code></div>
+<div class="line"><code class="plain">kernel: [79290.301790] server01: Enslaving swp1 as a backup interface with a down link</code></div>
+<div class="line"><code class="plain">kernel: [79290.358294] server01: Setting ad_actor_system to 44:39:39:ff:40:94</code></div>
+<div class="line"><code class="plain">kernel: [79290.373590] server01: Warning: No 802.3ad response from the link partner for any adapters in the bond</code></div>
+<div class="line"><code class="plain">kernel: [79290.374024] IPv6: ADDRCONF(NETDEV_UP): server01: link is not ready</code></div>
+<div class="line"><code class="plain">kernel: [79290.374028] 8021q: adding VLAN 0 to HW filter on device server01</code></div>
+<div class="line"><code class="plain">kernel: [79290.375033] server01: link status definitely up for interface swp1, 1000 Mbps full duplex</code></div>
+<div class="line"><code class="plain">kernel: [79290.375037] server01: now running without any active interface!</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/clagd.log</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">clagd[14291]: Conflict (server01): matching clag-id (1) not configured on peer</code></div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"><code class="plain">clagd[14291]: Conflict cleared (server01): matching clag-id (1) detected on peer </code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >MLAG port negotiation    </p>
+<ul class=" "><li class=" ">    <p  >Flapping    </p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">mstpd: one_clag_cmd: setting (0) mac 00:00:00:00:00:00 &lt;server01, None&gt;</code></div>
+<div class="line"><code class="plain">mstpd: one_clag_cmd: setting (1) mac 44:38:39:00:00:03 &lt;server01, None&gt;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >&nbsp;    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/clagd.log</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">clagd[14291]: server01 is no longer dual connected</code></div>
+<div class="line"><code class="plain">clagd[14291]: server01 is now dual connected.</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <p  >Prescriptive Topology Manager (PTM) uses LLDP information to compare against a topology.dot file that describes the network. It has built in alerting capabilities, so it is preferable to use PTM on box rather than polling LLDP information regularly. The PTM code is available on the Cumulus Networks <a  class="external-link" href="https://github.com/CumulusNetworks/ptm">GitHub repository</a>. Additional PTM, BFD and associated logs are documented in the code.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Peering information should be tracked through PTM. For more information, refer to the <a   href="https://docs.cumulusnetworks.com/display/DOCS/Prescriptive+Topology+Manager+-+PTM">Prescriptive Topology Manager documentation</a>.    </p>
+        </div>
+    </div>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Neighbor Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Monitoring Command/s    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Interval Poll    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >LLDP Neighbor    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ lldpctl -f json</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >300 seconds    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Prescriptive Topology Manager    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ ptmctl -j [-d]</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Triggered    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-1" id="src-5126809_MonitoringBestPractices-Layer2Protocols">
+        <h1 class="heading "><span>Layer 2 Protocols</span></h1>
+    <p  >Spanning tree is a protocol that prevents loops in a layer 2 infrastructure. In a stable state, the spanning tree protocol should stably converge. Monitoring the Topology Change Notifications (TCN) in STP helps identify when new BPDUs were received.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Interface Counter Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Monitoring Command/s    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Interval Poll    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >STP TCN Transitions    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ mstpctl showbridge json<br/>cumulus@switch:~$ mstpctl showport json</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >60 seconds    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >MLAG peer state    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ clagctl status<br/>cumulus@switch:~$ clagd -j<br/>cumulus@switch:~$ cat /var/log/clagd.log</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >60 seconds    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >MLAG peer MACs    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ clagctl dumppeermacs<br/>cumulus@switch:~$ clagctl dumpourmacs </pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >300 seconds    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Layer 2 Logs    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Location    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Entries    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Spanning Tree Working    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">kernel: [1653877.190724] device swp1 entered promiscuous mode</code></div>
+<div class="line"><code class="plain">kernel: [1653877.190796] device swp2 entered promiscuous mode</code></div>
+<div class="line"><code class="plain">mstpd: create_br: Add bridge bridge</code></div>
+<div class="line"><code class="plain">mstpd: clag_set_sys_mac_br: set bridge mac 00:00:00:00:00:00</code></div>
+<div class="line"><code class="plain">mstpd: create_if: Add iface swp1 as port#2 to bridge bridge</code></div>
+<div class="line"><code class="plain">mstpd: set_if_up: Port swp1 : up</code></div>
+<div class="line"><code class="plain">mstpd: create_if: Add iface swp2 as port#1 to bridge bridge</code></div>
+<div class="line"><code class="plain">mstpd: set_if_up: Port swp2 : up</code></div>
+<div class="line"><code class="plain">mstpd: set_br_up: Set bridge bridge up</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_set_state: bridge:swp1:0 entering blocking state(Disabled)</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_set_state: bridge:swp2:0 entering blocking state(Disabled)</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_flush_all_fids: bridge:swp1:0 Flushing forwarding database</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_flush_all_fids: bridge:swp2:0 Flushing forwarding database</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_set_state: bridge:swp1:0 entering learning state(Designated)</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_set_state: bridge:swp2:0 entering learning state(Designated)</code></div>
+<div class="line"><code class="plain">sudo: pam_unix(sudo:session): session closed for user root</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_set_state: bridge:swp1:0 entering forwarding state(Designated)</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_set_state: bridge:swp2:0 entering forwarding state(Designated)</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_flush_all_fids: bridge:swp2:0 Flushing forwarding database</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_flush_all_fids: bridge:swp1:0 Flushing forwarding database</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Spanning Tree Blocking    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">mstpd: MSTP_OUT_set_state: bridge:swp2:0 entering blocking state(Designated)</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_set_state: bridge:swp2:0 entering learning state(Designated)</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_set_state: bridge:swp2:0 entering forwarding state(Designated)</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_flush_all_fids: bridge:swp2:0 Flushing forwarding database</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_flush_all_fids: bridge:swp2:0 Flushing forwarding database</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_set_state: bridge:swp2:0 entering blocking state(Alternate)</code></div>
+<div class="line"><code class="plain">mstpd: MSTP_OUT_flush_all_fids: bridge:swp2:0 Flushing forwarding database</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-1" id="src-5126809_MonitoringBestPractices-Layer3Protocols">
+        <h1 class="heading "><span>Layer 3 Protocols</span></h1>
+    <p  >When Quagga boots up for the first time, there will be a different log file for each daemon that has been activated. If the log file is ever edited (for example, through <tt class=" ">vtysh</tt> or <tt class=" ">Quagga.conf</tt>), the integrated configuration sends all logs to the same file.    </p>
+    <p  >In order to send Quagga logs to syslog, apply the configuration <tt class=" ">log syslog</tt> in <tt class=" ">vtysh</tt>.    </p>
+    <div class="section section-2" id="src-5126809_MonitoringBestPractices-BGP">
+        <h2 class="heading "><span>BGP</span></h2>
+    <p  >When monitoring BGP, check if BGP peers are operational. There is not much value in alerting on the current operational state of the peer as monitoring the transition is more valuable, and this is done by monitoring syslog.    </p>
+    <p  >Monitoring the routing table provides trending on the size of the infrastructure. This is especially useful when integrated with host based solutions (ie. RoH) when the routes track with the number of applications available.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >BGP Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Monitoring Command/s    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Interval Poll    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >BGP peer failure    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ vtysh -c &quot;show ip bgp summary json&quot;<br/>cumulus@switch:~$ cl-bgp summary show json</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >60 seconds    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >BGP route table    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ vtysh -c &quot;show ip bgp json&quot;<br/>cumulus@switch:~$ cl-bgp route show</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >600 seconds    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >BGP Logs    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Location    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Entries    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >BGP peer down    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog<br/>/var/log/quagga/*.log </pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">bgpd[3000]: %NOTIFICATION: sent to neighbor swp1 4/0 (Hold Timer Expired) 0 bytes</code></div>
+<div class="line"><code class="plain">bgpd[3000]: %ADJCHANGE: neighbor swp1 Down BGP Notification send</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126809_MonitoringBestPractices-OSPF">
+        <h2 class="heading "><span>OSPF</span></h2>
+    <p  >When monitoring OSPF, check if OSPF peers are operational. There is not much value in alerting on the current operational state of the peer as monitoring the transition is more valuable, and this is done by monitoring syslog.    </p>
+    <p  >Monitoring the routing table provides trending on the size of the infrastructure. This is especially useful when integrated with host-based solutions (such as Routing on the Host) when the routes track with the number of applications available.    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >OSPF Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Monitoring Command(s)    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Interval Poll    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >OSPF protocol peer failure    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ vtysh -c &quot;show ip ospf neighbor all json&quot;<br/>cumulus@switch:~$ cl-ospf summary show json</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >60 seconds    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >OSPF link state database    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ vtysh - c &quot;show ip ospf database&quot;</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >600 seconds    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126809_MonitoringBestPractices-RouteandHostEntries">
+        <h2 class="heading "><span>Route and Host Entries</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >OSPF Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Monitoring Command(s)    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Interval Poll    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Host Entries    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ cl-resource-query<br/>cumulus@switch:~$ cl-resource-query -k</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >600 seconds    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Route Entries    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">cumulus@switch:~$ cl-resource-query<br/>cumulus@switch:~$ cl-resource-query -k</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >600 seconds    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126809_MonitoringBestPractices-RoutingLogs">
+        <h2 class="heading "><span>Routing Logs</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Layer 3 Logs    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Location    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Entries    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Routing protocol process crash    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">quagga[1824]: Starting Quagga daemons (prio:10):. zebra. bgpd.</code></div>
+<div class="line"><code class="plain">bgpd[1847]: BGPd 1.0.0+cl3u7 starting: vty@2605, bgp@&lt;all&gt;:179</code></div>
+<div class="line"><code class="plain">zebra[1840]: client 12 says hello and bids fair to announce only bgp routes</code></div>
+<div class="line"><code class="plain">watchquagga[1853]: watchquagga 1.0.0+cl3u7 watching [zebra bgpd], mode [phased zebra restart]</code></div>
+<div class="line"><code class="plain">watchquagga[1853]: bgpd state -&gt; up : connect succeeded</code></div>
+<div class="line"><code class="plain">watchquagga[1853]: bgpd state -&gt; down : read returned EOF</code></div>
+<div class="line"><code class="plain">cumulus-core: Running cl-support for core files bgpd.3030.1470341944.core.core_helper</code></div>
+<div class="line"><code class="plain">core_check.sh[4992]: Please send /var/support/cl_support__spine01_20160804_201905.tar.xz to Cumulus support</code></div>
+<div class="line"><code class="plain">watchquagga[1853]: Forked background command [pid 6665]: /usr/sbin/service quagga restart bgpd</code></div>
+<div class="line"><code class="plain">watchquagga[1853]: watchquagga 0.99.24+cl3u2 watching [zebra bgpd ospfd], mode [phased zebra restart]</code></div>
+<div class="line"><code class="plain">watchquagga[1853]: zebra state -&gt; up : connect succeeded</code></div>
+<div class="line"><code class="plain">watchquagga[1853]: bgpd state -&gt; up : connect succeeded</code></div>
+<div class="line"><code class="plain">watchquagga[1853]: Watchquagga: Notifying Systemd we are up and running</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126809_MonitoringBestPractices-Logging">
+        <h1 class="heading "><span>Logging</span></h1>
+    <p  >The table below covers the various log files, and what they should be used for:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >OSPF Element    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Monitoring Command/s    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Location    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >syslog    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Catch all log file. Identifies memory leaks and CPU spikes.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >switchd functionality    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Hardware Abstraction Layer (HAL).    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/switchd.log</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Routing daemons    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Quagga zebra daemon details    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/daemon.log</pre>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Routing protocol    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >The log file is configurable in Quagga. When quagga first boots, it boots using the non-integrated config so each routing protocol has its own log file.<br/>After booting up, quagga switches over to using the integrated configuration which means that all logs go to a single place.    </p>
+    <p  >To edit where log files go use the command <tt class=" ">log file &lt;location&gt;</tt>. By default, Quagga logs are not sent to syslog. This can be enabled using the command <tt class=" ">log syslog &lt;level&gt;</tt>. After this, logs go through rsyslog and into <tt class=" ">/var/log/syslog</tt>.    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/quagga/zebra.log<br/>/var/log/quagga/{protocol}.log<br/>/var/log/quagga/Quagga.log</pre>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-1" id="src-5126809_MonitoringBestPractices-ProtocolsandServices">
+        <h1 class="heading "><span>Protocols and Services</span></h1>
+    <div class="section section-2" id="src-5126809_MonitoringBestPractices-NTP">
+        <h2 class="heading "><span>NTP</span></h2>
+    <p  >Run the following command to confirm the NTP process is working correctly, and that the switch clock is synced with NTP:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ /usr/bin/ntpq -p</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126809_MonitoringBestPractices-DeviceManagement">
+        <h1 class="heading "><span>Device Management</span></h1>
+    <div class="section section-2" id="src-5126809_MonitoringBestPractices-DeviceAccessLogs">
+        <h2 class="heading "><span>Device Access Logs</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Access Logs    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Location    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Entries    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >User Authentication and Remote Login    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">sshd[31830]: Accepted publickey for cumulus from 192.168.0.254 port 45582 ssh2: RSA 38:e6:3b:cc:04:ac:41:5e:c9:e3:93:9d:cc:9e:48:25</code></div>
+<div class="line"><code class="plain">sshd[31830]: pam_unix(sshd:session): session opened for user cumulus by (uid=0)</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5126809_MonitoringBestPractices-DeviceSuperUserCommandLogs">
+        <h2 class="heading "><span>Device Super User Command Logs</span></h2>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Super User Command Logs    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Location    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Log Entries    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Executing commands using sudo    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <pre class=" ">/var/log/syslog</pre>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">sudo:  cumulus : TTY=unknown ; PWD=/home/cumulus ; USER=root ; COMMAND=/tmp/script_9938.sh -v</code></div>
+<div class="line"><code class="plain">sudo: pam_unix(sudo:session): session opened for user root by (uid=0)</code></div>
+<div class="line"><code class="plain">sudo: pam_unix(sudo:session): session closed for user root</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Using Nutanix Prism as a Monitoring Tool</span>
+        </a>
+                <a href="Network_Solutions.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Network Solutions</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

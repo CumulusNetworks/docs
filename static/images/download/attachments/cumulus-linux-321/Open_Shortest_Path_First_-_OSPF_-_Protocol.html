@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Open Shortest Path First - OSPF - Protocol - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Layer_Three.html">Layer Three</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5127045"> <span>Open Shortest Path First - OSPF - Protocol</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  >OSPFv2 is a <a  class="external-link" href="http://en.wikipedia.org/wiki/Link-state_routing_protocol">link-state routing protocol</a><span id="src-5127045_indexterm-0A74FA845737175F6527BCC3A22F6D8E"> for IPv4. </span><span id="src-5127045_indexterm-953F17056613FAC26CF6F23204445D9D">OSPF </span>maintains the view of the network topology conceptually as a directed graph. Each router represents a vertex in the graph. Each link between neighboring routers represents a unidirectional edge. Each link has an associated weight (called cost) that is either automatically derived from its bandwidth or administratively assigned. Using the weighted topology graph, each router computes a shortest path tree (SPT) with itself as the root, and applies the results to build its forwarding table. The computation is generally referred to as <i class=" ">SPF computation</i> and the resultant tree as the <i class=" ">SPF tree</i>.    </p>
+    <p  ><span id="src-5127045_indexterm-F1E98083741BE63F1512510493244E17">An </span><span id="src-5127045_indexterm-367CBFBCBA91FB619640C6882C3CA18D">LSA (</span> <i class=" ">link-state advertisement</i>) is the fundamental quantum of information that OSPF routers exchange with each other. It seeds the graph building process on the node and triggers SPF computation. LSAs originated by a node are distributed to all the other nodes in the network through a mechanism called <i class=" ">flooding</i><span id="src-5127045_indexterm-751AEDEC89616FB92BBD756FCB5DAF01">. Flooding is done hop-by-hop. OSPF ensures reliability by using link state acknowledgement packets. The set of LSAs in a router&rsquo;s memory is termed </span><i class=" ">link-state database </i>(LSDB), a representation of the network graph. Thus, OSPF ensures a consistent view of LSDB on each node in the network in a distributed fashion (eventual consistency model); this is key to the protocol&rsquo;s correctness.    </p>
+    <div class="section section-1" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-ScalabilityandAreas">
+        <h1 class="heading "><span>Scalability and Areas</span></h1>
+    <p  >An increase in the number of nodes affects OSPF scalability in the following ways:    </p>
+<ul class=" "><li class=" ">    <p  >Memory footprint to hold the entire network topology,    </p>
+</li><li class=" ">    <p  >Flooding performance,    </p>
+</li><li class=" ">    <p  >SPF computation efficiency.    </p>
+</li></ul>    <p  >The OSPF protocol advocates hierarchy as a <i class=" ">divide and conquer</i> approach to achieve high scale. The topology may be divided into areas, resulting in a two-level hierarchy. Area 0 (or 0.0.0.0), called the backbone area, is the top level of the hierarchy. Packets traveling from one non-zero area to another must go via the backbone area. As an example, the leaf-spine topology we have been referring to in the routing section can be divided into areas as follows:    </p>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5127045/ospf-areas.png" alt="images/download/attachments/5127045/ospf-areas.png" width="500"  />
+        </p>
+    <p  >Here are some points to note about areas and OSPF behavior:    </p>
+<ul class=" "><li class=" ">    <p id="src-5127045_indexterm-3BF9A78285784AB928E782D4A3B1E664" >Routers that have links to multiple areas are called <i class=" "><span id="src-5127045_indexterm-75CAA0CD90050F483B06115E44E47287">area </span>border routers </i>(ABR). For example, routers R3, R4, R5, R6 are ABRs in the diagram. An ABR performs a set of specialized tasks, such as SPF computation per area and summarization of routes across areas.    </p>
+</li><li class=" ">    <p  >Most of the LSAs have an area-level flooding scope. These include router LSA, network LSA, and summary LSA.    </p>
+</li></ul>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >In the diagram, we reused the same non-zero area address. This is fine since the area address is only a scoping parameter provided to all routers within that area. It has no meaning outside the area. Thus, in the cases where ABRs do not connect to multiple non-zero areas, the same area address can be used, thus reducing the operational headache of coming up with area addresses.    </p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-ConfiguringOSPFv2">
+        <h1 class="heading "><span>Configuring OSPFv2</span></h1>
+    <p  >Configuring OSPF involves the following tasks:    </p>
+<ul class=" "><li class=" ">    <p  >Enabling the OSPF daemon    </p>
+</li><li class=" ">    <p  >Enabling OSPF    </p>
+</li><li class=" ">    <p  >Defining (Custom) OSPF parameters on the interfaces    </p>
+</li></ul>    <div class="section section-2" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-EnablingtheOSPFandZebraDaemons">
+        <h2 class="heading "><span>Enabling the OSPF and Zebra Daemons</span></h2>
+    <p  >To enable OSPF, enable the <tt class=" ">zebra</tt> and <tt class=" ">ospf</tt> daemons, as described in <a   href="Configuring_Quagga.html">Configuring Quagga</a>, then start the Quagga service:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl enable quagga.service</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl start quagga.service</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-ConfiguringOSPF">
+        <h2 class="heading "><span>Configuring OSPF</span></h2>
+    <p  >As discussed in <a   href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>, there are three steps to the configuration:    </p>
+<ol class=" "><li class=" ">    <p  >Identifying the router with the router ID.    </p>
+</li><li class=" ">    <p  >With whom should the router communicate?    </p>
+</li><li class=" ">    <p  >What information (most notably the prefix reachability) to advertise?    </p>
+</li></ol>    <p  >There are two ways to achieve (2) and (3) in Quagga OSPF:    </p>
+<ol class=" "><li class=" ">    <p  >The <tt class=" ">network</tt> statement under <tt class=" ">router ospf</tt> does both. The statement is specified with an IP subnet prefix and an area address. All the interfaces on the router whose IP address matches the <tt class=" ">network</tt> subnet are put into the specified area. OSPF process starts bringing up peering adjacency on those interfaces. It also advertises the interface IP addresses formatted into LSAs (of various types) to the neighbors for proper reachability.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add ospf router-id </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.1</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add ospf network </code><code class="value">10.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">16</code><code class="plain"> area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add ospf network </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.0</code><code class="plain">/</code><code class="value">16</code><code class="plain"> area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.1</code></div>
+</div>
+    </div>
+    <p  >The subnets can be as coarse as possible to cover the most number of interfaces on the router that should run OSPF.    </p>
+    <p  >There may be interfaces where it&rsquo;s undesirable to bring up OSPF adjacency. For example, in a data center topology, the host-facing interfaces need not run OSPF; however the corresponding IP addresses should still be advertised to neighbors. This can be achieved using the <tt class=" ">passive-interface</tt> construct:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add ospf passive-</code><code class="keyword">interface</code><code class="plain"> swp10</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add ospf passive-</code><code class="keyword">interface</code><code class="plain"> swp11</code></div>
+</div>
+    </div>
+    <p  >Or use the <tt class=" ">passive-interface default</tt> command to put all interfaces as passive and selectively remove certain interfaces to bring up protocol adjacency:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">R3# configure terminal</code></div>
+<div class="line"><code class="plain">R3(config)# router ospf</code></div>
+<div class="line"><code class="plain">R3(config-router)# passive-</code><code class="keyword">interface</code><code class="plain"> </code><code class="keyword">default</code></div>
+<div class="line"><code class="plain">R3(config-router)# no passive-</code><code class="keyword">interface</code><code class="plain"> swp1</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Explicitly enable OSPF for each interface by configuring it under the interface configuration mode:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0</code></div>
+</div>
+    </div>
+    <p  >If OSPF adjacency bringup is not desired, you should configure the corresponding interfaces as passive as explained above.    </p>
+    <p  >This model of configuration is required for unnumbered interfaces as discussed later in this guide.    </p>
+    <p  >For achieving step (3) alone, the <tt class=" ">quagga</tt> configuration provides another method: <i class=" ">redistribution</i>. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add ospf redistribute connected</code></div>
+</div>
+    </div>
+    <p  >Redistribution, however, unnecessarily loads the database with type-5 LSAs and should be limited to generating real external prefixes (for example, prefixes learned from BGP). In general, it is a good practice to generate local prefixes using <tt class=" ">network</tt> and/or <tt class=" ">passive-interface</tt> statements.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The OSPF setting <tt class=" ">log-adjacency-changes</tt> is enabled by default. It logs a single message when a peer transitions to/from FULL state.    </p>
+        </div>
+    </div>
+</li></ol>    </div>
+    <div class="section section-2" id="src-5127045_safe-id-T3BlblNob3J0ZXN0UGF0aEZpcnN0LU9TUEYtUHJvdG9jb2wtRGVmaW5pbmcoQ3VzdG9tKU9TUEZQYXJhbWV0ZXJzb250aGVJbnRlcmZhY2Vz">
+        <h2 class="heading "><span>Defining (Custom) OSPF Parameters on the Interfaces</span></h2>
+    <p  >There are a number of custom parameters you can define for OSPF, including:    </p>
+<ul class=" "><li class=" ">    <p  >Network type, such as point-to-point or broadcast.    </p>
+</li><li class=" ">    <p  >Timer tuning, like a hello interval.    </p>
+</li><li class=" ">    <p  >For unnumbered interfaces (<a   href="#src-5127045_OpenShortestPathFirst-OSPF-Protocol-ospf_unnum">see below</a>), enable OSPF.    </p>
+</li></ul>    <p  >To see the list of options, type <tt class=" ">net add interface swp1 ospf</tt>, then press <strong class=" ">Tab</strong>.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp1 ospf network point-to-point</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp1 ospf hello-interval </code><code class="value">5</code></div>
+</div>
+    </div>
+    <p  >The OSPF configuration is saved in <tt class=" ">/etc/quagga/ospfd.conf</tt>.    </p>
+    </div>
+    <div class="section section-2" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-OSPSPFTimerDefaults">
+        <h2 class="heading "><span>OSP SPF Timer Defaults</span></h2>
+    <p  >OSPF uses the following three timers as an exponential backoff, to prevent consecutive SPFs from hammering the CPU:    </p>
+<ul class=" "><li class=" ">    <p  >0 ms from initial event until SPF runs    </p>
+</li><li class=" ">    <p  >50 ms between consecutive SPF runs (the number doubles with each SPF, until it reaches the value of C)    </p>
+</li><li class=" ">    <p  >5000 ms maximum between SPFs    </p>
+</li></ul>    </div>
+    <div class="section section-2" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-ConfigureMD5AuthenticationforOSPFNeighbors">
+        <h2 class="heading "><span>Configure MD5 Authentication for OSPF Neighbors</span></h2>
+    <p  >Simple text passwords have largely been deprecated in Quagga, in favor of MD5 hash authentication; the following section covers the setup configuration for MD5 authentication on Cumulus Linux switches. You need to do this in the Quagga CLI, <tt class=" ">vtysh</tt>.    </p>
+<ol class=" "><li class=" ">    <p  >Enter the Quagga CLI on the switch:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtysh</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Change into the CLI's configuration mode:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain"># configure terminal</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Run the <tt class=" ">authentication</tt> command to specify MD5 authentication is used:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# ip ospf authentication message-digest</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Use the <tt class=" ">message-digest-key</tt> command to create a key and key ID for md5:    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >In the example input below, <tt class=" ">KEYID</tt> represents the key used to create the message digest. This must be consistent across all routers on a link.    </p>
+    <p  ><tt class=" ">KEY</tt> represents the actual message digest key, and is associated to the given <tt class=" ">KEYID</tt>. This value has an upper range of 16 characters. Longer strings will be truncated.    </p>
+        </div>
+    </div>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# ip ospf message-digest-key KEYID md5 KEY</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Save the configuration and exit <tt class=" ">vtysh</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">switch(config)# exit</code></div>
+<div class="line"><code class="plain">switch# write mem</code></div>
+<div class="line"><code class="plain">switch# exit</code></div>
+<div class="line"><code class="plain">cumulus@switch:~$</code></div>
+</div>
+    </div>
+</li></ol>    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Existing MD5 authentication hashes can be removed with the <tt class=" ">no ip ospf message-digest-key</tt> command.    </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-ScalingTips">
+        <h1 class="heading "><span>Scaling Tips</span></h1>
+    <p  >Here are some tips for how to scale out OSPF.    </p>
+    <div class="section section-2" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-Summarization">
+        <h2 class="heading "><span>Summarization</span></h2>
+    <p  ><span id="src-5127045_indexterm-1E6B8F2AB3301B14A93660AA70D46325">By default, an ABR creates a summary (type-3) LSA for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one </span><span id="src-5127045_indexterm-E1F03606F5A1F250A26CAA32F88D1B54">summary </span>LSA for multiple routes.    </p>
+    <p  >To configure a range:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtysh</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain"># configure terminal</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# router ospf</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config-router)# area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.1</code><code class="plain"> range </code><code class="value">30.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain">/</code><code class="value">8</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config-router)# exit</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# exit</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain"># write mem</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain"># exit</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ </code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Summarize in the direction to the backbone. The backbone receives summarized routes and injects them to other areas already summarized.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Summarization can cause non-optimal forwarding of packets during failures. Here is an example scenario:    </p>
+        </div>
+    </div>
+    <p  >    <img  class="confluence-embedded-image" src="images/download/attachments/5127045/ospf-summarization.png" alt="images/download/attachments/5127045/ospf-summarization.png" width="500"  />
+        </p>
+    <p  >As shown in the diagram, the ABRs in the right non-zero area summarize the host prefixes as 10.1.0.0/16. When the link between R5 and R10 fails, R5 will send a worse metric for the summary route (metric for the summary route is the maximum of the metrics of intra-area routes that are covered by the summary route. Upon failure of the R5-R10 link, the metric for 10.1.2.0/24 goes higher at R5 as the path is R5-R9-R6-R10). As a result, other backbone routers shift traffic destined to 10.1.0.0/16 towards R6. This breaks ECMP and is an under-utilization of network capacity for traffic destined to 10.1.1.0/24.    </p>
+    </div>
+    <div class="section section-2" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-StubAreas">
+        <h2 class="heading "><span>Stub Areas</span></h2>
+    <p  >Nodes in an area receive and store intra-area routing information and summarized information about other areas from the ABRs. In particular, a good summarization practice about inter-area routes through prefix range configuration helps scale the routers and keeps the network stable.    </p>
+    <p  >Then there are external routes. External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. In many cases, external link states make up a large percentage of the LSDB.    </p>
+    <p  ><i class=" ">Stub <i id="src-5127045_indexterm-8EC4A64E1608A3744E1D52D7BBFE9859" class=" "></i>areas</i> alleviate this scaling problem. A stub area is an area that does not receive external route advertisements.    </p>
+    <p  >To configure a stub area:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add ospf area 0.0.0.1 stub</code></div>
+</div>
+    </div>
+    <p  >Stub areas still receive information about networks that belong to other areas of the same OSPF domain. Especially, if summarization is not configured (or is not comprehensive), the information can be overwhelming for the nodes. <i class=" ">Totally stubby areas</i> address this issue. Routers in totally stubby areas keep in their LSDB information about routing within their area, plus the default route.    </p>
+    <p  >To configure a totally stubby area:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:~$ net add ospf area 0.0.0.1 stub no-summary</code></div>
+</div>
+    </div>
+    <p  >Here is a brief tabular summary of the area type differences:    </p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Type    </p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+        <p  >Behavior    </p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Normal non- zero area    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >LSA types 1, 2, 3, 4 area-scoped, type 5 externals, inter-area routes summarized    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Stub area    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >LSA types 1, 2, 3, 4 area-scoped, No type 5 externals, inter-area routes summarized    </p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >Totally stubby area    </p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <p  >LSA types 1, 2 area-scoped, default summary, No type 3, 4, 5 LSA types allowed    </p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    </div>
+    <div class="section section-2" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-multi-instanceRunningMultipleospfdInstances">
+        <h2 class="heading "><span id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-multi-instance" class="confluence-anchor-link"></span><span>Running Multiple ospfd Instances</span></h2>
+    <p  >The <tt class=" ">ospfd</tt> daemon is VRF-aware and a single instance of it can have multiple independent processes, each tied to its own VRF. The best way to configure multi-process (multi-VRF) OSPF is discussed in the <a   href="Virtual_Routing_and_Forwarding_-_VRF.html">VRF chapter</a>.    </p>
+    <p  >However, you can configure multi-process OSPF using multiple <tt class=" ">ospfd</tt> instances, but this is a legacy method and is not recommended in most cases because:    </p>
+<ul class=" "><li class=" ">    <p  >Multiple <tt class=" ">ospfd</tt> processes are only supported in the default routing table/VRF.    </p>
+</li><li class=" ">    <p  >You can run multiple <tt class=" ">ospfd</tt> instances with OSPFv2 only, not with OSPFv3.    </p>
+</li><li class=" ">    <p  >FRRouting supports up to 5 instances currently, and the instance ID must be within the range of 1 through 65535.    </p>
+</li></ul>    <p  >To configure multi-process OSPF with multiple <tt class=" ">ospfd</tt> instances, do the following:    </p>
+<ol class=" "><li class=" ">    <p  >Edit <tt class=" ">/etc/quagga/daemons</tt> and add <i class=" ">ospfd_instances=&quot;instance1 instance2 ...&quot;</i> to the <tt class=" ">ospfd</tt> line, specifying an instance ID for each separate instance. For example, the following configuration has OSPF enabled with 2 <tt class=" ">ospfd</tt> instances, 11 and 22:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ cat /etc/quagga/daemons</code></div>
+<div class="line"><code class="plain">zebra=yes</code></div>
+<div class="line"><code class="plain">bgpd=no</code></div>
+<div class="line"><code class="plain">ospfd=yes ospfd_instances=</code><code class="string">"11 22"</code></div>
+<div class="line"><code class="plain">ospf6d=no</code></div>
+<div class="line"><code class="plain">ripd=no</code></div>
+<div class="line"><code class="plain">ripngd=no</code></div>
+<div class="line"><code class="plain">isisd=no</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >After you modify the <tt class=" ">daemons</tt> file, restart Quagga:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo systemctl restart quagga</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Configure each instance:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp1 ospf instance-id </code><code class="value">11</code><code class="plain"> </code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp1 ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code><code class="plain"> </code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add ospf router-id </code><code class="value">1.1</code><code class="plain">.</code><code class="value">1.1</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp2 ospf instance-id </code><code class="value">22</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp2 ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add ospf router-id </code><code class="value">1.1</code><code class="plain">.</code><code class="value">1.1</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Confirm the configuration:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net show configuration ospf</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">hostname zebra</code></div>
+<div class="line"><code class="plain">log file /var/log/quagga/zebra.log</code></div>
+<div class="line"><code class="plain">username cumulus nopassword</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">service integrated-vtysh-config</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> eth0</code></div>
+<div class="line"><code class="plain"> ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> lo</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp1</code></div>
+<div class="line"><code class="plain"> ip ospf </code><code class="value">11</code><code class="plain"> area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp2</code></div>
+<div class="line"><code class="plain"> ip ospf </code><code class="value">22</code><code class="plain"> area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp45</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp46</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp47</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp48</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp49</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp50</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp51</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp52</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> vagrant</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">router ospf </code><code class="value">11</code></div>
+<div class="line"><code class="plain"> ospf router-id </code><code class="value">1.1</code><code class="plain">.</code><code class="value">1.1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">router ospf </code><code class="value">22</code></div>
+<div class="line"><code class="plain"> ospf router-id </code><code class="value">1.1</code><code class="plain">.</code><code class="value">1.1</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">ip forwarding</code></div>
+<div class="line"><code class="plain">ipv6 forwarding</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">line vty</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">end</code></div>
+</div>
+    </div>
+</li><li class=" ">    <p  >Confirm that all the OSPF instances are running:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ ps -ax | grep ospf</code></div>
+<div class="line"><code class="value">21135</code><code class="plain"> ?        S&lt;s    </code><code class="value">0</code><code class="plain">:</code><code class="value">00</code><code class="plain"> /usr/lib/quagga/ospfd --daemon -A </code><code class="value">127.0</code><code class="plain">.</code><code class="value">0.1</code><code class="plain"> -n </code><code class="value">11</code></div>
+<div class="line"><code class="value">21139</code><code class="plain"> ?        S&lt;s    </code><code class="value">0</code><code class="plain">:</code><code class="value">00</code><code class="plain"> /usr/lib/quagga/ospfd --daemon -A </code><code class="value">127.0</code><code class="plain">.</code><code class="value">0.1</code><code class="plain"> -n </code><code class="value">22</code></div>
+<div class="line"><code class="value">21160</code><code class="plain"> ?        S&lt;s    </code><code class="value">0</code><code class="plain">:</code><code class="value">01</code><code class="plain"> /usr/lib/quagga/watchquagga -adz -r /usr/sbin/servicebBquaggabBrestartbB%s -s /usr/sbin/servicebBquaggabBstartbB%s -k /usr/sbin/servicebBquaggabBstopbB%s -b bB -t </code><code class="value">30</code><code class="plain"> zebra ospfd-</code><code class="value">11</code><code class="plain"> ospfd-</code><code class="value">22</code><code class="plain"> pimd</code></div>
+<div class="line"><code class="value">22021</code><code class="plain"> pts/</code><code class="value">3</code><code class="plain">    S+     </code><code class="value">0</code><code class="plain">:</code><code class="value">00</code><code class="plain"> grep ospf</code></div>
+</div>
+    </div>
+</li></ol>    <div class="section section-3" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-Caveats">
+        <h3 class="heading "><span>Caveats</span></h3>
+    <p  >You can use the <tt class=" ">redistribute ospf</tt> option in your <tt class=" ">Quagga.conf</tt> file works with this so you can route between the instances. Specify the instance ID for the other OSPF instance. For example:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ cat /etc/quagga/Quagga.conf</code></div>
+<div class="line"><code class="plain">hostname zebra</code></div>
+<div class="line"><code class="plain">log file /var/log/quagga/zebra.log</code></div>
+<div class="line"><code class="plain">username cumulus nopassword</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">service integrated-vtysh-config</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">router ospf </code><code class="value">11</code></div>
+<div class="line"><code class="plain"> ospf router-id </code><code class="value">1.1</code><code class="plain">.</code><code class="value">1.1</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">router ospf </code><code class="value">22</code></div>
+<div class="line"><code class="plain"> ospf router-id </code><code class="value">1.1</code><code class="plain">.</code><code class="value">1.1</code></div>
+<div class="line"><code class="plain"> redistribute ospf </code><code class="value">11</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Don't specify a process ID unless you are using multi-instance OSPF.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If you disabled the <a   href="Configuring_Quagga.html#src-5127042_ConfiguringQuagga-integrated_cfg">integrated</a> Quagga configuration, you must create a separate <tt class=" ">ospfd</tt> configuration file for each instance. The <tt class=" ">ospfd.conf</tt> file must include the instance ID in the file name. Continuing with our example, you would create <tt class=" ">/etc/quagga/ospfd-11.conf</tt> and <tt class=" ">/etc/quagga/ospfd-22.conf</tt>.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ cat /etc/quagga/ospfd-</code><code class="value">11</code><code class="plain">.conf </code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">hostname zebra</code></div>
+<div class="line"><code class="plain">log file /var/log/quagga/zebra.log</code></div>
+<div class="line"><code class="plain">username cumulus nopassword</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">service integrated-vtysh-config</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> eth0</code></div>
+<div class="line"><code class="plain"> ipv6 nd suppress-ra</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> lo</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp1</code></div>
+<div class="line"><code class="plain"> ip ospf </code><code class="value">11</code><code class="plain"> area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp2</code></div>
+<div class="line"><code class="plain"> ip ospf </code><code class="value">22</code><code class="plain"> area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.0</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp45</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp46</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp47</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp48</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp49</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp50</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp51</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> swp52</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="keyword">interface</code><code class="plain"> vagrant</code></div>
+<div class="line"><code class="plain"> link-detect</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">router ospf </code><code class="value">11</code></div>
+<div class="line"><code class="plain"> ospf router-id </code><code class="value">1.1</code><code class="plain">.</code><code class="value">1.1</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">router ospf </code><code class="value">22</code></div>
+<div class="line"><code class="plain"> ospf router-id </code><code class="value">1.1</code><code class="plain">.</code><code class="value">1.1</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">ip forwarding</code></div>
+<div class="line"><code class="plain">ipv6 forwarding</code></div>
+<div class="line"><code class="plain">!</code></div>
+<div class="line"><code class="plain">line vty</code></div>
+<div class="line"><code class="plain">!</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-ospf_unnumUnnumberedInterfaces">
+        <h1 class="heading "><span id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-ospf_unnum" class="confluence-anchor-link"></span><span>Unnumbered Interfaces</span></h1>
+    <p  ><span id="src-5127045_indexterm-4565D6993FDC264F738CE7B58AC87421">Unnumbered </span><span id="src-5127045_indexterm-061F153F0E9BA102E4DE990FEDD8A400">interfaces </span>are interfaces without unique IP addresses. In OSPFv2, configuring unnumbered interfaces reduces the links between routers into pure topological elements, which dramatically simplifies network configuration and reconfiguration. In addition, the routing database contains only the real networks, so the memory footprint is reduced and SPF is faster.    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Unnumbered is usable for point-to-point interfaces only.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >If there is a <tt class=" ">network &lt;network number&gt;/&lt;mask&gt; area &lt;area ID&gt;</tt> command present in the Quagga configuration, the <tt class=" ">ip ospf area &lt;area ID&gt;</tt> command is rejected with the error &ldquo;Please remove network command first.&rdquo; This prevents you from configuring other areas on some of the unnumbered interfaces. You can use either the <tt class=" ">network area</tt> command or the <tt class=" ">ospf area</tt> command in the configuration, but not both.    </p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >Unless the Ethernet media is intended to be used as a LAN with multiple connected routers, we recommend configuring the interface as point-to-point. It has the additional advantage of a simplified adjacency state machine; there is no need for DR/BDR election and <i class=" ">LSA reflection</i>. See <a  class="external-link" href="http://tools.ietf.org/rfc/rfc5309">RFC5309</a> for a more detailed discussion.    </p>
+        </div>
+    </div>
+    <p  >To configure an unnumbered interface, take the IP address of another interface (called the <i class=" ">anchor</i>) and use that as the IP address of the unnumbered interface:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add loopback lo ip address </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.1</code><code class="plain">/</code><code class="value">32</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp1 ip address </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.1</code><code class="plain">/</code><code class="value">32</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp2 ip address </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.1</code><code class="plain">/</code><code class="value">32</code></div>
+</div>
+    </div>
+    <p  >These commands create the following configuration in the <tt class=" ">/etc/network/interfaces</tt> file:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">auto lo</code></div>
+<div class="line"><code class="plain">iface lo inet loopback</code></div>
+<div class="line"><code class="plain">  address </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.1</code><code class="plain">/</code><code class="value">32</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto swp1</code></div>
+<div class="line"><code class="plain">iface swp1</code></div>
+<div class="line"><code class="plain">  address </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.1</code><code class="plain">/</code><code class="value">32</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">auto swp2</code></div>
+<div class="line"><code class="plain">iface swp2</code></div>
+<div class="line"><code class="plain">  address </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.1</code><code class="plain">/</code><code class="value">32</code></div>
+</div>
+    </div>
+    <p  >To enable OSPF on an unnumbered interface:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp1 ospf area </code><code class="value">0.0</code><code class="plain">.</code><code class="value">0.1</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-ApplyingaRouteMapforRouteUpdates">
+        <h1 class="heading "><span>Applying a Route Map for Route Updates</span></h1>
+    <p  ><span id="src-5127045_indexterm-C3DB9731951A73D193E686736AF61B5C">To apply </span>a <a  class="external-link" href="http://www.nongnu.org/quagga/docs/docs-multi/Route-Map.html#Route-Map">route map</a> to filter route updates from Zebra into the Linux kernel:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus@switch:$ net add routing protocol ospf route-map &lt;route-map-name&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-ECMP">
+        <h1 class="heading "><span>ECMP</span></h1>
+    <p  ><span id="src-5127045_indexterm-EE354288152208D067D87B4A5D9C8A36">During </span><span id="src-5127045_indexterm-DD54AAFD96057AB93B8A0F5981C7AE1A">SPF </span>computation for an area, if OSPF finds multiple paths with equal cost (metric), all those paths are used for forwarding. For example, in the reference topology diagram, R8 uses both R3 and R4 as next hops to reach a destination attached to R9.    </p>
+    </div>
+    <div class="section section-1" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-TopologyChangesandOSPFReconvergence">
+        <h1 class="heading "><span>Topology Changes and OSPF Reconvergence</span></h1>
+    <p  ><span id="src-5127045_indexterm-4E7A2999BC672319C008775444D03CC1">Topology </span><span id="src-5127045_indexterm-1876150697F6BDCDB7ACED2D898DDA7A">changes </span>usually occur due to one of four events:    </p>
+<ol class=" "><li class=" ">    <p  >Maintenance of a router node    </p>
+</li><li class=" ">    <p  >Maintenance of a link    </p>
+</li><li class=" ">    <p  >Failure of a router node    </p>
+</li><li class=" ">    <p  >Failure of a link    </p>
+</li></ol>    <p  >For the maintenance events, operators typically raise the OSPF administrative weight of the link(s) to ensure that all traffic is diverted from the link or the node (referred to as <i class=" ">costing out</i>). The speed of reconvergence does not matter. Indeed, changing the OSPF cost causes LSAs to be reissued, but the links remain in service during the SPF computation process of all routers in the network.    </p>
+    <p  >For the failure events, traffic may be lost during reconvergence; that is, until SPF on all nodes computes an alternative path around the failed link or node to each of the destinations. The reconvergence depends on layer 1 failure detection capabilities and at the worst case <i class=" ">DeadInterval</i> OSPF timer.    </p>
+    <div class="section section-2" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-ExampleConfigurations">
+        <h2 class="heading "><span>Example Configurations</span></h2>
+    <p  >Example configuration for event 1, using <tt class=" ">vtysh</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtysh</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain"># configure terminal</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# router ospf</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config-router)# max-metric router-lsa administrative</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config-router)# exit</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain">(config)# exit</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain"># write mem</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain"># exit</code></div>
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ </code></div>
+</div>
+    </div>
+    <p  >Example configuration for event 2:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ net add </code><code class="keyword">interface</code><code class="plain"> swp1 ospf cost </code><code class="value">65535</code></div>
+</div>
+    </div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-ospf_debugDebuggingOSPF">
+        <h1 class="heading "><span id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-ospf_debug" class="confluence-anchor-link"></span><span>Debugging OSPF</span></h1>
+    <p  ><a  class="external-link" href="http://www.nongnu.org/quagga/docs/docs-info.html#Showing-OSPF-information">OperState</a> lists all the commands to view the operational state of OSPF.    </p>
+    <p  >The three most important states while troubleshooting the protocol are:    </p>
+<ol class=" "><li class=" ">    <p  >Neighbors, with <tt class=" ">net show ospf neighbor</tt>. This is the starting point to debug neighbor states (also see <tt class=" ">tcpdump</tt> below).    </p>
+</li><li class=" ">    <p  >Database, with <tt class=" ">net show ospf database</tt>. This is the starting point to verify that the LSDB is, in fact, synchronized across all routers in the network. For example, sweeping through the output of <tt class=" ">show ip ospf database router</tt> taken from all routers in an area will ensure if the topology graph building process is complete; that is, every node has seen all the other nodes in the area.    </p>
+</li><li class=" ">    <p  >Routes, with <tt class=" ">net show route ospf</tt>. This is the outcome of SPF computation that gets downloaded to the forwarding table, and is the starting point to debug, for example, why an OSPF route is not being forwarded correctly.    </p>
+</li></ol>    <p  ><a  class="external-link" href="http://www.nongnu.org/quagga/docs/docs-info.html#Debugging-OSPF">Debugging-OSPF</a> lists all of the OSPF debug options.    </p>
+    <p  >Using <tt class=" ">zebra</tt> under <tt class=" ">vtysh</tt>:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo vtysh</code></div>
+<div class="line"><code class="keyword">switch</code><code class="plain"># show [zebra]</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">IOBJECT := { events | status | timers }</code></div>
+<div class="line"><code class="plain">OOBJECT := { </code><code class="keyword">interface</code><code class="plain"> | redistribute }</code></div>
+<div class="line"><code class="plain">POBJECT := { all | dd | hello | ls-ack | ls-request | ls-update }</code></div>
+<div class="line"><code class="plain">ZOBJECT := { all | events | kernel | packet | rib |</code></div>
+</div>
+    </div>
+    <p  >Using <tt class=" ">tcpdump</tt> to capture OSPF packets:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo tcpdump -v -i swp1 ip proto ospf</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5127045_OpenShortestPathFirst-OSPF-Protocol-RelatedInformation">
+        <h1 class="heading "><span>Related Information</span></h1>
+<ul class=" "><li class=" ">    <p  ><a   href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional forwarding detection</a> (BFD) and OSPF    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://en.wikipedia.org/wiki/Open_Shortest_Path_First">en.wikipedia.org/wiki/Open_Shortest_Path_First</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://www.nongnu.org/quagga/docs/docs-info.html#OSPFv2">www.nongnu.org/quagga/docs/docs-info.html#OSPFv2</a>    </p>
+</li><li class=" ">    <p  >Perlman, Radia (1999). Interconnections: Bridges, Routers, Switches, and Internetworking Protocols (2 ed.). Addison-Wesley.    </p>
+</li><li class=" ">    <p  >Moy, John T. OSPF: Anatomy of an Internet Routing Protocol. Addison-Wesley.    </p>
+</li></ul>    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Comparing_NCLU_and_vtysh_Commands.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Comparing NCLU and vtysh Commands</span>
+        </a>
+                <a href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Open Shortest Path First v3 - OSPFv3 - Protocol</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

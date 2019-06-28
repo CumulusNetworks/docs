@@ -1,0 +1,30 @@
+backend:
+  name: github
+  repo: cawleyflower/testDocs
+  branch: dev
+
+publish_mode: editorial_workflow
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "Cumulus_Linux"
+    label: "Cumulus Linux"
+    folder: "/content/Cumulus_Linux/"
+    format: yaml-frontmatter
+    extension: md
+    create: true
+    fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+  - name: "Cumulus_NetQ"
+    label: "Cumulus NetQ"
+    folder: "/content/Cumulus_NetQ/"
+    format: yaml-frontmatter
+    extension: md
+    create: true 
+    fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}

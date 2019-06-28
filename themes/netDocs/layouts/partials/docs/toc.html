@@ -1,0 +1,42 @@
+<aside class="book-toc fixed">
+
+  {{ if .GitInfo }}
+    {{ with .GitInfo }}
+      {{ $date := .AuthorDate.Local.Format (default "January 2, 2006" $.Site.Params.BookDateFormat) }}
+      <button>
+      <a href="{{ $.Site.Params.BookRepo }}/commit/{{ .Hash }}" title='Last modified {{ $date }} by {{ .AuthorName }}' target="_blank" rel="noopener">
+        <img src="{{ "svg/code-merge.svg" | relURL }}" alt="Changed" /> {{ $date }}
+      </a>
+    </button>
+    {{ end }}
+
+
+  {{ .Page.TableOfContents }}
+
+
+    {{ with .Site.Params.BookEditPath }}
+      <button>
+      {{ if $.File }}<a href="{{ $.Site.Params.BookRepo }}/{{ . }}/{{ $.File.Path }}" target="_blank" rel="noopener">
+        <img src="{{ "svg/pencil-circle.svg" | relURL }}" alt="Edit" /> Edit this page
+      </a>{{ end }}
+    </button>
+    {{ end }}
+
+  {{ else }}
+
+  <button> </button>
+
+      {{ .Page.TableOfContents }}
+
+      {{ with .Site.Params.BookEditPath }}
+      <button>
+      {{ if $.File }}<a href="{{ $.Site.Params.BookRepo }}/{{ . }}/{{ $.File.Path }}" target="_blank" rel="noopener">
+        <img src="{{ "svg/pencil-circle.svg" | relURL }}" alt="Edit" /> Edit this page
+      </a>{{ end }}
+    </button>
+    {{ end }}
+
+
+    {{ end }}
+
+</aside>

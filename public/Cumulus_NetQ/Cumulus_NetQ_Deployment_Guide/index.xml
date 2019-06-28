@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cumulus NetQ Deployment Guide on Cumulus Networks Documentation</title>
+    <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/</link>
+    <description>Recent content in Cumulus NetQ Deployment Guide on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deployment Preface</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Deployment_Preface/</guid>
+      <description>A variety of resources are available for you to become familiar with Cumulus NetQ and aid in its deployment. These are identified here along with information about how the content is presented.
+What&amp;rsquo;s New in Cumulus NetQ 2.1 Cumulus NetQ has been reinvented to scale with the fast adoption rate of open networks and rapid network growth. In addition to the real-time data collection and fabric-wide performance analysis that are already supported in Cumulus NetQ 1.</description>
+    </item>
+    
+    <item>
+      <title>Cumulus NetQ Primer</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Cumulus_NetQ_Primer/</guid>
+      <description>Cumulus® NetQ is a highly-scalable, modern network operations tool set that provides visibility and troubleshooting of your overlay and underlay networks in real-time. NetQ delivers actionable insights and operational intelligence about the health of your data center — from the container, virtual machine, or host, all the way to the switch and port. NetQ correlates configuration and operational status, and instantly identifies and tracks state changes while simplifying management for the entire Linux-based data center.</description>
+    </item>
+    
+    <item>
+      <title>Install NetQ</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Install_NetQ/</guid>
+      <description>Installing NetQ can be accomplished in one of three ways:
+ If you have purchased a NetQ Appliance, the only installation required is to load the NetQ Agent on any host you want to monitor.
+ If you already have a Cumulus Linux switch (running version 3.3.0 or later) and you want to add NetQ functionality to it, installation involves three steps:
+ Verify your server meets the hardware and software requirements.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade from NetQ 1.x to NetQ 2.1.0</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_1.x_to_NetQ_2.1.0/</guid>
+      <description>This document describes the steps required to upgrade from NetQ 1.x to NetQ 2.1.
+Data collected in the NetQ 1.x environment cannot be migrated to the NetQ 2.1 environment at this time. Event notification configurations must also be reconfigured as the CLI commands have changed. Upgrading from NetQ 1.x version requires a fresh install as described here.
+ Prerequisites Hardware Requirements NetQ is supported on the NetQ Appliance and a variety of other hardware.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade from NetQ 2.0.x to NetQ 2.1.0</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.0.x_to_NetQ_2.1.0/</guid>
+      <description>This document describes the steps required to upgrade from NetQ 2.0.x to NetQ 2.1.0.
+Cumulus Networks recommends only upgrading NetQ during a network maintenance window.
+Any data you have collected while using NetQ 2.0.x is maintained during this upgrade process.
+ Events generated during the upgrade process will not be available in the database. Once the upgrade process is complete, the agents re-sync with the current state of the Host or Cumulus Linux switch with the NetQ Platform.</description>
+    </item>
+    
+    <item>
+      <title>Upgrade from NetQ 2.1.0 to NetQ 2.1.x</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Upgrade_from_NetQ_2.1.0_to_NetQ_2.1.x/</guid>
+      <description>This document describes the steps required to upgrade from NetQ 2.1.0 to NetQ 2.1.1 or later.
+Cumulus Networks recommends only upgrading NetQ during a network maintenance window.
+Any data you have collected while using NetQ 2.1.0 is maintained during this upgrade process.
+ Events generated during the upgrade process will not be available in the database. Once the upgrade process is complete, the agents re-sync with the current state of the Host or Cumulus Linux switch with the NetQ Platform.</description>
+    </item>
+    
+    <item>
+      <title>Integrate with Third-party Software and Hardware</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Integrate_with_Third-party_Software_and_Hardware/</guid>
+      <description>After you have installed NetQ applications package and the NetQ Agents, you may want to configure some of the additional capabilities that NetQ offers. This topic describes how to install, setup, and configure these capabilities.
+Integrate NetQ with an Event Notification Application To take advantage of the numerous event messages generated and processed by NetQ, you must integrate with third-party event notification applications . You can integrate NetQ with the PagerDuty and Slack tools.</description>
+    </item>
+    
+    <item>
+      <title>Manage NetQ Agents</title>
+      <link>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/Cumulus_NetQ/Cumulus_NetQ_Deployment_Guide/Manage_NetQ_Agents/</guid>
+      <description>At various points in time, you might want to change which network nodes are being monitored by NetQ or look more closely at a network node for troubleshooting purposes. Adding the NetQ Agent to a switch or host is described in Install NetQ (2.1.0 version). Disabling an Agent is described here and managing NetQ Agent logging is also presented.
+Disable the NetQ Agent on a Node You can temporarily disable NetQ Agent on a node.</description>
+    </item>
+    
+  </channel>
+</rss>

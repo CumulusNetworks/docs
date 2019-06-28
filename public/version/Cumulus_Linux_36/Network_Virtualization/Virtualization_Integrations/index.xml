@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Virtualization Integrations on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/</link>
+    <description>Recent content in Virtualization Integrations on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/</guid>
+      <description>Cumulus Linux seamlessly integrates with the MidoNet OpenStack infrastructure, where the switches provide the VTEP gateway for terminating VXLAN tunnels from within MidoNet. MidoNet connects to the OVSDB server running on the Cumulus Linux switch, and exchanges information about the VTEPs and MAC addresses associated with the OpenStack Neutron networks. This provides seamless Ethernet connectivity between virtual and physical server infrastructures.</description>
+    </item>
+    
+    <item>
+      <title>Integrating Hardware VTEPs with VMware NSX-V</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/</guid>
+      <description>Switches running Cumulus Linux can integrate with VMware NSX-V to act as hardware VTEP gateways. The VMware NSX-V controller provides consistent provisioning across virtual and physical server infrastructures.
+Getting Started Before you integrate VXLANs with NSX-V, make sure you have the following components:
+ A switch (layer 2 gateway) with a Broadcom Tomahawk, Trident II+ or Trident II chipset, or a Mellanox Spectrum chipset running Cumulus Linux
+ OVSDB server (ovsdb-server), included in Cumulus Linux</description>
+    </item>
+    
+    <item>
+      <title>Integrating Hardware VTEPs with VMware NSX</title>
+      <link>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_36/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX/</guid>
+      <description>Switches running Cumulus Linux can integrate with VMware NSX to act as hardware VTEP gateways. The VMware NSX controller provides consistent provisioning across virtual and physical server infrastructures.
+Getting Started Before you integrate VXLANs with NSX, make sure you have the following components:
+ A switch (layer 2 gateway) with a Broadcom Tomahawk, Trident II+, Trident II, or Maverick chipset or a Mellanox Spectrum chipset running Cumulus Linux
+ OVSDB server (ovsdb-server), included in Cumulus Linux and supports VLAN-aware bridges</description>
+    </item>
+    
+  </channel>
+</rss>

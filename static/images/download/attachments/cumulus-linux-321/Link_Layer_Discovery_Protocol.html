@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Link Layer Discovery Protocol - Cumulus Linux 3.2.1</title>
+
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+    </head>
+
+<body pageid="5126727">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">CL321</span>
+                    <img class="space-logo" src="spacelogo.png" />
+                </h1>
+                <a href="Cumulus_Linux_User_Guide.html" class="ht-space-link">
+                    <h2>Cumulus Linux 3.2.1</h2>
+                </a>
+            </header>
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top">
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Quick_Start_Guide.html">Quick Start Guide</a>
+
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Installation_Management.html">Installation Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Managing_Cumulus_Linux_Disk_Images.html">Managing Cumulus Linux Disk Images</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Installing_a_New_Cumulus_Linux_Image.html">Installing a New Cumulus Linux Image</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Upgrading_Cumulus_Linux.html">Upgrading Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Snapshots.html">Using Snapshots</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Adding_and_Updating_Packages.html">Adding and Updating Packages</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Zero_Touch_Provisioning_-_ZTP.html">Zero Touch Provisioning - ZTP</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="System_Configuration.html">System Configuration</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Command_Line_Utility.html">Network Command Line Utility</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Setting_Date_and_Time.html">Setting Date and Time</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Authentication,_Authorization,_and_Accounting.html">Authentication, Authorization, and Accounting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="SSH_for_Remote_Access.html">SSH for Remote Access</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="User_Accounts.html">User Accounts</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_sudo_to_Delegate_Privileges.html">Using sudo to Delegate Privileges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LDAP_Authentication_and_Authorization.html">LDAP Authentication and Authorization</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="TACACS_Plus.html">TACACS Plus</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Netfilter_-_ACLs.html">Netfilter - ACLs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Default_Cumulus_Linux_ACL_Configuration.html">Default Cumulus Linux ACL Configuration</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Managing_Application_Daemons.html">Managing Application Daemons</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_switchd.html">Configuring switchd</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Power_over_Ethernet_-_PoE.html">Power over Ethernet - PoE</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_a_Global_Proxy.html">Configuring a Global Proxy</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Interface_Configuration_and_Management.html">Interface Configuration and Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Layer_1_and_Switch_Port_Attributes.html">Layer 1 and Switch Port Attributes</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Buffer_and_Queue_Management.html">Buffer and Queue Management</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_Hardware-enabled_DDOS_Protection.html">Configuring Hardware-enabled DDOS Protection</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Relays.html">Configuring DHCP Relays</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Configuring_DHCP_Servers.html">Configuring DHCP Servers</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_One_and_Two.html">Layer One and Two</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Spanning_Tree_and_Rapid_Spanning_Tree.html">Spanning Tree and Rapid Spanning Tree</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link current" href="Link_Layer_Discovery_Protocol.html">Link Layer Discovery Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Prescriptive_Topology_Manager_-_PTM.html">Prescriptive Topology Manager - PTM</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bonding_-_Link_Aggregation.html">Bonding - Link Aggregation</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Ethernet_Bridging_-_VLANs.html">Ethernet Bridging - VLANs</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html">VLAN-aware Bridge Mode for Large-scale Layer 2 Environments</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Traditional_Mode_Bridges.html">Traditional Mode Bridges</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VLAN_Tagging.html">VLAN Tagging</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Multi-Chassis_Link_Aggregation_-_MLAG.html">Multi-Chassis Link Aggregation - MLAG</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LACP_Bypass.html">LACP Bypass</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Virtual_Router_Redundancy_-_VRR.html">Virtual Router Redundancy - VRR</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="ifplugd.html">ifplugd</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="IGMP_and_MLD_Snooping.html">IGMP and MLD Snooping</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Virtualization.html">Network Virtualization</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_with_VMware_NSX.html">Integrating with VMware NSX</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack.html">Integrating Hardware VTEPs with Midokura MidoNet and OpenStack</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Lightweight_Network_Virtualization_-_LNV_Overview.html">Lightweight Network Virtualization - LNV Overview</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_VXLAN_Active-Active_Mode.html">LNV VXLAN Active-Active Mode</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="LNV_Full_Example.html">LNV Full Example</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_MAC_Bindings_with_VXLAN.html">Static MAC Bindings with VXLAN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Ethernet_Virtual_Private_Network_-_EVPN.html">Ethernet Virtual Private Network - EVPN</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="VXLAN_Hyperloop.html">VXLAN Hyperloop</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Static_VXLAN_Tunnels.html">Static VXLAN Tunnels</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Layer_Three.html">Layer Three</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Routing.html">Routing</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Introduction_to_Routing_Protocols.html">Introduction to Routing Protocols</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Topology.html">Network Topology</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Quagga_Overview.html">Quagga Overview</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Configuring_Quagga.html">Configuring Quagga</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Comparing_NCLU_and_vtysh_Commands.html">Comparing NCLU and vtysh Commands</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_-_OSPF_-_Protocol.html">Open Shortest Path First - OSPF - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Open_Shortest_Path_First_v3_-_OSPFv3_-_Protocol.html">Open Shortest Path First v3 - OSPFv3 - Protocol</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Border_Gateway_Protocol_-_BGP.html">Border Gateway Protocol - BGP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Bidirectional_Forwarding_Detection_-_BFD.html">Bidirectional Forwarding Detection - BFD</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP.html">Equal Cost Multipath Load Sharing - Hardware ECMP</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Redistribute_Neighbor.html">Redistribute Neighbor</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Virtual_Routing_and_Forwarding_-_VRF.html">Virtual Routing and Forwarding - VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Management_VRF.html">Management VRF</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Protocol_Independent_Multicast_-_PIM.html">Protocol Independent Multicast - PIM</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_and_Troubleshooting.html">Monitoring and Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Single_User_Mode_-_Boot_Recovery.html">Single User Mode - Boot Recovery</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Resource_Diagnostics_Using_cl-resource-query.html">Resource Diagnostics Using cl-resource-query</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Monitoring_System_Hardware.html">Monitoring System Hardware</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Network_Switch_Port_LED_and_Status_LED_Guidelines.html">Network Switch Port LED and Status LED Guidelines</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Virtual_Device_Counters.html">Monitoring Virtual Device Counters</a>
+
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Understanding_the_cl-support_Output_File.html">Understanding the cl-support Output File</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_Log_Files.html">Troubleshooting Log Files</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Troubleshooting_the_etc_Directory.html">Troubleshooting the etc Directory</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Troubleshooting_Network_Interfaces.html">Troubleshooting Network Interfaces</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Interfaces_and_Transceivers_Using_ethtool.html">Monitoring Interfaces and Transceivers Using ethtool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Troubleshooting.html">Network Troubleshooting</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_NCLU_to_Troubleshoot_Your_Network_Configuration.html">Using NCLU to Troubleshoot Your Network Configuration</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_System_Statistics_and_Network_Traffic_with_sFlow.html">Monitoring System Statistics and Network Traffic with sFlow</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_netq_to_Troubleshoot_the_Network.html">Using netq to Troubleshoot the Network</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="collapsed">
+        <a class="ht-nav-page-link" href="SNMP_Monitoring.html">SNMP Monitoring</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Using_Nutanix_Prism_as_a_Monitoring_Tool.html">Using Nutanix Prism as a Monitoring Tool</a>
+
+            </li>
+                            </ul>
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Monitoring_Best_Practices.html">Monitoring Best Practices</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="collapsed">
+        <a class="ht-nav-page-link" href="Network_Solutions.html">Network Solutions</a>
+
+                    <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+            <ul class="nav ht-pages-nav-sub">
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Data_Center_Host_to_ToR_Architecture.html">Data Center Host to ToR Architecture</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Networks_Services_Demos.html">Cumulus Networks Services Demos</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Docker_on_Cumulus_Linux.html">Docker on Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="OpenStack_Neutron_ML2_and_Cumulus_Linux.html">OpenStack Neutron ML2 and Cumulus Linux</a>
+
+            </li>
+                                        <li class="leaf">
+        <a class="ht-nav-page-link" href="Anycast_Design_Guide.html">Anycast Design Guide</a>
+
+            </li>
+                            </ul>
+            </li>
+                                                <li class="leaf">
+        <a class="ht-nav-page-link" href="Cumulus_Linux_Index.html">Cumulus Linux Index</a>
+
+            </li>
+                                    </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                                                                                     <li><a href="Layer_One_and_Two.html">Layer One and Two</a></li>
+                                                            </ul>
+</div>            <h1 id="src-5126830"> <span>Link Layer Discovery Protocol</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+
+    <p  ><span id="src-5126830_indexterm-191E31289DEF6E164E01D87B617E1142">The </span><tt class=" ">lldpd</tt><span id="src-5126830_indexterm-0B22B9033EB942883E8B338103CAF580"> daemon implements the IEEE802.1AB (</span><span id="src-5126830_indexterm-01654447F42A8B91F1665FB505EF2AF2">Link Layer Discovery Protocol, or </span>LLDP) standard. LLDP allows you to know which ports are neighbors of a given port. By default, <tt class=" ">lldpd</tt> runs as a daemon and is started at system boot. <tt class=" ">lldpd</tt> command line arguments are placed in <tt class=" ">/etc/default/lldpd</tt>. <tt class=" ">lldpd</tt> configuration options are placed in <tt class=" ">/etc/lldpd.conf</tt> or under <tt class=" ">/etc/lldpd.d/</tt>.    </p>
+    <p  >For more details on the command line arguments and config options, please see <tt class=" ">man lldpd(8)</tt>.    </p>
+    <p  ><tt class=" ">lldpd</tt> supports CDP (Cisco Discovery Protocol, v1 and v2). <tt class=" ">lldpd</tt> logs by default into <tt class=" ">/var/log/daemon.log</tt> with an <tt class=" ">lldpd</tt> prefix.    </p>
+    <p  ><tt class=" ">lldpcli</tt> is the CLI tool to query the <tt class=" ">lldpd</tt> daemon for neighbors, statistics and other running configuration information. See <tt class=" ">man lldpcli(8)</tt> for details.    </p>
+    <div class="section section-1" id="src-5126830_LinkLayerDiscoveryProtocol-Contents">
+        <h1 class="heading "><span>Contents</span></h1>
+    <p  class="expand-control-text">This chapter covers ...    </p>
+    </div>
+    <div class="section section-1" id="src-5126830_LinkLayerDiscoveryProtocol-ConfiguringLLDP">
+        <h1 class="heading "><span>Configuring LLDP</span></h1>
+    <p  >You configure <tt class=" ">lldpd</tt> settings in <tt class=" ">/etc/lldpd.conf</tt> or <tt class=" ">/etc/lldpd.d/</tt>.    </p>
+    <p  >Here is an example persistent configuration:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo cat /etc/lldpd.conf</code></div>
+<div class="line"><code class="plain">configure lldp tx-interval </code><code class="value">40</code></div>
+<div class="line"><code class="plain">configure lldp tx-hold </code><code class="value">3</code></div>
+<div class="line"><code class="plain">configure system </code><code class="keyword">interface</code><code class="plain"> pattern-blacklist </code><code class="string">"eth0"</code></div>
+</div>
+    </div>
+    <p  ><tt class=" ">lldpd</tt> logs to <tt class=" ">/var/log/daemon.log</tt> with the <i class=" ">lldpd</i> prefix:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo tail -f /var/log/daemon.log  | grep lldp</code></div>
+<div class="line"><code class="plain">Aug  </code><code class="value">7</code><code class="plain"> </code><code class="value">17</code><code class="plain">:</code><code class="value">26</code><code class="plain">:</code><code class="value">17</code><code class="plain"> </code><code class="keyword">switch</code><code class="plain"> lldpd[</code><code class="value">1712</code><code class="plain">]: unable to get system name</code></div>
+<div class="line"><code class="plain">Aug  </code><code class="value">7</code><code class="plain"> </code><code class="value">17</code><code class="plain">:</code><code class="value">26</code><code class="plain">:</code><code class="value">17</code><code class="plain"> </code><code class="keyword">switch</code><code class="plain"> lldpd[</code><code class="value">1712</code><code class="plain">]: unable to get system name</code></div>
+<div class="line"><code class="plain">Aug  </code><code class="value">7</code><code class="plain"> </code><code class="value">17</code><code class="plain">:</code><code class="value">26</code><code class="plain">:</code><code class="value">17</code><code class="plain"> </code><code class="keyword">switch</code><code class="plain"> lldpcli[</code><code class="value">1711</code><code class="plain">]: lldpd should resume operations</code></div>
+<div class="line"><code class="plain">Aug  </code><code class="value">7</code><code class="plain"> </code><code class="value">17</code><code class="plain">:</code><code class="value">26</code><code class="plain">:</code><code class="value">32</code><code class="plain"> </code><code class="keyword">switch</code><code class="plain"> lldpd[</code><code class="value">1805</code><code class="plain">]: NET-SNMP version </code><code class="value">5.4</code><code class="plain">.</code><code class="value">3</code><code class="plain"> AgentX subagent connected</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126830_LinkLayerDiscoveryProtocol-ExamplelldpcliCommands">
+        <h1 class="heading "><span>Example lldpcli Commands</span></h1>
+    <p  ><span id="src-5126830_indexterm-B0D05DE92C5E5F84C6EDE5B5E2C4373E">To see all neighbors on all </span>ports/interfaces:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo lldpcli show neighbors</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">LLDP neighbors:</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Interface:    eth0, via: LLDP, RID: </code><code class="value">1</code><code class="plain">, Time: </code><code class="value">0</code><code class="plain"> day, </code><code class="value">17</code><code class="plain">:</code><code class="value">38</code><code class="plain">:</code><code class="value">08</code></div>
+<div class="line"><code class="plain">  Chassis:     </code></div>
+<div class="line"><code class="plain">    ChassisID:    mac </code><code class="value">08</code><code class="plain">:9e:</code><code class="value">01</code><code class="plain">:e9:</code><code class="value">66</code><code class="plain">:5a</code></div>
+<div class="line"><code class="plain">    SysName:      PIONEERMS22</code></div>
+<div class="line"><code class="plain">    SysDescr:     Cumulus Linux version </code><code class="value">2.5</code><code class="plain">.</code><code class="value">4</code><code class="plain"> running on quanta lb9</code></div>
+<div class="line"><code class="plain">    MgmtIP:       </code><code class="value">192.168</code><code class="plain">.</code><code class="value">0.22</code></div>
+<div class="line"><code class="plain">    Capability:   Bridge, on</code></div>
+<div class="line"><code class="plain">    Capability:   Router, on</code></div>
+<div class="line"><code class="plain">  Port:        </code></div>
+<div class="line"><code class="plain">    PortID:       ifname swp47</code></div>
+<div class="line"><code class="plain">    PortDescr:    swp47</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Interface:    swp1, via: LLDP, RID: </code><code class="value">10</code><code class="plain">, Time: </code><code class="value">0</code><code class="plain"> day, </code><code class="value">17</code><code class="plain">:</code><code class="value">08</code><code class="plain">:</code><code class="value">27</code></div>
+<div class="line"><code class="plain">  Chassis:     </code></div>
+<div class="line"><code class="plain">    ChassisID:    mac </code><code class="value">00</code><code class="plain">:</code><code class="value">01</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">09</code><code class="plain">:</code><code class="value">00</code></div>
+<div class="line"><code class="plain">    SysName:      MSP-</code><code class="value">1</code></div>
+<div class="line"><code class="plain">    SysDescr:     Cumulus Linux version </code><code class="value">3.0</code><code class="plain">.</code><code class="value">0</code><code class="plain"> running on QEMU Standard PC (i440FX + PIIX, </code><code class="value">1996</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">    MgmtIP:       </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.9</code></div>
+<div class="line"><code class="plain">    MgmtIP:       fe80::</code><code class="value">201</code><code class="plain">:ff:fe00:</code><code class="value">900</code></div>
+<div class="line"><code class="plain">    Capability:   Bridge, off</code></div>
+<div class="line"><code class="plain">    Capability:   Router, on</code></div>
+<div class="line"><code class="plain">  Port:        </code></div>
+<div class="line"><code class="plain">    PortID:       ifname swp1</code></div>
+<div class="line"><code class="plain">    PortDescr:    swp1</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Interface:    swp2, via: LLDP, RID: </code><code class="value">10</code><code class="plain">, Time: </code><code class="value">0</code><code class="plain"> day, </code><code class="value">17</code><code class="plain">:</code><code class="value">08</code><code class="plain">:</code><code class="value">27</code></div>
+<div class="line"><code class="plain">  Chassis:     </code></div>
+<div class="line"><code class="plain">    ChassisID:    mac </code><code class="value">00</code><code class="plain">:</code><code class="value">01</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">09</code><code class="plain">:</code><code class="value">00</code></div>
+<div class="line"><code class="plain">    SysName:      MSP-</code><code class="value">1</code></div>
+<div class="line"><code class="plain">    SysDescr:     Cumulus Linux version </code><code class="value">3.0</code><code class="plain">.</code><code class="value">0</code><code class="plain"> running on QEMU Standard PC (i440FX + PIIX, </code><code class="value">1996</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">    MgmtIP:       </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.9</code></div>
+<div class="line"><code class="plain">    MgmtIP:       fe80::</code><code class="value">201</code><code class="plain">:ff:fe00:</code><code class="value">900</code></div>
+<div class="line"><code class="plain">    Capability:   Bridge, off</code></div>
+<div class="line"><code class="plain">    Capability:   Router, on</code></div>
+<div class="line"><code class="plain">  Port:        </code></div>
+<div class="line"><code class="plain">    PortID:       ifname swp2</code></div>
+<div class="line"><code class="plain">    PortDescr:    swp2</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Interface:    swp3, via: LLDP, RID: </code><code class="value">11</code><code class="plain">, Time: </code><code class="value">0</code><code class="plain"> day, </code><code class="value">17</code><code class="plain">:</code><code class="value">08</code><code class="plain">:</code><code class="value">27</code></div>
+<div class="line"><code class="plain">  Chassis:     </code></div>
+<div class="line"><code class="plain">    ChassisID:    mac </code><code class="value">00</code><code class="plain">:</code><code class="value">01</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:0a:</code><code class="value">00</code></div>
+<div class="line"><code class="plain">    SysName:      MSP-</code><code class="value">2</code></div>
+<div class="line"><code class="plain">    SysDescr:     Cumulus Linux version </code><code class="value">3.0</code><code class="plain">.</code><code class="value">0</code><code class="plain"> running on QEMU Standard PC (i440FX + PIIX, </code><code class="value">1996</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">    MgmtIP:       </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.10</code></div>
+<div class="line"><code class="plain">    MgmtIP:       fe80::</code><code class="value">201</code><code class="plain">:ff:fe00:a00</code></div>
+<div class="line"><code class="plain">    Capability:   Bridge, off</code></div>
+<div class="line"><code class="plain">    Capability:   Router, on</code></div>
+<div class="line"><code class="plain">  Port:        </code></div>
+<div class="line"><code class="plain">    PortID:       ifname swp1</code></div>
+<div class="line"><code class="plain">    PortDescr:    swp1</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Interface:    swp4, via: LLDP, RID: </code><code class="value">11</code><code class="plain">, Time: </code><code class="value">0</code><code class="plain"> day, </code><code class="value">17</code><code class="plain">:</code><code class="value">08</code><code class="plain">:</code><code class="value">27</code></div>
+<div class="line"><code class="plain">  Chassis:     </code></div>
+<div class="line"><code class="plain">    ChassisID:    mac </code><code class="value">00</code><code class="plain">:</code><code class="value">01</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:0a:</code><code class="value">00</code></div>
+<div class="line"><code class="plain">    SysName:      MSP-</code><code class="value">2</code></div>
+<div class="line"><code class="plain">    SysDescr:     Cumulus Linux version </code><code class="value">3.0</code><code class="plain">.</code><code class="value">0</code><code class="plain"> running on QEMU Standard PC (i440FX + PIIX, </code><code class="value">1996</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">    MgmtIP:       </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.10</code></div>
+<div class="line"><code class="plain">    MgmtIP:       fe80::</code><code class="value">201</code><code class="plain">:ff:fe00:a00</code></div>
+<div class="line"><code class="plain">    Capability:   Bridge, off</code></div>
+<div class="line"><code class="plain">    Capability:   Router, on</code></div>
+<div class="line"><code class="plain">  Port:        </code></div>
+<div class="line"><code class="plain">    PortID:       ifname swp2</code></div>
+<div class="line"><code class="plain">    PortDescr:    swp2</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Interface:    swp49s1, via: LLDP, RID: </code><code class="value">9</code><code class="plain">, Time: </code><code class="value">0</code><code class="plain"> day, </code><code class="value">16</code><code class="plain">:</code><code class="value">55</code><code class="plain">:</code><code class="value">00</code></div>
+<div class="line"><code class="plain">  Chassis:     </code></div>
+<div class="line"><code class="plain">    ChassisID:    mac </code><code class="value">00</code><code class="plain">:</code><code class="value">01</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:0c:</code><code class="value">00</code></div>
+<div class="line"><code class="plain">    SysName:      TORC-</code><code class="value">1</code><code class="plain">-</code><code class="value">2</code></div>
+<div class="line"><code class="plain">    SysDescr:     Cumulus Linux version </code><code class="value">3.0</code><code class="plain">.</code><code class="value">0</code><code class="plain"> running on QEMU Standard PC (i440FX + PIIX, </code><code class="value">1996</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">    MgmtIP:       </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.12</code></div>
+<div class="line"><code class="plain">    MgmtIP:       fe80::</code><code class="value">201</code><code class="plain">:ff:fe00:c00</code></div>
+<div class="line"><code class="plain">    Capability:   Bridge, on</code></div>
+<div class="line"><code class="plain">    Capability:   Router, on</code></div>
+<div class="line"><code class="plain">  Port:        </code></div>
+<div class="line"><code class="plain">    PortID:       ifname swp6</code></div>
+<div class="line"><code class="plain">    PortDescr:    swp6</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Interface:    swp49s0, via: LLDP, RID: </code><code class="value">9</code><code class="plain">, Time: </code><code class="value">0</code><code class="plain"> day, </code><code class="value">16</code><code class="plain">:</code><code class="value">55</code><code class="plain">:</code><code class="value">00</code></div>
+<div class="line"><code class="plain">  Chassis:     </code></div>
+<div class="line"><code class="plain">    ChassisID:    mac </code><code class="value">00</code><code class="plain">:</code><code class="value">01</code><code class="plain">:</code><code class="value">00</code><code class="plain">:</code><code class="value">00</code><code class="plain">:0c:</code><code class="value">00</code></div>
+<div class="line"><code class="plain">    SysName:      TORC-</code><code class="value">1</code><code class="plain">-</code><code class="value">2</code></div>
+<div class="line"><code class="plain">    SysDescr:     Cumulus Linux version </code><code class="value">3.0</code><code class="plain">.</code><code class="value">0</code><code class="plain"> running on QEMU Standard PC (i440FX + PIIX, </code><code class="value">1996</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">    MgmtIP:       </code><code class="value">192.0</code><code class="plain">.</code><code class="value">2.12</code></div>
+<div class="line"><code class="plain">    MgmtIP:       fe80::</code><code class="value">201</code><code class="plain">:ff:fe00:c00</code></div>
+<div class="line"><code class="plain">    Capability:   Bridge, on</code></div>
+<div class="line"><code class="plain">    Capability:   Router, on</code></div>
+<div class="line"><code class="plain">  Port:        </code></div>
+<div class="line"><code class="plain">    PortID:       ifname swp5</code></div>
+<div class="line"><code class="plain">    PortDescr:    swp5</code></div>
+<div class="line"><code class="plain">-------------------------------------------------------------------------------</code></div>
+</div>
+    </div>
+    <p  >To see <tt class=" ">lldpd</tt> statistics for all ports:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo lldpcli show statistics</code></div>
+<div class="line"><code class="plain">----------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">LLDP statistics:</code></div>
+<div class="line"><code class="plain">----------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Interface:    eth0</code></div>
+<div class="line"><code class="plain">  Transmitted:  </code><code class="value">9423</code></div>
+<div class="line"><code class="plain">  Received:     </code><code class="value">17634</code></div>
+<div class="line"><code class="plain">  Discarded:    </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Unrecognized: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Ageout:       </code><code class="value">10</code></div>
+<div class="line"><code class="plain">  Inserted:     </code><code class="value">20</code></div>
+<div class="line"><code class="plain">  Deleted:      </code><code class="value">10</code></div>
+<div class="line"><code class="plain">--------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Interface:    swp1</code></div>
+<div class="line"><code class="plain">  Transmitted:  </code><code class="value">9423</code></div>
+<div class="line"><code class="plain">  Received:     </code><code class="value">6264</code></div>
+<div class="line"><code class="plain">  Discarded:    </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Unrecognized: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Ageout:       </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Inserted:     </code><code class="value">2</code></div>
+<div class="line"><code class="plain">  Deleted:      </code><code class="value">0</code></div>
+<div class="line"><code class="plain">---------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Interface:    swp2</code></div>
+<div class="line"><code class="plain">  Transmitted:  </code><code class="value">9423</code></div>
+<div class="line"><code class="plain">  Received:     </code><code class="value">6264</code></div>
+<div class="line"><code class="plain">  Discarded:    </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Unrecognized: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Ageout:       </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Inserted:     </code><code class="value">2</code></div>
+<div class="line"><code class="plain">  Deleted:      </code><code class="value">0</code></div>
+<div class="line"><code class="plain">---------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Interface:    swp3</code></div>
+<div class="line"><code class="plain">  Transmitted:  </code><code class="value">9423</code></div>
+<div class="line"><code class="plain">  Received:     </code><code class="value">6265</code></div>
+<div class="line"><code class="plain">  Discarded:    </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Unrecognized: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Ageout:       </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Inserted:     </code><code class="value">2</code></div>
+<div class="line"><code class="plain">  Deleted:      </code><code class="value">0</code></div>
+<div class="line"><code class="plain">----------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">... and more (output truncated to fit </code><code class="keyword">this</code><code class="plain"> document)</code></div>
+</div>
+    </div>
+    <p  >To see <tt class=" ">lldpd</tt> statistics summary for all ports:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo lldpcli show statistics summary</code></div>
+<div class="line"><code class="plain">---------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">LLDP Global statistics:</code></div>
+<div class="line"><code class="plain">---------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Summary of stats:</code></div>
+<div class="line"><code class="plain">  Transmitted:  </code><code class="value">648186</code></div>
+<div class="line"><code class="plain">  Received:     </code><code class="value">437557</code></div>
+<div class="line"><code class="plain">  Discarded:    </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Unrecognized: </code><code class="value">0</code></div>
+<div class="line"><code class="plain">  Ageout:       </code><code class="value">10</code></div>
+<div class="line"><code class="plain">  Inserted:     </code><code class="value">38</code></div>
+<div class="line"><code class="plain">  Deleted:      </code><code class="value">10</code></div>
+</div>
+    </div>
+    <p  >To see the <tt class=" ">lldpd</tt> running configuration:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo lldpcli show running-configuration</code></div>
+<div class="line"><code class="plain">--------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Global configuration:</code></div>
+<div class="line"><code class="plain">--------------------------------------------------------------------</code></div>
+<div class="line"><code class="plain">Configuration:</code></div>
+<div class="line"><code class="plain">  Transmit delay: </code><code class="value">30</code></div>
+<div class="line"><code class="plain">  Transmit hold: </code><code class="value">4</code></div>
+<div class="line"><code class="plain">  Receive mode: no</code></div>
+<div class="line"><code class="plain">  Pattern </code><code class="keyword">for</code><code class="plain"> management addresses: (none)</code></div>
+<div class="line"><code class="plain">  Interface pattern: (none)</code></div>
+<div class="line"><code class="plain">  Interface pattern blacklist: (none)</code></div>
+<div class="line"><code class="plain">  Interface pattern </code><code class="keyword">for</code><code class="plain"> chassis ID: (none)</code></div>
+<div class="line"><code class="plain">  Override description with: (none)</code></div>
+<div class="line"><code class="plain">  Override platform with: Linux</code></div>
+<div class="line"><code class="plain">  Override system name with: (none)</code></div>
+<div class="line"><code class="plain">  Advertise version: yes</code></div>
+<div class="line"><code class="plain">  Update </code><code class="keyword">interface</code><code class="plain"> descriptions: no</code></div>
+<div class="line"><code class="plain">  Promiscuous mode on managed interfaces: no</code></div>
+<div class="line"><code class="plain">  Disable LLDP-MED inventory: yes</code></div>
+<div class="line"><code class="plain">  LLDP-MED fast start mechanism: yes</code></div>
+<div class="line"><code class="plain">  LLDP-MED fast start interval: </code><code class="value">1</code></div>
+<div class="line"><code class="plain">  Source MAC </code><code class="keyword">for</code><code class="plain"> LLDP frames on bond slaves: local</code></div>
+<div class="line"><code class="plain">  Portid TLV Subtype </code><code class="keyword">for</code><code class="plain"> lldp frames: ifname</code></div>
+<div class="line"><code class="plain">--------------------------------------------------------------------</code></div>
+</div>
+    </div>
+    <p  class="expand-control-text">Runtime Configuration (Advanced)    </p>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >A runtime configuration does not persist when you reboot the switch &mdash; all changes are lost.    </p>
+        </div>
+    </div>
+    <p  >To configure active interfaces:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo lldpcli configure system </code><code class="keyword">interface</code><code class="plain"> pattern </code><code class="string">"swp*"</code></div>
+</div>
+    </div>
+    <p  >To configure inactive interfaces:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo lldpcli configure system </code><code class="keyword">interface</code><code class="plain"> pattern-blacklist </code><code class="string">"eth0"</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+    <p  >The active interface list always overrides the inactive interface list.    </p>
+        </div>
+    </div>
+    <p  >To reset any interface list to none:    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo lldpcli configure system </code><code class="keyword">interface</code><code class="plain"> pattern-blacklist </code><code class="string">""</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126830_LinkLayerDiscoveryProtocol-snmpEnablingtheSNMPSubagentinLLDP">
+        <h1 class="heading "><span id="src-5126830_LinkLayerDiscoveryProtocol-snmp" class="confluence-anchor-link"></span><span>Enabling the SNMP Subagent in LLDP</span></h1>
+    <p  ><span id="src-5126830_indexterm-665EF5F19A002AB62AC724607684498C">LLDP</span> does not enable the SNMP subagent by default. You need to edit <tt class=" ">/etc/default/lldpd</tt> and enable the <tt class=" ">-x</tt> option.    </p>
+    <div  class="confbox programlisting">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code">
+<div class="line"><code class="plain">cumulus</code><code class="color1">@switch</code><code class="plain">:~$ sudo nano /etc/</code><code class="keyword">default</code><code class="plain">/lldpd</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># Add </code><code class="string">"-x"</code><code class="plain"> to DAEMON_ARGS to start SNMP subagent</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain"># Enable CDP by </code><code class="keyword">default</code></div>
+<div class="line"><code class="plain">DAEMON_ARGS=</code><code class="string">"-c"</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-1" id="src-5126830_LinkLayerDiscoveryProtocol-CaveatsandErrata">
+        <h1 class="heading "><span>Caveats and Errata</span></h1>
+<ul class=" "><li class=" ">    <p  >Annex E (and hence Annex D) of IEEE802.1AB (lldp) is not supported.    </p>
+</li></ul>    </div>
+    <div class="section section-1" id="src-5126830_LinkLayerDiscoveryProtocol-RelatedInformation">
+        <h1 class="heading "><span>Related Information</span></h1>
+<ul class=" "><li class=" ">    <p  ><a  class="external-link" href="http://vincentbernat.github.io/lldpd/">GitHub - lldpd project</a>    </p>
+</li><li class=" ">    <p  ><a  class="external-link" href="http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol">Wikipedia - Link Layer Discovery Protocol</a>    </p>
+</li></ul>    </div>
+        </div>
+
+    </article>
+
+
+            <nav id="ht-post-nav">
+                <a href="Spanning_Tree_and_Rapid_Spanning_Tree.html" class="ht-post-nav-prev">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-prev" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-45.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Spanning Tree and Rapid Spanning Tree</span>
+        </a>
+                <a href="Prescriptive_Topology_Manager_-_PTM.html" class="ht-post-nav-next">
+            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                <g id="ht-icon-next" sketch:type="MSArtboardGroup">
+                    <path fill="#000000" d="M16,8 L16,6 L6,6 L6,16 L8,16 L8,8 L16,8 Z" id="Rectangle-2"
+                          sketch:type="MSShapeGroup"
+                          transform="translate(11.000000, 11.000000) rotate(-225.000000) translate(-11.000000, -11.000000) "></path>
+                </g>
+            </svg>
+            <span>Prescriptive Topology Manager - PTM</span>
+        </a>
+    </nav>    
+            
+            <article id="html-search-results" class="ht-content" style="display: none;">
+            <header class="ht-content-header">
+                <div id="ht-spacetitle">
+                    <ul>
+                        <li><a href="Cumulus_Linux_User_Guide.html">Cumulus Linux 3.2.1</a></li>
+                    </ul>
+                </div>
+                <h1>Search results</h1>
+            </header>
+            <div id="search-results"></div>
+        </article>
+    
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+</body>
+</html>

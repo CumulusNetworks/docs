@@ -1,0 +1,148 @@
+@import "variables";
+
+div.notices{
+  padding-left : 1.5rem;
+  padding-right: 1.5rem;
+  padding: 1.5rem;
+  margin: 0;
+}
+div.notices > *:first-child{
+  padding-top: 1rem;
+}
+div.notices > *:last-child{
+  padding-bottom: 1rem;
+}
+div.notices ul,ol,menu,dl{
+  padding-left: 2rem;
+}
+div.notices p{
+  margin: 0;
+}
+div.notices > p{
+  padding-bottom: 0.5rem;
+}
+div.notices > *:first-child:after {
+  font-family: $cumulus-font-family;
+  font-size: initial;
+  font-weight: bold;
+
+
+
+
+}
+
+//Warning Notice Block
+div.notices.warning {
+    margin : 1rem;
+    position: relative;
+    display: block;
+    font-size: 1rem;
+    background-color: #FAE2E2;
+    color: #666;
+    border: 3px solid rgba(217, 83, 79, 0.8);
+    border-radius: 5px;
+}
+
+div.notices.warning > *:first-child:before{
+  display: block;
+  position: absolute;
+  content: url('/icons/remove-circle_20x20.png');
+  top: 5px;
+  left: 5px;
+  right: 10px;
+
+  height: 20px;
+  width: 20px;
+
+
+
+}
+div.notices.warning > *:first-child:after{
+  position: absolute;
+  top: 2px;
+  left: 2rem;
+  content: "Warning"
+}
+//Tip Notice Block
+div.notices.tip {
+    margin : 1rem;
+    position: relative;
+    display: block;
+    font-size: 1rem;
+    background-color: #E6F9E6;
+    border: 3px solid rgba(92, 184, 92, 0.8);
+    border-radius:5px;
+}
+div.notices.tip > *:first-child:before{
+  display: block;
+  content:url('/icons/check-circle_20x20.png');
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 10px;
+
+
+
+}
+div.notices.tip > *:first-child:after{
+  position: absolute;
+  top: 2px;
+  left: 2rem;
+  content: "Tip"
+}
+
+//Note Notice Block
+div.notices.note {
+    margin : 1rem;
+    position: relative;
+    display: block;
+    font-size: 1rem;
+    background-color: #E7F2FA;
+    border: 3px solid #6AB0DE;
+    border-radius:5px;
+}
+
+div.notices.note > *:first-child:before{
+  display: block;
+  content:url('/icons/info-circle_20x20.png');
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 10px;
+
+}
+div.notices.note > *:first-child:after{
+  position: absolute;
+  top: 2px;
+  left: 2rem;
+  content: "Note"
+}
+
+//Important Notice Block
+div.notices.info {
+    margin : 1rem;
+    position: relative;
+    display: block;
+    font-size: 1rem;
+    background-color: #FFF2DB;
+    border: 3px solid #F0B37E;
+    border-radius:5px;
+
+}
+
+div.notices.info > *:first-child:before{
+  display: block;
+  content:url('/icons/alert-triangle_20x20.png');
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 10px;
+
+
+}
+div.notices.info > *:first-child:after{
+  position: absolute;
+  top: 2px;
+  left: 2rem;
+  content: "Important"
+}

@@ -1,0 +1,2308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>OVSDB Server High Availability | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/" >
+    Cumulus Linux 3.7.7
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Cumulus_Linux_User_Guide/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Quick_Start_Guide/" >
+    Quick Start Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/" >
+    Installation Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Managing_Cumulus_Linux_Disk_Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Installing_a_New_Cumulus_Linux_Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Upgrading_Cumulus_Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Using_Snapshots/" >
+    Using Snapshots
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Adding_and_Updating_Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Installation_Management/Zero_Touch_Provisioning_-_ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/" >
+    System Configuration
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/" >
+    Authentication, Authorization and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/SSH_for_Remote_Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/User_Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/Using_sudo_to_Delegate_Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/LDAP_Authentication_and_Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/TACACS_Plus/" >
+    TACACS Plus
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Authentication_Authorization_and_Accounting/RADIUS_AAA/" >
+    RADIUS AAA
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Netfilter_-_ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Netfilter_-_ACLs/Default_Cumulus_Linux_ACL_Configuration/" >
+    Default Cumulus Linux ACL Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Netfilter_-_ACLs/Filtering_Learned_MAC_Addresses/" >
+    Filtering Learned MAC Addresses
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Network_Command_Line_Utility_-_NCLU/" >
+    Network Command Line Utility - NCLU
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Setting_Date_and_Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Services_and_Daemons_in_Cumulus_Linux/" >
+    Services and Daemons in Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Configuring_switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Power_over_Ethernet_-_PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/Configuring_a_Global_Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/System_Configuration/HTTP_API/" >
+    HTTP API
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/" >
+    Layer 1 and Switch Ports
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/" >
+    Interface Configuration and Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/Switch_Port_Attributes/" >
+    Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Interface_Configuration_and_Management/ifplugd/" >
+    ifplugd
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Buffer_and_Queue_Management/Hardware-enabled_DDOS_Protection/" >
+    Hardware-enabled DDOS Protection
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/DHCP_Relays/" >
+    DHCP Relays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/DHCP_Servers/" >
+    DHCP Servers
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Facebook_Voyager_Optical_Interfaces/" >
+    Facebook Voyager Optical Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/802.1X_Interfaces/" >
+    802.1X Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_1_and_Switch_Ports/Prescriptive_Topology_Manager_-_PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_2/" >
+    Layer 2
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Link_Layer_Discovery_Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Link_Layer_Discovery_Protocol/Voice_VLAN/" >
+    Voice VLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/VLAN-aware_Bridge_Mode/" >
+    VLAN-aware Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/Traditional_Bridge_Mode/" >
+    Traditional Bridge Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Ethernet_Bridging_-_VLANs/VLAN_Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Spanning_Tree_and_Rapid_Spanning_Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Bonding_-_Link_Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Multi-Chassis_Link_Aggregation_-_MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/LACP_Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/Virtual_Router_Redundancy_-_VRR_and_VRRP/" >
+    Virtual Router Redundancy - VRR and VRRP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_2/IGMP_and_MLD_Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Static_VXLAN_Configurations/" >
+    Static VXLAN Configurations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Static_VXLAN_Configurations/Static_VXLAN_Tunnels/" >
+    Static VXLAN Tunnels
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Static_VXLAN_Configurations/Static_MAC_Bindings_with_VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Lightweight_Network_Virtualization_Overview/" >
+    Lightweight Network Virtualization Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Lightweight_Network_Virtualization_Overview/LNV_Full_Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/" >
+    Virtualization Integrations
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_Midokura_MidoNet_and_OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-V/" >
+    Integrating Hardware VTEPs with VMware NSX-V
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/Integrating_Hardware_VTEPs_with_VMware_NSX-MH/" >
+    Integrating Hardware VTEPs with VMware NSX-MH
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/OVSDB_Server_High_Availability/"  class="active" >
+    OVSDB Server High Availability
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN/" >
+    Ethernet Virtual Private Network - EVPN
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/VXLAN_Active-Active_Mode/" >
+    VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/VXLAN_Routing/" >
+    VXLAN Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/VXLAN_Scale/" >
+    VXLAN Scale
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs/" >
+    Hybrid Cloud Connectivity with QinQ and VXLANs
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Virtualization/Troubleshooting_VXLANs/" >
+    Troubleshooting VXLANs
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_3/" >
+    Layer 3
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_3/FRRouting_Overview/" >
+    FRRouting Overview
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/FRRouting_Overview/Upgrading_from_Quagga_to_FRRouting/" >
+    Upgrading from Quagga to FRRouting
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Configuring_FRRouting/" >
+    Configuring FRRouting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Configuring_FRRouting/Comparing_NCLU_and_vtysh_Commands/" >
+    Comparing NCLU and vtysh Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Introduction_to_Routing_Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Network_Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Address_Resolution_Protocol_-_ARP/" >
+    Address Resolution Protocol - ARP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Open_Shortest_Path_First_-_OSPF/" >
+    Open Shortest Path First - OSPF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Open_Shortest_Path_First_v3_-_OSPFv3/" >
+    Open Shortest Path First v3 - OSPFv3
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Border_Gateway_Protocol_-_BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Policy-based_Routing/" >
+    Policy-based Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Bidirectional_Forwarding_Detection_-_BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Equal_Cost_Multipath_Load_Sharing_-_Hardware_ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Redistribute_Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Virtual_Routing_and_Forwarding_-_VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Management_VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/GRE_Tunneling/" >
+    GRE Tunneling
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Protocol_Independent_Multicast_-_PIM/" >
+    Protocol Independent Multicast - PIM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Layer_3/Segment_Routing/" >
+    Segment Routing
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_System_Hardware/Network_Switch_Port_LED_and_Status_LED_Guidelines/" >
+    Network Switch Port LED and Status LED Guidelines
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/" >
+    Understanding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_Log_Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Understanding_the_cl-support_Output_File/Troubleshooting_the_etc_Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Troubleshooting_Network_Interfaces/Monitoring_Interfaces_and_Transceivers_Using_ethtool_-ethtool_Counter_Definitions/" >
+    Monitoring Interfaces and Transceivers Using ethtool — ethtool Counter Definitions
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Network_Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Network_Troubleshooting/Using_NCLU_to_Troubleshoot_Your_Network_Configuration/" >
+    Using NCLU to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Network_Troubleshooting/Monitoring_System_Statistics_and_Network_Traffic_with_sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/" >
+    Simple Network Management Protocol (SNMP) Monitoring
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Simple_Network_Management_Protocol_SNMP_Monitoring/Using_Nutanix_Prism_as_a_Monitoring_Tool/" >
+    Using Nutanix Prism as a Monitoring Tool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Single_User_Mode_-_Boot_Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Resource_Diagnostics_Using_cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_Virtual_Device_Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/ASIC_Monitoring/" >
+    ASIC Monitoring
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/Monitoring_Best_Practices/" >
+    Monitoring Best Practices
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/switchd_Log_Message_Reference/" >
+    switchd Log Message Reference
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Monitoring_and_Troubleshooting/FRRouting_Log_Message_Reference/" >
+    FRRouting Log Message Reference
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Data_Center_Host_to_ToR_Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Cumulus_Networks_Services_Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Docker_on_Cumulus_Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux/" >
+    OpenStack Neutron ML2 and Cumulus Linux
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Anycast_Design_Guide/" >
+    Anycast Design Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/RDMA_over_Converged_Ethernet_-_RoCE/" >
+    RDMA over Converged Ethernet - RoCE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="/Cumulus_Linux/Network_Solutions/Cumulus_Hyperconverged_Solution_with_Nutanix/" >
+    Cumulus Hyperconverged Solution with Nutanix
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>OVSDB Server High Availability</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>OVSDB Server High Availability</h1>
+
+
+<div class="notices warning" > <p>OVSDB server high availability is an <a href="https://support.cumulusnetworks.com/hc/en-us/articles/202933878" target="_blank">early access
+feature</a>
+in Cumulus Linux 3.7.</p>
+ </div>
+
+
+<p>Cumulus Linux supports integration with VMware NSX in both <em>standalone
+mode</em> and <em>OVSDB server high availability mode</em> (where the data plane is
+running in active-active mode). For information about VMware NSX in
+standalone mode and for a description of the components that work
+together to integrate VMware NSX and Cumulus Linux, see <a href="/old/Cumulus_Linux/Integrating_Hardware_VTEPs_with_VMware_NSX-MH.html">Integrating
+Hardware VTEPs with VMware
+NSX-MH</a>
+or <a href="/old/Cumulus_Linux/Integrating_Hardware_VTEPs_with_VMware_NSX-V.html">Integrating Hardware VTEPs with VMware
+NSX-V</a>.</p>
+
+<p>With OVSDB server high availability mode, you use two peer Cumulus Linux
+switches in an MLAG configuration. Both the MLAG primary and MLAG
+secondary switch contain OVSDB server and VTEPd. The OVSDB servers
+synchronize their databases with each other and always maintain the
+replicated state unless failover occurs; for example, the peer link bond
+breaks, a switch fails, or the OVSDB server goes down. Both of the VTEPd
+components talk to the active OVSDB server to read the configuration and
+then push the configuration to the kernel. Only the active OVSDB server
+communicates with the NSX controller, unless failover occurs and then
+the standby OVSDB server takes over automatically. Although the Cumulus
+switches are configured as an MLAG pair, the NSX controller sees them as
+a single system (the NSX controller is not aware that multiple switches
+exist).</p>
+
+<p>The following examples show OVSDB server high availability mode.</p>
+
+<p><strong>Example 1:</strong> The OVSDB server on the MLAG primary switch is active.
+The OVSDB server on the MLAG secondary switch is the hot standby. Only
+the active OVSDB server communicates with the NSX controller.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362860/ovsdb_example1.png" alt = "/images/download/attachments/8362860/ovsdb_example1.png"
+
+
+ />
+
+
+<p><strong>Example 2:</strong> If failover occurs, the OVSDB server on the MLAG
+secondary switch becomes the active OVSDB server and communicates with
+the NSX controller.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8362860/ovsdb_example2.png" alt = "/images/download/attachments/8362860/ovsdb_example2.png"
+
+
+ />
+
+
+<p>When the OVSDB server on the MLAG primary switch starts responding
+again, it resynchronizes its database, becomes the active OVSDB server,
+and connects to the controller. At the same time, the OVSDB server on
+the MLAG secondary switch stops communicating with the NSX controller,
+synchronizes with the now active OVSDB server, and takes the standby
+role again.</p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>Before you configure OVSDB server high availability, make sure you have
+<strong>two switches running Cumulus Linux in an MLAG configuration</strong>. Cumulus
+Linux includes OVSDB server (<code>ovsdb-server</code>) and VTEPd (<code>ovs-vtepd</code>),
+which support <a href="/old/Cumulus_Linux/VLAN-aware_Bridge_Mode.html">VLAN-aware
+bridges</a>.</p>
+
+<p>The following example configuration in the <code>/etc/network/interfaces</code>
+file shows the <em>minimum</em> MLAG configuration required (the MLAG peerlink
+configuration and the dual-connected bonds on the peer switches). The
+dual-connected bonds are identified in the NSX controller by their
+<code>clag-id</code> (single-connected bonds or ports are identified by their usual
+interface names prepended with the name of the particular switch to
+which they belong). When you create the Gateway Service for the
+dual-connected bonds (described in <a href="/old/Cumulus_Linux/#src-8362860_OVSDBServerHighAvailability-active-config-transport-logical">Configuring the Transport and
+Logical
+Layers</a>,
+below), make sure to select the <code>clag-id</code> named interfaces instead of
+the underlying individual physical ports. All the logical network
+configurations are provisioned by the NSX controller.</p>
+
+<pre><code>                   
+auto peerlink-3
+iface peerlink-3
+   bond-slaves swp5 swp6
+   bond-mode 802.3ad
+   bond-min-links 1
+   bond-lacp-rate 1
+   mtu  9202
+   alias Local Node/s leaf01 and Ports swp5 swp6 &lt;==&gt; Remote  Node/s leaf02 and Ports swp5 swp6
+ 
+auto peerlink-3.4094
+iface peerlink-3.4094
+   address 10.0.0.24/32
+   address 169.254.0.9/29
+   mtu 9202
+   alias clag and vxlan communication primary path
+   clagd-priority 4096
+   clagd-sys-mac 44:38:39:ff:ff:02
+   clagd-peer-ip 169.254.0.10
+   clagd-args --vm --debug 0x0
+   # post-up sysctl -w net.ipv4.conf.peerlink-3/4094.accept_local=1
+   clagd-backup-ip 10.0.0.25
+ 
+auto hostbond4
+iface hostbond4
+   bond-slaves swp7
+   bond-mode 802.3ad
+   bond-min-links 1
+   bond-lacp-rate 1
+   mtu  9152
+   alias Local Node/s leaf01 and Ports swp7 &lt;==&gt; Remote  Node/s hostd-01 and Ports swp1
+   clag-id 1
+ 
+auto hostbond5
+iface hostbond5
+   bond-slaves swp8
+   bond-mode 802.3ad
+   bond-min-links 1
+   bond-lacp-rate 1
+   mtu  9152
+   alias Local Node/s leaf01 and Ports swp8 &lt;==&gt; Remote  Node/s hostd-02 and Ports swp1
+   clag-id 2
+   
+    
+</code></pre>
+
+<p>To configure OVSDB server high availability, you need to:</p>
+
+<ul>
+<li><p>Determine on which switch you want to run the active OVSDB server
+(the MLAG primary switch or the MLAG secondary switch).</p></li>
+
+<li><p>Configure the NSX integration on both switches.</p></li>
+
+<li><p>Configure the Transport and Logical Layers from the NSX Manager.</p></li>
+
+<li><p>Verify the VXLAN Configuration.</p></li>
+</ul>
+
+
+<div class="notices note" > <p>The OVSDB server cannot select the loopback interface as the source IP
+address, causing top of rack registration to the controller to fail. To
+work around this issue, run the <code>net add bgp redistribute connected</code>
+command followed by the <code>net commit</code> command.</p>
+ </div>
+
+
+<h2 id="configure-the-nsx-integration-on-the-switch">Configure the NSX Integration on the Switch</h2>
+
+<p>Before you start configuring the gateway service, the logical switches,
+and ports that comprise the VXLAN, you need to enable and start the
+<code>openvswitch-vtep</code> service, then run the configuration script <strong>on both
+the MLAG primary and MLAG secondary switches</strong>. Follow these steps:</p>
+
+<ol>
+<li><p>Enable and start the <code>openvswitch-vtep</code> service:</p>
+
+<pre><code>                       
+cumulus@switch:~$ sudo systemctl enable openvswitch-vtep.service
+cumulus@switch:~$ sudo systemctl start openvswitch-vtep.service
+       
+        
+</code></pre></li>
+
+<li><p>Run the configuration script provided with Cumulus Linux:</p>
+
+<ol>
+<li><p>On the switch where you want to run the active OVSDB server, run
+the <code>vtep-bootstrap</code> command with these options:</p>
+
+<ul>
+<li><p><code>db_ha active</code> specifies that the OVSDB server on this
+switch is the <em>active</em> server.</p></li>
+
+<li><p><code>db_ha_vip</code> is any unused IP address in the subnet used by
+the peerlink control subinterface (4094 is typically used).
+This creates a /32 route that can be reached from either
+MLAG switch (<code>169.254.0.11:9998</code> in the example below).</p></li>
+
+<li><p><code>db_ha_repl_sv</code> specifies the IP address of the <strong>active</strong>
+OVSDB server (<code>169.254.0.9:9999</code> in the example command
+below). The standby OVSDB server uses this IP address to
+synchronize the database.</p></li>
+
+<li><p><code>controller_port</code> is the port used to communicate with the
+NSX controller.</p></li>
+
+<li><p><code>controller_ip</code> is the IP address of the NSX controller
+(192.168.100.17 in the example command below).</p></li>
+
+<li><p>The ID for the VTEP (<code>vtep7</code> in the example command below).</p></li>
+
+<li><p>The datapath IP address of the VTEP (<code>172.16.20.157</code> in the
+example command below). This is the VXLAN anycast IP
+address.</p></li>
+
+<li><p>The IP address of the management interface on the switch
+(<code>192.168.100.157</code> in the example command below). This
+interface is used for control traffic.</p></li>
+</ul>
+
+<!-- end list -->
+
+<pre><code>                           
+cumulus@switch:~$ vtep-bootstrap  --db_ha active  --db_ha_vip 169.254.0.11:9998  --db_ha_repl_sv 169.254.0.9:9999 --controller_ip 192.168.100.17 vtep7 172.16.20.157 192.168.100.157
+Executed: 
+    create certificate on a switch, to be used for authentication with controller
+     ().
+Executed: 
+    sign certificate
+     (vtep7-req.pem Tue Sep 11 21:11:27 UTC 2018
+        fingerprint a4cda030fe5e458c0d7ba44e22f52650f01bcd75).
+Executed: 
+    define physical switch
+     ().
+Executed: 
+    define NSX controller IP address in OVSDB
+     ().
+Executed: 
+    define local tunnel IP address on the switch
+     ().
+Executed: 
+    define management IP address on the switch
+     ().
+Executed: 
+    restart a service
+     ().
+           
+            
+</code></pre></li>
+
+<li><p>On the switch where you want to run the standby OVSDB server,
+run the the <code>vtep-bootstrap</code> command with the same options as
+above but replace <code>db_ha active</code> with <code>db_ha standby</code>:</p>
+
+<pre><code>                           
+cumulus@switch:~$ vtep-bootstrap  --db_ha standby  --db_ha_vip 169.254.0.11:9998  --db_ha_repl_sv 169.254.0.9:9999 --controller_ip 192.168.100.17 vtep7 172.16.20.157 192.168.100.157
+Executed: 
+    create certificate on a switch, to be used for authentication with controller
+     ().
+Executed: 
+    sign certificate
+     (vtep7-req.pem Tue Sep 11 21:11:27 UTC 2018
+        fingerprint a4cda030fe5e458c0d7ba44e22f52650f01bcd75).
+Executed: 
+    define physical switch
+     ().
+Executed: 
+    define NSX controller IP address in OVSDB
+     ().
+Executed: 
+    define local tunnel IP address on the switch
+     ().
+Executed: 
+    define management IP address on the switch
+     ().
+Executed: 
+    restart a service
+     ().
+           
+            
+</code></pre></li>
+
+<li><p>From the switch running the active OVSDB server, copy the
+certificate files (<code>hostname-cert.pem</code> and
+<code>hostname-privkey.pem</code>) to the same location on the switch with
+the standby OVSDB server.</p>
+
+
+<div class="notices note" > <pre><code>    The certificate and key pairs for authenticating with the NSX
+    controller are generated automatically when you run the
+    configuration script and are stored in the `/home/cumulus`
+    directory. The same certificate must be used for both switches.
+</code></pre>
+ </div>
+</li>
+
+<li><p>On the switch running the <em>active</em> OVSDB server and then the
+switch running the <em>standby</em> OVSDB server, run the following
+commands in the order shown to complete the configuration
+process:</p>
+
+<pre><code>                           
+cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
+cumulus@switch:~$ sudo ifreload -a
+cumulus@switch:~$ sudo systemctl restart networking.service
+           
+            
+</code></pre></li>
+</ol></li>
+</ol>
+
+<p>For information about the configuration script, read <code>man
+vtep-bootstrap</code> or run the command <code>vtep-bootstrap --help</code>.</p>
+
+<h2 id="configure-the-transport-and-logical-layers">Configure the Transport and Logical Layers</h2>
+
+<p>After you finish configuring the NSX integration on both the MLAG
+primary and MLAG secondary switch, you need to configure the transport
+and logical layers from the NSX Manager. Refer to <a href="/old/Cumulus_Linux/Integrating_Hardware_VTEPs_with_VMware_NSX-MH.html#src-8362796_IntegratingHardwareVTEPswithVMwareNSX-MH-config-transport-logical">Configuring the
+Transport and Logical Layers
+(NSX-MH)</a>
+or <a href="/old/Cumulus_Linux/Integrating_Hardware_VTEPs_with_VMware_NSX-V.html#src-8362823_IntegratingHardwareVTEPswithVMwareNSX-V-V-config-transport-logical">Configuring the Transport and Logical Layers
+(NSX-V</a>).</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>After you configure OVSDB server high availability, you can check that
+configuration is successful.</p>
+
+<p>To check the sync status on the <em>active</em> OVSDB server, run the following
+command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ovs-appctl -t /var/run/openvswitch/ovsdb-server.`pidof ovsdb-server`.ctl ovsdb-server/sync-status
+state: active
+   
+    
+</code></pre>
+
+<p>To check the sync status on the <em>standby</em> OVSDB server, run the
+following command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ovs-appctl -t /var/run/openvswitch/ovsdb-server.`pidof ovsdb-server`.ctl ovsdb-server/sync-status
+state: backup
+replicating: tcp:169.254.0.9:9999
+database: hardware_vtep
+   
+    
+</code></pre>
+
+<p>To check that the active OVSDB server is connected to the NSX
+controller, run the <code>ovsdb-client dump Manager</code>command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ovsdb-client dump Manager
+Manager table
+_uuid                                inactivity_probe is_connected max_backoff other_config status                                 target
+------------------------------------ ---------------- ------------ ----------- ------------ -------------------------------------- -------------------
+e700ad21-8fd8-4f09-96dc-fa7cc6e498d8 30000            true         []          {}           {sec_since_connect=“68”, state=ACTIVE} “ssl:54.0.0.2:6632&quot;
+   
+    
+</code></pre>
+
+<p>To make sure the MLAG configuration is correct, run the <code>clagctl</code>
+command:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo clagctl
+   
+    
+</code></pre>
+
+<p>The following example command output shows that MLAG <em>is</em> configured
+correctly on the active OVSDB server:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo clagctl
+The peer is alive
+  Our Priority, ID, and Role: 4096 00:02:00:00:00:46 primary
+  Peer Priority, ID, and Role: 8192 00:02:00:00:00:4e secondary
+  Peer Interface and IP: peerlink-3.4094 169.254.0.10
+  VxLAN Anycast IP: 36.0.0.1
+  Backup IP: 27.0.0.22 (active)
+  System MAC: 44:38:39:ff:ff:01
+CLAG Interfaces
+Our Interface Peer Interface CLAG Id Conflicts Proto-Down Reason
+---------------- ---------------- ------- -------------------- -----------------
+ vxln14567102 vxln14567102 - - -
+ vxln14567103 vxln14567103 - - -
+   
+    
+</code></pre>
+
+<p>The following example command output shows that MLAG is <em>not</em> configured
+correctly on the active OVSDB server or that the peer is down:</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo clagctl
+The peer is not alive
+ Our Priority, ID, and Role: 4096 00:02:00:00:00:46 primary
+ Peer Interface and IP: peerlink-3.4094 169.254.0.10
+ VxLAN Anycast IP: 36.0.0.1
+ Backup IP: 27.0.0.22 (inactive)
+ System MAC: 44:38:39:ff:ff:01
+CLAG Interfaces
+Our Interface Peer Interface CLAG Id Conflicts Proto-Down Reason
+---------------- ---------------- ------- -------------------- -----------------
+ vxln14567102 - - - -
+ vxln14567103 - - - -
+   
+    
+</code></pre>
+
+<p>To make sure that the BFD sessions are up and running, run the <code>ptmctl
+-b</code> command.</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ptmctl -b
+ 
+--------------------------------------------------------
+port   peer      state  local     type       diag  vrf
+--------------------------------------------------------
+vxln0  54.0.0.4  Up     36.0.0.1  singlehop  N/A   N/A
+vxln0  54.0.0.3  Up     36.0.0.1  singlehop  N/A   N/A
+   
+    
+</code></pre>
+
+
+<div class="notices note" > <p>When <code>switchd</code> and networking services are restarted, the BFD sessions
+might be interrupted. If you notice that the sessions are down, restart
+the <code>openvswitch-vtep</code>.service.</p>
+ </div>
+
+
+<p>If you encounter interface or VXLAN bridge configuration issues after
+adding the hardware bindings, run the <code>ifreload -a</code> command to reload
+all network interfaces.</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo ifreload -a
+   
+    
+</code></pre>
+
+<p>If you still encounter issues with high availability after you restart
+<code>openvswitch-vtep.service</code>, run <code>ifreload -a</code>, and restart
+<code>networking.service</code>, reboot the switch running the <em>standby</em> OVSDB
+server.</p>
+
+<pre><code>                   
+cumulus@switch:~$ sudo reboot
+   
+    
+</code></pre>
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#configure-the-nsx-integration-on-the-switch">Configure the NSX Integration on the Switch</a></li>
+<li><a href="#configure-the-transport-and-logical-layers">Configure the Transport and Logical Layers</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/Cumulus_Linux/Network_Virtualization/Virtualization_Integrations/OVSDB_Server_High_Availability.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Configuring and Managing Network Interfaces on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/</link>
+    <description>Recent content in Configuring and Managing Network Interfaces on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Layer 1 and Switch Port Attributes</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/</guid>
+      <description>This chapter discusses the various network interfaces on a switch running Cumulus Linux.
+Commands  ethtool
+ ip
+  Man Pages  man ethtool
+ man interfaces
+ man ip
+ man ip addr
+ man ip link
+  Configuration Files  /etc/cumulus/ports.conf
+ /etc/network/interfaces
+  Interface Types Cumulus Linux exposes network interfaces for several types of physical and logical devices:
+ lo, network loopback device</description>
+    </item>
+    
+    <item>
+      <title>Buffer and Queue Management</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/</guid>
+      <description>Hardware datapath configuration manages packet buffering, queueing, and scheduling in hardware. There are two configuration input files:
+ /etc/cumulus/datapath/traffic.conf, which describes priority groups and assigns the scheduling algorithm and weights
+ /etc/bcm.d/datapath/datapath.conf, which assigns buffer space and egress queues
+  Versions of these files prior to Cumulus Linux 2.1 are incompatible with Cumulus Linux 2.1 and later; using older files will cause switchd to fail to start and return an error that it cannot find the /var/lib/cumulus/rc.</description>
+    </item>
+    
+    <item>
+      <title>Configuring DHCP Relays</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/Cumulus_Linux_301/Configuring_and_Managing_Network_Interfaces/</guid>
+      <description>You can configure an interface so it can make DHCP relay requests for IPv4 and IPv6.
+To run DHCP for both IPv4 and IPv6, you need to initiate the DHCP relay and DHCP server twice: once for IPv4 using the -4 option, and once for IPv6 using the -6 option. Following are the configurations on the host, leaf and DHCP server using the following topology:
+{{&amp;lt; imgOld 0 &amp;gt;}}</description>
+    </item>
+    
+  </channel>
+</rss>

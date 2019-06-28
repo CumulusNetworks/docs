@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Management VRF | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Management VRF</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Management VRF</h1>
+
+<p><em>Management VRF</em> — a subset of
+<a href="/Virtual_Routing_and_Forwarding_-_VRF.html">VRF</a> (virtual routing
+tables and forwarding) — provides a separation between the out-of-band
+management network and the in-band data plane network. For all VRFs, the
+<em>main</em> routing table is the default table for all of the data plane
+switch ports. With management VRF, a second table, <em>mgmt</em>, is used for
+routing through eth0.</p>
+
+<p>Cumulus Linux only supports eth0 as the management interface. VLAN
+subinterfaces, bonds, bridges and the front panel switch ports are not
+supported as management interfaces.</p>
+
+<p>When management VRF is enabled, logins to the switch are set into the
+management VRF context. IPv4 and IPv6 networking applications run by an
+administrator communicate out the management network by default. This
+default context does not impact services run through <code>systemd</code> and the
+<code>systemctl</code> command, and does not impact commands examining the state of
+the switch; for example, using the <code>ip</code> command to list links, neighbors
+or routes.</p>
+
+<h2 id="contents">Contents</h2>
+
+<h2 id="enabling-management-vrf">Enabling Management VRF</h2>
+
+<p>To enable management VRF on eth0, complete the following steps:</p>
+
+<ol>
+<li><p>Open <code>/etc/network/interfaces</code> in a text editor.</p></li>
+
+<li><p>Configure the following, and save the file. Remember you must name
+the VRF <em>mgmt</em> to distinguish the mgmt VRF from a data plane VRF.</p>
+
+<pre><code>auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+</code></pre></li>
+
+<li><p>Reboot the switch to activate the mgmt VRF:</p>
+
+<pre><code>cumulus@switch:~$ sudo reboot
+</code></pre></li>
+</ol>
+
+<h3 id="enabling-ntp">Enabling NTP</h3>
+
+<p>To enable NTP to run in the mgmt VRF:</p>
+
+<ol>
+<li><p>Configure the <em>mgmt</em> VRF in <code>/etc/networking/interfaces</code>. In this
+example, eth0 is assigned an IP address and default route via DHCP.</p>
+
+<pre><code>auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+</code></pre></li>
+
+<li><p>Reboot the switch to activate the mgmt VRF.</p>
+
+<pre><code>cumulus@switch:~$ sudo reboot
+</code></pre></li>
+
+<li><p>By default, NTP is running in the default VRF. Stop NTP if it is
+currently running.</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl stop ntp.service
+</code></pre></li>
+
+<li><p>By default, NTP is configured to automatically start in the default
+VRF when the system boots. Disable NTP from automatically starting
+in the default VRF.</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl disable ntp.service
+</code></pre></li>
+
+<li><p>Start NTP in the mgmt VRF.</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl start ntp@mgmt
+</code></pre></li>
+
+<li><p>Verify that NTP peers are active.</p>
+
+<pre><code>cumulus@switch:~$ ntpq -pn
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
+*38.229.71.1     204.9.54.119     2 u   42   64  377   31.275   -0.625   3.105
+-104.131.53.252  209.51.161.238   2 u   47   64  377   16.381   -5.251   0.681
++45.79.10.228    200.98.196.212   2 u   44   64  377   42.998    0.115   0.585
++74.207.240.206  127.67.113.92    2 u   43   64  377   73.240   -1.623   0.320    
+</code></pre></li>
+
+<li><p>Enable ntp@mgmt so it starts when the switch boots:</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl enable ntp@mgmt
+</code></pre></li>
+</ol>
+
+<h3 id="enabling-snmpd">Enabling snmpd</h3>
+
+<p>To enable <code>snmpd</code> to run in the mgmt VRF:</p>
+
+<ol>
+<li><p>Configure the mgmt VRF in <code>/etc/networking/interfaces</code>. In this
+example, eth0 is assigned an IP address and default route via DHCP.</p>
+
+<pre><code>auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+</code></pre></li>
+
+<li><p>Reboot the switch to activate the mgmt VRF.</p>
+
+<pre><code>cumulus@switch:~$ sudo reboot
+</code></pre></li>
+
+<li><p>Stop <code>snmpd</code> is it is running.</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl stop snmpd.service
+</code></pre></li>
+
+<li><p>Make sure <code>snmpd</code> does not try to start in the default VRF if the
+system is rebooted.</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl disable snmpd.service
+</code></pre></li>
+
+<li><p>Start <code>snmpd</code> in the the mgmt VRF.</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl start snmpd@mgmt
+</code></pre></li>
+
+<li><p>Enable snmpd@mgmt so it starts when the switch boots:</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl enable snmpd@mgmt
+</code></pre></li>
+</ol>
+
+<h3 id="using-ping-or-traceroute">Using ping or traceroute</h3>
+
+<p>By default, issuing a <code>ping</code> or <code>traceroute</code> assumes the packet should
+be sent to the dataplane network (the main routing table). If you wish
+to use <code>ping</code> or <code>traceroute</code> on the management network, use the <code>-I</code>
+flag for ping and <code>-i</code> for traceroute.</p>
+
+<pre><code>cumulus@switch:~$ ping -I mgmt
+</code></pre>
+
+<p>or</p>
+
+<pre><code>cumulus@switch:~$ sudo traceroute -i mgmt
+</code></pre>
+
+<h2 id="ospf-and-bgp">OSPF and BGP</h2>
+
+<p>In general, no changes are required for either BGP or OSPF. Quagga was
+updated in Cumulus Linux 3.0 to be VRF-aware and automatically sends
+packets based on the switch port routing table. This includes BGP
+peering via loopback interfaces. BGP does routing lookups in the default
+table. However, one modification you may consider has to do with how
+your routes get redistributed.</p>
+
+<h3 id="redistributing-routes-in-management-vrf">Redistributing Routes in Management VRF</h3>
+
+<p>Management VRF uses the mgmt table, including local routes. It does not
+affect how the routes are redistributed when using routing protocols
+such as OSPF and BGP.</p>
+
+<p>To redistribute the routes in your network, use the <code>redistribute
+connected</code> command under BGP or OSPF. This enables the directly
+connected network out of eth0 to be advertised to its neighbor.</p>
+
+
+<div class="notices note" > <p>This also creates a route on the neighbor device to the management
+network through the data plane, which may not be desired.</p>
+ </div>
+
+
+<p>Cumulus Networks recommends you always use route maps to control the
+advertised networks redistributed by the <code>redistribute connected</code>
+command. For example, you can specify a route map to redistribute routes
+in this way (for both BGP and OSPF):</p>
+
+<pre><code>&lt;routing protocol&gt; 
+redistribute connected route-map redistribute-connected
+
+route-map redistribute-connected deny 100
+ match interface eth0
+!
+route-map redistribute-connected permit 1000
+</code></pre>
+
+<h2 id="snmp-traps-use-eth0-only">SNMP Traps Use eth0 Only</h2>
+
+<p>SNMP cannot use a switch port to send data. For any SNMP traps, this
+traffic gets sent out to eth0. Cumulus Networks plans to support switch
+ports in the future.</p>
+
+
+<div class="notices note" > <p>For SNMP, this restriction only applies to traps. SNMP polling is not
+affected.</p>
+ </div>
+
+
+<h2 id="using-ssh-within-a-management-vrf-context">Using SSH within a Management VRF Context</h2>
+
+<p>If you SSH to the switch through a switch port, it works as expected. If
+you need to SSH from the device out a switch port, use <code>vrf exec default
+ssh &lt;ip_address_of_swp_port&gt;</code>. For example:</p>
+
+<pre><code>cumulus@switch:~$ sudo ip addr show swp17
+19: swp17: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP qlen 500
+    link/ether ec:f4:bb:fc:19:23 brd ff:ff:ff:ff:ff:ff
+    inet 10.23.23.2/24 scope global swp17
+    inet6 fe80::eef4:bbff:fefc:1923/64 scope link
+       valid_lft forever preferred_lft forever
+
+cumulus@switch:~$ sudo vrf exec default ssh 10.23.23.2 10.3.3.3
+</code></pre>
+
+<h2 id="viewing-the-routing-tables">Viewing the Routing Tables</h2>
+
+<p>When you look at the routing table with <code>ip route show</code>, you are looking
+at the switch port (<em>main</em>) table. You can also see the dataplane
+routing table with <code>ip route show table main</code>.</p>
+
+<p>To look at information about eth0 (the management routing table), use
+<code>ip route show table mgmt</code>.</p>
+
+<pre><code>cumulus@switch:~$ ip route show table mgmt
+default via 192.168.0.1 dev eth0
+
+cumulus@switch:~$ ip route show
+default via 10.23.23.3 dev swp17  proto zebra  metric 20
+10.3.3.3 via 10.23.23.3 dev swp17
+10.23.23.0/24 dev swp17  proto kernel  scope link  src 10.23.23.2
+192.168.0.0/24 dev eth0  proto kernel  scope link  src 192.168.0.11
+</code></pre>
+
+<h3 id="viewing-a-single-route">Viewing a Single Route</h3>
+
+<p>Note that if you use <code>ip route get</code> to return information about a single
+route, the command resolves over the <em>mgmt</em> table by default. To get
+information about the route in the switching silicon, use:</p>
+
+<pre><code>cumulus@switch:~$ ip route get &lt;addr&gt;
+</code></pre>
+
+<p>Or:</p>
+
+<pre><code>cumulus@switch:~$ sudo cl-rctl ip route show &lt;addr&gt; 
+</code></pre>
+
+<p>To get the route for any VRF, use <code>ip route get &lt;addr&gt; oif &lt;vrf name&gt;</code>.
+So to get the route for the mgmt VRF, run:</p>
+
+<pre><code>cumulus@switch:~$ ip route get &lt;addr&gt; oif mgmt
+</code></pre>
+
+<h2 id="using-the-mgmt-interface-class">Using the mgmt Interface Class</h2>
+
+<p>In <code>ifupdown2</code> <a href="/Configuring_and_Managing_Network_Interfaces.html#src-5118370_ConfiguringandManagingNetworkInterfaces-classes">interface
+classes</a>
+are used to create a user-defined grouping for interfaces. The special
+class <em>mgmt</em> is available to separate the switch&rsquo;s management interfaces
+from the data interfaces. This allows you to manage the data interfaces
+by default using <code>ifupdown2</code> commands. Performing operations on the
+<em>mgmt</em> interfaces requires specifying the <code>--allow-mgmt</code> option, which
+prevents inadvertent outages on the management interfaces. Cumulus Linux
+by default brings up all interfaces in both the <em>auto</em> (default) class
+and the <em>mgmt</em> interface class when the switch boots.</p>
+
+<p>You configure the management interface in <code>/etc/network/interfaces</code>. In
+the example below, the management interface, eth0, and the mgmt VRF
+stanzas are added to the <em>mgmt</em> interface class:</p>
+
+<pre><code>auto lo
+iface lo inet loopback 
+
+allow-mgmt eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+allow-mgmt mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto 
+</code></pre>
+
+<p>When you run <code>ifupdown2</code> commands against the interfaces in the mgmt
+class, include &ndash;allow=mgmt with the commands. For example, to see which
+interfaces are in the mgmt interface class, run:</p>
+
+<pre><code>cumulus@switch:~$ ifquery l --allow=mgmt
+eth0
+mgmt 
+</code></pre>
+
+<p>To reload the configurations for interfaces in the mgmt class, run:</p>
+
+<pre><code>cumulus@switch:~$ sudo ifreload --allow=mgmt
+</code></pre>
+
+<p>However, you can still bring the management interface up and down using
+<code>ifup eth0</code> and <code>ifdown eth0</code>.</p>
+
+<h2 id="management-vrf-and-dns">Management VRF and DNS</h2>
+
+<p>Cumulus Linux supports both DHCP and static DNS entries over management
+VRF through IP FIB rules. These rules are added to direct lookups to the
+DNS addresses out of the management VRF. However, nameservers configured
+through DHCP are automatically updated, while statically configured
+nameservers (configured in <code>/etc/resolv.conf</code>) only get updated when you
+run <code>ifreload -a</code>.</p>
+
+<p>Because DNS lookups are forced out of the management interface using FIB
+rules, this could affect data plane ports if there are overlapping
+addresses.</p>
+
+<h2 id="incompatibility-with-cl-ns-mgmt">Incompatibility with cl-ns-mgmt</h2>
+
+
+<div class="notices warning" > <p>Management VRF has replaced the management namespace functionality in
+Cumulus Linux. The management namespace feature (via the <code>cl-ns-mgmt</code>
+utility) has been deprecated, and the <code>cl-ns-mgmt</code> command has been
+removed.</p>
+ </div>
+
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#contents">Contents</a></li>
+<li><a href="#enabling-management-vrf">Enabling Management VRF</a>
+<ul>
+<li><a href="#enabling-ntp">Enabling NTP</a></li>
+<li><a href="#enabling-snmpd">Enabling snmpd</a></li>
+<li><a href="#using-ping-or-traceroute">Using ping or traceroute</a></li>
+</ul></li>
+<li><a href="#ospf-and-bgp">OSPF and BGP</a>
+<ul>
+<li><a href="#redistributing-routes-in-management-vrf">Redistributing Routes in Management VRF</a></li>
+</ul></li>
+<li><a href="#snmp-traps-use-eth0-only">SNMP Traps Use eth0 Only</a></li>
+<li><a href="#using-ssh-within-a-management-vrf-context">Using SSH within a Management VRF Context</a></li>
+<li><a href="#viewing-the-routing-tables">Viewing the Routing Tables</a>
+<ul>
+<li><a href="#viewing-a-single-route">Viewing a Single Route</a></li>
+</ul></li>
+<li><a href="#using-the-mgmt-interface-class">Using the mgmt Interface Class</a></li>
+<li><a href="#management-vrf-and-dns">Management VRF and DNS</a></li>
+<li><a href="#incompatibility-with-cl-ns-mgmt">Incompatibility with cl-ns-mgmt</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version/Cumulus_Linux_301/Layer_3_Features/Management_VRF.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

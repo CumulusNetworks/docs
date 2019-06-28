@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Managing Cumulus Linux Disk Images on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Managing_Cumulus_Linux_Disk_Images/</link>
+    <description>Recent content in Managing Cumulus Linux Disk Images on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Managing_Cumulus_Linux_Disk_Images/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Installing a New Cumulus Linux Image</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Managing_Cumulus_Linux_Disk_Images/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Managing_Cumulus_Linux_Disk_Images/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Managing_Cumulus_Linux_Disk_Images/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Managing_Cumulus_Linux_Disk_Images/</guid>
+      <description>Before you install Cumulus Linux, the switch can be in two different states:
+ The switch has no image on it (so the switch is only running ONIE) or you desire or require a clean installation. In this case, you can install Cumulus Linux in one of the following ways, using:
+ DHCP/a Web server with DHCP options
+ DHCP/a Web server without DHCP options
+ A Web server with no DHCP</description>
+    </item>
+    
+    <item>
+      <title>Upgrading Cumulus Linux</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Managing_Cumulus_Linux_Disk_Images/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Managing_Cumulus_Linux_Disk_Images/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Managing_Cumulus_Linux_Disk_Images/Cumulus_Linux_301/Installation_Upgrading_and_Package_Management/Managing_Cumulus_Linux_Disk_Images/</guid>
+      <description>Cumulus Networks software melds the Linux host world with the networking devices world. Each world comes with its own paradigm on how to upgrade software. Before we discuss the various ways to upgrade Cumulus Linux switches, let&amp;rsquo;s review the general considerations and strategies used to upgrade network devices and Linux hosts.
+Upgrades: Comparing the Network Device Worldview vs. the Linux Host Worldview Manual vs. Automated Configuration Historically, network devices were configured in place, and most network devices required customized configurations, which led predominantly to configuring the hardware manually.</description>
+    </item>
+    
+  </channel>
+</rss>

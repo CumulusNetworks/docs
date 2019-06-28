@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Understanding and Decoding the cl-support Output File on Cumulus Networks Documentation</title>
+    <link>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/</link>
+    <description>Recent content in Understanding and Decoding the cl-support Output File on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Troubleshooting Log Files</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/</guid>
+      <description>The only real unique entity for logging on Cumulus Linux compared to any other Linux distribution is switchd.log, which logs the HAL (hardware abstraction layer) from hardware like the Broadcom or Mellanox ASIC.
+This guide on NixCraft is amazing for understanding how /var/log works. The green highlighted rows below are the most important logs and usually looked at first when debugging.
+  Log
+ Description
+    /var/log/alternatives.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting the etc Directory</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/</guid>
+      <description>The cl-support script replicates the /etc directory.
+Files that cl-support deliberately excludes are:
+   File Description     /etc/nologin nologinprevents unprivileged users from logging into the system.   /etc/alternatives update-alternatives creates, removes, maintains and displays information about the symbolic links comprising the Debian alternatives system.    This is the alphabetical of the output from running ls -l on the /etc directory structure created by cl-support.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting the support Directory</title>
+      <link>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/Cumulus_Linux_301/Monitoring_and_Troubleshooting/Understanding_and_Decoding_the_cl-support_Output_File/</guid>
+      <description>The support directory is unique in the fact that it is not a copy of the switch&amp;rsquo;s filesystem. Actually, it is the output from various commands. For example:
+   File Equivalent Command Description     support/ip.addr cumulus@switch:~$ ip addr show This shows you all the interfaces (including swp front panel ports), IP address information, admin state and physical state.    </description>
+    </item>
+    
+  </channel>
+</rss>

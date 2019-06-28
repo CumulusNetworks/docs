@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SNMP Monitoring | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/book.min.a4ec20f62c4bbaad99f9db40524ec8653f6279bcde229add21ff46dfd05dfa96.css">
+
+  
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+    <ul>
+      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
+      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
+      <li><a href="/Chassis/">Cumulus Express</a></li>
+      <li><a href="">Cumulus VX</a></li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.76
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">v3.5</a>
+            <a class="dropdown-item" href="#">v2.1</a>
+            <a class="dropdown-item" href="#">v1.43</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="http://example.org/">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "http://example.org/js/menuBundle.js"> </script>
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>SNMP Monitoring</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>SNMP Monitoring</h1>
+
+<p>Cumulus Linux utilizes the open source Net-SNMP agent <code>snmpd</code>, v5.7.3,
+which provides support for most of the common industry-wide MIBs,
+including interface counters and TCP/UDP IP stack data.</p>
+
+
+<div class="notices note" > <p>Cumulus Linux does not prevent customers from extending SNMP features.
+However, Cumulus Networks encourages the use of higher performance
+monitoring environments, rather than SNMP.</p>
+ </div>
+
+
+<h2 id="introduction-to-snmp-simple-network-management-protocol">Introduction to SNMP (Simple Network Management Protocol)</h2>
+
+<p>SNMP is an IETF standards-based network management architecture and
+protocol that traces its roots back to Carnegie-Mellon University in
+1982. Since then, it&rsquo;s been modified by programmers at the University of
+California. In 1995, this code was also made publicly available as the
+UCD project. After that, <code>ucd-snmp</code> was extended by work done at the
+University of Liverpool as well as later in Denmark. In late 2000, the
+project name changed to net-snmp and became a fully-fledged
+collaborative open source project. The version used by Cumulus Networks
+is base on the latest <code>net-snmp</code> 5.7.3 branch with added custom MIBs and
+pass through and pass persist scripts.</p>
+
+<h2 id="configuring-ports-for-snmp-to-listen-for-requests">Configuring Ports for SNMP to Listen for Requests</h2>
+
+<p>For security reasons, the default port binding for <code>snmpd</code> is the
+loopback local address; consequently by default, the SNMP service does
+not listen for SNMP requests from outside the switch. In order to listen
+to requests from outside the switch, you need to change this binding to
+a specific IP address (or all interfaces) after configuring security
+access (community strings, users, and so forth). This is a change from
+older versions of Cumulus Linux (before version 3.0), which listened to
+incoming requests on all interfaces by default. The <code>snmpd</code>
+configuration file is <code>/etc/snmp/snmpd.conf</code> and should be modified
+before enabling and starting <code>snmpd</code>. The default configuration has no
+access community strings defined so <code>snmpd</code> will not respond to any SNMP
+requests until this is added.</p>
+
+<h2 id="starting-the-snmp-daemon">Starting the SNMP Daemon</h2>
+
+<p>The following procedure is the recommended process to start <code>snmpd</code> and
+monitor it using <code>systemctl</code>.</p>
+
+<p>To start the SNMP daemon:</p>
+
+<ol>
+<li><p>Start the <code>snmpd</code> daemon:</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl start snmpd.service
+</code></pre></li>
+
+<li><p>Configure the <code>snmpd</code> daemon to start automatically after reboot:</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl enable snmpd.service
+</code></pre></li>
+
+<li><p>To enable <code>snmpd</code> to restart automatically after failure:</p>
+
+<ol>
+<li><p>Create a file called
+<code>/etc/systemd/system/snmpd.service.d/restart.conf</code>.</p></li>
+
+<li><p>Add the following lines:</p>
+
+<pre><code>[Service]
+Restart=always
+RestartSec=60
+</code></pre></li>
+
+<li><p>Run <code>systemctl daemon-reload</code>.</p></li>
+</ol></li>
+</ol>
+
+<p>Once the service is started, SNMP can be used to manage various
+components on the Cumulus Linux switch.</p>
+
+<h2 id="configuring-snmp">Configuring SNMP</h2>
+
+<p>Cumulus Linux ships with a production usable default <code>snmpd.conf</code> file
+included. This section covers a few basic configuration options in
+<code>snmpd.conf</code>. For more information regarding further configuring this
+file, refer to the <code>snmpd.conf</code> man page.</p>
+
+
+<div class="notices warning" > <p>The default <code>snmpd.conf</code> file does not include all supported MIBs or
+OIDs that can be exposed.</p>
+ </div>
+
+
+
+<div class="notices note" > <p>Customers must at least change the default community string for v1 or
+v2c environments or the <code>snmpd</code> daemon will not respond to any requests.</p>
+ </div>
+
+
+<h3 id="setting-up-the-custom-cumulus-networks-mibs">Setting up the Custom Cumulus Networks MIBs</h3>
+
+
+<div class="notices note" > <p>No changes are required in the <code>/etc/snmp/snmpd.conf</code> file on the
+switch, in order to support the custom Cumulus Networks MIBs. The
+following lines are already included by default:</p>
+
+<pre><code>view systemonly included .1.3.6.1.4.1.40310.1
+view systemonly included .1.3.6.1.4.1.40310.2
+sysObjectID 1.3.6.1.4.1.40310
+pass_persist .1.3.6.1.4.1.40310.1 /usr/share/snmp/resq_pp.py
+pass_persist .1.3.6.1.4.1.40310.2 /usr/share/snmp/cl_drop_cntrs_pp.py
+</code></pre>
+ </div>
+
+
+<p>However, several files need to be copied to the server, in order for the
+custom Cumulus MIB to be recognized on the destination NMS server.</p>
+
+<ul>
+<li><p><code>/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt</code></p></li>
+
+<li><p><code>/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt</code></p></li>
+
+<li><p><code>/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt</code></p></li>
+</ul>
+
+<h3 id="enabling-the-1-3-6-1-2-1-range">Enabling the .1.3.6.1.2.1 Range</h3>
+
+<p>Some MIBs, including storage information, are not included by default in
+<code>snmpd.conf</code> in Cumulus Linux. This results in some default views on
+common network tools (like <code>librenms</code>) to return less than optimal data.
+More MIBs can be included, by enabling all the .1.3.6.1.2.1 range. This
+simplifies the configuration file, removing concern that any required
+MIBs will be missed by the monitoring system. Various new MIBs were
+added for 3.0 and include the following: ENTITY and ENTITY-SENSOR MIB
+and parts of the BRIDGE-MIB and Q-BRIDGE-MIBs. These are included in the
+default configuration (Note: the view of the BRIDGE-MIB and Q-BRIDGE-MIB
+are commented out).</p>
+
+
+<div class="notices warning" > <p>This configuration grants access to a large number of MIBs, including
+all MIB2 MIBs, which could reveal more data than expected. In addition
+to being a security vulnerability, it could consume more CPU resources.</p>
+ </div>
+
+
+<p>To enable the .1.3.6.1.2.1 range:</p>
+
+<ol>
+<li><p>Open <code>/etc/snmp/snmpd.conf</code> in a text editor.</p></li>
+
+<li><p>Make sure the following lines are included in the configuration:</p>
+
+<pre><code>###############################################################################
+#
+#  ACCESS CONTROL 
+#
+
+# system
+view   systemonly  included   .1.3.6.1.2.1
+# quagga ospf6
+view   systemonly  included   .1.3.6.1.3.102
+# lldpd (Note: lldpd must be restarted with the -x option
+
+#     configured in order to send info to snmpd via Agent X
+
+view   systemonly  included   .1.0.8802.1.1.2
+# Cumulus specific
+view   systemonly  included   .1.3.6.1.4.1.40310.1
+view   systemonly  included   .1.3.6.1.4.1.40310.2
+</code></pre></li>
+
+<li><p>Restart <code>snmpd</code>:</p>
+
+<pre><code># sudo systemctl start snmpd.service
+</code></pre></li>
+</ol>
+
+<h3 id="enabling-public-community">Enabling Public Community</h3>
+
+<p>The <code>snmpd</code> authentication for versions 1 and 2 is disabled by default
+in Cumulus Linux. This password (called a community string) can be
+enabled by setting <strong>rocommunity</strong> (for read-only access) or
+<strong>rwcommunity</strong> (for read-write acces). To enable read-only querying by
+a client:</p>
+
+<ol>
+<li><p>Open <code>/etc/snmp/snmpd.conf</code> in a text editor.</p></li>
+
+<li><p>To allow read-only access using a password <em>public</em> from any client
+IP address (<em>default</em>) for the view you defined before with
+<em>systemonly</em>, add the following line to the end of the file, then
+save it:</p>
+
+<pre><code>rocommunity public default -V systemonly
+</code></pre></li>
+
+<li><p>Restart <code>snmpd</code>:</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl restart snmpd.service
+</code></pre></li>
+</ol>
+
+<h3 id="configuring-snmpv3">Configuring SNMPv3</h3>
+
+<p>Since community strings in versions 1 and 2c are sent in the clear,
+SNMPv3 is often used to enable authentication and encryption. SNMPv3 was
+first release around 2000. A minimal example is shown here for
+<code>/etc/snmp/snmpd.conf</code> that defines three users, each with a different
+combination of authentication and encryption. Please change these
+usernames and passwords before using this in a network:</p>
+
+
+<div class="notices note" > <p>Make sure you change the usernames and passwords in the sample code
+below, as the ones used here are for explanatory purposes only.</p>
+ </div>
+
+
+<pre><code># simple no auth user
+createUser user1
+# user with MD5 authentication
+createUser user2 MD5 user2password
+# user with MD5 for auth and DES for encryption 
+createUser user3 MD5 user3password DES user3encryption
+# user999 with MD5 for authentication and DES for encryption
+
+createUser user666 SHA user666password AES user666encryption
+createUser user999 MD5 user999password DES user999encryption
+
+# restrict users to certain OIDs
+# (Note: creating rouser or rwuser will give
+# access regardless of the createUser command above. However,
+# createUser without rouser or rwuser will not provide any access).
+rouser user1 noauth 1.3.6.1.2.1.1
+rouser user2 auth 1.3.6.1.2.1
+rwuser user3 priv 1.3.6.1.2.1
+rwuser user666
+rwuser user999
+</code></pre>
+
+<p>Once you make this configuration and restart the <code>snmpd</code> daemon, the
+user access can be checked with a client — the Debian package called
+<code>snmp</code> contains <code>snmpget</code> and <code>snmpwalk</code>, as well as other programs that
+are useful for checking daemon functionality from the switch itself or
+from another workstation. The following commands check the access for
+each user defined above from the localhost (the switch itself):</p>
+
+<pre><code># check user1 which has no authentication or encryption (NoauthNoPriv)
+snmpget -v 3 -u user1 -l NoauthNoPriv localhost 1.3.6.1.2.1.1.1.0
+snmpwalk -v 3 -u user1 -l NoauthNoPriv localhost 1.3.6.1.2.1.1
+
+# check user2 which has authentication but no encryption (authNoPriv)
+snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.1.1.0
+snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.2.1.0
+snmpwalk -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1
+
+# check user3 which has both authentication and encryption (authPriv)
+snmpget -v 3 -u user3 -l authPriv -a MD5 -A user3password -x DES -X user3encryption localhost .1.3.6.1.2.1.1.1.0
+snmpwalk -v 3 -u user3 -l authPriv -a MD5 -A user3password -x DES -X user3encryption localhost .1.3.6.1.2.1
+
+snmpwalk -v 3 -u user666 -l authPriv -a SHA -x AES -A user666password -X user666encryption localhost 1.3.6.1.2.1.1
+snmpwalk -v 3 -u user999 -l authPriv -a MD5 -x DES -A user999password -X user999encryption localhost 1.3.6.1.2.1.1
+</code></pre>
+
+<p>A slightly more secure method of configuring SNMPv3 users without
+creating cleartext passwords is the following:</p>
+
+<ol>
+<li><p>Install the <code>net-snmp-config</code> script that is in <code>libsnmp-dev</code>
+package:</p>
+
+<pre><code>cumulus@switch:~$ sudo apt-get update
+cumulus@switch:~$ sudo apt-get install libsnmp-dev
+</code></pre></li>
+
+<li><p>Stop the daemon:</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl stop snmpd.service
+</code></pre></li>
+
+<li><p>Use the <code>net-snmp-config</code> command to create two users, one with MD5
+and DES, and the next with SHA and AES.</p>
+
+
+<div class="notices note" > <pre><code>The minimum password length is 8 characters and the arguments `-a`
+and `-x` to `net-snmp-config` have different meanings than they do
+for `snmpwalk`.
+</code></pre>
+ </div>
+
+
+<pre><code>cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a md5authpass -x desprivpass -A MD5 -X DES userMD5withDES 
+cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
+cumulus@switch:~$ sudo systemctl start snmpd.service
+</code></pre></li>
+</ol>
+
+<p>This adds a <code>createUser</code> command in <code>/var/lib/snmp/snmpd.conf</code>. Do
+<strong>not</strong> edit this file by hand, unless you are removing usernames. It
+also adds the rwuser in <code>/usr/share/snmp/snmpd.conf</code>. You may want to
+edit this file and restrict access to certain parts of the MIB by adding
+<em>noauth</em>, <em>auth</em> or <em>priv</em> to allow unauthenticated access, require
+authentication or to enforce use of encryption, respectively.</p>
+
+<p>The <code>snmpd</code> daemon reads the information from the
+<code>/var/lib/snmp/snpmd.conf</code> file and then the line is removed
+(eliminating the storage of the master password for that user) and
+replaced with the key that is derived from it (using the EngineID). This
+key is a localized key, so that if it is stolen it cannot be used to
+access other agents. To remove the two users userMD5withDES and
+userSHAwithAES, you need simply stop the <code>snmpd</code> daemon and edit the
+files <code>/var/lib/snmp/snmpd.conf</code> and <code>/usr/share/snmp/snmpd.conf</code>.
+Simply remove the lines containing the username. Then restart the
+<code>snmpd</code> daemon as in step 3 above.</p>
+
+<p>From a client, you would access the MIB with the correct credentials.
+(Again, note that the roles of <code>-x</code>, <code>-a</code> and <code>-X</code> and <code>-A</code> are reversed
+on the client side as compared with the <code>net-snmp-config</code> command used
+above.)</p>
+
+<pre><code>snmpwalk -v 3 -u userMD5withDES -l authPriv -a MD5 -x DES -A md5authpass -X desprivpass localhost 1.3.6.1.2.1.1.1
+snmpwalk -v 3 -u userSHAwithAES -l authPriv -a SHA -x AES -A shaauthpass -X aesprivpass localhost 1.3.6.1.2.1.1.1
+</code></pre>
+
+<p>Configuring Nutanix Prism</p>
+
+<p>Nutanix Prism is a graphical user interface (GUI) for managing
+infrastructures and virtual environments.</p>
+
+<h3 id="cumulus-linux-configuration">Cumulus Linux Configuration</h3>
+
+<ol>
+<li><p>SSH to the Cumulus Linux switch that needs to be configured,
+replacing <code>[switch]</code> below as appropriate:</p>
+
+<pre><code>cumulus@workbench:~$ ssh cumulus@[switch]
+</code></pre></li>
+
+<li><p>Confirm the switch is running Cumulus Linux 2.5.5 or newer:</p>
+
+<pre><code>cumulus@switch$ cat /etc/lsb-release
+DISTRIB_ID=&quot;Cumulus Linux&quot;
+DISTRIB_RELEASE=2.5.5
+DISTRIB_DESCRIPTION=2.5.5-4cd66d9-201512071809-build
+</code></pre></li>
+
+<li><p>Open the <code>/etc/snmp/snmpd.conf</code> file in an editor.</p></li>
+
+<li><p>Uncomment the following 3 lines in the <code>/etc/snmp/snmpd.conf</code> file,
+and save the file:</p>
+
+<ul>
+<li><p>bridge_pp.py</p>
+
+<pre><code>pass_persist .1.3.6.1.2.1.17 /usr/share/snmp/bridge_pp.py
+</code></pre></li>
+
+<li><p>Community</p>
+
+<pre><code>rocommunity public  default    -V systemonly
+</code></pre></li>
+
+<li><p>Line directly below the Q-BRIDGE-MIB (.1.3.6.1.2.1.17)</p>
+
+<pre><code># BRIDGE-MIB and Q-BRIDGE-MIB tables
+view   systemonly  included   .1.3.6.1.2.1.17
+</code></pre></li>
+</ul></li>
+
+<li><p>Restart <code>snmpd</code>:</p>
+
+<pre><code>cumulus@switch$ sudo systemctl restart snmpd.service
+
+Restarting network management services: snmpd.
+cumulus@switch$
+</code></pre></li>
+</ol>
+
+<h3 id="nutanix-configuration">Nutanix Configuration</h3>
+
+<ol>
+<li><p>Log into the Nutanix Prism. Nutanix defaults to the Home menu,
+referred to as the Dashboard:</p>
+
+<p>{{&lt; imgOld 0 &gt;}}</p></li>
+
+<li><p>Click on the gear icon</p>
+
+<p>{{&lt; imgOld 1 &gt;}}</p>
+
+<p>in the top right corner of the dashboard, and select NetworkSwitch:</p>
+
+<p>{{&lt; imgOld 2 &gt;}}</p></li>
+
+<li><p>Click the <strong>+Add Switch Configuration</strong> button in the <strong>Network
+Switch Configuration</strong> pop up window.</p></li>
+
+<li><p>Fill out the <strong>Network Switch Configuration</strong> for the Top of Rack
+(ToR) switch configured for snmpd in the previous section:</p>
+
+<p>{{&lt; imgOld 3 &gt;}}</p>
+
+<table>
+<thead>
+<tr>
+<th>Configuration Parameter</th>
+<th>Description</th>
+<th>Value Used in Example</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Switch Management IP Address</td>
+<td>This can be any IP address on the box. In the screenshot above, the eth0 management IP is used.</td>
+<td>192.168.0.111</td>
+</tr>
+
+<tr>
+<td>Host IP Addresses or Host Names</td>
+<td>IP addresses of Nutanix hosts connected to that particular ToR switch.</td>
+<td>192.168.0.171,192.168.0.172,192.168.0.173,192.168.0.174</td>
+</tr>
+
+<tr>
+<td>SNMP Profile</td>
+<td>Saved profiles, for easy configuration when hooking up to multiple switches.</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>SNMP Version</td>
+<td>SNMP v2c or SNMP v3. Cumulus Linux has only been tested with SNMP v2c for Nutanix integration.</td>
+<td>SNMP v2c</td>
+</tr>
+
+<tr>
+<td>SNMP Community Name</td>
+<td>SNMP v2c uses communities to share MIBs. The default community for snmpd is &lsquo;public&rsquo;.</td>
+<td>public</td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="notices note" > <pre><code>The rest of the values were not touched for this demonstration. They
+are usually used with SNMP v3.
+</code></pre>
+ </div>
+</li>
+
+<li><p>Save the configuration. The switch will now be present in the
+<strong>Network Switch Configuration</strong> menu now.</p></li>
+
+<li><p>Close the pop up window to return to the dashboard.</p></li>
+
+<li><p>Open the <strong>Hardware</strong> option from the <strong>Home</strong> dropdown menu:</p>
+
+<p>{{&lt; imgOld 4 &gt;}}</p></li>
+
+<li><p>Click the <strong>Table</strong> button.</p></li>
+
+<li><p>Click the <strong>Switch</strong> button. Configured switches are shown in the
+table, as indicated in the screenshot below, and can be selected in
+order to view interface statistics:</p>
+
+<p>{{&lt; imgOld 5 &gt;}}</p></li>
+</ol>
+
+
+<div class="notices note" > <p>The switch has been added correctly, when interfaces hooked up to the
+Nutanix hosts are visible.</p>
+ </div>
+
+
+<h2 id="switch-information-displayed-on-nutanix-prism">Switch Information Displayed on Nutanix Prism</h2>
+
+<ul>
+<li><p>Physical Interface (e.g. swp1, swp2). This will only display swp
+interfaces connected to Nutanix hosts by default.</p></li>
+
+<li><p>Switch ID - Unique identifier that Nutanix keeps track of each port
+ID (see below)</p></li>
+
+<li><p>Index - interface index, in the above demonstration swp49 maps to
+Index 52 because there is a loopback and two ethernet interface
+before the swp starts.</p></li>
+
+<li><p>MTU of interface</p></li>
+
+<li><p>MAC Address of Interface</p></li>
+
+<li><p>Unicast RX Packets (Received)</p></li>
+
+<li><p>Unicast TX Packets (Transmitted)</p></li>
+
+<li><p>Error RX Packets (Received)</p></li>
+
+<li><p>Error TX Packets (Transmitted)</p></li>
+
+<li><p>Discard RX Packets (Received)</p></li>
+
+<li><p>Discard TX Packets (Transmitted)</p></li>
+</ul>
+
+<p>The Nutanix appliance will use Switch IDs that can also be viewed on the
+Prism CLI (by SSHing to the box). To view information from the Nutanix
+CLI, login using the default username <strong>nutanix</strong>, and the password
+<strong>nutanix/4u</strong>.</p>
+
+<pre><code>nutanix@NTNX-14SM15270093-D-CVM:192.168.0.184:~$ ncli network list-switch
+    Switch ID                 : 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982
+    Name                      : switch
+    Switch Management Address : 192.168.0.111
+    Description               : Linux switch 3.2.65-1+deb7u2+cl2.5+2 #3.2.65-1+deb7u2+cl2.5+2 SMP Mon Jun 1 18:26:59 PDT 2015 x86_64
+    Object ID                 : enterprises.40310
+    Contact Information       : Admin &lt;admin@company.com&gt;
+    Location Information      : Raleigh, NC
+    Services                  : 72
+    Switch Vendor Name        : Unknown
+    Port Ids                  : 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:52, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:53, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:54, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:55
+</code></pre>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>To help visualize the following diagram is provided:</p>
+
+<p>{{&lt; imgOld 6 &gt;}}</p>
+
+<table>
+<thead>
+<tr>
+<th>Nutanix Node</th>
+<th>Physical Port</th>
+<th>Cumulus Linux Port</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Node A (Green)</td>
+<td>vmnic2</td>
+<td>swp49</td>
+</tr>
+
+<tr>
+<td>Node B (Blue)</td>
+<td>vmnic2</td>
+<td>swp50</td>
+</tr>
+
+<tr>
+<td>Node C (Red)</td>
+<td>vmnic2</td>
+<td>swp51</td>
+</tr>
+
+<tr>
+<td>Node D (Yellow)</td>
+<td>vmnic2</td>
+<td>swp52</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="enabling-lldp-cdp-on-vmware-esxi-hypervisor-on-nutanix">Enabling LLDP/CDP on VMware ESXi (Hypervisor on Nutanix)</h2>
+
+<ol>
+<li><p>Follow the directions on one of the following websites to enable
+CDP:</p>
+
+<ol>
+<li><p><a href="http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&amp;cmd=displayKC&amp;externalId=1003885" target="_blank">http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&amp;cmd=displayKC&amp;externalId=1003885</a></p></li>
+
+<li><p><a href="http://wahlnetwork.com/2012/07/17/utilizing-cdp-and-lldp-with-vsphere-networking/" target="_blank">http://wahlnetwork.com/2012/07/17/utilizing-cdp-and-lldp-with-vsphere-networking/</a></p>
+
+<p>e.g. Switch CDP on:</p>
+
+<pre><code>root@NX-1050-A:~] esxcli network vswitch standard set -c both -v vSwitch0
+</code></pre>
+
+<p>Then confirm it is running:</p>
+
+<pre><code>root@NX-1050-A:~] esxcli network vswitch standard list -v vSwitch0
+vSwitch0
+   Name: vSwitch0
+   Class: etherswitch
+   Num Ports: 4082
+   Used Ports: 12
+   Configured Ports: 128
+   MTU: 1500
+   CDP Status: both
+   Beacon Enabled: false
+   Beacon Interval: 1
+   Beacon Threshold: 3
+   Beacon Required By:
+   Uplinks: vmnic3, vmnic2, vmnic1, vmnic0
+   Portgroups: VM Network, Management Network
+</code></pre>
+
+<p>The <strong>both</strong> means CDP is now running, and the lldp dameon on
+Cumulus Linux is capable of &lsquo;seeing&rsquo; CDP devices.</p></li>
+</ol></li>
+
+<li><p>After the next CDP interval, the Cumulus Linux box will pick up the
+interface via the <code>lldp</code> daemon:</p>
+
+<pre><code>cumulus@switch$ lldpctl show neighbor swp49
+-------------------------------------------------------------------------------
+LLDP neighbors:
+-------------------------------------------------------------------------------
+Interface:    swp49, via: CDPv2, RID: 6, Time: 0 day, 00:34:58
+  Chassis:
+    ChassisID:    local NX-1050-A
+    SysName:      NX-1050-A
+    SysDescr:     Releasebuild-2494585 running on VMware ESX
+    MgmtIP:       0.0.0.0
+    Capability:   Bridge, on
+  Port:
+    PortID:       ifname vmnic2
+    PortDescr:    vmnic2
+-------------------------------------------------------------------------------
+</code></pre></li>
+
+<li><p>Use <code>netshow</code> to look at <code>lldp</code> information:</p>
+
+<pre><code>cumulus@switch$ netshow lldp
+--------------------------------------------------------------------
+To view the legend,  rerun &quot;netshow&quot; cmd with the  &quot;--legend&quot; option
+--------------------------------------------------------------------
+Local Port    Speed        Mode             Remote Port    Remote  Host       Summary
+------------  -----------  ---------  ----  -------------  -----------------  --------------------------
+eth0          1G           Mgmt       ====  swp32          swoob.vsokt.local  IP: 192.168.0.111/24(DHCP)
+swp49         10G(SFP+)    Access/L2  ====  vmnic2         NX-1050-A          Untagged: br-ntnx
+swp50         10G(SFP+)    Access/L2  ====  vmnic2         NX-1050-B          Untagged: br-ntnx
+swp51         10G(SFP+)    Access/L2  ====  vmnic2         NX-1050-C          Untagged: br-ntnx
+swp52         10G(SFP+)    Access/L2  ====  vmnic2         NX-1050-D          Untagged: br-ntnx
+</code></pre></li>
+</ol>
+
+<h2 id="enabling-lldp-cdp-on-nutanix-acropolis-hypervisor-on-nutanix-acropolis">Enabling LLDP/CDP on Nutanix Acropolis (Hypervisor on Nutanix Acropolis)</h2>
+
+<p><a href="http://www.nutanix.com/products/acropolis/" target="_blank">Nutanix Acropolis</a> is an
+alternate hypervisor that Nutanix supports. Acropolis Hypervisor uses
+the yum packaging system and is capable of installing normal Linux lldp
+daemons to operating just like Cumulus Linux. LLDP should be enabled for
+each interface on the host. Refer to
+<a href="https://community.mellanox.com/docs/DOC-1522" target="_blank">https://community.mellanox.com/docs/DOC-1522</a> for setup instructions.</p>
+
+<h2 id="snmpwalk-the-switch-from-another-linux-device">snmpwalk the Switch from Another Linux Device</h2>
+
+<p>One of the most important ways to troubleshoot is to snmpwalk the switch
+from another Linux device that can reach the switch running Cumulus
+Linux. For this demonstration, another switch running Cumulus Linux
+within the network is used.</p>
+
+<ol>
+<li><p>Open <code>/etc/apt/sources.list</code> in an editor.</p></li>
+
+<li><p>Add the following line, and save the file:</p>
+
+<pre><code>deb http://ftp.us.debian.org/debian/ jessie main non-free
+</code></pre></li>
+
+<li><p>Update the switch:</p>
+
+<pre><code>cumulus@switch2$ sudo apt-get update
+</code></pre></li>
+
+<li><p>Install the snmp and snmp-mibs-downloader packages:</p>
+
+<pre><code>cumulus@switch2$ sudo apt-get install snmp snmp-mibs-downloader
+</code></pre></li>
+
+<li><p>Verify that the &ldquo;mibs :&rdquo; line is commented out in
+<code>/etc/snmp/snmp.conf</code>:</p>
+
+<pre><code>#
+# As the snmp packages come without MIB files due to license reasons, loading
+# of MIBs is disabled by default. If you added the MIBs you can reenable
+# loading them by commenting out the following line.
+#mibs :
+</code></pre></li>
+
+<li><p>Perform an snmpwalk on the switch. The switch running snmpd in the
+demonstration is using IP address 192.168.0.111. It is possible to
+snmpwalk the switch from itself, following these instructions,
+ruling out an snmp problem vs networking problem.</p>
+
+<pre><code>cumulus@switch2$ snmpwalk -c public -v2c 192.168.0.111
+</code></pre>
+
+<h5 id="span-output-examples-span"><span>Output Examples</span></h5>
+
+<pre><code>IF-MIB::ifPhysAddress.2 = STRING: 74:e6:e2:f5:a2:80
+IF-MIB::ifPhysAddress.3 = STRING: 0:e0:ec:25:b8:54
+IF-MIB::ifPhysAddress.4 = STRING: 74:e6:e2:f5:a2:81
+IF-MIB::ifPhysAddress.5 = STRING: 74:e6:e2:f5:a2:82
+IF-MIB::ifPhysAddress.6 = STRING: 74:e6:e2:f5:a2:83
+IF-MIB::ifPhysAddress.7 = STRING: 74:e6:e2:f5:a2:84
+IF-MIB::ifPhysAddress.8 = STRING: 74:e6:e2:f5:a2:85
+IF-MIB::ifPhysAddress.9 = STRING: 74:e6:e2:f5:a2:86
+IF-MIB::ifPhysAddress.10 = STRING: 74:e6:e2:f5:a2:87
+IF-MIB::ifPhysAddress.11 = STRING: 74:e6:e2:f5:a2:88
+IF-MIB::ifPhysAddress.12 = STRING: 74:e6:e2:f5:a2:89
+IF-MIB::ifPhysAddress.13 = STRING: 74:e6:e2:f5:a2:8a
+IF-MIB::ifPhysAddress.14 = STRING: 74:e6:e2:f5:a2:8b
+IF-MIB::ifPhysAddress.15 = STRING: 74:e6:e2:f5:a2:8c
+IF-MIB::ifPhysAddress.16 = STRING: 74:e6:e2:f5:a2:8d
+IF-MIB::ifPhysAddress.17 = STRING: 74:e6:e2:f5:a2:8e
+IF-MIB::ifPhysAddress.18 = STRING: 74:e6:e2:f5:a2:8f
+IF-MIB::ifPhysAddress.19 = STRING: 74:e6:e2:f5:a2:90
+</code></pre></li>
+</ol>
+
+<p>Any information gathered here should verify that snmpd is running
+correctly on the Cumulus Linux side, reducing locations where a problem
+may reside.</p>
+
+<h3 id="troubleshooting-tips-table-for-snmp-walks">Troubleshooting Tips Table for snmp walks</h3>
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Run snmpwalk from</p></th>
+<th><p>If it works</p></th>
+<th><p>If it does not work</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>switch</strong> (switch to be monitored)</p></td>
+<td><p>snmpd is serving information correctly<br />
+Problem resides somewhere else (e.g. network connectivity, Prism misconfiguration)</p></td>
+<td><p>Is snmpd misconfigured or installed incorrectly?</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>switch2</strong> (another Cumulus Linux switch in the network)</p></td>
+<td><p>snmpd is serving information correctly and network reachability works between <strong>switch</strong> and <strong>switch2</strong><br />
+Problems resides somewhere else (e.g. can Prism reach <strong>switch</strong>, Prism misconfiguration)</p></td>
+<td><p>Network connectivity is not able to grab information?<br />
+Is there an iptables rule blocking? Is the snmp walk being run correctly?</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Nutanix Prism CLI</strong> (ssh to the cluster IP address)</p></td>
+<td><p>snmpd is serving information correctly and network reachability works between <strong>switch</strong> and the <strong>Nutanix Appliance</strong> Problems resides somewhere else (e.g. The GUI might be misconfigured)</p></td>
+<td><p>Is the right community name being used in the GUI? Is snmp v2c being used?</p></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="troubleshooting-connections-without-lldp-or-cdp">Troubleshooting Connections without LLDP or CDP</h2>
+
+<ol>
+<li><p>Find the MAC address information in the Prism GUI, located in:
+<strong>Hardware -&gt; Table -&gt; Host -&gt; Host NICs</strong></p></li>
+
+<li><p>Select a MAC address to troubleshoot (e.g. 0c:c4:7a:09:a2:43
+represents vmnic0 which is tied to NX-1050-A).</p></li>
+
+<li><p>List out all the MAC addresses associated to the bridge:</p>
+
+<pre><code>cumulus@switch$ brctl showmacs br-ntnx
+port name mac addr     vlan    is local?   ageing timer
+swp9      00:02:00:00:00:06 0   no        66.94
+swp52     00:0c:29:3e:32:12  0   no         2.73
+swp49     00:0c:29:5a:f4:7f  0   no         2.73
+swp51     00:0c:29:6f:e1:e4  0   no         2.73
+swp49     00:0c:29:74:0c:ee  0   no         2.73
+swp50     00:0c:29:a9:36:91  0   no         2.73
+swp9      08:9e:01:f8:8f:0c  0   no        13.56
+swp9      08:9e:01:f8:8f:35  0   no         2.73
+swp4      0c:c4:7a:09:9e:d4  0   no        24.05
+swp1      0c:c4:7a:09:9f:8e  0   no        13.56
+swp3      0c:c4:7a:09:9f:93  0   no        13.56
+swp2      0c:c4:7a:09:9f:95  0   no        24.05
+swp52     0c:c4:7a:09:a0:c1  0   no         2.73
+swp51     0c:c4:7a:09:a2:35  0   no         2.73
+swp49     0c:c4:7a:09:a2:43  0   no         2.73
+swp9      44:38:39:00:82:04  0   no         2.73
+swp9      74:e6:e2:f5:a2:80  0   no         2.73
+swp1      74:e6:e2:f5:a2:81  0   yes        0.00
+swp2      74:e6:e2:f5:a2:82  0   yes        0.00
+swp3      74:e6:e2:f5:a2:83  0   yes        0.00
+swp4      74:e6:e2:f5:a2:84  0   yes        0.00
+swp5      74:e6:e2:f5:a2:85  0   yes        0.00
+swp6      74:e6:e2:f5:a2:86  0   yes        0.00
+swp7      74:e6:e2:f5:a2:87  0   yes        0.00
+swp8      74:e6:e2:f5:a2:88  0   yes        0.00
+swp9      74:e6:e2:f5:a2:89  0   yes        0.00
+swp10     74:e6:e2:f5:a2:8a  0   yes        0.00
+swp49     74:e6:e2:f5:a2:b1  0   yes        0.00
+swp50     74:e6:e2:f5:a2:b2  0   yes        0.00
+swp51     74:e6:e2:f5:a2:b3  0   yes        0.00
+swp52     74:e6:e2:f5:a2:b4  0   yes        0.00
+swp9      8e:0f:73:1b:f8:24  0   no         2.73
+swp9      c8:1f:66:ba:60:cf  0   no        66.94
+</code></pre>
+
+<p>Alternatively, you can use grep:p</p>
+
+<pre><code>cumulus@switch$ brctl showmacs br-ntnx | grep 0c:c4:7a:09:a2:43
+swp49     0c:c4:7a:09:a2:43   0   no         4.58
+cumulus@switch$
+</code></pre>
+
+<p>vmnic1 is now hooked up to swp49. This matches what is seen in lldp:</p>
+
+<pre><code>cumulus@switch$ lldpctl show neighbor swp49
+-------------------------------------------------------------------------------
+LLDP neighbors:
+-------------------------------------------------------------------------------
+Interface:    swp49, via: CDPv2, RID: 6, Time: 0 day, 01:11:12
+  Chassis:
+    ChassisID:    local NX-1050-A
+    SysName:      NX-1050-A
+    SysDescr:     Releasebuild-2494585 running on VMware ESX
+    MgmtIP:       0.0.0.0
+    Capability:   Bridge, on
+  Port:
+    PortID:       ifname vmnic2
+    PortDescr:    vmnic2
+-------------------------------------------------------------------------------
+cumulus@switch$
+</code></pre></li>
+</ol>
+
+<h2 id="snmp-traps">SNMP Traps</h2>
+
+<h3 id="snmptrapd-conf">snmptrapd.conf</h3>
+
+<p>The Net-SNMP trap daemon configuration file, <code>/etc/snmptrapd.conf</code>, is
+used to configure how incoming traps should be processed. For more
+information about specific configuration options within the file, run
+the following command in a terminal:</p>
+
+<pre><code>cumulus@switch:~$ man 5 snmptrapd.conf
+  ###############################################################################
+
+#
+# EXAMPLE-trap.conf:
+#   An example configuration file for configuring the Net-SNMP snmptrapd agent.
+#
+###############################################################################
+#
+# This file is intended to only be an example.  If, however, you want
+# to use it, it should be placed in /etc/snmp/snmptrapd.conf.
+# When the snmptrapd agent starts up, this is where it will look for it.
+#
+# All lines beginning with a '#' are comments and are intended for you
+# to read.  All other lines are configuration commands for the agent.
+
+#
+# PLEASE: read the snmptrapd.conf(5) manual page as well!
+#
+snmpTrapdAddr localhost
+forward default {{global['snmp_server']}}
+</code></pre>
+
+<h3 id="generating-event-notification-traps">Generating Event Notification Traps</h3>
+
+<p>The Net-SNMP agent provides a method to generate SNMP trap events, via
+the Distributed Management (DisMan) Event MIB, for various system
+events, including linkup/down, exceeding the temperature sensor
+threshold, CPU load, or memory threshold, or other SNMP MIBs.</p>
+
+<h4 id="enabling-mib-to-oid-translation">Enabling MIB to OID Translation</h4>
+
+<p>MIB names can be used instead of OIDs, by installing the
+<code>snmp-mibs-downloader</code>, to download SNMP MIBs to the switch prior to
+enabling traps. This greatly improves the readability of the
+<code>snmpd.conf</code> file.</p>
+
+<ol>
+<li><p>Open <code>/etc/apt/sources.list</code> in a text editor.</p></li>
+
+<li><p>Add the <code>non-free</code> repository, and save the file:</p>
+
+<pre><code>cumulus@switch:~$ deb http://ftp.us.debian.org/debian/ jessie main non-free
+</code></pre></li>
+
+<li><p>Update the switch:</p>
+
+<pre><code>cumulus@switch:~$ apt-get update
+</code></pre></li>
+
+<li><p>Install the <code>snmp-mibs-downloader</code>:</p>
+
+<pre><code>apt-get snmp-mibs-downloader
+</code></pre></li>
+
+<li><p>Open the <code>/etc/snmp/snmp.conf</code> file to verify that the <code>mibs :</code> line
+is commented out:</p>
+
+<pre><code>#
+# As the snmp packages come without MIB files due to license reasons, loading
+# of MIBs is disabled by default. If you added the MIBs you can reenable
+# loading them by commenting out the following line.
+#mibs :
+</code></pre></li>
+
+<li><p>Open the <code>/etc/default/snmpd</code> file to verify that the <code>export MIBS=</code>
+line is commented out:</p>
+
+<pre><code># This file controls the activity of snmpd and snmptrapd
+
+# Don't load any MIBs by default.
+# You might comment this lines once you have the MIBs Downloaded.
+#export MIBS=
+</code></pre></li>
+
+<li><p>Once the configuration has been confirmed, remove or comment out the
+<code>non-free</code> repository in <code>/etc/apt/sources.list</code>.</p>
+
+<pre><code>#deb http://ftp.us.debian.org/debian/ jessie main non-free
+</code></pre></li>
+</ol>
+
+<h4 id="configuring-trap-events">Configuring Trap Events</h4>
+
+<p>The following configurations should be made in <code>/etc/snmp/snmp.conf</code>, in
+order to enable specific types of traps. Once configured, restart the
+<code>snmpd</code> service to apply the changes.</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl restart snmpd.service
+</code></pre>
+
+<p><strong>Defining Access Credentials</strong></p>
+
+<p>An SNMPv3 username is required to authorize the DisMan service. The
+example code below uses <code>cumulusUser</code> as the username.</p>
+
+<pre><code>createUser cumulusUser
+iquerySecName cumulusUser
+rouser cumulusUser
+</code></pre>
+
+<p><strong>Defining Trap Receivers</strong></p>
+
+<p>The example code below creates a trap receiver that is capable of
+receiving SNMPv2 traps.</p>
+
+<pre><code>trap2sink 192.168.1.1 public
+</code></pre>
+
+
+<div class="notices note" > <p>Although the traps are sent to an SNMPV2 receiver, the SNMPv3 user is
+still required.</p>
+ </div>
+
+
+
+<div class="notices note" > <p>It is possible to define multiple trap receivers, and to use the domain
+name instead of IP address in the <code>trap2sink</code> directive.</p>
+ </div>
+
+
+<p><strong>Configuring LinkUp/Down Notifications</strong></p>
+
+<p>The <code>linkUpDownNotifications</code> directive is used to configure linkup/down
+notifications when the operational status of the link changes.</p>
+
+<pre><code>linkUpDownNotifications yes
+</code></pre>
+
+
+<div class="notices note" > <p>The default frequency for checking link up/down is 60 seconds. The
+default frequency can be changed using the <code>monitor</code> directive directly
+instead of the <code>linkUpDownNotifications</code> directive. See <code>man snmpd.conf</code>
+for details.</p>
+ </div>
+
+
+<p><strong>Configuring Temperature Notifications</strong></p>
+
+<p>Temperature sensor information for each available sensor is maintained
+in the the lmSensors MIB. Each platform may contain a different number
+of temperature sensors. The example below generates a trap event when
+any temperature sensors exceeds a threshold of 68 degrees (centigrade).
+It monitors each <code>lmTempSensorsValue</code>. When the threshold value is
+checked and exceeds the <code>lmTempSensorsValue</code>, a trap is generated. The
+<code>-o lmTempSenesorsDevice</code> option is used to instruct SNMP to also
+include the lmTempSensorsDevice MIB in the generated trap. The default
+frequency for the <code>monitor</code> directive is 600 seconds. The default
+frequency may be changed using the <code>-r</code> option.:</p>
+
+<pre><code>monitor lmTemSensor -o lmTempSensorsDevice lmTempSensorsValue &gt; 68000
+</code></pre>
+
+<p>Alternatively, temperature sensors may be monitored individually. To
+monitor the sensors individually, first use the <code>sensors</code> command to
+determine which sensors are available to be monitored on the platform.</p>
+
+<pre><code>#sensors
+
+CY8C3245-i2c-4-2e
+Adapter: i2c-0-mux (chan_id 2)
+fan5: 7006 RPM (min = 2500 RPM, max = 23000 RPM)
+fan6: 6955 RPM (min = 2500 RPM, max = 23000 RPM)
+fan7: 6799 RPM (min = 2500 RPM, max = 23000 RPM)
+fan8: 6750 RPM (min = 2500 RPM, max = 23000 RPM)
+temp1: +34.0 C (high = +68.0 C)
+temp2: +28.0 C (high = +68.0 C)
+temp3: +33.0 C (high = +68.0 C)
+temp4: +31.0 C (high = +68.0 C)
+temp5: +23.0 C (high = +68.0 C)
+</code></pre>
+
+<p>Configure a <code>monitor</code> command for the specific sensor using the <code>-I</code>
+option. The <code>-I</code> option indicates that the monitored expression is
+applied to a single instance. In this example, there are five
+temperature sensors available. The following monitor directive can be
+used to monitor only temperature sensor three at five minute intervals.</p>
+
+<pre><code>monitor -I -r 300 lmTemSensor3 -o lmTempSensorsDevice.3 lmTempSensorsValue.3 &gt; 68000
+</code></pre>
+
+<p><strong>Configuring Free Memory Notifications</strong></p>
+
+<p>You can monitor free memory using the following directives. The example
+below generates a trap when free memory drops below 1,000,000KB. The
+free memory trap also includes the amount of total real memory:</p>
+
+<pre><code>monitor MemFreeTotal -o memTotalReal memTotalFree &lt;  1000000
+</code></pre>
+
+<p><strong>Configuring Processor Load Notifications</strong></p>
+
+<p>To monitor CPU load for 1, 5 or 15 minute intervals, use the <code>load</code>
+directive in conjunction with the <code>monitor</code> directive. The following
+example will generate a trap when the 1 minute interval reaches 12%, the
+5 minute interval reaches 10% or the 15 minute interval reaches 5%.</p>
+
+<pre><code>load 12 10 5
+monitor -r 60 -o laNames -o laErrMessage &quot;laTable&quot; laErrorFlag !=0
+</code></pre>
+
+<p><strong>Configuring Disk Utilization Notifications</strong></p>
+
+<p>To monitor disk utilization for all disks, use the <code>includeAllDisks</code>
+directive in conjunction with the <code>monitor</code> directive. The example code
+below generates a trap when a disk is 99% full:</p>
+
+<pre><code>includeAllDisks 1%
+monitor -r 60 -o dskPath -o DiskErrMsg &quot;dskTable&quot; diskErrorFlag !=0
+</code></pre>
+
+<p><strong>Configuring Authentication Notifications</strong></p>
+
+<p>To generate authentication failure traps, use the <code>authtrapenable</code>
+directive:</p>
+
+<pre><code>authtrapenable 1
+</code></pre>
+
+<h2 id="supported-mibs">Supported MIBs</h2>
+
+<p>Below are the MIBs supported by Cumulus Linux, as well as suggested uses
+for them. The overall Cumulus Linux MIB is defined in
+<code>/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>MIB Name</th>
+<th>Suggested Uses</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>BRIDGE and Q-BRIDGE</td>
+<td>The dot1dBasePortEntry and dot1dBasePortIfIndex tables in the BRIDGE-MIB and dot1qBase, dot1qFdbEntry, dot1qTpFdbEntry, dot1qTpFdbStatus, and the dot1qVlanStaticName tables in the Q-BRIDGE-MIB tables. You must uncomment the <code>bridge_pp.py pass_persist</code> script in <code>/etc/snmp/snmpd.conf</code>.</td>
+</tr>
+
+<tr>
+<td>CUMULUS-COUNTERS-MIB</td>
+<td>Discard counters: Cumulus Linux also includes its own counters MIB, defined in <code>/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt</code>. It has the OID <code>.1.3.6.1.4.1.40310.2</code></td>
+</tr>
+
+<tr>
+<td>CUMULUS-RESOURCE-QUERY-MIB</td>
+<td>Cumulus Linux includes its own resource utilization MIB, which is similar to using <a href="/Resource_Diagnostics_Using_cl-resource-query.html">cl-resource-query</a>. It monitors L3 entries by host, route, nexthops, ECMP groups and L2 MAC/BDPU entries. The MIB is defined in <code>/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt</code>, and has the OID <code>.1.3.6.1.4.1.40310.1.</code></td>
+</tr>
+
+<tr>
+<td>DISMAN-EVENT</td>
+<td>Trap monitoring</td>
+</tr>
+
+<tr>
+<td>ENTITY</td>
+<td>From RFC 4133, the temperature sensors, fan sensors, power sensors, and ports are covered.</td>
+</tr>
+
+<tr>
+<td>ENTITY-SENSOR</td>
+<td>Physical sensor information (temperature, fan, and power supply) from RFC 3433.</td>
+</tr>
+
+<tr>
+<td>HOST-RESOURCES</td>
+<td>Users, storage, interfaces, process info, run parameters</td>
+</tr>
+
+<tr>
+<td><a href="http://net-snmp.sourceforge.net/docs/mibs/interfaces.html" target="_blank">IF-MIB</a></td>
+<td>Interface description, type, MTU, speed, MAC, admin, operation status, counters</td>
+</tr>
+
+<tr>
+<td><a href="http://net-snmp.sourceforge.net/docs/mibs/ip.html" target="_blank">IP (includes ICMP)</a></td>
+<td>IPv4, IPv4 addresses, counters, netmasks</td>
+</tr>
+
+<tr>
+<td>IPv6</td>
+<td>IPv6 counters</td>
+</tr>
+
+<tr>
+<td>IP-FORWARD</td>
+<td>IP routing table</td>
+</tr>
+
+<tr>
+<td><a href="http://www.mibdepot.com/cgi-bin/getmib3.cgi?i=1&amp;n=LLDP-MIB&amp;r=cisco&amp;f=LLDP-MIB-V1SMI.my&amp;v=v1&amp;t=tree" target="_blank">LLDP</a></td>
+<td>L2 neighbor info from <code>lldpd</code> (note, you need to <a href="/Link_Layer_Discovery_Protocol.html#src-5118271_LinkLayerDiscoveryProtocol-snmp">enable the SNMP subagent</a> in LLDP). <code>lldpd</code> needs to be started with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</td>
+</tr>
+
+<tr>
+<td><a href="http://support.ipmonitor.com/mibs_byoidtree.aspx?oid=.1.3.6.1.4.1.2021.13.16" target="_blank">LM-SENSORS MIB</a></td>
+<td>Fan speed, temperature sensor values, voltages. This is deprecated since the ENTITY-SENSOR MIB has been added.</td>
+</tr>
+
+<tr>
+<td>NET-SNMP-AGENT</td>
+<td>Agent timers, user, group config</td>
+</tr>
+
+<tr>
+<td>NET-SNMP-EXTEND</td>
+<td>Agent timers, user, group config</td>
+</tr>
+
+<tr>
+<td><a href="http://net-snmp.sourceforge.net/docs/mibs/netSnmpExtendMIB.html" target="_blank">NET-SNMP-EXTEND-MIB</a></td>
+<td>(See also <a href="https://support.cumulusnetworks.com/hc/en-us/articles/204507848" target="_blank">this knowledge base article</a> on extending NET-SNMP in Cumulus Linux to include data from power supplies, fans and temperature sensors.)</td>
+</tr>
+
+<tr>
+<td>NET-SNMP-VACM</td>
+<td>Agent timers, user, group config</td>
+</tr>
+
+<tr>
+<td><a href="http://www.net-snmp.org/docs/mibs/notificationLogMIB.html" target="_blank">NOTIFICATION-LOG</a></td>
+<td>Local logging</td>
+</tr>
+
+<tr>
+<td><a href="http://net-snmp.sourceforge.net/docs/mibs/snmpFrameworkMIB.html" target="_blank">SNMP-FRAMEWORK</a></td>
+<td>Users, access</td>
+</tr>
+
+<tr>
+<td><a href="http://net-snmp.sourceforge.net/docs/mibs/snmpMPDMIB.html" target="_blank">SNMP-MPD</a></td>
+<td>Users, access</td>
+</tr>
+
+<tr>
+<td><a href="http://www.net-snmp.org/docs/mibs/snmpTargetMIB.html" target="_blank">SNMP-TARGET</a></td>
+<td></td>
+</tr>
+
+<tr>
+<td><a href="http://net-snmp.sourceforge.net/docs/mibs/snmpUsmMIB.html" target="_blank">SNMP-USER-BASED-SM</a></td>
+<td>Users, access</td>
+</tr>
+
+<tr>
+<td><a href="http://net-snmp.sourceforge.net/docs/mibs/snmpVacmMIB.html" target="_blank">SNMP-VIEW-BASED-ACM</a></td>
+<td>Users, access</td>
+</tr>
+
+<tr>
+<td><a href="http://net-snmp.sourceforge.net/docs/mibs/snmpMIB.html" target="_blank">SNMPv2</a></td>
+<td>SNMP counters (For information on exposing CPU and memory information via SNMP, see this <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203922988" target="_blank">knowledge base article</a>.)</td>
+</tr>
+
+<tr>
+<td><a href="http://net-snmp.sourceforge.net/docs/mibs/tcp.html" target="_blank">TCP</a></td>
+<td>TCP related information</td>
+</tr>
+
+<tr>
+<td><a href="http://www.net-snmp.org/docs/mibs/UCD-SNMP-MIB.txt" target="_blank">UCD-SNMP</a></td>
+<td>System memory, load, CPU, disk IO</td>
+</tr>
+
+<tr>
+<td><a href="http://net-snmp.sourceforge.net/docs/mibs/udp.html" target="_blank">UDP</a></td>
+<td>UDP related information</td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="notices note" > <p>The Quagga and Zebra routes MIBs are disabled in Cumulus Linux.</p>
+ </div>
+
+
+
+<div class="notices note" > <p>The ENTITY MIB does not currently show the chassis information in
+Cumulus Linux 3.0.</p>
+ </div>
+
+</article>
+
+
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+
+  <button> </button>
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#introduction-to-snmp-simple-network-management-protocol">Introduction to SNMP (Simple Network Management Protocol)</a></li>
+<li><a href="#configuring-ports-for-snmp-to-listen-for-requests">Configuring Ports for SNMP to Listen for Requests</a></li>
+<li><a href="#starting-the-snmp-daemon">Starting the SNMP Daemon</a></li>
+<li><a href="#configuring-snmp">Configuring SNMP</a>
+<ul>
+<li><a href="#setting-up-the-custom-cumulus-networks-mibs">Setting up the Custom Cumulus Networks MIBs</a></li>
+<li><a href="#enabling-the-1-3-6-1-2-1-range">Enabling the .1.3.6.1.2.1 Range</a></li>
+<li><a href="#enabling-public-community">Enabling Public Community</a></li>
+<li><a href="#configuring-snmpv3">Configuring SNMPv3</a></li>
+<li><a href="#cumulus-linux-configuration">Cumulus Linux Configuration</a></li>
+<li><a href="#nutanix-configuration">Nutanix Configuration</a></li>
+</ul></li>
+<li><a href="#switch-information-displayed-on-nutanix-prism">Switch Information Displayed on Nutanix Prism</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#enabling-lldp-cdp-on-vmware-esxi-hypervisor-on-nutanix">Enabling LLDP/CDP on VMware ESXi (Hypervisor on Nutanix)</a></li>
+<li><a href="#enabling-lldp-cdp-on-nutanix-acropolis-hypervisor-on-nutanix-acropolis">Enabling LLDP/CDP on Nutanix Acropolis (Hypervisor on Nutanix Acropolis)</a></li>
+<li><a href="#snmpwalk-the-switch-from-another-linux-device">snmpwalk the Switch from Another Linux Device</a>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#span-output-examples-span"><span>Output Examples</span></a></li>
+</ul></li>
+</ul></li>
+<li><a href="#troubleshooting-tips-table-for-snmp-walks">Troubleshooting Tips Table for snmp walks</a></li>
+</ul></li>
+<li><a href="#troubleshooting-connections-without-lldp-or-cdp">Troubleshooting Connections without LLDP or CDP</a></li>
+<li><a href="#snmp-traps">SNMP Traps</a>
+<ul>
+<li><a href="#snmptrapd-conf">snmptrapd.conf</a></li>
+<li><a href="#generating-event-notification-traps">Generating Event Notification Traps</a>
+<ul>
+<li><a href="#enabling-mib-to-oid-translation">Enabling MIB to OID Translation</a></li>
+<li><a href="#configuring-trap-events">Configuring Trap Events</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#supported-mibs">Supported MIBs</a></li>
+</ul></li>
+</ul>
+</nav>
+
+      
+      <button>
+      <a href="https://github.com/cawleyflower/testDocs/edit/dev/content/version/Cumulus_Linux_301/Monitoring_and_Troubleshooting/SNMP_Monitoring.md" target="_blank" rel="noopener">
+        <img src="/svg/pencil-circle.svg" alt="Edit" /> Edit this page
+      </a>
+    </button>
+    
+
+
+    
+
+</aside>
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

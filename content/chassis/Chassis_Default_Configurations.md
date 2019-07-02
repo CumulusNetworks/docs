@@ -6,7 +6,7 @@ aliases:
  - /display/CHASSIS/Chassis+Default+Configurations
  - /pages/viewpage.action?pageId=7113477
 pageID: 7113477
-product: Cumulus Chassis
+product: Cumulus Express
 version: '1.0'
 imgData: chassis
 siteSlug: chassis
@@ -35,12 +35,12 @@ Linux on the nodes. These following actions are also performed:
 
   - Create the following two files in the `/etc/network/interfaces.d`
     directory, which are sourced by the `/etc/network/interfaces` file:
-    
+
       - The first file — called `chassismgmt.intf` — creates the
         eth0.4088 interface and assigns it IPv4 and IPv6 link local
         addresses via a post-up script. This interface is used for
         intra-chassis communication.
-    
+
       - The second file — called `fabric.intf` — configures the fabric
         interfaces. It uses Mako templates to iterate over all of the
         fabric interfaces and set the interface properties. The
@@ -87,16 +87,16 @@ there are no available ports to access it.
 You can disable this automatic configuration by doing the following:
 
 1.  Copy `cumulus-chassisd.service` to `/etc/systemd/system`:
-    
+
         cumulus@backpack-lc202:~$ sudo cp /lib/systemd/system/cumulus-chassisd.service /etc/systemd/system
 
 2.  Edit the `/etc/systemd/system/cumulus-chassisd.service` file, adding
     the `--noAutoVrf` option on the ExecStart line:
-    
+
         cumulus@backpack-lc202:~$ sudo nano /etc/systemd/system/cumulus-chassisd.service…[Service]Type=simpleSyslogIdentifier=chassisdExecStart=/usr/sbin/cumulus-chassisd --noAutoVrf...
 
 3.  Reload the daemon file and restart `cumulus-chassisd.service`:
-    
+
         cumulus@backpack-lc202:~$ sudo systemctl daemon-reloadcumulus@backpack-lc202:~$ sudo systemctl restart cumulus-chassisd.service
 
 ### <span>Avoid Layer 2 Networks</span>
@@ -139,7 +139,7 @@ cards and fabric cards.
 The `/etc/network/interfaces.d/chassismgmt.intf` file has the same
 content on both line cards and fabric cards.
 
-    cumulus@backpack-lc102:~$ cat /etc/network/interfaces.d/chassismgmt.intf 
+    cumulus@backpack-lc102:~$ cat /etc/network/interfaces.d/chassismgmt.intf
     #
     # This file contains the interface configuration of the chassis management VLAN
     # interface. The traffic on this VLAN is not ever forwarded out of the chassis.
@@ -156,7 +156,7 @@ both line cards and fabric cards, with one exception: on a fabric card
 the range of interfaces is *0,32*, while the range of interfaces on a
 line card is *0,16*.
 
-    cumulus@backpack-lc102:~$ cat /etc/network/interfaces.d/fabric.intf 
+    cumulus@backpack-lc102:~$ cat /etc/network/interfaces.d/fabric.intf
     #
     # This file contains the interface configuration of the fabric ports. All fabric
     # ports are brought up.
@@ -287,7 +287,7 @@ line card is *0,16*.
 
 ### <span>ports.conf File on a Line Card</span>
 
-    cumulus@backpack-lc102:~$ cat /etc/cumulus/ports.conf 
+    cumulus@backpack-lc102:~$ cat /etc/cumulus/ports.conf
     # ports.conf --
     #
     # The Celestica BigStone-G Right Linecard has:
@@ -356,7 +356,7 @@ cards and fabric cards.
 The `/etc/network/interfaces.d/chassismgmt.intf` file has the same
 content on both line cards and fabric cards.
 
-    cumulus@omp-800-fc402:~$ cat /etc/network/interfaces.d/chassismgmt.intf 
+    cumulus@omp-800-fc402:~$ cat /etc/network/interfaces.d/chassismgmt.intf
     #
     # This file contains the interface configuration of the chassis management VLAN
     # interface. The traffic on this VLAN is not ever forwarded out of the chassis.
@@ -373,7 +373,7 @@ both line cards and fabric cards, with one exception: on a fabric card
 the range of interfaces is *0,32*, while the range of interfaces on a
 line card is *0,16*.
 
-    cumulus@omp-800-fc402:~$ cat /etc/network/interfaces.d/fabric.intf 
+    cumulus@omp-800-fc402:~$ cat /etc/network/interfaces.d/fabric.intf
     #
     # This file contains the interface configuration of the fabric ports. All fabric
     # ports are brought up.
@@ -400,7 +400,7 @@ line card is *0,16*.
 
 ### <span>frr.conf File on a Fabric Card</span>
 
-    cumulus@omp-800-fc402:~$ cat /etc/frr/frr.conf 
+    cumulus@omp-800-fc402:~$ cat /etc/frr/frr.conf
     # default to using syslog. /etc/rsyslog.d/45-frr.conf places the log
     # in /var/log/frr/frr.log
     log syslog informational
@@ -460,7 +460,7 @@ line card is *0,16*.
 
 ### <span>frr.conf File on a Line Card</span>
 
-    cumulus@omp-800-lc102:~$ cat /etc/frr/frr.conf 
+    cumulus@omp-800-lc102:~$ cat /etc/frr/frr.conf
     # default to using syslog. /etc/rsyslog.d/45-frr.conf places the log
     # in /var/log/frr/frr.log
     log syslog informational
@@ -510,7 +510,7 @@ The `ports.conf` file has different contents depending on whether the
 line card is even or odd-numbered. Here is the configuration for line
 card 1:
 
-    cumulus@omp-800-lc101:~$ cat /etc/cumulus/ports.conf 
+    cumulus@omp-800-lc101:~$ cat /etc/cumulus/ports.conf
     # ports.conf --
     #
     # The Accton OMP800 Linecard A has:
@@ -544,7 +544,7 @@ card 1:
 
 Here is the configuration for line card 2:
 
-    cumulus@omp-800-lc102:~$ cat /etc/cumulus/ports.conf 
+    cumulus@omp-800-lc102:~$ cat /etc/cumulus/ports.conf
     # ports.conf --
     #
     # The Accton OMP800 Linecard B has:

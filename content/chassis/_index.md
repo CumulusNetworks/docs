@@ -6,7 +6,7 @@ aliases:
  - /display/CHASSIS/Chassis+User+Guide
  - /pages/viewpage.action?pageId=6488345
 pageID: 6488345
-product: Cumulus Chassis
+product: Cumulus Express
 version: '1.0'
 imgData: chassis
 siteSlug: chassis
@@ -125,7 +125,7 @@ the following ways:
 
   - ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/profilepics/default.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/profilepics/default.png)  
     <span class="caption">dcawley</span>
-    
+
     [Dan Cawley](https://docs.cumulusnetworks.com/display/~dcawley)
 
   - Chassis User Guideupdated 28 minutes ago[view
@@ -134,7 +134,7 @@ the following ways:
 <!-- end list -->
 
   - [![/images/download/attachments/1704089/pete-27211-pp-profilepic.jpg](/images/download/attachments/1704089/pete-27211-pp-profilepic.jpg)](https://docs.cumulusnetworks.com/display/~pete)
-    
+
     [Pete Bratach](https://docs.cumulusnetworks.com/display/~pete)
 
   - [Chassis-specific

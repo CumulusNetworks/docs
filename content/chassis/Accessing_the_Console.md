@@ -6,7 +6,7 @@ aliases:
  - /display/CHASSIS/Accessing+the+Console
  - /pages/viewpage.action?pageId=7766291
 pageID: 7766291
-product: Cumulus Chassis
+product: Cumulus Express
 version: '1.0'
 imgData: chassis
 siteSlug: chassis
@@ -32,7 +32,7 @@ are *root/0penBmc* (the first character of the password is the number
 zero, not a capital letter O).
 
     OpenBMC Release wedge100-v10-1023-g6f113cb
-     
+
     bmc login: root
     Password:  0penBmc
     Last login: Mon Apr 24 18:39:35 -0700 2017 on pts/0 from 10.40.10.230.
@@ -78,7 +78,7 @@ BMC.
     You are in SOL session.
     Use ctrl-x to quit.
     -----------------------
-      
+
     OpenBMC Release
     bmc login:
 
@@ -118,12 +118,12 @@ console port for that same line card or fabric card.
     You are in SOL session.
     Use ctrl-x to quit.
     -----------------------
-      
+
     root@bmc:~# sol.sh
     You are in SOL session.
     Use ctrl-x to quit.
     -----------------------
-      
+
     Debian GNU/Linux 8 backpack-lc302 ttyS0
     backpack-lc302 login:
 
@@ -180,19 +180,19 @@ a line card or fabric card. The default power-on connection is the
 fabric card BMC/left line card BMC.
 
     OpenBMC Release
-     
+
     bmc login:  ctrl+f ctrl+b ctrl+u 2
     OpenBMC Release
-     
+
     bmc login:  ctrl+f ctrl+b ctrl+u 3
     Debian GNU/Linux 8 backpack-lc301 ttyS0
-     
+
     backpack-lc301 login:  ctrl+f ctrl+b ctrl+u 4
     Debian GNU/Linux 8 backpack-lc302 ttyS0
-     
+
     backpack-lc302 login:  ctrl+f ctrl+b ctrl+u 1
     OpenBMC Release
-     
+
     bmc login:
 
 ## <span>Accessing the Console on a CX-10256-S/OMP-800 Chassis</span>

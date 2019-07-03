@@ -9,8 +9,30 @@ disablePathToLower = true
 enableGitInfo= false
 noChmod = true
 
-[permalinks]
-version2 = "/:sections/:filename"
+[menu]
+  [[menu.subnav]]
+    identifier = "cumulus-linux"
+    title = "Cumulus Linux"
+    url = "/cumulus-linux/"
+    weight = 10
+
+  [[menu.subnav]]
+    identifier = "cumulus-netq"
+    title = "Cumulus NetQ"
+    url = "/cumulus-netq/"
+    weight = 20
+
+  [[menu.subnav]]
+    identifier = "cumulus-vx"
+    title = "Cumulus VX"
+    url = "/cumulus-vx/"
+    weight = 30
+
+  [[menu.subnav]]
+    identifier = "cumulus-express"
+    title = "Cumulus Express"
+    url = "/chassis/"
+    weight = 40
 
 
 [Params]

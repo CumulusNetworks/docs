@@ -161,7 +161,7 @@ body {
   box-shadow: 0px 2px 10px 0px rgba(175, 184, 197, 0.2);
   align-items: center;
   justify-content: space-between;
-  padding: 30px 20px;
+  padding: 20px 30px;
   position: relative;
   ul {
     list-style: none;
@@ -531,13 +531,57 @@ div.notices.tip>*:first-child:after {
   left: 62px;
 }
 
-.book-toc>button {
+.book-toc {
+  padding: 0;
+  >.toc {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden; 
+  }
+
+  // &.nav-out-of-view {
+  //   >.toc {
+  //     height: calc(100vh - 1.5rem);
+  //   }
+  // }
+}
+
+.book-toc button {
   padding: 0 8px 15px;
-  top: 33px;
+  margin-bottom: 50px;
+  top: 38px;
+
+  &:focus {
+    outline: 0;
+  }
+
+  a {
+    &:visited {
+      color: $cn-jade;
+    }
+  }
 }
 
 .book-toc nav {
+  padding: 0;
   top: 278px;
+
+  a.active {
+    color: $cn-jade;
+    font-weight: 500;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      background-color: $cn-jade;
+    }
+  }
 }
 
 .book-toc ul ul {
@@ -545,7 +589,7 @@ div.notices.tip>*:first-child:after {
 }
 
 .book-toc ul li a {
-  padding-left: 0;
+  padding: 0 2rem;
 }
 
 .book-toc nav ul li {
@@ -789,22 +833,38 @@ footer {
   }
 }
 
+@media only screen and (min-width: 1200px) {
+  #product-nav {
+    padding: 21px 50px;
+  }
+}
+
 @media only screen and (min-width: 992px) {
   #site-nav .header-wrapper {
     padding: 35px 50px;
   }
 
   #product-nav {
-    padding: 21px 50px;
+    ul {
+      li {
+        padding-right: 26px;
+      }
+    }
   }
 }
 
 @media only screen and (min-width: 801px) {
-  #site-nav,
+  #site-nav {
+    padding-right: 26px;
+  }
+
   #product-nav {
     ul {
       li {
-        padding-right: 26px;
+        padding-right: 20px;
+        a {
+          font-size: 14px;
+        }
       }
     }
   }

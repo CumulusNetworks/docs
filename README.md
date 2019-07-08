@@ -14,8 +14,7 @@ In order to build and view the live site:
 1. Install Hugo
     - https://gohugo.io/getting-started/installing/
 
-2. Verify Hugo is installed with `hugo version` This site supports hugo version starting
-with 0.55.6
+2. Verify Hugo is installed with `hugo version` This site supports hugo version 0.55.6
 
 3. Clone this repository with `git clone`
 
@@ -28,15 +27,14 @@ hugo will watch and rebuild the site with any changes to the source.
 
 ## Contributing
 
-This repo will contain new changes and features added to the docs, and will remain private.
-The master branch hosts the current, most stable version of the site for review.
-This branch will build and deploy to docs-qa.cumulunetworks.com upon commit
-The develop branch will contain
+This repository will contain new development and content added to the docs, and will remain private.
+The master branch will sync with the public docs repository
+The develop branch will build and deploy to docs-qa.cumulunetworks.com upon commit
+This branch will contain new features and content for review.
 
 If you would like to contribute to the site, please fork and submit a pull request
 
 ## Content with Hugo
-
 All site content in hugo is written in Markdown, and hosted in the /content folder.
 The site is built with the file tree and organization of this folder.
 
@@ -46,25 +44,6 @@ Hugo supports custom shortcodes, which are contained the Writing Guide section o
 ### Adding a section
 Sections in hugo are subdirectories of the /content folder. In order to add a section,
 create a subdirectory, i.e. 'MySection', then add a _index.md file. All first-level subdirectories from /content are default sections, but any nested sections must include _index.md.
-
-### Front Matter
-
-Each page in Hugo contains a .YAML front matter header. For example.
-
-```
-title: 802.1X Interfaces
-author: Cumulus Networks
-weight: 101
-aliases:
- - /display/DOCS/802.1X+Interfaces
- - /pages/viewpage.action?pageId=8363046
-pageID: 8363046
-product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
-```
-Hugo uses these parameters in the generation of the site.
 
 ### Organization
 

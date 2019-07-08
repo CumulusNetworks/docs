@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
 
   <!-- Favicon -->
-  <link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/x-icon">
+  <link rel="icon" href="{{ "icons/favicon.png" | relURL }}" type="image/x-icon">
 
   <!-- RSS -->
   {{ with .OutputFormats.Get "rss" -}}
@@ -57,6 +57,7 @@
     </div>
   </header>
   <div id="product-nav" class="flex">
+      <!-- generates subnav memu from config.toml -->
     {{ $currentProduct := .Params.product}}
     <ul>
     {{ range .Site.Menus.subnav}}
@@ -121,7 +122,13 @@
 
 
       {{ end }}
-
+      <script src="https://utteranc.es/client.js"
+        repo="CumulusNetworks/docs-internal"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
 
     </div>
     <!-- branch to list.html or single.html -->
@@ -130,6 +137,7 @@
 
 
       {{ end }}
+
   </main>
   <footer class="footer-top">
     <div class="container">

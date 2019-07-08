@@ -1,8 +1,8 @@
 ---
 title: Adding New Content
 author: Daniel Cawley
-weight: 15
-siteSlug: Writing_Guide
+weight: 10
+siteSlug: contributor-guide
 ---
 
 After you have installed hugo, cloned the github repository, and run the local server,

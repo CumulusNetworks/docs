@@ -1,8 +1,8 @@
 ---
 title: Hugo Directory Structure
 author: Daniel Cawley
-weight: 1
-siteSlug: Writing_Guide
+weight: 20
+siteSlug: contributor-guide
 ---
 
 1. /content

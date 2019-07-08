@@ -40,6 +40,6 @@ title: "Cumulus Networks Documentation Home"
 
 
 
-## Writing Guide
+## Contributor Guide
 
-{{< pageref contributor-guide "Contributor-Guide" >}}
+{{< pageref contributor-guide "Contributor Guide" >}}

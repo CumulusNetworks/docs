@@ -1,8 +1,8 @@
 ---
 title: Markdown Guide
 author: Daniel Cawley
-weight: 1
-siteSlug: Writing_Guide
+weight: 15
+siteSlug: contributor-guide
 ---
 
 ## Second Level Header

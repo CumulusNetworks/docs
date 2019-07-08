@@ -1,6 +1,7 @@
 ---
-title: Contribution Guide
+title: Contributor Guide
 author: Daniel Cawley
 weight: 1
-siteSlug: contribution-guide
+siteSlug: contributor-guide
 ---
+This section needs some more content here:

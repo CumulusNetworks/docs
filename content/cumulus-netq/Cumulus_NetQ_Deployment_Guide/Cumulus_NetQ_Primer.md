@@ -38,7 +38,7 @@ Please visit the [Cumulus Networks Web
 site](http://docs.cumulusnetworks.com) for the most up to date
 documentation.
 
-## <span>Cumulus NetQ Operational Advantages</span>
+## Cumulus NetQ Operational Advantages
 
 Unlike other network operations tools, NetQ delivers significant
 operational improvements <span style="color: #3c4043;"> to your network
@@ -48,7 +48,7 @@ hardware and software status and eliminating the guesswork associated
 with investigating issues through the analysis and presentation of
 detailed, focused data. </span>
 
-### <span>Demystify Overlay Networks</span>
+### Demystify Overlay Networks
 
 While overlay networks provide significant advantages in network
 management, it can be difficult to troubleshoot issues that occur in the
@@ -173,13 +173,13 @@ In summary:
 NetQ contains the following applications and key components:
 
   - Telemetry data collection and aggregation
-    
+
       - NetQ Switch Agents
-    
+
       - NetQ Host Agents
-    
+
       - Telemetry Aggregator
-    
+
       - Database
 
   - Data streaming layer
@@ -378,7 +378,7 @@ connected to Exit 01.
 
 {{% imgOld 1 %}}
 
-  
+
 <span class="caption">Data Center Network Example</span>
 
 The physical *management* hardware includes:
@@ -555,8 +555,8 @@ command show the same output as a tree.
     Number of Paths with Errors: 0
     Number of Paths with Warnings: 0
     Path MTU: 9152
-     hostd-12 bond1.1002 -- swp8 leaf12 <vlan1002> peerlink-1 -- swp6 <vlan1002> leaf11 vlan1002 
-              bond1.1002 -- swp8 leaf11 vlan1002 
+     hostd-12 bond1.1002 -- swp8 leaf12 <vlan1002> peerlink-1 -- swp6 <vlan1002> leaf11 vlan1002
+              bond1.1002 -- swp8 leaf11 vlan1002
 
 This output is read as:
 
@@ -593,7 +593,7 @@ last night and that they can be run from any switch in the network.
 {{% imgOld 5 %}}
 
     cumulus@switch:~$ netq check bgp around 30m
-    Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24, 
+    Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
     Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
     ----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
     exit-1            DataVrf1080     swp6.2            firewall-1        BGP session with peer firewall-1 swp6.2: AFI/ 1d:2h:6m:21s
@@ -846,8 +846,8 @@ Data from the NetQ Platform can be exported in a couple of ways:
 
 You can check the state of BGP on your network with `netq check bgp`:
 
-    cumulus@leaf01:~$ netq check bgp 
-    Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24, 
+    cumulus@leaf01:~$ netq check bgp
+    Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
     Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
     ----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
     exit01            DataVrf1080     swp6.2            firewall01        BGP session with peer firewall01 swp6.2: AFI/ Tue Feb 12 18:11:16 2019
@@ -865,7 +865,7 @@ You can check the state of BGP on your network with `netq check bgp`:
 When you show the output in JSON format, this same command looks like
 this: <span style="color: #353744;"> </span>
 
-    cumulus@leaf01:~$ netq check bgp json 
+    cumulus@leaf01:~$ netq check bgp json
     {
         "failedNodes":[
             {
@@ -902,11 +902,11 @@ this: <span style="color: #353744;"> </span>
             },
     ...
      
-        ], 
+        ],
         "summary": {
-            "checkedNodeCount": 25, 
-            "failedSessionCount": 24, 
-            "failedNodeCount": 3, 
+            "checkedNodeCount": 25,
+            "failedSessionCount": 24,
+            "failedNodeCount": 3,
             "totalSessionCount": 220
         }
     }

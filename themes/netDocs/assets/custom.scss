@@ -17,7 +17,7 @@ body {
     font-size: 15px;
     line-height: 30px;
     font-weight: 300;
-    
+
     &:after {
       content: '';
       background-image: url(/icons/baseline-expand_more.svg);
@@ -125,6 +125,7 @@ body {
     list-style: none;
     margin: 0;
 
+
     li {
       a {
         color: white;
@@ -132,6 +133,7 @@ body {
         font-weight: 500;
         letter-spacing: 1.75px;
         text-transform: uppercase;
+        padding-right: 28px;
       }
     }
   }
@@ -538,7 +540,7 @@ div.notices.tip>*:first-child:after {
     top: 0;
     height: 100vh;
     overflow-y: auto;
-    overflow-x: hidden; 
+    overflow-x: hidden;
   }
 
   // &.nav-out-of-view {
@@ -648,7 +650,7 @@ footer {
       margin-bottom: .588rem;
       text-transform: uppercase;
     }
-    
+
     a {
       color: white !important;
       font-size: .823rem;
@@ -695,7 +697,7 @@ footer {
           margin-right: auto;
         }
       }
-      
+
       svg {
         height: 28px;
         path,
@@ -797,7 +799,7 @@ footer {
         max-width: 1140px;
     }
   }
-  
+
   ul {
     margin-top: 0;
     margin-bottom: 0;

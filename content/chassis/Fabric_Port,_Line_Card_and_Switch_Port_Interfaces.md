@@ -6,7 +6,7 @@ aliases:
  - '/display/CHASSIS/Fabric+Port,+Line+Card+and+Switch+Port+Interfaces'
  - /pages/viewpage.action?pageId=7766298
 pageID: 7766298
-product: Cumulus Chassis
+product: Cumulus Express
 version: '1.0'
 imgData: chassis
 siteSlug: chassis
@@ -71,16 +71,16 @@ script:
     ::1 localhost ip6-localhost ip6-loopback
     ff02::1 ip6-allnodes
     ff02::2 ip6-allrouters
-     
+
     127.0.1.1 cumulus-lc101
     ### BEGIN AUTO-ADDED LINES FOR CHASSIS HOSTS
-     
+
     #
     # Hostnames for internal management network
     #
     # Added on Mon Oct 16 22:00:00 UTC 2017 by /usr/lib/cumulus/firstboot.d/10_chassis_hosts.firstboot
     #
-     
+
     # IPv4 Addresses
     169.254.251.1 lc101 lc101.chassis
     169.254.251.2 lc102 lc102.chassis
@@ -106,7 +106,7 @@ script:
     169.254.251.38 fc302 fc302.chassis
     169.254.251.39 fc401 fc401.chassis
     169.254.251.40 fc402 fc402.chassis
-     
+
     # IPv6 Addresses
     fe80::101:2 fc101-v6 fc101-v6.chassis
     fe80::102:2 fc102-v6 fc102-v6.chassis

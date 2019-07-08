@@ -57,11 +57,12 @@
     </div>
   </header>
   <div id="product-nav" class="flex">
+    {{ $currentProduct := .Params.product}}
     <ul>
-      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
-      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
-      <li><a href="/Chassis/">Cumulus Express</a></li>
-      <li><a href="">Cumulus VX</a></li>
+    {{ range .Site.Menus.subnav}}
+      <li{{ with eq $currentProduct .Title }} class = "active" {{ end }}><a href = {{.URL}} >
+        {{.Title}} </a> </li>
+    {{ end }}
     </ul>
     <div class="search-container">
       <div id="doc-search-box">

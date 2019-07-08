@@ -6,7 +6,7 @@ aliases:
  - /display/CHASSIS/Chassis-specific+Commands
  - /pages/viewpage.action?pageId=7766308
 pageID: 7766308
-product: Cumulus Chassis
+product: Cumulus Express
 version: '1.0'
 imgData: chassis
 siteSlug: chassis

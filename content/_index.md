@@ -41,8 +41,8 @@ title: "Cumulus Networks Documentation Home"
 
 
 ## Contributor Guide
-This 
+This is an easy way to edi and type and add tables and I think it makes a whole lot more sense to do everything through here. 
 {{< pageref contributor-guide "Contributor Guide" >}}
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQzMTQxMTQ4Ml19
+eyJoaXN0b3J5IjpbODE2MzE3NzM5XX0=
 -->

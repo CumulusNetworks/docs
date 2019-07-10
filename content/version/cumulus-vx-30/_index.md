@@ -1,7 +1,7 @@
 ---
 title: Cumulus VX Getting Started Guide
 author: Cumulus Networks
-weight: 1
+weight: -1
 aliases:
  - /display/VX30/Cumulus+VX+Getting+Started+Guide
  - /pages/viewpage.action?pageId=5126578

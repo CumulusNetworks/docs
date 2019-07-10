@@ -72,12 +72,19 @@
       </div>
       <div id="dropdown" class="dropdown">
           <button class="btn" type="button" id="dropdownMenuButton">
-            v3.76
+            v{{.Page.Params.version}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">v3.5</a>
-            <a class="dropdown-item" href="#">v2.1</a>
-            <a class="dropdown-item" href="#">v1.43</a>
+            {{range where .Site.Sections "Params.product" $currentProduct}}
+            <a class = "dropdown-item" href = "{{ .RelPermalink }}"> v{{.Params.version}}</a>
+            {{ end }}
+            {{range where .Site.Pages "Section" "version"}}
+             {{ if eq .Params.product $currentProduct }}
+             {{ if .Params.subsection}}
+            <a class = "dropdown-item" href = "{{ .RelPermalink }}"> v{{.Params.version}}</a>
+            {{ end }}
+            {{ end }}
+            {{ end }}
           </div>
       </div>
     </div>

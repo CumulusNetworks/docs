@@ -1,7 +1,7 @@
 ---
 title: Cumulus Linux User Guide
 author: Cumulus Networks
-weight: 1
+weight: -9
 aliases:
  - /display/CL34/Cumulus+Linux+User+Guide
  - /pages/viewpage.action?pageId=7112280
@@ -60,13 +60,13 @@ Cumulus Linux 3.4.0 contains a number of new platforms, features and
 improvements:
 
   - New [platforms](https://cumulusnetworks.com/hcl) include:
-    
+
       - Facebook Backpack 100G chassis now generally available
-    
+
       - Facebook Wedge-100
-    
+
       - QuantaMesh T1048-LY4R
-    
+
     [FRRouting](/version/cumulus-linux-343/Layer_Three/FRRouting_Overview/)
     replaces Quagga as the routing suite for Cumulus Linux
 

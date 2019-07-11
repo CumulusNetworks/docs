@@ -16,7 +16,7 @@ body {
     display: inline-block;
     font-size: 15px;
     line-height: 30px;
-    font-weight: 300;
+    font-weight: 400;
 
     &:after {
       content: '';
@@ -60,12 +60,16 @@ body {
     width: 100%;
     padding: .25rem 1.5rem;
     clear: both;
-    font-weight: 300;
+    font-weight: 400;
     color: #36424a;
     text-align: inherit;
     white-space: nowrap;
     background-color: transparent;
     border: 0;
+
+    &:hover {
+      background-color: #f6f8fa;
+    }
   }
 
   &.show {
@@ -254,7 +258,7 @@ body {
     color: rgb(54, 66, 74);
     display: table-cell;
     font-size: .88rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 30px;
     position: relative;
     padding: 10px 10px 10px 27px;

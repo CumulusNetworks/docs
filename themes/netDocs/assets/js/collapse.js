@@ -4,6 +4,9 @@ document.querySelectorAll('.cn-book-section-container').forEach(node => {
     node.setAttribute('class', '.cn-book-section-container collapse')
   }
   if(node.parentNode.querySelector('.active') != null){
+    if(node.parentNode.tagName == 'LI'){
+      node.parentNode.querySelector('a').setAttribute('class', 'active')
+    }
     node.setAttribute('class', '.cn-book-section-container expand')
   }
 
@@ -15,6 +18,7 @@ document.querySelectorAll('.cn-book-section-container').forEach(node => {
 
   let par = node.parentNode
   let lnk = par.querySelector('a')
+
   if(par.tagName == 'LI'){
     lnk.insertAdjacentElement('afterbegin',eleToggler)
     lnk.addEventListener('click', function (e) {

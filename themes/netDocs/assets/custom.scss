@@ -173,7 +173,7 @@ body {
     li {
       display: inline-block;
       position: relative;
-      a {
+      a, button {
         color: $cn-limited-spruce;
         font-size: 15px;
         font-weight: 400;
@@ -191,6 +191,15 @@ body {
           top: 56px;
           left: 0;
         }
+      }
+
+      .dropdown-menu {
+        box-shadow: 0 2px 10px 0 rgba(175,184,197,.2);
+        border-radius: 0;
+        border: 1px solid #e0e4ec;
+        border-top: 0;
+        top: 57px;
+        left: auto;
       }
     }
   }

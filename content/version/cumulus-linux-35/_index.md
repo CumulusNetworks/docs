@@ -1,7 +1,7 @@
 ---
 title: Cumulus Linux User Guide
 author: Cumulus Networks
-weight: 1
+weight: -10
 aliases:
  - /display/CL35/Cumulus+Linux+User+Guide
  - /pages/viewpage.action?pageId=8357317
@@ -42,22 +42,22 @@ Cumulus Linux 3.5 contains a number of new platforms, features and
 improvements:
 
   - New [platforms](https://cumulusnetworks.com/hcl) include:
-    
+
       - Accton OMP-800 chassis/Cumulus Express CX-10256-S (100G)
-    
+
       - Delta 9032-v1 (100G Tomahawk) and AG7648 (10G Trident II)
-    
+
       - Broadcom Maverick-based 10G switches, including Dell S4128F-ON
-    
+
       - Edgecore AS5812 AC with 3Y PSU
-    
+
       - Facebook Wedge-100S now generally available
-    
+
       - Mellanox Spectrum A1 chipsets in the 2100, 2410 and 2700 models;
         Mellanox 2740 (100G) and 2740B (40G)
-    
+
       - Quanta LY7 (10G)
-    
+
       - 10GBASE-LR BiDi optics
 
   - [Symmetric VXLAN

@@ -16,7 +16,7 @@ body {
     display: inline-block;
     font-size: 15px;
     line-height: 30px;
-    font-weight: 300;
+    font-weight: 400;
 
     &:after {
       content: '';
@@ -60,12 +60,16 @@ body {
     width: 100%;
     padding: .25rem 1.5rem;
     clear: both;
-    font-weight: 300;
+    font-weight: 400;
     color: #36424a;
     text-align: inherit;
     white-space: nowrap;
     background-color: transparent;
     border: 0;
+
+    &:hover {
+      background-color: #f6f8fa;
+    }
   }
 
   &.show {
@@ -173,7 +177,7 @@ body {
     li {
       display: inline-block;
       position: relative;
-      a {
+      a, button {
         color: $cn-limited-spruce;
         font-size: 15px;
         font-weight: 400;
@@ -191,6 +195,15 @@ body {
           top: 56px;
           left: 0;
         }
+      }
+
+      .dropdown-menu {
+        box-shadow: 0 2px 10px 0 rgba(175,184,197,.2);
+        border-radius: 0;
+        border: 1px solid #e0e4ec;
+        border-top: 0;
+        top: 57px;
+        left: auto;
       }
     }
   }
@@ -245,7 +258,7 @@ body {
     color: rgb(54, 66, 74);
     display: table-cell;
     font-size: .88rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 30px;
     position: relative;
     padding: 10px 10px 10px 27px;
@@ -350,7 +363,6 @@ aside nav ul .expand li>a {
   position: relative;
 }
 
-.book-menu>nav>.expand>li>a>.menuControl,
 .book-menu>nav .expand .active .menuControl {
   top: 0;
   transform: rotate(0);

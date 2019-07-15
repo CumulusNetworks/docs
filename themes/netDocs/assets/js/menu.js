@@ -16,8 +16,10 @@
   }
 
   hideDropdown = () => {
-    var elem = document.querySelector('.dropdown');
-    if (elem.classList.contains('show')) elem.classList.remove('show');
+    var elem = document.querySelectorAll('.dropdown');
+    elem.forEach(dropdown => {
+      if (dropdown.classList.contains('show')) dropdown.classList.remove('show');
+    })
   }
 
   document.addEventListener('click', function(e) {

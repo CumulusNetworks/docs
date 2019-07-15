@@ -1,7 +1,7 @@
 ---
 title: Cumulus Linux User Guide
 author: Cumulus Networks
-weight: 1
+weight: -15
 aliases:
  - /display/CL36/Cumulus+Linux+User+Guide
  - /pages/viewpage.action?pageId=8362022
@@ -61,21 +61,21 @@ Cumulus Linux 3.6.0 contains a number of new platforms, features and
 improvements:
 
   - New [platforms](https://cumulusnetworks.com/hcl) include:
-    
+
       - Dell S4128T-ON (10GBASE-T Maverick)
-    
+
       - Dell S5048-ON (25G Tomahawk+)
-    
+
       - Delta AG-5648v1 (25G Tomahawk+)
-    
+
       - Edgecore AS7312-54XS (Tomahawk+)
-    
+
       - Facebook Voyager (100G Tomahawk/DWDM) Early Access
-    
+
       - Penguin Arctica 1600CS (100G Spectrum)
-    
+
       - Penguin Arctica 3200CS (100G Spectrum)
-    
+
       - Penguin Arctica 4808X (10G Spectrum)
 
   - [Policy-based
@@ -100,25 +100,25 @@ improvements:
     commands
 
   - OSPFv3 enhancements:
-    
+
       - Validated interoperability with other routers at a scale of 120
         neighbors
-    
+
       - New NCLU commands to configure
         [OSPFv3](/display/CL36/Open+Shortest+Path+First+v3+-+OSPFv3+-+Protocol#OpenShortestPathFirstv3-OSPFv3-Protocol-ConfiguringtheOSPFv3Area)
 
   - EVPN Enhancements:
-    
+
       - [Type-5 routes with asymmetric
         routing](/display/CL36/Ethernet+Virtual+Private+Network+-+EVPN#EthernetVirtualPrivateNetwork-EVPN-EVPNType-5RoutingwithAsymmetricRouting)
-    
+
       - [Originate default EVPN type-5
         routes](/display/CL36/Ethernet+Virtual+Private+Network+-+EVPN#EthernetVirtualPrivateNetwork-EVPN-OriginatingDefaultEVPNType-5Routes)
-    
+
       - <span style="color: #000000;"> [Filter EVPN routes based on
         type](/display/CL36/Ethernet+Virtual+Private+Network+-+EVPN#EthernetVirtualPrivateNetwork-EVPN-filter_evpn_route_typeFilteringEVPNRoutesBasedonType)
         </span>
-    
+
       - [Control which RIB routes are injected into
         EVPN](/display/CL36/Ethernet+Virtual+Private+Network+-+EVPN#EthernetVirtualPrivateNetwork-EVPN-ControllingWhichRIBRoutesAreInjectedintoEVPN)
 

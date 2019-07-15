@@ -1,9 +1,9 @@
 ---
 title: Cumulus Linux User Guide
 author: Cumulus Networks
-weight: -7
+weight: 1
 aliases:
- - /display/CL321/Cumulus+Linux+User+Guide
+ - /display/CL321/Cumulus-Linux-User-Guide
  - /pages/viewpage.action?pageId=5126727
 pageID: 5126727
 product: Cumulus Linux
@@ -42,15 +42,15 @@ Cumulus Linux 3.2.1 adds these new features and platforms, including:
 
   - **Network Command Line Utility**: We've improved the syntax so it's
     even easier for network operators to configure Cumulus Linux with
-    [NCLU](/version/cumulus-linux-321/System_Configuration/Network_Command_Line_Utility).
+    [NCLU](/version/cumulus-linux-321/System-Configuration/Network-Command-Line-Utility).
 
   - **Platform Independent Multicast (PIM)**: We've improved [multicast
-    latency](/version/cumulus-linux-321/Layer_Three/Protocol_Independent_Multicast_-_PIM)
+    latency](/version/cumulus-linux-321/Layer-Three/Protocol-Independent-Multicast---PIM)
     on Mellanox switches.
 
   - **Explicit Congestion Notification (ECN)**: We've expanded support
     for
-    [ECN](Buffer_and_Queue_Management.html#src-5127004_BufferandQueueManagement-ecn)
+    [ECN](Buffer-and-Queue-Management.html#src-5127004_BufferandQueueManagement-ecn)
     to Tomahawk switches.
 
   - **New 100G platform**: Early access support for the [Edge-Core
@@ -82,3 +82,11 @@ You can find the most up to date hardware compatibility list (HCL)
 your switch model is supported by Cumulus Networks. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>

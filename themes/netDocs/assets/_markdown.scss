@@ -206,8 +206,8 @@ $block-border-radius: 0.15rem;
   }
 
   p code {
-    background: rgba(0, 173, 105, 0.1);
-    color: $cn-jade;
+    color: $cn-nevada;
+    background: $code-block-background;
   }
 
   .notices p code {

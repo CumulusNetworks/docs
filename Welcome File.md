@@ -146,10 +146,10 @@ C --> D
 | Item | Description |
 |--|--|
 |foo  |bar  |
-|bar | * foo 
-         * you |
+|bar | * foo<br>* you |
+
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NzcxODIxODgsLTMzMjQ1NTM2M119
+eyJoaXN0b3J5IjpbLTQ3MTU4Mjc3OCwtMzMyNDU1MzYzXX0=
 -->

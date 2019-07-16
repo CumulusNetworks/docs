@@ -141,6 +141,14 @@ A --> C(Round Rect)
 B --> D{Rhombus}
 C --> D
 ```
+
+## Tables
+| Item | Description |
+|--|--|
+|foo  |bar  |
+|bar | * foo * you |
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMzMjQ1NTM2M119
+eyJoaXN0b3J5IjpbMTM3MTg3ODEwOCwtMzMyNDU1MzYzXX0=
 -->

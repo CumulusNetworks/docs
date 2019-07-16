@@ -71,8 +71,13 @@ body {
 
   .card {
     border: 1px solid rgb(224, 228, 236);
+    border-radius: 0;
     box-shadow: 0px 2px 10px 0px rgba(175, 184, 197, 0.2);
     padding: 45px;
+
+    * {
+      transition: all .35s;
+    }
 
     a {
       position: absolute;
@@ -98,6 +103,11 @@ body {
       margin-top: 30px;
       text-transform: uppercase;
       transition: all .35s;
+    }
+
+    &:hover {
+      border: 1px solid rgba(0,173,105,.31);
+      box-shadow: 0 5px 10px 0 rgba(0,121,96,.2);
     }
   }
 }
@@ -800,6 +810,10 @@ footer {
       font-size: .823rem;
       font-weight: 400;
       line-height: 1.764rem;
+
+      &:hover {
+        color: $cn-jade;
+      }
     }
 
     i {
@@ -875,6 +889,15 @@ footer {
       }
 
       ul {
+        &:not(:last-of-type) {
+          li {
+            a {
+              &:hover {
+                color: $cn-jade !important;
+              }
+            }
+          }
+        }
         &:last-of-type {
           display: flex;
           flex-wrap: wrap;

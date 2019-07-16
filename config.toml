@@ -28,11 +28,7 @@ noChmod = true
     url = "/cumulus-vx/"
     weight = 30
 
-  [[menu.subnav]]
-    identifier = "cumulus-express"
-    title = "Cumulus Express"
-    url = "/chassis/"
-    weight = 40
+
 
 
 [Params]

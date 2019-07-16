@@ -28,6 +28,12 @@
   https://github.com/alex-shpak/hugo-book
   {{ "-->" | safeHTML }}
 
+  <!-- clipboard.js support -->
+  {{ $jsClipMin := resources.Get "js/clipboard.min.js" }}
+  {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
+  <script src = "{{ $jsClipMin.Permalink }}"> </script>
+  <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
+
 </head>
 
 
@@ -73,7 +79,7 @@
               <a class="dropdown-item" href="">Cumulus RMP</a>
               <a class="dropdown-item" href="">Cumulus Chassis</a>
               <a class="dropdown-item" href="">Cumulus Host Pack</a>
-            </div>  
+            </div>
         </div>
       </li>
     </ul>
@@ -123,6 +129,7 @@
       {{ $jsMenu := slice $jsScroll $jsCollapse | resources.Concat "js/menuBundle.js"}}
 
       <script src = "{{ $jsMenu.Permalink }}"> </script>
+
 
     </aside>
 

@@ -3,13 +3,13 @@ title: Cumulus Host Pack
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/HOSTPACK/Cumulus+Host+Pack
+ - /display/HOSTPACK/Cumulus-Host-Pack
  - /pages/viewpage.action?pageId=5868785
 pageID: 5868785
 product: Cumulus Host Pack
 version: '1.0'
-imgData: host-pack
-siteSlug: host-pack
+imgData: hostpack
+siteSlug: hostpack
 subsection: true
 ---
 Pete Bratach
@@ -121,65 +121,197 @@ including:
 Host Pack requires Cumulus Linux 3.3 and later and is supported on the
 following hosts and systems:
 
+<table class="confluenceTable">
+
+<thead class=" ">
+
+<tr>
+
+<td class="confluenceTh" rowspan="1" colspan="1">
+
 Host Pack Feature
+
+</td>
+
+<td class="confluenceTh" rowspan="1" colspan="1">
 
 Ubuntu
 
+</td>
+
+<td class="confluenceTh" rowspan="1" colspan="1">
+
 Red Hat
+
+</td>
+
+<td class="confluenceTh" rowspan="1" colspan="1">
 
 Container
 
+</td>
+
+</tr>
+
+</thead>
+
+<tfoot class=" ">
+
+</tfoot>
+
+<tbody class=" ">
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="4">
+
 **Connectivity**
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 **FRRouting on the Host**
 
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 Ubuntu 16.04, 14.04
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 Red Hat Enterprise Linux 7
 
 CentOS 7
 
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 Docker Engine
 
 Docker Swarm
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 **FRRouting in a c**ontainer****
 
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 Ubuntu 16.04
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 Red Hat Enterprise Linux 7
 
 CentOS 7
 
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 Docker Engine
 
 Mesos Universal Container Runtime
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 **Container Advertiser**
 
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 Ubuntu 16.04
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 Red Hat Enterprise Linux 7
 
 CentOS 7
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 Docker Engine
 
 Mesos Universal Container Runtime
 
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="4">
+
 **Visibility**
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 **NetQ on the Host**
 
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 Ubuntu 16.04
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 Red Hat Enterprise Linux 7
 
 CentOS 7
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 Docker Engine
 
 Docker Swarm
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 ## <span>Getting Started</span>
 
@@ -188,17 +320,25 @@ intend to use.
 
   - If you want to use routing on your servers, or with the containers
     on a host, you need to
-    [install](/host-pack/Installing_FRRouting_on_the_Host) and
-    [configure](/host-pack/Configuring_FRRouting_on_the_Host) FRRouting
-    on the Host.
+    [install](/version/hostpack/Installing-FRRouting-on-the-Host) and
+    [configure](/version/hostpack/Configuring-FRRouting-on-the-Host)
+    FRRouting on the Host.
 
   - If you are using containers on your host servers, make sure [Docker
-    is installed](/host-pack/Installing_Docker).
+    is installed](/version/hostpack/Installing-Docker).
 
   - If you want to use Container Advertiser, you need to [install and
-    configure](/host-pack/Configuring_Container_Advertiser) it.
+    configure](/version/hostpack/Configuring-Container-Advertiser) it.
 
   - If you plan on using NetQ on the Host to monitor the hosts and
     containers, you need to
-    [install](/host-pack/Installing_NetQ_on_the_Host) and
-    [configure](/host-pack/Configuring_NetQ_on_the_Host) it.
+    [install](/version/hostpack/Installing-NetQ-on-the-Host) and
+    [configure](/version/hostpack/Configuring-NetQ-on-the-Host) it.
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>

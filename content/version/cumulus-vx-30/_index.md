@@ -1,9 +1,9 @@
 ---
 title: Cumulus VX Getting Started Guide
 author: Cumulus Networks
-weight: -1
+weight: 1
 aliases:
- - /display/VX30/Cumulus+VX+Getting+Started+Guide
+ - /display/VX30/Cumulus-VX-Getting-Started-Guide
  - /pages/viewpage.action?pageId=5126578
 pageID: 5126578
 product: Cumulus VX
@@ -84,7 +84,7 @@ various hypervisors:
 
 Cumulus VX is a virtual appliance that simulates a Cumulus Linux or
 Cumulus RMP environment. To see how these systems compare, [read this
-article](/version/cumulus-vx-30/Comparing_Cumulus_VX_with_Other_Cumulus_Networks_Products).
+article](/version/cumulus-vx-30/Comparing-Cumulus-VX-with-Other-Cumulus-Networks-Products).
 
 ## <span>Community Support</span>
 
@@ -105,16 +105,16 @@ virtual machine to build out your test network. For more information,
 read the appropriate steps below:
 
   - [Using Cumulus VX with
-    VMware](/version/cumulus-vx-30/Using_Cumulus_VX_with_VMware/)
+    VMware](/version/cumulus-vx-30/Using-Cumulus-VX-with-VMware/)
 
   - [Using Cumulus VX with
-    VirtualBox](/version/cumulus-vx-30/Using_Cumulus_VX_with_VirtualBox/)
+    VirtualBox](/version/cumulus-vx-30/Using-Cumulus-VX-with-VirtualBox/)
 
   - [Using Cumulus VX with
-    KVM](/version/cumulus-vx-30/Using_Cumulus_VX_with_KVM)
+    KVM](/version/cumulus-vx-30/Using-Cumulus-VX-with-KVM)
 
   - [Using Cumulus VX with
-    Vagrant](/version/cumulus-vx-30/Using_Cumulus_VX_with_Vagrant)
+    Vagrant](/version/cumulus-vx-30/Using-Cumulus-VX-with-Vagrant)
 
   - [Using Cumulus VX with
     GNS3](http://docs.cumulusnetworks.com/display/VX/Using+Cumulus+VX+with+GNS3)
@@ -160,12 +160,12 @@ environments, visit these links:
 
 ## <span>Recently Updated Pages</span>
 
-  - Cumulus VX Getting Started Guide32 minutes ago • updated by [Dan
+  - Cumulus VX Getting Started GuideMay 13, 2019 • updated by [Dan
     Cawley](https://docs.cumulusnetworks.com/display/~dcawley) • [view
     change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=5126578&selectedPageVersions=2&selectedPageVersions=1)
 
   - [Using Cumulus VX with
-    KVM](/version/cumulus-vx-30/Using_Cumulus_VX_with_KVM)May 02, 2017 •
+    KVM](/version/cumulus-vx-30/Using-Cumulus-VX-with-KVM)May 02, 2017 •
     updated by [Rama
     Darbha](https://docs.cumulusnetworks.com/display/~rama) • [view
     change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=5126595&selectedPageVersions=2&selectedPageVersions=1)
@@ -174,25 +174,33 @@ environments, visit these links:
     Wells](https://docs.cumulusnetworks.com/display/~tom)
 
   - [Using Cumulus VX with
-    VirtualBox](/version/cumulus-vx-30/Using_Cumulus_VX_with_VirtualBox/)May
+    VirtualBox](/version/cumulus-vx-30/Using-Cumulus-VX-with-VirtualBox/)May
     09, 2016 • created by [Tom
     Wells](https://docs.cumulusnetworks.com/display/~tom)
 
   - [Creating a Two-Spine, Two-Leaf
-    Topology](/version/cumulus-vx-30/Using_Cumulus_VX_with_VirtualBox/Creating_a_Two-Spine_Two-Leaf_Topology)Apr
+    Topology](/version/cumulus-vx-30/Using-Cumulus-VX-with-VirtualBox/Creating-a-Two-Spine-Two-Leaf-Topology)Apr
     28, 2016 • created by [Tom
     Wells](https://docs.cumulusnetworks.com/display/~tom)
 
 [Show
-More](https://docs.cumulusnetworks.com/plugins/recently-updated/changes.action?theme=concise&pageSize=5&startIndex=5&searchToken=41987&spaceKeys=VX30&contentType=page)
+More](https://docs.cumulusnetworks.com/plugins/recently-updated/changes.action?theme=concise&pageSize=5&startIndex=5&searchToken=78331&spaceKeys=VX30&contentType=page)
 
-![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.240/\_/images/icons/wait.gif](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.240/_/images/icons/wait.gif)  
+![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/wait.gif](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/wait.gif)  
 <span class="caption">Please wait</span>
 
 ## <span>Space Contributors</span>
 
-  - [Dan Cawley](https://docs.cumulusnetworks.com/display/~dcawley) (32
-    minutes ago)
-
-  - [Tom Wells](https://docs.cumulusnetworks.com/display/~tom) (1067
+  - [Dan Cawley](https://docs.cumulusnetworks.com/display/~dcawley) (58
     days ago)
+
+  - [Tom Wells](https://docs.cumulusnetworks.com/display/~tom) (1125
+    days ago)
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>

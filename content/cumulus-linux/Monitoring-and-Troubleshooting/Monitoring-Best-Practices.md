@@ -1,15 +1,15 @@
 ---
 title: Monitoring Best Practices
 author: Cumulus Networks
-weight: 233
+weight: 2337
 aliases:
- - /display/CL37/Monitoring-Best-Practices
- - /pages/viewpage.action?pageId=8362625
-pageID: 8362625
+ - /display/CL3740/Monitoring-Best-Practices
+ - /pages/viewpage.action?pageId=83626256346
+pageID: 83626256346
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 The following monitoring processes are considered best practices for
 reviewing and troubleshooting potential issues with Cumulus Linux
@@ -133,7 +133,7 @@ cumulus@switch:~$ ledmgrd -j</code></pre></td>
 
 Not all switch models include a sensor for monitoring power consumption
 and voltage. See [this
-note](Monitoring-System-Hardware.html#src-8362594_MonitoringSystemHardware-smond)
+note](Monitoring-System-Hardware.html#src-83625946315_MonitoringSystemHardware-smond)
 for details.
 
 {{%/notice%}}
@@ -328,7 +328,8 @@ monitoring.
 ## <span>Process Restart </span>
 
 In Cumulus Linux 3.0 and later, `systemd` is responsible for monitoring
-and restarting processes.
+ and restarting 
+processes.
 
 <table>
 <colgroup>
@@ -641,7 +642,7 @@ BFD, and associated logs are documented in the code.
 
 Cumulus Networks recommends that you track peering information through
 PTM. For more information, refer to the [Prescriptive Topology Manager
-documentation](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM).
+documentation](/version/cumulus-linux-377/Layer-1-and-Switch-Portsdisplay/CL40/Prescriptive-+Topology-+Manager---+-+PTM).
 
 {{%/notice%}}
 
@@ -1066,3 +1067,6 @@ sudo: pam_unix(sudo:session): session closed for user root</code></pre></td>
 </footer>
 
 </details>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTM1NjY1ODQ1N119
+-->

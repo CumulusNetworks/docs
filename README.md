@@ -4,7 +4,7 @@ This repository houses the source for internal Cumulus Networks Documentation, h
 at qa-docs.cumulusnetworks.com. This version of the documentation contains sensitive
 and unreleased information, and is only accessible to Cumulus Employees and Partners
 
-## Installing the Internal Documentation Site
+## Installing the InternalTest Documentation Site
 The docs are built with the static site generator [Hugo](https://gohugo.io/documentation/)
 Hugo contains a local development server to build and view live changes to the repo. Hugo is
 a command line interface.
@@ -28,7 +28,8 @@ hugo will watch and rebuild the site with any changes to the source.
 ## Contributing
 
 This repository will contain new development and content added to the docs, and will remain private.
-The master branch will build and deploy to docs-qa.cumulusnetworks.com
+The master branch will sync with the public docs repository
+The develop branch will build and deploy to docs-qa.cumulusnetworks.com upon commit
 This branch will contain new features and content for review.
 
 If you would like to contribute to the site, please fork and submit a pull request
@@ -61,3 +62,6 @@ The site is based off the Hugo Book theme, built by [alex-shpak](https://github.
   - [Content Organization with Hugo](https://gohugo.io/content-management/organization/)
   - [hugo-theme-book](https://github.com/alex-shpak/hugo-book)
   - [hugo-theme-dockdock](https://github.com/vjeantet/hugo-theme-docdock)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE4MjQzNzM2OF19
+-->

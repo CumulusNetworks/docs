@@ -3,19 +3,19 @@ title: HTTP API
 author: Cumulus Networks
 weight: 79
 aliases:
- - /display/CL37/HTTP-API
- - /pages/viewpage.action?pageId=8362591
-pageID: 8362591
+ - /display/CL3740/HTTP-API
+ - /pages/viewpage.action?pageId=83625916312
+pageID: 83625916312
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 Cumulus Linux implements an HTTP application programing interface to
 [OpenStack ML2
-driver](/version/cumulus-linux-377/Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux)
+driver](/version/cumulus-linux-37740/Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux)
 and
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).
+[NCLU](/version/cumulus-linux-37740/System-Configuration/Network-Command-Line-Utility---NCLU).
 Rather than accessing Cumulus Linux using SSH, you can interact with the
 switch using an HTTP client, such as cURL, HTTPie or a web browser.
 
@@ -34,7 +34,7 @@ The service is not enabled by default on non-chassis hardware.
 {{%notice note%}}
 
 If you are upgrading from a version of Cumulus Linux earlier than 3.4.0,
-the supporting software for the API may not be installed. Install the
+the supporting software for the API mayight not be installed. Install the
 required software with the following command.
 
     cumulus@switch:~$ sudo apt-get install python-cumulus-restapi
@@ -63,24 +63,28 @@ Each service runs as a background daemon once started.
 
 ### <span>Configuration</span>
 
-There are two configuration files associated with the HTTP API services:
+There ar HTTP API services use two configuration files associated with the HTTP API services:
 
-  - `/etc/nginx/sites-available/nginx-restapi.conf`
+  - `/etc/nginx/sites-available/nginx-restapi.conf` (`used for
+    non-chassis hardware)
 
   - `/etc/nginx/sites-available/nginx-restapi-chassis.conf`
 
 The first configuration file is used for non-chassis hardware; the
-second, for chassis hardware.
+second, for (used for
+    chassis hardware.)
 
-Generally, only the configuration file relevant to your hardware needs
-to be edited, as the associated services determine the appropriate
-configuration file to use at run time.
+Generally, onlyYou only need to edit the configuration file relevant to your hardware needs
+to be edited, as ;
+the associated services determine the appropriate
+ configuration file to 
+use at run time.
 
 #### <span>Enable External Traffic on a Chassis</span>
 
 The HTTP API services are configured to listen on port 8080 for chassis
 hardware by default. However, only HTTP traffic originating from
-internal link local management IPv6s will be allowed. To configure the
+internal link local management IPv6s will beis allowed. To configure the
 services to also accept HTTP requests originating from external sources:
 
 1.  Open `/etc/nginx/sites-available/nginx-restapi-chassis.conf` in a
@@ -92,7 +96,7 @@ services to also accept HTTP requests originating from external sources:
     value, 8080, is not the preferred port, and save the configuration
     file.
 
-4.  Verify the configuration file is still valid:
+4.  Verify that the configuration file is still valid:
     
         cumulus@switch:~$ sudo nginx -c /etc/nginx/sites-available/nginx-restapi-chassis.conf -t
     
@@ -105,7 +109,7 @@ services to also accept HTTP requests originating from external sources:
 
 #### <span>IP and Port Settings</span>
 
-The IP:port combinations that services listen to can be modified by
+TYou can modify the IP:port combinations thato which services listen to can be modified by
 changing the parameters of the `listen` directive(s). By default,
 `nginx-restapi.conf` has only one `listen` parameter, whereas
 `/etc/nginx/sites-available/nginx-restapi-chassis.conf` has two
@@ -115,7 +119,7 @@ internal traffic.
 
 {{%notice note%}}
 
-All URLs must use HTTPS, rather than HTTP.
+All URLs must use HTTPS, rather than instead of HTTP.
 
 {{%/notice%}}
 
@@ -129,7 +133,7 @@ traffic.
 
 {{%/notice%}}
 
-### <span id="src-8362591_HTTPAPI-security" class="confluence-anchor-link"></span><span>Security</span>
+### <span id="src-83625916312_HTTPAPI-security" class="confluence-anchor-link"></span><span>Security</span>
 
 #### <span>Authentication</span>
 
@@ -155,15 +159,16 @@ documentation](https://help.ubuntu.com/lts/serverguide/certificates-and-security
 {{%notice warning%}}
 
 Do not copy the `cumulus.pem` or `cumulus.key` files. After
-installation, edit the “ssl\_certificate” and “ssl\_certificate\_key”
+installation, edit the “`ssl\_certificate”` and “`ssl\_certificate\_key”`
 values in the configuration file for your hardware.
 
 {{%/notice%}}
 
 ### <span>cURL Examples</span>
 
-This section contains several example cURL commands for sending HTTP
-requests to a non-chassis host. The following settings are used for
+This section containincludes several example cURL commands foryou can use to sending 
+HTTP
+ requests to a non-chassis host. The following settings are used for
 these examples:
 
   - Username: `user`
@@ -183,10 +188,10 @@ set to `application/json`.
 
 {{%notice info%}}
 
-cURL’s `-k` flag is necessary when the server uses a self-signed
+The cURL’s `-k` flag is necessary when the server uses a self-signed
 certificate. This is the default configuration (see the [Security
-section](#src-8362591_HTTPAPI-security)). To display the response
-headers, include `-D` flag in the command.
+section](#src-83625916312_HTTPAPI-security)). To display the response
+headers, include the `-D` flag in the command.
 
 {{%/notice%}}
 
@@ -209,3 +214,6 @@ To add a bridge using ML2:
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE4MzE2OTczNDhdfQ==
+-->

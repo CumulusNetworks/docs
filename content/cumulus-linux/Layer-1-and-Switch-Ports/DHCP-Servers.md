@@ -3,53 +3,75 @@ title: DHCP Servers
 author: Cumulus Networks
 weight: 97
 aliases:
- - /display/CL37/DHCP-Servers
- - /pages/viewpage.action?pageId=8363042
-pageID: 8363042
+ - /display/CL3740/DHCP-Servers
+ - /pages/viewpage.action?pageId=83630426764
+pageID: 83630426764
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 To run DHCP for both IPv4 and IPv6, you need to initiate the DHCP server
 twice: once for IPv4 and once for IPv6. The following configuration uses
-the following topology for the host, DHCP relay and DHCP server:
+the following topology forA DHCP Server automatically provides and assigns IP addresses and other
+network parameters to client devices. It relies on the Dynamic Host
+Configuration Protocol to respond to broadcast requests from clients.
+
+This topic describes how to configure a DHCP server for IPv4 and IPv6.
+Configurations on the hosts, DHCP relay, and DHCP server:
 
 {{% imgOld 0 %}}
 
-For the configurations used in this chapter, the DHCP server is a switch
-running Cumulus Linux; however, the DHCP server can also be located on a
+For the configurations used  are provided
+using the following this chapter, topology. The DHCP server is a switch
+ running 
+Cumulus Linux; however, the DHCP server can also be located on a
 dedicated server in your environment.
+
+{{% imgOld 0 %}}
 
 {{%notice note%}}
 
 The `dhcpd` and `dhcrelay` services are disabled by default. After you
 finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
-[VRF](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF),
+[VRF](/version/cumulus-linux-37740/Layer-3/Virtual-Routing-and-Forwarding---VRF),
 including the [management
-VRF](/version/cumulus-linux-377/Layer-3/Management-VRF), follow [these
-steps](Management-VRF.html#src-8362940_ManagementVRF-services) for
+VRF](/version/cumulus-linux-37740/Layer-3/Management-VRF), follow [these
+steps](Management-VRF.html#src-83629406664_ManagementVRF-services) for
 configuring them. See also the [VRF
-chapter](Virtual-Routing-and-Forwarding---VRF.html#src-8362942_VirtualRoutingandForwarding-VRF-dhcp).
+chapter](Virtual-Routing-and-Forwarding---VRF.html#src-83629426666_VirtualRoutingandForwarding-VRF-dhcp).
 
 {{%/notice%}}
 
 ## <span>Configure the DHCP Server on Cumulus Linux Switches</span>
 
-You can use the following sample configurations for `dhcp.conf` and
-`dhcpd6.conf` to start both an IPv4 and an IPv6 DHCP server. The
+You can use the following sample configurations for `For information about DHCP relays, refer to [DHCP
+Relays](/version/cumulus-linux-40/Layer-1-and-Switch-Ports/DHCP-Relays).
+
+## <span>Configure the DHCP Server on Cumulus Linux Switches</span>
+
+To configure the DHCP server on a Cumulus Linux switch for IPv4 and
+IPv6, you need to edit the `/etc/dhcp/dhcp.conf` and
+`/etc/dhcp/dhcpd6.conf` to start both an IPv4 and an IPv6 DHCP server. The
 configuration files for the two DHCP server instances need to have two
 pools:
 
-  - Pool 1: Subnet overlaps interfaces
+  - Pool 1: Subnet overlaps interfacesconfiguration files. Sample configurations are
+provided as a starting point.
 
-  - Pool 2: Subnet that includes the addresses
+You must include two pools in the DHCP configuration files:
+
+  - Pool 1 is the subnet that includes the IP addresses of the
+    interfaces on the DHCP server
+
+  - Pool 2: S is the subnet that includes the IP addresses being assigned
 
 ### <span>Configure the IPv4 DHCP Server</span>
 
-In a text editor, edit the `dhcpd.conf` file with a configuration
-similar to the following:
+In a text editor, edit the `/etc/dhcp/dhcpd.conf` file with a configuration
+similar to the following. Use following
+configuration as an example:
 
     cumulus@switch:~$ cat /etc/dhcp/dhcpd.conf
     ddns-update-style none;
@@ -63,25 +85,28 @@ similar to the following:
             range 10.0.1.50 10.0.1.60;
     }
 
-Just as you did with the DHCP relay scripts, edit the DHCP server
-configuration file so it can launch the DHCP server when the system
-boots. Here is a sample configuration:
+Just as you did with the DHCP relay scripts, edit the DHCP Edit the`  /etc/default/isc-dhcp-server
+ ` configuration file so it can launchthat the 
+DHCP server launches when the system
+ boots. Here is a sn example 
+configuration:
 
     cumulus@switch:~$ cat /etc/default/isc-dhcp-server
     DHCPD_CONF="-cf /etc/dhcp/dhcpd.conf"
      
     INTERFACES="swp1"
 
-After you've finished configuring the DHCP server, enable and start the
-` dhcpd  `service immediately:
+After you've finished configuring the DHCP server, eEnable and start the
+ ` dhcpd  `service immediately:
 
     cumulus@switch:~$ sudo systemctl enable dhcpd.service
     cumulus@switch:~$ sudo systemctl start dhcpd.service
 
 ### <span>Configure the IPv6 DHCP Server</span>
 
-In a text editor, edit the `dhcpd6.conf` file with a configuration
-similar to the following:
+In a text editor, edit the `/etc/dhcp/dhcpd6.conf` file with a configuration
+similar to the following. Use following
+configuration as an example:
 
     cumulus@switch:~$ cat /etc/dhcp/dhcpd6.conf
     ddns-update-style none;
@@ -95,9 +120,10 @@ similar to the following:
             range6 2001:db8:1::100 2001:db8:1::200;
     }
 
-Just as you did with the DHCP relay scripts, edit the DHCP server
-configuration file so it can launch the DHCP server when the system
-boots. Here is a sample configuration:
+Just as you did wEdith the DHCP relay scripts, edit the DHCP server
+configuration file so it can launch`/etc/default/isc-dhcp-server6` file so that the DHCP server
+launches when the system
+ boots. Here is a sn example configuration:
 
     cumulus@switch:~$ cat /etc/default/isc-dhcp-server6
     DHCPD_CONF="-cf /etc/dhcp/dhcpd6.conf"
@@ -110,8 +136,8 @@ You cannot use NCLU to configure IPv6 DHCP servers.
 
 {{%/notice%}}
 
-After you've finished configuring the DHCP server, enable and start the
-` dhcpd6  `service immediately:
+After you've finished configuring the DHCP server, eEnable and start the
+` `dhcpd6  ` service immediately:
 
     cumulus@switch:~$ sudo systemctl enable dhcpd6.service
     cumulus@switch:~$ sudo systemctl start dhcpd6.service
@@ -135,9 +161,9 @@ to assign an IP address through DHCP. The following provides an example:
 
 ## <span>Troubleshooting</span>
 
-The DHCP server knows whether a DHCP request is a relay or a non-relay
+The DHCP server knows whdethermines if a DHCP request is a relay or a non-relay
 DHCP request. On isc-dhcp-server, for example, it is possible to tail
-the log and look at the behavior firsthand:
+the log and look at the behavior firsthandYou can run the following command to see the DHCP request:
 
     cumulus@server02:~$ sudo tail /var/log/syslog | grep dhcpd
     2016-12-05T19:03:35.379633+00:00 server02 dhcpd: Relay-forward message from 2001:db8:101::1 port 547, link address 2001:db8:101::1, peer address fe80::4638:39ff:fe00:3
@@ -151,3 +177,6 @@ the log and look at the behavior firsthand:
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTEyOTUxMDE5OF19
+-->

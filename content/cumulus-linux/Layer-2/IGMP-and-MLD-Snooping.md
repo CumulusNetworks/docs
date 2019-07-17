@@ -3,14 +3,16 @@ title: IGMP and MLD Snooping
 author: Cumulus Networks
 weight: 129
 aliases:
- - /display/CL37/IGMP-and-MLD-Snooping
- - /pages/viewpage.action?pageId=8362696
-pageID: 8362696
+ - /display/CL3740/IGMP-and-MLD-Snooping
+ - /pages/viewpage.action?pageId=83626966419
+pageID: 83626966419
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
+<details>
+
 IGMP (Internet Group Management Protocol) and MLD (Multicast Listener
 Discovery) snooping are implemented in the bridge driver in the Cumulus
 Linux kernel and are enabled by default. IGMP snooping processes IGMP
@@ -21,10 +23,12 @@ group.
 {{%notice note%}}
 
 In Cumulus Linux 3.7.4 and later, IGMP and MLD snooping is supported
-over VXLAN bridges on Broadcom switches; however, this feature is *not*
-enabled by default. To enable IGMP and MLD over VXLAN, see [Configure
-IGMP/MLD Snooping over
-VXLAN](#src-8362696_safe-id-SUdNUGFuZE1MRFNub29waW5nLUNvbmZpZ3VyZUlHTVAvTUxEU25vb3BpbmdvdmVyVlhMQU4).
+ over VXLAN bridges on Broadcom 
+switches; however, this feature is *not*
+ enabled by default. To enable 
+IGMP and MLD over VXLAN, see [Configure
+ IGMP/MLD Snooping over
+VXLAN](#src-83626966419_safe-id-SUdNUGFuZE1MRFNub29waW5nLUNvbmZpZ3VyZUlHTVAvTUxEU25vb3BpbmdvdmVyVlhMQU4).
 
 {{%/notice%}}
 
@@ -39,8 +43,9 @@ traffic.
 MLD snooping processes MLD v1/v2 reports, queries and v1 done messages
 for IPv6 groups. If IGMP or MLD snooping is disabled, multicast traffic
 gets flooded to all the bridge ports in the bridge. Similarly, in the
-absence of receivers in a VLAN, multicast traffic would be flooded to
-all ports in the VLAN. The multicast group IP address is mapped to a
+absence of receivers in a VLAN, multicast traffic would beis flooded to
+ all 
+ports in the VLAN. The multicast group IP address is mapped to a
 multicast MAC address and a forwarding entry is created with a list of
 ports interested in receiving multicast traffic destined to that group.
 
@@ -49,18 +54,44 @@ ports interested in receiving multicast traffic destined to that group.
 ## <span>Configure IGMP/MLD Snooping over VXLAN</span>
 
 Cumulus Linux 3.7.4 and later supports IGMP/MLD snooping over VXLAN
-bridges on Broadcom switches, where VXLAN ports are set as router ports.
+ bridges on Broadcom 
+switches, where VXLAN ports are set as router ports.
 
-To enable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge>
-mcsnoop yes` command:
+To enable IGMP/MLD snooping over VXLAN, run the `:
 
-    cumulus@switch:~$ net add bridge mybridge mcsnoop yes
+<summary>NCLU Commands </summary>
+
+    cumulus@switch:~$ net add bridge <mybridge>
+ mcsnoop yes` command:
+
+    cumulus@switch:~$ net add bridge mybridge mcsnoop
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
+<summary>Linux Commands </summary>
+
+    cumulus@switch:~$ sudo nano /etc/network/interfaces
+    ...
+    auto bridge.100
+    vlan bridge.100
+      bridge-igmp-querier-src 123.1.1.1
+     
+    auto bridge
+    iface bridge
+      bridge-ports swp1 swp2 swp3
+      bridge-vlan-aware yes
+     cumulus@switch:~$ net pending bridge-vids 100 200
+      bridge-pvid 1
+      bridge-mcquerier 1
+    ...
+
+Run the `ifreload -a` command to reload the configuration:
+
+    cumulus@switch:~$ net commitsudo ifreload -a
+
 Cumulus Networks recommends that you also configure IGMP/MLD querier.
 See [Configure IGMP/MLD
-Querier](#src-8362696_safe-id-SUdNUGFuZE1MRFNub29waW5nLUNvbmZpZ3VyZUlHTVAvTUxEUXVlcmllcg),
+Querier](#src-83626966419_safe-id-SUdNUGFuZE1MRFNub29waW5nLUNvbmZpZ3VyZUlHTVAvTUxEUXVlcmllcg),
 below.
 
 To disable IGMP/MLD snooping over VXLAN, run the `net add bridge
@@ -70,19 +101,23 @@ To disable IGMP/MLD snooping over VXLAN, run the `net add bridge
 
 If no multicast router is sending queries to configure IGMP/MLD querier
 on the switch, you can add a configuration similar to the following in
-`/etc/network/interfaces`. To enable IGMP and MLD snooping for a bridge,
-set `bridge-mcquerier` to *1* in the bridge stanza. By default, the
-source IP address of IGMP queries is 0.0.0.0. To set the source IP
-address of the queries to be the bridge IP address, configure
+the `/etc/network/interfaces` file. To enable IGMP and MLD snooping for 
+a bridge,
+ set `bridge-mcquerier` to *1* in the bridge stanza. By 
+default, the
+ source IP address of IGMP queries is 0.0.0.0. To set the 
+source IP
+ address of the queries to be the bridge IP address, configure
 `bridge-mcqifaddr 1`.
 
 For an explanation of the relevant parameters, see the
 `ifupdown-addons-interfaces` man page.
 
 For a [VLAN-aware
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode),
+bridge](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode),
 use a configuration like the following:
 
+    ...
     auto bridge.100
     vlan bridge.100
       bridge-igmp-querier-src 123.1.1.1
@@ -94,6 +129,7 @@ use a configuration like the following:
       bridge-vids 100 200
       bridge-pvid 1
       bridge-mcquerier 1
+    ...
 
 For a VLAN-aware bridge, like *bridge* in the above example, to enable
 querier functionality for VLAN 100 in the bridge, set `bridge-mcquerier`
@@ -102,14 +138,18 @@ to *1* in the bridge stanza and set `bridge-igmp-querier-src` to
 
 You can specify a range of VLANs as well. For example:
 
+    ...
     auto bridge.[1-200]
     vlan bridge.[1-200]
       bridge-igmp-querier-src 123.1.1.1
+    ...
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/),
-use a configuration like the following:
+mode](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/),
+ use 
+a configuration like the following:
 
+    ...
     auto br0
     iface br0
       address 192.0.2.10/24
@@ -117,26 +157,33 @@ use a configuration like the following:
       bridge-vlan-aware no
       bridge-mcquerier 1
       bridge-mcqifaddr 1
+    ...
 
 ## <span>Disable IGMP and MLD Snooping</span>
 
-<span id="src-8362696_IGMPandMLDSnooping-igmp_disable"></span>To disable
+<span id="src-83626966419_IGMPandMLDSnooping-igmp_disable"></span>To disable
 IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
 
 {{%notice info%}}
 
 **Example Disable IGMP MLD Snooping Configuration**
 
-The example NCLU commands below create a VLAN-aware bridge interface for
-a VRR-enabled network:
+The example <summary>NCLU cCommands below create a VLAN-aware bridge interface for
+a VRR-enabled network:</summary>
 
     cumulus@switch:~$ net add bridge bridge mcsnoop no
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-The commands above add the `bridge-mcsnoop` line to the following
-example bridge in `/etc/network/interfaces`:
+The commands abov<summary>Linux Commands </summary>
 
+Edit the `/etc/network/interfaces` file adnd theset `bridge-mcsnoop` line to the following
+example bridge in ` to 0` in
+the bridge stanza:
+
+    cumulus@switch:~$ sudo nano /etc/network/interfaces`:
+
+    ...
     auto bridge
     iface bridge
       bridge-mcquerier 1
@@ -146,12 +193,16 @@ example bridge in `/etc/network/interfaces`:
       bridge-vids 100 200
       bridge-vlan-aware yes
 
-{{%/notice%}}
+{{%/notice%}}    ...
+
+Run the `ifreload -a` command to reload the configuration:
+
+    cumulus@switch:~$ sudo ifreload -a
 
 ## <span>Troubleshooting</span>
 
-To show the IGMP/MLD snooping bridge state, run `brctl showstp
-<bridge>`:
+To show the IGMP/MLD snooping bridge state, run `the ` brctl showstp
+<bridge>`  `command:
 
     cumulus@switch:~$ sudo brctl showstp bridge
      bridge
@@ -200,8 +251,8 @@ To show the IGMP/MLD snooping bridge state, run `brctl showstp
      mc router                 1                    mc fast leave              0
      flags
 
-To show the groups and bridge port state, use the `bridge mdb show`
-command. To show router ports and group information use the `bridge -d
+To show the groups and bridge port state, userun the `bridge mdb show`
+command. To show router ports and group information use, run the `bridge -d
 -s mdb show` command:
 
     cumulus@switch:~$ sudo bridge -d -s mdb show
@@ -232,3 +283,8 @@ command. To show router ports and group information use the `bridge -d
 <footer id="ht-footer">
 
 </footer>
+
+</details>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTIwNDAwODczMjhdfQ==
+-->

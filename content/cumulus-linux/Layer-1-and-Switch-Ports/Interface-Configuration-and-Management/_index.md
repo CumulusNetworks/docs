@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux-377
 siteSlug: cumulus-linux-377
 ---
-<details>
-
 `ifupdown` is the network interface manager for Cumulus Linux. Cumulus
 Linux uses an updated version of this tool, `ifupdown2`.
 
@@ -47,7 +45,7 @@ the interface up or down.
 To see the link and administrative state, use the `ip link show`
 command:
 
-    cumulus@switch:~$ ip link show dev swp1 
+    cumulus@switch:~$ ip link show dev swp1
     3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 
@@ -99,8 +97,8 @@ This allows you to perform operations on only these interfaces using the
 `--allow=uplinks` option, or still use the `-a` options since these
 interfaces are also in the auto class:
 
-    cumulus@switch:~$ sudo ifup --allow=uplinks 
-    cumulus@switch:~$ sudo ifreload -a 
+    cumulus@switch:~$ sudo ifup --allow=uplinks
+    cumulus@switch:~$ sudo ifreload -a
 
 If you are using [Management
 VRF](/version/cumulus-linux-377/Layer-3/Management-VRF), you can use the
@@ -118,7 +116,7 @@ Linux using
     allow-mgmt eth0
     iface eth0 inet dhcp
         vrf mgmt
-      
+
     allow-mgmt mgmt
     iface mgmt
         address 127.0.0.1/8
@@ -129,7 +127,7 @@ take a class. Include the `--allow=<class>` option when you run the
 command. For example, to reload the configuration for the management
 interface described above, run:
 
-    cumulus@switch:~$ sudo ifreload --allow=mgmt 
+    cumulus@switch:~$ sudo ifreload --allow=mgmt
 
 You can easily bring up or down all interfaces marked with the common
 `auto` <span style="color: #333333;"> class in </span>
@@ -225,7 +223,7 @@ iface bridge
 </tr>
 </tbody>
 </table>
-
+<details>
 <summary>Bridge in Traditional Mode - Example </summary>
 
 For this example, swp1.100 and swp2.100 below do not need an entry in
@@ -242,10 +240,10 @@ the `interfaces` file. The following stanzas defined in
 <td><p><strong>With Child Interfaces Defined</strong></p>
 <pre><code>auto swp1.100
 iface swp1.100
- 
+
 auto swp2.100
 iface swp2.100
- 
+
 auto br-100
 iface br-100
     address 10.0.12.2/24
@@ -266,7 +264,7 @@ iface br-100
 For more information on the bridge in traditional mode vs the bridge in
 VLAN-aware mode, please read [this knowledge base
 article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
-
+</details>
 ## <span>ifupdown2 Interface Dependencies</span>
 
 `ifupdown2` understands interface dependency relationships. When `ifup`
@@ -512,7 +510,7 @@ interface using either "::" or "0:0:0" notation. Both of the following
 examples are valid:
 
     cumulus@switch:~$ net add bgp neighbor 2620:149:43:c109:0:0:0:5 remote-as internal
-    cumulus@switch:~$ 
+    cumulus@switch:~$
     cumulus@switch:~$ net add interface swp1 ipv6 address 2001:DB8::1/126
 
 {{%/notice%}}
@@ -573,9 +571,9 @@ all IP addresses as global.
     link/ether 74:e6:e2:f5:62:82 brd ff:ff:ff:ff:ff:ff
     inet 35.21.30.5/30 scope global swp2
     valid_lft forever preferred_lft forever
-    inet6 3101:21:20::31/80 scope global 
+    inet6 3101:21:20::31/80 scope global
     valid_lft forever preferred_lft forever
-    inet6 fe80::76e6:e2ff:fef5:6282/64 scope link 
+    inet6 fe80::76e6:e2ff:fef5:6282/64 scope link
     valid_lft forever preferred_lft forever
 
 To work around this issue, configure the IP address scope:
@@ -604,7 +602,7 @@ Now it has the correct scope:
     link/ether 74:e6:e2:f5:62:86 brd ff:ff:ff:ff:ff:ff
     inet 71.21.21.20/32 scope site swp6
     valid_lft forever preferred_lft forever
-    inet6 fe80::76e6:e2ff:fef5:6286/64 scope link 
+    inet6 fe80::76e6:e2ff:fef5:6286/64 scope link
     valid_lft forever preferred_lft forever
 
 ### <span>Purge Existing IP Addresses on an Interface</span>
@@ -687,7 +685,7 @@ This command creates the following configuration in the
     iface bridge
         bridge-vids 100
         bridge-vlan-aware yes
-     
+
     auto vlan100
     iface vlan100
         post-up systemctl --no-block restart dhcrelay.service

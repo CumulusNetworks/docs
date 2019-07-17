@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux-377
 siteSlug: cumulus-linux-377
 ---
-<details>
-
 *Services* (also known as *daemons*) and *processes* are at the heart of
 how a Linux system functions. Most of the time a service takes care of
 itself; you just enable and start it, then let it run. However, because
@@ -75,7 +73,7 @@ To see all the currently running services, run:
                  ├─ledmgrd.service
                  │ └─613 /usr/bin/python /usr/sbin/ledmgrd
                  ├─wd_keepalive.service
-                 │ └─433 /usr/sbin/wd_keepalive 
+                 │ └─433 /usr/sbin/wd_keepalive
                  ├─netq-agent.service
                  │ └─915 /usr/bin/python /usr/sbin/netq-agent
                  ├─ptmd.service
@@ -110,7 +108,7 @@ To see all the currently running services, run:
                  ├─ssh.service
                  │ ├─ 937 /usr/sbin/sshd -D
                  │ ├─6893 sshd: cumulus [priv]
-                 │ ├─6911 sshd: cumulus@pts/0 
+                 │ ├─6911 sshd: cumulus@pts/0
                  │ ├─6912 -bash
                  │ ├─7747 sudo systemctl status
                  │ ├─7752 systemctl status
@@ -247,9 +245,9 @@ To determine which services are currently active or stopped, run the
     Service cron               enabled    active   
     Service ssh                enabled    active   
     Service syslog             enabled    active   
-    Service asic-monitor       enabled    inactive 
-    Service clagd              enabled    inactive 
-    Service cumulus-poe                   inactive 
+    Service asic-monitor       enabled    inactive
+    Service clagd              enabled    inactive
+    Service cumulus-poe                   inactive
     Service lldpd              enabled    active   
     Service mstpd              enabled    active   
     Service neighmgrd          enabled    active   
@@ -262,59 +260,59 @@ To determine which services are currently active or stopped, run the
     Service smond              enabled    active   
     Service switchd            enabled    active   
     Service sysmonitor         enabled    active   
-    Service vxrd               disabled   inactive 
-    Service vxsnd              disabled   inactive 
-    Service rdnbrd             disabled   inactive 
-    Service frr                enabled    inactive 
-    Service bgpd               disabled   inactive 
-    Service eigrpd             disabled   inactive 
-    Service isisd              disabled   inactive 
-    Service ldpd               disabled   inactive 
-    Service nhrpd              disabled   inactive 
-    Service ospf6d             disabled   inactive 
-    Service ospfd              disabled   inactive 
-    Service pbrd               disabled   inactive 
-    Service pimd               disabled   inactive 
-    Service ripd               disabled   inactive 
-    Service ripngd             disabled   inactive 
-    Service zebra              disabled   inactive 
+    Service vxrd               disabled   inactive
+    Service vxsnd              disabled   inactive
+    Service rdnbrd             disabled   inactive
+    Service frr                enabled    inactive
+    Service bgpd               disabled   inactive
+    Service eigrpd             disabled   inactive
+    Service isisd              disabled   inactive
+    Service ldpd               disabled   inactive
+    Service nhrpd              disabled   inactive
+    Service ospf6d             disabled   inactive
+    Service ospfd              disabled   inactive
+    Service pbrd               disabled   inactive
+    Service pimd               disabled   inactive
+    Service ripd               disabled   inactive
+    Service ripngd             disabled   inactive
+    Service zebra              disabled   inactive
 
 You can also run the `systemctl list-unit-files --type service` command
 to list all services on the switch and see which ones are enabled:
-
+<details>
 <summary>Click here to see output of this command ... </summary>
 
     cumulus@switch:~$ systemctl list-unit-files --type service
     UNIT FILE                              STATE   
-    aclinit.service                        enabled 
-    acltool.service                        enabled 
+    aclinit.service                        enabled
+    acltool.service                        enabled
     acpid.service                          disabled
-    asic-monitor.service                   enabled 
-    auditd.service                         enabled 
+    asic-monitor.service                   enabled
+    auditd.service                         enabled
     autovt@.service                        disabled
     bmcd.service                           disabled
-    bootlog.service                        enabled 
+    bootlog.service                        enabled
     bootlogd.service                       masked  
     bootlogs.service                       masked  
     bootmisc.service                       masked  
     checkfs.service                        masked  
     checkroot-bootclean.service            masked  
     checkroot.service                      masked  
-    clagd.service                          enabled 
+    clagd.service                          enabled
     console-getty.service                  disabled
     console-shell.service                  disabled
     container-getty@.service               static  
-    cron.service                           enabled 
+    cron.service                           enabled
     cryptdisks-early.service               masked  
     cryptdisks.service                     masked  
     cumulus-aclcheck.service               static  
     cumulus-chassis-ssh.service            disabled
     cumulus-chassisd.service               disabled
     cumulus-core.service                   static  
-    cumulus-fastfailover.service           enabled 
+    cumulus-fastfailover.service           enabled
     cumulus-firstboot.service              disabled
     cumulus-hyperconverged.service         disabled
-    cumulus-platform.service               enabled 
+    cumulus-platform.service               enabled
     cumulus-support.service                static  
     dbus-org.freedesktop.hostname1.service static  
     dbus-org.freedesktop.locale1.service   static  
@@ -337,10 +335,10 @@ to list all services on the switch and see which ones are enabled:
     dns-watcher.service                    disabled
     dnsmasq.service                        disabled
     emergency.service                      static  
-    frr.service                            enabled 
+    frr.service                            enabled
     fuse.service                           masked  
     getty-static.service                   static  
-    getty@.service                         enabled 
+    getty@.service                         enabled
     halt-local.service                     static  
     halt.service                           masked  
     heartbeat-failed@.service              static  
@@ -348,7 +346,7 @@ to list all services on the switch and see which ones are enabled:
     hostname.service                       masked  
     hsflowd.service                        disabled
     hsflowd@.service                       disabled
-    hwclock-save.service                   enabled 
+    hwclock-save.service                   enabled
     hwclock.service                        masked  
     hwclockfirst.service                   masked  
     ifup@.service                          static  
@@ -360,16 +358,16 @@ to list all services on the switch and see which ones are enabled:
     killprocs.service                      masked  
     kmod-static-nodes.service              static  
     kmod.service                           static  
-    ledmgrd.service                        enabled 
-    lldpd.service                          enabled 
-    lm-sensors.service                     enabled 
-    lvm2-activation-early.service          enabled 
-    lvm2-activation.service                enabled 
+    ledmgrd.service                        enabled
+    lldpd.service                          enabled
+    lm-sensors.service                     enabled
+    lvm2-activation-early.service          enabled
+    lvm2-activation.service                enabled
     lvm2-lvmetad.service                   static  
-    lvm2-monitor.service                   enabled 
+    lvm2-monitor.service                   enabled
     lvm2-pvscan@.service                   static  
     lvm2.service                           disabled
-    mcelog.service                         enabled 
+    mcelog.service                         enabled
     module-init-tools.service              static  
     motd.service                           masked  
     mountall-bootclean.service             masked  
@@ -378,29 +376,29 @@ to list all services on the switch and see which ones are enabled:
     mountkernfs.service                    masked  
     mountnfs-bootclean.service             masked  
     mountnfs.service                       masked  
-    mstp_bridge.service                    enabled 
-    mstpd.service                          enabled 
-    neighmgrd.service                      enabled 
-    netd.service                           enabled 
-    netq-agent.service                     enabled 
+    mstp_bridge.service                    enabled
+    mstpd.service                          enabled
+    neighmgrd.service                      enabled
+    netd.service                           enabled
+    netq-agent.service                     enabled
     netq-agent@.service                    disabled
     netq-notifier.service                  disabled
     netq-notifier@.service                 disabled
-    netqd.service                          enabled 
+    netqd.service                          enabled
     netqd@.service                         disabled
-    networking.service                     enabled 
-    nginx.service                          enabled 
-    ntp.service                            enabled 
+    networking.service                     enabled
+    nginx.service                          enabled
+    ntp.service                            enabled
     ntp@.service                           disabled
-    open-vm-tools.service                  enabled 
+    open-vm-tools.service                  enabled
     openvswitch-vtep.service               disabled
     phc2sys.service                        disabled
-    phy-ucode-update.service               enabled 
-    portwd.service                         enabled 
+    phy-ucode-update.service               enabled
+    portwd.service                         enabled
     procps.service                         static  
-    ptmd.service                           enabled 
+    ptmd.service                           enabled
     ptp4l.service                          disabled
-    pwmd.service                           enabled 
+    pwmd.service                           enabled
     quotaon.service                        static  
     rc-local.service                       static  
     rc.local.service                       static  
@@ -409,29 +407,29 @@ to list all services on the switch and see which ones are enabled:
     rescue.service                         static  
     restserver.service                     disabled
     rmnologin.service                      masked  
-    rsyslog.service                        enabled 
+    rsyslog.service                        enabled
     screen-cleanup.service                 masked  
     sendsigs.service                       masked  
     serial-getty@.service                  disabled
     single.service                         masked  
     smartd.service                         masked  
     smartmontools.service                  disabled
-    smond.service                          enabled 
+    smond.service                          enabled
     snmpd.service                          disabled
     snmpd@.service                         disabled
     snmptrapd.service                      disabled
     snmptrapd@.service                     disabled
-    ssh.service                            enabled 
+    ssh.service                            enabled
     ssh@.service                           disabled
-    sshd.service                           enabled 
+    sshd.service                           enabled
     stop-bootlogd-single.service           masked  
     stop-bootlogd.service                  masked  
-    stopssh.service                        enabled 
+    stopssh.service                        enabled
     sudo.service                           disabled
     switchd-diag.service                   static  
-    switchd.service                        enabled 
-    syslog.service                         enabled 
-    sysmonitor.service                     enabled 
+    switchd.service                        enabled
+    syslog.service                         enabled
+    sysmonitor.service                     enabled
     systemd-ask-password-console.service   static  
     systemd-ask-password-wall.service      static  
     systemd-backlight@.service             static  
@@ -484,21 +482,21 @@ to list all services on the switch and see which ones are enabled:
     umountfs.service                       masked  
     umountnfs.service                      masked  
     umountroot.service                     masked  
-    update-ports.service                   enabled 
+    update-ports.service                   enabled
     urandom.service                        static  
     user@.service                          static  
     uuidd.service                          static  
-    vboxadd-service.service                enabled 
-    vboxadd-x11.service                    enabled 
-    vboxadd.service                        enabled 
+    vboxadd-service.service                enabled
+    vboxadd-x11.service                    enabled
+    vboxadd.service                        enabled
     vxrd.service                           disabled
     vxsnd.service                          disabled
-    wd_keepalive.service                   enabled 
+    wd_keepalive.service                   enabled
     x11-common.service                     masked  
     ztp.service                            disabled
     210 unit files listed.
     lines 165-213/213 (END)
-
+</details>
 ## <span>Identify Essential Services</span>
 
 If you need to know which services are required to run when the switch

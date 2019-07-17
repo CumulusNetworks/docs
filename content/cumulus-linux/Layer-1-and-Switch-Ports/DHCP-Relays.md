@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux-377
 siteSlug: cumulus-linux-377
 ---
-<details>
-
 You can configure DHCP relays for IPv4 and IPv6.
 
 To run DHCP for both IPv4 and IPv6, initiate the DHCP relay once for
@@ -139,7 +137,7 @@ with RFC 3527.
 
 {{% imgOld 1 %}}
 
-  
+
 
 To enable RFC 3527 support and control the giaddr, run the `net add dhcp
 relay giaddr-interface` command with interface/IP address you want to
@@ -216,7 +214,7 @@ You cannot use NCLU to configure IPv6 relays.
 
 {{%/notice%}}
 
-    cumulus@leaf01:$ sudo nano /etc/default/isc-dhcp-relay6 
+    cumulus@leaf01:$ sudo nano /etc/default/isc-dhcp-relay6
     SERVERS=" -u 2001:db8:100::2%swp51 -u 2001:db8:100::2%swp52"
     INTF_CMD="-l vlan1"
 
@@ -250,13 +248,13 @@ To configure multiple DHCP relay daemons on a switch:
     editor and remove `dhcrelay`.
 
 2.  To reload the `systemd` files, run the following command:
-    
+
         cumulus@switch:~$ sudo systemctl daemon-reload
 
 3.  Create a config file in `/etc/default` using the following format
     for each dhcrelay: `isc-dhcp-relay-<dhcp-name>`. An example file is
     shown below:
-    
+
         # Defaults for isc-dhcp-relay initscript# sourced by /etc/init.d/isc-dhcp-relay
         # installed at /etc/default/isc-dhcp-relay by the maintainer scripts
         #
@@ -275,7 +273,7 @@ To configure multiple DHCP relay daemons on a switch:
 
 4.  Run the following command to start a dhcrelay instance. Replace
     `dhcp-name` with the instance name or number:
-    
+
         cumulus@switch:~$ sudo systemctl start dhcrelay@<dhcp-name>
 
 ## <span>Configure a DHCP Relay with VRR</span>
@@ -285,7 +283,7 @@ documented above. Note that D <span style="color: #222222;"> HCP relay
 must run on the SVI and not on the -v0 interface. </span>
 
 ## <span>Configure the DHCP Relay Service Manually (Advanced)</span>
-
+<details>
 <summary>Configuring the DHCP service manually ... </summary>
 
 By default, Cumulus Linux configures the DHCP relay service
@@ -294,12 +292,12 @@ to edit the `dhcrelay.service` file as described below. The IPv4
 `dhcrelay.service` *Unit* script calls `/etc/default/isc-dhcp-relay` to
 find launch variables.
 
-    cumulus@switch:~$ cat /lib/systemd/system/dhcrelay.service 
+    cumulus@switch:~$ cat /lib/systemd/system/dhcrelay.service
     [Unit]
     Description=DHCPv4 Relay Agent Daemon
     Documentation=man:dhcrelay(8)
     After=network-oneline.target networking.service syslog.service
-     
+
     [Service]
     Type=simple
     EnvironmentFile=-/etc/default/isc-dhcp-relay
@@ -307,7 +305,7 @@ find launch variables.
     # the -i for each interface specified,
     #     e.g. "-i eth0 -i swp1"
     ExecStart=/usr/sbin/dhcrelay -d -q $INTF_CMD $SERVERS $OPTIONS
-     
+
     [Install]
     WantedBy=multi-user.target
 
@@ -319,9 +317,9 @@ are using a [VLAN-aware
 bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
 (for example, vlan100), or the bridge name if you are using traditional
 bridging (for example, br100).
-
+</details>
 ## <span id="src-8363036_DHCPRelays-giaddr" class="confluence-anchor-link"></span><span>Use the Gateway IP Address as the Source IP for Relayed DHCP Packets (Advanced)</span>
-
+<details>
 <summary>Using the gateway IP address as the source IP for relayed DHCP
 packets </summary>
 
@@ -346,24 +344,24 @@ These commands create the following configuration in the
     # Defaults for isc-dhcp-relay initscript
     # sourced by /etc/init.d/isc-dhcp-relay
     # installed at /etc/default/isc-dhcp-relay by the maintainer scripts
-     
+
     #
     # This is a POSIX shell fragment
     #
-     
+
     # What servers should the DHCP relay forward requests to?
     SERVERS=""
-     
+
     # On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
     # Always include the interface towards the DHCP server.
     # This variable requires a -i for each interface configured above.
     # This will be used in the actual dhcrelay command
     # For example, "-i eth0 -i eth1"
     INTF_CMD=""
-     
+
     # Additional options that are passed to the DHCP relay daemon?
     OPTIONS="--giaddr-src"
-
+</details>
 ## <span>Troubleshooting</span>
 
 If you are experiencing issues with the DHCP relay, run the following

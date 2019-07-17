@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux-377
 siteSlug: cumulus-linux-377
 ---
-<details>
-
 Cumulus Linux seamlessly integrates with the MidoNet OpenStack
 infrastructure, where the switches provide the VTEP gateway for
 terminating VXLAN tunnels from within MidoNet. MidoNet connects to the
@@ -92,16 +90,16 @@ This script requires three parameters, in this order:
 <!-- end list -->
 
     cumulus@switch:~$ sudo vtep-bootstrap sw11 10.111.1.1 10.50.20.21 --no_encryption
-    Executed: 
+    Executed:
      define physical switch
      ().
-    Executed: 
+    Executed:
      define local tunnel IP address on the switch
      ().
-    Executed: 
+    Executed:
      define management IP address on the switch
      ().
-    Executed: 
+    Executed:
      restart a service
      (Killing ovs-vtepd (28170).
     Killing ovsdb-server (28146).
@@ -129,19 +127,19 @@ Perform the following commands in order (see the automated script
 example above for values):
 
 1.  Define the switch in OVSDB:
-    
+
         cumulus@switch:~$ sudo vtep-ctl add-ps <switch_name>
 
 2.  Define the VTEP tunnel IP address:
-    
+
         cumulus@switch:~$ sudo vtep-ctl set Physical_switch <switch_name> tunnel_ips=<tunnel_ip>
 
 3.  Define the management interface IP address:
-    
+
         cumulus@switch:~$ sudo vtep-ctl set Physical_switch <switch_name> management_ips=<management_ip>
 
 4.  Restart the OVSDB server and `vtepd`:
-    
+
         cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
 
 The switch is now ready to connect to MidoNet. The rest of the
@@ -172,7 +170,7 @@ Manager GUI or the MidoNet CLI.
     **Type**.
 
 4.  Click **Save**.
-    
+
     {{% imgOld 1 %}}
 
 #### <span>Add Hosts to a Tunnel Zone</span>
@@ -198,7 +196,7 @@ Next, add a host entry to the tunnel zone:
     host.
 
 4.  Click **Save**.
-    
+
     {{% imgOld 3 %}}
 
 The host list now displays the new entry:
@@ -222,7 +220,7 @@ The host list now displays the new entry:
     previous procedure.
 
 4.  Click **Save**.
-    
+
     {{% imgOld 5 %}}
 
 The new VTEP appears in the list below. MidoNet then initiates a
@@ -249,7 +247,7 @@ physical port binding to the VTEP on the Cumulus Linux switch:
     (VMs) are using in OpenStack.
 
 5.  Click **Save**.
-    
+
     {{% imgOld 7 %}}
 
 You see the port binding displayed in the binding table under the VTEP.
@@ -276,7 +274,7 @@ same operations depicted in the previous section with the MidoNet
 Manager GUI.
 
 1.  Create a tunnel zone with a name and type *vtep*:
-    
+
         midonet> tunnel-zone create name sw12 type vtep
         tzone1
 
@@ -285,18 +283,18 @@ Manager GUI.
     the source of the VXLAN encapsulation and traffic transits into the
     routing domain from this point. Therefore, the host must have layer
     3 reachability to the Cumulus Linux switch tunnel IP.
-    
+
       - First, obtain the list of available hosts connected to the
         Neutron network and the MidoNet bridge.
-    
+
       - Next, get a listing of all the interfaces.
-    
+
       - Finally, add a host entry to the tunnel zone ID returned in the
         previous step and specify which interface address to use.
-        
+
             midonet> list host
             host host0 name os-compute1 alive true
-            host host1 name os-network alive true 
+            host host1 name os-network alive true
             midonet> host host0 list interface
             iface midonet host_id host0 status 0 addresses [] mac 02:4b:38:92:dd:ce mtu 1500 type Virtual endpoint DATAPATH
             iface lo host_id host0 status 3 addresses [u'127.0.0.1', u'169.254.169.254', u'0:0:0:0:0:0:0:1'] mac 00:00:00:00:00:00 mtu 65536 type Virtual endpoint LOCALHOST
@@ -307,7 +305,7 @@ Manager GUI.
             iface eth0 host_id host0 status 3 addresses [u'10.50.21.182', u'fe80:0:0:0:5054:ff:feef:c5dc'] mac 52:54:00:ef:c5:dc mtu 1500 type Physical endpoint PHYSICAL
             midonet> tunnel-zone tzone0 add member host host0 address 10.111.0.182
             zone tzone0 host host0 address 10.111.0.182
-    
+
     Repeat this procedure for each OpenStack host connected to the
     Neutron network and the MidoNet bridge.
 
@@ -316,22 +314,22 @@ Manager GUI.
     for the VXLAN or remote VTEP) and the port must be the same ones you
     configure in the `vtep-bootstrap` script or the manual
     bootstrapping:
-    
+
         midonet> vtep add management-ip 10.50.20.22 management-port 6632 tunnel-zone tzone0
         name sw12 description sw12 management-ip 10.50.20.22 management-port 6632 tunnel-zone tzone0 connection-state CONNECTED
-    
+
     In this step, MidoNet initiates a connection between the OpenStack
     Controller and the Cumulus Linux switch. If the OVS client
     successfully connects to the OVSDB server, the returned values
     should show the name and description matching the `switch-name`
     parameter specified in the bootstrap process.
-    
+
     {{%notice note%}}
-    
+
     Verify the connection-state as CONNECTED. If ERROR is returned, you
     must debug. Typically this only fails if the `management-ip` and or
     the `management-port` settings are incorrect.
-    
+
     {{%/notice%}}
 
 4.  The VTEP binding uses the information provided to MidoNet from the
@@ -339,20 +337,20 @@ Manager GUI.
     use for layer 2 attachment. This binding virtually connects the
     physical interface to the overlay switch, and joins it to the
     Neutron bridged network.
-    
+
     First, get the UUID of the Neutron network behind the MidoNet
     bridge:
-    
+
         midonet> list bridge
         bridge bridge0 name internal state up
         bridge bridge1 name internal2 state up
         midonet> show bridge bridge1 id
         6c9826da-6655-4fe3-a826-4dcba6477d2d
-    
+
     Next, create the VTEP binding using the UUID and the switch port
     being bound to the VTEP on the remote end. If there is no VLAN ID,
     set `vlan` to 0:
-    
+
         midonet> vtep name sw12 binding add network-id 6c9826da-6655-4fe3-a826-4dcba6477d2d physical-port swp11s0 vlan 0
         management-ip 10.50.20.22 physical-port swp11s0 vlan 0 network-id 6c9826da-6655-4fe3-a826-4dcba6477d2d
 
@@ -408,14 +406,14 @@ After creating the VTEP in MidoNet and adding an interface binding, you
 see the **br-vxln** and **vxln** interfaces on the switch. Verify that
 the VXLAN bridge and VTEP interface are created and UP:
 
-    cumulus@switch12:~$ sudo brctl show 
+    cumulus@switch12:~$ sudo brctl show
     bridge name  bridge id          STP     enabled interfaces
     bridge       8000.00e0ec2749a2  no      swp11s0
                                             vxln10006
     cumulus@switch12:~$ sudo ip -d link show vxln10006
-    55: vxln10006: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln10006 state UNKNOWN mode DEFAULT 
+    55: vxln10006: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln10006 state UNKNOWN mode DEFAULT
       link/ether 72:94:eb:b6:6c:c3 brd ff:ff:ff:ff:ff:ff
-      vxlan id 10006 local 10.111.1.2 port 32768 61000 nolearning ageing 300 svcnode 10.111.0.182 
+      vxlan id 10006 local 10.111.1.2 port 32768 61000 nolearning ageing 300 svcnode 10.111.0.182
       bridge_slave
 
 Next, look at the bridging table for the VTEP and the forwarding
@@ -532,14 +530,14 @@ flooding of unknown unicast and are important for learning.
     ucast-mac-remote
       fa:16:3e:14:04:2e -> vxlan_over_ipv4/10.111.0.182
     mcast-mac-remote
-      unknown-dst -> vxlan_over_ipv4/10.111.0.182oh 
+      unknown-dst -> vxlan_over_ipv4/10.111.0.182oh
 
 #### <span>Show Open Vswitch Database (OVSDB) Data</span>
 
 The `ovsdb-client dump` command is large but shows all of the
 information and tables used in communication between the OVS client and
 server.
-
+<details>
 <summary>Click to expand the output ... </summary>
 
     cumulus@switch12:~$ ovsdb-client dump
@@ -550,7 +548,7 @@ server.
     _uuid locator src_mac
     ----- ------- -------
     Global table
-    _uuid managers switches 
+    _uuid managers switches
     ------------------------------------ -------- --------------------------------------
     76672d6a-2740-4c8d-9618-9e8dfb4b0bd7 [] [6d459554-0c75-4170-bb3d-117eb4ce1f4d]
     Logical_Binding_Stats table
@@ -568,81 +566,81 @@ server.
     _uuid inactivity_probe is_connected max_backoff other_config status target
     ----- ---------------- ------------ ----------- ------------ ------ ------
     Mcast_Macs_Local table
-    MAC _uuid ipaddr locator_set logical_switch 
+    MAC _uuid ipaddr locator_set logical_switch
     ----------- ------------------------------------ ------ ------------------------------------ ------------------------------------
     unknown-dst 25eaf29a-c540-46e3-8806-3892070a2de5 "" 7a4c000a-244e-4b37-8f25-fd816c1a80dc 44d162dc-0372-4749-a802-5b153c7120ec
     Mcast_Macs_Remote table
-    MAC _uuid ipaddr locator_set logical_switch 
+    MAC _uuid ipaddr locator_set logical_switch
     ----------- ------------------------------------ ------ ------------------------------------ ------------------------------------
     unknown-dst b122b897-5746-449e-83ba-fa571a64b374 "" 6c04d477-18d0-41df-8d52-dc7b17845ebe 44d162dc-0372-4749-a802-5b153c7120ec
     Physical_Locator table
     _uuid dst_ip encapsulation_type
     ------------------------------------ -------------- ------------------
-    2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb "10.111.0.182" "vxlan_over_ipv4" 
+    2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb "10.111.0.182" "vxlan_over_ipv4"
     3f78dbb0-9695-42ef-a31f-aaaf525147f1 "10.111.1.2" "vxlan_over_ipv4"
     Physical_Locator_Set table
-    _uuid locators 
+    _uuid locators
     ------------------------------------ --------------------------------------
     6c04d477-18d0-41df-8d52-dc7b17845ebe [2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb]
     7a4c000a-244e-4b37-8f25-fd816c1a80dc [3f78dbb0-9695-42ef-a31f-aaaf525147f1]
     Physical_Port table
-    _uuid description name port_fault_status vlan_bindings vlan_stats 
+    _uuid description name port_fault_status vlan_bindings vlan_stats
     ------------------------------------ ----------- --------- ----------------- ---------------------------------------- ----------------------------------------
-    bf69fcbb-36b3-4dbc-a90d-fc7412e57076 "swp1" "swp1" [] {} {} 
-    bf38137d-3a14-454e-8df0-9c56e4b4e640 "swp10" "swp10" [] {} {} 
+    bf69fcbb-36b3-4dbc-a90d-fc7412e57076 "swp1" "swp1" [] {} {}
+    bf38137d-3a14-454e-8df0-9c56e4b4e640 "swp10" "swp10" [] {} {}
     69585fff-4360-4177-901d-8360ade5391b "swp11s0" "swp11s0" [] {0=44d162dc-0372-4749-a802-5b153c7120ec} {0=d2e378b4-61c1-4daf-9aec-a7fd352d3193}
-    2a2d04fa-7190-41fe-8cee-318fcbafb2ea "swp11s1" "swp11s1" [] {} {} 
-    684f99d5-426c-45c8-b964-211489f45599 "swp11s2" "swp11s2" [] {} {} 
-    47cc66fb-ef8a-4a9b-a497-1844b89f7d32 "swp11s3" "swp11s3" [] {} {} 
-    5be3a052-be0f-4258-94cb-5e8be9afb896 "swp12" "swp12" [] {} {} 
-    631b19bd-3022-4353-bb2d-f498b0c1cb17 "swp13" "swp13" [] {} {} 
-    3001c904-b152-4dc4-9d8e-718f24ffa439 "swp14" "swp14" [] {} {} 
-    a6f8a88a-3877-4f81-b9b4-d75394a09d2c "swp15" "swp15" [] {} {} 
-    7cb681f4-2206-4c70-85b7-23b60963cd21 "swp16" "swp16" [] {} {} 
-    3943fb6a-0b49-4806-a014-2bcd4d469537 "swp17" "swp17" [] {} {} 
-    109a9911-d6c7-4142-b6c9-7c985506abb4 "swp18" "swp18" [] {} {} 
-    93b85c31-be38-4384-8b7a-9696764f9ba9 "swp19" "swp19" [] {} {} 
-    bcfb2920-6676-494c-9dcb-b474123b7e59 "swp2" "swp2" [] {} {} 
-    4223559a-da1c-4c34-b8bf-bff7ced376ad "swp20" "swp20" [] {} {} 
-    6bbccda8-d7e5-4b19-b978-4ec7f5b868e0 "swp21" "swp21" [] {} {} 
-    c6876886-8386-4e34-a307-931909fca58f "swp22" "swp22" [] {} {} 
-    c5a88dd6-d931-4b2c-9baa-a0abfb9d41f5 "swp23" "swp23" [] {} {} 
-    124d1e01-a187-4427-819f-21de66e76f13 "swp24" "swp24" [] {} {} 
-    55b49814-b5c5-405e-8e9f-898f3df4f872 "swp25" "swp25" [] {} {} 
-    b2b2cd14-662d-45a5-87c1-277acbccdffd "swp26" "swp26" [] {} {} 
-    c35f55f5-8ec6-4fed-bef4-49801cd0934c "swp27" "swp27" [] {} {} 
-    a44c5402-6218-4f09-bf1e-518f41a5546e "swp28" "swp28" [] {} {} 
-    a9294152-2b32-4058-8796-23520ffb7379 "swp29" "swp29" [] {} {} 
-    e0ee993a-8383-4701-a766-d425654dbb7f "swp3" "swp3" [] {} {} 
-    d9db91a6-1c10-4154-9269-84877faa79b4 "swp30" "swp30" [] {} {} 
-    b26ce4dd-b771-4d7b-8647-41fa97aa40e3 "swp31" "swp31" [] {} {} 
-    652c6cd1-0823-4585-bb78-658e6ca2abfc "swp32" "swp32" [] {} {} 
-    5b15372b-89f0-4e14-a50b-b6c6f937d33d "swp4" "swp4" [] {} {} 
-    e00741f1-ba34-47c5-ae23-9269c5d1a871 "swp5" "swp5" [] {} {} 
-    7096abaf-eebf-4ee3-b0cc-276224bc3e71 "swp6" "swp6" [] {} {} 
-    439afb62-067e-4bbe-a0d9-ee33a23d2a9c "swp7" "swp7" [] {} {} 
-    54f6c9df-01a1-4d96-9dcf-3035a33ffb3e "swp8" "swp8" [] {} {} 
-    c85ed6cd-a7d4-4016-b3e9-34df592072eb "swp9s0" "swp9s0" [] {} {} 
-    cf382ed6-60d3-43f5-8586-81f4f0f2fb28 "swp9s1" "swp9s1" [] {} {} 
-    c32a9ff9-fd11-4399-815f-806322f26ff5 "swp9s2" "swp9s2" [] {} {} 
+    2a2d04fa-7190-41fe-8cee-318fcbafb2ea "swp11s1" "swp11s1" [] {} {}
+    684f99d5-426c-45c8-b964-211489f45599 "swp11s2" "swp11s2" [] {} {}
+    47cc66fb-ef8a-4a9b-a497-1844b89f7d32 "swp11s3" "swp11s3" [] {} {}
+    5be3a052-be0f-4258-94cb-5e8be9afb896 "swp12" "swp12" [] {} {}
+    631b19bd-3022-4353-bb2d-f498b0c1cb17 "swp13" "swp13" [] {} {}
+    3001c904-b152-4dc4-9d8e-718f24ffa439 "swp14" "swp14" [] {} {}
+    a6f8a88a-3877-4f81-b9b4-d75394a09d2c "swp15" "swp15" [] {} {}
+    7cb681f4-2206-4c70-85b7-23b60963cd21 "swp16" "swp16" [] {} {}
+    3943fb6a-0b49-4806-a014-2bcd4d469537 "swp17" "swp17" [] {} {}
+    109a9911-d6c7-4142-b6c9-7c985506abb4 "swp18" "swp18" [] {} {}
+    93b85c31-be38-4384-8b7a-9696764f9ba9 "swp19" "swp19" [] {} {}
+    bcfb2920-6676-494c-9dcb-b474123b7e59 "swp2" "swp2" [] {} {}
+    4223559a-da1c-4c34-b8bf-bff7ced376ad "swp20" "swp20" [] {} {}
+    6bbccda8-d7e5-4b19-b978-4ec7f5b868e0 "swp21" "swp21" [] {} {}
+    c6876886-8386-4e34-a307-931909fca58f "swp22" "swp22" [] {} {}
+    c5a88dd6-d931-4b2c-9baa-a0abfb9d41f5 "swp23" "swp23" [] {} {}
+    124d1e01-a187-4427-819f-21de66e76f13 "swp24" "swp24" [] {} {}
+    55b49814-b5c5-405e-8e9f-898f3df4f872 "swp25" "swp25" [] {} {}
+    b2b2cd14-662d-45a5-87c1-277acbccdffd "swp26" "swp26" [] {} {}
+    c35f55f5-8ec6-4fed-bef4-49801cd0934c "swp27" "swp27" [] {} {}
+    a44c5402-6218-4f09-bf1e-518f41a5546e "swp28" "swp28" [] {} {}
+    a9294152-2b32-4058-8796-23520ffb7379 "swp29" "swp29" [] {} {}
+    e0ee993a-8383-4701-a766-d425654dbb7f "swp3" "swp3" [] {} {}
+    d9db91a6-1c10-4154-9269-84877faa79b4 "swp30" "swp30" [] {} {}
+    b26ce4dd-b771-4d7b-8647-41fa97aa40e3 "swp31" "swp31" [] {} {}
+    652c6cd1-0823-4585-bb78-658e6ca2abfc "swp32" "swp32" [] {} {}
+    5b15372b-89f0-4e14-a50b-b6c6f937d33d "swp4" "swp4" [] {} {}
+    e00741f1-ba34-47c5-ae23-9269c5d1a871 "swp5" "swp5" [] {} {}
+    7096abaf-eebf-4ee3-b0cc-276224bc3e71 "swp6" "swp6" [] {} {}
+    439afb62-067e-4bbe-a0d9-ee33a23d2a9c "swp7" "swp7" [] {} {}
+    54f6c9df-01a1-4d96-9dcf-3035a33ffb3e "swp8" "swp8" [] {} {}
+    c85ed6cd-a7d4-4016-b3e9-34df592072eb "swp9s0" "swp9s0" [] {} {}
+    cf382ed6-60d3-43f5-8586-81f4f0f2fb28 "swp9s1" "swp9s1" [] {} {}
+    c32a9ff9-fd11-4399-815f-806322f26ff5 "swp9s2" "swp9s2" [] {} {}
     9a7e42c4-228f-4b55-b972-7c3b8352c27d "swp9s3" "swp9s3" [] {} {}
     Physical_Switch table
-    _uuid description management_ips name ports switch_fault_status tunnel_ips tunnels 
+    _uuid description management_ips name ports switch_fault_status tunnel_ips tunnels
     ------------------------------------ ----------- --------------- ------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------- -------------- --------------------------------------
     6d459554-0c75-4170-bb3d-117eb4ce1f4d "sw12" ["10.50.20.22"] "sw12" [109a9911-d6c7-4142-b6c9-7c985506abb4, 124d1e01-a187-4427-819f-21de66e76f13, 2a2d04fa-7190-41fe-8cee-318fcbafb2ea, 3001c904-b152-4dc4-9d8e-718f24ffa439, 3943fb6a-0b49-4806-a014-2bcd4d469537, 4223559a-da1c-4c34-b8bf-bff7ced376ad, 439afb62-067e-4bbe-a0d9-ee33a23d2a9c, 47cc66fb-ef8a-4a9b-a497-1844b89f7d32, 54f6c9df-01a1-4d96-9dcf-3035a33ffb3e, 55b49814-b5c5-405e-8e9f-898f3df4f872, 5b15372b-89f0-4e14-a50b-b6c6f937d33d, 5be3a052-be0f-4258-94cb-5e8be9afb896, 631b19bd-3022-4353-bb2d-f498b0c1cb17, 652c6cd1-0823-4585-bb78-658e6ca2abfc, 684f99d5-426c-45c8-b964-211489f45599, 69585fff-4360-4177-901d-8360ade5391b, 6bbccda8-d7e5-4b19-b978-4ec7f5b868e0, 7096abaf-eebf-4ee3-b0cc-276224bc3e71, 7cb681f4-2206-4c70-85b7-23b60963cd21, 93b85c31-be38-4384-8b7a-9696764f9ba9, 9a7e42c4-228f-4b55-b972-7c3b8352c27d, a44c5402-6218-4f09-bf1e-518f41a5546e, a6f8a88a-3877-4f81-b9b4-d75394a09d2c, a9294152-2b32-4058-8796-23520ffb7379, b26ce4dd-b771-4d7b-8647-41fa97aa40e3, b2b2cd14-662d-45a5-87c1-277acbccdffd, bcfb2920-6676-494c-9dcb-b474123b7e59, bf38137d-3a14-454e-8df0-9c56e4b4e640, bf69fcbb-36b3-4dbc-a90d-fc7412e57076, c32a9ff9-fd11-4399-815f-806322f26ff5, c35f55f5-8ec6-4fed-bef4-49801cd0934c, c5a88dd6-d931-4b2c-9baa-a0abfb9d41f5, c6876886-8386-4e34-a307-931909fca58f, c85ed6cd-a7d4-4016-b3e9-34df592072eb, cf382ed6-60d3-43f5-8586-81f4f0f2fb28, d9db91a6-1c10-4154-9269-84877faa79b4, e00741f1-ba34-47c5-ae23-9269c5d1a871, e0ee993a-8383-4701-a766-d425654dbb7f] [] ["10.111.1.2"] [062eaf89-9bd5-4132-8b6b-09db254325af]
     Tunnel table
-    _uuid bfd_config_local bfd_config_remote bfd_params bfd_status local remote 
+    _uuid bfd_config_local bfd_config_remote bfd_params bfd_status local remote
     ------------------------------------ ----------------------------------------------------------- ----------------- ---------- ---------- ------------------------------------ ------------------------------------
     062eaf89-9bd5-4132-8b6b-09db254325af {bfd_dst_ip="169.254.1.0", bfd_dst_mac="00:23:20:00:00:01"} {} {} {} 3f78dbb0-9695-42ef-a31f-aaaf525147f1 2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb
     Ucast_Macs_Local table
-    MAC _uuid ipaddr locator logical_switch 
+    MAC _uuid ipaddr locator logical_switch
     ------------------- ------------------------------------ ------ ------------------------------------ ------------------------------------
     "64:ae:0c:32:f1:41" 47a83a7c-bd2d-4c02-9814-8222229c592f "" 3f78dbb0-9695-42ef-a31f-aaaf525147f1 44d162dc-0372-4749-a802-5b153c7120ec
     Ucast_Macs_Remote table
-    MAC _uuid ipaddr locator logical_switch 
+    MAC _uuid ipaddr locator logical_switch
     ------------------- ------------------------------------ ------ ------------------------------------ ------------------------------------
     "fa:16:3e:14:04:2e" 65605488-9ee5-4c8e-93e5-7b1cc15cfcc7 "" 2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb 44d162dc-0372-4749-a802-5b153c7120ec
-
+</details>
 <article id="html-search-results" class="ht-content" style="display: none;">
 
 </article>

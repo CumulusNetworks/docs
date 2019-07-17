@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux-377
 siteSlug: cumulus-linux-377
 ---
-<details>
-
 The following monitoring processes are considered best practices for
 reviewing and troubleshooting potential issues with Cumulus Linux
 environments. In addition, several of the more common issues have been
@@ -261,7 +259,7 @@ sysmonitor`.
 | ------------ | --------------------- |
 | Use          | Alert: 90% Crit: 95%  |
 | Process Load | Alarm: 95% Crit: 125% |
-
+<details>
 <summary>Click here to see differences between Cumulus Linux 2.5 ESR and
 3.0 and later... </summary>
 
@@ -287,7 +285,7 @@ jdoo[4727]: &#39;localhost&#39; sysloadavg(15min) of 111.0 matches resource limi
 </tr>
 </tbody>
 </table>
-
+<details>
 In Cumulus Linux 2.5, CPU logs are created with each unique threshold:
 
 | CPU measure | \< 2.5 Threshold |
@@ -350,7 +348,7 @@ and restarting processes.
 </tr>
 </tbody>
 </table>
-
+<details>
 <summary>Click here to changes from Cumulus Linux 2.5 ESR to 3.0 and
 later... </summary>
 
@@ -384,7 +382,7 @@ called `jdoo` to monitor processes. If the process fails, `jdoo` invokes
 </tr>
 </tbody>
 </table>
-
+</details>
 ## <span>Layer 1 Protocols and Interfaces</span>
 
 Link and port state interface transitions are logged to

@@ -1,22 +1,27 @@
 ---
 title: Default Cumulus Linux ACL Configuration
 author: Cumulus Networks
-weight: 295
+weight: 2959
 aliases:
- - /display/CL37/Default-Cumulus-Linux-ACL-Configuration
- - /pages/viewpage.action?pageId=8362574
-pageID: 8362574
+ - /display/CL3740/Default-Cumulus-Linux-ACL-Configuration
+ - /pages/viewpage.action?pageId=83625746295
+pageID: 83625746295
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
+<details>
+
 The Cumulus Linux default ACL configuration is split into three parts,
 as outlined in the [netfilter ACL
-documentation](/version/cumulus-linux-377/System-Configuration/Netfilter---ACLs/):
-IP tables, IPv6 tables, and EB tables. The sections below describe the
-default configurations for each part. You can see the default file by
-clicking the Default ACL Configuration link:
+documentation](/version/cumulus-linux-377/System-Configurationdisplay/CL40/Netfilter---+-+ACLs/):
+ IP tables, IPv6 tables, 
+and EB tables. The sections below describe the
+ default configurations 
+for each part. You can see the default file by
+ clicking the Default ACL 
+Configuration link:
 <details>
 <summary>Default ACL Configuration </summary>
 
@@ -62,43 +67,46 @@ clicking the Default ACL Configuration link:
         0     0 POLICE     all  --  swp+   any     anywhere             anywhere             ADDRTYPE match dst-type LOCAL POLICE  mode:pkt rate:1000 burst:1000 class:0
         0     0 POLICE     all  --  swp+   any     anywhere             anywhere             ADDRTYPE match dst-type IPROUTER POLICE  mode:pkt rate:400 burst:100 class:0
         0     0 SETCLASS   all  --  swp+   any     anywhere             anywhere             SETCLASS  class:0
-
+     
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
         0     0 DROP       all  --  swp+   any     240.0.0.0/5          anywhere            
         0     0 DROP       all  --  swp+   any     loopback/8           anywhere            
         0     0 DROP       all  --  swp+   any     base-address.mcast.net/8  anywhere            
         0     0 DROP       all  --  swp+   any     255.255.255.255      anywhere            
-
+     
     Chain OUTPUT (policy ACCEPT 107 packets, 12590 bytes)
      pkts bytes target     prot opt in     out     source               destination         
 
-
+     
+     
     TABLE mangle :
     Chain PREROUTING (policy ACCEPT 172 packets, 17871 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain INPUT (policy ACCEPT 172 packets, 17871 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain OUTPUT (policy ACCEPT 111 packets, 18134 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain POSTROUTING (policy ACCEPT 111 packets, 18134 bytes)
      pkts bytes target     prot opt in     out     source               destination         
 
-
+     
+     
     TABLE raw :
     Chain PREROUTING (policy ACCEPT 173 packets, 17923 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain OUTPUT (policy ACCEPT 112 packets, 18978 bytes)
      pkts bytes target     prot opt in     out     source               destination         
 
-
+     
+     
     --------------------------------
     Listing rules of type ip6tables:
     --------------------------------
@@ -129,49 +137,52 @@ clicking the Default ACL Configuration link:
         0     0 POLICE     all      swp+   any     anywhere             anywhere             ADDRTYPE match dst-type LOCAL POLICE  mode:pkt rate:1000 burst:1000 class:0
         0     0 POLICE     all      swp+   any     anywhere             anywhere             ADDRTYPE match dst-type IPROUTER POLICE  mode:pkt rate:400 burst:100 class:0
         0     0 SETCLASS   all      swp+   any     anywhere             anywhere             SETCLASS  class:0
-
+     
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
         0     0 DROP       all      swp+   any     ip6-mcastprefix/8    anywhere            
         0     0 DROP       all      swp+   any     ::/128               anywhere            
         0     0 DROP       all      swp+   any     ::ffff:0.0.0.0/96    anywhere            
         0     0 DROP       all      swp+   any     localhost/128        anywhere            
-
+     
     Chain OUTPUT (policy ACCEPT 5 packets, 408 bytes)
      pkts bytes target     prot opt in     out     source               destination         
 
-
+     
+     
     TABLE mangle :
     Chain PREROUTING (policy ACCEPT 7 packets, 718 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain POSTROUTING (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
 
-
+     
+     
     TABLE raw :
     Chain PREROUTING (policy ACCEPT 7 packets, 718 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
 
-
+     
+     
     -------------------------------
     Listing rules of type ebtables:
     -------------------------------
     TABLE filter :
     Bridge table: filter
-
+     
     Bridge chain: INPUT, entries: 16, policy: ACCEPT
     -d BGA -i swp+ -j setclass --class 7 , pcnt = 0 -- bcnt = 0
     -d BGA -j police --set-mode pkt --set-rate 2000 --set-burst 2000 , pcnt = 0 -- bcnt = 0
@@ -189,9 +200,9 @@ clicking the Default ACL Configuration link:
     -p IPv6 -i swp+ -j ACCEPT , pcnt = 0 -- bcnt = 0
     -i swp+ -j setclass --class 0 , pcnt = 0 -- bcnt = 0
     -j police --set-mode pkt --set-rate 100 --set-burst 100 , pcnt = 0 -- bcnt = 0
-
+     
     Bridge chain: FORWARD, entries: 0, policy: ACCEPT
-
+     
     Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 </details>
 ## <span>IP Tables</span>
@@ -284,7 +295,7 @@ clicking the Default ACL Configuration link:
 <p>LOCAL is any local address -&gt; Receiving a packet with a destination matching a local IP address on the switch will go to the CPU.</p>
 <p>{{%/notice%}}</p></td>
 </tr>
-<tr class="even">
+<tr class="evenodd">
 <td><p>Set class: 0</p>
 <p>Police: Rate 400 burst 100</p>
 <p>Source IP: Any</p>
@@ -294,7 +305,7 @@ clicking the Default ACL Configuration link:
 <p>IPROUTER is any unresolved address -&gt; On a l2/l3 boundary receiving a packet from L3 and needs to go to CPU in order to ARP for the destination.</p>
 <p>{{%/notice%}}</p></td>
 </tr>
-<tr class="odd">
+<tr class="oddeven">
 <td><p>Set class 0</p></td>
 <td><p>All</p></td>
 </tr>
@@ -507,3 +518,6 @@ bits.
 </footer>
 
 </details>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTQ5MzI0NzY3Nl19
+-->

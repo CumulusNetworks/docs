@@ -1,16 +1,18 @@
 ---
 title: ASIC Monitoring
 author: Cumulus Networks
-weight: 223
+weight: 2237
 aliases:
- - /display/CL37/ASIC-Monitoring
- - /pages/viewpage.action?pageId=8362627
-pageID: 8362627
+ - /display/CL3740/ASIC-Monitoring
+ - /pages/viewpage.action?pageId=83626276348
+pageID: 83626276348
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
+<details>
+
 Cumulus Linux provides an ASIC monitoring tool that collects and
 distributes data about the state of the ASIC. The monitoring tool polls
 for data at specific intervals and takes certain actions so that you can
@@ -27,6 +29,10 @@ quickly identify and respond to problems, such as:
 ASIC monitoring is currently supported on Mellanox switches only.
 
 {{%/notice%}}
+
+<span style="color: #36424a;"> Contents </span>
+
+<summary>This topic describes ... </summary>
 
 ## <span>What Type of Statistics Can You Collect?</span>
 
@@ -130,42 +136,42 @@ To monitor queue lengths using a histogram:
 1.  <span style="color: #333333;"> Open the </span>
     ` /etc/cumulus/datapath/monitor.conf  `
     <span style="color: #333333;"> file in a text editor. </span>
-
+    
         cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
 
 2.  At the end of the file, add the following line to specify the name
     of the histogram monitor (port group). The example uses
     `histogram_pg`; however, you can use any name you choose. You must
     use the same name with all histogram settings.
-
+    
         monitor.port_group_list = [histogram_pg]
 
 3.  Add the following line to specify the ports you want to monitor. The
     following example sets swp1 through swp50.
-
+    
         monitor.histogram_pg.port_set = swp1-swp50
 
 4.  Add the following line to set the data type to `histogram`. This is
     the data type for histogram monitoring.
-
+    
         monitor.histogram_pg.stat_type = histogram 
 
 5.  Add the following line to set the trigger type to `timer`.
     Currently, the only trigger type available is timer.
-
+    
         monitor.histogram_pg.trigger_type = timer
 
 6.  Add the following line to set the frequency at which data collection
     starts. In the following example, the frequency is set to one
     second.
-
+    
         monitor.histogram_pg.timer = 1s
 
 7.  Add the following line to set the actions you want to take when data
     is collected. In the following example, the system writes the
     results of data collection to a snapshot file and sends a message to
     the `/var/log/syslog` file .
-
+    
         monitor.histogram_pg.action_list = [snapshot,log]
 
 8.  Add the following line to specify a name and location for the
@@ -173,7 +179,7 @@ To monitor queue lengths using a histogram:
     snapshot to a file called `histogram_stats` in the
     `/var/lib/cumulus` directory and adds a suffix to the file name with
     the snapshot file count (see the following step).
-
+    
         monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats
 
 9.  Add the following line to set the number of snapshots that are taken
@@ -184,14 +190,14 @@ To monitor queue lengths using a histogram:
     is taken, the original snapshot file (`histogram_stats_0`) is
     overwritten and the sequence continues until `histogram_stats_63` is
     written. Then, the sequence restarts.
-
+    
         monitor.histogram_pg.snapshot.file_count = 64
 
 10. Add the following line to include a threshold, which determines how
     to collect data. Setting a threshold is optional. In the following
     example, when the size of the queue reaches 500 bytes, the system
     sends a message to the `/var/log/syslog` file .
-
+    
         monitor.histogram_pg.log.queue_bytes = 500
 
 11. Add the following lines to set the size, minimum boundary, and
@@ -199,33 +205,33 @@ To monitor queue lengths using a histogram:
     minimum boundary size together produces the maximum boundary size.
     These settings are used to represent the range of queue lengths per
     bin.
-
+    
         monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
         monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
         monitor.histogram_pg.histogram.sample_time_ns         = 1024
 
 12. Save the file, then restart the `asic-monitor` service with the
     following command.
-
+    
         cumulus@switch:~$ systemctl restart asic-monitor.service
-
+    
     {{%notice note%}}
-
+    
     Restarting the `asic-monitor` service does not disrupt traffic or
     require you to restart `switchd`. The service is enabled by default
     when you boot the switch and restarts when you restart `switchd`.
-
+    
     {{%/notice%}}
-
+    
     {{%notice note%}}
-
+    
     **Important**
-
+    
     Overhead is involved in collecting the data, which uses both the CPU
     and SDK process and can affect execution of `switchd`. Snapshots and
     logs can occupy a lot of disk space if you do not limit their
     number.
-
+    
     {{%/notice%}}
 
 To collect other data, such as all packets per port, buffer congestion,
@@ -241,7 +247,7 @@ For example, to monitor packet drops due to buffer congestion:
 Certain settings in the procedure above (such as the histogram size,
 boundary size, and sampling time) only apply to the histogram monitor.
 All ASIC monitor settings are described in [ASIC Monitoring
-Settings](#src-8362627_ASICMonitoring-ASIC_Settings).
+Settings](#src-83626276348_ASICMonitoring-ASIC_Settings).
 
 ## <span>Configuration Examples</span>
 
@@ -377,12 +383,12 @@ In the following example:
 Certain actions require additional settings. For example, if the
 `snapshot` action is specified, a snapshot file is also required. If the
 `log` action is specified, a log threshold is also required. See
-[action\_list](#src-8362627_ASICMonitoring-action_setting) for
+[action\_list](#src-83626276348_ASICMonitoring-action_setting) for
 additional settings required for each *action*.
 
 {{%/notice%}}
 
-## <span id="src-8362627_ASICMonitoring-snapshotExample" class="confluence-anchor-link"></span><span>Example Snapshot File </span>
+## <span id="src-83626276348_ASICMonitoring-snapshotExample" class="confluence-anchor-link"></span><span>Example Snapshot File </span>
 
 A snapshot action writes a snapshot of the current state of the ASIC to
 a file. Because parsing the file and finding the information can be
@@ -399,7 +405,7 @@ system sends this message to the `/var/log/syslog` file:
 
     2018-02-26T20:14:41.560840+00:00 cumulus asic-monitor-module INFO:  2018-02-26 20:14:41.559967: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg.
 
-## <span id="src-8362627_ASICMonitoring-ASIC_Settings" class="confluence-anchor-link"></span><span>ASIC Monitoring Settings</span>
+## <span id="src-83626276348_ASICMonitoring-ASIC_Settings" class="confluence-anchor-link"></span><span>ASIC Monitoring Settings</span>
 
 The following table provides descriptions of the ASIC monitor settings.
 
@@ -466,7 +472,7 @@ The following table provides descriptions of the ASIC monitor settings.
 </tr>
 <tr class="odd">
 <td><p><code>&lt;port_group_name&gt;.action_list</code></p></td>
-<td><p><span id="src-8362627_ASICMonitoring-action_setting"></span>Specifies one or more actions that occur when data is collected:</p>
+<td><p><span id="src-83626276348_ASICMonitoring-action_setting"></span>Specifies one or more actions that occur when data is collected:</p>
 <ul>
 <li><p><code>snapshot</code> writes a snapshot of the data collection results to a file. If you specify this action, you must also specify a snapshot file (described below). You can also specify a threshold that initiates the snapshot action, but this is not required. For example:<br />
 <code>monitor.histogram_pg.action_list = [snapshot]</code><br />
@@ -554,3 +560,6 @@ In the following example, because the snapshot file count is set to 64, the firs
 </footer>
 
 </details>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE5NzA2OTc5MzVdfQ==
+-->

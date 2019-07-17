@@ -1,46 +1,56 @@
 ---
 title: Switch Port Attributes
 author: Cumulus Networks
-weight: 309
+weight: 30913
 aliases:
- - /display/CL37/Switch-Port-Attributes
- - /pages/viewpage.action?pageId=8363026
-pageID: 8363026
+ - /display/CL3740/Switch-Port-Attributes
+ - /pages/viewpage.action?pageId=83630266750
+pageID: 83630266750
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
+<details>
+
 Cumulus Linux exposes network interfaces for several types of physical
 and logical devices:
 
-  - lo, network loopback device
+  - `lo,` is the network loopback device
 
-  - ethN, switch management port(s), for out of band management only
+  - `ethN,` are switch management port(s), s (for out of band management only)
 
-  - swpN, switch front panel ports
+  - `swpN,` are switch front panel ports
 
-  - (optional) brN, bridges (IEEE 802.1Q VLANs)
+  - (optional) `brN,` are bridges (IEEE 802.1Q VLANs)
 
-  - (optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or
-    port channels)
+  - (optional) `bondN,` are bonds (IEEE 802.3ad link aggregation trunks, or
+    or port channels)
 
-Each physical network interface has a number of configurable settings:
+Each physical network interface (port) has a number of configurable 
+settings:
 
   - [Auto-negotiation](http://en.wikipedia.org/wiki/Autonegotiation)
 
-  - [Duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
+  - [Duplex
+    Mode](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
 
-  - [FEC](https://en.wikipedia.org/wiki/Forward_error_correction)
+  - [FECLink speed
+
+  - [MTU](https://en.wikipedia.org/wiki/Forward_error_correction)
     (Forward error correction)
 
   - Link speed
 
-  - MTU, or [maximum transmission
-    unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)
+  - MTU, or [Maximum_transmission_unit),
+    (maximum transmission
+    unit)
+
+  - [FEC](https://en.wikipedia.org/wiki/Maximum_transmission_unitForward_error_correction)
+    (forward error correction)
 
 Most of these settings are configured automatically for you, depending
-upon your switch ASIC, although you must always set MTU manually.
+upon your switch ASIC, although; however, you must always set MTU manually.
 
 {{%notice note%}}
 
@@ -50,24 +60,35 @@ unsupported error is shown.
 
 {{%/notice%}}
 
-<span style="color: #333333;"> For </span> **Mellanox switches**, MTU is
-the only port attribute you can directly configure. The Mellanox
-firmware configures FEC, link speed, duplex mode and auto-negotiation
-automatically, following a predefined list of parameter settings until
-the link comes up. However, you can disable FEC if necessary, which
-forces the firmware to not try any FEC options.
+<span style="color: #333333;"> For </span>For **Mellanox switches**, MTU is
+ the only port attribute you can 
+directly configure. The Mellanox
+ firmware configures FEC, link speed, 
+duplex mode and auto-negotiation
+ automatically, following a predefined 
+list of parameter settings until
+ the link comes up. However, you can 
+disable FEC if necessary, which
+ forces the firmware to not try any FEC 
+options.
 
 For **Broadcom-based switches,** Cumulus Networks recommends that you
 enable auto-negotiation on each port. When enabled, Cumulus Linux
 automatically configures the best link parameter settings based on the
-module type (speed, duplex, auto-negotiation, and FEC where supported).
+module type (speed, duplex, auto-negotiation, and FEC, where supported).
 To understand the default configuration for the various port and cable
 types, see the [table
-below](#src-8363026_SwitchPortAttributes-settings). If you need to
+below
+This topic describes the auto-negotiation, link speed, duplex mode, MTU,
+and FEC settings and provides a
+[table](#src-83630266750_SwitchPortAttributes-settings). If you need to
 troubleshoot further to bring the link up, follow the sections below to
-set the specific link parameters.
+set the specific link parameters showing the default
+configuration for various port and cable types. Breakout port
+configuration, logical switch port limitations, and troubleshooting is
+also provided.
 
-## <span id="src-8363026_SwitchPortAttributes-autoneg_enable" class="confluence-anchor-link"></span><span>Auto-negotiation</span>
+## <span id="src-83630266750_SwitchPortAttributes-autoneg_enable" class="confluence-anchor-link"></span><span>Auto-negotiation</span>
 
 To configure auto-negotiation for a Broadcom-based switch, set
 `link-autoneg` to *on* for all the switch ports. For example, to enable
@@ -86,7 +107,8 @@ except on 10G and 1000BASE-T fixed copper switch ports, where it is
 required for links to work. For RJ-45 SFP adapters, you need to manually
 configure the desired link speed and auto-negotiation as described in
 the [default settings table
-below](#src-8363026_SwitchPortAttributes-settings).
+below](#src-83630266750_SwitchPortAttributes-settings))
+below.
 
 If you disable auto-negotiation later or never enable it, then you have
 to configure any settings that deviate from the port default — such as
@@ -114,27 +136,80 @@ If you do decide to disable auto-negotiation, be aware of the following:
 For 1000BASE-T RJ-45 SFP adapters, auto-negotiation is automatically
 done on the SFP PHY, so enabling auto-negotiation on the port settings
 is not required. You must manually configure these ports using the
-[settings below](#src-8363026_SwitchPortAttributes-settings).
+[settings below](#src-83630266750_SwitchPortAttributes-settings).
 
 {{%/notice%}}
 
 Depending upon the connector used for a port, enabling auto-negotiation
 also enables forward error correction (FEC), if the cable requires it
-(see the [table below](#src-8363026_SwitchPortAttributes-settings)). The
+(see the [table below](#src-83630266750_SwitchPortAttributes-settings)). The
 correct FEC mode is set based on the speed of the cable when
 auto-negotiation is enabled.
+
+To configure auto-negotiation for a switch:
+
+<summary>NCLU Commands </summary>
+
+Run the `net add interface <interface> link autoneg` command. The
+following example commands enable auto-negotiation for the swp1
+interface:
+
+    cumulus@switch:~$ net add interface swp1 link autoneg on
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+
+<summary>Linux Commands </summary>
+
+1.  Edit the `/etc/network/interfaces` file. ** The following example
+    disables auto-negotiation for the swp1 interface.
+    
+        cumulus@switch:~$ sudo nano /etc/network/interfaces
+         
+        auto swp1
+        iface swp1
+           link-autoneg off
+
+2.  Run the `ifreload -a` command to load the updated configuration:
+    
+        cumulus@switch:~$ sudo ifreload -a
+
+**Runtime Configuration (Advanced)**
+
+You can use `ethtool` to configure auto-negotiation. The following
+example command enables auto-negotiation for the swp1 interface:
+
+    ethtool -s swp1 speed 10000 duplex full autoneg on|off
+
+{{%notice warning%}}
+
+A runtime configuration is non-persistent; the configuration you create
+here does not persist after you reboot the switch.
+
+{{%/notice%}}
+
+{{%notice note%}}
+
+Any time you enable auto-negotiation, Cumulus Linux restores the default
+configuration settings specified in the [table
+below](#src-8366750_SwitchPortAttributes-sett).
+
+{{%/notice%}}
 
 ## <span>Port Speed and Duplex Mode</span>
 
 Cumulus Linux supports both half- and
 [full-duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
-configurations. The duplex mode setting defaults to *full*. You only
-need to specify `link duplex` if you want half-duplex mode.
+configurations. The Half-duplex mode setting defaults to *full*. You only
+need to specify `link duplex` if you want half-duplex modeis supported only with speeds of less than
+1G.
 
 Supported port speeds include 100M, 1G, 10G, 25G, 40G, 50G and 100G. If
-you need to manually set the speed on a Broadcom-based switch, set it in
-terms of Mbps, where the setting for 1G is *1000*, 40G is *40000* and
-100G is *100000*, for example.
+you need to manuallyn
+Cumulus Linux, you set the speed on a Broadcom-based switch, set it in
+terms of in Mbps, 
+where the setting for 1G is *1000*, 40G is *40000*, and
+ 100G is 
+*100000*, for example.
 
 You can configure ports to one speed less than their maximum speed.
 
@@ -146,22 +221,43 @@ You can configure ports to one speed less than their maximum speed.
 | 100G             | 50G\* & 40G (with or without breakout port), 25G\*, 10G\* |
 
 \*Requires the port to be converted into a breakout port. See
-[Configuring Breakout Ports](#src-8363026_SwitchPortAttributes-breakout)
-below.
+ [Configuring e
+Breakout Ports](#src-83630266750_SwitchPortAttributes-breakout)
+, below.
 
-{{%notice info%}}
+{{%notice infonote%}}
 
 **Example Port Speed and Duplexing Configuration**
 
-The following NCLU commands configure the port speed for the swp1
-interface:
+The Platform Limitations**
+
+  - On Lenovo NE2572O switches, swp1 through swp8 only support 25G
+    speed.
+
+  - For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform,
+    you must edit the `/etc/cumulus/ports.conf` file and configure the
+    four ports in the same core to be 10G. See [Caveats and
+    Errata](#src-8366750_SwitchPortAttributes-caveats).
+
+{{%/notice%}}
+
+To configure the port speed and duplex mode:
+
+<summary>NCLU Commands </summary>
+
+Run the `net add interface <interface> link speed` command. The
+following NCLU commands configure the port speed for the swp1
+ interface:. The
+duplex mode setting defaults to *full*. You only need to specify `link
+duplex` if you want to set half-duplex mode.
 
     cumulus@switch:~$ net add interface swp1 link speed 10000
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-The above commands create the following ` /etc/network/interfaces  `code
-snippet:
+The above commands create the following ` /etc/network/interfaces  `` file
+code
+ snippet:
 
     auto swp1
     iface swp1
@@ -173,31 +269,138 @@ snippet:
 
 **Platform Limitations**
 
-  - On Lenovo NE2572O switches, swp1 thru swp8 only support 25G speed.
+  - On Lenovo NE2572O switches, swp1 thru swp8 only supThe following commands configure the port speed and set half-duplex mode
+for the swp31 interface.
+
+    cumulus@switch:~$ net add interface swp31 link speed 100 
+    cumulus@switch:~$ net add interface swp31 link duplex half
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+
+The above commands create the following `/etc/network/interfaces` file
+code snippet:
+
+    auto swp31
+    iface swp31
+       link-speed 100
+       link-duplex half
+
+<summary>Linux Commands </summary>
+
+Edit the `/etc/network/interfaces` file to create a persistent
+configuration for the port 25G speed.
 
   - For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform,
     you must edit the `/etc/cumulus/ports.conf` file and configure the
     four ports in the same core to be 10G. See [Caveats and
-    Errata](#src-8363026_SwitchPortAttributes-caveats) below.
+    Errata](#src-8363026_SwitchPortAttributes-caveats) belows:
+
+1.  Add the appropriate lines for each switch port stanza. The following
+    example shows that the port speed for the swp1 interface is set to
+    10G and the duplex mode is set to *full*.
+    
+    {{%notice note%}}
+    
+    If you specify the port speed in the `/etc/network/interfaces` file,
+    you must also specify the duplex mode setting; otherwise, the
+    interface defaults to half duplex.
+    
+    {{%/notice%}}
+    
+        cumulus@switch:~$ sudo nano /etc/network/interfaces
+         
+        auto swp1
+        iface swp1
+           address 10.1.1.1/24
+           link-speed 10000
+           link-duplex full
+
+2.  Run the `ifreload -a` command to load the updated configuration:
+    
+        cumulus@switch:~$ sudo ifreload -a
+
+**Runtime Configuration (Advanced)**
+
+You can use `ethtool` to configure the port speed and duplex mode for
+your switch ports. You must specify both the port speed and the duplex
+mode in the `ethtool` command; auto-negotiation is optional.
+
+The following example command sets the port speed to 10G and duplex mode
+to full on the swp1 interface:
+
+    ethtool -s swp1 speed 10000 duplex full
+
+{{%notice warning%}}
+
+A runtime configuration is non-persistent, which means the configuration
+you create here does not persist after you reboot the switch.
 
 {{%/notice%}}
 
-## <span id="src-8363026_SwitchPortAttributes-mtu" class="confluence-anchor-link"></span><span>MTU</span>
+## <span id="src-83630266750_SwitchPortAttributes-mtu" class="confluence-anchor-link"></span><span>MTU</span>
 
 Interface MTU ([maximum transmission
 unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)) applies
-to traffic traversing the management port, front panel/switch ports,
-bridge, VLAN subinterfaces and bonds — in other words, both physical and
-logical interfaces.
+ to traffic traversing the management port, front 
+panel/switch ports,
+ bridge, VLAN subinterfaces, and bonds — in other words, (both physical 
+and
+ logical interfaces.
 
-MTU is the only interface setting that you must set manually.
+). MTU is the only interface setting that you must 
+set manually.
 
 In Cumulus Linux, `ifupdown2` assigns 1500 as the default MTU setting.
 To change the setting, run:
 
     cumulus@switch:~$ net add interface swp1 mtu 9000
     cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commitThe default MTU setting in Cumulus Linux is 1500. To change the setting,
+run the following commands:
+
+<summary>NCLU Commands </summary>
+
+Run the ` net add interface <interface> mtu  `command. The following
+example command sets MTU to 9000 for the swp1 interface.
+
+    cumulus@switch:~$ net add interface swp1 mtu 9000
+    cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
+
+These commands create the following code snippet:
+
+    auto swp1
+    iface swp1
+       mtu 9000
+
+<summary>Linux Commands </summary>
+
+1.  Edit the `/etc/network/interfaces` file. The following example sets
+    MTU to 9000 for the swp1 interface.
+    
+        cumulus@switch:~$ sudo nano /etc/network/interfaces
+         
+        auto swp1
+        iface swp1
+           mtu 9000
+
+2.  Run the `ifreload -a` command to load the updated configuration:
+    
+        cumulus@switch:~$ sudo ifreload -a
+
+**Runtime Configuration (Advanced)**
+
+Run the `ip link set` command. The following example command sets the
+swp1 interface to Jumbo Frame MTU=9000.
+
+    cumulus@switch:~$ sudo ip link set dev swp1 mtu 9000
+
+{{%notice warning%}}
+
+A runtime configuration is non-persistent, which means the configuration
+you create here does not persist after you reboot the switch.
+
+{{%/notice%}}
 
 {{%notice note%}}
 
@@ -211,7 +414,9 @@ for both the management interface (eth0) and the data plane ports.
 For a global policy to set MTU, create a policy document (called
 `mtu.json` here) like the following:
 
-    cat /etc/network/ifupdown2/policy.d/mtu.json
+   ). For example:
+
+    cumulus@switch:~$ sudo cat /etc/network/ifupdown2/policy.d/mtu.json
     {
      "address": {"defaults": { "mtu": "9216" }
                 }
@@ -238,10 +443,14 @@ attributes in `/var/lib/ifupdown2/policy.d/`.
 ### <span>MTU for a Bridge</span>
 
 The MTU setting is the lowest MTU setting of any interface that is a
-member of that bridge (every interface specified in `bridge-ports` in
-the bridge configuration in the `interfaces` file), even if another
-bridge member has a higher MTU value. There is **no** need to specify an
-MTU on the bridge. Consider this bridge configuration:
+ member of 
+thate bridge (every interface specified in `bridge-ports` in
+ the bridge 
+configuration inof the `/etc/network/interfaces` file), even if another
+bridge member has a higher MTU value. There is **no** 
+need to specify an
+ MTU on the bridge. Consider this bridge 
+configuration:
 
     auto bridge
     iface bridge
@@ -272,13 +481,17 @@ or their lower interface; for example, swp1.100 inherits its MTU setting
 from swp1. Therefore, specifying an MTU on swp1 ensures that swp1.100
 inherits the MTU setting for swp1.
 
-<span id="src-8363026_SwitchPortAttributes-mtu_vxlan"></span>If you are
+<span id="src-83630266750_SwitchPortAttributes-mtu_vxlan"></span>If you are
 working with
-[VXLANs](/version/cumulus-linux-377/Network-Virtualization/), the MTU
-for a virtual network interface (VNI) must be 50 bytes smaller than the
-MTU of the physical interfaces on the switch, as those 50 bytes are
-required for various headers and other data. Also, consider setting the
-MTU much higher than the default 1500.
+[VXLANs](/version/cumulus-linux-37740/Network-Virtualization/), the MTU
+ for 
+a virtual network interface (VNI) must be 50 bytes smaller than the
+ MTU 
+of the physical interfaces on the switch, as those 50 bytes are
+ required 
+for various headers and other data. Also, consider setting the
+ MTU much 
+higher than the default 1500.
 
 {{%notice info%}}
 
@@ -327,20 +540,35 @@ The MTU for an SVI interface, such as vlan100, is derived from the
 bridge. When you use NCLU to change the MTU for an SVI and the MTU
 setting is higher than it is for the other bridge member interfaces, the
 MTU for all bridge member interfaces changes to the new setting. If you
-need to use a mixed MTU configuration for SVIs, for example, if some
-SVIs have a higher MTU and some lower, then set the MTU for all member
-interfaces to the maximum value, then set the MTU on the specific SVIs
-that need to run at a lower MTU.
+need to use a mixed MTU configuration for SVIs, for example, (if some
+ SVIs have a 
+higher MTU and some lower), then set the MTU for all member
+ interfaces to the 
+maximum value, then set the MTU on the specific SVIs
+ that need to run at 
+a lower MTU.
 
 {{%/notice%}}
 
-To view the MTU setting, run the ` net show interface <interface>
- `command:
+To vieshow the MTU setting, r for an interface:
+
+<summary>NCLU Commands </summary>
+
+Run the ` net show interface <interface>
+  `command:
 
     cumulus@switch:~$ net show interface swp1
         Name    MAC                Speed      MTU  Mode
     --  ------  -----------------  -------  -----  ---------
     UP  swp1    44:38:39:00:00:04  1G        1500  Access/L2
+
+<summary>Linux Commands </summary>
+
+Run the ` ip link show <interface>  `command:
+
+    cumulus@switch:~$ ip link show dev swp1
+    3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
+        link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 
 ### <span>Bring Down an Interface for a Bridge Member</span>
 
@@ -372,8 +600,11 @@ encoding and decoding layer that enables the switch to detect and
 correct bit errors introduced over the cable between two interfaces.
 Because 25G transmission speeds can introduce a higher than acceptable
 bit error rate (BER) on a link, FEC is required or recommended for 25G,
-4x25G, and 100G link speeds. In order for the link to come up, the two
-interfaces on each end must use the same FEC setting.
+4x25G, and 100G link speeds. 
+
+In order for the link to come up, the two
+ interfaces on each end must 
+use the same FEC setting.
 
 {{%notice note%}}
 
@@ -393,28 +624,35 @@ There are two FEC types:
     Base-R provides less protection from bit errors than RS FEC but adds
     less latency.
 
-There are additional FEC options for Cumulus Linux configuration:
+There areCumulus Linux includes additional FEC options for Cumulus Linux configuration:
 
-  - Auto FEC instructs the hardware to select the best FEC. For copper
+  - *Auto* FEC instructs the hardware to select the best FEC. For copper
     DAC, FEC can be negotiated with the remote end. However, optical
     modules do not have auto-negotiation capability; if the device
     chooses a preferred mode, it might not match the remote end. This is
     the current default on a Mellanox switch.
 
-  - No FEC (no error correction is done). This is the current default on
-    a Broadcom switch.
+  - *No* FEC (no error correction is done). This is the current default on
+    on a Broadcom switch.
 
 {{%notice note%}}
 
 **Important**
 
-The Tomahawk switch does not support RS FEC or auto-negotiation of FEC
-on 25G lanes that are broken out (Tomahawk pre-dates 802.3by). If you
-are using a 4x25G breakout DAC or AOC on a Tomahawk switch, you can
-configure either Base-R FEC or no FEC, and choose cables appropriate for
-that limitation (CA-25G-S, CA-25G-N or fiber).
+  - The Trident II switch does not support FEC.
 
-Tomahawk+, Tomahawk2, Trident3, and Maverick switches do not have this
+  - The Tomahawk switch does not support RS FEC or auto-negotiation of
+    FEC
+ on 25G lanes that are broken out (Tomahawk pre-dates 802.3by).
+    If you
+ are using a 4x25G breakout DAC or AOC on a Tomahawk switch,
+    you can
+ configure either Base-R FEC or no FEC, and choose cables
+    appropriate for
+ that limitation (CA-25G-S, CA-25G-N or fiber).
+
+  
+    Tomahawk+, Tomahawk2, Trident3, and Maverick switches do not have this
 limitation.
 
 {{%/notice%}}
@@ -422,7 +660,8 @@ limitation.
 {{%notice note%}}
 
 You cannot set RS FEC on any Trident II switch with either NCLU or by
-directly editing the `/etc/network/interfaces` file.
+directly editing the `/etc/network/interfaces` file
+    this limitation.
 
 {{%/notice%}}
 
@@ -449,7 +688,7 @@ If a cable is manufactured to CA-25G-S classification and FEC is not
 enabled, the BER might be unacceptable in a production network. It is
 important to set the FEC according to the cable class (or better) to
 have acceptable bit error rates. See [Determining Cable
-Class](#src-8363026_SwitchPortAttributes-cable_class) below.
+Class](#src-83630266750_SwitchPortAttributes-cable_class) below.
 
 You can check bit errors using `cl-netstat` (`RX_ERR` column) or
 `ethtool -S` (`HwIfInErrors` counter) after a large amount of traffic
@@ -462,7 +701,7 @@ For **25G, 4x25G Breakout, and 100G Fiber modules and AOCs**, there is
 no classification of 25G cable types for dB loss, BER or length. FEC is
 recommended but might not be required if the BER is low enough.
 
-### <span id="src-8363026_SwitchPortAttributes-cable_class" class="confluence-anchor-link"></span><span>Determine Cable Class of 100G and 25G DACs</span>
+### <span id="src-83630266750_SwitchPortAttributes-cable_class" class="confluence-anchor-link"></span><span>Determine Cable Class of 100G and 25G DACs</span>
 
 You can determine the cable class for 100G and 25G DACs from the
 Extended Specification Compliance Code field (SFP28: 0Ah, byte 35,
@@ -574,12 +813,13 @@ active state of FEC **only if the link is up**; that is, if the FEC
 modes matches that of the neighbor. If the link is not up, the value
 displays *None*, which is not valid.
 
-To display the FEC mode currently enabled on a given switch port, run
-the following command:
+To displayshow the FEC mode currently enabled on a given switch port, run
+the following the
+`ethtool --show-fec <interface>` command:.
 
     cumulus@switch:~$ sudo ethtool --show-fec swp23
     FEC parameters for swp23:
-    FEC encodings : None
+    Configured FEC encodings : None
 
 ### <span>Enable or Disable FEC</span>
 
@@ -589,9 +829,45 @@ commands:
     cumulus@switch:~$ sudo net add interface swp23 link fec rs
     cumulus@switch:~$ sudo net commit
 
-To review the FEC setting on the link, run the following command:
+To review the FEC setting on the link, run the following command: Auto
+    Active FEC encoding: Off
 
-    cumulus@switch:~$ sudo ethtool --show-fec swp23
+### <span id="src-8366750_SwitchPortAttributes-FEC-config" class="confluence-anchor-link"></span><span>Enable or Disable FEC</span>
+
+To enable **Reed Solomon (RS) FEC** on a link:
+
+<summary>NCLU Commands </summary>
+
+Run the `net add interface <interface> link fec rs` command. For
+example:
+
+    cumulus@switch:~$ sudo net add interface swp23 link fec rs
+    cumulus@switch:~$ sudo net pending
+    cumulus@switch:~$ sudo net commit
+
+<summary>Linux Commands </summary>
+
+1.  Edit the `/etc/network/interfaces` file. The following example
+    enables RS FEC for the swp1 interface (`link-fec rs`):
+    
+        cumulus@switch:~$ sudo nano /etc/network/interfaces
+         
+        auto swp1
+        iface swp1
+           link-autoneg off
+           link-speed 100000
+           link-fec rs
+
+2.  Run the `ifreload -a` command to load the updated configuration:
+    
+        cumulus@switch:~$ sudo ifreload -a
+
+**Runtime Configuration (Advanced)**
+
+Run the `ethtool --set-fec <interface> encoding RS` command. For
+example:
+
+    cumulus@switch:~$ sudo ethtool --showet-fec swp23
     FEC parameters for swp23:
     FEC encodings : RS
 
@@ -601,9 +877,49 @@ commands:
     cumulus@switch:~$ sudo net add interface swp23 link fec baser
     cumulus@switch:~$ sudo net commit
 
-To review the FEC setting on the link, run the following command:
+To review the FEC setting on the link, run the following command1 encoding RS
 
-    cumulus@switch:~$ sudo ethtool --show-fec swp23
+{{%notice warning%}}
+
+A runtime configuration is non-persistent, which means the configuration
+you create here does not persist after you reboot the switch.
+
+{{%/notice%}}
+
+To enable **Base-R/FireCode FEC** on a link:
+
+<summary>NCLU Commands </summary>
+
+Run the `net add interface <interface> link fec baser` command. For
+example:
+
+    cumulus@switch:~$ sudo net add interface swp23 link fec baser
+    cumulus@switch:~$ sudo net pending
+    cumulus@switch:~$ sudo net commit
+
+<summary>Linux Commands </summary>
+
+1.  Edit the `/etc/network/interfaces` file. The following example
+    enables Base-R FEC for the swp1 interface (`link-fec baser`):
+    
+        cumulus@switch:~$ sudo nano /etc/network/interfaces
+         
+        auto swp1
+        iface swp1
+           link-autoneg off
+           link-speed 100000
+           link-fec baser
+
+2.  Run the `ifreload -a` command to load the updated configuration:
+    
+        cumulus@switch:~$ sudo ifreload -a
+
+**Runtime Configuration (Advanced)**
+
+Run the `ethtool --set-fec <interface> encoding BaseR` command. For
+example:
+
+    cumulus@switch:~$ sudo ethtool --showet-fec swp23
     FEC parameters for swp23:
     FEC encodings : BaseR
 
@@ -613,13 +929,70 @@ FEC with auto-negotiation is supported on DACs only.
 
 {{%/notice%}}
 
-To enable FEC with auto-negotiation, run the following NCLU commands:
+To1 encoding BaseR
+
+{{%notice warning%}}
+
+A runtime configuration is non-persistent, which means the configuration
+you create here does not persist after you reboot the switch.
+
+{{%/notice%}}
+
+<span style="color: #36424a;"> To enable </span>
+<span style="color: #36424a;"> FEC with Auto-negotiation </span>
+<span style="color: #36424a;"> : </span>
+
+{{%notice note%}}
+
+FEC with auto-negotiation is supported on DACs only.
+
+{{%/notice%}}
+
+<summary>NCLU Commands </summary>
+
+Run the `net add interface <interface> link autoneg` `on` command. The
+following example command enables FEC with auto-negotiation, ru on the following NCLU commands:
+
+    cumulus@switch:~$ sudo net add interface swp12swp12
+interface:
 
     cumulus@switch:~$ sudo net add interface swp12 link autoneg on
+    cumulus@switch:~$ sudo net pending
     cumulus@switch:~$ sudo net commit
 
-To view the FEC and auto-negotiation settings, run the following
-command:
+<summary>Linux Commands </summary>
+
+1.  Edit the `/etc/network/interfaces` file and set auto-negotiation to
+    *on.* For example:
+    
+        cumulus@switch:~$ sudo nano /etc/network/interfaces
+         
+        auto swp1
+        iface swp1
+           link -autoneg on
+    cumulus@switch:~$ sudo net commit
+
+To vie
+2.  Run the `ifreload -a` command to load the updated configuration:
+    
+        cumulus@switch:~$ sudo ifreload -a
+
+**Runtime Configuration (Advanced)**
+
+You can use `ethtool` to enable FEC with auto-negotiation. For example:
+
+    ethtool -s swp1 speed 10000 duplex full autoneg on
+
+{{%notice warning%}}
+
+A runtime configuration is non-persistent, which means the configuration
+you create here does not persist after you reboot the switch.
+
+{{%/notice%}}
+
+To show the FEC and auto-negotiation settings for an interface, run the 
+following
+ command:
 
     cumulus@switch:~$ sudo ethtool swp12 | egrep 'FEC|auto'
     Supports auto-negotiation: Yes
@@ -629,23 +1002,58 @@ command:
     Link partner advertised auto-negotiation: Yes
     Link partner advertised FEC modes: Not reported
 
-    cumulus@switch:~$ sudo ethtool --show-fec swp12
+To disable FEC on a link:
+
+<summary>NCLU Commands </summary>
+
+Run the `net add interface <interface> link fec off` command. For
+example:
+
+    cumulus@switch:~$ sudo nethtool --show-fec swp12
     FEC parameters for swp12:
     FEC encodings : RS
 
 <span style="color: #333333;"> To disable FEC on a link, run the
 following NCLU commands: </span>
 
-    cumulus@switch:~$ sudo net add interface swp23 link fec off
+    cumulus@switch:~$ sudo net add interface swp23 add interface swp23 link fec off
+    cumulus@switch:~$ sudo net pending
     cumulus@switch:~$ sudo net commit
 
-To review the FEC setting on the link, run the following command:
+<summary>Linux Commands </summary>
 
-    cumulus@switch:~$ sudo ethtool --show-fec swp23
+1.  Edit the `/etc/network/interfaces` file. The following example
+    disables Base-R FEC for the swp1 interface (`link-fec baser`):
+    
+        cumulus@switch:~$ sudo nano /etc/network/interfaces
+         
+        auto swp23
+        iface swp23
+           link -fec off
+    cumulus@switch:~$ sudo net commit
+
+To review the FEC setting on the link, run the following command
+2.  Run the `ifreload -a` command to load the updated configuration:
+    
+        cumulus@switch:~$ sudo ifreload -a
+
+**Runtime Configuration (Advanced)**
+
+Run the `ethtool --set-fec <interface> encoding off` command. For
+example:
+
+    cumulus@switch:~$ sudo ethtool --showet-fec swp23
     FEC parameters for swp23:
-    FEC encodings : None
+    FEC encodings : None encoding off 
 
-## <span id="src-8363026_SwitchPortAttributes-settings" class="confluence-anchor-link"></span><span>Interface Configuration Recommendations for Broadcom Platforms</span>
+{{%notice warning%}}
+
+A runtime configuration is non-persistent, which means the configuration
+you create here does not persist after you reboot the switch.
+
+{{%/notice%}}
+
+## <span id="src-83630266750_SwitchPortAttributes-settings" class="confluence-anchor-link"></span><span>Interface Configuration Recommendations for Broadcom Platforms</span>
 
 The recommended configuration for each type of interface is described in
 the following table. These are the link settings that are applied to the
@@ -667,8 +1075,8 @@ predefined list of parameter settings until the link comes up.
 
 If the other side of the link is running a version of Cumulus Linux
 earlier than 3.2, depending upon the interface type, auto-negotiation
-may not work on that switch. Cumulus Networks recommends you use the
-recommended settings as show below on this switch in this case.
+mayight not work on that switch. Cumulus Networks recommends you use the
+recommended settings as shown below on this switch in this case.
 
 {{%/notice%}}
 
@@ -685,14 +1093,14 @@ recommended settings as show below on this switch in this case.
 <th><p>Speed/Type</p></th>
 <th><p>Auto-negotiation</p></th>
 <th><p>FEC Setting</p></th>
-<th><p>Manual Configuration Steps</p></th>
+<th><p>Manual Configuration StepExamples</p></th>
 <th><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><p>100BASE-T<br />
-(RJ-45 SFP Module)</p></td>
+(RJ-45 SFP Moduleadapter)</p></td>
 <td><p>Off</p></td>
 <td><p>N/A (does not apply at this speed)</p></td>
 <td><pre><code>$ net add interface swp1 link speed 100
@@ -702,9 +1110,9 @@ iface swp1
   link-autoneg off
   link-speed 100</code></pre></td>
 <td><ul>
-<li><p>The module has two sets of electronics — the port side, which communicates to the switch ASIC, and the RJ-45 adapter side.</p></li>
-<li><p>Auto-negotiation is always used on the RJ-45 adapter side of the link by the PHY built into the module. This is independent of the switch setting. Set <code>link-autoneg</code> to off.</p></li>
-<li><p>Auto-negotiation needs to be enabled on the server side in this scenario.</p></li>
+<li><p>The module has two sets of electronics —: the port side, which communicates towith the switch ASIC, and the RJ-45 adapter side.</p></li>
+<li><p>Auto-negotiation is always used on the RJ-45 adapter side of the link by the PHY built into the module. This is independent of the switch setting. Set <code>link-auto-neg</code>otiation to off.</p></li>
+<li><p>Auto-negotiation needs tomust be enabled on the server side in this scenario.</p></li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -718,13 +1126,13 @@ iface swp1
   link-autoneg on
   link-speed 100</code></pre></td>
 <td><ul>
-<li><p>10M or 100M speeds are possible with auto-negotiation OFF on both sides. Testing on an Edgecore AS4610-54P revealed the ASIC reporting auto-negotiation as ON.</p></li>
-<li><p><a href="/version/cumulus-linux-377/System-Configuration/Power-over-Ethernet---PoE">Power over Ethernet</a> may require auto-negotiation to be ON.</p></li>
+<li><p>10M or 100M speeds are possible with auto-negotiation OFFoff on both sides. Testing on an Edgecore AS4610-54P revealshowed the ASIC reporting auto-negotiation as ONon.</p></li>
+<li><p><a href="/version/cumulus-linux-37740/System-Configuration/Power-over-Ethernet---PoE">Power over Ethernet</a> mayight require auto-negotiation to be ONon.</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
 <td><p>1000BASE-T<br />
-(RJ-45 SFP Module)</p></td>
+(RJ-45 SFP Moduleadapter)</p></td>
 <td><p>Off</p></td>
 <td><p>N/A</p></td>
 <td><pre><code>$ net add interface swp1 link speed 1000
@@ -734,9 +1142,9 @@ iface swp1
   link-autoneg off
   link-speed 1000</code></pre></td>
 <td><ul>
-<li><p>The module has two sets of electronics — the port side, which communicates to the switch ASIC, and the RJ-45 side.</p></li>
-<li><p>Auto-negotiation is always used on the RJ-45 side of the link by the PHY built into the module. This is independent of the switch setting. Set <code>link-autoneg</code> to off.</p></li>
-<li><p>Auto-negotiation needs to be enabled on the server side.</p></li>
+<li><p>The module has two sets of electronics —: the port side, which communicates towith the switch ASIC, and the RJ-45 side.</p></li>
+<li><p>Auto-negotiation is always used on the RJ-45 side of the link by the PHY built into the module. This is independent of the switch setting. Set <code>link-auto-neg</code>otiation to off.</p></li>
+<li><p>Auto-negotiation needs tomust be enabled on the server side.</p></li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -778,7 +1186,7 @@ iface swp1
 <td><ul>
 <li><p>Without auto-negotiation, the link stays up when there is a single fiber break.</p></li>
 </ul>
-<p>See the limitation discussed in <a href="#src-8363026_SwitchPortAttributes-10Gand1GSFPsInsertedina25GPort">10G and 1G SFPs Inserted in a 25G Port</a>, below</p></td>
+<p>See the limitation discussed in <a href="#src-83630266750_SwitchPortAttributes-10Gand1GSFPsInsertedina25GPort">10G and 1G SFPs Inserted in a 25G Port</a>, below.</p></td>
 </tr>
 <tr class="odd">
 <td><p>10GBASE-T<br />
@@ -918,7 +1326,7 @@ iface swp1
   link-speed 25000
   link-fec baser</code></pre></td>
 <td><ul>
-<li><p>Tomahawk cannot do RS on a single channel, only BASE-R/FC/FireCode/Type74, which violates the 802.3by specification for 25G.</p></li>
+<li><p>Tomahawk cannot dodoes not support RS on a single channel, only BASE-R/FC/FireCode/Type74, which violates the 802.3by specification for 25G.</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -941,7 +1349,8 @@ iface swp1
 ## <span>Default Policies for Interface Settings</span>
 
 Instead of configuring these settings for each individual interface, you
-can specify a policy for all interfaces on a switch, or tailor custom
+ can 
+specify a policy for all interfaces on a switch, or tailor custom
 settings for each interface. Create a file in
 `/etc/network/ifupdown2/policy.d/` and populate the settings
 accordingly. The following example shows a file called `address.json.`
@@ -984,9 +1393,9 @@ remain at 1500.
 
 {{%/notice%}}
 
-## <span id="src-8363026_SwitchPortAttributes-breakout" class="confluence-anchor-link"></span><span>Breakout Ports</span>
+## <span id="src-83630266750_SwitchPortAttributes-breakout" class="confluence-anchor-link"></span><span>Breakout Ports</span>
 
-Cumulus Linux has the ability to:
+Cumulus Linux haprovides the ability to:
 
   - Break out 100G switch ports into the following with breakout cables:
     
@@ -995,10 +1404,11 @@ Cumulus Linux has the ability to:
   - Break out 40G switch ports into four separate 10G ports for use with
     breakout cables.
 
-  - Combine (also called *aggregating* or *ganging*) four 10G switch
-    ports into one 40G port for use with a breakout cable ([not to be
+  - Combine (also called *aggregatinge* or *ganging*) four 10G switch
+    ports into one 40G
+    port for use with a breakout cable ([not to be
     confused with a
-    bond](/version/cumulus-linux-377/Layer-2/Bonding---Link-Aggregation)).
+    bond](/version/cumulus-linux-37740/Layer-2/Bonding---Link-Aggregation)).
 
 To configure a 4x25G breakout port, first configure the port to break
 out then set the link speed:
@@ -1016,7 +1426,56 @@ with `net commit`:
     cumulus@switch:~$ net add interface swp4 breakout disabled
 
 Also, [see below](#src-8363026_SwitchPortAttributes-mlnx_breakout) for
-how to configure breakout ports on Mellanox switches.
+how to configure breakout ports on Mellanox switches.{{%notice note%}}
+
+  - For switches with ports that support 100G speeds, you can break out
+    any 100G port into a variety of options: four 10G ports, four 25G
+    ports, two 40G ports or two 50G ports. You *cannot* have more than
+    128 total logical ports on a Broadcom switch.
+
+  - You can only use NCLU to configure a 4x25G breakout port. To
+    configure other breakout ports, use Linux commands.
+
+  - You cannot use NCLU to break out the uplink ports.
+
+{{%/notice%}}
+
+{{%notice note%}}
+
+<span id="src-8366750_SwitchPortAttributes-MnxLimitation"></span>The
+Mellanox SN2700, SN2700B, SN2410, and SN2410B switches all have a limit
+of 64 logical ports in total. However, if you want to break out to 4x25G
+or 4x10G, you must configure the logical ports as follows:
+
+  - You can only break out odd-numbered ports into 4 logical ports.
+
+  - You must disable the next even-numbered port. For example, if you
+    break out port 11 into 4 logical ports, you must disable port 12.
+
+These restrictions do *not* apply to a 2x50G breakout configuration.
+
+{{%/notice%}}
+
+To configure a breakout port:
+
+<summary>NCLU Commands - 4x25G breakout ports only </summary>
+
+Run the following commands to configure the port to break out and set
+the link speed. The following example command breaks out swp3 into four
+25G ports:
+
+    cumulus@switch:~$ net add interface swp3 breakout 4x25G
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+
+{{%notice note%}}
+
+On Mellanox switches, you need to disable the next port. The following
+example command disables swp4.
+
+    cumulus@switch:~$ net add interface swp4 breakout disabled
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
 
 {{%/notice%}}
 
@@ -1026,44 +1485,62 @@ reconfigure the ports and create four interfaces in the
 `/etc/network/interfaces` file named as follows:
 
     cumulus@switch:~$ cat /etc/network/interfaces
-     
+      
     ...
-     
+      
     auto swp3s0
     iface swp3s0
-     
+      
+     
     auto swp3s1
     iface swp3s1
-     
+      
+     
     auto swp3s2
     iface swp3s2
-     
+      
+     
     auto swp3s3
     iface swp3s3
-     
+      
     ...
-
-{{%notice note%}}
-
-When you commit your change configuring the breakout ports, `switchd`
-restarts to apply the changes. The restart [interrupts network
-services](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd).
-
-{{%/notice%}}
 
 The breakout port configuration is stored in the
 `/etc/cumulus/ports.conf` file.
 
-{{%notice info%}}
+{{%notice note%}}
+
+When you commit your change configuring the breakout ports, `switchd`
+ restarts to apply the changes. 
+The restart [interrupts network
+services](Configuring-switchd.html#src-83625616282_Configuringswitchd-restartswitchd).
+
+{{%/notice%}}
+
+The breakout port configuration is stored in<summary>Linux Commands </summary>
+
+1.  Edit the
+ `/etc/cumulus/ports.conf` file.
+
+{{%notice info%}} to configure the port
+    breakout. See the examples below.
+
+2.  Configure the breakout ports in the `/etc/network/interfaces` file.
+    See the example below.
+
+3.  [Restart
+    `switchd`](Configuring-switchd.html#src-8366282_Configuringswitchd-restartswitchd).
 
 The`  /etc/cumulus/ports.conf ` file varies across different hardware
 platforms. Check the current list of supported platforms on [the
 hardware compatibility list](http://www.cumulusnetworks.com/hcl).
 
-A snippet from the `/etc/cumulus/ports.conf` file on a Dell S6000 switch
-(with a Trident II+ ASIC) where swp6 is broken out looks like this:
+AThe following example shows a snippet from the `/etc/cumulus/ports.conf` 
+file on a Dell S6000 switch
+ (with a Trident II+ ASIC) where swp6 is 
+broken out looks like thiinto four 10G ports:
 
-    cumulus@switch:~$ cat /etc/cumulus/ports.conf 
+    cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf 
     # ports.conf --
     #
     # This file controls port aggregation and subdivision.  For example, QSFP+
@@ -1125,6 +1602,33 @@ A snippet from the `/etc/cumulus/ports.conf` file on a Dell S6000 switch
     31=40G
     32=40G
 
+The following example shows the swp26 breakout ports (swp26s0, swp26s1,
+swp26s2, and swp26s3) in the `/etc/network/interfaces` file.
+
+    cumulus@switch:~$ sudo cat /etc/network/interfaces
+     
+    ...
+     
+    auto swp26s0
+    iface swp26s0
+     
+    auto swp26s1
+    iface swp26s1
+     
+    auto swp26s2
+    iface swp26s2
+     
+    auto swp26s3
+    iface swp26s3
+     
+    ...
+
+{{%notice tip%}}
+
+Refer to [this article](https://community.mellanox.com/docs/DOC-2685)
+article for an example of how to configure breakout cables for the
+Mellanox Spectrum SN2700 switch.
+
 {{%/notice%}}
 
 ### <span>Break out a 100G Port to Four 10G Ports</span>
@@ -1132,6 +1636,8 @@ A snippet from the `/etc/cumulus/ports.conf` file on a Dell S6000 switch
 If you want to support 10G speed modules or cables on 100G ports you
 must set up the port in 10G mode first by configuring breakout ports on
 the 100G ports using the following NCLU commands:
+
+<summary>NCLU Commands </summary>
 
     cumulus@switch:~$ net add interface swp25 breakout 4x10G
     cumulus@switch:~$ net pending
@@ -1141,8 +1647,53 @@ the 100G ports using the following NCLU commands:
 
 To remove a breakout port, you need to do the following:
 
-1.  Remove the breakout port interfaces using NCLU, then commit the
-    change. Continuing with the original example:
+1.  Remov<summary>Linux Commands </summary>
+
+1.  Edit the `/etc/cumulus/ports.conf` file to configure the port
+    breakout.
+    
+        cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf 
+         
+        ...
+         
+        25s0=10G
+        25s1=10G
+        25s2=10G
+        25s3=10G
+         
+        ...
+
+2.  Configure the breakout ports interfaces using NCLU, then commit the
+    change. Continu the `/etc/network/interfaces` file.
+    
+        cumulus@switch:~$ sudo nano /etc/network/interfaces
+         
+        ...
+         
+        auto swp25s0
+        iface swp25s0
+         
+        auto swp25s1
+        iface swp25s1
+         
+        auto swp25s2
+        iface swp25s2
+         
+        auto swp25s3
+        iface swp25s3
+         
+        ...
+
+3.  [Restart
+    `switchd`](Configuring-switchd.html#src-8366282_Configuring swith the originalchd-restartswitchd).
+
+### <span>Remove a Breakout Port</span>
+
+To remove a breakout port:
+
+<summary>NCLU Commands </summary>
+
+1.  Run the `net del interface <interface>` command. For example:
     
         cumulus@switch:~$ net del interface swp3s0
         cumulus@switch:~$ net del interface swp3s1
@@ -1152,26 +1703,45 @@ To remove a breakout port, you need to do the following:
         cumulus@switch:~$ net commit
 
 2.  Manually edit the `/etc/cumulus/ports.conf` file to configure the
-    interface for the original speed, then save your changes:
+    interface for the original speed, then save your changes. For example:
     
         cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf 
-         
+          
         ...
-         
+          
         2=100G
         3=100G
         4=100G
-         
+          
         ...
          
 
 3.  [Restart
-    `switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd).
+    `switchd`](Configuring-switchd.html#src-83625616282_Configuringswitchd-restartswitchd).
+
+<summary>Linux Commands </summary>
+
+1.  Edit the `/etc/cumulus/ports.conf` file to configure the interface
+    for the original speed.
+    
+        cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf 
+         
+        ...
+         
+        2=100G
+        3=100G
+        4=100G
+         
+        ...
+
+2.  [Restart
+    `switchd`](Configuring-switchd.html#src-8366282_Configuringswitchd-restartswitchd).
 
 ### <span>Combine Four 10G Ports into One 40G Port</span>
 
-You can *gang* (aggregate) four 10G ports into one 40G port for use with
-a breakout cable, provided you follow these requirements:
+You can *gang* (aggregatcombine) four 10G ports into one 40G port for use with
+a  a
+breakout cable, provided you follow these requirements:
 
   - You must gang four 10G ports in sequential order. For example, you
     cannot gang swp1, swp10, swp20 and swp40 together.
@@ -1180,7 +1750,17 @@ a breakout cable, provided you follow these requirements:
     being swp1 (or swp5, swp9, or so forth); so you cannot gang swp2,
     swp3, swp4 and swp5 together.
 
-For example, to gang swp1 through swp4 into a 40G port, run:
+For example, t{{%notice note%}}
+
+The `/etc/cumulus/ports.conf` file varies across different hardware
+platforms. Check the current list of supported platforms on [the
+hardware compatibility list](http://www.cumulusnetworks.com/hcl).
+
+{{%/notice%}}
+
+<summary>NCLU Commands </summary>
+
+To gang swp1 through swp4 into a 40G port, run the following commands:
 
     cumulus@switch:~$ net add int swp1-4 breakout /4 
     cumulus@switch:~$ net pending
@@ -1197,14 +1777,28 @@ These commands create the following configuration snippet in the
     4=40G/4
     5=10G
 
+<summary>Linux Commands </summary>
+
+To gang swp1 through swp4 into a 40G port, edit the
+`/etc/cumulus/ports.conf` file as shown below, then r[estart
+`switchd`](Configuring-switchd.html#src-8366282_Configuringswitchd-restartswitchd).
+
+    # SFP+ ports#
+    # <port label 1-48> = [10G|40G/4]
+    1=40G/4
+    2=40G/4
+    3=40G/4
+    4=40G/4
+    5=10G
+
 ## <span>Logical Switch Port Limitations</span>
 
 100G and 40G switches can support a certain number of logical ports,
 depending upon the manufacturer; these include:
 
-  - Mellanox SN2700, SN2700B, SN2410 and SN2410B switches
+  - Mellanox SN2700, SN2700B, SN2410, and SN2410B switches
 
-  - Switches with Broadcom Tomahawk, Trident II, Trident II+ and
+  - Switches with Broadcom Tomahawk, Trident II, Trident II+, and
     Trident3 chipsets (check the
     [HCL](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
 
@@ -1215,12 +1809,18 @@ The Mellanox SN2700, SN2700B, SN2410 and SN2410B switches all have a
 limit of 64 logical ports in total.
 
 <span style="color: #333333;"> Before you configure any logical/unganged
-ports on a switch, check the limitations listed in </span>
+ ports on a switch, check the 
+limitations listed in </span>
 `/etc/cumulus/ports.conf` <span style="color: #333333;"> ; this file is
-specific to each manufacturer. </span>
+ specific 
+to each manufacturer. </span>
 
 For example, the Dell S6000 `ports.conf` file indicates the logical port
 limitation like this:
+
+The following example shows the logical port limitation provided in the
+Dell S6000 `ports.conf` file. The maximum number of ports for this
+switch is 104.
 
     # ports.conf --
     #
@@ -1251,8 +1851,9 @@ The means the maximum number of ports for this Dell S6000 is 104.
 
 ### <span id="src-8363026_SwitchPortAttributes-mlnx_breakout" class="confluence-anchor-link"></span><span>Mellanox Logical Port Limits and Breakout Configurations</span>
 
-The Mellanox SN2700, SN2700B, SN2410 and SN2410B switches all have a
-limit of 64 logical ports in total. However, if you want to break out to
+The Mellanox SN2700, SN2700B, SN241Mellanox SN2700 and SN241700B switches all have a
+ limit of 64 logical ports in 
+total. However, if you want to break out to
 4x25G or 4x10G, you must configure the logical ports as follows:
 
   - You can only break out odd-numbered ports into 4 logical ports.
@@ -1284,7 +1885,8 @@ SN2700](https://community.mellanox.com/docs/DOC-2685).
 
 {{%/notice%}}
 
-## <span id="src-8363026_SwitchPortAttributes-ethtool" class="confluence-anchor-link"></span><span>Configure Interfaces with ethtool </span>
+## <span id="the logical ports must be configured in a specific way.
+See [the note](#src-83630266750_SwitchPortAttributes-ethtool" class="confluence-anchor-link"></span><span>Configure Interfaces with ethtool </span>
 
 The Cumulus Linux `ethtool` command is an alternative for configuring
 interfaces as well as viewing and troubleshooting them.
@@ -1299,14 +1901,15 @@ To view the FEC setting on an interface, run:
 
     cumulus@switch:~$ sudo ethtool --show-fec swp1FEC parameters for swp1:
     Auto-negotiation: off
-    FEC encodings : RS
+    FEC encodings : RSmnxLimitation) above.
 
 ## <span>Verification and Troubleshooting Commands</span>
 
 ### <span>Statistics</span>
 
-High-level interface statistics are available with the `net show
-interface` command:
+HTo show high-level interface statistics are available with, run the `net show
+ interface` 
+command:
 
     cumulus@switch:~$ net show interface swp1
      
@@ -1332,7 +1935,8 @@ interface` command:
     ------  ----  ---------------------------
     swp1    ====  44:38:39:00:00:03(server01)
 
-Low-level interface statistics are available with `ethtool`:
+LTo show low-level interface statistics are available with, run the following `ethtool`
+command:
 
     cumulus@switch:~$ sudo ethtool -S swp1
     NIC statistics:
@@ -1365,10 +1969,11 @@ Low-level interface statistics are available with `ethtool`:
 
 ### <span>Query SFP Port Information</span>
 
-You can verify SFP settings using [`ethtool
--m`](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool).
-The following example shows the vendor, type and power output for the
-swp4 interface.
+You canTo verify SFP settings using [, run the `ethtool
+ -m`](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool).
+ command. The following 
+example shows the vendor, type and power output for the
+ swp4 interface.
 
     cumulus@switch:~$ sudo ethtool -m swp4 | egrep 'Vendor|type|power\s+:'
             Transceiver type                          : 10G Ethernet: 10G Base-LR
@@ -1380,7 +1985,7 @@ swp4 interface.
             Laser output power                        : 0.5230 mW / -2.81 dBm
             Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
 
-## <span id="src-8363026_SwitchPortAttributes-caveats" class="confluence-anchor-link"></span><span>Caveats and Errata</span>
+## <span id="src-83630266750_SwitchPortAttributes-caveats" class="confluence-anchor-link"></span><span>Caveats and Errata</span>
 
 ### <span>Port Speed and the ifreload -a Command</span>
 
@@ -1400,6 +2005,15 @@ following cases:
   - If you break out a switch port or remove a break out port and the
     port speed is set in both the `/etc/cumulus/ports.conf` file and the
     `/etc/network/interfaces` file.
+
+### <span>Port Speed Configuration</span>
+
+If you change the port speed in the `/etc/cumulus/ports.conf` file but
+the speed is also configured for that port in the
+`/etc/network/interfaces` file, after you edit the
+`/etc/cumulus/ports.conf` file and restart `switchd`, you must also run
+the `ifreload -a` command so that the `/etc/network/interfaces` file is
+also updated with your change.
 
 ### <span>10G and 1G SFPs Inserted in a 25G Port</span>
 
@@ -1430,7 +2044,7 @@ order; for example, swp1, swp2, swp3, and swp4.
         ...
 
 2.  [Restart
-    `switchd`](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=8366282).
+    `switchd`](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=8366282Configuring-switchd.html#src-8366282_Configuringswitchd-restartswitchd).
 
 3.  If you want to set the speed of any SFPs to 1G, set the port speed
     to 1000 Mbps using NCLU commands; this is *not* necessary for 10G
@@ -1458,13 +2072,15 @@ auto-negotiation is disabled on the link partner interface as well.
 ### <span>Timeout Error on Quanta LY8 and LY9 Switches</span>
 
 On Quanta T5048-LY8 and T3048-LY9 switches, an *Operation timed out*
-error occurs while removing and reinserting QSFP module.
+error occurs whileen you removinge and reinserting a QSFP module.
 
 You cannot remove the QSFPx2 module while the switch is powered on, as
-it is not hot-swappable. However, if an *Operation timed out* error
+; it 
+is *not* hot-swappable. However, if an *Operation timed out* error
 occurs, you can get the link to come up by [restarting
-`switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd);
-however, this disrupts your network.
+`switchd`](Configuring-switchd.html#src-83625616282_Configuringswitchd-restartswitchd);
+however,
+to bring the link up. Be aware that this disrupts your network.
 
 On the T3048-LY9, run the following commands:
 
@@ -1496,8 +2112,10 @@ These ports appear as disabled in the `/etc/cumulus/ports.conf` file.
 On the Dell S5248F switch, the 2x200G QSFP-DD interfaces labeled 49/50
 and 51/52 are not supported natively at 200G speeds. The interfaces are
 supported with 100G cables; however, you can only use one 100G cable
-from each QSFP-DD port. The upper QSFP-DD port is named swp49 and the
-lower QSFP-DD port is named swp52.
+from each 
+QSFP-DD port. The upper QSFP-DD port is named swp49 and the
+ lower 
+QSFP-DD port is named swp52.
 
 ### <span>QSFP+ Ports on the Dell S5232F Switch</span>
 
@@ -1605,24 +2223,39 @@ However, you can configure all other ports to run at 10G speeds.
 
 ### <span>ethtool Shows Incorrect Port Speed on 100G Mellanox Switches</span>
 
-After setting the interface speed to 40G by editing the `ports.conf`
-file on a Mellanox switch, `ethtool` still shows the speed as 100G.
+After settingOn a Mellanox switch, after you set the interface speed to 40G by editing the 
+`ports.conf`
+ file on a Mellanox switch, `ethtool` still shows the speed as 100G.
 
-This is a known issue where `ethtool` does not update after restarting
-`switchd`, so it continues to display the outdated port speed.
+ This is a 
+known issue where `ethtool` does not update after restarting
+ `switchd`, so it
+and continues to display the outdated port speed.
 
 To correctly set the port speed, use
 [NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)
-or `ethtool` to set the speed instead of manually editing the
+or `ethtool` to set the speerun the following commands.
+
+<summary>NCLU Commands </summary>
+
+Run the `net add instead of manually editing the
 `ports.conf` file.
 
-For example, to set the speed to 40G using NCLU:
+For example, torface <interface> link speed` command. The
+following example command sets the port speed to 40G using NCLU:
 
     cumulus@switch:~$ net add interface swp1 link speed 40000 
 
-Or using `ethtool`:
+Or using `ethtool`
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
 
-    cumulus@switch:~$ sudo ethtool -s swp1 speed 40000 
+<summary>Linux Commands </summary>
+
+Run the `ethtool -s <interface> speed` command. The following example
+command sets the port speed to 40G:
+
+    cumulus@switch:~$ sudo ethtool -s swp1 speed 40000  
 
 ### <span>Delay in Reporting Interface as Operational Down</span>
 
@@ -1650,3 +2283,8 @@ second to come down.
 <footer id="ht-footer">
 
 </footer>
+
+</details>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNTY4Njg1MzcwXX0=
+-->

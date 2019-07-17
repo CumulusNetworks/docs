@@ -8,8 +8,8 @@ aliases:
 pageID: 8363021
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 In data center topologies, right cabling is a time-consuming endeavor
 and is error prone. Prescriptive Topology Manager (PTM) is a dynamic
@@ -44,7 +44,7 @@ For more information, see `man ptmd(8)`.
     demand mode is not supported. For more information on how BFD
     operates in Cumulus Linux, read the [Bidirectional Forwarding
     Detection -
-    BFD](/version/cumulus-linux-377/Layer-3/Bidirectional-Forwarding-Detection---BFD)
+    BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD)
     chapter and read `man ptmd(8)`.
 
   - Integration with FRRouting (PTM to FRRouting notification).
@@ -286,7 +286,7 @@ detection over all media and protocol layers. Use BFD to detect failures
 for IPv4 and IPv6 single or multihop paths between any two network
 devices, including unidirectional path failure detection. For
 information about configuring BFD using PTM, see the [BFD
-topic](/version/cumulus-linux-377/Layer-3/Bidirectional-Forwarding-Detection---BFD).
+topic](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD).
 
 ## <span id="src-8363021_PrescriptiveTopologyManager-PTM-frr" class="confluence-anchor-link"></span><span>Check Link State with FRRouting</span>
 

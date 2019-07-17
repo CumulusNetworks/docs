@@ -8,8 +8,8 @@ aliases:
 pageID: 8362899
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 <details>
 
@@ -57,7 +57,7 @@ Cumulus Linux supports only PIM Sparse Mode.
 <td><p>Rendezvous Point (RP)</p></td>
 <td><p>The RP allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable.</p>
 <p>{{%notice warning%}}</p>
-<p>Do not use a spine switch as an RP. If you are running <a href="/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP">BGP</a> on a spine switch and it is configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP — see below).</p>
+<p>Do not use a spine switch as an RP. If you are running <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP">BGP</a> on a spine switch and it is configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP — see below).</p>
 <p>{{%/notice%}}</p></td>
 </tr>
 <tr class="even">
@@ -975,7 +975,7 @@ On the RP:
 
 ## <span>PIM in a VRF</span>
 
-[VRFs](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF)
+[VRFs](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF)
 divide the routing table on a per-tenant basis, ultimately providing for
 separate layer 3 networks over a single layer 3 infrastructure. With a
 VRF, each tenant has its own virtualized layer 3 network, so IP
@@ -1097,7 +1097,7 @@ In FRR, you can use show commands to display VRF information:
 ## <span>BFD for PIM Neighbors</span>
 
 You can use [bidirectional forward
-detection](/version/cumulus-linux-377/Layer-3/Bidirectional-Forwarding-Detection---BFD)
+detection](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD)
 (BFD) for PIM neighbors to quickly detect link failures. When you
 configure an interface, include the `pim bfd` option:
 

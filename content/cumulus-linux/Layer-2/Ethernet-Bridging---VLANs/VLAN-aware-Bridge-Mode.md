@@ -8,15 +8,15 @@ aliases:
 pageID: 8362673
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The Cumulus Linux bridge driver supports two configuration modes, one
 that is VLAN-aware, and one that follows a more traditional Linux bridge
 model.
 
 For [traditional Linux
-bridges](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
+bridges](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
 the kernel supports VLANs in the form of VLAN subinterfaces. Enabling
 bridging on multiple VLANs means configuring a bridge for each VLAN and,
 for each member port on a bridge, creating one or more VLAN
@@ -28,7 +28,7 @@ large.
 The VLAN-aware mode in Cumulus Linux implements a configuration model
 for large-scale L2 environments, with **one single** **instance** of
 [Spanning
-Tree](/version/cumulus-linux-377/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree).
+Tree](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree).
 Each physical bridge member port is configured with the list of allowed
 VLANs as well as its port VLAN ID (either PVID or native VLAN — see
 below). MAC address learning, filtering and forwarding are *VLAN-aware*.
@@ -48,7 +48,7 @@ VLAN-aware bridge on a given switch.
 
 VLAN-aware bridges can be configured with the Network Command Line
 Utility
-([NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)).
+([NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU)).
 The example below shows the NCLU commands required to create a
 VLAN-aware bridge configured for STP, that contains two switch ports,
 and includes 3 VLANs — the tagged VLANs 100 and 200 and the untagged
@@ -592,8 +592,7 @@ VLAN-aware bridge to map VLANs to VNIs.
 
 {{%notice note%}}
 
-See the [VXLAN
-Scale](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Scale)
+See the [VXLAN Scale](/cumulus-linux/Network-Virtualization/VXLAN-Scale)
 topic for information about the number of VXLANs you can configure
 simultaneously.
 

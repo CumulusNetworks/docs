@@ -8,8 +8,8 @@ aliases:
 pageID: 8362559
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Cumulus Networks offers add-on packages that enable
 [RADIUS](https://en.wikipedia.org/wiki/RADIUS) users to log in to
@@ -109,9 +109,8 @@ file:
     option, you must also specify the `timeout` option.
 
 4.  Set the `vrf-name` field. This is typically set to *mgmt* if you are
-    using a [management
-    VRF](/version/cumulus-linux-377/Layer-3/Management-VRF). You cannot
-    specify more than one VRF.
+    using a [management VRF](/cumulus-linux/Layer-3/Management-VRF). You
+    cannot specify more than one VRF.
 
 The configuration file includes the `mapped_priv_user` field that sets
 the account used for privileged RADIUS users and the `priv-lvl` field
@@ -321,7 +320,7 @@ mapping file; this might be the first or second user that logged in.
 ## <span>Related Information</span>
 
   - [TACACS+
-    client](/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
+    client](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
 
   - [Cumulus Networks RADIUS demo on
     GitHub](https://github.com/CumulusNetworks/cldemo-radius)

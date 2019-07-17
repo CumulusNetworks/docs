@@ -8,8 +8,8 @@ aliases:
 pageID: 8363018
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 *RDMA over Converged Ethernet*
 ([RoCE](https://en.wikipedia.org/wiki/RDMA_over_Converged_Ethernet))
@@ -47,7 +47,7 @@ To learn the Cumulus Linux settings you need to configure to support
 RoCEv1, see the example configuration in the
 [PFC](Buffer-and-Queue-Management.html#src-8363032_BufferandQueueManagement-pfc)
 section of the [Buffer and Queue
-Management](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
+Management](/cumulus-linux/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
 chapter.
 
 {{%notice tip%}}
@@ -115,7 +115,7 @@ To learn the Cumulus Linux settings you need to configure to support
 RoCEv2, see the example configuration in the
 [ECN](Buffer-and-Queue-Management.html#src-8363032_BufferandQueueManagement-ecn)
 section of the [Buffer and Queue
-Management](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
+Management](/cumulus-linux/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
 chapter.
 
 {{%notice tip%}}

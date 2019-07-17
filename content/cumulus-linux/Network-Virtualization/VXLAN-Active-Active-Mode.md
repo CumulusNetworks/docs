@@ -8,18 +8,18 @@ aliases:
 pageID: 8362725
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 *VXLAN active-active mode* allows a pair of
-[MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
 switches to act as a single VTEP, providing active-active VXLAN
 termination for bare metal as well as virtualized workloads.
 
 There are some differences whether you're deploying this with
-[EVPN](/version/cumulus-linux-377/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+[EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
 or
-[LNV](/version/cumulus-linux-377/Network-Virtualization/Lightweight-Network-Virtualization-Overview/).
+[LNV](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/).
 This chapter outlines the configurations for both options.
 
 ## <span>Terminology</span>
@@ -59,7 +59,7 @@ to work correctly.
 </tr>
 <tr class="even">
 <td><p>OSPF or BGP</p></td>
-<td><p>Refer to the <a href="/display/CL37/Open+Shortest+Path+First+-+OSPF+-+Protocol">OSPF chapter</a> or the <a href="/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP">BGP chapter</a> for more detailed configuration information. Configurations for the BGP demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="/display/CL37/Open+Shortest+Path+First+-+OSPF+-+Protocol">OSPF chapter</a> or the <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP">BGP chapter</a> for more detailed configuration information. Configurations for the BGP demonstration are provided below.</p></td>
 </tr>
 <tr class="odd">
 <td><p>STP</p></td>
@@ -159,11 +159,10 @@ changes to anycast upon MLAG peering.
 ### <span>FRRouting Configuration</span>
 
 You can configure the layer 3 fabric using
-[BGP](/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP)
-or
-[OSPF](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF).
-The following example uses BGP unnumbered. The MLAG switch configuration
-for the topology above is shown below.
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP) or
+[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF). The
+following example uses BGP unnumbered. The MLAG switch configuration for
+the topology above is shown below.
 
 ### <span>Layer 3 IP Addressing</span>
 
@@ -618,7 +617,7 @@ iface bond0.20 inet static
 ## <span>Using Active-active Mode with LNV</span>
 
 When using VXLAN active-active mode with [lightweight network
-virtualization](/version/cumulus-linux-377/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+virtualization](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 (LNV), follow the steps outlined above. In addition, the following
 configuration steps are needed:
 
@@ -913,7 +912,7 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 ## <span>Troubleshooting</span>
 
 In addition to [troubleshooting single-attached
-configurations](/version/cumulus-linux-377/Network-Virtualization/Troubleshooting-VXLANs),
+configurations](/cumulus-linux/Network-Virtualization/Troubleshooting-VXLANs),
 there is now the MLAG daemon (`clagd`) to consider. The `clagctl`
 command gives the output of MLAG behavior and any inconsistencies that
 might arise between a MLAG pair.
@@ -1046,7 +1045,7 @@ mode can function correctly.
 ## <span>Related Information</span>
 
   - [Network virtualization chapter, Cumulus Linux user
-    guide](/version/cumulus-linux-377/Network-Virtualization/)
+    guide](/cumulus-linux/Network-Virtualization/)
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

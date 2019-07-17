@@ -8,8 +8,8 @@ aliases:
 pageID: 8363042
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 To run DHCP for both IPv4 and IPv6, you need to initiate the DHCP server
 twice: once for IPv4 and once for IPv6. The following configuration uses
@@ -26,9 +26,9 @@ dedicated server in your environment.
 The `dhcpd` and `dhcrelay` services are disabled by default. After you
 finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
-[VRF](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF),
-including the [management
-VRF](/version/cumulus-linux-377/Layer-3/Management-VRF), follow [these
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF),
+including the [management VRF](/cumulus-linux/Layer-3/Management-VRF),
+follow [these
 steps](Management-VRF.html#src-8362940_ManagementVRF-services) for
 configuring them. See also the [VRF
 chapter](Virtual-Routing-and-Forwarding---VRF.html#src-8362942_VirtualRoutingandForwarding-VRF-dhcp).

@@ -8,8 +8,8 @@ aliases:
 pageID: 8362630
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 You can only install one image of the operating system on a Cumulus
 Linux switch. This section discusses how to install new and update

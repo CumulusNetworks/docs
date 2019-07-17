@@ -8,8 +8,8 @@ aliases:
 pageID: 8362926
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 BGP is the routing protocol that runs the Internet. It is an
 increasingly popular protocol for use in the data center as it lends
@@ -186,7 +186,7 @@ unnumbered interfaces to route maps.
 
 1.  Enable the BGP and Zebra daemons (`zebra` and `bgpd`), then enable
     the FRRouting service and start it, as described in [Configuring
-    FRRouting](/version/cumulus-linux-377/Layer-3/Configuring-FRRouting/).
+    FRRouting](/cumulus-linux/Layer-3/Configuring-FRRouting/).
 
 2.  Identify the BGP node by assigning an ASN and `router-id`:
     
@@ -1537,16 +1537,14 @@ illustrates one way you can do so in a typical Clos architecture:
 
 You can run multiple routing tables (one for in-band/data plane traffic
 and one for out-of-band/management plane traffic) on the same switch
-using [management
-VRF](/version/cumulus-linux-377/Layer-3/Management-VRF) (multiple
+using [management VRF](/cumulus-linux/Layer-3/Management-VRF) (multiple
 routing tables and forwarding).
 
 {{%notice note%}}
 
 BGP and static routing (IPv4 and IPv6) are supported within a VRF
 context. For more information, refer to [Virtual Routing and Forwarding
--
-VRF](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF).
+- VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF).
 
 {{%/notice%}}
 
@@ -2094,7 +2092,7 @@ this for TTL:
 {{%notice note%}}
 
 For more information about ACLs, see [Netfilter
-(ACLs)](/version/cumulus-linux-377/System-Configuration/Netfilter---ACLs/).
+(ACLs)](/cumulus-linux/System-Configuration/Netfilter---ACLs/).
 
 {{%/notice%}}
 
@@ -2106,7 +2104,7 @@ an already established peer, are not supported in Cumulus Linux.
 ### <span>Related Information</span>
 
   - [Bidirectional forwarding
-    detection](/version/cumulus-linux-377/Layer-3/Bidirectional-Forwarding-Detection---BFD)
+    detection](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD)
     (BFD) and BGP
 
   - [Wikipedia entry for

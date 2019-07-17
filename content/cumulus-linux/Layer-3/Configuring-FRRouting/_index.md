@@ -8,8 +8,8 @@ aliases:
 pageID: 8362919
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 This section provides an overview of configuring FRRouting, the routing
 software package that provides a suite of routing protocols so you can
@@ -30,9 +30,9 @@ Cumulus Networks has not tested RIP, RIPv6, IS-IS and Babel.
 
 The `zebra` daemon must always be enabled. The others you can enable
 according to how you plan to route your network — using
-[BGP](/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP)
-for example, instead of
-[OSPF](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF).
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP) for example,
+instead of
+[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF).
 
 Before you start FRRouting, you need to enable the corresponding
 daemons. Edit the `/etc/frr/daemons` file and set to *yes* each daemon
@@ -71,7 +71,7 @@ any of the routing protocol daemons that are enabled and running.
 
 For more information on the `systemctl` command and changing the state
 of daemons, read [Services and Daemons in Cumulus
-Linux](/version/cumulus-linux-377/System-Configuration/Services-and-Daemons-in-Cumulus-Linux).
+Linux](/cumulus-linux/System-Configuration/Services-and-Daemons-in-Cumulus-Linux).
 
 {{%/notice%}}
 
@@ -159,7 +159,7 @@ is the recommended way to define the addresses; do **not** create
 interfaces using FRRouting. For more information, see [Configuring IP
 Addresses](Interface-Configuration-and-Management.html#src-8363023_InterfaceConfigurationandManagement-ip)
 and [Virtual Routing and Forwarding -
-VRF](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF).
+VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF).
 
 ## <span id="src-8362919_ConfiguringFRRouting-vtysh" class="confluence-anchor-link"></span><span>FRRouting vtysh Modal CLI</span>
 
@@ -414,7 +414,7 @@ started, `vtysh` silently ignores those commands.
 
 Alternately, if you do not want to use a modal CLI to configure
 FRRouting, you can use a suite of [Cumulus Linux-specific
-commands](/version/cumulus-linux-377/Layer-3/Configuring-FRRouting/Comparing-NCLU-and-vtysh-Commands)
+commands](/cumulus-linux/Layer-3/Configuring-FRRouting/Comparing-NCLU-and-vtysh-Commands)
 instead.
 
 ## <span>Reload the FRRouting Configuration</span>

@@ -8,8 +8,8 @@ aliases:
 pageID: 8362603
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The following sections describe various ways you can troubleshoot
 `ifupdown2`.

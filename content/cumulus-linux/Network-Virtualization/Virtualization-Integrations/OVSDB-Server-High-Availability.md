@@ -8,8 +8,8 @@ aliases:
 pageID: 8362860
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 {{%notice warning%}}
 
@@ -27,9 +27,9 @@ running in active-active mode). For information about VMware NSX in
 standalone mode and for a description of the components that work
 together to integrate VMware NSX and Cumulus Linux, see [Integrating
 Hardware VTEPs with VMware
-NSX-MH](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
+NSX-MH](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
 or [Integrating Hardware VTEPs with VMware
-NSX-V](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V).
+NSX-V](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V).
 
 With OVSDB server high availability mode, you use two peer Cumulus Linux
 switches in an MLAG configuration. Both the MLAG primary and MLAG
@@ -72,7 +72,7 @@ Before you configure OVSDB server high availability, make sure you have
 **two switches running Cumulus Linux in an MLAG configuration**. Cumulus
 Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`),
 which support [VLAN-aware
-bridges](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+bridges](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
 
 The following example configuration in the `/etc/network/interfaces`
 file shows the *minimum* MLAG configuration required (the MLAG peerlink

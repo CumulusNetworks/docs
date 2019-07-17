@@ -8,8 +8,8 @@ aliases:
 pageID: 8362558
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication,
 and Authorization) in a transparent way with minimal configuration. The
@@ -26,7 +26,7 @@ per-command authorization requires additional setup on the switch.
   - Runs over the eth0 management interface
 
   - Ability to run in the [management
-    VRF](/version/cumulus-linux-377/Layer-3/Management-VRF)
+    VRF](/cumulus-linux/Layer-3/Management-VRF)
 
   - TACACS+ privilege 15 users can run any command with sudo using the
     `/etc/sudoers.d/tacplus` file that is installed by the
@@ -224,13 +224,12 @@ accounting. These records are installed as part of the package.
 
 `audisp-tacplus` installs the audit rules for command accounting.
 Modifying the configuration files is not usually necessary. However,
-when a [management
-VRF](/version/cumulus-linux-377/Layer-3/Management-VRF) is configured,
-the accounting configuration does need special modification because the
-`auditd` service starts prior to networking. It is necessary to add the
-*vrf* parameter and to signal the `audisp-tacplus` process to reread the
-configuration. The example below shows that the management VRF is named
-*mgmt*. You can place the *vrf* parameter in either the
+when a [management VRF](/cumulus-linux/Layer-3/Management-VRF) is
+configured, the accounting configuration does need special modification
+because the `auditd` service starts prior to networking. It is necessary
+to add the *vrf* parameter and to signal the `audisp-tacplus` process to
+reread the configuration. The example below shows that the management
+VRF is named *mgmt*. You can place the *vrf* parameter in either the
 `/etc/tacplus_servers` file or in the `/etc/audisp/audisp-tac_plus.conf`
 file.
 

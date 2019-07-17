@@ -8,8 +8,8 @@ aliases:
 pageID: 8362625
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 <details>
 
@@ -643,7 +643,7 @@ BFD, and associated logs are documented in the code.
 
 Cumulus Networks recommends that you track peering information through
 PTM. For more information, refer to the [Prescriptive Topology Manager
-documentation](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM).
+documentation](/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM).
 
 {{%/notice%}}
 

@@ -8,8 +8,8 @@ aliases:
 pageID: 8362594
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 You monitor system hardware in these ways, using:
 
@@ -19,7 +19,7 @@ You monitor system hardware in these ways, using:
 
   - `sensors`
 
-  - [Net-SNMP](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/)
+  - [Net-SNMP](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/)
 
   - watchdog
 
@@ -224,7 +224,7 @@ printed. Example chip names include:
 ## <span id="src-8362594_MonitoringSystemHardware-snmp" class="confluence-anchor-link"></span><span>Monitor Switch Hardware Using SNMP</span>
 
 The Net-SNMP documentation is discussed
-[here](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/).
+[here](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/).
 
 ## <span id="src-8362594_MonitoringSystemHardware-watchdog" class="confluence-anchor-link"></span><span>Keep the Switch Alive Using the Hardware Watchdog</span>
 

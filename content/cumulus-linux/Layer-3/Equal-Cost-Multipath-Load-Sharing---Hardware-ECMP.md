@@ -8,8 +8,8 @@ aliases:
 pageID: 8362929
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Cumulus Linux supports hardware-based [equal cost
 multipath](http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing)

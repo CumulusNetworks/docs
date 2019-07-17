@@ -8,14 +8,14 @@ aliases:
 pageID: 8362924
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 OSPFv3 is a revised version of OSPFv2 to support the IPv6 address
 family. Refer to [Open Shortest Path First (OSPF)
-Protocol](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF)
-for a discussion on the basic concepts, which remain the same between
-the two versions.
+Protocol](/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF) for a
+discussion on the basic concepts, which remain the same between the two
+versions.
 
 OSPFv3 has changed the formatting in some of the packets and LSAs either
 as a necessity to support IPv6 or to improve the protocol behavior based
@@ -29,8 +29,8 @@ optimized SPF computation.
 
 IETF has defined extensions to OSPFv3 to support multiple address
 families (that is, both IPv6 and IPv4).
-[FRR](/version/cumulus-linux-377/Layer-3/FRRouting-Overview/) does not
-support it yet.
+[FRR](/cumulus-linux/Layer-3/FRRouting-Overview/) does not support it
+yet.
 
 {{%/notice%}}
 
@@ -40,8 +40,8 @@ Configuring OSPFv3 involves the following tasks:
 
 1.  Enabling the `zebra` and `ospf6` daemons, as described in
     [Configuring
-    FRRouting](/version/cumulus-linux-377/Layer-3/Configuring-FRRouting/)
-    then start the FRRouting service:
+    FRRouting](/cumulus-linux/Layer-3/Configuring-FRRouting/) then start
+    the FRRouting service:
     
         cumulus@switch:~$ sudo systemctl enable frr.service
         cumulus@switch:~$ sudo systemctl start frr.service
@@ -187,7 +187,7 @@ topology as computed by SPF to help visualize the network view.
 ## <span>Related Information</span>
 
   - [Bidirectional forwarding
-    detection](/version/cumulus-linux-377/Layer-3/Bidirectional-Forwarding-Detection---BFD)
+    detection](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD)
     (BFD) and OSPF
 
   - [en.wikipedia.org/wiki/Open\_Shortest\_Path\_First](http://en.wikipedia.org/wiki/Open_Shortest_Path_First)

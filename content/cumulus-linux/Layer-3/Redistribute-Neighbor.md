@@ -8,8 +8,8 @@ aliases:
 pageID: 8362959
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 <details>
 
@@ -51,7 +51,7 @@ Redistribute neighbor was created with these use cases in mind:
 
   - Hosts that are dual connected to two leaf nodes without using
     proprietary protocols such as
-    [MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+    [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
 
   - Anycast services needing dynamic advertisement from multiple hosts
 
@@ -221,7 +221,7 @@ Configure a host with the same /32 IP address on its loopback (lo) and
 uplinks (in this example, eth1 and eth2). This is done so both leaf
 switches advertise the same /32 regardless of the interface. Cumulus
 Linux relies on
-[ECMP](/version/cumulus-linux-377/Layer-3/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP)
+[ECMP](/cumulus-linux/Layer-3/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP)
 to load balance across the interfaces southbound, and an equal cost
 static route (see the configuration below) for load balancing
 northbound.
@@ -266,7 +266,7 @@ via eth2. You should note:
 #### <span>Install ifplugd</span>
 
 Additionally, install and use
-[ifplugd](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/ifplugd).
+[ifplugd](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/ifplugd).
 `ifplugd` modifies the behavior of the Linux routing table when an
 interface undergoes a link transition (carrier up/down). The Linux
 kernel by default leaves routes up even when the physical interface is
@@ -317,7 +317,7 @@ This release of redistribute neighbor supports IPv4 only.
 ### <span>VRFs Are not Supported</span>
 
 This release of redistribute neighbor does not support
-[VRFs](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF).
+[VRFs](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF).
 
 ### <span>Only 1024 Interfaces Supported</span>
 

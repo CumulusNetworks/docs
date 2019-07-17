@@ -8,8 +8,8 @@ aliases:
 pageID: 8362631
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 You use the Advanced Packaging Tool (`apt`) to manage additional
 applications (in the form of packages) and to install the latest
@@ -197,7 +197,7 @@ The above commands upgrade all installed versions with their latest
 versions but do not install any new packages.
 
 Refer to [Upgrading Cumulus
-Linux](/version/cumulus-linux-377/Installation-Management/Upgrading-Cumulus-Linux)
+Linux](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux)
 for additional information.
 
 ## <span>Add New Packages</span>

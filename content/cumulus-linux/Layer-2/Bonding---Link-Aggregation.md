@@ -8,8 +8,8 @@ aliases:
 pageID: 8362653
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Linux bonding provides a method for aggregating multiple network
 interfaces (*slaves*) into a single logical bonded interface (*bond*).
@@ -24,7 +24,7 @@ Cumulus Linux supports two bonding modes:
   - Balance-xor mode, where the bonding of slave interfaces are static
     and all slave interfaces are active for load balancing and fault
     tolerance purposes. This is useful for
-    [MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+    [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
     deployments.
 
 The benefits of link aggregation include:
@@ -38,7 +38,7 @@ The benefits of link aggregation include:
 Cumulus Linux uses version 1 of the LAG control protocol (LACP).
 
 To temporarily bring up a bond even when there is no LACP partner, use
-[LACP Bypass](/version/cumulus-linux-377/Layer-2/LACP-Bypass).
+[LACP Bypass](/cumulus-linux/Layer-2/LACP-Bypass).
 
 ## <span>Hash Distribution</span>
 
@@ -68,7 +68,7 @@ over available slaves.
 
 You can create and configure a bond with the Network Command Line
 Utility
-([NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)).
+([NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU)).
 Follow the steps below to create a new bond:
 
 1.  SSH into the switch.
@@ -173,13 +173,13 @@ cumulus@switch:~$ net commit</code></pre></td>
 </tr>
 <tr class="even">
 <td><p><code>bond lacp-bypass-allow</code></p></td>
-<td><p>Enables <a href="/version/cumulus-linux-377/Layer-2/LACP-Bypass">LACP bypass</a>.</p></td>
+<td><p>Enables <a href="/cumulus-linux/Layer-2/LACP-Bypass">LACP bypass</a>.</p></td>
 <td><p>N/A</p></td>
 </tr>
 <tr class="odd">
 <td><p><code>bond lacp-rate</code></p></td>
 <td><p>Sets the rate to ask the link partner to transmit LACP control packets.</p>
-<p>You can set the LACP rate to slow using <a href="/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU">NCLU</a>:</p>
+<p>You can set the LACP rate to slow using <a href="/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU">NCLU</a>:</p>
 <pre><code>cumulus@switch:~$ net add bond bond01 bond lacp-rate slow</code></pre></td>
 <td><p>1</p></td>
 </tr>
@@ -202,7 +202,7 @@ tolerance purposes. Packet transmission on the bond is based on the hash
 policy specified by `xmit-hash-policy`.
 
 When using balance-xor mode to dual-connect host-facing bonds in an
-[MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
 environment, you **must** configure the `clag_id` parameter on the MLAG
 bonds and it must be the same on both MLAG switches. Otherwise, the
 bonds are treated by the MLAG switch pair as single-connected.
@@ -242,7 +242,7 @@ These commands create the following configuration in the
         bond-slaves swp3 swp4
 
 To view the bond, use
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU):
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU):
 
     cumulus@switch:~$ net show interface bond1 
         Name    MAC                Speed    MTU    Mode

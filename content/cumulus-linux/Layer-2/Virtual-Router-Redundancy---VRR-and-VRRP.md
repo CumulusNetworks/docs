@@ -8,8 +8,8 @@ aliases:
 pageID: 8362691
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Cumulus Linux provides the option of using Virtual Router Redundancy
 (VRR) or Virtual Router Redundancy Protocol (VRRP).
@@ -43,7 +43,7 @@ configuration.
 The diagram below illustrates a basic VRR-enabled network configuration.
 The network includes several hosts and two routers running Cumulus Linux
 configured with [Multi-chassis Link
-Aggregation](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+Aggregation](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
 (MLAG).
 
 {{%notice note%}}
@@ -205,7 +205,7 @@ mode for First Hop Redundancy Protocol.
 ### <span>Example VRR Configuration with MLAG</span>
 
 To create an
-[MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
 configuration that incorporates VRR, use a configuration like the
 following:
 

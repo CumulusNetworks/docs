@@ -8,8 +8,8 @@ aliases:
 pageID: 8362976
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Address Resolution Protocol <span style="color: #222222;"> ( </span> ARP
 <span style="color: #222222;"> ) is a </span> communication protocol
@@ -108,7 +108,7 @@ Cumulus Networks chose the value used.
 <p><em>1 - Allows you to have multiple network interfaces on the same subnet, and have the ARPs for each interface be answered based on whether or not the kernel would route a packet from the ARP'd IP address out of that interface (therefore you must use source based routing for this to work). In other words, it allows control of which cards (usually 1) will respond to an ARP request.</em></p>
 <p><em>arp_filter for the interface will be enabled if at least one of conf/{all,interface}/arp_filter is set to TRUE, it will be disabled otherwise.</em></p>
 <p>Cumulus Linux uses the default Debian Linux arp_filter setting of <em>0</em>.</p>
-<p>The <code>arp_filter</code> is primarily used when multiple interfaces reside in the same subnet and is used to allow/disallow which interfaces respond to ARP requests. In the case of <a href="/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF">OSPF</a> using IP unnumbered interfaces, many interfaces appear to be in the same subnet, and so actually contain the same address. If multiple interfaces are used between a pair of routers, having <code>arp_filter</code> set to 1 causes forwarding to fail.</p>
+<p>The <code>arp_filter</code> is primarily used when multiple interfaces reside in the same subnet and is used to allow/disallow which interfaces respond to ARP requests. In the case of <a href="/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF">OSPF</a> using IP unnumbered interfaces, many interfaces appear to be in the same subnet, and so actually contain the same address. If multiple interfaces are used between a pair of routers, having <code>arp_filter</code> set to 1 causes forwarding to fail.</p>
 <p>The <code>arp_filter</code> parameter is set to allow a response on any interface in the subnet, where the <code>arp_ignore</code> setting (below) to limit cross-interface ARP behavior.</p></td>
 </tr>
 <tr class="even">
@@ -271,7 +271,7 @@ These commands create the following snippet in the
 
 If you're running two interfaces in the same broadcast domain, which is
 typically seen when using
-[VRR](/version/cumulus-linux-377/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP),
+[VRR](/cumulus-linux/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP),
 as it creates a "-v0" interface in the same broadcast domain, make sure
 to use `sysctl` or `sysfs` to let the kernel know, so that both
 interfaces do not respond with proxy ARP replies. To do so, set

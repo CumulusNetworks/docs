@@ -8,8 +8,8 @@ aliases:
 pageID: 8362580
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The Network Command Line Utility (NCLU) is a command line interface for
 Cumulus Networks products that simplifies the networking configuration
@@ -116,7 +116,7 @@ configuration with the following commands:
     descriptive summary of the changes you are about to commit.
 
   - `net commit permanent` retains the
-    [snapshot](/version/cumulus-linux-377/Installation-Management/Using-Snapshots)
+    [snapshot](/cumulus-linux/Installation-Management/Using-Snapshots)
     taken when committing the change. Otherwise, the snapshots created
     from NCLU commands are cleaned up periodically with a snapper cron
     job.
@@ -130,9 +130,8 @@ configuration with the following commands:
     {{%notice note%}}
     
     The `net del all` command does not remove [management
-    VRF](/version/cumulus-linux-377/Layer-3/Management-VRF)
-    configurations; NCLU does not interact with eth0 interfaces and
-    management VRF.
+    VRF](/cumulus-linux/Layer-3/Management-VRF) configurations; NCLU
+    does not interact with eth0 interfaces and management VRF.
     
     {{%/notice%}}
 
@@ -394,9 +393,9 @@ You can use the `adduser` command for local user accounts only. You can
 use the `addgroup` command for both local and remote user accounts. For
 a remote user account, you must use the mapping username, such as
 `tacacs3` or `radius_user`, not the
-[TACACS](/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
+[TACACS](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
 or
-[RADIUS](/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA)
+[RADIUS](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA)
 account name.
 
 {{%/notice%}}

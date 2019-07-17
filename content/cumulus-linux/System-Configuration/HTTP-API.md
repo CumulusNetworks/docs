@@ -8,14 +8,14 @@ aliases:
 pageID: 8362591
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Cumulus Linux implements an HTTP application programing interface to
 [OpenStack ML2
-driver](/version/cumulus-linux-377/Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux)
+driver](/cumulus-linux/Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux)
 and
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU).
 Rather than accessing Cumulus Linux using SSH, you can interact with the
 switch using an HTTP client, such as cURL, HTTPie or a web browser.
 

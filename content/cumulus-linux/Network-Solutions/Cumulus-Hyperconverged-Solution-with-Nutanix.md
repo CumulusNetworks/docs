@@ -8,8 +8,8 @@ aliases:
 pageID: 9012165
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The Cumulus Hyperconverged Solution (HCS) in Cumulus Linux supports
 automated integration with the Nutanix Prism Management solution and the
@@ -22,7 +22,7 @@ In addition, you can augment the deployment with:
   - [Cumulus on a
     Stick](https://cumulusnetworks.com/cumulus-on-a-stick/) for [zero
     touch
-    provisioning](/version/cumulus-linux-377/Installation-Management/Zero-Touch-Provisioning---ZTP)
+    provisioning](/cumulus-linux/Installation-Management/Zero-Touch-Provisioning---ZTP)
     Nutanix and Cumulus HCS without any user interaction or additional
     equipment.
 
@@ -54,7 +54,7 @@ Cumulus HCS has two major components:
     automatically identifies the physical Nutanix server hosting the VM
     and discovers any VLANs required for the VM. The service then
     automatically adds these VLANs to the default [VLAN-aware
-    bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode),
+    bridge](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode),
     the MLAG peer link and the automatically created bond to the Nutanix
     node. When a VM is powered off, removed or moved, and the associated
     VLAN has no other VMs, the VLAN is automatically removed from the
@@ -75,7 +75,7 @@ Cumulus HCS has two major components:
   - IP connectivity between the Cumulus Linux switches and the Nutanix
     controller VMs (CVMs)
 
-  - [MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+  - [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
     enabled on the Cumulus Linux switches
 
 Cumulus HCS runs on any platform. However, this chapter assumes a
@@ -92,7 +92,7 @@ typical Nutanix deployment with the following configuration:
   - Connections to other infrastructure are on ports swp51 and above
 
   - The eth0 management interface is configured for [management
-    VRF](/version/cumulus-linux-377/Layer-3/Management-VRF) via DHCP
+    VRF](/cumulus-linux/Layer-3/Management-VRF) via DHCP
 
   - For automatic configuration, the gateway IP addresses for all VMs,
     including the CVM, do not exist on the Cumulus Linux switches.
@@ -363,12 +363,12 @@ gateway configuration.
 
 To provide redundant gateways for the dual-attached Nutanix servers,
 Cumulus Linux relies on [Virtual Router
-Redundancy](/version/cumulus-linux-377/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP)
+Redundancy](/cumulus-linux/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP)
 (VRR). VRR enables hosts to communicate with any redundant router
 without reconfiguration, running dynamic routing protocols, or running
 router redundancy protocols. This means that redundant routers will
 respond to [Address Resolution
-Protocol](/version/cumulus-linux-377/Layer-3/Address-Resolution-Protocol---ARP)
+Protocol](/cumulus-linux/Layer-3/Address-Resolution-Protocol---ARP)
 (ARP) requests from hosts. Routers are configured to respond in an
 identical manner, but if one fails, the other redundant routers will
 continue to respond, leaving the hosts with the impression that nothing
@@ -420,7 +420,7 @@ configuration is required.
 Cumulus RMP does not support MLAG or active/active connections across
 Cumulus RMP switches. Connections across more than one Cumulus RMP
 switch rely on traditional [spanning tree
-protocol](/version/cumulus-linux-377/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree)
+protocol](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree)
 for redundancy.
 
 ### <span>Other Cumulus Linux 1G Switches</span>
@@ -485,9 +485,9 @@ with the interface name.
 ### <span>Verify LLDP Messages Are Being Received</span>
 
 If bonds are not being created, then
-[LLDP](/version/cumulus-linux-377/Layer-2/Link-Layer-Discovery-Protocol/)
-messages may not be getting through. You can check for this possibility
-using the `net show lldp` command:
+[LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) messages
+may not be getting through. You can check for this possibility using the
+`net show lldp` command:
 
     cumulus@leaf01:~$ net show lldp
     LocalPort  Speed  Mode           RemoteHost       RemotePort

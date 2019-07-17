@@ -8,8 +8,8 @@ aliases:
 pageID: 8362554
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 By default, Cumulus Linux has two user accounts: *root* and *cumulus*.
 The *cumulus* account is a normal user and is in the group *sudo*.

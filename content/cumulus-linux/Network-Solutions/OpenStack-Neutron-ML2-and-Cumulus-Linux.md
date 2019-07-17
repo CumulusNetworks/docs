@@ -8,8 +8,8 @@ aliases:
 pageID: 8362989
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The Modular Layer 2 (ML2) plugin is a framework that allows OpenStack
 Networking to utilize a variety of non-vendor-specific layer 2
@@ -99,7 +99,7 @@ You configure them in the `/etc/neutron/plugins/ml2/ml2_conf.ini` file.
     value is *False*.
 
   - `new_bridge` — Enables/disables [VLAN-aware bridge
-    mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+    mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
     for the bridge configuration. The default value is *False*, so a
     traditional mode bridge is created.
 

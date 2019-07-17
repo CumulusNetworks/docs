@@ -8,8 +8,8 @@ aliases:
 pageID: 8362655
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Ethernet bridges provide a means for hosts to communicate through layer
 2, by connecting all of the physical and logical interfaces in the
@@ -35,7 +35,7 @@ interfaces that traverse an 802.1Q VLAN trunk.
 {{%notice tip%}}
 
 Cumulus Networks recommends using *[VLAN-aware
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)*
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)*
 bridges, rather than *traditional mode* bridges. The bridge driver in
 Cumulus Linux is capable of VLAN filtering, which allows for
 configurations that are similar to incumbent network devices. While
@@ -70,12 +70,12 @@ VLAN-aware bridge on a given switch.
 
 To learn about VLAN-aware bridges and how to configure them, read
 [VLAN-aware Bridge
-Mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+Mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
 
 ## <span>Create a Traditional Mode Bridge</span>
 
 To create a traditional mode bridge, see [Traditional Bridge
-Mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode).
+Mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode).
 
 ## <span>Configure Bridge MAC Addresses</span>
 
@@ -147,7 +147,7 @@ unreachable.
 {{%/notice%}}
 
 To configure the SVI, use
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU):
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU):
 
     cumulus@switch:~$ net add bridge bridge ports swp1-2
     cumulus@switch:~$ net add vlan 10 ip address 10.100.100.1/24

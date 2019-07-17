@@ -8,8 +8,8 @@ aliases:
 pageID: 8362545
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 <details>
 
@@ -132,9 +132,9 @@ explanation of the output.
 {{%notice note%}}
 
 If you intend to run this service within a
-[VRF](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF),
-including the [management
-VRF](/version/cumulus-linux-377/Layer-3/Management-VRF), follow [these
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF),
+including the [management VRF](/cumulus-linux/Layer-3/Management-VRF),
+follow [these
 steps](Management-VRF.html#src-8362940_ManagementVRF-services) for
 configuring the service.
 
@@ -142,7 +142,7 @@ configuring the service.
 
 By default, `/etc/ntp.conf` contains some default time servers. You can
 specify the NTP server or servers you want to use with
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU);
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU);
 include the `iburst` option to increase the sync speed.
 
     cumulus@switch:~$ net add time ntp server 4.cumulusnetworks.pool.ntp.org iburst

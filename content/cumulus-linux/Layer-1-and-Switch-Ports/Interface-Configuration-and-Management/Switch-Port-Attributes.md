@@ -8,8 +8,8 @@ aliases:
 pageID: 8363026
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Cumulus Linux exposes network interfaces for several types of physical
 and logical devices:
@@ -273,8 +273,7 @@ from swp1. Therefore, specifying an MTU on swp1 ensures that swp1.100
 inherits the MTU setting for swp1.
 
 <span id="src-8363026_SwitchPortAttributes-mtu_vxlan"></span>If you are
-working with
-[VXLANs](/version/cumulus-linux-377/Network-Virtualization/), the MTU
+working with [VXLANs](/cumulus-linux/Network-Virtualization/), the MTU
 for a virtual network interface (VNI) must be 50 bytes smaller than the
 MTU of the physical interfaces on the switch, as those 50 bytes are
 required for various headers and other data. Also, consider setting the
@@ -287,7 +286,7 @@ MTU much higher than the default 1500.
 In general, the policy file specified above handles default MTU settings
 for all interfaces on the switch. If you need to configure a different
 MTU setting for a subset of interfaces, use
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU).
 
 The following commands configure an MTU minimum value of 9000 on swp1:
 
@@ -719,7 +718,7 @@ iface swp1
   link-speed 100</code></pre></td>
 <td><ul>
 <li><p>10M or 100M speeds are possible with auto-negotiation OFF on both sides. Testing on an Edgecore AS4610-54P revealed the ASIC reporting auto-negotiation as ON.</p></li>
-<li><p><a href="/version/cumulus-linux-377/System-Configuration/Power-over-Ethernet---PoE">Power over Ethernet</a> may require auto-negotiation to be ON.</p></li>
+<li><p><a href="/cumulus-linux/System-Configuration/Power-over-Ethernet---PoE">Power over Ethernet</a> may require auto-negotiation to be ON.</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -998,7 +997,7 @@ Cumulus Linux has the ability to:
   - Combine (also called *aggregating* or *ganging*) four 10G switch
     ports into one 40G port for use with a breakout cable ([not to be
     confused with a
-    bond](/version/cumulus-linux-377/Layer-2/Bonding---Link-Aggregation)).
+    bond](/cumulus-linux/Layer-2/Bonding---Link-Aggregation)).
 
 To configure a 4x25G breakout port, first configure the port to break
 out then set the link speed:
@@ -1366,7 +1365,7 @@ Low-level interface statistics are available with `ethtool`:
 ### <span>Query SFP Port Information</span>
 
 You can verify SFP settings using [`ethtool
--m`](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool).
+-m`](/cumulus-linux/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool).
 The following example shows the vendor, type and power output for the
 swp4 interface.
 
@@ -1612,7 +1611,7 @@ This is a known issue where `ethtool` does not update after restarting
 `switchd`, so it continues to display the outdated port speed.
 
 To correctly set the port speed, use
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU)
 or `ethtool` to set the speed instead of manually editing the
 `ports.conf` file.
 

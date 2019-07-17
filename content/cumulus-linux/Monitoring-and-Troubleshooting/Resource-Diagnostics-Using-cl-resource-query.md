@@ -8,8 +8,8 @@ aliases:
 pageID: 8362593
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 You can use the `cl-resource-query` command to retrieve information
 about host entries, MAC entries, layer 2 and layer 3 routes, and

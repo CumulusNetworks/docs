@@ -8,18 +8,18 @@ aliases:
 pageID: 8362670
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Cumulus Networks recommends you use a [VLAN-aware
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+bridge](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
 on your switch. You use traditional mode bridges only if you need to run
 more than one bridge on the switch or if you need to use PVSTP+.
 
 ## <span>Create a Traditional Mode Bridge</span>
 
 You can configure a traditional mode bridge either using
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU)
 or manually editing the `/etc/network/interfaces` file.
 
 ### <span>Configure a Traditional Bridge with NCLU</span>
@@ -30,7 +30,7 @@ NCLU has limited support for configuring bridges in traditional mode.
 
 The traditional bridge must be named something other than *bridge*, ****
 as that name is reserved for the single [VLAN-aware
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+bridge](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
 that you can configure on the switch.
 
 {{%/notice%}}
@@ -154,7 +154,7 @@ To create a traditional mode bridge manually, you need to hand edit the
     <tr class="odd">
     <td><p>bridge-stp</p></td>
     <td><p>Enables spanning tree protocol on this bridge. The default spanning tree mode is Per VLAN Rapid Spanning Tree Protocol (PVRST).</p>
-    <p>For more information on spanning-tree configurations see the configuration section: <a href="/version/cumulus-linux-377/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">Spanning Tree and Rapid Spanning Tree</a>.</p></td>
+    <p>For more information on spanning-tree configurations see the configuration section: <a href="/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">Spanning Tree and Rapid Spanning Tree</a>.</p></td>
     <td><p>off</p></td>
     </tr>
     </tbody>
@@ -280,7 +280,7 @@ To create the above example, add the following configuration to the
 ### <span>VLAN Tagging Examples</span>
 
 You can find more examples of VLAN tagging in [the VLAN tagging
-chapter](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-Tagging).
+chapter](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-Tagging).
 
 ### <span id="src-8362670_TraditionalBridgeMode-arp" class="confluence-anchor-link"></span><span>Configure ARP Timers</span>
 

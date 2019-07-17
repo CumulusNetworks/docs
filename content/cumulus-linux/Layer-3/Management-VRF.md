@@ -8,11 +8,11 @@ aliases:
 pageID: 8362940
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 *Management VRF* is a subset of
-[VRF](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF)
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF)
 (virtual routing tables and forwarding) and provides a separation
 between the out-of-band management network and the in-band data plane
 network. For all VRFs, the *main* routing table is the default table for
@@ -270,7 +270,7 @@ Or:
 
 For additional information on using `ping` and `traceroute`, see the
 [Network Troubleshooting
-chapter](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Network-Troubleshooting/).
+chapter](/cumulus-linux/Monitoring-and-Troubleshooting/Network-Troubleshooting/).
 
 ### <span>Run Services as a Non-root User</span>
 
@@ -420,7 +420,7 @@ class and the *mgmt* interface class when the switch boots.
 
 The management VRF interface class is not supported if you are
 configuring Cumulus Linux using
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU).
 
 {{%/notice%}}
 

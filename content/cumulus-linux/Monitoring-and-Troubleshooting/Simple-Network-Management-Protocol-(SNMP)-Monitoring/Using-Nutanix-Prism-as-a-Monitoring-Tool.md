@@ -8,8 +8,8 @@ aliases:
 pageID: 8362618
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Nutanix Prism is a graphical user interface (GUI) for managing
 infrastructure and virtual environments. In order to use it, you need to

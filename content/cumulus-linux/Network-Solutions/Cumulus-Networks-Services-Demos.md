@@ -8,8 +8,8 @@ aliases:
 pageID: 8362987
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The Cumulus Networks Services team demos provide a virtual environment
 built using either VirtualBox or `libvirt` using Vagrant to manage the
@@ -22,7 +22,7 @@ code and simulate failure scenarios.
 
 The Cumulus Networks *reference topology* includes cabling (in DOT
 format for dual use with
-[PTM](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM)),
+[PTM](/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM)),
 MAC addressing, IP addressing, switches and servers. This topology is
 blessed by the Professional Services Team at Cumulus Networks to fit a
 majority of designs seen in the field.

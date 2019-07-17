@@ -8,8 +8,8 @@ aliases:
 pageID: 8363049
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Facebook Voyager is a Broadcom Tomahawk-based switch with added Dense
 Wave Division Multiplexing (DWDM) ports that can connect to another

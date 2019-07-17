@@ -8,8 +8,8 @@ aliases:
 pageID: 8363032
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 <details>
 
@@ -782,7 +782,7 @@ to allow the ECN configuration changes to take effect:
 On Mellanox switches, you can collect a fine-grained history of queue
 lengths using histograms maintained by the ASIC; see the [ASIC
 monitoring
-chapter](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/ASIC-Monitoring)
+chapter](/cumulus-linux/Monitoring-and-Troubleshooting/ASIC-Monitoring)
 for details.
 
 On Broadcom switches, the buffer status is not visible currently.

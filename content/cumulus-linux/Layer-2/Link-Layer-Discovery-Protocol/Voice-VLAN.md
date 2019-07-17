@@ -8,8 +8,8 @@ aliases:
 pageID: 8362651
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 In Cumulus Linux, a *voice VLAN* is a VLAN dedicated to voice traffic on
 a switch port. However, the term can mean different things to different
@@ -27,14 +27,14 @@ VLAN ID (which may or may not be 0) and an 802.1p (3-bit layer 2 COS)
 with a specific value (typically 5 is assigned for voice traffic).
 
 Data traffic is always
-[untagged](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-Tagging).
+[untagged](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-Tagging).
 
 ## <span>Cumulus Linux Voice VLAN Example</span>
 
 {{% imgOld 0 %}}
 
 You can configure the topology above using the following
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU)
 commands. In this configuration:
 
   - swp1 data traffic traverses the bridge's native VLAN and the voice

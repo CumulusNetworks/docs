@@ -8,8 +8,8 @@ aliases:
 pageID: 8362913
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 This chapter discusses the various routing protocols, and how to
 configure them.
@@ -54,11 +54,11 @@ differently.
 The way they answer these questions affects the network design and
 thereby configuration. For example, in a link-state protocol such as
 OSPF (see [Open Shortest Path First (OSPF)
-Protocol](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF))
-or IS-IS, complete local information (links and attached address
-prefixes) about a node is disseminated to every other node in the
-network. Since the state that a node has to keep grows rapidly in such a
-case, link-state protocols typically limit the number of nodes that
+Protocol](/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF)) or
+IS-IS, complete local information (links and attached address prefixes)
+about a node is disseminated to every other node in the network. Since
+the state that a node has to keep grows rapidly in such a case,
+link-state protocols typically limit the number of nodes that
 communicate this way. They allow for bigger networks to be built by
 breaking up a network into a set of smaller subnetworks (which are
 called areas or levels), and by advertising summarized information about

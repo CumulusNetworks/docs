@@ -8,8 +8,8 @@ aliases:
 pageID: 8362768
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 On Broadcom Trident II and Tomahawk switches running Cumulus Linux,
 there is a limit to the number of VXLANs you can configure
@@ -35,9 +35,9 @@ reserved range (Cumulus Linux uses 3000-3999 by default). Cumulus
 Networks typically uses a soft number because the math is unique to each
 environment. An internal VLAN is consumed by each
 <span style="color: #222222;"> layer 3 port, subinterface, [traditional
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
+bridge](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
 and the [VLAN-aware
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+bridge](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
 Therefore, the number of configurable VLANs is: </span>
 
 <span style="color: #222222;"> (total configurable 802.1q VLANs) -

@@ -8,8 +8,8 @@ aliases:
 pageID: 8362628
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The following table lists the HIGH severity ERROR log messages generated
 by FRRouting. These messages appear in `/var/log/frr/frr.log`.

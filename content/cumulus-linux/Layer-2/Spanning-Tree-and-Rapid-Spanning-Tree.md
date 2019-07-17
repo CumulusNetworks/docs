@@ -8,8 +8,8 @@ aliases:
 pageID: 8362689
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 <details>
 
@@ -24,11 +24,11 @@ The STP modes Cumulus Linux supports vary depending upon whether the
 traditional or VLAN-aware bridge driver mode is in use.
 
   - Bridges configured in
-    *[VLAN-aware](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)*
+    *[VLAN-aware](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)*
     mode operate **only** in RSTP mode.
 
   - Bridges configured in [*traditional*
-    mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode)
+    mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode)
     operate in both PVST and PVRST mode. The default is set to PVRST.
     Each traditional bridge has its own separate STP instance.
 
@@ -347,9 +347,8 @@ The NCLU commands above create the following code snippet:
 **Example Traditional Bridge Configuration**
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/),
-configure `PortAdminEdge` under the bridge stanza in
-`/etc/network/interfaces`:
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/), configure
+`PortAdminEdge` under the bridge stanza in `/etc/network/interfaces`:
 
     auto br2
     iface br2 inet static
@@ -587,9 +586,9 @@ These commands create the following stanza in the
 interfaces, which can cause poor network performance.
 
 You configure storm control for each physical port by [configuring
-`switchd`](/version/cumulus-linux-377/System-Configuration/Configuring-switchd).
-For example, to enable unicast and multicast storm control at 400
-packets per second (pps) and 3000 pps, respectively, for swp1, run the
+`switchd`](/cumulus-linux/System-Configuration/Configuring-switchd). For
+example, to enable unicast and multicast storm control at 400 packets
+per second (pps) and 3000 pps, respectively, for swp1, run the
 following:
 
     cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'

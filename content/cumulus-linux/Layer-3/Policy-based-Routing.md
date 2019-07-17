@@ -8,8 +8,8 @@ aliases:
 pageID: 8362974
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Typical routing systems and protocols forward traffic based on the
 destination address in the packet, which is used to look up an entry in

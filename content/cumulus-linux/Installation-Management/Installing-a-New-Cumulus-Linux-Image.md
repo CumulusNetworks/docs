@@ -8,8 +8,8 @@ aliases:
 pageID: 8362643
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 <details>
 
@@ -532,7 +532,7 @@ USB drive. Instructions are provided for x86 and ARM platforms.
     Stick](https://cumulusnetworks.com/cumulus-on-a-stick/)
 
   - [Managing Cumulus Linux Disk
-    Images](/version/cumulus-linux-377/Installation-Management/Managing-Cumulus-Linux-Disk-Images)
+    Images](/cumulus-linux/Installation-Management/Managing-Cumulus-Linux-Disk-Images)
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

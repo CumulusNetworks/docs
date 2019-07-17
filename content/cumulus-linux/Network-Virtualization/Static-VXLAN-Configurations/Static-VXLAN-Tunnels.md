@@ -8,20 +8,20 @@ aliases:
 pageID: 8362793
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 In VXLAN-based networks, there are a range of complexities and
 challenges in determining the destination *virtual tunnel endpoints*
 (VTEPs) for any given VXLAN. At scale, various solutions, including
 [Lightweight Network
-Virtualization](/version/cumulus-linux-377/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+Virtualization](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 (LNV), controller-based options like [Midokura
-MidoNet](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack)
+MidoNet](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack)
 or [VMware
-NSX](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
+NSX](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
 and even new standards like
-[EVPN](/version/cumulus-linux-377/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+[EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
 are attempts to address these complexities, however do retain their own
 complexities.
 

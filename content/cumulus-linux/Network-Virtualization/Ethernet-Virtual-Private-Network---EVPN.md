@@ -8,8 +8,8 @@ aliases:
 pageID: 8362732
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 VXLAN is the de facto technology for implementing network virtualization
 in the data center, enabling layer 2 segments to be extended over an IP
@@ -58,9 +58,9 @@ features include:
     the MAC Mobility Extended community.
 
   - Support for dual-attached hosts via [VXLAN active-active
-    mode](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Active-Active-Mode).
+    mode](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode).
     MAC synchronization between the peer switches is done using
-    [MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG).
+    [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG).
 
   - Support for ARP/ND suppression, which provides VTEPs with the
     ability to suppress ARP flooding over VXLAN tunnels.
@@ -102,7 +102,7 @@ over iBGP peering, OSPF can be used as the IGP or the next hops can also
 be resolved using iBGP.
 
 You can provision and manage EVPN using
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU).
 
 {{%notice note%}}
 
@@ -110,13 +110,13 @@ For Cumulus Linux 3.4 and later releases, the routing control plane
 (including EVPN) is installed as part of the
 [FRRouting](https://frrouting.org/) (FRR) package. For more information
 about FRR, refer to the [FRR
-Overview](/version/cumulus-linux-377/Layer-3/FRRouting-Overview/).
+Overview](/cumulus-linux/Layer-3/FRRouting-Overview/).
 
 {{%/notice%}}
 
 For information about VXLAN routing, including platform and hardware
 limitations, see [VXLAN
-Routing](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Routing).
+Routing](/cumulus-linux/Network-Virtualization/VXLAN-Routing).
 
 ## <span>Basic EVPN Configuration</span>
 
@@ -143,16 +143,15 @@ parameters.
 ### <span>Enable EVPN between BGP Neighbors</span>
 
 You enable EVPN between
-[BGP](/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP)
-neighbors by adding the address family *evpn* to the existing neighbor
-address-family activation command.
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP) neighbors by
+adding the address family *evpn* to the existing neighbor address-family
+activation command.
 
 For a non-VTEP device that is merely participating in EVPN route
 exchange, such as a spine switch (the network deployment uses hop-by-hop
 eBGP or the switch is acting as an iBGP route reflector), activating the
 interface for the EVPN address family is the fundamental configuration
-needed in
-[FRRouting](/version/cumulus-linux-377/Layer-3/FRRouting-Overview/).
+needed in [FRRouting](/cumulus-linux/Layer-3/FRRouting-Overview/).
 Additional configuration options for specific scenarios are described
 later on in this chapter.
 
@@ -327,10 +326,10 @@ The above commands create the following configuration snippet in the
 ### <span>Enable EVPN in an iBGP Environment with an OSPF Underlay</span>
 
 EVPN can be deployed with an
-[OSPF](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF)
-or static route underlay if needed. This is a more complex configuration
-than using eBGP. In this case, iBGP advertises EVPN routes directly
-between VTEPs, and the spines are unaware of EVPN or BGP.
+[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF) or static
+route underlay if needed. This is a more complex configuration than
+using eBGP. In this case, iBGP advertises EVPN routes directly between
+VTEPs, and the spines are unaware of EVPN or BGP.
 
 The leaf switches peer with each other in a full mesh within the EVPN
 address family without using route reflectors. The leafs generally peer
@@ -413,7 +412,7 @@ These commands create the following code snippet in the
 {{%notice tip%}}
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file using a text editor:
 
@@ -495,7 +494,7 @@ appropriate on the VLANs. See the example configuration below.
 {{%/notice%}}
 
 To configure ARP or ND suppression, use
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU).
 Here is an example configuration using two VXLANs (10100 and 10200) and
 two VLANs (100 and 200).
 
@@ -561,7 +560,7 @@ These commands create the following configuration in the
 {{%notice tip%}}
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file using a text editor:
 
@@ -659,9 +658,9 @@ ND extended community, run this command:
 
 No additional EVPN-specific configuration is needed for [VXLAN
 active-active
-mode](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Active-Active-Mode).
+mode](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode).
 Both switches in the
-[MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
 pair establish EVPN peering with other EVPN speakers (for example, with
 spine switches, if using hop-by-hop eBGP) and inform about their locally
 known VNIs and MACs. When MLAG is active, both switches announce this
@@ -691,7 +690,7 @@ EVPN does not synchronize.
 
 For information about active-active VTEPs and anycast IP behavior, and
 for failure scenarios, read the [VXLAN Active-Active
-Mode](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Active-Active-Mode)
+Mode](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode)
 chapter.
 
 ## <span>Inter-subnet Routing</span>
@@ -731,7 +730,7 @@ EVPN in Cumulus Linux supports all of the routing models listed above.
 The models are described further in the following sections.
 
 All routing happens in the context of a tenant VRF ([virtual routing and
-forwarding](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF)).
+forwarding](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF)).
 A VRF instance is provisioned for each tenant, and the subnets of the
 tenant are associated with that VRF (the corresponding SVI is attached
 to the VRF). Inter-subnet routing for each tenant occurs within the
@@ -741,11 +740,10 @@ tenants.
 {{%notice note%}}
 
 When configuring [VXLAN
-routing](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Routing),
-Cumulus Networks recommends enabling ARP suppression on all VXLAN
-interfaces. Otherwise, when a locally attached host ARPs for the
-gateway, it will receive multiple responses, one from each anycast
-gateway.
+routing](/cumulus-linux/Network-Virtualization/VXLAN-Routing), Cumulus
+Networks recommends enabling ARP suppression on all VXLAN interfaces.
+Otherwise, when a locally attached host ARPs for the gateway, it will
+receive multiple responses, one from each anycast gateway.
 
 {{%/notice%}}
 
@@ -1190,7 +1188,7 @@ These commands create the following configuration in the
 {{%notice tip%}}
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file using a text editor:
 
@@ -2153,7 +2151,7 @@ each and the associated router MAC address.
 
   - If the remote host is dual attached, the next hop for the EVPN route
     is the anycast IP address of the remote
-    [MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+    [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
     pair, when MLAG is active.
 
 {{%/notice%}}
@@ -2333,7 +2331,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
     announce certain VNIs.
 
   - In a [VXLAN
-    active-active](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Active-Active-Mode)
+    active-active](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode)
     configuration, ARPs are sometimes *not* suppressed even if ARP
     suppression is enabled. This is because the neighbor entries are not
     synchronized between the two switches operating in active-active

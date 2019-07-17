@@ -8,8 +8,8 @@ aliases:
 pageID: 8362693
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 `ifplugd` is an Ethernet link-state monitoring daemon, that can execute
 user-specified scripts to configure an Ethernet device when a cable is
@@ -53,7 +53,7 @@ MLAG environment.
 {{%notice info has%}}
 
 `ifplugd` is configured on both both the primary and secondary
-[MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
 switches in this example.
 
 {{%/notice%}}

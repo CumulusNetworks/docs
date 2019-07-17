@@ -8,8 +8,8 @@ aliases:
 pageID: 8362706
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 <details>
 
@@ -19,22 +19,22 @@ As of Cumulus Linux 3.7.4, the lightweight network virtualization
 feature (LNV) has been deprecated. The feature will be removed in
 Cumulus Linux 4.0. Cumulus Networks recommends you use [Ethernet virtual
 private network
-(EVPN)](/version/cumulus-linux-377/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+(EVPN)](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
 for network virtualization.
 
 {{%/notice%}}
 
 Lightweight Network Virtualization (LNV) is a technique for deploying
-[VXLANs](/version/cumulus-linux-377/Network-Virtualization/) without a
-central controller on bare metal switches. This solution requires no
-external controller or software suite; it runs the VXLAN service and
-registration daemons on Cumulus Linux itself. The data path between
-bridge entities is established on top of a layer 3 fabric by means of a
-simple service node coupled with traditional MAC address learning.
+[VXLANs](/cumulus-linux/Network-Virtualization/) without a central
+controller on bare metal switches. This solution requires no external
+controller or software suite; it runs the VXLAN service and registration
+daemons on Cumulus Linux itself. The data path between bridge entities
+is established on top of a layer 3 fabric by means of a simple service
+node coupled with traditional MAC address learning.
 
 To see an example of a full solution before reading the following
 background information, [read this
-chapter](/version/cumulus-linux-377/Network-Virtualization/Lightweight-Network-Virtualization-Overview/LNV-Full-Example).
+chapter](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/LNV-Full-Example).
 
 {{%notice note%}}
 
@@ -49,7 +49,7 @@ Cumulus Linux.
 {{%notice note%}}
 
 You cannot use LNV and
-[EVPN](/version/cumulus-linux-377/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+[EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
 at the same time.
 
 {{%/notice%}}
@@ -407,11 +407,10 @@ iface swp1s3
 
 The service nodes and registration nodes must all be routable between
 each other. The layer 3 fabric on Cumulus Linux can either be
-[BGP](/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP)
-or
-[OSPF](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF).
-In this example, OSPF is used to demonstrate full reachability. Click to
-expand the FRRouting configurations below.
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP) or
+[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF). In this
+example, OSPF is used to demonstrate full reachability. Click to expand
+the FRRouting configurations below.
 
 <summary>Click to expand the OSPF configuration ... </summary>
 
@@ -1225,7 +1224,7 @@ the IP address.
   - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
 
   - [Network virtualization chapter, Cumulus Linux user
-    guide](/version/cumulus-linux-377/Network-Virtualization/)
+    guide](/cumulus-linux/Network-Virtualization/)
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

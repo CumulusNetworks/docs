@@ -8,8 +8,8 @@ aliases:
 pageID: 8362823
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Switches running Cumulus Linux can integrate with VMware NSX-V to act as
 hardware VTEP gateways. The VMware NSX-V controller provides consistent
@@ -19,7 +19,7 @@ provisioning across virtual and physical server infrastructures.
 
 Cumulus Linux also supports integration with VMware NSX in high
 availability mode. Refer to [OVSDB Server High
-Availability](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/OVSDB-Server-High-Availability).
+Availability](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/OVSDB-Server-High-Availability).
 
 ## <span>Getting Started</span>
 
@@ -28,7 +28,7 @@ gateway; a Broadcom Tomahawk, Trident II+, Trident II, Maverick or
 Mellanox Spectrum switch running Cumulus Linux. Cumulus Linux includes
 OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support
 [VLAN-aware
-bridges](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+bridges](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
 
 To integrate a VXLAN with NSX-V, you need to:
 

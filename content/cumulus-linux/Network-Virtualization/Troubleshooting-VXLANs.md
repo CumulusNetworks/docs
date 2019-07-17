@@ -8,8 +8,8 @@ aliases:
 pageID: 9014338
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 This topic discusses various ways you can verify and troubleshoot
 VXLANs.

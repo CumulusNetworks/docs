@@ -8,8 +8,8 @@ aliases:
 pageID: 8362592
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 <details>
 
@@ -153,7 +153,7 @@ You can use `cl-support` to generate a single export file that contains
 various details and the configuration from a switch. This is useful for
 remote debugging and troubleshooting. For more information about
 `cl-support`, read [Understanding the cl-support Output
-File](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/).
+File](/cumulus-linux/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/).
 
 You should run `cl-support` before you submit a support request to
 Cumulus Networks as this file helps in the investigation of issues.
@@ -230,24 +230,24 @@ writes them to files in the `/var/log` directory. There are default
 rules in the `/etc/rsyslog.d/` directory that define where the logs are
 written:
 
-| Rule              | Purpose                                                                                                                                                                   |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 10-rules.conf     | Sets defaults for log messages, include log format and log rate limits.                                                                                                   |
-| 15-crit.conf      | Logs crit, alert or emerg log messages to `/var/log/crit.log` to ensure they are not rotated away rapidly.                                                                |
-| 20-clagd.conf     | Logs `clagd` messages to `/var/log/clagd.log` for [MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG).                                       |
-| 22-linkstate.conf | Logs link state changes for all physical and logical network links to `/var/log/linkstate`                                                                                |
-| 25-switchd.conf   | Logs `switchd` messages to `/var/log/switchd.log`.                                                                                                                        |
-| 30-ptmd.conf      | Logs `ptmd` messages to `/var/log/ptmd.log` for [Prescription Topology Manager](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM). |
-| 35-rdnbrd.conf    | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for [redistribute neighbor](/version/cumulus-linux-377/Layer-3/Redistribute-Neighbor).                                    |
-| 40-netd.conf      | Logs `netd` messages to `/var/log/netd.log` for [NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).                              |
-| 45-frr.conf       | Logs routing protocol messages to /var/log/frr/frr.log. This includes BGP and OSPF log messages.                                                                          |
-| 99-syslog.conf    | All remaining processes that use `rsyslog` are sent to `/var/log/syslog`.                                                                                                 |
+| Rule              | Purpose                                                                                                                                                       |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 10-rules.conf     | Sets defaults for log messages, include log format and log rate limits.                                                                                       |
+| 15-crit.conf      | Logs crit, alert or emerg log messages to `/var/log/crit.log` to ensure they are not rotated away rapidly.                                                    |
+| 20-clagd.conf     | Logs `clagd` messages to `/var/log/clagd.log` for [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG).                                       |
+| 22-linkstate.conf | Logs link state changes for all physical and logical network links to `/var/log/linkstate`                                                                    |
+| 25-switchd.conf   | Logs `switchd` messages to `/var/log/switchd.log`.                                                                                                            |
+| 30-ptmd.conf      | Logs `ptmd` messages to `/var/log/ptmd.log` for [Prescription Topology Manager](/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM). |
+| 35-rdnbrd.conf    | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for [redistribute neighbor](/cumulus-linux/Layer-3/Redistribute-Neighbor).                                    |
+| 40-netd.conf      | Logs `netd` messages to `/var/log/netd.log` for [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU).                              |
+| 45-frr.conf       | Logs routing protocol messages to /var/log/frr/frr.log. This includes BGP and OSPF log messages.                                                              |
+| 99-syslog.conf    | All remaining processes that use `rsyslog` are sent to `/var/log/syslog`.                                                                                     |
 
 Log files that are rotated are compressed into an archive. Processes
 that do not use `rsyslog` write to their own log files within the
 `/var/log` directory. For more information on specific log files, see
 [Troubleshooting Log
-Files](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files).
+Files](/cumulus-linux/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files).
 
 ### <span>Enable Remote syslog</span>
 
@@ -305,9 +305,9 @@ If you need to send other log files — such as `switchd` logs — to a
 ### <span id="src-8362592_MonitoringandTroubleshooting-mgmtvrf" class="confluence-anchor-link"></span><span>Write to syslog with Management VRF Enabled</span>
 
 You can write to syslog with [management
-VRF](/version/cumulus-linux-377/Layer-3/Management-VRF) enabled by
-applying the following configuration; this configuration is commented
-out in the `/etc/rsyslog.d/11-remotesyslog.conf` file:
+VRF](/cumulus-linux/Layer-3/Management-VRF) enabled by applying the
+following configuration; this configuration is commented out in the
+`/etc/rsyslog.d/11-remotesyslog.conf` file:
 
     cumulus@switch:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
     ## Copy all messages to the remote syslog server at 192.168.0.254 port 514

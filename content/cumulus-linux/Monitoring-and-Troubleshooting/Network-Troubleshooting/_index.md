@@ -8,8 +8,8 @@ aliases:
 pageID: 8362596
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Cumulus Linux contains a number of command line and analytical tools to
 help you troubleshoot issues with your network.
@@ -195,7 +195,7 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
 
 In Linux, all ACL rules are always counted. To create an ACL rule for
 counting purposes only, set the rule action to ACCEPT. See the
-[Netfilter](/version/cumulus-linux-377/System-Configuration/Netfilter---ACLs/)
+[Netfilter](/cumulus-linux/System-Configuration/Netfilter---ACLs/)
 chapter for details on how to use `cl-acltool` to set up
 iptables-/ip6tables-/ebtables-based ACLs.
 
@@ -267,7 +267,7 @@ packets might be discarded.
 
 SPAN and ERSPAN are configured via `cl-acltool`, the [same utility for
 security ACL
-configuration](/version/cumulus-linux-377/System-Configuration/Netfilter---ACLs/).
+configuration](/cumulus-linux/System-Configuration/Netfilter---ACLs/).
 The match criteria for SPAN and ERSPAN is usually an interface; for more
 granular match terms, use [selective
 spanning](#src-8362596_NetworkTroubleshooting-selective_spanning). The

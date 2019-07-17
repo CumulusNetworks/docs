@@ -8,8 +8,8 @@ aliases:
 pageID: 8362606
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Use single user mode to assist in troubleshooting system boot issues or
 for password recovery. To enter single user mode, follow the steps

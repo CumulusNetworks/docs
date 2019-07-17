@@ -8,8 +8,8 @@ aliases:
 pageID: 8362577
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 You configure [global HTTP and HTTPS
 proxies](https://wiki.archlinux.org/index.php/proxy_settings) in the

@@ -8,8 +8,8 @@ aliases:
 pageID: 8362542
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 This quick start guide provides an end-to-end setup process for
 installing and running Cumulus Linux, as well as a collection of example
@@ -66,7 +66,7 @@ system choice, such as Cumulus Linux.
 
 If Cumulus Linux is already installed on your switch and you need to
 upgrade the software only, skip to [Upgrading Cumulus
-Linux](/version/cumulus-linux-377/Installation-Management/Upgrading-Cumulus-Linux).
+Linux](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux).
 
 {{%/notice%}}
 
@@ -97,7 +97,7 @@ server typically completes in less than ten minutes.
 
 You have more options for installing Cumulus Linux with ONIE. Read
 [Installing a New Cumulus Linux
-Image](/version/cumulus-linux-377/Installation-Management/Installing-a-New-Cumulus-Linux-Image)
+Image](/cumulus-linux/Installation-Management/Installing-a-New-Cumulus-Linux-Image)
 to install Cumulus Linux using ONIE in the following ways:
 
   - DHCP/web server with and without DHCP options
@@ -160,7 +160,7 @@ All accounts except `root` are permitted remote SSH login; you can use
 change the system configuration require this elevated level of access.
 
 For more information about `sudo`, read [Using sudo to Delegate
-Privileges](/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
+Privileges](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
 
 ### <span>Serial Console Management</span>
 
@@ -251,10 +251,10 @@ required.
 
 Before you install the license, verify that the date and time on the
 switch are correct. You must [correct the date and
-time](/version/cumulus-linux-377/System-Configuration/Setting-Date-and-Time)
-if they are incorrect. The wrong date and time can have impacts on the
-switch, such as the inability to synchronize with Puppet or return
-errors like this one after you restart `switchd`:
+time](/cumulus-linux/System-Configuration/Setting-Date-and-Time) if they
+are incorrect. The wrong date and time can have impacts on the switch,
+such as the inability to synchronize with Puppet or return errors like
+this one after you restart `switchd`:
 
 > Warning: Unit file of switchd.service changed on disk, 'systemctl
 > daemon-reload' recommended.

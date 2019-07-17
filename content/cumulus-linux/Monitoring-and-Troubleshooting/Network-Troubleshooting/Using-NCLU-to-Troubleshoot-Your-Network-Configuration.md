@@ -8,11 +8,11 @@ aliases:
 pageID: 8362599
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The [network command line
-utility](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)
+utility](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU)
 (NCLU) can quickly return a lot of information about your network
 configuration.
 

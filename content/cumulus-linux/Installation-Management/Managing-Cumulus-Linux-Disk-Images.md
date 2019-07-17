@@ -8,17 +8,17 @@ aliases:
 pageID: 8362634
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The Cumulus Linux operating system resides on a switch as a *disk
 image*. This section discusses how to manage the disk image.
 
 For information on installing a new Cumulus Linux disk image, refer to
 [Installing a New Cumulus Linux
-Image](/version/cumulus-linux-377/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
+Image](/cumulus-linux/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
 For information on upgrading Cumulus Linux, refer to [Upgrading Cumulus
-Linux](/version/cumulus-linux-377/Installation-Management/Upgrading-Cumulus-Linux).
+Linux](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux).
 
 ## <span>Determine the Switch Platform</span>
 

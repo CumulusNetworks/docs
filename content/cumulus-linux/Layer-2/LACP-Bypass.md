@@ -8,17 +8,17 @@ aliases:
 pageID: 8362694
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 On Cumulus Linux, *LACP Bypass* is a feature that allows a
-[bond](/version/cumulus-linux-377/Layer-2/Bonding---Link-Aggregation)
-configured in 802.3ad mode to become active and forward traffic even
-when there is no LACP partner. A typical use case for this feature is to
-enable a host, without the capability to run LACP, to PXE boot while
-connected to a switch on a bond configured in 802.3ad mode. Once the
-pre-boot process finishes and the host is capable of running LACP, the
-normal 802.3ad link aggregation operation takes over.
+[bond](/cumulus-linux/Layer-2/Bonding---Link-Aggregation) configured in
+802.3ad mode to become active and forward traffic even when there is no
+LACP partner. A typical use case for this feature is to enable a host,
+without the capability to run LACP, to PXE boot while connected to a
+switch on a bond configured in 802.3ad mode. Once the pre-boot process
+finishes and the host is capable of running LACP, the normal 802.3ad
+link aggregation operation takes over.
 
 ## <span>LACP Bypass All-active Mode</span>
 
@@ -57,7 +57,7 @@ The following features are not supported:
 {{%notice note%}}
 
 In an [MLAG
-deployment](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+deployment](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
 where bond slaves of a host are connected to two switches and the bond
 is in all-active mode, all the slaves of bond are active on both the
 primary and secondary MLAG nodes.
@@ -166,7 +166,7 @@ and its slave interfaces:
 
 The following configuration shows LACP bypass enabled for multiple
 active interfaces (all-active mode) with a bridge in [traditional bridge
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode):
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode):
 
     auto bond1
     iface bond1 

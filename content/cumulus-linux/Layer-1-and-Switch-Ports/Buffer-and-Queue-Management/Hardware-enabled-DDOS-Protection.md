@@ -8,8 +8,8 @@ aliases:
 pageID: 8363034
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 It is crucial to also protect a switch’s control plane to ensure the
 proper control plane applications have access to the switch’s CPU.
@@ -118,7 +118,7 @@ Spectrum ASICs.
     {{%notice note%}}
     
     Configuring any of the following settings affects the [BFD
-    echo](/version/cumulus-linux-377/Layer-3/Bidirectional-Forwarding-Detection---BFD)
+    echo](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD)
     function. For example, if you enable `dos.udp_ports_eq`, all the BFD
     packets will get dropped because the BFD protocol uses the same
     source and destination UDP ports.

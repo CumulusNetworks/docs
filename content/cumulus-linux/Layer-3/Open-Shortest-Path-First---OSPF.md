@@ -8,8 +8,8 @@ aliases:
 pageID: 8362922
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 OSPF maintains the view of the network topology conceptually as a
 directed graph. Each router represents a vertex in the graph. Each link
@@ -36,7 +36,7 @@ protocol’s correctness.
 This topic describes OSPFv2, which is a [link-state routing
 protocol](http://en.wikipedia.org/wiki/Link-state_routing_protocol) for
 IPv4. For IPv6 commands, refer to [Open Shortest Path First v3 -
-OSPFv3](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First-v3---OSPFv3)
+OSPFv3](/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3---OSPFv3)
 
 ## <span>Scalability and Areas</span>
 
@@ -85,8 +85,7 @@ To configure OSPF, you need to:
 ### <span>Enable the OSPF and Zebra Daemons</span>
 
 To enable OSPF, enable the `zebra` and `ospf` daemons, as described in
-[Configuring
-FRRouting](/version/cumulus-linux-377/Layer-3/Configuring-FRRouting/),
+[Configuring FRRouting](/cumulus-linux/Layer-3/Configuring-FRRouting/),
 then start the FRRouting service:
 
     cumulus@switch:~$ sudo systemctl enable frr.service
@@ -707,7 +706,7 @@ lists all of the OSPF debug options.
 ## <span>Related Information</span>
 
   - [Bidirectional forwarding
-    detection](/version/cumulus-linux-377/Layer-3/Bidirectional-Forwarding-Detection---BFD)
+    detection](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD)
     (BFD) and OSPF
 
   - [en.wikipedia.org/wiki/Open\_Shortest\_Path\_First](http://en.wikipedia.org/wiki/Open_Shortest_Path_First)

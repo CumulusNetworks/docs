@@ -8,8 +8,8 @@ aliases:
 pageID: 8362595
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Data centers today have a large number of network switches manufactured
 by different hardware vendors running network operating systems (NOS)

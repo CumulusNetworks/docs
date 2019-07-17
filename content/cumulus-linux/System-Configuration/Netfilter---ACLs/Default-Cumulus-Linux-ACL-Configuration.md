@@ -8,14 +8,14 @@ aliases:
 pageID: 8362574
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 <details>
 
 The Cumulus Linux default ACL configuration is split into three parts,
 as outlined in the [netfilter ACL
-documentation](/version/cumulus-linux-377/System-Configuration/Netfilter---ACLs/):
+documentation](/cumulus-linux/System-Configuration/Netfilter---ACLs/):
 IP tables, IPv6 tables, and EB tables. The sections below describe the
 default configurations for each part. You can see the default file by
 clicking the Default ACL Configuration link:

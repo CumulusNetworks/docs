@@ -8,8 +8,8 @@ aliases:
 pageID: 8362696
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 IGMP (Internet Group Management Protocol) and MLD (Multicast Listener
 Discovery) snooping are implemented in the bridge driver in the Cumulus
@@ -80,7 +80,7 @@ For an explanation of the relevant parameters, see the
 `ifupdown-addons-interfaces` man page.
 
 For a [VLAN-aware
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode),
+bridge](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode),
 use a configuration like the following:
 
     auto bridge.100
@@ -107,8 +107,8 @@ You can specify a range of VLANs as well. For example:
       bridge-igmp-querier-src 123.1.1.1
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/),
-use a configuration like the following:
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/), use a
+configuration like the following:
 
     auto br0
     iface br0

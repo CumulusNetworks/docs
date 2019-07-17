@@ -8,8 +8,8 @@ aliases:
 pageID: 8362980
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Cumulus Linux is based on Linux kernel 4.1, which supports the
 [Docker](https://www.docker.com/) engine. Docker can be installed

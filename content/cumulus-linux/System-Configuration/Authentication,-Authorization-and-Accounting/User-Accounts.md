@@ -8,8 +8,8 @@ aliases:
 pageID: 8362553
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 By default, Cumulus Linux has two user accounts: *cumulus* and *root*.
 
@@ -27,10 +27,10 @@ The *cumulus* account:
 
   - Can log in to the system through all the usual channels, such as
     console and
-    [SSH](/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access).
+    [SSH](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access).
 
   - Along with the cumulus group, has both show and edit rights for
-    [NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).
+    [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU).
 
 The *root* account:
 
@@ -46,12 +46,12 @@ command before you configure Cumulus Linux on the switch.
 
 You can add additional user accounts as needed. Like the *cumulus*
 account, these accounts must use `sudo` to [execute privileged
-commands](/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges);
+commands](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges);
 be sure to include them in the *sudo* group.
 
 To access the switch without a password, you need to [boot into a single
 shell/user
-mode](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Single-User-Mode---Boot-Recovery).
+mode](/cumulus-linux/Monitoring-and-Troubleshooting/Single-User-Mode---Boot-Recovery).
 
 You can add and configure user accounts in Cumulus Linux with read-only
 or edit permissions for NCLU. For more information, see [Configure User

@@ -8,8 +8,8 @@ aliases:
 pageID: 8362597
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 [sFlow](http://www.sflow.org/index.php) is a monitoring protocol that
 samples network packets, application operations, and system counters.
@@ -25,9 +25,9 @@ automatically when the switch boots up.
 {{%notice note%}}
 
 If you intend to run this service within a
-[VRF](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF),
-including the [management
-VRF](/version/cumulus-linux-377/Layer-3/Management-VRF), follow [these
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF),
+including the [management VRF](/cumulus-linux/Layer-3/Management-VRF),
+follow [these
 steps](Management-VRF.html#src-8362940_ManagementVRF-services) for
 configuring the service.
 

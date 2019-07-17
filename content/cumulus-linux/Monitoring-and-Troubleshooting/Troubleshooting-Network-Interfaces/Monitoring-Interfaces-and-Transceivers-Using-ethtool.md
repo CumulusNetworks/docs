@@ -8,8 +8,8 @@ aliases:
 pageID: 8362604
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The `ethtool` command enables you to query or control the network driver
 and hardware settings. It takes the device name (like swp1) as an
@@ -45,7 +45,7 @@ To check the status of an interface using `ethtool`:
 {{%notice note%}}
 
 The switch hardware contains the [active port
-settings](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes).
+settings](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes).
 The output of `ethtool swpXX` shows the port settings stored in the
 kernel. The `switchd` process keeps the hardware and kernel in sync for
 the important port settings (speed, auto-negotiation, and link detected)

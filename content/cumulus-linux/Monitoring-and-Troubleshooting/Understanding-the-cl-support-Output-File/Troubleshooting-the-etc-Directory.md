@@ -8,11 +8,11 @@ aliases:
 pageID: 8362601
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The
-[`cl-support`](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/)
+[`cl-support`](/cumulus-linux/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/)
 script replicates the /`etc` directory.
 
 Files that `cl-support` deliberately excludes are:

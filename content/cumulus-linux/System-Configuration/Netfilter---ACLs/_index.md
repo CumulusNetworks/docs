@@ -1631,7 +1631,7 @@ disable atomic update mode.
 To do so, enable nonatomic update mode by setting the value for
 `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`,
 then [restart
-`switchd`](https://docs.cumulusnetworks.com/display/CL30/Configuring+switchd#Configuringswitchd-restartswitchd).
+`switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#span-id-src-8362561-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-span-restart-switchd-span).
 
     acl.non_atomic_update_mode = TRUE
 
@@ -1661,7 +1661,7 @@ On a Trident3 switch, you must enable nonatomic update mode before you
 can configure ERSPAN. To do so, set the value for
 `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`,
 then [restart
-`switchd`](https://docs.cumulusnetworks.com/display/CL30/Configuring+switchd#Configuringswitchd-restartswitchd).
+`switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#span-id-src-8362561-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-span-restart-switchd-span).
 
     acl.non_atomic_update_mode = TRUE
 

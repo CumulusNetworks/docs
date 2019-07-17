@@ -270,13 +270,11 @@ USB drive. Instructions are provided for x86 and ARM platforms.
 
 {{%notice tip%}}
 
-**Tips**
-
   - Installing Cumulus Linux using a USB drive is fine for a single
     switch here and there but is not scalable. DHCP can scale to
     hundreds of switch installs with zero manual input unlike USB
     installs.
-
+    
   - <span style="color: #36424a;"> Cumulus Networks also provides
     *Cumulus on a Stick*, which </span> packages Cumulus Linux images
     with your license. You can download your personalized ZIP file,
@@ -345,14 +343,14 @@ USB drive. Instructions are provided for x86 and ARM platforms.
 
     {{%notice note%}}
 
-    You can also use any of the [ONIE naming schemes mentioned
+You can also use any of the [ONIE naming schemes mentioned
     here](http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
 
     {{%/notice%}}
 
     {{%notice warning%}}
 
-    When using a Mac or Windows computer to rename the installation
+When using a Mac or Windows computer to rename the installation
     file, the file extension might still be present. Make sure to remove
     the file extension otherwise ONIE is not able to detect the file.
 
@@ -375,7 +373,7 @@ USB drive. Instructions are provided for x86 and ARM platforms.
 
     {{%notice note%}}
 
-    SSH sessions to the switch get dropped after this step. To complete
+SSH sessions to the switch get dropped after this step. To complete
     the remaining instructions, connect to the console of the switch.
     Cumulus Linux switches display their boot process to the console;
     you need to monitor the console specifically to complete the next
@@ -429,6 +427,7 @@ USB drive. Instructions are provided for x86 and ARM platforms.
 
 5.  After installation completes, the switch automatically reboots into
     the newly installed instance of Cumulus Linux.
+</details>
 
 ### <span>Instructions for ARM Platforms</span>
 <details>
@@ -444,11 +443,11 @@ USB drive. Instructions are provided for x86 and ARM platforms.
 
     {{%notice note%}}
 
-    SSH sessions to the switch get dropped after this step. To complete
-    the remaining instructions, connect to the console of the switch.
-    Cumulus Linux switches display their boot process to the console;
-    you need to monitor the console specifically to complete the next
-    step.
+SSH sessions to the switch get dropped after this step. To complete
+the remaining instructions, connect to the console of the switch.
+Cumulus Linux switches display their boot process to the console;
+you need to monitor the console specifically to complete the next
+step.
 
     {{%/notice%}}
 

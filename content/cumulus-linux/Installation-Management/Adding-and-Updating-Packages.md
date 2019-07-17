@@ -1,16 +1,18 @@
 ---
 title: Adding and Updating Packages
 author: Cumulus Networks
-weight: 49
+weight: 497
 aliases:
- - /display/CL37/Adding-and-Updating-Packages
- - /pages/viewpage.action?pageId=8362631
-pageID: 8362631
+ - /display/CL3740/Adding-and-Updating-Packages
+ - /pages/viewpage.action?pageId=836263152
+pageID: 836263152
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
+<details>
+
 You use the Advanced Packaging Tool (`apt`) to manage additional
 applications (in the form of packages) and to install the latest
 updates.
@@ -133,35 +135,78 @@ on more packages than you might expect.
 
 {{%/notice%}}
 
-## <span>List Installed Packages</span>
+## <span>List Packages Installed Packageson the System</span>
 
-The APT cache contains information about all the packages available in
-the repository. To see which packages are actually installed on your
-system, use `dpkg`. The following example lists all the package names on
-the system that contain `tcp`:
+The APT the `apt-cache` containmmand shows information about all the packages 
+available in
+ the repository. To see which packages are actually 
+installed on your
+ system, use `dpkg`. The following example lists all the package names on
+the system that contain `tcp` with their versions, run the following
+commands.
+
+<summary>NCLU Commands </summary>
+
+Run the `net show package version` command:
+
+    cumulus@switch:~$ net show package version
+    Package                            Installed Version(s)
+    ---------------------------------  -----------------------------------------------------------------------
+    acpi                                   1.7-1.1
+    acpi-support-base                      0.142-8
+    acpid                                  1:2.0.31-1
+    adduser                                3.118
+    apt                                    1.8.0
+    arping                                 2.19-6
+    arptables                              0.0.4+snapshot20181021-3
+    atftp                                  0.7.git20120829-3+b1
+    atftpd                                 0.7.git20120829-3+b1
+    ...
+
+<summary>Linux Commands </summary>
+
+Run the `dpkg -l` command:
 
     cumulus@switch:~$ dpkg -l \*tcp\*
     Desired=Unknown/Install/Remove/Purge/Hold
     | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
     |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
     ||/ Name                          Version             Architecture        Description
-    +++-=============================-===================-===================-===============================================================
-    un  tcpd                          <none>              <none>              (no description available)
-    ii  tcpdump                       4.6.2-5+deb8u1      amd64               command-line network traffic analyzer
-    cumulus@switch:~$
+    +++-=============================-=======-============-===================-=======================-========================================
+    un  tcpd                          <none>     
+    ii  acl            2.2.52-2     amd64        Access control list utilities
+    ii  acpi         <none>  1.7-1        amd64      (no description available)  displays information on ACPI devi
+    ii  acpi-support-b 0.142-6      all          scripts for handling base ACPI ev
+    ii  tacpdump                       4.6.2-5+deb8u1      amd64       id          1:2.0.23-2   amd64        Advanced Configuration and Power 
+    ii  adduser        3.113+nmu3   all          add and remove users and groups
+    ii  apt            1.0.9.8.2-cl amd64        command-line network traffic analyzer
+    cumulus@switch:~$package manager
+    ii  apt-doc        1.0.9.8.2-cl all          documentation for APT
+    ii  apt-transport- 1.0.9.8.2-cl amd64        https download transport for APT
+    ii  apt-utils      1.0.9.8.2-cl amd64        package management related utilit
+    ii  arping         2.14-1       amd64        sends IP and/or ARP pings (to the
+    ii  arptables      0.0.3.4-1    amd64        ARP table administration
+     
+    ...
 
-## <span id="src-8362631_AddingandUpdatingPackages-versionDisplay" class="confluence-anchor-link"></span><span>Display the Version of a Package</span>
+## <span id="src-836263152_AddingandUpdatingPackages-versionDisplay" class="confluence-anchor-link"></span><span>DisplayShow the Version of a Package</span>
 
-To show the version of a specific package installed on the system, run
-the `net show package version <package>` command. For example, the
+To show the version of a specific package installed on the system, r:
+
+<summary>NCLU Commands </summary>
+
+Run
+ the `net show package version <package>` command. For example, the
 following command shows which version of the `vrf` package is installed
 on the system:
 
     cumulus@switch:~$ net show package version vrf
     1.0-cl3u11
 
-As an alternative to the NCLU command described above, you can run the
-Linux `dpkg -l <package_name>` command.
+As an alternative to the NCLU command described above, you can r<summary>Linux Commands </summary>
+
+Run the
+ Linux `dpkg -l <package_name>` command.:
 
 To see a list of all packages installed on the system with their
 versions, run the `net show package version` command. For example:
@@ -175,14 +220,44 @@ versions, run the `net show package version` command. For example:
     acpid                              1:2.0.23-2
     adduser                            3.113+nmu3
     apt                                1.0.9.8.2-cl3u3~1532198712.6d9298c
-    apt-doc                            1.0.9.8.2-cl3u3~1532198712.6d9298c
+    apt-docFor example, the following command shows which version of the `vrf`
+package is installed on the system:
+
+    cumulus@switch:~$ dpkg -l vrf
+    Desired=Unknown/Install/Remove/Purge/Hold
+    | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+    |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+    ||/ Name           Version      Architecture Description
+    +++-==============-============-============-=================================
+    ii  vrf            1.0-cl3u11~1 amd64        Linux tools for VRF
+
+The following command lists all the package names on the system that
+contain `tcp`:
+
+    cumulus@switch:~$ dpkg -l \*tcp\*
+    Desired=Unknown/Install/Remove/Purge/Hold
+    | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+    |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+    ||/ Name                          Version             Architecture        Description
+    +++-=============================-===================-===================-===============================================================
+    un  tcpd                          <none>              <none>              1.0.9.8.2-cl3u3~1532198712.6d9298c
     apt-transport-https                1.0.9.8.2-cl3u3~1532198712.6d9298c
     apt-utils                          1.0.9.8.2-cl3u3~1532198712.6d9298c
     arping                             2.14-1
     arptables                          0.0.3.4-1
-    ...
+    ...(no description available)
+    ii  tcpdump                       4.6.2-5+deb8u1      amd64               command-line network traffic analyzer
 
-## <span id="src-8362631_AddingandUpdatingPackages-upgrade-packages" class="confluence-anchor-link"></span><span>Upgrade Packages</span>
+## <span id="src-836263152_AddingandUpdatingPackages-upgrade-packages" class="confluence-anchor-link"></span><span>Upgrade Packages</span>
+
+{{%notice note%}}
+
+You cannot upgrade to Cumulus Linux 4.0.0 by upgrading packages. You
+must install a disk image of the new release using ONIE. Refer to
+[Upgrading Cumulus
+Linux](/version/cumulus-linux-40/Installation-Management/Upgrading-Cumulus-Linux).
+
+{{%/notice%}}
 
 To upgrade all the packages installed on the system to their latest
 versions, run the following commands:
@@ -211,7 +286,7 @@ To add a new package:
     If the package is installed already, you can update the package from
     the Cumulus Linux repository as part of the package upgrade process,
     which upgrades all packages on the system. See [Upgrade
-    Packages](#src-8362631_AddingandUpdatingPackages-upgrade-packages)
+    Packages](#src-836263152_AddingandUpdatingPackages-upgrade-packages)
     above.
 
 2.  If the package is *not* already installed, add it by running `-E
@@ -414,3 +489,8 @@ To enable the Supplemental Repository:
 <footer id="ht-footer">
 
 </footer>
+
+</details>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE2ODk3OTMyMThdfQ==
+-->

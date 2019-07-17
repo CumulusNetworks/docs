@@ -1,16 +1,18 @@
 ---
 title: Equal Cost Multipath Load Sharing - Hardware ECMP
 author: Cumulus Networks
-weight: 191
+weight: 1915
 aliases:
- - /display/CL37/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP
- - /pages/viewpage.action?pageId=8362929
-pageID: 8362929
+ - /display/CL3740/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP
+ - /pages/viewpage.action?pageId=83629296653
+pageID: 83629296653
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
+<details>
+
 Cumulus Linux supports hardware-based [equal cost
 multipath](http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing)
 (ECMP) load sharing. ECMP is enabled by default in Cumulus Linux. Load
@@ -24,7 +26,7 @@ ECMP operates only on equal cost routes in the Linux routing table.
 In this example, the 10.1.1.0/24 route has two possible next hops that
 have been installed in the routing table:
 
-    $ ip route show 10.1.1.0/24
+    cumulus@switch:~$ ip route show 10.1.1.0/24
     10.1.1.0/24  proto zebra  metric 20
      nexthop via 192.168.1.1 dev swp1 weight 1 onlink
      nexthop via 192.168.2.1 dev swp2 weight 1 onlink
@@ -40,20 +42,21 @@ For routes to be considered equal they must:
 
 {{%notice info%}}
 
-The BGP `maximum-paths` setting is enabled, so multiple routes are
-installed by default. See the [ECMP
-section](Border-Gateway-Protocol---BGP.html#src-8362926_BorderGatewayProtocol-BGP-ecmp)
+TIn Cumulus Linux, the BGP `maximum-paths` setting is enabled, so 
+multiple routes are
+ installed by default. See the [ECMP
+section](Border-Gateway-Protocol---BGP.html#src-83629266650_BorderGatewayProtocol-BGP-ecmp)
 of the BGP chapter for more information.
 
 {{%/notice%}}
 
 ## <span>ECMP Hashing</span>
 
-Once multiple routes are installed in the routing table, a hash is used
+OnceWhen multiple routes are installed in the routing table, a hash is used
 to determine which path a packet follows.
 
 Cumulus Linux hashes on the following
-<span id="src-8362929_EqualCostMultipathLoadSharing-HardwareECMP-hashfields"></span>fields:
+<span id="src-83629296653_EqualCostMultipathLoadSharing-HardwareECMP-hashfields"></span>fields:
 
   - IP protocol
 
@@ -72,9 +75,11 @@ For TCP/UDP frames, Cumulus Linux also hashes on:
 {{% imgOld 0 %}}
 
 To prevent out of order packets, ECMP hashing is done on a per-flow
-basis, which means that all packets with the same source and destination
-IP addresses and the same source and destination ports always hash to
-the same next hop. ECMP hashing does not keep a record of flow states.
+basis, which means that; all packets with the same source and destination
+ IP addresses and 
+the same source and destination ports always hash to
+ the same next hop. 
+ECMP hashing does not keep a record of flow states.
 
 ECMP hashing does not keep a record of packets that have hashed to each
 next hop and does not guarantee that traffic sent to each next hop is
@@ -82,25 +87,29 @@ equal.
 
 ### <span>Use cl-ecmpcalc to Determine the Hash Result</span>
 
-Since the hash is deterministic and always provides the same result for
-the same input, you can query the hardware and determine the hash result
-of a given input. This is useful when determining exactly which path a
-flow takes through a network.
+SincBecause the hash is deterministic and always provides the same result 
+for
+ the same input, you can query the hardware and determine the hash 
+result
+ of a given input. This is useful when determining exactly which 
+path a
+ flow takes through a network.
 
 On Cumulus Linux, use the `cl-ecmpcalc` command to determine a hardware
 hash result.
 
-In order to use `cl-ecmpcalc`, all fields that are used in the hash must
-be provided. This includes ingress interface, layer 3 source IP, layer 3
-destination IP, layer 4 source port and layer 4 destination port.
+In order tTo use `cl-ecmpcalc`, all fields that are used in the hash must
+ be 
+provided. This includes ingress interface, layer 3 source IP, layer 3
+destination IP, layer 4 source port, and layer 4 destination port.
 
-    $ sudo cl-ecmpcalc -i swp1 -s 10.0.0.1 -d 10.0.0.1 -p tcp --sport 20000 --dport 80
+    cumulus@switch:~$ sudo cl-ecmpcalc -i swp1 -s 10.0.0.1 -d 10.0.0.1 -p tcp --sport 20000 --dport 80
     ecmpcalc: will query hardware
     swp3
 
 If any field is omitted, `cl-ecmpcalc` fails.
 
-    $ sudo cl-ecmpcalc -i swp1 -s 10.0.0.1 -d 10.0.0.1 -p tcp 
+    cumulus@switch:~$ sudo cl-ecmpcalc -i swp1 -s 10.0.0.1 -d 10.0.0.1 -p tcp 
     ecmpcalc: will query hardware
     usage: cl-ecmpcalc [-h] [-v] [-p PROTOCOL] [-s SRC] [--sport SPORT] [-d DST] 
                        [--dport DPORT] [--vid VID] [-i IN_INTERFACE]
@@ -115,7 +124,7 @@ If any field is omitted, `cl-ecmpcalc` fails.
 ### <span>cl-ecmpcalc Limitations</span>
 
 `cl-ecmpcalc` can only take input interfaces that can be converted to a
-single physical port in the port tab file, like the physical switch
+single physical port in the port tab file, likesuch as the physical switch
 ports (swp). Virtual interfaces like bridges, bonds, and subinterfaces
 are not supported.
 
@@ -129,28 +138,30 @@ When multiple routes are installed in the routing table, each route is
 assigned to an ECMP *bucket*. When the ECMP hash is executed the result
 of the hash determines which bucket gets used.
 
-In the following example, 4 next hops exist. Three different flows are
-hashed to different hash buckets. Each next hop is assigned to a unique
-hash bucket.
+In the following example, 4four next hops exist. Three different flows 
+are
+ hashed to different hash buckets. Each next hop is assigned to a 
+unique
+ hash bucket.
 
 {{% imgOld 1 %}}
 
 #### <span>Add a Next Hop</span>
 
 When a next hop is added, a new hash bucket is created. The assignment
-of next hops to hash buckets, as well as the hash result, may change
+of next hops to hash buckets, as well as the hash result, mayight change
 when additional next hops are added.
 
 {{% imgOld 2 %}}
 
   
 A new next hop is added and a new hash bucket is created. As a result,
-the hash and hash bucket assignment changed, causing the existing flows
+the hash and hash bucket assignment changeds, causing the existing flows
 to be sent to different next hops.
 
 #### <span>Remove a Next Hop</span>
 
-When a next hop is removed, the remaining hash bucket assignments may
+When a next hop is removed, the remaining hash bucket assignments mayight
 change, again, potentially changing the next hop selected for an
 existing flow.
 
@@ -160,10 +171,10 @@ existing flow.
 
   
 A next hop fails and the next hop and hash bucket are removed. The
-remaining next hops may be reassigned.
+remaining next hops mayight be reassigned.
 
 In most cases, the modification of hash buckets has no impact on traffic
-flows as traffic is being forward to a single end host. In deployments
+flows as traffic is being forwarded to a single end host. In deployments
 where multiple end hosts are using the same IP address (anycast),
 *resilient hashing* must be used.
 
@@ -184,19 +195,24 @@ switchd restarts and reboots.
 
 The hash seed is set by the `ecmp_hash_seed` parameter in the
 `/etc/cumulus/datapath/traffic.conf` file. It is an integer with a value
-from 0 to 4294967295. If you don't specify a value for it, `switchd`
-creates a randomly generated seed instead.
+from 0 to 4294967295. If you don' not specify a value for it, `switchd`
+ creates a 
+randomly generated seed instead.
 
-To set the hash seed to *50* for example, run the following commands:
+TFor example, to set the hash seed to *50* for example, run the following commands:
+
+<summary>NCLU Commands </summary>
 
     cumulus@switch:~$ net add forwarding ecmp hash-seed 50
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-These commands create the following configuration in the
-`/etc/cumulus/datapath/traffic.conf` file:
+These commands create the following configuration in<summary>Linux Commands </summary>
 
-    cumulus@leaf01:~$ cat /etc/cumulus/datapath/traffic.conf
+Edit the the
+ `/etc/cumulus/datapath/traffic.conf` file. For example:
+
+    cumulus@leaf01:~$ catswitch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
      
     ...
      
@@ -206,7 +222,13 @@ These commands create the following configuration in the
     ...
     cumulus@leaf01:~$
 
-<span id="src-8362929_EqualCostMultipathLoadSharing-HardwareECMP-resilient_hashing"></span>
+
+[Restart](https://docs.cumulusnetworks.com/display/CL31/Configuring+switchd#Configuringswitchd-restartswitchd)
+the `switchd` service:
+
+    cumulus@switch:~$ sudo systemctl restart switchd.service
+
+## <span id="src-83629296653_EqualCostMultipathLoadSharing-HardwareECMP-resilient_hashing" class="confluence-anchor-link"></span>
 
 ## <span>Resilient Hashing</span>
 
@@ -280,7 +302,7 @@ anycast deployments.
 
 ### <span>Configure Resilient Hashing</span>
 
-Resilient hashing is not enabled by default. When resilient hashing is
+Resilient hashing is *not* enabled by default. When resilient hashing is
 enabled, 65,536 buckets are created to be shared among all ECMP groups.
 An ECMP group is a list of unique next hops that are referenced by
 multiple ECMP routes.
@@ -290,7 +312,7 @@ multiple ECMP routes.
 An ECMP route counts as a single route with multiple next hops. The
 following example is considered to be a single ECMP route:
 
-    $ ip route show 10.1.1.0/24
+    cumulus@switch:~$ ip route show 10.1.1.0/24
     10.1.1.0/24  proto zebra  metric 20
      nexthop via 192.168.1.1 dev swp1 weight 1 onlink
      nexthop via 192.168.2.1 dev swp2 weight 1 onlink
@@ -316,7 +338,9 @@ hops to an ECMP route. However, the system supports fewer ECMP routes.
 If the maximum number of ECMP routes have been installed, new ECMP
 routes log an error and are not installed.
 
-To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
+To enable 
+<span id="src-8366653_EqualCostMultipathLoadSharing-HardwareECMP-enableResilientHashing"></span>enable
+resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 1.  Enable resilient hashing:
     
@@ -329,7 +353,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
         # Valid values - 64, 128, 256, 512, 1024
         resilient_hash_entries_ecmp = 256
 
-3.  [Restart](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd)
+3.  [Restart](Configuring-switchd.html#src-83625616282_Configuringswitchd-restartswitchd)
     the `switchd` service:
     
         cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -341,3 +365,8 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 <footer id="ht-footer">
 
 </footer>
+
+</details>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTI5NDA3NjQ4MV19
+-->

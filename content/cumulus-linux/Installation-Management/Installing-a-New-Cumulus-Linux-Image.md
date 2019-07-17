@@ -125,6 +125,7 @@ DHCP options (maybe it is controlled by another team).
 
         ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
 </details>
+
 <details>
 <summary>Install from Cumulus Linux </summary>
 
@@ -171,6 +172,7 @@ this procedure remotely.
 
         ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
 </details>
+
 <details>
 <summary>Install from Cumulus Linux </summary>
 
@@ -212,6 +214,7 @@ switch eth0 interface but *no* DHCP server is available.
 
         ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 </details>
+
 <details>
 <summary>Install from Cumulus Linux </summary>
 
@@ -229,6 +232,7 @@ switch eth0 interface but *no* DHCP server is available.
 Follow the steps below to install the disk image referencing a local
 file.
 <details>
+
 <summary>Install from ONIE </summary>
 
 1.  Set up DHCP or static addressing for eth0. The following example
@@ -253,6 +257,7 @@ file.
 
         ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
 </details>
+
 <details>
 <summary>Install from Cumulus Linux </summary>
 
@@ -307,13 +312,13 @@ USB drive. Instructions are provided for x86 and ARM platforms.
     <tr class="odd">
     <td><p>{{%notice warning%}}</p>
     <p>Use caution when performing the actions below; it is possible to severely damage your system with the following utilities.</p>
-    <p>{{%/notice%}}</p>
+<p>{{%/notice%}}</p>
     <ol>
     <li><p>Insert your USB drive into the USB port on the switch running Cumulus Linux and log in to the switch.</p></li>
     <li><p>Examine output from <code>cat /proc/partitions</code> and <code>sudo fdisk -l [device]</code> to determine on which device your USB drive can be found. For example, <code>sudo fdisk -l /dev/sdb</code>.</p>
-    <p>{{%notice warning%}}</p>
-    <p>These instructions assume your USB drive is the <code>/dev/sdb</code> device, which is typical if you insert the USB drive after the machine is already booted. However, if you insert the USB drive during the boot process, it is possible that your USB drive is the <code>/dev/sda</code> device. Make sure to modify the commands below to use the proper device for your USB drive.</p>
-    <p>{{%/notice%}}</p></li>
+<p>{{%notice warning%}}</p>
+<p>These instructions assume your USB drive is the <code>/dev/sdb</code> device, which is typical if you insert the USB drive after the machine is already booted. However, if you insert the USB drive during the boot process, it is possible that your USB drive is the <code>/dev/sda</code> device. Make sure to modify the commands below to use the proper device for your USB drive.</p>
+<p>{{%/notice%}}</p></li>
     <li><p>Create a new partition table on the USB drive:</p>
     <pre><code>sudo parted /dev/sdb mklabel msdos</code></pre>
     <p>{{%notice note%}}</p>
@@ -345,14 +350,14 @@ USB drive. Instructions are provided for x86 and ARM platforms.
 
     {{%notice note%}}
 
-    You can also use any of the [ONIE naming schemes mentioned
+You can also use any of the [ONIE naming schemes mentioned
     here](http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
 
     {{%/notice%}}
 
     {{%notice warning%}}
 
-    When using a Mac or Windows computer to rename the installation
+When using a Mac or Windows computer to rename the installation
     file, the file extension might still be present. Make sure to remove
     the file extension otherwise ONIE is not able to detect the file.
 
@@ -375,7 +380,7 @@ USB drive. Instructions are provided for x86 and ARM platforms.
 
     {{%notice note%}}
 
-    SSH sessions to the switch get dropped after this step. To complete
+SSH sessions to the switch get dropped after this step. To complete
     the remaining instructions, connect to the console of the switch.
     Cumulus Linux switches display their boot process to the console;
     you need to monitor the console specifically to complete the next
@@ -444,7 +449,7 @@ USB drive. Instructions are provided for x86 and ARM platforms.
 
     {{%notice note%}}
 
-    SSH sessions to the switch get dropped after this step. To complete
+SSH sessions to the switch get dropped after this step. To complete
     the remaining instructions, connect to the console of the switch.
     Cumulus Linux switches display their boot process to the console;
     you need to monitor the console specifically to complete the next

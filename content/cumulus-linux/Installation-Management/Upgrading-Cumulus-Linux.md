@@ -3,15 +3,15 @@ title: Upgrading Cumulus Linux
 author: Cumulus Networks
 weight: 45
 aliases:
- - /display/CL37/Upgrading-Cumulus-Linux
- - /pages/viewpage.action?pageId=8362647
-pageID: 8362647
+ - /display/CL3740/Upgrading-Cumulus-Linux
+ - /pages/viewpage.action?pageId=83626476370
+pageID: 83626476370
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
-
+<details>
 
 This topic describes how to upgrade Cumulus Linux on your switches to a
 more recent release.
@@ -24,7 +24,7 @@ Puppet for configuration management greatly increases the speed and
 accuracy of the next major upgrade; these tools also enable the quick
 swap of failed switch hardware.
 
-## <span id="src-8362647_UpgradingCumulusLinux-before-upgrade" class="confluence-anchor-link"></span><span id="src-8362647_UpgradingCumulusLinux-FilesToNeverMigrate" class="confluence-anchor-link"></span><span>Before You Upgrade Cumulus Linux</span>
+## <span id="src-83626476370_UpgradingCumulusLinux-before-upgrade" class="confluence-anchor-link"></span><span id="src-83626476370_UpgradingCumulusLinux-FilesToNeverMigrate" class="confluence-anchor-link"></span><span>Before You Upgrade Cumulus Linux</span>
 
 {{%notice tip%}}
 
@@ -51,13 +51,13 @@ of a backup strategy.
 
 | File Name and Location      | Explanation                                                                                          | Cumulus Linux Documentation                                                                                                                          | Debian Documentation                                                                                                         |
 | --------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `/etc/network/`             | Network configuration files, most notably `/etc/network/interfaces` and `/etc/network/interfaces.d/` | [Switch Port Attributes](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes)          | N/A                                                                                                                          |
+| `/etc/network/`             | Network configuration files, most notably `/etc/network/interfaces` and `/etc/network/interfaces.d/` | [Switch Port Attributes](/version/cumulus-linux-37740/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes)           | N/A                                                                                                                          |
 | `/etc/resolv.conf`          | DNS resolution                                                                                       | Not unique to Cumulus Linux: [wiki.debian.org/NetworkConfiguration](https://wiki.debian.org/NetworkConfiguration#The_resolv.conf_configuration_file) | [www.debian.org/doc/manuals/debian-reference/ch05.en.html](https://www.debian.org/doc/manuals/debian-reference/ch05.en.html) |
-| `/etc/frr/`                 | Routing application (responsible for BGP and OSPF)                                                   | [FRRouting Overview](/version/cumulus-linux-377/Layer-3/FRRouting-Overview/)                                                                         | N/A                                                                                                                          |
-| `/etc/hostname`             | Configuration file for the hostname of the switch                                                    | [Quick Start Guide](Quick-Start-Guide.html#src-8362542_QuickStartGuide-ConfiguringtheHostnameandTimeZone)                                            | [wiki.debian.org/HowTo/ChangeHostname](https://wiki.debian.org/HowTo/ChangeHostname)                                         |
-| `/etc/cumulus/acl/*`        | Netfilter configuration                                                                              | [Netfilter - ACLs](/version/cumulus-linux-377/System-Configuration/Netfilter---ACLs/)                                                                | N/A                                                                                                                          |
-| `/etc/cumulus/ports.conf`   | Breakout cable configuration file                                                                    | [Switch Port Attributes](Switch-Port-Attributes.html#src-8363026_SwitchPortAttributes-ConfiguringBreakoutPorts)                                      | N/A; please read the guide on breakout cables                                                                                |
-| `/etc/cumulus/switchd.conf` | Switchd configuration                                                                                | [Configuring switchd](/version/cumulus-linux-377/System-Configuration/Configuring-switchd)                                                           | N/A; please read the guide on switchd configuration                                                                          |
+| `/etc/frr/`                 | Routing application (responsible for BGP and OSPF)                                                   | [FRRouting Overview](/version/cumulus-linux-37740/Layer-3/FRRouting-Overview/)                                                                          | N/A                                                                                                                          |
+| `/etc/hostname`             | Configuration file for the hostname of the switch                                                    | [Quick Start Guide](Quick-Start-Guide.html#src-83625426263_QuickStartGuide-ConfiguringtheHostnameandTimeZone)                                            | [wiki.debian.org/HowTo/ChangeHostname](https://wiki.debian.org/HowTo/ChangeHostname)                                         |
+| `/etc/cumulus/acl/*`        | Netfilter configuration                                                                              | [Netfilter - ACLs](/version/cumulus-linux-37740/System-Configuration/Netfilter---ACLs/)                                                                 | N/A                                                                                                                          |
+| `/etc/cumulus/ports.conf`   | Breakout cable configuration file                                                                    | [Switch Port Attributes](Switch-Port-Attributes.html#src-83630266750_SwitchPortAttributes-ConfiguringBreakoutPorts)                                      | N/A; please read the guide on breakout cables                                                                                |
+| `/etc/cumulus/switchd.conf` | Switchd configuration                                                                                | [Configuring switchd](/version/cumulus-linux-37740/System-Configuration/Configuring-switchd)                                                            | N/A; please read the guide on switchd configuration                                                                          |
 </details>
 {{%notice note%}}
 
@@ -113,32 +113,32 @@ If you have custom user accounts, consider including
 <tr class="odd">
 <td><p><code>/etc/lldpd.conf</code></p></td>
 <td><p>Link Layer Discover Protocol (LLDP) daemon configuration</p></td>
-<td><p><a href="/version/cumulus-linux-377/Layer-2/Link-Layer-Discovery-Protocol/">Link Layer Discovery Protocol</a></p></td>
+<td><p><a href="/version/cumulus-linux-37740/Layer-2/Link-Layer-Discovery-Protocol/">Link Layer Discovery Protocol</a></p></td>
 <td><p><a href="https://packages.debian.org/wheezy/lldpd" class="external-link">packages.debian.org/wheezy/lldpd</a></p></td>
 </tr>
 <tr class="even">
 <td><p><code>/etc/lldpd.d/</code></p></td>
 <td><p>Configuration directory for <code>lldpd</code></p></td>
-<td><p><a href="/version/cumulus-linux-377/Layer-2/Link-Layer-Discovery-Protocol/">Link Layer Discovery Protocol</a></p></td>
+<td><p><a href="/version/cumulus-linux-37740/Layer-2/Link-Layer-Discovery-Protocol/">Link Layer Discovery Protocol</a></p></td>
 <td><p><a href="https://packages.debian.org/wheezy/lldpd" class="external-link">packages.debian.org/wheezy/lldpd</a></p></td>
 </tr>
 <tr class="odd">
 <td><p><code>/etc/nsswitch.conf</code></p></td>
 <td><p>Name Service Switch (NSS) configuration file</p></td>
-<td><p><a href="/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus">TACACS Plus</a></p></td>
+<td><p><a href="/version/cumulus-linux-37740/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus">TACACS Plus</a></p></td>
 <td><p>N/A</p></td>
 </tr>
 <tr class="even">
 <td><p><code>/etc/ssh/</code></p></td>
 <td><p>SSH configuration files</p></td>
-<td><p><a href="/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access">SSH for Remote Access</a></p></td>
+<td><p><a href="/version/cumulus-linux-37740/System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access">SSH for Remote Access</a></p></td>
 <td><p><a href="https://wiki.debian.org/SSH" class="external-link">wiki.debian.org/SSH</a></p></td>
 </tr>
 <tr class="odd">
 <td><p><code>/etc/sudoers</code></p>
 <p><code>/etc/sudoers.d</code></p></td>
 <td><p>Best practice is to place changes in <code>/etc/sudoers.d/</code> instead of <code>/etc/sudoers</code>; changes in the <code>/etc/sudoers.d/</code> directory are not lost during upgrade. If you are upgrading from a release prior to 3.2 (such as 3.1.2) to a 3.2 or later release, be aware that the <code>sudoers</code> file changed in Cumulus Linux 3.2.</p></td>
-<td><p><a href="/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges">Using sudo to Delegate Privileges</a></p></td>
+<td><p><a href="/version/cumulus-linux-37740/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges">Using sudo to Delegate Privileges</a></p></td>
 <td></td>
 </tr>
 </tbody>
@@ -153,7 +153,8 @@ If you have custom user accounts, consider including
 
 {{%/notice%}}
 <details>
-<summary>Files to Never Migrate between Versions or Switches </summary>
+<summary>Files to Never Migrate these Files between Versions or Switches 
+</summary>
 
 | File Name and Location   | Explanation                                                                        |
 | ------------------------ | ---------------------------------------------------------------------------------- |
@@ -176,35 +177,43 @@ If you have custom user accounts, consider including
 | `/root/.ansible`         | Ansible tmp files. Do not copy.                                                    |
 | `/home/cumulus/.ansible` | Ansible tmp files. Do not copy.                                                    |
 </details>
-<span id="src-8362647_UpgradingCumulusLinux-pkg_upgrade_notes"></span>If
+<span id="src-83626476370_UpgradingCumulusLinux-pkg_upgrade_notes"></span>If
 you are using certain forms of [network
-virtualization](/version/cumulus-linux-377/Network-Virtualization/),
+virtualization](/version/cumulus-linux-37740/Network-Virtualization/),
 including [VMware
-NSX-V](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V)
+NSX-V](/version/cumulus-linux-37740/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V)
 or [Midokura
-MidoNet](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack),
+MidoNet](/version/cumulus-linux-37740/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack),
 you might have updated the `/usr/share/openvswitch/scripts/ovs-ctl-vtep`
 file. This file is not marked as a configuration file; therefore, if the
 file contents change in a newer release of Cumulus Linux, they overwrite
-any changes you made to the file. Be sure to back up this file and the
-database file `conf.db` before upgrading. <span style="color: #36424a;">
-</span>
+any changes you made to the file. <span style="color: #36424a;"> Be sure 
+to back up this file and the
+ database file </span> `conf.db` before upgrading. 
+<span style="color: #36424a;">
+ before upgrading. </span>
 
 ## <span>Upgrade Cumulus Linux</span>
 
-You can upgrade Cumulus Linux in one of two ways:
+You canTo upgrade to Cumulus Linux in one of two ways:
 
-  - Install a disk image of the new release, using ONIE.
+  - I4.0.0, you must install a disk image of the 
+new release, using ONIE.
 
   - Upgrade only the changed packages using the`  sudo -E apt-get
-    update ` and `sudo` `-E apt-get upgrade` command.
+    update ` and `sudo` `-E apt-get upgrade` command You *cannot* upgrade packages with the `apt-get
+upgrade` command.
+
+ONIE is an open source project (equivalent to PXE on servers) that
+enables the installation of network operating systems (NOS) on a bare
+metal switch.
 
 {{%notice note%}}
 
 Upgrading an MLAG pair requires additional steps. If you are using MLAG
 to dual connect two Cumulus Linux switches in your environment, follow
 the steps in [Upgrade Switches in an MLAG
-Pair](#src-8362647_UpgradingCumulusLinux-mlag) below to ensure a smooth
+Pair](#src-83626476370_UpgradingCumulusLinux-mlag) below to ensure a smooth
 upgrade.
 
 {{%/notice%}}
@@ -216,11 +225,21 @@ or upgrading packages depends on your environment and your preferences.
 Here are some recommendations for each upgrade method.
 
 **Installing a disk image** is recommended if you are performing a
-rolling upgrade in a production environment and if are using up-to-date
+rolling up{{%notice note%}}
+
+Cumulus Networks deprecated lightweight network virtualization (LNV) in
+Cumulus Linux 4.0 in favor of Ethernet virtual private networks
+([EVPN](/version/cumulus-linux-40/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)).
+If your network is configured for LNV, you need to migradte in a production environment and if are using up-to-date
 and comprehensive automation scripts. This upgrade method enables you to
 choose the exact release to which you want to upgrade and is the *only*
 method available to upgrade your switch to a new release train (for
-example, from 2.5.6 to 3.7.0) or from a release earlier than 3.6.2.
+example, from 2.5.6 to 3.7.0) or from a release earlier than 3.6.2.your network
+configuration to a BGP EVPN configuration that is functionally
+equivalent ***before*** you upgrade to Cumulus Linux 4.0 or later. Refer
+[Migrating from LNV to EVPN](Migrating-from-LNV-to-EVPN.html).
+
+{{%/notice%}}
 
 Be aware of the following when installing the disk image:
 
@@ -233,16 +252,17 @@ Be aware of the following when installing the disk image:
     out-of-band management.
 
   - Moving a configuration file might cause issues;
-
+:
+    
       - Identifying all the locations of configuration data is not
         always an easy task. See [Before You Upgrade Cumulus
-        Linux](#src-8362647_UpgradingCumulusLinux-before-upgrade) above.
-
+        Linux](#src-83626476370_UpgradingCumulusLinux-before-upgrade) above.
+    
       - Merge conflicts with configuration file changes in the new
         release might go undetected.
 
   - If configuration files are not restored correctly, you might be
-    unable to ssh to the switch from in-band management. Out-of-band
+    unable to `ssh` to the switch from in-band management. Out-of-band
     connectivity (eth0 or console) is recommended.
 
   - You *must* reinstall and reconfigure third-party applications after
@@ -291,21 +311,21 @@ ONIE is an open source project (equivalent to PXE on servers) that
 enables the installation of network operating systems (NOS) on a bare
 metal switch.
 
-To upgrade the switch with a new disk image using ONIE:
+To upgrade the switch with a new disk image using ONIETo upgrade the switch:
 
 1.  Back up the configurations off the switch.
 
 2.  Download the Cumulus Linux image you want to install.
 
-3.  Install the disk image with the `onie-install -a -i` `
+3.  Install the disk image with the `onie-install -a -i` ` 
     <image-location> ` command, which boots the switch into ONIE.  
     The following example command installs the image from a web server,
     then reboots the switch. There are additional ways to install the
     disk image, such as using FTP, a local file, or a USB drive. For
     more information, see [Installing a New Cumulus Linux
-    Image](/version/cumulus-linux-377/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
-
-        cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-3.7.1-mlx-amd64.bin && sudo reboot
+    Image](/version/cumulus-linux-37740/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
+    
+        cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-3.7.14.0.0-mlx-amd64.bin && sudo reboot
 
 4.  Restore the configuration files to the new release — ideally with
     automation.
@@ -434,10 +454,10 @@ packages, be aware of the following:
     to display Cumulus Linux 3.5.0, which is the originally installed
     base image.
 
-## <span id="src-8362647_UpgradingCumulusLinux-mlag" class="confluence-anchor-link"></span><span>Upgrade Switches in an MLAG Pair</span>
+## <span id="src-83626476370_UpgradingCumulusLinux-mlag" class="confluence-anchor-link"></span><span>Upgrade Switches in an MLAG Pair</span>
 
 If you are using
-[MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/version/cumulus-linux-37740/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
 to dual connect two switches in your environment, follow the steps below
 according to the version of Cumulus Linux from which you are upgrading.
 <span style="color: #36424a;"> </span>
@@ -448,10 +468,10 @@ When you upgrade Cumulus Linux from 3.y.z to a later 3.y.z release, you
 can either install a disk image using ONIE or use package upgrade. Both
 methods are included below.
 
-To upgrade the switches:
+Tto upgrade the switches:
 
 1.  Verify the switch is in the secondary role:
-
+    
         cumulus@switch:~$ clagctl status
 
 2.  If you want to install a disk image, go to the next step. If you
@@ -460,60 +480,64 @@ To upgrade the switches:
         cumulus@switch:~$ sudo -E apt-get update
 
 3.  Shut down the core uplink layer 3 interfaces:
-
+    
         cumulus@switch:~$ sudo ip link set swpX down
 
-4.  Shut down the peerlink:
-
+43.  Shut down the peerlink:
+    
         cumulus@switch:~$ sudo ip link set peerlink down
 
 5.  Perform the upgrade either by installing a disk image or upgrading
     packages.  
-    To *install a disk image*, run the `onie-install -a -i` `
-    <image-location> ` command to boot the switch into ONIE. The
-    following example command installs the image from a web server.
-    There are additional ways to install the disk image, such as using
-    FTP, a local file, or a USB drive. For more information, see
+    To *install a disk image*, r4.  Run the `onie-install -a -i` `
+    <image-location> ` command to boot
+    the switch into ONIE. The
+    following example command installs the
+    image from a web server.
+    There are additional ways to install the
+    disk image, such as using
+    FTP, a local file, or a USB drive. For
+    more information, see
     [Installing a New Cumulus Linux
-    Image](/version/cumulus-linux-377/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
-
-        cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-3.7.1-mlx-amd64.bin
+    Image](/version/cumulus-linux-37740/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
+    
+        cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-3.7.14.0.0-mlx-amd64.bin
 
     To use *package upgrade*, run the `-E apt-get upgrade` command:
 
         cumulus@switch:~$ sudo -E apt-get upgrade
 
-6.  Reboot the switch:
-
+65.  Reboot the switch:
+    
         cumulus@switch:~$ sudo reboot
 
 7.  If you were originally running Cumulus Linux 3.0.0 through 3.3.2,
     follow the steps for [upgrading from Quagga to
     FRRouting](/version/cumulus-linux-377/Layer-3/FRRouting-Overview/Upgrading-from-Quagga-to-FRRouting).
 
-8.  Verify STP convergence across both switches:
-
+86.  Verify STP convergence across both switches:
+    
         cumulus@switch:~$ mstpctl showall
 
-9.  Verify core uplinks and peerlinks are UP:
-
+97.  Verify core uplinks and peerlinks are UP:
+    
         cumulus@switch:~$ net show interface
 
-10. Verify MLAG convergence:
-
+10.8.  Verify MLAG convergence:
+    
         cumulus@switch:~$ clagctl status
 
-11. Make this secondary switch the primary:
-
+11.9.  Make this secondary switch the primary:
+    
         cumulus@switch:~$ clagctl priority 2048
 
-12. Verify the other switch is now in the secondary role.
+120. Verify the other switch is now in the secondary role.
 
-13. Repeat steps 2-10 on the new secondary switch.
+131. Repeat steps 2-108 on the new secondary switch.
 
-14. Remove the priority 2048 and restore the priority back to 32768 on
+142. Remove the priority 2048 and restore the priority back to 32768 on
     the current primary switch:
-
+    
         cumulus@switch:~$ clagctl priority 32768
 
 ### <span>Upgrade from Cumulus Linux 2.y.z to 3.y.z</span>
@@ -642,10 +666,23 @@ any third party packages or any Cumulus Linux add-on packages, such as
     Specification](http://opencomputeproject.github.io/onie/design-spec/)
 
   - [Multi-Chassis Link Aggregation -
-    MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+    MLAG](/version/cumulus-linux-37740/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
 
   - [Configuration File Migration
     Script](https://support.cumulusnetworks.com/hc/en-us/articles/360011472734-Configuration-File-Migration-Script)
 
   - [Zero Touch Provisioning -
-    ZTP](/version/cumulus-linux-377/Installation-Management/Zero-Touch-Provisioning---ZTP)
+    ZTP](/version/cumulus-linux-37740/Installation-Management/Zero-Touch-Provisioning---ZTP)
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+
+</details>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTQyMDg1Mzk3M119
+-->

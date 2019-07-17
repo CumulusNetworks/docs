@@ -8,8 +8,8 @@ aliases:
 pageID: 5122807
 product: Cumulus RMP
 version: '3.7'
-imgData: cumulus-rmp-37
-siteSlug: cumulus-rmp-37
+imgData: cumulus-rmp
+siteSlug: cumulus-rmp
 subsection: true
 ---
 <details>
@@ -140,9 +140,9 @@ For more information about each feature, follow the links below to the
 
 ## <span>Setting up a Cumulus RMP Switch</span>
 
-The [quick start guide](/version/cumulus-rmp-37/Quick-Start-Guide) walks
-you through the steps necessary for getting your Cumulus RMP switch up
-and running after you remove it from the box.
+The [quick start guide](/cumulus-rmp/Quick-Start-Guide) walks you
+through the steps necessary for getting your Cumulus RMP switch up and
+running after you remove it from the box.
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

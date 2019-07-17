@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-<details>
-
 Cumulus Linux supports Power over Ethernet (PoE) and PoE+, so certain
 Cumulus Linux switches can supply power from Ethernet switch ports to
 enabled devices over the Ethernet cables that connect them. Power over
@@ -82,7 +80,7 @@ supports](http://cumulusnetworks.com/hcl/) the feature. You can:
 The PoE configuration resides in `/etc/cumulus/poe.conf`. The file lists
 all the switch ports, whether PoE is enabled for those ports and the
 priority for each port.
-
+<details>
 <summary>Sample poe.conf file ... </summary>
 
     [enable]
@@ -134,7 +132,7 @@ priority for each port.
     swp46 = enable
     swp47 = enable
     swp48 = enable
-     
+
     [priority]
     swp1 = low
     swp2 = low
@@ -184,7 +182,7 @@ priority for each port.
     swp46 = low
     swp47 = low
     swp48 = low
-
+</details>
 By default, PoE and PoE+ are enabled on all Ethernet/1G switch ports,
 and these ports are set with a low priority. Switch ports can have low,
 high or critical priority.
@@ -204,12 +202,12 @@ To display PoE information for a set of switch ports, run `poectl -i
 [port_numbers]`:
 
     cumulus@switch:~$ sudo poectl -i swp10-swp13
-    Port          Status            Allocated    Priority  PD type      PD class   Voltage   Current    Power 
-    -----   --------------------   -----------   -------- -----------   --------   -------   -------   --------- 
-    swp10   connected              negotiating   low      IEEE802.3at   4          53.5 V     25 mA    3.9 W 
-    swp11   searching              n/a           low      IEEE802.3at   none        0.0 V      0 mA    0.0 W 
-    swp12   connected              n/a           low      IEEE802.3at   2          53.5 V     25 mA    1.4 W 
-    swp13   connected              51.0 W        low      IEEE802.3at   4          53.6 V     72 mA    3.8 W 
+    Port          Status            Allocated    Priority  PD type      PD class   Voltage   Current    Power
+    -----   --------------------   -----------   -------- -----------   --------   -------   -------   ---------
+    swp10   connected              negotiating   low      IEEE802.3at   4          53.5 V     25 mA    3.9 W
+    swp11   searching              n/a           low      IEEE802.3at   none        0.0 V      0 mA    0.0 W
+    swp12   connected              n/a           low      IEEE802.3at   2          53.5 V     25 mA    1.4 W
+    swp13   connected              51.0 W        low      IEEE802.3at   4          53.6 V     72 mA    3.8 W
      
 
 The **Status** can be one of the following:
@@ -380,7 +378,7 @@ received on a switch port. For example:
           Power Priority: low
           PD requested power Value: 51000
           PSE allocated power Value: 51000
-      UnknownTLVs: 
+      UnknownTLVs:
         TLV:          OUI: 00,01,42, SubType: 1, Len: 1 05
         TLV:          OUI: 00,01,42, SubType: 1, Len: 1 0D
     -------------------------------------------------------------------------------

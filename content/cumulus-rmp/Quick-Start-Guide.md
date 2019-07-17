@@ -8,8 +8,8 @@ aliases:
 pageID: 5122816
 product: Cumulus RMP
 version: '3.7'
-imgData: cumulus-rmp-37
-siteSlug: cumulus-rmp-37
+imgData: cumulus-rmp
+siteSlug: cumulus-rmp
 ---
 This quick start guide provides an end-to-end setup process for
 installing and running Cumulus RMP, as well as a collection of example

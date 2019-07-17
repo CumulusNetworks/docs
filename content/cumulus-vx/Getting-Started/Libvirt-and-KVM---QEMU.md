@@ -8,8 +8,8 @@ aliases:
 pageID: 5126704
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 The following sections describe how to set up a two-leaf/two-spine
 Cumulus VX topology with QEMU/KVM on a Linux server.
@@ -116,7 +116,7 @@ Performing virtualization in Linux requires three components:
 
 This section assumes that you have installed QEMU/KVM and the Cumulus VX
 disk image for KVM. For download locations and steps, refer to the
-[Getting Started](/version/cumulus-vx-34/Getting-Started/) page.
+[Getting Started](/cumulus-vx/Getting-Started/) page.
 
 {{%/notice%}}
 
@@ -252,9 +252,8 @@ above, and that you now have a VM called `CumulusVX-leaf1`.
 {{%/notice%}}
 
 After you create all four VMs, follow the steps in [Create a Two-Leaf,
-Two-Spine
-Topology](/version/cumulus-vx-34/Create-a-Two-Leaf-Two-Spine-Topology)
-to configure the network interfaces and routing.
+Two-Spine Topology](/cumulus-vx/Create-a-Two-Leaf-Two-Spine-Topology) to
+configure the network interfaces and routing.
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

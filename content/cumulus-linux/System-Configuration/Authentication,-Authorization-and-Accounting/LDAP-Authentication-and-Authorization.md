@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-<details>
-
 Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name
 Service Switch (NSS) for user authentication.
 
@@ -67,10 +65,10 @@ using `debconf-set-selections`:
     # LDAP database user. Leave blank will be populated later!
     # This way of setting binddn and bindpw doesn't seem to work.
     # So have to manually do it. But interactive apt-get mode works.
-    nslcd nslcd/ldap-binddn  string 
+    nslcd nslcd/ldap-binddn  string
      
     # LDAP user password. Leave blank!
-    nslcd nslcd/ldap-bindpw   password 
+    nslcd nslcd/ldap-bindpw   password
      
     # LDAP server search base:
     nslcd nslcd/ldap-base string  ou=support,dc=rtp,dc=example,dc=test
@@ -106,7 +104,7 @@ using `debconf-set-selections`:
     libnss-ldapd  libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
     libnss-ldapd  libnss-ldapd/clean_nsswitch     boolean false
      
-    ## define platform specific libnss-ldapd debconf questions/answers. 
+    ## define platform specific libnss-ldapd debconf questions/answers.
     ## For demo used amd64.
     libnss-ldapd:amd64    libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
     libnss-ldapd:amd64    libnss-ldapd/clean_nsswitch     boolean false
@@ -211,7 +209,7 @@ searching for objects within the directory. This is used to limit the
 search scope when authenticating users. The default filters applied are:
 
     filter passwd (objectClass=posixAccount)
-    filter group (objectClass=posixGroup) 
+    filter group (objectClass=posixGroup)
 
 ### <span>Attribute Mapping</span>
 
@@ -382,22 +380,22 @@ was queried.
   - If the `nscd cache` daemon is also enabled and you make some changes
     to the user from LDAP, you can clear the cache using the following
     commands:
-    
-        nscd --invalidate = passwd 
+
+        nscd --invalidate = passwd
         nscd --invalidate = group
 
   - The `nscd` package works with `nslcd` to cache name entries returned
     from the LDAP server. This might cause authentication failures. To
     work around these issues:
-    
+
     1.  Disable `nscd` by running:
-        
+
             cumulus@switch:~$ sudo nscd -K
-    
+
     2.  Restart the `nslcd` service:
-        
+
             cumulus@switch:~$ sudo systemctl restart nslcd.service
-    
+
     3.  Try the authentication again.
 
 #### <span>LDAP</span>
@@ -407,7 +405,7 @@ was queried.
 
   - Optionally, configure the basic LDAP connection and search
     parameters in `/etc/ldap/ldap.conf`.
-    
+
         # ldapsearch -D 'cn=CLadmin' -w 'CuMuLuS' "(&(ObjectClass=inetOrgUser)(uid=myuser))"
 
   - When a local username also exists in the LDAP database, the order of
@@ -415,7 +413,7 @@ was queried.
     LDAP before the local user database. This is generally not
     recommended. For example, the configuration below ensures that LDAP
     is queried before the local database.
-    
+
         # /etc/nsswitch.conf
         passwd:         ldap compat
 
@@ -466,7 +464,7 @@ passwd map configured with the sources `compat ldap`:
 
     cumulus@switch:~$ id cumulus
     uid=1000(cumulus) gid=1000(cumulus) groups=1000(cumulus),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev)
-    cumulus@switch:~$ id myuser 
+    cumulus@switch:~$ id myuser
     uid=1230(myuser) gid=3000(Development) groups=3000(Development),500(Employees),27(sudo)
 
 ### <span>getent</span>
@@ -483,7 +481,7 @@ locally defined in `/etc/passwd`, and *myuser* is only in LDAP.
 
     cumulus@switch:~$ getent passwd cumulus
     cumulus:x:1000:1000::/home/cumulus:/bin/bash
-    cumulus@switch:~$ getent passwd myuser 
+    cumulus@switch:~$ getent passwd myuser
     myuser:x:1230:3000:My Test User:/home/myuser:/bin/bash
 
 In the next example, looking up a specific group in the group service,
@@ -508,7 +506,7 @@ has many options. The simplest uses anonymous bind to the host and
 specifies the search DN and the attribute to look up.
 
     cumulus@switch:~$ ldapsearch -H ldap://ldap.example.com -b dc=example,dc=com -x uid=myuser
-
+<details>
 <summary>Click to expand the command output ... </summary>
 
     # extended LDIF
@@ -541,14 +539,14 @@ specifies the search DN and the attribute to look up.
     sn: User
     uid: myuser
     uidNumber: 1234
-     
+
     # search result
     search: 2
     result: 0 Success
-          
+
     # numResponses: 2
     # numEntries: 1
-
+</details>
 ### <span>LDAP Browsers</span>
 
 There are several GUI LDAP clients available that help to work with LDAP

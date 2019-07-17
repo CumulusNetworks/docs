@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321048
 pageID: 12321048
 product: Cumulus NetQ
-version: 2.2.0
+version: 2.2.1
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
@@ -35,21 +35,20 @@ It helps answer questions such as:
 
 ## <span>Monitor LLDP Operation</span>
 
-LLDP is <span style="color: #545454;"> used by network devices for
+LLDP is used by network devices for
 advertising their identity, capabilities, and neighbors on a LAN. You
 can view this information for one or more devices. You can also view the
 information at an earlier point in time or view changes that have
 occurred to the information during a specified timeframe. NetQ enables
 you to view LLDP information for your devices using the `netq show lldp`
-command. The syntax for this command is: </span>
+command. The syntax for this command is:
 
     netq [<hostname>] show lldp [<remote-physical-interface>] [around <text-time>] [json]
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type lldp [between <text-time> and <text-endtime>] [json]
 
 ### <span>View LLDP Information for All Devices</span>
 
-<span style="color: #545454;"> This example shows the interface and peer
-information that is advertised for each device. </span>
+This example shows the interface and peer information that is advertised for each device.
 
     cumulus@switch:~$ netq show lldp 
      
@@ -222,7 +221,7 @@ that are up.
 ### <span>View the Total Number of Interfaces</span>
 
 For a quick view of the amount of interfaces currently operating on a
-device, use the *hostname* and *count* keywords together.
+device, use the `hostname` and `count` keywords together.
 
 This example shows the count of interfaces on the *leaf03* switch.
 
@@ -295,7 +294,7 @@ misconfiguration.
 <span style="color: #36424a;"> </span> A VLAN (Virtual Local Area
 Network) enables devices on one or more LANs to communicate as if they
 were on the same network, without being physically connected. The VLAN
-<span style="color: #545454;"> enables network administrators to
+enables network administrators to
 partition a network for functional or security requirements without
 changing physical infrastructure. With NetQ, you can view the operation
 of VLANs for one or all devices. You can also view the information at an
@@ -304,7 +303,6 @@ information during a specified timeframe. NetQ enables you to view basic
 VLAN information for your devices using the `netq show vlan` command.
 Additional show commands enable you to view VLAN information associated
 with interfaces and MAC addresses. The syntax for these commands is:
-</span>
 
     netq [<hostname>] show interfaces [type vlan] [state <remote-interface-state>] [around <text-time>] [json]
     netq <hostname> show interfaces [type vlan] [state <remote-interface-state>] [around <text-time>] [count] [json]
@@ -314,7 +312,7 @@ with interfaces and MAC addresses. The syntax for these commands is:
     netq <hostname> show macs egress-port <egress-port> [<mac>] [vlan <1-4096>] [origin] [around <text-time>] [json]
     netq [<hostname>] show vlan [<1-4096>] [around <text-time>] [json]
 
-{{%notice info%}}
+{{%notice note%}}
 
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
@@ -337,8 +335,7 @@ same unit of measure.
 
 ### <span>View VLAN Information for All Devices</span>
 
-<span style="color: #545454;"> This example shows the VLANs configured
-across your network. </span>
+This example shows the VLANs configured across your network.
 
     cumulus@switch:~$ netq show vlan
     Matching vlan records:
@@ -487,10 +484,9 @@ physical switches.
 {{%notice tip%}}
 
 **MLAG or CLAG?**
-
 The Cumulus Linux implementation of MLAG is referred to by other vendors
 as CLAG, MC-LAG or VPC. You will even see references to CLAG in Cumulus
-Linux, including the management daemon, named `clagd`, and other options
+Linux and Cumulus NetQ, including the management daemon, named `clagd`, and other options
 in the code, such as `clag-id`, which exist for historical purposes. The
 Cumulus Linux implementation is truly a multi-chassis link aggregation
 protocol, so we call it MLAG.
@@ -564,7 +560,7 @@ state:
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
-    Peer Interface and IP: peerlink-3.4094 169.254.0.9 
+    Peer Interface and IP: peerlink-3.4094 169.254.0.9
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
@@ -572,13 +568,13 @@ state:
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
-    vx-38            vx-38            -       -                    - 
-    vx-33            vx-33            -       -                    - 
-    hostbond4        hostbond4        1       -                    - 
-    hostbond5        hostbond5        2       -                    - 
-    vx-37            vx-37            -       -                    - 
-    vx-36            vx-36            -       -                    - 
-    vx-35            vx-35            -       -                    - 
+    vx-38            vx-38            -       -                    -
+    vx-33            vx-33            -       -                    -
+    hostbond4        hostbond4        1       -                    -
+    hostbond5        hostbond5        2       -                    -
+    vx-37            vx-37            -       -                    -
+    vx-36            vx-36            -       -                    -
+    vx-35            vx-35            -       -                    -
     vx-34            vx-34            -       -                    -
 
 ## <span>Monitor Time Synchronization Status for Devices</span>
@@ -638,19 +634,18 @@ This example shows the time synchronization status for *leaf01*.
 
 ## <span>Monitor Spanning Tree Protocol Configuration</span>
 
-<span style="color: #36424a;"> The Spanning Tree Protocol (STP) is used
+The Spanning Tree Protocol (STP) is used
 in Ethernet-based networks to prevent communication loops when you have
 redundant paths on a bridge or switch. Loops cause excessive broadcast
 messages greatly impacting the network performance. With NetQ, you can
 view the STP topology on a bridge or switch to ensure no loops have been
 created using the `netq show stp topology` command. You can also view
 the topology information for a prior point in time to see if any changes
-were made around then. The syntax for the show command is: </span>
+were made around then. The syntax for the show command is:
 
     netq <hostname> show stp topology [around <text-time>] [json]
 
-<span style="color: #36424a;"> This example shows the STP topology as
-viewed from the *spine1* switch. </span>
+This example shows the STP topology as viewed from the *spine1* switch.
 
     cumulus@switch:~$ netq spine1 show stp topology
     Root(spine1) -- spine1:sw_clag200 -- leaf2:EdgeIntf(sng_hst2) -- hsleaf21
@@ -690,18 +685,7 @@ viewed from the *spine1* switch. </span>
 
 ## <span>Validate Paths between Devices</span>
 
-If you have VLANs configured, you can <span style="color: #353744;">
-view the available paths between two devices on the VLAN currently and
-at a time in the past using their MAC addresses </span> . You can
-<span style="color: #353744;"> view the output in one of three formats (
-</span> *json, pretty,* <span style="color: #353744;"> and </span>
-*detail* <span style="color: #353744;"> ). JSON output provides the
-output in a JSON file format for ease of importing to other applications
-or software. Pretty output lines up the paths in a pseudo-graphical
-manner to help visualize multiple paths. Detail output is useful for
-traces with higher hop counts where the pretty output wraps lines,
-making it harder to interpret the results. The detail output displays a
-table with a row for each path. </span>
+If you have VLANs configured, you can view the available paths between two devices on the VLAN currently and at a time in the past using their MAC addresses </span> . You can view the output in one of three formats (*json*, *pretty*, and *detail*). JSON output provides the output in a JSON file format for ease of importing to other applications or software. Pretty output lines up the paths in a pseudo-graphical manner to help visualize multiple paths. Detail output is useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. The detail output displays a table with a row for each path.
 
 To view the paths:
 
@@ -710,17 +694,16 @@ To view the paths:
 2.  Identify the IP address or hostname for the source device
 
 3.  Use the `netq trace` command to see the available paths between
-    those devices. <span style="color: #353744;">  
-    </span>
+    those devices.
 
-<span style="color: #353744;"> The trace command syntax is: </span>
+The trace command syntax is:
 
     netq trace <mac> [vlan <1-4096>] from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
 
-{{%notice info%}}
+{{%notice note%}}
 
-The syntax requires the destination device address first, *\<mac\>*, and
-then the source device address or hostname. Additionally, the *vlan*
+The syntax requires the destination device address first, `mac`, and
+then the source device address or hostname. Additionally, the `vlan`
 keyword-value pair is required for layer 2 traces even though the syntax
 indicates it is optional.
 
@@ -739,7 +722,7 @@ including the total number of paths available, those with errors and
 warnings, and the MTU of the paths. In this case, the results are
 displayed in pseudo-graphical output.
 
-``` 
+```
 cumulus@switch:~$ netq trace 00:02:00:00:00:02 vlan 1001 from leaf01 vrf vrf1 pretty
 Number of Paths: 4
 Number of Paths with Errors: 0
@@ -754,7 +737,7 @@ Path MTU: 9152
 Alternately, you can use the IP address of the source device, as shown
 in this example.
 
-    cumulus@redis-1:~$  netq trace 00:02:00:00:00:02 vlan 1001 from 10.0.0.8 vrf vrf1 pretty 
+    cumulus@redis-1:~$  netq trace 00:02:00:00:00:02 vlan 1001 from 10.0.0.8 vrf vrf1 pretty
     Number of Paths: 4
     Number of Paths with Errors: 0
     Number of Paths with Warnings: 0

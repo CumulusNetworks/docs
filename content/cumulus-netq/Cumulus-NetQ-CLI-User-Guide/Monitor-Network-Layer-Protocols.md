@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321049
 pageID: 12321049
 product: Cumulus NetQ
-version: 2.2.0
+version: 2.2.1
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
@@ -17,21 +17,15 @@ Protocol), BGP (Border Gateway Protocol) and OSPF (Open Shortest Path
 First). NetQ provides the ability to:
 
   - Validate protocol configurations
-
   - Validate layer 3 communication paths
 
 It helps answer questions such as:
 
   - Who are the IP neighbors for a switch?
-
   - How many IPv4 and IPv6 addresses am I using?
-
   - When did changes occur to my IP configuration?
-
   - Is BGP working as expected?
-
   - Is OSPF working as expected?
-
   - Can device A reach device B using IP addresses?
 
 ## <span>Monitor IP Configuration</span>
@@ -40,11 +34,8 @@ NetQ enables you to view the current status and the status an earlier
 point in time. From this information, you can:
 
   - determine IP addresses of one or more interfaces
-
   - determine IP neighbors for one or more devices
-
   - determine IP routes owned by a device
-
   - identify changes to the IP configuration
 
 The `netq show ip` command is used to obtain the address, neighbor, and
@@ -64,19 +55,15 @@ route information from the devices. Its syntax is:
     netq <hostname> show ipv6 routes [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [origin] [around <text-time>] [count] [json]
     netq [<hostname>] show ipv6 routes [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [origin] [around <text-time>] [json]
 
-{{%notice info%}}
+{{%notice note%}}
 
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
   - d: day(s)
-
   - h: hour(s)
-
   - m: minute(s)
-
   - s: second(s)
-
   - now
 
 For time ranges, the `<text-time>` is the most recent time and the
@@ -92,9 +79,7 @@ devices, including the interface and VRF for each device. Additionally,
 you can:
 
   - view the information at an earlier point in time
-
   - filter against a particular device, interface or VRF assignment
-
   - obtain a count of all of the addresses
 
 Each of these provides information for troubleshooting potential
@@ -266,10 +251,8 @@ whether it learns the MAC address from the peer (remote=yes).
 Additionally, you can:
 
   - view the information at an earlier point in time
-
   - filter against a particular device, interface, address or VRF
     assignment
-
   - obtain a count of all of the addresses
 
 Each of these provides information for troubleshooting potential
@@ -277,7 +260,7 @@ configuration and communication issues at the layer 3 level.
 
 **Example: View IPv4 Neighbor Information for All Devices**
 
-    cumulus@switch:~$ netq show ip neighbors 
+    cumulus@switch:~$ netq show ip neighbors
     Matching neighbor records:
     IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
     ------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
@@ -313,7 +296,7 @@ configuration and communication issues at the layer 3 level.
 
 This example shows the IPv6 neighbors for leaf02 switch.
 
-    cumulus@switch$ netq leaf02 show ipv6 neighbors 
+    cumulus@switch$ netq leaf02 show ipv6 neighbors
     Matching neighbor records:
     IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
     ------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
@@ -334,9 +317,7 @@ the route, next hops available, VRF assignment, and whether a host is
 the owner of the route or MAC address. Additionally, you can:
 
   - view the information at an earlier point in time
-
   - filter against a particular address or VRF assignment
-
   - obtain a count of all of the routes
 
 Each of these provides information for troubleshooting potential
@@ -442,9 +423,7 @@ associated neighbors, ASN (autonomous system number), peer ASN, receive
 IP or EVPN address prefixes, and VRF assignment. Additionally, you can:
 
   - view the information at an earlier point in time
-
   - filter against a particular device, ASN, or VRF assignment
-
   - validate it is operating correctly across the network
 
 The `netq show bgp` command is used to obtain the BGP configuration
@@ -455,19 +434,15 @@ validate the configuration. The syntax of these commands is:
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type bgp [between <text-time> and <text-endtime>] [json]
     netq check bgp [vrf <vrf>] [around <text-time>] [json]
 
-{{%notice info%}}
+{{%notice note%}}
 
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
   - d: day(s)
-
   - h: hour(s)
-
   - m: minute(s)
-
   - s: second(s)
-
   - now
 
 For time ranges, the `<text-time>` is the most recent time and the
@@ -780,7 +755,7 @@ sessions.
 This example shows 24 failed BGP sessions with a variety of reasons.
 
     cumulus@switch:~$ netq check bgp
-    Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24, 
+    Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
     Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
     ----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
     exit-1            DataVrf1080     swp6.2            firewall-1        BGP session with peer firewall-1 swp6.2: AFI/ 1d:7h:56m:9s
@@ -819,9 +794,7 @@ associated interfaces, areas, peers, state, and type of OSPF running
 (numbered or unnumbered). Additionally, you can:
 
   - view the information at an earlier point in time
-
   - filter against a particular device, interface, or area
-
   - validate it is operating correctly across the network
 
 The ` netq show ospf  `command is used to obtain the OSPF configuration
@@ -832,19 +805,15 @@ validate the configuration. The syntax of these commands is:
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type ospf [between <text-time> and <text-endtime>] [json]
     netq check ospf [around <text-time>] [json]
 
-{{%notice info%}}
+{{%notice note%}}
 
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
   - d: day(s)
-
   - h: hour(s)
-
   - m: minute(s)
-
   - s: second(s)
-
   - now
 
 For time ranges, the `<text-time>` is the most recent time and the
@@ -890,7 +859,7 @@ information was changed.
 
 **Example: View OSPF Configuration Information for a Given Device**
 
-This example show the OSPF configuration information for leaf01.
+This example show the OSPF configuration information for *leaf01*.
 
     cumulus@switch:~$ netq leaf01 show ospf
      
@@ -902,7 +871,7 @@ This example show the OSPF configuration information for leaf01.
 
 **Example: View OSPF Configuration Information for a Given Interface**
 
-This example shows the OSPF configuration for all devices with the swp51
+This example shows the OSPF configuration for all devices with the *swp51*
 interface.
 
     cumulus@switch:~$ netq show ospf swp51 
@@ -941,9 +910,7 @@ configured route peering is established across the network. The command
 checks for:
 
   - router ID conflicts, such as duplicate IDs
-
   - links that are down, or have mismatched MTUs
-
   - mismatched session parameters (hello timer, dead timer, area ids,
     and network type)
 
@@ -992,7 +959,7 @@ available paths between those devices. The trace command syntax is:
 
     netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
 
-{{%notice info%}}
+{{%notice note%}}
 
 The syntax requires the destination device address first, *\<ip\>*, and
 then the source device address or hostname.
@@ -1011,7 +978,7 @@ include a summary of the trace, including the total number of paths
 available, those with errors and warnings, and the MTU of the paths. In
 this case, the results are displayed in pseudo-graphical output.
 
-``` 
+```
 cumulus@switch:~$ netq leaf01 show ip addresses
 Matching address records:
 Address                   Hostname          Interface                 VRF             Last Changed

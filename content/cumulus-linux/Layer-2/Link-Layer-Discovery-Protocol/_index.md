@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-<details>
-
 The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery
 Protocol, or LLDP) standard. LLDP enables you to know which ports are
 neighbors of a given port. By default, `lldpd` runs as a daemon and is
@@ -245,7 +243,7 @@ To show the `lldpd` running configuration:
       Source MAC for LLDP frames on bond slaves: local
       Portid TLV Subtype for lldp frames: ifname
     --------------------------------------------------------------------
-
+<details>
 <summary>Runtime Configuration (Advanced) </summary>
 
 {{%notice warning%}}
@@ -272,7 +270,7 @@ The active interface list always overrides the inactive interface list.
 To reset any interface list to none:
 
     cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
-
+</details>
 ## <span id="src-8362650_LinkLayerDiscoveryProtocol-snmp" class="confluence-anchor-link"></span><span>Enable the SNMP Subagent in LLDP</span>
 
 LLDP does not enable the SNMP subagent by default. You need to edit
@@ -295,13 +293,3 @@ LLDP does not enable the SNMP subagent by default. You need to edit
 
   - [Wikipedia - Link Layer Discovery
     Protocol](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

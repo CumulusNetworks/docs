@@ -37,15 +37,12 @@ three heartbeats in a row were not sent, then you can investigate the
 rotten node. In the example below, the NetQ Agent on server01 is rotten,
 so you know where to start looking for problems:
 
-<div class="confbox panel">
-
-<div class="panel-content">
-
+```
     cumulus@switch:$ netq check agents     
     Checked nodes: 12,    
-         
+
     Rotten nodes: 1    
-    netq@446c0319c06a:/$ netq show agents 
+    netq@446c0319c06a:/$ netq show agents
     Node      Status    Sys Uptime    Agent Uptime
     --------  --------  ------------  --------------
     exit01        
@@ -85,9 +82,7 @@ so you know where to start looking for problems:
     Fresh    
          8h ago        4h ago
 
-</div>
-
-</div>
+```
 
 ## <span>Generate a Support File</span>
 

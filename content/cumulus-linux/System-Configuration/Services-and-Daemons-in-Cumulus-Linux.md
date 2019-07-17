@@ -1,23 +1,27 @@
 ---
 title: Services and Daemons in Cumulus Linux
 author: Cumulus Networks
-weight: 71
+weight: 7169
 aliases:
- - /display/CL37/Services-and-Daemons-in-Cumulus-Linux
- - /pages/viewpage.action?pageId=8362578
-pageID: 8362578
+ - /display/CL3740/Services-and-Daemons-in-Cumulus-Linux
+ - /pages/viewpage.action?pageId=83625786299
+pageID: 83625786299
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
+<details>
+
 *Services* (also known as *daemons*) and *processes* are at the heart of
-how a Linux system functions. Most of the time a service takes care of
+how a Linux system functions. Most of the time, a service takes care of
 itself; you just enable and start it, then let it run. However, because
-a Cumulus Linux switch is a Linux system, you have the ability to dig
-deeper if you like. Services may start multiple processes as they run.
-Services tend to be the most important things to monitor on a Cumulus
-Linux switch.
+a Cumulus Linux switch is a Linux system, you have the ability tocan dig
+ deeper if you 
+like. Services maycan start multiple processes as they run.
+ Services tend to be the most are
+important things to monitor on a Cumulus
+ Linux switch.
 
 You manage services in Cumulus Linux in the following ways:
 
@@ -44,12 +48,14 @@ For example to restart networking, run the command:
 
 {{%notice note%}}
 
-Unlike the `service` command in Debian Wheezy, the service name is
-written **after** the `systemctl` subcommand, not before it.
+Unlike the `service` command in Debian Wheezy, tThe service name is
+ written **after** the `systemctl` subcommand, not 
+before it.
 
 {{%/notice%}}
 
-To see all the currently running services, run:
+To seehow all the services currently running services, run, run the `systemctl status`
+command. For example:
 
     cumulus@switch:~$ sudo systemctl status
     ● switch
@@ -58,19 +64,21 @@ To see all the currently running services, run:
        Failed: 0 units
         Since: Thu 2019-01-10 00:19:34 UTC; 23h ago
        CGroup: /
-               ├─1 /sbin/init
+               ├─init.scope
+               │ └─1 /sbin/init
                └─system.slice
                  ├─dbus.service
                  │ └─403 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
-                 ├─uuidd.service
-                 │ └─669 /usr/sbin/uuidd --socket-activation
+                 ├─uuidhaveged.service
+                 │ └─669234 /usr/sbin/uuidd --socket-activation
                  ├─cron.service
-                 │ └─381 /usr/sbin/cron -f -L 38
-                 ├─smond.service
+                 │ └─381 /usr/sbin/cron -f -L 38haveged --Foreground --verbose=1 -w 1024
+                 ├─sysmonditor.service
                  │ └─606 /usr/bin/python /usr/sbin/smond
                  ├─switchd.service
-                 │ └─587 /usr/sbin/switchd -vx
-                 ├─ledmgrd.service
+                 │ └─587 /usr/sbin/switchd -vx├─  658 /bin/bash /usr/lib/cumulus/sysmonitor
+                 │ └─26543 sleep 60
+                 ├─ledmgrsystemd-udevd.service
                  │ └─613 /usr/bin/python /usr/sbin/ledmgrd
                  ├─wd_keepalive.service
                  │ └─433 /usr/sbin/wd_keepalive
@@ -86,14 +94,19 @@ To see all the currently running services, run:
                  │ ├─450 nginx: worker process                           
                  │ ├─451 nginx: worker process                           
                  │ ├─452 nginx: worker process                           
-                 │ └─453 nginx: worker process                           
-                 ├─sysmonitor.service
+                 │ └─453 nginx: worker process                           218 /lib/systemd/systemd-udevd
+                 ├─system-ntp.slice
+                 │ └─ntp@mgmt.service
+                 │   └─vrf
+                 │     └─mgmt
+                 │       └─12108 /usr/sbin/ntpd -n -u ntp:ntp -g
+                 ├─sysmonitorcron.service
                  │ ├─ 847 /bin/bash /usr/lib/cumulus/sysmonitor
-                 │ └─7717 sleep 60
+                 │ └─7717 sleep 60└─274 /usr/sbin/cron -f -L 38
                  ├─system-serial\x2dgetty.slice
                  │ └─serial-getty@ttyS0.service
-                 │   └─920 /sbin/agetty --keep-baud 115200 38400 9600 ttyS0 vt102
-                 ├─neighmgrd.service
+                 │   └─920745 /sbin/agetty -o -p -- \u --keep-baud 115200 ,38400 ,9600 ttyS0 vt102220
+                 ├─neighmgrdginx.service
                  │ └─844 /usr/bin/python /usr/bin/neighmgrd
                  ├─systemd-journald.service
                  │ └─252 /lib/systemd/systemd-journald
@@ -116,77 +129,93 @@ To see all the currently running services, run:
                  ├─systemd-logind.service
                  │ └─405 /lib/systemd/systemd-logind
                  ├─system-getty.slice
-                 │ └─getty@tty1.service
-                 │   └─435 /sbin/agetty --noclear tty1 linux
+                 │ └─getty@tty1├─332 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+                 │ └─333 nginx: worker process
+                 ├─auditd.service
+                 │   └─4235 /sbin/agetty --noclear tty1 linux
                  ├─systemd-udevd.service
-                 │ └─254 /lib/systemd/systemd-udevd
-                 ├─mcelog.service
-                 │ └─438 /usr/sbin/mcelog --ignorenodev --daemon --foreground
-                 ├─portwd.service
-                 │ └─603 /usr/bin/python /usr/sbin/portwd
+                 │ └─254 /lib/systemd/systemd-udevuditd
+                 ├─mcelograsdaemon.service
+                 │ └─438275 /usr/sbin/mcelog --ignorenodev --daemon --foregroundrasdaemon -f -r
+                 ├─portwclagd.service
+                 │ └─6011443 /usr/bin/python /usr/sbin/portwd
                  ├─lldpd.service
                  │ ├─911 lldpd: monitor.        
                  │ └─936 lldpd: connected to oob-mgmt-switch
                  ├─rsyslog.service
                  │ └─392 /usr/sbin/rsyslogd -n
                  ├─ntp.service
-                 │ └─912 /usr/sbin/ntpd -n -u ntp:ntp -g
-                 ├─acpid.service
-                 │ └─390 /usr/sbin/acpid
+                 │ └─912 /usr/sbin/ntpd -n -u ntp:ntp -gclagd --daemon 169.254.1.2 peerlink.4094 44:39:39:ff:40:94 --priority 100 --vxlanAnycas
+                 ├─acpiswitchd.service
+                 │ └─4390 /usr/sbin/acpid
                  └─mstpd.service
-                   └─436 /sbin/mstpd -d -v2
+                   └─436 /sbin/mstpd -d -v2switchd -vx
+                 ...
 
 ### <span>systemctl Subcommands</span>
 
 `systemctl` has a number of subcommands that perform a specific
 operation on a given service.
 
-  - **status**: Returns the status of the specified service.
+  - **status**: R returns the status of the specified service.
 
-  - **start**: Starts the service.
+  - **start**: S starts the service.
 
-  - **stop**: Stops the service.
+  - **stop**: S stops the service.
 
-  - **restart**: Stops, then starts the service, all the while
-    maintaining state. So if there are dependent services or services
-    that mark the restarted service as *Required*, the other services
-    also get restarted. For example, running `systemctl restart
-    frr.service` restarts any of the routing protocol services that are
-    enabled and running, such as `bgpd` or `ospfd`.
+  - **restart**: S stops, then starts the service, all the while
+    maintaining state. So iIf there are dependent services or services
+    that
+    mark the restarted service as *Required*, the other services
+    also get
+    restarted. For example, running `systemctl restart
+    frr.service`
+    restarts any of the routing protocol services that are
+    enabled and
+    running, such as `bgpd` or `ospfd`.
 
-  - **reload**: Reloads a service's configuration.
+  - **reload**: R reloads a service'sthe configuration for the service.
 
-  - **enable**: Enables the service to start when the system boots, but
+  - **enable**: E enables the service to start when the system boots, but
     does not start it unless you use the `systemctl start
     SERVICENAME.service` command or reboot the switch.
 
-  - **disable**: Disables the service, but does not stop it unless you
+  - **disable**: D disables the service, but does not stop it unless you
     use the `systemctl stop SERVICENAME.service` command or reboot the
-    switch. A disabled service can still be started or stopped.
+    switch. A disabled service can still beYou can started or stopped a disabled service.
 
-  - **reenable**: Disables, then enables a service. You might need to do
+  - **reenable**: D disables, then enables a service. You might need to do
     this so that any new *Wants* or *WantedBy* lines create the symlinks
     necessary for ordering. This has no side effects on other services.
 
 There is often little reason to interact with the services directly
 using these commands. If a critical service should happen to crash or
-hit an error it will be automatically respawned by systemd. Systemd is
-effectively the caretaker of services in modern Linux systems and is
-responsible for starting all the necessary services at boot time.
+hitcrashes or encounters an 
+error, it will beis automatically respawned by systemd. Ssystemd is
+ effectively 
+the caretaker of services in modern Linux systems and is
+ responsible for 
+starting all the necessary services at boot time.
 
 ### <span>Ensure a Service Starts after Multiple Restarts</span>
 
 By default, `systemd` is configured to try to restart a particular
 service only a certain number of times within a given interval before
 the service fails to start at all. The settings for this are stored in
-the service script. The settings are *StartLimitInterval* (which
-defaults to 10 seconds) and *StartBurstLimit* (which defaults to 5
-attempts), but many services override these defaults, sometimes with
-much longer times. `switchd.service`, for example, sets
-*StartLimitInterval=10m* and *StartBurstLimit=3*, which means if you
-restart switchd more than 3 times in 10 minutes, it does not start.
+the service script. The settings are, *StartLimitInterval* 
+(which
+ defaults to 10 seconds) and *StartBurstLimit* (which defaults to 5
 
-When the restart fails for this reason, a message similar to the
+5 attempts), but are stored in the service script; however, many services 
+override these defaults, sometimes with
+ much longer times. For example,
+`switchd.service`, for example, sets
+ *StartLimitInterval=10m* and *StartBurstLimit=3*, which means;*
+therefore, if you
+ restart `switchd` more than 3 times in 10 minutes, it 
+does not start.
+
+When the restart fails for this reason, you see a message similar to the
 following appears:
 
     Job for switchd.service failed. See 'systemctl status switchd.service' and 'journalctl -xn' for details.
@@ -245,9 +274,9 @@ To determine which services are currently active or stopped, run the
     Service cron               enabled    active   
     Service ssh                enabled    active   
     Service syslog             enabled    active   
-    Service asic-monitor       enabled    inactive
-    Service clagd              enabled    inactive
-    Service cumulus-poe                   inactive
+    Service asic-monitor       enabled    inactive 
+    Service clagd              enabled    inactive 
+    Service cumulus-poe                   inactive 
     Service lldpd              enabled    active   
     Service mstpd              enabled    active   
     Service neighmgrd          enabled    active   
@@ -262,20 +291,20 @@ To determine which services are currently active or stopped, run the
     Service sysmonitor         enabled    active   
     Service vxrd               disabled   inactive
     Service vxsnd              disabled   inactive
-    Service rdnbrd             disabled   inactive
-    Service frr                enabled    inactive
-    Service bgpd               disabled   inactive
-    Service eigrpd             disabled   inactive
-    Service isisd              disabled   inactive
-    Service ldpd               disabled   inactive
-    Service nhrpd              disabled   inactive
-    Service ospf6d             disabled   inactive
-    Service ospfd              disabled   inactive
-    Service pbrd               disabled   inactive
-    Service pimd               disabled   inactive
-    Service ripd               disabled   inactive
-    Service ripngd             disabled   inactive
-    Service zebra              disabled   inactive
+    Service rdnbrd             disabled   inactive 
+    Service frr                enabled    inactive 
+    Service bgpd               disabled   inactive 
+    Service eigrpd             disabled   inactive 
+    Service isisd              disabled   inactive 
+    Service ldpd               disabled   inactive 
+    Service nhrpd              disabled   inactive 
+    Service ospf6d             disabled   inactive 
+    Service ospfd              disabled   inactive 
+    Service pbrd               disabled   inactive 
+    Service pimd               disabled   inactive 
+    Service ripd               disabled   inactive 
+    Service ripngd             disabled   inactive 
+    Service zebra              disabled   inactive 
 
 You can also run the `systemctl list-unit-files --type service` command
 to list all services on the switch and see which ones are enabled:
@@ -284,32 +313,32 @@ to list all services on the switch and see which ones are enabled:
 
     cumulus@switch:~$ systemctl list-unit-files --type service
     UNIT FILE                              STATE   
-    aclinit.service                        enabled
-    acltool.service                        enabled
+    aclinit.service                        enabled 
+    acltool.service                        enabled 
     acpid.service                          disabled
-    asic-monitor.service                   enabled
-    auditd.service                         enabled
+    asic-monitor.service                   enabled 
+    auditd.service                         enabled 
     autovt@.service                        disabled
     bmcd.service                           disabled
-    bootlog.service                        enabled
+    bootlog.service                        enabled 
     bootlogd.service                       masked  
     bootlogs.service                       masked  
     bootmisc.service                       masked  
     checkfs.service                        masked  
     checkroot-bootclean.service            masked  
     checkroot.service                      masked  
-    clagd.service                          enabled
+    clagd.service                          enabled 
     console-getty.service                  disabled
     console-shell.service                  disabled
     container-getty@.service               static  
-    cron.service                           enabled
+    cron.service                           enabled 
     cryptdisks-early.service               masked  
     cryptdisks.service                     masked  
     cumulus-aclcheck.service               static  
     cumulus-chassis-ssh.service            disabled
     cumulus-chassisd.service               disabled
     cumulus-core.service                   static  
-    cumulus-fastfailover.service           enabled
+    cumulus-fastfailover.service           enabled 
     cumulus-firstboot.service              disabled
     cumulus-hyperconverged.service         disabled
     cumulus-platform.service               enabled
@@ -496,7 +525,9 @@ to list all services on the switch and see which ones are enabled:
     ztp.service                            disabled
     210 unit files listed.
     lines 165-213/213 (END)
-</details>
+</details>  
+    ...
+
 ## <span>Identify Essential Services</span>
 
 If you need to know which services are required to run when the switch
@@ -514,8 +545,11 @@ To see which services are needed for networking, run:
 <tr class="odd">
 <td><pre><code>cumulus@switch:~$ systemctl list-dependencies --after network.target</code></pre>
 <p><span style="color: #5cdd49;"> <strong>●</strong> </span> <code>├─switchd.service</code><br />
-<span style="color: #5cdd49;"> <strong>●</strong> </span> <code>├─wd_keepalive.service</code><br />
-<span style="color: #6a0900;"> <strong>●</strong> </span> <code>└─network-pre.target</code></p></td>
+/p>
+<p><strong>●</strong> <code>├─systemd-networkd.service</code></p>
+<p><span style="color: #5cdd49;"> <strong>●</strong> </span> <code>├─wd_keepalive.service</code><br />
+/p>
+<p><span style="color: #6a0900;"> <strong>●</strong> </span> <code>└─network-pre.target</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -544,22 +578,23 @@ To identify the services needed for a multi-user environment, run:
 The following table lists the most important services in Cumulus Linux.
 
 | Service Name | Description                                                                                                                                                                                                                                                                                                                                     | Affects Forwarding?                          |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| switchd      | Hardware abstraction daemon, synchronizes the kernel with the ASIC.                                                                                                                                                                                                                                                                             | YES                                          |
+| ------------ | ---------------------------------------------------------------------------------| Affects Forwarding?                          |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| switchd      | Hardware abstraction daemon, s. Synchronizes the kernel with the ASIC.                                                                                                                                                                                                                                                                             | YES                                          |
 | sx\_sdk      | Only on Mellanox switches, interfaces with the Spectrum ASIC.                                                                                                                                                                                                                                                                                   | YES                                          |
 | portwd       | Reads pluggable information over the I2C bus. Identifies and classifies the optics that are inserted into the system. Sets interface speeds and capabilities to match the optics.                                                                                                                                                               | YES, eventually, if optics are added/removed |
-| frr          | [FRRouting](/version/cumulus-linux-377/Layer-3/FRRouting-Overview/), handles routing protocols. There are separate processes for each routing protocol, like bgpd and ospfd.                                                                                                                                                                    | YES if routing                               |
-| clag         | Cumulus link aggregation daemon, handles [MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG).                                                                                                                                                                                                                      | YES if using MLAG                            |
+| frr          | [FRRouting](/version/cumulus-linux-377/Layer-3display/CL40/FRRouting-+Overview/), handles routing protocols. There are separate processes for each routing protocol, like bgpd and ospfd.                                                                                                                                                                    | YES if routing                               |
+| clag         | Cumulus link aggregation daemon, h. Handles [MLAG](/version/cumulus-linux-377/Layer-2display/CL40/Multi-Chassis-+Link-+Aggregation---+-+MLAG).                                                                                                                                                                                                                      | YES if using MLAG                            |
 | neighmgrd    | Synchronizes MAC address information when MLAG is in use.                                                                                                                                                                                                                                                                                       | YES if using MLAG                            |
-| mstpd        | [Spanning tree protocol](/version/cumulus-linux-377/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree) daemon.                                                                                                                                                                                                                                      | YES if using layer 2                         |
-| ptmd         | [Prescriptive Topology Manager](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM), verifies cabling based on [LLDP](/version/cumulus-linux-377/Layer-2/Link-Layer-Discovery-Protocol/) output, also sets up [BFD](/version/cumulus-linux-377/Layer-3/Bidirectional-Forwarding-Detection---BFD) sessions. | YES if using BFD                             |
-| netd         | [NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU) back end.                                                                                                                                                                                                                                           | NO                                           |
+| mstpd        | [Spanning tree protocol](/version/cumulus-linux-377/Layer-2display/CL40/Spanning-+Tree-+and-+Rapid-+Spanning-+Tree) daemon.                                                                                                                                                                                                                                      | YES if using layer 2                         |
+| ptmd         | [Prescriptive Topology Manager](/version/cumulus-linux-377/Layer-1-and-Switch-Portsdisplay/CL40/Prescriptive-+Topology-+Manager---+-+PTM), verifies cabling based on [LLDP](/version/cumulus-linux-377/Layer-2display/CL40/Link-+Layer-+Discovery-+Protocol/) output, also sets up [BFD](/version/cumulus-linux-377/Layer-3display/CL40/Bidirectional-+Forwarding-+Detection---+-+BFD) sessions. | YES if using BFD                             |
+| netd         | [NCLU](/version/cumulus-linux-377/System-Configurationdisplay/CL40/Network-+Command-+Line-+Utility---+-+NCLU) back end.                                                                                                                                                                                                                                           | NO                                           |
 | rsyslog      | Handles logging of syslog messages.                                                                                                                                                                                                                                                                                                             | NO                                           |
-| ntp          | [Network time protocol](/version/cumulus-linux-377/System-Configuration/Setting-Date-and-Time).                                                                                                                                                                                                                                                 | NO                                           |
-| ledmgrd      | [LED manager](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/Network-Switch-Port-LED-and-Status-LED-Guidelines), reads the state of system LEDs.                                                                                                                                                          | NO                                           |
+| ntp          | [Network time protocol](/version/cumulus-linux-377/System-Configurationdisplay/CL40/Setting-+Date-+and-+Time).                                                                                                                                                                                                                                                 | NO                                           |
+| ledmgrd      | [LED manager](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Monitoring-System-Hardwaredisplay/CL40/Network-+Switch-+Port-+LED-+and-+Status-+LED-+Guidelines), reads the state of system LEDs.                                                                                                                                                          | NO                                           |
 | sysmonitor   | Watches and logs critical system load (free memory, disk, CPU).                                                                                                                                                                                                                                                                                 | NO                                           |
-| lldpd        | Handles Tx/Rx of [LLDP](/version/cumulus-linux-377/Layer-2/Link-Layer-Discovery-Protocol/) information.                                                                                                                                                                                                                                         | NO                                           |
-| smond        | Reads [platform sensors and fan information](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/) from pwmd.                                                                                                                                                                                                  | NO                                           |
+| lldpd        | Handles Tx/Rx of [LLDP](/version/cumulus-linux-377/Layer-2display/CL40/Link-+Layer-+Discovery-+Protocol/) information.                                                                                                                                                                                                                                         | NO                                           |
+| smond        | Reads [platform sensors and fan information](/version/cumulus-linux-377/Monitoring-and-Troubleshootingdisplay/CL40/Monitoring-+System-+Hardware/) from pwmd.                                                                                                                                                                                                  | NO                                           |
 | pwmd         | Reads and sets fan speeds.                                                                                                                                                                                                                                                                                                                      | NO                                           |
 
 <article id="html-search-results" class="ht-content" style="display: none;">
@@ -571,3 +606,6 @@ The following table lists the most important services in Cumulus Linux.
 </footer>
 
 </details>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE4NTIzMzM1MTFdfQ==
+-->

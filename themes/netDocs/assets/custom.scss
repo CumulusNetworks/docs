@@ -91,7 +91,7 @@ body {
     border: 1px solid rgb(224, 228, 236);
     border-radius: 0;
     box-shadow: 0px 2px 10px 0px rgba(175, 184, 197, 0.2);
-    padding: 45px;
+    padding: 30px 25px 40px;
 
     * {
       transition: all .35s;
@@ -106,6 +106,10 @@ body {
     }
 
     h3 {
+      font-size: 20px;
+      @media #{$md-up} {
+        font-size: 21.998px;
+      }
       img {
         margin-right: 15px;
       }
@@ -114,24 +118,71 @@ body {
     p {
       color: rgb(117, 130, 140);
       font-size: 14px;
-      font-weight: 300;
+      font-weight: 400;
       line-height: 27px;
       letter-spacing: -0.09px;
     }
 
     span {
       color: $cn-jade;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
       letter-spacing: 1.25px;
-      margin-top: 30px;
+      margin-top: auto;
       text-transform: uppercase;
       transition: all .35s;
+
+      @media #{$md-up} {
+        font-size: 13px;
+      }
+
+      svg {
+        position: relative;
+        bottom: 1px;
+      }
     }
 
     &:hover {
       border: 1px solid rgba(0,173,105,.31);
       box-shadow: 0 5px 10px 0 rgba(0,121,96,.2);
+    }
+  }
+
+  .resources-search {
+    display: flex;
+  }
+
+  .resources-search-input {
+    border: 1px solid rgb(224, 228, 236);
+    color: rgb(117, 130, 140);
+    font-family: $cumulus-font-family;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+    line-height: 30px;
+    padding: 6px 27px 7px 27px;
+    height:43px;
+    max-width: 972px;
+    width: 100%;
+
+    &:focus {
+      border: 1px solid rgba(0,173,105,.31);
+      outline: 0;
+    }
+
+    + button {
+      background: linear-gradient(-225deg, rgb(0, 173, 105) 0%, rgb(75, 192, 91) 100%);
+      border: 0;
+      border-radius: 0px;
+      color: #FFF;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.75px;
+      line-height: 24px;
+      text-transform: uppercase;
+      height: 43px;
+      width: 169px;
     }
   }
 }
@@ -523,6 +574,7 @@ aside nav ul .expand li>a {
   padding-bottom: 0;
   position: absolute;
   top: -2px;
+  outline: 0;
 }
 
 .book-menu>nav .expand .active {

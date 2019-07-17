@@ -3,18 +3,20 @@ title: VXLAN Active-Active Mode
 author: Cumulus Networks
 weight: 147
 aliases:
- - /display/CL37/VXLAN-Active-Active-Mode
- - /pages/viewpage.action?pageId=8362725
-pageID: 8362725
+ - /display/CL3740/VXLAN-Active-Active-Mode
+ - /pages/viewpage.action?pageId=83627256448
+pageID: 83627256448
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 *VXLAN active-active mode* allows a pair of
-[MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
-switches to act as a single VTEP, providing active-active VXLAN
-termination for bare metal as well as virtualized workloads.
+[MLAG](/version/cumulus-linux-377/Layer-2display/CL40/Multi-Chassis-+Link-+Aggregation---+-+MLAG)
+ switches to 
+act as a single VTEP, providing active-active VXLAN
+ termination for bare 
+metal as well as virtualized workloads.
 
 There are some differences whether you're deploying this with
 [EVPN](/version/cumulus-linux-377/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
@@ -36,7 +38,7 @@ This chapter outlines the configurations for both options.
 | VXLAN routing            | The industry standard term for the ability to route in and out of a VXLAN. Equivalent to the Broadcom RIOT feature.                                                                                                                                                                                                                                                                             |
 | `clagd-vxlan-anycast-ip` | The anycast address for the MLAG pair to share and bind to when MLAG is up and running.                                                                                                                                                                                                                                                                                                         |
 
-## <span id="src-8362725_VXLANActive-ActiveMode-config" class="confluence-anchor-link"></span><span>Configure VXLAN Active-active Mode</span>
+## <span id="src-83627256448_VXLANActive-ActiveMode-config" class="confluence-anchor-link"></span><span>Configure VXLAN Active-active Mode</span>
 
 VXLAN active-active mode requires the following underlying technologies
 to work correctly.
@@ -55,15 +57,15 @@ to work correctly.
 <tbody>
 <tr class="odd">
 <td><p>MLAG</p></td>
-<td><p>Refer to the <a href="#src-8362725_VXLANActive-ActiveMode-configuring">MLAG chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="#src-83627256448_VXLANActive-ActiveMode-configuring">MLAG chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
 </tr>
 <tr class="even">
 <td><p>OSPF or BGP</p></td>
-<td><p>Refer to the <a href="/display/CL37/Open+Shortest+Path+First+-+OSPF+-+Protocol">OSPF chapter</a> or the <a href="/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP">BGP chapter</a> for more detailed configuration information. Configurations for the BGP demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="/display/CL3740/Open+Shortest+Path+First+-+OSPF+-+Protocol">OSPF chapter</a> or the <a href="/version/cumulus-linux-377/Layer-3display/CL40/Border-+Gateway-+Protocol---+-+BGP">BGP chapter</a> for more detailed configuration information. Configurations for the BGP demonstration are provided below.</p></td>
 </tr>
 <tr class="odd">
 <td><p>STP</p></td>
-<td><p>You must enable <a href="#src-8362725_VXLANActive-ActiveMode-bpdu">BPDU filter and BPDU guard</a> in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN.<br />
+<td><p>You must enable <a href="#src-83627256448_VXLANActive-ActiveMode-bpdu">BPDU filter and BPDU guard</a> in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN.<br />
 Configurations for the demonstration are provided below.</p></td>
 </tr>
 </tbody>
@@ -93,7 +95,7 @@ address as follows:
 
 {{%notice tip%}}
 
-In order for the anycast address to activate, you must configure a VXLAN
+In order fFor the anycast address to activate, you must configure a VXLAN
 interface on each switch in the MLAG pair.
 
 {{%/notice%}}
@@ -127,7 +129,7 @@ The consistency checks include:
 You can use the `clagctl` command to check if any VXLAN switches are in
 a PROTO\_DOWN state.
 
-### <span>Configure the Anycast IP Address</span>
+### <span id="src-8366448_VXLANActive-ActiveMode-anycast" class="confluence-anchor-link"></span><span>Configure the Anycast IP Address</span>
 
 With MLAG peering, both switches use an anycast IP address for VXLAN
 encapsulation and decapsulation. This allows remote VTEPs to learn the
@@ -148,7 +150,7 @@ address under the loopback interface, as shown below.
       address 10.0.0.12/32
       clagd-vxlan-anycast-ip 10.10.10.20
 
-## <span id="src-8362725_VXLANActive-ActiveMode-example" class="confluence-anchor-link"></span><span>Example VXLAN Active-Active Configuration</span>
+## <span id="src-83627256448_VXLANActive-ActiveMode-example" class="confluence-anchor-link"></span><span>Example VXLAN Active-Active Configuration</span>
 
 {{% imgOld 1 %}}
 
@@ -159,11 +161,13 @@ changes to anycast upon MLAG peering.
 ### <span>FRRouting Configuration</span>
 
 You can configure the layer 3 fabric using
-[BGP](/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP)
-or
-[OSPF](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF).
-The following example uses BGP unnumbered. The MLAG switch configuration
-for the topology above is shown below.
+[BGP](/version/cumulus-linux-377/Layer-3display/CL40/Border-+Gateway-+Protocol---+-+BGP)
+ or
+[OSPF](/version/cumulus-linux-377/Layer-3display/CL40/Open-+Shortest-+Path-+First---+-+OSPF).
+ The following 
+example uses BGP unnumbered. The MLAG switch configuration
+ for the 
+topology above is shown below.
 
 ### <span>Layer 3 IP Addressing</span>
 
@@ -914,9 +918,15 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 
 In addition to [troubleshooting single-attached
 configurations](/version/cumulus-linux-377/Network-Virtualization/Troubleshooting-VXLANs),
-there is now the MLAG daemon (`clagd`) to consider. The `clagctl`
-command gives the output of MLAG behavior and any inconsistencies that
-might arise between a MLAG pair.
+there is now the Troubleshooting</span>
+
+In addition to [troubleshooting single-attached
+configurations](/display/CL40/Troubleshooting+VXLANs), there is now the
+MLAG daemon (`clagd`) to consider. The `clagctl`
+ command gives the 
+output of MLAG behavior and any inconsistencies that
+ might arise between 
+a MLAG pair.
 
     cumulus@leaf01$ clagctl
     The peer is alive
@@ -971,7 +981,7 @@ that there is a `vxlan-id` mis-match on VXLAN10.
 Do not reuse the VLAN used for the peer link layer 3 subinterface for
 any other interface in the system. A high VLAN ID value is recommended.
 For more information on VLAN ID ranges, refer to the [VLAN-aware bridge
-chapter](VLAN-aware-Bridge-Mode.html#src-8362673_VLAN-awareBridgeMode-vlan_range).
+chapter](/display/CL40/VLAN-aware-+Bridge-+Mode.html#src-8362673_#VLAN-awareBridgeMode-vlan_range).
 
 ### <span>Bonds with Vagrant in Cumulus VX</span>
 
@@ -1046,7 +1056,7 @@ mode can function correctly.
 ## <span>Related Information</span>
 
   - [Network virtualization chapter, Cumulus Linux user
-    guide](/version/cumulus-linux-377/Network-Virtualization/)
+    guide](/version/cumulus-linux-377display/CL40/Network-+Virtualization/)
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 
@@ -1055,3 +1065,6 @@ mode can function correctly.
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE2MjcxNjUwMTldfQ==
+-->

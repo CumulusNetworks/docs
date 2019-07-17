@@ -38,9 +38,9 @@ and VLAN consistency checks for every link along the path.
 For example, say you get an alert about a BGP session failure. You can
 quickly run `netq check bgp` to determine what sessions failed:
 
-``` 
+```
 cumulus@switch:~$ netq check bgp
-Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24, 
+Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
 Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
 ----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
 exit-1            DataVrf1080     swp6.2            firewall-1        BGP session with peer firewall-1 swp6.2: AFI/ 1d:7h:56m:9s
@@ -95,18 +95,10 @@ For example, if you think you had an issue with your sensors last night,
 you can check the sensors on all your nodes around the time you think
 the issue occurred:
 
-<div class="confbox panel">
-
-<div class="panel-content">
-
-``` 
-cumulus@leaf01:~$ netq check sensors around 12h    
-Total Nodes: 25, Failed Nodes: 0, Checked Sensors: 221, Failed Sensors: 0    
 ```
-
-</div>
-
-</div>
+cumulus@leaf01:~$ netq check sensors around 12h    
+Total Nodes: 25, Failed Nodes: 0, Checked Sensors: 221, Failed Sensors: 0
+```
 
 Or you can specify a range of times using the `between` option. The
 units of time you can specify are second (*s*), minutes (*m*), hours
@@ -158,9 +150,9 @@ pertain to your network fabric.
 
 <table>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 20%" />
+<col style="width: 40%" />
+<col style="width: 40%" />
 </colgroup>
 <thead>
 <tr class="header">

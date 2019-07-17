@@ -11,7 +11,6 @@ version: 2.2.0
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
-<details>
 
 NetQ has [early
 access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878-Early-Access-Features-Defined)
@@ -23,14 +22,10 @@ available in NetQ 2.2.x.
 This feature is bundled into the `netq-apps` package; there is no
 specific EA package like there typically is with Cumulus Linux.
 
-<span style="color: #36424a;"> Contents </span>
-
-<summary>This topic describes how to... </summary>
-
 ## <span>Enable Early Access Features</span>
 
-You enable early access features by running the ` netq config add
-experimental  `command on any node running NetQ.
+You enable early access features by running the `netq config add
+experimental` command on any node running NetQ.
 
     cumulus@switch:~$ netq config add experimental
     Experimental config added
@@ -53,10 +48,10 @@ These can be viewed using the following NetQ CLI command:
 
     netq [<hostname>] show interface-stats [errors | all] [<physical-port>] [around <text-time>] [json]
 
-Use the *hostname* option to limit the output to a particular switch.
-Use the *errors* option to view only the transmit and receive errors
-found on the designated interfaces. Use the *physical-port* option to
-limit the output to a particular port. Use the *around* option to view
+Use the `hostname` option to limit the output to a particular switch.
+Use the `errors` option to view only the transmit and receive errors
+found on the designated interfaces. Use the `physical-ports` option to
+limit the output to a particular port. Use the `around` option to view
 the data at a time in the past.
 
 In this example, we view the interface statistics for all switches and

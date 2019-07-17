@@ -16,11 +16,8 @@ and software components for misconfigurations. NetQ helps answer
 questions such as:
 
   - What switches do I have in the network?
-
   - What hardware and software are installed on my switches?
-
   - Are all switches licensed correctly?
-
   - Do all switches have NetQ agents running?
 
 NetQ uses [LLDP](/display/NETQ22/Link+Layer+Discovery+Protocol) (Link
@@ -56,21 +53,16 @@ To view the switch and host information with the CLI, use the following
      
     netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] [type sensors] [between <text-time> and <text-endtime>] [json]
 
-{{%notice info%}}
+{{%notice note%}}
 
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
   - w: week(s)
-
   - d: day(s)
-
   - h: hour(s)
-
   - m: minute(s)
-
   - s: second(s)
-
   - now
 
 For time ranges, the `<text-time>` is the most recent time and the
@@ -79,7 +71,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-{{%notice info%}}
+{{%notice note%}}
 
 The keyword values for the `vendor`, `model`, `model-id`, `arch`,
 `name`, `transport`, `type`, `version`, `psu`, `temp`, and `fan`
@@ -249,7 +241,7 @@ a particular CPU architecture using the *arch* keyword. This example
 shows how to determine which architectures are deployed in your network,
 and then shows all devices with an *x86\_64* architecture.
 
-    cumulus@switch:~$ netq show inventory cpu arch 
+    cumulus@switch:~$ netq show inventory cpu arch
         x86_64  :  CPU Architecture
      
     cumulus@switch:~$ netq show inventory cpu arch x86_64
@@ -479,7 +471,7 @@ the name *psu1temp1*.
     ----------------- --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
      
     exit01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:17 2019
-     
+
     exit02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:33 2019
      
     leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Sun Apr 21 20:07:12 2019
@@ -497,7 +489,7 @@ the name *psu1temp1*.
 {{%notice tip%}}
 
 Use Tab completion to determine the names of the temperature sensors in
-your switches. Use the optional *hostname* parameter to view the
+your switches. Use the optional `hostname` parameter to view the
 temperature state, current temperature, and threshold values for a given
 switch.
 
@@ -548,7 +540,7 @@ events using the severity *level* option.
     cumulus@switch:~$ netq show events type sensors
     No matching events records found
      
-    cumulus@switch:~$ netq show events level critical type sensors 
+    cumulus@switch:~$ netq show events level critical type sensors
     No matching events records found
 
 ## <span>Monitor Switch Software Information</span>
@@ -561,7 +553,7 @@ The syntax for this command is:
     netq [<hostname>] show inventory os [version <os-version>|name <os-name>] [json]
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] [type license|type os] [between <text-time> and <text-endtime>] [json]
 
-{{%notice info%}}
+{{%notice note%}}
 
 The keyword values for the `name` keyword is specific to your
 deployment. For example, if you have devices with only one type of OS,
@@ -571,21 +563,16 @@ have Ubuntu, then that would also be an option for you.
 
 {{%/notice%}}
 
-{{%notice info%}}
+{{%notice note%}}
 
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
   - w: week(s)
-
   - d: day(s)
-
   - h: hour(s)
-
   - m: minute(s)
-
   - s: second(s)
-
   - now
 
 For time ranges, the `<text-time>` is the most recent time and the
@@ -654,11 +641,11 @@ time values.
 
 ### <span>View License Information for a Switch</span>
 
-<span style="color: #333333;"> You can view the name and current state
+You can view the name and current state
 of the license (whether it valid or not), and when it was last updated
 for one or more devices. If a license is no longer valid on a switch, it
 does not operate correctly. This example shows the license information
-for all devices. </span>
+for all devices.
 
     cumulus@switch:~$ netq show inventory license
      
@@ -713,7 +700,7 @@ ago.
 ### <span>View Summary of Operating System on a Switch</span>
 
 As with the hardware information, you can view a summary of the software
-information using the *brief* keyword. Specify a hostname to view the
+information using the `brief` keyword. Specify a hostname to view the
 summary for a specific device.
 
     cumulus@switch:~$ netq show inventory brief
@@ -769,10 +756,7 @@ You can narrow your focus in several ways:
 
   - View the state of the NetQ Agent on a given device using the
     *hostname* keyword.
-
-  - View only the NetQ Agents that are fresh or rotten using the *fresh*
-    or *rotten* keyword.
-
+  - View only the NetQ Agents that are fresh or rotten using the *fresh* or *rotten* keyword.
   - View the state of NetQ Agents at an earlier time using the *around*
     keyword.
 
@@ -783,46 +767,28 @@ features of these products. You can monitor their status using the `netq
 show services` command. The services related to system-level operation
 are described here. Monitoring of other services, such as those related
 to routing, are described with those topics. NetQ automatically monitors
-t he following services:
+the following services:
 
-  - bgpd: BGP (Border Gateway Protocol) daemon
-
-  - clagd: MLAG (Multi-chassis Link Aggregation) daemon
-
-  - helpledmgrd: Switch LED manager daemon
-
-  - lldpd: LLDP (Link Layer Discovery Protocol) daemon
-
-  - mstpd: MSTP (Multiple Spanning Tree Protocol) daemon
-
-  - neighmgrd: Neighbor Manager daemon for BGP and OSPF
-
-  - netq-agent: NetQ Agent service
-
-  - netqd: NetQ application daemon
-
-  - ntp: NTP service
-
-  - ntpd: NTP daemon
-
-  - ptmd: PTM (Prescriptive Topology Manager) daemon
-
-  - pwmd : PWM (Password <span style="color: #ff0000;"> </span> Manager)
+  - **bgpd**: BGP (Border Gateway Protocol) daemon
+  - **clagd**: MLAG (Multi-chassis Link Aggregation) daemon
+  - **helpledmgrd**: Switch LED manager daemon
+  - **lldpd**: LLDP (Link Layer Discovery Protocol) daemon
+  - **mstpd**: MSTP (Multiple Spanning Tree Protocol) daemon
+  - **neighmgrd**: Neighbor Manager daemon for BGP and OSPF
+  - **netq-agent**: NetQ Agent service
+  - **netqd**: NetQ application daemon
+  - **ntp**: NTP service
+  - **ntpd**: NTP daemon
+  - **ptmd**: PTM (Prescriptive Topology Manager) daemon
+  - **pwmd**: PWM (Password <span style="color: #ff0000;"> </span> Manager)
     daemon
-
-  - rsyslog: Rocket-fast system event logging processing service
-
-  - smond: System monitor daemon
-
-  - ssh: Secure Shell service for switches and servers
-
-  - status: License validation service
-
-  - syslog: System event logging service
-
-  - vrf: VRF (Virtual Route Forwarding) service
-
-  - zebra: GNU Zebra routing daemon
+  - **rsyslog**: Rocket-fast system event logging processing service
+  - **smond**: System monitor daemon
+  - **ssh**: Secure Shell service for switches and servers
+  - **status**: License validation service
+  - **syslog**: System event logging service
+  - **vrf**: VRF (Virtual Route Forwarding) service
+  - **zebra**: GNU Zebra routing daemon
 
 The CLI syntax for viewing the status of services is:
 
@@ -935,7 +901,7 @@ You can also view services information in JSON format:
     ...
 
 If you want to view the service information for a given device, simply
-use the *hostname* variable when running the command.
+use the `hostname` option when running the command.
 
 ### <span>View Information about a Given Service on All Devices</span>
 
@@ -994,7 +960,7 @@ This example shows the status of the BGP daemon.
 
 ### <span>View Events Related to a Given Service</span>
 
-To view changes over a given time period, use the `netq` `show events`
+To view changes over a given time period, use the `netq show events`
 command. For more detailed information about events, refer to [Monitor
 Events](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Events).
 

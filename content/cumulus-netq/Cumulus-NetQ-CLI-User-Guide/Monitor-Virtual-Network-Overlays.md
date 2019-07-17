@@ -11,7 +11,6 @@ version: 2.2.0
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
-<details>
 
 With NetQ, a network administrator can monitor virtual network
 components in the data center, including VXLAN, EVPN, and LNV software
@@ -19,18 +18,15 @@ constructs. NetQ provides the ability to:
 
   - Manage virtual constructs: view the performance and status of
     VXLANs, EVPN, and LNV
-
   - Validate overlay communication paths
 
 It helps answer questions such as:
 
   - Is my overlay configured and operating correctly?
-
   - Is my control plane configured correctly?
-
   - Can device A reach device B?
 
-{{%notice info%}}
+{{%notice note%}}
 
 Lightweight network virtualization (LNV) was deprecated in Cumulus Linux
 3.7.4 and will be removed in Cumulus Linux 4.0.0. Cumulus NetQ will
@@ -40,10 +36,6 @@ on the support timeline, read this [knowledge base
 article](https://support.cumulusnetworks.com/hc/en-us/articles/217132357-Cumulus-Linux-Release-Versioning-and-Support-Policy).
 
 {{%/notice%}}
-
-<span style="color: #36424a;"> Contents </span>
-
-<summary>This topic describes how to... </summary>
 
 ## <span>Monitor Virtual Extensible LANs</span>
 
@@ -60,19 +52,15 @@ following command:
     netq <hostname> show interfaces type vxlan [state <remote-interface-state>] [around <text-time>] [count] [json]
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type vxlan [between <text-time> and <text-endtime>] [json]
 
-{{%notice info%}}
+{{%notice note%}}
 
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
   - d: day(s)
-
   - h: hour(s)
-
   - m: minute(s)
-
   - s: second(s)
-
   - now
 
 For time ranges, the `<text-time>` is the most recent time and the
@@ -162,7 +150,6 @@ configuration. This example shows that no VXLAN configuration was
 present.
 
     cumulus@switch:~$ netq show vxlan around 7d
-     
     No matching vxlan records found
 
 You can filter the list of VXLANs to view only those associated with a
@@ -183,9 +170,9 @@ particular VNI. This example shows the configured VXLANs for *VNI 24*.
 You can view detailed information about the VXLAN interfaces using the
 `netq show interface` command. You can also view this information for a
 given device by adding a hostname to the `show` command. This example
-shows the detailed VXLAN interface information for the leaf02 switch.
+shows the detailed VXLAN interface information for the *leaf02* switch.
 
-    cumulus@switch:~$ netq leaf02 show interfaces type vxlan 
+    cumulus@switch:~$ netq leaf02 show interfaces type vxlan
     Matching link records:
     Hostname          Interface                 Type             State      VRF             Details                             Last Changed
     ----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
@@ -214,19 +201,15 @@ command is:
     netq [<hostname>] show evpn [vni <text-vni>] [mac-consistency] [around <text-time>] [json]
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type vxlan [between <text-time> and <text-endtime>] [json]
 
-{{%notice info%}}
+{{%notice note%}}
 
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
   - d: day(s)
-
   - h: hour(s)
-
   - m: minute(s)
-
   - s: second(s)
-
   - now
 
 For time ranges, the `<text-time>` is the most recent time and the
@@ -246,7 +229,7 @@ your network or for a particular device. This example shows the
 configuration and status for all devices, including the associated VNI,
 VTEP address, the import and export route (showing the BGP ASN and VNI
 path), and the last time a change was made for each device running EVPN.
-Use the *hostname* variable to view the configuration and status for a
+Use the `hostname` option to view the configuration and status for a
 single device.
 
     cumulus@switch:~$ netq show evpn
@@ -278,7 +261,7 @@ single device.
 ### <span>View the Status of EVPN for a Given VNI</span>
 
 You can filter the full device view to focus on a single VNI. This
-example only shows the EVPN configuration and status for VNI 42.
+example only shows the EVPN configuration and status for VNI *42*.
 
     cumulus@switch:~$ netq show evpn vni 42
     Matching evpn records:
@@ -355,7 +338,7 @@ last time the configuration was changed.
 
 ### <span>View LNV Status in the Past</span>
 
-You can view the status in the past using the `around` keyword. This
+You can view the status in the past using the `around` option. This
 example shows the status of LNV about 30 minutes ago.
 
     cumulus@switch:~$ netq show lnv around 30m

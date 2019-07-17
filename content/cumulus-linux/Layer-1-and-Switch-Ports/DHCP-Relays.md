@@ -3,25 +3,19 @@ title: DHCP Relays
 author: Cumulus Networks
 weight: 95
 aliases:
- - /display/CL40/DHCP-Relays
- - /pages/viewpage.action?pageId=8366758
-pageID: 8366758
+ - /display/CL37/DHCP-Relays
+ - /pages/viewpage.action?pageId=8363036
+pageID: 8363036
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
-<details>
+You can configure DHCP relays for IPv4 and IPv6.
 
-DHCP is a client/server protocol that automatically provides IP hosts
-with IP addresses and other related configuration information. A DHCP
-relay (agent) is a host that forwards DHCP packets between clients and
-servers. DHCP relays forward requests and replies between clients and
-servers that are not on the same physical subnet.
-
-This topic describes how to configure DHCP relays for IPv4 and IPv6.
-Configurations on the server hosts, DHCP relays, and DHCP server are
-provided using the following topology:
+To run DHCP for both IPv4 and IPv6, initiate the DHCP relay once for
+IPv4 and once for IPv6. Following are the configurations on the server
+hosts, DHCP relay, and DHCP server using the following topology:
 
 {{% imgOld 0 %}}
 
@@ -30,88 +24,62 @@ provided using the following topology:
 The `dhcpd` and `dhcrelay` services are disabled by default. After you
 finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
-[VRF](/version/cumulus-linux-40/Layer-3/Virtual-Routing-and-Forwarding---VRF),
+[VRF](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF),
 including the [management
-VRF](/version/cumulus-linux-40/Layer-3/Management-VRF), follow [these
-steps](Management-VRF.html#src-8366664_ManagementVRF-services) for
+VRF](/version/cumulus-linux-377/Layer-3/Management-VRF), follow [these
+steps](Management-VRF.html#src-8362940_ManagementVRF-services) for
 configuring them. See also the [VRF
-chapter](Virtual-Routing-and-Forwarding---VRF.html#src-8366666_VirtualRoutingandForwarding-VRF-dhcp).
+chapter](Virtual-Routing-and-Forwarding---VRF.html#src-8362942_VirtualRoutingandForwarding-VRF-dhcp).
 
 {{%/notice%}}
 
 ## <span>Configure IPv4 DHCP Relays</span>
 
-To configure IPv4 DHCP relays, run the following commands.
+Configure `isc-dhcp-relay` using
+[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU),
+specifying the IP addresses to each DHCP server and the interfaces that
+are used as the uplinks.
 
-<summary>NCLU Commands </summary>
+In the examples below, the DHCP server IP address is 172.16.1.102, VLAN
+1 (the SVI is vlan1) and the uplinks are swp51 and swp52.
 
 {{%notice warning%}}
 
 You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not
-the parent bridge. In the example below, you specify v*lan1* as the SVI
-for VLAN 1 but you do not specify the bridge named *bridge* in this
-case.
+the parent bridge; in our example, you would specify v*lan1* as the SVI
+for VLAN 1; do not specify the bridge named *bridge* in this case.
+
+As per [RFC 3046](https://tools.ietf.org/html/rfc3046), you can specify
+as many server IP addresses that can fit in 255 octets, specifying each
+address only once.
 
 {{%/notice%}}
 
-1.  Specify the IP address of each DHCP server and the interfaces that
-    are used as the uplinks. In the example commands below, the DHCP
-    server IP address is 172.16.1.102, VLAN 1 (the SVI is vlan1) and the
-    uplinks are swp51 and swp52.  
-    As per [RFC 3046](https://tools.ietf.org/html/rfc3046), you can
-    specify as many server IP addresses that can fit in 255 octets. You
-    can specify each address only once.
-    
-        cumulus@switch:~$ net add dhcp relay interface swp51
-        cumulus@switch:~$ net add dhcp relay interface swp52
-        cumulus@switch:~$ net add dhcp relay interface vlan1
-        cumulus@switch:~$ net add dhcp relay server 172.16.1.102
-        cumulus@switch:~$ net pending
-        cumulus@switch:~$ net commit
-    
-    These commands create the following configuration in the
-    `/etc/default/isc-dhcp-relay` file:
-    
-        SERVERS="172.16.1.102"
-        INTF_CMD="-i vlan1 -i swp51 -i swp52"
-        OPTIONS=""
+    cumulus@leaf01:~$ net add dhcp relay interface swp51
+    cumulus@leaf01:~$ net add dhcp relay interface swp52
+    cumulus@leaf01:~$ net add dhcp relay interface vlan1
+    cumulus@leaf01:~$ net add dhcp relay server 172.16.1.102
+    cumulus@leaf01:~$ net pending
+    cumulus@leaf01:~$ net commit
 
-2.  Enable, then restart the `dhcrelay` service so the configuration
-    persists between reboots:
-    
-        cumulus@switch:~$ sudo systemctl enable dhcrelay.service
-        cumulus@switch:~$ sudo systemctl restart dhcrelay.service
+These commands create the following configuration in the
+`/etc/default/isc-dhcp-relay` file:
 
-<summary>Linux Commands </summary>
+    cumulus@leaf01:~$ cat /etc/default/isc-dhcp-relay
+    SERVERS="172.16.1.102"
+    INTF_CMD="-i vlan1 -i swp51 -i swp52"
+    OPTIONS=""
 
-1.  Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of
-    the DHCP server and both interfaces participating in DHCP relay
-    (facing the server and facing the client). In the example below, the
-    DHCP server IP address is 172.16.1.102, VLAN 1 (the SVI is vlan1)
-    and the uplinks are swp51 and swp52.  
-    If the client-facing interface is a bridge port, specify the switch
-    virtual interface (SVI) name if using a [VLAN-aware
-    bridge](https://docs.cumulusnetworks.com/display/CL320Draft/VLAN-aware+Bridge+Mode+for+Large-scale+Layer+2+Environments)
-    (for example, bridge.100), or the bridge name if using traditional
-    bridging (for example, br100).
-    
-        cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
-        SERVERS="172.16.1.102"
-        INTF_CMD="-i vlan1 -i swp51 -i swp52"
-        OPTIONS=""
+After you finish configuring DHCP relay, restart then enable the
+`dhcrelay` service so the configuration persists between reboots:
 
-2.  Enable then restart the `dhcrelay` service
-    <span style="color: #000000;"> so that the configuration persists
-    between reboots:  
-    </span>
-    
-        cumulus@switch:~$ sudo systemctl enable dhcrelay.service
-        cumulus@switch:~$ sudo systemctl restart dhcrelay.service
+    cumulus@leaf01:~$ sudo systemctl restart dhcrelay.service
+    cumulus@leaf01:~$ sudo systemctl enable dhcrelay.service
 
 To see the DHCP relay status, use the `systemctl status
 dhcrelay.service` command:
 
-    cumulus@switch:~$ sudo systemctl status dhcrelay.service
+    cumulus@leaf01:~$ sudo systemctl status dhcrelay.service
     ● dhcrelay.service - DHCPv4 Relay Agent Daemon
        Loaded: loaded (/lib/systemd/system/dhcrelay.service; enabled)
        Active: active (running) since Fri 2016-12-02 17:09:10 UTC; 2min 16s ago
@@ -120,67 +88,16 @@ dhcrelay.service` command:
        CGroup: /system.slice/dhcrelay.service
                └─1997 /usr/sbin/dhcrelay --nl -d -q -i vlan1 -i swp51 -i swp52 172.16.1.102
 
-### <span id="src-8366758_DHCPRelays-82" class="confluence-anchor-link"></span><span>DHCP Agent Information Option (Option 82)</span>
+### <span id="src-8363036_DHCPRelays-82" class="confluence-anchor-link"></span><span>DHCP Option 82</span>
 
-Cumulus Linux supports DHCP Agent Information Option 82, which allows a
-DHCP relay to insert circuit or relay specific information into a
-request that is being forwarded to a DHCP server. Two sub-options are
-provided:
-
-  - The Circuit ID sub-option includes information about the circuit on
-    which the request comes in, such as the SVI or physical port.
-
-  - The <span style="color: #444444;"> Remote ID sub-option includes
-    information that identifies the relay agent, such as the MAC
-    address. </span>
-
-To enable the DHCP Agent Information Option, you configure the `-a`
-option. By default, when you enable this option, the Circuit ID is the
-printable name of the interface on which the client request is received,
-typically an SVI. The Remote ID is the System MAC of the device on which
-DHCP relay is running.
-
-{{%notice note%}}
-
-NCLU commands are not currently available for this feature. Use the
-following Linux commands.
-
-{{%/notice%}}
-
-  - To configure the DHCP relay to inject the ingress *SVI interface*
-    against which the relayed DHCP discover packet is processed, edit
-    the the `/etc/default/isc-dhcp-relay` file and add ` -a  `to the
-    `OPTIONS` line. For example:
-    
-        cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
-        ...
-        # Additional options that are passed to the DHCP relay daemon?
-        OPTIONS="-a"
-
-  - To configure the DHCP relay to inject the *physical switch port* on
-    which the relayed DHCP discover packet arrives instead of the SVI,
-    edit the `/etc/default/isc-dhcp-relay` file and add `-a
-    --use-pif-circuit-id` to the `OPTIONS` line. For example:
-    
-        cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
-        ...
-        # Additional options that are passed to the DHCP relay daemon?
-        OPTIONS="-a --use-pif-circuit-id" 
-
-  - To customize the <span style="color: #444444;"> Remote ID
-    sub-option, e </span> dit the the `/etc/default/isc-dhcp-relay` file
-    and add ` -a -r  `to the `OPTIONS` line followed by a custom string
-    (up to 255 characters) that is used for the Remote ID. For example:
-    
-        cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
-        ...
-        # Additional options that are passed to the DHCP relay daemon?
-        OPTIONS="-a -r CUSTOMVALUE" 
-
-Make sure to restart the `dhcrelay` service to apply the new
-configuration :
-
-    cumulus@switch:~$ sudo systemctl restart dhcrelay.service
+You can configure DHCP relays to inject the `circuit-id` field with the
+`-a` option, which you add to the `OPTIONS` line in the
+` /etc/default/isc-dhcp-relay  `file. By default, the ingress SVI
+interface against which the relayed DHCP discover packet is processed is
+injected into this field. You can change this behavior by adding the
+`--use-pif-circuit-id` option. With this option, the physical switch
+port (swp) on which the discover packet arrives is placed in the
+`circuit-id` field.
 
 ### <span>Control the Gateway IP Address with RFC 3527 </span>
 
@@ -195,15 +112,16 @@ possess a single unique IP address, which is the loopback IP address.
 
 [RFC 3527](https://tools.ietf.org/html/rfc3527) enables the DHCP server
 to react to these environments by introducing a new parameter to the
-DHCP header called the link selection sub-option, which is built by the
-DHCP relay agent. The link selection sub-option takes on the normal role
-of the giaddr in relaying to the DHCP server which subnet is correlated
-to the DHCP request. When using this sub-option, the giaddr continues to
-be present but only relays the return IP address that is to be used by
-the DHCP server; the giaddr becomes the unique loopback IP address.
+DHCP header called the *link selection sub-option*, which is built by
+the DHCP relay agent. The link selection sub-option takes on the normal
+role of the giaddr in relaying to the DHCP server which subnet is
+correlated to the DHCP request. When using this sub-option, the giaddr
+continues to be present but only relays the return IP address that is to
+be used by the DHCP server; the giaddr becomes the unique loopback IP
+address.
 
 When enabling RFC 3527 support, you can specify an interface, such as
-the loopback interface or a switch port interface to be used as the
+the loopback interface or a switchport interface to be used as the
 giaddr. The relay picks the first IP address on that interface. If the
 interface has multiple IP addresses, you can specify a specific IP
 address for the interface.
@@ -219,182 +137,98 @@ with RFC 3527.
 
 {{% imgOld 1 %}}
 
-  
 
-To enable RFC 3527 support and control the giaddr, run the following
-commands.
 
-<summary>NCLU Commands </summary>
+To enable RFC 3527 support and control the giaddr, run the `net add dhcp
+relay giaddr-interface` command with interface/IP address you want to
+use.
 
-1.  Run the `net add dhcp relay giaddr-interface` command with the
-    interface/IP address you want to use.  
-    The following example uses the first IP address on the loopback
-    interface as the giaddr:
-    
-        cumulus@switch:~$ net add dhcp relay giaddr-interface lo
-    
-    The above command creates the following configuration in the
-    `/etc/default/isc-dhcp-relay` file:
-    
-        # Additional options that are passed to the DHCP relay daemon?
-        OPTIONS="-U lo"
-    
-    {{%notice note%}}
-    
-    The first IP address on the loopback interface is typically the
-    127.0.0.1 address; Cumulus Networks recommends that you use more
-    specific syntax, as shown in the next example.
-    
-    {{%/notice%}}
-    
-    The following example uses IP address 10.0.0.1 on the loopback
-    interface as the giaddr:
-    
-        cumulus@switch:~$ net add dhcp relay giaddr-interface lo 10.0.0.1
-    
-    The above command creates the following configuration in the
-    `/etc/default/isc-dhcp-relay` file:
-    
-        # Additional options that are passed to the DHCP relay daemon?
-        OPTIONS="-U 10.0.0.1%lo"
-    
-    The following example uses the first IP address on swp2 as the
-    giaddr:
-    
-        cumulus@switch:~$ net add dhcp relay giaddr-interface swp2
-    
-    The above command creates the following configuration in the
-    `/etc/default/isc-dhcp-relay` file:
-    
-        # Additional options that are passed to the DHCP relay daemon?
-        OPTIONS="-U swp2"
-    
-    The following example uses IP address 10.0.0.3 on swp2 as the
-    giaddr:
-    
-        cumulus@switch:~$ net add dhcp relay giaddr-interface swp2 10.0.0.3
-    
-    The above command creates the following configuration in the
-    `/etc/default/isc-dhcp-relay` file:
-    
-        # Additional options that are passed to the DHCP relay daemon?
-        OPTIONS="-U 10.0.0.3%swp2"
+The following example uses the first IP address on the loopback
+interface as the giaddr:
 
-2.  Restart the `dhcrelay` service to apply the configuration change:
-    
-        cumulus@switch:~$ sudo systemctl restart dhcrelay.service
+    cumulus@leaf01:~$ net add dhcp relay giaddr-interface lo
 
-<summary>Linux Commands </summary>
+The above command creates the following configuration in the
+`/etc/default/isc-dhcp-relay` file:
 
-1.  Edit the `/etc/default/isc-dhcp-relay` file and provide the `-U`
-    option with the interface or IP address you want to use as the
-    giaddr.  
-    The following example uses the first IP address on the loopback
-    interface as the giaddr:
-    
-        cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
-        ...
-        # Additional options that are passed to the DHCP relay daemon?
-        OPTIONS="-U lo"
-    
-    {{%notice note%}}
-    
-    The first IP address on the loopback interface is typically the
-    127.0.0.1 address; Cumulus Networks recommends that you use more
-    specific syntax, as shown in the next example.
-    
-    {{%/notice%}}
-    
-    The following example uses IP address 10.0.0.1 on the loopback
-    interface as the giaddr:
-    
-        cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
-        ...
-        # Additional options that are passed to the DHCP relay daemon?
-        OPTIONS="-U 10.0.0.1%lo"
-    
-    The following example uses the first IP address on swp2 as the
-    giaddr:
-    
-        cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
-        ...
-        # Additional options that are passed to the DHCP relay daemon?
-        OPTIONS="-U swp2"
-    
-    The following example uses IP address 10.0.0.3 on swp2 as the
-    giaddr:
-    
-        cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
-        ...
-        # Additional options that are passed to the DHCP relay daemon?
-        OPTIONS="-U 10.0.0.3%swp2"
-
-2.  Restart the `dhcrelay` service to apply the configuration change :
-    
-        cumulus@switch:~$ sudo systemctl restart dhcrelay.service
-
-### <span id="src-8366758_DHCPRelays-giaddr" class="confluence-anchor-link"></span><span>Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)</span>
-
-You can configure the `dhcrelay` service to forward IPv4 (only) DHCP
-packets to a DHCP server and ensure that the source IP address of the
-relayed packet is the same as the gateway IP address.
+    cumulus@leaf01:~$ cat /etc/default/isc-dhcp-relay
+    ...
+    # Additional options that are passed to the DHCP relay daemon?
+    OPTIONS="-U lo"
 
 {{%notice note%}}
 
-This option impacts all relayed IPv4 packets globally.
+The first IP address on the loopback interface is typically the
+127.0.0.1 address; Cumulus Networks recommends that you use more
+specific syntax, as shown in the next example.
 
 {{%/notice%}}
 
-To use the gateway IP address as the source IP address:
+The following example uses IP address 10.0.0.1 on the loopback interface
+as the giaddr:
 
-<summary>NCLU Commands </summary>
+    cumulus@leaf01:~$ net add dhcp relay giaddr-interface lo 10.0.0.1
 
-Run these commands:
+The above command creates the following configuration in the
+`/etc/default/isc-dhcp-relay` file:
 
-    cumulus@leaf:~$ net add dhcp relay use-giaddr-as-src
-    cumulus@leaf:~$ net pending
-    cumulus@leaf:~$ net commit
+    cumulus@leaf01:~$ cat /etc/default/isc-dhcp-relay
+    ...
+    # Additional options that are passed to the DHCP relay daemon?
+    OPTIONS="-U 10.0.0.1%lo"
 
-<summary>Linux Commands </summary>
+The following example uses the first IP address on swp2 as the giaddr:
 
-1.  Edit the `/etc/default/isc-dhcp-relay` file to add `--giaddr-src` to
-    the `OPTIONS` line. An example is shown below.
-    
-        cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
-        SERVERS="172.16.1.102"
-        INTF_CMD="-i vlan1 -i swp51 -i swp52 -U swp2"
-        OPTIONS="--giaddr-src"
+    cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2
 
-2.  Restart the `dhcrelay` service to apply the configuration change :  
-    
-        cumulus@switch:~$ sudo systemctl restart dhcrelay.service
+The above command creates the following configuration in the
+`/etc/default/isc-dhcp-relay` file:
+
+    cumulus@leaf01:~$ cat /etc/default/isc-dhcp-relay
+    ...
+    # Additional options that are passed to the DHCP relay daemon?
+    OPTIONS="-U swp2"
+
+The following example uses IP address 10.0.0.3 on swp2 as the giaddr:
+
+    cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2 10.0.0.3
+
+The above command creates the following configuration in the
+`/etc/default/isc-dhcp-relay` file:
+
+    cumulus@leaf01:~$ cat /etc/default/isc-dhcp-relay
+    ...
+    # Additional options that are passed to the DHCP relay daemon?
+    OPTIONS="-U 10.0.0.3%swp2"
 
 ## <span>Configure IPv6 DHCP Relays</span>
 
+If you are configuring IPv6, the `/etc/default/isc-dhcp-relay6`
+variables file has a different format than the
+`/etc/default/isc-dhcp-relay` file for IPv4 DHCP relays. Make sure to
+configure the variables appropriately by editing this file.
+
 {{%notice note%}}
 
-NCLU commands are not currently available to configure IPv6 relays.
+You cannot use NCLU to configure IPv6 relays.
 
 {{%/notice%}}
 
-1.  Edit the `/etc/default/isc-dhcp-relay6` file to add the upstream and
-    downstream interfaces. In the example below, the SVI is vlan1, and
-    the interfaces are swp51 and swp52.
-    
-        cumulus@switch:$ sudo nano /etc/default/isc-dhcp-relay6 
-        SERVERS=" -u 2001:db8:100::2%swp51 -u 2001:db8:100::2%swp52"
-        INTF_CMD="-l vlan1"
+    cumulus@leaf01:$ sudo nano /etc/default/isc-dhcp-relay6
+    SERVERS=" -u 2001:db8:100::2%swp51 -u 2001:db8:100::2%swp52"
+    INTF_CMD="-l vlan1"
 
-2.  Enable, then restart the `dhcrelay6` service so that the
-    configuration persists between reboots:
-    
-        cumulus@switch:~$ sudo systemctl enable dhcrelay6.service
-        cumulus@switch:~$ sudo systemctl restart dhcrelay6.service
+After you finish configuring the DHCP relay, save your changes, restart
+the `dhcrelay6` service, then enable the `dhcrelay6` service so the
+configuration persists between reboots:
+
+    cumulus@leaf01:~$ sudo systemctl restart dhcrelay6.service
+    cumulus@leaf01:~$ sudo systemctl enable dhcrelay6.service
 
 To see the status of the IPv6 DHCP relay, use the `systemctl status
 dhcrelay6.service` command:
 
-    cumulus@switch:~$ sudo systemctl status dhcrelay6.service
+    cumulus@leaf01:~$ sudo systemctl status dhcrelay6.service
     ● dhcrelay6.service - DHCPv6 Relay Agent Daemon
        Loaded: loaded (/lib/systemd/system/dhcrelay6.service; disabled)
        Active: active (running) since Fri 2016-12-02 21:00:26 UTC; 1s ago
@@ -403,35 +237,29 @@ dhcrelay6.service` command:
        CGroup: /system.slice/dhcrelay6.service
                └─6152 /usr/sbin/dhcrelay -6 --nl -d -q -l vlan1 -u 2001:db8:100::2 swp51 -u 2001:db8:100::2 swp52
 
-## <span id="src-8366758_DHCPRelays-multiple" class="confluence-anchor-link"></span><span>Configure Multiple DHCP Relays</span>
+## <span id="src-8363036_DHCPRelays-multiple" class="confluence-anchor-link"></span><span>Configure Multiple DHCP Relays</span>
 
 Cumulus Linux supports multiple DHCP relay daemons on a switch to enable
-relaying of packets from different bridges to different upstream
-interfaces.
+relaying of packets from different bridges to different upstreams.
 
 To configure multiple DHCP relay daemons on a switch:
 
 1.  As the sudo user, open the `/etc/vrf/systemd.conf` file in a text
     editor and remove `dhcrelay`.
 
-2.  Run the following command to reload the `systemd` files:
-    
+2.  To reload the `systemd` files, run the following command:
+
         cumulus@switch:~$ sudo systemctl daemon-reload
 
-3.  Create a configuration file in the `/etc/default` directory for each
-    DHCP relay daemon. Use the naming scheme
-    `isc-dhcp-relay-<dhcp-name>` for IPv4 or
-    `isc-dhcp-relay6-<dhcp-name>` for IPv6. An example configuration
-    file for IPv4 is shown below:
-    
-        # Defaults for isc-dhcp-relay initscript
-        # sourced by /etc/init.d/isc-dhcp-relay
+3.  Create a config file in `/etc/default` using the following format
+    for each dhcrelay: `isc-dhcp-relay-<dhcp-name>`. An example file is
+    shown below:
+
+        # Defaults for isc-dhcp-relay initscript# sourced by /etc/init.d/isc-dhcp-relay
         # installed at /etc/default/isc-dhcp-relay by the maintainer scripts
-         
         #
         # This is a POSIX shell fragment
         #
-         
         # What servers should the DHCP relay forward requests to?
         SERVERS="102.0.0.2"
         # On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
@@ -440,69 +268,121 @@ To configure multiple DHCP relay daemons on a switch:
         # This will be used in the actual dhcrelay command
         # For example, "-i eth0 -i eth1"
         INTF_CMD="-i swp2s2 -i swp2s3"
-         
-        # Additional options that are passed to the DHCP relay daemon?
-        OPTIONS=""
-    
-    An example configuration file for IPv6 is shown below:
-    
-        # Defaults for isc-dhcp-relay6 initscript
-        # sourced by /etc/init.d/isc-dhcp-relay6
-        # installed at /etc/default/isc-dhcp-relay6 by the maintainer scripts
-         
-         
-        #
-        # This is a POSIX shell fragment
-        #
-         
-        # Specify upstream and downstream interfaces
-        # For example, "-u eth0 -l swp1"
-        INTF_CMD=""
-         
-         
         # Additional options that are passed to the DHCP relay daemon?
         OPTIONS=""
 
-4.  Run the following command to start a `dhcrelay` instance, where
-    `<``dhcp-name>` is the instance name or number.
-    
+4.  Run the following command to start a dhcrelay instance. Replace
+    `dhcp-name` with the instance name or number:
+
         cumulus@switch:~$ sudo systemctl start dhcrelay@<dhcp-name>
 
 ## <span>Configure a DHCP Relay with VRR</span>
 
 The configuration procedure for DHCP relay with VRR is the same as
-documented above.
+documented above. Note that D <span style="color: #222222;"> HCP relay
+must run on the SVI and not on the -v0 interface. </span>
 
-{{%notice note%}}
+## <span>Configure the DHCP Relay Service Manually (Advanced)</span>
+<details>
+<summary>Configuring the DHCP service manually ... </summary>
 
-The D <span style="color: #222222;"> HCP relay must run on the SVI and
-not on the -v0 interface. </span>
+By default, Cumulus Linux configures the DHCP relay service
+automatically. However, in older versions of Cumulus Linux, you needed
+to edit the `dhcrelay.service` file as described below. The IPv4
+`dhcrelay.service` *Unit* script calls `/etc/default/isc-dhcp-relay` to
+find launch variables.
 
-{{%/notice%}}
+    cumulus@switch:~$ cat /lib/systemd/system/dhcrelay.service
+    [Unit]
+    Description=DHCPv4 Relay Agent Daemon
+    Documentation=man:dhcrelay(8)
+    After=network-oneline.target networking.service syslog.service
 
+    [Service]
+    Type=simple
+    EnvironmentFile=-/etc/default/isc-dhcp-relay
+    # Here, we are expecting the INTF_CMD to contain
+    # the -i for each interface specified,
+    #     e.g. "-i eth0 -i swp1"
+    ExecStart=/usr/sbin/dhcrelay -d -q $INTF_CMD $SERVERS $OPTIONS
+
+    [Install]
+    WantedBy=multi-user.target
+
+The `/etc/default/isc-dhcp-relay` variables file needs to reference both
+interfaces participating in DHCP relay (facing the server and facing the
+client) and the IP address of the server. If the client-facing interface
+is a bridge port, specify the switch virtual interface (SVI) name if you
+are using a [VLAN-aware
+bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+(for example, vlan100), or the bridge name if you are using traditional
+bridging (for example, br100).
+</details>
+## <span id="src-8363036_DHCPRelays-giaddr" class="confluence-anchor-link"></span><span>Use the Gateway IP Address as the Source IP for Relayed DHCP Packets (Advanced)</span>
+<details>
+<summary>Using the gateway IP address as the source IP for relayed DHCP
+packets </summary>
+
+You can configure the `dhcrelay` service to forward IPv4 (only) DHCP
+packets to a server and ensure that the source IP address of the relayed
+packet is the same as the gateway IP address. You do this by enabling
+the `giaddr-src` option; when set, `dhcrelay` attempts to set the source
+IP address of the packet to be the gateway IP address.
+
+This option impacts all relayed packets globally.
+
+To enable this feature:
+
+    cumulus@leaf:~$ net add dhcp relay use-giaddr-as-src
+    cumulus@leaf:~$ net pending
+    cumulus@leaf:~$ net commit
+
+These commands create the following configuration in the
+`/etc/default/isc-dhcp-relay` file:
+
+    cumulus@leaf01:~$ cat /etc/default/isc-dhcp-relay
+    # Defaults for isc-dhcp-relay initscript
+    # sourced by /etc/init.d/isc-dhcp-relay
+    # installed at /etc/default/isc-dhcp-relay by the maintainer scripts
+
+    #
+    # This is a POSIX shell fragment
+    #
+
+    # What servers should the DHCP relay forward requests to?
+    SERVERS=""
+
+    # On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
+    # Always include the interface towards the DHCP server.
+    # This variable requires a -i for each interface configured above.
+    # This will be used in the actual dhcrelay command
+    # For example, "-i eth0 -i eth1"
+    INTF_CMD=""
+
+    # Additional options that are passed to the DHCP relay daemon?
+    OPTIONS="--giaddr-src"
+</details>
 ## <span>Troubleshooting</span>
 
-If you are experiencing issues with DHCP relay, you can check if there
-is a problem with `systemd:`
+If you are experiencing issues with the DHCP relay, run the following
+commands to determine if the issue is with `systemd`. The following
+commands manually activate the DHCP relay process and they do not
+persist when you reboot the switch:
 
-  - For IPv4, run the `/usr/sbin/dhcrelay -4 -i <interface-facing-host>
-    <ip-address-dhcp-server> -i <interface-facing-dhcp-server>` command.
-
-  - For IPv6, run the `/usr/sbin/dhcrelay -6 -l <interface-facing-host>
-    -u <ip-address-hcp-server>%<interface-facing-dhcp-server>` command.
+    cumulus@switch:~$ /usr/sbin/dhcrelay -4 -i <interface_facing_host> <ip_address_dhcp_server> -i <interface_facing_dhcp_server>
+    cumulus@switch:~$ /usr/sbin/dhcrelay -6 -l <interface_facing_host> -u <ip_address_dhcp_server>%<interface_facing_dhcp_server>
 
 For example:
 
-    cumulus@switch:~$ /usr/sbin/dhcrelay -4 -i vlan1 172.16.1.102 -i swp51
-    cumulus@switch:~$ /usr/sbin/dhcrelay -6 -l vlan1 -u 2001:db8:100::2%swp51
+    cumulus@leaf01:~$ /usr/sbin/dhcrelay -4 -i vlan1 172.16.1.102 -i swp51
+    cumulus@leaf01:~$ /usr/sbin/dhcrelay -6 -l vlan1 -u 2001:db8:100::2%swp51
 
-The above commands manually activate the DHCP relay process and they do
-not persist when you reboot the switch.
+See `man dhcrelay` for more information.
 
-To see how DHCP relay is working on your switch, run the `journalctl`
-command:
+Use the `journalctl` command to look at the behavior on the Cumulus
+Linux switch that is providing the DHCP relay functionality:
 
-    cumulus@switch:~$ sudo journalctl -l -n 20 | grep dhcrelay
+    cumulus@leaf01:~$ sudo journalctl -l -n 20 | grep dhcrelay
     Dec 05 20:58:55 leaf01 dhcrelay[6152]: sending upstream swp52
     Dec 05 20:58:55 leaf01 dhcrelay[6152]: sending upstream swp51
     Dec 05 20:58:55 leaf01 dhcrelay[6152]: Relaying Reply to fe80::4638:39ff:fe00:3 port 546 down.
@@ -513,10 +393,10 @@ command:
     Dec 05 21:03:55 leaf01 dhcrelay[6152]: Relaying Reply to fe80::4638:39ff:fe00:3 port 546 down.
     Dec 05 21:03:55 leaf01 dhcrelay[6152]: Relaying Reply to fe80::4638:39ff:fe00:3 port 546 down.
 
-To specify a time period with the `journalctl` command, use the
-`--since` flag:
+You can run the `journalctl` command with the `--since` flag to specify
+a time period:
 
-    cumulus@switch:~$ sudo journalctl -l --since "2 minutes ago" | grep dhcrelay
+    cumulus@leaf01:~$ sudo journalctl -l --since "2 minutes ago" | grep dhcrelay
     Dec 05 21:08:55 leaf01 dhcrelay[6152]: Relaying Renew from fe80::4638:39ff:fe00:3 port 546 going up.
     Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp52
     Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp51
@@ -524,9 +404,9 @@ To specify a time period with the `journalctl` command, use the
 ### <span>Configuration Errors</span>
 
 If you configure DHCP relays by editing the
-`/etc/default/isc-dhcp-relay` file manually instead of running NCLU
-commands, you might introduce configuration errors that can cause the
-switch to crash.
+`/etc/default/isc-dhcp-relay` <span style="color: #333333;"> file
+manually instead of running NCLU commands, you might introduce
+configuration errors that can cause the switch to crash. </span>
 
 For example, if you see an error similar to the following, there might
 be a space between the DHCP server address and the interface used as the

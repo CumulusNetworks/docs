@@ -1,15 +1,15 @@
 ---
 title: VLAN Tagging
 author: Cumulus Networks
-weight: 355
+weight: 351
 aliases:
- - /display/CL40/VLAN-Tagging
- - /pages/viewpage.action?pageId=8366391
-pageID: 8366391
+ - /display/CL37/VLAN-Tagging
+ - /pages/viewpage.action?pageId=8362668
+pageID: 8362668
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 This topic shows two examples of VLAN tagging, one basic and one more
 advanced. They both demonstrate the streamlined interface configuration
@@ -271,8 +271,8 @@ A single bridge cannot contain multiple subinterfaces of the **same**
 port as members. Attempting to apply such a configuration will result in
 an error:
 
-    cumulus@switch:~$ sudo brctl addbr another_bridge
-    cumulus@switch:~$ sudo brctl addif another_bridge swp9 swp9.100
+    cumulus@switch:~$ sudo  brctl addbr another_bridge
+    cumulus@switch:~$ sudo  brctl addif another_bridge swp9 swp9.100
     bridge cannot contain multiple subinterfaces of the same port: swp9, swp9.100
 
 {{%/notice%}}
@@ -296,10 +296,10 @@ with the VLAN ID translated.
 {{%notice note%}}
 
 A bridge in [VLAN-aware
-mode](/version/cumulus-linux-40/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
 cannot have VLAN translation enabled for it; only bridges configured in
 [traditional
-mode](/version/cumulus-linux-40/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode)
+mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode)
 can utilize VLAN translation.
 
 {{%/notice%}}

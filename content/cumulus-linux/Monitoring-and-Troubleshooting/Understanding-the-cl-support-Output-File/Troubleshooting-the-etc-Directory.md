@@ -1,18 +1,18 @@
 ---
 title: Troubleshooting the etc Directory
 author: Cumulus Networks
-weight: 423
+weight: 445
 aliases:
- - /display/CL40/Troubleshooting-the-etc-Directory
- - /pages/viewpage.action?pageId=8366322
-pageID: 8366322
+ - /display/CL37/Troubleshooting-the-etc-Directory
+ - /pages/viewpage.action?pageId=8362601
+pageID: 8362601
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 The
-[`cl-support`](/version/cumulus-linux-40/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/)
+[`cl-support`](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/)
 script replicates the /`etc` directory.
 
 Files that `cl-support` deliberately excludes are:
@@ -125,6 +125,7 @@ troubleshooting problems.
 | mailcap                   |
 | mailcap.order             |
 | manpath.config            |
+| mcelog                    |
 | mime.types                |
 | mke2fs.conf               |
 | mlx                       |
@@ -161,7 +162,6 @@ troubleshooting problems.
 | python2.7                 |
 | python3                   |
 | python3.4                 |
-| ras                       |
 | rc.local                  |
 | rc0.d                     |
 | rc1.d                     |
@@ -211,6 +211,8 @@ troubleshooting problems.
 | ufw                       |
 | vim                       |
 | vrf                       |
+| vxrd.conf                 |
+| vxsnd.conf                |
 | watchdog.conf             |
 | wgetrc                    |
 | X11                       |

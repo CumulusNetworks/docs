@@ -3,13 +3,13 @@ title: Layer 2
 author: Cumulus Networks
 weight: 19
 aliases:
- - /display/CL40/Layer-2
- - /pages/viewpage.action?pageId=8366372
-pageID: 8366372
+ - /display/CL37/Layer-2
+ - /pages/viewpage.action?pageId=8362649
+pageID: 8362649
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 <article id="html-search-results" class="ht-content" style="display: none;">
 

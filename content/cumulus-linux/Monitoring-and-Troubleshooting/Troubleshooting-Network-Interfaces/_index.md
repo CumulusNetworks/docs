@@ -1,15 +1,15 @@
 ---
 title: Troubleshooting Network Interfaces
 author: Cumulus Networks
-weight: 231
+weight: 227
 aliases:
- - /display/CL40/Troubleshooting-Network-Interfaces
- - /pages/viewpage.action?pageId=8366324
-pageID: 8366324
+ - /display/CL37/Troubleshooting-Network-Interfaces
+ - /pages/viewpage.action?pageId=8362603
+pageID: 8362603
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 The following sections describe various ways you can troubleshoot
 `ifupdown2`.
@@ -24,10 +24,10 @@ The `/etc/default/networking` file contains two settings for logging:
     networking.service`
 
 This file also contains an option for excluding interfaces when you boot
-the switch or run `systemctl start|stop|reload networking.service`. You
-can exclude any interface specified in `/etc/network/interfaces`. These
-interfaces do not come up when you boot the switch or start/stop/reload
-the networking service.
+the switch or run ` systemctl start|stop|reload networking.service  `.
+You can exclude any interface specified in `/etc/network/interfaces`.
+These interfaces do not come up when you boot the switch or
+start/stop/reload the networking service.
 
     cumulus@switch:~$ cat /etc/default/networking
     #
@@ -141,7 +141,7 @@ If you are trying to bring down an interface that you know exists, use
 `ifdown` with the `--use-current-config` option to force `ifdown` to
 check the current `/etc/network/interfaces` file to find the interface.
 This can solve issues where the `ifup` command issues for that interface
-are interrupted before it updates the state database. For example:
+was interrupted before it updated the state database. For example:
 
     cumulus@switch:~$ sudo ifdown br0
     error: cannot find interfaces: br0 (interface was probably never up ?)
@@ -155,11 +155,11 @@ are interrupted before it updates the state database. For example:
 
 ## <span>Remove All References to a Child Interface</span>
 
-If you have a configuration with a child interface, whether it is a
-VLAN, bond, or another physical interface and you remove that interface
-from a running configuration, you must remove every reference to it in
-the configuration. Otherwise, the parent interface continues to use the
-interface.
+If you have a configuration with a child interface, whether it's a VLAN,
+bond or another physical interface, and you remove that interface from a
+running configuration, you must remove every reference to it in the
+configuration. Otherwise, the interface continues to be used by the
+parent interface.
 
 For example, consider the following configuration:
 
@@ -191,7 +191,7 @@ reload the configuration with `ifreload -a`, bond1 is still part of br0.
 ## <span>MTU Set on a Logical Interface Fails with Error: "Numerical result out of range"</span>
 
 This error occurs when the
-[MTU](Switch-Port-Attributes.html#src-8366750_SwitchPortAttributes-mtu)
+[MTU](Switch-Port-Attributes.html#src-8363026_SwitchPortAttributes-mtu)
 you are trying to set on an interface is higher than the MTU of the
 lower interface or dependent interface. Linux expects the upper
 interface to have an MTU less than or equal to the MTU on the lower
@@ -233,17 +233,17 @@ bridge`. There was an error adding the bond *host2* to the bridge named
 This error can occur when the bridge port does not have a valid hardware
 address.
 
-This occurs typically when the interface being added to the bridge is an
-incomplete bond; a bond without slaves is incomplete and does not have a
-valid hardware address.
+This can typically occur when the interface being added to the bridge is
+an incomplete bond; a bond without slaves is incomplete and does not
+have a valid hardware address.
 
 ## <span>MLAG Peerlink Interface Drops Many Packets</span>
 
-Losing a large number of packets across an MLAG peerlink interface might
-not be a problem. This can occur to prevent looping of BUM (broadcast,
-unknown unicast and multicast) packets. For more details, and for
-information on how to detect these drops, read the [MLAG
-chapter](Multi-Chassis-Link-Aggregation---MLAG.html#src-8366400_Multi-ChassisLinkAggregation-MLAG-drops).
+Losing a large number of packets across an MLAG peerlink interface may
+not be a problem. Instead this could be occurring in order to prevent
+looping of BUM (broadcast, unknown unicast and multicast) packets. For
+more information, and how to detect these drops, read the [MLAG
+chapter](Multi-Chassis-Link-Aggregation---MLAG.html#src-8362677_Multi-ChassisLinkAggregation-MLAG-drops).
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

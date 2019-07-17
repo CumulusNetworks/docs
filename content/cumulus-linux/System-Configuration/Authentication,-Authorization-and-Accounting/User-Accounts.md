@@ -1,15 +1,15 @@
 ---
 title: User Accounts
 author: Cumulus Networks
-weight: 279
+weight: 275
 aliases:
- - /display/CL40/User-Accounts
- - /pages/viewpage.action?pageId=8366274
-pageID: 8366274
+ - /display/CL37/User-Accounts
+ - /pages/viewpage.action?pageId=8362553
+pageID: 8362553
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 By default, Cumulus Linux has two user accounts: *cumulus* and *root*.
 
@@ -17,7 +17,7 @@ The *cumulus* account:
 
   - 
     
-    <div id="src-8366274_indexterm-09E43DF7FDDDED05466547732FB7F494">
+    <div id="src-8362553_indexterm-0CB043ADC364044DB26ABD1EB9D6210A">
     
     Uses the default password *CumulusLinux\!*
     
@@ -27,10 +27,10 @@ The *cumulus* account:
 
   - Can log in to the system through all the usual channels, such as
     console and
-    [SSH](/version/cumulus-linux-40/System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access).
+    [SSH](/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access).
 
   - Along with the cumulus group, has both show and edit rights for
-    [NCLU](/version/cumulus-linux-40/System-Configuration/Network-Command-Line-Utility---NCLU).
+    [NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).
 
 The *root* account:
 
@@ -46,16 +46,16 @@ command before you configure Cumulus Linux on the switch.
 
 You can add additional user accounts as needed. Like the *cumulus*
 account, these accounts must use `sudo` to [execute privileged
-commands](/version/cumulus-linux-40/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges);
+commands](/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges);
 be sure to include them in the *sudo* group.
 
 To access the switch without a password, you need to [boot into a single
 shell/user
-mode](/version/cumulus-linux-40/Monitoring-and-Troubleshooting/Single-User-Mode---Boot-Recovery).
+mode](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Single-User-Mode---Boot-Recovery).
 
 You can add and configure user accounts in Cumulus Linux with read-only
 or edit permissions for NCLU. For more information, see [Configure User
-Accounts](Network-Command-Line-Utility---NCLU.html#src-8366301_NetworkCommandLineUtility-NCLU-configure-user-accounts).
+Accounts](Network-Command-Line-Utility---NCLU.html#src-8362580_NetworkCommandLineUtility-NCLU-configure-user-accounts).
 
 ## <span>Enable Remote Access for the root User</span>
 
@@ -68,7 +68,7 @@ following:
 
   - Set a password
 
-### <span id="src-8366274_UserAccounts-ssh_key" class="confluence-anchor-link"></span><span>Generate an SSH Key for the root Account</span>
+### <span id="src-8362553_UserAccounts-ssh_key" class="confluence-anchor-link"></span><span>Generate an SSH Key for the root Account</span>
 
 1.  In a terminal on your host system (not the switch), check to see if
     a key already exists:
@@ -99,7 +99,7 @@ following:
         cumulus@switch:~$ sudo mkdir -p /root/.ssh
         cumulus@switch:~$ echo <SSH public key string> | sudo tee -a /root/.ssh/authorized_keys
 
-### <span id="src-8366274_UserAccounts-root_passwd" class="confluence-anchor-link"></span><span>Set the root User Password</span>
+### <span id="src-8362553_UserAccounts-root_passwd" class="confluence-anchor-link"></span><span>Set the root User Password</span>
 
 1.  Run the following command:
     

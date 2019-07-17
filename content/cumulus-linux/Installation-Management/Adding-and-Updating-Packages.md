@@ -1,18 +1,16 @@
 ---
 title: Adding and Updating Packages
 author: Cumulus Networks
-weight: 47
+weight: 49
 aliases:
- - /display/CL40/Adding-and-Updating-Packages
- - /pages/viewpage.action?pageId=8366352
-pageID: 8366352
+ - /display/CL37/Adding-and-Updating-Packages
+ - /pages/viewpage.action?pageId=8362631
+pageID: 8362631
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
-<details>
-
 You use the Advanced Packaging Tool (`apt`) to manage additional
 applications (in the form of packages) and to install the latest
 updates.
@@ -135,85 +133,12 @@ on more packages than you might expect.
 
 {{%/notice%}}
 
-## <span>List Packages Installed on the System</span>
+## <span>List Installed Packages</span>
 
-The the `apt-cache` command shows information about all the packages
-available in the repository. To see which packages are actually
-installed on your system with their versions, run the following
-commands.
-
-<summary>NCLU Commands </summary>
-
-Run the `net show package version` command:
-
-    cumulus@switch:~$ net show package version
-    Package                            Installed Version(s)
-    ---------------------------------  -----------------------------------------------------------------------
-    acpi                                   1.7-1.1
-    acpi-support-base                      0.142-8
-    acpid                                  1:2.0.31-1
-    adduser                                3.118
-    apt                                    1.8.0
-    arping                                 2.19-6
-    arptables                              0.0.4+snapshot20181021-3
-    atftp                                  0.7.git20120829-3+b1
-    atftpd                                 0.7.git20120829-3+b1
-    ...
-
-<summary>Linux Commands </summary>
-
-Run the `dpkg -l` command:
-
-    cumulus@switch:~$ dpkg -l
-    Desired=Unknown/Install/Remove/Purge/Hold
-    | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
-    |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
-    ||/ Name           Version      Architecture Description
-    +++-==============-============-============-=================================
-    ii  acl            2.2.52-2     amd64        Access control list utilities
-    ii  acpi           1.7-1        amd64        displays information on ACPI devi
-    ii  acpi-support-b 0.142-6      all          scripts for handling base ACPI ev
-    ii  acpid          1:2.0.23-2   amd64        Advanced Configuration and Power 
-    ii  adduser        3.113+nmu3   all          add and remove users and groups
-    ii  apt            1.0.9.8.2-cl amd64        commandline package manager
-    ii  apt-doc        1.0.9.8.2-cl all          documentation for APT
-    ii  apt-transport- 1.0.9.8.2-cl amd64        https download transport for APT
-    ii  apt-utils      1.0.9.8.2-cl amd64        package management related utilit
-    ii  arping         2.14-1       amd64        sends IP and/or ARP pings (to the
-    ii  arptables      0.0.3.4-1    amd64        ARP table administration
-     
-    ...
-
-## <span id="src-8366352_AddingandUpdatingPackages-versionDisplay" class="confluence-anchor-link"></span><span>Show the Version of a Package</span>
-
-To show the version of a specific package installed on the system:
-
-<summary>NCLU Commands </summary>
-
-Run the `net show package version <package>` command. For example, the
-following command shows which version of the `vrf` package is installed
-on the system:
-
-    cumulus@switch:~$ net show package version vrf
-    1.0-cl3u11
-
-<summary>Linux Commands </summary>
-
-Run the Linux `dpkg -l <package_name>` command:
-
-For example, the following command shows which version of the `vrf`
-package is installed on the system:
-
-    cumulus@switch:~$ dpkg -l vrf
-    Desired=Unknown/Install/Remove/Purge/Hold
-    | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
-    |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
-    ||/ Name           Version      Architecture Description
-    +++-==============-============-============-=================================
-    ii  vrf            1.0-cl3u11~1 amd64        Linux tools for VRF
-
-The following command lists all the package names on the system that
-contain `tcp`:
+The APT cache contains information about all the packages available in
+the repository. To see which packages are actually installed on your
+system, use `dpkg`. The following example lists all the package names on
+the system that contain `tcp`:
 
     cumulus@switch:~$ dpkg -l \*tcp\*
     Desired=Unknown/Install/Remove/Purge/Hold
@@ -223,17 +148,41 @@ contain `tcp`:
     +++-=============================-===================-===================-===============================================================
     un  tcpd                          <none>              <none>              (no description available)
     ii  tcpdump                       4.6.2-5+deb8u1      amd64               command-line network traffic analyzer
+    cumulus@switch:~$
 
-## <span id="src-8366352_AddingandUpdatingPackages-upgrade-packages" class="confluence-anchor-link"></span><span>Upgrade Packages</span>
+## <span id="src-8362631_AddingandUpdatingPackages-versionDisplay" class="confluence-anchor-link"></span><span>Display the Version of a Package</span>
 
-{{%notice note%}}
+To show the version of a specific package installed on the system, run
+the `net show package version <package>` command. For example, the
+following command shows which version of the `vrf` package is installed
+on the system:
 
-You cannot upgrade to Cumulus Linux 4.0.0 by upgrading packages. You
-must install a disk image of the new release using ONIE. Refer to
-[Upgrading Cumulus
-Linux](/version/cumulus-linux-40/Installation-Management/Upgrading-Cumulus-Linux).
+    cumulus@switch:~$ net show package version vrf
+    1.0-cl3u11
 
-{{%/notice%}}
+As an alternative to the NCLU command described above, you can run the
+Linux `dpkg -l <package_name>` command.
+
+To see a list of all packages installed on the system with their
+versions, run the `net show package version` command. For example:
+
+    cumulus@switch:~$ net show package version
+    Package                            Installed Version(s)
+    ---------------------------------  -----------------------------------------------------------------------
+    acl                                2.2.52-2
+    acpi                               1.7-1
+    acpi-support-base                  0.142-6
+    acpid                              1:2.0.23-2
+    adduser                            3.113+nmu3
+    apt                                1.0.9.8.2-cl3u3~1532198712.6d9298c
+    apt-doc                            1.0.9.8.2-cl3u3~1532198712.6d9298c
+    apt-transport-https                1.0.9.8.2-cl3u3~1532198712.6d9298c
+    apt-utils                          1.0.9.8.2-cl3u3~1532198712.6d9298c
+    arping                             2.14-1
+    arptables                          0.0.3.4-1
+    ...
+
+## <span id="src-8362631_AddingandUpdatingPackages-upgrade-packages" class="confluence-anchor-link"></span><span>Upgrade Packages</span>
 
 To upgrade all the packages installed on the system to their latest
 versions, run the following commands:
@@ -247,6 +196,10 @@ prompted to continue.
 The above commands upgrade all installed versions with their latest
 versions but do not install any new packages.
 
+Refer to [Upgrading Cumulus
+Linux](/version/cumulus-linux-377/Installation-Management/Upgrading-Cumulus-Linux)
+for additional information.
+
 ## <span>Add New Packages</span>
 
 To add a new package:
@@ -258,7 +211,7 @@ To add a new package:
     If the package is installed already, you can update the package from
     the Cumulus Linux repository as part of the package upgrade process,
     which upgrades all packages on the system. See [Upgrade
-    Packages](#src-8366352_AddingandUpdatingPackages-upgrade-packages)
+    Packages](#src-8362631_AddingandUpdatingPackages-upgrade-packages)
     above.
 
 2.  If the package is *not* already installed, add it by running `-E
@@ -373,6 +326,80 @@ To install a new package, complete the following steps:
         cumulus@switch:~$ sudo -E apt-get install {name of package}
         cumulus@switch:~$ sudo -E apt-get upgrade
 
+## <span>Cumulus Supplemental Repository</span>
+
+Cumulus Networks provides a *Supplemental Repository* that contains
+third party applications commonly installed on switches.
+
+The repository is provided for convenience only. You can download and
+use these applications; however, the applications in this repository are
+not tested, developed, certified, or supported by Cumulus Networks.
+
+Below is a non-exhaustive list of some of the packages present in the
+repository:
+
+  - `htop` lets you view CPU, memory, and process information.
+
+  - `scamper` is an ECMP traceroute utility.
+
+  - `mtr` is an ECMP traceroute utility.
+
+  - `dhcpdump` is similar to TCPdump but focused only on DHCP traffic.
+
+  - `vim` is a text editor.
+
+  - `fping` provides a list of targets through textfile to check
+    reachability.
+
+  - `scapy` is a custom packet generator for testing.
+
+  - `bwm-ng` is a real-time bandwidth monitor.
+
+  - `iftop` is a real-time traffic monitor.
+
+  - `tshark` is a CLI version of wireshark.
+
+  - `nmap` is a network scanning utility.
+
+  - `minicom` is a USB/Serial console utility that turns your switch
+    into a terminal server (useful for out of band management switches
+    to provide a console on the dataplane switches in the rack).
+
+  - `apt-cacher-ng` caches packages for mirroring purposes.
+
+  - `iptraf` is a ncurses-based traffic visualization utility.
+
+  - `swatch` monitors system activity. It reads a configuration file
+    that contains patterns for which to search and actions to perform
+    when each pattern is found.
+
+  - `dos2unix` converts line endings from Windows to Unix.
+
+  - `fail2ban` monitors log files (such as `/var/log/auth.log` and
+    `/var/log/apache/access.log`) and temporarily or persistently bans
+    the login of failure-prone IP addresses by updating existing
+    firewall rules. This utility is not hardware accelerated on a
+    Cumulus Linux switch, so only affects the control plane.
+
+To enable the Supplemental Repository:
+
+1.  In a file editor, open the `/etc/apt/sources.list` file.
+    
+        cumulus@leaf01:~$ sudo nano /etc/apt/sources.list
+
+2.  Uncomment the following lines:
+    
+        #deb http://repo3.cumulusnetworks.com/repo Jessie-supplemental upstream
+        #deb-src http://repo3.cumulusnetworks.com/repo Jessie-supplemental upstream
+
+3.  Update the list of software packages:
+    
+        cumulus@leaf01:~$ sudo -E apt-get update -y
+
+4.  Install the software in which you are interested:
+    
+        cumulus@leaf01:~$ sudo -E apt-get install htop
+
 ## <span>Related Information</span>
 
   - [Debian GNU/Linux FAQ, Ch 8 Package management
@@ -387,5 +414,3 @@ To install a new package, complete the following steps:
 <footer id="ht-footer">
 
 </footer>
-
-</details>

@@ -1,18 +1,16 @@
 ---
 title: Segment Routing
 author: Cumulus Networks
-weight: 207
+weight: 203
 aliases:
- - /display/CL40/Segment-Routing
- - /pages/viewpage.action?pageId=8366686
-pageID: 8366686
+ - /display/CL37/Segment-Routing
+ - /pages/viewpage.action?pageId=8362962
+pageID: 8362962
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
-<details>
-
 {{%notice warning%}}
 
 **Early Access Feature**
@@ -25,16 +23,17 @@ switches](https://cumulusnetworks.com/products/hardware-compatibility-list/?Bran
 {{%/notice%}}
 
 Cumulus Linux supports *segment routing,* also known as source routing,
-where a source node can specify the path a packet should take (traffic
-engineering). In some more advanced cases, you can use segment routing
-to have offline multiprotocol label switching (MPLS) controllers program
-labels into the network for traffic engineering.
+which provides the ability for a source node to specify the path a
+packet should take (traffic engineering). In some more advanced cases,
+you can use segment routing to have offline multiprotocol label
+switching (MPLS) controllers program labels into the network for traffic
+engineering.
 
 Cumulus Linux provides full label-based forwarding, relying on
-[BGP](/version/cumulus-linux-40/Layer-3/Border-Gateway-Protocol---BGP)
+[BGP](/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP)
 for label exchange. However, Cumulus Linux does not provide LDP
 interoperability for MPLS and it does not support
-[VRFs](/version/cumulus-linux-40/Layer-3/Virtual-Routing-and-Forwarding---VRF)
+[VRFs](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF)
 for tenant isolation.
 
 ## <span>Features</span>
@@ -46,7 +45,7 @@ Segment routing supports the following features:
 
   - MPLS label edge router (LER) functionality for IPv4 and IPv6 routing
     with
-    [ECMP](/version/cumulus-linux-40/Layer-3/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP).
+    [ECMP](/version/cumulus-linux-377/Layer-3/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP).
     An ingress LER first adds an MPLS label to an IP packet. An egress
     LER removes the outermost MPLS label (also called *popping* the
     label).
@@ -54,7 +53,7 @@ Segment routing supports the following features:
   - MPLS label switch router (LSR) functionality with ECMP. The LSR
     receives a packet with a label and forwards it based on that label.
 
-  - [FRRouting](/version/cumulus-linux-40/Layer-3/FRRouting-Overview/)
+  - [FRRouting](/version/cumulus-linux-377/Layer-3/FRRouting-Overview/)
     support for MPLS transit label switched paths (LSPs) and labeled
     routes (LER), both static routes and routes using BGP
     labeled-unicast (LU).
@@ -124,13 +123,16 @@ iface lo inet loopback
  
 auto swp2
 iface swp2
+    mpls-enable yes
  
 auto swp4
 iface swp4
+    mpls-enable yes
  
 auto swp10
 iface swp10
     address 192.168.11.1/24
+    mpls-enable yes
  
 auto vagrant
 iface vagrant inet dhcp
@@ -191,12 +193,15 @@ iface lo inet loopback
  
 auto swp1
 iface swp1
+    mpls-enable yes
  
 auto swp3
 iface swp3
+    mpls-enable yes
  
 auto swp5
 iface swp5
+    mpls-enable yes
  
 auto vagrant
 iface vagrant inet dhcp
@@ -258,13 +263,16 @@ iface lo inet loopback
  
 auto swp2
 iface swp2
+    mpls-enable yes
  
 auto swp5
 iface swp5
+    mpls-enable yes
  
 auto swp10
 iface swp10
     address 192.168.22.1/24
+    mpls-enable yes
  
 auto vagrant
 iface vagrant inet dhcp
@@ -325,9 +333,11 @@ iface lo inet loopback
  
 auto swp1
 iface swp1
+    mpls-enable yes
  
 auto swp5
 iface swp5
+    mpls-enable yes
  
 auto vagrant
 iface vagrant inet dhcp
@@ -388,13 +398,16 @@ iface lo inet loopback
  
 auto swp2
 iface swp2
+    mpls-enable yes
  
 auto swp5
 iface swp5
+    mpls-enable yes
  
 auto swp10
 iface swp10
     address 192.168.22.1/24
+    mpls-enable yes
  
 auto vagrant
 iface vagrant inet dhcp
@@ -452,65 +465,28 @@ line vty
 
 ## <span>Configure Segment Routing</span>
 
-To configure the segment routing example above:
+To configure the segment routing example above, use the `label-index`
+option in
+[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).
+Configure the following on each node:
 
-<summary>NCLU Commands </summary>
+    cumulus@switch:~$ net add bgp network 10.1.1.1/32 label-index 1
+    cumulus@switch:~$ net add bgp network 10.1.1.2/32 label-index 2
+    cumulus@switch:~$ net add bgp network 10.1.1.3/32 label-index 3
+    cumulus@switch:~$ net add bgp network 10.1.1.4/32 label-index 4
+    cumulus@switch:~$ net add bgp network 10.1.1.5/32 label-index 5
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
 
-1.  For each switch in the topology, add the label indexes:
-    
-        cumulus@switch:~$ net add bgp network 10.1.1.1/32 label-index 1
-        cumulus@switch:~$ net add bgp network 10.1.1.2/32 label-index 2
-        cumulus@switch:~$ net add bgp network 10.1.1.3/32 label-index 3
-        cumulus@switch:~$ net add bgp network 10.1.1.4/32 label-index 4
-        cumulus@switch:~$ net add bgp network 10.1.1.5/32 label-index 5
+Then, for each switch in the topology, define the *global-block* of
+labels to use for segment routing in
+[FRR](/version/cumulus-linux-377/Layer-3/Configuring-FRRouting/). The
+default global-block is 16000-23999. The example configuration uses
+global-block `100 200`. The *local label* is the MPLS label global-block
+plus the label-index.
 
-2.  For each switch in the topology, define the *global-block* of labels
-    to use for segment routing in
-    [FRR](/version/cumulus-linux-40/Layer-3/Configuring-FRRouting/). The
-    default global-block is 16000-23999. The example configuration uses
-    global-block `100 200`. The *local label* is the MPLS label
-    global-block plus the label-index.
-    
-        cumulus@switch:~$ net add mpls label global-block 100 200
-        cumulus@switch:~$ net pending
-        cumulus@switch:~$ net commit
-
-<summary>vtysh Commands </summary>
-
-1.  For each switch in the topology, add the label indexes:
-    
-        cumulus@switch:~$ sudo vtysh
-         
-        switch# configure terminal
-        switch(config)# router bgp 65444
-        switch(config-router)# address-family ipv4 unicast
-        switch(config-router-if)# network 10.1.1.1/32 label-index 1
-        switch(config-router-if)# network 10.1.1.2/32 label-index 2
-        switch(config-router-if)# network 10.1.1.3/32 label-index 3
-        switch(config-router-if)# network 10.1.1.4/32 label-index 4
-        switch(config-router-if)# network 10.1.1.5/32 label-index 5
-        switch(config-router-if)# exit
-        switch(config-router)# exit
-        switch(config)#
-
-2.  For each switch in the topology, define the *global-block* of labels
-    to use for segment routing in
-    [FRR](/version/cumulus-linux-40/Layer-3/Configuring-FRRouting/). The
-    default global-block is 16000-23999. The example configuration uses
-    global-block `100 200`. The *local label* is the MPLS label
-    global-block plus the label-index.
-    
-        switch(config)# mpls label global-block 100 200
-        switch(config)# exit 
-        switch# write memory
-        switch# exit
-        cumulus@switch:~$ 
-
-The NCLU and vtysh commands save the configuration in the
-`/etc/frr/frr.conf` file. For example:
-
-    ...
-    router bgp 65444
+    cumulus@switch:~$ cat /etc/frr/frr.conf
+    router bgp 400
      bgp router-id 10.1.1.4
      no bgp default ipv4-unicast
      neighbor EBGP peer-group
@@ -519,11 +495,7 @@ The NCLU and vtysh commands save the configuration in the
      neighbor swp2 interface peer-group EBGP
      !
      address-family ipv4 unicast
-      network 10.1.1.1/32 label-index 1
-      network 10.1.1.2/32 label-index 2
-      network 10.1.1.3/32 label-index 3
       network 10.1.1.4/32 label-index 4
-      network 10.1.1.5/32 label-index 5
      exit-address-family
      !
      address-family ipv4 labeled-unicast
@@ -531,30 +503,22 @@ The NCLU and vtysh commands save the configuration in the
      exit-address-family
     !
     mpls label global-block 100 200
-    ...
 
 ## <span>View the Configuration</span>
 
 You can see the label-index when you show the BGP configuration on a
-router. Run the NCLU `net show configuration bgp` command or the vtysh
-`show running-config bgp` command. For example:
+router.
 
     cumulus@r4:~$ net show configuration bgp
      
     ...
-    router bgp 65444
+    router bgp 400
      bgp router-id 10.1.1.4
      
      address-family ipv4 unicast
-      network 10.1.1.1/32 label-index 1
-      network 10.1.1.2/32 label-index 2
-      network 10.1.1.3/32 label-index 3
       network 10.1.1.4/32 label-index 4
-      network 10.1.1.5/32 label-index 5
-    ...
 
-From another node in the network, run the NCLU `net show bgp
-<ip-address>` command or the vtysh `show ip bgp <ip-address>` command:
+Or from another node in the network:
 
     cumulus@r1:~$ net show bgp 10.1.1.4/32
     BGP routing table entry for 10.1.1.4/32
@@ -565,18 +529,17 @@ From another node in the network, run the NCLU `net show bgp
       400
         fe80::202:ff:fe00:c from r4(swp3) (10.1.1.4)
         (fe80::202:ff:fe00:c) (used)
-          Origin IGP, metric 0, localpref 100, valid, external, bestpath-from-AS 65444, best
+          Origin IGP, metric 0, localpref 100, valid, external, bestpath-from-AS 400, best
           Remote label: 3
           Label Index: 4
           AddPath ID: RX 0, TX 14
           Last update: Tue Aug 15 13:57:45 2017
     cumulus@r1:~$ 
 
-To show the FRR MPLS table, run the NCLU `net show mpls table` command
-or the vtysh `show mpls table` command. You can see the FRR MPLS table
-in the output below, where r1 receives a packet with label 104. Its
-outbound label is 3, which appears as *implicit-null* below, so it pops
-then the payload is forwarded out of swp3, the interface to r4:
+You can see the FRR MPLS table in the output below, where r1 receives a
+packet with label 104. Its outbound label is 3, which appears as
+*implicit-null* below, so it pops then the payload is forwarded out of
+swp3, the interface to r4:
 
     cumulus@r1:~$ net show mpls table
      
@@ -622,5 +585,3 @@ well:
 <footer id="ht-footer">
 
 </footer>
-
-</details>

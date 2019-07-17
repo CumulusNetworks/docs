@@ -1,15 +1,15 @@
 ---
 title: Monitoring Virtual Device Counters
 author: Cumulus Networks
-weight: 225
+weight: 221
 aliases:
- - /display/CL40/Monitoring-Virtual-Device-Counters
- - /pages/viewpage.action?pageId=8366326
-pageID: 8366326
+ - /display/CL37/Monitoring-Virtual-Device-Counters
+ - /pages/viewpage.action?pageId=8362605
+pageID: 8362605
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 Cumulus Linux gathers statistics for VXLANs and VLANs using virtual
 device counters. These counters are supported on Tomahawk, Trident II+
@@ -32,7 +32,7 @@ VXLAN statistics are available as follows:
 
   - Access statistics are available per VLAN subinterface.
 
-To show interface information about the VXLAN bridge:
+First, get interface information regarding the VXLAN bridge:
 
     cumulus@switch:~$ brctl show br-vxln16757104
     bridge name        bridge id            STP enabled    interfaces
@@ -42,7 +42,7 @@ To show interface information about the VXLAN bridge:
                                                            swp2s3.6
                                                            vxln16757104
 
-To show VNI statistics, run:
+To get VNI statistics, run:
 
     cumulus@switch:~$ ip -s link show br-vxln16757104
     62: br-vxln16757104: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT
@@ -52,9 +52,9 @@ To show VNI statistics, run:
         TX: bytes  packets  errors  dropped carrier collsns
         27816      541      0       0       0       0
 
-To show access statistics, run:
+To get access statistics, run:
 
-    cumulus@switch:~$ s0.6       
+    cumulus@switch:~$ ip -s link show swp2s0.6       
     63: swp2s0.6@swp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln16757104 state UP mode DEFAULT
         link/ether 44:38:39:00:69:88 brd ff:ff:ff:ff:ff:ff
         RX: bytes  packets  errors  dropped overrun mcast 
@@ -62,7 +62,7 @@ To show access statistics, run:
         TX: bytes  packets  errors  dropped carrier collsns
         7558       140      0       0       0       0
 
-To show network statistics, run:
+To get network statistics, run:
 
     cumulus@switch:~$ ip -s link show vxln16757104
     61: vxln16757104: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln16757104 state UNKNOWN mode DEFAULT
@@ -77,11 +77,11 @@ To show network statistics, run:
 ### <span>For VLANs Using the VLAN-aware Bridge Mode Driver</span>
 
 For a bridge using the [VLAN-aware bridge
-mode](/version/cumulus-linux-40/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
 driver, the bridge is a just a container and each VLAN (VID/PVID) in the
-bridge is an independent layer 2 broadcast domain. As there is no
-`netdev` available to display these VLAN statistics, the `switchd` nodes
-are used instead:
+bridge is an independent L2 broadcast domain. As there is no netdev
+available to display these VLAN statistics, the `switchd` nodes are used
+instead:
 
     cumulus@switch:~$ ifquery bridge
     auto bridge
@@ -106,7 +106,7 @@ are used instead:
 ### <span>For VLANs Using the Traditional Bridge Mode Driver</span>
 
 For a bridge using the [traditional bridge
-mode](/version/cumulus-linux-40/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode)
+mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode)
 driver, each bridge is a single L2 broadcast domain and is associated
 with an internal VLAN. This internal VLAN's counters are displayed as
 bridge netdev stats.
@@ -127,8 +127,8 @@ bridge netdev stats.
 
 These counters are enabled by default. To configure them, use `cl-cfg`
 and configure them as you would any other [`switchd`
-parameter](/version/cumulus-linux-40/System-Configuration/Configuring-switchd).
-The `switchd` parameters are:
+parameter](/version/cumulus-linux-377/System-Configuration/Configuring-switchd).
+The `switchd` parameters are as follows:
 
   - `stats.vlan.aggregate`, which controls the statistics available for
     each VLAN. Its value defaults to *BRIEF*.
@@ -171,23 +171,26 @@ of 2 seconds.
 
 ### <span>Configure Internal VLAN Statistics</span>
 
-For debugging purposes, you can access packet statistics associated with
-internal VLAN IDs. These statistics are hidden by default, but you can
-configure them in `switchd`:
+For debugging purposes, you may need to access packet statistics
+associated with internal VLAN IDs. These statistics are hidden by
+default, but can be configured in `switchd`:
 
     #stats.vlan.show_internal_vlans = FALSE
 
 ### <span>Clear Statistics</span>
 
-Because `ethtool` is not supported for virtual devices, you *cannot*
-clear the statistics cache maintained by the kernel. You can clear the
+Since `ethtool` is not supported for virtual devices, you cannot clear
+the statistics cache maintained by the kernel. You can clear the
 hardware statistics via `switchd`:
 
     cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vlan 
-    cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vxlan Caveats and Errata
+    cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vxlan 
+    cumulus@switch:~$
+
+## <span>Caveats and Errata</span>
 
   - Currently the CPU port is internally added as a member of all VLANs.
-    Therefore, packets sent to the CPU are counted against the
+    Because of this, packets sent to the CPU are counted against the
     corresponding VLAN's tx packets/bytes. There is no workaround.
 
   - When checking the virtual counters for the bridge, the TX count is
@@ -202,7 +205,7 @@ hardware statistics via `switchd`:
 
   - You cannot use `ethtool -S` for virtual devices. This is because the
     counters available via `netdev` are sufficient to display the
-    VLAN/VXLAN counters currently supported in the hardware (only rx/tx
+    vlan/vxlan counters currently supported in the hardware (only rx/tx
     packets/bytes are supported currently).
 
 <article id="html-search-results" class="ht-content" style="display: none;">

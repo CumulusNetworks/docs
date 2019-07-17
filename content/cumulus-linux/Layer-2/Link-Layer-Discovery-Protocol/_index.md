@@ -3,32 +3,30 @@ title: Link Layer Discovery Protocol
 author: Cumulus Networks
 weight: 117
 aliases:
- - /display/CL40/Link-Layer-Discovery-Protocol
- - /pages/viewpage.action?pageId=8366373
-pageID: 8366373
+ - /display/CL37/Link-Layer-Discovery-Protocol
+ - /pages/viewpage.action?pageId=8362650
+pageID: 8362650
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
-<details>
-
 The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery
-Protocol, or LLDP) standard. LLDP shows you which ports are neighbors of
-a given port. By default, `lldpd` runs as a daemon and starts at system
-boot. `lldpd` command line arguments are placed in `/etc/default/lldpd`.
-All `lldpd` configuration options are saved in `/etc/lldpd.conf` or
-under `/etc/lldpd.d/`.
+Protocol, or LLDP) standard. LLDP enables you to know which ports are
+neighbors of a given port. By default, `lldpd` runs as a daemon and is
+started at system boot. `lldpd` command line arguments are placed in
+`/etc/default/lldpd`. `lldpd` configuration options are placed in
+`/etc/lldpd.conf` or under `/etc/lldpd.d/`.
 
-For more details on the command line arguments and configuration
-options, see `man lldpd(8)`.
+For more details on the command line arguments and config options, see
+`man lldpd(8)`.
 
-`lldpd` supports CDP (Cisco Discovery Protocol, v1 and v2) and logs by
-default into `/var/log/daemon.log` with an `lldpd` prefix.
+`lldpd` supports CDP (Cisco Discovery Protocol, v1 and v2). `lldpd` logs
+by default into `/var/log/daemon.log` with an `lldpd` prefix.
 
-You can use the `lldpcli` CLI tool to query the `lldpd` daemon for
-neighbors, statistics, and other running configuration information. See
-`man lldpcli(8)` for details.
+`lldpcli` is the CLI tool to query the `lldpd` daemon for neighbors,
+statistics, and other running configuration information. See `man
+lldpcli(8)` for details.
 
 ## <span>Configure LLDP</span>
 
@@ -42,10 +40,10 @@ Here is an example persistent configuration:
     configure system interface pattern *,!eth0,swp*
 
 The last line in the example above shows that LLDP is disabled on eth0.
-To disable LLDP on a single port, edit the `/etc/default/lldpd` file.
-This file specifies the default options to present to the `lldpd`
-service when it starts. The following example uses the `-I` option to
-disable LLDP on swp43:
+You can disable LLDP on a single port by editing the
+`/etc/default/lldpd` file. This file specifies the default options to
+present to the `lldpd` service when it starts. The following example
+uses the `-I` option to disable LLDP on swp43:
 
     cumulus@switch:~$ sudo nano /etc/default/lldpd
      
@@ -63,7 +61,7 @@ disable LLDP on swp43:
 
 ## <span>Example lldpcli Commands</span>
 
-To show all neighbors on all ports and interfaces:
+To show all neighbors on all ports/interfaces:
 
     cumulus@switch:~$ sudo lldpcli show neighbors
     -------------------------------------------------------------------------------
@@ -245,13 +243,13 @@ To show the `lldpd` running configuration:
       Source MAC for LLDP frames on bond slaves: local
       Portid TLV Subtype for lldp frames: ifname
     --------------------------------------------------------------------
-
+<details>
 <summary>Runtime Configuration (Advanced) </summary>
 
 {{%notice warning%}}
 
-A runtime configuration does not persist when you reboot the switch; all
-changes are lost.
+A runtime configuration does not persist when you reboot the switch —
+all changes are lost.
 
 {{%/notice%}}
 
@@ -272,8 +270,8 @@ The active interface list always overrides the inactive interface list.
 To reset any interface list to none:
 
     cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
-
-## <span id="src-8366373_LinkLayerDiscoveryProtocol-snmp" class="confluence-anchor-link"></span><span>Enable the SNMP Subagent in LLDP</span>
+</details>
+## <span id="src-8362650_LinkLayerDiscoveryProtocol-snmp" class="confluence-anchor-link"></span><span>Enable the SNMP Subagent in LLDP</span>
 
 LLDP does not enable the SNMP subagent by default. You need to edit
 `/etc/default/lldpd` and enable the `-x` option.

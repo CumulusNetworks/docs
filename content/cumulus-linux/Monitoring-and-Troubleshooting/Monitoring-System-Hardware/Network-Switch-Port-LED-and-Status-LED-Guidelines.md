@@ -1,15 +1,15 @@
 ---
 title: Network Switch Port LED and Status LED Guidelines
 author: Cumulus Networks
-weight: 409
+weight: 431
 aliases:
- - /display/CL40/Network-Switch-Port-LED-and-Status-LED-Guidelines
- - /pages/viewpage.action?pageId=8366316
-pageID: 8366316
+ - /display/CL37/Network-Switch-Port-LED-and-Status-LED-Guidelines
+ - /pages/viewpage.action?pageId=8362595
+pageID: 8362595
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 Data centers today have a large number of network switches manufactured
 by different hardware vendors running network operating systems (NOS)

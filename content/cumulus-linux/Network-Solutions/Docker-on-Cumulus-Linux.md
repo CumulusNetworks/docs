@@ -1,15 +1,15 @@
 ---
 title: Docker on Cumulus Linux
 author: Cumulus Networks
-weight: 257
+weight: 253
 aliases:
- - /display/CL40/Docker-on-Cumulus-Linux
- - /pages/viewpage.action?pageId=8366704
-pageID: 8366704
+ - /display/CL37/Docker-on-Cumulus-Linux
+ - /pages/viewpage.action?pageId=8362980
+pageID: 8362980
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 Cumulus Linux is based on Linux kernel 4.1, which supports the
 [Docker](https://www.docker.com/) engine. Docker can be installed

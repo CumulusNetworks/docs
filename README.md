@@ -43,7 +43,7 @@ Hugo supports custom shortcodes, which are contained the Writing Guide section o
 
 ### Adding a section
 Sections in hugo are subdirectories of the /content folder. In order to add a section,
-create a subdirectory, i.e. 'MySection', then add a _index.md file. All first-level subdirectories from /content are default sections, but any nested sections must include _index.md.
+create a subdirectory, i.e. 'MySection', then add a \_index.md file. All first-level subdirectories from /content are default sections, but any nested sections must include \_index.md.
 
 ### Organization
 
@@ -62,6 +62,3 @@ The site is based off the Hugo Book theme, built by [alex-shpak](https://github.
   - [Content Organization with Hugo](https://gohugo.io/content-management/organization/)
   - [hugo-theme-book](https://github.com/alex-shpak/hugo-book)
   - [hugo-theme-dockdock](https://github.com/vjeantet/hugo-theme-docdock)
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MjQzNzM2OF19
--->

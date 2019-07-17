@@ -22,14 +22,12 @@ entire Linux-based data center. With NetQ, network operations change
 from a manual, reactive, box-by-box approach to an automated, informed
 and agile one.
 
-<span style="color: #353744;"> Cumulus NetQ performs three primary
-functions: </span>
+Cumulus NetQ performs three primary
+functions:
 
   - **Data collection**: real-time and historical telemetry and network
     state information
-
   - **Data analytics**: deep processing of the data
-
   - **Data visualization**: rich graphical user interface (GUI) for
     actionable insight
 
@@ -43,12 +41,12 @@ documentation.
 ## <span>Cumulus NetQ Operational Advantages</span>
 
 Unlike other network operations tools, NetQ delivers significant
-operational improvements <span style="color: #3c4043;"> to your network
+operational improvements to your network
 management and maintenance processes. It simplifies the data center
 network by reducing the complexity through real-time visibility into
 hardware and software status and eliminating the guesswork associated
 with investigating issues through the analysis and presentation of
-detailed, focused data. </span>
+detailed, focused data.
 
 ### <span>Demystify Overlay Networks</span>
 
@@ -175,19 +173,12 @@ In summary:
 NetQ contains the following applications and key components:
 
   - Telemetry data collection and aggregation
-    
       - NetQ switch agents
-    
       - NetQ host agents
-    
       - Telemetry data aggregation
-    
       - Database
-
   - Data streaming
-
   - Network services
-
   - User interfaces
 
 While these function apply to both the on-site and SaaS solution, where
@@ -216,27 +207,19 @@ The NetQ Agents running on Cumulus Linux switches gather the following
 network data via [Netlink](https://tools.ietf.org/html/rfc3549):
 
   - Interfaces
-
   - IP addresses (v4 and v6)
-
   - IP routes (v4 and v6)
-
   - Links
-
   - Bridge FDB (MAC Address table)
-
   - ARP Entries/Neighbors (IPv4 and IPv6)
 
 for the following protocols:
 
   - Bridging protocols: LLDP, STP, MLAG
-
   - Routing protocols: BGP, OSPF
-
   - Network virtualization: EVPN, LNV, VXLAN
 
-<span style="color: #353744;"> The NetQ Agent is supported on </span>
-<span style="color: #353744;"> Cumulus Linux </span> 3.3.2 and later.
+The NetQ Agent is supported on Cumulus Linux 3.3.2 and later.
 
 ### <span>Host Agents</span>
 
@@ -244,11 +227,10 @@ The NetQ Agents running on hosts gather the same information as that for
 switches, plus the following network data:
 
   - Network IP and MAC addresses
-
   - Container IP and MAC addresses
 
-<span style="color: #353744;"> The NetQ Agent obtains container
-information by listening to the Kubernetes orchestration tool. </span>
+The NetQ Agent obtains container
+information by listening to the Kubernetes orchestration tool.
 
 The NetQ Agent is supported on hosts running Ubuntu 16.04, Red Hat®
 Enterprise Linux 7, and CentOS 7 Operating Systems.
@@ -293,37 +275,28 @@ individually and on a network-wide basis and stores status details.
 
 ### <span>User Interfaces</span>
 
-<span style="color: #353744;"> NetQ data is available through several
-user interfaces: </span>
+NetQ data is available through several
+user interfaces:
 
-  - <span style="color: #353744;"> NetQ <span style="color: #353744;">
-    CLI </span> <span style="color: #353744;"> (
-    <span style="color: #353744;"> command line interface </span>
-    <span style="color: #353744;"> ) </span> </span> </span>
+  - NetQ CLI (command line interface)
+  - NetQ UI (graphical user interface)
+  - NetQ RESTful API (representational state transfer application programming interface)
 
-  - <span style="color: #353744;"> NetQ UI (graphical user interface
-    <span style="color: #353744;"> ) </span> </span>
-
-  - <span style="color: #353744;"> <span style="color: #353744;"> NetQ
-    RESTful API (representational state transfer application programming
-    interface <span style="color: #353744;"> ) </span> </span> </span>
-
-<span style="color: #353744;"> The CLI and UI query the RESTful API for
+The CLI and UI query the RESTful API for
 the data to present. Standard integrations can be configured to
-integrate with third-party notification tools. </span>
+integrate with third-party notification tools.
 
 ## <span>Data Center Network Deployments</span>
 
-<span style="color: #222222;"> T </span> here are two deployment types
+There are two deployment types
 that are commonly deployed for network management in the data center:
 
   - Out-of-Band Management (recommended)
-
   - In-band Management
 
 A summary of each type is provided here.
 
-{{%notice info%}}
+{{%notice note%}}
 
 NetQ operates over layer 3, and can be used in both layer 2 bridged and
 layer 3 routed environments. Cumulus Networks always recommends layer 3
@@ -341,25 +314,19 @@ management network overlaid on top, where NetQ is deployed.
 
 The physical *network* hardware includes:
 
-  - <span style="color: #ff0000;"> **Spine** switches: where data is
+  - **Spine** switches: where data is
     aggregated and distributed ; also known as an aggregation switch,
-    end-of-row (EOR) switch or distribution switch </span>
-
+    end-of-row (EOR) switch or distribution switch
   - **Leaf** switches: where servers connect to the network; also known
     as a Top of Rack (TOR) or access switch
-
-  - <span style="color: #ff0000;"> **Server** hosts: where applications
-    are hosted and data served to the user through the network </span>
-
-  - <span style="color: #ff0000;"> **Exit** switch: where connections to
-    outside the data center occur ; also known as
-    <span style="color: #000000;"> Border Leaf or Service Leaf </span>
-    </span>
-
+  - **Server** hosts: where applications
+    are hosted and data served to the user through the network
+  - **Exit** switch: where connections to
+    outside the data center occur; also known as
+    Border Leaf or Service Leaf
   - **Edge** server (optional): where the firewall is the demarcation
     point, peering may occur through the exit switch layer to Internet
     (PE) devices
-
   - **Internet** device (PE): where provider edge (PE) equipment
     communicates at layer 3 with the network fabric
 
@@ -374,7 +341,7 @@ connected to Exit 01.
 
 {{% imgOld 2 %}}
 
-  
+
 <span class="caption">Data Center Network Example</span>
 
 The physical *management* hardware includes:
@@ -382,7 +349,6 @@ The physical *management* hardware includes:
   - OOB Mgmt Switch: aggregation switch that connects to all of the
     network devices through communications with the NetQ Agent on each
     node
-
   - NetQ Platform: hosts the telemetry software, database and user
     interfaces (refer to description above).
 
@@ -414,19 +380,19 @@ possible.
 
 ### <span>The NetQ Agent</span>
 
-<span style="color: #36424a;"> From a software perspective, a network
+From a software perspective, a network
 switch has software associated with the hardware platform, the operating
 system, and communications. For data centers, the software on a Cumulus
-Linux network switch would be similar to the diagram shown here. </span>
+Linux network switch would be similar to the diagram shown here.
 
 {{% imgOld 5 %}}
 
-<span style="color: #36424a;"> The NetQ Agent interacts with the various
+The NetQ Agent interacts with the various
 components and software on switches and hosts and provides the gathered
 information to the NetQ Platform. You can view the data using the NetQ
-CLI or UI. </span>
+CLI or UI.
 
-<span style="color: #36424a;"> The NetQ Agent p </span> olls the user
+The NetQ Agent polls the user
 space applications for information about the performance of the various
 routing protocols and services that are running on the switch. Cumulus
 Networks supports BGP and OSPF Free Range Routing (FRR) protocols as
@@ -456,7 +422,7 @@ expected or favorable.
 
 For example, if a new route is added or a MAC address removed, NetQ
 Agent records these changes and sends that information to the
-<span style="color: #36424a;"> NetQ Platform </span> . Based on the
+NetQ Platform. Based on the
 configuration of the Event Service, these changes can be sent to a
 variety of locations for end user response.
 
@@ -478,13 +444,9 @@ can:
 
   - Validate configurations, identifying misconfigurations in your
     current network, in the past, or prior to deployment,
-
   - Monitor communication paths throughout the network,
-
   - Notify users of issues and management information,
-
   - Anticipate impact of connectivity changes,
-
   - and so forth.
 
 **Validate Configurations**
@@ -518,6 +480,7 @@ for numerous components and services as shown in the following table.
 | Kubernetes           |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | VLAN                 | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
 | License              | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |                                                                                                                                                                                                                            | VXLAN                | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
 
+
 **Monitor Communication Paths**
 
 The trace engine is used to validate the available communication paths
@@ -549,15 +512,14 @@ command show the same output as a tree.
     Number of Paths with Errors: 0
     Number of Paths with Warnings: 0
     Path MTU: 9152
-     hostd-12 bond1.1002 -- swp8 leaf12 <vlan1002> peerlink-1 -- swp6 <vlan1002> leaf11 vlan1002 
-              bond1.1002 -- swp8 leaf11 vlan1002 
+     hostd-12 bond1.1002 -- swp8 leaf12 <vlan1002> peerlink-1 -- swp6 <vlan1002> leaf11 vlan1002
+              bond1.1002 -- swp8 leaf11 vlan1002
 
 This output is read as:
 
   - Path 1 traverses the network from server12 out bond1.1002 into
     leaf12 interface swp8 out VLAN1002 peerlink-1 into VLAN1002
     interface swp6 on leaf11
-
   - Path 2 traverses the network from server12 out bond1.1002 into
     VLAN1002 interface swp8 on leaf11.
 
@@ -587,7 +549,7 @@ last night and that they can be run from any switch in the network.
 {{% imgOld 6 %}}
 
     cumulus@switch:~$ netq check bgp around 30m
-    Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24, 
+    Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
     Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
     ----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
     exit-1            DataVrf1080     swp6.2            firewall-1        BGP session with peer firewall-1 swp6.2: AFI/ 1d:2h:6m:21s
@@ -691,14 +653,12 @@ ways:
   - For non-JSON output when the timestamp represents the Last Changed
     time, time is displayed in actual date and time when the time change
     occurred
-
   - For non-JSON output when the timestamp represents an Uptime, time is
     displayed as days, hours, minutes, and seconds from the current
     time.
-
   - For JSON output, time is displayed in microseconds that have passed
-    since the Epoch time ( <span style="color: #6a6a6a;"> January 1,
-    1970 </span> <span style="color: #545454;"> at 00:00:00 GMT) </span>
+    since the Epoch time (January 1,
+    1970 at 00:00:00 GMT)
     .
 
 This example shows the difference between the timestamp displays.
@@ -833,15 +793,14 @@ Data from the NetQ Platform can be exported in a couple of ways:
 
   - use the `json` option to output command results to JSON format for
     parsing in other applications
-
   - use the UI to export data from the full screen cards
 
 **Example Using the CLI**
 
 You can check the state of BGP on your network with `netq check bgp`:
 
-    cumulus@leaf01:~$ netq check bgp 
-    Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24, 
+    cumulus@leaf01:~$ netq check bgp
+    Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
     Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
     ----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
     exit01            DataVrf1080     swp6.2            firewall01        BGP session with peer firewall01 swp6.2: AFI/ Tue Feb 12 18:11:16 2019
@@ -857,9 +816,9 @@ You can check the state of BGP on your network with `netq check bgp`:
     ...
 
 When you show the output in JSON format, this same command looks like
-this: <span style="color: #353744;"> </span>
+this:
 
-    cumulus@leaf01:~$ netq check bgp json 
+    cumulus@leaf01:~$ netq check bgp json
     {
         "failedNodes":[
             {
@@ -896,11 +855,11 @@ this: <span style="color: #353744;"> </span>
             },
     ...
      
-        ], 
+        ],
         "summary": {
-            "checkedNodeCount": 25, 
-            "failedSessionCount": 24, 
-            "failedNodeCount": 3, 
+            "checkedNodeCount": 25,
+            "failedSessionCount": 24,
+            "failedNodeCount": 3,
             "totalSessionCount": 220
         }
     }
@@ -914,18 +873,18 @@ and click **Export**.
 
 ### <span>Key File Locations</span>
 
-<span style="color: #353744;"> The primary configuration file for all
-Cumulus NetQ tools, </span> `netq.yml` <span style="color: #353744;"> ,
-resides in </span> `/etc/netq` <span style="color: #353744;"> by
-default. </span>
+The primary configuration file for all
+Cumulus NetQ tools, `netq.yml`,
+resides in `/etc/netq` by
+default.
 
-<span style="color: #353744;"> Log files are stored in `/var/logs/` by
-default. </span>
+Log files are stored in `/var/logs/` by
+default.
 
-<span style="color: #353744;"> Refer to [Investigate NetQ
+Refer to [Investigate NetQ
 Issues](/version/cumulus-netq-22/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Investigate-NetQ-Issues)
 for a complete listing of configuration files and logs for use in issue
-resolution. </span>
+resolution.
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

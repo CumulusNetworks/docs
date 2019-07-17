@@ -11,7 +11,7 @@ version: 2.2.0
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
-<details>
+
 
 This document describes the steps required to upgrade from NetQ 1.x to
 NetQ 2.2.x on your hardware.
@@ -24,7 +24,7 @@ Cumulus NetQ Cloud
 Appliance](https://cumulusnetworks.com/products/cumulus-express/getting-started/cumulus-netq-cloud/)
 </span> for instructions on installing and configuring the appliance.
 
-{{%notice info%}}
+{{%notice note%}}
 
 Data collected in the NetQ 1.x environment cannot be migrated to the
 NetQ 2.2 environment. Event notification configurations must also be
@@ -159,32 +159,32 @@ To install the NetQ software onto your own hardware:
     [here](#src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-hwspec).
 
 2.  Download the NetQ Platform image.
-    
+
     1.  On the [Cumulus
         Downloads](https://cumulusnetworks.com/downloads/) page, select
         *NetQ* from the **Product** list box.
-    
+
     2.  Click *2.2* from the **Version** list box, and then select
         *2.2.x* from the submenu.
-    
+
     3.  Optionally, select the hypervisor you wish to use (*VMware,
         VMware (cloud), KVM,* or *KVM (cloud)*) from the
         **Hypervisor/Platform** list box.  
         **Note**: You can ignore the ONIE and Appliance options, as they
         are for the NetQ appliances.
-        
+
         {{% imgOld 1 %}}
-    
+
     4.  Scroll down to review the images that match your selection
         criteria, and click **Download** for the image you want.
-        
+
         {{% imgOld 2 %}}
 
 3.  Open your hypervisor and set up your VM.  
     You can use these examples for reference or use your own hypervisor
     instructions.
 
-<summary>VMware example </summary>
+<details><summary>VMware example </summary>
 
 This example shows the VM setup process using an OVA file with VMware
 ESXi.
@@ -192,21 +192,21 @@ ESXi.
 1.  Enter the address of the hardware in your browser.
 
 2.  Log in to VMware using credentials with root access.  
-    
+
     {{% imgOld 3 %}}
 
 3.  Click **Storage** in the Navigator to verify you have an SSD
     installed.  
-    
+
     {{% imgOld 4 %}}
 
 4.  Click **Create/Register VM** at the top of the right pane.
-    
+
     {{% imgOld 5 %}}
 
 5.  Select **Deploy a virtual machine from and OVF or OVA file**, and
     click **Next**.  
-    
+
     {{% imgOld 6 %}}
 
 6.  Provide a name for the VM, for example *Cumulus NetQ*.
@@ -215,34 +215,35 @@ ESXi.
     above.
 
 8.  Click **Next**.
-    
+
     {{% imgOld 7 %}}
 
 9.  Select the storage type and data store for the image to use, then
     click **Next**. In this example, only one is available.
-    
+
     {{% imgOld 8 %}}
 
 10. Accept the default deployment options or modify them according to
     your network needs. Click **Next** when you are finished.
-    
+
     {{% imgOld 9 %}}
 
 11. Review the configuration summary. Click **Back** to change any of
     the settings, or click **Finish** to continue with the creation of
     the VM.
-    
+
     {{% imgOld 10 %}}
-    
+
     The progress of the request is shown in the Recent Tasks window at
     the bottom of the application. This may take some time, so continue
     with your other work until the upload finishes.
 
 12. Once completed, view the full details of the VM and hardware.
-    
+
     {{% imgOld 11 %}}
 
-<summary>KVM example </summary>
+</details>
+<details><summary>KVM example </summary>
 
 This example shows the VM setup process for a system with Libvirt and
 KVM/QEMU installed.
@@ -250,67 +251,68 @@ KVM/QEMU installed.
 1.  Confirm that the SHA256 checksum matches the one posted on the
     Cumulus Downloads website to ensure the image download has not been
     corrupted.
-    
-        $ sha256sum ./Downloads/cumulus-netq-server-2.1.1-ts-amd64-qemu.qcow2 
+
+        $ sha256sum ./Downloads/cumulus-netq-server-2.1.1-ts-amd64-qemu.qcow2
         $ 6fff5f2ac62930799b4e8cc7811abb6840b247e2c9e76ea9ccba03f991f42424  ./Downloads/cumulus-netq-server-2.1.1-ts-amd64-qemu.qcow2
 
 2.  Copy the QCOW2 image to a directory where you want to run it.
-    
+
     {{%notice tip%}}
-    
+
     Copy, instead of moving, the original QCOW2 image that was
     downloaded to avoid re-downloading it again later should you need to
     perform this process again.
-    
+
     {{%/notice%}}
-    
+
         $ sudo mkdir /vms
         $ sudo cp ./Downloads/cumulus-netq-server-2.1.1-ts-amd64-qemu.qcow2 /vms/ts.qcow2
 
 3.  Create the VM.
-    
+
     For a Direct VM, where the VM uses a MACVLAN interface to sit on the
     host interface for its connectivity:
-    
+
         $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \
          --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
          --network=type=direct,source=eth0,model=virtio --import --noautoconsole
-    
+
     {{%notice info%}}
-    
+
     Replace the disk path value with the location where the QCOW2 image
     is to reside. Replace network model value (eth0 in the above
     example) with the name of the interface where the VM is connected to
     the external network.
-    
+
     {{%/notice%}}
-    
+
     Or, for a Bridged VM, where the VM attaches to a bridge which has
     already been setup to allow for external access:
-    
+
         $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \
          --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
          --network=bridge=br0,model=virtio --import --noautoconsole
-    
+
     {{%notice info%}}
-    
+
     Replace network bridge value (br0 in the above example) with the
     name of the (pre-existing) bridge interface where the VM is
     connected to the external network.
-    
+
     {{%/notice%}}
 
 4.  Watch the boot process in another terminal window.
-    
+
         $ virsh console netq_ts
 
 5.  From the Console of the VM, check to see which IP address Eth0 has
     obtained via DHCP, or alternatively set a static IP address with
     NCLU on the NetQ Appliance or Platform VM.
-    
+
         $ ip addr show eth0
         $ net add interface eth0 ip address 10.0.0.1
         $ net commit
+</details>
 
 {{%notice note%}}
 
@@ -320,7 +322,7 @@ continue.
 
 1.  Reset all Kubernetes administrative settings. Run the command twice
     to make sure all directories and files have been reset.
-    
+
     ` cumulus@switch:~$ sudo kubeadm reset -f  `  
     `cumulus@switch:~$ sudo kubeadm reset -f`
 
@@ -343,10 +345,10 @@ continue.
 ### <span>Verify the Installation</span>
 
 1.  Verify you can access the NetQ CLI.
-    
+
     1.  From a terminal window, log in to the NetQ Platform using the
         default credentials (*cumulus/CumulusLinux\!*).
-        
+
             <computer>:~<username>$ ssh cumulus@<netq-platform-ipaddress>
             Warning: Permanently added '<netq-platform-hostname>,192.168.1.254' (ECDSA) to the list of known hosts.
             cumulus@<netq-platform-hostname>'s password: <enter CumulusLinux! here>
@@ -361,11 +363,11 @@ continue.
             basis.
              
             cumulus@<netq-platform-hostname>:~$ 
-    
+
     2.  Run the following command to verify all applications are
         operating properly. ***Note**: Please allow 10-15 minutes for
         all applications to come up and report their status.*
-        
+
             cumulus@<netq-platform-hostname>:~$ netq show opta-health
             Application                    Status    Health    Kafka Stream    Git Hash    Timestamp
             -----------------------------  --------  --------  --------------  ----------  ------------------------
@@ -415,14 +417,14 @@ continue.
             netq-app-route                 UP        true      up              6e31f98     Mon Jun  3 20:20:35 2019
              
             cumulus@<netq-platform-hostname>:~$
-        
+
         {{%notice info%}}
-        
+
         If any of the applications or services display Status as DOWN
         after 30 minutes, open a [support
         ticket](https://cumulusnetworks.com/support/file-a-ticket/) and
         attach the output of the `opta-support` command.
-        
+
         {{%/notice%}}
 
 2.  Verify that NTP is configured and running. NTP operation is critical
@@ -479,54 +481,54 @@ A simple process installs the NetQ Agent on a Cumulus switch.
 
 1.  Stop the ` netq-agent  `service and `netqd` daemon running on your
     switch.
-    
+
         cumulus@switch:~$ sudo systemctl stop netq-agent 
         cumulus@switch:~$ sudo systemctl stop netqd
-    
+
     {{%notice info%}}
-    
+
     If you are running VRF, run these additional commands:
-    
+
     `cumulus@switch:~$ sudo systemctl stop netq-agent@mgmt
     cumulus@switch:~$ sudo systemctl stop netqd@mgmt`
-    
+
     {{%/notice%}}
 
 2.  <span style="color: #222222;"> Remove the older NetQ packages.
     </span>
-    
+
         cumulus@switch:~$ sudo apt -y purge cumulus-netq netq-agent netq-apps python-netq-lib
 
 3.  Verify you have removed all older NetQ packages. You should not see
     any older version files after running the `dpkg` command here.
-    
+
         cumulus@switch:~# dpkg -l | grep netq
 
 4.  Edit the `/etc/apt/sources.list` file to add the repository for
     Cumulus NetQ. ***Note** that NetQ has a separate repository from
     Cumulus Linux.*  
-    
+
         cumulus@switch:~$ sudo nano /etc/apt/sources.list
         ...
         deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.2
         ...
-    
+
     {{%notice tip%}}
-    
+
     The repository `deb http://apps3.cumulusnetworks.com/repos/deb
     CumulusLinux-3 netq-latest` can be used if you want to always
     retrieve the latest posted version of NetQ.
-    
+
     {{%/notice%}}
 
 5.  Update the local `apt` repository, then install the NetQ meta
     package on the switch.
-    
+
         cumulus@switch:~$ sudo apt-get update
         cumulus@switch:~$ sudo apt-get install cumulus-netq
 
 6.  Restart `rsyslog` so log files are sent to the correct destination.
-    
+
         cumulus@switch:~$ sudo systemctl restart rsyslog.service
 
 7.  Configure the NetQ Agent to send telemetry data to the NetQ Platform
@@ -538,15 +540,15 @@ A simple process installs the NetQ Agent on a Cumulus switch.
     you intend to specify a port for communication, skip to [Configure
     the Agent to Communicate over a Specific
     Port](#src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-port).
-    
+
         cumulus@switch:~$ netq config add agent server 192.168.1.254
         cumulus@switch:~$ netq config add cli server 192.168.1.254
-    
+
     This command updates the configuration in the `/etc/netq/netq.yml`
     file and enables the NetQ CLI.
 
 8.  Restart NetQ Agent and CLI.
-    
+
         cumulus@switch:~$ netq config restart agent
         cumulus@switch:~$ netq config restart cli
 
@@ -559,41 +561,41 @@ To upgrade the NetQ Agent on an Ubuntu server:
 
 1.  Remove the current NetQ Agent and application software from your
     switch or host.
-    
+
         root@ubuntu:~# sudo systemctl stop netq-agent
         root@ubuntu:~# sudo systemctl stop netqd
         root@ubuntu:~# sudo apt-get purge --auto-remove cumulus-netq netq-agent netq-apps python-netq-lib
 
 2.  Verify you have removed all older NetQ packages. You should not see
     any older version files.
-    
+
         root@ubuntu:~# dpkg -l | grep netq
 
 3.  Reference and update the local `apt` repository.
-    
+
         root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
 
 4.  In `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list`, verify
     the following repository is included:
-    
+
         root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
         ...
         deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
         ...
-    
+
     {{%notice note%}}
-    
+
     The use of `netq-latest` in this example means that a `get` to the
     repository always retrieves the latest version of NetQ, even in the
     case where a major version update has been made. If you want to keep
     the repository on a specific version — such as `netq-2.2` — use that
     instead.
-    
+
     {{%/notice%}}
 
 5.  Verify NTP is operating correctly. Look for an asterisk (\*) or a
     plus sign (+) that indicates the clock is synchronized.
-    
+
         root@ubuntu:~# ntpq -pn
              remote           refid      st t when poll reach   delay   offset  jitter
         ==============================================================================
@@ -603,27 +605,27 @@ To upgrade the NetQ Agent on an Ubuntu server:
         *129.250.35.250  249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 
 6.  Install the meta package on the server.
-    
+
         root@ubuntu:~# apt-get update
         root@ubuntu:~# apt-get install cumulus-netq
 
 7.  Configure the NetQ Agent to send telemetry data to the NetQ
     Platform.
-    
+
         user@ubuntu:~# netq config add agent server <netq-platform-ip-address>
         Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
 
 8.  Restart the NetQ Agent
-    
+
         user@ubuntu:~# netq config restart agent
 
 9.  Optionally, configure the Ubuntu server to run the NetQ CLI.
-    
+
         user@ubuntu:~# netq config add cli server <netq-platform-ip-address>
         Updated cli server 192.168.1.254 vrf default. Please restart netqd (netq config restart cli).
 
 10. Restart the CLI.
-    
+
         user@ubuntu:~# netq config restart cli
 
 ### <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentRHC" class="confluence-anchor-link"></span><span>Upgrade NetQ Agent on a Red Hat or CentOS Server (Optional)</span>
@@ -632,29 +634,29 @@ To upgrade the NetQ Agent on a Red Hat or CentOS server:
 
 1.  Remove the current NetQ Agent and application software from your
     switch or host.
-    
+
         root@rhel7:~# sudo systemctl stop netq-agent
         root@rhel7:~# sudo systemctl stop netqd
         root@rhel7:~# yum remove netq-apps netq-agent cumulus-netq
 
 2.  Verify you have removed all older NetQ packages. You should not see
     any older version files.
-    
+
         root@rhel7:~# yum list | grep netq
 
 3.  Reference and update the local `yum` repository.
-    
+
         root@rhel7:~# rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
         root@rhel7:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo > /etc/yum.repos.d/cumulus-host-el.repo
 
 4.  Edit `/etc/yum.repos.d/cumulus-host-el.repo` to set the `enabled=1`
     flag for the two NetQ repositories.
-    
+
         root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
-        ... 
+        ...
         [cumulus-arch-netq-2.2]
         name=Cumulus netq packages
-        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.2/$basearch 
+        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.2/$basearch
         gpgcheck=1
         enabled=1
         [cumulus-noarch-netq-2.2]
@@ -666,7 +668,7 @@ To upgrade the NetQ Agent on a Red Hat or CentOS server:
 
 5.  Verify NTP is operating correctly. Look for an asterisk (\*) or a
     plus sign (+) that indicates the clock is synchronized.
-    
+
         root@rhel7:~# ntpq -pn
              remote           refid      st t when poll reach   delay   offset  jitter
         ==============================================================================
@@ -676,26 +678,26 @@ To upgrade the NetQ Agent on a Red Hat or CentOS server:
         *129.250.35.250  249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 
 6.  Update the NetQ meta packages on the server.
-    
+
         root@rhel7:~# yum update cumulus-netq.x86_64
 
 7.  Configure the NetQ Agent to send telemetry data to the NetQ
     Platform.
-    
+
         root@rhel7:~# netq config add agent server <netq-platform-ip-address>
         Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
 
 8.  Restart the NetQ Agent.
-    
+
         root@rhel7:~# netq config restart agent
 
 9.  Optionally, configure the RHEL/CentOS server to run the NetQ CLI.
-    
+
         root@rhel7:~# netq config add cli server <netq-platform-ip-address>
         Updated cli server 192.168.1.254 vrf default. Please restart netqd (netq config restart cli).
 
 10. Restart the CLI.
-    
+
         root@rhel7:~# netq config restart cli
 
 ## <span>Configure Optional NetQ Agent Settings</span>

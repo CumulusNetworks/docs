@@ -1,25 +1,25 @@
 ---
 title: Configuring FRRouting
 author: Cumulus Networks
-weight: 177
+weight: 17781
 aliases:
- - /display/CL37/Configuring-FRRouting
- - /pages/viewpage.action?pageId=8362919
-pageID: 8362919
+ - /display/CL3740/Configuring-FRRouting
+ - /pages/viewpage.action?pageId=83629196643
+pageID: 83629196643
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 This section provides an overview of configuring FRRouting, the routing
 software package that provides a suite of routing protocols so you can
-configure routing on your switch.
+configure routing on your switchdiscusses FRRouting configuration.
 
 ## <span>Configure FRRouting</span>
 
 FRRouting does not start by default in Cumulus Linux. Before you run
-FRRouting, make sure all you have enabled relevant daemons that you
-intend to use — `zebra`, `bgpd`, `ospfd`, `ospf6d` or `pimd` — in the
+FRRouting, make sure all you have enabled the relevant daemons that you
+intend to use — (`zebra`, `bgpd`, `ospfd`, `ospf6d` or `pimd` —) in the
 `/etc/frr/daemons` file.
 
 {{%notice warning%}}
@@ -28,16 +28,21 @@ Cumulus Networks has not tested RIP, RIPv6, IS-IS and Babel.
 
 {{%/notice%}}
 
-The `zebra` daemon must always be enabled. The others you can enable
-according to how you plan to route your network — using
+The `zebra` daemon must always be enabled. The others yYou can enable
+ the other
+daemons according to how you plan to route your network — using
 [BGP](/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP)
 for example, instead of
 [OSPF](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF).
 
 Before you start FRRouting, you need to enable the corresponding
-daemons. Edit the `/etc/frr/daemons` file and set to *yes* each daemon
-you are enabling. For example, to enable BGP, set both `zebra` and
-`bgpd` to *yes*:
+daemons. E.
+
+Before you start FRRouting, edit the `/etc/frr/daemons` file and set to *yes* to enable
+each daemon
+ you are enablingwant to use. For example, to enable BGP, set both 
+`zebra` and
+ `bgpd` to *yes*:
 
     zebra=yes (* this one is mandatory to bring the others up)
     bgpd=yes
@@ -51,8 +56,9 @@ you are enabling. For example, to enable BGP, set both `zebra` and
 
 ### <span id="src-8362919_ConfiguringFRRouting-enableFRR" class="confluence-anchor-link"></span><span>Enable and Start FRRouting</span>
 
-Once you enable the appropriate daemons, then you need to enable and
-start the FRRouting service.
+OnceAfter you enable the appropriate daemons, then you need to enable and
+ start the FRRouting 
+service.:
 
     cumulus@switch:~$ sudo systemctl enable frr.service 
     cumulus@switch:~$ sudo systemctl start frr.service
@@ -61,33 +67,35 @@ start the FRRouting service.
 
 All the routing protocol daemons (`bgpd`, `ospfd`, `ospf6d`, `ripd`,
 `ripngd`, `isisd` and `pimd`) are dependent on `zebra`. When you start
-`frr`, `systemd` determines whether `zebra` is running; if `zebra` is
-not running, it starts `zebra`, then starts the dependent service, such
-as `bgpd`.
+`frr`FFRouting, `systemd` determines whether `zebra` is running; if `zebra` is
+not running, it`systemd` starts `zebra`, then starts the dependent 
+service, such
+ as `bgpd`.
 
-In general, if you restart a service, its dependent services also get
+In general, if you restart a service, its dependent services also getre also
 restarted. For example, running `systemctl restart frr.service` restarts
 any of the routing protocol daemons that are enabled and running.
 
 For more information on the `systemctl` command and changing the state
 of daemons, read [Services and Daemons in Cumulus
-Linux](/version/cumulus-linux-377/System-Configuration/Services-and-Daemons-in-Cumulus-Linux).
+Linux](/version/cumulus-linux-37740/System-Configuration/Services-and-Daemons-in-Cumulus-Linux).
 
 {{%/notice%}}
 
-### <span id="src-8362919_ConfiguringFRRouting-integrated_cfg" class="confluence-anchor-link"></span><span>Integrated Configurations</span>
+### <span id="src-83629196643_ConfiguringFRRouting-integrated_cfg" class="confluence-anchor-link"></span><span>Integrated Configurations</span>
 
-By default in Cumulus Linux, FRRouting saves the configuration of all
-daemons in a single integrated configuration file, `frr.conf`.
+By default in Cumulus Linux, FRRouting saves theall daemon configuration of all
+daemons s
+in a single integrated configuration file, `frr.conf`.
 
 You can disable this mode by running the following command in the
-[`vtysh` FRRouting CLI](#src-8362919_ConfiguringFRRouting-vtysh):
+[`vtysh` FRRouting CLI](#src-83629196643_ConfiguringFRRouting-vtysh):
 
     cumulus@switch:~$ sudo vtysh
     switch# configure terminal
     switch(config)# no service integrated-vtysh-config
 
-To enable the integrated configuration file mode again, run:
+To reenable the integrated configuration file mode again, run:
 
     switch(config)# service integrated-vtysh-config
 
@@ -96,9 +104,9 @@ daemon-specific configuration file in a separate file. At a minimum for
 a daemon to start, that daemon must be enabled and its daemon-specific
 configuration file must be present, even if that file is empty.
 
-You save the current configuration by running:
+YouTo save the current configuration by running:
 
-    switch# write mem
+    switch# write memory
     Building Configuration...
     Integrated configuration saved to /etc/frr/frr.conf
     [OK]
@@ -107,14 +115,14 @@ You save the current configuration by running:
 
 {{%notice note%}}
 
-You can use `write file` instead of `write mem`.
+You can use `write file` instead of `write memory`.
 
 {{%/notice%}}
 
-When the integrated configuration mode disabled, the output looks like
+When the integrated configuration mode is disabled, the output looks like
 this:
 
-    switch# write mem
+    switch# write memory
     Building Configuration...
     Configuration saved to /etc/frr/zebra.conf
     Configuration saved to /etc/frr/bgpd.conf
@@ -124,11 +132,15 @@ this:
 
 If you need to restore the FRRouting configuration to the default
 running configuration, you need to delete the `frr.conf` file and
-restart the `frr` service. You should back up `frr.conf` (or any
-configuration files you may remove, see the note below) before
-proceeding.
+ restart the `frr` 
+service. You should b
 
-1.  Confirm `service integrated-vtysh-config` is enabled:
+Back up `frr.conf` (or any
+ configuration files you may remove, see the note below) want to remove)
+before
+ proceeding.
+
+1.  Confirm that `service integrated-vtysh-config` is enabled:
     
     ``` 
     cumulus@switch:~$ net show configuration | grep integrated
@@ -146,10 +158,21 @@ proceeding.
 {{%notice note%}}
 
 If for some reason you disabled `service integrated-vtysh-config`, then
-you should remove all the configuration files (such as `zebra.conf` or
-`ospf6d.conf`) instead of `frr.conf` in step 2 above.
+you should    
+    {{%notice note%}}
+    
+    If integrated configuration file mode is disabled, remove all the
+    configuration files (such as `zebra.conf` or
+ `ospf6d.conf`) instead
+    of `frr.conf` in step 2 above.
 
-{{%/notice%}}
+{{%/notice%}}.
+    
+    {{%/notice%}}
+
+3.  Restart FRRouting:
+    
+        cumulus@switch:~$ sudo systemctl restart frr.service
 
 ## <span>Interface IP Addresses and VRFs</span>
 
@@ -157,14 +180,16 @@ FRRouting inherits the IP addresses and any associated routing tables
 for the network interfaces from the `/etc/network/interfaces` file. This
 is the recommended way to define the addresses; do **not** create
 interfaces using FRRouting. For more information, see [Configuring IP
-Addresses](Interface-Configuration-and-Management.html#src-8363023_InterfaceConfigurationandManagement-ip)
+Addresses](Interface-Configuration-and-Management.html#src-83630236747_InterfaceConfigurationandManagement-ip)
 and [Virtual Routing and Forwarding -
-VRF](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF).
+VRF](/version/cumulus-linux-37740/Layer-3/Virtual-Routing-and-Forwarding---VRF).
 
-## <span id="src-8362919_ConfiguringFRRouting-vtysh" class="confluence-anchor-link"></span><span>FRRouting vtysh Modal CLI</span>
+## <span id="src-83629196643_ConfiguringFRRouting-vtysh" class="confluence-anchor-link"></span><span>FRRouting vtysh Modal CLI</span>
 
-FRRouting provides a CLI – `vtysh` – for configuring and displaying the
-state of the protocols. It is invoked by running:
+FRRouting provides a CLI –command-line interface (CLI) called `vtysh` – for 
+configuring and displaying the
+state of the protocols. It is invoked by runningprotocol state. To start the CLI, run the
+`sudo vtysh` command:
 
     cumulus@switch:~$ sudo vtysh
      
@@ -174,15 +199,17 @@ state of the protocols. It is invoked by running:
     switch#
 
 `vtysh` provides a Cisco-like modal CLI, and many of the commands are
-similar to Cisco IOS commands. By modal CLI, we mean that there are
-different modes to the CLI, and certain commands are only available
-within a specific mode. Configuration is available with the `configure
-terminal` command, which is invoked thus:
+similar to Cisco IOS commands. By modal CLI, we mean that tThere are
+ different modes to the CLI, and 
+certain commands are only available
+ within a specific mode. 
+Configuration is available with the `configure
+ terminal` command, which is invoked thus:
 
     switch# configure terminal
     switch(config)#
 
-The prompt displays the mode the CLI is in. For example, when the
+The prompt displays the mode the CLI is incurrent CLI mode. For example, when the
 interface-specific commands are invoked, the prompt changes to:
 
     switch(config)# interface swp1
@@ -194,7 +221,7 @@ changes to:
     switch(config)# router ospf
     switch(config-router)#
 
-At any level, ”?” displays the list of available top-level commands at
+At any level, ”?”`?` displays the list of available top-level commands at
 that level:
 
     switch(config-if)# ?
@@ -271,8 +298,8 @@ To run the same command at a config level, you prepend `do` to it:
     B>* 172.16.3.0/24 [20/0] via fe80::4638:39ff:fe00:57, swp3, 00:05:18
       *                      via fe80::4638:39ff:fe00:43, swp4, 00:05:18
 
-Running single commands with `vtysh` is possible using the `-c` option
-of `vtysh`:
+RunningTo run single commands with `vtysh` is possible using, use the `-c` option
+ of `vtysh`:
 
     cumulus@switch:~$ sudo vtysh -c 'sh ip route'
     Codes: K - kernel route, C - connected, S - static, R - RIP,
@@ -288,7 +315,7 @@ of `vtysh`:
     C>* 127.0.0.0/8 is directly connected, lo
     C>* 192.168.0.0/24 is directly connected, eth0
 
-Running a command multiple levels down is done thus:
+RunningTo run a command multiple levels down is done thus:
 
     cumulus@switch:~$ sudo vtysh -c 'configure terminal' -c 'router ospf' -c 'area 0.0.0.1 range 10.10.10.0/24'
 
@@ -298,10 +325,12 @@ Notice that the commands also take a partial command name (for example,
     cumulus@switch:~$ sudo vtysh -c 'sh ip r'
     % Ambiguous command.
 
-A command or feature can be disabled in FRRouting by prepending the
-command with `no`. For example:
+ATo disable a command or feature can be disabled in FRRouting by, prepending the
+ command with 
+`no`. For example:
 
-    cumulus@switch:~$ sudo vtysh 
+    cumulus@switch:~$ sudo vtysh
+     
     switch# configure terminal
     switch(config)# router ospf
     switch(config-router)# no area 0.0.0.1 range 10.10.10.0/24
@@ -311,7 +340,7 @@ command with `no`. For example:
     switch# exit
     cumulus@switch:~$
 
-The current state of the configuration can be viewed using the `show
+To view the current state of the configuration can be viewed using, run the `show
 running-config` command:
 
     switch# show running-config
@@ -407,14 +436,16 @@ running-config` command:
 
 {{%notice note%}}
 
-If you attempt to configure a routing protocol that has not been
-started, `vtysh` silently ignores those commands.
+If you attempttry to configure a routing protocol that has not been
+ started, 
+`vtysh` silently ignores those commands.
 
 {{%/notice%}}
 
-Alternately, if you do not want to use a modal CLI to configure
-FRRouting, you can use a suite of [Cumulus Linux-specific
-commands](/version/cumulus-linux-377/Layer-3/Configuring-FRRouting/Comparing-NCLU-and-vtysh-Commands)
+Alternately, iIf you do not want to use a modal CLI to configure
+ FRRouting, you can 
+use a suite of [Cumulus Linux-specific
+commands](/version/cumulus-linux-37740/Layer-3/Configuring-FRRouting/Comparing-NCLU-and-vtysh-Commands)
 instead.
 
 ## <span>Reload the FRRouting Configuration</span>
@@ -424,7 +455,8 @@ FRRouting so your changes take place. *FRRouting reload* enables you to
 apply only the modifications you make to your FRRouting configuration,
 synchronizing its running state with the configuration in
 `/etc/frr/frr.conf`. This is useful for optimizing automation of
-FRRouting in your environment or to apply changes made at runtime.
+FRRouting FRRouting automation
+in your environment or to apply changes made at runtime.
 
 {{%notice note%}}
 
@@ -435,13 +467,14 @@ instead of one configuration file per FRRouting daemon (like `zebra` or
 
 {{%/notice%}}
 
-To reload your FRRouting configuration after you've modified
+To reload your FRRouting configuration after you've modifiedy
 `/etc/frr/frr.conf`, run:
 
     cumulus@switch:~$ sudo systemctl reload frr.service
 
-Examine the running configuration and verify that it matches the config
-in `/etc/frr/frr.conf`:
+Examine the running configuration and verify that it matches the 
+config
+uration in `/etc/frr/frr.conf`:
 
     cumulus@switch:~$ net show configuration
 
@@ -480,17 +513,19 @@ However, when you manually define a log target with the `log file
 
 In FRRouting, Cumulus Linux stores obfuscated passwords for BGP and OSPF
 (ISIS, OSPF area, and BGP neighbor passwords). All passwords in
-configuration files and those displayed in show commands are obfuscated.
-The obfuscation algorithm protects passwords from casual viewing. The
-system can retrieve the original password when needed.
+configuration files and those displayed in `show` commands are 
+obfuscated.
+ The obfuscation algorithm protects passwords from casual 
+viewing. The
+ system can retrieve the original password when needed.
 
 ### <span>Duplicate Hostnames</span>
 
-If you change the hostname, either through NCLU or with the `hostname`
+If you change the hostname, either througwith NCLU or with the `hostname`
 command in `vtysh`, the switch can have two hostnames in the FRR
 configuration. For example:
 
-    Spine01# conf t
+    Spine01# conf tigure terminal
     Spine01(config)# hostname Spine01-1
     Spine01-1(config)# do sh run
     Building configuration...
@@ -507,9 +542,11 @@ configuration. For example:
 
 Accidentally configuring the same numbered BGP neighbor using both the
 `neighbor x.x.x.x` and `neighbor swp# interface` commands results in two
-neighbor entries being present for the same IP in the configuration and
-operationally. You can correct this issue by updating the configuration
-and restarting the FRR service.
+neighbor entries being present for the same IP address in the 
+configuration and
+ operationally. You canTo correct this issue by, updatinge the 
+configuration
+ and restarting the FRR service.
 
 {{%/notice%}}
 
@@ -529,3 +566,6 @@ and restarting the FRR service.
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTk2NzQxNjM4OV19
+-->

@@ -168,8 +168,22 @@ $block-border-radius: 0.15rem;
     border-radius: $block-border-radius;
   }
 
+  .copy-code-button {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
   pre {
     padding: $padding-16;
+    position: relative;
     background: $code-block-background;
     border: 1px solid #b5bdc9;
     border-radius: 0;

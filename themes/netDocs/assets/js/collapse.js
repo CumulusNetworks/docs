@@ -21,6 +21,11 @@ document.querySelectorAll('.cn-book-section-container').forEach(node => {
 
   if(par.tagName == 'LI'){
     lnk.insertAdjacentElement('afterbegin',eleToggler)
+    const toggler = lnk.querySelector('.menuControl');
+    toggler.addEventListener('click', function(e) {
+      e.preventDefault();
+    });
+
     lnk.addEventListener('click', function (e) {
       if (lnk.classList.contains('active')) {
         lnk.classList.remove('active')
@@ -31,7 +36,6 @@ document.querySelectorAll('.cn-book-section-container').forEach(node => {
         lnk.nextElementSibling.classList.remove('collapse')
         lnk.nextElementSibling.classList.add('expand')
       }
-      e.preventDefault()
     })
   }
 });

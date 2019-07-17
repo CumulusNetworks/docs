@@ -1,24 +1,26 @@
 ---
 title: Network Troubleshooting
 author: Cumulus Networks
-weight: 229
+weight: 22933
 aliases:
- - /display/CL37/Network-Troubleshooting
- - /pages/viewpage.action?pageId=8362596
-pageID: 8362596
+ - /display/CL3740/Network-Troubleshooting
+ - /pages/viewpage.action?pageId=83625966317
+pageID: 83625966317
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
-Cumulus Linux contains a number of command line and analytical tools to
+Cumulus Linux containincludes a number of command line and analytical tools to
 help you troubleshoot issues with your network.
 
 ## <span>Check Reachability Using ping</span>
 
-`ping` is used to check reachability of a host. `ping` also calculates
-the time it takes for packets to travel the round trip. See `man ping`
-for details.
+`Use`  ping ` is used to check reachability of a host. `ping` also calculates
+ the 
+time it takes for packets to travel the round trip. See `man ping`
+ for 
+details.
 
 To test the connection to an IPv4 host:
 
@@ -160,7 +162,7 @@ you can disable dynamic ARP learning:
 packet types at high speed. See `man mz` for details.
 
 For example, to send two sets of packets to TCP port 23 and 24, with
-source IP 11.0.0.1 and destination 11.0.0.2, do the following:
+source IP address 11.0.0.1 and destination 11.0.0.2, do the followingIP address 11.0.0.2:
 
     cumulus@switch:~$ sudo mz swp1 -A 11.0.0.1 -B 11.0.0.2 -c 2 -v -t tcp "dp=23-24"
      
@@ -191,11 +193,11 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
      TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
 
-## <span id="src-8362596_NetworkTroubleshooting-counter_acl" class="confluence-anchor-link"></span><span>Create Counter ACL Rules</span>
+## <span id="src-83625966317_NetworkTroubleshooting-counter_acl" class="confluence-anchor-link"></span><span>Create Counter ACL Rules</span>
 
 In Linux, all ACL rules are always counted. To create an ACL rule for
 counting purposes only, set the rule action to ACCEPT. See the
-[Netfilter](/version/cumulus-linux-377/System-Configuration/Netfilter---ACLs/)
+[Netfilter](/version/cumulus-linux-37740/System-Configuration/Netfilter---ACLs/)
 chapter for details on how to use `cl-acltool` to set up
 iptables-/ip6tables-/ebtables-based ACLs.
 
@@ -231,12 +233,13 @@ To count all packets going to a Web server:
 
 {{%notice warning%}}
 
-The `-p` option clears out all other rules, and the `-i` option is used
-to reinstall all the rules.
+The `-p` option clears out all other rules, and t. The `-i` option is used
+to reinstall s
+all the rules.
 
 {{%/notice%}}
 
-## <span id="src-8362596_NetworkTroubleshooting-span" class="confluence-anchor-link"></span><span>Configure SPAN and ERSPAN</span>
+## <span id="src-83625966317_NetworkTroubleshooting-span" class="confluence-anchor-link"></span><span>Configure SPAN and ERSPAN</span>
 
 SPAN (Switched Port Analyzer) provides for the mirroring of all packets
 coming in from or going out of an interface (the *SPAN source*), and
@@ -267,22 +270,28 @@ packets might be discarded.
 
 SPAN and ERSPAN are configured via `cl-acltool`, the [same utility for
 security ACL
-configuration](/version/cumulus-linux-377/System-Configuration/Netfilter---ACLs/).
+configuration](/version/cumulus-linux-37740/System-Configuration/Netfilter---ACLs/).
 The match criteria for SPAN and ERSPAN is usually an interface; for more
 granular match terms, use [selective
-spanning](#src-8362596_NetworkTroubleshooting-selective_spanning). The
-SPAN source interface can be a port, a subinterface or a bond interface.
-Ingress traffic on interfaces can be matched, and on Mellanox Spectrum
-switches, egress traffic can be matched. See the [list of
-limitations](#src-8362596_NetworkTroubleshooting-span_limits) below.
+spanning](#src-83625966317_NetworkTroubleshooting-selective_spanning). The
+SPAN source interface can be a port, a subinterface, or a bond 
+interface.
+ Ingress traffic on interfaces can be matched, and on Mellanox 
+Spectrum
+ switches, egress traffic can be matched. See the [list of
+limitations](#src-83625966317_NetworkTroubleshooting-span_limits) below.
 
-Cumulus Linux supports a maximum of 2 SPAN destinations. Multiple rules
-(SPAN sources) can point to the same SPAN destination, although a given
-SPAN source cannot specify 2 SPAN destinations. The SPAN destination
-(MTP) interface can be a physical port, a subinterface, or a bond
-interface. The SPAN/ERSPAN action is independent of security ACL
+Cumulus Linux supports a maximum of 2two SPAN destinations. Multiple 
+rules
+ (SPAN sources) can point to the same SPAN destination, although a 
+given
+ SPAN source cannot specify 2two SPAN destinations. The SPAN 
+destination
+ (MTP) interface can be a physical port, a subinterface, or a 
+bond
+ interface. The SPAN/ERSPAN action is independent of security ACL
 actions. If packets match both a security ACL rule and a SPAN rule, both
-actions will be carried out.
+actions will bare carried out.
 
 {{%notice note%}}
 
@@ -290,13 +299,14 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
 
 {{%/notice%}}
 
-### <span id="src-8362596_NetworkTroubleshooting-span_limits" class="confluence-anchor-link"></span><span>Limitations for SPAN/ERSPAN</span>
+### <span id="src-83625966317_NetworkTroubleshooting-span_limits" class="confluence-anchor-link"></span><span>Limitations for SPAN/ERSPAN</span>
 
   - For Broadcom switches, Cumulus Linux supports a maximum of two SPAN
     destinations.
 
-  - Because SPAN and ERSPAN are done in hardware, eth0 is not supported
-    as a destination.
+  - Because SPAN and /ERSPAN areis done in hardware, eth0 is not supported
+    as a
+    destination.
 
   - For Mellanox Spectrum switches, Cumulus Linux supports only a single
     SPAN destination in atomic mode or three SPAN destinations in
@@ -308,7 +318,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
 
   - To configure SPAN or ERSPAN on a Tomahawk or Trident3 switch, you
     must enable [non-atomic update
-    mode](Netfilter---ACLs.html#src-8362563_Netfilter-ACLs-nonatomic-update-mode).
+    mode](Netfilter---ACLs.html#src-83625636284_Netfilter-ACLs-nonatomic-update-mode).
 
   - Mellanox switches reject SPAN ACL rules for an output interface that
     is a subinterface.
@@ -333,8 +343,9 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
 
 This section describes how to set up, install, verify and uninstall SPAN
 rules. In the examples that follow, you will span (mirror) switch port
-swp4 input traffic and swp4 output traffic to destination switch port
-swp19.
+ swp4 
+input traffic and swp4 output traffic to destination switch port
+ swp19.
 
 First, create a rules file in `/etc/cumulus/acl/policy.d/`:
 
@@ -421,13 +432,13 @@ the rules defined in `span.rules`:
 
 {{%/notice%}}
 
-Verify that the SPAN rules were installed:
+Verify that the SPAN rules weare installed:
 
     cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
     38025 7034K SPAN       all  --  swp4   any     anywhere             anywhere             dport:swp19
     50832   55M SPAN       all  --  any    swp4    anywhere             anywhere             dport:swp19
 
-#### <span id="src-8362596_NetworkTroubleshooting-span_outgoing" class="confluence-anchor-link"></span><span>SPAN Sessions that Reference an Outgoing Interface</span>
+#### <span id="src-83625966317_NetworkTroubleshooting-span_outgoing" class="confluence-anchor-link"></span><span>SPAN Sessions that Reference an Outgoing Interface</span>
 
 SPAN sessions that reference an outgoing interface create the mirrored
 packets based on the ingress interface before the routing/switching
@@ -471,7 +482,7 @@ Install the rules:
     Installing acl policy
     done.
 
-Verify that the SPAN rules were installed:
+Verify that the SPAN rules weare installed:
 
     cumulus@switch:~$ sudo iptables -L -v | grep SPAN
        19  1938 SPAN       all  --  any    bond0   anywhere             anywhere             dport:bond1
@@ -486,9 +497,9 @@ from `swp1` to 12.0.0.2.
 **Cut-through Mode Support**
 
 [Cut-through
-mode](Buffer-and-Queue-Management.html#src-8363032_BufferandQueueManagement-cut_through_mode)
+mode](Buffer-and-Queue-Management.html#src-83630326755_BufferandQueueManagement-cut_through_mode)
 is **not** supported for ERSPAN in Cumulus Linux on switches using
-Broadcom Tomahawk, Trident II+ and Trident II ASICs.
+Broadcom Tomahawk, Trident II+, and Trident II ASICs.
 
 Cut-through mode **is** supported for ERSPAN in Cumulus Linux on
 switches using Mellanox Spectrum ASICs.
@@ -514,7 +525,7 @@ switches using Mellanox Spectrum ASICs.
         Installing acl policy
         done.
 
-3.  Verify that the ERSPAN rules were installed:
+3.  Verify that the ERSPAN rules weare installed:
     
         cumulus@switch:~$ sudo iptables -L -v | grep SPAN
            69  6804 ERSPAN     all  --  swp1   any     anywhere             anywhere             ERSPAN src-ip:12.0.0.1 dst-ip:12.0.0.2
@@ -537,7 +548,7 @@ frame** option.
 
 {{%/notice%}}
 
-### <span id="src-8362596_NetworkTroubleshooting-selective_spanning" class="confluence-anchor-link"></span><span>Selective Spanning</span>
+### <span id="src-83625966317_NetworkTroubleshooting-selective_spanning" class="confluence-anchor-link"></span><span>Selective Spanning</span>
 
 SPAN/ERSPAN traffic rules can be configured to limit the traffic that is
 spanned, to reduce the volume of copied data.
@@ -686,3 +697,6 @@ The following example incorporates a few `tcpdump` options:
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE3NjkzMDY0NDBdfQ==
+-->

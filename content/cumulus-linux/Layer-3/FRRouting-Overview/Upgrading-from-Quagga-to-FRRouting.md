@@ -1,15 +1,15 @@
 ---
 title: Upgrading from Quagga to FRRouting
 author: Cumulus Networks
-weight: 407
+weight: 407385
 aliases:
- - /display/CL37/Upgrading-from-Quagga-to-FRRouting
- - /pages/viewpage.action?pageId=8362918
-pageID: 8362918
+ - /display/CL3740/Upgrading-from-Quagga-to-FRRouting
+ - /pages/viewpage.action?pageId=83629186642
+pageID: 83629186642
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 Cumulus Linux 3.4 and later releases replace Quagga with FRRouting. This
 section outlines the upgrade process for users currently using Quagga.
@@ -24,7 +24,7 @@ image, make sure your automation tools refer to FRR and not to Quagga.
 
 If you are upgrading Cumulus Linux using `apt-get upgrade`, existing
 automation that references Quagga continues to work until you upgrade to
-FRR. Once you perform the following upgrade steps, your automation
+FRR. OnceAfter you perform the following upgrade steps, your automation
 **must** reference FRR instead of Quagga.
 
 {{%/notice%}}
@@ -80,7 +80,7 @@ cannot run concurrently.
     
     {{%/notice%}}
 
-Once the upgrade process is completed, the switch is in the following
+OnceAfter the upgrade process is completed, the switch is in the following
 state:
 
     cumulus@switch:~$ sudo systemctl list-unit-files | grep "quagga\|frr"
@@ -114,9 +114,10 @@ The output below shows the FRR / Quagga package status:
 
 {{%notice note%}}
 
-Cumulus 3.4 and later releases do not support or implement
-`python-clcmd`. While the package remains, the related commands have
-been removed.
+Cumulus 3.4 and later releases does not support or implement
+ `python-clcmd`. 
+While the package remains, the related commands have
+ been removed.
 
 {{%/notice%}}
 
@@ -127,9 +128,9 @@ To complete the transition to FRR:
     {{%notice warning%}}
     
     The `vtysh.conf` file should not be moved, as it is unlikely any
-    configuration is in the file. However, if there is necessary
-    configuration in place, copy the contents into
-    `/etc/frr/vtysh.conf`.
+    configuration is in the file. However, iDo *not* remove the `vtysh.conf` file. If there is necessary
+    configuration in placthe file, copy the contents into the
+    `/etc/frr/vtysh.conf` file.
     
     {{%/notice%}}
 
@@ -158,7 +159,7 @@ To complete the transition to FRR:
     
     Removing the `quagga-compat` package also removes `quagga.service`.
     
-    However, the `/etc/quagga` directory is not removed in this step, as
+    However, the `/etc/quagga` directory is not removed in this step, as. It
     it is left in place for reference.
     
     {{%/notice%}}
@@ -170,16 +171,18 @@ To complete the transition to FRR:
     {{%notice warning%}}
     
     This step deletes all Quagga configuration files. Please ensure you
-    back up your configuration.
+   Ensure to back up
+    your configuration.
     
     {{%/notice%}}
     
     {{%notice warning%}}
     
-    Cumulus Networks does not recommend reinstalling the `quagga` and
+    Cumulus Networks does not recommendDo *not* reinstalling the `quagga` and
     `quagga-compat` packages once they have been removed. While they can
     be reinstalled to continue migration iterations, limited testing has
-    taken place, and configuration issues may occur.
+    taken placeafter
+    you remove them, ands configuration issues mayight occur.
     
     {{%/notice%}}
 
@@ -201,14 +204,15 @@ testing:
 
 {{%notice note%}}
 
-Several configuration migration iterations may be necessary to ensure
+Several configuration migration iterations mayight be necessary to ensure
 the configuration is behaving the same in both Quagga and FRR.
 
 {{%/notice%}}
 
-Once further testing is complete, run the following commands to reset
+OnceAfter further testing is complete, run the following commands to reset
 the FRR installation, and then repeat the steps from the beginning of
-this section to upgrade to FRR:
+ this 
+section to upgrade to FRR:
 
     cumulus@switch:~$ sudo systemctl reset-failed frr.service
     cumulus@switch:~$ sudo systemctl enable frr.service
@@ -220,3 +224,6 @@ this section to upgrade to FRR:
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEyODM2Nzc2ODVdfQ==
+-->

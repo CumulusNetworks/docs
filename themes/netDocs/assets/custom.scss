@@ -91,7 +91,7 @@ body {
     border: 1px solid rgb(224, 228, 236);
     border-radius: 0;
     box-shadow: 0px 2px 10px 0px rgba(175, 184, 197, 0.2);
-    padding: 25px;
+    padding: 30px 25px 40px;
 
     * {
       transition: all .35s;
@@ -118,7 +118,7 @@ body {
     p {
       color: rgb(117, 130, 140);
       font-size: 14px;
-      font-weight: 300;
+      font-weight: 400;
       line-height: 27px;
       letter-spacing: -0.09px;
     }
@@ -155,8 +155,9 @@ body {
   .resources-search-input {
     border: 1px solid rgb(224, 228, 236);
     color: rgb(117, 130, 140);
+    font-family: $cumulus-font-family;
     font-size: 15px;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: -0.1px;
     line-height: 30px;
     padding: 6px 27px 7px 27px;

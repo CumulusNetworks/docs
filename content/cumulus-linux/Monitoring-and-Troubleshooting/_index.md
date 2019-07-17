@@ -3,13 +3,13 @@ title: Monitoring and Troubleshooting
 author: Cumulus Networks
 weight: 25
 aliases:
- - /display/CL3740/Monitoring-and-Troubleshooting
- - /pages/viewpage.action?pageId=83625926313
-pageID: 83625926313
+ - /display/CL37/Monitoring-and-Troubleshooting
+ - /pages/viewpage.action?pageId=8362592
+pageID: 8362592
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 <details>
 
@@ -17,10 +17,9 @@ This chapter introduces monitoring and troubleshooting Cumulus Linux.
 
 ## <span>Serial Console</span>
 
-The serial console can beis a useful tool for debugging issues, especially
-when you find yourself rebooting the switch often or if you don’ not have a
-
-a reliable network connection.
+The serial console can be a useful tool for debugging issues, especially
+when you find yourself rebooting the switch often or if you don’t have a
+reliable network connection.
 
 The default serial console baud rate is 115200, which is the baud rate
 [ONIE](http://opencomputeproject.github.io/onie/) uses.
@@ -65,9 +64,8 @@ On x86 switches, you configure serial console baud rate by editing
 {{%notice warning%}}
 
 Incorrect configuration settings in `grub` can cause the switch to be
-inaccessible via the console. GReview `grub` changes should be carefully reviewed
-before you
-implementation them.
+inaccessible via the console. Grub changes should be carefully reviewed
+before implementation.
 
 {{%/notice%}}
 
@@ -93,7 +91,7 @@ The valid values for the baud rate are:
 
 To change the serial console baud rate:
 
-1.  Edit the `/etc/default/grub` file. The two relevant lines in
+1.  Edit `/etc/default/grub`. The two relevant lines in
     `/etc/default/grub` are as follows; replace the *115200* value with
     a valid value specified above in the `--speed` variable in the first
     line and in the `console` variable in the second line:
@@ -106,48 +104,12 @@ To change the serial console baud rate:
     
         cumulus@switch:~$ update-grub
 
-3.  If you plan on accessing yourthe switch's BIOS over the serial console,
+3.  If you plan on accessing your switch's BIOS over the serial console,
     you need to update the baud rate in the switch BIOS. For more
     information, see [this knowledge base
     article](https://support.cumulusnetworks.com/hc/en-us/articles/203884473).
 
 4.  Reboot the switch.
-
-### <span>Change the Console Log Level</span>
-
-By default, the console prints all log messages except debug messages.
-To tune console logging to be less verbose so that certain levels of
-messages are not printed, run the `dmesg -n <level>` command, where the
-log levels are:
-
-| Level | Description                                                                          |
-| ----- | ------------------------------------------------------------------------------------ |
-| 0     | Emergency messages (the system is about to crash or is unstable).                    |
-| 1     | Serious conditions; you must take action immediately.                                |
-| 2     | Critical conditions (serious hardware or software failures).                         |
-| 3     | Error conditions (often used by drivers to indicate difficulties with the hardware). |
-| 4     | Warning messages (nothing serious but might indicate problems).                      |
-| 5     | Message notifications for many conditions, including security events.                |
-| 6     | Informational messages.                                                              |
-| 7     | Debug messages.                                                                      |
-
-Only messages with a value lower than the level specified are printed to
-the console. For example, if you specify level **3**, only level 2
-(critical conditions), level 1 (serious conditions), and level 0
-(emergency messages) are printed to the console:
-
-    cumulus@switch:~$ sudo dmesg -n 3
-
-Alternatively, you can run the the `dmesg --console-level <level>`
-command, where the log levels are `emerg`, `alert`, `crit`, `err`,
-`warn`, `notice`, `info`, or `debug`. For example, to print critical
-conditions, run the following command:
-
-    cumulus@switch:~$ sudo dmesg --console-level crit
-
-The `dmesg` command is applied until the next reboot.
-
-For more details about the `dmesg` command, run `man dmesg`.
 
 ## <span>Show General System Information</span>
 
@@ -157,15 +119,14 @@ helpful with system diagnostics and if you need to submit a support
 request to Cumulus Networks.
 
 For information about the version of Cumulus Linux running on the
-switch, run the `net show version`,command which displays the contents 
-of
- `/etc/lsb-release`:
+switch, run `net show version`, which displays the contents of
+`/etc/lsb-release`:
 
     cumulus@switch:~$ net show version
-    NCLU_VERSION=1.0-cl4u1~1555625956.7cfe305
+    NCLU_VERSION=1.0
     DISTRIB_ID="Cumulus Linux"
-    DISTRIB_RELEASE=3.4.0.0~1555370771.772c26b6
-    DISTRIB_DESCRIPTION="Cumulus Linux 3.4.0.0~1555370771.772c26b6"
+    DISTRIB_RELEASE=3.4.0
+    DISTRIB_DESCRIPTION="Cumulus Linux 3.4.0"
 
 For general information about the switch, run `net show system`, which
 gathers information about the switch from a number of files in the
@@ -174,7 +135,7 @@ system:
     cumulus@switch:~$ net show system
     Hostname......... celRED
      
-    Build............ Cumulus Linux 3.7.44.0.0~15551312781.35d3264370771.772c26b6
+    Build............ Cumulus Linux 3.7.4~1551312781.35d3264
     Uptime........... 8 days, 12:24:01.770000
      
     Model............ Cel REDSTONE
@@ -192,37 +153,30 @@ You can use `cl-support` to generate a single export file that contains
 various details and the configuration from a switch. This is useful for
 remote debugging and troubleshooting. For more information about
 `cl-support`, read [Understanding the cl-support Output
-File](/version/cumulus-linux-37740/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/).
+File](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/).
 
-You should rRun `cl-support` before you submit a support request to
- Cumulus Networks 
-as this file helps in the investigation of issues.
+You should run `cl-support` before you submit a support request to
+Cumulus Networks as this file helps in the investigation of issues.
 
     cumulus@switch:~$ sudo cl-support -h
-    Usage: cl-support [-h] [-s] [-t] [-v] [reason][-h (help)] [-cDjlMsv] [-d m1,m2,...] [-e m1,m2,...]
+    Usage: cl-support [-h] [-s] [-t] [-v] [reason]...
      
     Args:
     [reason]: Optional reason to give for invoking cl-support.
-             Saved into tarball's cmdline.args fi  [-p prefix] [-r reason] [-S dir] [-T Timeout_seconds] [-t tag]
-        -h: Display this help message
-        -c: Run only modules matching any core files, if no -e module.s
+             Saved into tarball's cmdline.args file.
     Options:
-    -hD: Print this usage statement
+    -h: Print this usage statement
     -s: Security sensitive collection
     -t: User filename tag
     -v: Verbose
     -e MODULES: Enable modules. Comma separated module list (run with -e help for module names)
-    -d MODULES: Disable modules. Comma separated module list (run with -d help for module names)Display debugging information
-        -d: Disable (do not run) modules in this comma separated list
-        -e: Enable (only run) modules in this comma separated list; "-e all" runs
-            all modules and sub-modules, including all optional modules
-    ...
+    -d MODULES: Disable modules. Comma separated module list (run with -d help for module names)
 
-## <span id="src-83625926313_MonitoringandTroubleshooting-syslog_server" class="confluence-anchor-link"></span><span>Send Log Files to a syslog Server</span>
+## <span id="src-8362592_MonitoringandTroubleshooting-syslog_server" class="confluence-anchor-link"></span><span>Send Log Files to a syslog Server</span>
 
 ### <span>NCLU</span>
 
-TYou can configure the remote syslog server can be configured on the switch using the
+The remote syslog server can be configured on the switch using the
 following configuration:
 
     cumulus@switch:~$ net add syslog host ipv4 192.168.0.254 port udp 514
@@ -240,7 +194,7 @@ This creates a file called `/etc/rsyslog.d/11-remotesyslog.conf` in the
 
 NCLU cannot configure a remote syslog if management VRF is enabled on
 the switch. Refer to [Writing to syslog with Management VRF
-Enabled](#src-83625926313_MonitoringandTroubleshooting-mgmtvrf) below.
+Enabled](#src-8362592_MonitoringandTroubleshooting-mgmtvrf) below.
 
 {{%/notice%}}
 
@@ -250,15 +204,13 @@ Logging on Cumulus Linux is done with
 [rsyslog](http://www.rsyslog.com/). `rsyslog` provides both local
 logging to the `syslog` file as well as the ability to export logs to an
 external `syslog` server. High precision timestamps are enabled for all
-`rsyslog` log files; here's anfor example:
+`rsyslog` log files; here's an example:
 
     2015-08-14T18:21:43.337804+00:00 cumulus switchd[3629]: switchd.c:1409 switchd version 1.0-cl2.5+5
 
-There are applications in Cumulus Linux that couldan write directly to a
- log 
-file without going through `rsyslog`. These files are typically
- located 
-in `/var/log/`.
+There are applications in Cumulus Linux that could write directly to a
+log file without going through `rsyslog`. These files are typically
+located in `/var/log/`.
 
 {{%notice note%}}
 
@@ -274,42 +226,39 @@ by the last line in `/etc/rsyslog.d/99-syslog.conf`.
 ### <span>Local Logging</span>
 
 Most logs within Cumulus Linux are sent through `rsyslog`, which then
-writes 
-them to files in the `/var/log` directory. There are default
- rules in 
-the `/etc/rsyslog.d/` directory that define where the logs are
- written:
+writes them to files in the `/var/log` directory. There are default
+rules in the `/etc/rsyslog.d/` directory that define where the logs are
+written:
 
 | Rule              | Purpose                                                                                                                                                                   |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 10-rules.conf     | Sets defaults for log messages, include log format and log rate limits.                                                                                                   |
-| 15-crit.conf      | Logs `crit`, `alert` or `emerg` log messages to `/var/log/crit.log` to ensure they are not rotated away rapidly.                                                                |
-| 20-clagd.conf     | Logs `clagd` messages to `/var/log/clagd.log` for [MLAG](/version/cumulus-linux-37740/Layer-2/Multi-Chassis-Link-Aggregation---MLAG).                                       |
-| 22-linkstate.conf | Logs link state changes for all physical and logical network links to `/var/log/linkstate`  .                                                                              |
+| 15-crit.conf      | Logs crit, alert or emerg log messages to `/var/log/crit.log` to ensure they are not rotated away rapidly.                                                                |
+| 20-clagd.conf     | Logs `clagd` messages to `/var/log/clagd.log` for [MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG).                                       |
+| 22-linkstate.conf | Logs link state changes for all physical and logical network links to `/var/log/linkstate`                                                                                |
 | 25-switchd.conf   | Logs `switchd` messages to `/var/log/switchd.log`.                                                                                                                        |
-| 30-ptmd.conf      | Logs `ptmd` messages to `/var/log/ptmd.log` for [Prescription Topology Manager](/version/cumulus-linux-37740/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM). |
-| 35-rdnbrd.conf    | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for [redistribute neighbor](/version/cumulus-linux-37740/Layer-3/Redistribute-Neighbor).                                    |
-| 40-netd.conf      | Logs `netd` messages to `/var/log/netd.log` for [NCLU](/version/cumulus-linux-37740/System-Configuration/Network-Command-Line-Utility---NCLU).                              |
-| 45-frr.conf       | Logs routing protocol messages to `/var/log/frr/frr.log`. This includes BGP and OSPF log messages.                                                                          |
+| 30-ptmd.conf      | Logs `ptmd` messages to `/var/log/ptmd.log` for [Prescription Topology Manager](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM). |
+| 35-rdnbrd.conf    | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for [redistribute neighbor](/version/cumulus-linux-377/Layer-3/Redistribute-Neighbor).                                    |
+| 40-netd.conf      | Logs `netd` messages to `/var/log/netd.log` for [NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).                              |
+| 45-frr.conf       | Logs routing protocol messages to /var/log/frr/frr.log. This includes BGP and OSPF log messages.                                                                          |
 | 99-syslog.conf    | All remaining processes that use `rsyslog` are sent to `/var/log/syslog`.                                                                                                 |
 
 Log files that are rotated are compressed into an archive. Processes
 that do not use `rsyslog` write to their own log files within the
 `/var/log` directory. For more information on specific log files, see
 [Troubleshooting Log
-Files](/version/cumulus-linux-37740/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files).
+Files](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files).
 
 ### <span>Enable Remote syslog</span>
 
-If you need tTo send other log files — (such as `switchd` logs —) to a
- `syslog` server, do the following:
+If you need to send other log files — such as `switchd` logs — to a
+`syslog` server, do the following:
 
-1.  Create a file in `/etc/rsyslog.d/`. Make sure ithe filename starts
-    with a
+1.  Create a file in `/etc/rsyslog.d/`. Make sure it starts with a
     number lower than 99 so that it executes before log messages are
-    are dropped in, such as `20-clagd.conf` or `25-switchd.conf`. OurThe
-    example file below is called `/etc/rsyslog.d/11-remotesyslog.conf`. Add
-    Add content similar to the following:
+    dropped in, such as `20-clagd.conf` or `25-switchd.conf`. Our
+    example file is called `/etc/rsyslog.d/11-remotesyslog.conf`. Add
+    content similar to the following:
     
         ## Logging switchd messages to remote syslog server
          
@@ -336,10 +285,9 @@ If you need tTo send other log files — (such as `switchd` logs —) to a
     
     The numbering of the files in `/etc/rsyslog.d/` dictates how the
     rules are installed into `rsyslog.d`. If you want to remotely log
-    only the messages in `/var/syslog`, and but not those in
+    only the messages in `/var/syslog`, and not those in
     `/var/log/clagd.log` or `/var/log/switchd.log`, for instance, then
-   then name the file
-    `98-remotesyslog.conf`, since it';` the number in the filename is lower than the
+    name the file `98-remotesyslog.conf`, since it's lower than the
     `/var/syslog` file `99-syslog.conf` only.
     
     {{%/notice%}}
@@ -354,10 +302,10 @@ If you need tTo send other log files — (such as `switchd` logs —) to a
     
         cumulus@switch:~$ sudo systemctl restart rsyslog.service
 
-### <span id="src-83625926313_MonitoringandTroubleshooting-mgmtvrf" class="confluence-anchor-link"></span><span>Write to syslog with Management VRF Enabled</span>
+### <span id="src-8362592_MonitoringandTroubleshooting-mgmtvrf" class="confluence-anchor-link"></span><span>Write to syslog with Management VRF Enabled</span>
 
 You can write to syslog with [management
-VRF](/version/cumulus-linux-37740/Layer-3/Management-VRF) enabled by
+VRF](/version/cumulus-linux-377/Layer-3/Management-VRF) enabled by
 applying the following configuration; this configuration is commented
 out in the `/etc/rsyslog.d/11-remotesyslog.conf` file:
 
@@ -377,11 +325,9 @@ to configure two syslog servers at 192.168.0.254 and 10.0.0.1:
 
 If you want to limit the number of `syslog` messages that can be written
 to the `syslog` file from individual processes, add the following
-configuration to the `/etc/rsyslog.conf` file. Adjust the interval and 
-burst
- values to rate-limit messages to the appropriate levels required 
-by your
- environment. For more information, read the [rsyslog
+configuration to `/etc/rsyslog.conf`. Adjust the interval and burst
+values to rate-limit messages to the appropriate levels required by your
+environment. For more information, read the [rsyslog
 documentation](http://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html).
 
     module(load="imuxsock"
@@ -420,16 +366,15 @@ in Cumulus Linux ... </summary>
 
 ### <span>Harmless syslog Error: Failed to reset devices.list</span>
 
-The following message getis logged to `/var/log/syslog` when you run
+The following message gets logged to `/var/log/syslog` when you run
 `systemctl daemon-reload` and during system boot:
 
     systemd[1]: Failed to reset devices.list on /system.slice: Invalid argument
 
 This message is harmless, and can be ignored. It is logged when
 `systemd` attempts to change cgroup attributes that are read only. The
-upstream version of `systemd` has been modified to not log this message 
-by
- default.
+upstream version of systemd has been modified to not log this message by
+default.
 
 The `systemctl daemon-reload` command is often issued when Debian
 packages are installed, so the message may be seen multiple times when
@@ -533,6 +478,3 @@ The links below discuss more specific monitoring topics.
 </footer>
 
 </details>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MjM3NTY4NTNdfQ==
--->

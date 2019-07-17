@@ -1,15 +1,15 @@
 ---
 title: Power over Ethernet - PoE
 author: Cumulus Networks
-weight: 753
+weight: 75
 aliases:
- - /display/CL3740/Power-over-Ethernet---PoE
- - /pages/viewpage.action?pageId=83625766297
-pageID: 83625766297
+ - /display/CL37/Power-over-Ethernet---PoE
+ - /pages/viewpage.action?pageId=8362576
+pageID: 8362576
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 <details>
 
@@ -82,7 +82,7 @@ supports](http://cumulusnetworks.com/hcl/) the feature. You can:
 The PoE configuration resides in `/etc/cumulus/poe.conf`. The file lists
 all the switch ports, whether PoE is enabled for those ports and the
 priority for each port.
-<details>
+
 <summary>Sample poe.conf file ... </summary>
 
     [enable]
@@ -184,7 +184,7 @@ priority for each port.
     swp46 = low
     swp47 = low
     swp48 = low
-<details>
+
 By default, PoE and PoE+ are enabled on all Ethernet/1G switch ports,
 and these ports are set with a low priority. Switch ports can have low,
 high or critical priority.
@@ -248,7 +248,7 @@ To see all the PoE information for a switch, run `poectl -s`:
 The set commands (priority, enable, disable) either succeed silently or
 display an error message if the command fails.
 
-<span id="src-83625766297_PoweroverEthernet-PoE-args"></span>The `poectl`
+<span id="src-8362576_PoweroverEthernet-PoE-args"></span>The `poectl`
 command takes the following arguments:
 
 <table>
@@ -466,6 +466,3 @@ The `poed` service logs the following events to `syslog` when:
 </footer>
 
 </details>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgzNTYxNTI3NV19
--->

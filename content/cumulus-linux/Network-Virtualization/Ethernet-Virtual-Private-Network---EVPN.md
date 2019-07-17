@@ -1,18 +1,16 @@
 ---
 title: Ethernet Virtual Private Network - EVPN
 author: Cumulus Networks
-weight: 1435
+weight: 143
 aliases:
- - /display/CL3740/Ethernet-Virtual-Private-Network---EVPN
- - /pages/viewpage.action?pageId=83627326455
-pageID: 83627326455
+ - /display/CL37/Ethernet-Virtual-Private-Network---EVPN
+ - /pages/viewpage.action?pageId=8362732
+pageID: 8362732
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
-<details>
-
 VXLAN is the de facto technology for implementing network virtualization
 in the data center, enabling layer 2 segments to be extended over an IP
 core (the underlay). The initial definition of VXLAN
@@ -39,55 +37,47 @@ plane for VXLAN defined in
 [RFC 7432](https://tools.ietf.org/html/rfc7432) and
 [draft-ietf-bess-evpn-overlay](https://datatracker.ietf.org/doc/draft-ietf-bess-evpn-overlay/)
 that allows for building and deploying VXLANs at scale. It relies on
-multi-protocol BGP (MP-BGP) forto exchanginge information and is based on
+multi-protocol BGP (MP-BGP) for exchanging information and is based on
 BGP-MPLS IP VPNs ([RFC 4364](https://tools.ietf.org/html/rfc4364)). It
-has provisions to enables not only bridging between end systems in the
- same layer 2 
-segment but also routing between different segments
- (subnets). There is 
-also inherent support for multi-tenancy. EVPN is
- often referred to as 
-the means of implementing *controller-less VXLAN*.
+has provisions to enable not only bridging between end systems in the
+same layer 2 segment but also routing between different segments
+(subnets). There is also inherent support for multi-tenancy. EVPN is
+often referred to as the means of implementing *controller-less VXLAN*.
 
 Cumulus Linux fully supports EVPN as the control plane for VXLAN,
-including for both intra-subnet bridging and inter-subnet routing. K, and
-provides these key
- features include:
+including for both intra-subnet bridging and inter-subnet routing. Key
+features include:
 
   - VNI membership exchange between VTEPs using EVPN type-3 (Inclusive
     multicast Ethernet tag) routes.
 
-  - Exchange of hHost MAC and IP address exchanges using EVPN type-2 (MAC/IP
+  - Exchange of host MAC and IP addresses using EVPN type-2 (MAC/IP
     advertisement) routes.
 
-  - Support for hHost/VM mobility support (MAC and IP moves) through exchange of
-    the
-    MAC Mobility Extended community.
+  - Support for host/VM mobility (MAC and IP moves) through exchange of
+    the MAC Mobility Extended community.
 
-  - Support for dDual-attached hosts via [VXLAN active-active
-    mode](/version/cumulus-linux-37740/Network-Virtualization/VXLAN-Active-Active-Mode).
+  - Support for dual-attached hosts via [VXLAN active-active
+    mode](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Active-Active-Mode).
     MAC synchronization between the peer switches is done using
-    [MLAG](/version/cumulus-linux-37740/Layer-2/Multi-Chassis-Link-Aggregation---MLAG).
+    [MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG).
 
   - Support for ARP/ND suppression, which provides VTEPs with the
-    ability to
-    suppress ARP flooding over VXLAN tunnels.
+    ability to suppress ARP flooding over VXLAN tunnels.
 
-  - Support for eExchange of static (sticky) MAC addresses through EVPN.
+  - Support for exchange of static (sticky) MAC addresses through EVPN.
 
-  - Support for dDistributed symmetric routing between different subnets.
+  - Support for distributed symmetric routing between different subnets.
 
-  - Support for, distributed
-    asymmetric routing between different
+  - Support for distributed asymmetric routing between different
     subnets.
 
-  - Support for, and centralized
-    routing.
+  - Support for centralized routing.
 
-  - Support for pPrefix-based routing using EVPN type-5 routes (EVPN IP
+  - Support for prefix-based routing using EVPN type-5 routes (EVPN IP
     prefix route)
 
-  - Support for lLayer 3 multi-tenancy.
+  - Support for layer 3 multi-tenancy.
 
   - Support for IPv6 tenant routing.
 
@@ -95,107 +85,82 @@ provides these key
     supported for both IPv4 and IPv6 hosts and prefixes.
 
   - ECMP (equal cost multipath) support for overlay networks on
-    RIOT-capable Broadcom switches (Trident
-    3, Maverick, Trident 2+) in
-    addition to Tomahawk and Mellanox
-    Spectrum-A1 switches. No
-    configuration is needed, ECMP occurs in the
-    overlay when there are
+    RIOT-capable Broadcom switches (Trident 3, Maverick, Trident 2+) in
+    addition to Tomahawk and Mellanox Spectrum-A1 switches. No
+    configuration is needed, ECMP occurs in the overlay when there are
     multiple next hops.
 
-The EVPN address-family is supported with both eBGP and iBGP peering. If 
-the
- underlay routing is provisioned using eBGP, you can use the same 
-eBGP session can
+EVPN address-family is supported with both eBGP and iBGP peering. If the
+underlay routing is provisioned using eBGP, the same eBGP session can
 also be used to carry EVPN routes. For example, in a typical 2-tier Clos
 network topology where the leaf switches are the VTEPs, if eBGP sessions
 are in use between the leaf and spine switches for the underlay routing,
 the same sessions can be used to exchange EVPN routes; the spine
-switches merely act as "*route forwarders"* and do not install any
+switches merely act as "route forwarders" and do not install any
 forwarding state as they are not VTEPs. When EVPN routes are exchanged
 over iBGP peering, OSPF can be used as the IGP or the next hops can also
 be resolved using iBGP.
 
 You can provision and manage EVPN using
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU){{%notice note%}}
-
-When using EVPN, you *must* disable data plane MAC learning on all VXLAN
-interfaces. This is described in [Basic EVPN
-Configuration](#src-8366455_EthernetVirtualPrivateNetwork-EVPN-BasicEVPNConfiguration),
-below.
-
-{{%/notice note%}}
-
-For Cumulus Linux 3.4 and later releases, t%}}
+[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).
 
 {{%notice note%}}
 
-The routing control plane
- (including EVPN) is installed as part of the
+For Cumulus Linux 3.4 and later releases, the routing control plane
+(including EVPN) is installed as part of the
 [FRRouting](https://frrouting.org/) (FRR) package. For more information
 about FRR, refer to the [FRR
-Overview](/version/cumulus-linux-377/Layer-3display/CL40/FRRouting-+Overview/).
+Overview](/version/cumulus-linux-377/Layer-3/FRRouting-Overview/).
 
 {{%/notice%}}
 
 For information about VXLAN routing, including platform and hardware
 limitations, see [VXLAN
-Routing](/version/cumulus-linux-37740/Network-Virtualization/VXLAN-Routing).
+Routing](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Routing).
 
 ## <span>Basic EVPN Configuration</span>
 
-The following steps represent the fundamentalections provide the basic configuration needed to use 
-EVPN
- as the control plane for VXLAN. These steps are in addition to
-provided assume you have
-already configuringed VXLAN interfaces, attachinged them to a bridge, and 
-mapping
-ed VLANs to VNIs.
+The following steps represent the fundamental configuration to use EVPN
+as the control plane for VXLAN. These steps are in addition to
+configuring VXLAN interfaces, attaching them to a bridge, and mapping
+VLANs to VNIs.
 
-1. To configure EVPN, you need to:
+1.  Enable EVPN route exchange (that is, address-family layer 2
+    VPN/EVPN) between BGP peers.
 
-  - Enable EVPN route exchange (that is, address-family layer 2
-    VPN/EVPN) between
-    BGP peers.
-
-2.   - Enable EVPN on the system to advertise VNIs and host reachability
+2.  Enable EVPN on the system to advertise VNIs and host reachability
     information (MAC addresses learned on associated VLANs) to BGP
     peers.
 
-3.   - Disable MAC learning on VXLAN interfaces as EVPN is responsible for
+3.  Disable MAC learning on VXLAN interfaces as EVPN is responsible for
     installing remote MACs.
 
-Additional configuration is necessary tTo enable ARP/ND suppression,
- provision inter-subnet routing, and so on. The configuration depends on
+Additional configuration is necessary to enable ARP/ND suppression,
+provision inter-subnet routing, and so on. The configuration depends on
 the deployment scenario. You can also configure various other BGP
-parameterss well as
-configure other EVPN options, additional configuration is required and
-is described in the sections below basic configuration.
+parameters.
 
 ### <span>Enable EVPN between BGP Neighbors</span>
 
-YouTo enable EVPN between
-[BGP](/version/cumulus-linux-37740/Layer-3/Border-Gateway-Protocol---BGP)
-neighbors by, adding the address family *evpn* to the existing neighbor
-`address-family` activation command.
+You enable EVPN between
+[BGP](/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP)
+neighbors by adding the address family *evpn* to the existing neighbor
+address-family activation command.
 
 For a non-VTEP device that is merely participating in EVPN route
 exchange, such as a spine switch (the network deployment uses hop-by-hop
 eBGP or the switch is acting as an iBGP route reflector), activating the
 interface for the EVPN address family is the fundamental configuration
 needed in
-[FRRouting](/version/cumulus-linux-37740/Layer-3/FRRouting-Overview/).
+[FRRouting](/version/cumulus-linux-377/Layer-3/FRRouting-Overview/).
 Additional configuration options for specific scenarios are described
 later on in this chapter.
 
-The other BGP neighbor address- family- specific configurations supported
+The other BGP neighbor address-family-specific configurations supported
 for EVPN are `allowas-in` and `route-reflector-client`.
 
 To configure an EVPN route exchange with a BGP peer, you must activate
- the peer 
-or peer- group within the EVPN address- family:. For example:
-
-<summary>NCLU Commands </summary>
+the peer or peer-group within the EVPN address-family:
 
     cumulus@switch:~$ net add bgp autonomous-system 65000
     cumulus@switch:~$ net add bgp neighbor swp1 interface remote-as external
@@ -214,70 +179,36 @@ Adjust the `remote-as` above to be appropriate for your environment.
 The command syntax `bgp evpn` is also permitted for backwards
 compatibility with prior versions of Cumulus Linux, but the syntax `bgp
 l2vpn evpn` is recommended to standardize the BGP address-family
-configuration to the AFI/SAFI forma<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011
-    switch(config-router)# neighbor swp1 interface remote-as external
-    switch(config-router)# address-family l2vpn evpn 
-    switch(config-router-af)# neighbor swp1 activate
-    switch(config-router-af)# end
-    switch)# write memory
-    switch)# exit
-    cumulus@switch:~$ 
-
-{{%notice note%}}
-
-Adjust the `remote-as` above to be appropriate for your environment.
+configuration to the AFI/SAFI format.
 
 {{%/notice%}}
 
 The above commands create the following configuration snippet in the
 `/etc/frr/frr.conf` file.
 
-    ...
     router bgp 65000
      neighbor swp1 interface remote-as external
      address-family l2vpn evpn
       neighbor swp1 activate
-    ...
 
 The above configuration does not result in BGP knowing about the local
 VNIs defined on the system and advertising them to peers. This requires
 additional configuration, [as described
-below](#src-83627326455_EthernetVirtualPrivateNetwork-EVPN-allvnis).
+below](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-allvnis).
 
-### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-allvnis" class="confluence-anchor-link"></span><span>Advertise All VNIs</span>
+### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-allvnis" class="confluence-anchor-link"></span><span>Advertise All VNIs</span>
 
-A single configuration variableFRR is not aware of any local VNIs and MACs, or hosts (neighbors)
-associated with those VNIs until you enables the BGP control plane for 
-all
- VNIs configured on the switch. Set the variable `advertise-all-vni` to
-provision all locally configu by setting the ` advertise-all-vni
- `option.
-
-{{%notice note%}}
-
-This configuration is only needed on leaf switches that ared VNIs to be advertised by the BGP
-control plane. FRR is not aware of any TEPs. EVPN
-routes received from a BGP peer are accepted, even without this explicit
-EVPN configuration. These routes are maintained in the glocbal VNIs and MACs and hosts
+A single configuration variable enables the BGP control plane for all
+VNIs configured on the switch. Set the variable `advertise-all-vni` to
+provision all locally configured VNIs to be advertised by the BGP
+control plane. FRR is not aware of any local VNIs and MACs and hosts
 (neighbors) associated with those VNIs until `advertise-all-vni` is
 configured.
 
-To build uponEVPN
-routing table. However, they only become effective (imported into the
-per-VNI routing table and appropriate entries installed in the kernel)
-when the VNI corresponding to the previous example, run the following commands to
-advertise all VNIs:ceived route is locally known.
+To build upon the previous example, run the following commands to
+advertise all VNIs:
 
-{{%/notice%}}
-
-<summary>NCLU Commands </summary>
-
-    cumulus@switch:~$  net add bgp autonomous-system 65000
+    cumulus@switch:~$ net add bgp autonomous-system 65000
     cumulus@switch:~$ net add bgp neighbor swp1 interface remote-as external
     cumulus@switch:~$ net add bgp l2vpn evpn neighbor swp1 activate 
     cumulus@switch:~$ net add bgp l2vpn evpn advertise-all-vni
@@ -288,27 +219,11 @@ advertise all VNIs:ceived route is locally known.
 
 Adjust the `remote-as` above to be appropriate for your environment.
 
-{{%/notice%}}l2vpn evpn advertise-all-vni
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
-
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011
-    switch(config-router)# address-family l2vpn evpn 
-    switch(config-router-af)# advertise-all-vni
-    switch(config-router-af)# end
-    switch)# write memory
-    switch)# exit
-    cumulus@switch:~$ 
+{{%/notice%}}
 
 The above commands create the following configuration snippet in the
 `/etc/frr/frr.conf` file.
 
-    ...
     router bgp 65000
      neighbor swp1 interface remote-as external
      address-family l2vpn evpn
@@ -325,44 +240,37 @@ into the per-VNI routing table and appropriate entries installed in the
 kernel) when the VNI corresponding to the received route is locally
 known.
 
-{{%/notice%}}    ...
+{{%/notice%}}
 
-### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-RD-auto-derivation" class="confluence-anchor-link"></span><span>Auto-derivation of RDs and RTs</span>
+### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-RD-auto-derivation" class="confluence-anchor-link"></span><span>Auto-derivation of RDs and RTs</span>
 
 When a local VNI is learned by FRR and there is no explicit
-configuration for that VNI in FRR, the route distinguisher (RD), and
+configuration for that VNI in FRR, the route distinguisher (RD) and
 import and export route targets (RTs) for this VNI are automatically
-derived — t. The RD uses “*RouterId:VNI-Index”* and the import and export RTs
-use “*AS:VNI”*. The RD and RTs are used in the EVPN route exchange. The RD
+derived — the RD uses “RouterId:VNI-Index” and the import and export RTs
+use “AS:VNI”. The RD and RTs are used in the EVPN route exchange. The RD
 disambiguates EVPN routes in different VNIs (as they may have the same
 MAC and/or IP address) while the RTs describe the VPN membership for the
-route. The "*VNI-Index"* used for the RD is a unique, internally generated
-number for a VNI. It soleonly has local significance; on remote switches,
+route. The "VNI-Index" used for the RD is a unique, internally generated
+number for a VNI. It solely has local significance; on remote switches,
 its only role is for route disambiguation. This number is used instead
 of the VNI value itself because this number has to be less than or equal
 to 65535. In the RT, the AS part is always encoded as a 2-byte value to
- allow 
-room for a large VNI. If the router has a 4-byte AS, only the
- lower 2 
-bytes are used. This ensures a unique RT for different VNIs
- while having 
-the same RT for the same VNI across routers in the same AS.
+allow room for a large VNI. If the router has a 4-byte AS, only the
+lower 2 bytes are used. This ensures a unique RT for different VNIs
+while having the same RT for the same VNI across routers in the same AS.
 
 For eBGP EVPN peering, the peers are in a different AS so using an
-automatic RT of "*AS:VNI"* does not work for route import. Therefore, the
-import RT is treated as "*\*:VNI"* to determine which received routes are
+automatic RT of "AS:VNI" does not work for route import. Therefore, the
+import RT is treated as "\*:VNI" to determine which received routes are
 applicable to a particular VNI. This only applies when the import RT is
 auto-derived and not configured.
 
-### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-RD-user-defined" class="confluence-anchor-link"></span><span>User-defined RDs and RTs</span>
+### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-RD-user-defined" class="confluence-anchor-link"></span><span>User-defined RDs and RTs</span>
 
 EVPN also supports manual configuration of RDs and RTs, if you don't
-want them derived automatically. To manually define RDs and RTs, uIf you do not want RDs and RTs to be derived automatically, you can
-define them manually. Use the
- `vni` option within NCLU to configure the switch:. For
-example:
-
-<summary>NCLU Commands </summary>
+want them derived automatically. To manually define RDs and RTs, use the
+`vni` option within NCLU to configure the switch:
 
     cumulus@switch:~$ net add bgp l2vpn evpn vni 10200 rd 172.16.100.1:20
     cumulus@switch:~$ net add bgp l2vpn evpn vni 10200 route-target import 65100:20
@@ -370,41 +278,21 @@ example:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011
-    switch(config-router)# address-family l2vpn evpn 
-    switch(config-router-af)# vni 10200 
-    switch(config-router-af-vni)# rd 172.16.100.1:20
-    switch(config-router-af-vni)# route-target import 65100:20
-    switch(config-router-af-vni)# exit
-    switch(config-router-af)# advertise-all-vni
-    switch(config-router-af)# end
-    switch)# write memory
-    switch)# exit
-    cumulus@switch:~$ 
-
 These commands create the following configuration snippet in the
 `/etc/frr/frr.conf` file.
 
 ``` 
- ...
-address-family l2vpn evpn
+ address-family l2vpn evpn
   advertise-all-vni
   vni 10200
    rd 172.16.100.1:20
    route-target import 65100:20
-...
 ```
 
 {{%notice note%}}
 
-These commands are per VNI and. You must be specifiedy these commands under 
-`address-family
- l2vpn evpn` in BGP.
+These commands are per VNI and must be specified under `address-family
+l2vpn evpn` in BGP.
 
 {{%/notice%}}
 
@@ -416,41 +304,18 @@ default value.
 {{%/notice%}}
 
 You can configure multiple RT values for import or export for a VNI. In
- addition, you can configure 
-both the import and export route targets
- with a single command by using 
-`route-target both`:
+addition, you can configure both the import and export route targets
+with a single command by using `route-target both`:
 
-<summary>NCLU Commands </summary>
-
-    cumulus@switch:~$ net add bgp l2vpn evpn vni 10400 route-target import 100:400
-    cumulus@switch:~$ net add bgp l2vpn evpn vni 10400 route-target import 100:500
-    cumulus@switch:~$ net add bgp l2vpn evpn vni 10500 route-target both 65000:500
+    cumulus@switch:~$ net add bgp evpn vni 10400 route-target import 100:400
+    cumulus@switch:~$ net add bgp evpn vni 10400 route-target import 100:500
+    cumulus@switch:~$ net add bgp evpn vni 10500 route-target both 65000:500
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
-
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011
-    switch(config-router)# address-family l2vpn evpn 
-    switch(config-router-af)# vni 10400 
-    switch(config-router-af-vni)# route-target import 100:400
-    switch(config-router-af-vni)# route-target import 100:500
-    switch(config-router-af-vni)# exit
-    switch(config-router-af)# vni 10500 
-    switch(config-router-af-vni)# route-target both 65000:500
-    switch(config-router-af)# end
-    switch)# write memory
-    switch)# exit
-    cumulus@switch:~$ 
 
 The above commands create the following configuration snippet in the
 `/etc/frr/frr.conf` file:
 
-    ...
     address-family l2vpn evpn
       vni 10400
         route-target import 100:400
@@ -458,17 +323,14 @@ The above commands create the following configuration snippet in the
       vni 10500
         route-target import 65000:500
         route-target export 65000:500
-    ...
 
 ### <span>Enable EVPN in an iBGP Environment with an OSPF Underlay</span>
 
-EVPNYou can be deployeduse EVPN with an
-[OSPF](/version/cumulus-linux-37740/Layer-3/Open-Shortest-Path-First---OSPF)
+EVPN can be deployed with an
+[OSPF](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF)
 or static route underlay if needed. This is a more complex configuration
- than 
-using eBGP. In this case, iBGP advertises EVPN routes directly
- between 
-VTEPs, and the spines are unaware of EVPN or BGP.
+than using eBGP. In this case, iBGP advertises EVPN routes directly
+between VTEPs, and the spines are unaware of EVPN or BGP.
 
 The leaf switches peer with each other in a full mesh within the EVPN
 address family without using route reflectors. The leafs generally peer
@@ -476,16 +338,14 @@ to their loopback addresses, which are advertised in OSPF. The receiving
 VTEP imports routes into a specific VNI with a matching route target
 community.
 
- <summary>NCLU Commands </summary>
-
-    cumulus@switch:~$  net add bgp autonomous-system 65020
-    cumulus@switch:~$ net add bgp l2vpn evpn neighbor 10.1.1.2 remote-as internal
-    cumulus@switch:~$ net add bgp l2vpn evpn neighbor 10.1.1.3 remote-as internal
-    cumulus@switch:~$ net add bgp l2vpn evpn neighbor 10.1.1.4 remote-as internal
-    cumulus@switch:~$ net add bgp l2vpn evpn neighbor 10.1.1.2 activate  
-    cumulus@switch:~$ net add bgp l2vpn evpn neighbor 10.1.1.3 activate  
-    cumulus@switch:~$ net add bgp l2vpn evpn neighbor 10.1.1.4 activate  
-    cumulus@switch:~$ net add bgp l2vpn evpn advertise-all-vni
+    cumulus@switch:~$ net add bgp autonomous-system 65020
+    cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.2 remote-as internal
+    cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.3 remote-as internal
+    cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.4 remote-as internal
+    cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.2 activate 
+    cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.3 activate 
+    cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.4 activate 
+    cumulus@switch:~$ net add bgp evpn advertise-all-vni
     cumulus@switch:~$ net add ospf router-id 10.1.1.1
     cumulus@switch:~$ net add loopback lo ospf area 0.0.0.0
     cumulus@switch:~$ net add ospf passive-interface lo
@@ -496,45 +356,9 @@ community.
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011
-    switch(config-router)# neighbor 10.1.1.2 remote-as internal
-    switch(config-router)# neighbor 10.1.1.3 remote-as internal
-    switch(config-router)# neighbor 10.1.1.4 remote-as internal
-    switch(config-router)# address-family l2vpn evpn
-    switch(config-router-af)# neighbor 10.1.1.2 activate
-    switch(config-router-af)# neighbor 10.1.1.3 activate
-    switch(config-router-af)# neighbor 10.1.1.4 activate
-    switch(config-router-af)# advertise-all-vni
-    switch(config-router-af)# exit
-    switch(config-router)# exit
-    switch(config)# router ospf
-    switch(config-router)# router-id 10.1.1.1
-    switch(config-router)# passive-interface lo
-    switch(config-router)# exit
-    switch(config)# interface lo
-    switch(config-if)# ip ospf area 0.0.0.0
-    switch(config-if)# exit
-    switch(config)# interface swp50
-    switch(config-if)# ip ospf area 0.0.0.0
-    switch(config-if)# ospf network point-to-point
-    switch(config-if)# exit
-    switch(config)# interface swp51
-    switch(config-if)# ip ospf area 0.0.0.0
-    switch(config-if)# ospf network point-to-point
-    switch(config-if)# end
-    switch)# write memory
-    switch)# exit
-    cumulus@switch:~$ 
-
 These commands create the following configuration snippet in the
 `/etc/frr/frr.conf` file.
 
-    ...
     interface lo
      ip ospf area 0.0.0.0
     !
@@ -561,7 +385,6 @@ These commands create the following configuration snippet in the
     Router ospf
         Ospf router-id 10.1.1.1
         Passive-interface lo
-    ...
 
 ### <span>Disable Data Plane MAC Learning over VXLAN Tunnels</span>
 
@@ -569,8 +392,6 @@ When EVPN is provisioned, you must disable data plane MAC learning for
 VXLAN interfaces because the purpose of EVPN is to exchange MACs between
 VTEPs in the control plane. In the `/etc/network/interfaces` file,
 configure the `bridge-learning` value to *off*:
-
-<summary>NCLU Commands </summary>
 
     cumulus@switch:~$ net add vxlan vni200 vxlan id 10200
     cumulus@switch:~$ net add vxlan vni200 vxlan local-tunnelip 10.0.0.1
@@ -580,12 +401,7 @@ configure the `bridge-learning` value to *off*:
     cumulus@switch:~$ net commit
 
 These commands create the following code snippet in the
-`<summary>Linux Commands </summary>
-
-In the `/etc/network/interfaces` file, set the `bridge-learning` value
-to *off.* For example:
-
-    cumulus@switch:~$ sudo vi /etc/network/interfaces` file:
+`/etc/network/interfaces` file:
 
     auto vni200
     iface vni200
@@ -597,16 +413,14 @@ to *off.* For example:
 {{%notice tip%}}
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
+mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file using a text editor:
 
-    ...
     auto bridge1
     iface bridge1
         bridge-ports swp3.100 swp4.100 vni100
         bridge-learning vni100=off
-    ...
 
 {{%/notice%}}
 
@@ -629,11 +443,10 @@ different VNIs of VXLAN tunnels between 2 VTEPs.
 
 ### <span>BUM Traffic and Head End Replication</span>
 
-<span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-head-end"></span>
+<span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-head-end"></span>
 <span style="color: #333333;"> With EVPN, the only method of generating
-BUM traffic in hardware is *head end replication*. Head 
-end replication
- is enabled by default in Cumulus Linux. </span>
+BUM traffic in hardware is *head end replication*. Head end replication
+is enabled by default in Cumulus Linux. </span>
 
 Broadcom switches with Tomahawk, Trident3, Trident II+, and Trident II
 ASICs and Mellanox switches with Spectrum ASICs are capable of head end
@@ -643,33 +456,26 @@ instead of relying on an external service node.
 
 Cumulus Linux supports up to 128 VTEPs with head end replication.
 
-## <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-arp" class="confluence-anchor-link"></span><span>ARP and ND Suppression</span>
+## <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-arp" class="confluence-anchor-link"></span><span>ARP and ND Suppression</span>
 
-ARP suppression in anwith EVPN context refers to the ability ofenables a VTEP to
- suppress ARP flooding over 
-VXLAN tunnels as much as possible. Instead, a
-A local proxy handles ARP requests 
-received from locally attached hosts
- for remote hosts. ARP suppression 
-is the implementation for IPv4; ND
- suppression is the implementation for 
-IPv6.
+ARP suppression in an EVPN context refers to the ability of a VTEP to
+suppress ARP flooding over VXLAN tunnels as much as possible. Instead, a
+local proxy handles ARP requests received from locally attached hosts
+for remote hosts. ARP suppression is the implementation for IPv4; ND
+suppression is the implementation for IPv6.
 
 {{%notice note%}}
 
-Cumulus Networks recommends that you *enable* ARP and /ND suppression in
- all 
-EVPN bridging and symmetric routing deployments to reduce flooding
- of 
-ARP/ND packets over VXLAN tunnels.
+Cumulus Networks recommends that you *enable* ARP and ND suppression in
+all EVPN bridging and symmetric routing deployments to reduce flooding
+of ARP/ND packets over VXLAN tunnels.
 
 {{%/notice%}}
 
 {{%notice note%}}
 
-On switches with the Mellanox Spectrum chipsetswitches, ND suppression only
-function works with the 
-Spectrum A1 chip.
+On switches with the Mellanox Spectrum chipset, ND suppression only
+functions with the Spectrum A1 chip.
 
 {{%/notice%}}
 
@@ -681,24 +487,19 @@ neighbor entry.
 
 When ARP and ND suppression are enabled, you need to configure layer 3
 interfaces even if the switch is configured only for layer 2 (that is,
-you are 
-not using VXLAN routing). To avoid unnecessary layer 3
- information from 
-being installed, Cumulus Networks recommends you
- configure the `ip 
-forward off` or `ip6 forward off` options as
- appropriate on the VLANs. 
-See the example configuration below.
+you are not using VXLAN routing). To avoid unnecessary layer 3
+information from being installed, Cumulus Networks recommends you
+configure the `ip forward off` or `ip6 forward off` options as
+appropriate on the VLANs. See the example configuration below.
 
 {{%/notice%}}
 
 To configure ARP or ND suppression, use
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).<summary>NCLU Commands </summary>
-
+[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).
 Here is an example configuration using two VXLANs (10100 and 10200) and
 two VLANs (100 and 200).
 
-    cumulus@switch:~$  net add bridge bridge ports vni100,vni200
+    cumulus@switch:~$ net add bridge bridge ports vni100,vni200
     cumulus@switch:~$ net add bridge bridge vids 100,200
     cumulus@switch:~$ net add vxlan vni100 vxlan id 10100
     cumulus@switch:~$ net add vxlan vni200 vxlan id 10200
@@ -717,37 +518,30 @@ two VLANs (100 and 200).
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-These commands create the following <summary>Linux Commands </summary>
+These commands create the following configuration in the
+`/etc/network/interfaces` file:
 
-Edit the `/etc/network/interfaces` file. Here is an example
-configuration using the
-`wo VXLANs (10100 and 10200) and two VLANs (100 and
-200).
-
-    cumulus@switch:~$ sudo nano /etc/network/interfaces` file:
-
-    ...
     auto bridge
     iface bridge
         bridge-ports vni100 vni200
         bridge-stp on
         bridge-vids 100 200
         bridge-vlan-aware yes
-      
+     
     auto vlan100
     iface vlan100
         ip6-forward off
         ip-forward off
         vlan-id 100
         vlan-raw-device bridge
-      
+     
     auto vlan200
     iface vlan200
         ip6-forward off
         ip-forward off
         vlan-id 200
         vlan-raw-device bridge
-      
+     
     auto vni100
     iface vni100
         bridge-access 100
@@ -763,17 +557,14 @@ configuration using the
          bridge-arp-nd-suppress on
          vxlan-id 10200
          vxlan-local-tunnelip 10.0.0.1
-    ...
 
 {{%notice tip%}}
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
+mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file using a text editor:
 
-    cumulus@switch:~$ sudo nano /etc/network/interfaces
-    ...
     auto bridge1
     iface bridge1
         bridge-ports swp3.100 swp4.100 vni100
@@ -781,20 +572,19 @@ file using a text editor:
         bridge-arp-nd-suppress vni100=on
         ip6-forward off
         ip-forward off 
-    ...
 
 {{%/notice%}}
 
 ### <span>UFT Profiles Other than the Default</span>
 
 When deploying EVPN and VXLAN using a hardware profile other than the
-default UFT profile, ensure that the Linux kernel ARP `sysctl` settings
+default UFT profile, ensure that the Linux kernel ARP sysctl settings
 `gc_thresh2` and `gc_thresh3` are both set to a value larger than the
 number of neighbor (ARP/ND) entries anticipated in the deployment.
 
 To configure these settings, edit the `/etc/sysctl.d/neigh.conf` file.
 If your network has more hosts than the values used in the example
-below, change the `sysctl` entries accordingly.
+below, change the sysctl entries accordingly.
 
     cumulus@switch:~$ sudo nano /etc/sysctl.d/neigh.conf
     ...
@@ -807,7 +597,7 @@ below, change the `sysctl` entries accordingly.
 After you save your settings, reboot the switch to apply the new
 configuration.
 
-### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-ND_extended_community" class="confluence-anchor-link"></span><span>Support for EVPN Neighbor Discovery (ND) Extended Community</span>
+### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-ND_extended_community" class="confluence-anchor-link"></span><span>Support for EVPN Neighbor Discovery (ND) Extended Community</span>
 
 In an EVPN VXLAN deployment with ARP and ND suppression where the VTEPs
 are only configured for layer 2, EVPN needs to carry additional
@@ -825,9 +615,9 @@ router.
 
 The router flag (R-bit) is used in following scenarios:
 
-  - In aA centralized VXLAN routing configuration with a gateway router.
+  - In a centralized VXLAN routing configuration with a gateway router.
 
-  - In aA layer 2 switch deployment with ARP/ND suppression.
+  - In a layer 2 switch deployment with ARP/ND suppression.
 
 When the MAC/IP (type-2) route contains the IPv6-MAC pair and the R-bit
 is set, the route belongs to a router. If the R-bit is set to zero, the
@@ -838,9 +628,7 @@ address. This information is then exchanged with other EVPN peers by
 using the ND extended community in BGP updates.
 
 To show the EVPN arp-cache that gets populated by the neighbor table and
-see if the IPv6-MAC entry belongs to a router, run this commandeither the NCLU `net
-show evpn arp-cache vni <vni> ip <address>` command or the vtysh`  show
-evpn arp-cache vni <vni> ip <address> ` command. For example:
+see if the IPv6-MAC entry belongs to a router, run this command:
 
     cumulus@switch:mgmt-vrf:~$ net show evpn arp-cache vni 101 ip fe80::202:ff:fe00:11
     IP: fe80::202:ff:fe00:11
@@ -852,10 +640,7 @@ evpn arp-cache vni <vni> ip <address> ` command. For example:
      Local Seq: 0 Remote Seq: 0
 
 To show the BGP routing table entry for the IPv6-MAC EVPN route with the
-ND extended community, run this commande NCLU `net show bgp l2vpn evpn route vni
-<vni> mac <mac-address> ip <ip-address>` command or the vtysh`  show bgp
-l2vpn evpn route vni <vni> mac <mac-address> ip <ip-address> ` command.
-For example:
+ND extended community, run this command:
 
     cumulus@switch:mgmt-vrf:~$ net show bgp l2vpn evpn route vni 101 mac 00:02:00:00:00:11 ip fe80::202:ff:fe00:11
     BGP routing table entry for [2]:[0]:[0]:[48]:[00:02:00:00:00:11]:[128]:[fe80::202:ff:fe00:11]
@@ -874,33 +659,31 @@ For example:
 
 No additional EVPN-specific configuration is needed for [VXLAN
 active-active
-mode](/version/cumulus-linux-37740/Network-Virtualization/VXLAN-Active-Active-Mode).
+mode](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Active-Active-Mode).
 Both switches in the
-[MLAG](/version/cumulus-linux-37740/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
 pair establish EVPN peering with other EVPN speakers (for example, with
 spine switches, if using hop-by-hop eBGP) and inform about their locally
 known VNIs and MACs. When MLAG is active, both switches announce this
 information with the shared anycast IP address.
 
-TheIn an active-active configuration, make sure that:
+The active-active configuration, make sure that:
 
   - The `clagd-vxlan-anycast-ip` parameter is under the [loopback
-    stanza](VXLAN-Active-Active-Mode.html#src-83627256448_VXLANActive-ActiveMode-anycast)
+    stanza](VXLAN-Active-Active-Mode.html#src-8362725_VXLANActive-ActiveMode-anycast)
     on both peers.
 
   - The anycast address is advertised to the routed fabric from both
     peers.
 
   - The
-    [VNIs](VXLAN-Active-Active-Mode.html#src-83627256448_VXLANActive-ActiveMode-example)
+    [VNIs](VXLAN-Active-Active-Mode.html#src-8362725_VXLANActive-ActiveMode-example)
     are configured identically on both peers. However,
-    `vxlan-local-`
-    `tunnelip` must be sourced from unique loopback stanza
-    IP address of
-    the switch.
+    `vxlan-local-``tunnelip` must be sourced from unique loopback stanza
+    IP address of the switch.
 
   - The
-    [peerlink](VXLAN-Active-Active-Mode.html#src-83627256448_VXLANActive-ActiveMode-example)
+    [peerlink](VXLAN-Active-Active-Mode.html#src-8362725_VXLANActive-ActiveMode-example)
     must belong to the bridge.
 
 MLAG synchronizes information between the two switches in the MLAG pair;
@@ -908,7 +691,7 @@ EVPN does not synchronize.
 
 For information about active-active VTEPs and anycast IP behavior, and
 for failure scenarios, read the [VXLAN Active-Active
-Mode](/version/cumulus-linux-37740/Network-Virtualization/VXLAN-Active-Active-Mode)
+Mode](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Active-Active-Mode)
 chapter.
 
 ## <span>Inter-subnet Routing</span>
@@ -917,16 +700,13 @@ There are multiple models in EVPN for routing between different subnets
 (VLANs), also known as inter-VLAN routing. These models arise due to the
 following considerations:
 
-  - Does you choose depends
-if every VTEP acts as a layer 3 gateway and doperforms routing, or if only
-    specific VTEPs doperform routing?
+  - Does every VTEP act as a layer 3 gateway and do routing, or only
+    specific VTEPs do routing?
 
-  -. Is routing doneperformed only at the ingress 
-of the VXLAN tunnel, or is it
-    done at both the ingress and the egress of the VXLAN 
-tunnel?
+  - Is routing done only at the ingress of the VXLAN tunnel or is it
+    done at both the ingress and the egress of the VXLAN tunnel?
 
-TCumulus Linux supports these models are:
+These models are:
 
   - **Centralized routing:** Specific VTEPs act as designated layer 3
     gateways and perform routing between subnets; other VTEPs just
@@ -940,50 +720,43 @@ TCumulus Linux supports these models are:
     routing and routing is done at both the ingress VTEP and the egress
     VTEP.
 
-Distributed routing — (asymmetric or symmetric —) is commonly deployed
- with 
-the VTEPs configured with an *anycast IP/MAC address* for each
- subnet. That is, ;
-each VTEP that has a particular subnet is configured
- with the same 
-IP/MAC for that subnet. Such a model facilitates easy
- host/VM mobility 
-as there is no need to change the host/VM configuration
- when it moves 
-from one VTEP to another.
+Distributed routing — asymmetric or symmetric — is commonly deployed
+with the VTEPs configured with an *anycast IP/MAC address* for each
+subnet. That is, each VTEP that has a particular subnet is configured
+with the same IP/MAC for that subnet. Such a model facilitates easy
+host/VM mobility as there is no need to change the host/VM configuration
+when it moves from one VTEP to another.
 
 EVPN in Cumulus Linux supports all of the routing models listed above.
 The models are described further in the following sections.
 
 All routing happens in the context of a tenant VRF ([virtual routing and
-forwarding](/version/cumulus-linux-37740/Layer-3/Virtual-Routing-and-Forwarding---VRF)).
+forwarding](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF)).
 A VRF instance is provisioned for each tenant, and the subnets of the
 tenant are associated with that VRF (the corresponding SVI is attached
 to the VRF). Inter-subnet routing for each tenant occurs within the
-context of the VRF for that tenant's VRF and is separate from the routing for 
-other
- tenants.
+context of that tenant's VRF and is separate from the routing for other
+tenants.
 
 {{%notice note%}}
 
 When configuring [VXLAN
-routing](/version/cumulus-linux-37740/Network-Virtualization/VXLAN-Routing),
-Cumulus Networks recommends you enablinge ARP suppression on all VXLAN
+routing](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Routing),
+Cumulus Networks recommends enabling ARP suppression on all VXLAN
 interfaces. Otherwise, when a locally attached host ARPs for the
 gateway, it will receive multiple responses, one from each anycast
 gateway.
 
 {{%/notice%}}
 
-### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-centralized" class="confluence-anchor-link"></span><span>Centralized Routing</span>
+### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-centralized" class="confluence-anchor-link"></span><span>Centralized Routing</span>
 
-In centralized routing, you configure a specific VTEP is configured to act as the
+In centralized routing, a specific VTEP is configured to act as the
 default gateway for all the hosts in a particular subnet throughout the
 EVPN fabric. It is common to provision a pair of VTEPs in active-active
 mode as the default gateway, using an anycast IP/MAC address for each
-subnet. All subnetsYou need to be configured all subnets on such a gateway VTEP(s). When
-a  a
-host in one subnet wants to communicate with a host in another subnet,
+subnet. All subnets need to be configured on such gateway VTEP(s). When
+a host in one subnet wants to communicate with a host in another subnet,
 it addresses the packets to the gateway VTEP. The ingress VTEP (to which
 the source host is attached) bridges the packets to the gateway VTEP
 over the corresponding VXLAN tunnel. The gateway VTEP performs the
@@ -995,38 +768,20 @@ The egress VTEP then bridges the packet on to the destination host.
 
 To enable centralized routing, you must configure the gateway VTEPs to
 advertise their IP/MAC address. Use the `advertise-default-gw command`,
-as shown below.:`
+as shown below.
 
-<summary>NCLU Commands </summary>
-
-    cumulus@leaf01:~$  net add bgp autonomous-system 65000
+    cumulus@leaf01:~$ net add bgp autonomous-system 65000
     cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-default-gw
     cumulus@leaf01:~$ net pending
     cumulus@leaf01:~$ net commit
 
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011
-    switch(config-router)# address-family l2vpn evpn 
-    switch(config-router-af)# advertise-default-gw
-    switch(config-router-af)# end
-    switch)# write memory
-    switch)# exit
-    cumulus@switch:~$ 
-
 These commands create the following configuration snippet in the
 `/etc/frr/frr.conf` file.
 
-    ...
     router bgp 65000
-    ...
       address-family l2vpn evpn
        advertise-default-gw
       exit-address-family
-    ...
 
 {{%notice note%}}
 
@@ -1042,21 +797,17 @@ These commands create the following configuration snippet in the
 
 {{%/notice%}}
 
-### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-asymmetric" class="confluence-anchor-link"></span><span>Asymmetric Routing</span>
+### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-asymmetric" class="confluence-anchor-link"></span><span>Asymmetric Routing</span>
 
 In distributed asymmetric routing, each VTEP acts as a layer 3 gateway,
 performing routing for its attached hosts. The routing is called
 asymmetric because only the ingress VTEP performs routing, the egress
 VTEP only performs the bridging. Asymmetric routing is easy to deploy as
-it can be achieved with 
-only host routing and does not involve any
- interconnecting VNIs. 
-However, each VTEPyou must be provisioned each VTEP with all
- VLANs/VNIs — the subnets 
-between which communication can take place;
- this is required even if 
-there are no locally-attached hosts for a
- particular VLAN.
+it can be achieved with only host routing and does not involve any
+interconnecting VNIs. However, each VTEP must be provisioned with all
+VLANs/VNIs — the subnets between which communication can take place;
+this is required even if there are no locally-attached hosts for a
+particular VLAN.
 
 {{%notice tip%}}
 
@@ -1068,41 +819,27 @@ with an anycast IP/MAC address.
 
 {{%/notice%}}
 
-### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-symmetric" class="confluence-anchor-link"></span><span>Symmetric Routing</span>
+### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-symmetric" class="confluence-anchor-link"></span><span>Symmetric Routing</span>
 
 In distributed symmetric routing, each VTEP acts as a layer 3 gateway,
 performing routing for its attached hosts. This is the same as in
-asymmetric routing. The difference is thatHowever, with symmetric routing, both
- the ingress 
-VTEP and egress VTEP route the packets. Therefore, it can be
- compared to 
-the traditional routing behavior of routing to a next hop
- router. In the 
-VXLAN encapsulated packet, the inner destination MAC
- address is set to 
-the router MAC address of the egress VTEP as an
- indication that the 
-egress VTEP is the next hop and also needs to
- perform routing. All 
-routing happens in the context of a tenant (VRF).
- For a packet received 
-by the ingress VTEP from a locally attached host,
- the SVI interface 
-corresponding to the VLAN determines the VRF. For a
- packet received by 
-the egress VTEP over the VXLAN tunnel, the VNI in the
- packet has to 
-specify the VRF. For symmetric routing, this is a VNI
- corresponding to 
-the tenant and is different from either the source VNI
- or the 
-destination VNI. This VNI is referred to as the layer 3 VNI or
+asymmetric routing. The difference is that with symmetric routing, both
+the ingress VTEP and egress VTEP route the packets. Therefore, it can be
+compared to the traditional routing behavior of routing to a next hop
+router. In the VXLAN encapsulated packet, the inner destination MAC
+address is set to the router MAC address of the egress VTEP as an
+indication that the egress VTEP is the next hop and also needs to
+perform routing. All routing happens in the context of a tenant (VRF).
+For a packet received by the ingress VTEP from a locally attached host,
+the SVI interface corresponding to the VLAN determines the VRF. For a
+packet received by the egress VTEP over the VXLAN tunnel, the VNI in the
+packet has to specify the VRF. For symmetric routing, this is a VNI
+corresponding to the tenant and is different from either the source VNI
+or the destination VNI. This VNI is referred to as the layer 3 VNI or
 interconnecting VNI; it has to be provisioned by the operator and is
-exchanged through the EVPN control plane. In order tTo make the
- distinction clear, 
-the regular VNI, which is used to map a VLAN, is
- referred to as the 
-layer 2 VNI.
+exchanged through the EVPN control plane. In order to make the
+distinction clear, the regular VNI, which is used to map a VLAN, is
+referred to as the layer 2 VNI.
 
 {{%notice note%}}
 
@@ -1114,9 +851,8 @@ layer 2 VNI.
   - The VRF to layer 3 VNI mapping has to be consistent across all
     VTEPs. The layer 3 VNI has to be provisioned by the operator.
 
-  - LThe layer 3 VNI and layer 2 VNI cannot share the same number space; that
-    is
-    for example, you cannot have *vlan10* and *vxlan10 for example*. Otherwise, the
+  - Layer 3 VNI and layer 2 VNI cannot share the same number space; that
+    is, you cannot have vlan10 and vxlan10 for example. Otherwise, the
     layer 2 VNI does not get created.
 
   - In an MLAG configuration, the SVI used for the layer 3 VNI cannot be
@@ -1137,20 +873,17 @@ For EVPN symmetric routing, additional configuration is required:
 
 1.  Configure a per-tenant VXLAN interface that specifies the layer 3
     VNI for the tenant. This VXLAN interface is part of the bridge and
-    the router MAC addresses of the remote VTEPs is installed over this
+    router MAC addresses of remote VTEPs is installed over this
     interface.
 
 2.  Configure an SVI (layer 3 interface) corresponding to the per-tenant
-    VXLAN interface. This is attached to the VRF of the tenant's VRF. Remote
-    host
+    VXLAN interface. This is attached to the tenant's VRF. Remote host
     routes for symmetric routing are installed over this SVI.
 
-3.  Specify the mapping of VRF to layer 3 VNI mapping. This configuration is for
+3.  Specify the mapping of VRF to layer 3 VNI. This configuration is for
     the BGP control plane.
 
 #### <span>VXLAN Interface Corresponding to the Layer 3 VNI</span>
-
-<summary>NCLU Commands </summary>
 
     cumulus@leaf01:~$ net add vxlan vni104001 vxlan id 104001
     cumulus@leaf01:~$ net add vxlan vni104001 bridge access 4001
@@ -1162,13 +895,8 @@ For EVPN symmetric routing, additional configuration is required:
     cumulus@leaf01:~$ net commit
 
 The above commands create the following snippet in the
-`<summary>Linux Commands </summary>
+`/etc/network/interfaces` file:
 
-Edit the `/etc/network/interfaces` file. For example:
-
-    cumulus@leaf01:~$ sudo nano /etc/network/interfaces` file:
-
-    ...
     auto vni104001
     iface vni104001
         bridge-access 4001
@@ -1176,35 +904,26 @@ Edit the `/etc/network/interfaces` file. For example:
         bridge-learning off
         vxlan-id 104001
         vxlan-local-tunnelip 10.0.0.11
-      
+     
     auto bridge
     iface bridge
         bridge-ports vni104001
         bridge-vlan-aware yes
-    ...
 
 #### <span>SVI for the Layer 3 VNI</span>
-
-<summary>NCLU Commands </summary>
 
     cumulus@leaf01:~$ net add vlan 4001 vrf turtle
     cumulus@leaf01:~$ net pending
     cumulus@leaf01:~$ net commit
 
 These commands create the following snippet in the
-`<summary>Linux Commands </summary>
+`/etc/network/interfaces` file:
 
-Edit the `/etc/network/interfaces` file. For example:
-
-    cumulus@leaf01:~$ sudo nano /etc/network/interfaces` file:
-
-    ...
     auto vlan4001
     iface vlan4001
         vlan-id 4001
         vlan-raw-device bridge
         vrf turtle
-    ...
 
 {{%notice note%}}
 
@@ -1215,48 +934,32 @@ the `hwaddress` (MAC address) for the SVI corresponding to the layer 3
 VNI. Use the same address on both switches in the MLAG pair. Cumulus
 Networks recommends you use the MLAG system MAC address.
 
-<summary>NCLU Commands </summary>
-
     cumulus@leaf01:~$ net add vlan 4001 hwaddress 44:39:39:FF:40:94
 
 This command creates the following snippet in the
-`<summary>Linux Commands </summary>
+`/etc/network/interfaces` file:
 
-Edit the `/etc/network/interfaces` file. For example:
-
-    cumulus@leaf01:~$ sudo nano /etc/network/interfaces` file:
-
-    ...
     auto vlan4001
     iface vlan4001
         hwaddress 44:39:39:FF:40:94
         vlan-id 4001
         vlan-raw-device bridge
         vrf turtle
-    ...
 
 {{%/notice%}}
 
 #### <span>VRF to Layer 3 VNI Mapping</span>
 
-<summary>NCLU Commands </summary>
-
-    cumulus@leaf01:~$  net add vrf turtle vni 104001
+    cumulus@leaf01:~$ net add vrf turtle vni 104001
     cumulus@leaf01:~$ net pending
     cumulus@leaf01:~$ net commit
 
 These commands create the following configuration snippet in the
-`<summary>Linux Commands </summary>
+`/etc/frr/frr.conf` file.
 
-Edit the `/etc/frr/frr.conf` file. For example:
-
-    cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf` file.
-
-    ...
     vrf turtle
      vni 104001
     !
-    ...
 
 #### <span>Configure RD and RTs for the Tenant VRF</span>
 
@@ -1265,44 +968,26 @@ derived automatically, you can configure them manually by specifying
 them under the `l2vpn evpn` address family for that specific VRF. For
 example:
 
-<summary>NCLU Commands </summary>
-
     cumulus@switch:~$ net add bgp vrf tenant1 l2vpn evpn rd 172.16.100.1:20
     cumulus@switch:~$ net add bgp vrf tenant1 l2vpn evpn route-target import 65100:20
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011 vrf tenant1
-    switch(config-router)# address-family l2vpn evpn
-    switch(config-router-af)# rd 172.16.100.1:20
-    switch(config-router-af)# route-target import 65100:20
-    switch(config-router-af)# end
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$ 
-
 These commands create the following configuration snippet in the
 `/etc/frr/frr.conf` file:
 
-    ...
     router bgp <as> vrf tenant1
      address-family l2vpn evpn
       rd 172.16.100.1:20
       route-target import 65100:20
-    ...
 
 {{%notice note%}}
 
 The tenant VRF RD and RTs are different from the RD and RTs for the
 layer 2 VNI, which are described in [Auto-derivation of RDs and
-RTs](#src-83627326455_EthernetVirtualPrivateNetwork-EVPN-RD-auto-derivation)
+RTs](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-RD-auto-derivation)
 and [User-defined RDs and
-RTs](#src-83627326455_EthernetVirtualPrivateNetwork-EVPN-RD-user-defined),
+RTs](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-RD-user-defined),
 above.
 
 {{%/notice%}}
@@ -1312,16 +997,16 @@ above.
 Symmetric routing presents a problem in the presence of silent hosts. If
 the ingress VTEP does not have the destination subnet and the host route
 is not advertised for the destination host, the ingress VTEP cannot
-route the packet to its destination. This problemYou can be overcome this problem by
+route the packet to its destination. This problem can be overcome by
 having VTEPs announce the subnet prefixes corresponding to their
 connected subnets in addition to announcing host routes. These routes
-will bare announced as EVPN prefix (type-5) routes.
+will be announced as EVPN prefix (type-5) routes.
 
 To advertise locally attached subnets, you must:
 
 1.  Enable advertisement of EVPN prefix (type-5) routes. Refer to
     [Prefix-based Routing — EVPN Type-5
-    Routes](#src-83627326455_EthernetVirtualPrivateNetwork-EVPN-PBR_type5),
+    Routes](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-PBR_type5),
     below.
 
 2.  Ensure that the routes corresponding to the connected subnets are
@@ -1344,7 +1029,7 @@ command. That command is deprecated and should not be used.
 
 {{%/notice%}}
 
-## <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-PBR_type5" class="confluence-anchor-link"></span><span>Prefix-based Routing — EVPN Type-5 Routes</span>
+## <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-PBR_type5" class="confluence-anchor-link"></span><span>Prefix-based Routing — EVPN Type-5 Routes</span>
 
 EVPN in Cumulus Linux supports prefix-based routing using EVPN type-5
 (prefix) routes. Type-5 routes (or prefix routes) are primarily used to
@@ -1354,42 +1039,35 @@ EVPN prefix routes carry the layer 3 VNI and router MAC address and
 follow the symmetric routing model for routing to the destination
 prefix.
 
-{{%notice tipnote%}}
+{{%notice tip%}}
 
-  - When connecting to a WAN edge router to reach destinations outside
-    the
- data center, it is highlyCumulus Networks recommendeds that you deploy
-    specific border/exit leaf
- switches be deployed to originate the type-5 routes.
+When connecting to a WAN edge router to reach destinations outside the
+data center, it is highly recommended that specific border/exit leaf
+switches be deployed to originate the type-5 routes.
 
 {{%/notice%}}
 
 {{%notice note%}}
 
-On switches with the  - On Mellanox Spectrum chipsetswitches, centralized routing,
- symmetric
-    routing, and prefix-based routing only functionwork with the
- Spectrum A1
-    chip.
+On switches with the Mellanox Spectrum chipset, centralized routing,
+symmetric routing and prefix-based routing only function with the
+Spectrum A1 chip.
 
 {{%/notice%}}
 
 {{%notice note%}}
 
-  - If you are using a Broadcom Trident II+ switch as a border/exit
-    leaf,
- see the
-    [caveats](#src-83627326455_EthernetVirtualPrivateNetwork-EVPN-caveats),
-    below for a necessaryrequired workaround; the workaround only applies to
-    Trident
- II+ switches, not Tomahawk or Spectrum.
+If you are using a Broadcom Trident II+ switch as a border/exit leaf,
+see [caveats](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-caveats),
+below for a necessary workaround; the workaround only applies to Trident
+II+ switches, not Tomahawk or Spectrum.
 
 {{%/notice%}}
 
 ### <span>Configure the Switch to Install EVPN Type-5 Routes</span>
 
 For a switch to be able to install EVPN type-5 routes into the routing
-table, ityou must be configured it with the layer 3 VNI related information.
+table, it must be configured with the layer 3 VNI related information.
 This configuration is the same as for symmetric routing. You need to:
 
 1.  Configure a per-tenant VXLAN interface that specifies the layer 3
@@ -1398,8 +1076,7 @@ This configuration is the same as for symmetric routing. You need to:
     interface.
 
 2.  Configure an SVI (layer 3 interface) corresponding to the per-tenant
-    VXLAN interface. This is attached to the VRF of the tenant's VRF. The
-    remote
+    VXLAN interface. This is attached to the tenant's VRF. The remote
     prefix routes are installed over this SVI.
 
 3.  Specify the mapping of the VRF to layer 3 VNI. This configuration is
@@ -1407,38 +1084,21 @@ This configuration is the same as for symmetric routing. You need to:
 
 ### <span>Announce EVPN Type-5 Routes</span>
 
-The following configuration is needrequired in the tenant VRF to announce IP
-prefixes in the BGP's RIB as EVPN type-5 routes.
+The following configuration is needed in the tenant VRF to announce IP
+prefixes in BGP's RIB as EVPN type-5 routes.
 
-<summary>NCLU Commands </summary>
-
-    cumulus@bl1switch:~$ net add bgp vrf vrf1 l2vpn evpn advertise ipv4 unicast
-    cumulus@bl1switch:~$ net pending
-    cumulus@bl1:~$ net commitswitch:~$ net commit
-
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011 vrf vrf1
-    switch(config-router)# address-family l2vpn evpn
-    switch(config-router-af)# advertise ipv4 unicast
-    switch(config-router-af)# end
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$ 
+    cumulus@bl1:~$ net add bgp vrf vrf1 l2vpn evpn advertise ipv4 unicast
+    cumulus@bl1:~$ net pending
+    cumulus@bl1:~$ net commit
 
 These commands create the following snippet in the `/etc/frr/frr.conf`
 file:
 
-    ...
     router bgp 65005 vrf vrf1
       address-family l2vpn evpn
         advertise ipv4 unicast
       exit-address-family
     end
-    ...
 
 ### <span>EVPN Type-5 Routing with Asymmetric Routing</span>
 
@@ -1458,23 +1118,15 @@ option to use the layer 3 VNI only for type-5 routes; type-2 routes
 The following example commands show how to use the layer 3 VNI for
 type-5 routes only:
 
-<summary>NCLU Commands </summary>
-
     cumulus@leaf01:~$ net add vrf turtle vni 104001 prefix-routes-only
     cumulus@leaf01:~$ net pending
     cumulus@leaf01:~$ net commit
 
-These commands create the following snippet in the `<summary>Linux Commands </summary>
-
-Edit the `/etc/frr/frr.conf` file. For example:
-
-    cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf`
+These commands create the following snippet in the `/etc/frr/frr.conf`
 file:
 
-    ...
     vrf turtle
       vni 104001 prefix-routes-only
-    ...
 
 ### <span>Control Which RIB Routes Are Injected into EVPN</span>
 
@@ -1483,27 +1135,12 @@ routes, all routes in the BGP RIB are picked for advertisement as EVPN
 type-5 routes. You can use a route map to allow selective advertisement
 of routes from the BGP RIB as EVPN type-5 routes.
 
-The following commands adds a route map filter to IPv4 EVPN type-5 route
+The following command adds a route map filter to IPv4 EVPN type-5 route
 advertisement:
-
-<summary>NCLU Commands </summary>
 
     cumulus@switch:~$ net add bgp vrf turtle l2vpn evpn advertise ipv4 unicast route-map map1
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
-
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011 vrf turtle
-    switch(config-router)# address-family l2vpn evpn
-    switch(config-router-af)# advertise ipv4 unicast route-map map1
-    switch(config-router-af)# end
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$ 
 
 ### <span>Originate Default EVPN Type-5 Routes</span>
 
@@ -1514,14 +1151,9 @@ pod follows the default route towards the border leaf for all external
 traffic (towards the Internet or a different pod).
 
 <span style="color: #000000;"> To originate a default type-5 route in
- EVPN, you need to execute <span style="color: #000000;"> 
-FRRouting
+EVPN, you need to execute <span style="color: #000000;"> FRRouting
 </span> commands. The following shows an example: </span>
 
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
     switch(config)# router bgp 650030 vrf vrf1
     switch(config-router)# address-family l2vpn evpn
     switch(config-router-af)# default-originate ipv4
@@ -1533,18 +1165,13 @@ FRRouting
 
 ## <span>EVPN Enhancements</span>
 
-#nd
-    switch# write memory
-
-## <span>Static (Sticky) MAC Addresses</span>
+### <span>Static (Sticky) MAC Addresses</span>
 
 MAC addresses that are intended to be pinned to a particular VTEP can be
 provisioned on the VTEP as a static bridge FDB entry. EVPN picks up
 these MAC addresses and advertises them to peers as remote static MACs.
 You configure static bridge FDB entries for sticky MACs under the bridge
-configuration using NCLU::
-
-<summary>NCLU Commands </summary>
+configuration using NCLU:
 
     cumulus@switch:~$ net add bridge post-up bridge fdb add 00:11:22:33:44:55 dev swp1 vlan 101 master static
     cumulus@switch:~$ net pending
@@ -1563,58 +1190,32 @@ These commands create the following configuration in the
 {{%notice tip%}}
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
+mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file using a text editor:
 
-    cumulus@leaf01:~$ sudo nano /etc/network/interfaces
-    ...
     auto br101
     iface br101
         bridge-ports swp1.101 vni10101
         bridge-learning vni10101=off
         post-up bridge fdb add 00:11:22:33:44:55 dev swp1.101 master static
 
-{{%/notice%}}    ...
+{{%/notice%}}
 
-<summary>Linux Commands </summary>
-
-Edit the `/etc/network/interfaces` file. For example:
-
-    cumulus@leaf01:~$ sudo nano /etc/network/interfaces
-    ...
-    auto bridge
-    iface bridge
-        bridge-ports swp1 vni10101
-        bridge-vids 101
-        bridge-vlan-aware yes
-        post-up bridge fdb add 00:11:22:33:44:55 dev swp1 vlan 101 master static
-    ...
-
-### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-filter_evpn_route_type" class="confluence-anchor-link"></span><span>Filter EVPN Routes Based on Type</span>
+### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-filter_evpn_route_type" class="confluence-anchor-link"></span><span>Filter EVPN Routes Based on Type</span>
 
 In many situations, it is desirable to only exchange EVPN routes of a
-particular type. For example, aA common deployment scenario for large
- data centers is to sub- divide the 
-data center into multiple pods with
- full host mobility within a pod but 
-only do prefix-based routing across
- pods. ThisYou can be achieved this by only 
-exchanging EVPN type-5 routes across
- pods.
+particular type. For example, a common deployment scenario for large
+data centers is to sub-divide the data center into multiple pods with
+full host mobility within a pod but only do prefix-based routing across
+pods. This can be achieved by only exchanging EVPN type-5 routes across
+pods.
 
 To filter EVPN routes based on the route-type and allow only certain
-types of EVPN routes to be advertised in the fabric, u:
+types of EVPN routes to be advertised in the fabric, use these commands:
 
-<summary>NCLU Commands </summary>
-
-Use these commands:
-
-    `net add routing route-map <route_map_name> (deny|permit) <1-65535> 
-match evpn default-route
-    `  
-`net add routing route-map <route_map_name> (deny|permit) <1-65535> 
-match evpn route-type (macip|prefix|multicast)`
+    net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn default-route
+    net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn route-type (macip|prefix|multicast)
 
 The following example command configures EVPN to advertise type-5 routes
 only:
@@ -1623,22 +1224,7 @@ only:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-#<summary>vtysh Commands </summary>
-
-The following example command configures EVPN to advertise type-5 routes
-only:
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# route-map map1 permit 1
-    switch(config)# match evpn route-type prefix
-    switch(config)# end
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$ 
-
-## <span>Advertise SVI IP Addresses</span>
+### <span>Advertise SVI IP Addresses</span>
 
 In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs
 across multiple racks. However, if you use *unique* SVI IP addresses
@@ -1646,8 +1232,7 @@ across multiple racks and you want the local SVI IP address to be
 reachable via remote VTEPs, you can enable the `advertise-svi-ip`
 option. This option advertises the SVI IP/MAC address as a type-2 route
 and eliminates the need for any flooding over VXLAN to reach the SVI IP
- from 
-a remote VTEP/rack.
+from a remote VTEP/rack.
 
 {{%notice note%}}
 
@@ -1659,37 +1244,22 @@ a remote VTEP/rack.
   - When you enable the `advertise-svi-ip` option, the anycast IP/MAC
     address pair is not advertised. Be sure **not** to enable both the
     `advertise-svi-ip` option and the `advertise-default-gw` option at
-    the 
-same time. (The `advertise-default-gw` option configures the
-    gateway 
-VTEPs to advertise their IP/MAC address. See [Advertising
+    the same time. (The `advertise-default-gw` option configures the
+    gateway VTEPs to advertise their IP/MAC address. See [Advertising
     the Default
-    Gateway](#src-83627326455_EthernetVirtualPrivateNetwork-EVPN-centralized)).
+    Gateway](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-centralized)).
 
 {{%/notice%}}
 
 To advertise *all* SVI IP/MAC addresses on the switch, run these
 commands:
 
-<summary>NCLU Commands </summary>
-
-    cumulus@switch:~$ net add bgp l2vpn evpn advertise-svi-ip
+    cumulus@switch:~$ net add bgp evpn advertise-svi-ip
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
 These commands save the configuration in the`  /etc/frr/frr.conf ` file.
-For example:<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011
-    switch(config-router)# address-family l2vpn evpn 
-    switch(config-router-af)# advertise-svi-ip
-    switch(config-router-af)# end
-    switch)# write memory
-    switch)# exit
-    cumulus@switch:~$ 
+For example:
 
     cumulus@switch:~$ sudo cat /etc/frr/frr.conf
     ...
@@ -1700,29 +1270,12 @@ For example:<summary>vtysh Commands </summary>
 
 To advertise a *specific* SVI IP/MAC address, run these commands:
 
-<summary>NCLU Commands </summary>
-
-    cumulus@switch:~$ net add bgp l2vpn evpn vni 10 advertise-svi-ip
+    cumulus@switch:~$ net add bgp evpn vni 10 advertise-svi-ip
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-These<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011
-    switch(config-router)# address-family l2vpn evpn 
-    switch(config-router-af)# vni 10
-    switch(config-router-af-vni)# advertise-svi-ip
-    switch(config-router-af-vni)# end
-    switch)# write memory
-    switch)# exit
-    cumulus@switch:~$ 
-
-The NCLU and vtysh commands save the configuration in the 
-`/etc/frr/frr.conf` file.
- For example:
+These commands save the configuration in the `/etc/frr/frr.conf` file.
+For example:
 
     cumulus@switch:~$ sudo cat /etc/frr/frr.conf
     ...
@@ -1732,21 +1285,17 @@ The NCLU and vtysh commands save the configuration in the
     exit-address-family
     ...
 
-### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-MAC-mobility" class="confluence-anchor-link"></span><span>Extended Mobility</span>
+### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-MAC-mobility" class="confluence-anchor-link"></span><span>Extended Mobility</span>
 
 Cumulus Linux support for host and virtual machine mobility in an EVPN
-deployment has been enhanced to handles scenarios where the IP to MAC
- binding for a host or 
-virtual machine changes across the move. This is
- referred to as 
-*extended mobility*. TIn addition to the simple mobility scenario where a
+deployment has been enhanced to handle scenarios where the IP to MAC
+binding for a host or virtual machine changes across the move. This is
+referred to as *extended mobility*. The simple mobility scenario where a
 host or virtual machine with a binding of `IP1`, `MAC1` moves from one
-rack to another has been supported in previous releases of, Cumulus
- Linux. The EVPN enhancements supports additional scenarios where a 
-host
- or virtual machine with a binding of `IP1`, `MAC1` moves and takes 
-on a
- new binding of `IP2`, `MAC1` or `IP1`, `MAC2`. The EVPN protocol
+rack to another has been supported in previous releases of Cumulus
+Linux. The EVPN enhancements support additional scenarios where a host
+or virtual machine with a binding of `IP1`, `MAC1` moves and takes on a
+new binding of `IP2`, `MAC1` or `IP1`, `MAC2`. The EVPN protocol
 mechanism to handle extended mobility continues to use the MAC mobility
 extended community and is the same as the standard mobility procedures.
 Extended mobility defines how the sequence number in this attribute is
@@ -1764,9 +1313,7 @@ The support for extended mobility is enabled by default and does not
 require any additional configuration.
 
 You can examine the sequence numbers associated with a host or virtual
-machine MAC address and IP address with the NCLU `net show evpn mac vni
-<vni> mac <address>` command or the vtysh`  show evpn mac vni <vni> mac
-<address> ` commands. For example:
+machine MAC address and IP address with NCLU commands. For example:
 
     cumulus@switch:~$ net show evpn mac vni 10100 mac 00:02:00:00:00:42
     MAC: 00:02:00:00:00:42
@@ -1782,25 +1329,17 @@ machine MAC address and IP address with the NCLU `net show evpn mac vni
      MAC: 44:39:39:ff:00:24
      Local Seq: 2 Remote Seq: 3
 
-### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-dad" class="confluence-anchor-link"></span><span>Duplicate Address Detection</span>
+### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-dad" class="confluence-anchor-link"></span><span>Duplicate Address Detection</span>
 
 Cumulus Linux 3.7.2 and later is able to detect duplicate MAC and
- IPv4/IPv6 addresses on 
-hosts or virtual machines in a VXLAN-EVPN
- configuration. The Cumulus 
-Linux switch (VTEP) considers a host MAC or
- IP address to be duplicate 
-if the address moves across the network more
- than a certain number of 
-times within a certain number of seconds (five
- moves within 180 seconds 
-by default). In addition to legitimate host or
- VM mobility scenarios, 
-address movement can occur when IP addresses are
- misconfigured on hosts 
-or when packet looping occurs in the network due
- to faulty configuration 
-or behavior.
+IPv4/IPv6 addresses on hosts or virtual machines in a VXLAN-EVPN
+configuration. The Cumulus Linux switch (VTEP) considers a host MAC or
+IP address to be duplicate if the address moves across the network more
+than a certain number of times within a certain number of seconds (five
+moves within 180 seconds by default). In addition to legitimate host or
+VM mobility scenarios, address movement can occur when IP addresses are
+misconfigured on hosts or when packet looping occurs in the network due
+to faulty configuration or behavior.
 
 Duplicate address detection is enabled by default and triggers when:
 
@@ -1834,8 +1373,8 @@ duplicate.
 
 {{%/notice%}}
 
-**### <span style="color: #222222;"> When Does Duplicate Address Detection
- Trigger? </span>**
+**<span style="color: #222222;"> When Does Duplicate Address Detection
+Trigger? </span>**
 
 <span style="color: #222222;"> The VTEP that sees an address move from
 remote to local begins the detection process by starting a timer. E
@@ -1859,7 +1398,7 @@ events occur between two remote VTEPs (VTEP-B and VTEP-C).
 
 {{% imgOld 0 %}}
 
-#### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-configure-dad" class="confluence-anchor-link"></span><span>Configure Duplicate Address Detection</span>
+#### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-configure-dad" class="confluence-anchor-link"></span><span>Configure Duplicate Address Detection</span>
 
 To change the threshold for MAC and IP address moves, run the `net add
 bgp l2vpn evpn dup-addr-detection max-moves <number-of-events> time
@@ -1870,25 +1409,10 @@ The following example command sets the maximum number of address moves
 allowed to 10 and the duplicate address detection time interval to 1200
 seconds.
 
-<summary>NCLU Commands </summary>
-
     cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection max-moves 10 time 1200 
 
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011
-    switch(config-router)# address-family l2vpn evpn 
-    switch(config-router-af)# dup-addr-detection max-moves 10 time 1200
-    switch(config-router-af)# end
-    switch)# write memory
-    switch)# exit
-    cumulus@switch:~$ 
-
 To disable duplicate address detection, see [Disable Duplicate Address
-Detection](#src-83627326455_EthernetVirtualPrivateNetwork-EVPN-disableDAD)
+Detection](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-disableDAD)
 below.
 
 #### <span>Example syslog Messages</span>
@@ -1909,12 +1433,9 @@ duplicate during a remote update: </span> <span style="color: #36424a;">
 #### <span>Freeze a Detected Duplicate Address</span>
 
 Cumulus Linux 3.7.3 and later provides a *freeze* option that takes
- action on a detected 
-duplicate address. You can freeze the address
- *permanently* (until you 
-intervene) or for a *defined amount of time*,
- after which it is cleared 
-automatically.
+action on a detected duplicate address. You can freeze the address
+*permanently* (until you intervene) or for a *defined amount of time*,
+after which it is cleared automatically.
 
 When you enable the freeze option and a duplicate address is detected:
 
@@ -1939,17 +1460,17 @@ When you enable the freeze option and a duplicate address is detected:
 **To recover from a freeze**, shut down the faulty host or VM or fix any
 other misconfiguration in the network. If the address is frozen
 *permanently,* issue the [clear
-command](#src-83627326455_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress)
+command](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress)
 on the VTEP where the address is marked as duplicate. If the address is
 frozen for a defined period of time, it is cleared automatically after
 the timer expires (you can clear the duplicate address before the timer
 expires with the [clear
-command](#src-83627326455_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress)).
+command](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress)).
 
 {{%notice note%}}
 
 If you issue the [clear
-command](#src-83627326455_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress)
+command](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress)
 or the timer expires before you address the fault, duplicate address
 detection might occur repeatedly.
 
@@ -1958,11 +1479,11 @@ detection might occur repeatedly.
 After you clear a frozen address, if it is present behind a remote VTEP,
 the kernel and hardware forwarding tables are updated. If the address is
 locally learned on this VTEP, the address is advertised to remote VTEPs.
-All VTEPs get the correct address as soon as the host communicates .
+All VTEPs get the correct address as soon as the host communicates.
 Silent hosts are learned only after the faulty entries age out, or you
 intervene and clear the faulty MAC and ARP table entries.
 
-#### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-configure-dad" class="confluence-anchor-link"></span><span>Configure the Freeze Option</span>
+#### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-configure-dad" class="confluence-anchor-link"></span><span>Configure the Freeze Option</span>
 
 To enable Cumulus Linux to *freeze* detected duplicate addresses, run
 the `net add bgp l2vpn evpn dup-addr-detection freeze
@@ -1972,22 +1493,7 @@ between 30 and 3600.
 The following example command freezes duplicate addresses for a period
 of 1000 seconds, after which it is cleared automatically :
 
-<summary>NCLU Commands </summary>
-
     cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze 1000
-
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011
-    switch(config-router)# address-family l2vpn evpn 
-    switch(config-router-af)# dup-addr-detection freeze 1000
-    switch(config-router-af)# end
-    switch)# write memory
-    switch)# exit
-    cumulus@switch:~$ 
 
 {{%notice note%}}
 
@@ -2002,63 +1508,27 @@ freeze timer to 540 seconds.
 
 The following example command freezes duplicate addresses permanently
 (until you issue the [clear
-command](#src-83627326455_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress)):
-
-<summary>NCLU Commands </summary>
+command](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress)):
 
     cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze permanent
 
-#<summary>vtysh Commands </summary>
+#### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress" class="confluence-anchor-link"></span><span>Clear Duplicate Addresses</span>
 
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011
-    switch(config-router)# address-family l2vpn evpn 
-    switch(config-router-af)# dup-addr-detection freeze permanent
-    switch(config-router-af)# end
-    switch)# write memory
-    switch)# exit
-    cumulus@switch:~$ 
-
-### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress" class="confluence-anchor-link"></span><span>Clear Duplicate Addresses</span>
-
-ToYou can clear a duplicate MAC or IP address (and unfreeze a frozen address),
+To clear a duplicate MAC or IP address (and unfreeze a frozen address),
 run the `net clear evpn dup-addr vni <vni_id> ip <mac/ip address>`
-command
-address). The following example command clears IP address 10.0.0.9 for
+command. The following example command clears IP address 10.0.0.9 for
 VNI 101.
-
-<summary>NCLU Commands </summary>
 
     cumulus@switch:~$ net clear evpn dup-addr vni 101 ip 10.0.0.9
 
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# clear evpn dup-addr vni 101 ip 10.0.0.9
-    switch)# exit
-    cumulus@switch:~$ 
-
 To clear duplicate addresses for all VNIs, run the following command:
 
-<summary>NCLU Commands </summary>
-
     cumulus@switch:~$ net clear evpn dup-addr vni all
-
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# clear evpn dup-addr vni all
-    switch)# exit
-    cumulus@switch:~$ 
 
 {{%notice note%}}
 
 In an MLAG configuration, you need to run the [clear
-command](#src-83627326455_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress)
+command](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress)
 on both the MLAG primary and secondary switch.
 
 {{%/notice%}}
@@ -2071,28 +1541,13 @@ its MAC address is still in a duplicate state.
 
 {{%/notice%}}
 
-#### <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-disableDAD" class="confluence-anchor-link"></span><span>Disable Duplicate Address Detection</span>
+#### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-disableDAD" class="confluence-anchor-link"></span><span>Disable Duplicate Address Detection</span>
 
 By default, duplicate address detection is enabled and a syslog error is
 generated when a duplicate address is detected. To disable duplicate
 address detection, run the following command.
 
-<summary>NCLU Commands </summary>
-
     cumulus@switch:~$ net del bgp l2vpn evpn dup-addr-detection
-
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# router bgp 65011
-    switch(config-router)# address-family l2vpn evpn 
-    switch(config-router-af)# no dup-addr-detection
-    switch(config-router-af)# end
-    switch)# write memory
-    switch)# exit
-    cumulus@switch:~$ 
 
 When you disable duplicate address detection, Cumulus Linux clears the
 configuration and all existing duplicate addresses.
@@ -2100,8 +1555,7 @@ configuration and all existing duplicate addresses.
 #### <span>Show Detected Duplicate Address Information</span>
 
 During the duplicate address detection process, you can see the start
-time and current detection count with the `net NCLU `net show evpn mac vni
-<vni_id> mac <mac_addr>` command or the vtysh `show evpn mac vni
+time and current detection count with the `net show evpn mac vni
 <vni_id> mac <mac_addr>` command. The following command example shows
 that detection started for MAC address 00:01:02:03:04:11 for VNI 1001 on
 Tuesday, Nov 6 at 18:55:05 and the number of moves detected is 1.
@@ -2114,8 +1568,7 @@ Tuesday, Nov 6 at 18:55:05 and the number of moves detected is 1.
      Neighbors:
         10.0.1.26 Active
 
-After the duplicate MAC address is cleared, the `net NCLU `net show evpn mac
-vni <vni_id> mac <mac_addr>` command or the vtysh `show evpn mac vni
+After the duplicate MAC address is cleared, the `net show evpn mac vni
 <vni_id> mac <mac_addr>` command shows:
 
     MAC: 00:01:02:03:04:11
@@ -2125,10 +1578,8 @@ vni <vni_id> mac <mac_addr>` command or the vtysh `show evpn mac vni
      Neighbors:
         10.0.1.26 Active
 
-To display information for a duplicate IP address, run the NCLU ` net 
-show
- evpn arp-cache vni <vni_id> ip <ip_addr>  `command or the vtysh
-`show evpn arp-cache vni <vni_id> ip <ip_addr>` command. The following
+To display information for a duplicate IP address, run the ` net show
+evpn arp-cache vni <vni_id> ip <ip_addr>  `command. The following
 command example shows information for IP address 10.0.0.9 for VNI 1001.
 
     cumulus@switch:~$ net show evpn arp-cache vni 1001 ip 10.0.0.9
@@ -2141,12 +1592,9 @@ command example shows information for IP address 10.0.0.9 for VNI 1001.
      Duplicate, detected at Tue Nov  6 18:55:29 2018
 
 To show a list of MAC addresses detected as duplicate for a specific VNI
-or for all VNIs, run the NCLU `net show evpn mac vni <vni-id|all> 
-duplicate` command or the vtysh `show evpn mac vni <vni-id|all>
-duplicate`
- command. The following example command shows a list of 
-duplicate MAC
- addresses for VNI 1001:
+or for all VNIs, run the `net show evpn mac vni <vni-id|all> duplicate`
+command. The following example command shows a list of duplicate MAC
+addresses for VNI 1001:
 
 ``` 
 cumulus@switch:~$ net show evpn mac vni 1001 duplicate
@@ -2156,8 +1604,7 @@ aa:bb:cc:dd:ee:ff local  hostbond3             1001
 ```
 
 To show a list of IP addresses detected as duplicate for a specific VNI
-or for all VNIs, run the `net NCLU `net show evpn arp-cache vni <vni-id|all>
-duplicate` command or the vtysh `show evpn arp-cache vni <vni-id|all>
+or for all VNIs, run the `net show evpn arp-cache vni <vni-id|all>
 duplicate` command. The following example command shows a list of
 duplicate IP addresses for VNI 1001:
 
@@ -2169,8 +1616,7 @@ duplicate IP addresses for VNI 1001:
     10.10.0.12        remote active   aa:22:aa:aa:aa:aa  172.16.0.16
 
 To show configured duplicate address detection parameters, run the `net
-NCLU
-`net show evpn` command or the vtysh `show evpn` command:
+show evpn` command:
 
     cumulus@switch:~$ net show evpn
     L2 VNIs: 4
@@ -2182,351 +1628,7 @@ NCLU
 
 ## <span>EVPN Operational Commands</span>
 
-### <span>General Linux Commands Related to EVPNPIM EVPN</span>
-
-Without PIM EVPN, HER is the default way to replicate BUM traffic to
-remote VTEPs, where the ingress VTEP generates as many copies as VTEPs
-for each overlay BUM packet. This can be a burden on the switch and the
-underlay network, and packet latency increases as the replication count
-increases.
-
-The following example shows a PIM EVPN configuration, where underlay
-multicast is used to distribute BUM traffic. A multicast distribution
-tree (MDT) optimizes the flow of overlay BUM in the underlay network.
-
-{{% imgOld 1 %}}
-
-In the above example, host01 sends an ARP request to resolve host03.
-leaf01 (in addition to flooding the packet to host02) sends an
-encapsulated packet over the underlay network, which is forwarded using
-the MDT to leaf02 and leaf03.
-
-For PIM-SM, type-3 routes do not result in any forwarding entries.
-Cumulus Linux does not advertise type-3 routes for a layer 2 VNI when
-BUM mode for that VNI is PIM-SM.
-
-### <span>Configure Multicast VXLAN Tunnels</span>
-
-To configure multicast VXLAN tunnels, you need to configure PIM-SM in
-the underlay:
-
-  - Enable PIM-SM on the appropriate layer 3 interfaces.
-
-  - Configure static RP on all the PIM routers.
-
-  - Configure MSDP on the RPs for RP redundancy
-
-The configuration steps needed to configure PIM-SM in the underlay are
-provided in [Protocol Independent Multicast -
-PIM](/display/CL40/Protocol+Independent+Multicast+-+PIM).
-
-In addition to the PIM-SM configuration, you need to run the following
-commands on each VTEP to provide the VNI to MDT mapping.
-
-<summary>NCLU Commands </summary>
-
-Run the `net add vxlan <interface> vxlan mcastgrp <ip-address>` command.
-For example:
-
-    cumulus@switch:~$ net add vxlan vxlan1000111 vxlan mcastgrp 239.1.1.111
-
-<summary>Linux Commands </summary>
-
-Edit the `/etc/network/interfaces` file and add `vxlan-mcastgrp
-<ip-address>` to the interface stanza. For example:
-
-    cumulus@switch:~$ sudo vi /etc/network/interfaces
-    ...
-    auto vxlan1000111
-    iface vxlan1000111
-      vxlan-id 1000111
-      vxlan-local-tunnelip 10.0.0.28
-      vxlan-mcastgrp 239.1.1.111
-
-Run the `ifreload -a` command to load the new configuration:
-
-    cumulus@switch:~$ ifreload -a
-
-{{%notice note%}}
-
-One multicast group per VNI is optimal configuration for underlay
-bandwidth utilization. However, you can specify the same multicast group
-for more than one VNI.
-
-{{%/notice%}}
-
-### <span>Example Configuration</span>
-
-The following example shows an EVPN PIM configuration on the VTEP,
-where:
-
-  - PIM is enabled on swp1 and swp2 (shown in the example
-    `/etc/frr/frr.conf` file below).
-
-  - The group mapping 192.168.0.1 is configured for a static RP (shown
-    at the top of the `/etc/frr/frr.conf` file example below).
-
-  - Multicast group 239.1.1.111 is mapped to VXLAN1000111. Multicast
-    group 239.1.1.112 is mapped to VXLAN1000112 (shown in the example
-    `/etc/network/interfaces` file below).
-
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><pre><code>cumulus@switch:~$ sudo cat /etc/frr/frr.conf
-...
-ip pim rp 192.168.0.1
-ip pim keep-alive-timer 3600
-...
-vrf vrf1
- vni 104001
- exit-vrf
-!
-vrf vrf2
- vni 104002
- exit-vrf
-!
-interface swp1
- description swp1 -&gt; leaf-11&#39;s swp3
- ip ospf network point-to-point
- ip pim
-!
-interface swp2
- description swp2 -&gt; leaf-12&#39;s swp3
- ip ospf network point-to-point
- ip pim
-!
-interface swp3
- description swp3 -&gt; host-111&#39;s swp1
-!
-interface swp6
- description swp6 -&gt; host-112&#39;s swp1
-!
-#auto-generated interface 
-interface ipmr-lo
- ip pim
-!
-interface lo
- ip igmp
- ip pim
-!
-router bgp 650000
- bgp router-id 10.0.0.28
- bgp bestpath as-path multipath-relax
- bgp bestpath compare-routerid
- neighbor RR peer-group
- neighbor RR remote-as internal
- neighbor RR advertisement-interval 0
- neighbor RR timers 3 10
- neighbor RR timers connect 5
- neighbor 10.0.0.26 peer-group RR
- neighbor 10.0.0.26 update-source lo
- neighbor 10.0.0.27 peer-group RR
- neighbor 10.0.0.27 update-source lo
- !
- address-family ipv4 unicast
-  redistribute connected
-  maximum-paths ibgp 16
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor RR activate
-  advertise-all-vni
- exit-address-family
-!
-router ospf
- ospf router-id 10.0.0.28
- network 10.0.0.28/32 area 0.0.0.0
-!
-line vty
- exec-timeout 0 0
-!
-end</code></pre></td>
-<td><pre><code>cumulus@switch:~$ sudo cat /etc/network/interfaces
-auto lo
-iface lo
-    address 10.0.0.28/32
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
- 
-auto swp1
-iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-    address 10.0.0.28/32
-     
-auto swp2
-iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-    address 10.0.0.28/32
-     
-auto swp3
-iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-    bridge-access 111
-     
-auto swp6
-iface swp6
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-    bridge-access 112
-     
-auto vxlan1000111
-iface vxlan1000111
-    vxlan-id 1000111
-    vxlan-local-tunnelip 10.0.0.28
-    bridge-learning off
-    bridge-arp-nd-suppress on
-    bridge-access 111
-    vxlan-mcastgrp 239.1.1.111
-auto vxlan1000112
-iface vxlan1000112
-    vxlan-id 1000112
-    vxlan-local-tunnelip 10.0.0.28
-    bridge-learning off
-    bridge-arp-nd-suppress on
-    bridge-access 112
-    vxlan-mcastgrp 239.1.1.112
-auto vrf1
-iface vrf1
-    vrf-table auto
-auto vrf2
-iface vrf2
-    vrf-table auto
-auto vxlan104001
-iface vxlan104001
-    vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.28
-    bridge-learning off
-    bridge-access 4001
-auto vxlan104002
-iface vxlan104002
-    vxlan-id 104002
-    vxlan-local-tunnelip 10.0.0.28
-    bridge-learning off
-    bridge-access 4002
-auto bridge
-iface bridge
-    bridge-ports swp3 swp6 swp56s0 swp56s1 vxlan1000111 vxlan1000112 vxlan104001 vxlan104002
-    bridge-vlan-aware yes
-    bridge-vids 111 112 4001 4002
-auto vlan111
-iface vlan111
-    address 10.1.1.11/24
-    address 2060:1:1:1::11/64
-    vlan-id 111
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 10.1.1.250/24 2060:1:1:1::250/64
-    vrf vrf2
-auto vlan112
-iface vlan112
-    address 50.1.1.11/24
-    address 2050:1:1:1::11/64
-    vlan-id 112
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 10.10.1.250/24 2050:1:1:1::250/64
-    vrf vrf1
-auto vlan4001
-iface vlan4001
-    vlan-id 4001
-    vlan-raw-device bridge
-    vrf vrf1
-auto vlan4002
-iface vlan4002
-    vlan-id 4002
-    vlan-raw-device bridge
-    vrf vrf2</code></pre></td>
-</tr>
-</tbody>
-</table>
-
-### <span>Verify PIM EVPN</span>
-
-Run the NCLU `net` `show mroute` command or the vtysh `show ip mroute`
-command to review the multicast route information in FRR:
-
-    cumulus@switch:~$ net show mroute
-    Source          Group           Proto  Input            Output           TTL  Uptime
-    *               239.1.1.111     IGMP   swp2             pimreg           1    21:37:36
-                                    PIM                     ipmr-lo          1    21:37:36
-    10.0.0.28       239.1.1.111     STAR   lo               ipmr-lo          1    21:36:41
-                                    PIM                     swp2             1    21:36:41
-    *               239.1.1.112     IGMP   swp2             pimreg           1    21:37:36
-                                    PIM                     ipmr-lo          1    21:37:36
-    10.0.0.28       239.1.1.112     STAR   lo               ipmr-lo          1    21:36:41
-                                    PIM                     swp2             1    21:36:41
-
-Run the `ip mroute` command to review the multicast route information in
-the kernel. The kernel information should match the FRR information.
-
-    cumulus@switch:~$ ip mroute
-    (10.0.0.28,239.1.1.112)      Iif: lo     Oifs: swp2   State: resolved
-    (10.0.0.28,239.1.1.111)      Iif: lo     Oifs: swp2   State: resolved
-    (0.0.0.0,239.1.1.111)        Iif: swp2   Oifs: pimreg ipmr-lo swp2  State: resolved
-    (0.0.0.0,239.1.1.112)        Iif: swp2   Oifs: pimreg ipmr-lo swp2  State: resolved
-
-Run the `bridge fdb show | grep 00:00:00:00:00:00` command to verify
-that all zero MAC addresses for every VXLAN device point to the correct
-multicast group destination.
-
-    cumulus@switch:~$ bridge fdb show | grep 00:00:00:00:00:00
-    00:00:00:00:00:00 dev vxlan1000112 dst 239.1.1.112 self permanent
-    00:00:00:00:00:00 dev vxlan1000111 dst 239.1.1.111 self permanent
-
-### <span>Configure PIM EVPN with MLAG</span>
-
-To configure multicast VXLAN tunnels in an MLAG configuration, you need
-to enable PIM on the peer link of each MLAG peer switch in addition to
-the configuration described above.
-
-<summary>NCLU Commands </summary>
-
-Run the `net add interface <peerlink> pim sm` command. For example:
-
-    cumulus@switch:~$ net add interface peerlink.4094 pim sm
-    cumulus@switch:~$ net commit
-    cumulus@switch:~$ net pending
-
-<summary>vtysh Commands </summary>
-
-In the vtysh shell, run the following commands:
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# interface peerlink.4094
-    switch(config-if)# ip pim sm
-    switch(config-if)# end
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$ 
-
-### <span>Example Configuration</span>
-
-The following example files show an EVPN PIM with MLAG configuration,
-where:
-
-### <span>Verify PIM EVPN with MLAG</span>
-
-Run the NCLU ??? command or the vtysh ?? command
-
-## <span>Show EVPN Information</span>
-
-This section provides various commands to help you examine your EVPN
-configuration.
-
-### <span>General Linux Commands</span>
+### <span>General Linux Commands Related to EVPN</span>
 
 You can use various `iproute2` commands to examine links, VLAN mappings
 and the bridge MAC forwarding database known to the Linux kernel. You
@@ -2547,11 +1649,9 @@ the key commands are:
   - `ip route show [table <vrf-name>]`
 
 A sample output of `ip -d link show type vxlan` is shown below for one
-VXLAN interface. Some rRelevant parameters are the VNI value, the state,
- the 
-local IP address for the VXLAN tunnel, the UDP port number (4789)
- and 
-the bridge thatof which the interface is part of (*bridge* in the example
+VXLAN interface. Some relevant parameters are the VNI value, the state,
+the local IP address for the VXLAN tunnel, the UDP port number (4789)
+and the bridge that the interface is part of (*bridge* in the example
 below). The output also shows that MAC learning is disabled (*off*) on
 the VXLAN interface.
 
@@ -2563,21 +1663,18 @@ the VXLAN interface.
     ...
     cumulus@leaf01:~$
 
-A s
-The following example output ofor the `bridge fdb show` is depicted below. Some interesting
-information from this output includecommand shows:
+A sample output of `bridge fdb show` is depicted below. Some interesting
+information from this output includes:
 
   - swp3 and swp4 are access ports with VLAN ID 100. This is mapped to
     VXLAN interface vni100.
 
   - 00:02:00:00:00:01 is a local host MAC learned on swp3.
 
-  - The remote VTEPs whichthat participate in VLAN ID 100 are 10.0.0.3,
-    10.0.0.4, and 10.0.0.2. This is evident from (the FDB entries with a
-   have a MAC address of
-    00:00:00:00:00:00). These entries are used for BUM
-    traffic
-    replication.
+  - The remote VTEPs which participate in VLAN ID 100 are 10.0.0.3,
+    10.0.0.4 and 10.0.0.2. This is evident from the FDB entries with a
+    MAC address of 00:00:00:00:00:00. These entries are used for BUM
+    traffic replication.
 
   - 00:02:00:00:00:06 is a remote host MAC reachable over the VXLAN
     tunnel to 10.0.0.2.
@@ -2596,19 +1693,17 @@ information from this output includecommand shows:
     00:02:00:00:00:06 dev vni100 dst 10.0.0.2 self offload 
     ...
 
-A sThe following example output ofor the `ip neigh show` is shown below. Some interesting
-information from this output includecommand shows:
+A sample output of `ip neigh show` is shown below. Some interesting
+information from this output includes:
 
   - 172.16.120.11 is a locally-attached host on VLAN 100. It is shown
     twice because of the configuration of the anycast IP/MAC on the
     switch.
 
   - 172.16.120.42 is a remote host on VLAN 100 and 172.16.130.23 is a
-    remote host on VLAN 200. TYou can examine the MAC address ofor these
-    hosts can be
-    examined usingwith the `bridge fdb show` command described earlier to
-   to determine the VTEPs
-    behind which these hosts are located.
+    remote host on VLAN 200. The MAC address of these hosts can be
+    examined using the `bridge fdb show` command described earlier to
+    determine the VTEPs behind which these hosts are located.
 
 <!-- end list -->
 
@@ -2623,11 +1718,7 @@ information from this output includecommand shows:
 
 The following commands are not unique to EVPN but help troubleshoot
 connectivity and route propagation. If BGP is used for the underlay
-routing, you canCommands</span>
-
-If you use BGP for the underlay routing, run the NCLU `net show bgp
-summary` command or the vtysh `show bgp summary` command to view a 
-summary of the layer 3 fabric connectivity by
+routing, you can view a summary of the layer 3 fabric connectivity by
 running the `net show bgp summary` command:
 
     cumulus@leaf01:~$ net show bgp summary
@@ -2661,11 +1752,9 @@ running the `net show bgp summary` command:
     s2(swp49s1)     4      65100      43      49        0    0    0 02:03:59           30
     Total number of neighbors 2
 
-You canRun the NCLU `net show route` command or the vtysh `show route` command
-to examine the underlay routing, which and determines how remote VTEPs
- are 
-reached. Run the `net show route` command. Here is some sample
-The following example shows output from a leaf switch:
+You can examine the underlay routing, which determines how remote VTEPs
+are reached. Run the `net show route` command. Here is some sample
+output from a leaf switch:
 
     cumulus@leaf01:~$ net show route
      
@@ -2709,9 +1798,7 @@ The following example shows output from a leaf switch:
      
     cumulus@leaf01:~$
 
-You can
-Run the NCLU `net show bridge macs` command to view the MAC forwarding 
-database on the switch by running the
+You can view the MAC forwarding database on the switch by running the
 `net show bridge macs` command:
 
     cumulus@leaf01:~$ net show bridge macs
@@ -2746,18 +1833,13 @@ database on the switch by running the
     untagged            vlan200      00:00:5e:00:01:01                permanent  self           never
     ...
 
-### <span>DisplayShow EVPN address-family Peers</span>
+### <span>Display EVPN address-family Peers</span>
 
-You canRun the NCLU ` net show bgp l2vpn evpn summary  `command or the vtysh
-` show bgp l2vpn evpn summary  `command to see the BGP peers 
-participating in the layer 2 VPN/EVPN
- address-family and their states using the ` net show bgp l2vpn evpn
-summary  `command. .
-The following sexample output from a leaf switch shows
- eBGP peering with 
-two spine switches forto exchanginge EVPN routes; both
- peering sessions are in 
-the *established* state.
+You can see the BGP peers participating in the layer 2 VPN/EVPN
+address-family and their states using the ` net show bgp l2vpn evpn
+summary  `command. The following sample output from a leaf switch shows
+eBGP peering with two spine switches for exchanging EVPN routes; both
+peering sessions are in the *established* state.
 
     cumulus@leaf01:~$ net show bgp l2vpn evpn summary
     BGP router identifier 10.0.0.1, local AS number 65001 vrf-id 0
@@ -2771,50 +1853,32 @@ the *established* state.
     Total number of neighbors 2
     cumulus@leaf01:~$
 
-### <span>DisplayShow VNIs in EVPN</span>
+### <span>Display VNIs in EVPN</span>
 
-Run the `NCLU `net show bgp l2vpn evpn vni` command or the vtysh `show
-bgp l2vpn evpn vni` command to display the configured VNIs
- on a network 
-device participating in BGP EVPN. This command is only
- relevant on a 
-VTEP. If you have configured symmetric routing is configured, this command
- displays 
-the special layer 3 VNIs that are configured per tenant VRF.
+Run the `show bgp l2vpn evpn vni` command to display the configured VNIs
+on a network device participating in BGP EVPN. This command is only
+relevant on a VTEP. If symmetric routing is configured, this command
+displays the special layer 3 VNIs that are configured per tenant VRF.
 
-The following example from a leaf switch shows two layer 2 VNIs — (10100
-and 10200 —) as well as a layer 3 VNI — (104001). For layer 2 VNIs,The command output also
-shows the
- number of associated MAC and neighbor entries are shown. Tfor layer 2
-VNIs, and the VXLAN
- interface and VRF corresponding to each VNI are also shown.
+The following example from a leaf switch shows two layer 2 VNIs — 10100
+and 10200 — as well as a layer 3 VNI — 104001. For layer 2 VNIs, the
+number of associated MAC and neighbor entries are shown. The VXLAN
+interface and VRF corresponding to each VNI are also shown.
 
-    .
-
-``` 
-cumulus@leaf01:~$ net show evpn vni
-    VNI        Type  VxLAN IF              # MACs   # ARPs   # Remote VTEPs  Tenant VRF                           
-    10200      L2    vni200              8        12       3               vrf1                                 
-    10100      L2    vni100              8        12       3               vrf1                                 
-    104001     L3    vni4001             3        3        n/a             vrf1                                 
+    cumulus@leaf01:~$ net show evpn vni
+    VNI        Type VxLAN IF              # MACs   # ARPs   # Remote VTEPs  Tenant VRF                           
+    10200      L2   vni200              8        12       3               vrf1                                 
+    10100      L2   vni100              8        12       3               vrf1                                 
+    104001     L3   vni4001             3        3        n/a             vrf1                                 
     cumulus@leaf01:~$
 
-You can```
-
-Run the NCLU `net show evpn vni <vni>` command or the vtysh `show evpn
-vni <vni>` command to examine the EVPN information for a specific VNI in 
-detail. The
- following example output shows details for the layer 2 VNI 
-10100 as well as for
- the layer 3 VNI 104001. For the layer 2 VNI, the 
-remote VTEPs which have
-that contain that VNI are shown. For the layer 3 VNI, the 
-router MAC and associated
- layer 2 VNIs are shown. The state of the layer 
-3 VNI depends on the
- state of its associated VRF as well as the states 
-of its underlying
- VXLAN interface and SVI.
+You can examine the EVPN information for a specific VNI in detail. The
+following output shows details for the layer 2 VNI 10100 as well as for
+the layer 3 VNI 104001. For the layer 2 VNI, the remote VTEPs which have
+that VNI are shown. For the layer 3 VNI, the router MAC and associated
+layer 2 VNIs are shown. The state of the layer 3 VNI depends on the
+state of its associated VRF as well as the states of its underlying
+VXLAN interface and SVI.
 
     cumulus@leaf01:~$ net show evpn vni 10100
     VNI: 10100
@@ -2845,8 +1909,7 @@ of its underlying
 
 ### <span>Examine Local and Remote MAC Addresses for a VNI in EVPN</span>
 
-Run the NCLU `net show evpn mac vni <vni>` command or the vtysh `show
-evpn mac vni <vni>` command to examine all local and remote MAC
+Run `net show evpn mac vni <vni>` to examine all local and remote MAC
 addresses for a VNI. This command is only relevant for a layer 2 VNI:
 
     cumulus@leaf01:~$ net show evpn mac vni 10100
@@ -2864,11 +1927,8 @@ addresses for a VNI. This command is only relevant for a layer 2 VNI:
     00:02:00:00:00:0d remote 10.0.0.4            
     cumulus@leaf01:~$
 
-Run the `net 
-
-Run the NCLU `net show evpn mac vni all` command or the vtysh `show evpn 
-mac vni all` command to examine MAC addresses for
- all VNIs.
+Run the `net show evpn mac vni all` command to examine MAC addresses for
+all VNIs.
 
 You can examine the details for a specific MAC addresse or query all
 remote MAC addresses behind a specific VTEP:
@@ -2893,13 +1953,10 @@ remote MAC addresses behind a specific VTEP:
 
 ### <span>Examine Local and Remote Neighbors for a VNI in EVPN</span>
 
-Run the NCLU `net show evpn arp-cache vni <vni>` command or the vtysh
-`show evpn arp-cache vni <vni>` command to examine all local
- and remote 
-neighbors (ARP entries) for a VNI. This command is only
- relevant for a 
-layer 2 VNI and the output shows both IPv4 and IPv6
- neighbor entries:
+Run the `net show evpn arp-cache vni <vni>` command to examine all local
+and remote neighbors (ARP entries) for a VNI. This command is only
+relevant for a layer 2 VNI and the output shows both IPv4 and IPv6
+neighbor entries:
 
     cumulus@leaf01:~$ net show evpn arp-cache vni 10100
     Number of ARPs (local and remote) known for this VNI: 12
@@ -2913,19 +1970,14 @@ layer 2 VNI and the output shows both IPv4 and IPv6
     fe80::200:5eff:fe00:101 local  00:00:5e:00:01:01
     ...
 
-Run the NCLU `net show evpn arp-cache vni all` command or the vtysh
-`show evpn arp-cache vni all` command to examine neighbor
- entries for 
-all VNIs.
+Run the `net show evpn arp-cache vni all` command to examine neighbor
+entries for all VNIs.
 
 ### <span>Examine Remote Router MACs in EVPN</span>
 
-WhenFor symmetric routing is deployed, run the NCLU ` net show evpn rmac vni
- <vni>
- `command or the vtysh ` show evpn rmac vni <vni>  `command to examine 
-the router MACs corresponding to all remote
- VTEPs. This command is only 
-relevant for a layer 3 VNI:
+When symmetric routing is deployed, run the ` net show evpn rmac vni
+<vni>  `command to examine the router MACs corresponding to all remote
+VTEPs. This command is only relevant for a layer 3 VNI:
 
     cumulus@leaf01:~$ net show evpn rmac vni 104001
     Number of Remote RMACs known for this VNI: 3
@@ -2935,22 +1987,16 @@ relevant for a layer 3 VNI:
     00:01:00:00:13:00 10.0.0.3            
     cumulus@leaf01:~$
 
-Run the NCLU ` net show evpn rmac vni all  `command or the vtysh ` show
-evpn rmac vni all  `command to examine router MACs
- for all layer 3 VNIs.
+Run the ` net show evpn rmac vni all  `command to examine router MACs
+for all layer 3 VNIs.
 
 ### <span>Examine Gateway Next Hops in EVPN</span>
 
-WhenFor symmetric routing is deployed, you can run the NCLU `net show evpn
- next-hops vni
-<vni>` command or the vtysh `show evpn next-hops vni <vni>` command to 
-examine the gateway next hops. This
- command is only relevant for a layer 
-3 VNI. In general, the gateway next
- hop IP addresses correspond to the 
-remote VTEP IP addresses. Remote host
- and prefix routes are installed 
-using these next hops:
+When symmetric routing is deployed, you can run the `net show evpn
+next-hops vni <vni>` command to examine the gateway next hops. This
+command is only relevant for a layer 3 VNI. In general, the gateway next
+hop IP addresses correspond to the remote VTEP IP addresses. Remote host
+and prefix routes are installed using these next hops:
 
     cumulus@leaf01:~$ net show evpn next-hops vni 104001
     Number of NH Neighbors known for this VNI: 3
@@ -2960,10 +2006,8 @@ using these next hops:
     10.0.0.2       00:01:00:00:12:00
     cumulus@leaf01:~$
 
-Run the NCLU `net show evpn next-hops vni` `all` command or the vtysh
-`show evpn next-hops vni` `all` command to examine gateway
- next hops for 
-all layer 3 VNIs.
+Run the `net show evpn next-hops vni` all command to examine gateway
+next hops for all layer 3 VNIs.
 
 You can query a specific next hop; the output displays the remote host
 and prefix routes through this next hop:
@@ -2979,16 +2023,13 @@ and prefix routes through this next hop:
         172.16.130.44/32
     cumulus@leaf01:~$
 
-### <span>DisplayShow the VRF Routing Table in FRR</span>
+### <span>Display the VRF Routing Table in FRR</span>
 
-Run the `net show route vrf <vrf-name>` command to examine the VRF
+Run the `net show route vrf <vrf-name>` comand to examine the VRF
 routing table. This command is not specific to EVPN. In the context of
- EVPN, this command is relevant when for
-symmetric routing is deployed and
-can be used to verify that remote host and prefix routes are 
-installed
- in the VRF routing table and point to the appropriate gateway 
-next hop.
+EVPN, this command is relevant when symmetric routing is deployed and
+can be used to verify that remote host and prefix routes are installed
+in the VRF routing table and point to the appropriate gateway next hop.
 
     cumulus@leaf01:~$ net show route vrf vrf1
     show ip route vrf vrf1 
@@ -3016,14 +2057,11 @@ Even if the interface is configured with an IP address, the next hop is
 not on the same subnet as it is usually the IP address of the remote
 VTEP (part of the underlay IP network).
 
-### <span>DisplayShow the Global BGP EVPN Routing Table</span>
+### <span>Display the Global BGP EVPN Routing Table</span>
 
-Run the NCLU `net show bgp l2vpn evpn route` command or the vtysh `show
-bgp l2vpn evpn route` command to display all EVPN
- routes, both local and 
-remote. The routes displayed here are based on RD
- as they are across 
-VNIs and VRFs:
+Run the `net show bgp l2vpn evpn route` command to display all EVPN
+routes, both local and remote. The routes displayed here are based on RD
+as they are across VNIs and VRFs:
 
     cumulus@leaf01:~$ net show bgp l2vpn evpn route 
     BGP table version is 0, local router ID is 10.0.0.1
@@ -3067,22 +2105,18 @@ options are shown below:
         prefix     :  An IPv4 or IPv6 prefix
     cumulus@leaf01:~$
 
-### <span>DisplayShow a Specific EVPN Route</span>
+### <span>Display a Specific EVPN Route</span>
 
-To drill down on a specific route for more information, run the NCLU
-`net
- show bgp l2vpn evpn route rd <rd-value>` command or the vtysh `show
-bgp l2vpn evpn route rd <rd-value>` command. This command displays
- all 
-EVPN routes with that RD and with the path attribute details for
- each 
-path. Additional filtering is possible based on route type or by
+To drill down on a specific route for more information, run the `net
+show bgp l2vpn evpn route rd <rd-value>` command. This command displays
+all EVPN routes with that RD and with the path attribute details for
+each path. Additional filtering is possible based on route type or by
 specifying the MAC and/or IP address. The following example shows a
 specific MAC/IP route. The output shows that this remote host is behind
 VTEP 10.0.0.4 and is reachable through two paths; one through either
-spine switch. This example is from a symmetric routing deploymentconfiguration, so
+spine switch. This example is from a symmetric routing deployment, so
 the route shows both the layer 2 VNI (10200) and the layer 3 VNI
-(104001), as well as the EVPN route target attributes corresponding to
+(104001) as well as the EVPN route target attributes corresponding to
 each and the associated router MAC address.
 
     cumulus@leaf01:~$ net show bgp l2vpn evpn route rd 10.0.0.4:3 mac 00:02:00:00:00:10 ip 172.16.130.44
@@ -3119,7 +2153,7 @@ each and the associated router MAC address.
 
   - If the remote host is dual attached, the next hop for the EVPN route
     is the anycast IP address of the remote
-    [MLAG](/version/cumulus-linux-37740/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+    [MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
     pair, when MLAG is active.
 
 {{%/notice%}}
@@ -3154,7 +2188,7 @@ This route is learned through two paths, one through each spine switch.
     Displayed 1 prefixes (2 paths) with this RD (of requested type)
     cumulus@leaf01:~$
 
-### <span>DisplayShow the per-VNI EVPN Routing Table</span>
+### <span>Display the per-VNI EVPN Routing Table</span>
 
 Received EVPN routes are maintained in the global EVPN routing table
 (described above), even if there are no appropriate local VNIs to
@@ -3192,21 +2226,14 @@ route vni <vni>` command:
 To display the VNI routing table for all VNIs, run the `net show bgp
 l2vpn evpn route vni all` command.
 
-### <span>DisplayShow the per-VRF BGP Routing Table</span>
+### <span>Display the per-VRF BGP Routing Table</span>
 
-WhenFor symmetric routing is deployed, received type-2 and type-5 routes
- are imported 
-into the VRF routing table (against the corresponding
- address-family: 
-IPv4 unicast or IPv6 unicast) based on a match on the
- route target 
-attributes. You can Run the NCLU `net show bgp vrf <vrf-name> ipv4 unicast`
-command or the `net show bgp vrf <vrf-name> ipv6 unicast` command to
-examine the BGP's VRF routing table using
-the `net . The equivalent vtysh commands are
-`show bgp vrf <vrf-name> ipv4 unicast` command or the `netand`  show
- bgp vrf <vrf-name> 
-ipv6 unicast ` command.
+When symmetric routing is deployed, received type-2 and type-5 routes
+are imported into the VRF routing table (against the corresponding
+address-family: IPv4 unicast or IPv6 unicast) based on a match on the
+route target attributes. You can examine BGP's VRF routing table using
+the `net show bgp vrf <vrf-name> ipv4 unicast` command or the `net show
+bgp vrf <vrf-name> ipv6 unicast` command.
 
     cumulus@leaf01:~$ net show bgp vrf vrf1 ipv4 unicast 
     BGP table version is 8, local router ID is 172.16.120.250
@@ -3240,9 +2267,8 @@ associates a MAC Mobility (MM) extended community attribute of sequence
 number 1, with the type-2 route for that MAC. From there, each time this
 MAC moves to a new VTEP, the MM sequence number increments by 1. You can
 examine the MM sequence number associated with a MAC's type-2 route with
-the NCLU `net show bgp l2vpn evpn route vni <vni> mac <mac>` command or
-the vtysh `show bgp l2vpn evpn route vni <vni> mac <mac>` command. The
-sexample output below shows the type-2 route for a MAC that has moved
+the `net show bgp l2vpn evpn route vni <vni> mac <mac>` command. The
+sample output below shows the type-2 route for a MAC that has moved
 three times:
 
     cumulus@switch:~$ net show bgp l2vpn evpn route vni 10109 mac 00:02:22:22:22:02
@@ -3263,9 +2289,7 @@ three times:
 
 You can identify static or *sticky* MACs in EVPN by the presence of
 `MM:0, sticky MAC` in the Extended Community line of the output from
- the
-NCLU `net show bgp l2vpn evpn route vni <vni> mac <mac>:` command or the
-vtysh `show bgp l2vpn evpn route vni <vni> mac <mac>` command.
+`net show bgp l2vpn evpn route vni <vni> mac <mac>:`
 
     cumulus@switch:~$ net show bgp l2vpn evpn route vni 10101 mac 00:02:00:00:00:01
     BGP routing table entry for [2]:[0]:[0]:[48]:[00:02:00:00:00:01]
@@ -3299,52 +2323,41 @@ are as follows:
   - `debug bgp zebra` traces interactions between BGP and zebra for EVPN
     (and other) routes.
 
-## <span id="src-83627326455_EthernetVirtualPrivateNetwork-EVPN-caveats" class="confluence-anchor-link"></span><span>Caveats</span>
+## <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-caveats" class="confluence-anchor-link"></span><span>Caveats</span>
 
 The following caveats apply to EVPN in this version of Cumulus Linux:
 
   - When EVPN is enabled on a switch (VTEP), all locally defined VNIs on
-    that
-    switch and other information (such as MAC addresses) pertaining
-    to them are advertised
-    to EVPN peers. There is no provision to only
+    that switch and other information (such as MAC addresses) pertaining
+    to them are advertised to EVPN peers. There is no provision to only
     announce certain VNIs.
 
   - In a [VXLAN
-    active-active](/version/cumulus-linux-37740/Network-Virtualization/VXLAN-Active-Active-Mode)
+    active-active](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Active-Active-Mode)
     configuration, ARPs are sometimes *not* suppressed even if ARP
     suppression is enabled. This is because the neighbor entries are not
     synchronized between the two switches operating in active-active
     mode by a control plane. This has no impact on forwarding.
 
-  - You must configure the overlay (tenants) in a specific a VRF(s) and
+  - You must configure the overlay (tenants) in a specific VRF(s) and
     separate from the underlay, which resides in the default VRF. A
-    layerLayer
-    3 VNI mapping for the default VRF is not supported.
+    layer 3 VNI mapping for the default VRF is not supported.
 
   - On the Broadcom Trident II+, Trident 3, and Maverick-based switch,
     when a lookup is done after VXLAN decapsulation on the
-    external-facing switch (exit/the exit or border leaf), the switch does not
-    not rewrite the MAC addresses or TTL; f. For through traffic, packets are
-    are dropped by the next hop instead of correctly routing from a
-    VXLAN
+    external-facing switch (exit/border leaf), the switch does not
+    rewrite the MAC addresses or TTL; for through traffic, packets are
+    dropped by the next hop instead of correctly routing from a VXLAN
     overlay network into a non-VXLAN external network (such as the
     Internet). This applies to all forms of VXLAN routing (centralized,
-    asymmetric, and symmetric) and affects all traffic from VXLAN
-    overlay
+    asymmetric and symmetric) and affects all traffic from VXLAN overlay
     hosts that need to be routed after VXLAN decapsulation on an
-    exit/ or border leaf,. This includinges traffic destined to external
-    networks
-    (through traffic) and traffic destined to the exit leaf SVI
-    address.
+    exit/border leaf, including traffic destined to external networks
+    (through traffic) and traffic destined to the exit leaf SVI address.
     
-    To work around this issue, modify the external-facing
-    interface for
-    each VLAN sub-interface on the exit leaf by creating a
-    temporary VNI
+    To work around this issue, modify the external-facing interface for
+    each VLAN sub-interface on the exit leaf by creating a temporary VNI
     and associating it with the existing VLAN ID.
-    
-    <summary>Example Workaround </summary>
     
     For example, if the expected interface configuration is:
     
@@ -3353,20 +2366,20 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
             vrf vrf1
             address 10.0.0.2/24
         # where swp3 is the external facing port and swp3.2001 is the VLAN sub-interface
-          
+         
         auto bridge
         iface bridge
             bridge-vlan-aware yes
             bridge ports vx-4001
             bridge-vids 4001
-          
+         
         auto vx-4001
         iface vx-4001
             vxlan-id 4001
             <... usual vxlan config ...>
             bridge-access 4001
         # where vnid 4001 represents the L3 VNI
-          
+         
         auto vlan4001
         iface vlan4001
             vlan-id 4001
@@ -3379,7 +2392,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
         iface swp3
             bridge-access 2001
         # associate the port (swp3) with bridge 2001
-          
+         
         auto bridge
         iface bridge
             bridge-vlan-aware yes
@@ -3389,7 +2402,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
         # this is now bridging the port (swp3), the VNI (vx-4001),
         # and the new temporary VNI (vx-16000000)
         # the bridge VLAN ID is now 2001
-          
+         
         auto vlan2001
         iface vlan2001
             vlan-id 2001
@@ -3397,28 +2410,28 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
             address 10.0.0.2/24
             vlan-raw-device bridge
         # create a VLAN 2001 with the associated VRF and IP address
-          
+         
         auto vx-16000000
         iface vx-16000000
             vxlan-id 16000000
             bridge-access 2001
             <... usual vxlan config ...>
         # associate the temporary VNI (vx-16000000) with bridge 2001
-          
+         
         auto vx-4001
         iface vx-4001
             vxlan-id 4001
             <... usual vxlan config ...>
             bridge-access 4001
         # where vnid 4001 represents the L3 VNI
-          
+         
         auto vlan4001
         iface vlan4001
             vlan-id 4001
             vlan-raw-device bridge
             vrf vrf1
     
-    If you use an MLAG pair is used instead of a single exit/border leaf, add
+    If an MLAG pair is used instead of a single exit/border leaf, add
     the same temporary VNIs on both switches of the MLAG pair.
 
 ## <span>Example Configurations</span>
@@ -3436,7 +2449,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
 The following example configuration shows a basic Clos topology for
 bridging.
 
-{{% imgOld 12 %}}
+{{% imgOld 1 %}}
 
 #### <span>leaf01 and leaf02 Configurations</span>
 
@@ -3554,8 +2567,7 @@ iface vlan1001
     ip-forward off</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf02 /etc/network/interfaces </summary>
+<summary>leaf02 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/network/interfaces 
  
 # This file describes the network interfaces available on your system
@@ -3712,8 +2724,7 @@ line vty
 !</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf02 /etc/frr/frr.conf </summary>
+<summary>leaf02 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/frr/frr.conf
  
 log file /var/log/frr/bgpd.log
@@ -3882,8 +2893,7 @@ iface vlan1001
     ip-forward off</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf04 /etc/network/interfaces </summary>
+<summary>leaf04 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf04:~$ cat /etc/network/interfaces 
  
 # This file describes the network interfaces available on your system
@@ -4041,8 +3051,7 @@ line vty
 !</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf04 /etc/frr/frr.conf </summary>
+<summary>leaf04 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@leaf04:~$ cat /etc/frr/frr.conf
  
 log file /var/log/frr/bgpd.log
@@ -4142,8 +3151,7 @@ iface downlink-4
     mtu  9202</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>spine02 /etc/network/interfaces </summary>
+<summary>spine02 /etc/network/interfaces </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/network/interfaces
  
 # This file describes the network interfaces available on your system
@@ -4244,8 +3252,7 @@ line vty
 !</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>spine02 /etc/frr/frr.conf </summary>
+<summary>spine02 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/frr/frr.conf
  
 log file /var/log/frr/bgpd.log
@@ -4313,7 +3320,7 @@ line vty
 The following example configuration shows a basic Clos topology with
 centralized routing. MLAG is configured between leaf switches.
 
-{{% imgOld 23 %}}
+{{% imgOld 2 %}}
 
 #### <span>leaf01 and leaf02 Configurations</span>
 
@@ -4480,8 +3487,7 @@ iface vlan1003
     vrf vrf2</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf02 /etc/network/interfaces </summary>
+<summary>leaf02 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/network/interfaces
  
 # This file describes the network interfaces available on your system
@@ -4688,8 +3694,7 @@ line vty
 ! </code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf02 /etc/frr/frr.conf </summary>
+<summary>leaf02 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/frr/frr.conf 
  
 log file /var/log/frr/bgpd.log
@@ -4895,8 +3900,7 @@ iface vlan1003
     ip-forward off </code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf04 /etc/network/interfaces </summary>
+<summary>leaf04 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf04:~$ cat /etc/network/interfaces
  
 # This file describes the network interfaces available on your system
@@ -5090,8 +4094,7 @@ line vty
 ! </code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf04 /etc/frr/frr.conf </summary>
+<summary>leaf04 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@leaf04:~$ cat /etc/frr/frr.conf 
  
 log file /var/log/frr/bgpd.log
@@ -5192,8 +4195,7 @@ iface downlink-4
     mtu  9202</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>spine02 /etc/network/interfaces </summary>
+<summary>spine02 /etc/network/interfaces </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/network/interfaces
  
 # This file describes the network interfaces available on your system
@@ -5294,8 +4296,7 @@ line vty
 ! </code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>spine02 /etc/frr/frr.conf </summary>
+<summary>spine02 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/frr/frr.conf 
  
 log file /var/log/frr/bgpd.log
@@ -5363,7 +4364,7 @@ line vty
 The following example configuration is a basic Clos topology with EVPN
 asymmetric routing. MLAG is configured between leaf switches.
 
-{{% imgOld 34 %}}
+{{% imgOld 3 %}}
 
 #### <span>leaf01 and leaf02 Configurations</span>
 
@@ -5530,8 +4531,7 @@ iface vlan1003
     vrf vrf2</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf02 /etc/network/interfaces </summary>
+<summary>leaf02 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/network/interfaces
  
 # This file describes the network interfaces available on your system
@@ -5737,8 +4737,7 @@ line vty
 !</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf02 /etc/frr/frr.conf </summary>
+<summary>leaf02 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/frr/frr.conf
  
 log file /var/log/frr/bgpd.log
@@ -5955,8 +4954,7 @@ iface vlan1003
     vrf vrf2</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf04 /etc/network/interfaces </summary>
+<summary>leaf04 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf04:~$ cat /etc/network/interfaces
  
 # This file describes the network interfaces available on your system
@@ -6162,8 +5160,7 @@ line vty
 ! </code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf04 /etc/frr/frr.conf </summary>
+<summary>leaf04 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@leaf04:~$ cat /etc/frr/frr.conf 
  
 log file /var/log/frr/bgpd.log
@@ -6263,8 +5260,7 @@ iface downlink-4
     mtu  9202</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>spine02 /etc/network/interfaces </summary>
+<summary>spine02 /etc/network/interfaces </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/network/interfaces
  
 # This file describes the network interfaces available on your system
@@ -6365,8 +5361,7 @@ line vty
 ! </code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>spine02 /etc/frr/frr.conf </summary>
+<summary>spine02 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/frr/frr.conf
  
 log file /var/log/frr/bgpd.log
@@ -6436,7 +5431,7 @@ symmetric routing with external prefix (type-5) routing via dual,
 non-MLAG exit leafs connected to an edge router. Here is the topology
 diagram:
 
-{{% imgOld 45 %}}
+{{% imgOld 4 %}}
 
 #### <span>leaf01 and leaf02 Configurations</span>
 
@@ -6570,8 +5565,7 @@ iface vlan4002
     vrf vrf2</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf02 /etc/network/interfaces </summary>
+<summary>leaf02 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/network/interfaces
  
 # This file describes the network interfaces available on your system
@@ -6739,8 +5733,7 @@ line vty
 !</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf02 /etc/frr/frr.conf </summary>
+<summary>leaf02 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/frr/frr.conf 
  
 log file /var/log/frr/frr.log
@@ -6919,8 +5912,7 @@ iface vlan4002
     vrf vrf2</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf04 /etc/network/interfaces </summary>
+<summary>leaf04 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf04:~$ cat /etc/network/interfaces
  
 # This file describes the network interfaces available on your system
@@ -7088,8 +6080,7 @@ line vty
 !</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>leaf04 /etc/frr/frr.conf </summary>
+<summary>leaf04 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@leaf04:~$ cat /etc/frr/frr.conf 
  
 log file /var/log/frr/frr.log
@@ -7198,8 +6189,7 @@ auto swp6
 iface swp6</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>spine02 /etc/network/interfaces </summary>
+<summary>spine02 /etc/network/interfaces </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/network/interfaces
  
 # This file describes the network interfaces available on your system
@@ -7283,8 +6273,7 @@ line vty
 !</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>spine02 /etc/frr/frr.conf </summary>
+<summary>spine02 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/frr/frr.conf 
  
 log file /var/log/frr/frr.log
@@ -7458,8 +6447,6 @@ iface vlan4002
     vlan-id 4002
     vlan-raw-device bridge
     vrf vrf2
- 
- 
 # External-facing L3 VLAN interface per tenant (towards WAN edge)
 #auto swp1s2.4001
 #iface swp1s2.4001
@@ -7502,8 +6489,7 @@ iface vni16002
     bridge-access 2002</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>border-leaf02 /etc/network/interfaces </summary>
+<summary>border-leaf02 /etc/network/interfaces </summary>
 <pre><code>cumulus@border-leaf02:~$ cat /etc/network/interfaces
  
 # This file describes the network interfaces available on your system
@@ -7695,8 +6681,6 @@ router bgp 65005
  neighbor SPINE timers 1200 4800
  neighbor swp1s0 interface peer-group SPINE
  neighbor swp1s1 interface peer-group SPINE
- neighbor 172.16.100.1 remote-as external
- neighbor 172.16.100.5 remote-as external
  !
  address-family ipv4 unicast
   network 10.0.0.5/32
@@ -7736,8 +6720,7 @@ line vty
 !</code></pre>
 </details></td>
 <td><details>
-</td>
-<td><summary>border-leaf02 /etc/frr/frr.conf </summary>
+<summary>border-leaf02 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@border-leaf02:~$ cat /etc/frr/frr.conf 
  
 log file /var/log/frr/frr.log
@@ -7766,8 +6749,6 @@ router bgp 65005
  neighbor SPINE timers 10 30
  neighbor swp1 interface peer-group SPINE
  neighbor swp2 interface peer-group SPINE
- neighbor 172.16.101.1 remote-as external
- neighbor 172.16.101.5 remote-as external
  !
  address-family ipv4 unicast
   network 10.0.0.6/32
@@ -7855,13 +6836,13 @@ iface swp1.2002
 auto swp2
 iface swp2
  
-auto swp2.42001
-iface swp2.42001
-    address 172.16.1001.1/24
+auto swp2.4001
+iface swp2.4001
+    address 172.16.100.1/24
  
-auto swp2.42002
-iface swp2.42002
-    address 172.16.1001.5/24
+auto swp2.4002
+iface swp2.4002
+    address 172.16.100.5/24
  
 auto swp3
 iface swp3
@@ -7895,8 +6876,8 @@ router bgp 65200
  bgp router-id 120.0.0.1
  neighbor 172.16.100.2 remote-as external
  neighbor 172.16.100.6 remote-as external
- neighbor 172.16.1001.2 remote-as external
- neighbor 172.16.1001.6 remote-as external
+ neighbor 172.16.100.2 remote-as external
+ neighbor 172.16.100.6 remote-as external
  !
  address-family ipv4 unicast
   redistribute connected route-map HOST_ALLOW
@@ -7927,8 +6908,3 @@ line vty
 <footer id="ht-footer">
 
 </footer>
-
-</details>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNjA2MzQ4NF19
--->

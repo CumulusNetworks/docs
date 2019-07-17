@@ -1,15 +1,15 @@
 ---
 title: Configuring switchd
 author: Cumulus Networks
-weight: 731
+weight: 73
 aliases:
- - /display/CL3740/Configuring-switchd
- - /pages/viewpage.action?pageId=83625616282
-pageID: 83625616282
+ - /display/CL37/Configuring-switchd
+ - /pages/viewpage.action?pageId=8362561
+pageID: 8362561
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 `switchd` is the daemon at the heart of Cumulus Linux. It communicates
 between the switch and Cumulus Linux, and all the applications running
@@ -21,11 +21,9 @@ The `switchd` configuration is stored in `/etc/cumulus/switchd.conf`.
 
 `switchd` also exports a file system, mounted on `/cumulus/switchd`,
 that presents all the `switchd` configuration options as a series of
-files arranged in a tree structure. You can seTo shoe the contents by parsing
-the `switchd` tree; run, run the `tree 
-/cumulus/switchd`. The output below is command. The following example shows output for
-a  a
-switch with one switch port configured:
+files arranged in a tree structure. You can see the contents by parsing
+the `switchd` tree; run `tree /cumulus/switchd`. The output below is for
+a switch with one switch port configured:
 
     cumulus@switch:~$ sudo tree /cumulus/switchd/
     /cumulus/switchd/
@@ -96,7 +94,7 @@ switch with one switch port configured:
 You can use `cl-cfg` to configure many `switchd` parameters at runtime
 (like ACLs, interfaces, and route table utilization), which minimizes
 disruption to your running switch. However, some options are read only
-and you cannot be configured them at runtime.
+and cannot be configured at runtime.
 
 For example, to see data related to routes, run:
 
@@ -118,37 +116,32 @@ To verify that the value changed, use `grep`:
 
 {{%notice note%}}
 
-You can getobtain some of this information by running `cl-resource-query`;
-thoughwever, you cannot update the `switchd` configuration with ithis
-command.
+You can get some of this information by running `cl-resource-query`;
+though you cannot update the `switchd` configuration with it.
 
 {{%/notice%}}
 
-## <span id="src-83625616282_Configuringswitchd-restartswitchd" class="confluence-anchor-link"></span><span>Restart switchd</span>
+## <span id="src-8362561_Configuringswitchd-restartswitchd" class="confluence-anchor-link"></span><span>Restart switchd</span>
 
 Whenever you modify any `switchd` hardware configuration file (typically
-changingfor
-example, you update any `*.conf` file that requires making a change to 
-the
- switching hardware, like `/etc/cumulus/datapath/traffic.conf`), you 
-must
- restart the `switchd` service for the change to take effect:
+changing any `*.conf` file that requires making a change to the
+switching hardware, like `/etc/cumulus/datapath/traffic.conf`), you must
+restart `switchd` for the change to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
 {{%notice note%}}
 
 You do not have to restart the `switchd` service when you update a
-network interface configuration (that is, editfor example, when you edit the
-`/etc/network/interfaces` file).
+network interface configuration (that is, edit
+`/etc/network/interfaces`).
 
 {{%/notice%}}
 
 {{%notice warning%}}
 
-Restarting the `switchd` service causes all network ports to reset in 
-addition to
- resetting the switch hardware configuration.
+Restarting `switchd` causes all network ports to reset in addition to
+resetting the switch hardware configuration.
 
 {{%/notice%}}
 
@@ -159,6 +152,3 @@ addition to
 <footer id="ht-footer">
 
 </footer>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbNDk0NTEzNDQyXX0=
--->

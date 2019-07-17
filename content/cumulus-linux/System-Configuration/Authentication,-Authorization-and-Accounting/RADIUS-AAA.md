@@ -1,15 +1,15 @@
 ---
 title: RADIUS AAA
 author: Cumulus Networks
-weight: 2837
+weight: 283
 aliases:
- - /display/CL3740/RADIUS-AAA
- - /pages/viewpage.action?pageId=83625596280
-pageID: 83625596280
+ - /display/CL37/RADIUS-AAA
+ - /pages/viewpage.action?pageId=8362559
+pageID: 8362559
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 Cumulus Networks offers add-on packages that enable
 [RADIUS](https://en.wikipedia.org/wiki/RADIUS) users to log in to
@@ -34,7 +34,7 @@ After installation is complete, either reboot the switch or run the
 The `libpam-radius-auth` package supplied with the Cumulus Linux RADIUS
 client is a newer version than the one in [Debian
 Jessie](https://packages.debian.org/jessie/libpam-radius-auth). This
-package has addedcontains support for IPv6, the `src_ip` option described below,
+package has added support for IPv6, the `src_ip` option described below,
 as well as a number of bug fixes and minor features. The package also
 includes VRF support, provides man pages describing the PAM and RADIUS
 configuration, and sets the `SUDO_PROMPT` environment variable to the
@@ -77,9 +77,8 @@ To configure the RADIUS client, edit the `/etc/pam_radius_auth.conf`
 file:
 
 1.  Add the hostname or IP address of at least one RADIUS server (such
-    as a [*freeradius*](http://freeradius.org/) server on Linux), and the
-    the shared secret used to authenticate and encrypt communication
-    with
+    as a [*freeradius*](http://freeradius.org/) server on Linux) and the
+    shared secret used to authenticate and encrypt communication with
     each server.
     
     {{%notice tip%}}
@@ -87,7 +86,7 @@ file:
     The hostname of the switch must be resolvable to an IP address,
     which, in general, is fixed in DNS. If for some reason you cannot
     find the hostname in DNS, you can add the hostname to the
-    `/etc/hosts` file manually. However, this can cause problems becaussince
+    `/etc/hosts` file manually. However, this can cause problems because
     the IP address is usually assigned by DHCP, which can change at any
     time.
     
@@ -95,7 +94,7 @@ file:
     
     Multiple server configuration lines are verified in the order
     listed. Other than memory, there is no limit to the number of RADIUS
-    servers you wcant to use.
+    servers you want to use.
     
     The server port number or name is optional. The system looks up the
     port in the `/etc/services` file. However, you can override the
@@ -111,7 +110,7 @@ file:
 
 4.  Set the `vrf-name` field. This is typically set to *mgmt* if you are
     using a [management
-    VRF](/version/cumulus-linux-37740/Layer-3/Management-VRF). You cannot
+    VRF](/version/cumulus-linux-377/Layer-3/Management-VRF). You cannot
     specify more than one VRF.
 
 The configuration file includes the `mapped_priv_user` field that sets
@@ -230,7 +229,7 @@ To configure local fallback authentication:
 To verify that the RADIUS client is configured correctly, log in as a
 non-privileged user and run a `net add interface` command.
 
-In this example, the `ops` user is not a priveileged RADIUS user so they
+In this example, the `ops` user is not a priveleged RADIUS user so they
 cannot add an interface.
 
     ops@leaf01:~$ net add interface swp1
@@ -259,7 +258,7 @@ privilege level 15) so is able to add interface swp1.
     +iface swp1
     ...
 
-## <span id="src-83625596280_RADIUSAAA-remove" class="confluence-anchor-link"></span><span>Remove RADIUS Client Packages</span>
+## <span id="src-8362559_RADIUSAAA-remove" class="confluence-anchor-link"></span><span>Remove RADIUS Client Packages</span>
 
 Remove the RADIUS packages with the following command:
 
@@ -322,7 +321,7 @@ mapping file; this might be the first or second user that logged in.
 ## <span>Related Information</span>
 
   - [TACACS+
-    client](/version/cumulus-linux-37740/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
+    client](/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
 
   - [Cumulus Networks RADIUS demo on
     GitHub](https://github.com/CumulusNetworks/cldemo-radius)
@@ -337,6 +336,3 @@ mapping file; this might be the first or second user that logged in.
 <footer id="ht-footer">
 
 </footer>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbNTQ0MTkyMjA5XX0=
--->

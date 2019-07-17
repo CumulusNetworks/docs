@@ -3,13 +3,13 @@ title: Buffer and Queue Management
 author: Cumulus Networks
 weight: 93
 aliases:
- - /display/CL3740/Buffer-and-Queue-Management
- - /pages/viewpage.action?pageId=83630326755
-pageID: 83630326755
+ - /display/CL37/Buffer-and-Queue-Management
+ - /pages/viewpage.action?pageId=8363032
+pageID: 8363032
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 <details>
 
@@ -54,7 +54,7 @@ which are assigned equal scheduling weights.
 
 Datapath configuration takes effect when you initialize `switchd`.
 Changes to the `traffic.conf` file require you to [restart the
-`switchd`](Configuring-switchd.html#src-83625616282_Configuringswitchd-restartswitchd)
+`switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd)
 service.
 
 {{%notice note%}}
@@ -72,7 +72,7 @@ platforms only:
 
 If you modify the configuration in the
 `/etc/cumulus/datapath/traffic.conf` file, you must [restart
-`switchd`](Configuring-switchd.html#src-83625616282_Configuringswitchd-restartswitchd)
+`switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd)
 for the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -106,10 +106,10 @@ Keep in mind the following about the configuration:
 
   - Per-port remark packet fields and mapping apply to the designated
     set of ports.
-<details>
+
 <summary>Click to view sample traffic.conf file ... </summary>
 
-    cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
+    cumulus@switch:~$ cat /etc/cumulus/datapath/traffic.conf
     # 
     # /etc/cumulus/datapath/traffic.conf
     #                                                                              
@@ -207,8 +207,7 @@ Keep in mind the following about the configuration:
     # internal cos values {0..7}                                  
     priority_group.control.cos_list = [7]                         
     priority_group.service.cos_list = [2]                         
-    priority_group.bulk.cos_list = [0,1,3,4,5,6]
- 
+    priority_group.bulk.cos_list = [0,1,3,4,5,6] 
      
     # to configure priority flow control on a group of ports:
     # -- assign cos value(s) to the cos list
@@ -249,8 +248,7 @@ Keep in mind the following about the configuration:
     # link_pause.pause_port_group.tx_enable = true                   
       
     # scheduling algorithm: algorithm values = {dwrr}
-    scheduling.algorithm = dwrr
- 
+    scheduling.algorithm = dwrr 
       
     # traffic group scheduling weight
     # weight values = {0..127}     
@@ -279,8 +277,7 @@ Keep in mind the following about the configuration:
     # Set sflow/sample ingress cpu packet rate and burst in packets/sec 
     # Values: {0..16384} 
     #sflow.rate = 16384  
-    #sflow.burst = 16384
- 
+    #sflow.burst = 16384 
      
     #Specify the maximum number of paths per route entry. 
     #  Maximum paths supported is 200. 
@@ -304,7 +301,7 @@ Keep in mind the following about the configuration:
     #         guide for more details
     #
     #forwarding_table.profile = default
-</details>
+
 {{%notice note%}}
 
 On Mellanox Spectrum switches, packet priority remark must be enabled on
@@ -384,7 +381,7 @@ TCAM slices in the hardware.
 To put the rule in the mangle table, include `-t mangle`; to put the
 rule in the filter table, omit `-t mangle`.
 
-## <span id="src-83630326755_BufferandQueueManagement-pfc" class="confluence-anchor-link"></span><span>Configure Priority Flow Control</span>
+## <span id="src-8363032_BufferandQueueManagement-pfc" class="confluence-anchor-link"></span><span>Configure Priority Flow Control</span>
 
 *Priority flow control*, as defined in the [IEEE 802.1Qbb
 standard](http://www.ieee802.org/1/pages/802.1bb.html), provides a
@@ -560,12 +557,12 @@ sequences of contiguous ports; you can see which ports are contiguous in
         ...
 
 [Restart
-`switchd`](Configuring-switchd.html#src-83625616282_Configuringswitchd-restartswitchd)
+`switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd)
 to allow the PFC configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span id="src-83630326755_BufferandQueueManagement-pause" class="confluence-anchor-link"></span><span>Configure Link Pause</span>
+## <span id="src-8363032_BufferandQueueManagement-pause" class="confluence-anchor-link"></span><span>Configure Link Pause</span>
 
 The PAUSE frame is a flow control mechanism that halts the transmission
 of the transmitter for a specified period of time. A server or other
@@ -619,12 +616,12 @@ link_pause.pause_port_group.tx_enable = true
 ```
 
 [Restart
-`switchd`](Configuring-switchd.html#src-83625616282_Configuringswitchd-restartswitchd)
+`switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd)
 to allow link pause configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span id="src-83630326755_BufferandQueueManagement-cut_through_mode" class="confluence-anchor-link"></span><span>Configure Cut-through Mode and Store and Forward Switching</span>
+## <span id="src-8363032_BufferandQueueManagement-cut_through_mode" class="confluence-anchor-link"></span><span>Configure Cut-through Mode and Store and Forward Switching</span>
 
 Cut-through mode is disabled in Cumulus Linux by default on switches
 with Broadcom ASICs. With cut-though mode enabled and link pause is
@@ -674,7 +671,7 @@ cut-through mode but does **not** support store and forward switching.
 
 {{%/notice%}}
 
-## <span id="src-83630326755_BufferandQueueManagement-ecn" class="confluence-anchor-link"></span><span>Configure Explicit Congestion Notification</span>
+## <span id="src-8363032_BufferandQueueManagement-ecn" class="confluence-anchor-link"></span><span>Configure Explicit Congestion Notification</span>
 
 *Explicit Congestion Notification* (ECN) is defined by
 [RFC 3168](https://tools.ietf.org/html/rfc3168). ECN gives a Cumulus
@@ -775,21 +772,20 @@ through swp4 and swp6:
      ecn.ecn_port_group.probability = 100
 
 [Restart
-`switchd`](Configuring-switchd.html#src-83625616282_Configuringswitchd-restartswitchd)
+`switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd)
 to allow the ECN configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
 ## <span>Check Interface Buffer Status</span>
 
-  - On Mellanox switches, you can collect a fine-grained history of
-    queue
- lengths using histograms maintained by the ASIC; see the [ASIC
-    monitoring
-    chapter](/version/cumulus-linux-37740/Monitoring-and-Troubleshooting/ASIC-Monitoring)
-    for details.
+On Mellanox switches, you can collect a fine-grained history of queue
+lengths using histograms maintained by the ASIC; see the [ASIC
+monitoring
+chapter](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/ASIC-Monitoring)
+for details.
 
-  - On Broadcom switches, the buffer status is not visible currently.
+On Broadcom switches, the buffer status is not visible currently.
 
 ## <span>Related Information</span>
 
@@ -805,6 +801,3 @@ to allow the ECN configuration changes to take effect:
 </footer>
 
 </details>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMDk1NzYyMjJdfQ==
--->

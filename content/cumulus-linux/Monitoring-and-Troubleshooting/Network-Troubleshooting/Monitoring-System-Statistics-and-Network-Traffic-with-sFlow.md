@@ -1,43 +1,37 @@
 ---
 title: Monitoring System Statistics and Network Traffic with sFlow
 author: Cumulus Networks
-weight: 47349
+weight: 473
 aliases:
- - /display/CL3740/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow
- - /pages/viewpage.action?pageId=83625976318
-pageID: 83625976318
+ - /display/CL37/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow
+ - /pages/viewpage.action?pageId=8362597
+pageID: 8362597
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
-<details>
-
 [sFlow](http://www.sflow.org/index.php) is a monitoring protocol that
 samples network packets, application operations, and system counters.
 sFlow collects both interface counters and sampled 5-tuple packet
-information, enablingso that you tocan monitor your network traffic as well as
+information, enabling you to monitor your network traffic as well as
 your switch state and performance metrics. An outside server, known as
 an *sFlow collector*, is required to collect and analyze this data.
 
-`hsflowd` is the servicedaemon that samples and sends sFlow data to configured
+`hsflowd` is the service that samples and sends sFlow data to configured
 collectors. By default, `hsflowd` is disabled and does *not* start
 automatically when the switch boots up.
 
 {{%notice note%}}
 
 If you intend to run this service within a
-[VRF](/version/cumulus-linux-37740/Layer-3/Virtual-Routing-and-Forwarding---VRF),
+[VRF](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF),
 including the [management
-VRF](/version/cumulus-linux-37740/Layer-3/Management-VRF), follow [these
-steps](Management-VRF.html#src-83629406664_ManagementVRF-services) for
+VRF](/version/cumulus-linux-377/Layer-3/Management-VRF), follow [these
+steps](Management-VRF.html#src-8362940_ManagementVRF-services) for
 configuring the service.
 
 {{%/notice%}}
-
-<span style="color: #36424a;"> Contents </span>
-
-<summary>This topic describes ... </summary>
 
 ## <span>Configure sFlow</span>
 
@@ -47,7 +41,7 @@ To configure `hsflowd` to send to the designated collectors, either:
 
   - Manually configure the `/etc/hsflowd.conf` file
 
-### <span>Configure sFlow viawith DNS-SD</span>
+### <span>Configure sFlow via DNS-SD</span>
 
 You can configure your DNS zone to advertise the collectors and polling
 information to all interested clients.
@@ -87,7 +81,7 @@ Start the sFlow daemon:
 
     cumulus@switch:~$ sudo systemctl start hsflowd.service
 
-No additional configuration is required in the `/etc/hsflowd.conf` file.
+No additional configuration is required in `/etc/hsflowd.conf`.
 
 ### <span>Manually Configure /etc/hsflowd.conf</span>
 
@@ -149,8 +143,3 @@ article](https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Co
 <footer id="ht-footer">
 
 </footer>
-
-</details>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkyMjU1ODIwNV19
--->

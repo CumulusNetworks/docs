@@ -3,13 +3,13 @@ title: Facebook Voyager Optical Interfaces
 author: Cumulus Networks
 weight: 99
 aliases:
- - /display/CL3740/Facebook-Voyager-Optical-Interfaces
- - /pages/viewpage.action?pageId=83630496771
-pageID: 83630496771
+ - /display/CL37/Facebook-Voyager-Optical-Interfaces
+ - /pages/viewpage.action?pageId=8363049
+pageID: 8363049
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 Facebook Voyager is a Broadcom Tomahawk-based switch with added Dense
 Wave Division Multiplexing (DWDM) ports that can connect to another
@@ -211,7 +211,7 @@ Using NCLU commands is the preferred way to configure the transponder
 modules. However, as an alternative, you can edit the
 `/etc/cumulus/transponders.ini` file to make configuration changes. See
 [Edit the transponder.ini
-file](#src-83630496771_FacebookVoyagerOpticalInterfaces-edit_transponders.ini)
+file](#src-8363049_FacebookVoyagerOpticalInterfaces-edit_transponders.ini)
 below.
 
 {{%/notice%}}
@@ -382,7 +382,7 @@ completion:
 To see a complete list of the frequencies, channels, and wavelengths,
 run the `net show transponder frequency-map` command (described in
 [Display Available
-Frequencies](#src-83630496771_FacebookVoyagerOpticalInterfaces-display_channel_freq)).
+Frequencies](#src-8363049_FacebookVoyagerOpticalInterfaces-display_channel_freq)).
 
 ### <span>Set the Transmit Power</span>
 
@@ -558,7 +558,7 @@ on the L1, L2, L3, and L4 network interfaces:
 To enable loopback on the client interface (internal loopback for DWDM
 testing), edit the `/etc/cumulus/transponders.ini` file. See [Edit the
 transponder.ini
-file](#src-83630496771_FacebookVoyagerOpticalInterfaces-edit_transponders.ini)
+file](#src-8363049_FacebookVoyagerOpticalInterfaces-edit_transponders.ini)
 below
 
 {{%/notice%}}
@@ -692,7 +692,7 @@ format:
                     },
     ...
 
-### <span id="src-83630496771_FacebookVoyagerOpticalInterfaces-display_channel_freq" class="confluence-anchor-link"></span><span>Display Available Channel Frequencies</span>
+### <span id="src-8363049_FacebookVoyagerOpticalInterfaces-display_channel_freq" class="confluence-anchor-link"></span><span>Display Available Channel Frequencies</span>
 
 To display a map of available channel frequencies, numbers, and
 wavelengths, run the `net show transponder frequency-map [json]`
@@ -812,12 +812,12 @@ following command:
             15
     ...
 
-### <span id="src-83630496771_FacebookVoyagerOpticalInterfaces-edit_transponders.ini" class="confluence-anchor-link"></span><span>Edit the transponders.ini File</span>
+### <span id="src-8363049_FacebookVoyagerOpticalInterfaces-edit_transponders.ini" class="confluence-anchor-link"></span><span>Edit the transponders.ini File</span>
 
 As an alternative to using NCLU commands to configure the transponder
 modules (described above), you can edit the
 `/etc/cumulus/transponders.ini` file, then [Initiate a hardware
-update](#src-83630496771_FacebookVoyagerOpticalInterfaces-initiate-hardware-update).
+update](#src-8363049_FacebookVoyagerOpticalInterfaces-initiate-hardware-update).
 
 {{%notice note%}}
 
@@ -2241,7 +2241,7 @@ data from the appropriate network interface, not this attribute.
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-<span id="src-83630496771_FacebookVoyagerOpticalInterfaces-terminalLoopback"></span>`Loopback`
+<span id="src-8363049_FacebookVoyagerOpticalInterfaces-terminalLoopback"></span>`Loopback`
 
 </td>
 
@@ -2287,12 +2287,12 @@ interface group.
     RxTributaryCoupled=0
     Loopback=false
 
-### <span id="src-83630496771_FacebookVoyagerOpticalInterfaces-initiate-hardware-update" class="confluence-anchor-link"></span><span>Initiate a Hardware Update</span>
+### <span id="src-8363049_FacebookVoyagerOpticalInterfaces-initiate-hardware-update" class="confluence-anchor-link"></span><span>Initiate a Hardware Update</span>
 
 After making a change to the `transponders.ini` file, you must program
 the change into the hardware by issuing a `systemd reload` command:
 
-    cumulus@switch:~$ sudo systemctl reload taihost.service
+    sudo systemctl reload taihost.service
 
 Depending on the configuration changes, programming the change into the
 hardware can take a long time to complete (several minutes). The
@@ -2332,6 +2332,3 @@ messages.
 <footer id="ht-footer">
 
 </footer>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIyMTY2MzA5NV19
--->

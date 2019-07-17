@@ -1,25 +1,25 @@
 ---
 title: Monitoring System Hardware
 author: Cumulus Networks
-weight: 21923
+weight: 219
 aliases:
- - /display/CL3740/Monitoring-System-Hardware
- - /pages/viewpage.action?pageId=83625946315
-pageID: 83625946315
+ - /display/CL37/Monitoring-System-Hardware
+ - /pages/viewpage.action?pageId=8362594
+pageID: 8362594
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
-You monitor system hardware using these ways, using following commands and utilities:
+You monitor system hardware in these ways, using:
 
   - `decode-syseeprom`
 
   - `smond``  `
 
-  - `sensors``  `
+  - `sensors`
 
-  - [Net-SNMP](/version/cumulus-linux-37740/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/)
+  - [Net-SNMP](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/)
 
   - watchdog
 
@@ -29,8 +29,7 @@ The `decode-syseeprom` command enables you to retrieve information about
 the switch's EEPROM. If the EEPROM is writable, you can set values on
 the EEPROM.
 
-For exampleThe following is an example. The command output is different on
-different switches:
+For example:
 
     cumulus@switch:~$ decode-syseeprom
     TlvInfo Header:
@@ -54,8 +53,7 @@ different switches:
 
 ### <span>Command Options</span>
 
-Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t
-<target>][-e][-m]`
+Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t]`
 
 | Option       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -63,21 +61,18 @@ Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t
 | \-a          | Prints the base MAC address for switch interfaces.                                                                                                                                                                                                                                                                                                                                                                                                  |
 | \-r          | Prints the number of MACs allocated for switch interfaces.                                                                                                                                                                                                                                                                                                                                                                                          |
 | \-s          | Sets the EEPROM content if the EEPROM is writable. `args` can be supplied in command line in a comma separated list of the form `'<field>=<value>, ...'. ','` and `'='` are illegal characters in field names and values. Fields that are not specified will default to their current values. If `args` are supplied in the command line, they will be written without confirmation. If `args` is empty, the values will be prompted interactively. |
-| \-h, –json   | Displays JSON output.                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | \-t TARGET   | Selects the target EEPROM (`board`, `psu2`, `psu1`) for the read or write operation; default is `board`.                                                                                                                                                                                                                                                                                                                                            |
 | \-e, –serial | Prints the device serial number.                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| \-m          | Prints the base MAC address for management interfaces.                                                                                                                                                                                                                                                                                                                                                                                              |
-| \--init      | Clears and initializes the board EEPROM cache                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 ### <span>Related Commands</span>
 
 You can also use the `dmidecode` command to retrieve hardware
-configuration information that’s been is populated in the BIOS.
+configuration information that’s been populated in the BIOS.
 
 You can use `apt-get` to install the `lshw` program on the switch, which
 also retrieves hardware configuration information.
 
-## <span id="src-83625946315_MonitoringSystemHardware-smond" class="confluence-anchor-link"></span><span>Monitor System Units Using smond</span>
+## <span id="src-8362594_MonitoringSystemHardware-smond" class="confluence-anchor-link"></span><span>Monitor System Units Using smond</span>
 
 The `smond` daemon monitors system units like power supply and fan,
 updates their corresponding LEDs, and logs the change in the state.
@@ -132,8 +127,7 @@ and voltage information:
     PSU2:  OK
     power:8.5 W   (voltages = ['11.98', '11.87'] V currents = ['0.72'] A)
 
-Whereas tThe Penguin Arctica 3200C (Celestica Seastone) does not have this
-sensor:
+Whereas the Penguin Arctica 3200C (Celestica Seastone) does not:
 
     cumulus@cel-sea:~/tmp$ sudo smonctl -v -s PSU1
     PSU1:  OK
@@ -153,18 +147,16 @@ For more information, read `man smond` and `man smonctl`.
 
 ## <span>Monitor Hardware Health Using sensors</span>
 
-TUse the `sensors` command provides a method forto monitoring the health of
- your switch hardware, 
-such as power, temperature and fan speeds. This
- command executes 
-[lm-sensors](https://en.wikipedia.org/wiki/Lm_sensors).
+The `sensors` command provides a method for monitoring the health of
+your switch hardware, such as power, temperature and fan speeds. This
+command executes [lm-sensors](https://en.wikipedia.org/wiki/Lm_sensors).
 
 {{%notice note%}}
 
 Even though you can use the `sensors` command to monitor the health of
 your switch hardware, the `smond` daemon is the recommended method for
 monitoring hardware health. See [Monitor System Units Using
-smond](#src-83625946315_MonitoringSystemHardware-MonitorSystemUnitsUsingsmond)
+smond](#src-8362594_MonitoringSystemHardware-MonitorSystemUnitsUsingsmond)
 above.
 
 {{%/notice%}}
@@ -212,7 +204,7 @@ Usage: `sensors [OPTION]... [CHIP]...`
 | \-A, --no-adapter  | Do not show the adapter for each chip.                                                                                                                        |
 | \--bus-list        | Generate bus statements for `sensors.conf`.                                                                                                                   |
 
-If `[CHIP]` is not specified in the command, all chip info will bermation is
+If `[CHIP]` is not specified in the command, all chip info will be
 printed. Example chip names include:
 
   - lm78-i2c-0-2d \*-i2c-0-2d
@@ -229,19 +221,19 @@ printed. Example chip names include:
 
   - lm78-\*
 
-## <span id="src-83625946315_MonitoringSystemHardware-snmp" class="confluence-anchor-link"></span><span>Monitor Switch Hardware Using SNMP</span>
+## <span id="src-8362594_MonitoringSystemHardware-snmp" class="confluence-anchor-link"></span><span>Monitor Switch Hardware Using SNMP</span>
 
 The Net-SNMP documentation is discussed
-[here](/version/cumulus-linux-37740/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/).
+[here](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/).
 
-## <span id="src-83625946315_MonitoringSystemHardware-watchdog" class="confluence-anchor-link"></span><span>Keep the Switch Alive Using the Hardware Watchdog</span>
+## <span id="src-8362594_MonitoringSystemHardware-watchdog" class="confluence-anchor-link"></span><span>Keep the Switch Alive Using the Hardware Watchdog</span>
 
 Cumulus Linux includes a simplified version of the ` wd_keepalive(8)
  `daemon from the standard ` watchdog  `Debian package. `wd_keepalive`
 writes to a file called `/dev/watchdog` periodically to keep the switch
 from resetting, at least once per minute. Each write delays the reboot
 time by another minute. After one minute of inactivity where
-`wd_keepalive` doesn' not write to `/dev/watchdog`, the switch resets
+`wd_keepalive` doesn't write to `/dev/watchdog`, the switch resets
 itself. The watchdog is enabled by default on all supported switches,
 and starts when you boot the switch, before `switchd` starts.
 
@@ -259,9 +251,8 @@ Then stop the daemon:
 
     cumulus@switch:~$ sudo systemctl stop wd_keepalive.service
 
-You can modify the settings for the watchdog — like, such as the timeout 
-setting
- and scheduler priority — in its configuration file,
+You can modify the settings for the watchdog — like the timeout setting
+and scheduler priority — in its configuration file,
 `/etc/watchdog.conf`.
 
 ## <span>Related Information</span>
@@ -280,6 +271,3 @@ setting
 <footer id="ht-footer">
 
 </footer>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgxMjk1Nzg0NF19
--->

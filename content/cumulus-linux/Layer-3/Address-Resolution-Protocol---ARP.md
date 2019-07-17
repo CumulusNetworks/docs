@@ -1,18 +1,16 @@
 ---
 title: Address Resolution Protocol - ARP
 author: Cumulus Networks
-weight: 17983
+weight: 179
 aliases:
- - /display/CL3740/Address-Resolution-Protocol---ARP
- - /pages/viewpage.action?pageId=83629766700
-pageID: 83629766700
+ - /display/CL37/Address-Resolution-Protocol---ARP
+ - /pages/viewpage.action?pageId=8362976
+pageID: 8362976
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
-<details>
-
 Address Resolution Protocol <span style="color: #222222;"> ( </span> ARP
 <span style="color: #222222;"> ) is a </span> communication protocol
 <span style="color: #222222;"> used for discovering the </span> link
@@ -51,18 +49,14 @@ In a standard Debian installation, all of these ARP parameters are set
 to *0*, leaving the router as wide open and unrestricted as possible.
 These settings are based on the assertion made long ago that Linux IP
 addresses are a property of the device, not a property of an individual
-interface. Thuserefore, an ARP request or reply could be sent on one 
-interface
- containing an address residing on a different interface. While 
-this
- unrestricted behavior makes sense for a server, it is not the 
-normal
- behavior of a router. Routers expect the MAC/IP address mappings
+interface. Thus an ARP request or reply could be sent on one interface
+containing an address residing on a different interface. While this
+unrestricted behavior makes sense for a server, it is not the normal
+behavior of a router. Routers expect the MAC/IP address mappings
 supplied by ARP to match the physical topology, with the IP addresses
 matching the interfaces on which they reside. With these tunable ARP
-parameters, Cumulus Linux has beenis able to specify the behavior to match
- the 
-expectations of a router.
+parameters, Cumulus Linux has been able to specify the behavior to match
+the expectations of a router.
 
 ## <span>ARP Tunable Parameter Settings in Cumulus Linux</span>
 
@@ -91,9 +85,9 @@ Cumulus Networks chose the value used.
 <td><p>0</p></td>
 <td><p>BOOL</p></td>
 <td><p><em>Define behavior for gratuitous ARP frames whose IP is not already present in the ARP table:</em></p>
-<p><em>0 - Don' not create new entries in the ARP table.</em></p>
+<p><em>0 - Don't create new entries in the ARP table.</em></p>
 <p><em>1 - Create new entries in the ARP table.</em></p>
-<p>Cumulus Linux uses the default <code>arp_accept</code> behavior of not creating new entries in the ARP table when a gratuitous ARP is seen on an interface or when an ARP reply packet is received. However, an individual interface can have the <code>arp_accept</code> behavior set differently than the remainder of the switch if needed. For information on how to apply this port-specific behavior, <a href="#src-83629766700_AddressResolutionProtocol-ARP-po">see below</a>.</p></td>
+<p>Cumulus Linux uses the default <code>arp_accept</code> behavior of not creating new entries in the ARP table when a gratuitous ARP is seen on an interface or when an ARP reply packet is received. However, an individual interface can have the <code>arp_accept</code> behavior set differently than the remainder of the switch if needed. For information on how to apply this port-specific behavior, <a href="#src-8362976_AddressResolutionProtocol-ARP-po">see below</a>.</p></td>
 </tr>
 <tr class="even">
 <td><p>arp_announce</p></td>
@@ -114,12 +108,12 @@ Cumulus Networks chose the value used.
 <p><em>1 - Allows you to have multiple network interfaces on the same subnet, and have the ARPs for each interface be answered based on whether or not the kernel would route a packet from the ARP'd IP address out of that interface (therefore you must use source based routing for this to work). In other words, it allows control of which cards (usually 1) will respond to an ARP request.</em></p>
 <p><em>arp_filter for the interface will be enabled if at least one of conf/{all,interface}/arp_filter is set to TRUE, it will be disabled otherwise.</em></p>
 <p>Cumulus Linux uses the default Debian Linux arp_filter setting of <em>0</em>.</p>
-<p>The <code>arp_filter</code> is primarily used when multiple interfaces reside in the same subnet and is used to allow/disallow which interfaces respond to ARP requests. In the case of <a href="/version/cumulus-linux-37740/Layer-3/Open-Shortest-Path-First---OSPF">OSPF</a> using IP unnumbered interfaces, many interfaces appear to be in the same subnet, and so actually contain the same address. If multiple interfaces are used between a pair of routers, having <code>arp_filter</code> set to 1 causes forwarding to fail.</p>
+<p>The <code>arp_filter</code> is primarily used when multiple interfaces reside in the same subnet and is used to allow/disallow which interfaces respond to ARP requests. In the case of <a href="/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF">OSPF</a> using IP unnumbered interfaces, many interfaces appear to be in the same subnet, and so actually contain the same address. If multiple interfaces are used between a pair of routers, having <code>arp_filter</code> set to 1 causes forwarding to fail.</p>
 <p>The <code>arp_filter</code> parameter is set to allow a response on any interface in the subnet, where the <code>arp_ignore</code> setting (below) to limit cross-interface ARP behavior.</p></td>
 </tr>
 <tr class="even">
 <td><p>arp_ignore</p></td>
-<td><p>12</p></td>
+<td><p>1</p></td>
 <td><p>INT</p></td>
 <td><p><em>Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:</em></p>
 <p><em>0 - (default) Reply for any local target IP address, configured on any interface.</em></p>
@@ -175,21 +169,15 @@ parameter using either *MAX* or *OR* logic between the *all* and any
 | arp\_ignore   | MAX       |
 | arp\_notify   | MAX       |
 
-For example, if you set the `/proc/sys/net/conf/all/arp_ignore` value is set to
+For example, if the `/proc/sys/net/conf/all/arp_ignore` value is set to
 *1* and the `/proc/sys/net/conf/swp1/arp_ignore` value is set to *0*, to
- try to 
-disable it on a per-port basis, interface swp1 still uses the
- value of 
-*1* in its operation. While it may appear that the
-; the port-specific setting shoulddoes not override the global *all* 
-setting, it does
+try to disable it on a per-port basis, interface swp1 still uses the
+value of *1* in its operation. While it may appear that the
+port-specific setting should override the global *all* setting, it does
 not actually work that way. Instead, the MAX value between the *all*
- value and 
-port-specific value defines the actual behavior. This lack of
- simplicity 
-has led Cumulus Networks to implement the ARP parameter
- changes using 
-the *default* location instead.
+value and port-specific value defines the actual behavior. This lack of
+simplicity has led Cumulus Networks to implement the ARP parameter
+changes using the *default* location instead.
 
 The *default* location `/proc/sys/net/ipv4/conf/default/arp*` defines
 the values for all future IP interfaces. Changing the *default* setting
@@ -200,24 +188,19 @@ instead.
 
 {{%notice note%}}
 
-The way the *default* setting is implemented inIn Cumulus Linux, the value of the
- *default* parameter is copied to 
-every port-specific location, excluding
- those that already have an IP 
-address assigned, as previously mentioned.
-. Therefore, there is not any complicated logic between the 
-*default*
- setting and the *port-specific* setting like there is when 
-using the
- *all* location. This makes the application of particular 
-port-specific
- policies much simpler and more deterministic.
+The way the *default* setting is implemented in Linux, the value of the
+*default* parameter is copied to every port-specific location, excluding
+those that already have an IP address assigned, as previously mentioned.
+Therefore, there is not any complicated logic between the *default*
+setting and the *port-specific* setting like there is when using the
+*all* location. This makes the application of particular port-specific
+policies much simpler and more deterministic.
 
 {{%/notice%}}
 
 To determine the current ARP parameter settings for each of the the
-locations, userun the following mechanism; other methods are available but
-this one is quite simplecommands:
+locations, use the following mechanism; other methods are available but
+this one is quite simple:
 
     cumulus@switch:~$ sudo grep . /proc/sys/net/ipv4/conf/all/arp*
     /proc/sys/net/ipv4/conf/all/arp_accept:0
@@ -230,20 +213,19 @@ this one is quite simplecommands:
     /proc/sys/net/ipv4/conf/default/arp_accept:0
     /proc/sys/net/ipv4/conf/default/arp_announce:2
     /proc/sys/net/ipv4/conf/default/arp_filter:0
-    /proc/sys/net/ipv4/conf/default/arp_ignore:12
+    /proc/sys/net/ipv4/conf/default/arp_ignore:1
     /proc/sys/net/ipv4/conf/default/arp_notify:1
      
     cumulus@switch:~$ sudo grep . /proc/sys/net/ipv4/conf/swp1/arp*
     /proc/sys/net/ipv4/conf/swp1/arp_accept:0
     /proc/sys/net/ipv4/conf/swp1/arp_announce:2
     /proc/sys/net/ipv4/conf/swp1/arp_filter:0
-    /proc/sys/net/ipv4/conf/swp1/arp_ignore:12
+    /proc/sys/net/ipv4/conf/swp1/arp_ignore:1
     /proc/sys/net/ipv4/conf/swp1/arp_notify:1
     cumulus@switch:~$
 
 Note that Cumulus Linux implements this change at boot time using the
- `arp.conf` 
-file atin the following location:
+`arp.conf` file at the following location:
 
     cumulus@switch:~$ cat /etc/sysctl.d/arp.conf
     net.ipv4.conf.default.arp_announce = 2
@@ -251,11 +233,10 @@ file atin the following location:
     net.ipv4.conf.default.arp_ignore=1
     cumulus@switch:~$
 
-## <span id="src-83629766700_AddressResolutionProtocol-ARP-port" class="confluence-anchor-link"></span><span>Change Port-specific ARP Parameters</span>
+## <span id="src-8362976_AddressResolutionProtocol-ARP-port" class="confluence-anchor-link"></span><span>Change Port-specific ARP Parameters</span>
 
 The simplest way to configure port-specific ARP parameters in a running
- device is with, run the 
-following command:
+device is with the following command:
 
     cumulus@switch:~$ sudo sh -c "echo 0 > /proc/sys/net/ipv4/conf/swp1/arp_ignore"
     cumulus@switch:~$ sudo grep . /proc/sys/net/ipv4/conf/swp1/arp* 
@@ -271,60 +252,31 @@ To make the change persist through reboots, edit the
 
 ## <span>Configure Proxy ARP</span>
 
-TWhe proxy ARP setting is a kernel setting that you can manipulate using
-`sysctl` or `sysfs`. n you enable proxy ARP, if the switch receives an ARP request for
-which it has a route to the destination IP address, the switch sends a
-proxy ARP reply that contains its own MAC address. The host that sent
-the ARP request then sends its packets to the switch and the switch
-forwards the packets to the intended host.
+The proxy ARP setting is a kernel setting that you can manipulate using
+`sysctl` or `sysfs`. Proxy ARP works with IPv4 only, since ARP is an
+IPv4-only protocol.
 
-{{%notice note%}}
-
-Proxy ARP works with IPv4 only, since; ARP is an
- IPv4-only protocol.
-
-You need to set `/proc/sys/net/ipv4/conf/<INTERFACE>/proxy_arp` to *1*:{{%/notice%}}
-
-To enable proxy ARP:
-
-<summary>NCLU Commands </summary>
-
-The following example commands enable proxy ARP on swp1.
+You need to set `/proc/sys/net/ipv4/conf/<INTERFACE>/proxy_arp` to *1*:
 
     cumulus@switch:~$ net add interface swp1 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp"
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
 These commands create the following snippet in the
-`<summary>Linux Commands </summary>
+`/etc/network/interfaces` file:
 
-Edit the `/etc/network/interfaces` file to set
-`/proc/sys/net/ipv4/conf/<interface>/proxy_arp` to `1` in the interface
-stanza. The following example configuration enables proxy ARP on swp1.
-
-    cumulus@switch:~$ sudo nano /etc/network/interfaces` file:
-
-    ...
     auto swp1
     iface swp1
         post-up echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp
-    ...
 
-Run the `ifreload -a` command to reload the configuration:
-
-    cumulus@switch:~$ sudo ifreload -a
-
-If you' are running two interfaces in the same broadcast domain, which is
-(typically seen when using
-[VRR](/version/cumulus-linux-37740/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP),
-as itwhich creates a "`-v0"` interface in the same broadcast domain, make sure
+If you're running two interfaces in the same broadcast domain, which is
+typically seen when using
+[VRR](/version/cumulus-linux-377/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP),
+as it creates a "-v0" interface in the same broadcast domain, make sure
 to use `sysctl` or `sysfs` to let the kernel know, so that both
-interfaces do not respond with proxy ARP replies. To do so), set
+interfaces do not respond with proxy ARP replies. To do so, set
 `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the
-interface and the -v0 interface. Continuing with the previous example: so that both interfaces do not respond
-with proxy ARP replies.
-
-<summary>NCLU Commands </summary>
+interface and the -v0 interface. Continuing with the previous example:
 
     cumulus@switch:~$ net add interface swp1 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id"
     cumulus@switch:~$ net add interface swp1-v0 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1-v0/proxy_arp"
@@ -333,61 +285,25 @@ with proxy ARP replies.
     cumulus@switch:~$ net commit
 
 These commands create the following snippet in the
-`<summary>Linux Commands </summary>
+`/etc/network/interfaces` file:
 
-Edit the `/etc/network/interfaces` file. For example:
-
-    cumulus@switch:~$ sudo nano /etc/network/interfaces` file:
-
-    ...
     auto swp1
     iface swp1
         post-up echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp
         post-up echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id
-      
+     
     auto swp1-v0
     iface swp1-v0
         post-up echo 1 > /proc/sys/net/ipv4/conf/swp1-v0/proxy_arp
         post-up echo 2 > /proc/sys/net/ipv4/conf/swp1-v0/medium_id
-    ...
 
-Run the `ifreload -a` command to reload the configuration:
-
-    cumulus@switch:~$ sudo ifreload -a
-
-If you' are running proxy ARP on a VRR interface, add a post-up line to
+If you're running proxy ARP on a VRR interface, add a post-up line to
 the VRR interface stanza similar to the following. For example, if
 vlan100 is the VRR interface for the configuration above:
 
-<summary>NCLU Commands </summary>
-
     cumulus@switch:~$ net add vlan 100 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp && echo 1 > /proc/sys/net/ipv4/conf/swp1-v0/proxy_arp && echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id && echo 2 > /proc/sys/net/ipv4/conf/swp1-v0/medium_id"
     cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit"
-    cumulus@switch:~$ net add vlan 100 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1-v0/proxy_arp"
-    cumulus@switch:~$ net add vlan 100 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id" 
-    cumulus@switch:~$ net add vlan 100 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1-v0/medium_id"
-    cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
-
-<summary>Linux Commands </summary>
-
-Edit the `/etc/network/interfaces` file. For example:
-
-    cumulus@switch:~$ sudo nano /etc/networks/interfaces
-    ...
-    auto vlan100
-    iface vlan100
-        post-up echo 1 > /proc/sys/net/ipv4/conf/swp1-v0/proxy_arp
-        post-up echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp
-        post-up echo 2 > /proc/sys/net/ipv4/conf/swp1-v0/medium_id
-        post-up echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id
-        vlan-id 100
-    ...
-
-Run the `ifreload -a` command to reload the configuration:
-
-    cumulus@switch:~$ sudo ifreload -a
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 
@@ -396,8 +312,3 @@ Run the `ifreload -a` command to reload the configuration:
 <footer id="ht-footer">
 
 </footer>
-
-</details>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkzMjIzODEyNV19
--->

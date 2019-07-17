@@ -1,15 +1,15 @@
 ---
 title: Integrating Hardware VTEPs with VMware NSX-MH
 author: Cumulus Networks
-weight: 39371
+weight: 393
 aliases:
- - /display/CL3740/Integrating-Hardware-VTEPs-with-VMware-NSX-MH
- - /pages/viewpage.action?pageId=83627966520
-pageID: 83627966520
+ - /display/CL37/Integrating-Hardware-VTEPs-with-VMware-NSX-MH
+ - /pages/viewpage.action?pageId=8362796
+pageID: 8362796
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 Switches running Cumulus Linux can integrate with VMware NSX
 Multi-Hypervisor (MH) to act as hardware VTEP gateways. The VMware
@@ -20,7 +20,7 @@ physical server infrastructures.
 
 Cumulus Linux also supports integration with VMware NSX in high
 availability mode. Refer to [OVSDB Server High
-Availability](/version/cumulus-linux-37740/Network-Virtualization/Virtualization-Integrations/OVSDB-Server-High-Availability).
+Availability](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/OVSDB-Server-High-Availability).
 
 ## <span>Getting Started</span>
 
@@ -29,7 +29,7 @@ gateway; a Broadcom Tomahawk, Trident II+, Trident II, Maverick, or
 Mellanox Spectrum switch running Cumulus Linux. Cumulus Linux includes
 OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support
 [VLAN-aware
-bridges](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+bridges](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
 
 To integrate a VXLAN with NSX-MH, you need to:
 
@@ -295,7 +295,7 @@ terminal connected to the switch, run this command:
     status              : {sec_since_connect="18223", sec_since_disconnect="18225", state=ACTIVE}
     target              : "ssl:192.168.100.17:6632"
 
-## <span id="src-83627966520_IntegratingHardwareVTEPswithVMwareNSX-MH-config-transport-logical" class="confluence-anchor-link"></span><span>Configure the Transport and Logical Layers</span>
+## <span id="src-8362796_IntegratingHardwareVTEPswithVMwareNSX-MH-config-transport-logical" class="confluence-anchor-link"></span><span>Configure the Transport and Logical Layers</span>
 
 ### <span>Configure the Transport Layer</span>
 
@@ -420,7 +420,7 @@ To define the logical switch ports:
     
     {{% imgOld 12 %}}
 
-## <span id="src-83627966520_IntegratingHardwareVTEPswithVMwareNSX-MH-MH-verify-vxlan-config" class="confluence-anchor-link"></span><span>Verify the VXLAN Configuration</span>
+## <span id="src-8362796_IntegratingHardwareVTEPswithVMwareNSX-MH-MH-verify-vxlan-config" class="confluence-anchor-link"></span><span>Verify the VXLAN Configuration</span>
 
 After configuration is complete, verify the VXLAN configuration in a
 terminal connected to the switch using these Cumulus Linux commands:
@@ -462,6 +462,3 @@ integrated with NSX): </span>
 <footer id="ht-footer">
 
 </footer>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMzUxOTU5NjU2XX0=
--->

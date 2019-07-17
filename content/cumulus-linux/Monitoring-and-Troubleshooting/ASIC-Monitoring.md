@@ -1,15 +1,15 @@
 ---
 title: ASIC Monitoring
 author: Cumulus Networks
-weight: 2237
+weight: 223
 aliases:
- - /display/CL3740/ASIC-Monitoring
- - /pages/viewpage.action?pageId=83626276348
-pageID: 83626276348
+ - /display/CL37/ASIC-Monitoring
+ - /pages/viewpage.action?pageId=8362627
+pageID: 8362627
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 <details>
 
@@ -247,7 +247,7 @@ For example, to monitor packet drops due to buffer congestion:
 Certain settings in the procedure above (such as the histogram size,
 boundary size, and sampling time) only apply to the histogram monitor.
 All ASIC monitor settings are described in [ASIC Monitoring
-Settings](#src-83626276348_ASICMonitoring-ASIC_Settings).
+Settings](#src-8362627_ASICMonitoring-ASIC_Settings).
 
 ## <span>Configuration Examples</span>
 
@@ -383,12 +383,12 @@ In the following example:
 Certain actions require additional settings. For example, if the
 `snapshot` action is specified, a snapshot file is also required. If the
 `log` action is specified, a log threshold is also required. See
-[action\_list](#src-83626276348_ASICMonitoring-action_setting) for
+[action\_list](#src-8362627_ASICMonitoring-action_setting) for
 additional settings required for each *action*.
 
 {{%/notice%}}
 
-## <span id="src-83626276348_ASICMonitoring-snapshotExample" class="confluence-anchor-link"></span><span>Example Snapshot File </span>
+## <span id="src-8362627_ASICMonitoring-snapshotExample" class="confluence-anchor-link"></span><span>Example Snapshot File </span>
 
 A snapshot action writes a snapshot of the current state of the ASIC to
 a file. Because parsing the file and finding the information can be
@@ -405,7 +405,7 @@ system sends this message to the `/var/log/syslog` file:
 
     2018-02-26T20:14:41.560840+00:00 cumulus asic-monitor-module INFO:  2018-02-26 20:14:41.559967: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg.
 
-## <span id="src-83626276348_ASICMonitoring-ASIC_Settings" class="confluence-anchor-link"></span><span>ASIC Monitoring Settings</span>
+## <span id="src-8362627_ASICMonitoring-ASIC_Settings" class="confluence-anchor-link"></span><span>ASIC Monitoring Settings</span>
 
 The following table provides descriptions of the ASIC monitor settings.
 
@@ -472,7 +472,7 @@ The following table provides descriptions of the ASIC monitor settings.
 </tr>
 <tr class="odd">
 <td><p><code>&lt;port_group_name&gt;.action_list</code></p></td>
-<td><p><span id="src-83626276348_ASICMonitoring-action_setting"></span>Specifies one or more actions that occur when data is collected:</p>
+<td><p><span id="src-8362627_ASICMonitoring-action_setting"></span>Specifies one or more actions that occur when data is collected:</p>
 <ul>
 <li><p><code>snapshot</code> writes a snapshot of the data collection results to a file. If you specify this action, you must also specify a snapshot file (described below). You can also specify a threshold that initiates the snapshot action, but this is not required. For example:<br />
 <code>monitor.histogram_pg.action_list = [snapshot]</code><br />
@@ -560,6 +560,3 @@ In the following example, because the snapshot file count is set to 64, the firs
 </footer>
 
 </details>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NzA2OTc5MzVdfQ==
--->

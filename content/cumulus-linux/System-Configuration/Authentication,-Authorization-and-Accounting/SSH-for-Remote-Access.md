@@ -1,15 +1,15 @@
 ---
 title: SSH for Remote Access
 author: Cumulus Networks
-weight: 2737
+weight: 273
 aliases:
- - /display/CL3740/SSH-for-Remote-Access
- - /pages/viewpage.action?pageId=83625516272
-pageID: 83625516272
+ - /display/CL37/SSH-for-Remote-Access
+ - /pages/viewpage.action?pageId=8362551
+pageID: 8362551
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 You can generate authentication keys to access a Cumulus Linux switch
 securely with the `ssh-keygen` component of the Secure Shell (SSH)
@@ -109,6 +109,3 @@ functionality. This section describes how to generate an SSH key pair.
 <footer id="ht-footer">
 
 </footer>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbNTY1MDM1NjldfQ==
--->

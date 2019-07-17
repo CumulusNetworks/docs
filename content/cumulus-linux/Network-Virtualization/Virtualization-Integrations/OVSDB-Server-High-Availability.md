@@ -1,15 +1,15 @@
 ---
 title: OVSDB Server High Availability
 author: Cumulus Networks
-weight: 39573
+weight: 395
 aliases:
- - /display/CL3740/OVSDB-Server-High-Availability
- - /pages/viewpage.action?pageId=83628606584
-pageID: 83628606584
+ - /display/CL37/OVSDB-Server-High-Availability
+ - /pages/viewpage.action?pageId=8362860
+pageID: 8362860
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 {{%notice warning%}}
 
@@ -27,9 +27,9 @@ running in active-active mode). For information about VMware NSX in
 standalone mode and for a description of the components that work
 together to integrate VMware NSX and Cumulus Linux, see [Integrating
 Hardware VTEPs with VMware
-NSX-MH](/version/cumulus-linux-37740/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
+NSX-MH](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
 or [Integrating Hardware VTEPs with VMware
-NSX-V](/version/cumulus-linux-37740/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V).
+NSX-V](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V).
 
 With OVSDB server high availability mode, you use two peer Cumulus Linux
 switches in an MLAG configuration. Both the MLAG primary and MLAG
@@ -66,24 +66,13 @@ the MLAG secondary switch stops communicating with the NSX controller,
 synchronizes with the now active OVSDB server, and takes the standby
 role again.
 
-{{%notice note%}}
-
-**Important**
-
-When you upgrade Cumulus Linux, both the
-`/usr/share/openvswitch/scripts/ovs-ctl-vtep` file and the database file
-`conf.db` file are overwritten. Be sure to back up both files before
-upgrading.
-
-{{%/notice%}}
-
 ## <span>Getting Started</span>
 
 Before you configure OVSDB server high availability, make sure you have
 **two switches running Cumulus Linux in an MLAG configuration**. Cumulus
 Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`),
 which support [VLAN-aware
-bridges](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+bridges](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
 
 The following example configuration in the `/etc/network/interfaces`
 file shows the *minimum* MLAG configuration required (the MLAG peerlink
@@ -94,7 +83,7 @@ interface names prepended with the name of the particular switch to
 which they belong). When you create the Gateway Service for the
 dual-connected bonds (described in [Configuring the Transport and
 Logical
-Layers](#src-83628606584_OVSDBServerHighAvailability-active-config-transport-logical),
+Layers](#src-8362860_OVSDBServerHighAvailability-active-config-transport-logical),
 below), make sure to select the `clag-id` named interfaces instead of
 the underlying individual physical ports. All the logical network
 configurations are provisioned by the NSX controller.
@@ -287,15 +276,15 @@ the MLAG primary and MLAG secondary switches**. Follow these steps:
 For information about the configuration script, read `man
 vtep-bootstrap` or run the command `vtep-bootstrap --help`.
 
-## <span id="src-83628606584_OVSDBServerHighAvailability-active-config-transport-logical" class="confluence-anchor-link"></span><span>Configure the Transport and Logical Layers</span>
+## <span id="src-8362860_OVSDBServerHighAvailability-active-config-transport-logical" class="confluence-anchor-link"></span><span>Configure the Transport and Logical Layers</span>
 
 After you finish configuring the NSX integration on both the MLAG
 primary and MLAG secondary switch, you need to configure the transport
 and logical layers from the NSX Manager. Refer to [Configuring the
 Transport and Logical Layers
-(NSX-MH)](Integrating-Hardware-VTEPs-with-VMware-NSX-MH.html#src-83627966520_IntegratingHardwareVTEPswithVMwareNSX-MH-config-transport-logical)
+(NSX-MH)](Integrating-Hardware-VTEPs-with-VMware-NSX-MH.html#src-8362796_IntegratingHardwareVTEPswithVMwareNSX-MH-config-transport-logical)
 or [Configuring the Transport and Logical Layers
-(NSX-V](Integrating-Hardware-VTEPs-with-VMware-NSX-V.html#src-83628236547_IntegratingHardwareVTEPswithVMwareNSX-V-V-config-transport-logical)).
+(NSX-V](Integrating-Hardware-VTEPs-with-VMware-NSX-V.html#src-8362823_IntegratingHardwareVTEPswithVMwareNSX-V-V-config-transport-logical)).
 
 ## <span>Troubleshooting</span>
 
@@ -364,7 +353,7 @@ correctly on the active OVSDB server or that the peer is down:
      vxln14567103 - - - -
 
 To make sure that the BFD sessions are up and running, run the `ptmctl
--b` command.:
+-b` command.
 
     cumulus@switch:~$ sudo ptmctl -b
      
@@ -402,6 +391,3 @@ server.
 <footer id="ht-footer">
 
 </footer>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMzgyMzg2ODI1XX0=
--->

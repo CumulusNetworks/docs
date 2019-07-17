@@ -1,15 +1,15 @@
 ---
 title: Zero Touch Provisioning - ZTP
 author: Cumulus Networks
-weight: 5149
+weight: 51
 aliases:
- - /display/CL3740/Zero-Touch-Provisioning---ZTP
- - /pages/viewpage.action?pageId=836263253
-pageID: 836263253
+ - /display/CL37/Zero-Touch-Provisioning---ZTP
+ - /pages/viewpage.action?pageId=8362632
+pageID: 8362632
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 *Zero touch provisioning* (ZTP) enables you to deploy network devices
 quickly in large-scale environments. On first boot, Cumulus Linux
@@ -109,7 +109,7 @@ Follow these steps to perform zero touch provisioning using a USB drive:
 
 3.  The contents of the script are parsed to ensure it contains the
     `CUMULUS-AUTOPROVISIONING` flag (see [example
-    scripts](#src-836263253_ZeroTouchProvisioning-ZTP-example_scripts)).
+    scripts](#src-8362632_ZeroTouchProvisioning-ZTP-example_scripts)).
 
 {{%notice note%}}
 
@@ -144,12 +144,12 @@ The zero touch provisioning process over DHCP follows these steps:
 
 4.  The zero touch provisioning process requests the contents of the
     script from the URL, sending additional [HTTP
-    headers](#src-836263253_ZeroTouchProvisioning-ZTP-http_headers)
+    headers](#src-8362632_ZeroTouchProvisioning-ZTP-http_headers)
     containing details about the switch.
 
 5.  The contents of the script are parsed to ensure it contains the
     `CUMULUS-AUTOPROVISIONING` flag (see [example
-    scripts](#src-836263253_ZeroTouchProvisioning-ZTP-example_scripts)).
+    scripts](#src-8362632_ZeroTouchProvisioning-ZTP-example_scripts)).
 
 6.  If provisioning is necessary, the script executes locally on the
     switch with root privileges.
@@ -197,14 +197,7 @@ Additionally, you can specify the hostname of the switch with the
      host dc1-tor-sw1 { hardware ethernet 44:38:39:00:1a:6b; fixed-address 192.168.0.101; option host-name "dc1-tor-sw1"; }
     }
 
-{{%notice note%}}
-
-Do not use an underscore (\_) in the hostname; underscores are not
-permitted in hostnames.
-
-{{%/notice%}}
-
-### <span id="src-836263253_ZeroTouchProvisioning-ZTP-http_headers" class="confluence-anchor-link"></span><span>Inspect HTTP Headers</span>
+### <span id="src-8362632_ZeroTouchProvisioning-ZTP-http_headers" class="confluence-anchor-link"></span><span>Inspect HTTP Headers</span>
 
 The following HTTP headers are sent in the request to the webserver to
 retrieve the provisioning script:
@@ -213,14 +206,14 @@ retrieve the provisioning script:
     ------                        -----                 -------
     User-Agent                                          CumulusLinux-AutoProvision/0.4
     CUMULUS-ARCH                  CPU architecture      x86_64
-    CUMULUS-BUILD                                       3.7.34.0.0-5c6829a-201309251712-final
+    CUMULUS-BUILD                                       3.7.3-5c6829a-201309251712-final
     CUMULUS-LICENSE-INSTALLED     Either 0 or 1         1
     CUMULUS-MANUFACTURER                                odm
     CUMULUS-PRODUCTNAME                                 switch_model
     CUMULUS-SERIAL                                      XYZ123004
     CUMULUS-BASE-MAC                                    44:38:39:FF:40:94
     CUMULUS-MGMT-MAC                                    44:38:39:FF:00:00
-    CUMULUS-VERSION                                     3.7.34.0.0
+    CUMULUS-VERSION                                     3.7.3
     CUMULUS-PROV-COUNT                                  0
     CUMULUS-PROV-MAX                                    32
 
@@ -257,7 +250,7 @@ The script must return an exit code of 0 upon success, as this triggers
 the autoprovisioning process to be marked as complete in the
 autoprovisioning configuration file.
 
-<span id="src-836263253_ZeroTouchProvisioning-ZTP-example_scripts"></span>The
+<span id="src-8362632_ZeroTouchProvisioning-ZTP-example_scripts"></span>The
 following script installs Cumulus Linux and its license from a USB drive
 and applies a configuration:
 
@@ -464,7 +457,7 @@ execution, you can run the `ztp -s` command.
     State              enabled
     Version            1.0
     Result             Script Failure
-    Date               Tue May 10 22:42:09 2016Mon 20 May 2019 09:31:27 PM UTC
+    Date               Tue May 10 22:42:09 2016 UTC
     Method             ZTP DHCP
     URL                http://192.0.2.1/demo.sh
 
@@ -548,7 +541,7 @@ as above.
     cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh
     Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
                                                                                    
-    Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 20169):  
+    Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 2016):  
                                                                                    
     ZTP: Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
     ZTP Manual: URL response code 200
@@ -557,12 +550,12 @@ as above.
     error: ZTP Manual: Payload returned code 1
     error: Script returned failure
     cumulus@switch:~$ sudo ztp -s
-    State         enabled                        
-    Version       1.0                            
-    Result        Script Failure                 
-    Date       Tue May 10 22:44:17 2016   Mon 20 May 2019 09:31:27 PM UTC   
-    Method        ZTP Manual                     
-    URL           http://192.0.2.1/demo.sh
+    State      enabled                        
+    Version    1.0                            
+    Result     Script Failure                 
+    Date       Tue May 10 22:44:17 2016 UTC   
+    Method     ZTP Manual                     
+    URL        http://192.0.2.1/demo.sh
 
 Use the following command to check `syslog` for information about ZTP:
 
@@ -693,12 +686,12 @@ To see the current `ztp` state, use the `-s` option:
 
     cumulus@switch:~$ sudo ztp -s
     ZTP INFO:
-    State          disabled 
-    Version        1.0 
-    Result         success 
-    Date Thu May 5 16:49:33          Mon May 20 21:51:04 20169 UTC 
-    Method         Switch manually configured  
-    URL            None
+    State disabled 
+    Version 1.0 
+    Result success 
+    Date Thu May 5 16:49:33 2016 UTC 
+    Method Switch manually configured  
+    URL None
 
 ## <span>Notes</span>
 
@@ -716,6 +709,3 @@ To see the current `ztp` state, use the `-s` option:
 <footer id="ht-footer">
 
 </footer>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU1MTkzMjY2NV19
--->

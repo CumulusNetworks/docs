@@ -1,15 +1,15 @@
 ---
 title: GRE Tunneling
 author: Cumulus Networks
-weight: 199203
+weight: 199
 aliases:
- - /display/CL3740/GRE-Tunneling
- - /pages/viewpage.action?pageId=836296690
-pageID: 836296690
+ - /display/CL37/GRE-Tunneling
+ - /pages/viewpage.action?pageId=8362966
+pageID: 8362966
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 <details>
 
@@ -112,7 +112,6 @@ of running the commands from the command line (as above), you can add
 the following commands directly in the `/etc/network/interfaces` file.
 
     cumulus@switch:~$ sudo nano /etc/network/interfaces
-    ...
     # Tunnel-R1 configuration 
     auto swp1 #underlay interface for tunnel
     iface swp1
@@ -144,7 +143,6 @@ the following commands directly in the `/etc/network/interfaces` file.
         pre-up ip tunnel add Tunnel-R1 mode gre local 10.0.0.2 remote 10.0.0.9 ttl 255
         post-up ip route add 10.0.200.0/24 dev Tunnel-R1
         post-down ip tunnel del Tunnel-R1
-    ...
 
 For more information about the `pre-up`, `post-up`, and `post-down`
 commands, run the `man interfaces` command.
@@ -169,7 +167,7 @@ interface. For example:
 
 You can delete a GRE tunnel directly from the `/etc/network/interfaces`
 file instead of using the `ip tunnel del` command. Make sure you run the
-`ifreload - a` command after you update the interfaces file.
+`ifreload -a` command after you update the interfaces file.
 
 {{%/notice%}}
 
@@ -185,7 +183,7 @@ from the original setting to 11.0.0.4:
 
 You can make changes to GRE tunnel settings directly in the
 `/etc/network/interfaces` file instead of using the `ip tunnel change`
-command. Make sure you run the `ifreload - a` command after you update
+command. Make sure you run the `ifreload -a` command after you update
 the interfaces file.
 
 {{%/notice%}}
@@ -199,6 +197,3 @@ the interfaces file.
 </footer>
 
 </details>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNDc4MDQyNzJdfQ==
--->

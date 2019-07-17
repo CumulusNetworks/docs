@@ -1,15 +1,15 @@
 ---
 title: Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
 author: Cumulus Networks
-weight: 38967
+weight: 389
 aliases:
- - /display/CL3740/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack
- - /pages/viewpage.action?pageId=83628126536
-pageID: 83628126536
+ - /display/CL37/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack
+ - /pages/viewpage.action?pageId=8362812
+pageID: 8362812
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 <details>
 
@@ -28,7 +28,7 @@ between virtual and physical server infrastructures.
 Make sure you have a layer 2 gateway; a Tomahawk, Trident II+ or Trident
 II switch running Cumulus Linux. Cumulus Linux includes OVSDB server
 (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support [VLAN-aware
-bridges](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+bridges](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
 
 To integrate a VXLAN with MidoNet, you need to:
 
@@ -44,9 +44,9 @@ version 1.8 or later.
 {{%notice note%}}
 
 There is no support for [VXLAN
-routing](/version/cumulus-linux-37740/Network-Virtualization/VXLAN-Routing)
+routing](/version/cumulus-linux-377/Network-Virtualization/VXLAN-Routing)
 in the Trident II chipset; use a loopback interface
-([hyperloop](VXLAN-Routing.html#src-836276471_VXLANRouting-t2)) instead.
+([hyperloop](VXLAN-Routing.html#src-8362747_VXLANRouting-t2)) instead.
 
 {{%/notice%}}
 
@@ -539,7 +539,7 @@ flooding of unknown unicast and are important for learning.
 The `ovsdb-client dump` command is large but shows all of the
 information and tables used in communication between the OVS client and
 server.
-<details>
+
 <summary>Click to expand the output ... </summary>
 
     cumulus@switch12:~$ ovsdb-client dump
@@ -642,7 +642,7 @@ server.
     MAC _uuid ipaddr locator logical_switch 
     ------------------- ------------------------------------ ------ ------------------------------------ ------------------------------------
     "fa:16:3e:14:04:2e" 65605488-9ee5-4c8e-93e5-7b1cc15cfcc7 "" 2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb 44d162dc-0372-4749-a802-5b153c7120ec
-</details>
+
 <article id="html-search-results" class="ht-content" style="display: none;">
 
 </article>
@@ -652,6 +652,3 @@ server.
 </footer>
 
 </details>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0Njc0NDYwMTZdfQ==
--->

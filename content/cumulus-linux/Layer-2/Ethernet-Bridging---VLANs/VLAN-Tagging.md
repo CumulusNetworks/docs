@@ -1,15 +1,15 @@
 ---
 title: VLAN Tagging
 author: Cumulus Networks
-weight: 3515
+weight: 351
 aliases:
- - /display/CL3740/VLAN-Tagging
- - /pages/viewpage.action?pageId=83626686391
-pageID: 83626686391
+ - /display/CL37/VLAN-Tagging
+ - /pages/viewpage.action?pageId=8362668
+pageID: 8362668
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 This topic shows two examples of VLAN tagging, one basic and one more
 advanced. They both demonstrate the streamlined interface configuration
@@ -296,10 +296,10 @@ with the VLAN ID translated.
 {{%notice note%}}
 
 A bridge in [VLAN-aware
-mode](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
 cannot have VLAN translation enabled for it; only bridges configured in
 [traditional
-mode](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode)
+mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode)
 can utilize VLAN translation.
 
 {{%/notice%}}
@@ -336,6 +336,3 @@ translated from 100 to 200:
 <footer id="ht-footer">
 
 </footer>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNTYxNTYzMF19
--->

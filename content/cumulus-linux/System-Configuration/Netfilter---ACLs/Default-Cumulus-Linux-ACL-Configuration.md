@@ -1,28 +1,25 @@
 ---
 title: Default Cumulus Linux ACL Configuration
 author: Cumulus Networks
-weight: 2959
+weight: 295
 aliases:
- - /display/CL3740/Default-Cumulus-Linux-ACL-Configuration
- - /pages/viewpage.action?pageId=83625746295
-pageID: 83625746295
+ - /display/CL37/Default-Cumulus-Linux-ACL-Configuration
+ - /pages/viewpage.action?pageId=8362574
+pageID: 8362574
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 <details>
 
 The Cumulus Linux default ACL configuration is split into three parts,
 as outlined in the [netfilter ACL
-documentation](/version/cumulus-linux-377/System-Configurationdisplay/CL40/Netfilter---+-+ACLs/):
- IP tables, IPv6 tables, 
-and EB tables. The sections below describe the
- default configurations 
-for each part. You can see the default file by
- clicking the Default ACL 
-Configuration link:
-<details>
+documentation](/version/cumulus-linux-377/System-Configuration/Netfilter---ACLs/):
+IP tables, IPv6 tables, and EB tables. The sections below describe the
+default configurations for each part. You can see the default file by
+clicking the Default ACL Configuration link:
+
 <summary>Default ACL Configuration </summary>
 
     cumulus@switch:~$ sudo cl-acltool -L all
@@ -77,7 +74,6 @@ Configuration link:
      
     Chain OUTPUT (policy ACCEPT 107 packets, 12590 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
      
      
     TABLE mangle :
@@ -95,7 +91,6 @@ Configuration link:
      
     Chain POSTROUTING (policy ACCEPT 111 packets, 18134 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
      
      
     TABLE raw :
@@ -104,7 +99,6 @@ Configuration link:
      
     Chain OUTPUT (policy ACCEPT 112 packets, 18978 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
      
      
     --------------------------------
@@ -147,7 +141,6 @@ Configuration link:
      
     Chain OUTPUT (policy ACCEPT 5 packets, 408 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
      
      
     TABLE mangle :
@@ -165,7 +158,6 @@ Configuration link:
      
     Chain POSTROUTING (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
      
      
     TABLE raw :
@@ -174,7 +166,6 @@ Configuration link:
      
     Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
      
      
     -------------------------------
@@ -204,7 +195,7 @@ Configuration link:
     Bridge chain: FORWARD, entries: 0, policy: ACCEPT
      
     Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
-</details>
+
 ## <span>IP Tables</span>
 
 <table>
@@ -295,7 +286,7 @@ Configuration link:
 <p>LOCAL is any local address -&gt; Receiving a packet with a destination matching a local IP address on the switch will go to the CPU.</p>
 <p>{{%/notice%}}</p></td>
 </tr>
-<tr class="evenodd">
+<tr class="even">
 <td><p>Set class: 0</p>
 <p>Police: Rate 400 burst 100</p>
 <p>Source IP: Any</p>
@@ -305,7 +296,7 @@ Configuration link:
 <p>IPROUTER is any unresolved address -&gt; On a l2/l3 boundary receiving a packet from L3 and needs to go to CPU in order to ARP for the destination.</p>
 <p>{{%/notice%}}</p></td>
 </tr>
-<tr class="oddeven">
+<tr class="odd">
 <td><p>Set class 0</p></td>
 <td><p>All</p></td>
 </tr>
@@ -518,6 +509,3 @@ bits.
 </footer>
 
 </details>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ5MzI0NzY3Nl19
--->

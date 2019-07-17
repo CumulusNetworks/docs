@@ -1,15 +1,15 @@
 ---
 title: Configuring a Global Proxy
 author: Cumulus Networks
-weight: 775
+weight: 77
 aliases:
- - /display/CL3740/Configuring-a-Global-Proxy
- - /pages/viewpage.action?pageId=83625776298
-pageID: 83625776298
+ - /display/CL37/Configuring-a-Global-Proxy
+ - /pages/viewpage.action?pageId=8362577
+pageID: 8362577
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 You configure [global HTTP and HTTPS
 proxies](https://wiki.archlinux.org/index.php/proxy_settings) in the
@@ -87,6 +87,3 @@ proxy is set up correctly:
 <footer id="ht-footer">
 
 </footer>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NDE3NDE2NjZdfQ==
--->

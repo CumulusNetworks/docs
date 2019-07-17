@@ -1,79 +1,46 @@
 ---
 title: Routing
 author: Cumulus Networks
-weight: 16973
+weight: 169
 aliases:
- - /display/CL3740/Routing
- - /pages/viewpage.action?pageId=83629126636
-pageID: 83629126636
+ - /display/CL37/Routing
+ - /pages/viewpage.action?pageId=8362912
+pageID: 8362912
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
-<details>
-
 This chapter discusses routing on switches running Cumulus Linux.
 
 ## <span>Manage Static Routes</span>
 
 You manage static routes using
 [NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)
-or the Cumulus Linux `ip route` command. TheStatic routes are added to the
- [FRRouting](https://frrouting.org) 
-routing table, and are then updated
+or the Cumulus Linux `ip route` command. The routes are added to the
+[FRRouting](https://frrouting.org) routing table, and are then updated
 into the kernel routing table as well.
 
-To add a static route, run:s:
-
-<summary>NCLU Commands </summary>
+To add a static route, run:
 
     cumulus@switch:~$ net add routing route 203.0.113.0/24 198.51.100.2
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-These commands create the following<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# ip route 203.0.113.0/24 198.51.100.2
-    switch(config)# exit
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$ 
-
-The NCLU and vtysh commands save the configuration in the
+These commands create the following configuration in the
 `/etc/frr/frr.conf` file:
-. For example:
 
-    ...
     !
     ip route 203.0.113.0/24 198.51.100.2
     !
-    ...
 
-To delete a static route, run::
-
-<summary>NCLU Commands </summary>
+To delete a static route, run:
 
     cumulus@switch:~$ net del routing route 203.0.113.0/24 198.51.100.2
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-To view static routes, run<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# no ip route 203.0.113.0/24 198.51.100.2
-    switch(config)# exit
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$ 
-
-To view static routes, run the NCLU `net show route static` command or
-the vtysh `show ip route` command. For example:
+To view static routes, run:
 
     cumulus@switch:~$ net show route static 
     RIB entry for static
@@ -86,55 +53,26 @@ the vtysh `show ip route` command. For example:
 ### <span>Static Multicast Routes</span>
 
 Static mroutes are also managed with NCLU, or with the `ip route`
-command. To add an mroute:To add a static multicast route (mroute):
-
-<summary>NCLU Commands </summary>
+command. To add an mroute:
 
     cumulus@switch:~$ net add routing mroute 230.0.0.0/24
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-These commands create the following<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# ip mroute 203.0.0.0/24
-    switch(config)# exit
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$ 
-
-The NCLU and vtysh commands save the configuration in the
+These commands create the following configuration in the
 `/etc/frr/frr.conf` file:
-. For example:
 
-    ...
     !
     ip mroute 230.0.0.0/24
     !
-    ...
 
-To delete an mroute, run::
-
-<summary>NCLU Commands </summary>
+To delete an mroute, run:
 
     cumulus@switch:~$ net del routing mroute 230.0.0.0/24
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-To view mroutes, open the FRRouting CLI, and<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# no ip mroute 203.0.0.0/24
-    switch(config)# exit
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$ 
-
-To view mroutes, run the following command from the `vtysh` shell:
+To view mroutes, open the FRRouting CLI, and run the following command:
 
     cumulus@switch:~$ sudo vtysh
     switch# show ip rpf 230.0.0.0
@@ -144,47 +82,27 @@ To view mroutes, run the following command from the `vtysh` shell:
 
 ### <span>Static Routing via ip route</span>
 
-A static routeYou can also be created by adding ` post-up ip route add
- `command a static route by adding the route to a switch port 
-configuration. For example:
-
-<summary>NCLU Commands </summary>
+A static route can also be created by adding ` post-up ip route add
+ `command to a switch port configuration. For example:
 
     cumulus@switch:~$ net add interface swp3 ip address 198.51.100.1/24
     cumulus@switch:~$ net add interface swp3 post-up routing route add 203.0.113.0/24 via 198.51.100.2
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-These commands produce the following<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# interface swp3
-    switch(config-if)# post-up ip route 203.0.113.0/24 198.51.100.2
-    switch(config-if)# exit
-    switch(config)# exit
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$ 
-
-The NCLU and vtysh commands save the configuration in the
+These commands produce the following configuration in the
 `/etc/network/interfaces` file:
-. For example:
 
-    ...
     auto swp3
     iface swp3
         address 198.51.100.1/24
         post-up ip route add 203.0.113.0/24 via 198.51.100.2
-    ...
 
 {{%notice note%}}
 
 If an IPv6 address is assigned to a DOWN interface, the associated route
 is still installed into the routing table. The type of IPv6 address
- doesn'
-not matter: link local, site local, and global all exhibit the same
+doesn't matter: link local, site local and global all exhibit the same
 problem.
 
 If the interface is bounced up and down, then the routes are no longer
@@ -192,7 +110,7 @@ in the route table.
 
 {{%/notice%}}
 
-The `ip route` command allows you to manipulatinge the kernel routing table
+The `ip route` command allows manipulating the kernel routing table
 directly from the Linux shell. See `man ip(8)` for details. FRRouting
 monitors the kernel routing table changes and updates its own routing
 table accordingly.
@@ -224,89 +142,41 @@ To apply a [route
 map](http://www.nongnu.org/quagga/docs/docs-multi/Route-Map.html#Route-Map)
 to filter route updates from Zebra into the Linux kernel:
 
-<summary>NCLU Commands </summary>
-
-    cumulus@switch:~$ net add routing protocol static route-map <route-map-name>myroutemap
-
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# ip protocol static route-map myroutemap
-    switch(config)# exit
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$ 
-
-<span style="color: #36424a;"> The NCLU and vtysh commands save the
-configuration in the `/etc/frr/frr.conf` file. For example: </span>
-
-    ...
-    !
-    ip protocol static route-map myroutemap
-    !
-    ...
+    cumulus@switch:$ net add routing protocol static route-map <route-map-name>
 
 ## <span>Configure a Gateway or Default Route</span>
 
-On each switch, it's a good idea toCumulus Networks recommends that on each switch, you create a *gateway* 
-or *default
- route* for traffic destined outside the switch's subnet, or 
-local
- network. All such traffic passes through the gateway, which is a 
-host on
- the same network that routes packets to their destination beyond 
-the
- local network.
+On each switch, it's a good idea to create a *gateway* or *default
+route* for traffic destined outside the switch's subnet, or local
+network. All such traffic passes through the gateway, which is a host on
+the same network that routes packets to their destination beyond the
+local network.
 
 In the following example, you create a default route in the routing
-table — 0.0.0.0/0 —, which indicates any IP address can getbe sent to the
+table — 0.0.0.0/0 — which indicates any IP address can get sent to the
 gateway, which is another switch with the IP address 10.1.0.1.
-
-<summary>NCLU Commands </summary>
 
     cumulus@switch:~$ net add routing route 0.0.0.0/0 10.1.0.1
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<summary>vtysh Commands </summary>
-
-    cumulus@switch:~$ sudo vtysh
-     
-    switch# configure terminal
-    switch(config)# ip route 0.0.0.0/0 10.1.0.1
-    switch(config)# exit
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$ 
-
-<span style="color: #36424a;"> The NCLU and vtysh commands save the
-configuration in the `/etc/frr/frr.conf` file. For example: </span>
-
-    ...
-    !
-    ip route 0.0.0.0/0 10.1.0.1
-    !
-    ...
-
 ## <span>Supported Route Table Entries</span>
 
-Cumulus Linux — (via `switchd)` — advertises the maximum number of route
+Cumulus Linux — via `switchd` — advertises the maximum number of route
 table entries that are supported on a given switch architecture,
 including:
 
-  - Layer 3 IPv4 LPM (longest prefix match) entries, which that have a mask that
+  - L3 IPv4 LPM (longest prefix match) entries, which have a mask that
     is less than /32
 
-  - Layer 3 IPv6 LPM entries, which that have a mask that isof /64 or less
+  - L3 IPv6 LPM entries, which have a mask that is /64 or less
 
-  - Layer 3 IPv6 LPM entries, which that have a mask that is greater than /64
+  - L3 IPv6 LPM entries, which have a mask that is greater than /64
 
-  - Layer 3 IPv4 neighbor (or host) entries, which that are the next hops seen in
-    in `ip neighbor`
+  - L3 IPv4 neighbor (or host) entries, which are the next hops seen in
+    `ip neighbor`
 
-  - Layer 3 IPv6 neighbor entries, which that are the next hops seen in `ip -6
+  - L3 IPv6 neighbor entries, which are the next hops seen in `ip -6
     neighbor`
 
   - ECMP next hops, which are IP address entries in a router's routing
@@ -321,20 +191,16 @@ Algorithm Longest Prefix Match (ALPM). In ALPM mode, the hardware can
 store significantly more route entries.
 
 You can use
-[`cl-resource-query`](/version/cumulus-linux-37740/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query)
+[`cl-resource-query`](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query)
 to determine the current table sizes on a given switch.
 
-### <span id="src-83629126636_Routing-uft" class="confluence-anchor-link"></span><span>Forwarding Table Profiles</span>
+### <span id="src-8362912_Routing-uft" class="confluence-anchor-link"></span><span>Forwarding Table Profiles</span>
 
-On Mellanox Spectrum and some Broadcom ASICs provide the ability to
-, you can configure the 
-allocation of forwarding table resources and mechanisms.
- Cumulus Linux 
-provides a number of generalized profiles for the
- platforms described 
-below. These profiles work only with layer 2 and
- layer 3 unicast 
-forwarding.
+Mellanox Spectrum and some Broadcom ASICs provide the ability to
+configure the allocation of forwarding table resources and mechanisms.
+Cumulus Linux provides a number of generalized profiles for the
+platforms described below. These profiles work only with layer 2 and
+layer 3 unicast forwarding.
 
 Cumulus Linux defines these profiles as *default*, *l* *2-heavy*,
 *v4-lpm-heavy* and *v6-lpm-heavy*. Choose the profile that best suits
@@ -350,7 +216,7 @@ your network architecture and specify the profile name for the
     forwarding_table.profile = default
 
 After you specify a different profile, [restart
-`switchd`](Configuring-switchd.html#src-83625616282_Configuringswitchd-restartswitchd)
+`switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd)
 for the change to take effect. You can see the forwarding table profile
 when you run `cl-resource-query`.
 
@@ -367,25 +233,19 @@ For Broadcom ASICs, the maximum number of IP multicast entries is 8k.
 
 {{%/notice%}}
 
-### <span>Number of Supported Route Entries, b By Platform</span>
+### <span>Number of Supported Route Entries, by Platform</span>
 
-The following tables list the number of MAC addresses, layer 3 
-neighbors
-, and LPM routes validated for each forwarding table profile 
-for the
- various supported platforms. If you aredo not specifying any profiles 
-as
- described above, the *default* values are the ones that the switch 
-will
- use.
+The following tables list the number of MAC addresses, layer 3 neighbors
+and LPM routes validated for each forwarding table profile for the
+various supported platforms. If you are not specifying any profiles as
+described above, the *default* values are the ones that the switch will
+use.
 
 {{%notice tip%}}
 
 The values in the following tables reflect results from our testing on
- the 
-different platforms wethat Cumulus Networks supports, and maywhich might differ 
-from published
- manufacturers' specifications provided about these chipsets.
+the different platforms we support, and may differ from published
+manufacturers' specifications provided about these chipsets.
 
 {{%/notice%}}
 
@@ -418,7 +278,7 @@ from published
 
 #### <span>Broadcom Helix4 Switches</span>
 
-Note that Helix4 switches do *not* have profiles.
+Note that Helix4 switches do not have profiles
 
 | MAC Addresses | L3 Neighbors | Longest Prefix Match (LPM)    |
 | ------------- | ------------ | ----------------------------- |
@@ -428,25 +288,19 @@ Note that Helix4 switches do *not* have profiles.
 
 For Broadcom switches, IPv4 and IPv6 entries are not carved in separate
 spaces so it is not possible to define explicit numbers in the L3
-Neighbors column of the tables shown above. However, note that aAn IPv6
- entry takes up twice 
-the space of an IPv4 entry.
+Neighbors column of the tables shown above. However, note that an IPv6
+entry takes up twice the space of an IPv4 entry.
 
 {{%/notice%}}
 
-### <span id="src-83629126636_Routing-tcam" class="confluence-anchor-link"></span><span>TCAM Resource Profiles for Mellanox Switches</span>
+### <span id="src-8362912_Routing-tcam" class="confluence-anchor-link"></span><span>TCAM Resource Profiles for Mellanox Switches</span>
 
-TOn the Mellanox Spectrum ASIC provides the ability to, you can configure the TCAM
- resource 
-allocation, which is shared between IP multicast forwarding
- entries and 
-ACL tables. Cumulus Linux provides a number of general
- profiles for this 
-platform: *default*, *ipmc-heavy* and *acl-heavy*.
- Choose the profile 
-that best suits your network architecture and specify
- that profile name 
-in the `tcam_resource.profile` variable in the
+The Mellanox Spectrum ASIC provides the ability to configure the TCAM
+resource allocation, which is shared between IP multicast forwarding
+entries and ACL tables. Cumulus Linux provides a number of general
+profiles for this platform: *default*, *ipmc-heavy* and *acl-heavy*.
+Choose the profile that best suits your network architecture and specify
+that profile name in the `tcam_resource.profile` variable in the
 `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf`
 file.
 
@@ -459,12 +313,12 @@ file.
            tcam_resource.profile = default
 
 After you specify a different profile, [restart
-`switchd`](/display/CL40/Configuring-+switchd.html#src-8362561_#Configuringswitchd-restartswitchd)
+`switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd)
 for the change to take effect.
 
 When [nonatomic
-updates](Netfilter---ACLs.html#src-83625636284_Netfilter-ACLs-nonatomic) are
-enabled (that is, the `acl.non_atomic_update_mode` is set to *`TRUE*` in the
+updates](Netfilter---ACLs.html#src-8362563_Netfilter-ACLs-nonatomic) are
+enabled (that is, the `acl.non_atomic_update_mode` is set to *TRUE* in
 `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL
 entries for each profile are as follows:
 
@@ -476,8 +330,8 @@ entries for each profile are as follows:
 | ipmc-max   | 13000          | 1000 (IPv6) or 2000 (IPv4) |
 
 When [nonatomic
-updates](Netfilter---ACLs.html#src-83625636284_Netfilter-ACLs-nonatomic) are
-disabled (that is, the `acl.non_atomic_update_mode` is set to *`FALSE*` in the
+updates](Netfilter---ACLs.html#src-8362563_Netfilter-ACLs-nonatomic) are
+disabled (that is, the `acl.non_atomic_update_mode` is set to *FALSE* in
 `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL
 entries for each profile are as follows:
 
@@ -490,16 +344,13 @@ entries for each profile are as follows:
 
 ## <span>Caveats and Errata</span>
 
-### <span>Don' Not Delete Routes viathrough Linux Shell</span>
+### <span>Don't Delete Routes via Linux Shell</span>
 
 Static routes added via FRRouting can be deleted via Linux shell. This
-operation, while possible, should be avoided. RCumulus Networks recommends that you **do not** use the Linux shell to
-delete static routes added byvia FRRouting
-should only be deleted by FRRouting, (with `vtysh` commands). Delete
-the routes with the `vtysh` commands; otherwise FRRouting might not be
+operation, while possible, should be avoided. Routes added by FRRouting
+should only be deleted by FRRouting, otherwise FRRouting might not be
 able to clean up all its internal state completely and incorrect routing
-can occur as a result, which can result in
-incorrect routing.
+can occur as a result.
 
 ### <span>Add IPv6 Default Route with src Address on eth0 Fails without Adding Delay</span>
 
@@ -517,11 +368,7 @@ Running `ifup` a second time on eth0 successfully installs the route.
 
 There are two ways you can work around this issue.
 
-  - Add a sleep 2 to the eth0 interface in `/etc/network/o work around this issue, either add a two second delay or exclude the
-`src` parameter to the `ip route add` that causes the need for the
-delay:
-
-  - Add a delay to the eth0 interfaces`:
+  - Add a sleep 2 to the eth0 interface in `/etc/network/interfaces`:
     
         cumulus@switch:~$ net add interface eth0 ipv6 address 2001:620:5ca1:160::45/64 post-up /bin/sleep 2s
         cumulus@switch:~$ net add interface eth0 post-up /sbin/ip route add default via 2001:620:5ca1:160::1 src 2001:620:5ca11:160::45 dev eth0
@@ -559,8 +406,3 @@ delay:
 <footer id="ht-footer">
 
 </footer>
-
-</details>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTczMjc4NDM1OF19
--->

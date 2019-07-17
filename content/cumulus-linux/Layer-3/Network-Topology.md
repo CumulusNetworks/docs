@@ -1,15 +1,15 @@
 ---
 title: Network Topology
 author: Cumulus Networks
-weight: 1737
+weight: 173
 aliases:
- - /display/CL3740/Network-Topology
- - /pages/viewpage.action?pageId=83629156639
-pageID: 83629156639
+ - /display/CL37/Network-Topology
+ - /pages/viewpage.action?pageId=8362915
+pageID: 8362915
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 In computer networks, *topology* refers to the structure of
 interconnecting various nodes. Some commonly used topologies in networks
@@ -20,19 +20,15 @@ are star, hub and spoke, leaf and spine, and broadcast.
 In the vast majority of modern data centers, [Clos or fat tree
 topology](http://en.wikipedia.org/wiki/Clos_network) is very popular.
 This topology is shown in the figure below. It is also commonly referred
-to as leaf-spine topology. We shallCumulus Networks uses this topology 
-throughout the
-routing protocolis user guide.
+to as leaf-spine topology. We shall use this topology throughout the
+routing protocol guide.
 
 {{% imgOld 0 %}}
 
-This topology allows the building ofyou to build networks of varying size using
- nodes 
-of different port counts and/or by increasing the tiers. The
- picture 
-above is a three-tiered Clos network. We number the tiers from
- the 
-bottom to the top. Thus, in the picturIn the illustration above, the lowermost layer is
+This topology allows the building of networks of varying size using
+nodes of different port counts and/or by increasing the tiers. The
+picture above is a three-tiered Clos network. We number the tiers from
+the bottom to the top. Thus, in the picture, the lowermost layer is
 called tier 1 and the topmost tier is called tier 3.
 
 The number of end stations (such as servers) that can be attached to
@@ -47,33 +43,23 @@ o-port nodes, the total number of end stations that can be connected are
 (m\*n\*o)/2^(number of tiers-1).
 
 Let’s consider some practical examples. In many data centers, it is
- typical to connect 40 servers to a 
-top-of-rack (ToR) switch. The ToRs
- are all connected via a set of spine 
-switches. If a ToR switch has 64
- ports, then after hooking up 40 ports 
-to the servers, the remaining 24
- ports can be hooked up to 24 spine 
-switches of the same link speed or to
- a smaller number of higher link 
-speed switches. For example, if the
- servers are all hooked up as 10GE 
-links, then the ToRs can connect to
- the spine switches via 40G links. 
-So, instead of connecting to 24 spine
- switches with 10G links, the ToRs 
-can connect to 6 spine switches with
- each link being 40G. If the spine 
-switches are also 64-port switches,
- then the total number of end 
-stations that can be connected is 2560
- (40\*64) stations.
+typical to connect 40 servers to a top-of-rack (ToR) switch. The ToRs
+are all connected via a set of spine switches. If a ToR switch has 64
+ports, then after hooking up 40 ports to the servers, the remaining 24
+ports can be hooked up to 24 spine switches of the same link speed or to
+a smaller number of higher link speed switches. For example, if the
+servers are all hooked up as 10GE links, then the ToRs can connect to
+the spine switches via 40G links. So, instead of connecting to 24 spine
+switches with 10G links, the ToRs can connect to 6 spine switches with
+each link being 40G. If the spine switches are also 64-port switches,
+then the total number of end stations that can be connected is 2560
+(40\*64) stations.
 
 In a three tier network of 64-port switches, the total number of servers
 that can be connected are (40\*64\*64)/2^(3-1) = 40960. As you can see,
 this kind of topology can serve quite a large network with three tiers.
 
-## <span>Over-Ssubscribed and Non-Bblocking Configurations</span>
+## <span>Over-Subscribed and Non-Blocking Configurations</span>
 
 In the above example, the network is *over-subscribed*; that is, 400G of
 bandwidth from end stations (40 servers \* 10GE links) is serviced by
@@ -97,33 +83,25 @@ up to (64\*64\*64)/4 = 65536 servers.
 Traditional data centers were built using just two spine switches. This
 means that if one of those switches fails, the network bandwidth is cut
 in half, thereby greatly increasing network congestion and adversely
-affecting many applications. To avoid this problem, vendors typically 
-try and
- make the spine switches resilient to failures by providing such 
-features
- as dual control line cards and attempting to make the software 
-highly
- available. In many cases, HA is among the top two or three causes 
-of
- software failure (and thereby switch failure).
+affecting many applications. To avoid this, vendors typically try and
+make the spine switches resilient to failures by providing such features
+as dual control line cards and attempting to make the software highly
+available. In many cases, HA is among the top two or three causes of
+software failure (and thereby switch failure).
 
 To support a fairly large network with just two spine switches also
 means that these switches have a large port count. This can make the
 switches quite expensive.
 
- If the number of spine switches were to be 
-merely doubled, the effect of
- a single switch failure is halved. With 8 
-spine switches, the effect of
- a single switch failure only causes a 12%
-percent reduction in available
- bandwidth.
+If the number of spine switches were to be merely doubled, the effect of
+a single switch failure is halved. With 8 spine switches, the effect of
+a single switch failure only causes a 12% reduction in available
+bandwidth.
 
- So, in modern data centers, 
-people build networks with anywhere from 4
- to 32 spine switches.
+So, in modern data centers, people build networks with anywhere from 4
+to 32 spine switches.
 
-## <span id="src-83629156639_NetworkTopology-load_balancing" class="confluence-anchor-link"></span><span>Load Balancing</span>
+## <span id="src-8362915_NetworkTopology-load_balancing" class="confluence-anchor-link"></span><span>Load Balancing</span>
 
 In a Clos network, traffic is load balanced across the multiple links
 using equal cost multi-pathing (ECMP).
@@ -151,6 +129,3 @@ be selected for a given traffic flow.
 <footer id="ht-footer">
 
 </footer>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMzg1NzA1MjY3XX0=
--->

@@ -1,15 +1,15 @@
 ---
 title: Setting Date and Time
 author: Cumulus Networks
-weight: 653
+weight: 65
 aliases:
- - /display/CL3740/Setting-Date-and-Time
- - /pages/viewpage.action?pageId=83625456266
-pageID: 83625456266
+ - /display/CL37/Setting-Date-and-Time
+ - /pages/viewpage.action?pageId=8362545
+pageID: 8362545
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 <details>
 
@@ -72,7 +72,7 @@ example selects the US/Pacific time zone:
      
     Current default time zone: 'US/Pacific'
     Local time is now:      Mon Jun 17 09:27:45 PDT 2013.
-    Universal Time is now:  Mon Jun 17 16:27:45 UTC 2013.{{% imgOld 0 %}}
+    Universal Time is now:  Mon Jun 17 16:27:45 UTC 2013.
 
 For more info see the Debian [System Administrator’s Manual –
 Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
@@ -92,7 +92,7 @@ clock is copied back to the battery backed hardware clock.
 You can set the date and time on the software clock using the `date`
 command. First, determine your current time zone:
 
-    cumulus@switch:~$ date +%Z
+    cumulus@switch$ date +%Z
 
 {{%notice note%}}
 
@@ -103,14 +103,14 @@ instructions above.
 
 Then, to set the system clock according to the time zone configured:
 
-    cumulus@switch:~$ sudo date -s "Tue Jan 12 00:37:13 2016"
+    cumulus@switch$ sudo date -s "Tue Jan 12 00:37:13 2016"
 
 See `man date(1)` for more information.
 
 You can write the current value of the system (software) clock to the
 hardware clock using the `hwclock` command:
 
-    cumulus@switch:~$ sudo hwclock -w
+    cumulus@switch$ sudo hwclock -w
 
 See `man hwclock(8)` for more information.
 
@@ -120,64 +120,37 @@ Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.ht
 specifically the section [Setting and showing hardware
 clock](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html#s16.2).
 
-## <span>Set the Time Using NTP and NCLU## <span>Use NTP</span>
+## <span>Set the Time Using NTP and NCLU</span>
 
 The `ntpd` daemon running on the switch implements the NTP protocol. It
-synchronizes the system time with time servers listed in the
-`/etc/ntp.conf` file. The `ntpd` daemon is started at boot by default. 
-See
- `man ntpd(8)` for `ntpd` details. You can check [this
+synchronizes the system time with time servers listed in
+`/etc/ntp.conf`. The `ntpd` daemon is started at boot by default. See
+`man ntpd(8)` for `ntpd` details. You can check [this
 site](http://nlug.ml1.co.uk/2012/01/ntpq-p-output/831) for an
 explanation of the output.
 
 {{%notice note%}}
 
 If you intend to run this service within a
-[VRF](/version/cumulus-linux-37740/Layer-3/Virtual-Routing-and-Forwarding---VRF),
+[VRF](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF),
 including the [management
-VRF](/version/cumulus-linux-37740/Layer-3/Management-VRF), follow [these
-steps](Management-VRF.html#src-83629406664_ManagementVRF-services) for
+VRF](/version/cumulus-linux-377/Layer-3/Management-VRF), follow [these
+steps](Management-VRF.html#src-8362940_ManagementVRF-services) for
 configuring the service.
 
 {{%/notice%}}
 
-By default,### <span>Configure NTP Servers</span>
-
-The default NTP configuration comprises the following servers, which are
-listed in the `/etc/ntpd.conf` contains some default time servers. You can
+By default, `/etc/ntp.conf` contains some default time servers. You can
 specify the NTP server or servers you want to use with
 [NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU);
-ifile:
-
-  - server
-    [0.cumulusnetworks.pool.ntp.org](http://0.cumulusnetworks.pool.ntp.org/)
-    iburst
-
-  - server
-    [1.cumulusnetworks.pool.ntp.org](http://1.cumulusnetworks.pool.ntp.org/)
-    iburst
-
-  - server
-    [2.cumulusnetworks.pool.ntp.org](http://2.cumulusnetworks.pool.ntp.org/)
-    iburst
-
-  - server
-    [3.cumulusnetworks.pool.ntp.org](http://3.cumulusnetworks.pool.ntp.org/)
-    iburst
-
-To add the NTP server or servers you want to use:
-
-<summary>NCLU Commands </summary>
-
-Run the following commands. Include the `iburst` option to increase the 
-sync speed.
+include the `iburst` option to increase the sync speed.
 
     cumulus@switch:~$ net add time ntp server 4.cumulusnetworks.pool.ntp.org iburst
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-These commands add the NTP server to the list of servers in the
-`/etc/ntp.conf` file:
+These commands add the NTP server to the list of servers in
+`/etc/ntp.conf`:
 
     # pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
     # pick a different set every time it starts up.  Please consider joining the
@@ -188,33 +161,14 @@ These commands add the NTP server to the list of servers in the
     server 3.cumulusnetworks.pool.ntp.org iburst
     server 4.cumulusnetworks.pool.ntp.org iburst
 
-<summary>Linux Commands </summary>
-
-Edit the `/etc/ntp.conf` file to add or update NTP server information:
-
-    cumulus@switch:~$ sudo nano /etc/ntp.conf
-    # pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
-    # pick a different set every time it starts up.  Please consider joining the
-    # pool: <http://www.pool.ntp.org/join.html>
-    server 0.cumulusnetworks.pool.ntp.org iburst
-    server 1.cumulusnetworks.pool.ntp.org iburst
-    server 2.cumulusnetworks.pool.ntp.org iburst
-    server 3.cumulusnetworks.pool.ntp.org iburst
-    server 4.cumulusnetworks.pool.ntp.org iburst
-
-{{%notice note%}}
-
-To set the initial date and time viawith NTP before starting the `ntpd`
-daemon, usrun the `ntpd -q`. This command. This command is the same as 
-`ntpdate`, which is to be
- retired and no longer available. See `man ntp.conf(5)` for details on
+To set the initial date and time via NTP before starting the `ntpd`
+daemon, use `ntpd -q`. This is the same as `ntpdate`, which is to be
+retired and no longer available. See `man ntp.conf(5)` for details on
 configuring `ntpd` using `ntp.conf`.
 
 {{%notice note%}}
 
-
-
-Be aware that `ntpd -q` can hang if the time servers are not reachable.
+`ntpd -q` can hang if the time servers are not reachable.
 
 {{%/notice%}}
 
@@ -225,10 +179,6 @@ To verify that `ntpd` is running on the system:
 
 To check the NTP peer status:
 
-<summary>NCLU Commands </summary>
-
-Run the `net show time ntp servers` command:
-
     cumulus@switch:~$ net show time ntp servers 
          remote           refid      st t when poll reach   delay   offset  jitter
     ==============================================================================
@@ -237,54 +187,19 @@ Run the `net show time ntp servers` command:
     *chl.la          216.218.192.202  2 u  210 1024  377    4.008    1.277   1.628
     +vps3.drown.org  17.253.2.125     2 u  743 1024  377   39.319   -0.316   1.384
 
-To remove one or more NTP servers:<summary>Linux Commands </summary>
-
-Run the `ntpq -p` command:
-
-    cumulus@switch:~$ ntpq -p
-         remote           refid      st t when poll reach   delay   offset  jitter
-    ==============================================================================
-    +ec2-34-225-6-20 129.6.15.30      2 u   73 1024  377   70.414   -2.414   4.110
-    +lax1.m-d.net    132.163.96.1     2 u   69 1024  377   11.676    0.155   2.736
-    *69.195.159.158  199.102.46.72    2 u  133 1024  377   48.047   -0.457   1.856
-    -2.time.dbsinet. 198.60.22.240    2 u 1057 1024  377   63.973    2.182   2.692
-
 To remove one or more NTP servers:
-
-<summary>NCLU Commands </summary>
-
-Run the `net del time ntp <server> iburst` command. The following
-example commands remove some of the default NTP servers.
 
     cumulus@switch:~$ net del time ntp server 0.cumulusnetworks.pool.ntp.org iburst
     cumulus@switch:~$ net del time ntp server 1.cumulusnetworks.pool.ntp.org iburst
     cumulus@switch:~$ net del time ntp server 2.cumulusnetworks.pool.ntp.org iburst
     cumulus@switch:~$ net del time ntp server 3.cumulusnetworks.pool.ntp.org iburst
-    cumulus@switch:~$  net pending
+    cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<summary>Linux Commands </summary>
+## <span>Specify the NTP Source Interface</span>
 
-Edit the ` /etc/ntp.conf  `file to delete the NTP servers.
-
-    cumulus@switch:~$ sudo nano /etc/ntp.conf
-    ...
-    # pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
-    # pick a different set every time it starts up.  Please consider joining the
-    # pool: <http://www.pool.ntp.org/join.html>
-    server 4.cumulusnetworks.pool.ntp.org iburst
-    ...
-
-### <span>Specify the NTP Source Interface</span>
-
-You can changeBy default, the source interface that NTP uses if you want to use an
-interface other than eth0, which is the defaults eth0. To change the
-source interface:
-
-<summary>NCLU Commands </summary>
-
-Run the `net add time ntp source <interface>` command. The following
-command example changes the NTP source interface to swp10.
+You can change the source interface that NTP uses if you want to use an
+interface other than eth0, which is the default.
 
     cumulus@switch:~$ net add time ntp source swp10
     cumulus@switch:~$ net pending
@@ -294,7 +209,7 @@ These commands create the following configuration snippet in the
 `ntp.conf` file:
 
     ...
-      
+     
     # Specify interfaces
     interface listen swp10
      
@@ -305,12 +220,7 @@ These commands create the following configuration snippet in the
 The default NTP configuration comprises the following servers, which are
 listed in the `/etc/ntpd.conf` file:
 
-  - server<summary>Linux Commands </summary>
-
-Edit the ` /etc/ntp.conf  `file and modify the entry under the **\#
-Specify interfaces** comment. The following example shows that the NTP
-source interface is swp10.
-
+  - server
     [0.cumulusnetworks.pool.ntp.org](http://0.cumulusnetworks.pool.ntp.org)
     iburst
 
@@ -326,61 +236,36 @@ source interface is swp10.
     [3.cumulusnetworks.pool.ntp.org](http://3.cumulusnetworks.pool.ntp.org)
     iburst
 
-The contents of the `/etc@switch:~$ sudo nano /etc/ntp.conf
-    ...
-    # Specify interfaces
-    interface listen swp10
-    ...
+The contents of the `/etc/ntpd.conf` file are listed below.
 
-### <span>Use NTP in a DHCP Environment</span>
-
-If you use DHCP and want to specify your NTP servers, you must specify
-an alternate configuration file for NTP.
-
-Before you create the file, ensure that the DHCP-generated configuration
-file exists. In Cumulus Linux 3.6.1 and later (which uses NTP 1:4.2.8),
-the DHCP-generated file is named `/run/ntpd.conf` file are listed below.
-<details>
 <summary>Default ntpd.conf file ... </summary>
 
     # /etc/ntp.conf, configuration for ntpd; see ntp.conf(5) for help
-
+     
     driftfile /var/lib/ntp/ntp.drift
-
-
-    # Enable this if.dhcp`. This file is
-generated by the `/etc/dhcp/dhclient-exit-hooks.d/ntp` script and is a
-copy of the default `/etc/ntp.conf` with a modified server list from the
-DHCP server. If this file does not exist and you plan on using DHCP in
-the future, you wcant statistics to be logged.
+     
+     
+    # Enable this if you want statistics to be logged.
     #statsdir /var/log/ntpstats/
-
+     
     statistics loopstats peerstats clockstats
     filegen loopstats file loopstats type day enable
     filegen peerstats file peerstats type day enable
     filegen clockstats file clockstats type day enable
-
-
+     
+     
     # You do need to talk to an NTP server or two (or three).
     #server ntp.your-provider.example
-
+     
     # pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
     # pick a different set every time it starts up.  Please consider joining the
     # pool: <http://www.pool.ntp.org/join.html>
     server 0.cumulusnetworks.pool.ntp.org iburst
-    server 1.cumulusnetworks.pool.ntp.org iburst copy your current `/etc/ntp.conf` file to the
-location of the DHCP file.
-
-To use an alternate configuration file that persists across upgrades of
-Cumulus Linux, create a `systemd` unit override file called
-`/etc/systemd/system/ntp.service.d/config.conf` and add the following
-content:
-
-    cumulus@switch:~$ sudo echo '
-    s[Server 2.cumulusnetworks.pool.ntp.org iburst
+    server 1.cumulusnetworks.pool.ntp.org iburst
+    server 2.cumulusnetworks.pool.ntp.org iburst
     server 3.cumulusnetworks.pool.ntp.org iburst
-
-
+     
+     
     # Access control configuration; see /usr/share/doc/ntp-doc/html/accopt.html for
     # details.  The web page <http://support.ntp.org/bin/view/Support/AccessRestrictions>
     # might also be helpful.
@@ -388,59 +273,33 @@ content:
     # Note that "restrict" applies to both servers and clients, so a configuration
     # that might be intended to block requests from certain clients could also end
     # up blocking replies from your own upstream servers.
-
+     
     # By default, exchange time with everybody, but don't allow configuration.
     restrict -4 default kod notrap nomodify nopeer noquery
     restrict -6 default kod notrap nomodify nopeer noquery
-
+     
     # Local users may interrogate the ntp server more closely.
     restrict 127.0.0.1
     restrict ::1
-
+     
     # Clients from this (example!) subnet have unlimited access, but only if
     # cryptographically authenticated.
     #restrict 192.168.123.0 mask 255.255.255.0 notrust
-
-
+     
+     
     # If you want to provide time to your local subnet, change the next line.
     # (Again, the address is an example only.)
     #broadcast 192.168.123.255
-
+     
     # If you want to listen to time broadcasts on your local subnet, de-comment the
     # next lines.  Please do this only if you trust everybody on the network!
     #disable auth
     #broadcastclient
-
+     
     # Specify interfaces, don't listen on switch ports
     interface listen eth0
-</details>ice]
-    ExecStart=
-    ExecStart=/usr/sbin/ntpd -n -u ntp:ntp -g -c /run/ntp.conf.dhcp
-    '  > ~/over
-    sudo mkdir -p /etc/systemd/system/ntp.service.d
-    sudo mv ~/over /etc/systemd/system/ntp.service.d/dhcp.conf
-    sudo chown root:root /etc/systemd/system/ntp.service.d/dhcp.conf
 
-To validate that your configuration, run these commands:
-
-    cumulus@switch:~$ sudo systemctl daemon-reload
-    cumulus@switch:~$ sudo systemctl restart ntp
-    cumulus@switch:~$ sudo systemctl status -n0 ntp.service
-
-If the state is not *Active*, or the alternate configuration file does
-not appear in the `ntp` command line, it is likely that a mistake was
-made. In this case, correct the mistake and rerun the three commands
-above to verify.
-
-{{%notice note%}}
-
-With this unit file override present, changing NTP settings using NCLU
-do not take effect until the DHCP script regenerates the alternate NTP
-configuration file.
-
-{{%/notice%}}
-
-## <span id="src-83625456266_SettingDateandTime-PTP" class="confluence-anchor-link"></span><span>Precision Time Protocol (PTP) Boundary Clock</span>
+## <span id="src-8362545_SettingDateandTime-PTP" class="confluence-anchor-link"></span><span>Precision Time Protocol (PTP) Boundary Clock</span>
 
 With the growth of low latency and high performance applications,
 precision timing has become increasingly important. Precision Time
@@ -470,7 +329,7 @@ Cumulus Linux includes the `linuxptp` package for PTP, which uses the
 
   - If you do not perform a full disk image install of Cumulus Linux 3.6
     or later, you need to install the `linuxptp` package with the `sudo
-    -E` ` apt-get install linuxptp` command.
+    -E` `apt-get install linuxptp` command.
 
   - PTP is supported in boundary clock mode only (the switch provides
     timing to downstream servers; it is a slave to a higher-level clock
@@ -496,7 +355,7 @@ receives the time on a PTP slave port, sets its clock and passes the
 time down the hierarchy through the PTP master ports to the hosts that
 receive the time.
 
-{{% imgOld 01 %}}
+{{% imgOld 0 %}}
 
   
 
@@ -583,7 +442,7 @@ from Master 1 (the grandmaster) on PTP slave port swp3s0, sets its clock
 and passes the time down through PTP master ports swp3s1, swp3s2, and
 swp3s3 to the hosts that receive the time.
 
-{{% imgOld 12 %}}
+{{% imgOld 1 %}}
 
 <span style="color: #36424a;"> </span>
 
@@ -792,6 +651,3 @@ sure to set the system clock on the switch.
 </footer>
 
 </details>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5Nzg0NDg4MzRdfQ==
--->

@@ -1,15 +1,15 @@
 ---
 title: Using sudo to Delegate Privileges
 author: Cumulus Networks
-weight: 27781
+weight: 277
 aliases:
- - /display/CL3740/Using-sudo-to-Delegate-Privileges
- - /pages/viewpage.action?pageId=83625546275
-pageID: 83625546275
+ - /display/CL37/Using-sudo-to-Delegate-Privileges
+ - /pages/viewpage.action?pageId=8362554
+pageID: 8362554
 product: Cumulus Linux
-version: 3.7.7'4.0'
-imgData: cumulus-linux-37740
-siteSlug: cumulus-linux-37740
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 By default, Cumulus Linux has two user accounts: *root* and *cumulus*.
 The *cumulus* account is a normal user and is in the group *sudo*.
@@ -284,6 +284,3 @@ be prefixed with `sudo.`
 <footer id="ht-footer">
 
 </footer>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbNTg2NDc4NjkyXX0=
--->

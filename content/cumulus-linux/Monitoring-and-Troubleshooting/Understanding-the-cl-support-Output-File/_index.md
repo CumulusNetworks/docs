@@ -1,15 +1,15 @@
 ---
 title: Understanding the cl-support Output File
 author: Cumulus Networks
-weight: 229
+weight: 225
 aliases:
- - /display/CL40/Understanding-the-cl-support-Output-File
- - /pages/viewpage.action?pageId=8366321
-pageID: 8366321
+ - /display/CL37/Understanding-the-cl-support-Output-File
+ - /pages/viewpage.action?pageId=8362600
+pageID: 8362600
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 The `cl-support` script generates a compressed archive file of useful
 information for troubleshooting. The system either creates the archive
@@ -41,13 +41,13 @@ For information on the directories included in the `cl-support` archive,
 see:
 
   - [Troubleshooting the etc
-    Directory](/version/cumulus-linux-40/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-the-etc-Directory)
+    Directory](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-the-etc-Directory)
     — In terms of the sheer number of files, `/etc` contains the largest
     number of files to send to Cumulus Networks. However, log files
     might be significantly larger in file size.
 
   - [Troubleshooting Log
-    Files](/version/cumulus-linux-40/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files)
+    Files](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files)
     — This guide highlights the most important log files to inspect.
     Keep in mind, `cl-support` includes all of the log files.
 

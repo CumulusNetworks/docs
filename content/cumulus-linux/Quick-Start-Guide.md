@@ -3,16 +3,14 @@ title: Quick Start Guide
 author: Cumulus Networks
 weight: 11
 aliases:
- - /display/CL40/Quick-Start-Guide
- - /pages/viewpage.action?pageId=8366263
-pageID: 8366263
+ - /display/CL37/Quick-Start-Guide
+ - /pages/viewpage.action?pageId=8362542
+pageID: 8362542
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
-<details>
-
 This quick start guide provides an end-to-end setup process for
 installing and running Cumulus Linux, as well as a collection of example
 commands for getting started after installation is complete.
@@ -21,10 +19,10 @@ commands for getting started after installation is complete.
 
 **Prerequisites**
 
-Intermediate-level Linux knowledge is assumed for this guide. You need
-to be familiar with basic text editing, Unix file permissions, and
-process monitoring. A variety of text editors are pre-installed,
-including `vi` and `nano`.
+Intermediate-level Linux knowledge is assumed for this guide. You should
+be familiar with basic text editing, Unix file permissions, and process
+monitoring. A variety of text editors are pre-installed, including `vi`
+and `nano`.
 
 You must have access to a Linux or UNIX shell. If you are running
 Windows, use a Linux environment like [Cygwin](http://www.cygwin.com/)
@@ -68,7 +66,7 @@ system choice, such as Cumulus Linux.
 
 If Cumulus Linux is already installed on your switch and you need to
 upgrade the software only, skip to [Upgrading Cumulus
-Linux](/version/cumulus-linux-40/Installation-Management/Upgrading-Cumulus-Linux).
+Linux](/version/cumulus-linux-377/Installation-Management/Upgrading-Cumulus-Linux).
 
 {{%/notice%}}
 
@@ -99,7 +97,7 @@ server typically completes in less than ten minutes.
 
 You have more options for installing Cumulus Linux with ONIE. Read
 [Installing a New Cumulus Linux
-Image](/version/cumulus-linux-40/Installation-Management/Installing-a-New-Cumulus-Linux-Image)
+Image](/version/cumulus-linux-377/Installation-Management/Installing-a-New-Cumulus-Linux-Image)
 to install Cumulus Linux using ONIE in the following ways:
 
   - DHCP/web server with and without DHCP options
@@ -113,6 +111,12 @@ to install Cumulus Linux using ONIE in the following ways:
   - USB
 
 {{%/notice%}}
+
+ONIE supports many other discovery mechanisms using USB (copy the
+installer to the root of the drive), DHCPv6 and DHCPv4, and image copy
+methods including HTTP, FTP, and TFTP. For more information on these
+discovery methods, refer to the [ONIE
+documentation](https://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods).
 
 After installing Cumulus Linux, you are ready to:
 
@@ -156,13 +160,13 @@ All accounts except `root` are permitted remote SSH login; you can use
 change the system configuration require this elevated level of access.
 
 For more information about `sudo`, read [Using sudo to Delegate
-Privileges](/version/cumulus-linux-40/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
+Privileges](/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
 
 ### <span>Serial Console Management</span>
 
 You are encouraged to perform management and configuration over the
 network, [either in band or out of
-band](Upgrading-Cumulus-Linux.html#src-8366370_UpgradingCumulusLinux-outofband).
+band](Upgrading-Cumulus-Linux.html#src-8362647_UpgradingCumulusLinux-outofband).
 Using a serial console is fully supported; however, many customers
 prefer the convenience of network-based management.
 
@@ -175,11 +179,11 @@ Switches supported in Cumulus Linux always contain at least one
 dedicated Ethernet management port, which is named eth0. This interface
 is geared specifically for out-of-band management use. The management
 interface uses DHCPv4 for addressing by default. You can set a static IP
-address with the Network Command Line Utility (NCLU) or by editing the
-[/etc/network/interfaces](http://manpages.debian.net/man/5/interfaces)
-file (Linux).
+address with the Network Command Line Utility (NCLU).
 
-<summary>NCLU Commands </summary>
+{{%notice info%}}
+
+**Example IP Configuration**
 
 Set the static IP address with the `interface address` and `interface
 gateway` NCLU commands:
@@ -189,37 +193,21 @@ gateway` NCLU commands:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<summary>Linux Commands </summary>
+These commands produce the following snippet in the
+[/etc/network/interfaces](http://manpages.debian.net/man/5/interfaces)
+file:
 
-Set a static IP address by editing the `/etc/network/interfaces` file:
-
-    cumulus@switch:~$ sudo nano /etc/network/interfaces
-     
-    # Management interface
     auto eth0
     iface eth0
         address 192.0.2.42/24
         gateway 192.0.2.1
 
-### <span>Configure the Hostname and Timezone</span>
-
-Configure the hostname and timezone for your switch. The hostname
-identifies the switch; make sure you configure the hostname to be unique
-and descriptive.
-
-{{%notice note%}}
-
-Do not use an underscore (\_) in the hostname; underscores are not
-permitted in hostnames.
-
 {{%/notice%}}
 
-To change the hostname:
+### <span>Configure the Hostname and Timezone</span>
 
-<summary>NCLU Commands </summary>
-
-Run the `net add hostname` command, which modifies both the` 
-/etc/hostname  `and `/etc/hosts` files with the desired hostname.
+To change the hostname, run `net add hostname`, which modifies both
+the`  /etc/hostname  `and `/etc/hosts` files with the desired hostname.
 
     cumulus@switch:~$ net add hostname <hostname>
     cumulus@switch:~$ net pending
@@ -227,39 +215,25 @@ Run the `net add hostname` command, which modifies both the`
 
 {{%notice note%}}
 
-  - The command prompt in the terminal does not reflect the new hostname
-    until you either log out of the switch or start a new shell.
-
-  - When you use the NCLU command to set the hostname, DHCP **does not**
-    override the hostname when you reboot the switch. However, if you
-    disable the hostname setting with NCLU, DHCP **does** override the
-    hostname the next time you reboot the switch.
+The command prompt in the terminal does not reflect the new hostname
+until you either log out of the switch or start a new shell.
 
 {{%/notice%}}
 
-<summary>Linux Commands </summary>
+{{%notice note%}}
 
-1.  Modify the ` /etc/hostname  `file with the desired hostname:
-    
-        cumulus@switch:~$ sudo vi /etc/hostname
+When you use this NCLU command to set the hostname, DHCP **does not**
+override the hostname when you reboot the switch. However, if you
+disable the hostname setting with NCLU, DHCP **does** override the
+hostname the next time you reboot the switch.
 
-2.  In `/etc/hosts` file, replace the 127.0.1.1 IP address with the new
-    hostname:
-    
-        cumulus@switch:~$ sudo vi /etc/hosts
-
-3.  Reboot the switch:
-    
-        cumulus@switch:~$ sudo reboot
-
-The default timezone on the switch is (Coordinated Universal Time) UTC.
-Change the timezone on your switch to be the timezone for your location.
+{{%/notice%}}
 
 To update the timezone, use NTP interactive mode:
 
-1.  Run the following command in a terminal.
+1.  Run the following command in a terminal:
     
-        cumulus@switch:~$ sudo dpkg-reconfigure tzdata
+        sudo dpkg-reconfigure tzdata
 
 2.  Follow the on screen menu options to select the geographic area and
     region.
@@ -268,24 +242,24 @@ To update the timezone, use NTP interactive mode:
 
 Programs that are already running (including log files) and users
 currently logged in, do not see timezone changes made with interactive
-mode. To set the timezone for all services and daemons, reboot the
-switch.
+mode. To have the timezone set for all services and daemons, a reboot is
+required.
 
 {{%/notice%}}
 
 ### <span>Verify the System Time</span>
 
 Before you install the license, verify that the date and time on the
-switch are correct, and [correct the date and
-time](/version/cumulus-linux-40/System-Configuration/Setting-Date-and-Time)
-if necessary. The wrong date and time can have an impact on the switch,
-such as the inability to synchronize with Puppet or return errors like
-this one after you restart `switchd`:
+switch are correct. You must [correct the date and
+time](/version/cumulus-linux-377/System-Configuration/Setting-Date-and-Time)
+if they are incorrect. The wrong date and time can have impacts on the
+switch, such as the inability to synchronize with Puppet or return
+errors like this one after you restart `switchd`:
 
 > Warning: Unit file of switchd.service changed on disk, 'systemctl
 > daemon-reload' recommended.
 
-### <span id="src-8366263_QuickStartGuide-install-license" class="confluence-anchor-link"></span><span>Install the License</span>
+### <span id="src-8362542_QuickStartGuide-install-license" class="confluence-anchor-link"></span><span>Install the License</span>
 
 Cumulus Linux is licensed on a per-instance basis. Each network system
 is fully operational, enabling any capability to be utilized on the
@@ -342,18 +316,14 @@ as described above.
 If you are using 4x10G DAC or AOC cables, or want to break out 100G or
 40G switch ports, configure the breakout ports. For more details, see
 [Layer 1 and Switch Port
-Attributes](Switch-Port-Attributes.html#src-8366750_SwitchPortAttributes-breakout).
+Attributes](Switch-Port-Attributes.html#src-8363026_SwitchPortAttributes-breakout).
 
 ## <span>Test Cable Connectivity</span>
 
 By default, all data plane ports (every Ethernet port except the
 management interface, eth0) are disabled.
 
-To test cable connectivity:
-
-<summary>NCLU Commands </summary>
-
-To administratively enable a port:
+To test cable connectivity, administratively enable a port:
 
     cumulus@switch:~$ net add interface swp1
     cumulus@switch:~$ net pending
@@ -415,31 +385,6 @@ following examples show the output of ports in `admin down`, `down`, and
     UP     vrf1           N/A  65536  NotConfigured
     UP     vxlan4001      N/A  1500   Access/L2                              Master: bridge(UP)
 
-<summary>Linux Commands </summary>
-
-To enable a port, run the `ip link set <interface> up` command. For
-example:
-
-    cumulus@switch:~$ sudo ip link set swp1 up
-
-As root, run the following bash script to administratively enable all
-physical ports:
-
-    cumulus@switch:~$ sudo su -
-    cumulus@switch:~$ for i in /sys/class/net/*; do iface=`basename $i`; if [[ $iface == swp* ]]; then ip link set $iface up; fi done
-
-To view link status, use the `ip link show` command. The following
-examples show the output of a port in *down* and *up* mode:
-
-    # Administratively Down
-    swp1: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 1000
-     
-    # Administratively Up but Layer 1 protocol is Down
-    swp1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 500
-     
-    # Administratively Up, Layer 1 protocol is Up
-    swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
-
 ## <span>Configure Switch Ports</span>
 
 ### <span>Layer 2 Port Configuration</span>
@@ -448,63 +393,61 @@ Cumulus Linux does not put all ports into a bridge by default. To create
 a bridge and configure one or more front panel ports as members of the
 bridge, use the following examples as a guide.
 
-<summary>NCLU Commands </summary>
+#### <span>Examples</span>
+
+{{%notice info%}}
+
+**Example One**
 
 In the following configuration example, the front panel port swp1 is
-placed into a bridge called *bridge*.
+placed into a bridge called *bridge*. The NCLU commands are:
 
     cumulus@switch:~$ net add bridge bridge ports swp1
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-You can add a range of ports in one command. For example, to add swp1
+The commands above produce the following `/etc/network/interfaces`
+snippet:
+
+    auto bridge
+    iface bridge
+        bridge-ports swp1
+        bridge-vlan-aware yes
+
+{{%/notice%}}
+
+{{%notice info%}}
+
+**Example Two**
+
+You can add a range of ports in one command. For example, add swp1
 through swp10, swp12, and swp14 through swp20 to bridge:
 
     cumulus@switch:~$ net add bridge bridge ports swp1-10,12,14-20
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<summary>Linux Commands </summary>
+The commands above produce the following snippet in the
+`/etc/network/interfaces` file:
 
-In the following configuration example, the front panel port swp1 is
-placed into a bridge called br0:
+    auto bridge
+    iface bridge
+        bridge-ports swp1 swp2 swp3 swp4 swp5 swp6 swp7 swp8 swp9 swp10 swp12 swp14 swp15 swp16 swp17 swp18 swp19 swp20
+        bridge-vlan-aware yes
 
-    ...
-    auto br0
-    iface br0
-      bridge-ports swp1
-      bridge-stp on
-
-To put a range of ports into a bridge, use the `glob` keyword. For
-example, to add swp1 through swp10, swp12, and swp14 through swp20 to
-br0:
-
-    ...
-    auto br0
-    iface br0
-      bridge-ports glob swp1-10 swp12 glob swp14-20
-      bridge-stp on
-
-To activate or apply the configuration to the kernel:
-
-    # First, check for typos:
-    cumulus@switch:~$ sudo ifquery -a
-     
-    # Then activate the change if no errors are found:
-    cumulus@switch:~$ sudo ifup -a
+{{%/notice%}}
 
 To view the changes in the kernel, use the `brctl` command:
 
     cumulus@switch:~$ brctl show
     bridge name     bridge id              STP enabled     interfaces
-    br0             8000.089e01cedcc2       yes              swp1
+    bridge          8000.443839000004      yes             swp1
+                                                           swp2
 
 ### <span>Layer 3 Port Configuration</span>
 
-You can also configure a front panel port or bridge interface as a layer
-3 port.
-
-<summary>NCLU Commands </summary>
+You can also use NCLU to configure a front panel port or bridge
+interface as a layer 3 port.
 
 In the following configuration example, the front panel port swp1 is
 configured as a layer 3 access port:
@@ -513,6 +456,13 @@ configured as a layer 3 access port:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
+The commands above produce the following snippet in the
+`/etc/network/interfaces` file:
+
+    auto swp1
+    iface swp1
+      address 10.1.1.1/30
+
 To add an IP address to a bridge interface, you must put it into a VLAN
 interface:
 
@@ -520,31 +470,19 @@ interface:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<summary>Linux Commands </summary>
+The commands above produce the following snippet in the
+`/etc/network/interfaces` file:
 
-In the following configuration example, the front panel port swp1 is
-configured a layer 3 access port:
-
-    auto swp1
-    iface swp1
-      address 10.1.1.1/30
-
-To add an IP address to a bridge interface, include the address under
-the `iface` configuration in the `/etc/network/interfaces` file:
-
-    auto br0
-    iface br0
-      address 10.2.2.1/24
-      bridge-ports glob swp1-10 swp12 glob swp14-20
-      bridge-stp on
-
-To activate or apply the configuration to the kernel:
-
-    # First check for typos:
-    cumulus@switch:~$ sudo ifquery -a
-     
-    # Then activate the change if no errors are found:
-    cumulus@switch:~$ sudo ifup -a
+    auto bridge
+    iface bridge
+        bridge-vids 100
+        bridge-vlan-aware yes
+     
+    auto vlan100
+    iface vlan100
+        address 192.168.10.1/24
+        vlan-id 100
+        vlan-raw-device bridge
 
 To view the changes in the kernel, use the `ip addr show` command:
 
@@ -576,17 +514,14 @@ The loopback interface *lo* must always be specified in the
 
 {{%/notice%}}
 
-To see the status of the loopback interface (lo):
-
-<summary>NCLU Commands </summary>
-
-Use the `net show interface lo` command.
+To see the status of the loopback interface (lo), use the `net show
+interface lo` command:
 
     cumulus@switch:~$ net show interface lo
         Name    MAC                Speed      MTU  Mode
     --  ------  -----------------  -------  -----  --------
     UP  lo      00:00:00:00:00:00  N/A      65536  Loopback
-     
+     
     Alias
     -----
     loopback interface
@@ -595,10 +530,10 @@ Use the `net show interface lo` command.
     IP:                        127.0.0.1/8, ::1/128
     IP Neighbor(ARP) Entries:  0
 
-The loopback is up and is assigned an IP address of 127.0.0.1.
+Note that the loopback is up and is assigned an IP address of 127.0.0.1.
 
 To add an IP address to a loopback interface, configure the *lo*
-interface:
+interface with NCLU:
 
     cumulus@switch:~$ net add loopback lo ip address 10.1.1.1/32
     cumulus@switch:~$ net pending
@@ -611,41 +546,12 @@ You can configure multiple loopback addresses by adding additional
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<summary>Linux Commands </summary>
-
-Use the `ip addr show lo` command.
-
-    cumulus@switch:~$ ip addr show lo
-    1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue state UNKNOWN
-        link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-        inet 127.0.0.1/8 scope host lo
-        inet6 ::1/128 scope host
-           valid_lft forever preferred_lft forever
-
-The loopback is up and is assigned an IP address of 127.0.0.1.
-
-To add an IP address to a loopback interface, add it directly under the
-`iface lo inet loopback` definition in the `/etc/network/interfaces`
-file:
+The commands above produce the following snippet in the
+`/etc/network/interfaces` file:
 
     auto lo
     iface lo inet loopback
-        address 10.1.1.1
-
-{{%notice note%}}
-
-If an IP address is configured without a mask (as shown above), the IP
-address becomes a /32. So, in the above case, 10.1.1.1 is actually
-10.1.1.1/32.
-
-{{%/notice%}}
-
-You can add multiple loopback addresses by adding additional `address`
-lines in the `/etc/network/interfaces` file:
-
-    auto lo
-    iface lo inet loopback
-        address 10.1.1.1
+        address 10.1.1.1/32
         address 172.16.2.1/24
 
 <article id="html-search-results" class="ht-content" style="display: none;">
@@ -655,5 +561,3 @@ lines in the `/etc/network/interfaces` file:
 <footer id="ht-footer">
 
 </footer>
-
-</details>

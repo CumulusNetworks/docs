@@ -1,15 +1,15 @@
 ---
 title: Network Command Line Utility - NCLU
 author: Cumulus Networks
-weight: 61
+weight: 63
 aliases:
- - /display/CL40/Network-Command-Line-Utility---NCLU
- - /pages/viewpage.action?pageId=8366301
-pageID: 8366301
+ - /display/CL37/Network-Command-Line-Utility---NCLU
+ - /pages/viewpage.action?pageId=8362580
+pageID: 8362580
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 The Network Command Line Utility (NCLU) is a command line interface for
 Cumulus Networks products that simplifies the networking configuration
@@ -34,11 +34,32 @@ and sub-modes. NCLU provides these benefits:
 
 The NCLU wrapper utility called `net` is capable of configuring layer 2
 and layer 3 features of the networking stack, installing ACLs and
-VXLANs, restoring configuration files, as well as providing monitoring
-and troubleshooting functionality for these features. You can configure
-both the `/etc/network/interfaces` and `/etc/frr/frr.conf` files with
-`net`, in addition to running show and clear commands related to
-`ifupdown2` and FRRouting.
+VXLANs, rolling back and deleting snapshots, as well as providing
+monitoring and troubleshooting functionality for these features. You can
+configure both the `/etc/network/interfaces` and `/etc/frr/frr.conf`
+files with `net`, in addition to running show and clear commands related
+to `ifupdown2` and FRRouting.
+
+## <span>Install NCLU</span>
+
+If you upgraded Cumulus Linux from a version earlier than 3.2 instead of
+performing a full disk image install, you need to install the `nclu`
+package on your switch:
+
+    cumulus@switch:~$ sudo -E apt-get update
+    cumulus@switch:~$ sudo -E apt-get install nclu
+    cumulus@switch:~$ sudo -E apt-get upgrade
+
+{{%notice note%}}
+
+The `nclu` package installs a new bash completion script and displays
+the following message:
+
+    Setting up nclu (1.0-cl3u3) ...
+    To enable the newly installed bash completion for nclu in this shell, execute...
+     source /etc/bash_completion
+
+{{%/notice%}}
 
 ## <span>NCLU Basics</span>
 
@@ -63,6 +84,11 @@ If two different users try to commit a change at the same time, NCLU
 displays a warning but implements the change according to the first
 commit received. The second user will need to abort the commit.
 
+If you provision a new switch without setting the system clock (manually
+or with NTP or PTP), the NCLU `net commit` command fails when the system
+clock is earlier than the modification date of configuration files. Make
+sure to set the system clock on the switch.
+
 {{%/notice%}}
 
 When you have a running configuration, you can review and update the
@@ -77,8 +103,9 @@ configuration with the following commands:
   - `net clear` provides a way to clear `net show` counters, BGP and
     OSPF neighbor content, and more.
 
-  - `net rollback` provides a mechanism to revert back to an earlier
-    configuration.
+  - `net rollback` provides a mechanism to [revert
+    back](Using-Snapshots.html#src-8362648_UsingSnapshots-rollback) to
+    an earlier configuration.
 
   - `net commit confirm` requires you to press *Enter* to commit changes
     using NCLU. If you run `net commit confirm` but do not press *Enter*
@@ -88,18 +115,22 @@ configuration with the following commands:
   - `net commit description <description>` enables you to provide a
     descriptive summary of the changes you are about to commit.
 
-  - `net commit permanent` retains the [backup
-    file](Back-up-and-Restore.html) taken when committing the change.
-    Otherwise, the backup files created from NCLU commands are cleaned
-    up periodically.
+  - `net commit permanent` retains the
+    [snapshot](/version/cumulus-linux-377/Installation-Management/Using-Snapshots)
+    taken when committing the change. Otherwise, the snapshots created
+    from NCLU commands are cleaned up periodically with a snapper cron
+    job.
+
+  - `net commit delete` deletes one or more snapshots created when
+    committing changes with NCLU.
 
   - `net del all` deletes all configurations and stops the IEEE 802.1X
     service.
-
-  - {{%notice note%}}
+    
+    {{%notice note%}}
     
     The `net del all` command does not remove [management
-    VRF](/version/cumulus-linux-40/Layer-3/Management-VRF)
+    VRF](/version/cumulus-linux-377/Layer-3/Management-VRF)
     configurations; NCLU does not interact with eth0 interfaces and
     management VRF.
     
@@ -108,8 +139,8 @@ configuration with the following commands:
 ### <span>Tab Completion, Verification, and Inline Help</span>
 
 In addition to tab completion and partial keyword command
-identification, NCLU includes verification checks to ensure you use the
-correct syntax. The examples below show the output for incorrect
+identification, NCLU includes verification checks to ensure correct
+syntax is used. The examples below show the output for incorrect
 commands:
 
     cumulus@switch:~$ net add bgp router-id 1.1.1.1/32
@@ -144,19 +175,17 @@ man page, you can use ` ?  `and `help` to display available commands:
         #
         # Use 'man net' for a more comprehensive overview.
      
+     
         net abort
-        net commit [verbose] [confirm [<number-seconds>]] [description <wildcard>]
-        net commit permanent <wildcard>
-        net del all
+        net commit [verbose] [confirm] [description <wildcard>]
+        net commit delete (<number>|<number-range>)
         net help [verbose]
-        net pending [json]
+        net pending
         net rollback (<number>|last)
-        net rollback description <wildcard-snapshot>
-        net show commit (history|<number>|last)
+        net show commit (history|<number>|<number-range>|last)
         net show rollback (<number>|last)
-        net show rollback description <wildcard-snapshot>
-        net show configuration [commands|files|acl|bgp|multicast|ospf|ospf6]
-        net show configuration interface [<interface>] [json]
+        net show configuration [commands|files|acl|bgp|ospf|ospf6|interface <interface>]
+     
      
     Options:
      
@@ -187,23 +216,14 @@ man page, you can use ` ?  `and `help` to display available commands:
         net (add|del) bgp bestpath as-path multipath-relax [as-set|no-as-set]
         net (add|del) bgp bestpath compare-routerid
         net (add|del) bgp bestpath med missing-as-worst
-        net (add|del) bgp ipv4 labeled-unicast neighbor <bgppeer> addpath-tx-bestpath-per-AS
-        net (add|del) bgp ipv4 unicast neighbor <bgppeer> addpath-tx-bestpath-per-AS
-        net (add|del) bgp ipv6 labeled-unicast neighbor <bgppeer> addpath-tx-bestpath-per-AS
-        net (add|del) bgp ipv6 unicast neighbor <bgppeer> addpath-tx-bestpath-per-AS
-        net (add|del) bgp neighbor <bgppeer> addpath-tx-bestpath-per-AS
         net (add|del) bgp vrf <text> bestpath as-path multipath-relax [as-set|no-as-set]
         net (add|del) bgp vrf <text> bestpath compare-routerid
         net (add|del) bgp vrf <text> bestpath med missing-as-worst
-        net (add|del) bgp vrf <text> ipv4 labeled-unicast neighbor <bgppeer> addpath-tx-bestpath-per-AS
-        net (add|del) bgp vrf <text> ipv4 unicast neighbor <bgppeer> addpath-tx-bestpath-per-AS
-        net (add|del) bgp vrf <text> ipv6 labeled-unicast neighbor <bgppeer> addpath-tx-bestpath-per-AS
-        net (add|del) bgp vrf <text> ipv6 unicast neighbor <bgppeer> addpath-tx-bestpath-per-AS
-        net (add|del) bgp vrf <text> neighbor <bgppeer> addpath-tx-bestpath-per-AS
         net add bgp debug bestpath <ip/prefixlen>
         net del bgp debug bestpath [<ip/prefixlen>]
-        net show bgp (<ipv4>|<ipv4/prefixlen>|<ipv6>|<ipv6/prefixlen>) [bestpath|multipath] [json]
-        net show bgp vrf <text> (<ipv4>|<ipv4/prefixlen>|<ipv6>|<ipv6/prefixlen>) [bestpath|multipath] [json]
+        net show bgp (<ipv4>|<ipv4/prefixlen>) [bestpath|multipath] [json]
+        net show bgp (<ipv6>|<ipv6/prefixlen>) [bestpath|multipath] [json]
+        net show bgp vrf <text> (<ipv4>|<ipv4/prefixlen>) [bestpath|multipath] [json]
 
 {{%notice note%}}
 
@@ -213,14 +233,14 @@ You can configure multiple interfaces at once:
 
 {{%/notice%}}
 
-### <span id="src-8366301_NetworkCommandLineUtility-NCLU-questionmark" class="confluence-anchor-link"></span><span>Add ? (Question Mark) Ability to NCLU</span>
+### <span id="src-8362580_NetworkCommandLineUtility-NCLU-questionmark" class="confluence-anchor-link"></span><span>Add ? (Question Mark) Ability to NCLU</span>
 
 While tab completion is enabled by default, you can also configure NCLU
 to use the **?** (question mark character) to look at available
 commands. To enable this feature for the *cumulus* user, open the
 following file:
 
-    cumulus@switch:~$ sudo nano ~/.inputrc
+    cumulus@leaf01:~$ sudo nano ~/.inputrc
 
 Uncomment the very last line in the `.inputrc` file so that the file
 changes from this:
@@ -236,7 +256,7 @@ to this:
 Save the file and reconnect to the switch. The ? (question mark) ability
 will work on all subsequent sessions on the switch.
 
-    cumulus@switch:~$ net
+    cumulus@leaf01:~$ net
         abort     :  abandon changes in the commit buffer
         add       :  add/modify configuration
         clear     :  clear counters, BGP neighbors, etc
@@ -258,27 +278,23 @@ terminal. This is normal, expected behavior.
 
 ### <span>Built-In Examples</span>
 
-NCLU has a number of built in examples to guide you through basic
+NCLU has a number of built in examples to guide users through basic
 configuration setup:
 
     cumulus@switch:~$ net example 
         acl              :  access-list
         bgp              :  Border Gateway Protocol
-        bond             :  bond, port-channel, etc
-        bridge           :  a layer2 bridge
+        bond             :  Bond, port-channel, etc
+        bridge           :  A layer2 bridge
         clag             :  Multi-Chassis Link Aggregation
-        dhcp             :  Dynamic Host Configuration Protocol
         dot1x            :  Configure, Enable, Delete or Show IEEE 802.1X EAPOL
-        evpn             :  Ethernet VPN
         link-settings    :  Physical link parameters
+        lnv              :  Lightweight Network Virtualization
         management-vrf   :  Management VRF
         mlag             :  Multi-Chassis Link Aggregation
         ospf             :  Open Shortest Path First (OSPFv2)
-        snmp-server      :  Configure the SNMP server
-        syslog           :  Set syslog logging
         vlan-interfaces  :  IP interfaces for VLANs
-        voice-vlan       :  VLAN used for IP Phones
-        vrr              :  add help text
+     
     cumulus@switch:~$ net example bridge 
      
     Scenario
@@ -317,6 +333,7 @@ configuration setup:
     switch1# net add vlan 20 ip address 20.0.0.1/24
     - configure swp3 as a trunk for vlans 10, 11, 12 and 20
     switch1# net add int swp3 bridge trunk vlans 10-12,20
+    # Review and commit changes
     switch1# net pending
     switch1# net commit
      
@@ -325,7 +342,7 @@ configuration setup:
     switch1# net show interface
     switch1# net show bridge macs
 
-## <span id="src-8366301_NetworkCommandLineUtility-NCLU-configure-user-accounts" class="confluence-anchor-link"></span><span>Configure User Accounts</span>
+## <span id="src-8362580_NetworkCommandLineUtility-NCLU-configure-user-accounts" class="confluence-anchor-link"></span><span>Configure User Accounts</span>
 
 You can configure user accounts in Cumulus Linux with read-only or edit
 permissions for NCLU:
@@ -349,8 +366,7 @@ To add a new user account with NCLU show permissions:
 
     cumulus@switch:~$ sudo adduser --ingroup netshow myuser
     Adding user `myuser' ...
-    Adding new user `myuser' (1001) with group `netshow'...
-    ...
+    Adding new user `myuser' (1001) with group `netshow' …
 
 To add NCLU show permissions to a user account that already exists:
 
@@ -363,8 +379,7 @@ To add a new user account with NCLU edit permissions:
 
     cumulus@switch:~$ sudo adduser --ingroup netedit myuser
     Adding user `myuser' ...
-    Adding new user `myuser' (1001) with group `netedit'
-    ...
+    Adding new user `myuser' (1001) with group `netedit' …
 
 To add NCLU edit permissions to a user account that already exists:
 
@@ -379,9 +394,9 @@ You can use the `adduser` command for local user accounts only. You can
 use the `addgroup` command for both local and remote user accounts. For
 a remote user account, you must use the mapping username, such as
 `tacacs3` or `radius_user`, not the
-[TACACS](/version/cumulus-linux-40/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
+[TACACS](/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
 or
-[RADIUS](/version/cumulus-linux-40/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA)
+[RADIUS](/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA)
 account name.
 
 {{%/notice%}}
@@ -422,20 +437,20 @@ To configure a new user group to use NCLU, add that group to the
 
 {{%notice warning%}}
 
-Use caution giving edit permissions to groups. For example, do not give
+Use caution giving edit permissions to groups. For example, don't give
 edit permissions to the [*tacacs*
-group](TACACS-Plus.html#src-8366279_TACACSPlus-nclu).
+group](TACACS-Plus.html#src-8362558_TACACSPlus-nclu).
 
 {{%/notice%}}
 
-## <span id="src-8366301_NetworkCommandLineUtility-NCLU-restart" class="confluence-anchor-link"></span><span>Restart the netd Service</span>
+## <span id="src-8362580_NetworkCommandLineUtility-NCLU-restart" class="confluence-anchor-link"></span><span>Restart the netd Service</span>
 
-Whenever you modify `netd.conf` or when NSS services change, you must
-restart the `netd` service for the changes to take effect:
+Whenever you modify `netd.conf` or NSS services change, you must restart
+the `netd` service for the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart netd.service
 
-## <span id="src-8366301_NetworkCommandLineUtility-NCLU-backuptofile" class="confluence-anchor-link"></span><span>Back Up the Configuration to a Single File</span>
+## <span id="src-8362580_NetworkCommandLineUtility-NCLU-backuptofile" class="confluence-anchor-link"></span><span>Back Up the Configuration to a Single File</span>
 
 You can easily back up your NCLU configuration to a file by outputting
 the results of `net show configuration commands` to a file, then
@@ -454,14 +469,14 @@ configuration by running:
 
     cumulus@leaf01:~$ source leaf01.txt
 
-## <span id="src-8366301_NetworkCommandLineUtility-NCLU-conf" class="confluence-anchor-link"></span><span>Advanced Configuration</span>
+## <span id="src-8362580_NetworkCommandLineUtility-NCLU-conf" class="confluence-anchor-link"></span><span>Advanced Configuration</span>
 
-NCLU needs no initial configuration; however, if you need to modify
-certain configuration, you must manually update the `/etc/netd.conf`
-file. You can configure this file to allow different permission levels
-for users to edit configurations and run `show` commands. The file also
-contains a blacklist that hides less frequently used terms from the
-tabbed autocomplete.
+NCLU needs no initial configuration; however, if you need to modify its
+configuration, you must manually update the `/etc/netd.conf` file. You
+can configure this file to allow different permission levels for users
+to edit configurations and run `show` commands. The file also contains a
+blacklist that hides less frequently used terms from the tabbed
+autocomplete.
 
 After you edit the `netd.conf` file, restart the `netd` service for the
 changes to take effect.
@@ -469,73 +484,16 @@ changes to take effect.
     cumulus@switch:~$ sudo nano /etc/netd.conf
     cumulus@switch:~$ sudo systemctl restart netd.service
 
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Configuration Variable</p></th>
-<th><p>Default Setting</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>show_linux_command</p></td>
-<td><p>False</p></td>
-<td><p>When true, displays the Linux command running in the background.</p></td>
-</tr>
-<tr class="even">
-<td><p>color_diffs</p></td>
-<td><p>True</p></td>
-<td><p>When true, the diffs shown in <code>net pending</code> and <code>net commit</code> use colors.</p></td>
-</tr>
-<tr class="odd">
-<td><p>enable_&lt;component&gt;</p></td>
-<td><p>True</p></td>
-<td><p>When true, enables you to configure the component with NCLU.<br />
-For example, when <code>enable_frr</code> is true, you can use NCLU to configure FRR.</p></td>
-</tr>
-<tr class="even">
-<td><p>users_with_edit</p></td>
-<td><p>root, cumulus</p></td>
-<td><p>Sets the Linux users with root edit privileges.</p></td>
-</tr>
-<tr class="odd">
-<td><p>groups_with_edit</p></td>
-<td><p>root, cumulus</p></td>
-<td><p>Sets the Linux groups with root edit privileges.</p></td>
-</tr>
-<tr class="even">
-<td><p>users_with_show</p></td>
-<td><p>root, cumulus</p></td>
-<td><p>Controls which users are allowed to run <code>show</code> commands.</p></td>
-</tr>
-<tr class="odd">
-<td><p>groups_with_show</p></td>
-<td><p>root, cumulus</p></td>
-<td><p>Controls which groups are allowed to run <code>show</code> commands.</p></td>
-</tr>
-<tr class="even">
-<td><p>ifupdown_blacklist</p></td>
-<td><p>address-purge, bond-ad-actor-sys-prio, bond-ad-actor-system, bond-num-grat-arp,<br />
-bond-num-unsol-na, bond-use-carrier, bond-xmit-hash-policy, bridge-bridgeprio,<br />
-bridge-fd, bridge-hashel, bridge-hashmax, bridge-hello, bridge-igmp-querier-src,<br />
-bridge-maxage, bridge-maxwait, bridge-mclmc, bridge-mclmi, bridge-mcmi,<br />
-bridge-mcqi, bridge-mcqpi, bridge-mcqri, bridge-mcrouter, bridge-mcsqc,<br />
-bridge-mcsqi, bridge-pathcosts, bridge-port-pvids, bridge-port-vids, bridge-portprios,<br />
-bridge-waitport, broadcast, link-type, mstpctl-ageing, mstpctl-fdelay, mstpctl-forcevers,<br />
-mstpctl-hello, mstpctl-maxage, mstpctl-maxhops, mstpctl-portp2p, mstpctl-portpathcost,<br />
-mstpctl-portrestrtcn, mstpctl-treeportcost, mstpctl-treeportprio, mstpctl-txholdcount,<br />
-netmask, preferred-lifetime, scope, vxlan-ageing, vxlan-learning, vxlan-port, up, down,<br />
-bridge-gcint, bridge-mcqifaddr, bridge-mcqv4src</p></td>
-<td><p>Hides corner case command options from tab complete, to simplify and streamline output.</p></td>
-</tr>
-</tbody>
-</table>
+| Configuration Variable | Default Setting                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Description                                                                             |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| show\_linux\_command   | False                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | When true, displays the Linux command running in the background.                        |
+| enable\_ifupdown2      | True                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Enables `net` wrapping of `ifupdown2` commands.                                         |
+| enable\_frr            | True                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Enables `net` wrapping of FRRouting commands.                                           |
+| users\_with\_edit      | root, cumulus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Sets the Linux users with root edit privileges.                                         |
+| groups\_with\_edit     | root, cumulus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Sets the Linux groups with root edit privileges.                                        |
+| users\_with\_show      | root, cumulus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Controls which users are allowed to run `show` commands.                                |
+| groups\_with\_show     | root, cumulus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Controls which groups are allowed to run `show` commands.                               |
+| ifupdown\_blacklist    | address-purge, bond-ad-actor-sys-prio, bond-ad-actor-system, bond-mode, bond-num-grat-arp, bond-num-unsol-na, bond-use-carrier, bond-xmit-hash-policy, bridge-bridgeprio, bridge-fd, bridge-hashel, bridge-hashmax, bridge-hello, bridge-maxage, bridge-maxwait, bridge-mclmc, bridge-mclmi, bridge-mcmi, bridge-mcqi, bridge-mcqpi, bridge-mcqri, bridge-mcrouter, bridge-mcsqc, bridge-mcsqi, bridge-pathcosts, bridge-port-pvids, bridge-port-vids, bridge-portprios, bridge-stp, bridge-waitport, broadcast, hwaddress, link-type, mstpctl-ageing, mstpctl-fdelay, mstpctl-forcevers, mstpctl-hello, mstpctl-maxage, mstpctl-maxhops, mstpctl-portp2p, mstpctl-portpathcost, mstpctl-portrestrrole, mstpctl-portrestrtcn, mstpctl-treeportcost, mstpctl-treeportprio, mstpctl-txholdcount, netmask, preferred-lifetime, scope, vxlan-ageing, vxlan-learning, up, down, bridge-ageing, bridge-gcint, bridge-mcqifaddr, bridge-mcqv4src | Hides corner case command options from tab complete, to simplify and streamline output. |
 
 {{%notice info%}}
 

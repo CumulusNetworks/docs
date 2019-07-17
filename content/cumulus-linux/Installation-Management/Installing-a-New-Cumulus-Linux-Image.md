@@ -3,16 +3,14 @@ title: Installing a New Cumulus Linux Image
 author: Cumulus Networks
 weight: 43
 aliases:
- - /display/CL40/Installing-a-New-Cumulus-Linux-Image
- - /pages/viewpage.action?pageId=8366364
-pageID: 8366364
+ - /display/CL37/Installing-a-New-Cumulus-Linux-Image
+ - /pages/viewpage.action?pageId=8362643
+pageID: 8362643
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
-<details>
-
 This topic discusses how to install a new Cumulus Linux disk image using
 [ONIE](http://www.onie.org/), an open source project (equivalent to PXE
 on servers) that enables the installation of network operating systems
@@ -61,9 +59,9 @@ In the following procedures:
 
   - After you install the Cumulus Linux disk image, you need to install
     the license file. Refer to [Install the
-    License](Quick-Start-Guide.html#src-8366263_QuickStartGuide-install-license).
+    License](Quick-Start-Guide.html#src-8362542_QuickStartGuide-install-license).
 
-## <span id="src-8366364_InstallingaNewCumulusLinuxImage-dhcp_options" class="confluence-anchor-link"></span><span>Install Using a DHCP/Web Server with DHCP Options</span>
+## <span id="src-8362643_InstallingaNewCumulusLinuxImage-dhcp_options" class="confluence-anchor-link"></span><span>Install Using a DHCP/Web Server with DHCP Options</span>
 
 To install Cumulus Linux using a DHCP/web server *with* DHCP options,
 set up a DHCP/web server on your laptop and connect the eth0 management
@@ -79,7 +77,7 @@ installation proceeds as follows:
 3.  ONIE downloads the Cumulus Linux disk image, installs, and reboots.
 
 4.  Success\! You are now running Cumulus Linux.
-    
+
     {{% imgOld 0 %}}
 
 {{%notice note%}}
@@ -113,30 +111,32 @@ assignment):
 If you do not have a web server, you can use [this free Apache
 example](https://www.apachefriends.org/index.html).
 
-## <span id="src-8366364_InstallingaNewCumulusLinuxImage-dhcp_noopts" class="confluence-anchor-link"></span><span>Install Using a DHCP/Web Server without DHCP Options</span>
+## <span id="src-8362643_InstallingaNewCumulusLinuxImage-dhcp_noopts" class="confluence-anchor-link"></span><span>Install Using a DHCP/Web Server without DHCP Options</span>
 
 Follow the steps below if you have a laptop on the same network and the
 switch can pull DHCP from the corporate network, but you *cannot* modify
 DHCP options (maybe it is controlled by another team).
-
+<details>
 <summary>Install from ONIE </summary>
 
 1.  Place the Cumulus Linux disk image in a directory on the web server.
 
 2.  Run the `onie-nos-install` command:
-    
-        ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
 
+        ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+</details>
+<details>
 <summary>Install from Cumulus Linux </summary>
 
 1.  Place the Cumulus Linux disk image in a directory on the web server.
 
 2.  From the Cumulus Linux command prompt, run the `onie-install`
     command:
-    
-        cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin && sudo reboot
 
-## <span id="src-8366364_InstallingaNewCumulusLinuxImage-web_nodhcp" class="confluence-anchor-link"></span><span>Install Using a Web Server with no DHCP</span>
+        cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin && sudo reboot
+</details>
+
+## <span id="src-8362643_InstallingaNewCumulusLinuxImage-web_nodhcp" class="confluence-anchor-link"></span><span>Install Using a Web Server with no DHCP</span>
 
 Follow the steps below if your laptop is on the same network as the
 switch eth0 interface but *no* DHCP server is available.
@@ -147,31 +147,32 @@ You need a console connection to access the switch; you cannot perform
 this procedure remotely.
 
 {{%/notice%}}
-
+<details>
 <summary>Install from ONIE </summary>
 
 1.  ONIE is in [*discovery
     mode*](http://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods).
     You must disable discovery mode with the following command:
-    
+
         onie# onie-discovery-stop
-    
+
     On older ONIE versions, if the `onie-discovery-stop` command is not
     supported, run:
-    
+
         onie# /etc/init.d/discover.sh stop
 
 2.  Assign a static address to eth0 with the `ip addr add` command:
-    
+
         ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
 
 3.  Place the Cumulus Linux disk image in a directory on your web
     server.
 
 4.  Run the installer manually (because there are no DHCP options):
-    
-        ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
 
+        ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+</details>
+<details>
 <summary>Install from Cumulus Linux </summary>
 
 1.  Place the Cumulus Linux disk image in a directory on your web
@@ -179,69 +180,72 @@ this procedure remotely.
 
 2.  From the Cumulus Linux command prompt, run the `onie-install`
     command:
-    
-        cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin && sudo reboot
 
-## <span id="src-8366364_InstallingaNewCumulusLinuxImage-ftp" class="confluence-anchor-link"></span><span>Install Using FTP Without a Web Server</span>
+        cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin && sudo reboot
+</details>
+## <span id="src-8362643_InstallingaNewCumulusLinuxImage-ftp" class="confluence-anchor-link"></span><span>Install Using FTP Without a Web Server</span>
 
 Follow the steps below if your laptop is on the same network as the
 switch eth0 interface but *no* DHCP server is available.
 
+<details>
 <summary>Install from ONIE </summary>
 
 1.  Set up DHCP or static addressing for eth0. The following example
     assigns a static address to eth0:
-    
+
         ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
 
 2.  If you are using static addressing, disable ONIE discovery mode:
-    
+
         onie# onie-discovery-stop
-    
+
     On older ONIE versions, if the `onie-discovery-stop` command is not
     supported, run:
-    
+
         onie# /etc/init.d/discover.sh stop
 
 3.  Place the Cumulus Linux disk image into a TFTP or FTP directory.
 
 4.  If you are not using DHCP options, run one of the following commands
     (`tftp` for TFTP or `ftp` for FTP):
-    
-        ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
-         
-        ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 
+        ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
+
+        ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
+</details>
+<details>
 <summary>Install from Cumulus Linux </summary>
 
 1.  Place the Cumulus Linux disk image into a TFTP or FTP directory.
 
 2.  From the Cumulus Linux command prompt, run one of the following
     commands (`tftp` for TFTP or `ftp` for FTP):
-    
+
         cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-[PLATFORM].bin && sudo reboot
-         
+
         cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin && sudo reboot
 
-## <span id="src-8366364_InstallingaNewCumulusLinuxImage-local" class="confluence-anchor-link"></span><span>Install Using a Local File</span>
+## <span id="src-8362643_InstallingaNewCumulusLinuxImage-local" class="confluence-anchor-link"></span><span>Install Using a Local File</span>
 
 Follow the steps below to install the disk image referencing a local
 file.
-
+</details>
+<details>
 <summary>Install from ONIE </summary>
 
 1.  Set up DHCP or static addressing for eth0. The following example
     assigns a static address to eth0:
-    
+
         ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
 
 2.  If you are using static addressing, disable ONIE discovery mode.
-    
+
         onie# onie-discovery-stop
-    
+
     On older ONIE versions, if the `onie-discovery-stop` command is not
     supported, run:
-    
+
         onie# /etc/init.d/discover.sh stop
 
 3.  Use [scp](http://en.wikipedia.org/wiki/Secure_copy) to copy the
@@ -249,19 +253,20 @@ file.
     [WinScp](http://winscp.net/eng/index.php).)
 
 4.  Run the installer manually from ONIE:
-    
-        ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
 
+        ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
+</details>
+<details>
 <summary>Install from Cumulus Linux </summary>
 
 1.  Copy the Cumulus Linux disk image to the switch.
 
 2.  From the Cumulus Linux command prompt, run the `onie-install`
     command:
-    
-        cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin && sudo reboot
 
-## <span id="src-8366364_InstallingaNewCumulusLinuxImage-usb" class="confluence-anchor-link"></span><span>Install Using a USB Drive</span>
+        cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin && sudo reboot
+</details>
+## <span id="src-8362643_InstallingaNewCumulusLinuxImage-usb" class="confluence-anchor-link"></span><span>Install Using a USB Drive</span>
 
 Follow the steps below to install the Cumulus Linux disk image using a
 USB drive. Instructions are provided for x86 and ARM platforms.
@@ -293,10 +298,10 @@ USB drive. Instructions are provided for x86 and ARM platforms.
 
 2.  From a computer, prepare your USB drive by formatting it using one
     of the supported formats: FAT32, vFAT or EXT2.
-    
+    <details>
     <summary>Optional: Prepare a USB Drive inside Cumulus Linux
     </summary>
-    
+
     <table>
     <colgroup>
     <col style="width: 100%" />
@@ -333,71 +338,71 @@ USB drive. Instructions are provided for x86 and ARM platforms.
     </tr>
     </tbody>
     </table>
-
+</details>
 3.  Copy the Cumulus Linux disk image to the USB drive, then rename the
     image file to:
-    
+
       - `onie-installer-x86_64`, if installing on an x86 platform
-    
+
       - `onie-installer-arm`, if installing on an ARM platform
-    
+
     {{%notice note%}}
-    
+
     You can also use any of the [ONIE naming schemes mentioned
     here](http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
-    
+
     {{%/notice%}}
-    
+
     {{%notice warning%}}
-    
+
     When using a Mac or Windows computer to rename the installation
     file, the file extension might still be present. Make sure to remove
     the file extension otherwise ONIE is not able to detect the file.
-    
+
     {{%/notice%}}
 
 4.  Insert the USB drive into the switch, then continue with the
     appropriate instructions below for your x86 or ARM platform.
 
 ### <span>Instructions for x86 Platforms</span>
-
+<details>
 <summary>Click to expand x86 instructions... </summary>
 
 1.  Prepare the switch for installation:
-    
+
       - If the switch is offline, connect to the console and power on
         the switch.
-    
+
       - If the switch is already online in ONIE, use the `reboot`
         command.
-    
+
     {{%notice note%}}
-    
+
     SSH sessions to the switch get dropped after this step. To complete
     the remaining instructions, connect to the console of the switch.
     Cumulus Linux switches display their boot process to the console;
     you need to monitor the console specifically to complete the next
     step.
-    
+
     {{%/notice%}}
 
 2.  Monitor the console and select the ONIE option from the first GRUB
     screen shown below.
-    
+
     {{% imgOld 1 %}}
 
 3.  Cumulus Linux on x86 uses GRUB chainloading to present a second GRUB
     menu specific to the ONIE partition. No action is necessary in this
     menu to select the default option *ONIE: Install OS*.
-    
+
     {{% imgOld 2 %}}
 
 4.  The USB drive is recognized and mounted automatically. The image
     file is located and automatic installation of Cumulus Linux begins.
     Here is some sample output:
-    
+
         ONIE: OS Install Mode  ...
-         
+
         Version : quanta_common_rangeley-2014.05.05-6919d98-201410171013
         Build  Date: 2014-10-17T10:13+0800
         Info: Mounting kernel filesystems...  done.
@@ -408,9 +413,9 @@ USB drive. Instructions are provided for x86 and ARM platforms.
         sd 6:0:0:0: [sdb] Write Protect is off
         sd 6:0:0:0: [sdb] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
         sd 6:0:0:0: [sdb] Attached SCSI disk
-         
+
         <...snip...>
-         
+
         ONIE:  Executing installer: file://dev/sdb1/onie-installer-x86_64
         Verifying image checksum ... OK.
         Preparing image archive ... OK.
@@ -427,57 +432,57 @@ USB drive. Instructions are provided for x86 and ARM platforms.
 
 5.  After installation completes, the switch automatically reboots into
     the newly installed instance of Cumulus Linux.
-
+</details>
 ### <span>Instructions for ARM Platforms</span>
-
+<details>
 <summary>Click to expand ARM instructions... </summary>
 
 1.  Prepare the switch for installation:
-    
+
       - If the switch is offline, connect to the console and power on
         the switch.
-    
+
       - If the switch is already online in ONIE, use the `reboot`
         command.
-    
+
     {{%notice note%}}
-    
+
     SSH sessions to the switch get dropped after this step. To complete
     the remaining instructions, connect to the console of the switch.
     Cumulus Linux switches display their boot process to the console;
     you need to monitor the console specifically to complete the next
     step.
-    
+
     {{%/notice%}}
 
 2.  Interrupt the normal boot process before the countdown (shown below)
     completes. Press any key to stop the autoboot.
-    
+
         U-Boot 2013.01-00016-gddbf4a9-dirty (Feb 14 2014 - 16:30:46) Accton: 1.4.0.5
-         
+
         CPU0: P2020, Version: 2.1, (0x80e20021)
         Core: E500, Version: 5.1, (0x80211051)
         Clock Configuration:
-         CPU0:1200 MHz, CPU1:1200 MHz, 
+         CPU0:1200 MHz, CPU1:1200 MHz,
          CCB:600 MHz,
          DDR:400 MHz (800 MT/s data rate) (Asynchronous), LBC:37.500 MHz
         L1: D-cache 32 kB enabled
          I-cache 32 kB enabled
-         
+
         <...snip…>
-         
+
         USB: USB2513 hub OK
         Hit any key to stop autoboot: 0
 
 3.  A command prompt appears so that you can run commands. Execute the
     following command:
-    
+
         run onie_bootcmd
 
 4.  The USB drive is recognized and mounted automatically. The image
     file is located and automatic installation of Cumulus Linux begins.
     Here is some sample output:
-    
+
         Loading Open Network Install Environment …
         Platform: arm-as4610_54p-r0
         Version : 1.6.1.3
@@ -499,9 +504,9 @@ USB drive. Instructions are provided for x86 and ARM platforms.
            Uncompressing Multi-File Image ... OK
            Loading Ramdisk to 2ff53000, end 2ffff788 ... OK
            Loading Device Tree to 03ffa000, end 03fffd22 ... OK
-         
+
         <...snip...>
-         
+
         ONIE: Starting ONIE Service Discovery
         ONIE: Executing installer: file://dev/sdb1/onie-installer-arm
         Verifying image checksum ... OK.
@@ -519,7 +524,7 @@ USB drive. Instructions are provided for x86 and ARM platforms.
 
 5.  After installation completes, the switch automatically reboots into
     the newly installed instance of Cumulus Linux.
-
+</details>
 ## <span>Related Information</span>
 
   - [ONIE Design
@@ -532,14 +537,4 @@ USB drive. Instructions are provided for x86 and ARM platforms.
     Stick](https://cumulusnetworks.com/cumulus-on-a-stick/)
 
   - [Managing Cumulus Linux Disk
-    Images](/version/cumulus-linux-40/Installation-Management/Managing-Cumulus-Linux-Disk-Images)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>
+    Images](/version/cumulus-linux-377/Installation-Management/Managing-Cumulus-Linux-Disk-Images)

@@ -1,21 +1,21 @@
 ---
 title: ifplugd
 author: Cumulus Networks
-weight: 315
+weight: 311
 aliases:
- - /display/CL40/ifplugd
- - /pages/viewpage.action?pageId=8366416
-pageID: 8366416
+ - /display/CL37/ifplugd
+ - /pages/viewpage.action?pageId=8362693
+pageID: 8362693
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
-`ifplugd` is an Ethernet link-state monitoring daemon that executes
+`ifplugd` is an Ethernet link-state monitoring daemon, that can execute
 user-specified scripts to configure an Ethernet device when a cable is
-plugged in, or automatically unconfigure an Ethernet device when a cable
-is removed. Follow the steps below to install and configure the
-`ifplugd` daemon.
+plugged in, or automatically unconfigure it when a cable is removed.
+
+Follow the steps below to install and configure the `ifplugd` daemon.
 
 ## <span>Install ifplugd</span>
 
@@ -29,25 +29,54 @@ is removed. Follow the steps below to install and configure the
 
 ## <span>Configure ifplugd</span>
 
-After you install `ifplugd`, you must edit two configuration files:
+Once `ifplugd` is installed, two configuration files must be edited to
+set up `ifplugd`:
 
   - `/etc/default/ifplugd`
 
   - `/etc/ifplugd/action.d/ifupdown`
 
-The example configuration below configures `ifplugd` to bring down all
-uplinks when the peer bond goes down in an MLAG environment.
+{{%notice info has%}}
 
-1.  Open `/etc/default/ifplugd` in a text editor and configure the file
-    as appropriate. Add the `peerbond` name before you save the file.
+**Example ifplugd Configuration**
+
+The example `ifplugd` configuration below show that `ifplugd` has been
+configured to bring down all uplinks when the peerbond goes down in an
+MLAG environment.
+
+<div class="confbox admonition admonition-note">
+
+<span class="admonition-icon confluence-information-macro-icon"></span>
+
+<div class="admonition-body">
+
+{{%notice info has%}}
+
+`ifplugd` is configured on both both the primary and secondary
+[MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+switches in this example.
+
+{{%/notice%}}
+
+</div>
+
+</div>
+
+1.  Open `/etc/default/ifplugd` in a text editor.
+
+2.  Configure the file as appropriate, and add the peerbond name, before
+    saving:
     
+    ``` 
         INTERFACES="peerbond"
         HOTPLUG_INTERFACES=""
         ARGS="-q -f -u0 -d1 -w -I"
         SUSPEND_ACTION="stop"
+    ```
 
-2.  Open the `/etc/ifplugd/action.d/ifupdown` file in a text editor.
-    Configure the script, then save the file.
+3.  Open `/etc/ifplugd/action.d/ifupdown` in a text editor.
+
+4.  Configure the script, and save the file.
     
         #!/bin/sh
         set -e
@@ -78,15 +107,17 @@ uplinks when the peer bond goes down in an MLAG environment.
             ;;
         esac
 
-3.  Restart the `ifplugd` daemon to implement the changes:
+5.  Restart `ifplugd` to implement the changes:
     
-        cumulus@switch:~$ sudo systemctl restart ifplugd.service
+        cumulus@switch:$ sudo systemctl restart ifplugd.service
+
+{{%/notice%}}
 
 ## <span>Caveats and Errata</span>
 
-The default shell for `ifplugd` is `dash` (`/bin/sh`) instead of `bash`,
-as it provides a faster and more nimble shell. However, `dash` contains
-fewer features than `bash` (for example, `dash` is unable to handle
+The default shell for `ifplugd` is `dash` (`/bin/sh`), rather than
+`bash`, as it provides a faster and more nimble shell. However, it
+contains less features than `bash` (such as being unable to handle
 multiple uplinks).
 
 <article id="html-search-results" class="ht-content" style="display: none;">

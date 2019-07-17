@@ -3,13 +3,13 @@ title: Installation Management
 author: Cumulus Networks
 weight: 13
 aliases:
- - /display/CL40/Installation-Management
- - /pages/viewpage.action?pageId=8366351
-pageID: 8366351
+ - /display/CL37/Installation-Management
+ - /pages/viewpage.action?pageId=8362630
+pageID: 8362630
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 You can only install one image of the operating system on a Cumulus
 Linux switch. This section discusses how to install new and update

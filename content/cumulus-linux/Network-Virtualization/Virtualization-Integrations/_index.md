@@ -1,15 +1,15 @@
 ---
 title: Virtualization Integrations
 author: Cumulus Networks
-weight: 153
+weight: 157
 aliases:
- - /display/CL40/Virtualization-Integrations
- - /pages/viewpage.action?pageId=8366518
-pageID: 8366518
+ - /display/CL37/Virtualization-Integrations
+ - /pages/viewpage.action?pageId=8362794
+pageID: 8362794
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 Cumulus Linux integrates with a number of VXLAN controller-based
 virtualization solutions.

@@ -1,19 +1,19 @@
 ---
 title: Using Nutanix Prism as a Monitoring Tool
 author: Cumulus Networks
-weight: 461
+weight: 485
 aliases:
- - /display/CL40/Using-Nutanix-Prism-as-a-Monitoring-Tool
- - /pages/viewpage.action?pageId=8366339
-pageID: 8366339
+ - /display/CL37/Using-Nutanix-Prism-as-a-Monitoring-Tool
+ - /pages/viewpage.action?pageId=8362618
+pageID: 8362618
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 Nutanix Prism is a graphical user interface (GUI) for managing
-infrastructure and virtual environments. You need to take special steps
-within Cumulus Linux before you can configure Prism.
+infrastructure and virtual environments. In order to use it, you need to
+take special steps within Cumulus Linux before you can configure Prism.
 
 ## <span>Configure Cumulus Linux</span>
 
@@ -27,7 +27,7 @@ within Cumulus Linux before you can configure Prism.
         cumulus@switch:~$ net show system
         Hostname......... celRED
          
-        Build............ Cumulus Linux 4.0.0~1555370771.772c26b6
+        Build............ Cumulus Linux 3.7.4~1551312781.35d3264
         Uptime........... 8 days, 12:24:01.770000
          
         Model............ Cel REDSTONE

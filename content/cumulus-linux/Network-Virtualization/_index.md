@@ -3,13 +3,13 @@ title: Network Virtualization
 author: Cumulus Networks
 weight: 21
 aliases:
- - /display/CL40/Network-Virtualization
- - /pages/viewpage.action?pageId=8366427
-pageID: 8366427
+ - /display/CL37/Network-Virtualization
+ - /pages/viewpage.action?pageId=8362704
+pageID: 8362704
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 Cumulus Linux supports these forms of [network
 virtualization](http://en.wikipedia.org/wiki/Network_virtualization):
@@ -38,9 +38,9 @@ the original frame. The UDP destination port is the standard port 4789.
 
 Cumulus Linux includes the native Linux VXLAN kernel support and
 integrates with controller-based overlay solutions like [VMware
-NSX](/version/cumulus-linux-40/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
+NSX](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
 and [Midokura
-MidoNet](/version/cumulus-linux-40/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack).
+MidoNet](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack).
 
 VXLAN is supported only on switches in the [Cumulus Linux
 HCL](http://cumulusnetworks.com/support/hcl/) using the Broadcom
@@ -65,7 +65,7 @@ at least one layer 3 hop between the VXLAN source and destination.
 On switches using Broadcom Tomahawk, Trident II, Trident II+, and
 Trident3 ASICs, Cumulus Linux supports store and forward switching for
 VXLANs but does **not** support [cut-through
-mode](/display/CL40/Buffer+and+Queue+Management#BufferandQueueManagement-cut_through_mode).
+mode](Buffer-and-Queue-Management.html#src-8363032_BufferandQueueManagement-cut_through_mode).
 
 On switches using Mellanox Spectrum ASICs, Cumulus Linux supports
 cut-through mode for VXLANs but does **not** support store and forward
@@ -77,7 +77,7 @@ The maximum transmission unit (MTU) size for a virtual network interface
 should be 50 bytes smaller than the MTU for the physical interfaces on
 the switch. For more information on setting MTU, read [Layer 1 and
 Switch Port
-Attributes](Switch-Port-Attributes.html#src-8366750_SwitchPortAttributes-mtu_vxlan).
+Attributes](Switch-Port-Attributes.html#src-8363026_SwitchPortAttributes-mtu_vxlan).
 
 ### <span>VLANs and VXLANs Cannot Share the Same ID</span>
 

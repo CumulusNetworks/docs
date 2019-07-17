@@ -1,15 +1,15 @@
 ---
 title: Single User Mode - Boot Recovery
 author: Cumulus Networks
-weight: 219
+weight: 215
 aliases:
- - /display/CL40/Single-User-Mode---Boot-Recovery
- - /pages/viewpage.action?pageId=8366327
-pageID: 8366327
+ - /display/CL37/Single-User-Mode---Boot-Recovery
+ - /pages/viewpage.action?pageId=8362606
+pageID: 8362606
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 Use single user mode to assist in troubleshooting system boot issues or
 for password recovery. To enter single user mode, follow the steps
@@ -29,7 +29,7 @@ below.
     ```
 
 2.  Use the ^ and v arrow keys to select **Advanced options for Cumulus
-    Linux GNU/Linux**. A menu similar to the following appears:
+    Linux GNU/Linux**. A menu similar to the following should appear:
     
     ``` 
                            GNU GRUB  version 2.02-cl3u3
@@ -41,7 +41,7 @@ below.
      +----------------------------------------------------------------------------+  
     ```
 
-3.  Select **Cumulus Linux GNU/Linux, with Linux 4.1.0-cl-1-amd64
+3.  Select **Cumulus Linux GNU/Linux, with Linux 4.1.0-cl-7-amd64
     (recovery mode)**.
 
 4.  Press ctrl-x to reboot.

@@ -1,19 +1,19 @@
 ---
 title: Filtering Learned MAC Addresses
 author: Cumulus Networks
-weight: 301
+weight: 297
 aliases:
- - /display/CL40/Filtering-Learned-MAC-Addresses
- - /pages/viewpage.action?pageId=8366296
-pageID: 8366296
+ - /display/CL37/Filtering-Learned-MAC-Addresses
+ - /pages/viewpage.action?pageId=8362575
+pageID: 8362575
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 On Broadcom switches, a MAC address is learned on a bridge regardless of
 whether or not a received packet is dropped by an
-[ACL](/version/cumulus-linux-40/System-Configuration/Netfilter---ACLs/).
+[ACL](/version/cumulus-linux-377/System-Configuration/Netfilter---ACLs/).
 This is due to how the hardware learns MAC addresses and occurs before
 the ACL lookup. This can be a security or resource problem as the MAC
 address table has the potential to get filled with bogus MAC addresses;
@@ -85,7 +85,7 @@ to configure:
      
 
 Then create the configuration using
-[NCLU](/version/cumulus-linux-40/System-Configuration/Network-Command-Line-Utility---NCLU):
+[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU):
 
     cumulus@switch:~$ net add bridge bridge vids 100,200,300
     cumulus@switch:~$ net add bridge bridge pvid 1
@@ -131,7 +131,7 @@ These commands create the following configuration in the
 ## <span>Interactions with EVPN</span>
 
 If you are using
-[EVPN](/version/cumulus-linux-40/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN),
+[EVPN](/version/cumulus-linux-377/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN),
 local static MAC addresses added to the local FDB are exported as static
 MAC addresses to remote switches. Remote MAC addresses are added as MAC
 addresses to the remote FDB.

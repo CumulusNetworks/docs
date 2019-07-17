@@ -1,15 +1,15 @@
 ---
 title: RDMA over Converged Ethernet - RoCE
 author: Cumulus Networks
-weight: 263
+weight: 259
 aliases:
- - /display/CL40/RDMA-over-Converged-Ethernet---RoCE
- - /pages/viewpage.action?pageId=8366742
-pageID: 8366742
+ - /display/CL37/RDMA-over-Converged-Ethernet---RoCE
+ - /pages/viewpage.action?pageId=8363018
+pageID: 8363018
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 *RDMA over Converged Ethernet*
 ([RoCE](https://en.wikipedia.org/wiki/RDMA_over_Converged_Ethernet))
@@ -28,12 +28,12 @@ stack:
 
   - RoCEv1, which runs at the link layer and cannot be run over a routed
     network. Therefore, it requires the link layer [priority flow
-    control](Buffer-and-Queue-Management.html#src-8366755_BufferandQueueManagement-pfc)
+    control](Buffer-and-Queue-Management.html#src-8363032_BufferandQueueManagement-pfc)
     (PFC) to be enabled.
 
   - RoCEv2, which runs over layer 3. Since it's a routed solution,
     Cumulus Networks recommends you use [explicit congestion
-    notification](Buffer-and-Queue-Management.html#src-8366755_BufferandQueueManagement-ecn)
+    notification](Buffer-and-Queue-Management.html#src-8363032_BufferandQueueManagement-ecn)
     (ECN) with RoCEv2 since ECN bits are communicated end-to-end across
     a routed network.
 
@@ -45,9 +45,9 @@ lossless Ethernet layer handles congestion hop by hop.
 
 To learn the Cumulus Linux settings you need to configure to support
 RoCEv1, see the example configuration in the
-[PFC](Buffer-and-Queue-Management.html#src-8366755_BufferandQueueManagement-pfc)
+[PFC](Buffer-and-Queue-Management.html#src-8363032_BufferandQueueManagement-pfc)
 section of the [Buffer and Queue
-Management](/version/cumulus-linux-40/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
+Management](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
 chapter.
 
 {{%notice tip%}}
@@ -93,7 +93,7 @@ file.
 {{%notice note%}}
 
 While [link
-pause](Buffer-and-Queue-Management.html#src-8366755_BufferandQueueManagement-pause)
+pause](Buffer-and-Queue-Management.html#src-8363032_BufferandQueueManagement-pause)
 is another way to provide lossless ethernet, PFC is the preferred
 method. PFC allows more granular control by pausing the traffic flow for
 a given CoS group, rather than the entire link.
@@ -113,9 +113,9 @@ notification packet directed to the source of the packet.
 
 To learn the Cumulus Linux settings you need to configure to support
 RoCEv2, see the example configuration in the
-[ECN](Buffer-and-Queue-Management.html#src-8366755_BufferandQueueManagement-ecn)
+[ECN](Buffer-and-Queue-Management.html#src-8363032_BufferandQueueManagement-ecn)
 section of the [Buffer and Queue
-Management](/version/cumulus-linux-40/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
+Management](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
 chapter.
 
 {{%notice tip%}}

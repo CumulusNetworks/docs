@@ -1,15 +1,15 @@
 ---
 title: Data Center Host to ToR Architecture
 author: Cumulus Networks
-weight: 253
+weight: 249
 aliases:
- - /display/CL40/Data-Center-Host-to-ToR-Architecture
- - /pages/viewpage.action?pageId=8366715
-pageID: 8366715
+ - /display/CL37/Data-Center-Host-to-ToR-Architecture
+ - /pages/viewpage.action?pageId=8362991
+pageID: 8362991
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 This chapter discusses the various architectures and strategies
 available from the top of rack (ToR) switches all the way down to the
@@ -38,50 +38,48 @@ server hosts.
 </thead>
 <tbody>
 <tr class="odd">
-<td><details>
-<p><a href="/version/cumulus-linux-40/Layer-2/Bonding---Link-Aggregation">Bond</a>/Etherchannel is not configured on host to multiple switches (bonds can still occur but only to one switch at a time), so leaf01 and leaf02 see two different MAC addresses.</p>
+<td><p><a href="/version/cumulus-linux-377/Layer-2/Bonding---Link-Aggregation">Bond</a>/Etherchannel is not configured on host to multiple switches (bonds can still occur but only to one switch at a time), so leaf01 and leaf02 see two different MAC addresses.</p>
 <p><strong>Configurations</strong></p>
-<summary>leaf01 configuration </summary>
+<p><strong>leaf01 Config</strong></p>
 <pre><code>auto bridge
 iface bridge
   bridge-vlan-aware yes
   bridge-ports swp1 peerlink
   bridge-vids 1-2000
   bridge-stp on
- 
+ 
 auto bridge.10
 iface bridge.10
   address 10.1.10.2/24
- 
+ 
 auto peerlink
 iface peerlink
     bond-slaves glob swp49-50
- 
+ 
 auto swp1
 iface swp1
   mstpctl-portadminedge yes
   mstpctl-bpduguard yes</code></pre>
-<summary>Example Ubuntu host configuration </summary>
+<p><strong>Example Host Config (Ubuntu)</strong></p>
 <pre><code>auto eth1
 iface eth1 inet manual
- 
+ 
 auto eth1.10
 iface eth1.10 inet manual
- 
+ 
 auto eth2
 iface eth1 inet manual
- 
+ 
 auto eth2.20
 iface eth2.20 inet manual
- 
+ 
 auto br-10
 iface br-10 inet manual
   bridge-ports eth1.10 vnet0
- 
+ 
 auto br-20
 iface br-20 inet manual
-  bridge-ports eth2.20 vnet1</code></pre>
-</details></td>
+  bridge-ports eth2.20 vnet1</code></pre></td>
 <td><p><strong>Benefits</strong></p>
 <ul>
 <li><p>Established technology</p>
@@ -90,10 +88,10 @@ iface br-20 inet manual
 <li><p>Easy configuration for customer</p></li>
 <li><p>Immense documentation from multiple vendors and industry</p></li>
 </ul></li>
-<li><p>Ability to use <a href="/version/cumulus-linux-40/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a> commands</p>
+<li><p>Ability to use <a href="/version/cumulus-linux-377/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a> commands</p>
 <ul>
 <li><p>mstpctl-portadminedge</p></li>
-<li><p><a href="Spanning-Tree-and-Rapid-Spanning-Tree.html#src-8366412_SpanningTreeandRapidSpanningTree-bpdu">BPDU guard</a></p></li>
+<li><p><a href="Spanning-Tree-and-Rapid-Spanning-Tree.html#src-8362689_SpanningTreeandRapidSpanningTree-bpdu">BPDU guard</a></p></li>
 </ul></li>
 <li><p>Layer 2 reachability to all VMs</p></li>
 </ul>
@@ -125,7 +123,7 @@ iface br-20 inet manual
 <li><p>None (not possible with traditional spanning tree)</p></li>
 </ul></td>
 <td><ul>
-<li><p><a href="/version/cumulus-linux-40/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP">VRR</a></p></li>
+<li><p><a href="/version/cumulus-linux-377/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP">VRR</a></p></li>
 </ul>
 <p><strong><br />
 </strong></p></td>
@@ -142,7 +140,7 @@ iface br-20 inet manual
 </tbody>
 </table>
 
-### <span id="src-8366715_DataCenterHosttoToRArchitecture-mlag" class="confluence-anchor-link"></span><span>MLAG</span>
+### <span id="src-8362991_DataCenterHosttoToRArchitecture-mlag" class="confluence-anchor-link"></span><span>MLAG</span>
 
 ****
 
@@ -163,51 +161,49 @@ iface br-20 inet manual
 </thead>
 <tbody>
 <tr class="odd">
-<td><details>
-<p><a href="/version/cumulus-linux-40/Layer-2/Multi-Chassis-Link-Aggregation---MLAG">MLAG</a> (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and <a href="/version/cumulus-linux-40/Network-Virtualization/VXLAN-Active-Active-Mode">active-active mode</a> (both are being used at the same time).</p>
+<td><p><a href="/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG">MLAG</a> (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and <a href="/version/cumulus-linux-377/Network-Virtualization/VXLAN-Active-Active-Mode">active-active mode</a> (both are being used at the same time).</p>
 <p><strong>Configurations</strong></p>
-<summary>leaf01 configuration </summary>
+<p><strong>leaf01 Config</strong></p>
 <pre><code>auto bridge
 iface bridge
   bridge-vlan-aware yes
   bridge-ports host-01 peerlink
   bridge-vids 1-2000
   bridge-stp on
- 
+ 
 auto bridge.10
 iface bridge.10
   address 172.16.1.2/24
   address-virtual 44:38:39:00:00:10 172.16.1.1/24
- 
+ 
 auto peerlink
 iface peerlink
     bond-slaves glob swp49-50
- 
+ 
 auto peerlink.4094
 iface peerlink.4094
     address 169.254.1.2
     clagd-enable yes
     clagd-peer-ip 169.254.1.2
     clagd-system-mac 44:38:39:FF:40:94
- 
+ 
 auto host-01
 iface host-01
   bond-slaves swp1
   clag-id 1
   {bond-defaults removed for brevity}</code></pre>
-<summary>Example Ubuntu host configuration </summary>
+<p><strong>Example Host Config (Ubuntu)</strong></p>
 <pre><code>auto bond0
 iface bond0 inet manual
   bond-slaves eth0 eth1
   {bond-defaults removed for brevity}
- 
+ 
 auto bond0.10
 iface bond0.10 inet manual
- 
+ 
 auto vm-br10
 iface vm-br10 inet manual
-  bridge-ports bond0.10 vnet0</code></pre>
-</details></td>
+  bridge-ports bond0.10 vnet0</code></pre></td>
 <td><p><strong>Benefits</strong></p>
 <ul>
 <li><p>100% of links utilized</p></li>
@@ -221,7 +217,7 @@ iface vm-br10 inet manual
 </ul>
 <p><strong>Additional Comments</strong></p>
 <ul>
-<li><p>Can be done with either the <a href="/version/cumulus-linux-40/Layer-2/Ethernet-Bridging---VLANs/">traditional</a> or <a href="/version/cumulus-linux-40/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode">VLAN-aware</a> bridge driver depending on overall STP needs</p></li>
+<li><p>Can be done with either the <a href="/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/">traditional</a> or <a href="/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode">VLAN-aware</a> bridge driver depending on overall STP needs</p></li>
 <li><p>There are a few different solutions including Cisco VPC and Arista MLAG, but none of them interoperate and are very vendor specific</p></li>
 <li><p><a href="https://cumulusnetworks.com/media/resources/validated-design-guides/Cumulus-Linux-Layer-2-HA-Validated-Design-Guide_v1.0.0.pdf" class="external-link">Cumulus Networks Layer 2 HA validated design guide</a></p></li>
 </ul></td>
@@ -245,7 +241,7 @@ iface vm-br10 inet manual
 <tbody>
 <tr class="odd">
 <td><ul>
-<li><p><a href="/version/cumulus-linux-40/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP">VRR</a></p></li>
+<li><p><a href="/version/cumulus-linux-377/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP">VRR</a></p></li>
 </ul></td>
 <td><p>None</p></td>
 <td><ul>
@@ -412,7 +408,7 @@ iface eth1 inet static
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Routing on the host means there is a routing application (such as <a href="/version/cumulus-linux-40/Layer-3/FRRouting-Overview/">FRRouting</a>) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</p></td>
+<td><p>Routing on the host means there is a routing application (such as <a href="/version/cumulus-linux-377/Layer-3/FRRouting-Overview/">FRRouting</a>) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</p></td>
 <td><p><strong>Benefits</strong></p>
 <ul>
 <li><p>No requirement for MLAG</p></li>
@@ -439,7 +435,7 @@ iface eth1 inet static
 </ul></td>
 <td><ul>
 <li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
-<li><p><a href="/version/cumulus-linux-40/Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
+<li><p><a href="/version/cumulus-linux-377/Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -490,7 +486,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </ul></td>
 <td><ul>
 <li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
-<li><p><a href="/version/cumulus-linux-40/Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
+<li><p><a href="/version/cumulus-linux-377/Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -513,7 +509,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="/version/cumulus-linux-40/Layer-3/Border-Gateway-Protocol---BGP">BGP</a> or <a href="/version/cumulus-linux-40/Layer-3/Open-Shortest-Path-First---OSPF">OSPF</a>.</p></td>
+<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="#src-8362991" class="unresolved">BGP</a> or <a href="/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF">OSPF</a>.</p></td>
 <td><p><strong><strong>Benefits</strong></strong></p>
 <p>In addition to routing on a host:</p>
 <ul>
@@ -522,7 +518,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </ul>
 <p><strong><strong>Caveats</strong></strong></p>
 <ul>
-<li><p><a href="/version/cumulus-linux-40/Layer-3/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP">ECMP</a> might not work correctly (load balancing to multiple ToRs); Linux kernel in older versions is not capable of ECMP per flow (does it per packet)</p></li>
+<li><p><a href="/version/cumulus-linux-377/Layer-3/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP">ECMP</a> might not work correctly (load balancing to multiple ToRs); Linux kernel in older versions is not capable of ECMP per flow (does it per packet)</p></li>
 <li><p>No L2 adjacency between servers without VXLAN</p></li>
 </ul></td>
 </tr>
@@ -537,7 +533,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </ul></td>
 <td><ul>
 <li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
-<li><p><a href="/version/cumulus-linux-40/Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
+<li><p><a href="/version/cumulus-linux-377/Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -560,11 +556,10 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </thead>
 <tbody>
 <tr class="odd">
-<td><details>
-<p>In contrast to routing on the host (preferred), this method allows a user to route <strong>to</strong> the host. The ToRs are the gateway, as with redistribute neighbor, except because there is no daemon running, the networks must be manually configured under the routing process. There is a potential to black hole unless a script is run to remove the routes when the host no longer responds.</p>
+<td><p>In contrast to routing on the host (preferred), this method allows a user to route <strong>to</strong> the host. The ToRs are the gateway, as with redistribute neighbor, except because there is no daemon running, the networks must be manually configured under the routing process. There is a potential to black hole unless a script is run to remove the routes when the host no longer responds.</p>
 <p><strong>Configurations</strong></p>
-<summary>leaf01 configurations </summary>
-<p>/etc/network/interfaces</p>
+<p><strong>leaf01 Config</strong></p>
+<p><code>/etc/network/interfaces</code></p>
 <pre><code>auto swp1
 iface swp1
   address 172.16.1.1/30</code></pre>
@@ -573,7 +568,7 @@ iface swp1
   router-id 10.0.0.11
 interface swp1
   ip ospf area 0</code></pre>
-<summary>leaf02 configurations </summary>
+<p><strong>leaf02 Config</strong></p>
 <p><code>/etc/network/interfaces</code></p>
 <pre><code>auto swp2
 iface swp2
@@ -583,23 +578,22 @@ iface swp2
   router-id 10.0.0.12
 interface swp1
   ip ospf area 0</code></pre>
-<summary>Example Ubuntu host configuration </summary>
+<p><strong>Example Host Config (Ubuntu)</strong></p>
 <pre><code>auto lo
 iface lo inet loopback
- 
+ 
 auto lo:1
 iface lo:1 inet static
   address 172.16.1.2/32
   up ip route add 0.0.0.0/0 nexthop via 172.16.1.1 dev eth0 onlink nexthop via 172.16.1.1 dev eth1 onlink
- 
+ 
 auto eth1
 iface eth2 inet static
   address 172.16.1.2/32
- 
+ 
 auto eth2
 iface eth2 inet static
-  address 172.16.1.2/32</code></pre>
-</details></td>
+  address 172.16.1.2/32</code></pre></td>
 <td><p><strong><strong>Benefits</strong></strong></p>
 <ul>
 <li><p>Most benefits of routing <strong>on</strong> the host</p></li>
@@ -627,442 +621,64 @@ iface eth2 inet static
 </tbody>
 </table>
 
-## <span>Network Virtualization: EVPN with Symmetric VXLAN Routing</span>
+## <span>Network Virtualization</span>
 
-****
+**LNV with MLAG**
 
-**{{% imgOld 8 %}}**
-
-****
+{{% imgOld 8 %}}
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
+<th><p> </p></th>
 <th><p>Summary</p></th>
 <th><p>More Information</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><details>
-<p><a href="/version/cumulus-linux-40/Network-Virtualization/VXLAN-Routing">Symmetric VXLAN routing</a> is configured directly on the ToR, using <a href="/version/cumulus-linux-40/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN">EVPN</a> for both VLAN and VXLAN bridging as well as VXLAN and external routing.</p>
-<p>Each server is configured on a VLAN, with a total of two VLANs for the setup. MLAG is also set up between servers and the leafs. Each leaf is configured with an anycast gateway, and the servers default gateways are pointing towards the corresponding leaf switch IP gateway address. Two tenant VNIs (corresponding to two VLANs/VXLANs) are bridged to corresponding VLANs.</p>
+<td><p> </p></td>
+<td><p>The host runs LACP (Etherchannel/bond) to the pair of ToRs. <a href="/version/cumulus-linux-377/Network-Virtualization/Lightweight-Network-Virtualization-Overview/">LNV</a> (Lightweight Network Virtualization) then transports the L2 bridges across an L3 fabric.</p>
 <p><strong>Configurations</strong></p>
-<summary>Leaf01 /etc/network/interfaces </summary>
-<pre><code># Loopback interface
-auto lo
-iface lo inet loopback
+<p><strong>leaf01 Config</strong></p>
+<p><code>/etc/network/interfaces</code></p>
+<pre><code>auto lo
+iface lo inet loopback 
   address 10.0.0.11/32
-  clagd-vxlan-anycast-ip 10.0.0.112
-  alias loopback interface
- 
-# Management interface
- auto eth0
- iface eth0 inet dhcp
-    vrf mgmt
- 
-auto mgmt
-iface mgmt
-    address 127.0.0.1/8
-    vrf-table auto
- 
-# Port to Server01
-auto swp1
-iface swp1
-  alias to Server01
-  # This is required for Vagrant only
-  post-up ip link set swp1 promisc on
- 
-# Port to Server02
-auto swp2
-iface swp2
-  alias to Server02
-  # This is required for Vagrant only
-  post-up ip link set swp2 promisc on
- 
-# Port to Leaf02
-auto swp49
-iface swp49
-  alias to Leaf02
-  # This is required for Vagrant only
-  post-up ip link set swp49 promisc on
- 
-# Port to Leaf02
-auto swp50
-iface swp50
-  alias to Leaf02
-  # This is required for Vagrant only
-  post-up ip link set swp50 promisc on
- 
-# Port to Spine01
-auto swp51
-iface swp51
-  mtu 9216
-  alias to Spine01
- 
-# Port to Spine02
-auto swp52
-iface swp52
-  mtu 9216
-  alias to Spine02
- 
-# MLAG Peerlink bond
-auto peerlink
-iface peerlink
-  mtu 9000
-  bond-slaves swp49 swp50
- 
-# MLAG Peerlink L2 interface.
-# This creates VLAN 4094 that only lives on the peerlink bond
-# No other interface will be aware of VLAN 4094
-auto peerlink.4094
-iface peerlink.4094
-  address 169.254.1.1/30
-  clagd-peer-ip 169.254.1.2
-  clagd-backup-ip 10.0.0.12
-  clagd-sys-mac 44:39:39:ff:40:94
-  clagd-priority 100
- 
-# Bond to Server01
-auto bond01
-iface bond01
-  mtu 9000
-  bond-slaves swp1
-  bridge-access 13
-  clag-id 1
- 
-# Bond to Server02
-auto bond02
-iface bond02
-  mtu 9000
-  bond-slaves swp2
-  bridge-access 24
-  clag-id 2
- 
-# Define the bridge for STP
-auto bridge
-iface bridge
-  bridge-vlan-aware yes
-  # bridge-ports includes all ports related to VxLAN and CLAG.
-  # does not include the Peerlink.4094 subinterface
-  bridge-ports bond01 bond02 peerlink vni13 vni24 vxlan4001
-  bridge-vids 13 24
-  bridge-pvid 1
- 
-# VXLAN Tunnel for Server1-Server3 (Vlan 13)
-auto vni13
-iface vni13
-  mtu 9000
-  vxlan-id 13
+  vxrd-src-ip 10.0.0.11
+  vxrd-svcnode-ip 10.10.10.10
+  clagd-vxlan-anycast-ip 36.0.0.11
+ 
+auto vni-10
+iface vni-10 
+  vxlan-id 10 
   vxlan-local-tunnelip 10.0.0.11
-  bridge-access 13
-  bridge-learning off
-  mstpctl-bpduguard yes
-  mstpctl-portbpdufilter yes
- 
-#VXLAN Tunnel for Server2-Server4 (Vlan 24)
-auto vni24
-iface vni24
-  mtu 9000
-  vxlan-id 24
-  vxlan-local-tunnelip 10.0.0.11
-  bridge-access 24
-  bridge-learning off
-  mstpctl-bpduguard yes
-  mstpctl-portbpdufilter yes
-  bridge-arp-nd-suppress on
- 
-auto vxlan4001
-iface vxlan4001
-    vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.11
-    bridge-learning off
-    bridge-access 4001
- 
-auto vrf1
-iface vrf1
-   vrf-table auto
- 
-#Tenant SVIs - anycast GW
-auto vlan13
-iface vlan13
-    address 10.1.3.11/24
-    address-virtual 44:39:39:ff:00:13 10.1.3.1/24
-    vlan-id 13
-    vlan-raw-device bridge
-    vrf vrf1
- 
-auto vlan24
-iface vlan24
-    address 10.2.4.11/24
-    address-virtual 44:39:39:ff:00:24 10.2.4.1/24
-    vlan-id 24
-    vlan-raw-device bridge
-    vrf vrf1
- 
-#L3 VLAN interface per tenant (for L3 VNI)
-auto vlan4001
-iface vlan4001
-    hwaddress 44:39:39:FF:40:94
-    vlan-id 4001
-    vlan-raw-device bridge
-    vrf vrf1</code></pre>
-<summary>Server01 /etc/network/interfaces </summary>
+ 
+auto br-10 
+iface br-10
+  bridge-ports swp1 vni-10</code></pre>
+<p><strong>leaf02 Config</strong></p>
+<p><code>/etc/network/interfaces</code></p>
 <pre><code>auto lo
-iface lo inet loopback
- 
-auto eth0
-iface eth0 inet dhcp
- 
-auto eth1
-iface eth1 inet manual
-  bond-master uplink
-  # Required for Vagrant
-  post-up ip link set promisc on dev eth1
- 
-auto eth2
-iface eth2 inet manual
-  bond-master uplink
-  # Required for Vagrant
-  post-up ip link set promisc on dev eth2
- 
-auto uplink
-iface uplink inet static
-  mtu 9000
-  bond-slaves none
-  bond-mode 802.3ad
-  bond-miimon 100
-  bond-lacp-rate 1
-  bond-min-links 1
-  bond-xmit-hash-policy layer3+4
-  address 10.1.3.101
-  netmask 255.255.255.0
-  post-up ip route add default via 10.1.3.1</code></pre>
-<summary>Leaf02 /etc/network/interfaces </summary>
-<pre><code># Loopback interface
-auto lo
-iface lo inet loopback
+iface lo inet loopback 
   address 10.0.0.12/32
-  clagd-vxlan-anycast-ip 10.0.0.112
-  alias loopback interface
- 
-# Management interface
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
- 
-auto mgmt
-iface mgmt
-    address 127.0.0.1/8
-    vrf-table auto
- 
-# Port to Server01
-auto swp1
-iface swp1
-  alias to Server01
-  # This is required for Vagrant only
-  post-up ip link set swp1 promisc on
- 
-# Port to Server02
-auto swp2
-iface swp2
-  alias to Server02
-  # This is required for Vagrant only
-  post-up ip link set swp2 promisc on
- 
-# Port to Leaf01
-auto swp49
-iface swp49
-  alias to Leaf01
-  # This is required for Vagrant only
-  post-up ip link set swp49 promisc on
- 
-# Port to Leaf01
-auto swp50
-iface swp50
-  alias to Leaf01
-  # This is required for Vagrant only
-  post-up ip link set swp50 promisc on
- 
-# Port to Spine01
-auto swp51
-iface swp51
-  mtu 9216
-  alias to Spine01
- 
-# Port to Spine02
-auto swp52
-iface swp52
-  mtu 9216
-  alias to Spine02
- 
-# MLAG Peerlink bond
-auto peerlink
-iface peerlink
-  mtu 9000
-  bond-slaves swp49 swp50
- 
-# MLAG Peerlink L2 interface.
-# This creates VLAN 4094 that only lives on the peerlink bond
-# No other interface will be aware of VLAN 4094
-auto peerlink.4094
-iface peerlink.4094
-  address 169.254.1.2/30
-  clagd-peer-ip 169.254.1.1
-  clagd-backup-ip 10.0.0.11
-  clagd-sys-mac 44:39:39:ff:40:94
-  clagd-priority 200
- 
-# Bond to Server01
-auto bond01
-iface bond01
-  mtu 9000
-  bond-slaves swp1
-  bridge-access 13
-  clag-id 1
- 
-# Bond to Server02
-auto bond02
-iface bond02
-  mtu 9000
-  bond-slaves swp2
-  bridge-access 24
-  clag-id 2
- 
-# Define the bridge for STP
-auto bridge
-iface bridge
-  bridge-vlan-aware yes
-  # bridge-ports includes all ports related to VxLAN and CLAG.
-  # does not include the Peerlink.4094 subinterface
-  bridge-ports bond01 bond02 peerlink vni13 vni24 vxlan4001
-  bridge-vids 13 24
-  bridge-pvid 1
- 
-auto vxlan4001
-iface vxlan4001
-     vxlan-id 104001
-     vxlan-local-tunnelip 10.0.0.12
-     bridge-learning off
-     bridge-access 4001
- 
-# VXLAN Tunnel for Server1-Server3 (Vlan 13)
-auto vni13
-iface vni13
-  mtu 9000
-  vxlan-id 13
+  Vxrd-src-ip 10.0.0.12
+  vxrd-svcnode-ip 10.10.10.10
+  clagd-vxlan-anycast-ip 36.0.0.11
+ 
+auto vni-10
+iface vni-10 
+  vxlan-id 10 
   vxlan-local-tunnelip 10.0.0.12
-  bridge-access 13
-  bridge-learning off
-  mstpctl-bpduguard yes
-  mstpctl-portbpdufilter yes
- 
-#VXLAN Tunnel for Server2-Server4 (Vlan 24)
-auto vni24
-iface vni24
-  mtu 9000
-  vxlan-id 24
-  vxlan-local-tunnelip 10.0.0.12
-  bridge-access 24
-  bridge-learning off
-  mstpctl-bpduguard yes
-  mstpctl-portbpdufilter yes
-  bridge-arp-nd-suppress on
- 
-auto vrf1
-iface vrf1
-   vrf-table auto
- 
-auto vlan13
-iface vlan13
-    address 10.1.3.12/24
-    address-virtual 44:39:39:ff:00:13 10.1.3.1/24
-    vlan-id 13
-    vlan-raw-device bridge
-    vrf vrf1
- 
-auto vlan24
-iface vlan24
-    address 10.2.4.12/24
-    address-virtual 44:39:39:ff:00:24 10.2.4.1/24
-    vlan-id 24
-    vlan-raw-device bridge
-    vrf vrf1
- 
-#L3 VLAN interface per tenant (for L3 VNI)
-auto vlan4001
-iface vlan4001
-    hwaddress 44:39:39:FF:40:94
-    vlan-id 4001
-    vlan-raw-device bridge
-    vrf vrf1</code></pre>
-<summary>Server01 /etc/network/interfaces </summary>
-<pre><code>auto lo
-iface lo inet loopback
- 
-auto eth0
-iface eth0 inet dhcp
- 
-auto eth1
-iface eth1 inet manual
-  bond-master uplink
-  # Required for Vagrant
-  post-up ip link set promisc on dev eth1
- 
-auto eth2
-iface eth2 inet manual
-  bond-master uplink
-  # Required for Vagrant
-  post-up ip link set promisc on dev eth2
- 
-auto uplink
-iface uplink inet static
-  mtu 9000
-  bond-slaves none
-  bond-mode 802.3ad
-  bond-miimon 100
-  bond-lacp-rate 1
-  bond-min-links 1
-  bond-xmit-hash-policy layer3+4
-  address 10.1.3.101
-  netmask 255.255.255.0
-  post-up ip route add default via 10.1.3.1</code></pre>
-<summary>Server02 /etc/network/interfaces </summary>
-<pre><code>auto lo
-iface lo inet loopback
- 
-auto eth0
-iface eth0 inet dhcp
- 
-auto eth1
-iface eth1 inet manual
-  bond-master uplink
-  # Required for Vagrant
-  post-up ip link set promisc on dev eth1
- 
-auto eth2
-iface eth2 inet manual
-  bond-master uplink
-  # Required for Vagrant
-  post-up ip link set promisc on dev eth2
- 
-auto uplink
-iface uplink inet static
-  mtu 9000
-  bond-slaves none
-  bond-mode 802.3ad
-  bond-miimon 100
-  bond-lacp-rate 1
-  bond-min-links 1
-  bond-xmit-hash-policy layer3+4
-  address 10.2.4.102
-  netmask 255.255.255.0
-  post-up ip route add default via 10.2.4.1 </code></pre>
-</details></td>
+ 
+auto br-10 
+iface br-10
+  bridge-ports swp1 vni-10</code></pre></td>
 <td><p><strong><strong>Benefits</strong></strong></p>
 <ul>
 <li><p>Layer 2 domain is reduced to the pair of ToRs</p></li>
@@ -1072,7 +688,7 @@ iface uplink inet static
 </ul>
 <p><strong><strong>Caveats</strong></strong></p>
 <ul>
-<li><p>Needs MLAG (with the same caveats from the <a href="#src-8366715_DataCenterHosttoToRArchitecture-mlag">MLAG section</a> above)</p></li>
+<li><p>Needs MLAG (with the same caveats from the <a href="#src-8362991_DataCenterHosttoToRArchitecture-mlag">MLAG section</a> above) and <a href="/version/cumulus-linux-377/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a></p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -1094,11 +710,11 @@ iface uplink inet static
 <tbody>
 <tr class="odd">
 <td><ul>
-<li><p><a href="/version/cumulus-linux-40/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP">VRR</a></p></li>
+<li><p><a href="/version/cumulus-linux-377/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP">VRR</a></p></li>
 </ul></td>
 <td><p>None</p></td>
 <td><ul>
-<li><p>ToR layer</p></li>
+<li><p>ToR layer or exit leafs</p></li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -1110,9 +726,7 @@ iface uplink inet static
 <td><p> </p></td>
 <td><p> </p></td>
 <td><ul>
-<li><p><a href="https://github.com/CumulusNetworks/cldemo-evpn-symmetric" class="external-link">Cumulus Networks EVPN with symmetric routing demo on GitHub</a></p></li>
-<li><p><a href="/version/cumulus-linux-40/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN">Ethernet Virtual Private Network - EVPN</a></p></li>
-<li><p><a href="/version/cumulus-linux-40/Network-Virtualization/VXLAN-Routing">VXLAN Routing</a></p></li>
+<li><p><a href="/version/cumulus-linux-377/Network-Virtualization/Lightweight-Network-Virtualization-Overview/">Cumulus Linux Lightweight Network Virtualization (LNV) documentation</a></p></li>
 </ul></td>
 </tr>
 </tbody>

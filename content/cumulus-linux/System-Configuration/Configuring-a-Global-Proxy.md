@@ -1,15 +1,15 @@
 ---
 title: Configuring a Global Proxy
 author: Cumulus Networks
-weight: 75
+weight: 77
 aliases:
- - /display/CL40/Configuring-a-Global-Proxy
- - /pages/viewpage.action?pageId=8366298
-pageID: 8366298
+ - /display/CL37/Configuring-a-Global-Proxy
+ - /pages/viewpage.action?pageId=8362577
+pageID: 8362577
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 You configure [global HTTP and HTTPS
 proxies](https://wiki.archlinux.org/index.php/proxy_settings) in the

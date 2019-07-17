@@ -1,30 +1,30 @@
 ---
 title: Upgrading from Quagga to FRRouting
 author: Cumulus Networks
-weight: 385
+weight: 407
 aliases:
- - /display/CL40/Upgrading-from-Quagga-to-FRRouting
- - /pages/viewpage.action?pageId=8366642
-pageID: 8366642
+ - /display/CL37/Upgrading-from-Quagga-to-FRRouting
+ - /pages/viewpage.action?pageId=8362918
+pageID: 8362918
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 Cumulus Linux 3.4 and later releases replace Quagga with FRRouting. This
-section outlines the upgrade process.
+section outlines the upgrade process for users currently using Quagga.
 
 {{%notice note%}}
 
 These instructions only apply to upgrading to Cumulus Linux 3.4 or later
 from releases earlier than 3.4. New image installations contain `frr`
-instead of `quagga` or `quagga-compat`. If you are using automation
+instead of `quagga` or `quagga-compat`. If you are using any automation
 tools to configure your network and are installing a new Cumulus Linux
 image, make sure your automation tools refer to FRR and not to Quagga.
 
 If you are upgrading Cumulus Linux using `apt-get upgrade`, existing
 automation that references Quagga continues to work until you upgrade to
-FRR. After you perform the following upgrade steps, your automation
+FRR. Once you perform the following upgrade steps, your automation
 **must** reference FRR instead of Quagga.
 
 {{%/notice%}}
@@ -80,7 +80,7 @@ cannot run concurrently.
     
     {{%/notice%}}
 
-After the upgrade process is complete, the switch is in the following
+Once the upgrade process is completed, the switch is in the following
 state:
 
     cumulus@switch:~$ sudo systemctl list-unit-files | grep "quagga\|frr"
@@ -114,8 +114,9 @@ The output below shows the FRR / Quagga package status:
 
 {{%notice note%}}
 
-Cumulus 3.4 and later does not support or implement `python-clcmd`.
-While the package remains, the related commands have been removed.
+Cumulus 3.4 and later releases do not support or implement
+`python-clcmd`. While the package remains, the related commands have
+been removed.
 
 {{%/notice%}}
 
@@ -125,14 +126,15 @@ To complete the transition to FRR:
     
     {{%notice warning%}}
     
-    Do *not* remove the `vtysh.conf` file. If there is necessary
-    configuration in the file, copy the contents to the
-    `/etc/frr/vtysh.conf` file.
+    The `vtysh.conf` file should not be moved, as it is unlikely any
+    configuration is in the file. However, if there is necessary
+    configuration in place, copy the contents into
+    `/etc/frr/vtysh.conf`.
     
     {{%/notice%}}
 
 2.  Merge the current `Quagga.conf` file with the new `frr.conf` file.
-    Keep the default configuration for `frr.conf` in place and add the
+    Keep the default configuration for `frr.conf` in place, and add the
     additional configuration sections from `Quagga.conf`.
 
 3.  Enable the daemons needed for your installation in
@@ -145,7 +147,7 @@ To complete the transition to FRR:
     
     {{%notice warning%}}
     
-    This step stops Quagga compatibility mode, causing routing to go
+    This step stops the Quagga compatibility mode, causing routing to go
     down.
     
     {{%/notice%}}
@@ -155,8 +157,9 @@ To complete the transition to FRR:
     {{%notice note%}}
     
     Removing the `quagga-compat` package also removes `quagga.service`.
-    However, the `/etc/quagga` directory is not removed in this step. It
-    is left in place for reference.
+    
+    However, the `/etc/quagga` directory is not removed in this step, as
+    it is left in place for reference.
     
     {{%/notice%}}
 
@@ -166,15 +169,17 @@ To complete the transition to FRR:
     
     {{%notice warning%}}
     
-    This step deletes all Quagga configuration files. Ensure to back up
-    your configuration.
+    This step deletes all Quagga configuration files. Please ensure you
+    back up your configuration.
     
     {{%/notice%}}
     
     {{%notice warning%}}
     
-    Do *not* reinstall the `quagga` and `quagga-compat` packages after
-    you remove them, as configuration issues might occur.
+    Cumulus Networks does not recommend reinstalling the `quagga` and
+    `quagga-compat` packages once they have been removed. While they can
+    be reinstalled to continue migration iterations, limited testing has
+    taken place, and configuration issues may occur.
     
     {{%/notice%}}
 
@@ -196,14 +201,14 @@ testing:
 
 {{%notice note%}}
 
-Several configuration migration iterations might be necessary to ensure
+Several configuration migration iterations may be necessary to ensure
 the configuration is behaving the same in both Quagga and FRR.
 
 {{%/notice%}}
 
-After further testing is complete, run the following commands to reset
-the FRR installation, then repeat the steps from the beginning of this
-section to upgrade to FRR:
+Once further testing is complete, run the following commands to reset
+the FRR installation, and then repeat the steps from the beginning of
+this section to upgrade to FRR:
 
     cumulus@switch:~$ sudo systemctl reset-failed frr.service
     cumulus@switch:~$ sudo systemctl enable frr.service

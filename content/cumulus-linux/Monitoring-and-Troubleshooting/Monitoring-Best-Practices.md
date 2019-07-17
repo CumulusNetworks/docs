@@ -1,15 +1,15 @@
 ---
 title: Monitoring Best Practices
 author: Cumulus Networks
-weight: 237
+weight: 233
 aliases:
- - /display/CL40/Monitoring-Best-Practices
- - /pages/viewpage.action?pageId=8366346
-pageID: 8366346
+ - /display/CL37/Monitoring-Best-Practices
+ - /pages/viewpage.action?pageId=8362625
+pageID: 8362625
 product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux-40
-siteSlug: cumulus-linux-40
+version: 3.7.7
+imgData: cumulus-linux-377
+siteSlug: cumulus-linux-377
 ---
 The following monitoring processes are considered best practices for
 reviewing and troubleshooting potential issues with Cumulus Linux
@@ -133,7 +133,7 @@ cumulus@switch:~$ ledmgrd -j</code></pre></td>
 
 Not all switch models include a sensor for monitoring power consumption
 and voltage. See [this
-note](Monitoring-System-Hardware.html#src-8366315_MonitoringSystemHardware-smond)
+note](Monitoring-System-Hardware.html#src-8362594_MonitoringSystemHardware-smond)
 for details.
 
 {{%/notice%}}
@@ -259,6 +259,44 @@ sysmonitor`.
 | ------------ | --------------------- |
 | Use          | Alert: 90% Crit: 95%  |
 | Process Load | Alarm: 95% Crit: 125% |
+<details>
+<summary>Click here to see differences between Cumulus Linux 2.5 ESR and
+3.0 and later... </summary>
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>CPU Logs</p></th>
+<th><p>Log Location</p></th>
+<th><p>Log Entries</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>High CPU</p></td>
+<td><pre><code>/var/log/syslog</code></pre></td>
+<td><pre><code>jdoo[2803]: &#39;localhost&#39; cpu system usage of 41.1% matches resource limit [cpu system usage&gt;30.0%]
+jdoo[4727]: &#39;localhost&#39; sysloadavg(15min) of 111.0 matches resource limit [sysloadavg(15min)&gt;110.0]</code></pre></td>
+</tr>
+</tbody>
+</table>
+<details>
+In Cumulus Linux 2.5, CPU logs are created with each unique threshold:
+
+| CPU measure | \< 2.5 Threshold |
+| ----------- | ---------------- |
+| User        | 70%              |
+| System      | 30%              |
+| Wait        | 20%              |
+
+In Cumulus Linux 2.5, CPU and memory warnings are generated with `jdoo`.
+The configuration for the thresholds is stored in
+`/etc/jdoo/jdoorc.d/cl-utilities.rc`.
 
 ### <span>Disk Usage</span>
 
@@ -289,8 +327,8 @@ monitoring.
 
 ## <span>Process Restart </span>
 
-In Cumulus Linux, `systemd` is responsible for monitoring and restarting
-processes.
+In Cumulus Linux 3.0 and later, `systemd` is responsible for monitoring
+and restarting processes.
 
 <table>
 <colgroup>
@@ -310,7 +348,41 @@ processes.
 </tr>
 </tbody>
 </table>
+<details>
+<summary>Click here to changes from Cumulus Linux 2.5 ESR to 3.0 and
+later... </summary>
 
+Cumulus Linux 2.5.2 through 2.5 ESR uses a forked version of `monit`
+called `jdoo` to monitor processes. If the process fails, `jdoo` invokes
+`init.d` to restart the process.
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Process Element</p></th>
+<th><p>Monitoring Command/s</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>View processes monitored by jdoo</p></td>
+<td><pre><code>cumulus@switch:~$ jdoo summary</code></pre></td>
+</tr>
+<tr class="even">
+<td><p>View process restarts</p></td>
+<td><pre><code>cumulus@switch:~$ sudo cat /var/log/syslog</code></pre></td>
+</tr>
+<tr class="odd">
+<td><p>View current process state</p></td>
+<td><pre><code>cumulus@switch:~$ ps -aux</code></pre></td>
+</tr>
+</tbody>
+</table>
+</details>
 ## <span>Layer 1 Protocols and Interfaces</span>
 
 Link and port state interface transitions are logged to
@@ -569,7 +641,7 @@ BFD, and associated logs are documented in the code.
 
 Cumulus Networks recommends that you track peering information through
 PTM. For more information, refer to the [Prescriptive Topology Manager
-documentation](/display/CL40/Prescriptive+Topology+Manager+-+PTM).
+documentation](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM).
 
 {{%/notice%}}
 
@@ -992,3 +1064,5 @@ sudo: pam_unix(sudo:session): session closed for user root</code></pre></td>
 <footer id="ht-footer">
 
 </footer>
+
+</details>

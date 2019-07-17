@@ -34,7 +34,7 @@ in the network.
 
 You can validate the following network fabric elements:
 
-    cumulus@leaf01:mgmt-vrf:~$ netq check 
+    cumulus@switch:~$ netq check
         agents : Netq agent
         bgp : BGP info
         clag : Cumulus Multi-chassis LAG
@@ -120,7 +120,7 @@ additional options available for each of the check commands. For
 example, validate BGP operation for nodes communicating over a
 particular VRF:
 
-``` 
+```
 cumulus@switch:~$ netq check bgp vrf DataVrf1081
 Total Nodes: 25, Failed Nodes: 1, Total Sessions: 52 , Failed Sessions: 1
 Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
@@ -147,9 +147,7 @@ to have occurred about 10 minutes ago, you could run:
 You can validate the following device elements:
 
   - NTP
-
   - Sensors
-
   - License
 
 It is always important to have your devices in time synchronization to
@@ -181,7 +179,7 @@ point for maintenance. For example, if you had a temporary HVAC failure
 and you are concerned that some of your nodes are beginning to overheat,
 you can run:
 
-    cumulus@switch:~$ netq check sensors 
+    cumulus@switch:~$ netq check sensors
     Total Nodes: 25, Failed Nodes: 0, Checked Sensors: 221, Failed Sensors: 0
 
 You can also check for any nodes that have invalid licenses without
@@ -231,7 +229,7 @@ The `netq show` commands display a wide variety of content about the
 network and its various elements. You can show content for the
 following:
 
-    cumulus@switch:~$ netq show 
+    cumulus@switch:~$ netq show
         agents        :  Netq agent
         bgp           :  BGP info
         clag          :  Cumulus Multi-chassis LAG
@@ -259,7 +257,7 @@ is running as expected. The Agent sends a heartbeat every 30 seconds,
 and if three consecutive heartbeats are missed, its status changes to
 *Rotten*.
 
-    cumulus@switch:~$ netq show agents 
+    cumulus@switch:~$ netq show agents
     Matching agents records:
     Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
     ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------

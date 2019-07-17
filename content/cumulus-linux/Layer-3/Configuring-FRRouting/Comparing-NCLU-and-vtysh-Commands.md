@@ -1,25 +1,25 @@
 ---
 title: Comparing NCLU and vtysh Commands
 author: Cumulus Networks
-weight: 419
+weight: 419397
 aliases:
- - /display/CL37/Comparing-NCLU-and-vtysh-Commands
- - /pages/viewpage.action?pageId=8362920
-pageID: 8362920
+ - /display/CL3740/Comparing-NCLU-and-vtysh-Commands
+ - /pages/viewpage.action?pageId=83629206644
+pageID: 83629206644
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 Using
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)
-is the primary way to [configure
-routing](/version/cumulus-linux-377/Layer-3/Configuring-FRRouting/) in
-Cumulus Linux. However, an alternative exists in the the `vtysh` modal
-CLI. The available commands are as follows:
+[NCLU](/version/cumulus-linux-37740/System-Configuration/Network-Command-Line-Utility---NCLU)
+is the primaryrecommended way to [configure
+routing](/version/cumulus-linux-37740/Layer-3/Configuring-FRRouting/) in
+Cumulus Linux. H; however, an alternative exists in thyou can use the `vtysh` modal
+ CLI. The available commands are as follows:
 
-The following table compares the various FRRouting commands with their
-Cumulus Linux NCLU counterparts.
+The following table compares the variousshows the FRRouting commands with theirand the equivalent
+Cumulus Linux NCLU counterpartmmands.
 
 <table>
 <colgroup>
@@ -54,7 +54,7 @@ switch(config-router)# neighbor 14.0.0.22</code></pre></td>
 switch(config-router)# redistribute static</code></pre></td>
 </tr>
 <tr class="even">
-<td><p>Define a <a href="/version/cumulus-linux-377/Layer-3/Routing">static route</a></p></td>
+<td><p>Define a <a href="/version/cumulus-linux-37740/Layer-3/Routing">static route</a></p></td>
 <td><pre><code>cumulus@switch:~$ net add routing route 155.1.2.20/24 bridge 45
  </code></pre></td>
 <td><pre><code>switch(config)# ip route 155.1.2.20/24 bridge 45</code></pre></td>
@@ -66,12 +66,12 @@ switch(config-router)# redistribute static</code></pre></td>
 switch(config-if)# ipv6 address 3002:2123:1234:1abc::21/64</code></pre></td>
 </tr>
 <tr class="even">
-<td><p>Enable topology checking (<a href="/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM">PTM</a>)</p></td>
+<td><p>Enable topology checking (<a href="/version/cumulus-linux-37740/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM">PTM</a>)</p></td>
 <td><pre><code>cumulus@switch:~$ net add routing ptm-enable</code></pre></td>
 <td><pre><code>switch(config)# ptm-enable</code></pre></td>
 </tr>
 <tr class="odd">
-<td><p>Configure <a href="Switch-Port-Attributes.html#src-8363026_SwitchPortAttributes-mtu">MTU</a> in IPv6 network discovery for an interface</p></td>
+<td><p>Configure <a href="Switch-Port-Attributes.html#src-83630266750_SwitchPortAttributes-mtu">MTU</a> in IPv6 network discovery for an interface</p></td>
 <td><pre><code>cumulus@switch:~$ sudo cl-ra interface swp3 set mtu 9000</code></pre></td>
 <td><pre><code>switch(config)# int swp3
 switch(config-if)# ipv6 nd mtu 9000</code></pre></td>
@@ -95,7 +95,7 @@ switch(config-ospf6)# timer throttle spf 40 50 60</code></pre></td>
 switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
 </tr>
 <tr class="odd">
-<td><p>Display <a href="/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP">BGP</a> information</p></td>
+<td><p>Display <a href="/version/cumulus-linux-37740/Layer-3/Border-Gateway-Protocol---BGP">BGP</a> information</p></td>
 <td><pre><code>cumulus@switch:~$ net show bgp summary</code></pre></td>
 <td><pre><code>switch# show ip bgp summary</code></pre></td>
 </tr>
@@ -121,3 +121,6 @@ switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTg5NDQzNDQwNV19
+-->

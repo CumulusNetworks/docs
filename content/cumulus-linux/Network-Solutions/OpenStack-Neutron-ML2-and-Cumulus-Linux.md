@@ -1,15 +1,15 @@
 ---
 title: OpenStack Neutron ML2 and Cumulus Linux
 author: Cumulus Networks
-weight: 255
+weight: 2559
 aliases:
- - /display/CL37/OpenStack-Neutron-ML2-and-Cumulus-Linux
- - /pages/viewpage.action?pageId=8362989
-pageID: 8362989
+ - /display/CL3740/OpenStack-Neutron-ML2-and-Cumulus-Linux
+ - /pages/viewpage.action?pageId=83629896713
+pageID: 83629896713
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 The Modular Layer 2 (ML2) plugin is a framework that allows OpenStack
 Networking to utilize a variety of non-vendor-specific layer 2
@@ -58,7 +58,7 @@ Cumulus Linux switches, you need the following:
 Additional REST API calls have been added to support the configuration
 of bridge using the bridge name instead of network ID.
 
-## <span id="src-8362989_OpenStackNeutronML2andCumulusLinux-install" class="confluence-anchor-link"></span><span>Install and Configure the Cumulus Networks Modular Layer 2 Mechanism Driver</span>
+## <span id="src-83629896713_OpenStackNeutronML2andCumulusLinux-install" class="confluence-anchor-link"></span><span>Install and Configure the Cumulus Networks Modular Layer 2 Mechanism Driver</span>
 
 You need to install the Cumulus Networks ML2 mechanism driver on your
 Neutron host, which is available upstream:
@@ -99,7 +99,7 @@ You configure them in the `/etc/neutron/plugins/ml2/ml2_conf.ini` file.
     value is *False*.
 
   - `new_bridge` — Enables/disables [VLAN-aware bridge
-    mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+    mode](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
     for the bridge configuration. The default value is *False*, so a
     traditional mode bridge is created.
 
@@ -109,7 +109,7 @@ OpenStack Neutron is available as a preconfigured option with [Cumulus
 in the
 Cloud](https://cumulusnetworks.com/products/cumulus-in-the-cloud/). You
 just need to add the ML2 driver, as per the [instructions
-above](#src-8362989_OpenStackNeutronML2andCumulusLinux-install).
+above](#src-83629896713_OpenStackNeutronML2andCumulusLinux-install).
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 
@@ -118,3 +118,6 @@ above](#src-8362989_OpenStackNeutronML2andCumulusLinux-install).
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEyNzUwMzE3MDBdfQ==
+-->

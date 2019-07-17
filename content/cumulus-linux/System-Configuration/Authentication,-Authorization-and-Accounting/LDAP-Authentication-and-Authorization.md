@@ -1,121 +1,207 @@
 ---
 title: LDAP Authentication and Authorization
 author: Cumulus Networks
-weight: 279
+weight: 27983
 aliases:
- - /display/CL37/LDAP-Authentication-and-Authorization
- - /pages/viewpage.action?pageId=8362556
-pageID: 8362556
+ - /display/CL3740/LDAP-Authentication-and-Authorization
+ - /pages/viewpage.action?pageId=83625566277
+pageID: 83625566277
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
+<details>
+
 Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name
 Service Switch (NSS) for user authentication.
 
-NSS specifies the order of information sources used to resolve names for
-each service. Using this with authentication and authorization, it
-provides the order and location used for user lookup and group mapping
-on the system. PAM handles the interaction between the user and the
-system, providing login handling, session setup, authentication of
-users, and authorization of user actions.
+ NSS enables PAM to use
+LDAP to provide user authentication, group mapping, and information for
+other services on the system.
+
+  - NSS specifies the order of the information sources that are used to
+    resolve names for
+ each service. Using thisNSS with authentication and
+    authorization, it
+ provides the order and location used for user lookup and
+    group mapping
+ on the system.
+
+  - PAM handles the interaction between the user and the
+ system,
+    providing login handling, session setup, authentication of
+ users,
+    and authorization of user actions.
 
 NSS enables PAM to use LDAP to provide user authentication, group
 mapping, and information for other services on the system.
 
-## <span>Configure LDAP Authentication</span>
+## <span>Configure LDAP Authentication</span>{{%notice note%}}
 
-There are 3 common ways to configure LDAP authentication on Linux:
+There are 3three common ways to configure LDAP authentication on Linux:
 
-  - libnss-ldap
+  - 
+(using `libnss-ldap
 
-  - libnss-ldapd
+  - `, `libnss-ldapd
 
-  - libnss-sss
+  -`, or`  libnss-sss
 
-This chapter describes using `libnss-ldapd` only. From internal testing,
-this library worked best with Cumulus Linux and is the easiest to
-configure, automate, and troubleshoot.
+T `). However, his 
+chapter describes using `libnss-ldapd` only. From internal testing,
+ this 
+library worked best with Cumulus Linux and is the easiest to
+ configure, 
+automate, and troubleshoot.
+
+{{%/notice%}}
 
 ## <span>Install libnss-ldapd</span>
 
 The `libpam-ldapd` package depends on `nslcd`. To install
-`libnss-ldapd`, `libpam-ldapd`, and `ldap-utils`, run the following
-command:
+ldap-2.4-2` and `libldap-common` LDAP packages are already
+installed on the Cumulus Linux image; however, you need to install these
+additional packages to use LDAP authentication:
+
+  - `libnss-ldapd`,
+
+  - `libpam-ldapd`, and
+
+  - `ldap-utils`
+
+To install the additional packages, run the following
+ command:
 
     cumulus@switch:~$ sudo apt-get install libnss-ldapd libpam-ldapd ldap-utils nslcd
 
-Follow the interactive prompts to answer questions about the LDAP URI,
-search base distinguished name (DN), and services that must have LDAP
-lookups enabled. This creates a very basic LDAP configuration using
-anonymous bind and initiates user search under the base DN specified.
+Follow the interactive prompts to answer questions aboutspecify the LDAP URI,
+ search base 
+distinguished name (DN), and services that must have LDAP
+ lookups enabled
+enabled. You need to select at least the `passwd`, `group`, and `shadow`
+services (press space to select a service). When done, click OK. This 
+creates a very basic LDAP configuration using
+ anonymous bind and 
+initiates user search under the base DN specified.
 
 {{%notice note%}}
 
 Alternatively, you can pre-seed these parameters using the
-`debconf-utils`. To use this method, run `apt-get install debconf-utils`
-and create the pre-seeded parameters using `debconf-set-selections` with
-the appropriate answers. Run `debconf-show <pkg>` to check the settings.
+`debconf-utils`. To use this method, rAfter the dialog closes, the install process prints information similar
+to the following:
+
+    /etc/nsswitch.conf: enable LDAP lookups for group
+    /etc/nsswitch.conf: enable LDAP lookups for passwd
+    /etc/nsswitch.conf: enable LDAP lookups for shadow
+
+After the installation is complete, the *name service caching daemon*
+(`nslcd`) runs. This service handles all the LDAP protocol interactions
+and caches information returned from the LDAP server. `ldap` **** is
+appended in the `/etc/nsswitch.conf` file, as is the secondary
+information source for *passwd*, *group*, and *shadow*. The local files
+(`/etc/passwd`, `/etc/groups` and `/etc/shadow`) are used first, as
+specified by the `compat` source.
+
+    passwd: compat ldap
+    group: compat ldap
+    shadow: compat ldap
+
+{{%notice warning%}}
+
+Cumulus Networks recommends that you keep `compat` as the first source
+in NSS for *passwd*, *group*, and *shadow*. This prevents you from
+getting locked out of the system.
+
+{{%/notice%}}
+
+Entering incorrect information during the installation process might
+produce configuration errors. You can correct the information after
+installation by editing certain configuration files.
+
+  - Edit the `/etc/nslcd.conf` file to update the LDAP URI and search
+    base DN (see [Configure
+    nslcd.conf](#src-8366277_LDAPAuthenticationandAuthorization-Configurenslcd.conf),
+    below).
+
+  - Edit the `/etc/nssswitch.conf` file to update the service
+    selections.
+
+Be sure to restart `netd` after editing the files.
+
+<summary>Alternative Installation Method Using debconf-utils </summary>
+
+Instead of running the installer and following the interactive prompts,
+as described above, you can pre-seed the installer parameters using
+`debconf-utils`.
+
+1.  Run `apt-get install debconf-utils`
+ and create the pre-seeded
+    parameters using `debconf-set-selections` with
+. Provide the appropriate
+    answers.
+
+2.  Run `debconf-show <pkg>` to check the settings.
+
 Here is an example of how to pre-seed answers to the installer questions
 using `debconf-set-selections`:
 
     root# debconf-set-selections <<'zzzEndOfFilezzz'
-     
+      
     # LDAP database user. Leave blank will be populated later!
     # This way of setting binddn and bindpw doesn't seem to work.
     # So have to manually do it. But interactive apt-get mode works.
-    nslcd nslcd/ldap-binddn  string
-     
+    nslcd nslcd/ldap-binddn  string 
+      
     # LDAP user password. Leave blank!
-    nslcd nslcd/ldap-bindpw   password
-     
+    nslcd nslcd/ldap-bindpw   password 
+      
     # LDAP server search base:
     nslcd nslcd/ldap-base string  ou=support,dc=rtp,dc=example,dc=test
-     
+      
     # LDAP server URI. Using ldap over ssl.
     nslcd nslcd/ldap-uris string  ldaps://myadserver.rtp.example.test
-     
+      
     # New to 0.9. restart cron, exim and others libraries without asking
     nslcd libraries/restart-without-asking: boolean true
-     
+      
     # LDAP authentication to use:
     # Choices: none, simple, SASL
     # Using simple because its easy to configure. Security comes by using LDAP over SSL
     # keep /etc/nslcd.conf 'rw' to root for basic security of bindDN password
     nslcd nslcd/ldap-auth-type    select  simple
-     
+      
     # Don't set starttls to true
     nslcd nslcd/ldap-starttls     boolean false
-     
+      
     # Check server's SSL certificate:
     # Choices: never, allow, try, demand
     nslcd nslcd/ldap-reqcert      select  never
-     
+      
     # Choices: Ccreds credential caching - password saving, Unix authentication, LDAP Authentication , Create home directory on first time login, Ccreds credential caching - password checking
     # This is where "mkhomedir" pam config is activated that allows automatic creation of home directory
     libpam-runtime        libpam-runtime/profiles multiselect     ccreds-save, unix, ldap, mkhomedir , ccreds-check
-     
+      
     # for internal use; can be preseeded
     man-db        man-db/auto-update      boolean true
-     
+      
     # Name services to configure:
     # Choices: aliases, ethers, group, hosts, netgroup, networks, passwd, protocols, rpc, services,  shadow
     libnss-ldapd  libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
     libnss-ldapd  libnss-ldapd/clean_nsswitch     boolean false
-     
-    ## define platform specific libnss-ldapd debconf questions/answers.
+      
+    ## define platform specific libnss-ldapd debconf questions/answers. 
     ## For demo used amd64.
     libnss-ldapd:amd64    libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
     libnss-ldapd:amd64    libnss-ldapd/clean_nsswitch     boolean false
     # libnss-ldapd:powerpc   libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
     # libnss-ldapd:powerpc    libnss-ldapd/clean_nsswitch     boolean false
-     
+      
     zzzEndOfFilezzz
 
 {{%/notice%}}
 
-After the install is complete, the *name service LDAP caching daemon*
+After the install is comple## <span>Update, the *name service LDAP caching daemon*
 (`nslcd`) runs. This service handles all of the LDAP protocol
 interactions and caches information returned from the LDAP server. In
 the `/etc/nsswitch.conf` file, `ldap` **** is appended and is the
@@ -130,7 +216,13 @@ first, as specified by the `compat` source.
 {{%notice warning%}}
 
 Cumulus Networks recommends that you keep `compat` as the first source
-in NSS for *passwd*, *group*, and *shadow*. This prevents you from
+in NSS for *passwd*, *group*, and *shadow*. Thinslcd.conf file</span>
+
+After installation, update the main configuration file
+(`/etc/nslcd.conf`) to accommodate the expected LDAP server settings.
+
+This section documents some of the more important options that relate to
+security and how queries parevents you from
 getting locked out of the system.
 
 {{%/notice%}}
@@ -139,20 +231,23 @@ getting locked out of the system.
 
 After installation, you need to update the main configuration file
 (`/etc/nslcd.conf`) to accommodate the expected LDAP server settings.
-The [nslcd.conf man page](http://linux.die.net/man/5/nslcd.conf) details
+T handled. For details on all the available
+configuration options, read the [nslcd.conf man 
+page](http://linux.die.net/man/5/nslcd.conf) details
 all the available configuration options. Some of the more important
 options relate to security and how the queries are handled.
 
 {{%notice note%}}
 
 After first editing the `/etc/nslcd.conf` file, and/or enabling LDAP in
-the `/etc/nsswitch.conf` file, you need to restart `netd` with the `sudo
-systemctl restart netd` command. Also, restart `netd` if you disable
-LDAP.
+the `/etc/nsswitch.conf` file, you need tomust restart `netd` with the `sudo
+systemctl restart netd` command. Also, If you disable LDAP, you need to
+restart the `netd` if you disable
+LDAPservice.
 
 {{%/notice%}}
 
-### <span>Connection</span>
+### <span> style="color: #36424a;"> Connection </span>
 
 The LDAP client starts a session by connecting to the LDAP server on TCP
 and UDP port 389, or on port 636 for LDAPS. Depending on the
@@ -164,15 +259,15 @@ and bind credentials.
 The URI is mandatory and specifies the LDAP server location using the
 FQDN or IP address. The URI also designates whether to use `ldap://` for
 clear text transport, or `ldaps://` for SSL/TLS encrypted transport. You
-can also specify an alternate port in the URI. Typically, in production
-environments, it is best to utilize the LDAPS protocol; otherwise, all
+can also specify an alternate port in the URI. Typically, iIn production
+environments, it is best to utilize the LDAPS protocol; otherwise,the LDAPS protocol is recommended so that all
 communications are clear text and not secure.
 
 After the connection to the server is complete, the BIND operation
 authenticates the session. The BIND credentials are optional, and if not
 specified, an anonymous bind is assumed. This is typically not allowed
 in most production environments. Configure authenticated (Simple) BIND
-by specifying the user (*binddn*) and password (*bindpw*) in the
+by specifying the user (*`binddn*`) and password (*`bindpw*`) in the
 configuration. Another option is to use SASL (Simple Authentication and
 Security Layer) BIND, which provides authentication services using other
 mechanisms, like Kerberos. Contact your LDAP server administrator for
@@ -209,7 +304,7 @@ searching for objects within the directory. This is used to limit the
 search scope when authenticating users. The default filters applied are:
 
     filter passwd (objectClass=posixAccount)
-    filter group (objectClass=posixGroup)
+    filter group (objectClass=posixGroup) 
 
 ### <span>Attribute Mapping</span>
 
@@ -224,7 +319,37 @@ shell is *bash* and the home directory is `/home/cumulus`:
 {{%notice note%}}
 
 In LDAP, the ***map*** refers to one of the supported maps specified in
-the manpage for `nslcd.conf` (such as *passwd* or *group*).
+the `manpage` for `nslcd.conf` (such as *passwd* or *group*).
+
+{{%/notice%}}
+
+### <span>Create Home Directory on Login</span>
+
+If you want to use unique home directories, run the `sudo
+pam-auth-update` command and select `Create home directory on login` in
+the PAM configuration dialog (press the space bar to select the option).
+Select OK, then press Enter to save the update and close the dialog.
+
+    cumulus@switch:~$ sudo pam-auth-update
+
+{{% imgOld 0 %}}
+
+The home directory for any user that logs in (using LDAP or not) is
+created and populated with the standard dotfiles from `/etc/skel` if it
+does not already exist.
+
+{{%notice note%}}
+
+When `nslcd` starts, you might see an error message similar to the
+following (where 5816 is the `nslcd` PID):
+
+`nslcd[5816]: unable to dlopen
+/usr/lib/x86_64-linux-gnu/sasl2/libsasldb.so: libdb-5.3.so: cannot open
+shared object file: No such file or directory`
+
+You can safely ignore this message. The `libdb` package and resulting
+log messages from `nslcd` do not cause any issues when you use LDAP as a
+client for login and authentication.
 
 {{%/notice%}}
 
@@ -293,6 +418,7 @@ Here is an example configuration using Cumulus Linux.
     map    passwd gecos         displayName
     map    passwd loginShell    "/bin/bash"
      
+     
     # Filter for any AD group or user in the baseDN. the reason for filtering for the
     # user to make sure group listing for user files don't say '<user> <gid>'. instead will say '<user> <user>'
     # So for cosmetic reasons..nothing more.
@@ -328,15 +454,16 @@ run the `getent` command:
     nslcd: [8e1f29] <passwd(all)> DEBUG: ldap_result(): ... 152 more results
     nslcd: [8e1f29] <passwd(all)> DEBUG: ldap_result(): end of results (162 total)
 
-In the output above, *\<passwd(all)\>* indicates that the entire
-directory structure is queried.
+In the output above, *\`<passwd(all)\>*>` indicates that the entire
+ directory 
+structure is queried.
 
 You can query a specific user with the following command:
 
     cumulus@switch:~$ sudo getent passwd myuser
 
-You can replace *myuser* with any username on the switch. The following
-debug output indicates that user *myuser* exists:
+You can replace *`myuser*` with any username on the switch. The following
+debug output indicates that user *`myuser*` exists:
 
     nslcd: DEBUG: add_uri(ldap://10.50.21.101)
     nslcd: version 0.8.10 starting
@@ -380,17 +507,19 @@ was queried.
   - If the `nscd cache` daemon is also enabled and you make some changes
     to the user from LDAP, you can clear the cache using the following
     commands:
-
-        nscd --invalidate = passwd
+    
+        nscd --invalidate = passwd 
         nscd --invalidate = group
 
   - The `nscd` package works with `nslcd` to cache name entries returned
     from the LDAP server. This might cause authentication failures. To
     work around these issues:
 
-    1.  Disable `nscd` by running:
-
-            cumulus@switch:~$ sudo nscd -K
+    1.  D, disable `nscd` by running:
+, restart the `nslcd`
+    service, then retry authentication:
+    
+        cumulus@switch:~$ sudo nscd -K
 
     2.  Restart the `nslcd` service:
 
@@ -405,7 +534,7 @@ was queried.
 
   - Optionally, configure the basic LDAP connection and search
     parameters in `/etc/ldap/ldap.conf`.
-
+    
         # ldapsearch -D 'cn=CLadmin' -w 'CuMuLuS' "(&(ObjectClass=inetOrgUser)(uid=myuser))"
 
   - When a local username also exists in the LDAP database, the order of
@@ -413,7 +542,7 @@ was queried.
     LDAP before the local user database. This is generally not
     recommended. For example, the configuration below ensures that LDAP
     is queried before the local database.
-
+    
         # /etc/nsswitch.conf
         passwd:         ldap compat
 
@@ -422,13 +551,18 @@ was queried.
 Linux uses the *sudo* command to allow non-administrator users (such as
 the default *cumulus* user account) to perform privileged operations. To
 control the users authorized to use sudo, the `/etc/sudoers` file and
-files located in the `/etc/sudoers.d/` directory have a series of rules
+files located in the `/etc/sudoers.d/` directory havdefine a series of 
+rules
 defined. Typically, the rules are based on groups, but can also be
-defined for specific users. Therefore, sudo rules can be added using the
-group names from LDAP. For example, if a group of users are associated
-with the group *netadmin*, you can add a rule to give those users sudo
+ defined 
+for specific users. Therefore, sudo rules can be addedyou can add sudo rules using the
+ group 
+names from LDAP. For example, if a group of users are associated
+ with 
+the group *netadmin*, you can add a rule to give those users sudo
 privileges. Refer to the sudoers manual (`man sudoers`) for a complete
-usage description. Here's an illustration of this in `/etc/sudoers`:
+usage description. Here's an illustration of this inThe following shows an example in the `/etc/sudoers`
+file:
 
     # The basic structure of a user specification is “who where = (as_whom) what”.
     %sudo ALL=(ALL:ALL) ALL
@@ -438,11 +572,16 @@ usage description. Here's an illustration of this in `/etc/sudoers`:
 
 Active Directory (AD) is a fully featured LDAP-based NIS server created
 by Microsoft. It offers unique features that classic OpenLDAP servers
-lack. Therefore, it can be more complicated to configure on the client
-and each version of AD is a little different in how it works with
-Linux-based LDAP clients. Some more advanced configuration examples,
-from testing LDAP clients on Cumulus Linux with Active Directory
-(AD/LDAP), are available in our [knowledge
+lack. Therefore, it do
+not have. AD can be more complicated to configure on the client
+ and each 
+version of AD iworks a little different in how it worksly with
+ Linux-based LDAP clients. Some 
+more advanced configuration examples,
+ from testing LDAP clients on 
+Cumulus Linux with Active Directory
+ (AD/LDAP), are available in our 
+[knowledge
 base](https://support.cumulusnetworks.com/hc/en-us/articles/204383797).
 
 ## <span>LDAP Verification Tools</span>
@@ -460,28 +599,36 @@ information sources in NSS for the *passwd* service. This simply returns
 the user ID, group ID and the group list retrieved from the information
 source. In the following example, the user *cumulus* is locally defined
 in `/etc/passwd`, and *myuser* is on LDAP. The NSS configuration has the
-passwd map configured with the sources `compat ldap`:
+`passwd` map configured with the sources `compat ldap`:
 
     cumulus@switch:~$ id cumulus
     uid=1000(cumulus) gid=1000(cumulus) groups=1000(cumulus),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev)
-    cumulus@switch:~$ id myuser
+    cumulus@switch:~$ id myuser 
     uid=1230(myuser) gid=3000(Development) groups=3000(Development),500(Employees),27(sudo)
 
 ### <span>getent</span>
 
 The `getent` command retrieves all records found with NSS for a given
-map. It can also get a specific entry under that map. You can perform
-tests with the passwd, group, shadow, or any other map configured in
-`/etc/nsswitch.conf`. The output from this command is formatted
-according to the map requested. Therefore, for the passwd service, the
-structure of the output is the same as the entries in `/etc/passwd`. The
-group map outputs the same structure as `/etc/group`. In this example,
-looking up a specific user in the passwd map, the user *cumulus* is
-locally defined in `/etc/passwd`, and *myuser* is only in LDAP.
+map. It can also gretrieve a specific entry under that map. You can 
+perform
+ tests with the `passwd`, `group`, `shadow`, or any other map 
+configured in
+ the `/etc/nsswitch.conf` file. The output from this 
+command is formatted
+ according to the map requested. Therefore, fFor the `passwd `
+service, the
+ structure of the output is the same as the entries in 
+`/etc/passwd`. The
+ group map outputs the same structure as `/etc/group`. 
+In this example,
+ looking up a specific user in the `passwd` map, the 
+user *cumulus* is
+ locally defined in `/etc/passwd`, and *myuser* is only 
+in LDAP.
 
     cumulus@switch:~$ getent passwd cumulus
     cumulus:x:1000:1000::/home/cumulus:/bin/bash
-    cumulus@switch:~$ getent passwd myuser
+    cumulus@switch:~$ getent passwd myuser 
     myuser:x:1230:3000:My Test User:/home/myuser:/bin/bash
 
 In the next example, looking up a specific group in the group service,
@@ -502,8 +649,9 @@ request returns **all** local and LDAP entries for the *passwd* and
 The `ldapsearch` command performs LDAP operations directly on the LDAP
 server. This does not interact with NSS. This command helps display what
 the LDAP daemon process is receiving back from the server. The command
-has many options. The simplest uses anonymous bind to the host and
-specifies the search DN and the attribute to look up.
+has many options. The simplest option uses anonymous bind to the host 
+and
+ specifies the search DN and the attribute to look up.
 
     cumulus@switch:~$ ldapsearch -H ldap://ldap.example.com -b dc=example,dc=com -x uid=myuser
 <details>
@@ -539,20 +687,59 @@ specifies the search DN and the attribute to look up.
     sn: User
     uid: myuser
     uidNumber: 1234
-
+     
     # search result
     search: 2
     result: 0 Success
-
+          
     # numResponses: 2
     # numEntries: 1
     
 </details>
+### <span>sdsds</span>
+
+To use NCLU, a user must be in either the `netshow` or `netedit` NCLU
+group in the LDAP database. You can either:
+
+  - Add a user or one of their groups to the `/etc/netd.conf` file
+    manually.
+
+  - Add a user to the local `/etc/group` file as a member of the
+    `netshow` or `netedit` groups.
+
+In the following example, a user that is *not* in the `netshow` or
+`netedit` NCLU group in the LDAP database runs the NCLU `net show
+version` command, which produces an error:
+
+    cumulus@switch:~$ net show version
+    ERROR: 'getpwuid(): uid not found: 1126'
+    See /var/log/netd.log for more details
+
+To add the the user to the `netshow` or `netedit` NCLU group in the LDAP
+database, either edit the `/etc/group` file manually or use the `sudo
+adduser USERNAME netshow` command, then restart `netd`. For example, to
+add the user bill to the `netshow` group:
+
+    cumulus@switch:~$ sudo adduser bill netshow
+    Adding user `bill' to group `netshow' ...
+    Adding user bill to group netshow
+    Done.
+     
+    cumulus@switch:~$ sudo systemctl restart netd
+
+Now, the user can run the NCLU `net show` commands successfully:
+
+    cumulus@switch:~$ net show version
+    NCLU_VERSION=1.0-cl4u1~1555625956.7cfe305
+    DISTRIB_ID="Cumulus Linux"
+    DISTRIB_RELEASE=4.0.0~1555370771.772c26b6
+    DISTRIB_DESCRIPTION="Cumulus Linux 4.0.0~1555370771.772c26b6"
 
 ### <span>LDAP Browsers</span>
 
-There are several GUI LDAP clients available that help to work with LDAP
-servers. These are free tools to help show the structure of the LDAP
+There are several GUI LDAP clients available that help toyou work with 
+LDAP
+ servers. These are free tools to helphat show the structure of the LDAP
 database graphically.
 
   - [Apache Directory Studio](http://directory.apache.org/studio/)
@@ -571,3 +758,16 @@ database graphically.
     file](https://raw.githubusercontent.com/arthurdejong/nss-pam-ldapd/master/nslcd.conf)
 
   - [Debian backports](http://backports.debian.org/Instructions/)
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+
+</details>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNDAxOTQ3NjExXX0=
+-->

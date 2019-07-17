@@ -1,15 +1,15 @@
 ---
 title: Monitoring Interfaces and Transceivers Using ethtool
 author: Cumulus Networks
-weight: 457
+weight: 4357
 aliases:
- - /display/CL37/Monitoring-Interfaces-and-Transceivers-Using-ethtool
- - /pages/viewpage.action?pageId=8362604
-pageID: 8362604
+ - /display/CL3740/Monitoring-Interfaces-and-Transceivers-Using-ethtool
+ - /pages/viewpage.action?pageId=83626046325
+pageID: 83626046325
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 The `ethtool` command enables you to query or control the network driver
 and hardware settings. It takes the device name (like swp1) as an
@@ -45,14 +45,20 @@ To check the status of an interface using `ethtool`:
 {{%notice note%}}
 
 The switch hardware contains the [active port
-settings](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes).
-The output of `ethtool swpXX` shows the port settings stored in the
-kernel. The `switchd` process keeps the hardware and kernel in sync for
-the important port settings (speed, auto-negotiation, and link detected)
-when they change. However, many of the fields in `ethtool`, like
-Supported Link Modes and Advertised Link Modes are not updated based on
-the actual module inserted in the port and therefore are incorrect or
-misleading.
+settings](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Interface-Configuration-and-Managementdisplay/CL40/Switch-+Port-+Attributes).
+ The output of `ethtool 
+swpXX` shows the port settings stored in the
+ kernel. The `switchd` 
+process keeps the hardware and kernel in sync for
+ the important port 
+settings (speed, auto-negotiation, and link detected)
+ when they change. 
+However, many of the fields in `ethtool`, like
+ Supported Link Modes and 
+Advertised Link Modes are not updated based on
+ the actual module 
+inserted in the port and therefore are incorrect or
+ misleading.
 
 {{%/notice%}}
 
@@ -246,3 +252,6 @@ and alarm threshold settings.
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTIwNzY3Nzg2MDFdfQ==
+-->

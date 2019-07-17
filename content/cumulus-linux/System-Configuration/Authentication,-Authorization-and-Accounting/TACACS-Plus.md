@@ -1,15 +1,15 @@
 ---
 title: TACACS Plus
 author: Cumulus Networks
-weight: 281
+weight: 2815
 aliases:
- - /display/CL37/TACACS-Plus
- - /pages/viewpage.action?pageId=8362558
-pageID: 8362558
+ - /display/CL3740/TACACS-Plus
+ - /pages/viewpage.action?pageId=83625586279
+pageID: 83625586279
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication,
 and Authorization) in a transparent way with minimal configuration. The
@@ -26,7 +26,7 @@ per-command authorization requires additional setup on the switch.
   - Runs over the eth0 management interface
 
   - Ability to run in the [management
-    VRF](/version/cumulus-linux-377/Layer-3/Management-VRF)
+    VRF](/version/cumulus-linux-37740/Layer-3/Management-VRF)
 
   - TACACS+ privilege 15 users can run any command with sudo using the
     `/etc/sudoers.d/tacplus` file that is installed by the
@@ -89,24 +89,24 @@ configuration to see the changed server list.
 
 You can also configure the IP address used as the source IP address when
 communicating with the TACACS+ server. See [TACACS Configuration
-Parameters](#src-8362558_TACACSPlus-TACACS_config_params) below for the
+Parameters](#src-83625586279_TACACSPlus-TACACS_config_params) below for the
 full list of TACACS+ parameters.
 
 Following is the complete list of the TACACS+ client configuration
 files, and their use.
 
-| Filename                                | Description                                                                                                                                                                                                                                                                                                                                                                                          |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| /etc/tacplus\_servers                   | This is the primary file that requires configuration after installation. The file is used by all packages with `include=/etc/tacplus_servers` parameters in the other configuration files that are installed. Typically, this file contains the shared secrets; make sure that the Linux file mode is 600.                                                                                           |
-| /etc/nsswitch.conf                      | When the `libnss_tacplus` package is installed, this file is configured to enable tacplus lookups via `libnss_tacplus`. If you replace this file by automation or other means, you need to add tacplus as the first lookup method for the *passwd* database line.                                                                                                                                    |
-| /etc/tacplus\_nss.conf                  | This file sets the basic parameters for `libnss_tacplus`. It includes a debug variable for debugging NSS lookups separately from other client packages.                                                                                                                                                                                                                                              |
-| /usr/share/pam-configs/tacplus          | This is the configuration file for `pam-auth-update` to generate the files in the next row. These configurations are used at `login`, by `su`, and by `ssh`.                                                                                                                                                                                                                                         |
-| /etc/pam.d/common-\*                    | The `/etc/pam.d/common-*` files are updated for `tacplus` authentication. The files are updated with `pam-auth-update`, when `libpam-tacplus` is installed or removed.                                                                                                                                                                                                                               |
-| /etc/sudoers.d/tacplus                  | This file allows TACACS+ privilege level 15 users to run commands with `sudo`. The file includes an example (commented out) of how to enable privilege level 15 TACACS users to use `sudo` without having to enter a password and provides an example of how to enable all TACACS users to run specific commands with sudo. Only edit this wile with the command *visudo -f /etc/sudoers.d/tacplus.* |
-| audisp-tacplus.conf                     | This is the `audisp` plugin configuration file. Typically, no modifications are required.                                                                                                                                                                                                                                                                                                            |
-| /etc/audisp/audisp-tac\_plus.conf       | This is the TACACS+ server configuration file for accounting. Typically, no modifications are required. You can use this configuration file when you only want to debug TACACS+ accounting issues, not all TACACS+ users.                                                                                                                                                                            |
-| /etc/audit/rules.d/audisp-tacplus.rules | The `auditd` rules for TACACS+ accounting. The `augenrules` command uses all rule files to generate the rules file (described below).                                                                                                                                                                                                                                                                |
-| /etc/audit/audit.rules                  | This is the audit rules file generated when `auditd` is installed.                                                                                                                                                                                                                                                                                                                                   |
+| Filename                                  | Description                                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/etc/tacplus\_servers`                    | This is the primary file that requires configuration after installation. The file is used by all packages with `include=/etc/tacplus_servers` parameters in the other configuration files that are installed. Typically, this file contains the shared secrets; make sure that the Linux file mode is 600.                                                                                           |
+| `/etc/nsswitch.conf`                      | When the `libnss_tacplus` package is installed, this file is configured to enable tacplus lookups via `libnss_tacplus`. If you replace this file by automation or other means, you need to add tacplus as the first lookup method for the *passwd* database line.                                                                                                                                    |
+| `/etc/tacplus\_nss.conf`                   | This file sets the basic parameters for `libnss_tacplus`. It includes a debug variable for debugging NSS lookups separately from other client packages.                                                                                                                                                                                                                                              |
+| `/usr/share/pam-configs/tacplus`          | This is the configuration file for `pam-auth-update` to generate the files in the next row. These configurations are used at `login`, by `su`, and by `ssh`.                                                                                                                                                                                                                                         |
+| `/etc/pam.d/common-\*`                     | The `/etc/pam.d/common-*` files are updated for `tacplus` authentication. The files are updated with `pam-auth-update`, when `libpam-tacplus` is installed or removed.                                                                                                                                                                                                                               |
+| `/etc/sudoers.d/tacplus`                  | This file allows TACACS+ privilege level 15 users to run commands with `sudo`. The file includes an example (commented out) of how to enable privilege level 15 TACACS users to use `sudo` without having to enter a password and provides an example of how to enable all TACACS users to run specific commands with sudo. Only edit this wile with the command *visudo -f /etc/sudoers.d/tacplus.* |
+| `audisp-tacplus.conf`                     | This is the `audisp` plugin configuration file. Typically, no modifications are required.                                                                                                                                                                                                                                                                                                            |
+| `/etc/audisp/audisp-tac\_plus.conf`        | This is the TACACS+ server configuration file for accounting. Typically, no modifications are required. You can use this configuration file when you only want to debug TACACS+ accounting issues, not all TACACS+ users.                                                                                                                                                                            |
+| `/etc/audit/rules.d/audisp-tacplus.rules` | The `auditd` rules for TACACS+ accounting. The `augenrules` command uses all rule files to generate the rules file (described below).                                                                                                                                                                                                                                                                |
+| `/etc/audit/audit.rules`                  | This is the audit rules file generated when `auditd` is installed.                                                                                                                                                                                                                                                                                                                                   |
 
 {{%notice warning%}}
 
@@ -145,7 +145,7 @@ run with standard Linux user permissions.
 
 {{%/notice%}}
 
-## <span id="src-8362558_TACACSPlus-fallback-auth" class="confluence-anchor-link"></span><span>Local Fallback Authentication</span>
+## <span id="src-83625586279_TACACSPlus-fallback-auth" class="confluence-anchor-link"></span><span>Local Fallback Authentication</span>
 
 If a site wants to allow local fallback authentication for a user when
 none of the TACACS servers can be reached, you can add a privileged user
@@ -225,7 +225,7 @@ accounting. These records are installed as part of the package.
 `audisp-tacplus` installs the audit rules for command accounting.
 Modifying the configuration files is not usually necessary. However,
 when a [management
-VRF](/version/cumulus-linux-377/Layer-3/Management-VRF) is configured,
+VRF](/version/cumulus-linux-37740/Layer-3/Management-VRF) is configured,
 the accounting configuration does need special modification because the
 `auditd` service starts prior to networking. It is necessary to add the
 *vrf* parameter and to signal the `audisp-tacplus` process to reread the
@@ -249,7 +249,7 @@ against the original TACACS+ login name.
 
 For more information, refer to the `audisp.8` and `auditd.8` man pages.
 
-## <span id="src-8362558_TACACSPlus-nclu" class="confluence-anchor-link"></span><span>Configure NCLU for TACACS+ Users</span>
+## <span id="src-83625586279_TACACSPlus-nclu" class="confluence-anchor-link"></span><span>Configure NCLU for TACACS+ Users</span>
 
 When you install or upgrade TACACS+ packages, mapped user accounts are
 created automatically. All *tacacs0* through *tacacs15* users are added
@@ -328,15 +328,15 @@ The following table provides the command options:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>-i</p></td>
+<td><p>-i<code>-i</code></p></td>
 <td><p>Initializes the environment. You only need to issue this option once per username.</p></td>
 </tr>
 <tr class="even">
-<td><p>-a</p></td>
+<td><p>-a<code>-a</code></p></td>
 <td><p>You can invoke the utility with the <code>-a</code> option as many times as desired. For each command in the <code>-a</code> list, a symbolic link is created from <code>tacplus-auth</code> to the relative portion of the command name in the local <code>bin</code> subdirectory. You also need to enable these commands on the TACACS+ server (refer to the TACACS+ server documentation). It is common to have the server allow some options to a command, but not others.</p></td>
 </tr>
 <tr class="odd">
-<td><p>-f</p></td>
+<td><p>-f<code>-f</code></p></td>
 <td><p>Re-initializes the environment. If you need to restart, issue the <code>-f</code> option with <code>-i</code> to force the re-initialization; otherwise, repeated use of <code>-i</code> is ignored.</p>
 <p>As part of the initialization:</p>
 <ul>
@@ -405,7 +405,7 @@ again until privilege level 0 (user t`acacs0`) is reached. This allows
 use of only the two local users `tacacs0` and `tacacs15`, if minimal
 configuration is desired.
 
-## <span id="src-8362558_TACACSPlus-TACACS_config_params" class="confluence-anchor-link"></span><span>TACACS Configuration Parameters</span>
+## <span id="src-83625586279_TACACSPlus-TACACS_config_params" class="confluence-anchor-link"></span><span>TACACS Configuration Parameters</span>
 
 The recognized configuration options are the same as the
 `libpam_tacplus` command line arguments; however, not all `pam_tacplus`
@@ -439,19 +439,19 @@ The table below describes the configuration options available:
 <td><p>The secret key used to encrypt and decrypt packets sent to and received from the server. You can specify the secret key more than once in any order with respect to the server= parameter. When fewer secret= parameters are specified, the last secret given is used for the remaining servers. Only use this parameter in files such as <code>/etc/tacplus_servers</code> that are not world readable.</p></td>
 </tr>
 <tr class="odd">
-<td><p>server=HOSTNAME</p>
-<p>server=IP_ADDR</p></td>
+<td><p>server=HOSTNAMEhostname</p>
+<p>server=IP_ADDRip-address</p></td>
 <td><p>Adds a TACACS+ server to the servers list. Servers are queried in turn until a match is found, or no servers remain in the list. Can be specified up to 7 times. An IP address can be optionally followed by a port number, preceded by a ":". The default port is 49.</p>
 <p>{{%notice note%}}</p>
 <p>When sending accounting records, the record is sent to all servers in the list if <code>acct_all=1,</code> which is the default.</p>
 <p>{{%/notice%}}</p></td>
 </tr>
 <tr class="even">
-<td><p>source_ip=IPv4_ADDRESS</p></td>
+<td><p>source_ip=IPv4_ADDRESSipv4-address</p></td>
 <td><p>Sets the IP address used as the source IP address when communicating with the TACACS+ server. You must specify an IPv4 address. IPv6 addresses and hostnames are not supported. The address must must be valid for the interface being used.</p></td>
 </tr>
 <tr class="odd">
-<td><p>timeout=SECONDS</p></td>
+<td><p>timeout=SECONDSseconds</p></td>
 <td><p>TACACS+ server(s) communication timeout. This parameter defaults to 10 seconds in the <code>/etc/tacplus_servers</code> file, but defaults to 5 seconds in the <code>/etc/tacplus_nss.conf</code> file.</p></td>
 </tr>
 <tr class="even">
@@ -471,7 +471,7 @@ The table below describes the configuration options available:
 <p>{{%/notice%}}</p></td>
 </tr>
 <tr class="odd">
-<td><p>login=STRING</p></td>
+<td><p>login=STRINGstring</p></td>
 <td><p>TACACS+ authentication service (pap, chap, or login). The default value is <em>pap</em>.</p></td>
 </tr>
 <tr class="even">
@@ -484,12 +484,12 @@ The table below describes the configuration options available:
 <td><p>Configuration option for <code>audisp_tacplus</code> and <code>pam_tacplus</code> sending accounting records to all supplied servers (1), or the first server to respond (0). The default value is <em>1</em>.</p></td>
 </tr>
 <tr class="even">
-<td><p>timeout=<strong>SECS</strong></p></td>
+<td><p>timeout=<strong>SECS</strong>seconds</p></td>
 <td><p>Sets the timeout in seconds for connections to each TACACS+ server. The default is 10 seconds for all lookups except that NSS lookups use a 5 second timeout.</p></td>
 </tr>
 <tr class="odd">
-<td><p>vrf=<strong>VRFNAME</strong></p></td>
-<td><p>If the management network is in a VRF, set this variable to the VRF name. This would usually be "mgmt". When this variable is set, the connection to the TACACS+ accounting servers is made through the named VRF.</p></td>
+<td><p>vrf=<strong>VRFNAME</strong>vrf-name</p></td>
+<td><p>If the management network is in a VRF, set this variable to the VRF name. This would usually be "mgmt"is typically <code>mgmt</code>. When this variable is set, the connection to the TACACS+ accounting servers is made through the named VRF.</p></td>
 </tr>
 <tr class="even">
 <td><p>service</p></td>
@@ -702,3 +702,6 @@ configuration command is in use.
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEyMTc0OTgwNzZdfQ==
+-->

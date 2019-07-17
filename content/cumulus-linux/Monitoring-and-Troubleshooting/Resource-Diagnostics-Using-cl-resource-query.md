@@ -1,19 +1,19 @@
 ---
 title: Resource Diagnostics Using cl-resource-query
 author: Cumulus Networks
-weight: 217
+weight: 2217
 aliases:
- - /display/CL37/Resource-Diagnostics-Using-cl-resource-query
- - /pages/viewpage.action?pageId=8362593
-pageID: 8362593
+ - /display/CL3740/Resource-Diagnostics-Using-cl-resource-query
+ - /pages/viewpage.action?pageId=83625936314
+pageID: 83625936314
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 You can use the `cl-resource-query` command to retrieve information
 about host entries, MAC entries, layer 2 and layer 3 routes, and
-[ECMP](Network-Topology.html#src-8362915_NetworkTopology-load_balancing)
+[ECMP](Network-Topology.html#src-83629156639_NetworkTopology-load_balancing)
 routes that are in use. Because Cumulus Linux synchronizes routes
 between the kernel and the switching silicon, if the required resource
 pools in hardware fill up, new kernel routes can cause existing routes
@@ -107,10 +107,17 @@ Trident II switch:
 
 {{%notice note%}}
 
+On a Mellanox switch, the `cl-resource-query` command shows the number
+of TCAM entries used by the different types of ACL resources.
+
+{{%/notice%}}
+
+{{%notice note%}}
+
 Ingress ACL and Egress ACL entries show the counts in single wide (*not*
 double-wide). For information about ACL entries, see [Estimate the
 Number of ACL
-Rules](Netfilter---ACLs.html#src-8362563_Netfilter-ACLs-estimate-rules).
+Rules](Netfilter---ACLs.html#src-83625636284_Netfilter-ACLs-estimate-rules).
 
 {{%/notice%}}
 
@@ -129,3 +136,6 @@ ACL resources.
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNTY5MDczMjE4XX0=
+-->

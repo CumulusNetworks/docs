@@ -1,15 +1,15 @@
 ---
 title: Network Switch Port LED and Status LED Guidelines
 author: Cumulus Networks
-weight: 431
+weight: 43109
 aliases:
- - /display/CL37/Network-Switch-Port-LED-and-Status-LED-Guidelines
- - /pages/viewpage.action?pageId=8362595
-pageID: 8362595
+ - /display/CL3740/Network-Switch-Port-LED-and-Status-LED-Guidelines
+ - /pages/viewpage.action?pageId=83625956316
+pageID: 83625956316
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 Data centers today have a large number of network switches manufactured
 by different hardware vendors running network operating systems (NOS)
@@ -220,3 +220,6 @@ When all of the ports are set to 1G, all the link lights are green.
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEzMTYwNzAzMzldfQ==
+-->

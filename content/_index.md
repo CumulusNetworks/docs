@@ -12,7 +12,7 @@ title: "Cumulus Networks Documentation Home"
 
 [Cumulus VX](/cumulus-vx/)
 
-[Cumulus Chassis](/Chassis/Chassis_User_Guide.html)
+[Cumulus Chassis](/chassis/)
 
 
 ## Old Versions
@@ -37,9 +37,12 @@ title: "Cumulus Networks Documentation Home"
 
 [Cumulus VX 3.0](/version/cumulus-vx-30)
 
+[Cumulus RMP](/cumulus-rmp)
 
 
 
-## Writing Guide
-
-{{< pageref Writing_Guide "Writing Guide" >}}
+## Contributor Guide
+{{< pageref contributor-guide "Contributor Guide" >}}
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTIwMjU5MzM3NTYsODE2MzE3NzM5XX0=
+-->

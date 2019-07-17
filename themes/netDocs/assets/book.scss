@@ -14,9 +14,6 @@ html {
 html,
 body {
   min-width: $body-min-width;
-  overflow-x: hidden;
-  height: 100%;
-
 }
 
 body {
@@ -26,6 +23,7 @@ body {
   font-family: helvetica, sans-serif;
   font-weight: $body-font-weight;
 
+  overflow-x: hidden;
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -99,7 +97,10 @@ aside nav ul {
 
   ul {
     padding-left: 0;
-    margin-left: 14px;
+    margin-left: 5px;
+    @media #{$xl-up} {
+      margin-left: 14px;
+    }
   }
 }
 
@@ -121,16 +122,26 @@ ul.pagination {
 }
 
 .book-menu {
-  flex: 0 0 $menu-width;
+  flex: 0 0 15.53rem;
   font-size: $font-size-14;
   overflow-y: scroll;
+
+  @media #{$xl-up} {
+    flex: 0 0 $menu-width;
+  }
   nav {
     background-color: $nav-background;
     font-family: $cumulus-font-family;
     font-weight: 400;
-    width: $menu-width;
+    width: 15.53rem;
     height: 100%;
-    padding: 2.2rem 1.2rem;
+    padding: 2.2rem 1rem;
+
+    @media #{$xl-up} {
+      width: $menu-width;
+      padding: 2.2rem 1.2rem;
+    }
+
     a{
       display: block;
     }
@@ -173,19 +184,24 @@ ul.pagination {
   flex: 0 0 $toc-width;
   font-size: $font-size-12;
   background-color: $white ;
+  display: none;
   width: $toc-width;
   padding: $padding-16;
   top: inherit;
   right :0;
 
+  @media #{$lg-up} {
+    display: block;
+  }
+
   nav {
     width: $toc-width;
     padding: $padding-16;
     background-color: transparent;
-    position: fixed;
-    top: 294px;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    // position: fixed;
+    // top: 294px;
+    // overflow-x: hidden;
+    // overflow-y: scroll;
 
     a {
       color: $cn-rolling-stone;
@@ -207,7 +223,7 @@ ul.pagination {
     margin: 0;
   }
 
-  >button {
+  button {
     background: none;
     border: 0;
     font-size: 13px;
@@ -226,11 +242,7 @@ ul.pagination {
       width: 169px;
       height: 2px;
       position: absolute;
-      bottom: 0;
-    }
-
-    &:first-of-type {
-      display: none;
+      bottom: -9px;
     }
 
     img {

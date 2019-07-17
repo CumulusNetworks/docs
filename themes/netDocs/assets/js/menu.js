@@ -16,8 +16,10 @@
   }
 
   hideDropdown = () => {
-    var elem = document.querySelector('.dropdown');
-    if (elem.classList.contains('show')) elem.classList.remove('show');
+    var elem = document.querySelectorAll('.dropdown');
+    elem.forEach(dropdown => {
+      if (dropdown.classList.contains('show')) dropdown.classList.remove('show');
+    })
   }
 
   document.addEventListener('click', function(e) {
@@ -28,4 +30,30 @@
       hideDropdown();
     }
   },false);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    let markdown = document.querySelector(".markdown");
+    let heading = markdown.querySelectorAll("h1, h2, h3, h4");
+    let headings = {};
+    let tocNav = document.querySelector('.book-toc');
+
+    tocNav.querySelector('.book-toc nav a:first-of-type').setAttribute('class','active');
+    
+    Array.prototype.forEach.call(heading, function(e) {
+      headings[e.id] = e.offsetTop
+    });
+
+    window.onscroll = function() {
+      let scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+      let i = 0;
+      for (i in headings) {
+        if (headings[i] <= scrollPosition - 230 && headings[i] !== 0) {
+          tocNav.querySelectorAll('a').forEach(node => {
+            node.setAttribute('class', '');
+          })
+          tocNav.querySelector('.book-toc nav a[href="#'+i+'"]').setAttribute('class','active');
+        }
+      }
+    };
+  });
 })()

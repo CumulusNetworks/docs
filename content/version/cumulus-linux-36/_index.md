@@ -3,7 +3,7 @@ title: Cumulus Linux User Guide
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/CL36/Cumulus+Linux+User+Guide
+ - /display/CL36/Cumulus-Linux-User-Guide
  - /pages/viewpage.action?pageId=8362022
 pageID: 8362022
 product: Cumulus Linux
@@ -45,14 +45,14 @@ improvements:
     Tomahawk) now generally available
 
   - NCLU commands available for [configuring traditional mode
-    bridges](/version/cumulus-linux-36/Layer_2/Ethernet_Bridging_-_VLANs/Traditional_Bridge_Mode)
+    bridges](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode)
 
   - [VRF static route leaking with
-    EVPN](Virtual_Routing_and_Forwarding_-_VRF.html#src-8362412_VirtualRoutingandForwarding-VRF-EVPN_static_route_leak)
+    EVPN](Virtual-Routing-and-Forwarding---VRF.html#src-8362412_VirtualRoutingandForwarding-VRF-EVPN_static_route_leak)
     symmetric routing
 
   - New [`vrf_route_leak_enable`
-    option](Virtual_Routing_and_Forwarding_-_VRF.html#src-8362412_VirtualRoutingandForwarding-VRF-enable_route_leaking)
+    option](Virtual-Routing-and-Forwarding---VRF.html#src-8362412_VirtualRoutingandForwarding-VRF-enable_route_leaking)
     used to enable VRF route leaking
 
 ### <span>What's New in Cumulus Linux 3.6.0</span>
@@ -79,17 +79,16 @@ improvements:
       - Penguin Arctica 4808X (10G Spectrum)
 
   - [Policy-based
-    Routing](/version/cumulus-linux-36/Layer_3/Policy-based_Routing)
+    Routing](/version/cumulus-linux-36/Layer-3/Policy-based-Routing)
 
-  - <span style="color: #000000;"> [VRF Route
+  - [VRF Route
     Leaking](/display/CL36/Virtual+Routing+and+Forwarding+-+VRF#VirtualRoutingandForwarding-VRF-VRFRouteLeaking)
-    </span>
 
-  - <span style="color: #000000;"> [PTP Boundary
-    Clock](Setting_Date_and_Time.html#src-8362040_SettingDateandTime-PTP)
-    on Mellanox switches </span>
+  - [PTP Boundary
+    Clock](Setting-Date-and-Time.html#src-8362040_SettingDateandTime-PTP)
+    on Mellanox switches
 
-  - [GRE Tunneling](/version/cumulus-linux-36/Layer_3/GRE_Tunneling) on
+  - [GRE Tunneling](/version/cumulus-linux-36/Layer-3/GRE-Tunneling) on
     Mellanox switches
 
   - New `/etc/cumulus/ports.conf` file validator finds syntax errors and
@@ -115,9 +114,8 @@ improvements:
       - [Originate default EVPN type-5
         routes](/display/CL36/Ethernet+Virtual+Private+Network+-+EVPN#EthernetVirtualPrivateNetwork-EVPN-OriginatingDefaultEVPNType-5Routes)
     
-      - <span style="color: #000000;"> [Filter EVPN routes based on
+      - [Filter EVPN routes based on
         type](/display/CL36/Ethernet+Virtual+Private+Network+-+EVPN#EthernetVirtualPrivateNetwork-EVPN-filter_evpn_route_typeFilteringEVPNRoutesBasedonType)
-        </span>
     
       - [Control which RIB routes are injected into
         EVPN](/display/CL36/Ethernet+Virtual+Private+Network+-+EVPN#EthernetVirtualPrivateNetwork-EVPN-ControllingWhichRIBRoutesAreInjectedintoEVPN)
@@ -144,3 +142,11 @@ You can find the most up-to-date hardware compatibility list (HCL)
 your switch model is supported by Cumulus Networks. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>

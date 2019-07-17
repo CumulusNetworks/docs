@@ -3,7 +3,7 @@ title: Cumulus Linux User Guide
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/CL332/Cumulus+Linux+User+Guide
+ - /display/CL332/Cumulus-Linux-User-Guide
  - /pages/viewpage.action?pageId=5868850
 pageID: 5868850
 product: Cumulus Linux
@@ -42,11 +42,11 @@ Cumulus Linux 3.3.2 bug fixes only, as well as these [early
 access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
 features:
 
-  - [QinQ](/version/cumulus-linux-332/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs),
+  - [QinQ](/version/cumulus-linux-332/Network-Virtualization/Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs),
     for hybrid cloud connectivity
 
   - [VXLAN
-    routing](/version/cumulus-linux-332/Network_Virtualization/VXLAN_Routing),
+    routing](/version/cumulus-linux-332/Network-Virtualization/VXLAN-Routing),
     for IP routing between VXLAN VNIs in an overlay network
 
 For further information regarding bug fixes and known issues present in
@@ -73,3 +73,11 @@ You can find the most up to date hardware compatibility list (HCL)
 your switch model is supported by Cumulus Networks. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>

@@ -9,8 +9,26 @@ disablePathToLower = true
 enableGitInfo= false
 noChmod = true
 
-[permalinks]
-version2 = "/:sections/:filename"
+[menu]
+  [[menu.subnav]]
+    identifier = "cumulus-linux"
+    title = "Cumulus Linux"
+    url = "/cumulus-linux/"
+    weight = 10
+
+  [[menu.subnav]]
+    identifier = "cumulus-netq"
+    title = "Cumulus NetQ"
+    url = "/cumulus-netq/"
+    weight = 20
+
+  [[menu.subnav]]
+    identifier = "cumulus-vx"
+    title = "Cumulus VX"
+    url = "/cumulus-vx/"
+    weight = 30
+
+
 
 
 [Params]
@@ -46,12 +64,12 @@ showVisitedLinks = true
 
   # Set source repository location.
   # Used for 'Last Modified' and 'Edit this page' links.
-  BookRepo = "https://github.com/cawleyflower/testDocs"
+  BookRepo = "https://github.com/CumulusNetworks/docs-internal"
 
   # Enable "Edit this page" links for 'doc' page type.
   # Disabled by default. Uncomment to enable. Requires 'BookRepo' param.
   # Path must point to 'content' directory of repo.
-  BookEditPath = "edit/dev/content"
+  BookEditPath = "edit/develop/content"
 
   # Configure the date format used on the pages
   # - In git information

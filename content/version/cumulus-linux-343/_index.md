@@ -3,7 +3,7 @@ title: Cumulus Linux User Guide
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/CL34/Cumulus+Linux+User+Guide
+ - /display/CL34/Cumulus-Linux-User-Guide
  - /pages/viewpage.action?pageId=7112280
 pageID: 7112280
 product: Cumulus Linux
@@ -67,32 +67,32 @@ improvements:
     
       - QuantaMesh T1048-LY4R
     
-    [FRRouting](/version/cumulus-linux-343/Layer_Three/FRRouting_Overview/)
+    [FRRouting](/version/cumulus-linux-343/Layer-Three/FRRouting-Overview/)
     replaces Quagga as the routing suite for Cumulus Linux
 
   - [VXLAN
-    routing](/version/cumulus-linux-343/Network_Virtualization/VXLAN_Routing)
+    routing](/version/cumulus-linux-343/Network-Virtualization/VXLAN-Routing)
     (asymmetric) is now generally available
 
-  - [HTTP API](/version/cumulus-linux-343/System_Configuration/HTTP_API)
+  - [HTTP API](/version/cumulus-linux-343/System-Configuration/HTTP-API)
     to
-    [NCLU](/version/cumulus-linux-343/System_Configuration/Network_Command_Line_Utility_-_NCLU)
+    [NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility---NCLU)
     and the [OpenStack ML2
-    driver](/version/cumulus-linux-343/Network_Solutions/OpenStack_Neutron_ML2_and_Cumulus_Linux)
+    driver](/version/cumulus-linux-343/Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux)
 
   - [QinQ with
-    VXLANs](/version/cumulus-linux-343/Network_Virtualization/Hybrid_Cloud_Connectivity_with_QinQ_and_VXLANs)
+    VXLANs](/version/cumulus-linux-343/Network-Virtualization/Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs)
     is now generally available
 
   - [PIM
-    support](/version/cumulus-linux-343/Layer_Three/Protocol_Independent_Multicast_-_PIM)
+    support](/version/cumulus-linux-343/Layer-Three/Protocol-Independent-Multicast---PIM)
     expanded to include virtual routing and forwarding (VRF) and
     bidirectional forwarding detection (BFD) for PIM neighbors
 
   - The default [MAC ageing
-    time](Ethernet_Bridging_-_VLANs.html#src-7112411_EthernetBridging-VLANs-mac_ageing)
+    time](Ethernet-Bridging---VLANs.html#src-7112411_EthernetBridging-VLANs-mac_ageing)
     has been set to 30 minutes and the default [ARP base\_reachable
-    time](VLAN-aware_Bridge_Mode_for_Large-scale_Layer_2_Environments.html#src-7112421_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-arp)
+    time](VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments.html#src-7112421_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-arp)
     has been set to 18 minutes
 
   - See [what's new and different with
@@ -112,7 +112,7 @@ features and platforms:
     10G switches
 
   - [Segment
-    routing](/version/cumulus-linux-343/Layer_Three/Segment_Routing)
+    routing](/version/cumulus-linux-343/Layer-Three/Segment-Routing)
 
 For further information regarding bug fixes and known issues present in
 this release, refer to the [product release
@@ -138,3 +138,11 @@ You can find the most up to date hardware compatibility list (HCL)
 your switch model is supported by Cumulus Networks. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>

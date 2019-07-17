@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
 
   <!-- Favicon -->
-  <link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/x-icon">
+  <link rel="icon" href="{{ "icons/favicon.png" | relURL }}" type="image/x-icon">
 
   <!-- RSS -->
   {{ with .OutputFormats.Get "rss" -}}
@@ -27,6 +27,10 @@
   Made with Book Theme
   https://github.com/alex-shpak/hugo-book
   {{ "-->" | safeHTML }}
+
+  <!-- clipboard.js support -->
+  {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
+  <script src = "{{ $jsCodeCopy.RelPermalink }}"> </script>
 
 </head>
 
@@ -57,11 +61,25 @@
     </div>
   </header>
   <div id="product-nav" class="flex">
+      <!-- generates subnav memu from config.toml -->
+    {{ $currentProduct := .Params.product}}
     <ul>
-      <li class="active"><a href="/Cumulus_Linux/">Cumulus Linux</a></li>
-      <li><a href="/Cumulus_NetQ/">Cumulus NetQ</a></li>
-      <li><a href="/Chassis/">Cumulus Express</a></li>
-      <li><a href="">Cumulus VX</a></li>
+    {{ range .Site.Menus.subnav}}
+      <li{{ with eq $currentProduct .Title }} class = "active" {{ end }}><a href = {{.URL}} >
+        {{.Title}} </a> </li>
+    {{ end }}
+      <li>
+        <div id="products-dropdown" class="dropdown">
+            <button class="btn" type="button" id="dropdownMenuButton">
+              Products
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="">Cumulus RMP</a>
+              <a class="dropdown-item" href="">Cumulus Chassis</a>
+              <a class="dropdown-item" href="">Cumulus Host Pack</a>
+            </div>
+        </div>
+      </li>
     </ul>
     <div class="search-container">
       <div id="doc-search-box">
@@ -70,12 +88,19 @@
       </div>
       <div id="dropdown" class="dropdown">
           <button class="btn" type="button" id="dropdownMenuButton">
-            v3.76
+            v{{.Page.Params.version}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">v3.5</a>
-            <a class="dropdown-item" href="#">v2.1</a>
-            <a class="dropdown-item" href="#">v1.43</a>
+            {{range where .Site.Sections "Params.product" $currentProduct}}
+            <a class = "dropdown-item" href = "{{ .RelPermalink }}"> v{{.Params.version}}</a>
+            {{ end }}
+            {{range where .Site.Pages "Section" "version"}}
+             {{ if eq .Params.product $currentProduct }}
+             {{ if .Params.subsection}}
+            <a class = "dropdown-item" href = "{{ .RelPermalink }}"> v{{.Params.version}}</a>
+            {{ end }}
+            {{ end }}
+            {{ end }}
           </div>
       </div>
     </div>
@@ -101,7 +126,8 @@
       {{ $jsCollapse := resources.Get "js/collapse.js"}}
       {{ $jsMenu := slice $jsScroll $jsCollapse | resources.Concat "js/menuBundle.js"}}
 
-      <script src = "{{ $jsMenu.Permalink }}"> </script>
+      <script src = "{{ $jsMenu.RelPermalink }}"> </script>
+
 
     </aside>
 
@@ -120,7 +146,13 @@
 
 
       {{ end }}
-
+      <script src="https://utteranc.es/client.js"
+        repo="CumulusNetworks/docs-internal"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
 
     </div>
     <!-- branch to list.html or single.html -->
@@ -129,6 +161,7 @@
 
 
       {{ end }}
+
   </main>
   <footer class="footer-top">
     <div class="container">

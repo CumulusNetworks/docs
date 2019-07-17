@@ -10,12 +10,17 @@ $block-border-radius: 0.15rem;
 
   h1 {
     color: $cn-limited-spruce;
-    font-size: 2.235rem;
+    font-size: 2rem;
     font-weight: 300;
     letter-spacing: -0.7px;
-    line-height: 3.06rem;
+    line-height: 3rem;
     margin-top: 0;
-    margin-bottom: 1.1rem
+    margin-bottom: 1.1rem;
+
+    @media #{$xl-up} {
+      font-size: 2.235rem;
+      line-height: 3.06rem;
+    }
   }
 
   h2 {
@@ -163,8 +168,22 @@ $block-border-radius: 0.15rem;
     border-radius: $block-border-radius;
   }
 
+  .copy-code-button {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
   pre {
     padding: $padding-16;
+    position: relative;
     background: $code-block-background;
     border: 1px solid #b5bdc9;
     border-radius: 0;
@@ -201,8 +220,8 @@ $block-border-radius: 0.15rem;
   }
 
   p code {
-    background: rgba(0, 173, 105, 0.1);
-    color: $cn-jade;
+    color: $cn-nevada;
+    background: $code-block-background;
   }
 
   .notices p code {

@@ -3,7 +3,7 @@ title: Cumulus Linux User Guide
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/CL330/Cumulus+Linux+User+Guide
+ - /display/CL33/Cumulus-Linux-User-Guide
  - /pages/viewpage.action?pageId=5866080
 pageID: 5866080
 product: Cumulus Linux
@@ -42,7 +42,7 @@ Cumulus Linux 3.3 adds these new features and platforms, including:
   - New 25G platform: Expanding the 25G portfolio with the Quanta IX2.
 
   - [Network Command Line
-    Utility](/version/cumulus-linux-330/System_Configuration/Network_Command_Line_Utility):
+    Utility](/version/cumulus-linux-330/System-Configuration/Network-Command-Line-Utility):
     Adds coverage for DNS, NTP, syslog, VRF, EVPN, 802.1X that will give
     network operators a single tool to configure and operate their
     Cumulus Linux switches. You can see the list of changes made in this
@@ -50,21 +50,21 @@ Cumulus Linux 3.3 adds these new features and platforms, including:
     [here](https://support.cumulusnetworks.com/hc/en-us/articles/115005751268).
 
   - [Buffer
-    monitoring](/version/cumulus-linux-330/Monitoring_and_Troubleshooting/Buffer_Monitoring):
+    monitoring](/version/cumulus-linux-330/Monitoring-and-Troubleshooting/Buffer-Monitoring):
     Proactively detect congestion events that result in latency and
     jitter by monitoring traffic patterns to identify bottlenecks early
     and effective plan for capacity.
 
-  - [PIM-SSM](/version/cumulus-linux-330/Layer_Three/Protocol_Independent_Multicast_-_PIM):
+  - [PIM-SSM](/version/cumulus-linux-330/Layer-Three/Protocol-Independent-Multicast---PIM):
     Source-Specific Multicast for more efficient multicast traffic
     segmentation and higher scalability.
 
-  - [EVPN](/version/cumulus-linux-330/Network_Virtualization/Ethernet_Virtual_Private_Network_-_EVPN):
+  - [EVPN](/version/cumulus-linux-330/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN):
     Includes ARP suppression, static/sticky MAC and interoperability
     with Cisco NXOS.
 
   - [802.1X
-    interfaces](/version/cumulus-linux-330/Interface_Configuration_and_Management/802.1X_Interfaces):
+    interfaces](/version/cumulus-linux-330/Interface-Configuration-and-Management/802.1X-Interfaces):
     Authenticate clients over wired media.
 
   - Cumulus Linux 3.3 and newer releases include support for detecting
@@ -97,3 +97,11 @@ You can find the most up to date hardware compatibility list (HCL)
 your switch model is supported by Cumulus Networks. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>

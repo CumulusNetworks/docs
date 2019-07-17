@@ -3,7 +3,7 @@ title: Cumulus Linux User Guide
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/CL35/Cumulus+Linux+User+Guide
+ - /display/CL35/Cumulus-Linux-User-Guide
  - /pages/viewpage.action?pageId=8357317
 pageID: 8357317
 product: Cumulus Linux
@@ -61,25 +61,25 @@ improvements:
       - 10GBASE-LR BiDi optics
 
   - [Symmetric VXLAN
-    routing](/version/cumulus-linux-35/Network_Virtualization/VXLAN_Routing)
+    routing](/version/cumulus-linux-35/Network-Virtualization/VXLAN-Routing)
 
   - VLAN-aware bridge support for ovs-vtepd, for [VXLAN solutions using
-    controllers](/version/cumulus-linux-35/Network_Virtualization/Virtualization_Integrations/)
+    controllers](/version/cumulus-linux-35/Network-Virtualization/Virtualization-Integrations/)
 
   - OSPF is now
-    [VRF-aware](/version/cumulus-linux-35/Layer_3/Virtual_Routing_and_Forwarding_-_VRF)
+    [VRF-aware](/version/cumulus-linux-35/Layer-3/Virtual-Routing-and-Forwarding---VRF)
 
   - [Voice
-    VLAN](/version/cumulus-linux-35/Layer_1_and_2/Link_Layer_Discovery_Protocol/Voice_VLAN)
+    VLAN](/version/cumulus-linux-35/Layer-1-and-2/Link-Layer-Discovery-Protocol/Voice-VLAN)
 
-  - [PIM](/version/cumulus-linux-35/Layer_3/Protocol_Independent_Multicast_-_PIM)
+  - [PIM](/version/cumulus-linux-35/Layer-3/Protocol-Independent-Multicast---PIM)
     now supports overlapping IP addresses and IP multicast boundaries
 
   - [Bridge layer 2 protocol
     tunnels](https://support.cumulusnetworks.com/hc/en-us/articles/115015809147)
 
   - The SNMP
-    [Cumulus-Counters-MIB](SNMP_Monitoring.html#src-8357390_SNMPMonitoring-supported_mibs)
+    [Cumulus-Counters-MIB](SNMP-Monitoring.html#src-8357390_SNMPMonitoring-supported_mibs)
     file includes a new table `pfcClCountersTable` for link pause and
     priority flow control counters
 
@@ -111,3 +111,11 @@ You can find the most up to date hardware compatibility list (HCL)
 your switch model is supported by Cumulus Networks. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>

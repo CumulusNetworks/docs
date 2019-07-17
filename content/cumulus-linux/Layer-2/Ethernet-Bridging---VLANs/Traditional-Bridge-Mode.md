@@ -1,24 +1,26 @@
 ---
 title: Traditional Bridge Mode
 author: Cumulus Networks
-weight: 349
+weight: 34953
 aliases:
- - /display/CL37/Traditional-Bridge-Mode
- - /pages/viewpage.action?pageId=8362670
-pageID: 8362670
+ - /display/CL3740/Traditional-Bridge-Mode
+ - /pages/viewpage.action?pageId=83626706393
+pageID: 83626706393
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
+<details>
+
 Cumulus Networks recommends you use a [VLAN-aware
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
-on your switch. You use traditional mode bridges only if you need to run
+bridge](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+on your switch. You uUse traditional mode bridges only if you need to run
 more than one bridge on the switch or if you need to use PVSTP+.
 
 ## <span>Create a Traditional Mode Bridge</span>
 
-You can configure a traditional mode bridge either using
+You can configure a tTraditional mode bridge either using
 [NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)
 or manually editing the `/etc/network/interfaces` file.
 
@@ -33,12 +35,13 @@ as that name is reserved for the single [VLAN-aware
 bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
 that you can configure on the switch.
 
-{{%/notice%}}
+{{%/notice%}}Mode Bridge</span>
 
-The following example shows how to create a simple traditional mode
+The following examples shows how to create a simple traditional mode
 bridge configuration on the switch, including adding the switch ports
 that are members of the bridge. You can choose to add one or more of the
-following elements to the configuration:
+following elements to the configuration. The example also shows some optional
+elements:
 
   - You can add an IP address to provide IP access to the bridge
     interface.
@@ -62,7 +65,15 @@ following elements to the configuration:
     
     {{%/notice%}}
 
-To configure a traditional mode bridge using NCLU, do the following:
+To configure a traditional mode bridge using NCLU, do the following:To configure spanning tree options for a bridge interface, refer to
+[Spanning Tree and Rapid Spanning
+Tree](/version/cumulus-linux-40/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree).
+
+<summary>NCLU Commands </summary>
+
+The following example commands configure a traditional mode bridge
+called my\_bridge with IP address 10.10.10.10/24. swp1, swp2, swp3, and
+swp4 are members of the bridge.
 
     cumulus@switch:~$ net add bridge my_bridge_A ports swp1-4
     cumulus@switch:~$ net add bridge my_bridge_A ip address 10.10.10.10/24
@@ -75,7 +86,15 @@ These commands create the following configuration snippet in the
 `/etc/network/interfaces` file:
 
     cumulus@switch:~$ cat /etc/network/interfaces
-     
+     pending
+    cumulus@switch:~$ net commit
+
+<summary>Linux Commands </summary>
+
+Edit the `/etc/network/interfaces` file. The following example command
+configures a traditional mode bridge called my\_bridge with IP address
+10.10.10.10/24. swp1, swp2, swp3, and swp4 are members of the bridge.
+
     ...
      
     auto swp1
@@ -88,11 +107,11 @@ These commands create the following configuration snippet in the
      
     auto swp3
     iface swp3
-     
+      
     auto swp4
     iface swp4
      
-    ...
+    ... 
     auto my_bridge_A 
     iface my_bridge_A 
         address 10.10.10.10/24 
@@ -130,7 +149,19 @@ To create a traditional mode bridge manually, you need to hand edit the
     <table>
     <colgroup>
     <col style="width: 33%" />
-    <col style="width: 33%" />
+    <col style="    ...
+
+Run the `ifreload``  -a ` command to reload the network configuration:
+
+    cumulus@switch:~$ sudo ifreload -a
+
+{{%notice note%}}
+
+The name of the bridge must be:
+
+  - Compliant with Linux interface naming conventions.
+
+  - Unique width: 33%" />
     <col style="width: 33%" />
     </colgroup>
     <thead>
@@ -154,7 +185,11 @@ To create a traditional mode bridge manually, you need to hand edit the
     <tr class="odd">
     <td><p>bridge-stp</p></td>
     <td><p>Enables spanning tree protocol on this bridge. The default spanning tree mode is Per VLAN Rapid Spanning Tree Protocol (PVRST).</p>
-    <p>For more information on spanning-tree configurations see the configuration section: <a href="/version/cumulus-linux-377/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">Spanning Tree and Rapid Spanning Tree</a>.</p></td>
+    <p>For more information on spanning-tree configurations see the configuration section: <a href="in the switch.
+
+  - Something other than *bridge*, **** as Cumulus Linux reserves that
+    name for a single [VLAN-aware
+    bridge](/version/cumulus-linux-37740/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">Spanning Tree and Rapid Spanning Tree</a>.</p></td>
     <td><p>off</p></td>
     </tr>
     </tbody>
@@ -168,26 +203,36 @@ To create a traditional mode bridge manually, you need to hand edit the
     
       - Unique within the switch.
     
-    {{%/notice%}}
+    Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+
+{{%/notice%}}
     
-    {{%notice warning%}}
     
-    Do not try to bridge the management port, eth0, with any switch
-    ports (like swp0, swp1, and so forth). For example, if you created a
-    bridge with eth0 and swp1, it will **not** work.
+{{%notice warning%}}
     
-    {{%/notice%}}
+    
+Do not try to bridge the management port, eth0, with any switch
+    ports (like 
+(swp0, swp1, and so forthon). For example, if you created a
+    bridge with eth0 
+and swp1, it willdoes **not** work.
+    
+    
+{{%/notice%}}
 
 3.  Reload the network configuration using the `ifreload` command:
     
         cumulus@switch:~$ sudo ifreload -a
 
-{{%notice info%}}
+{{%notice info%}}## <span>Configure Multiple Traditional Mode Bridges</span>
 
 You can configure multiple bridges, in order to logically divide a
-switch into multiple layer 2 domains. This allows for hosts to
-communicate with other hosts in the same domain, while separating them
-from hosts in other domains.
+ switch into 
+multiple layer 2 domains. This allows for hosts to
+ communicate with 
+other hosts in the same domain, while separating them
+ from hosts in 
+other domains.
 
 The diagram below shows a multiple bridge configuration, where host-1
 and host-2 are connected to bridge-A, while host-3 and host-4 are
@@ -204,19 +249,21 @@ connected to bridge-B. This means that:
 This example configuration looks like this in the
 `/etc/network/interfaces` file:
 
+    ...
     auto bridge-A
     iface bridge-A
         bridge-ports swp1 swp2
-        bridge-stp on
+        bridge-stp onvlan-aware no
      
     auto bridge-B
     iface bridge-B
         bridge-ports swp3 swp4
         bridge-stp on
 
-{{%/notice%}}
+{{%/notice%}}vlan-aware no
+    ...
 
-## <span id="src-8362670_TraditionalBridgeMode-VLAN_tagging" class="confluence-anchor-link"></span><span>Trunks in Traditional Bridge Mode</span>
+## <span id="src-83626706393_TraditionalBridgeMode-VLAN_tagging" class="confluence-anchor-link"></span><span>Trunks in Traditional Bridge Mode</span>
 
 The [IEEE standard](http://www.ieee802.org/1/pages/802.1Q.html) for
 trunking is 802.1Q. The 802.1Q specification adds a 4 byte header within
@@ -227,7 +274,7 @@ member.
 VLAN (most network devices default their native VLAN to 1). The concept
 of native, non-native, tagged or untagged has generated confusion due to
 mixed terminology and vendor-specific implementations. Some
-clarification is in order:
+clarification iIn Cumulus Lin orderux:
 
   - A *trunk port* is a switch port configured to send and receive
     802.1Q tagged frames.
@@ -266,6 +313,7 @@ native VLAN, thus merging those two VLANs and their spanning tree state.
 To create the above example, add the following configuration to the
 `/etc/network/interfaces` file:
 
+    ...
     auto br-VLAN100
     iface br-VLAN100
      bridge-ports swp1.100 swp2.100
@@ -275,30 +323,37 @@ To create the above example, add the following configuration to the
     auto br-VLAN200
     iface br-VLAN200
      bridge-ports swp1.200 swp2.200
-     bridge-stp on
+     bridge-stp on...
 
 ### <span>VLAN Tagging Examples</span>
 
 You can find more examples of VLAN tagging in [the VLAN tagging
-chapter](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-Tagging).
+chapter](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/VLAN-Tagging).
 
-### <span id="src-8362670_TraditionalBridgeMode-arp" class="confluence-anchor-link"></span><span>Configure ARP Timers</span>
+### <span id="src-83626706393_TraditionalBridgeMode-arp" class="confluence-anchor-link"></span><span>Configure ARP Timers</span>
 
 Cumulus Linux does not often interact directly with end systems as much
-as end systems interact with one another. Thus, after a successful
+as end systems interact with one another. Thuserefore, after a successful
 [address resolution protocol](http://linux-ip.net/html/ether-arp.html)
-(ARP) places a neighbor into a reachable state, Cumulus Linux may not
+(ARP) places a neighbor into a reachable state, Cumulus Linux mayight not
 interact with the client again for a long enough period of time for the
 neighbor to move into a stale state. To keep neighbors in the reachable
 state, Cumulus Linux includes a background process
-(`/usr/bin/neighmgrd`) that tracks neighbors that move into a stale,
-delay or probe state, and attempts to refresh their state ahead of any
-removal from the Linux kernel, and thus before it would be removed from
-the hardware forwarding.
+(`/usr/bin/neighmgrd`) that. The background process tracks neighbors that 
+move into a stale,
+ delay, or probe state, and attempts to refresh their 
+state ahead of any
+before they are removaled from the Linux kernel, and thus before it would be removed from
+the hardware forwardingfrom hardware
+forwarding. The `neighmgrd` process only adds a neighbor if the sender's
+IP in the ARP packet is in one of the SVI's subnets (you can disable
+this check by setting `subnet_checks` to *0* in the
+`/etc/cumulus/neighmgr.conf` file).
 
 The ARP refresh timer defaults to 1080 seconds (18 minutes). You can
-change this setting by following the procedures outlined in this
-[knowledge base
+To change 
+this setting by, following the procedures outlined in this
+ [knowledge base
 article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
 
 ## <span>Caveats</span>
@@ -307,8 +362,9 @@ On Broadcom switches, when two VLAN subinterfaces are bridged to each
 other in a traditional mode bridge, `switchd` does not assign an
 internal resource ID to the subinterface, which is expected for each
 VLAN subinterface.  
-To work around this issue, add a VXLAN on the bridge so that it does not
-require a real tunnel IP address.
+To work around this issue, add a VXLAN on the bridge 
+so that it does not
+ require a real tunnel IP address.
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 
@@ -317,3 +373,8 @@ require a real tunnel IP address.
 <footer id="ht-footer">
 
 </footer>
+
+</details>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTU0NzgzNTE3OF19
+-->

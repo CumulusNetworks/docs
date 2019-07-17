@@ -29,10 +29,8 @@
   {{ "-->" | safeHTML }}
 
   <!-- clipboard.js support -->
-  {{ $jsClipMin := resources.Get "js/clipboard.min.js" }}
   {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
-  <script src = "{{ $jsClipMin.Permalink }}"> </script>
-  <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
+  <script src = "{{ $jsCodeCopy.RelPermalink }}"> </script>
 
 </head>
 
@@ -128,7 +126,7 @@
       {{ $jsCollapse := resources.Get "js/collapse.js"}}
       {{ $jsMenu := slice $jsScroll $jsCollapse | resources.Concat "js/menuBundle.js"}}
 
-      <script src = "{{ $jsMenu.Permalink }}"> </script>
+      <script src = "{{ $jsMenu.RelPermalink }}"> </script>
 
 
     </aside>

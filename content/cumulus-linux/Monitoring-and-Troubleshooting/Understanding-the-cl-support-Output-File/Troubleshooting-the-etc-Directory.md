@@ -1,18 +1,18 @@
 ---
 title: Troubleshooting the etc Directory
 author: Cumulus Networks
-weight: 445
+weight: 44523
 aliases:
- - /display/CL37/Troubleshooting-the-etc-Directory
- - /pages/viewpage.action?pageId=8362601
-pageID: 8362601
+ - /display/CL3740/Troubleshooting-the-etc-Directory
+ - /pages/viewpage.action?pageId=83626016322
+pageID: 83626016322
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 The
-[`cl-support`](/version/cumulus-linux-377/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/)
+[`cl-support`](/version/cumulus-linux-37740/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/)
 script replicates the /`etc` directory.
 
 Files that `cl-support` deliberately excludes are:
@@ -162,6 +162,7 @@ troubleshooting problems.
 | python2.7                 |
 | python3                   |
 | python3.4                 |
+| ras                       |
 | rc.local                  |
 | rc0.d                     |
 | rc1.d                     |
@@ -225,3 +226,6 @@ troubleshooting problems.
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTM2OTE1NzczMl19
+-->

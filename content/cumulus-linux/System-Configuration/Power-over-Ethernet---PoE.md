@@ -1,16 +1,18 @@
 ---
 title: Power over Ethernet - PoE
 author: Cumulus Networks
-weight: 75
+weight: 753
 aliases:
- - /display/CL37/Power-over-Ethernet---PoE
- - /pages/viewpage.action?pageId=8362576
-pageID: 8362576
+ - /display/CL3740/Power-over-Ethernet---PoE
+ - /pages/viewpage.action?pageId=83625766297
+pageID: 83625766297
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
+<details>
+
 Cumulus Linux supports Power over Ethernet (PoE) and PoE+, so certain
 Cumulus Linux switches can supply power from Ethernet switch ports to
 enabled devices over the Ethernet cables that connect them. Power over
@@ -132,7 +134,7 @@ priority for each port.
     swp46 = enable
     swp47 = enable
     swp48 = enable
-
+     
     [priority]
     swp1 = low
     swp2 = low
@@ -202,12 +204,12 @@ To display PoE information for a set of switch ports, run `poectl -i
 [port_numbers]`:
 
     cumulus@switch:~$ sudo poectl -i swp10-swp13
-    Port          Status            Allocated    Priority  PD type      PD class   Voltage   Current    Power
-    -----   --------------------   -----------   -------- -----------   --------   -------   -------   ---------
-    swp10   connected              negotiating   low      IEEE802.3at   4          53.5 V     25 mA    3.9 W
-    swp11   searching              n/a           low      IEEE802.3at   none        0.0 V      0 mA    0.0 W
-    swp12   connected              n/a           low      IEEE802.3at   2          53.5 V     25 mA    1.4 W
-    swp13   connected              51.0 W        low      IEEE802.3at   4          53.6 V     72 mA    3.8 W
+    Port          Status            Allocated    Priority  PD type      PD class   Voltage   Current    Power 
+    -----   --------------------   -----------   -------- -----------   --------   -------   -------   --------- 
+    swp10   connected              negotiating   low      IEEE802.3at   4          53.5 V     25 mA    3.9 W 
+    swp11   searching              n/a           low      IEEE802.3at   none        0.0 V      0 mA    0.0 W 
+    swp12   connected              n/a           low      IEEE802.3at   2          53.5 V     25 mA    1.4 W 
+    swp13   connected              51.0 W        low      IEEE802.3at   4          53.6 V     72 mA    3.8 W 
      
 
 The **Status** can be one of the following:
@@ -246,7 +248,7 @@ To see all the PoE information for a switch, run `poectl -s`:
 The set commands (priority, enable, disable) either succeed silently or
 display an error message if the command fails.
 
-<span id="src-8362576_PoweroverEthernet-PoE-args"></span>The `poectl`
+<span id="src-83625766297_PoweroverEthernet-PoE-args"></span>The `poectl`
 command takes the following arguments:
 
 <table>
@@ -378,7 +380,7 @@ received on a switch port. For example:
           Power Priority: low
           PD requested power Value: 51000
           PSE allocated power Value: 51000
-      UnknownTLVs:
+      UnknownTLVs: 
         TLV:          OUI: 00,01,42, SubType: 1, Len: 1 05
         TLV:          OUI: 00,01,42, SubType: 1, Len: 1 0D
     -------------------------------------------------------------------------------
@@ -464,3 +466,6 @@ The `poed` service logs the following events to `syslog` when:
 </footer>
 
 </details>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTgzNTYxNTI3NV19
+-->

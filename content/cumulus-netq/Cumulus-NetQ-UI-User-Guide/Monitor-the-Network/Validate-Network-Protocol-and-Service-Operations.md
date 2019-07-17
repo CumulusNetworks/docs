@@ -24,7 +24,7 @@ Sensors, VLAN, and VXLAN.
 
 For a more general understanding of how well your network is operating,
 refer to the [Monitor Network
-Health](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Health)
+Health](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Health)
 topic.
 
 ## <span>Create Validation Requests</span>
@@ -270,16 +270,16 @@ To run a scheduled validation now:
 1.  Open either the small or medium Validation Request card.
 
 2.  Select the validation from the **Validation** dropdown list.  
-    
+
     {{% imgOld 9 %}}
-    
+
     {{% imgOld 10 %}}
 
 3.  Click **Go** or **Run Now**.  
     The associated Validation Result card is opened on your workbench.
     Refer to [View On-demand Validation
     Results](#src-12321612_ValidateNetworkProtocolandServiceOperations-OndValRes).
-    
+
     {{% imgOld 11 %}}
 
 ### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jT25kTm93" class="confluence-anchor-link"></span><span>Create a New On-demand Validation Request</span>
@@ -293,7 +293,7 @@ To create and run a request for *a single* protocol or service:
 1.  Open the small, medium or large Validation Request card.
 
 2.  Select the validation from the **Validation** dropdown list.
-    
+
     {{% imgOld 12 %}}
 
 3.  Click **Go** or **Run Now**.  
@@ -306,30 +306,30 @@ essentially a custom validation request, you must first save it as a
 scheduled request. After which you can run it on demand.
 
 1.  Open the large Validation Request card.
-    
+
     {{% imgOld 13 %}}
 
 2.  Click the names of the protocols and services you want to validate.
     We selected BGP and EVPN in this example.
-    
+
     {{% imgOld 14 %}}
 
 3.  Enter the schedule frequency (30 min, 1 hour, 3 hours, 6 hours, 12
     hours, or 1 day) by selecting it from the **Run every** field.
-    
+
     {{% imgOld 15 %}}
 
 4.  Select the starting day and click **Next**, then select the starting
     time and click **OK**.  
-    
+
     {{% imgOld 16 %}}
-    
+
     {{% imgOld 17 %}}
 
 5.  Click **Save As New**.
 
 6.  Give the validation a unique name, and click **Save**.
-    
+
     {{% imgOld 18 %}}
 
 7.  Select the newly create validation from the **Validation** list.
@@ -339,7 +339,7 @@ scheduled request. After which you can run it on demand.
     or service selected) are opened on your current workbench. Refer to
     [View On-demand Validation
     Results](#src-12321612_ValidateNetworkProtocolandServiceOperations-OndValRes).
-    
+
     {{% imgOld 19 %}}
 
 ### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jU2NoTmV3" class="confluence-anchor-link"></span><span>Create a New Scheduled Validation Request</span>
@@ -355,29 +355,29 @@ To create and run a new scheduled validation:
 2.  Select the protocols and/or services you want to include in the
     validation. In this example we have chosen the Agents and NTP
     services.
-    
+
     {{% imgOld 20 %}}
 
 3.  Enter the schedule frequency (30 min, 1 hour, 3 hours, 6 hours, 12
     hours, or 1 day) by selecting it from the **Timeframe** list.
-    
+
     {{% imgOld 21 %}}
 
 4.  Select the starting day and click **Next**, then select the starting
     time and click **OK**.  
-    
+
     {{% imgOld 22 %}}
-    
+
     {{% imgOld 23 %}}
 
 5.  Verify the selections were made correctly.
 
 6.  Click **Save As New**.
-    
+
     {{% imgOld 24 %}}
 
 7.  Enter a name for the validation.
-    
+
     {{% imgOld 25 %}}
 
 8.  Click **Save**.
@@ -544,7 +544,7 @@ The medium Validation Result card displays:
 </tr>
 <tr class="odd">
 <td><p>Open &lt;Network Protocol or Service Name&gt; Service Card</p></td>
-<td><p>Click to open the corresponding medium Network Services card, where available. Refer to <a href="/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/">Monitor Network Protocols and Services</a> for details about these cards and workflows.</p></td>
+<td><p>Click to open the corresponding medium Network Services card, where available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/">Monitor Network Protocols and Services</a> for details about these cards and workflows.</p></td>
 </tr>
 </tbody>
 </table>
@@ -621,7 +621,7 @@ The *Summary* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Open &lt;Network Protocol or Service Name&gt; Service Card</p></td>
-<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/">Monitor Network Protocols and Services</a> for details about these cards and workflows.</p></td>
+<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/">Monitor Network Protocols and Services</a> for details about these cards and workflows.</p></td>
 </tr>
 <tr class="even">
 <td><p>Table/Filter options</p></td>
@@ -758,16 +758,16 @@ To view the results:
     for the protocol or service that was run.  
     You can identify it by the on-demand result icon,
     <span style="color: #353744;"> </span>
-    
+
     {{% imgOld 48 %}}
-    
+
     , protocol or service name, and the date and time that it was run.  
     **Note:** You may have more than one card open for a given protocol
     or service, so be sure to use the date and time on the card to
     ensure you are viewing the correct card.  
-    
+
     {{% imgOld 49 %}}
-    
+
     {{% imgOld 50 %}}
 
 2.  Note the total number and distribution of results for the tested
@@ -778,7 +778,7 @@ To view the results:
     for both devices and sessions.
 
 4.  Switch to the large on-demand Validation Result card.
-    
+
     {{% imgOld 51 %}}
 
 5.  If there are a large number of device warnings or failures, view the
@@ -795,9 +795,9 @@ To view the results:
 
 8.  To view all data available for all on-demand validation results for
     a given protocol, switch to the full screen card.
-    
+
     {{% imgOld 52 %}}
-    
+
     You may find that comparing various results gives you a clue as to
     why certain devices are experiencing more warnings or failures. For
     example, more failures occurred between certain times or on a
@@ -924,7 +924,7 @@ The medium Validation Result card displays:
 </tr>
 <tr class="even">
 <td><p>Open &lt;Network Protocol or Service Name&gt; Service Card</p></td>
-<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/">Monitor Network Protocols and Services</a> for details about these cards and workflows.</p></td>
+<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/">Monitor Network Protocols and Services</a> for details about these cards and workflows.</p></td>
 </tr>
 </tbody>
 </table>
@@ -984,7 +984,7 @@ The large Validation Result card contains two tabs.
 </tr>
 <tr class="odd">
 <td><p>Open &lt;Network Protocol or Service Name&gt; Service Card</p></td>
-<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/">Monitor Network Protocols and Services</a> for details about these cards and workflows.</p></td>
+<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/">Monitor Network Protocols and Services</a> for details about these cards and workflows.</p></td>
 </tr>
 <tr class="even">
 <td><p>Table/Filter options</p></td>
@@ -1147,7 +1147,7 @@ To view the results:
 
 1.  Open the full size Validation Request card to view all scheduled
     validations.
-    
+
     {{% imgOld 77 %}}
 
 2.  Select the validation results you want to view by clicking in the
@@ -1155,14 +1155,14 @@ To view the results:
 
 3.  On the Edit Menu that appears at the bottom of the window, click
     <span style="color: #353744;"> </span>
-    
+
     {{% imgOld 78 %}}
-    
+
     (Open Cards). This opens the medium Scheduled Validation Results
     card(s) for the selected items.  
-    
+
     {{% imgOld 79 %}}
-    
+
     {{% imgOld 80 %}}
 
 4.  Note the distribution of results. Are there many failures? Are they
@@ -1176,7 +1176,7 @@ To view the results:
     useful when you see the failures occurring on a small set of
     devices, as it might point to an issue with the devices rather than
     the network service.
-    
+
     {{% imgOld 81 %}}
 
 6.  Optionally, click **Open***\<network service\>***Card** to open the
@@ -1186,19 +1186,19 @@ To view the results:
 7.  Switch to the large Scheduled Validation card.
 
 8.  Click
-    
+
     {{% imgOld 82 %}}
-    
+
     to expand the chart.
-    
+
     {{% imgOld 83 %}}
 
 9.  Collapse the heat map by clicking
-    
+
     {{% imgOld 84 %}}
-    
+
     .
-    
+
     {{% imgOld 85 %}}
 
 10. If there are a large number of warnings or failures, view the
@@ -1216,9 +1216,9 @@ To view the results:
 13. You can view the configuration of the request that produced the
     results shown on this card workflow, by hovering over the card and
     clicking <span style="color: #333c4e;"> </span>
-    
+
     {{% imgOld 86 %}}
-    
+
     . If you want to change the configuration, click **Edit Config** to
     open the large Validation Request card, pre-populated with the
     current configuration. Follow the instructions in [Modify an
@@ -1229,7 +1229,7 @@ To view the results:
 14. To view all data available for all scheduled validation results for
     the given protocol or service, click **Show All Results** or switch
     to the full screen card.
-    
+
     {{% imgOld 87 %}}
 
 15. Look for changes and patterns in the results. Scroll to the right.

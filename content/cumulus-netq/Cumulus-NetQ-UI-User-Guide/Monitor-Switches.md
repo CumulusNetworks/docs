@@ -19,7 +19,7 @@ compliance, and other planning tasks. Viewing individual switch health
 helps isolate performance issues.
 
 For network-wide monitoring, refer to [Monitor the
-Network](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/).
+Network](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/).
 
 ## <span>Monitor Switch Performance</span>
 
@@ -344,24 +344,24 @@ status and summary performance score and trend.
 To view the summary:
 
 1.  Click <span style="color: #353744;"> </span>
-    
+
     {{% imgOld 13 %}}
-    
+
     , and select Devices|Switch. A dialog box opens.
-    
+
     {{% imgOld 14 %}}
 
 2.  Begin typing the hostname of the device you are interested in.
     Select it from the suggested matches when it appears.
-    
+
     {{% imgOld 15 %}}
 
 3.  Select the size of the card, *L1*, to open the small size card.
-    
+
     {{% imgOld 16 %}}
 
 4.  Click **Add**, or **Cancel** to exit the process.
-    
+
     {{% imgOld 17 %}}
 
 In this example, we see that the leaf01 switch has had very few alarms
@@ -417,16 +417,16 @@ To view the resource utilization on a particular switch:
 1.  Open the large Switch card.
 
 2.  Hover over the card and click
-    
+
     {{% imgOld 20 %}}
-    
+
     .
 
 3.  The card is divided into two sections, one displaying
     hardware-related performance through a series of charts, and one
     displaying the performance of the network tables, also through a
     series of charts.
-    
+
     {{% imgOld 21 %}}
 
 4.  Look at the hardware performance charts. Are there any that are
@@ -466,7 +466,7 @@ To view all IP addresses:
 
 1.  Open the full screen Switch card. The **IP addresses** tab is shown
     by default.
-    
+
     {{% imgOld 22 %}}
 
 2.  Review the addresses for any anomalies, to obtain prefix
@@ -475,16 +475,16 @@ To view all IP addresses:
 
 3.  To return to the workbench, click <span style="color: #353744;">
     </span>
-    
+
     {{% imgOld 23 %}}
-    
+
     in the top right corner.
 
 To view all MAC addresses:
 
 1.  Open the full screen Switch card and click the **MAC Addresses**
     tab.
-    
+
     {{% imgOld 24 %}}
 
 2.  Review the addresses for any anomalies, to see the associated egress
@@ -492,9 +492,9 @@ To view all MAC addresses:
 
 3.  To return to the workbench, click <span style="color: #353744;">
     </span>
-    
+
     {{% imgOld 25 %}}
-    
+
     in the top right corner.
 
 ### <span>View All Interfaces on a Switch</span>
@@ -507,7 +507,7 @@ To view all interfaces:
 
 1.  Open the full screen Switch card and click the **All Interfaces**
     tab.
-    
+
     {{% imgOld 26 %}}
 
 2.  Look for interfaces that are down, shown in the **State** column.
@@ -525,9 +525,9 @@ To view all interfaces:
 
 7.  To return to the workbench, click <span style="color: #353744;">
     </span>
-    
+
     {{% imgOld 27 %}}
-    
+
     in the top right corner.
 
 ## <span>Monitor Switch Component Inventory</span>
@@ -777,7 +777,7 @@ you only use Cumulus Linux, then the count shows as one.
 To view this count for all of the components on the switch:
 
 1.  Open the medium Switch Inventory card.
-    
+
     {{% imgOld 42 %}}
 
 2.  Note the number in the **Unique** column for each component.  
@@ -805,11 +805,11 @@ To view the distribution:
 
 1.  Open the medium or large Switch Inventory card. Each component has a
     chart showing the distribution.  
-    
+
     {{% imgOld 43 %}}
-    
+
     OR
-    
+
     {{% imgOld 44 %}}
 
 2.  Hover over a segment of the chart to view the name, version, model
@@ -818,7 +818,7 @@ To view the distribution:
     On the large Switch Inventory card, hovering also highlights the
     related components for the selected component. This is shown in blue
     here.
-    
+
     {{% imgOld 45 %}}
 
 3.  Point to additional segments on that component or other components
@@ -848,9 +848,9 @@ chart to highlight the vendor and platforms with the various states.
 To view *which* switches have invalid or missing licenses, either:
 
   - hover over the large Switch Inventory card and click
-    
+
     {{% imgOld 48 %}}
-    
+
     to open the **Platform Details** tab. Above the Licenses State or
     the Vendor chart, click **Show All**.
 
@@ -876,10 +876,10 @@ To view the most commonly deployed ASIC, for example:
 2.  Hover over the *largest* segment in the ASIC chart. The tooltip that
     appears shows you the number of switches with the given ASIC and the
     percentage of your entire switch population with this ASIC.  
-    
+
     {{% imgOld 50 %}}
-    
-      
+
+
     Click on any other component in a similar fashion to see the most
     common type of that component.
 
@@ -889,9 +889,9 @@ To view the most commonly deployed ASIC, for example:
 
 4.  Hover over the card, and click <span style="color: #353744;">
     </span>
-    
+
     {{% imgOld 51 %}}
-    
+
     to open the **ASIC Details** tab. Here you can more easily view the
     various vendors and platforms based on the ASIC deployed.
 
@@ -901,26 +901,26 @@ To view the most commonly deployed ASIC, for example:
     supports that platform. Moving your cursor off of the carts removes
     the highlight.  
     </span>
-    
+
     {{% imgOld 52 %}}
-    
-      
+
+
 
 6.  <span style="color: #353744;"> *Click* on a segment of the
     **Vendor** pie chart to drill down and see only that Vendor and its
     supported models. A <span style="color: #353744;"> filter tag is
     placed at the top of the charts </span> .  
     </span>
-    
+
     {{% imgOld 53 %}}
-    
-      
+
+
 
 7.  <span style="color: #353744;"> To return to the complete view of
     vendors and platforms, click </span>
-    
+
     {{% imgOld 54 %}}
-    
+
     on the filter tag.
 
 ### <span>View the Number of Switches with a Particular NetQ Agent</span>
@@ -933,10 +933,10 @@ distribution by version:
 1.  Open the medium Switch Inventory card.
 
 2.  View the number in the Unique column next to Agent.  
-    
+
     {{% imgOld 55 %}}
-    
-      
+
+
 
 3.  If the number is greater than one, you have multiple NetQ Agent
     versions deployed.
@@ -947,31 +947,31 @@ distribution by version:
 5.  For more detail, switch to the large Switch Inventory card.
 
 6.  Hover over the card and click
-    
+
     {{% imgOld 56 %}}
-    
+
     to open the **Software Details** tab.  
-    
+
     {{% imgOld 57 %}}
-    
-      
+
+
 
 7.  Hover over the chart on the right to view the number of switches
     using the various versions of the NetQ Agent.
 
 8.  Hover over the Operating System chart to see which NetQ Agent
     versions are being run on each OS.  
-    
+
     {{% imgOld 58 %}}
-    
-      
+
+
 
 9.  Click either chart to focus on a particular OS or agent version.
 
 10. To return to the full view, click
-    
+
     {{% imgOld 59 %}}
-    
+
     in the filter tag.
 
 11. Filter the data on the card by switches that are having trouble

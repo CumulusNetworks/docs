@@ -71,7 +71,7 @@ To log in and obtain authorization:
 1.  Open a terminal window.
 
 2.  Enter the following curl command.
-    
+
         <computer-name>:~ <username>$ curl --insecure -X POST "https://<netq.domain>:32708/netq/auth/v1/login" -H "Content-Type: application/json" -d "{ \"username\": \"admin\", \"password\": \"admin\"}"
         {"premises":[{"opid":0,"name":"OPID0"}],"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJvcGlkIjowLCJyb2xlIjoiYWRtaW4iLCJleHBpcmVzQXQiOjE1NTYxMjUzNzgyODB9._D2Ibhmo_BWSfAMnF2FzddjndTn8LP8CAFFGIj5tn0A","customer_id":0,"id":"admin","expires_at":1556125378280,"terms_of_use_accepted":true}
 

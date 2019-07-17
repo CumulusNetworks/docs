@@ -56,7 +56,7 @@ configuration:
     - Restrict outbound traffic on swp2 to http, https, or ssh
 
 
-         *switch
+         \*switch
             /\
       swp1 /  \ swp2
           /    \
@@ -1661,7 +1661,7 @@ On a Trident3 switch, you must enable nonatomic update mode before you
 can configure ERSPAN. To do so, set the value for
 `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`,
 then [restart
-`switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#span-id-src-8362561-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-span-restart-switchd-span).
+  `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#span-id-src-8362561-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-span-restart-switchd-span).
 
     acl.non_atomic_update_mode = TRUE
 

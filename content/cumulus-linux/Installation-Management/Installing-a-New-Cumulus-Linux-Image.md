@@ -279,7 +279,7 @@ USB drive. Instructions are provided for x86 and ARM platforms.
     switch here and there but is not scalable. DHCP can scale to
     hundreds of switch installs with zero manual input unlike USB
     installs.
-    
+
   - <span style="color: #36424a;"> Cumulus Networks also provides
     *Cumulus on a Stick*, which </span> packages Cumulus Linux images
     with your license. You can download your personalized ZIP file,
@@ -449,17 +449,10 @@ SSH sessions to the switch get dropped after this step. To complete
     {{%notice note%}}
 
 SSH sessions to the switch get dropped after this step. To complete
-<<<<<<< HEAD
 the remaining instructions, connect to the console of the switch.
 Cumulus Linux switches display their boot process to the console;
 you need to monitor the console specifically to complete the next
 step.
-=======
-    the remaining instructions, connect to the console of the switch.
-    Cumulus Linux switches display their boot process to the console;
-    you need to monitor the console specifically to complete the next
-    step.
->>>>>>> 4c43e1d12837cae4de8afcd808b2d6f3bb267395
 
     {{%/notice%}}
 

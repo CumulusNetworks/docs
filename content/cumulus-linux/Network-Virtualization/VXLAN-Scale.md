@@ -1,15 +1,15 @@
 ---
 title: VXLAN Scale
 author: Cumulus Networks
-weight: 151
+weight: 1515
 aliases:
- - /display/CL37/VXLAN-Scale
- - /pages/viewpage.action?pageId=8362768
-pageID: 8362768
+ - /display/CL3740/VXLAN-Scale
+ - /pages/viewpage.action?pageId=83627686492
+pageID: 83627686492
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
 On Broadcom Trident II and Tomahawk switches running Cumulus Linux,
 there is a limit to the number of VXLANs you can configure
@@ -35,9 +35,9 @@ reserved range (Cumulus Linux uses 3000-3999 by default). Cumulus
 Networks typically uses a soft number because the math is unique to each
 environment. An internal VLAN is consumed by each
 <span style="color: #222222;"> layer 3 port, subinterface, [traditional
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
+bridge](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
 and the [VLAN-aware
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+bridge](/version/cumulus-linux-37740/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
 Therefore, the number of configurable VLANs is: </span>
 
 <span style="color: #222222;"> (total configurable 802.1q VLANs) -
@@ -99,3 +99,6 @@ The equation now looks like this:
 <footer id="ht-footer">
 
 </footer>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTcwOTM1NzkyMV19
+-->

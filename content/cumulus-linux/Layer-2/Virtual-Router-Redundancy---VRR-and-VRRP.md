@@ -3,14 +3,16 @@ title: Virtual Router Redundancy - VRR and VRRP
 author: Cumulus Networks
 weight: 127
 aliases:
- - /display/CL37/Virtual-Router-Redundancy---VRR-and-VRRP
- - /pages/viewpage.action?pageId=8362691
-pageID: 8362691
+ - /display/CL3740/Virtual-Router-Redundancy---VRR-and-VRRP
+ - /pages/viewpage.action?pageId=83626916414
+pageID: 83626916414
 product: Cumulus Linux
-version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+version: 3.7.7'4.0'
+imgData: cumulus-linux-37740
+siteSlug: cumulus-linux-37740
 ---
+<details>
+
 Cumulus Linux provides the option of using Virtual Router Redundancy
 (VRR) or Virtual Router Redundancy Protocol (VRRP).
 
@@ -38,12 +40,16 @@ configuration.
 
 {{%/notice%}}
 
+<span style="color: #36424a;"> Contents </span>
+
+<summary>This topic describes ... </summary>
+
 ## <span>VRR</span>
 
 The diagram below illustrates a basic VRR-enabled network configuration.
 The network includes several hosts and two routers running Cumulus Linux
 configured with [Multi-chassis Link
-Aggregation](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+Aggregation](/version/cumulus-linux-37740/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
 (MLAG).
 
 {{%notice note%}}
@@ -55,7 +61,7 @@ VRR is not supported on physical interfaces or virtual subinterfaces.
 
 {{% imgOld 0 %}}
 
-A production implementation will have many more server hosts and network
+A production implementation will havehas many more server hosts and network
 connections than are shown here. However, this basic configuration
 provides a complete description of the important aspects of the VRR
 setup.
@@ -138,28 +144,31 @@ following interfaces to each router:
     
     {{%/notice%}}
 
+<!-- end list -->
+
   - One or more interfaces to each peer router.
     
     {{%notice note%}}
     
     Multiple inter-peer links are typically bonded interfaces that
-    accommodate higher bandwidth between the routers and offer link
+     - To accommodate higher bandwidth between the routers and to offer
+        link
     redundancy.
     
-    {{%/notice%}}
+    {{%/notice%}}, multiple inter-peer links are typically bonded
     
-    {{%notice note%}}
+    {{%notice note%}}interfaces.
     
-    The VLAN interface must have unique IP addresses for both the
-    physical (the `address` option below) and virtual (the
-    `address-virtual` option below) interfaces, as the unique address is
-    used when the switch initiates an ARP request.
+      - The VLAN interface must have unique IP addresses for both the
+        physical (the `address` option below) and virtual (the
+        `address-virtual` option below) interfaces, as; the unique address is
+        is used when the switch initiates an ARP request.
     
     {{%/notice%}}
 
 {{%notice info has%}}
 
-**Example VRR Configuration**
+**Example VRR Configuration**<summary>NCLU Commands </summary>
 
 The example NCLU commands below create a VLAN-aware bridge interface for
 a VRR-enabled network:
@@ -172,14 +181,20 @@ a VRR-enabled network:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-The NCLU commands above produce the following `/etc/network/interfaces`
+The NCLU commands above produce the following `<summary>Linux Commands </summary>
+
+Edit the `/etc/network/interfaces` file. The example file configuration
+below create a VLAN-aware bridge interface for a VRR-enabled network:
+
+    cumulus@switch:~$ sudo nano /etc/network/interfaces`
 snippet:
 
+    ...
     auto bridge
     iface bridge
         bridge-vids 500
         bridge-vlan-aware yes
-     
+      
     auto vlan500
     iface vlan500
         address 192.0.2.252/24
@@ -188,16 +203,24 @@ snippet:
         vlan-id 500
         vlan-raw-device bridge
 
-{{%/notice%}}
+{{%/notice%}}    ...
+
+Run the `ifreload -a` command to reload the configuration:
+
+    cumulus@switch:~$ sudo ifreload -a
 
 #### <span>Configure the Hosts</span>
 
-Each host should have two network interfaces. The routers configure the
-interfaces as bonds running LACP; the hosts should also configure its
-two interfaces using teaming, port aggregation, port group, or
-EtherChannel running LACP. Configure the hosts, either statically or via
-DHCP, with a gateway address that is the IP address of the virtual
-router; this default gateway address never changes.
+Each host shouldmust have two network interfaces. The routers configure the
+interfaces as bonds running LACP; the hosts shouldmust also configure its
+ two 
+interfaces using teaming, port aggregation, port group, or
+ EtherChannel 
+running LACP. Configure the hosts, either statically or via
+with DHCP, with a 
+gateway address that is the IP address of the virtual
+ router; this 
+default gateway address never changes.
 
 Configure the links between the hosts and the routers in *active-active*
 mode for First Hop Redundancy Protocol.
@@ -205,7 +228,7 @@ mode for First Hop Redundancy Protocol.
 ### <span>Example VRR Configuration with MLAG</span>
 
 To create an
-[MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/version/cumulus-linux-37740/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
 configuration that incorporates VRR, use a configuration like the
 following:
 
@@ -218,7 +241,7 @@ following:
 <tr class="odd">
 <td><p><strong>leaf01 Configuration</strong></p>
 <pre><code>cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.21/24
-cumulus@leaf01:~$ net add bond server01 bond slaves swp1
+cumulus@leaf01:~$ net add bond server01 bond slaves swp1-2
 cumulus@leaf01:~$ net add bond server01 clag id 1
 cumulus@leaf01:~$ net add bond server01 mtu 9216
 cumulus@leaf01:~$ net add bond server01 alias LACP etherchannel to uplink on server01
@@ -245,17 +268,18 @@ cumulus@leaf01:~$ net commit</code></pre>
 iface eth0
     address 192.168.0.21/24
   
+ 
 auto bridge
 iface bridge
     bridge-ports server01 peerlink
     bridge-vids 100 200 300 400
     bridge-vlan-aware yes
     mstpctl-treeprio 4096
- 
+  
 auto server01
 iface server01
     alias LACP etherchannel to uplink on server01
-    bond-slaves swp1
+    bond-slaves swp1 swp2
     clag-id 1
     mtu 9216
   
@@ -269,28 +293,28 @@ iface peerlink.4094
     clagd-backup-ip 192.168.0.22
     clagd-peer-ip 169.254.255.2
     clagd-sys-mac 44:38:39:FF:40:90
-  
+   
 auto vlan100
 iface vlan100
     address 10.0.1.2/24
     address-virtual 44:38:39:FF:00:01 10.0.1.1/24
     vlan-id 100
     vlan-raw-device bridge
- 
+  
 auto vlan200
 iface vlan200
     address 10.0.2.2/24
     address-virtual 44:38:39:FF:00:02 10.0.2.1/24
     vlan-id 200
     vlan-raw-device bridge
- 
+  
 auto vlan300
 iface vlan300
     address 10.0.3.2/24
     address-virtual 44:38:39:FF:00:03 10.0.3.1/24
     vlan-id 300
     vlan-raw-device bridge
- 
+  
 auto vlan400
 iface vlan400
     address 10.0.4.2/24
@@ -299,7 +323,7 @@ iface vlan400
     vlan-raw-device bridge</code></pre></td>
 <td><p><strong>leaf02 Configuration</strong></p>
 <pre><code>cumulus@leaf02:~$ net add interface eth0 ip address 192.168.0.22/24
-cumulus@leaf02:~$ net add bond server01 bond slaves swp1
+cumulus@leaf02:~$ net add bond server01 bond slaves swp1-2
 cumulus@leaf02:~$ net add bond server01 clag id 1
 cumulus@leaf02:~$ net add bond server01 mtu 9216
 cumulus@leaf02:~$ net add bond server01 alias LACP etherchannel to uplink on server01
@@ -326,17 +350,18 @@ cumulus@leaf02:~$ net commit</code></pre>
 iface eth0
     address 192.168.0.22/24
   
+ 
 auto bridge
 iface bridge
     bridge-ports server01 peerlink
     bridge-vids 100 200 300 400
     bridge-vlan-aware yes
     mstpctl-treeprio 4096
- 
+  
 auto server01
 iface server01
     alias LACP etherchannel to uplink on server01
-    bond-slaves swp1
+    bond-slaves swp1 swp2
     clag-id 1
     mtu 9216
   
@@ -346,32 +371,32 @@ iface peerlink
   
 auto peerlink.4094
 iface peerlink.4094
-    address 169.254.255.2/30
-    clagd-backup-ip 192.168.0.21
-    clagd-peer-ip 169.254.255.1
+    address 169.254.255.21/30
+    clagd-backup-ip 192.168.0.212
+    clagd-peer-ip 169.254.255.12
     clagd-sys-mac 44:38:39:FF:40:90
-  
+   
 auto vlan100
 iface vlan100
     address 10.0.1.3/24
     address-virtual 44:38:39:FF:00:01 10.0.1.1/24
     vlan-id 100
     vlan-raw-device bridge
- 
+  
 auto vlan200
 iface vlan200
     address 10.0.2.3/24
     address-virtual 44:38:39:FF:00:02 10.0.2.1/24
     vlan-id 200
     vlan-raw-device bridge
- 
+  
 auto vlan300
 iface vlan300
     address 10.0.3.3/24
     address-virtual 44:38:39:FF:00:03 10.0.3.1/24
     vlan-id 300
     vlan-raw-device bridge
- 
+  
 auto vlan400
 iface vlan400
     address 10.0.4.3/24
@@ -534,6 +559,8 @@ spine02) that form one virtual router group (VRID 44) with IPv4 address
 10.0.0.1/24 and IPv6 address 2001:0db8::1/64. *spine01* is the master;
 it has a priority of 254. *spine02* is the backup VRRP router.
 
+<summary>NCLU Commands </summary>
+
 **spine01**
 
     cumulus@spine01:~$ net add interface swp1 vrrp 44 10.0.0.1/24
@@ -550,8 +577,46 @@ it has a priority of 254. *spine02* is the backup VRRP router.
     cumulus@spine02:~$ net pending 
     cumulus@spine02:~$ net commit
 
-The NCLU commands save the configuration in the `/etc/frr/frr.conf`
-file. For example:
+The NCLU<summary>Linux and vtysh Commands </summary>
+
+1.  Enable the `vrrpd` daemon, then start the FRRouting service. See
+    [Configuring
+    FRRouting](/version/cumulus-linux-40/Layer-3/Configuring-FRRouting/).
+
+2.  From the vtysh shell, configure VRRP.
+    
+    ****spine01  
+    ****
+    
+        cumulus@spine01:~$ sudo vtysh
+         
+        spine01# configure terminal
+        spine01(config)# interface swp1
+        spine01(config-if)# vrrp 44 ip 10.0.0.1
+        spine01(config-if)# vrrp 44 ipv6 2001:0db8::1
+        spine01(config-if)# vrrp 44 priority 254
+        spine01(config-if)# vrrp 44 advertisement-interval 5000
+        spine01(config-if)# end
+        spine01# write memory
+        spine01# exit
+        cumulus@spine01:~$
+    
+    **spine02**
+    
+        cumulus@spine02:~$ sudo vtysh
+         
+        spine02# configure terminal
+        spine02(config)# interface swp1
+        spine02(config-if)# vrrp 44 ip 10.0.0.1
+        spine02(config-if)# vrrp 44 ipv6 2001:0db8::1
+        spine02(config-if)# end
+        spine02# write memory
+        spine02# exit
+        cumulus@spine02:~$
+
+The NCLU and vtysh commands save the configuration in the 
+`/etc/frr/frr.conf`
+ file. For example:
 
     cumulus@spine01:~$ sudo cat /etc/frr/frr.conf 
     ...
@@ -565,8 +630,10 @@ file. For example:
 
 ### <span>Show VRRP Configuration</span>
 
-To show virtual router information on a switch, run the `net show vrrp
-<VRID>` command. For example:
+To show virtual router information on a switch, run the NCLU `net show
+vrrp <VRID>` command or the vtysh `show vrrp
+ <VRID>` command. For 
+example:
 
     cumulus@spine01:~$ net show vrrp 44
     Virtual Router ID                    44
@@ -614,3 +681,8 @@ To show virtual router information on a switch, run the `net show vrrp
 <footer id="ht-footer">
 
 </footer>
+
+</details>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE2NTMwMDU1MzRdfQ==
+-->

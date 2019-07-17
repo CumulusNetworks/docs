@@ -8,8 +8,8 @@ aliases:
 pageID: 5126699
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 Cumulus VX images now include the GRUB boot loader and [Open Network
 Install Environment (ONIE)](http://onie.org/) preinstalled. You can

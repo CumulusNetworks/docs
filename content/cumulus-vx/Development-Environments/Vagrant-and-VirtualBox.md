@@ -8,8 +8,8 @@ aliases:
 pageID: 5126719
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 This document describes how to install and set up Cumulus Linux within a
 Vagrant environment, using VirtualBox as the hypervisor.
@@ -29,8 +29,8 @@ guide](https://www.vagrantup.com/intro/getting-started/index.html).
 
 This section assumes that you have installed the VirtualBox hypervisor.
 For detailed instructions, refer to the
-[VirtualBox](/version/cumulus-vx-34/Getting-Started/VirtualBox)
-installation section.
+[VirtualBox](/cumulus-vx/Getting-Started/VirtualBox) installation
+section.
 
 {{%/notice%}}
 

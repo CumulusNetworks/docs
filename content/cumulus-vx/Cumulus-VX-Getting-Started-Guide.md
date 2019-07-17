@@ -8,8 +8,8 @@ aliases:
 pageID: 7111109
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 <span class="error">The license could not be verified: License
 Certificate has expired\!</span>

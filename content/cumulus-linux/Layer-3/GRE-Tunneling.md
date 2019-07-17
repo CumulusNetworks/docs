@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-<details>
-
 {{%notice warning%}}
 
 **Early Access Feature**
@@ -61,10 +59,6 @@ the outer IPv4 header.
 
 {{% imgOld 0 %}}
 
-## <span> Contents</span>
-
-<summary>This topic describes ... </summary>
-
 ## <span>Configure GRE Tunneling</span>
 
 To configure GRE tunneling, you create a GRE tunnel interface with
@@ -91,7 +85,7 @@ endpoint is 10.0.0.9.
 
 {{% imgOld 1 %}}
 
-  
+
 
 **Tunnel-R1 commands:**
 
@@ -112,7 +106,7 @@ of running the commands from the command line (as above), you can add
 the following commands directly in the `/etc/network/interfaces` file.
 
     cumulus@switch:~$ sudo nano /etc/network/interfaces
-    # Tunnel-R1 configuration 
+    # Tunnel-R1 configuration
     auto swp1 #underlay interface for tunnel
     iface swp1
         link-speed 10000
@@ -187,13 +181,3 @@ command. Make sure you run the `ifreload -a` command after you update
 the interfaces file.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-<details>
-
 Multi-Chassis Link Aggregation (MLAG) enables a server or switch with a
 two-port bond, such as a link aggregation group/LAG, EtherChannel, port
 group or trunk, to connect those ports to different switches and operate
@@ -79,9 +77,9 @@ MLAG has these requirements:
     802.3ad/802.1ax) to form the
     [bond](/cumulus-linux/Layer-2/Bonding---Link-Aggregation). In this
     case, the peer switches must also use LACP.
-    
+
     {{%notice tip%}}
-    
+
     If for some reason you cannot use LACP, you can also use
     [balance-xor
     mode](Bonding---Link-Aggregation.html#src-8362653_Bonding-LinkAggregation-balance_xor)
@@ -89,7 +87,7 @@ MLAG has these requirements:
     you must still configure the same `clag_id` parameter on the MLAG
     bonds, and it must be the same on both MLAG switches. Otherwise, the
     MLAG switch pair treats the bonds as if they are single-connected.
-    
+
     {{%/notice%}}
 
 More elaborate configurations are also possible. The number of links
@@ -193,10 +191,10 @@ configuration changes, including:
 
 You can verify the configuration of VLAN membership with the `net show
 clag verify-vlans` `verbose` command.
-
+<details>
 <summary>Click to see the output ... </summary>
 
-``` 
+```
 cumulus@leaf01:~$ net show clag verify-vlans verbose
 Our Bond Interface   VlanId   Peer Bond Interface
 ------------------   ------   -------------------
@@ -219,7 +217,7 @@ uplink                  103   uplink
 uplink                  104   uplink             
 ...                 
 ```
-
+</details>
 {{%/notice%}}
 
 ### <span>Reserved MAC Address Range</span>
@@ -486,8 +484,8 @@ for the corresponding bonds on spine01 and spine02:
 <tbody>
 <tr class="odd">
 <td><p><strong>spine01</strong></p>
-<pre><code>cumulus@spine01:~$ net show configuration commands 
-net add interface swp1-4 
+<pre><code>cumulus@spine01:~$ net show configuration commands
+net add interface swp1-4
 net add loopback lo ip address 10.0.0.21/32
 net add interface eth0 ip address dhcp</code></pre>
 <p>These commands create the following configuration in the <code>/etc/network/interfaces</code> file:</p>
@@ -512,8 +510,8 @@ iface swp3
 auto swp4
 iface swp4</code></pre></td>
 <td><p><strong>spine02</strong></p>
-<pre><code>cumulus@spine02:~$ net show configuration commands 
-net add interface swp1-4 
+<pre><code>cumulus@spine02:~$ net show configuration commands
+net add interface swp1-4
 net add loopback lo ip address 10.0.0.22/32
 net add interface eth0 ip address dhcp</code></pre>
 <p>These commands create the following configuration in the <code>/etc/network/interfaces</code> file:</p>
@@ -553,7 +551,7 @@ corresponding bonds on leaf01 and leaf02 as well as leaf03 and leaf04:
 <tbody>
 <tr class="odd">
 <td><p><strong>leaf01</strong></p>
-<pre><code>cumulus@leaf01:~$ net show configuration commands 
+<pre><code>cumulus@leaf01:~$ net show configuration commands
 net add loopback lo ip address 10.0.0.11/32
 net add bgp autonomous-system 65011
 net add bgp router-id 10.0.0.11
@@ -646,7 +644,7 @@ iface vlan100
     vlan-id 100
     vlan-raw-device bridge</code></pre></td>
 <td><p><strong>leaf02</strong></p>
-<pre><code>cumulus@leaf02:~$ net show conf commands 
+<pre><code>cumulus@leaf02:~$ net show conf commands
 net add loopback lo ip address 10.0.0.12/32
 net add bgp autonomous-system 65012
 net add bgp router-id 10.0.0.12
@@ -741,7 +739,7 @@ iface vlan100
 </tr>
 <tr class="even">
 <td><p><strong>leaf03</strong></p>
-<pre><code>cumulus@leaf03:~$ net show conf commands 
+<pre><code>cumulus@leaf03:~$ net show conf commands
 net add loopback lo ip address 10.0.0.13/32
 net add bgp autonomous-system 65013
 net add bgp router-id 10.0.0.13
@@ -839,14 +837,14 @@ iface server4
     clag-id 4
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+
 auto vlan100
 iface vlan100
     address 172.16.1.3/24
     vlan-id 100
     vlan-raw-device bridge</code></pre></td>
 <td><p><strong>leaf04</strong></p>
-<pre><code>cumulus@leaf04:~$ net show configuration commands 
+<pre><code>cumulus@leaf04:~$ net show configuration commands
 net add loopback lo ip address 10.0.0.14/32
 net add bgp autonomous-system 65014
 net add bgp router-id 10.0.0.14
@@ -943,7 +941,7 @@ iface server4
     clag-id 4
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+
 auto vlan100
 iface vlan100
     address 172.16.1.4/24
@@ -961,7 +959,7 @@ parameters are mandatory, while the rest are optional. When mandatory
 `clagd-enable` is set to *yes* and does not need to be specified; to
 disable `clagd` on the subinterface, set `clagd-enable` to *no*:
 
-    cumulus@spine01:~$ net add interface peerlink.4094 clag enable no 
+    cumulus@spine01:~$ net add interface peerlink.4094 clag enable no
     cumulus@spine01:~$ net pending
     cumulus@spine01:~$ net commit
 
@@ -975,8 +973,8 @@ each MLAG pair in the network. For more details, refer to `man clagd`.
 You can check the status of your MLAG configuration using the `net show
 clag` command.
 
-``` 
-cumulus@leaf01:~$ net show clag 
+```
+cumulus@leaf01:~$ net show clag
 The peer is alive
     Peer Priority, ID, and Role: 4096 44:38:39:FF:00:01 primary
      Our Priority, ID, and Role: 8192 44:38:39:FF:00:02 secondary
@@ -996,7 +994,7 @@ A command line utility called `clagctl` is available for interacting
 with a running `clagd` service to get status or alter operational
 behavior. For a detailed explanation of the utility, refer to the
 `clagctl(8)`man page.
-
+<details>
 <summary>See the clagctl Output ... </summary>
 
 The following is a sample output of the MLAG operational status
@@ -1012,8 +1010,8 @@ displayed by `clagctl`:
     Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
     ----------------   ----------------   -------   --------------------   -----------------
              server1   server1            1         -                      -              
-             server2   server2            2         -                      - 
-
+             server2   server2            2         -                      -
+</details>
 ## <span>Configure MLAG with a Traditional Mode Bridge</span>
 
 You can configure MLAG with a bridge in [traditional
@@ -1115,12 +1113,12 @@ IP address for this purpose. Which one should you choose?
     `switchd` is unresponsive /or stopped), then the secondary switch
     eventually promotes itself to primary and traffic now flows
     normally.
-    
+
     To ensure IP connectivity between the loopbacks, you must carefully
     consider what implications this has on the BGP ASN configured:
-    
+
       - The two MLAG member switches must use unique BGP ASNs, **or**,
-    
+
       - If the two MLAG member switches use the same BGP ASN, then you
         must bypass the BGP loop prevention check on AS\_PATH attribute.
 
@@ -1147,11 +1145,11 @@ you can configure it as an argument in `clagd-args` using `--backupPort
 
 To see the backup IP address, run the `net show clag` command:
 
-    cumulus@spine01:~$ net show clag 
+    cumulus@spine01:~$ net show clag
     The peer is alive
          Our Priority, ID, and Role: 32768 44:38:39:00:00:41 primary
         Peer Priority, ID, and Role: 32768 44:38:39:00:00:42 secondary
-              Peer Interface and IP: peerlink.4094 169.254.1.1 
+              Peer Interface and IP: peerlink.4094 169.254.1.1
                           Backup IP: 192.168.0.22 (active)
                          System MAC: 44:38:39:FF:40:90
      
@@ -1198,8 +1196,8 @@ You cannot use the VRF on a peer link subinterface.
 
 Verify the backup link by running the `net show clag backup-ip` command:
 
-``` 
-cumulus@leaf01:~$ net show clag backup-ip 
+```
+cumulus@leaf01:~$ net show clag backup-ip
 Backup info:
 IP: 192.168.0.12; State: active; Role: primary
 Peer priority and id: 32768 44:38:39:00:00:12; Peer role: secondary          
@@ -1435,13 +1433,13 @@ You can check the status of `clagd` monitoring by using the
      
     ...
      
-    Service clagd        enabled    active 
+    Service clagd        enabled    active
      
     ...
 
 Or the `systemctl status` command:
 
-    cumulus@switch:~$ sudo systemctl status clagd.service 
+    cumulus@switch:~$ sudo systemctl status clagd.service
     ● clagd.service - Cumulus Linux Multi-Chassis LACP Bonding Daemon
        Loaded: loaded (/lib/systemd/system/clagd.service; enabled)
        Active: active (running) since Mon 2016-10-03 20:31:50 UTC; 4 days ago
@@ -1487,7 +1485,7 @@ of the bridge. If you want to set an MTU other than the default of 1500
 bytes, you must configure the MTU on each physical interface and bond
 interface that are members of the MLAG bridges in the entire bridged
 domain.
-
+<details>
 <summary>For example ... </summary>
 
 For example, if an MTU of 9216 is desired through the MLAG domain in the
@@ -1511,15 +1509,15 @@ The above commands produce the following configuration in the
     auto bridge
     iface bridge
       bridge-ports peerlink uplink server01
-     
+
     auto peerlink
     iface peerlink
         mtu 9216
-     
+
     auto server01
     iface server01
         mtu 9216
-     
+
     auto uplink
     iface uplink
         mtu 9216
@@ -1543,25 +1541,25 @@ The above commands produce the following configuration in the
     auto bridge
     iface bridge
       bridge-ports leaf01-02 leaf03-04 exit01-02 peerlink
-     
+
     auto exit01-02
     iface exit01-02
         mtu 9216
-     
+
     auto leaf01-02
     iface leaf01-02
         mtu 9216
-     
+
     auto leaf03-04
     iface leaf03-04
         mtu 9216
-     
+
     auto peerlink
     iface peerlink
         mtu 9216
 
 {{%/notice%}}
-
+<details>
 ### <span>Peer Link Sizing</span>
 
 The peer link carries very little traffic when compared to the bandwidth
@@ -1663,7 +1661,7 @@ that can be useful when debugging:
 
   - The STP priority must be the same on both peer switches. You set the
     priority with this command:
-    
+
         cumulus@switch:~$ net add bridge stp treeprio PRIORITY_VALUE
         cumulus@switch:~$ net commit
 
@@ -1682,7 +1680,7 @@ By default, when `clagd` is running, it logs its status to the
 `/var/log/clagd.log` file and `syslog`. Example log file output is
 below:
 
-    cumulus@spine01:~$ sudo tail /var/log/clagd.log 
+    cumulus@spine01:~$ sudo tail /var/log/clagd.log
     2016-10-03T20:31:50.471400+00:00 spine01 clagd[1235]: Initial config loaded
     2016-10-03T20:31:52.479769+00:00 spine01 clagd[1235]: The peer switch is active.
     2016-10-03T20:31:52.496490+00:00 spine01 clagd[1235]: Initial data sync to peer done.
@@ -1758,13 +1756,3 @@ cabling or configuration error.
   - MLAG is disabled on the chassis, including the [Facebook
     Backpack](https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/)
     and EdgeCore OMP-800.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

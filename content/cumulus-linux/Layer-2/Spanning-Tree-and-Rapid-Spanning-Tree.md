@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-<details>
-
 Spanning tree protocol (STP) is always recommended in layer 2 topologies
 as it prevents bridge loops and broadcast radiation on a bridged
 network. STP also provides redundant links for automatic failover when
@@ -81,10 +79,10 @@ interoperability.
 
 To check STP status for a bridge, run the `net show bridge
 spanning-tree` command:
-
+<details>
 <summary>Click to reveal the output ... </summary>
 
-    cumulus@switch:~$ net show bridge spanning-tree 
+    cumulus@switch:~$ net show bridge spanning-tree
     bridge CIST info
       enabled         yes
       bridge id       1.000.44:38:39:FF:40:90
@@ -102,7 +100,7 @@ spanning-tree` command:
       topology change            no
       topology change port       peerlink
       last topology change port  leaf03-04
-     
+
     bridge:exit01-02 CIST info
       enabled            no                      role                 Disabled
       port id            8.004                   state                discarding
@@ -191,9 +189,9 @@ spanning-tree` command:
       clag ISL           yes                     clag ISL Oper UP     yes
       clag role          primary                 clag dual conn mac   00:00:00:00:00:00
       clag remote portID F.FFF                   clag system mac      44:38:39:FF:40:90
-
+</details>
 Use Linux to check spanning tree status (advanced):
-
+<details>
 <summary>Using Linux to check STP status ... </summary>
 
 `mstpctl` is the utility provided by the `mstpd` service to configure
@@ -249,9 +247,9 @@ To show the `mstpd` bridge port state, run this command:
      E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
        swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
      E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
-     
+
     cumulus@switch:~$ net show bridge spanning-tree
-     
+
     ...
      bridge:swp1 CIST info
       enabled            yes                     role                 Designated
@@ -271,7 +269,7 @@ To show the `mstpd` bridge port state, run this command:
       Num TX BPDU        45772                   Num TX TCN           4
       Num RX BPDU        0                       Num RX TCN           0
       Num Transition FWD 2                       Num Transition BLK   2
-
+</details>
 ## <span>Customize Spanning Tree Protocol</span>
 
 There are a number of ways you can customize STP in Cumulus Linux.
@@ -769,13 +767,3 @@ below.
   - mstpctl(8)
 
   - mstpctl-utils-interfaces(5)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

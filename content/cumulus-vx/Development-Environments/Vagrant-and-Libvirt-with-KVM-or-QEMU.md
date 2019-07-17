@@ -8,8 +8,8 @@ aliases:
 pageID: 5126718
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 The solution described in this chapter requires four components:
 

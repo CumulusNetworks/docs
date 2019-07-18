@@ -23,8 +23,7 @@ With NetQ, you can monitor the number of nodes running the LLDP service,
 view nodes with the most LLDP neighbor nodes, those nodes with the least
 neighbor nodes, and view alarms triggered by the LLDP service. For an
 overview and how to configure LLDP in your data center network, refer to
-[Link Layer Discovery
-Protocol](/display/NETQ22/Link+Layer+Discovery+Protocol).
+[Link Layer Discovery Protocol](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/).
 
 ### <span>LLDP Service Card Workflow Summary</span>
 
@@ -419,7 +418,7 @@ To view switches and hosts with the most LLDP sessions:
     The table content is sorted by this characteristic, listing nodes
     running the most LLDP sessions at the top. Scroll down to view those
     with the fewest sessions.
-    
+
     {{% imgOld 23 %}}
 
 To compare this data with the same data at a previous time:
@@ -430,21 +429,21 @@ To compare this data with the same data at a previous time:
 
 3.  Change the time period for the data on the new card by hovering over
     the card and clicking <span style="color: #353744;"> </span>
-    
+
     {{% imgOld 24 %}}
-    
+
     .
 
 4.  Select the time period that you want to compare with the current
     time.  
     You can now see whether there are significant differences between
     this time period and the previous time period.  
-    
+
     {{% imgOld 25 %}}
-    
+
     {{% imgOld 26 %}}
-    
-      
+
+
     In this case, notice that the alarms have reduced significantly in
     the last week. If the changes are unexpected, you can investigate
     further by looking at another time frame, determining if more nodes
@@ -465,7 +464,7 @@ To view switches with the most unestablished LLDP sessions:
     The table content is sorted by this characteristic, listing nodes
     with the most unestablished CLAG sessions at the top. Scroll down to
     view those with the fewest unestablished sessions.
-    
+
     {{% imgOld 27 %}}
 
 Where to go next depends on what data you see, but a few options
@@ -476,16 +475,16 @@ include:
     slice.  
     The table content changes to match the hovered content. Click on the
     chart to persist the table changes.
-    
+
     {{% imgOld 28 %}}
 
   - Change the time period for the data to compare with a prior time.  
-    
+
     {{% imgOld 29 %}}
-    
+
     {{% imgOld 30 %}}
-    
-      
+
+
     If the same switches are consistently indicating the most
     unestablished sessions, you might want to look more carefully at
     those switches using the Switches card workflow to determine
@@ -508,9 +507,9 @@ To view switches with most LLDP alarms:
 1.  Open the large LLDP Service card.
 
 2.  Hover over the header and click
-    
+
     {{% imgOld 31 %}}
-    
+
     .
 
 3.  Select **EVENTS BY MOST ACTIVE DEVICE** from the filter above the
@@ -518,7 +517,7 @@ To view switches with most LLDP alarms:
     The table content is sorted by this characteristic, listing nodes
     with the most BGP alarms at the top. Scroll down to view those with
     the fewest alarms.
-    
+
     {{% imgOld 32 %}}
 
 Where to go next depends on what data you see, but a few options
@@ -547,7 +546,7 @@ To view all LLDP events:
 1.  Open the full screen LLDP Service card.
 
 2.  Click the **All Alarms** tab.
-    
+
     {{% imgOld 33 %}}
 
 Where to go next depends on what data you see, but a few options
@@ -559,9 +558,9 @@ include:
 Sort on other parameters:
 
   -   - by **Message** to determine the frequency of particular events
-    
+
       - by **Severity** to determine the most critical events
-    
+
       - by **Time** to find events that may have occurred at a
         particular time to try to correlate them with other system
         events
@@ -569,9 +568,9 @@ Sort on other parameters:
   - Export data to a file
 
   - Return to your workbench by clicking
-    
+
     {{% imgOld 34 %}}
-    
+
     in the top right corner
 
 ### <span>View Detailed Information About All Switches Running LLDP</span>
@@ -639,8 +638,7 @@ With NetQ, you can monitor the number of nodes running the LLDP service,
 view neighbor state changes, and compare with events occurring at the
 same time, as well as monitor the running LLDP configuration and changes
 to the configuration file. For an overview and how to configure LLDP in
-your data center network, refer to [Link Layer Discovery
-Protocol](/display/NETQ22/Link+Layer+Discovery+Protocol).
+your data center network, refer to [Link Layer Discovery Protocol](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/).
 
 {{%notice info%}}
 
@@ -1021,9 +1019,9 @@ To view the summary:
 3.  Locate the medium LLDP Session card.
 
 4.  Optionally, open the small LLDP Session card.  
-    
+
     {{% imgOld 72 %}}
-    
+
     {{% imgOld 73 %}}
 
 ### <span>View LLDP Session Neighbor State Changes </span>
@@ -1045,7 +1043,7 @@ card:
     automatically.
 
 3.  Locate the medium LLDP Session card.
-    
+
     {{% imgOld 74 %}}
 
 In this example, the heat map tells us that this LLDP session has been
@@ -1075,28 +1073,28 @@ To view the configuration file changes:
 1.  Open the large LLDP Session card.
 
 2.  Hover over the card and click
-    
+
     {{% imgOld 76 %}}
-    
+
     to open the **LLDP Configuration File Evolution** tab.
 
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
-    
+
     {{% imgOld 77 %}}
 
 4.  Choose between the **File** view and the **Diff** view (selected
     option is dark; File by default).  
     The File view displays the content of the file for you to review.
-    
+
     {{% imgOld 78 %}}
-    
+
     The Diff view displays the changes between this version (on left)
     and the most recent version (on right) side by side. The changes are
     highlighted in red and green. In this example, we don't have any
     changes to the file, so the same file is shown on both sides, and
     thus no highlighted lines.
-    
+
     {{% imgOld 79 %}}
 
 ### <span>View All LLDP Session Details</span>
@@ -1131,11 +1129,11 @@ include:
     details of the sessions between these two devices.
 
   - Sort on other parameters:
-    
+
       - by **Message** to determine the frequency of particular events
-    
+
       - by **Severity** to determine the most critical events
-    
+
       - by **Time** to find events that may have occurred at a
         particular time to try to correlate them with other system
         events
@@ -1143,9 +1141,9 @@ include:
   - Export data to a file
 
   - Return to your workbench by clicking
-    
+
     {{% imgOld 83 %}}
-    
+
     in the top right corner
 
 [<span style="color: #707070;">

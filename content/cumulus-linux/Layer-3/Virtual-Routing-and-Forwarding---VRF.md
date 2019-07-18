@@ -111,7 +111,7 @@ To configure a VRF, run:
 These commands result in the following VRF configuration in the
 `/etc/network/interfaces` file:
 
-    auto swp1 
+    auto swp1
     iface swp1
         vrf rocket
      
@@ -162,7 +162,7 @@ related to VRF tables.
 To get a list of VRF tables, run:
 
     cumulus@switch:~$ vrf list
-      
+
     VRF              Table
     ---------------- -----
     rocket            1016
@@ -325,20 +325,20 @@ EVPN](#src-8362942_VirtualRoutingandForwarding-VRF-ConfigureStaticRouteLeakingwi
     the `/etc/cumulus/switchd.conf` file, change the
     `vrf_route_leak_enable` option to `TRUE` and uncomment the line.
     Then, restart `switchd` for the change to take effect.
-    
+
         cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
         ...
         #static vrf route leak enable
         vrf_route_leak_enable = TRUE
-    
+
         cumulus@switch:~$ sudo systemctl restart switchd.service
-    
+
     {{%notice note%}}
-    
-    Only set the `vrf_route_leak_enable` option to `TRUE` for *static*
+
+Only set the `vrf_route_leak_enable` option to `TRUE` for *static*
     VRF route leaking. This option must be set to `false` for dynamic
     route leaking.
-    
+
     {{%/notice%}}
 
 2.  Use the keyword `nexthop-vrf` to specify the VRF through which the
@@ -346,7 +346,7 @@ EVPN](#src-8362942_VirtualRoutingandForwarding-VRF-ConfigureStaticRouteLeakingwi
     static route (10.1.0.0/24) to a VRF named `turtle`, which is
     reachable through a next-hop router (192.168.200.1) over a different
     VRF, `rocket`.
-    
+
         cumulus@switch:~$ net add routing route 10.1.0.0/24 192.168.200.1 vrf turtle nexthop-vrf rocket
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
@@ -370,21 +370,21 @@ To configure static route leaking with EVPN symmetric routing:
 
 2.  Configure static route leaking for EVPN. The following commands
     provide examples.
-    
+
     To configure static route leaking between VRF1 and VRF2, where VRF1
     contains subnets 10.50.1.0/24, 10.50.2.0/24, 10.50.3.0/24, and
     10.50.4.0/24 and VRF2 contains subnets 10.60.1.0/24, 10.60.2.0/24,
     10.60.3.0/24, and 10.60.4.0/24, run these commands:
-    
+
         cumulus@switch:~$ net add routing route 10.60.0.0/21 vrf2 vrf vrf1 nexthop-vrf vrf2
         cumulus@switch:~$ net add routing route 10.50.0.0/21 vrf1 vrf vrf2 nexthop-vrf vrf1
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
-    
+
     To configure static route leaking between the default VRF and VRF1,
     where swp1s0 is the egress port for subnets under 10.10.0.0/16 in
     the default VRF, run these commands:
-    
+
         cumulus@switch:~$ net add routing route 10.10.0.0/16 swp1s0 vrf vrf1 nexthop-vrf default-IP-Routing-Table
         cumulus@switch:~$ net add routing route 10.50.0.0/21 vrf1 nexthop-vrf vrf1
         cumulus@switch:~$ net pending
@@ -478,7 +478,7 @@ For the imported routes, the community is set to 11:11 in VRF `rocket`.
     cumulus@switch:~$ net add routing route-map turtle-to-rocket-IPV4 permit 10
     cumulus@switch:~$ net add routing route-map turtle-to-rocket-IPV4 permit 10 match source-protocol bgp
     cumulus@switch:~$ net add routing route-map turtle-to-rocket-IPV4 permit 10 set community 11:11
-    cumulus@switch:~$ net add bgp vrf rocket ipv4 unicast import vrf route-map turtle-to-rocket-IPV4 
+    cumulus@switch:~$ net add bgp vrf rocket ipv4 unicast import vrf route-map turtle-to-rocket-IPV4
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
@@ -693,7 +693,7 @@ These commands produce the following configuration in the
 
 Here is the FRRouting OSPF configuration:
 
-    cumulus@switch:~$ net add ospf vrf vrf1 
+    cumulus@switch:~$ net add ospf vrf vrf1
     cumulus@switch:~$ net add ospf vrf vrf1 router-id 4.4.4.4
     cumulus@switch:~$ net add ospf vrf vrf1 log-adjacency-changes detail
     cumulus@switch:~$ net add ospf vrf vrf1 network 10.0.0.0/24 area 0.0.0.1
@@ -808,7 +808,7 @@ To show the OSPF VRFs:
 
 To show all the OSPF routes in a VRF:
 
-    cumulus@switch:~$ net show ospf vrf vrf1012 route 
+    cumulus@switch:~$ net show ospf vrf vrf1012 route
     Codes: K - kernel route, C - connected, S - static, R - RIP,
            O - OSPF, I - IS-IS, B - BGP, P - PIM, E - EIGRP, N - NHRP,
            T - Table, v - VNC, V - VNC-Direct, A - Babel,
@@ -831,17 +831,17 @@ show which interfaces are in a VRF (either BGP or OSPF), run the `net
 show vrf list` command. The following command shows which interfaces are
 in the VRFs configured on the switch: </span>
 
-    cumulus@switch:~$ net show vrf list 
-    VRF: mgmt 
-    -------------------- 
-    eth0              UP     a0:00:00:00:00:11 <BROADCAST,MULTICAST,UP,LOWER_UP> 
-     
-    VRF: turtle 
-    -------------------- 
-    vlan13@bridge     UP     44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP> 
-    vlan13-v0@vlan13  UP     44:39:39:ff:00:13 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+    cumulus@switch:~$ net show vrf list
+    VRF: mgmt
+    --------------------
+    eth0              UP     a0:00:00:00:00:11 <BROADCAST,MULTICAST,UP,LOWER_UP>
+
+    VRF: turtle
+    --------------------
+    vlan13@bridge     UP     44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP>
+    vlan13-v0@vlan13  UP     44:39:39:ff:00:13 <BROADCAST,MULTICAST,UP,LOWER_UP>
     vlan24@bridge     UP     44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP>  
-    vlan24-v0@vlan24  UP     44:39:39:ff:00:24 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+    vlan24-v0@vlan24  UP     44:39:39:ff:00:24 <BROADCAST,MULTICAST,UP,LOWER_UP>
     vlan4001@bridge   UP     44:39:39:ff:40:94 <BROADCAST,MULTICAST,UP,LOWER_UP>
 
 <span style="color: #36424a;"> To show the interfaces for a specific
@@ -849,12 +849,12 @@ VRF, run the `net show vrf list <vrf_name>` command. The following
 command shows which interfaces are in VRF turtle: </span>
 
     cumulus@switch:~$ net show vrf list turtle
-    VRF: turtle 
-    -------------------- 
-    vlan13@bridge     UP      44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP> 
-    vlan13-v0@vlan13  UP      44:39:39:ff:00:13 <BROADCAST,MULTICAST,UP,LOWER_UP> 
-    vlan24@bridge     UP      44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP> 
-    vlan24-v0@vlan24  UP      44:39:39:ff:00:24 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+    VRF: turtle
+    --------------------
+    vlan13@bridge     UP      44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP>
+    vlan13-v0@vlan13  UP      44:39:39:ff:00:13 <BROADCAST,MULTICAST,UP,LOWER_UP>
+    vlan24@bridge     UP      44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP>
+    vlan24-v0@vlan24  UP      44:39:39:ff:00:24 <BROADCAST,MULTICAST,UP,LOWER_UP>
     vlan4001@bridge   UP      44:39:39:ff:40:94 <BROADCAST,MULTICAST,UP,LOWER_UP>
 
 {{%notice note%}}
@@ -868,8 +868,8 @@ command.
 <span style="color: #36424a;"> To show the VNIs for the interfaces in a
 VRF, run the `net show vrf vni` command. For example: </span>
 
-    cumulus@switch:~$ net show vrf vni 
-    VRF         VNI     VxLAN IF    L3-SVI    State  Rmac 
+    cumulus@switch:~$ net show vrf vni
+    VRF         VNI     VxLAN IF    L3-SVI    State  Rmac
     turtle      104001  vxlan4001   vlan4001  Up     44:39:39:ff:40:94
 
 <span style="color: #36424a;"> To see the VNIs for the interfaces in a
@@ -902,7 +902,7 @@ assigned or manually defined:
     vrf vrf1013 id 21 table 1013
     vrf vrf1014 id 28 table 1014
     switch# exit
-    cumulus@switch:~$ 
+    cumulus@switch:~$
 
 Show VRFs configured in BGP, including the default. A non-zero ID is a
 VRF that has also been actually provisioned — that is, defined in
@@ -918,7 +918,7 @@ VRF that has also been actually provisioned — that is, defined in
      
     Total number of VRFs (including default): 4
     switch# exit
-    cumulus@switch:~$ 
+    cumulus@switch:~$
 
 Display interfaces known to FRRouting and attached to this VRF:
 
@@ -945,13 +945,13 @@ To show VRFs configured in OSPF:
 
     cumulus@switch:~$ sudo vtysh
     switch# show ip ospf vrfs
-    Name                            Id     RouterId 
+    Name                            Id     RouterId
     Default-IP-Routing-Table        0      0.0.0.0          
     rocket                          57     0.0.0.10         
     turtle                          58     0.0.0.20    
     Total number of OSPF VRFs (including default): 3
     switch# exit
-    cumulus@switch:~$ 
+    cumulus@switch:~$
 
 To show all OSPF routes in a VRF:
 
@@ -974,7 +974,7 @@ To show all OSPF routes in a VRF:
     ============ OSPF external routing table ===========
      
     switch# exit
-    cumulus@switch:~$ 
+    cumulus@switch:~$
 
 To see the routing table for each VRF, use the `show up route vrf all`
 command. The OSPF route is denoted in the row that starts with O:
@@ -994,15 +994,15 @@ command. The OSPF route is denoted in the row that starts with O:
     C>* 50.1.1.0/24 is directly connected, swp31s1
     VRF rocket:
     K>* 0.0.0.0/0 [0/8192] unreachable (ICMP unreachable)
-    O 
-    8.0.0.0/24 [110/10] 
+    O
+    8.0.0.0/24 [110/10]
     is directly connected, swp1, 00:23:26
     C>* 8.0.0.0/24 is directly connected, swp1
     C>* 8.0.0.5/32 is directly connected, rocket
     C>* 8.0.0.100/32 is directly connected, rocket
     C>* 50.0.1.0/24 is directly connected, swp31s0
     switch# exit
-    cumulus@switch:~$ 
+    cumulus@switch:~$
 
 ### <span>Show VRF Data Using ip Commands</span>
 
@@ -1011,76 +1011,76 @@ vrf1014 below) as well as the table ID:
 
     cumulus@switch:~$ ip -d link show type vrf      
     14: vrf1012: <NOARP,MASTER,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN mode DEFAULT group default qlen 1000
-        link/ether 46:96:c7:64:4d:fa brd ff:ff:ff:ff:ff:ff promiscuity 0 
-        vrf table 1012 addrgenmode eui64 
+        link/ether 46:96:c7:64:4d:fa brd ff:ff:ff:ff:ff:ff promiscuity 0
+        vrf table 1012 addrgenmode eui64
     21: vrf1013: <NOARP,MASTER,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN mode DEFAULT group default qlen 1000
-        link/ether 7a:8a:29:0f:5e:52 brd ff:ff:ff:ff:ff:ff promiscuity 0 
-        vrf table 1013 addrgenmode eui64 
+        link/ether 7a:8a:29:0f:5e:52 brd ff:ff:ff:ff:ff:ff promiscuity 0
+        vrf table 1013 addrgenmode eui64
     28: vrf1014: <NOARP,MASTER,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN mode DEFAULT group default qlen 1000
-        link/ether e6:8c:4d:fc:eb:b1 brd ff:ff:ff:ff:ff:ff promiscuity 0 
-        vrf table 1014 addrgenmode eui64 
+        link/ether e6:8c:4d:fc:eb:b1 brd ff:ff:ff:ff:ff:ff promiscuity 0
+        vrf table 1014 addrgenmode eui64
 
 <span id="src-8362942_VirtualRoutingandForwarding-VRF-vrf_vni"></span>To
 list the interfaces attached to a specific VRF:
 
     cumulus@switch:~$ ip -d link show vrf vrf1012
-    8: swp1.2@swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master vrf1012 state UP mode DEFAULT group default 
-        link/ether 00:02:00:00:00:07 brd ff:ff:ff:ff:ff:ff promiscuity 0 
-        vlan protocol 802.1Q id 2 <REORDER_HDR> 
-        vrf_slave addrgenmode eui64 
-    9: swp2.2@swp2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master vrf1012 state UP mode DEFAULT group default 
-        link/ether 00:02:00:00:00:08 brd ff:ff:ff:ff:ff:ff promiscuity 0 
-        vlan protocol 802.1Q id 2 <REORDER_HDR> 
-        vrf_slave addrgenmode eui64 
-    10: swp3.2@swp3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master vrf1012 state UP mode DEFAULT group default 
-        link/ether 00:02:00:00:00:09 brd ff:ff:ff:ff:ff:ff promiscuity 0 
-        vlan protocol 802.1Q id 2 <REORDER_HDR> 
-        vrf_slave addrgenmode eui64 
-    11: swp4.2@swp4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master vrf1012 state UP mode DEFAULT group default 
-        link/ether 00:02:00:00:00:0a brd ff:ff:ff:ff:ff:ff promiscuity 0 
-        vlan protocol 802.1Q id 2 <REORDER_HDR> 
-        vrf_slave addrgenmode eui64 
-    12: swp5.2@swp5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master vrf1012 state UP mode DEFAULT group default 
-        link/ether 00:02:00:00:00:0b brd ff:ff:ff:ff:ff:ff promiscuity 0 
-        vlan protocol 802.1Q id 2 <REORDER_HDR> 
-        vrf_slave addrgenmode eui64 
-    13: br2: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master vrf1012 state DOWN mode DEFAULT group default 
-        link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff promiscuity 0 
-        bridge forward_delay 100 hello_time 200 max_age 2000 ageing_time 30000 stp_state 0 priority 32768 
-        vlan_filtering 0 vlan_protocol 802.1Q bridge_id 8000.0:0:0:0:0:0 designated_root 8000.0:0:0:0:0:0 
-        root_port 0 root_path_cost 0 topology_change 0 topology_change_detected 0 hello_timer    0.00 
-        tcn_timer    0.00 topology_change_timer    0.00 gc_timer  202.23 vlan_default_pvid 1 group_fwd_mask 0 
-        group_address 01:80:c2:00:00:00 mcast_snooping 1 mcast_router 1 mcast_query_use_ifaddr 0 mcast_querier 0 
-        mcast_hash_elasticity 4096 mcast_hash_max 4096 mcast_last_member_count 2 mcast_startup_query_count 2 
-        mcast_last_member_interval 100 mcast_membership_interval 26000 mcast_querier_interval 25500 
-        mcast_query_interval 12500 mcast_query_response_interval 1000 mcast_startup_query_interval 3125 
-        nf_call_iptables 0 nf_call_ip6tables 0 nf_call_arptables 0 
-        vrf_slave addrgenmode eui64 
+    8: swp1.2@swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master vrf1012 state UP mode DEFAULT group default
+        link/ether 00:02:00:00:00:07 brd ff:ff:ff:ff:ff:ff promiscuity 0
+        vlan protocol 802.1Q id 2 <REORDER_HDR>
+        vrf_slave addrgenmode eui64
+    9: swp2.2@swp2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master vrf1012 state UP mode DEFAULT group default
+        link/ether 00:02:00:00:00:08 brd ff:ff:ff:ff:ff:ff promiscuity 0
+        vlan protocol 802.1Q id 2 <REORDER_HDR>
+        vrf_slave addrgenmode eui64
+    10: swp3.2@swp3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master vrf1012 state UP mode DEFAULT group default
+        link/ether 00:02:00:00:00:09 brd ff:ff:ff:ff:ff:ff promiscuity 0
+        vlan protocol 802.1Q id 2 <REORDER_HDR>
+        vrf_slave addrgenmode eui64
+    11: swp4.2@swp4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master vrf1012 state UP mode DEFAULT group default
+        link/ether 00:02:00:00:00:0a brd ff:ff:ff:ff:ff:ff promiscuity 0
+        vlan protocol 802.1Q id 2 <REORDER_HDR>
+        vrf_slave addrgenmode eui64
+    12: swp5.2@swp5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master vrf1012 state UP mode DEFAULT group default
+        link/ether 00:02:00:00:00:0b brd ff:ff:ff:ff:ff:ff promiscuity 0
+        vlan protocol 802.1Q id 2 <REORDER_HDR>
+        vrf_slave addrgenmode eui64
+    13: br2: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master vrf1012 state DOWN mode DEFAULT group default
+        link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff promiscuity 0
+        bridge forward_delay 100 hello_time 200 max_age 2000 ageing_time 30000 stp_state 0 priority 32768
+        vlan_filtering 0 vlan_protocol 802.1Q bridge_id 8000.0:0:0:0:0:0 designated_root 8000.0:0:0:0:0:0
+        root_port 0 root_path_cost 0 topology_change 0 topology_change_detected 0 hello_timer    0.00
+        tcn_timer    0.00 topology_change_timer    0.00 gc_timer  202.23 vlan_default_pvid 1 group_fwd_mask 0
+        group_address 01:80:c2:00:00:00 mcast_snooping 1 mcast_router 1 mcast_query_use_ifaddr 0 mcast_querier 0
+        mcast_hash_elasticity 4096 mcast_hash_max 4096 mcast_last_member_count 2 mcast_startup_query_count 2
+        mcast_last_member_interval 100 mcast_membership_interval 26000 mcast_querier_interval 25500
+        mcast_query_interval 12500 mcast_query_response_interval 1000 mcast_startup_query_interval 3125
+        nf_call_iptables 0 nf_call_ip6tables 0 nf_call_arptables 0
+        vrf_slave addrgenmode eui64
 
 To show IPv4 routes in a VRF:
 
     cumulus@switch:~$ ip route show table vrf1012
-    unreachable default  metric 240 
-    broadcast 20.7.2.0 dev br2  proto kernel  scope link  src 20.7.2.1 dead linkdown 
-    20.7.2.0/24 dev br2  proto kernel  scope link  src 20.7.2.1 dead linkdown 
-    local 20.7.2.1 dev br2  proto kernel  scope host  src 20.7.2.1 
-    broadcast 20.7.2.255 dev br2  proto kernel  scope link  src 20.7.2.1 dead linkdown 
-    broadcast 169.254.2.8 dev swp1.2  proto kernel  scope link  src 169.254.2.9 
-    169.254.2.8/30 dev swp1.2  proto kernel  scope link  src 169.254.2.9 
-    local 169.254.2.9 dev swp1.2  proto kernel  scope host  src 169.254.2.9 
-    broadcast 169.254.2.11 dev swp1.2  proto kernel  scope link  src 169.254.2.9 
-    broadcast 169.254.2.12 dev swp2.2  proto kernel  scope link  src 169.254.2.13 
-    169.254.2.12/30 dev swp2.2  proto kernel  scope link  src 169.254.2.13 
-    local 169.254.2.13 dev swp2.2  proto kernel  scope host  src 169.254.2.13 
-    broadcast 169.254.2.15 dev swp2.2  proto kernel  scope link  src 169.254.2.13 
-    broadcast 169.254.2.16 dev swp3.2  proto kernel  scope link  src 169.254.2.17 
-    169.254.2.16/30 dev swp3.2  proto kernel  scope link  src 169.254.2.17 
-    local 169.254.2.17 dev swp3.2  proto kernel  scope host  src 169.254.2.17 
-    broadcast 169.254.2.19 dev swp3.2  proto kernel  scope link  src 169.254.2.17 
+    unreachable default  metric 240
+    broadcast 20.7.2.0 dev br2  proto kernel  scope link  src 20.7.2.1 dead linkdown
+    20.7.2.0/24 dev br2  proto kernel  scope link  src 20.7.2.1 dead linkdown
+    local 20.7.2.1 dev br2  proto kernel  scope host  src 20.7.2.1
+    broadcast 20.7.2.255 dev br2  proto kernel  scope link  src 20.7.2.1 dead linkdown
+    broadcast 169.254.2.8 dev swp1.2  proto kernel  scope link  src 169.254.2.9
+    169.254.2.8/30 dev swp1.2  proto kernel  scope link  src 169.254.2.9
+    local 169.254.2.9 dev swp1.2  proto kernel  scope host  src 169.254.2.9
+    broadcast 169.254.2.11 dev swp1.2  proto kernel  scope link  src 169.254.2.9
+    broadcast 169.254.2.12 dev swp2.2  proto kernel  scope link  src 169.254.2.13
+    169.254.2.12/30 dev swp2.2  proto kernel  scope link  src 169.254.2.13
+    local 169.254.2.13 dev swp2.2  proto kernel  scope host  src 169.254.2.13
+    broadcast 169.254.2.15 dev swp2.2  proto kernel  scope link  src 169.254.2.13
+    broadcast 169.254.2.16 dev swp3.2  proto kernel  scope link  src 169.254.2.17
+    169.254.2.16/30 dev swp3.2  proto kernel  scope link  src 169.254.2.17
+    local 169.254.2.17 dev swp3.2  proto kernel  scope host  src 169.254.2.17
+    broadcast 169.254.2.19 dev swp3.2  proto kernel  scope link  src 169.254.2.17
 
 To show IPv6 routes in a VRF:
 
-``` 
+```
 cumulus@switch:~$ ip -6 route show table vrf1012
 local fe80:: dev lo  proto none  metric 0  pref medium
 local fe80:: dev lo  proto none  metric 0  pref medium
@@ -1105,10 +1105,10 @@ To see a list of links associated with a particular VRF table, `run ip
 link list <vrf-name>`. For example:
 
     cumulus@switch:~$ ip link list rocket
-      
+
     VRF: rocket           
     --------------------
-    swp1.10@swp1     UP             6c:64:1a:00:5a:0c <BROADCAST,MULTICAST,UP,LOWER_UP> 
+    swp1.10@swp1     UP             6c:64:1a:00:5a:0c <BROADCAST,MULTICAST,UP,LOWER_UP>
     swp2.10@swp2     UP             6c:64:1a:00:5a:0d <BROADCAST,MULTICAST,UP,LOWER_UP>
 
 To see a list of routes associated with a particular VRF table, run `ip
@@ -1118,17 +1118,17 @@ route list <vrf-name>`. For example:
      
     VRF: rocket           
     --------------------
-    unreachable default  metric 8192 
-    10.1.1.0/24 via 10.10.1.2 dev swp2.10 
-    10.1.2.0/24 via 10.99.1.2 dev swp1.10 
-    broadcast 10.10.1.0 dev swp2.10  proto kernel  scope link  src 10.10.1.1 
-    10.10.1.0/28 dev swp2.10  proto kernel  scope link  src 10.10.1.1 
-    local 10.10.1.1 dev swp2.10  proto kernel  scope host  src 10.10.1.1 
-    broadcast 10.10.1.15 dev swp2.10  proto kernel  scope link  src 10.10.1.1 
-    broadcast 10.99.1.0 dev swp1.10  proto kernel  scope link  src 10.99.1.1 
-    10.99.1.0/30 dev swp1.10  proto kernel  scope link  src 10.99.1.1 
-    local 10.99.1.1 dev swp1.10  proto kernel  scope host  src 10.99.1.1 
-    broadcast 10.99.1.3 dev swp1.10  proto kernel  scope link  src 10.99.1.1 
+    unreachable default  metric 8192
+    10.1.1.0/24 via 10.10.1.2 dev swp2.10
+    10.1.2.0/24 via 10.99.1.2 dev swp1.10
+    broadcast 10.10.1.0 dev swp2.10  proto kernel  scope link  src 10.10.1.1
+    10.10.1.0/28 dev swp2.10  proto kernel  scope link  src 10.10.1.1
+    local 10.10.1.1 dev swp2.10  proto kernel  scope host  src 10.10.1.1
+    broadcast 10.10.1.15 dev swp2.10  proto kernel  scope link  src 10.10.1.1
+    broadcast 10.99.1.0 dev swp1.10  proto kernel  scope link  src 10.99.1.1
+    10.99.1.0/30 dev swp1.10  proto kernel  scope link  src 10.99.1.1
+    local 10.99.1.1 dev swp1.10  proto kernel  scope host  src 10.99.1.1
+    broadcast 10.99.1.3 dev swp1.10  proto kernel  scope link  src 10.99.1.1
      
     local fe80:: dev lo  proto none  metric 0  pref medium
     local fe80:: dev lo  proto none  metric 0  pref medium
@@ -1405,7 +1405,7 @@ or<br />
 </ol>
 <p>{{%notice tip%}}</p>
 <p>You can create this configuration using the <code>vrf</code> command (<a href="#src-8362942_VirtualRoutingandForwarding-VRF-exe">see above</a> for more details):</p>
-<pre><code>cumulus@switch:~$ sudo vrf task exec turtle dhcpd -6 -q -cf / 
+<pre><code>cumulus@switch:~$ sudo vrf task exec turtle dhcpd -6 -q -cf /
     /etc/dhcp/dhcpd6-turtle.conf -pf /var/run/dhcpd6-turtle.pid swp3</code></pre>
 <p>{{%/notice%}}</p></td>
 </tr>

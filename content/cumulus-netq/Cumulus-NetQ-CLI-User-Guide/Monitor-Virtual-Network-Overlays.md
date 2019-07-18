@@ -219,8 +219,7 @@ same unit of measure.
 {{%/notice%}}
 
 For more information about and configuration of EVPN in your data
-center, refer to the [Cumulus Linux
-EVPN](/display/NETQ22/Ethernet+Virtual+Private+Network+-+EVPN) topic.
+center, refer to the [Cumulus Linux EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/) topic.
 
 ### <span>View the Status of EVPN</span>
 

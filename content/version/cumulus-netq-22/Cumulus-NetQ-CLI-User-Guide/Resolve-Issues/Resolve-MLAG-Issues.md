@@ -13,7 +13,7 @@ siteSlug: cumulus-netq-22
 ---
 This topic outlines a few scenarios that illustrate how you use NetQ to
 troubleshoot
-[MLAG](/display/NETQ22/Multi-Chassis+Link+Aggregation+-+MLAG) on Cumulus
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) on Cumulus
 Linux switches. Each starts with a log message that indicates the
 current MLAG state.
 
@@ -82,7 +82,7 @@ the state:
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
-    Peer Interface and IP: peerlink-3.4094 169.254.0.9 
+    Peer Interface and IP: peerlink-3.4094 169.254.0.9
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
@@ -90,13 +90,13 @@ the state:
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
-    vx-38            vx-38            -       -                    - 
-    vx-33            vx-33            -       -                    - 
-    hostbond4        hostbond4        1       -                    - 
-    hostbond5        hostbond5        2       -                    - 
-    vx-37            vx-37            -       -                    - 
-    vx-36            vx-36            -       -                    - 
-    vx-35            vx-35            -       -                    - 
+    vx-38            vx-38            -       -                    -
+    vx-33            vx-33            -       -                    -
+    hostbond4        hostbond4        1       -                    -
+    hostbond5        hostbond5        2       -                    -
+    vx-37            vx-37            -       -                    -
+    vx-36            vx-36            -       -                    -
+    vx-35            vx-35            -       -                    -
     vx-34            vx-34            -       -                    -
 
 ## <span>Scenario: Dual-connected Bond Is Down</span>
@@ -140,7 +140,7 @@ You can retrieve the output in JSON format for export to another tool:
                 "node": "lea01", 
                 "reason": "Singly Attached Bonds: hostbond5" 
             }
-        ], 
+        ],
         "failedNodes":[
         ],
         "summary":{
@@ -175,7 +175,7 @@ the state:
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
-    Peer Interface and IP: peerlink-3.4094 169.254.0.9 
+    Peer Interface and IP: peerlink-3.4094 169.254.0.9
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
@@ -183,14 +183,14 @@ the state:
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
-    vx-38            vx-38            -       -                    - 
-    vx-33            vx-33            -       -                    - 
-    hostbond4        hostbond4        1       -                    - 
-    hostbond5        -                2       -                    - 
-    vx-37            vx-37            -       -                    - 
-    vx-36            vx-36            -       -                    - 
-    vx-35            vx-35            -       -                    - 
-    vx-34            vx-34            -       -                    - 
+    vx-38            vx-38            -       -                    -
+    vx-33            vx-33            -       -                    -
+    hostbond4        hostbond4        1       -                    -
+    hostbond5        -                2       -                    -
+    vx-37            vx-37            -       -                    -
+    vx-36            vx-36            -       -                    -
+    vx-35            vx-35            -       -                    -
+    vx-34            vx-34            -       -                    -
 
 ## <span>Scenario: VXLAN Active-active Device or Interface Is Down</span>
 
@@ -215,11 +215,11 @@ To begin your investigation, show the status of the `clagd` service:
 Checking the MLAG status provides the reason for the failure:
 
     cumulus@switch:~$ netq check clag
-    Checked Nodes: 6, Warning Nodes: 2, Failed Nodes: 2 
+    Checked Nodes: 6, Warning Nodes: 2, Failed Nodes: 2
     Node             Reason
     ---------------- --------------------------------------------------------------------------
-    spine01          Protodown Bonds: vx-37:vxlan-single 
-    leaf01           Protodown Bonds: vx-37:vxlan-single 
+    spine01          Protodown Bonds: vx-37:vxlan-single
+    leaf01           Protodown Bonds: vx-37:vxlan-single
 
 You can retrieve the output in JSON format for export to another tool:
 
@@ -235,7 +235,7 @@ You can retrieve the output in JSON format for export to another tool:
                 "node": "leaf01", 
                 "reason": "Protodown Bonds: vx-37:vxlan-single" 
             }
-        ], 
+        ],
         "summary":{ 
                 "checkedNodeCount": 6, 
                 "failedNodeCount": 2, 
@@ -266,7 +266,7 @@ the state:
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
-    Peer Interface and IP: peerlink-3.4094 169.254.0.9 
+    Peer Interface and IP: peerlink-3.4094 169.254.0.9
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
@@ -274,14 +274,14 @@ the state:
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
-    vx-38            vx-38            -       -                    - 
-    vx-33            vx-33            -       -                    - 
-    hostbond4        hostbond4        1       -                    - 
-    hostbond5        hostbond5        2       -                    - 
-    vx-37            -                -       -                    vxlan-single 
-    vx-36            vx-36            -       -                    - 
-    vx-35            vx-35            -       -                    - 
-    vx-34            vx-34            -       -                    - 
+    vx-38            vx-38            -       -                    -
+    vx-33            vx-33            -       -                    -
+    hostbond4        hostbond4        1       -                    -
+    hostbond5        hostbond5        2       -                    -
+    vx-37            -                -       -                    vxlan-single
+    vx-36            vx-36            -       -                    -
+    vx-35            vx-35            -       -                    -
+    vx-34            vx-34            -       -                    -
 
 ## <span>Scenario: Remote-side clagd Stopped by systemctl Command</span>
 
@@ -312,11 +312,11 @@ Showing the MLAG state reveals which nodes are down:
 Checking the MLAG status provides the reason for the failure:
 
     cumulus@switch:~$ netq check clag
-    Checked Nodes: 6, Warning Nodes: 1, Failed Nodes: 2 
+    Checked Nodes: 6, Warning Nodes: 1, Failed Nodes: 2
     Node             Reason
     ---------------- --------------------------------------------------------------------------
-    spine01          Peer Connectivity failed 
-    leaf01           Peer Connectivity failed 
+    spine01          Peer Connectivity failed
+    leaf01           Peer Connectivity failed
 
 You can retrieve the output in JSON format for export to another tool:
 
@@ -332,7 +332,7 @@ You can retrieve the output in JSON format for export to another tool:
                 "node": "leaf01", 
                 "reason": "Peer Connectivity failed" 
             }
-        ], 
+        ],
         "summary":{ 
             "checkedNodeCount": 6, 
             "failedNodeCount": 2, 
@@ -347,7 +347,7 @@ the state:
      
     The peer is not alive
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 primary
-    Peer Interface and IP: peerlink-3.4094 169.254.0.9 
+    Peer Interface and IP: peerlink-3.4094 169.254.0.9
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (inactive)
     System MAC: 44:38:39:ff:ff:01
@@ -355,10 +355,10 @@ the state:
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
-    vx-38            -                -       -                    - 
-    vx-33            -                -       -                    - 
-    hostbond4        -                1       -                    - 
-    hostbond5        -                2       -                    - 
+    vx-38            -                -       -                    -
+    vx-33            -                -       -                    -
+    hostbond4        -                1       -                    -
+    hostbond5        -                2       -                    -
     vx-37            -                -       -                    -
     vx-36            -                -       -                    -
     vx-35            -                -       -                    -

@@ -18,15 +18,10 @@ for that path in the associated topic.
 You can upgrade to NetQ 2.2.0 through any of the following paths:
 
   - Upgrade NetQ Platform using VM (VMware or KVM/QCOW) image
-    
       - NetQ 1.x \> NetQ 2.2.0
-    
       - NetQ 2.0.x \> NetQ 2.2.0
-    
       - NetQ 2.1.x \> NetQ 2.2.0
-
   - Upgrade NetQ Appliance using appliance image
-    
       - NetQ 2.1.x \> NetQ 2.2.0
 
 If you are installing Cumulus NetQ software for the first time, please

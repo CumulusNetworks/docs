@@ -12,7 +12,6 @@ imgData: hostpack
 siteSlug: hostpack
 subsection: true
 ---
-Pete Bratach
 
 [Cumulus Host Pack](https://cumulusnetworks.com/products/netq/) brings
 the host to the network for fabric-wide *visibility* and *connectivity*.
@@ -48,7 +47,7 @@ visibility through **NetQ on the Host**.
 [FRRouting on the Host](https://frrouting.org) — the suite of routing
 protocols in Cumulus Linux — delivers layer 3 routing on host servers;
 it also enables the
-[BGP](/display/HOSTPACK/Border+Gateway+Protocol+-+BGP) unnumbered
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/) unnumbered
 interfaces standard to be implemented in both the network infrastructure
 and in host networking, eliminating the issues that can be posed by a
 layer 2 network and enabling you to move to layer 3 from the container
@@ -68,7 +67,7 @@ past the first step of automated configuration management.
 
 {{% imgOld 2 %}}
 
-  
+
 ***Host Pack connectivity is provided through FRRouting on the Host and
 Container Advertiser***
 

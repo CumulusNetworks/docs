@@ -47,30 +47,10 @@ expect the loopback IP address to exist in the VRF, such as NTP.
 
 ## <span id="src-8362940_ManagementVRF-enablevrf" class="confluence-anchor-link"></span><span>Enable Management VRF</span>
 
-To enable management VRF on eth0, complete the following steps:
+To enable management VRF on eth0, complete the following steps.
 
-{{%notice info has%}}
-
-**Example Management VRF Configuration**
-
-The example NCLU commands below create a VRF called *mgmt*:
-
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
-{{%notice info has%}}
-
-The management VRF must be named `mgmt` to differentiate from a data
+The example NCLU commands below create a VRF called *mgmt*. The management VRF must be named `mgmt` to differentiate from a data
 plane VRF.
-
-{{%/notice%}}
-
-</div>
-
-</div>
 
     cumulus@switch:~$ net add vrf mgmt
     cumulus@switch:~$ net pending
@@ -94,25 +74,9 @@ The NCLU commands above create the following snippets in the
      
     ...
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
-{{%notice info has%}}
-
 When you commit the change to add the management VRF, all connections
 over eth0 are dropped. This can impact any automation that might be
 running, such as Ansible or Puppet scripts.
-
-{{%/notice%}}
-
-</div>
-
-</div>
-
-{{%/notice%}}
 
 If you take down the management VRF using `ifdown`, to bring it back up
 you need to do one of two things:
@@ -191,27 +155,27 @@ listed above, except for `dhcrelay`, which is discussed
     Management VRF section above](#src-8362940_ManagementVRF-enablevrf).
 
 2.  If NTP is running, stop the service:
-    
+
         cumulus@switch:~$ sudo systemctl stop ntp.service
 
 3.  Disable NTP from starting automatically in the default VRF:
-    
+
         cumulus@switch:~$ sudo systemctl disable ntp.service
 
 4.  Run the `daemon-reload` command:
-    
+
         cumulus@switch:~$ sudo systemctl daemon-reload
 
 5.  Start NTP in the management VRF:
-    
+
         cumulus@switch:~$ sudo systemctl start ntp@mgmt.service
 
 6.  Enable `ntp@mgmt` so that it starts when the switch boots:
-    
+
         cumulus@switch:~$ sudo systemctl enable ntp@mgmt.service
 
 7.  Verify that the `ntpd` service is running in the management VRF:
-    
+
         cumulus@switch:~$ ps aux | grep ntp
         ntp       7294  0.0  0.4  81320  2108 ?        Ssl  22:22   0:00 /usr/sbin/ntpd -n -u ntp:ntp -g
         cumulus   7906  0.0  0.4  12728  2056 tty1     S+   22:34   0:00 grep ntp
@@ -226,7 +190,7 @@ After you enable `ntp@mgmt`, you can verify that NTP peers are active:
     *38.229.71.1     204.9.54.119     2 u   42   64  377   31.275   -0.625   3.105
     -104.131.53.252  209.51.161.238   2 u   47   64  377   16.381   -5.251   0.681
     +45.79.10.228    200.98.196.212   2 u   44   64  377   42.998    0.115   0.585
-    +74.207.240.206  127.67.113.92    2 u   43   64  377   73.240   -1.623   0.320 
+    +74.207.240.206  127.67.113.92    2 u   43   64  377   73.240   -1.623   0.320
 
 ### <span id="src-8362940_ManagementVRF-snmpd" class="confluence-anchor-link"></span><span>Enable Polling with snmpd in a Management VRF</span>
 
@@ -280,13 +244,13 @@ the original service file.
 
 1.  Copy the original service file to its new name and store the file in
     `/etc/systemd/system`.
-    
-        cumulus@switch:~$ sudo cp /lib/systemd/system/myservice.service /etc/systemd/system/myservice.service 
+
+        cumulus@switch:~$ sudo cp /lib/systemd/system/myservice.service /etc/systemd/system/myservice.service
 
 2.  If there is a *User* directive, comment it out. If it exists, you
     can find it under *\[Service\]*.
-    
-        cumulus@switch:~$ sudo nano /etc/systemd/system/myservice.service 
+
+        cumulus@switch:~$ sudo nano /etc/systemd/system/myservice.service
          
         [Unit]
         Description=Example
@@ -302,7 +266,7 @@ the original service file.
 3.  Modify the *ExecStart* line to `/usr/bin/vrf exec mgmt /sbin/runuser
     -u USER -- COMMAND`. For example, to have the *cumulus* user run the
     *foocommand*:
-    
+
         [Unit]
         Description=Example
         Documentation=https://www.example.io/
@@ -315,13 +279,13 @@ the original service file.
         WantedBy=multi-user.target
 
 4.  Save and exit the file.
-    
+
         ^O
         ^X
-        cumulus@switch:~$ 
+        cumulus@switch:~$
 
 5.  Reload the service so the changes take effect:
-    
+
         cumulus@switch:~$ sudo systemctl daemon-reload
 
 ## <span>OSPF and BGP</span>
@@ -359,7 +323,7 @@ in this way (for both BGP and OSPF):
 These commands produce the following configuration snippet in the
 `/etc/frr/frr.conf` file:
 
-    <routing protocol> 
+    <routing protocol>
     redistribute connected route-map REDISTRIBUTE-CONNECTED
      
     route-map REDISTRIBUTE-CONNECTED deny 100
@@ -397,7 +361,7 @@ If you use `ip route get` to return information about a single route,
 the command resolves over the *mgmt* table by default. To obtain
 information about the route in the switching silicon, use:
 
-    cumulus@switch:~$ net show route <addr> 
+    cumulus@switch:~$ net show route <addr>
 
 To get the route for any VRF, run the following command:
 
@@ -429,16 +393,16 @@ You configure the management interface in the ` /etc/network/interfaces
 management VRF stanzas are added to the *mgmt* interface class:
 
     auto lo
-    iface lo inet loopback 
+    iface lo inet loopback
      
     allow-mgmt eth0
     iface eth0 inet dhcp
         vrf mgmt
-      
+
     allow-mgmt mgmt
     iface mgmt
         address 127.0.0.1/8
-        vrf-table auto 
+        vrf-table auto
 
 When you run `ifupdown2` commands against the interfaces in the mgmt
 class, include `--allow=mgmt` with the commands. For example, to see
@@ -446,7 +410,7 @@ which interfaces are in the mgmt interface class, run:
 
     cumulus@switch:~$ ifquery l --allow=mgmt
     eth0
-    mgmt 
+    mgmt
 
 To reload the configurations for interfaces in the mgmt class, run:
 

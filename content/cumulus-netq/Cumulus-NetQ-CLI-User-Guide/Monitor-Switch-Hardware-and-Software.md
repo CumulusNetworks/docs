@@ -20,9 +20,9 @@ questions such as:
   - Are all switches licensed correctly?
   - Do all switches have NetQ agents running?
 
-NetQ uses [LLDP](/display/NETQ22/Link+Layer+Discovery+Protocol) (Link
+NetQ uses [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) (Link
 Layer Discovery Protocol) to collect port information. NetQ can also
-identify peer ports connected to DACs ( Direct Attached Cables) and AOCs
+identify peer ports connected to DACs (Direct Attached Cables) and AOCs
 (Active Optical Cables) without using LLDP, even if the link is not UP.
 
 The NetQ CLI provides the `netq show inventory`, `netq show sensors`,

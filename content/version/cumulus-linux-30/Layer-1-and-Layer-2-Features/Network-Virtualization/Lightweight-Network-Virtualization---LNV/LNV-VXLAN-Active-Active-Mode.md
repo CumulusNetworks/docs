@@ -252,7 +252,7 @@ The IP address configuration for this example:
 iface lo inet loopback
     address 10.0.0.21/32
     address 10.10.10.10/32
-    
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -310,7 +310,7 @@ iface lo inet loopback
     vxrd-src-ip 10.0.0.11
     vxrd-svcnode-ip 10.10.10.10
     clagd-vxlan-anycast-ip 10.10.10.20
-       
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -330,22 +330,22 @@ iface peerlink
   bond-lacp-rate 1
   bond-min-links 1
   bond-xmit-hash-policy layer3+4
-      
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.1/30
   clagd-peer-ip 169.254.1.2
-  clagd-backup-ip 10.0.0.12 
+  clagd-backup-ip 10.0.0.12
   clagd-sys-mac 44:39:39:FF:40:94
  
 # Downlinks
 auto swp1
 iface swp1
  
-  
-auto bond0 
+
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
     bond-miimon 100
     bond-min-links 1
@@ -360,8 +360,8 @@ iface native
   bridge-ports peerlink bond0 vxlan1
   bridge-stp on
   mstpctl-portbpdufilter vxlan1=yes
-  mstpctl-bpduguard vxlan1=yes 
-     
+  mstpctl-bpduguard vxlan1=yes
+
 auto vlan10
 iface vlan10
   bridge-ports peerlink.10 bond0.10 vxlan10
@@ -381,17 +381,17 @@ auto vxlan1
 iface vxlan1
   vxlan-id 1
   vxlan-local-tunnelip 10.0.0.11
-  
+
 auto vxlan10
 iface vxlan10
   vxlan-id 10
   vxlan-local-tunnelip 10.0.0.11
-    
+
 auto vxlan20
 iface vxlan20
   vxlan-id 20
   vxlan-local-tunnelip 10.0.0.11
-  
+
 # uplinks
 auto swp51
 iface swp51
@@ -405,7 +405,7 @@ iface lo inet loopback
     vxrd-src-ip 10.0.0.12
     vxrd-svcnode-ip 10.10.10.10
     clagd-vxlan-anycast-ip 10.10.10.20
-       
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -425,7 +425,7 @@ iface peerlink
   bond-lacp-rate 1
   bond-min-links 1
   bond-xmit-hash-policy layer3+4
-      
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.2/30
@@ -437,10 +437,10 @@ iface peerlink.4094
 auto swp1
 iface swp1
  
-  
-auto bond0 
+
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
     bond-miimon 100
     bond-min-links 1
@@ -456,7 +456,7 @@ iface native
   bridge-stp on
   mstpctl-portbpdufilter vxlan1=yes
   mstpctl-bpduguard vxlan1=yes    
-   
+
 auto vlan10
 iface vlan10
   bridge-ports peerlink.10 bond0.10 vxlan10
@@ -476,17 +476,17 @@ auto vxlan1
 iface vxlan1
   vxlan-id 1
   vxlan-local-tunnelip 10.0.0.12
-  
+
 auto vxlan10
 iface vxlan10
   vxlan-id 10
   vxlan-local-tunnelip 10.0.0.12
-    
+
 auto vxlan20
 iface vxlan20
   vxlan-id 20
   vxlan-local-tunnelip 10.0.0.12
-  
+
 # uplinks
 auto swp51
 iface swp51
@@ -502,7 +502,7 @@ iface lo inet loopback
   vxrd-src-ip 10.0.0.13
   vxrd-svcnode-ip 10.10.10.10
   clagd-vxlan-anycast-ip 10.10.10.30
-       
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -522,7 +522,7 @@ iface peerlink
   bond-lacp-rate 1
   bond-min-links 1
   bond-xmit-hash-policy layer3+4
-      
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.1/30
@@ -533,10 +533,10 @@ iface peerlink.4094
 # Downlinks
 auto swp1
 iface swp1
-  
-auto bond0 
+
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
     bond-miimon 100
     bond-min-links 1
@@ -552,7 +552,7 @@ iface native
   bridge-stp on
   mstpctl-portbpdufilter vxlan1=yes
   mstpctl-bpduguard vxlan1=yes    
-   
+
 auto vlan10
 iface vlan10
   bridge-ports peerlink.10 bond0.10 vxlan10
@@ -572,17 +572,17 @@ auto vxlan1
 iface vxlan1
   vxlan-id 1
   vxlan-local-tunnelip 10.0.0.13
-    
+
 auto vxlan10
 iface vxlan10
   vxlan-id 10
   vxlan-local-tunnelip 10.0.0.13
-    
+
 auto vxlan20
 iface vxlan20
   vxlan-id 20
   vxlan-local-tunnelip 10.0.0.13
-  
+
 # uplinks
 auto swp51
 iface swp51
@@ -596,7 +596,7 @@ iface lo inet loopback
   vxrd-src-ip 10.0.0.14
   vxrd-svcnode-ip 10.10.10.10
   clagd-vxlan-anycast-ip 10.10.10.30
-       
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -616,7 +616,7 @@ iface peerlink
   bond-lacp-rate 1
   bond-min-links 1
   bond-xmit-hash-policy layer3+4
-      
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.2/30
@@ -627,10 +627,10 @@ iface peerlink.4094
 # Downlinks
 auto swp1
 iface swp1
-  
-auto bond0 
+
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
     bond-miimon 100
     bond-min-links 1
@@ -646,7 +646,7 @@ iface native
   bridge-stp on
   mstpctl-portbpdufilter vxlan1=yes
   mstpctl-bpduguard vxlan1=yes    
-   
+
 auto vlan10
 iface vlan10
   bridge-ports peerlink.10 bond0.10 vxlan10
@@ -666,17 +666,17 @@ auto vxlan1
 iface vxlan1
   vxlan-id 1
   vxlan-local-tunnelip 10.0.0.14
-  
+
 auto vxlan10
 iface vxlan10
   vxlan-id 10
   vxlan-local-tunnelip 10.0.0.14
-    
+
 auto vxlan20
 iface vxlan20
   vxlan-id 20
   vxlan-local-tunnelip 10.0.0.14
-  
+
 # uplinks
 auto swp51
 iface swp51
@@ -846,7 +846,7 @@ interface swp52
 !
 router bgp 65011
   bgp router-id 10.0.0.11
-  network 10.0.0.11/32 
+  network 10.0.0.11/32
   network 172.16.1.0/24
   network 10.10.10.20/32
   maximum-paths 64
@@ -996,18 +996,18 @@ iface lo inet loopback
 auto lo
 iface lo inet static
   address 10.0.0.31/32
-  
+
 auto eth0
 iface eth0 inet dhcp
  
 auto eth1
 iface eth1 inet manual
     bond-master bond0
-        
+
 auto eth2
 iface eth2 inet manual
     bond-master bond0
-    
+
 auto bond0
 iface bond0 inet static
   bond-slaves none
@@ -1021,7 +1021,7 @@ iface bond0 inet static
 auto bond0.10
 iface bond0.10 inet static
   address 172.16.10.101/24
-  
+
 auto bond0.20
 iface bond0.20 inet static
   address 172.16.20.101/24</code></pre></td>
@@ -1032,18 +1032,18 @@ iface lo inet loopback
 auto lo
 iface lo inet static
   address 10.0.0.33/32
-  
+
 auto eth0
 iface eth0 inet dhcp
  
 auto eth1
 iface eth1 inet manual
     bond-master bond0
-        
+
 auto eth2
 iface eth2 inet manual
     bond-master bond0
-    
+
 auto bond0
 iface bond0 inet static
   bond-slaves none
@@ -1057,7 +1057,7 @@ iface bond0 inet static
 auto bond0.10
 iface bond0.10 inet static
   address 172.16.10.103/24
-  
+
 auto bond0.20
 iface bond0.20 inet static
   address 172.16.20.103/24</code></pre></td>
@@ -1074,11 +1074,11 @@ by default.
 1.  Open the `/etc/default/vxrd` configuration file in a text editor.
 
 2.  Enable the daemon, then save the file.
-    
+
         START=yes
 
 3.  Restart the `vxrd` daemon.
-    
+
         cumulus@leaf:~$ sudo systemctl restart vxrd.service
 
 ### <span>Configuring a VTEP</span>
@@ -1093,11 +1093,11 @@ needed. Alternatively, the configuration can be done in
 1.  Open the `/etc/default/vxsnd` configuration file in a text editor.
 
 2.  Enable the daemon, then save the file:
-    
+
         START=yes
 
 3.  Restart the daemon.
-    
+
         cumulus@spine:~$ sudo systemctl restart vxsnd.service
 
 ### <span>Configuring the Service Node</span>
@@ -1123,47 +1123,47 @@ svcnode_peers = 10.0.0.21 10.0.0.22</code></pre>
 <pre><code>[common]
 # Log level is one of DEBUG, INFO, WARNING, ERROR, CRITICAL
 #loglevel = INFO
- 
+
 # Destination for log message.  Can be a file name, &#39;stdout&#39;, or &#39;syslog&#39;
 #logdest = syslog
- 
+
 # log file size in bytes. Used when logdest is a file
 #logfilesize = 512000
- 
+
 # maximum number of log files stored on disk. Used when logdest is a file
 #logbackupcount = 14
- 
+
 # The file to write the pid. If using monit, this must match the one
 # in the vxsnd.rc
 #pidfile = /var/run/vxsnd.pid
- 
+
 # The file name for the unix domain socket used for mgmt.
 #udsfile = /var/run/vxsnd.sock
- 
+
 # UDP port for vxfld control messages
 #vxfld_port = 10001
- 
+
 # This is the address to which registration daemons send control messages for
 # registration and/or BUM packets for replication
 svcnode_ip = 10.10.10.10
- 
+
 # Holdtime (in seconds) for soft state. It is used when sending a
 # register msg to peers in response to learning a &lt;vni, addr&gt; from a
 # VXLAN data pkt
 #holdtime = 90
- 
+
 # Local IP address to bind to for receiving inter-vxsnd control traffic
 src_ip = 10.0.0.21
- 
+
 [vxsnd]
 # Space separated list of IP addresses of vxsnd to share state with
 svcnode_peers = 10.0.0.21 10.0.0.22
- 
+
 # When set to true, the service node will listen for vxlan data traffic
 # Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
 # for False
 #enable_vxlan_listen = true
- 
+
 # When set to true, the svcnode_ip will be installed on the loopback
 # interface, and it will be withdrawn when the vxsnd is no longer in
 # service.  If set to true, the svcnode_ip configuration
@@ -1171,7 +1171,7 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 # Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
 # for False
 #install_svcnode_ip = false
- 
+
 # Seconds to wait before checking the database to age out stale entries
 #age_check = 90</code></pre>
 </details></td>
@@ -1186,47 +1186,47 @@ svcnode_peers = 10.0.0.21 10.0.0.22</code></pre>
 <pre><code>[common]
 # Log level is one of DEBUG, INFO, WARNING, ERROR, CRITICAL
 #loglevel = INFO
- 
+
 # Destination for log message.  Can be a file name, &#39;stdout&#39;, or &#39;syslog&#39;
 #logdest = syslog
- 
+
 # log file size in bytes. Used when logdest is a file
 #logfilesize = 512000
- 
+
 # maximum number of log files stored on disk. Used when logdest is a file
 #logbackupcount = 14
- 
+
 # The file to write the pid. If using monit, this must match the one
 # in the vxsnd.rc
 #pidfile = /var/run/vxsnd.pid
- 
+
 # The file name for the unix domain socket used for mgmt.
 #udsfile = /var/run/vxsnd.sock
- 
+
 # UDP port for vxfld control messages
 #vxfld_port = 10001
- 
+
 # This is the address to which registration daemons send control messages for
 # registration and/or BUM packets for replication
 svcnode_ip = 10.10.10.10
- 
+
 # Holdtime (in seconds) for soft state. It is used when sending a
 # register msg to peers in response to learning a &lt;vni, addr&gt; from a
 # VXLAN data pkt
 #holdtime = 90
- 
+
 # Local IP address to bind to for receiving inter-vxsnd control traffic
 src_ip = 10.0.0.22
- 
+
 [vxsnd]
 # Space separated list of IP addresses of vxsnd to share state with
 svcnode_peers = 10.0.0.21 10.0.0.22
- 
+
 # When set to true, the service node will listen for vxlan data traffic
 # Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
 # for False
 #enable_vxlan_listen = true
- 
+
 # When set to true, the svcnode_ip will be installed on the loopback
 # interface, and it will be withdrawn when the vxsnd is no longer in
 # service.  If set to true, the svcnode_ip configuration
@@ -1234,7 +1234,7 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 # Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
 # for False
 #install_svcnode_ip = false
- 
+
 # Seconds to wait before checking the database to age out stale entries
 #age_check = 90</code></pre>
 </details></td>
@@ -1320,9 +1320,9 @@ The code snippet below illustrates this concept:
 
     auto example_bridge
     iface example_bridge
-      bridge-ports VXLAN10 
+      bridge-ports VXLAN10
       address 5.5.5.1/24
-     
+
     auto VXLAN10
     iface VXLAN10
       vxlan-id 10
@@ -1361,7 +1361,7 @@ iface hyperloopin
   bond-mode 802.3ad
   bond-xmit-hash-policy layer3+4
   bond-lacp-rate 1
- 
+
 auto hyperloopout
 iface hyperloopout
   bond-slaves swp46 swp48    
@@ -1370,13 +1370,13 @@ iface hyperloopout
   bond-mode 802.3ad
   bond-xmit-hash-policy layer3+4
   bond-lacp-rate 1
- 
+
 auto vlan1svi
 iface vlan1svi
   bridge-ports hyperloopout
   address 172.16.1.2/24
   address-virtual 00:00:5e:00:01:01 172.16.1.1/24
- 
+
 auto native
 iface native
   bridge-ports peerlink bond0 vxlan1 hyperloopin
@@ -1390,17 +1390,17 @@ iface lo inet loopback
   vxrd-src-ip 10.0.0.41
   vxrd-svcnode-ip 10.10.10.10
   clagd-vxlan-anycast-ip 10.10.10.40
-       
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 # peerlinks
 auto swp49
 iface swp49
- 
+
 auto swp50
 iface swp50
- 
+
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
@@ -1410,28 +1410,28 @@ iface peerlink
   bond-lacp-rate 1
   bond-min-links 1
   bond-xmit-hash-policy layer3+4
-      
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.1/30
   clagd-peer-ip 169.254.1.2
   clagd-backup-ip 10.0.0.42
   clagd-sys-mac 44:39:39:FF:40:96
- 
+
 # Downlinks
 auto swp1
 iface swp1
-  
-auto bond0 
+
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
     bond-miimon 100
     bond-min-links 1
     bond-mode 802.3ad
     bond-xmit-hash-policy layer3+4
     bond-lacp-rate 1       
- 
+
 #interface for T2 configured as loopback cable
 auto hyperloopin
 iface hyperloopin
@@ -1441,7 +1441,7 @@ iface hyperloopin
   bond-mode 802.3ad
   bond-xmit-hash-policy layer3+4
   bond-lacp-rate 1
- 
+
 auto hyperloopout
 iface hyperloopout
   bond-slaves swp46 swp48    
@@ -1450,71 +1450,71 @@ iface hyperloopout
   bond-mode 802.3ad
   bond-xmit-hash-policy layer3+4
   bond-lacp-rate 1
- 
+
 auto vlan1svi
 iface vlan1svi
   bridge-ports hyperloopout
   address 172.16.1.2/24
   address-virtual 00:00:5e:00:01:01 172.16.1.1/24
-  
+
 auto vlan10svi
 iface vlan10svi
   bridge-ports hyperloopout.10
   address 172.16.10.2/24
   address-virtual 00:00:5e:00:10:10 172.16.10.1/24
-  
+
 auto vlan20svi
 iface vlan20svi
   bridge-ports hyperloopout.20
   address 172.16.20.2/24
   address-virtual 00:00:5e:00:20:20 172.16.20.1/24
-  
+
 # bridges / vlan that contain peerlink and downlinks for L2 connectivity
- 
+
 auto native
 iface native
   bridge-ports peerlink bond0 vxlan1 hyperloopin
   bridge-stp on
   mstpctl-portbpdufilter vxlan1=yes
   mstpctl-bpduguard vxlan1=yes    
-   
+
 auto vlan10
 iface vlan10
   bridge-ports peerlink.10 bond0.10 vxlan10 hyperloopin.10
   bridge-stp on
   mstpctl-portbpdufilter vxlan10=yes
   mstpctl-bpduguard vxlan10=yes      
- 
+
 auto vlan20
 iface vlan20
   bridge-ports peerlink.20 bond0.20 vxlan20 hyperloopin.20
   bridge-stp on
   mstpctl-portbpdufilter vxlan20=yes
   mstpctl-bpduguard vxlan20=yes
- 
+
 #vxlan config
 auto vxlan1
 iface vxlan1
   vxlan-id 1
   vxlan-local-tunnelip 10.0.0.41
- 
+
 auto vxlan10
 iface vxlan10
   vxlan-id 10
   vxlan-local-tunnelip 10.0.0.41
-    
+
 auto vxlan20
 iface vxlan20
   vxlan-id 20
   vxlan-local-tunnelip 10.0.0.41
-  
+
 # uplinks
 auto swp51
 iface swp51
- 
+
 auto swp52
 iface swp52    
- 
+
 #internet
 auto swp44
 iface swp44</code></pre></td>
@@ -1528,7 +1528,7 @@ iface hyperloopin
   bond-mode 802.3ad
   bond-xmit-hash-policy layer3+4
   bond-lacp-rate 1
- 
+
 auto hyperloopout
 iface hyperloopout
   bond-slaves swp46 swp48    
@@ -1537,13 +1537,13 @@ iface hyperloopout
   bond-mode 802.3ad
   bond-xmit-hash-policy layer3+4
   bond-lacp-rate 1
- 
+
 auto vlan1svi
 iface vlan1svi
   bridge-ports hyperloopout
   address 172.16.1.3/24
   address-virtual 00:00:5e:00:01:01 172.16.1.1/24
- 
+
 auto native
 iface native
   bridge-ports peerlink bond0 vxlan1 hyperloopin
@@ -1557,17 +1557,17 @@ iface lo inet loopback
   vxrd-src-ip 10.0.0.42
   vxrd-svcnode-ip 10.10.10.10
   clagd-vxlan-anycast-ip 10.10.10.40
-       
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 # peerlinks
 auto swp49
 iface swp49
- 
+
 auto swp50
 iface swp50
- 
+
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
@@ -1577,28 +1577,28 @@ iface peerlink
   bond-lacp-rate 1
   bond-min-links 1
   bond-xmit-hash-policy layer3+4
-      
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.2/30
   clagd-peer-ip 169.254.1.1
   clagd-backup-ip 10.0.0.41
   clagd-sys-mac 44:39:39:FF:40:96
- 
+
 # Downlinks
 auto swp1
 iface swp1
-  
-auto bond0 
+
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
     bond-miimon 100
     bond-min-links 1
     bond-mode 802.3ad
     bond-xmit-hash-policy layer3+4
     bond-lacp-rate 1
- 
+
 #interface for T2 configured as loopback cable
 auto hyperloopin
 iface hyperloopin
@@ -1608,7 +1608,7 @@ iface hyperloopin
   bond-mode 802.3ad
   bond-xmit-hash-policy layer3+4
   bond-lacp-rate 1
- 
+
 auto hyperloopout
 iface hyperloopout
   bond-slaves swp46 swp48    
@@ -1617,71 +1617,71 @@ iface hyperloopout
   bond-mode 802.3ad
   bond-xmit-hash-policy layer3+4
   bond-lacp-rate 1
- 
+
 auto vlan1svi
 iface vlan1svi
   bridge-ports hyperloopout
   address 172.16.1.3/24
   address-virtual 00:00:5e:00:01:01 172.16.1.1/24
-  
+
 auto vlan10svi
 iface vlan10svi
   bridge-ports hyperloopout.10
   address 172.16.10.3/24
   address-virtual 00:00:5e:00:10:10 172.16.10.1/24
-  
+
 auto vlan20svi
 iface vlan20svi
   bridge-ports hyperloopout.20
   address 172.16.20.3/24
   address-virtual 00:00:5e:00:20:20 172.16.20.1/24
-    
+
 # bridges / vlan that contain peerlink and downlinks for L2 connectivity
- 
+
 auto native
 iface native
   bridge-ports peerlink bond0 vxlan1 hyperloopin
   bridge-stp on
   mstpctl-portbpdufilter vxlan1=yes
   mstpctl-bpduguard vxlan1=yes    
-    
+
 auto vlan10
 iface vlan10
   bridge-ports peerlink.10 bond0.10 vxlan10 hyperloopin.10
   bridge-stp on
   mstpctl-portbpdufilter vxlan10=yes
   mstpctl-bpduguard vxlan10=yes      
- 
+
 auto vlan20
 iface vlan20
   bridge-ports peerlink.20 bond0.20 vxlan20 hyperloopin.20
   bridge-stp on
   mstpctl-portbpdufilter vxlan20=yes
   mstpctl-bpduguard vxlan20=yes
- 
+
 #vxlan config
 auto vxlan1
 iface vxlan1
   vxlan-id 1
   vxlan-local-tunnelip 10.0.0.42
-  
+
 auto vxlan10
 iface vxlan10
   vxlan-id 10
   vxlan-local-tunnelip 10.0.0.42
-    
+
 auto vxlan20
 iface vxlan20
   vxlan-id 20
   vxlan-local-tunnelip 10.0.0.42
-  
+
 # uplinks
 auto swp51
 iface swp51
- 
+
 auto swp52
 iface swp52    
- 
+
 #internet
 auto swp44
 iface swp44</code></pre></td>
@@ -1712,7 +1712,7 @@ iface native
   address-virtual 00:00:5e:00:01:01 172.16.1.1/24
   mstpctl-portbpdufilter vxlan1=yes
   mstpctl-bpduguard vxlan1=yes  
- 
+
 auto vxlan1
 iface vxlan1
   vxlan-id 1
@@ -1723,17 +1723,17 @@ iface lo inet loopback
   vxrd-src-ip 10.0.0.41
   vxrd-svcnode-ip 10.10.10.10
   clagd-vxlan-anycast-ip 10.10.10.40
-       
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 # peerlinks
 auto swp49
 iface swp49
- 
+
 auto swp50
 iface swp50
- 
+
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
@@ -1743,14 +1743,14 @@ iface peerlink
   bond-lacp-rate 1
   bond-min-links 1
   bond-xmit-hash-policy layer3+4
-      
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.1/30
   clagd-peer-ip 169.254.1.2
   clagd-backup-ip 10.0.0.42
   clagd-sys-mac 44:39:39:FF:40:96
-      
+
 # bridges / vlan that contain peerlink and downlinks for L2 connectivity
 auto native
 iface native
@@ -1760,7 +1760,7 @@ iface native
   address-virtual 00:00:5e:00:01:01 172.16.1.1/24
   mstpctl-portbpdufilter vxlan1=yes
   mstpctl-bpduguard vxlan1=yes    
-   
+
 auto vlan10
 iface vlan10
   bridge-ports peerlink.10 bond0.10 vxlan10 hyperloopin.10
@@ -1769,7 +1769,7 @@ iface vlan10
   address-virtual 00:00:5e:00:10:10 172.16.10.1/24
   mstpctl-portbpdufilter vxlan10=yes
   mstpctl-bpduguard vxlan10=yes      
- 
+
 auto vlan20
 iface vlan20
   bridge-ports peerlink.20 bond0.20 vxlan20 hyperloopin.20
@@ -1778,30 +1778,30 @@ iface vlan20
   address-virtual 00:00:5e:00:20:20 172.16.20.1/24
   mstpctl-portbpdufilter vxlan20=yes
   mstpctl-bpduguard vxlan20=yes
- 
+
 #vxlan config
 auto vxlan1
 iface vxlan1
   vxlan-id 1
   vxlan-local-tunnelip 10.0.0.41
- 
+
 auto vxlan10
 iface vxlan10
   vxlan-id 10
   vxlan-local-tunnelip 10.0.0.41
-    
+
 auto vxlan20
 iface vxlan20
   vxlan-id 20
   vxlan-local-tunnelip 10.0.0.41
-  
+
 # uplinks
 auto swp51
 iface swp51
- 
+
 auto swp52
 iface swp52    
- 
+
 #internet
 auto swp44
 iface swp44</code></pre></td>
@@ -1814,7 +1814,7 @@ iface native
   address-virtual 00:00:5e:00:01:01 172.16.1.1/24
   mstpctl-portbpdufilter vxlan1=yes
   mstpctl-bpduguard vxlan1=yes  
- 
+
 auto vxlan1
 iface vxlan1
   vxlan-id 1
@@ -1825,17 +1825,17 @@ iface lo inet loopback
   vxrd-src-ip 10.0.0.42
   vxrd-svcnode-ip 10.10.10.10
   clagd-vxlan-anycast-ip 10.10.10.40
-       
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 # peerlinks
 auto swp49
 iface swp49
- 
+
 auto swp50
 iface swp50
- 
+
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
@@ -1845,14 +1845,14 @@ iface peerlink
   bond-lacp-rate 1
   bond-min-links 1
   bond-xmit-hash-policy layer3+4
-      
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.2/30
   clagd-peer-ip 169.254.1.1
   clagd-backup-ip 10.0.0.41
   clagd-sys-mac 44:39:39:FF:40:96
- 
+
 # bridges / vlan that contain peerlink and downlinks for L2 connectivity
 auto native
 iface native
@@ -1862,7 +1862,7 @@ iface native
   address-virtual 00:00:5e:00:01:01 172.16.1.1/24
   mstpctl-portbpdufilter vxlan1=yes
   mstpctl-bpduguard vxlan1=yes    
-    
+
 auto vlan10
 iface vlan10
   bridge-ports peerlink.10 bond0.10 vxlan10 hyperloopin.10
@@ -1871,7 +1871,7 @@ iface vlan10
   address-virtual 00:00:5e:00:10:10 172.16.10.1/24
   mstpctl-portbpdufilter vxlan10=yes
   mstpctl-bpduguard vxlan10=yes      
- 
+
 auto vlan20
 iface vlan20
   bridge-ports peerlink.20 bond0.20 vxlan20 hyperloopin.20
@@ -1880,30 +1880,30 @@ iface vlan20
   address-virtual 00:00:5e:00:20:20 172.16.20.1/24
   mstpctl-portbpdufilter vxlan20=yes
   mstpctl-bpduguard vxlan20=yes
- 
+
 #vxlan config
 auto vxlan1
 iface vxlan1
   vxlan-id 1
   vxlan-local-tunnelip 10.0.0.42
-  
+
 auto vxlan10
 iface vxlan10
   vxlan-id 10
   vxlan-local-tunnelip 10.0.0.42
-    
+
 auto vxlan20
 iface vxlan20
   vxlan-id 20
   vxlan-local-tunnelip 10.0.0.42
-  
+
 # uplinks
 auto swp51
 iface swp51
- 
+
 auto swp52
 iface swp52    
- 
+
 #internet
 auto swp44
 iface swp44</code></pre></td>
@@ -1963,12 +1963,12 @@ firewall before it is allowed to go to another tenant (in the form of a
 VXLAN). This can be accomplished in multiple ways, but the two most
 popular methods are listed below:
 
-  - Use [VRF](/display/CL30/Virtual+Routing+and+Forwarding+-+VRF)
+  - Use [VRF](/version/cumulus-linux-30/Layer-3/Virtual-Routing-and-Forwarding-VRF/)
     (available on Cumulus Linux 3.0 and newer).
 
   - Force the gateway for the VXLAN to be the firewall's IP address.
-    
-      - Enforce this with [cl-acltool](/display/CL30/Netfilter+-+ACLs)
+
+      - Enforce this with [cl-acltool](/version/cumulus-linux-30/System-Configuration/Netfilter-ACLs)
         (for example, ACLs and `iptables`).
 
 In the above example, Bridge Orange and Bridge Yellow would be placed
@@ -2006,9 +2006,9 @@ iface lo inet loopback
 <p><strong>Spine01</strong>: /etc/vxsnd.conf</p>
 <pre><code>[common]
 svcnode_ip=10.10.10.10
- 
+
 src_ip=10.2.1.23
- 
+
 [vxsnd]
 svcnode_peers = 10.2.1.23 10.2.1.24</code></pre></td>
 <td><p><strong>Spine02:</strong> /etc/network/interfaces <strong>snippet</strong></p>
@@ -2023,9 +2023,9 @@ iface lo inet loopback
 <p><strong>Spine02</strong> : /etc/vxsnd.conf</p>
 <pre><code>[common]
 svcnode_ip=10.10.10.10
- 
+
 src_ip=10.2.1.24
- 
+
 [vxsnd]
 svcnode_peers = 10.2.1.23 10.2.1.24</code></pre></td>
 </tr>
@@ -2116,7 +2116,7 @@ To set the `node_id` manually:
 
 2.  Set the `node_id` value within the `common` section, then save the
     file:
-    
+
         [common]
         node_id = 13
 
@@ -2144,7 +2144,7 @@ virtual topologies only and is not needed on real hardware.
       post-up ip link set $IFACE promisc on
 
 For more information on using Cumulus VX and Vagrant, refer to the
-[Cumulus VX documentation](https://docs.cumulusnetworks.com/display/VX).
+[Cumulus VX documentation](/cumulus-vx).
 
 ## <span>Troubleshooting with LNV Active-Active</span>
 

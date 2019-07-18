@@ -58,8 +58,9 @@ Cumulus Networks recommends you install the telemetry server on an
 out-of-band management network to ensure it can monitor in-band network
 issues without being affected itself. Ideally, you should run the
 telemetry server on a separate, powerful server for maximum usability
-and performance. For more information on system requirements, [read this
-chapter](Performing-Network-Diagnostics.html#src-8356555_PerformingNetworkDiagnostics-matrix).
+and performance. For more information on system requirements, refer to
+the [Use NetQ as a Time Machine](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/#span-id-src-12321056-methodsfordiagnosingnetworkissues-time-machine-class-confluence-anchor-link-span-span-use-netq-as-a-time-machine-span)
+section.
 
 {{%/notice%}}
 
@@ -77,17 +78,16 @@ NetQ containers will not overwrite the host containers and vice versa.
     appropriate hypervisor — KVM or VMware.
 
 2.  Import the virtual machine into your
-    [KVM](https://docs.cumulusnetworks.com/display/VX/Libvirt+and+KVM+QEMU+Installation+on+Ubuntu+16.04)
-    or
-    [VMware](https://docs.cumulusnetworks.com/display/VX/VMware+vSphere+-+ESXi+5.5)
+    [KVM](/cumulus-vx/Getting-Started/Libvirt-and-KVM-QEMU/) or
+    [VMware](/cumulus-vx/Getting-Started/VMware-vSphere-ESXi-5.5/)
     hypervisor.
 
 3.  Start the NetQ Telemetry Server. There are two default user accounts
     you can use to log in:
-    
+
       - The primary username is *admin*, and the default password is
         *CumulusNetQ\!*.
-    
+
       - The alternate username is *cumulus*, and its password is
         *CumulusLinux\!*.
 
@@ -117,13 +117,13 @@ If you need the telemetry server to have a static IP address, manually
 assign one:
 
 1.  Edit the ` /etc/network/interfaces  `file:
-    
-        root@ts1:~# vi /etc/network/interfaces 
+
+        root@ts1:~# vi /etc/network/interfaces
 
 2.  Add the `address` and `gateway` lines to the eth0 configuration,
     specifying the telemetry server's IP address and the IP address of
     the gateway:
-    
+
         auto eth0
         iface eth0
             address 198.51.100.10
@@ -156,7 +156,7 @@ Agent on the node.
 {{%notice note%}}
 
 If your network uses a proxy server for external connections, you should
-[configure a global proxy](/display/NETQ121/Configuring+a+Global+Proxy)
+[configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/)
 so `apt-get` can access the metapackage on the Cumulus Networks
 repository.
 
@@ -165,20 +165,19 @@ repository.
 ### <span>Installing on a Cumulus Linux Switch</span>
 
 1.  Edit `/etc/apt/sources.list` and add the following line:
-    
+
         cumulus@switch:~$ sudo nano /etc/apt/sources.list
         deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest
 
 2.  Update the local `apt` repository, then install the metapackage on
     the switch:
-    
+
         cumulus@switch:~$ sudo apt-get update && sudo apt-get install cumulus-netq
 
 ### <span>Installing on an Ubuntu, Red Hat or CentOS Server</span>
 
 To install NetQ on Linux servers running Ubuntu, Red Hat or CentOS,
-please read the [Host Pack
-documentation](https://docs.cumulusnetworks.com/display/HOSTPACK/Installing+NetQ+on+the+Host).
+please read the [Host Pack documentation](/host-pack).
 
 ## <span id="src-8356538_GettingStartedwithNetQ-nodeconfig" class="confluence-anchor-link"></span><span>Configuring the NetQ Agent on a Node</span>
 
@@ -187,45 +186,45 @@ Server, you need to configure NetQ on each Cumulus Linux switch to
 monitor that node on your network.
 
 1.  To ensure useful output, ensure that
-    [NTP](https://docs.cumulusnetworks.com/display/CL31/Setting+Date+and+Time)
+    [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/)
     is running.
 
 2.  On the host, after you install the NetQ metapackage, restart
     `rsyslog` so logs are sent to the correct destination:
-    
+
         cumulus@switch:~$ sudo systemctl restart rsyslog
 
 3.  Link the host to the telemetry server you configured above; in the
     following example, the IP address for the telemetry server host is
     *198.51.100.10*:
-    
+
         cumulus@switch:~$ netq config add server 198.51.100.10
-    
+
     This command updated the configuration in the `/etc/netq/netq.yml`
     file. It also enables the NetQ CLI.
 
 4.  Restart the `netq` agent.
-    
+
         cumulus@switch:~$ netq config restart agent
-    
+
     {{%notice note%}}
-    
+
     After starting or restarting the agent, verify that the agent can
     reach the server by running the following command:
-    
+
         cumulus@switch:~$ netq config show server
          
         Server         Port    Vrf    Status
         -------------  ------  -----  --------
         198.51.100.10  6379    mgmt   ok
-    
+
     {{%/notice%}}
 
 ### <span id="src-8356538_GettingStartedwithNetQ-vrf" class="confluence-anchor-link"></span><span>Configuring the Agent to Use a VRF</span>
 
 If you want the NetQ Agent to communicate with the telemetry server only
-via a [VRF](/display/NETQ121/Virtual+Routing+and+Forwarding+-+VRF),
-including a [management VRF](/display/NETQ121/Management+VRF), you need
+via a [VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/),
+including a [management VRF](/cumulus-linux/Layer-3/Management-VRF/), you need
 to specify the VRF name when configuring the NetQ Agent. For example, if
 the management VRF is configured and you want the agent to communicate
 with the telemetry server over it, configure the agent like this:
@@ -282,15 +281,15 @@ back in time to perform a diagnostic investigation.
 To decommission the NetQ agent on a node, do the following steps:
 
 1.  Enable the EA features:
-    
+
         cumulus@switch:~$ netq config add experimental
 
 2.  Decommission the agent on the hostname specified by *\[hostname\]*:
-    
+
         cumulus@switch:~$ netq decommission [hostname] purge
 
 3.  Then restart the agent for the change to take effect:
-    
+
         cumulus@switch:~$ netq config restart agent
 
 ### <span>Configuring Debug Logging for the NetQ Agent</span>
@@ -300,12 +299,12 @@ logging:
 
 1.  Edit the `/etc/netq/netq.yml` file and add a log\_level section for
     the NetQ Agent:
-    
+
         netq-agent:
           log_level: debug
 
 2.  Restart the NetQ Agent:
-    
+
         cumulus@switch:~$ netq config restart agent
 
 ## <span id="src-8356538_GettingStartedwithNetQ-notifier" class="confluence-anchor-link"></span><span>Configuring NetQ Notifier on the Telemetry Server</span>
@@ -360,26 +359,26 @@ To configure alerts and integrations on the NetQ Telemetry Server:
 1.  As the sudo user, open `/etc/netq/netq.yml` in a text editor.
 
 2.  Configure the following in the `/etc/netq/netq.yml` file:
-    
+
       - Change the log level: If you want a more restrictive level than
         info.
-    
+
       - Configure application notifications: To customize any
         notifications, uncomment the relevant section under
         **netq-notifier Configurations** and make changes accordingly.
-    
+
       - Configure PagerDuty and Slack integrations. You can see where to
         input the information for these integrations in the [example
         `netq.yml` file](#src-8356538_GettingStartedwithNetQ-example)
         below.
-        
+
           - For PagerDuty, enter the API access key (also called the
             [authorization
             token](https://v2.developer.pagerduty.com/docs/authentication))
             and the
             [integration](https://v2.developer.pagerduty.com/docs/events-api-v2)
             key (also called the service\_key or routing\_key).
-        
+
           - For Slack, enter the webhook URL. To get the webhook URL, in
             the Slack dropdown menu, click **Apps & integrations**, then
             click **Manage** \> **Custom Integrations** \> **Incoming
@@ -388,16 +387,16 @@ To configure alerts and integrations on the NetQ Telemetry Server:
             *\#netq-notifier* in the **Post to Channel** dropdown \>
             then click **Add Incoming WebHook integration**. The URL
             produced by Slack looks similar to the one pictured below:
-            
+
             {{% imgOld 0 %}}
-            
+
             Copy the URL from the **Webhook URL** field into the
             `/etc/netq/netq.yml` file under the **Slack Notifications**
             section. Uncomment the lines in the sections labeled
             *netq-notifier*, *notifier-integrations* and
             *notifier-filters*, then add the webhook URL value provided
             by Slack:
-            
+
                 netq-notifier:
                   log_level: info
                  
@@ -417,20 +416,20 @@ To configure alerts and integrations on the NetQ Telemetry Server:
                     rule:
                     output:
                       - ALL
-    
+
     When you are finished editing the file, save and close it.
 
 3.  Stop then start the NetQ Notifier daemon to apply the new
     configuration:
-    
+
         cumulus@netq-appliance:~$ sudo systemctl restart netq-notifier
-    
+
     {{%notice note%}}
-    
+
     If your webhook does not immediately send a message to your channel,
     look for errors in syntax. Check the log file located at
     `/var/log/netq-notifier.log`.
-    
+
     {{%/notice%}}
 
 ## <span id="src-8356538_GettingStartedwithNetQ-example" class="confluence-anchor-link"></span><span>Example /etc/netq/netq.yml Configuration</span>
@@ -450,20 +449,20 @@ YML files in the `/etc/netq` directory overrides the configuration in
 
 <summary>Example /etc/netq/netq.yml configuration file </summary>
 
-    cumulus@netq-appliance:~$ cat /etc/netq/netq.yml 
+    cumulus@netq-appliance:~$ cat /etc/netq/netq.yml
     ## Netq configuration File.
     ## Configuration is also read from files in /etc/netq/config.d/ and have
     ## precedence over config in /etc/netq/netq.yml.
-     
+
     ## ----- Common configurations -----
-     
+
     ## Backend Configuration for all netq agents and apps on this host.
     ##
     #backend:
-    #  server: 
+    #  server:
     #  port: 6379
     ## ----- netq-agent configurations -----
-     
+
     ## Netq Agent Configuration
     ##
     ## log_level: Could be debug, info, warning or error. Default is info.
@@ -486,7 +485,7 @@ YML files in the `/etc/netq` directory overrides the configuration in
     #netqd:
     #  log_level: info
     ## ----- netq-notifier configurations -----
-     
+
     ## Netq Notifier configuration
     ##
     ## log_level: Could be debug, info, warning or error. Default is info.
@@ -696,13 +695,3 @@ YML files in the `/etc/netq` directory overrides the configuration in
         rule:
         output:
           - ALL
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

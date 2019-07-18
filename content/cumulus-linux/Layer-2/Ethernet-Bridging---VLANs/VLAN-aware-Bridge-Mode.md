@@ -186,18 +186,18 @@ To configure the reserved range:
 
 2.  Uncomment the following line, specify a new range, and save the
     file:
-    
+
         resv_vlan_range
 
 3.  Restart `switchd` to implement the change:
-    
+
         cumulus@switch:~$ sudo systemctl restart switchd.service
-    
+
     {{%notice note%}}
-    
-    While restarting `switchd`, all running ports will flap, and
+
+While restarting `switchd`, all running ports will flap, and
     forwarding will be interrupted.
-    
+
     {{%/notice%}}
 
 ## <span>Example Configurations</span>
@@ -330,7 +330,7 @@ configuration is under swp2:
      
     auto swp2
     iface swp2
-        bridge-allow-untagged no 
+        bridge-allow-untagged no
      
     auto bridge
     iface bridge
@@ -474,7 +474,7 @@ all the defined VLANs.
           mstpctl-bpduguard yes
           mstpctl-portadminedge yes
           bridge-vids 707 712 850
-         
+
     # The following port is the trunk uplink and inherits all vlans
     # from 'bridge'; bridge assurance is enabled using 'portnetwork' attribute
     auto swp49
@@ -506,13 +506,13 @@ set of bonds. The bond configurations are generated from a
     # uplink1, peerlink and downlink are bond interfaces.
     # 'bridge' is a vlan aware bridge with ports uplink1, peerlink
     # and downlink (swp2-20).
-    # 
+    #
     # native vlan is by default 1
     #
     # 'bridge-vids' attribute is used to declare vlans.
     # 'bridge-pvid' attribute is used to specify native vlans if other than 1
     # 'bridge-access' attribute is used to declare access port
-    # 
+    #
     auto lo
     iface lo
      

@@ -270,7 +270,7 @@ If you need to send other log files — such as `switchd` logs — to a
 
     {{%notice note%}}
 
-    For TCP-based syslog, use two @@ before the IP address:
+For TCP-based syslog, use two @@ before the IP address:
     *@@192.168.1.2:514*.
 
     Running `syslog` over TCP places a burden on the switch to queue
@@ -281,7 +281,7 @@ If you need to send other log files — such as `switchd` logs — to a
 
     {{%notice note%}}
 
-    The numbering of the files in `/etc/rsyslog.d/` dictates how the
+The numbering of the files in `/etc/rsyslog.d/` dictates how the
     rules are installed into `rsyslog.d`. If you want to remotely log
     only the messages in `/var/syslog`, and not those in
     `/var/log/clagd.log` or `/var/log/switchd.log`, for instance, then
@@ -292,7 +292,7 @@ If you need to send other log files — such as `switchd` logs — to a
 
     {{%notice note%}}
 
-    Do not use the `imfile` module with any file written by `rsyslogd`.
+Do not use the `imfile` module with any file written by `rsyslogd`.
 
     {{%/notice%}}
 

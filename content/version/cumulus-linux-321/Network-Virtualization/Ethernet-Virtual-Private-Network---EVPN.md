@@ -61,12 +61,12 @@ To install EVPN on a switch:
 1.  Open the `/etc/apt/sources.list` file in a text editor.
 
 2.  Uncomment the early access repo lines and save the file:
-    
+
         #deb        http://repo3.cumulusnetworks.com/repo CumulusLinux-3-early-access cumulus
         #deb-src    http://repo3.cumulusnetworks.com/repo CumulusLinuz-3-early-access cumulus
-    
+
     {{%notice info%}}
-    
+
     EVPN has been engineered and tested to be production-ready. However,
     as EVPN was made Generally Available (GA) post Cumulus Linux 3.2.1
     release, the packages have been left in the Early Access (EA)
@@ -74,19 +74,19 @@ To install EVPN on a switch:
     deployment and upgrade processes. These packages will be moved to
     the main repository in an upcoming release, and will ship as part of
     the base image.
-    
+
     {{%/notice%}}
 
 3.  Run the following commands to install the EVPN package in Cumulus
     Linux:
-    
+
         cumulus@switch:~$ sudo apt-get update
         cumulus@switch:~$ sudo apt-get install cumulus-evpn
         cumulus@switch:~$ sudo apt-get upgrade
 
 4.  Check your Quagga version using the `dpkg -l quagga` command. Please
     make sure you are running version 1.0.0+cl3eau8 or newer.
-    
+
         cumulus@leaf01:~$ dpkg -l quagga
         Desired=Unknown/Install/Remove/Purge/Hold
         | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -101,16 +101,16 @@ To install EVPN on a switch:
 needs to be enabled prior to using EVPN.
 
 1.  Open `/etc/quagga/daemons` file in a text editor:
-    
+
         cumulus@switch:~$ sudo nano /etc/quagga/daemons
 
 2.  Change the *no* to *yes* for `zebra` and `bgpd`, then save the file:
-    
+
         zebra=yes
         bgpd=yes
 
 3.  Enable and start Quagga using the `systemctl` commands:
-    
+
         cumulus@switch:~$ sudo systemctl enable quagga.service
         cumulus@switch:~$ sudo systemctl start quagga.service
 
@@ -291,9 +291,7 @@ configure the `bridge-learning` value to *off*:
 With EVPN, the only method of handling BUM traffic is [Head End
 Replication
 (HER)](Lightweight-Network-Virtualization---LNV-Overview.html#src-5126910_LightweightNetworkVirtualization-LNVOverview-head-end).
-HER is enabled by default, as it is when [Lightweight Network
-Virtualization
-(LNV)](/display/CL321/Lightweight+Network+Virtualization+-+LNV+Overview)
+HER is enabled by default, as it is when [Lightweight Network Virtualization (LNV)](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 is used.
 
 ## <span>EVPN and VXLAN Active-Active Mode</span>
@@ -336,60 +334,60 @@ iface lo inet loopback
     alias loopback
     address 10.0.0.11/32
     clagd-vxlan-anycast-ip 10.10.10.20
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 # uplinks
 auto swp51
 iface swp51
- 
+
 auto swp52
 iface swp52
- 
+
 #host connections
 auto swp1
 iface swp1
- 
+
 auto server01
 iface server01
   alias server01 MLAG bond
   bond-slaves swp1
   clag-id 1
- 
+
 auto peerlink
 iface peerlink
   alias MLAG peerlink bond
   bond-slaves swp49 swp50
- 
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.1/30
   clagd-peer-ip 169.254.1.2
   clagd-backup-ip 192.168.200.12
   clagd-sys-mac 44:38:39:FF:40:94
- 
+
 auto bridge
 iface bridge
     bridge-ports server01 peerlink vxlan10001 vxlan10100 vxlan10200
     bridge-vlan-aware yes
     bridge-vids 1 100 200
     bridge-pvid 1
- 
+
 auto vxlan10001
 iface vxlan10001
     vxlan-id 10001
     vxlan-local-tunnelip 10.0.0.11
     bridge-access 1
     bridge-learning off
- 
+
 auto vxlan10100
 iface vxlan10100
      vxlan-id 10100
      vxlan-local-tunnelip 10.0.0.11
      bridge-access 100
      bridge-learning off
- 
+
 auto vxlan10200
 iface vxlan10200
      vxlan-id 10200
@@ -404,60 +402,60 @@ iface lo inet loopback
     alias loopback
     address 10.0.0.12/32
     clagd-vxlan-anycast-ip 10.10.10.20
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 # uplinks
 auto swp51
 iface swp51
- 
+
 auto swp52
 iface swp52
- 
+
 #host connections
 auto swp1
 iface swp1
- 
+
 auto server01
 iface server01
   alias server01 MLAG bond
   bond-slaves swp1
   clag-id 1
- 
+
 auto peerlink
 iface peerlink
   alias MLAG peerlink bond
   bond-slaves swp49 swp50
- 
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.2/30
   clagd-peer-ip 169.254.1.1
   clagd-backup-ip 192.168.200.11
   clagd-sys-mac 44:38:39:FF:40:94
- 
+
 auto bridge
 iface bridge
     bridge-ports server01 peerlink vxlan10001 vxlan10100 vxlan10200
     bridge-vlan-aware yes
     bridge-vids 1 100 200
     bridge-pvid 1
- 
+
 auto vxlan10001
 iface vxlan10001
     vxlan-id 10001
     vxlan-local-tunnelip 10.0.0.12
     bridge-access 1
     bridge-learning off
- 
+
 auto vxlan10100
 iface vxlan10100
      vxlan-id 10100
      vxlan-local-tunnelip 10.0.0.12
      bridge-access 100
      bridge-learning off
- 
+
 auto vxlan10200
 iface vxlan10200
      vxlan-id 10200
@@ -567,20 +565,20 @@ end</code></pre>
 <pre><code>auto lo
 iface lo inet loopback
     address 10.0.0.21/32
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 # downlinks
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
- 
+
 auto swp4
 iface swp4</code></pre>
 </details></td>
@@ -589,20 +587,20 @@ iface swp4</code></pre>
 <pre><code>auto lo
 iface lo inet loopback
     address 10.0.0.22/32
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 # downlinks
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
- 
+
 auto swp4
 iface swp4</code></pre>
 </details></td>
@@ -727,16 +725,16 @@ end</code></pre>
 <summary>server01 /etc/network/interfaces </summary>
 <pre><code>auto eth0
 iface eth0 inet dhcp
- 
+
 auto bond0
 iface bond0
     bond-slaves eth1 eth2
     address 172.16.1.101/24
- 
+
 auto bond0.100
 iface bond0.100
     address 172.16.100.101/24
- 
+
 auto bond0.200
 iface bond0.200
     address 172.16.200.101/24</code></pre>
@@ -745,15 +743,15 @@ iface bond0.200
 <summary>server02 /etc/network/interfaces </summary>
 <pre><code>auto eth0
 iface eth0 inet dhcp
- 
+
 auto eth2
 iface eth2
     address 172.16.1.102/24
- 
+
 auto eth2.100
 iface eth2.100
     address 172.16.100.102/24
- 
+
 auto eth2.200
 iface eth2.200
     address 172.16.200.102/24</code></pre>
@@ -814,23 +812,23 @@ reveals information relevant only for a VTEP.
 
     cumulus@switch:~$ bridge fdb show
     00:02:00:00:00:0f dev swp3 master bridge permanent
-    00:02:00:00:00:01 dev swp3 vlan 1 master bridge 
-    00:02:00:00:00:04 dev peerlink vlan 1 master bridge 
+    00:02:00:00:00:01 dev swp3 vlan 1 master bridge
+    00:02:00:00:00:04 dev peerlink vlan 1 master bridge
     00:02:00:00:00:12 dev peerlink master bridge permanent
     92:b0:8f:b6:82:7b dev vtep100 master bridge permanent
-    00:02:00:00:00:08 dev vtep100 vlan 100 master bridge 
+    00:02:00:00:00:08 dev vtep100 vlan 100 master bridge
     00:00:00:00:00:00 dev vtep100 dst 10.0.0.5 self permanent
     00:00:00:00:00:00 dev vtep100 dst 10.0.0.6 self permanent
     00:00:00:00:00:00 dev vtep100 dst 80.80.80.2 self permanent
-    00:02:00:00:00:08 dev vtep100 dst 80.80.80.2 self 
+    00:02:00:00:00:08 dev vtep100 dst 80.80.80.2 self
     5e:75:42:b8:47:e6 dev vtep200 master bridge permanent
     00:00:00:00:00:00 dev vtep200 dst 10.0.0.5 self permanent
     00:00:00:00:00:00 dev vtep200 dst 10.0.0.6 self permanent
     00:00:00:00:00:00 dev vtep200 dst 80.80.80.2 self permanent
     00:02:00:00:00:10 dev bond0 master bridge permanent
-    02:02:00:00:00:03 dev bond0 vlan 1 master bridge 
-    02:02:00:00:00:02 dev bond0 vlan 1 master bridge 
-    00:02:00:00:00:03 dev bond0 vlan 100 master bridge 
+    02:02:00:00:00:03 dev bond0 vlan 1 master bridge
+    02:02:00:00:00:02 dev bond0 vlan 1 master bridge
+    00:02:00:00:00:03 dev bond0 vlan 100 master bridge
 
 ## <span>BGP Output Commands</span>
 
@@ -918,7 +916,7 @@ RD and export RT, but does not yet exist in the kernel:
     leaf01# show bgp evpn vni
     Advertise All VNI flag: Enabled
     Number of VNIs: 3
-    Flags: * - Kernel 
+    Flags: * - Kernel
       VNI        Orig IP         RD                    Import RT             Export RT            
     * 10200      80.80.80.1      10.0.0.1:10200        65001:10200           65001:10200          
       20100      10.0.0.1        65001:20100           65001:20100           1:20100              
@@ -946,7 +944,7 @@ RD and export RT, but does not yet exist in the kernel:
 The corresponding BGP configuration for VNI 20100 is follows (only the
 EVPN section is shown):
 
-``` 
+```
  address-family evpn
   neighbor SPINE activate
   advertise-all-vni
@@ -966,7 +964,7 @@ The following output indicates that VNI 10100 is present on 3 remote
 VTEPs (10.0.0.5, 10.0.0.6 and 80.80.80.2) while VNI 10200 is present on
 2 remote VTEPs (10.0.0.6 and 80.80.80.2):
 
-``` 
+```
 cumulus@leaf01:~$ sudo vtysh
 leaf01# show evpn vni
 Number of VNIs: 2
@@ -995,26 +993,26 @@ To see the EVPN configuration for a single VXLAN:
 You can examine all local and remote MAC addresses for a VNI by running
 `show evpn mac vni <vni>`.
 
-``` 
+```
 cumulus@leaf01:~$ sudo vtysh
 leaf01# show evpn mac vni 10100
 Number of MACs (local and remote) known for this VNI: 2
  
  
-MAC               Type   Intf/Remote VTEP      VLAN 
+MAC               Type   Intf/Remote VTEP      VLAN
 00:02:00:00:00:03 local  bond0                 100  
 00:02:00:00:00:08 remote 80.80.80.2  
 ```
 
 You can examine MAC addresses across VNIs using `show evpn mac vni all`:
 
-``` 
+```
 cumulus@leaf01:~$ sudo vtysh
 leaf01# show evpn mac vni all
 VNI 10200 #MACs (local and remote) 2
  
  
-MAC               Type   Intf/Remote VTEP      VLAN 
+MAC               Type   Intf/Remote VTEP      VLAN
 00:02:00:00:00:01 local  swp3                  200  
 00:02:00:00:00:0b remote 10.0.0.6             
  
@@ -1022,7 +1020,7 @@ MAC               Type   Intf/Remote VTEP      VLAN
 VNI 10100 #MACs (local and remote) 2
  
  
-MAC               Type   Intf/Remote VTEP      VLAN 
+MAC               Type   Intf/Remote VTEP      VLAN
 00:02:00:00:00:03 local  bond0                 100  
 00:02:00:00:00:08 remote 80.80.80.2    
 ```
@@ -1036,8 +1034,8 @@ MAC address. This command only works when run on a VTEP:
      Remote VTEP: 80.80.80.2
      
     leadf01# show evpn mac vni 10100 vtep 80.80.80.2
-    MAC               Type   Intf/Remote VTEP      VLAN 
-    00:02:00:00:00:08 remote 80.80.80.2 
+    MAC               Type   Intf/Remote VTEP      VLAN
+    00:02:00:00:00:08 remote 80.80.80.2
 
 ### <span>Displaying the Global BGP EVPN Routing Table</span>
 
@@ -1093,14 +1091,14 @@ display all EVPN routes at the same time:
 #### <span>Output Explained</span>
 
   - The output ` *> [3]:[0]:[32]:[10.0.0.14]  `is explained as follows:
-    
+
     | Output    | Explanation                         |
     | --------- | ----------------------------------- |
     | \[3\]     | Type 3 EVPN route                   |
     | \[0\]     | Ethernet tag                        |
     | \[32\]    | IP address length of 32 bits        |
     | 10.0.0.14 | IPv4 address originating this route |
-    
+
 
 ### <span>Displaying EVPN Type-2 (MAC/IP) Routes</span>
 
@@ -1112,14 +1110,14 @@ type-specific fields:
 
   - Type 2 route with ARP suppression: \[type\]:\[ESI\]:\[ET\]:\[MAC
     length\]:\[MAC\]:\[IP length\]:\[IP\]
-    
+
       - The Ethernet Segment Id (ESI) and Ethernet Tag (ET) are always
         0.
 
   - Type 3 route: \[type\]:\[ET\]:\[Originating Router IP\]
-    
+
       - The Ethernet Tag (ET) is always 0.
-    
+
       - The "Originating Router IP" is the VTEP local IP for the
         corresponding VNI.
 

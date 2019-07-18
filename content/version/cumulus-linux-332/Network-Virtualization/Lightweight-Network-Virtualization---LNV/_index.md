@@ -1,5 +1,5 @@
 ---
-title: Lightweight Network Virtualization - LNV Overview
+title: Lightweight Network Virtualization - LNV
 author: Cumulus Networks
 weight: 143
 aliases:
@@ -11,7 +11,6 @@ version: 3.3.2
 imgData: cumulus-linux-332
 siteSlug: cumulus-linux-332
 ---
-<details>
 
 Lightweight Network Virtualization (LNV) is a technique for deploying
 [VXLANs](/version/cumulus-linux-332/Network-Virtualization/) without a
@@ -134,27 +133,27 @@ To enable service node replication:
 
 2.  Configure a service node IP address for every VXLAN interface using
     the `vxlan-svcnodeip` parameter:
-    
+
         cumulus@switch:~$ net add vxlan VXLAN vxlan svcnodeip IP_ADDRESS
-    
+
     {{%notice note%}}
-    
+
     You only specify this parameter when head end replication is
     disabled. For the loopback, the parameter is still named
     `vxrd-svcnode-ip`.
-    
+
     {{%/notice%}}
 
 3.  Edit `/etc/vxsnd.conf`, and configure the following:
-    
+
       - Set the same service node IP address that you did in the
         previous step:
-        
+
             svcnode_ip = <>
-    
+
       - To forward VXLAN data traffic, set the following variable to
         *True*:
-        
+
             enable_vxlan_listen = true
 
 ## <span>Requirements</span>
@@ -266,15 +265,15 @@ iface eth0 inet dhcp
 auto swp49
 iface swp49
   address 10.1.1.2/30
- 
+
 auto swp50
 iface swp50
   address 10.1.1.6/30
- 
+
 auto swp51
 iface swp51
   address 10.1.1.50/30
- 
+
 auto swp52
 iface swp52
   address 10.1.1.54/30</code></pre></td>
@@ -291,29 +290,29 @@ cumulus@spine2:~$ net commit</code></pre>
 auto lo
 iface lo inet loopback
   address 10.2.1.4/32
- 
+
 auto eth0
 iface eth0 inet dhcp
  
 auto swp49
-iface swp49 
+iface swp49
  address 10.1.1.18/30
- 
+
 auto swp50
-iface swp50 
+iface swp50
  address 10.1.1.22/30
- 
+
 auto swp51
-iface swp51 
+iface swp51
 address 10.1.1.34/30
- 
+
 auto swp52
-iface swp52 
+iface swp52
 address 10.1.1.38/30</code></pre></td>
 </tr>
 <tr class="even">
 <td><p><strong>leaf1:</strong></p>
-<pre><code>cumulus@leaf1:~$ net add interface swp1 breakout 4x 
+<pre><code>cumulus@leaf1:~$ net add interface swp1 breakout 4x
 cumulus@leaf1:~$ net add interface swp1s0 ip address 10.1.1.1/30
 cumulus@leaf1:~$ net add interface swp1s1 ip address 10.1.1.5/30
 cumulus@leaf1:~$ net add interface swp1s2 ip address 10.1.1.33/30
@@ -346,7 +345,7 @@ auto swp1s3
 iface swp1s3
   address 10.1.1.37/30</code></pre></td>
 <td><p><strong>leaf2:</strong></p>
-<pre><code>cumulus@leaf2:~$ net add interface swp1 breakout 4x 
+<pre><code>cumulus@leaf2:~$ net add interface swp1 breakout 4x
 cumulus@leaf2:~$ net add interface swp1s0 ip address 10.1.1.17/30
 cumulus@leaf2:~$ net add interface swp1s1 ip address 10.1.1.21/30
 cumulus@leaf2:~$ net add interface swp1s2 ip address 10.1.1.49/30
@@ -366,15 +365,15 @@ iface eth0 inet dhcp
 auto swp1s0
 iface swp1s0
  address 10.1.1.17/30
-              
+
 auto swp1s1
 iface swp1s1
  address 10.1.1.21/30
-              
+
 auto swp1s2
 iface swp1s2
  address 10.1.1.49/30
-              
+
 auto swp1s3
 iface swp1s3
  address 10.1.1.53/30</code></pre></td>
@@ -503,7 +502,7 @@ interface swp1s3
 !
 router ospf
  ospf router-id 10.2.1.1
- 
+
  network 10.2.1.1/32 area 0.0.0.0</code></pre></td>
 <td><p><strong>leaf2:</strong></p>
 <pre><code>cumulus@leaf2:~$ net add ospf network 10.2.1.2/32 area 0.0.0.0
@@ -537,7 +536,7 @@ interface swp1s3
 !
 router ospf
  ospf router-id 10.2.1.2
- 
+
  network 10.2.1.2/32 area 0.0.0.0</code></pre></td>
 </tr>
 </tbody>
@@ -563,11 +562,11 @@ configurations below.
 <pre><code>auto eth3.10
 iface eth3.10 inet static
   address 10.10.10.1/24
- 
+
 auto eth3.20
 iface eth3.20 inet static
   address 10.10.20.1/24
- 
+
 auto eth3.30
 iface eth3.30 inet static
   address 10.10.30.1/24</code></pre></td>
@@ -575,11 +574,11 @@ iface eth3.30 inet static
 <pre><code>auto eth3.10
 iface eth3.10 inet static
   address 10.10.10.2/24
- 
+
 auto eth3.20
 iface eth3.20 inet static
   address 10.10.20.2/24
- 
+
 auto eth3.30
 iface eth3.30 inet static
   address 10.10.30.2/24</code></pre></td>
@@ -631,11 +630,11 @@ cumulus@leaf1:~$ net add vxlan vni-30 vxlan id 30
 cumulus@leaf1:~$ net add vxlan vni-30 vxlan local-tunnelip 10.2.1.1
 cumulus@leaf1:~$ net add vxlan vni-30 bridge access 30
 cumulus@leaf1:~$ net add bridge bridge ports swp32s0.10
-cumulus@leaf1:~$ net pending 
+cumulus@leaf1:~$ net pending
 cumulus@leaf1:~$ net commit</code></pre>
 <p>These commands create the following configuration in the <code>/etc/network/interfaces</code> file:</p>
 <pre><code>auto lo
-iface lo 
+iface lo
   address 10.2.1.1/32
   vxrd-src-ip 10.2.1.1
  
@@ -685,12 +684,12 @@ cumulus@leaf2:~$ net add vxlan vni-30 vxlan id 30
 cumulus@leaf2:~$ net add vxlan vni-30 vxlan local-tunnelip 10.2.1.2
 cumulus@leaf2:~$ net add vxlan vni-30 bridge access 30
 cumulus@leaf1:~$ net add bridge bridge ports swp32s0.10
-cumulus@leaf2:~$ net pending 
+cumulus@leaf2:~$ net pending
 cumulus@leaf2:~$ net commit</code></pre>
 <p>These commands create the following configuration in the <code>/etc/network/interfaces</code> file:</p>
 <pre><code>auto lo
 iface lo
-  address 10.2.1.2/32 
+  address 10.2.1.2/32
   vxrd-src-ip 10.2.1.2
  
 auto swp32s0.10
@@ -717,7 +716,7 @@ iface vni-2000
   mstpctl-portbpdufilter yes
   vxlan-id 2000
   vxlan-local-tunnelip 10.2.1.2
- 
+
 auto vni-30
 iface vni-30
   bridge-access 30
@@ -822,7 +821,7 @@ For the service node daemon:
 
 For the registration daemon:
 
-    cumulus@leaf1:~$ sudo systemctl status vxrd.service 
+    cumulus@leaf1:~$ sudo systemctl status vxrd.service
     ● vxrd.service - Lightweight Network Virtualization Peer Discovery Daemon
        Loaded: loaded (/lib/systemd/system/vxrd.service; enabled)
        Active: active (running) since Wed 2016-05-11 11:42:55 UTC; 10min ago
@@ -1442,13 +1441,3 @@ address.
 
   - [Network virtualization chapter, Cumulus Linux user
     guide](/version/cumulus-linux-332/Network-Virtualization/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

@@ -104,8 +104,8 @@ reduces configuration complexity and allows for easy host mobility.
 
 Cumulus Networks enhanced Quagga with the ability to implement
 [RFC 5549](https://tools.ietf.org/html/rfc5549), so you can configure
-[BGP](/display/ROH/Border+Gateway+Protocol+-+BGP) or
-[OSPF](/display/ROH/Open+Shortest+Path+First+-+OSPF) unnumbered
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/) or
+[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/) unnumbered
 interfaces on Cumulus Linux switches, and now, with Routing on the Host,
 on server hosts and containers as well. In addition to the benefits of
 not having to configure every subnet described above, you do not have to
@@ -150,10 +150,10 @@ Another benefit of Routing on the Host is the ability to gracefully
 remove a leaf switch from the fabric for maintenance. With layer 2 only
 (like MLAG), you cannot influence routes without being disruptive (that
 is, some traffic loss must occur). With
-[OSPF](/display/ROH/Open+Shortest+Path+First+-+OSPF) and
-[BGP](/display/ROH/Border+Gateway+Protocol+-+BGP), there are multiple
+[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/) and
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/), there are multiple
 load balanced routes via
-[ECMP](/display/ROH/Equal+Cost+Multipath+Load+Sharing+-+Hardware+ECMP)
+[ECMP](/cumulus-linux/Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/)
 (Equal Cost Multipath) routing. Since there is routing, it is possible
 to change these routes dynamically.
 
@@ -223,11 +223,3 @@ To get started with Routing on the Host:
   - Learn how to
     [troubleshoot](Troubleshooting-Routing-on-the-Host.html) Routing on
     the Host
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

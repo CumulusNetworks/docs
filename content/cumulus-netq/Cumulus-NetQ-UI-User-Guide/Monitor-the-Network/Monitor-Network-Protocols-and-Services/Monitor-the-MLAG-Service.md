@@ -31,8 +31,7 @@ as CLAG, MC-LAG or VPC. The Cumulus NetQ UI uses the CLAG terminology.
 With NetQ, you can monitor the number of nodes running the CLAG service,
 view sessions running, and view alarms triggered by the CLAG service.
 For an overview and how to configure CLAG in your data center network,
-refer to [Multi-Chassis Link Aggregation -
-MLAG](/display/NETQ22/Multi-Chassis+Link+Aggregation+-+MLAG).
+refer to [Multi-Chassis Link Aggregation - MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
 
 ### <span>CLAG Service Card Workflow Summary</span>
 
@@ -375,7 +374,7 @@ To view switches and hosts with the most CLAG sessions:
     The table content is sorted by this characteristic, listing nodes
     running the most CLAG sessions at the top. Scroll down to view those
     with the fewest sessions.
-    
+
     {{% imgOld 20 %}}
 
 To compare this data with the same data at a previous time:
@@ -386,21 +385,21 @@ To compare this data with the same data at a previous time:
 
 3.  Change the time period for the data on the new card by hovering over
     the card and clicking <span style="color: #353744;"> </span>
-    
+
     {{% imgOld 21 %}}
-    
+
     .
 
 4.  Select the time period that you want to compare with the current
     time.  
     You can now see whether there are significant differences between
     this time period and the previous time period.  
-    
+
     {{% imgOld 22 %}}
-    
+
     {{% imgOld 23 %}}
-    
-      
+
+
     If the changes are unexpected, you can investigate further by
     looking at another time frame, determining if more nodes are now
     running CLAG than previously, looking for changes in the topology,
@@ -420,7 +419,7 @@ To view switches with the most unestablished CLAG sessions:
     The table content is sorted by this characteristic, listing nodes
     with the most unestablished CLAG sessions at the top. Scroll down to
     view those with the fewest unestablished sessions.
-    
+
     {{% imgOld 24 %}}
 
 Where to go next depends on what data you see, but a few options
@@ -431,16 +430,16 @@ include:
     slice.  
     The table content changes to match the hovered content. Click on the
     chart to persist the table changes.
-    
+
     {{% imgOld 25 %}}
 
   - Change the time period for the data to compare with a prior time.  
-    
+
     {{% imgOld 26 %}}
-    
+
     {{% imgOld 27 %}}
-    
-      
+
+
     If the same switches are consistently indicating the most
     unestablished sessions, you might want to look more carefully at
     those switches using the Switches card workflow to determine
@@ -463,9 +462,9 @@ To view switches with most CLAG alarms:
 1.  Open the large CLAG Service card.
 
 2.  Hover over the header and click
-    
+
     {{% imgOld 28 %}}
-    
+
     .
 
 3.  Select **EVENTS BY MOST ACTIVE DEVICE** from the filter above the
@@ -473,7 +472,7 @@ To view switches with most CLAG alarms:
     The table content is sorted by this characteristic, listing nodes
     with the most CLAG alarms at the top. Scroll down to view those with
     the fewest alarms.
-    
+
     {{% imgOld 29 %}}
 
 Where to go next depends on what data you see, but a few options
@@ -483,16 +482,16 @@ include:
     exhibiting alarms during that smaller time slice.  
     The table content changes to match the hovered content. Click on the
     chart to persist the table changes.
-    
+
     {{% imgOld 30 %}}
 
   - Change the time period for the data to compare with a prior time. If
     the same switches are consistently indicating the most alarms, you
     might want to look more carefully at those switches using the
     Switches card workflow.  
-    
+
     {{% imgOld 31 %}}
-    
+
     {{% imgOld 32 %}}
 
   - Click **Show All Sessions** to investigate all CLAG sessions with
@@ -508,7 +507,7 @@ To view all CLAG events:
 1.  Open the full screen CLAG Service card.
 
 2.  Click **All Alarms** tab.
-    
+
     {{% imgOld 33 %}}
 
 Where to go next depends on what data you see, but a few options
@@ -518,11 +517,11 @@ include:
     closely at the alarms from the switch or session perspective.
 
   - Sort on other parameters:
-    
+
       - by **Message** to determine the frequency of particular events
-    
+
       - by **Severity** to determine the most critical events
-    
+
       - by **Time** to find events that may have occurred at a
         particular time to try to correlate them with other system
         events
@@ -531,9 +530,9 @@ include:
     subset and clicking **Export Selected** in edit menu
 
   - Return to your workbench by clicking
-    
+
     {{% imgOld 34 %}}
-    
+
     in the top right corner
 
 ### <span>View Detailed Information About All Switches Running CLAG</span>
@@ -584,8 +583,8 @@ To return to original display of results, click the associated tab.
 With NetQ, you can monitor the number of nodes running the CLAG service,
 view switches with the most peers alive and not alive, and view alarms
 triggered by the CLAG service. For an overview and how to configure CLAG
-in your data center network, refer to [Multi-Chassis Link Aggregation -
-MLAG](/display/NETQ22/Multi-Chassis+Link+Aggregation+-+MLAG).
+in your data center network, refer to
+[Multi-Chassis Link Aggregation - MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
 
 {{%notice info%}}
 
@@ -989,12 +988,12 @@ To view the summary:
 2.  Select a session from the listing to view.
 
 3.  Close the full screen card to view the medium CLAG Session card.  
-    
+
     {{% imgOld 74 %}}
-    
+
     {{% imgOld 75 %}}
-    
-      
+
+
     In the left example, we see that the tor1 switch plays the secondary
     role in this session with the switch at 44:38:39:ff:01:01. In the
     right example, we see that the leaf03 switch plays the primary role
@@ -1017,9 +1016,9 @@ To view the state transitions for a given CLAG session:
 2.  Select a session from the listing to view.
 
 3.  Close the full screen card to view the medium CLAG Session card.
-    
+
     {{% imgOld 76 %}}
-    
+
     In this example, the peer switch has been alive for the entire
     24-hour period.
 
@@ -1048,28 +1047,28 @@ To view the configuration file changes:
 1.  Open the large CLAG Session card.
 
 2.  Hover over the card and click
-    
+
     {{% imgOld 78 %}}
-    
+
     to open the **Configuration File Evolution** tab.
 
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
-    
+
     {{% imgOld 79 %}}
 
 4.  Choose between the **File** view and the **Diff** view (selected
     option is dark; File by default).  
     The File view displays the content of the file for you to review.
-    
+
     {{% imgOld 80 %}}
-    
+
     The Diff view displays the changes between this version (on left)
     and the most recent version (on right) side by side. The changes are
     highlighted in red and green. In this example, we don't have any
     changes after this first creation, so the same file is shown on both
     sides and no highlighting is present.
-    
+
     {{% imgOld 81 %}}
 
 ### <span>All CLAG Session Details</span>
@@ -1089,10 +1088,10 @@ include:
     info events fin the network.
 
   - Sort on other parameters:
-    
+
       - by **Single Bonds** to determine which interface sets are only
         connected to one of the switches
-    
+
       - by **Backup IP and Backup IP Active** to determine if the
         correct backup IP address is specified for the service
 
@@ -1100,9 +1099,9 @@ include:
     subset and clicking **Export Selected** in edit menu
 
   - Return to your workbench by clicking
-    
+
     {{% imgOld 83 %}}
-    
+
     in the top right corner
 
 ### <span>View All Events</span>
@@ -1122,11 +1121,11 @@ include:
     individual sessions.
 
   - Sort on other parameters:
-    
+
       - by **Message** to determine the frequency of particular events
-    
+
       - by **Severity** to determine the most critical events
-    
+
       - by **Time** to find events that may have occurred at a
         particular time to try to correlate them with other system
         events
@@ -1135,9 +1134,9 @@ include:
     subset and clicking **Export Selected** in edit menu
 
   - Return to your workbench by clicking
-    
+
     {{% imgOld 85 %}}
-    
+
     in the top right corner
 
 <article id="html-search-results" class="ht-content" style="display: none;">

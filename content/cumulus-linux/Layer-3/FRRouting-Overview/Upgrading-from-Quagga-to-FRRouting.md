@@ -40,16 +40,16 @@ cannot run concurrently.
 {{%/notice%}}
 
 1.  Run the following commands to begin the upgrade process:
-    
+
         cumulus@switch:~$ sudo -E apt-get update
         cumulus@switch:~$ sudo -E apt-get upgrade
-    
+
     {{%notice note%}}
-    
-    At the end of the `apt-get upgrade` process, the output shows
+
+At the end of the `apt-get upgrade` process, the output shows
     details of the upgrade process, regarding the Quagga to FRR
     switchover.
-    
+
         Unpacking quagga-compat (1.0.0+cl3u15-1) ...                                                                                                                                                                                                                                                                                                                                                                                    [476/476]
         Selecting previously unselected package frr.
         Preparing to unpack .../frr_3.1+cl3u1_amd64.deb ...
@@ -77,7 +77,7 @@ cannot run concurrently.
         Processing triggers for libc-bin (2.19-18+deb8u10) ...
         Creating post-apt snapshot... 245 done.
         root@dell-s6000-16:/etc#
-    
+
     {{%/notice%}}
 
 Once the upgrade process is completed, the switch is in the following
@@ -123,14 +123,14 @@ been removed.
 To complete the transition to FRR:
 
 1.  Migrate all `/etc/quagga/*` files to `/etc/frr/*`.
-    
+
     {{%notice warning%}}
-    
-    The `vtysh.conf` file should not be moved, as it is unlikely any
+
+The `vtysh.conf` file should not be moved, as it is unlikely any
     configuration is in the file. However, if there is necessary
     configuration in place, copy the contents into
     `/etc/frr/vtysh.conf`.
-    
+
     {{%/notice%}}
 
 2.  Merge the current `Quagga.conf` file with the new `frr.conf` file.
@@ -144,47 +144,47 @@ To complete the transition to FRR:
     `syslog`.
 
 5.  Remove the compatibility package:
-    
+
     {{%notice warning%}}
-    
-    This step stops the Quagga compatibility mode, causing routing to go
+
+This step stops the Quagga compatibility mode, causing routing to go
     down.
-    
+
     {{%/notice%}}
-    
+
         cumulus@switch:~$ sudo -E apt-get remove quagga quagga-compat quagga-doc
-    
+
     {{%notice note%}}
-    
-    Removing the `quagga-compat` package also removes `quagga.service`.
-    
+
+Removing the `quagga-compat` package also removes `quagga.service`.
+
     However, the `/etc/quagga` directory is not removed in this step, as
     it is left in place for reference.
-    
+
     {{%/notice%}}
 
 6.  Purge the Quagga packages:
-    
+
         cumulus@switch:~$ sudo dpkg -P quagga quagga-compat
-    
+
     {{%notice warning%}}
-    
-    This step deletes all Quagga configuration files. Please ensure you
+
+This step deletes all Quagga configuration files. Please ensure you
     back up your configuration.
-    
+
     {{%/notice%}}
-    
+
     {{%notice warning%}}
-    
-    Cumulus Networks does not recommend reinstalling the `quagga` and
+
+Cumulus Networks does not recommend reinstalling the `quagga` and
     `quagga-compat` packages once they have been removed. While they can
     be reinstalled to continue migration iterations, limited testing has
     taken place, and configuration issues may occur.
-    
+
     {{%/notice%}}
 
 7.  Start FRR without Quagga compatibility mode:
-    
+
         cumulus@switch:~$ sudo systemctl start frr.service
         cumulus@switch:~$ sudo systemctl -l status frr.service
 

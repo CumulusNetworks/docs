@@ -642,8 +642,7 @@ and associated logs are documented in the code.
 {{%notice note%}}
 
 Peering information should be tracked through PTM. For more information,
-refer to the [Prescriptive Topology Manager
-documentation](/display/CL34/Prescriptive+Topology+Manager+-+PTM).
+refer to the [Prescriptive Topology Manager documentation](/version/cumulus-linux-343/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/).
 
 {{%/notice%}}
 

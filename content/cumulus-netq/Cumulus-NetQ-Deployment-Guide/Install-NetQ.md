@@ -364,8 +364,8 @@ continue.
             cumulus@<netq-platform-hostname>:~$ 
 
     2.  Run the following command to verify all applications are
-        operating properly. ***Note**: Please allow 10-15 minutes for
-        all applications to come up and report their status.*
+        operating properly. ***Note***: Please allow 10-15 minutes for
+        all applications to come up and report their status.
 
             cumulus@<netq-platform-hostname>:~$ netq show opta-health
             Application                    Status    Health    Kafka Stream    Git Hash    Timestamp
@@ -479,8 +479,8 @@ access the meta package on the Cumulus Networks repository.
 A simple process installs the NetQ Agent on a Cumulus switch.
 
 1.  Edit the `/etc/apt/sources.list` file to add the repository for
-    Cumulus NetQ. ***Note** that NetQ has a separate repository from
-    Cumulus Linux.*
+    Cumulus NetQ. ***Note*** that NetQ has a separate repository from
+    Cumulus Linux.
 
         cumulus@switch:~$ sudo nano /etc/apt/sources.list
         ...
@@ -669,7 +669,7 @@ To install the NetQ Agent on an Ubuntu server:
 
         {{%notice info%}}
 
-        The switch or host must have access to the Internet to configure
+The switch or host must have access to the Internet to configure
         CLI access.
 
         {{%/notice%}}
@@ -689,7 +689,7 @@ versions:
 
     {{%notice info%}}
 
-    Make sure you are running lldp**d**, not lldp**ad**.
+Make sure you are running lldp**d**, not lldp**ad**.
 
     CentOS does not include `lldpd` by default, nor does it include
     `wget`, which is required for the installation. To install this
@@ -791,7 +791,7 @@ To install the NetQ Agent on a Red Hat or CentOS server:
 
         {{%notice info%}}
 
-        The switch or host must have access to the Internet to configure
+The switch or host must have access to the Internet to configure
         CLI access.
 
         {{%/notice%}}
@@ -858,29 +858,17 @@ to use the CLI for configuration.
 
 ## <span>Set Up Security</span>
 
-<span style="color: #ff0000;"> When you set up and configured your
+hen you set up and configured your
 Cumulus Linux switches, you likely configured a number of the security
 features available. Cumulus recommends the same security measures be
 followed for the NetQ Platform in the out-of-band-network. Refer to the
 [Securing Cumulus Linux white
 paper](https://cumulusnetworks.com/learn/web-scale-networking-resources/white-papers/securing-cumulus-linux/)
-for details. </span>
+for details.
 
-<span style="color: #ff0000;"> Your Cumulus Linux switches have a number
+Your Cumulus Linux switches have a number
 of ports open by default. A few additional ports must be opened to run
 the NetQ software (refer to [Default Open Ports in Cumulus Linux and
 NetQ](https://support.cumulusnetworks.com/hc/en-us/articles/228281808-Default-Open-Ports-in-Cumulus-Linux-and-NetQ)
-article). </span>
-
-<span style="color: #ff0000;">  
-</span>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
+article).
 </details>

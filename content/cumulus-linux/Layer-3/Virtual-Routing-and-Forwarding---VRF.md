@@ -3,7 +3,7 @@ title: Virtual Routing and Forwarding - VRF
 author: Cumulus Networks
 weight: 195
 aliases:
- - /display/CL37/Virtual-Routing-and-Forwarding---VRF
+ - /display/CL37/Virtual-Routing-and-Forwarding-VRF
  - /pages/viewpage.action?pageId=8362942
 pageID: 8362942
 product: Cumulus Linux
@@ -83,7 +83,7 @@ or OSPFv2 — for each routing table.
 
 Each routing table is called a *VRF table*, and has its own table ID.
 You configure VRF using
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU),
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU),
 then place the layer 3 interface in the VRF. You can have a maximum of
 255 VRFs on a switch.
 
@@ -571,8 +571,8 @@ cause issues when used with VRF route leaking in FRR.
 ## FRRouting Operation in a VRF
 
 In Cumulus Linux 3.5 and later,
-[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP),
-[OSPFv2](/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF) and
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP),
+[OSPFv2](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF) and
 [static routing](/cumulus-linux/Layer-3/Routing) (IPv4 and IPv6) are
 supported within a VRF context. Various FRRouting routing constructs,
 such as routing tables, nexthops, router-id, and related processing are
@@ -593,7 +593,7 @@ overlapping address spaces in different VRFs. Each VRF can have its own
 parameters, such as address families and redistribution. Incoming
 connections rely on the Linux kernel for VRF-global sockets. BGP
 neighbors can be tracked using
-[BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD),
+[BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD),
 both for single and multiple hops. You can configure multiple BGP
 instances, associating each with a VRF.
 
@@ -604,7 +604,7 @@ external LSAs) and types 9 through 11 (opaque LSAs) link state
 advertisements, redistributing other routing protocols, connected and
 static routes, and route maps. As with BGP, you can track OSPF neighbors
 with
-[BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD).
+[BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD).
 
 {{%notice note%}}
 
@@ -1137,7 +1137,7 @@ output.
 ## BGP Unnumbered Interfaces with VRF
 
 [BGP unnumbered interface
-configurations](/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP)
+configurations](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP)
 are supported with VRF. In BGP unnumbered, there are no addresses on any
 interface. However, debugging tools like `traceroute` need at least a
 single IP address per node as the node's source IP address. Typically,
@@ -1495,5 +1495,5 @@ To run `traceroute` on a VRF from the default VRF, run the `traceroute`
     BGP.
 
   - You cannot configure [EVPN address
-    families](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+    families](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
     within a VRF.

@@ -16,7 +16,7 @@ VX and shows some basic commands you can try to get started with Cumulus
 Linux. Additional resources for further reading and more advanced
 configuration are also provided.
 
-## <span>Perform Additional Configuration</span>
+## Perform Additional Configuration</span>
 
 To provide easier access in video-focused hypervisors (such as
 VirtualBox), Cumulus VX is configured by default to redirect the grub
@@ -59,7 +59,7 @@ If the VM is already running:
 
 2.  Restart the VM to implement the change.
 
-## <span>Try Basic Commands</span>
+## Try Basic Commands</span>
 
 After you have configured the Cumulus VX instances and performed
 additional configuration, use the wider Cumulus Linux documentation
@@ -114,7 +114,7 @@ This command updates both the `/etc/hostname` and `/etc/hosts` files.
 
     cumulus@switch:~$ net add hostname <hostname>
 
-## <span>Further Information</span>
+## Further Information</span>
 
 Check out these community articles and the rest of the Cumulus Linux
 documentation:

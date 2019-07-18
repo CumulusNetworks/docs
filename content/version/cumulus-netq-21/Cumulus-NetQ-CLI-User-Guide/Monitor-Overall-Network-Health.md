@@ -22,7 +22,7 @@ identify and resolve them. You can also see when changes have occurred
 to the network, devices, and interfaces by viewing their operation,
 configuration, and status at an earlier point in time.
 
-## <span>Validate Network Health </span>
+## Validate Network Health </span>
 
 NetQ `check` commands validate the various elements of your network
 fabric, looking for inconsistencies in configuration across your fabric,
@@ -30,7 +30,7 @@ connectivity faults, missing configuration, and so forth, and then and
 display the results for your assessment. They can be run from any node
 in the network.
 
-### <span>Validate the Network Fabric</span>
+### Validate the Network Fabric</span>
 
 You can validate the following network fabric elements:
 
@@ -142,7 +142,7 @@ to have occurred about 10 minutes ago, you could run:
     Checked Nodes: 15, Checked Links: 138, Failed Nodes: 0, Failed Links: 0
     No VLAN or PVID Mismatch found
 
-### <span>Validate Device Status and Configuration</span>
+### Validate Device Status and Configuration</span>
 
 You can validate the following device elements:
 
@@ -201,7 +201,7 @@ checked.
 
 {{%/notice%}}
 
-### <span>Validate Interface Status and Configuration</span>
+### Validate Interface Status and Configuration</span>
 
 As with other `netq check` commands, you can validate the proper
 operation of your interfaces across the network:
@@ -225,7 +225,7 @@ When failures are seen, additional information is provided to start your
 investigation. In this example, some reconfiguration is required for
 auto-negotiation with peer interfaces.
 
-## <span>View Network Details</span>
+## View Network Details</span>
 
 The `netq show` commands display a wide variety of content about the
 network and its various elements. You can show content for the

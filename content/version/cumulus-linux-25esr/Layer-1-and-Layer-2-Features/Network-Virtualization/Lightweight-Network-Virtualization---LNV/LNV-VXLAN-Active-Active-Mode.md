@@ -14,17 +14,17 @@ siteSlug: cumulus-linux-25esr
 <details>
 
 *VXLAN active-active mode* allows a pair of
-[MLAG](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG)
 switches to act as a single VTEP, providing active-active VXLAN
 termination for bare metal as well as virtualized workloads.
 
-## <span>Requirements</span>
+## Requirements</span>
 
   - Each MLAG switch should be provisioned with a virtual IP address in
     the form of an anycast IP address for VXLAN datapath termination.
 
   - All [MLAG
-    requirements](Multi-Chassis-Link-Aggregation---MLAG.html#src-5116071_Multi-ChassisLinkAggregation-MLAG-reqs)
+    requirements](Multi-Chassis-Link-Aggregation-MLAG.html#src-5116071_Multi-ChassisLinkAggregation-MLAG-reqs)
     apply for VXLAN Active-Active mode.
 
   - [LNV](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/)
@@ -39,7 +39,7 @@ termination for bare metal as well as virtualized workloads.
     guard](Spanning-Tree-and-Rapid-Spanning-Tree.html#src-5116082_SpanningTreeandRapidSpanningTree-bpdu)
     should be enabled in the VXLAN interface.
 
-## <span>Anycast IP Addresses</span>
+## Anycast IP Addresses</span>
 
 The VXLAN termination address is an anycast IP address that you
 configure as a `clagd` parameter (`clagd-vxlan-anycast-ip`) under the
@@ -81,7 +81,7 @@ the loopback interface address as follows:
     interface to be up and running on both switches even though peering
     is not established.
 
-## <span>Checking VXLAN Interface Configuration Consistency</span>
+## Checking VXLAN Interface Configuration Consistency</span>
 
 The VXLAN active-active configuration for a given VNI has to be
 consistent between the MLAG switches for correct traffic behavior.
@@ -95,9 +95,9 @@ include:
   - A VXLAN interface with the same VNI must be configured and
     administratively up on both switches
 
-## <span>Configuring VXLAN Active-Active Mode</span>
+## Configuring VXLAN Active-Active Mode</span>
 
-### <span>Configuring the Anycast IP Address</span>
+### Configuring the Anycast IP Address</span>
 
 With MLAG peering, both switches use an anycast IP address for VXLAN
 encapsulation and decapsulation. This allows remote VTEPs to learn the
@@ -120,19 +120,19 @@ the loopback interface.
 
 {{%/notice%}}
 
-### <span>Configuring MLAG</span>
+### Configuring MLAG</span>
 
 Refer to the [MLAG
-chapter](Multi-Chassis-Link-Aggregation---MLAG.html#src-5116071_Multi-ChassisLinkAggregation-MLAG-configuring)
+chapter](Multi-Chassis-Link-Aggregation-MLAG.html#src-5116071_Multi-ChassisLinkAggregation-MLAG-configuring)
 for configuration information.
 
-### <span>Configuration LNV</span>
+### Configuration LNV</span>
 
 Refer to the [LNV
 chapter](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/)
 for configuration information.
 
-### <span>Configuring STP</span>
+### Configuring STP</span>
 
 You should enable [BPDU filter and BPDU
 guard](Spanning-Tree-and-Rapid-Spanning-Tree.html#src-5116082_SpanningTreeandRapidSpanningTree-bpdu)
@@ -140,7 +140,7 @@ in the VXLAN interfaces if
 [STP](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree)
 is enabled in the bridge that is connected to the VXLAN.
 
-## <span>Example VXLAN Active-Active Configuration</span>
+## Example VXLAN Active-Active Configuration</span>
 
 The following example configures two bonds for MLAG, each with a single
 port, a peer link that is a bond with two member ports, and two
@@ -156,7 +156,7 @@ Note the configuration of the local IP address in the VXLAN interfaces
 below. They are configured with individual IP addresses, which `clagd`
 changes to anycast upon MLAG peering.
 
-### <span>leaf1 Configuration</span>
+### leaf1 Configuration</span>
 
 <summary>leaf1 configuration; click here to expand... </summary>
 
@@ -244,7 +244,7 @@ changes to anycast upon MLAG peering.
         mstpctl-bpduguard vxlan-2000=yes
         mstpctl-portautoedge host1.2000=yes host2=yes peerlink.2000=yes
 
-### <span>leaf2 Configuration</span>
+### leaf2 Configuration</span>
 
 <summary>leaf2 configuration; click here to expand... </summary>
 
@@ -332,12 +332,12 @@ changes to anycast upon MLAG peering.
         mstpctl-bpduguard vxlan-2000=yes
         mstpctl-portautoedge host1.2000=yes host2=yes peerlink.2000=yes
 
-### <span>Quagga Configuration</span>
+### Quagga Configuration</span>
 
 The layer 3 fabric can be configured using
-[BGP](/version/cumulus-linux-25esr/Layer-3-Features/Configuring-Border-Gateway-Protocol---BGP)
+[BGP](/version/cumulus-linux-25esr/Layer-3-Features/Configuring-Border-Gateway-Protocol-BGP)
 or
-[OSPF](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First---OSPF---Protocol).
+[OSPF](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol).
 The following example uses OSPF; the configuration needed in the MLAG
 switches in the above specified topology is as follows:
 
@@ -426,7 +426,7 @@ router ospf
 </tbody>
 </table>
 
-### <span>LNV Configuration</span>
+### LNV Configuration</span>
 
 The following configuration variables should be set in leaf1 and leaf2
 in `/etc/vxrd.conf`. This configuration assumes head-end replication is
@@ -436,7 +436,7 @@ address. Please refer to [Configuring the Registration
 Node](Lightweight-Network-Virtualization---LNV.html#src-5116051_LightweightNetworkVirtualization-LNV-regnode)
 for setting that variable.
 
-#### <span>leaf1 Configuration</span>
+#### leaf1 Configuration</span>
 
     # Local IP address to bind to for receiving control traffic from the snd
     src_ip = 27.0.0.11
@@ -446,7 +446,7 @@ for setting that variable.
     # for False
     head_rep = true
 
-#### <span>leaf2 Configuration</span>
+#### leaf2 Configuration</span>
 
     # Local IP address to bind to for receiving control traffic from the snd
     src_ip = 27.0.0.12
@@ -456,13 +456,13 @@ for setting that variable.
     # for False
     head_rep = true
 
-## <span id="src-5116066_LNVVXLANActive-ActiveMode-proto_down" class="confluence-anchor-link"></span><span>VXLAN PROTO\_DOWN State</span>
+## <span id="src-5116066_LNVVXLANActive-ActiveMode-proto_down" class="confluence-anchor-link"></span>VXLAN PROTO\_DOWN State</span>
 
 Similar to a bond interface, if MLAG detects a problem that could result
 in connectivity issues such as traffic black-holing or a network
 meltdown if the link carrier was left in an UP state, it can put VXLAN
 interface into a [PROTO\_DOWN
-state](Multi-Chassis-Link-Aggregation---MLAG.html#src-5116071_Multi-ChassisLinkAggregation-MLAG-proto_down).
+state](Multi-Chassis-Link-Aggregation-MLAG.html#src-5116071_Multi-ChassisLinkAggregation-MLAG-proto_down).
 Such connectivity issues include:
 
   - When the peer link goes down but the peer switch is up (that is, the
@@ -503,10 +503,10 @@ PROTO\_DOWN state due to the missing anycast configuration.
          vxlan-1000    -                  -         -                      vxlan-single,no-anycast-ip
          vxlan-2000    -                  -         -                      vxlan-single,no-anycast-ip
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - [VLAN-aware bridge
-    mode](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+    mode](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
     is not supported for VXLAN active-active mode in this release.
 
   - The VLAN used for the peer link layer 3 subinterface should not be

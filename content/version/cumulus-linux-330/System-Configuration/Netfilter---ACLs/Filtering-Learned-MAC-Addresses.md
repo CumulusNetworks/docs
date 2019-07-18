@@ -13,7 +13,7 @@ siteSlug: cumulus-linux-330
 ---
 On Broadcom switches, a MAC address is learned on a bridge regardless of
 whether or not a received packet is dropped by an
-[ACL](/version/cumulus-linux-330/System-Configuration/Netfilter---ACLs/).
+[ACL](/version/cumulus-linux-330/System-Configuration/Netfilter-ACLs/).
 This is due to how the hardware learns MAC addresses and occurs before
 the ACL lookup. This can be a security or resource problem as the MAC
 address table has the potential to get filled with bogus MAC addresses,
@@ -128,10 +128,10 @@ These commands create the following configuration in the
         pre-up bridge fdb add 00:00:00:00:00:55 dev swp5 master static vlan 500
         pre-up bridge fdb add 00:00:00:00:00:66 dev swp6 master static vlan 600
 
-## <span>Interactions with EVPN</span>
+## Interactions with EVPN</span>
 
 If you are using
-[EVPN](/version/cumulus-linux-330/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN),
+[EVPN](/version/cumulus-linux-330/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN),
 local static MAC addresses added to the local FDB are exported as static
 MAC addresses to remote switches. Remote MAC addresses are added as MAC
 addresses to the remote FDB.

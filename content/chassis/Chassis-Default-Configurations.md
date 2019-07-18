@@ -52,7 +52,7 @@ Linux on the nodes. These following actions are also performed:
 You can modify these files to suit your needs after the chassis is
 running.
 
-## <span>Default Routing Configuration</span>
+## Default Routing Configuration</span>
 
 The chassis has a default routing configuration that uses
 [FRRouting](https://frrouting.org/) (FRR). You can modify this
@@ -72,7 +72,7 @@ is *42.42.42.\<slot\>*.
 The default `frr.conf` file contents for fabric cards and line cards for
 each type of chassis appears below.
 
-### <span>Avoid Layer 2 Networks</span>
+### Avoid Layer 2 Networks</span>
 
 The chassis is not a layer 2 device. Connections between line cards and
 fabric cards don't lend themselves well to a layer 2 network. You cannot
@@ -84,9 +84,9 @@ If you need to extend a layer 2 network between two line cards, use
 VXLANs with EVPN, for example. See the Cumulus Linux user guide for
 details.
 
-## <span>Edgecore OMP-800 Default Configurations</span>
+## Edgecore OMP-800 Default Configurations</span>
 
-### <span>interfaces File</span>
+### interfaces File</span>
 
 The `/etc/network/interfaces` file has the same content on both line
 cards and fabric cards.
@@ -109,7 +109,7 @@ cards and fabric cards.
      
     iface eth2 inet dhcp
 
-### <span>chassismgmt.intf File</span>
+### chassismgmt.intf File</span>
 
 The `/etc/network/interfaces.d/chassismgmt.intf` file has the same
 content on both line cards and fabric cards.
@@ -124,7 +124,7 @@ content on both line cards and fabric cards.
     iface eth0.4088
         post-up /usr/lib/cumulus/setchassismgmtipaddr $IFACE
 
-### <span>fabric.intf File</span>
+### fabric.intf File</span>
 
 The `/etc/network/interfaces.d/fabric.intf` file has the same content on
 both line cards and fabric cards, with one exception: on a fabric card
@@ -156,7 +156,7 @@ line card is *0,16*.
     ${fabric_defaults()}
     % endfor
 
-### <span>frr.conf File on a Fabric Card</span>
+### frr.conf File on a Fabric Card</span>
 
     cumulus@omp-800-fc402:~$ cat /etc/frr/frr.conf 
     # default to using syslog. /etc/rsyslog.d/45-frr.conf places the log
@@ -216,7 +216,7 @@ line card is *0,16*.
     !
     !!! END AUTO-ADDED LINES FOR CHASSIS FABRIC CONFIGURATION
 
-### <span>frr.conf File on a Line Card</span>
+### frr.conf File on a Line Card</span>
 
     cumulus@omp-800-lc102:~$ cat /etc/frr/frr.conf 
     # default to using syslog. /etc/rsyslog.d/45-frr.conf places the log
@@ -262,7 +262,7 @@ line card is *0,16*.
     !
     !!! END AUTO-ADDED LINES FOR CHASSIS FABRIC CONFIGURATION
 
-### <span>ports.conf File on a Line Card</span>
+### ports.conf File on a Line Card</span>
 
 The `ports.conf` file has different contents depending on whether the
 line card is even or odd-numbered. Here is the configuration for line

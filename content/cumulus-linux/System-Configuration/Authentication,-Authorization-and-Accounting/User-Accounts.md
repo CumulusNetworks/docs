@@ -30,7 +30,7 @@ The *cumulus* account:
     [SSH](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access).
 
   - Along with the cumulus group, has both show and edit rights for
-    [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU).
+    [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
 
 The *root* account:
 
@@ -51,13 +51,13 @@ be sure to include them in the *sudo* group.
 
 To access the switch without a password, you need to [boot into a single
 shell/user
-mode](/cumulus-linux/Monitoring-and-Troubleshooting/Single-User-Mode---Boot-Recovery).
+mode](/cumulus-linux/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery).
 
 You can add and configure user accounts in Cumulus Linux with read-only
 or edit permissions for NCLU. For more information, see [Configure User
-Accounts](Network-Command-Line-Utility---NCLU.html#src-8362580_NetworkCommandLineUtility-NCLU-configure-user-accounts).
+Accounts](Network-Command-Line-Utility-NCLU.html#src-8362580_NetworkCommandLineUtility-NCLU-configure-user-accounts).
 
-## <span>Enable Remote Access for the root User</span>
+## Enable Remote Access for the root User</span>
 
 The root user does not have a password and cannot log into a switch
 using SSH. This default account behavior is consistent with Debian. To
@@ -68,7 +68,7 @@ following:
 
   - Set a password
 
-### <span id="src-8362553_UserAccounts-ssh_key" class="confluence-anchor-link"></span><span>Generate an SSH Key for the root Account</span>
+### <span id="src-8362553_UserAccounts-ssh_key" class="confluence-anchor-link"></span>Generate an SSH Key for the root Account</span>
 
 1.  In a terminal on your host system (not the switch), check to see if
     a key already exists:
@@ -99,7 +99,7 @@ following:
         cumulus@switch:~$ sudo mkdir -p /root/.ssh
         cumulus@switch:~$ echo <SSH public key string> | sudo tee -a /root/.ssh/authorized_keys
 
-### <span id="src-8362553_UserAccounts-root_passwd" class="confluence-anchor-link"></span><span>Set the root User Password</span>
+### <span id="src-8362553_UserAccounts-root_passwd" class="confluence-anchor-link"></span>Set the root User Password</span>
 
 1.  Run the following command:
     

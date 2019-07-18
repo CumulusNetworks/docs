@@ -25,7 +25,7 @@ supported in the following environments:
 
   - Docker containers
 
-## <span>Install the FRR Package on a Bare Metal Server</span>
+## Install the FRR Package on a Bare Metal Server</span>
 
 1.  If FRRouting is already installed on the host, you must uninstall
     that package before you install FRR.
@@ -163,7 +163,7 @@ supported in the following environments:
     
         root@host:~# systemctl start frr.service
 
-## <span id="src-5868795_InstallingFRRoutingontheHost-container" class="confluence-anchor-link"></span><span>Start the Cumulus Host Pack FRR Docker Container</span>
+## <span id="src-5868795_InstallingFRRoutingontheHost-container" class="confluence-anchor-link"></span>Start the Cumulus Host Pack FRR Docker Container</span>
 
 {{%notice note%}}
 
@@ -285,7 +285,7 @@ The following steps were done on an Ubuntu 16.04 host.
             end
             host#
 
-## <span>Configure FRR</span>
+## Configure FRR</span>
 
 Once you have finished installing FRR on your servers or in your
 containers, you are ready to [configure

@@ -30,19 +30,19 @@ by default into `/var/log/syslog` with an `lldpd` prefix.
 statistics and other running configuration information. See `man
 lldpcli(8)` for details.
 
-## <span>Commands</span>
+## Commands</span>
 
   - lldpd (daemon)
 
   - lldpcli (interactive CLI)
 
-## <span>Man Pages</span>
+## Man Pages</span>
 
   - man lldpd
 
   - man lldpcli
 
-## <span>Configuring LLDP</span>
+## Configuring LLDP</span>
 
 You configure `lldpd` settings in `/etc/lldpd.conf` or `/etc/lldpd.d/`.
 
@@ -68,7 +68,7 @@ cumulus@switch:~$ sudo tail -f /var/log/syslog  | grep lldp
  
 ```
 
-## <span>Example lldpcli Commands</span>
+## Example lldpcli Commands</span>
 
 To see all neighbors on all ports/interfaces:
 
@@ -236,7 +236,7 @@ To reset any interface list to none:
 
     cumulus@switch:~$ sudo lldpcli configure system interface pattern-blacklist ""
 
-## <span>Enabling the SNMP Subagent in LLDP</span>
+## Enabling the SNMP Subagent in LLDP</span>
 
 LLDP does not enable the SNMP subagent by default. You need to edit
 `/etc/default/lldpd` and enable the `-x` option.
@@ -245,7 +245,7 @@ LLDP does not enable the SNMP subagent by default. You need to edit
     # Start SNMP subagent and enable CDP 
     DAEMON_ARGS="-x -c"
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/lldpd.conf
 
@@ -253,13 +253,13 @@ LLDP does not enable the SNMP subagent by default. You need to edit
 
   - /etc/default/lldpd
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [vincentbernat.github.io/lldpd/](http://vincentbernat.github.io/lldpd/)
 
   - [en.wikipedia.org/wiki/Link\_Layer\_Discovery\_Protocol](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - Annex E (and hence Annex D) of IEEE802.1AB (lldp) is not supported.
 

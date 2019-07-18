@@ -17,13 +17,13 @@ The *cumulus* account is a normal user and is in the group *sudo*.
 You can add more user accounts as needed. Like the *cumulus* account,
 these accounts must use `sudo` to execute privileged commands.
 
-## <span>Commands</span>
+## Commands</span>
 
   - sudo
 
   - visudo
 
-## <span>Using sudo</span>
+## Using sudo</span>
 
 `sudo` allows you to execute a command as superuser or another user as
 specified by the security policy. See `man sudo(8)` for details.
@@ -69,7 +69,7 @@ The example below shows how to use `sudo` as a non-privileged user
     3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master br0 state UP mode DEFAULT qlen 500
     link/ether 44:38:39:00:27:9f brd ff:ff:ff:ff:ff:ff
 
-## <span>sudoers Examples</span>
+## sudoers Examples</span>
 
 The following examples show how you grant as few privileges as necessary
 to a user or group of users to allow them to perform the required task.
@@ -266,13 +266,13 @@ be prefixed with `sudo.`
 </tbody>
 </table>
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/sudoers - default security policy
 
   - /etc/sudoers.d/ - default security policy
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [sudo](https://wiki.debian.org/sudo)
 

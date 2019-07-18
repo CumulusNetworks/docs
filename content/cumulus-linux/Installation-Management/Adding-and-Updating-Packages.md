@@ -34,7 +34,7 @@ services to restart.
 
 {{%/notice%}}
 
-## <span>Update the Package Cache</span>
+## Update the Package Cache</span>
 
 To work properly, `apt` relies on a local cache of the available
 packages. You must populate the cache initially, and then periodically
@@ -80,7 +80,7 @@ upgrade your distribution.
 
 {{%/notice%}}
 
-## <span>List Available Packages</span>
+## List Available Packages</span>
 
 After the cache is populated, use the `apt-cache` command to search the
 cache and find the packages in which you are interested or to get
@@ -133,7 +133,7 @@ on more packages than you might expect.
 
 {{%/notice%}}
 
-## <span>List Installed Packages</span>
+## List Installed Packages</span>
 
 The APT cache contains information about all the packages available in
 the repository. To see which packages are actually installed on your
@@ -150,7 +150,7 @@ the system that contain `tcp`:
     ii  tcpdump                       4.6.2-5+deb8u1      amd64               command-line network traffic analyzer
     cumulus@switch:~$
 
-## <span id="src-8362631_AddingandUpdatingPackages-versionDisplay" class="confluence-anchor-link"></span><span>Display the Version of a Package</span>
+## <span id="src-8362631_AddingandUpdatingPackages-versionDisplay" class="confluence-anchor-link"></span>Display the Version of a Package</span>
 
 To show the version of a specific package installed on the system, run
 the `net show package version <package>` command. For example, the
@@ -182,7 +182,7 @@ versions, run the `net show package version` command. For example:
     arptables                          0.0.3.4-1
     ...
 
-## <span id="src-8362631_AddingandUpdatingPackages-upgrade-packages" class="confluence-anchor-link"></span><span>Upgrade Packages</span>
+## <span id="src-8362631_AddingandUpdatingPackages-upgrade-packages" class="confluence-anchor-link"></span>Upgrade Packages</span>
 
 To upgrade all the packages installed on the system to their latest
 versions, run the following commands:
@@ -200,7 +200,7 @@ Refer to [Upgrading Cumulus
 Linux](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux)
 for additional information.
 
-## <span>Add New Packages</span>
+## Add New Packages</span>
 
 To add a new package:
 
@@ -251,7 +251,7 @@ To add a new package:
     
     {{%/notice%}}
 
-## <span>Add Packages from Another Repository</span>
+## Add Packages from Another Repository</span>
 
 As shipped, Cumulus Linux searches the Cumulus Linux repository for
 available packages. You can add additional repositories to search by
@@ -326,7 +326,7 @@ To install a new package, complete the following steps:
         cumulus@switch:~$ sudo -E apt-get install {name of package}
         cumulus@switch:~$ sudo -E apt-get upgrade
 
-## <span>Cumulus Supplemental Repository</span>
+## Cumulus Supplemental Repository</span>
 
 Cumulus Networks provides a *Supplemental Repository* that contains
 third party applications commonly installed on switches.
@@ -400,7 +400,7 @@ To enable the Supplemental Repository:
     
         cumulus@leaf01:~$ sudo -E apt-get install htop
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Debian GNU/Linux FAQ, Ch 8 Package management
     tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)

@@ -17,7 +17,7 @@ plugged in, or automatically unconfigure it when a cable is removed.
 
 Follow the steps below to install and configure the `ifplugd` daemon.
 
-## <span>Install ifplugd</span>
+## Install ifplugd</span>
 
 1.  Update the switch before installing the daemon:
     
@@ -27,7 +27,7 @@ Follow the steps below to install and configure the `ifplugd` daemon.
     
         cumulus@switch:~$ sudo -E apt-get install ifplugd
 
-## <span>Configure ifplugd</span>
+## Configure ifplugd</span>
 
 Once `ifplugd` is installed, two configuration files must be edited to
 set up `ifplugd`:
@@ -53,7 +53,7 @@ MLAG environment.
 {{%notice info has%}}
 
 `ifplugd` is configured on both both the primary and secondary
-[MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
 switches in this example.
 
 {{%/notice%}}
@@ -113,7 +113,7 @@ switches in this example.
 
 {{%/notice%}}
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
 The default shell for `ifplugd` is `dash` (`/bin/sh`), rather than
 `bash`, as it provides a faster and more nimble shell. However, it

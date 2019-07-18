@@ -75,13 +75,13 @@ are as follows:
     each time, assigning it the correct name, and configuring its
     settings.
 
-## <span>Configuring Network Interfaces and Quagga</span>
+## Configuring Network Interfaces and Quagga</span>
 
 The next step is to configure the 2 leaf/2 spine topology. This includes
 setting up the network interfaces, and Quagga, and assumes the previous
 sections have been completed.
 
-### <span>Configuring leaf1 VM</span>
+### Configuring leaf1 VM</span>
 
 To configure leaf1:
 
@@ -160,7 +160,7 @@ To configure leaf1:
     
         root@leaf1:~$ service quagga restart
 
-### <span>Configuring leaf2, spine1, and spine2 VMs</span>
+### Configuring leaf2, spine1, and spine2 VMs</span>
 
 The configuration steps for `leaf2`, `spine1`, and `spine2` are the same
 as those listed above for `leaf1`, however the file configurations are
@@ -297,7 +297,7 @@ continuing.
 
 {{%/notice%}}
 
-## <span>Testing the Connections</span>
+## Testing the Connections</span>
 
 Once the VMs have been restarted, you can ping across VMs to test:
 
@@ -315,7 +315,7 @@ Once the VMs have been restarted, you can ping across VMs to test:
         
             root@leaf1:~# ping 10.2.1.4
 
-## <span>Further Information</span>
+## Further Information</span>
 
 For the next steps regarding configuring Cumulus VX, check out these
 community articles, and the rest of the Cumulus Documentation:

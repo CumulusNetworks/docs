@@ -16,7 +16,7 @@ siteSlug: hostpack
 Container Advertiser and FRRouting (FRR) work together on the host to
 advertise containers into the routed fabric.
 
-## <span>Container Advertiser Architecture</span>
+## Container Advertiser Architecture</span>
 
 As Docker creates and destroys containers, the Container Advertiser
 listens to the docker-engine API events stream. When a container
@@ -35,7 +35,7 @@ uplinks from the server.
 
 {{% imgOld 0 %}}
 
-### <span>Redistribute the Container Routing Table into FRRouting</span>
+### Redistribute the Container Routing Table into FRRouting</span>
 
 The following sample configuration — stored in the `/etc/frr/frr.conf`
 file — demonstrates how you can advertise containers using FRRouting.
@@ -68,7 +68,7 @@ file — demonstrates how you can advertise containers using FRRouting.
     line vty
     !
 
-### <span>Supported Docker Network Driver Types</span>
+### Supported Docker Network Driver Types</span>
 
 When using Docker, containers can be attached to custom user-created
 networks, as in the example network created below.
@@ -86,7 +86,7 @@ Container Advertiser only supports the advertisement of containers
 attached to networks created with one of two drivers: *bridge* and
 *macvlan*.
 
-## <span>Run Container Advertiser</span>
+## Run Container Advertiser</span>
 
 The container advertiser can be used on the host, just like any other
 container.
@@ -181,7 +181,7 @@ container.
              
             [hit enter key to exit] or run 'docker stop <container>'
 
-## <span>Container Advertiser Options</span>
+## Container Advertiser Options</span>
 
 The container advertiser has a number of different options that can be
 specified. By default it starts with no additional options defined. To
@@ -189,7 +189,7 @@ see all available options run the following command:
 
     user@host:~$ docker run -it --name=crohdad hub.cumulusnetworks.com/chp-crohdad:latest -h
 
-### <span>Write Events to the Host syslog</span>
+### Write Events to the Host syslog</span>
 
 Container Advertiser attempts to write events to the host `syslog` by
 default if the `/dev/log` file is available inside the container.
@@ -208,7 +208,7 @@ not required.
 
 {{%/notice%}}
 
-### <span>Control Container Advertisement by Subnet</span>
+### Control Container Advertisement by Subnet</span>
 
 Container Advertiser can be restricted to only advertise containers that
 are created/destroyed within specific subnets. By default, all subnets
@@ -225,7 +225,7 @@ In the example above, only containers that are created and associated to
 IP addresses in the following ranges 172.18.0.0/24 and 172.19.0.0/24
 will be advertised.
 
-### <span>View All Supported Options</span>
+### View All Supported Options</span>
 
 Run the container with the `-h` flag which displays the help options.
 
@@ -267,7 +267,7 @@ Run the container with the `-h` flag which displays the help options.
      
     [hit enter key to exit] or run 'docker stop <container>'
 
-## <span>Deploy the Container Advertiser with Ansible</span>
+## Deploy the Container Advertiser with Ansible</span>
 
 Below is a task for an Ansible playbook that you can use to deploy the
 Container Advertiser.
@@ -294,7 +294,7 @@ module.
 
 {{%/notice%}}
 
-## <span>Start the Container Advertiser Automatically when the System Boots</span>
+## Start the Container Advertiser Automatically when the System Boots</span>
 
 This configuration automatically restarts the container if it dies at
 any point using standard systemd constructs.
@@ -336,7 +336,7 @@ any point using standard systemd constructs.
     
         root@host:# systemctl start container-advertiser.service
 
-## <span>Further Example Configurations</span>
+## Further Example Configurations</span>
 
 To see a Vagrant-based demo of the Container Advertiser in action, visit
 the [Cumulus Networks GitHub

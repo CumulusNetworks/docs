@@ -18,7 +18,7 @@ reviewing and troubleshooting potential issues with Cumulus RMP
 environments. In addition, several of the more common issues have been
 listed, with potential solutions included.
 
-## <span>Overview</span>
+## Overview</span>
 
 This document aims to provide two sets of outputs:
 
@@ -27,7 +27,7 @@ This document aims to provide two sets of outputs:
 
 2.  Critical log messages that can be monitored for triggered alerts
 
-### <span>Trend Analysis via Metrics</span>
+### Trend Analysis via Metrics</span>
 
 A metric is a quantifiable measure that is used to track and assess the
 status of a specific infrastructure component. It is a check collected
@@ -36,7 +36,7 @@ utilization and total number of routes.
 
 Metrics are more valuable when used for trend analysis.
 
-### <span>Alerting via Triggered Logging</span>
+### Alerting via Triggered Logging</span>
 
 Triggered issues are normally sent to syslog, but could go to another
 log file depending on the feature. On Cumulus RMP, `rsyslog` handles all
@@ -47,7 +47,7 @@ steady state.
 Sending logs to a centralized collector, then creating an alerts based
 on critical logs is optimal solution for alerting.
 
-## <span>Hardware</span>
+## Hardware</span>
 
 The `smond` process provides monitoring functionality for various switch
 hardware elements. Mininmum/maximum values are output, depending on the
@@ -152,12 +152,12 @@ cumulus@switch:~$ ledmgrd -j</code></pre></td>
 </tbody>
 </table>
 
-## <span>System Data</span>
+## System Data</span>
 
 Cumulus RMP includes a number of ways to monitor various aspects of
 system data. In addition, alerts are issued in high risk situations.
 
-### <span>CPU Idle Time</span>
+### CPU Idle Time</span>
 
 When a CPU reports five high CPU alerts within a span of 5 minutes, an
 alert is logged.
@@ -268,7 +268,7 @@ Cumulus RMP 2.5, CPU and Memory warnings are generated via jdoo. The
 configuration for the thresholds are stored in
 **/etc/jdoo/jdoorc.d/cl-utilities.rc**.
 
-### <span>Memory Usage</span>
+### Memory Usage</span>
 
 When the memory utilization exceeds 90% a warning is logged and a
 cl-support is generated.
@@ -298,7 +298,7 @@ cumulus@switch:~$ cat
 </tbody>
 </table>
 
-### <span>Disk Usage</span>
+### Disk Usage</span>
 
 When monitoring disk utilization **tmpfs** can be excluded from
 monitoring.
@@ -325,7 +325,7 @@ monitoring.
 </tbody>
 </table>
 
-## <span>Process Restart </span>
+## Process Restart </span>
 
 In Cumulus RMP 3.0 and later, systemd is responsible for monitoring and
 restarting processes.
@@ -384,7 +384,7 @@ init.d to restart the process.
 </tbody>
 </table>
 
-## <span>Layer 1 Protocols and Interfaces</span>
+## Layer 1 Protocols and Interfaces</span>
 
 Link and port state interface transitions are logged to
 **/var/log/syslog** and **/var/log/switchd.log**.
@@ -565,7 +565,7 @@ documentation](/display/RMP321/Prescriptive+Topology+Manager+-+PTM).
 </tbody>
 </table>
 
-## <span>Layer 2 Protocols</span>
+## Layer 2 Protocols</span>
 
 Spanning tree is a protocol that prevents loops in a layer 2
 infrastructure. In a stable state, the spanning tree protocol should
@@ -647,7 +647,7 @@ mstpd: MSTP_OUT_flush_all_fids: bridge:swp2:0 Flushing forwarding database</code
 </tbody>
 </table>
 
-## <span>Layer 3 Protocols</span>
+## Layer 3 Protocols</span>
 
 Routing Logs
 
@@ -680,7 +680,7 @@ watchquagga[7719]: ospfd state -&gt; up : connect succeeded</code></pre></td>
 </tbody>
 </table>
 
-## <span>Logging</span>
+## Logging</span>
 
 The table below covers the various log files, and what they should be
 used for:
@@ -712,18 +712,18 @@ used for:
 </tbody>
 </table>
 
-## <span>Protocols and Services</span>
+## Protocols and Services</span>
 
-### <span>NTP</span>
+### NTP</span>
 
 Run the following command to confirm the NTP process is working
 correctly, and that the switch clock is synced with NTP:
 
     cumulus@switch:~$ /usr/bin/ntpq -p
 
-## <span>Device Management</span>
+## Device Management</span>
 
-### <span>Device Access Logs</span>
+### Device Access Logs</span>
 
 <table>
 <colgroup>
@@ -748,7 +748,7 @@ sshd[31830]: pam_unix(sshd:session): session opened for user cumulus by (uid=0)<
 </tbody>
 </table>
 
-### <span>Device Super User Command Logs</span>
+### Device Super User Command Logs</span>
 
 <table>
 <colgroup>

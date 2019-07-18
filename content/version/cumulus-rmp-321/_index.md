@@ -12,7 +12,7 @@ imgData: cumulus-rmp-321
 siteSlug: cumulus-rmp-321
 subsection: true
 ---
-## <span>Introducing Cumulus RMP</span>
+## Introducing Cumulus RMP</span>
 
 Cumulus Linux is the networking industry's first full-featured Linux
 operating system. The [Debian
@@ -43,7 +43,7 @@ Read the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115000312627)
 for new features and known issues in this release.
 
-## <span>What's New in Cumulus RMP 3.2.1</span>
+## What's New in Cumulus RMP 3.2.1</span>
 
 Cumulus RMP 3.2.1 adds the following improvement:
 
@@ -56,7 +56,7 @@ information regarding bug fixes and known issues present in this
 release, refer to the [product release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115002541467).
 
-## <span>Open Source Contributions</span>
+## Open Source Contributions</span>
 
 Cumulus Networks has forked various software projects, like CFEngine,
 `Netdev` and some Puppet Labs packages in order to implement various

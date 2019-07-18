@@ -18,7 +18,7 @@ updates.
 Before running any `apt-get` commands or after changing the
 `/etc/apt/sources.list` file, you need to run `apt-get update`.
 
-## <span>Updating the Package Cache</span>
+## Updating the Package Cache</span>
 
 To work properly, APT relies on a local cache of the available packages.
 You must populate the cache initially, and then periodically update it
@@ -55,7 +55,7 @@ with `apt-get update`:
     Fetched 1,011 kB in 1s (797 kB/s)
     Reading package lists... Done
 
-## <span>Listing Available Packages</span>
+## Listing Available Packages</span>
 
 Once the cache is populated, use `apt-cache` to search the cache to find
 the packages you are interested in or to get information about an
@@ -112,7 +112,7 @@ will match on more packages than you would expect.
 
 {{%/notice%}}
 
-## <span>Adding a Package</span>
+## Adding a Package</span>
 
 In order to add a new package, first ensure the package is not already
 installed in the system:
@@ -151,7 +151,7 @@ For example, the following adds the package `tcpreplay` to the system:
     Setting up tcpreplay (4.6.2-5+deb8u1) ...
     cumulus@switch:~$ 
 
-## <span>Listing Installed Packages</span>
+## Listing Installed Packages</span>
 
 The APT cache contains information about all the packages available on
 the repository. To see which packages are actually installed on your
@@ -169,9 +169,9 @@ un  tcpd                  <none>              <none>              (no descriptio
 ii  tcpdump               4.6.2-5+deb8u1      amd64               command-line network traffic analyzer  
 ```
 
-## <span>Upgrading to Newer Versions of Installed Packages</span>
+## Upgrading to Newer Versions of Installed Packages</span>
 
-### <span>Upgrading a Single Package</span>
+### Upgrading a Single Package</span>
 
 A single package can be upgraded by simply installing that package again
 with `apt-get install`. You should perform an update first so that the
@@ -181,13 +181,13 @@ To see if a package needs to be upgraded, use `apt-cache show <pkgname>`
 to show the latest version number of the package. Use `dpkg -l
 <pkgname>` to show the version number of the installed package.
 
-### <span>Upgrading All Packages</span>
+### Upgrading All Packages</span>
 
 You can update all packages on the system with `apt-get update`. This
 upgrades all installed versions with their latest versions but will not
 install any new packages.
 
-## <span>Adding Packages from Another Repository</span>
+## Adding Packages from Another Repository</span>
 
 As shipped, Cumulus RMP searches the Cumulus RMP repository for
 available packages. You can add additional repositories to search by
@@ -258,7 +258,7 @@ To install a new package, please complete the following steps:
         cumulus@switch:~$ sudo apt-get update
         cumulus@switch:~$ sudo apt-get install {name of package}
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Debian GNU/Linux FAQ, Ch 8 Package management
     tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)

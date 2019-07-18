@@ -24,7 +24,7 @@ without:
 A basic VRR-enabled network configuration is shown below. The network
 consists of several hosts, two routers running Cumulus Linux and
 configured with
-[MLAG](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation---MLAG),
+[MLAG](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG),
 and the rest of the network:
 
 {{% imgOld 0 %}}
@@ -33,7 +33,7 @@ An actual implementation will have many more server hosts and network
 connections than are shown here. But this basic configuration provides a
 complete description of the important aspects of the VRR setup.
 
-## <span>Configuring the Network</span>
+## Configuring the Network</span>
 
 Configuring this network is fairly straightforward. First create the
 bridge subinterface, then create the secondary address for the virtual
@@ -55,7 +55,7 @@ Interfaces](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interface
 You should always use `ifupdown2` to configure VRR, because it ensures
 correct ordering when bringing up the virtual and physical interfaces
 and it works best with [VLAN-aware
-bridges](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
+bridges](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
 
 If you are using the [traditional
 mode](https://support.cumulusnetworks.com/hc/en-us/articles/204909397)
@@ -102,7 +102,7 @@ interface* on the SVI. This MAC VLAN interface is:
   - Assigned an IPv4 address of *192.168.0.254* and an IPv6 address of
     *2001:aa::1/48*.
 
-### <span>Reserved MAC Address Range</span>
+### Reserved MAC Address Range</span>
 
 In order to prevent MAC address conflicts with other interfaces in the
 same bridged network, Cumulus Networks has [reserved a range of MAC
@@ -114,7 +114,7 @@ You may notice that this is the same range reserved for VRRP, since VRR
 serves a similar function. Cumulus Networks recommends you use this
 range of MAC addresses when configuring VRR.
 
-### <span>Configuring the Hosts</span>
+### Configuring the Hosts</span>
 
 Each host should have two network interfaces. The routers configure the
 interfaces as bonds running LACP; the hosts should also configure its
@@ -126,11 +126,11 @@ router; this default gateway address never changes.
 Configure the links between the hosts and the routers in *active-active*
 mode for First Hop Redundancy Protocol.
 
-### <span>Configuring the Routers</span>
+### Configuring the Routers</span>
 
 The routers implement the layer 2 network interconnecting the hosts, as
 well as the redundant routers. If you are using
-[MLAG](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation---MLAG),
+[MLAG](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG),
 configure each router with a bridge interface, named *bridge* in our
 example, with these different types of interfaces:
 
@@ -148,12 +148,12 @@ interface to each host instead of a bond.
 
 {{%/notice%}}
 
-### <span>Other Network Connections</span>
+### Other Network Connections</span>
 
 Other interfaces on the router can connect to other subnets and are
 accessed through layer 3 forwarding (swp7 in the image above).
 
-### <span>Handling ARP Requests</span>
+### Handling ARP Requests</span>
 
 The entire purpose of this configuration is to have all the redundant
 routers respond to ARP requests from hosts for the virtual router IP
@@ -171,7 +171,7 @@ that receives these replies will not get confused over which response is
 "correct" and will either ignore replies after the first, or accept them
 and overwrite the previous reply with identical information.
 
-### <span>Monitoring Peer Links and Uplinks</span>
+### Monitoring Peer Links and Uplinks</span>
 
 When an uplink on a switch in active-active mode goes down, the peer
 link may get congested. When this occurs, you should monitor the uplink
@@ -185,7 +185,7 @@ goes to the secondary MLAG switch, traffic will be black-holed. To avoid
 this, shut down all the uplinks when the peer link goes down using
 `ifplugd`.
 
-## <span id="src-5122091_VirtualRouterRedundancy-VRR-ifplugd" class="confluence-anchor-link"></span><span>Using ifplugd</span>
+## <span id="src-5122091_VirtualRouterRedundancy-VRR-ifplugd" class="confluence-anchor-link"></span>Using ifplugd</span>
 
 `ifplugd` is a link state monitoring daemon that can execute
 user-specified scripts on link transitions (not admin-triggered
@@ -200,7 +200,7 @@ Next, configure `ifplugd`. The example below indicates that when the
 peerbond goes down in a MLAG environment, `ifplugd` brings down all the
 uplinks. Run the following `ifplugd` script on both the primary and
 secondary
-[MLAG](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG)
 switches.
 
 To configure `ifplugd`, modify `/etc/default/ifplugd` and add the
@@ -249,7 +249,7 @@ Finally, restart `ifplugd` for your changes to take effect:
 
     cumulus@switch:$ sudo systemctl restart ifplugd.service
 
-## <span>Notes</span>
+## Notes</span>
 
 The default shell is `/bin/sh`, which is `dash` and not `bash`. This
 makes for faster execution of the script since `dash` is small and

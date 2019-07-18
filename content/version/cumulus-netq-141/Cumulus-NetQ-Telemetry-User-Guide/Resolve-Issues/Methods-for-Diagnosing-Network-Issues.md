@@ -19,7 +19,7 @@ for analysis. This enables you to replay and analyze network-wide events
 for better visibility and to correlate patterns. This allows for
 root-cause analysis and optimization of network configs for the future.
 
-## <span>Diagnose an Event after It Occurs</span>
+## Diagnose an Event after It Occurs</span>
 
 NetQ provides a number of commands for diagnosing past events.
 
@@ -81,7 +81,7 @@ the list:
     leaf03           swp51(spine01)               default          64515      65000      Estd   5            Add      5h ago
     spine01          swp3(leaf03)                 default          65000      64515      Estd   2            Add      5h ago
 
-## <span id="src-10453530_MethodsforDiagnosingNetworkIssues-time_machine" class="confluence-anchor-link"></span><span>Use NetQ as a Time Machine</span>
+## <span id="src-10453530_MethodsforDiagnosingNetworkIssues-time_machine" class="confluence-anchor-link"></span>Use NetQ as a Time Machine</span>
 
 With NetQ, you can travel back to a specific point in time or a range of
 times to help you isolate errors and issues.
@@ -144,7 +144,7 @@ exit01, which has the IP address 27.0.0.1:
     spine02 -- spine02:swp3 -- exit01:swp6.4 -- exit01:swp3 -- exit01
                             -- spine02:swp7  -- spine02
 
-### <span id="src-10453530_MethodsforDiagnosingNetworkIssues-matrix" class="confluence-anchor-link"></span><span>How Far Back in Time Can You Travel?</span>
+### <span id="src-10453530_MethodsforDiagnosingNetworkIssues-matrix" class="confluence-anchor-link"></span>How Far Back in Time Can You Travel?</span>
 
 The NetQ Telemetry Server stores an amount of data limited by a few
 factors:
@@ -207,7 +207,7 @@ definitions:
   - The <span style="color: #222222;"> DB is configured to use up to 70%
     of the total vRAM allocated to the Telemetry Server. </span>
 
-## <span>Trace Paths in a VRF</span>
+## Trace Paths in a VRF</span>
 
 The `netq trace` command works with VRFs as well:
 
@@ -215,7 +215,7 @@ The `netq trace` command works with VRFs as well:
     spine01 -- spine01:swp1 -- leaf01:vlan20
             -- spine01:swp2 -- leaf02:vlan20
 
-## <span>Sample Commands for Various Components</span>
+## Sample Commands for Various Components</span>
 
 NetQ provides network validation for the entire stack, providing
 algorithmic answers to many questions, both simple and intractable, that

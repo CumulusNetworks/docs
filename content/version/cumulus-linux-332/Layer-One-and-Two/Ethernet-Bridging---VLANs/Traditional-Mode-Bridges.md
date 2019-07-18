@@ -12,11 +12,11 @@ imgData: cumulus-linux-332
 siteSlug: cumulus-linux-332
 ---
 Cumulus Networks recommends you use a [VLAN-aware
-bridge](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+bridge](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 on your switch. You use traditional mode bridges only if you need to run
 more than one bridge on the switch or if you need to use PVSTP+.
 
-## <span>Creating a Traditional Mode Bridge</span>
+## Creating a Traditional Mode Bridge</span>
 
 You configure traditional mode bridges in `/etc/network/interfaces`
 file. To create a traditional mode bridge:
@@ -138,7 +138,7 @@ This example configuration looks like this in the
 
 {{%/notice%}}
 
-## <span id="src-5868987_TraditionalModeBridges-VLAN_tagging" class="confluence-anchor-link"></span><span>Using Trunks in Traditional Bridge Mode</span>
+## <span id="src-5868987_TraditionalModeBridges-VLAN_tagging" class="confluence-anchor-link"></span>Using Trunks in Traditional Bridge Mode</span>
 
 The [IEEE standard](http://www.ieee802.org/1/pages/802.1Q.html) for
 trunking is 802.1Q. The 802.1Q specification adds a 4 byte header within
@@ -181,7 +181,7 @@ native VLAN, thus merging those two VLANs and their spanning tree state.
 
 {{%/notice%}}
 
-### <span>Trunk Example</span>
+### Trunk Example</span>
 
 {{% imgOld 1 %}}
 
@@ -199,12 +199,12 @@ To create the above example, add the following configuration to the
      bridge-ports swp1.200 swp2.200
      bridge-stp on
 
-### <span>VLAN Tagging Examples</span>
+### VLAN Tagging Examples</span>
 
 You can find more examples of VLAN tagging in [this
-chapter](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging---VLANs/VLAN-Tagging).
+chapter](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-Tagging).
 
-### <span id="src-5868987_TraditionalModeBridges-arp" class="confluence-anchor-link"></span><span>Configuring ARP Timers</span>
+### <span id="src-5868987_TraditionalModeBridges-arp" class="confluence-anchor-link"></span>Configuring ARP Timers</span>
 
 Cumulus Linux does not often interact directly with end systems as much
 as end systems interact with one another. Thus, after a successful

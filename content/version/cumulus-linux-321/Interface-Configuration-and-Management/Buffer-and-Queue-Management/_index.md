@@ -56,7 +56,7 @@ Changes to the `traffic.conf` file require you to [restart the
 `switchd`](Configuring-switchd.html#src-5126758_Configuringswitchd-restartswitchd)
 service.
 
-## <span>Commands</span>
+## Commands</span>
 
 If you modify the configuration in the
 `/etc/cumulus/datapath/traffic.conf` file, you must [restart
@@ -65,7 +65,7 @@ for the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
 The following configuration applies to 10G, 40G, and 100G switches on
 Tomahawk, Trident II+ or Trident II
@@ -205,7 +205,7 @@ Tomahawk, Trident II+ or Trident II
     #
     #forwarding_table.profile = default
 
-## <span>Configuring Traffic Marking through ACL Rules</span>
+## Configuring Traffic Marking through ACL Rules</span>
 
 You can mark traffic for egress packets through `iptables` or
 `ip6tables` rule classifications. To enable these rules, you do one of
@@ -254,7 +254,7 @@ TCAM slices in the hardware.
 To put the rule in the mangle table, include `-t mangle`; to put the
 rule in the filter table, omit `-t mangle`.
 
-## <span id="src-5127004_BufferandQueueManagement-pfc" class="confluence-anchor-link"></span><span>Configuring Priority Flow Control</span>
+## <span id="src-5127004_BufferandQueueManagement-pfc" class="confluence-anchor-link"></span>Configuring Priority Flow Control</span>
 
 *Priority flow control*, as defined in the [IEEE 802.1Qbb
 standard](http://www.ieee802.org/1/pages/802.1bb.html), provides a
@@ -387,7 +387,7 @@ pfc.pfc_port_group.tx_enable = true
 pfc.pfc_port_group.rx_enable = true       
 ```
 
-### <span>Understanding Port Groups</span>
+### Understanding Port Groups</span>
 
 A *port group* refers to one or more sequences of contiguous ports.
 Multiple port groups can be defined by:
@@ -429,7 +429,7 @@ to allow the PFC configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span id="src-5127004_BufferandQueueManagement-pause" class="confluence-anchor-link"></span><span>Configuring Link Pause</span>
+## <span id="src-5127004_BufferandQueueManagement-pause" class="confluence-anchor-link"></span>Configuring Link Pause</span>
 
 The PAUSE frame is a flow control mechanism that halts the transmission
 of the transmitter for a specified period of time. A server or other
@@ -476,7 +476,7 @@ to allow link pause configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span id="src-5127004_BufferandQueueManagement-ecn" class="confluence-anchor-link"></span><span>Configuring Explicit Congestion Notification</span>
+## <span id="src-5127004_BufferandQueueManagement-ecn" class="confluence-anchor-link"></span>Configuring Explicit Congestion Notification</span>
 
 *Explicit Congestion Notification* (ECN) is defined by
 [RFC 3168](https://tools.ietf.org/html/rfc3168). ECN gives a Cumulus
@@ -528,7 +528,7 @@ way to overwrite ECN bits is to enable it — that is, set the ECN bits to
 ECN is supported on [Broadcom Tomahawk, Trident II+ and Trident II, and
 Mellanox Spectrum switches](https://cumulusnetworks.com/hcl) only.
 
-### <span>Configuring ECN</span>
+### Configuring ECN</span>
 
 <summary>Click to learn how to configure ECN ... </summary>
 
@@ -582,13 +582,13 @@ to allow the ECN configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - You can configure Quality of Service (QoS) for 10G, 40G, and 100G
     switches on the Broadcom Tomahawk, Trident II+ or Trident II
     platforms and Mellanox Spectrum platform only.
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [iptables-extensions man
     page](http://ipset.netfilter.org/iptables-extensions.man.html)

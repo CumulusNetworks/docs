@@ -3,7 +3,7 @@ title: Ethernet Bridging - VLANs
 author: Cumulus Networks
 weight: 121
 aliases:
- - /display/CL37/Ethernet-Bridging---VLANs
+ - /display/CL37/Ethernet-Bridging-VLANs
  - /pages/viewpage.action?pageId=8362655
 pageID: 8362655
 product: Cumulus Linux
@@ -35,7 +35,7 @@ interfaces that traverse an 802.1Q VLAN trunk.
 {{%notice tip%}}
 
 Cumulus Networks recommends using *[VLAN-aware
-mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)*
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)*
 bridges, rather than *traditional mode* bridges. The bridge driver in
 Cumulus Linux is capable of VLAN filtering, which allows for
 configurations that are similar to incumbent network devices. While
@@ -66,18 +66,18 @@ VLAN-aware bridge on a given switch.
 
 {{%/notice%}}
 
-## <span>Create a VLAN-aware Bridge</span>
+## Create a VLAN-aware Bridge</span>
 
 To learn about VLAN-aware bridges and how to configure them, read
 [VLAN-aware Bridge
-Mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+Mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
 
-## <span>Create a Traditional Mode Bridge</span>
+## Create a Traditional Mode Bridge</span>
 
 To create a traditional mode bridge, see [Traditional Bridge
-Mode](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode).
+Mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode).
 
-## <span>Configure Bridge MAC Addresses</span>
+## Configure Bridge MAC Addresses</span>
 
 The MAC address for a frame is learned when the frame enters the bridge
 via an interface. The MAC address is recorded in the bridge table, and
@@ -96,18 +96,18 @@ The following example output shows a MAC address table for the bridge:
     untagged  bridge    swp1         44:38:39:00:00:03                                    00:00:15
     untagged  bridge    swp1         44:38:39:00:00:04                permanent           20 days, 01:14:03
 
-## <span id="src-8362655_EthernetBridging-VLANs-mac_ageing" class="confluence-anchor-link"></span><span>MAC Address Ageing</span>
+## <span id="src-8362655_EthernetBridging-VLANs-mac_ageing" class="confluence-anchor-link"></span>MAC Address Ageing</span>
 
 By default, Cumulus Linux stores MAC addresses in the Ethernet switching
 table for 1800 seconds (30 minutes). You can change this setting using
 NCLU.
 
 The `bridge-ageing` option is in the [NCLU
-blacklist](Network-Command-Line-Utility---NCLU.html#src-8362580_NetworkCommandLineUtility-NCLU-conf),
+blacklist](Network-Command-Line-Utility-NCLU.html#src-8362580_NetworkCommandLineUtility-NCLU-conf),
 as it's not frequently used. To configure this setting, you need to
 remove the `bridge-ageing` keyword from the `ifupdown_blacklist` in
 `/etc/netd.conf`. [Restart the `netd`
-service](Network-Command-Line-Utility---NCLU.html#src-8362580_NetworkCommandLineUtility-NCLU-restart)
+service](Network-Command-Line-Utility-NCLU.html#src-8362580_NetworkCommandLineUtility-NCLU-restart)
 after you edit the file.
 
 Now you can change the setting using NCLU. For example, to change the
@@ -130,7 +130,7 @@ These commands create the following configuration in the
      
     ...
 
-## <span id="src-8362655_EthernetBridging-VLANs-svi" class="confluence-anchor-link"></span><span>Configure an SVI (Switch VLAN Interface)</span>
+## <span id="src-8362655_EthernetBridging-VLANs-svi" class="confluence-anchor-link"></span>Configure an SVI (Switch VLAN Interface)</span>
 
 Bridges can be included as part of a routing topology after being
 assigned an IP address. This enables hosts within the bridge to
@@ -147,7 +147,7 @@ unreachable.
 {{%/notice%}}
 
 To configure the SVI, use
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU):
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU):
 
     cumulus@switch:~$ net add bridge bridge ports swp1-2
     cumulus@switch:~$ net add vlan 10 ip address 10.100.100.1/24
@@ -269,7 +269,7 @@ remain up:
     35: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
         link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
 
-## <span>IPv6 Link-local Address Generation</span>
+## IPv6 Link-local Address Generation</span>
 
 By default, Cumulus Linux automatically generates IPv6 [link-local
 addresses](https://en.wikipedia.org/wiki/Link-local_address) on VLAN
@@ -336,7 +336,7 @@ or
 
 This removes the relevant configuration from the `interfaces` file.
 
-## <span>Understanding \`bridge fdb\` Output</span>
+## Understanding \`bridge fdb\` Output</span>
 
 The `bridge fdb` command in Linux interacts with the forwarding database
 table, which the bridge uses to store MAC addresses it has learned and
@@ -382,7 +382,7 @@ Some things you should note about the output:
   - All FDB entries pointing to a VXLAN port appear as two such entries
     with the second entry augmenting the remote destination information.
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - A bridge cannot contain multiple subinterfaces of the **same** port.
     Attempting this configuration results in an error.
@@ -407,7 +407,7 @@ Some things you should note about the output:
     Virtual Private Network -
     EVPN](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=8366455).
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Linux Foundation -
     VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)

@@ -31,7 +31,7 @@ To begin using HA mode, install the telemetry server image on three
 separate physical hosts to form a database cluster. Note the IP address
 of each instance.
 
-## <span>Enabling HA Mode</span>
+## Enabling HA Mode</span>
 
 To configure the HA cluster, perform the following steps. These steps
 assume there are three telemetry servers, ts01 (the original one which
@@ -98,7 +98,7 @@ telemetry servers. You cannot use the DNS names here.
         cumulus@switch:~$ netq config restart agent
         Restarting netq-agent... Success!
 
-## <span>Checking HA Mode Status</span>
+## Checking HA Mode Status</span>
 
 To check the status of the database cluster, run the following command
 from a telemetry server:
@@ -110,14 +110,14 @@ by specifying that server's IP address:
 
     cumulus@ts01:~$ netq config ts show server 10.0.0.7
 
-## <span>Restarting HA Mode Services</span>
+## Restarting HA Mode Services</span>
 
 You can restart the `netq-appliance` and `netq-gui` services using:
 
     cumulus@ts01:~$ sudo systemctl restart netq-gui.service
     cumulus@ts01:~$ sudo systemctl restart netq-appliance.service
 
-## <span>Changing the Master Telemetry Server</span>
+## Changing the Master Telemetry Server</span>
 
 You can change which telemetry server you want to be the master simply
 by changing the order in which you specify them with the `netq config ts
@@ -154,7 +154,7 @@ Verify that *ts02* is the new master:
     10.0.0.6  master   10.0.0.6  10.0.0.7, 10.0.0.5  ok        28s
     10.0.0.7  replica  10.0.0.6  -                   ok        28s
 
-## <span>Replacing a Replica with a New Server</span>
+## Replacing a Replica with a New Server</span>
 
 If you need to replace a telemetry server with a different physical
 system, do the following steps.
@@ -215,15 +215,15 @@ are the replicas. You want to replace ts03 with ts04 (10.0.0.8):
         cumulus@switch:~$ netq config restart agent
         Restarting netq-agent... Success!
 
-## <span>Resetting the Database Cluster</span>
+## Resetting the Database Cluster</span>
 
 You can force a reset of the Redis HA cluster using:
 
     cumulus@netq-ts:~$ netq config ts reset-cluster
 
-## <span>Troubleshooting HA Mode</span>
+## Troubleshooting HA Mode</span>
 
-### <span>Relevant Services and Configuration Files</span>
+### Relevant Services and Configuration Files</span>
 
 The following `systemd` services are involved in HA mode:
 
@@ -291,7 +291,7 @@ The following log files are in the `/var/log/cts` directory:
 For more information about the log files, see the [Troubleshooting
 NetQ](/version/cumulus-netq-121/Troubleshooting-NetQ) chapter.
 
-### <span>One Replica Must Be Available Always</span>
+### One Replica Must Be Available Always</span>
 
 While HA mode is enabled, if both the replica servers go down, the
 master database stops accepting writes. This causes the NetQ agents to

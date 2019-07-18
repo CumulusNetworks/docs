@@ -19,7 +19,7 @@ import the VX image to create the necessary VMs. This section provides
 an installation process overview, with next step links for each
 supported hypervisor or development environment.
 
-## <span>Download the Cumulus VX Image</span>
+## Download the Cumulus VX Image</span>
 
 Cumulus VX images for all supported platforms are available from the
 Cumulus Networks website:
@@ -32,7 +32,7 @@ clone the image to build the test network.
 
 {{%/notice%}}
 
-## <span>Download and Install the Hypervisor/Developer Environment</span>
+## Download and Install the Hypervisor/Developer Environment</span>
 
 {{%notice note%}}
 
@@ -58,14 +58,14 @@ instructions are available on the download websites:
 | Vagrant                 | <https://www.vagrantup.com/downloads.html> | VirtualBox            |
 | GNS3                    | <https://community.gns3.com/software>      | KVM, VirtualBox       |
 
-## <span>Configure the VMs</span>
+## Configure the VMs</span>
 
 After you have downloaded the hypervisor or development environment and
 the Cumulus VX image, follow the relevant link below for detailed setup
 instructions:
 
   - [VMware vSphere - ESXi
-    5.5](/cumulus-vx/Getting-Started/VMware-vSphere---ESXi-5.5)
+    5.5](/cumulus-vx/Getting-Started/VMware-vSphere-ESXi-5.5)
 
   - [VMware Fusion](/cumulus-vx/Getting-Started/VMware-Fusion)
 
@@ -74,9 +74,9 @@ instructions:
   - [VirtualBox](/cumulus-vx/Getting-Started/VirtualBox)
 
   - [Libvirt and KVM -
-    QEMU](/cumulus-vx/Getting-Started/Libvirt-and-KVM---QEMU)
+    QEMU](/cumulus-vx/Getting-Started/Libvirt-and-KVM-QEMU)
 
-## <span>Log in to the VM</span>
+## Log in to the VM</span>
 
 The Cumulus VX VM has these default login credentials:
 

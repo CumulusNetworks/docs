@@ -13,7 +13,7 @@ siteSlug: cumulus-rmp-321
 ---
 This chapter discusses routing on switches running Cumulus RMP.
 
-## <span>Managing Static Routes</span>
+## Managing Static Routes</span>
 
 You manage static routes using
 [NCLU](/version/cumulus-rmp-321/System-Configuration/Network-Command-Line-Utility)
@@ -47,7 +47,7 @@ To view static routes, run:
            > - selected route, * - FIB route
     S>* 203.0.113.0/24 [1/0] via 198.51.100.2, swp3
 
-### <span>Static Routing via ip route</span>
+### Static Routing via ip route</span>
 
 A static route can also be created by adding ` post-up ip route add
  `command to a switch port configuration. For example:
@@ -99,7 +99,7 @@ To display the routing table:
     198.51.100.10/24 dev swp4  proto kernel  scope link  src 198.51.100.11
     198.51.100.20/24 dev br0  proto kernel  scope link  src 198.51.100.21
 
-### <span>Applying a Route Map for Route Updates</span>
+### Applying a Route Map for Route Updates</span>
 
 To apply a [route
 map](http://www.nongnu.org/quagga/docs/docs-multi/Route-Map.html#Route-Map)
@@ -107,9 +107,9 @@ to filter route updates from Zebra into the Linux kernel:
 
     cumulus@switch:$ net add ip protocol static route-map <route-map-name>
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
-### <span>Adding IPv6 Default Route with src Address on eth0 Fails without Adding Delay</span>
+### Adding IPv6 Default Route with src Address on eth0 Fails without Adding Delay</span>
 
 Attempting to install an IPv6 default route on eth0 with a source
 address fails at reboot or when running `ifup` on eth0.
@@ -148,7 +148,7 @@ There are two ways you can work around this issue.
         fe80::/64 dev eth0  proto kernel  metric 256 
         default via 2001:620:5ca1:160::1 dev eth0  metric 1024 
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Linux IP - ip route
     command](http://linux-ip.net/html/tools-ip-route.html)

@@ -3,7 +3,7 @@ title: Address Resolution Protocol - ARP
 author: Cumulus Networks
 weight: 179
 aliases:
- - /display/CL37/Address-Resolution-Protocol---ARP
+ - /display/CL37/Address-Resolution-Protocol-ARP
  - /pages/viewpage.action?pageId=8362976
 pageID: 8362976
 product: Cumulus Linux
@@ -26,7 +26,7 @@ rather than servers. This chapter describes the differences in ARP
 behavior, why the changes were made, where the changes were implemented,
 and how to change port-specific values.
 
-## <span>Standard Debian ARP Behavior and the Tunable ARP Parameters</span>
+## Standard Debian ARP Behavior and the Tunable ARP Parameters</span>
 
 Debian has these five tunable ARP parameters:
 
@@ -58,7 +58,7 @@ matching the interfaces on which they reside. With these tunable ARP
 parameters, Cumulus Linux has been able to specify the behavior to match
 the expectations of a router.
 
-## <span>ARP Tunable Parameter Settings in Cumulus Linux</span>
+## ARP Tunable Parameter Settings in Cumulus Linux</span>
 
 The ARP tunable parameters are set to the following values by default in
 Cumulus Linux. Each parameter is described in detail, including why
@@ -108,7 +108,7 @@ Cumulus Networks chose the value used.
 <p><em>1 - Allows you to have multiple network interfaces on the same subnet, and have the ARPs for each interface be answered based on whether or not the kernel would route a packet from the ARP'd IP address out of that interface (therefore you must use source based routing for this to work). In other words, it allows control of which cards (usually 1) will respond to an ARP request.</em></p>
 <p><em>arp_filter for the interface will be enabled if at least one of conf/{all,interface}/arp_filter is set to TRUE, it will be disabled otherwise.</em></p>
 <p>Cumulus Linux uses the default Debian Linux arp_filter setting of <em>0</em>.</p>
-<p>The <code>arp_filter</code> is primarily used when multiple interfaces reside in the same subnet and is used to allow/disallow which interfaces respond to ARP requests. In the case of <a href="/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF">OSPF</a> using IP unnumbered interfaces, many interfaces appear to be in the same subnet, and so actually contain the same address. If multiple interfaces are used between a pair of routers, having <code>arp_filter</code> set to 1 causes forwarding to fail.</p>
+<p>The <code>arp_filter</code> is primarily used when multiple interfaces reside in the same subnet and is used to allow/disallow which interfaces respond to ARP requests. In the case of <a href="/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF">OSPF</a> using IP unnumbered interfaces, many interfaces appear to be in the same subnet, and so actually contain the same address. If multiple interfaces are used between a pair of routers, having <code>arp_filter</code> set to 1 causes forwarding to fail.</p>
 <p>The <code>arp_filter</code> parameter is set to allow a response on any interface in the subnet, where the <code>arp_ignore</code> setting (below) to limit cross-interface ARP behavior.</p></td>
 </tr>
 <tr class="even">
@@ -139,7 +139,7 @@ Cumulus Networks chose the value used.
 </tbody>
 </table>
 
-## <span>Change Tunable ARP Parameters</span>
+## Change Tunable ARP Parameters</span>
 
 You can change the ARP parameter settings in several places, including:
 
@@ -233,7 +233,7 @@ Note that Cumulus Linux implements this change at boot time using the
     net.ipv4.conf.default.arp_ignore=1
     cumulus@switch:~$
 
-## <span id="src-8362976_AddressResolutionProtocol-ARP-port" class="confluence-anchor-link"></span><span>Change Port-specific ARP Parameters</span>
+## <span id="src-8362976_AddressResolutionProtocol-ARP-port" class="confluence-anchor-link"></span>Change Port-specific ARP Parameters</span>
 
 The simplest way to configure port-specific ARP parameters in a running
 device is with the following command:
@@ -250,7 +250,7 @@ device is with the following command:
 To make the change persist through reboots, edit the
 `/etc/sysctl.d/arp.conf` file and add your port-specific ARP setting.
 
-## <span>Configure Proxy ARP</span>
+## Configure Proxy ARP</span>
 
 The proxy ARP setting is a kernel setting that you can manipulate using
 `sysctl` or `sysfs`. Proxy ARP works with IPv4 only, since ARP is an
@@ -271,7 +271,7 @@ These commands create the following snippet in the
 
 If you're running two interfaces in the same broadcast domain, which is
 typically seen when using
-[VRR](/cumulus-linux/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP),
+[VRR](/cumulus-linux/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP),
 as it creates a "-v0" interface in the same broadcast domain, make sure
 to use `sysctl` or `sysfs` to let the kernel know, so that both
 interfaces do not respond with proxy ARP replies. To do so, set

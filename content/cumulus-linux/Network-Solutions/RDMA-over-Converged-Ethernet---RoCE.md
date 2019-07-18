@@ -3,7 +3,7 @@ title: RDMA over Converged Ethernet - RoCE
 author: Cumulus Networks
 weight: 259
 aliases:
- - /display/CL37/RDMA-over-Converged-Ethernet---RoCE
+ - /display/CL37/RDMA-over-Converged-Ethernet-RoCE
  - /pages/viewpage.action?pageId=8363018
 pageID: 8363018
 product: Cumulus Linux
@@ -37,7 +37,7 @@ stack:
     (ECN) with RoCEv2 since ECN bits are communicated end-to-end across
     a routed network.
 
-## <span>Enable RDMA over Converged Ethernet with PFC</span>
+## Enable RDMA over Converged Ethernet with PFC</span>
 
 RoCEv1 uses the Infiniband (IB) Protocol over converged Ethernet. The IB
 global route header rides directly on top of the Ethernet header. The
@@ -100,7 +100,7 @@ a given CoS group, rather than the entire link.
 
 {{%/notice%}}
 
-## <span>Enable RDMA over Converged Ethernet with ECN</span>
+## Enable RDMA over Converged Ethernet with ECN</span>
 
 RoCEv2 requires flow control for lossless Ethernet. RoCEv2 uses the
 Infiniband (IB) Transport Protocol over UDP. The IB transport protocol
@@ -156,7 +156,7 @@ packet to **not** be ECT-capable.
 
 {{%/notice%}}
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [RoCE
     introduction](http://www.roceinitiative.org/roce-introduction/) —

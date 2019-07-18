@@ -52,7 +52,7 @@ Cumulus VX and other Cumulus Networks operating systems.
 | Security                                             | Yes                                                                                                                                                                                          |
 | QoS                                                  | Yes                                                                                                                                                                                          |
 
-## <span>Comparing Cumulus VX with Cumulus Workbench</span>
+## Comparing Cumulus VX with Cumulus Workbench</span>
 
 The following table describes how Cumulus VX differs from [Cumulus
 Workbench](http://cumulusnetworks.com/cumulus-workbench/).

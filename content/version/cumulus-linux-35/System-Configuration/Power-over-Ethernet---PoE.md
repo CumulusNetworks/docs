@@ -23,7 +23,7 @@ The [currently supported platform](http://cumulusnetworks.com/hcl/) is
 the Edge-Core AS4610-54P, which supports PoE and PoE+ and configuration
 over Ethernet layer 2 LLDP for power negotiation.
 
-## <span>How It Works</span>
+## How It Works</span>
 
 PoE functionality is provided by the `cumulus-poe` package. When a
 powered device is connected to the switch via an Ethernet cable:
@@ -60,14 +60,14 @@ The AS4610-54P has an LED on the front panel to indicate PoE status:
   - Yellow: One or more errors are detected or the `poed` daemon is not
     running
 
-### <span>About Link State and PoE State</span>
+### About Link State and PoE State</span>
 
 Link state and PoE state are completely independent of each other. When
 a link is brought down on a particular port using `ip link <port> down`,
 power on that port is not turned off; however, LLDP negotiation is not
 possible.
 
-## <span>Configuring PoE</span>
+## Configuring PoE</span>
 
 You use the `poectl` command utility to configure PoE on a [switch that
 supports](http://cumulusnetworks.com/hcl/) the feature. You can:
@@ -246,7 +246,7 @@ To see all the PoE information for a switch, run `poectl -s`:
 The set commands (priority, enable, disable) either succeed silently or
 display an error message if the command fails.
 
-### <span id="src-8357358_PoweroverEthernet-PoE-args" class="confluence-anchor-link"></span><span>poectl Arguments</span>
+### <span id="src-8357358_PoweroverEthernet-PoE-args" class="confluence-anchor-link"></span>poectl Arguments</span>
 
 The `poectl` command takes the following arguments:
 
@@ -317,7 +317,7 @@ The `poectl` command takes the following arguments:
 </tbody>
 </table>
 
-## <span>Troubleshooting PoE and PoE+</span>
+## Troubleshooting PoE and PoE+</span>
 
 You can troubleshoot PoE and PoE+ using the following utilities and
 files:
@@ -335,7 +335,7 @@ files:
   - The contents of the PoE/PoE+ `/etc/lldpd.d/poed.conf` configuration
     file, as described above.
 
-### <span>Verify the Link Is Up</span>
+### Verify the Link Is Up</span>
 
 LLDP requires network connectivity, so verify that the link is up.
 
@@ -344,7 +344,7 @@ LLDP requires network connectivity, so verify that the link is up.
     --  ------  -----------------  -------  -----  ---------
     UP  swp20   44:38:39:00:00:04  1G        1500  Access/L2
 
-### <span>View LLDP Information Using lldpcli</span>
+### View LLDP Information Using lldpcli</span>
 
 You can run `lldpcli` to view the LLDP information that has been
 received on a switch port. For example:
@@ -384,7 +384,7 @@ received on a switch port. For example:
         TLV:          OUI: 00,01,42, SubType: 1, Len: 1 0D
     -------------------------------------------------------------------------------
 
-### <span>View LLDP Information Using tcpdump</span>
+### View LLDP Information Using tcpdump</span>
 
 You can use `tcpdump` to view the LLDP frames being transmitted and
 received. For example:
@@ -444,7 +444,7 @@ received. For example:
           0x0000:  0001 4201 01
         End TLV (0), length 0
 
-### <span>Logging poed Events in syslog</span>
+### Logging poed Events in syslog</span>
 
 The `poed` service logs the following events to `syslog`:
 

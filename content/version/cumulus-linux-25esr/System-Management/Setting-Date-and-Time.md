@@ -14,7 +14,7 @@ siteSlug: cumulus-linux-25esr
 Setting the time zone, date and time requires root privileges; use
 `sudo`.
 
-## <span>Commands</span>
+## Commands</span>
 
   - date
 
@@ -26,7 +26,7 @@ Setting the time zone, date and time requires root privileges; use
 
   - ntpq
 
-## <span>Setting the Time Zone</span>
+## Setting the Time Zone</span>
 
 To see the current time zone, list the contents of `/etc/timezone`:
 
@@ -68,7 +68,7 @@ example selects the US/Pacific time zone:
 For more info see the Debian [System Administrator’s Manual –
 Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
 
-## <span>Setting the Date and Time</span>
+## Setting the Date and Time</span>
 
 The switch contains a battery backed hardware clock that maintains the
 time while the switch is powered off and in between reboots. When the
@@ -111,7 +111,7 @@ Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.ht
 specifically the section [Setting and showing hardware
 clock](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html#s16.2).
 
-## <span>Setting Time Using NTP</span>
+## Setting Time Using NTP</span>
 
 The `ntpd` daemon running on the switch implements the NTP protocol. It
 synchronizes the system time with time servers listed in
@@ -146,7 +146,7 @@ To check the NTP peer status:
     -host-86.3.217.2 131.107.13.100   2 u 1024 1024  367  240.622   11.250   7.785
     +li290-38.member 128.138.141.172  2 u  553 1024  377   38.944   -0.810   1.139
 
-## <span>Specifying the NTP Source Interface</span>
+## Specifying the NTP Source Interface</span>
 
 You can change the source interface that NTP uses if you want to use
 something other than the default of eth0. Edit `ntp.conf` and edit the
@@ -155,7 +155,7 @@ entry under the **\# Specify interfaces** comment:
     # Specify interfaces
     interface listen bridge10
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/default/ntp — `ntpd init.d` configuration variables
 
@@ -163,7 +163,7 @@ entry under the **\# Specify interfaces** comment:
 
   - /etc/init.d/ntp — `ntpd init` script
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [Debian System Administrator’s Manual –
     Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)

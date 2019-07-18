@@ -27,7 +27,7 @@ In addition to programming rules in the kernel, `cl-acltool` programs
 rules in hardware for interfaces involving switch port interfaces, which
 `iptables`, `ip6tables` and `ebtables` cannot do on their own.
 
-## <span>Commands</span>
+## Commands</span>
 
   - cl-acltool
 
@@ -37,15 +37,15 @@ rules in hardware for interfaces involving switch port interfaces, which
 
   - ip6tables
 
-## <span>Files</span>
+## Files</span>
 
   - /etc/cumulus/acl/policy.conf
 
   - /etc/cumulus/acl/policy.d/
 
-## <span>Understanding Traffic Rules In Cumulus Linux</span>
+## Understanding Traffic Rules In Cumulus Linux</span>
 
-### <span>Understanding Chains</span>
+### Understanding Chains</span>
 
 Netfilter describes the mechanism for which packets are classified and
 controlled in the Linux kernel. Cumulus Linux uses the Netfilter
@@ -79,7 +79,7 @@ The chains and their uses are:
   - **POSTROUTING**: Touches packets immediately before they are put on
     the wire but after the routing decision has been made
 
-### <span>Understanding Tables</span>
+### Understanding Tables</span>
 
 When building rules to affect the flow of traffic, the individual chains
 can be accessed by *tables*. Linux provides three tables by default:
@@ -109,7 +109,7 @@ green are supported by Cumulus Linux, those in red are not supported
 
 {{% imgOld 3 %}}
 
-### <span>Understanding Rules</span>
+### Understanding Rules</span>
 
 Rules are the items that actually classify traffic to be acted upon.
 Rules are applied to chains, which are attached to tables, similar to
@@ -145,7 +145,7 @@ those different components.
     Usages](#src-5115908_Netfilter-ACLs-supported) section below for
     examples of different targets.
 
-### <span>How Rules Are Parsed and Applied</span>
+### How Rules Are Parsed and Applied</span>
 
 All the rules from each chain are read from `iptables`, `ip6tables` and
 `ebtables` and entered in order into either the filter table or the
@@ -209,7 +209,7 @@ aware of:
     decision. Layer 2-only rules, which match the MAC address, are put
     into the IPv4 memory space.
 
-### <span>Rule Placement in Memory</span>
+### Rule Placement in Memory</span>
 
 INPUT and ingress (`FORWARD -i`) rules occupy the same memory space. A
 rule counts as ingress if the `-i` option is set. If both input and
@@ -234,7 +234,7 @@ valid rule.
 
 {{%/notice%}}
 
-### <span>Enabling Nonatomic Updates</span>
+### Enabling Nonatomic Updates</span>
 
 You can enable nonatomic updates for `switchd`, which offer better
 scaling because all hardware resources are used to actively impact
@@ -262,7 +262,7 @@ the new configuration is written into the hardware completely.
 
 {{%/notice%}}
 
-### <span>Using iptables/ip6tables/ebtables Directly</span>
+### Using iptables/ip6tables/ebtables Directly</span>
 
 Using `iptables`/`ip6tables`/`ebtables` directly is not recommended
 because any rules installed in these cases only are applied to the Linux
@@ -292,7 +292,7 @@ replacing it. To ensure all rules that can be in hardware are hardware
 accelerated, place them in `/etc/cumulus/acl/policy.conf` and install
 them by running `cl-acltool -i`.
 
-## <span>Installing and Managing ACL Rules with cl-acltool</span>
+## Installing and Managing ACL Rules with cl-acltool</span>
 
 You manage Cumulus Linux ACLs with `cl-acltool`. Rules are first written
 to the `iptables` chains, as described above, and then synced to
@@ -333,7 +333,7 @@ If the install fails, ACL rules in the kernel and hardware are rolled
 back to the previous state. Errors from programming rules in the kernel
 or ASIC are reported appropriately.
 
-### <span>Installing Packet Filtering (ACL) Rules</span>
+### Installing Packet Filtering (ACL) Rules</span>
 
 `cl-acltool` takes access control list (ACL) rules input in files. Each
 ACL policy file contains `iptables`, `ip6tables` and `ebtables`
@@ -448,7 +448,7 @@ Install all rules and policies included in
 
     cumulus@switch:~$ sudo cl-acltool -i
 
-### <span>Specifying which Policy Files to Install</span>
+### Specifying which Policy Files to Install</span>
 
 By default, any `.rules` file you configure in
 `/etc/cumulus/acl/policy.d/` get installed by Cumulus Linux. To add
@@ -476,7 +476,7 @@ as in this example:
     include /etc/cumulus/acl/policy.d/*.rules 
     include /etc/cumulus/acl/policy.d/01_new.rules
 
-### <span>Hardware Limitations on Number of Rules</span>
+### Hardware Limitations on Number of Rules</span>
 
 The maximum number of rules that can be handled in hardware is a
 function of the platform type (Apollo2, Firebolt2, Triumph, Trident,
@@ -484,28 +484,28 @@ Trident+ or Trident II) and a mix of IPv4 and/or IPv6. See the
 [HCL](http://cumulusnetworks.com/support/hcl) to determine which
 platform type applies to a particular switch.
 
-#### <span>Apollo2 and Triumph2 Limits</span>
+#### Apollo2 and Triumph2 Limits</span>
 
 | Direction | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
 | --------- | ---------------------- | ---------------------- | ------------------------- | ------------------------- |
 | Ingress   | 2048                   | 1024                   | 4096                      | 2048                      |
 | Egress    | 512                    | 256                    | 1024                      | 512                       |
 
-#### <span>Firebolt2 Limits</span>
+#### Firebolt2 Limits</span>
 
 | Direction | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
 | --------- | ---------------------- | ---------------------- | ------------------------- | ------------------------- |
 | Ingress   | 1024                   | 512                    | 2048                      | 1024                      |
 | Egress    | 512                    | 256                    | 512                       | 256                       |
 
-#### <span>Trident/Trident+ Limits</span>
+#### Trident/Trident+ Limits</span>
 
 | Direction | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
 | --------- | ---------------------- | ---------------------- | ------------------------- | ------------------------- |
 | Ingress   | 384                    | 384                    | 1024                      | 1024                      |
 | Egress    | 512                    | 256                    | 1024                      | 512                       |
 
-#### <span>Trident II Limits</span>
+#### Trident II Limits</span>
 
 | Direction | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
 | --------- | ---------------------- | ---------------------- | ------------------------- | ------------------------- |
@@ -517,7 +517,7 @@ If the maximum number of rules for a particular table is exceeded,
 
     error: hw sync failed (sync_acl hardware installation failed) Rolling back .. failed.
 
-## <span id="src-5115908_Netfilter-ACLs-supported" class="confluence-anchor-link"></span><span>Supported Rule Types</span>
+## <span id="src-5115908_Netfilter-ACLs-supported" class="confluence-anchor-link"></span>Supported Rule Types</span>
 
 The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux
 implementation on top of the underlying hardware but they are not always
@@ -550,7 +550,7 @@ for `ip6tables` and `ebtables`.
 
 {{%/notice%}}
 
-### <span>iptables/ip6tables Rule Support</span>
+### iptables/ip6tables Rule Support</span>
 
 <table>
 <colgroup>
@@ -617,7 +617,7 @@ User-defined IP management rules require a SETCLASS action.
 
 {{%/notice%}}
 
-### <span>ebtables Rule Support</span>
+### ebtables Rule Support</span>
 
 <table>
 <colgroup>
@@ -677,7 +677,7 @@ User-defined IP management rules require a SETCLASS action.
 </tbody>
 </table>
 
-### <span>Other Unsupported Rules</span>
+### Other Unsupported Rules</span>
 
   - Rules that have no matches and accept all packets in a chain are
     currently ignored. This probably has side effects in the sense that
@@ -688,9 +688,9 @@ User-defined IP management rules require a SETCLASS action.
   - Rules that match on eth\* interfaces are assumed to be Linux
     management interfaces and are ignored.
 
-## <span>Common Examples</span>
+## Common Examples</span>
 
-### <span>Policing Control Plane and Data Plane Traffic</span>
+### Policing Control Plane and Data Plane Traffic</span>
 
 You can configure quality of service for traffic on both the control
 plane and the data plane. By using QoS policers, you can rate limit
@@ -761,7 +761,7 @@ switch. You specify them in
     -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport 1024:65535 -m ttl --ttl-eq 1 -j ACCEPT 
     -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -j DROP
 
-### <span>Setting DSCP on Transit Traffic</span>
+### Setting DSCP on Transit Traffic</span>
 
 The examples here use the *mangle* table to modify the packet as it
 transits the switch. DSCP is expressed in [decimal
@@ -782,7 +782,7 @@ in the examples below.
     #Example using a range of ports for TCP traffic
     -t mangle -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -j DSCP --set-dscp 34
 
-### <span>Verifying DSCP Values on Transit Traffic</span>
+### Verifying DSCP Values on Transit Traffic</span>
 
 The examples here use the DSCP match criteria in combination with other
 IP, TCP and interface matches to identify traffic and count the number
@@ -801,7 +801,7 @@ of packets.
     #Match and count the packets in a port range with DSCP AF41
     -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -m dscp --dscp 34 -j ACCEPT
 
-### <span>Checking the Packet and Byte Counters for ACL Rules</span>
+### Checking the Packet and Byte Counters for ACL Rules</span>
 
 To verify the counters, using the above example rules, first send test
 traffic matching the patterns through the network. The following example
@@ -875,7 +875,7 @@ use `cl-acltool`.
         0     0 ACCEPT     all  --  any    any     10.0.0.17            anywhere             DSCP match 0x00
         0     0 ACCEPT     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000 dpts:webmin:2002Still working
 
-### <span id="src-5115908_Netfilter-ACLs-filteringtcp" class="confluence-anchor-link"></span><span>Filtering Specific TCP Flags</span>
+### <span id="src-5115908_Netfilter-ACLs-filteringtcp" class="confluence-anchor-link"></span>Filtering Specific TCP Flags</span>
 
 The example solution below creates rules on the INPUT and FORWARD chains
 to drop ingress IPv4 and IPv6 TCP packets when the SYN bit is set and
@@ -899,7 +899,7 @@ re-written as:
 
     -A INPUT,FORWARD --in-interface $INGRESS_INTF -p tcp --tcp-flags SYN,RST,ACK,FIN SYN -j DROP
 
-## <span>Example Scenario</span>
+## Example Scenario</span>
 
 <span id="src-5115908_Netfilter-ACLs-examples"></span>The following
 example scenario demonstrates where several different rules are applied
@@ -911,7 +911,7 @@ Following are the configurations for the two switches used in these
 examples. The configuration for each switch appears in
 `/etc/network/interfaces` on that switch.
 
-### <span>Switch 1 Configuration</span>
+### Switch 1 Configuration</span>
 
     auto swp1 
     iface swp1 
@@ -941,7 +941,7 @@ examples. The configuration for each switch appears in
         bridge_ports swp2.100 bond2.100 
         bridge_stp on 
 
-### <span>Switch 2 Configuration</span>
+### Switch 2 Configuration</span>
 
     auto swp3 
     iface swp3 
@@ -965,7 +965,7 @@ examples. The configuration for each switch appears in
     iface bond2 
         bond-slaves swp3 swp4 
 
-### <span>Egress Rule</span>
+### Egress Rule</span>
 
 The following rule blocks any TCP with destination port 200 traffic
 going from host1 or host2 through the switch (corresponding to rule 1 in
@@ -973,7 +973,7 @@ the diagram above).
 
     [iptables] -A FORWARD -o bond2 -p tcp --dport 200 -j DROP
 
-### <span>Ingress Rule</span>
+### Ingress Rule</span>
 
 The following rule blocks any UDP traffic with source port 200 going
 from host1 through the switch (corresponding to rule 2 in the diagram
@@ -981,7 +981,7 @@ above).
 
     [iptables] -A FORWARD -i swp2 -p udp --sport 200 -j DROP
 
-### <span>Input Rule</span>
+### Input Rule</span>
 
 The following rule blocks any UDP traffic with source port 200 and
 destination port 50 going from host1 to the switch (corresponding to
@@ -989,7 +989,7 @@ rule 3 in the diagram above).
 
     [iptables] -A INPUT -i swp1 -p udp --sport 200 --dport 50 -j DROP
 
-### <span>Output Rule</span>
+### Output Rule</span>
 
 The following rule blocks any TCP traffic with source port 123 and
 destination port 123 going from Switch 1 to host2 (corresponding to rule
@@ -997,7 +997,7 @@ destination port 123 going from Switch 1 to host2 (corresponding to rule
 
     [iptables] -A OUTPUT -o br-tag100 -p tcp --sport 123 --dport 123 -j DROP
 
-### <span>Combined Rules</span>
+### Combined Rules</span>
 
 The following rule blocks any TCP traffic with source port 123 and
 destination port 123 going from any switch port egress or generated from
@@ -1012,7 +1012,7 @@ This also becomes 2 ACLs, and is effectively the same as:
     -A FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP 
     -A OUTPUT -o swp+ -p tcp --sport 123 --dport 123 -j DROP
 
-### <span>Layer 2-only Rules/ebtables</span>
+### Layer 2-only Rules/ebtables</span>
 
 The following rule blocks any traffic with source MAC address
 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going
@@ -1020,14 +1020,14 @@ from any switch port egress/ingress.
 
     [ebtables] -A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
 
-### <span>Useful Links</span>
+### Useful Links</span>
 
   - [www.netfilter.org](http://www.netfilter.org/)
 
   - [Netfilter.org packet filtering
     how-to](http://www.netfilter.org/documentation/HOWTO//packet-filtering-HOWTO-6.html)
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - As mentioned in the [Supported Rules
     section](#src-5115908_Netfilter-ACLs-supported) above, not all

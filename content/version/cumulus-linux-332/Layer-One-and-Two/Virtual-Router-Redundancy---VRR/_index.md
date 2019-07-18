@@ -22,7 +22,7 @@ respond, leaving the hosts with the impression that nothing has changed.
 The diagram below illustrates a basic VRR-enabled network configuration.
 The network includes several hosts, and two routers running Cumulus
 Linux configured with [Multi-chassis Link
-Aggregation](/version/cumulus-linux-332/Layer-One-and-Two/Multi-Chassis-Link-Aggregation---MLAG)
+Aggregation](/version/cumulus-linux-332/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
 (MLAG):
 
 {{% imgOld 0 %}}
@@ -97,9 +97,9 @@ Router Redundancy Protocol (VRRP), as they serve similar purposes.
 
 {{%/notice%}}
 
-## <span>Configuring a VRR-enabled Network</span>
+## Configuring a VRR-enabled Network</span>
 
-### <span>Configuring the Routers</span>
+### Configuring the Routers</span>
 
 The routers implement the layer 2 network interconnecting the hosts and
 the redundant routers. To configure the routers, add a bridge with the
@@ -157,7 +157,7 @@ snippet:
 
 {{%/notice%}}
 
-### <span>Configuring the Hosts</span>
+### Configuring the Hosts</span>
 
 Each host should have two network interfaces. The routers configure the
 interfaces as bonds running LACP; the hosts should also configure its
@@ -169,10 +169,10 @@ router; this default gateway address never changes.
 Configure the links between the hosts and the routers in *active-active*
 mode for First Hop Redundancy Protocol.
 
-## <span>Example VRR Configuration with MLAG</span>
+## Example VRR Configuration with MLAG</span>
 
 To create an
-[MLAG](/version/cumulus-linux-332/Layer-One-and-Two/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/version/cumulus-linux-332/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
 configuration that incorporates VRR, use a configuration like the
 following:
 

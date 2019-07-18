@@ -30,7 +30,7 @@ and verify the value in the **Platforms** tab \> **CPU** column. </span>
 
 {{%/notice%}}
 
-## <span>CLI Access</span>
+## CLI Access</span>
 
 When NetQ is installed, the CLI is also installed and enabled (refer to
 the [Install
@@ -88,7 +88,7 @@ and behavior of the NetQ CLI. It includes the following: </span>
 
   - [Command History](#src-12321059_NetQCommandLineOverview-ComHist)
 
-### <span>Command Line Structure</span>
+### Command Line Structure</span>
 
 <span style="color: #353744;"> The Cumulus NetQ command line has a flat
 structure as opposed to a modal structure. This means that all commands
@@ -102,7 +102,7 @@ to run commands which can be tedious and time consuming. Cumulus NetQ
 command line enables the administrator to run all of its commands at the
 same level. </span>
 
-### <span>Command Syntax</span>
+### Command Syntax</span>
 
 <span style="color: #353744;"> NetQ CLI commands all begin with `netq`.
 </span> Cumulus NetQ commands fall into one of four syntax categories:
@@ -142,7 +142,7 @@ Thus some valid commands are:
 
   - `netq trace 10.0.0.5 from 10.0.0.35`
 
-### <span>Command Output</span>
+### Command Output</span>
 
 <span style="color: #353744;"> The command output presents results in
 color for many commands. </span> Results with errors are shown in
@@ -164,7 +164,7 @@ approximate time using the </span> `around`
 shows the status of BGP over the last hour. Running `netq show bgp
 around 3h` shows the status of BGP three hours ago. </span>
 
-### <span>Command Prompts</span>
+### Command Prompts</span>
 
 <span style="color: #353744;"> NetQ code examples use the following
 prompts: </span>
@@ -181,7 +181,7 @@ CentOS, RHEL, or Ubuntu OS and the NetQ Agent. Refer to the [Install
 NetQ](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
 topic for details.
 
-### <span>Command Completion</span>
+### Command Completion</span>
 
 As you enter commands, you can get help with the valid keywords or
 options using <span style="color: #353744;"> the **Tab** key. For
@@ -205,7 +205,7 @@ complete the command. </span>
         vxlan       :  VXLAN data path
     cumulus@switch:~$ netq check 
 
-### <span>Command Help</span>
+### Command Help</span>
 
 <span style="color: #353744;"> As you enter commands, you can get help
 with command syntax by entering *help* at various points within a
@@ -225,7 +225,7 @@ To see an exhaustive list of commands, run:
 
     cumulus@switch:~$ netq help list verbose
 
-### <span id="src-12321059_NetQCommandLineOverview-ComHist" class="confluence-anchor-link"></span><span>Command History</span>
+### <span id="src-12321059_NetQCommandLineOverview-ComHist" class="confluence-anchor-link"></span>Command History</span>
 
 The CLI stores commands issued within a session, which enables you to
 review and rerun commands that have already been run. At the command
@@ -235,7 +235,7 @@ found a given command, you can run the command by pressing **Enter**,
 just as you would if you had entered it manually. Optionally you can
 modify the command before you run it.
 
-## <span>Command Categories</span>
+## Command Categories</span>
 
 <span style="color: #353744;"> While the CLI has a flat structure, the
 commands can be conceptually grouped into four functional categories:
@@ -254,7 +254,7 @@ commands can be conceptually grouped into four functional categories:
   - <span style="color: #353744;"> [Trace
     Commands](#src-12321059_NetQCommandLineOverview-TraceCmds) </span>
 
-### <span>Validation Commands</span>
+### Validation Commands</span>
 
 <span style="color: #353744;"> The `netq` `check` commands enable the
 network administrator to validate the current or historical state of the
@@ -314,7 +314,7 @@ the *failedNodes* section, respectively.
         }
     }
 
-### <span>Monitoring Commands</span>
+### Monitoring Commands</span>
 
 The `netq show` commands enable the network administrator to view
 details about the current or historical configuration and status of the
@@ -430,14 +430,14 @@ agents` command.
     ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
     leaf01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:49m:59s             2d:2h:49m:51s             2d:2h:49m:51s              Sun Apr 21 16:00:59 2019
 
-### <span>Configuration Commands</span>
+### Configuration Commands</span>
 
 <span style="color: #353744;"> The `netq config` and `netq notification`
 commands enable the network administrator to manage NetQ Agent and CLI
 server configuration, set up container monitoring, and event
 notification. </span>
 
-#### <span>NetQ Agent Configuration </span>
+#### NetQ Agent Configuration </span>
 
 The agent commands enable the network administrator to configure
 individual NetQ Agents. Refer to [Cumulus NetQ
@@ -495,7 +495,7 @@ agent` command.
 
 {{%/notice%}}
 
-#### <span>CLI Configuration</span>
+#### CLI Configuration</span>
 
 The CLI commands enable the network administrator to configure and
 manage the CLI component. These commands enable you to add or remove CLI
@@ -529,7 +529,7 @@ This example shows how to enable the CLI on a NetQ Cloud Appliance.
 
     netq config add cli server api.netq.cumulusnetworks.com access-key <user-access-key> secret-key <user-secret-key> port 443
 
-#### <span>Event Notification Commands</span>
+#### Event Notification Commands</span>
 
 <span style="color: #353744;"> The notification configuration commands
 enable you to add, remove and show notification application
@@ -557,7 +557,7 @@ Hardware](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Integrate-with-
 <span style="color: #353744;"> for details about using these commands
 and additional examples. </span>
 
-### <span>Trace Commands</span>
+### Trace Commands</span>
 
 <span style="color: #353744;"> The `trace` commands enable the network
 administrator to view the available paths between two nodes on the
@@ -650,14 +650,14 @@ destination MAC address, in *pretty* output: </span>
                                                            swp4 -- swp3 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
                                                            swp3 -- swp3 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
 
-## <span>Command Changes</span>
+## Command Changes</span>
 
 A number of commands have changed in this release to accommodate the
 addition of new keywords and options or to simplify their syntax.
 Additionally, new commands have been added and others have been removed.
 A summary of those changes is provided here.
 
-### <span>New Commands</span>
+### New Commands</span>
 
 The following table summarizes the new commands available with this
 release.
@@ -668,7 +668,7 @@ release.
 | `netq upgrade opta interface <text-opta-ifname> key <text-opta-key>`                                                       | Upgrades the NetQ software on the NetQ Cloud Appliance.d                         |
 | `netq [<hostname>] show interface-stats [errors \| all] [<physical-port>] [around <text-time>] [json]`                     | This is an early access feature that displays a variety of interface statistics. |
 
-### <span>Modified Commands</span>
+### Modified Commands</span>
 
 The following table summarizes the commands that have been changed with
 this release.
@@ -679,7 +679,7 @@ this release.
 | `netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key>] [premise <text-premise-name>] [port <text-gateway-port>] [vrf <text-vrf-name>]` | `netq config add cli server`                                               | This adds the CLI daemon to the switch or host where this command is run. When using a NetQ Cloud Appliance, the access-key, secret-key, and port are required.              |
 | `netq config show cli premises [json]`                                                                                                                                                      | `netq config show cli [json]`                                              | Displays configuration settings for the CLI for all cloud premises.                                                                                                          |
 
-### <span>Deprecated Commands</span>
+### Deprecated Commands</span>
 
 The following table summarizes the commands that have been removed and a
 recommended alternative, if appropriate.

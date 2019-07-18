@@ -13,7 +13,7 @@ siteSlug: cumulus-rmp
 subsection: true
 ---
 
-## <span>Introducing Cumulus RMP</span>
+## Introducing Cumulus RMP</span>
 
 Cumulus RMP is a network operating system in a ready-to-deploy solution
 that enables out-of-band management for web-scale networks. It provides
@@ -30,7 +30,7 @@ You can also find more information about Cumulus RMP
 
 {{% imgOld 0 %}}
 
-## <span>What's New in Cumulus RMP</span>
+## What's New in Cumulus RMP</span>
 
 Cumulus RMP 3.7.0 contains several bug fixes and the following new
 features:
@@ -77,7 +77,7 @@ For further information regarding bug fixes and known issues present in
 the 3.6.0 release, refer to the [product release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003646974-Cumulus-RMP-3-6-Release-Notes).
 
-## <span id="src-5122807_CumulusRMP-features" class="confluence-anchor-link"></span><span>Cumulus RMP Features</span>
+## <span id="src-5122807_CumulusRMP-features" class="confluence-anchor-link"></span>Cumulus RMP Features</span>
 
 Cumulus RMP shares much of the same functionality as Cumulus Linux and
 comes preinstalled on your choice of [1G
@@ -137,7 +137,7 @@ For more information about each feature, follow the links below to the
 | QoS                                                                                         |                 | ✓                 |
 | [Orchestration](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/)                                       | ✓               | ✓                 |
 
-## <span>Setting up a Cumulus RMP Switch</span>
+## Setting up a Cumulus RMP Switch</span>
 
 The [quick start guide](/cumulus-rmp/Quick-Start-Guide) walks you
 through the steps necessary for getting your Cumulus RMP switch up and

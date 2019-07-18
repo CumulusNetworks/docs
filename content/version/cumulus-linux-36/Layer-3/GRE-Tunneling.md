@@ -62,11 +62,11 @@ the outer IPv4 header.
 
 {{% imgOld 0 %}}
 
-## <span> Contents</span>
+##  Contents</span>
 
 <summary>This chapter covers ... </summary>
 
-## <span>Configuring GRE Tunneling</span>
+## Configuring GRE Tunneling</span>
 
 To configure GRE tunneling, you create a GRE tunnel interface with
 routes for tunneling on both endpoints as follows:
@@ -148,7 +148,7 @@ the following commands directly in the `/etc/network/interfaces` file.
 For more information about the `pre-up`, `post-up`, and `post-down`
 commands, run the `man interfaces` command.
 
-## <span>Verifying GRE Tunnel Settings</span>
+## Verifying GRE Tunnel Settings</span>
 
 Use the `ip tunnel show` command to check GRE tunnel settings:
 
@@ -156,7 +156,7 @@ Use the `ip tunnel show` command to check GRE tunnel settings:
     gre0: gre/ip remote any local any ttl inherit nopmtudisc
     Tunnel-R1: gre/ip remote 10.0.0.2 local 10.0.0.9 ttl 255
 
-## <span>Deleting a GRE Tunnel Interface</span>
+## Deleting a GRE Tunnel Interface</span>
 
 Use the `ip tunnel del` command to delete a GRE tunnel, remove the
 tunnel interface, and remove the routes configured with the tunnel
@@ -172,7 +172,7 @@ file instead of using the `ip tunnel del` command. Make sure you run the
 
 {{%/notice%}}
 
-## <span>Changing GRE Tunnel Settings</span>
+## Changing GRE Tunnel Settings</span>
 
 Use the `ip tunnel change` command to make changes to the GRE tunnel
 settings. The following example changes the remote underlay IP address

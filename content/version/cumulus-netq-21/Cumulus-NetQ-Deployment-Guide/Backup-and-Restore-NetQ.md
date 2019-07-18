@@ -31,7 +31,7 @@ where to save the file, or other tips? </span>
 <span style="color: #ff0000;"> Same steps for NetQ Appliance and NetQ
 Cloud Appliance? </span>
 
-## <span>Create a Backup File</span>
+## Create a Backup File</span>
 
 To create a backup manually:
 
@@ -60,7 +60,7 @@ To create a scheduled backup, add `./backuprestore.sh --backup
 --localdir /opt/<backup-directory>` to an existing cron job or create a
 new one.
 
-## <span>Restore NetQ from Your Backup File</span>
+## Restore NetQ from Your Backup File</span>
 
 To restore NetQ on the same Cassandra pod as the backup file:
 

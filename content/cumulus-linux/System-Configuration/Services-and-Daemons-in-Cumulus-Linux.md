@@ -29,7 +29,7 @@ You manage services in Cumulus Linux in the following ways:
 
   - Identify active listener ports
 
-## <span>systemd and the systemctl Command</span>
+## systemd and the systemctl Command</span>
 
 In general, you manage services using `systemd` via the `systemctl`
 command. You use it with any service on the switch to start, stop,
@@ -136,7 +136,7 @@ To see all the currently running services, run:
                  └─mstpd.service
                    └─436 /sbin/mstpd -d -v2
 
-### <span>systemctl Subcommands</span>
+### systemctl Subcommands</span>
 
 `systemctl` has a number of subcommands that perform a specific
 operation on a given service.
@@ -174,7 +174,7 @@ hit an error it will be automatically respawned by systemd. Systemd is
 effectively the caretaker of services in modern Linux systems and is
 responsible for starting all the necessary services at boot time.
 
-### <span>Ensure a Service Starts after Multiple Restarts</span>
+### Ensure a Service Starts after Multiple Restarts</span>
 
 By default, `systemd` is configured to try to restart a particular
 service only a certain number of times within a given interval before
@@ -200,14 +200,14 @@ you know you are going to restart frequently (multiple times within the
 StartLimitInterval), you can run the same command before you issue the
 restart request. This also applies to stop followed by start.
 
-### <span>Keep systemd Services from Hanging after Starting</span>
+### Keep systemd Services from Hanging after Starting</span>
 
 If you start, restart, or reload any `systemd` service that can be
 started from another `systemd` service, you must use the `--no-block`
 option with `systemctl`. Otherwise, that service or even the switch
 itself might hang after starting or restarting.
 
-## <span>Identify Active Listener Ports for IPv4 and IPv6</span>
+## Identify Active Listener Ports for IPv4 and IPv6</span>
 
 You can identify the active listener ports under both IPv4 and IPv6
 using the `netstat` command:
@@ -236,7 +236,7 @@ using the `netstat` command:
     udp6       0      0 :::4784                 :::*                                909/ptmd        
     udp6       0      0 :::3784                 :::*                                909/ptmd
 
-## <span>Identify Services Currently Active or Stopped</span>
+## Identify Services Currently Active or Stopped</span>
 
 To determine which services are currently active or stopped, run the
 `cl-service-summary` command:
@@ -497,7 +497,7 @@ to list all services on the switch and see which ones are enabled:
     210 unit files listed.
     lines 165-213/213 (END)
 </details>
-## <span>Identify Essential Services</span>
+## Identify Essential Services</span>
 
 If you need to know which services are required to run when the switch
 boots, run:
@@ -539,7 +539,7 @@ To identify the services needed for a multi-user environment, run:
 </tbody>
 </table>
 
-### <span>Important Services</span>
+### Important Services</span>
 
 The following table lists the most important services in Cumulus Linux.
 
@@ -549,11 +549,11 @@ The following table lists the most important services in Cumulus Linux.
 | sx\_sdk      | Only on Mellanox switches, interfaces with the Spectrum ASIC.                                                                                                                                                                                                                                               | YES                                          |
 | portwd       | Reads pluggable information over the I2C bus. Identifies and classifies the optics that are inserted into the system. Sets interface speeds and capabilities to match the optics.                                                                                                                           | YES, eventually, if optics are added/removed |
 | frr          | [FRRouting](/cumulus-linux/Layer-3/FRRouting-Overview/), handles routing protocols. There are separate processes for each routing protocol, like bgpd and ospfd.                                                                                                                                            | YES if routing                               |
-| clag         | Cumulus link aggregation daemon, handles [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG).                                                                                                                                                                                              | YES if using MLAG                            |
+| clag         | Cumulus link aggregation daemon, handles [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG).                                                                                                                                                                                              | YES if using MLAG                            |
 | neighmgrd    | Synchronizes MAC address information when MLAG is in use.                                                                                                                                                                                                                                                   | YES if using MLAG                            |
 | mstpd        | [Spanning tree protocol](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree) daemon.                                                                                                                                                                                                              | YES if using layer 2                         |
-| ptmd         | [Prescriptive Topology Manager](/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM), verifies cabling based on [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) output, also sets up [BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD) sessions. | YES if using BFD                             |
-| netd         | [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU) back end.                                                                                                                                                                                                                   | NO                                           |
+| ptmd         | [Prescriptive Topology Manager](/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM), verifies cabling based on [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) output, also sets up [BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD) sessions. | YES if using BFD                             |
+| netd         | [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU) back end.                                                                                                                                                                                                                   | NO                                           |
 | rsyslog      | Handles logging of syslog messages.                                                                                                                                                                                                                                                                         | NO                                           |
 | ntp          | [Network time protocol](/cumulus-linux/System-Configuration/Setting-Date-and-Time).                                                                                                                                                                                                                         | NO                                           |
 | ledmgrd      | [LED manager](/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/Network-Switch-Port-LED-and-Status-LED-Guidelines), reads the state of system LEDs.                                                                                                                                  | NO                                           |

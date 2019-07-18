@@ -38,7 +38,7 @@ for this version.
 
 {{%/notice%}}
 
-## <span>Install the NetQ Telemetry Server</span>
+## Install the NetQ Telemetry Server</span>
 
 The NetQ Telemetry Server comprises a set of individual Docker
 containers for each of the various server components that are used by
@@ -133,7 +133,7 @@ assign one:
 
 {{%/notice%}}
 
-## <span id="src-8356538_GettingStartedwithNetQ-agent" class="confluence-anchor-link"></span><span>Install the NetQ Agent</span>
+## <span id="src-8356538_GettingStartedwithNetQ-agent" class="confluence-anchor-link"></span>Install the NetQ Agent</span>
 
 To manage a node with NetQ Agent and send notifications with NetQ
 Notifier, you need to install an OS-specific metapackage on each node.
@@ -162,7 +162,7 @@ repository.
 
 {{%/notice%}}
 
-### <span>Installing on a Cumulus Linux Switch</span>
+### Installing on a Cumulus Linux Switch</span>
 
 1.  Edit `/etc/apt/sources.list` and add the following line:
     
@@ -174,13 +174,13 @@ repository.
     
         cumulus@switch:~$ sudo apt-get update && sudo apt-get install cumulus-netq
 
-### <span>Installing on an Ubuntu, Red Hat or CentOS Server</span>
+### Installing on an Ubuntu, Red Hat or CentOS Server</span>
 
 To install NetQ on Linux servers running Ubuntu, Red Hat or CentOS,
 please read the [Host Pack
 documentation](https://docs.cumulusnetworks.com/display/HOSTPACK/Installing+NetQ+on+the+Host).
 
-## <span id="src-8356538_GettingStartedwithNetQ-nodeconfig" class="confluence-anchor-link"></span><span>Configuring the NetQ Agent on a Node</span>
+## <span id="src-8356538_GettingStartedwithNetQ-nodeconfig" class="confluence-anchor-link"></span>Configuring the NetQ Agent on a Node</span>
 
 Once you install the NetQ packages and configure the NetQ Telemetry
 Server, you need to configure NetQ on each Cumulus Linux switch to
@@ -221,7 +221,7 @@ monitor that node on your network.
     
     {{%/notice%}}
 
-### <span id="src-8356538_GettingStartedwithNetQ-vrf" class="confluence-anchor-link"></span><span>Configuring the Agent to Use a VRF</span>
+### <span id="src-8356538_GettingStartedwithNetQ-vrf" class="confluence-anchor-link"></span>Configuring the Agent to Use a VRF</span>
 
 If you want the NetQ Agent to communicate with the telemetry server only
 via a [VRF](/display/NETQ121/Virtual+Routing+and+Forwarding+-+VRF),
@@ -236,7 +236,7 @@ You then restart the agent as described in the previous section:
 
     cumulus@switch:~$ netq config restart agent
 
-### <span id="src-8356538_GettingStartedwithNetQ-port" class="confluence-anchor-link"></span><span> Configuring the Agent to Communicate over a Specific Port</span>
+### <span id="src-8356538_GettingStartedwithNetQ-port" class="confluence-anchor-link"></span> Configuring the Agent to Communicate over a Specific Port</span>
 
 By default, NetQ uses port 6379 for communication between the telemetry
 server and NetQ Agents. If you want the NetQ Agent to communicate with
@@ -253,7 +253,7 @@ you can only configure it on port 6379 or 26379.
 
 {{%/notice%}}
 
-### <span>Removing or Decommissioning an Agent from a Node</span>
+### Removing or Decommissioning an Agent from a Node</span>
 
 You can decommission a NetQ agent on a given node. You may need to do
 this when you
@@ -293,7 +293,7 @@ To decommission the NetQ agent on a node, do the following steps:
     
         cumulus@switch:~$ netq config restart agent
 
-### <span>Configuring Debug Logging for the NetQ Agent</span>
+### Configuring Debug Logging for the NetQ Agent</span>
 
 In order to debug the NetQ Agent, you need to enable debug-level
 logging:
@@ -308,7 +308,7 @@ logging:
     
         cumulus@switch:~$ netq config restart agent
 
-## <span id="src-8356538_GettingStartedwithNetQ-notifier" class="confluence-anchor-link"></span><span>Configuring NetQ Notifier on the Telemetry Server</span>
+## <span id="src-8356538_GettingStartedwithNetQ-notifier" class="confluence-anchor-link"></span>Configuring NetQ Notifier on the Telemetry Server</span>
 
 NetQ Notifier listens to events from the telemetry server database. When
 NetQ Notifier is running on the NetQ Telemetry Server, it sends out
@@ -433,7 +433,7 @@ To configure alerts and integrations on the NetQ Telemetry Server:
     
     {{%/notice%}}
 
-## <span id="src-8356538_GettingStartedwithNetQ-example" class="confluence-anchor-link"></span><span>Example /etc/netq/netq.yml Configuration</span>
+## <span id="src-8356538_GettingStartedwithNetQ-example" class="confluence-anchor-link"></span>Example /etc/netq/netq.yml Configuration</span>
 
 The following sample `/etc/netq/netq.yml` file is on the NetQ Telemetry
 Server itself. Note that the `netq.yml` looks different on a switch or

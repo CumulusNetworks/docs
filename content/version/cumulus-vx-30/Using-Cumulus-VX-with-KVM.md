@@ -109,13 +109,13 @@ Power on spine2 and configure it as follows:
                     -device virtio-net-pci,mac=00:02:00:00:00:08,addr=6.1,multifunction=off,netdev=dev1,id=swp2 \
                     spine2.qcow2
 
-## <span>Configuring Network Interfaces and Quagga</span>
+## Configuring Network Interfaces and Quagga</span>
 
 The next step is to configure the 2 leaf/2 spine topology. This includes
 setting up the network interfaces, and Quagga, and assumes the previous
 sections have been completed.
 
-### <span>Configuring leaf1 VM</span>
+### Configuring leaf1 VM</span>
 
 To configure leaf1:
 
@@ -194,7 +194,7 @@ To configure leaf1:
     
         root@leaf1:~$ service quagga restart
 
-### <span>Configuring leaf2, spine1, and spine2 VMs</span>
+### Configuring leaf2, spine1, and spine2 VMs</span>
 
 The configuration steps for `leaf2`, `spine1`, and `spine2` are the same
 as those listed above for `leaf1`, however the file configurations are
@@ -331,7 +331,7 @@ continuing.
 
 {{%/notice%}}
 
-## <span>Testing the Connections</span>
+## Testing the Connections</span>
 
 Once the VMs have been restarted, you can ping across VMs to test:
 
@@ -356,7 +356,7 @@ as needed, like `-enable-kvm`, `-serial` or `-monitor`.
 
 {{%/notice%}}
 
-## <span>Bridging Switch Port Interfaces</span>
+## Bridging Switch Port Interfaces</span>
 
 If you intend to bridge the switch ports in the VM, you should place
 each switch port in the bridge in its own virtual network on the host.
@@ -364,9 +364,9 @@ Otherwise, you may see this error:
 
     br0: recevied package on swp1 with own address as source address
 
-## <span>Using CumulusVX with Libvirt and QEMU/KVM</span>
+## Using CumulusVX with Libvirt and QEMU/KVM</span>
 
-### <span>Using Libvirt</span>
+### Using Libvirt</span>
 
 1.  Confirm `libvert` and `qemu` are installed correctly:
     
@@ -432,7 +432,7 @@ Otherwise, you may see this error:
     virsh pool-autostart NAMEvirsh pool-build NAMEvirsh pool-start NAME    
     ```
 
-### <span>Launch the Vagrant Instance</span>
+### Launch the Vagrant Instance</span>
 
 1.  Create the appropriate VagrantFile. This can be done using topology
     converter.
@@ -536,7 +536,7 @@ Otherwise, you may see this error:
         ==> oob: Configuring and enabling network interfaces...
           ==> oob: Running provisioner: shell...
 
-## <span>Further Information</span>
+## Further Information</span>
 
 For the next steps regarding configuring Cumulus VX, check out these
 community articles, and the rest of the Cumulus Documentation:

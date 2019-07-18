@@ -15,7 +15,7 @@ This section provides an overview of configuring FRRouting, the routing
 software package that provides a suite of routing protocols so you can
 configure routing on your switch.
 
-## <span>Configure FRRouting</span>
+## Configure FRRouting</span>
 
 FRRouting does not start by default in Cumulus Linux. Before you run
 FRRouting, make sure all you have enabled relevant daemons that you
@@ -30,9 +30,9 @@ Cumulus Networks has not tested RIP, RIPv6, IS-IS and Babel.
 
 The `zebra` daemon must always be enabled. The others you can enable
 according to how you plan to route your network — using
-[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP) for example,
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP) for example,
 instead of
-[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF).
+[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF).
 
 Before you start FRRouting, you need to enable the corresponding
 daemons. Edit the `/etc/frr/daemons` file and set to *yes* each daemon
@@ -49,7 +49,7 @@ you are enabling. For example, to enable BGP, set both `zebra` and
     babeld=no
     pimd=no
 
-### <span id="src-8362919_ConfiguringFRRouting-enableFRR" class="confluence-anchor-link"></span><span>Enable and Start FRRouting</span>
+### <span id="src-8362919_ConfiguringFRRouting-enableFRR" class="confluence-anchor-link"></span>Enable and Start FRRouting</span>
 
 Once you enable the appropriate daemons, then you need to enable and
 start the FRRouting service.
@@ -75,7 +75,7 @@ Linux](/cumulus-linux/System-Configuration/Services-and-Daemons-in-Cumulus-Linux
 
 {{%/notice%}}
 
-### <span id="src-8362919_ConfiguringFRRouting-integrated_cfg" class="confluence-anchor-link"></span><span>Integrated Configurations</span>
+### <span id="src-8362919_ConfiguringFRRouting-integrated_cfg" class="confluence-anchor-link"></span>Integrated Configurations</span>
 
 By default in Cumulus Linux, FRRouting saves the configuration of all
 daemons in a single integrated configuration file, `frr.conf`.
@@ -120,7 +120,7 @@ this:
     Configuration saved to /etc/frr/bgpd.conf
     [OK]
 
-### <span>Restore the Default Configuration</span>
+### Restore the Default Configuration</span>
 
 If you need to restore the FRRouting configuration to the default
 running configuration, you need to delete the `frr.conf` file and
@@ -151,7 +151,7 @@ you should remove all the configuration files (such as `zebra.conf` or
 
 {{%/notice%}}
 
-## <span>Interface IP Addresses and VRFs</span>
+## Interface IP Addresses and VRFs</span>
 
 FRRouting inherits the IP addresses and any associated routing tables
 for the network interfaces from the `/etc/network/interfaces` file. This
@@ -159,9 +159,9 @@ is the recommended way to define the addresses; do **not** create
 interfaces using FRRouting. For more information, see [Configuring IP
 Addresses](Interface-Configuration-and-Management.html#src-8363023_InterfaceConfigurationandManagement-ip)
 and [Virtual Routing and Forwarding -
-VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF).
+VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF).
 
-## <span id="src-8362919_ConfiguringFRRouting-vtysh" class="confluence-anchor-link"></span><span>FRRouting vtysh Modal CLI</span>
+## <span id="src-8362919_ConfiguringFRRouting-vtysh" class="confluence-anchor-link"></span>FRRouting vtysh Modal CLI</span>
 
 FRRouting provides a CLI – `vtysh` – for configuring and displaying the
 state of the protocols. It is invoked by running:
@@ -417,7 +417,7 @@ FRRouting, you can use a suite of [Cumulus Linux-specific
 commands](/cumulus-linux/Layer-3/Configuring-FRRouting/Comparing-NCLU-and-vtysh-Commands)
 instead.
 
-## <span>Reload the FRRouting Configuration</span>
+## Reload the FRRouting Configuration</span>
 
 If you make a change to your routing configuration, you need to reload
 FRRouting so your changes take place. *FRRouting reload* enables you to
@@ -456,7 +456,7 @@ supply the following information:
 
   - The contents of `/var/log/frr/frr-reload.log`
 
-## <span>FRR Logging</span>
+## FRR Logging</span>
 
 By default, Cumulus Linux configures FFR with syslog severity level 6
 (informational). Log output is written to the `/var/log/frr/frr.log`
@@ -474,9 +474,9 @@ However, when you manually define a log target with the `log file
 
 {{%/notice%}}
 
-## <span>Caveats</span>
+## Caveats</span>
 
-### <span>Obfuscated Passwords</span>
+### Obfuscated Passwords</span>
 
 In FRRouting, Cumulus Linux stores obfuscated passwords for BGP and OSPF
 (ISIS, OSPF area, and BGP neighbor passwords). All passwords in
@@ -484,7 +484,7 @@ configuration files and those displayed in show commands are obfuscated.
 The obfuscation algorithm protects passwords from casual viewing. The
 system can retrieve the original password when needed.
 
-### <span>Duplicate Hostnames</span>
+### Duplicate Hostnames</span>
 
 If you change the hostname, either through NCLU or with the `hostname`
 command in `vtysh`, the switch can have two hostnames in the FRR
@@ -513,7 +513,7 @@ and restarting the FRR service.
 
 {{%/notice%}}
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [FRR BGP documentation](https://frrouting.org/user-guide/bgp.html)
 

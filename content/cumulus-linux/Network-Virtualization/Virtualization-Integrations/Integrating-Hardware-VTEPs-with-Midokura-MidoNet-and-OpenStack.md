@@ -21,12 +21,12 @@ between virtual and physical server infrastructures.
 
 {{% imgOld 0 %}}
 
-## <span>Getting Started</span>
+## Getting Started</span>
 
 Make sure you have a layer 2 gateway; a Tomahawk, Trident II+ or Trident
 II switch running Cumulus Linux. Cumulus Linux includes OVSDB server
 (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support [VLAN-aware
-bridges](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
 
 To integrate a VXLAN with MidoNet, you need to:
 
@@ -48,7 +48,7 @@ Trident II chipset; use a loopback interface
 
 {{%/notice%}}
 
-## <span>Configure the MidoNet Integration on the Switch</span>
+## Configure the MidoNet Integration on the Switch</span>
 
 Before you start to configure the MidoNet tunnel zones and VTEP binding,
 and connect virtual ports to the VXLAN, you need to enable and start the
@@ -74,7 +74,7 @@ In previous versions of Cumulus Linux, you had to edit the
 
 {{%/notice%}}
 
-### <span>Configure the MidoNet Integration Using the Configuration Script</span>
+### Configure the MidoNet Integration Using the Configuration Script</span>
 
 The `vtep-bootstrap` script is available so you can perform the
 configuration automatically. For information, read `man vtep-bootstrap`.
@@ -118,7 +118,7 @@ messages:
 
 {{%/notice%}}
 
-### <span>Configure the MidoNet Integration Manually</span>
+### Configure the MidoNet Integration Manually</span>
 
 If you do not use the configuration script, you must initialize the OVS
 database instance manually and create the VTEP.
@@ -146,7 +146,7 @@ The switch is now ready to connect to MidoNet. The rest of the
 configuration is performed from the MidoNet Manager GUI or using the
 MidoNet API.
 
-## <span>Configure MidoNet VTEP and Port Bindings</span>
+## Configure MidoNet VTEP and Port Bindings</span>
 
 This part of the configuration sets up MidoNet and OpenStack to connect
 the virtualization environment to the Cumulus Linux switch. The
@@ -158,9 +158,9 @@ and the Cumulus Linux OVS database (OVSDB) server.
 You can configure the MidoNet VTEP and port bindings from the MidoNet
 Manager GUI or the MidoNet CLI.
 
-### <span>From the MidoNet Manager GUI</span>
+### From the MidoNet Manager GUI</span>
 
-#### <span>Create a Tunnel Zone</span>
+#### Create a Tunnel Zone</span>
 
 1.  Click **Tunnel Zones** in the menu on the left side.
 
@@ -173,7 +173,7 @@ Manager GUI or the MidoNet CLI.
 
     {{% imgOld 1 %}}
 
-#### <span>Add Hosts to a Tunnel Zone</span>
+#### Add Hosts to a Tunnel Zone</span>
 
 After you create the tunnel zone, click the name of the tunnel zone to
 view the hosts table.
@@ -203,7 +203,7 @@ The host list now displays the new entry:
 
 {{% imgOld 4 %}}
 
-#### <span>Create the VTEP</span>
+#### Create the VTEP</span>
 
 1.  Click the **Vteps** menu on the left side.
 
@@ -231,7 +231,7 @@ you specified during the bootstrapping process.
 
 {{% imgOld 6 %}}
 
-#### <span>Bind Ports to the VTEP</span>
+#### Bind Ports to the VTEP</span>
 
 Now that connectivity is established to the switch, you need to add a
 physical port binding to the VTEP on the Cumulus Linux switch:
@@ -261,7 +261,7 @@ connected to the bound port on the Cumulus switch. The Troubleshooting
 section below demonstrates the verification of the VXLAN data and
 control planes.
 
-### <span>From the MidoNet CLI</span>
+### From the MidoNet CLI</span>
 
 To get started with the MidoNet CLI, you can access the CLI prompt on
 the OpenStack Controller:
@@ -358,17 +358,17 @@ At this point, the VTEP is connected and the layer 2 overlay is
 operational. From the openstack instance (VM), you can ping a physical
 server connected to the port bound to the hardware switch VTEP.
 
-## <span>Troubleshooting</span>
+## Troubleshooting</span>
 
 As with any complex system, there is a control plane and data plane.
 
-### <span>Control Plane Troubleshooting</span>
+### Control Plane Troubleshooting</span>
 
 In this solution, the control plane consists of the connection between
 the OpenStack Controller and each Cumulus Linux switch running the
 `ovsdb-server` and `vtepd` daemons.
 
-#### <span>Verify VTEP and OVSDB Services</span>
+#### Verify VTEP and OVSDB Services</span>
 
 First, it is important that the OVSDB server and `ovs-vtep` daemon are
 running. Verify this is the case:
@@ -377,7 +377,7 @@ running. Verify this is the case:
     ovsdb-server is running with pid 17440
     ovs-vtepd is running with pid 17444
 
-#### <span>Verify OVSDB-server Connections</span>
+#### Verify OVSDB-server Connections</span>
 
 From the OpenStack Controller host, verify that it can connect to the
 `ovsdb-server`. Telnet to the switch IP address on port 6632:
@@ -400,7 +400,7 @@ not set up port 6632. Redo the bootstrapping procedures above.
     1 packets transmitted, 1 received, 0% packet loss, time 0ms
     rtt min/avg/max/mdev = 0.315/0.315/0.315/0.000 ms
 
-#### <span>Verify the VXLAN Bridge and VTEP Interfaces</span>
+#### Verify the VXLAN Bridge and VTEP Interfaces</span>
 
 After creating the VTEP in MidoNet and adding an interface binding, you
 see the **br-vxln** and **vxln** interfaces on the switch. Verify that
@@ -434,7 +434,7 @@ as well as the OVSDB.
     b6:71:33:3b:a7:83 dev vxln10004 vlan 0 master br-vxln10004 permanent
     64:ae:0c:32:f1:41 dev swp11s0 vlan 0 master br-vxln10004
 
-### <span>Datapath Troubleshooting</span>
+### Datapath Troubleshooting</span>
 
 If you have verified the control plane is correct, and you still cannot
 get data between the OpenStack instances and the physical nodes on the
@@ -446,7 +446,7 @@ OpenStack instances can ping the tenant router address but cannot ping
 the physical device connected to the switch (or vice versa), then
 something is wrong in the data plane.
 
-#### <span>Verify IP Reachability</span>
+#### Verify IP Reachability</span>
 
 First, there must be IP reachability between the encapsulating node, and
 the address you bootstrapped as the tunnel IP on the switch. Verify the
@@ -460,7 +460,7 @@ routing design and fix the layer 3 problem first.
     1 packets transmitted, 1 received, 0% packet loss, time 0ms
     rtt min/avg/max/mdev = 0.649/0.649/0.649/0.000 ms
 
-#### <span>MidoNet VXLAN Encapsulation</span>
+#### MidoNet VXLAN Encapsulation</span>
 
 If the instance (VM) cannot ping the physical server or the reply is not
 returning, look at the packets on the OpenStack node. Initiate a ping
@@ -495,7 +495,7 @@ This example displays a successful tcpdump.
      0x0070: 0000 0000 0000 0000 0000 0000 0000 0000 ................
      0x0080: 0000 0000 0000 ......
 
-### <span>Inspect the OVSDB</span>
+### Inspect the OVSDB</span>
 
 These commands show you the information installed in the OVSDB. This
 database is structured using the *physical switch* ID, with one or more
@@ -503,17 +503,17 @@ database is structured using the *physical switch* ID, with one or more
 the physical switch and MidoNet creates the logical switch after the
 control session is established.
 
-#### <span>List the Physical Switch</span>
+#### List the Physical Switch</span>
 
     cumulus@switch12:~$ vtep-ctl list-ps
     sw12
 
-#### <span>List the Logical Switch</span>
+#### List the Logical Switch</span>
 
     cumulus@switch12:~$ vtep-ctl list-ls
     mn-6c9826da-6655-4fe3-a826-4dcba6477d2d
 
-#### <span>List Local or Remote MAC Addresses</span>
+#### List Local or Remote MAC Addresses</span>
 
 These commands show the MAC addresses learned from the connected port
 bound to the logical switch or the MAC addresses advertised from
@@ -532,7 +532,7 @@ flooding of unknown unicast and are important for learning.
     mcast-mac-remote
       unknown-dst -> vxlan_over_ipv4/10.111.0.182oh
 
-#### <span>Show Open Vswitch Database (OVSDB) Data</span>
+#### Show Open Vswitch Database (OVSDB) Data</span>
 
 The `ovsdb-client dump` command is large but shows all of the
 information and tables used in communication between the OVS client and

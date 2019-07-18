@@ -17,7 +17,7 @@ and log files, verifying NetQ Agent health, and verifying NetQ Platform
 configuration. If these do not produce a resolution, you can capture a
 log to use in discussion with Cumulus Networks support team.
 
-## <span>Browse Configuration and Log Files</span>
+## Browse Configuration and Log Files</span>
 
 To aid in troubleshooting issues with NetQ, there are the following
 configuration and log files that can provide insight into the root cause
@@ -29,7 +29,7 @@ of the issue:
 | `/var/log/netqd.log`      | The NetQ daemon log file for the NetQ CLI. This log file appears only if you installed the `netq-apps` package on the system.        |
 | `/var/log/netq-agent.log` | The NetQ Agent log file. This log file appears only if you installed the NetQ Agent on the system.                                   |
 
-## <span>Check NetQ Agent Health</span>
+## Check NetQ Agent Health</span>
 
 Checking the health of the NetQ Agents is a good way to start
 troubleshooting NetQ on your network. If any agents are rotten, meaning
@@ -89,7 +89,7 @@ so you know where to start looking for problems:
 
 </div>
 
-## <span>Generate a Support File</span>
+## Generate a Support File</span>
 
 The `opta-support` command generates an archive of useful information
 for troubleshooting issues with NetQ. It is an extension of the

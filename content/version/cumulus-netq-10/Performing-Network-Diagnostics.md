@@ -19,7 +19,7 @@ for analysis. This enables you to replay and analyze network-wide events
 for better visibility and to correlate patterns. This allows for
 root-cause analysis and optimization of network configs for the future.
 
-## <span>Diagnosing an Event after It Occurs</span>
+## Diagnosing an Event after It Occurs</span>
 
 NetQ provides a number of commands to enable you to diagnose past
 events.
@@ -82,7 +82,7 @@ the list:
     leaf03           swp51(spine01)               default          64515      65000      Estd   5            Add      5h ago
     spine01          swp3(leaf03)                 default          65000      64515      Estd   2            Add      5h ago
 
-## <span id="src-6488212_PerformingNetworkDiagnostics-time_machine" class="confluence-anchor-link"></span><span>Using NetQ as a Time Machine</span>
+## <span id="src-6488212_PerformingNetworkDiagnostics-time_machine" class="confluence-anchor-link"></span>Using NetQ as a Time Machine</span>
 
 With NetQ, you can travel back to a specific point in time or a range of
 times to help you isolate errors and issues.
@@ -145,7 +145,7 @@ exit01, which has the IP address 27.0.0.1:
     spine02 -- spine02:swp3 -- exit01:swp6.4 -- exit01:swp3 -- exit01
                             -- spine02:swp7  -- spine02
 
-### <span id="src-6488212_PerformingNetworkDiagnostics-matrix" class="confluence-anchor-link"></span><span>How Far Back in Time Can You Travel?</span>
+### <span id="src-6488212_PerformingNetworkDiagnostics-matrix" class="confluence-anchor-link"></span>How Far Back in Time Can You Travel?</span>
 
 The NetQ Telemetry Server stores an amount of data limited by a few
 factors:
@@ -203,7 +203,7 @@ definitions:
     even further in time, in a near linear fashion. So doubling the
     memory should double the range.
 
-## <span>Using trace in a VRF</span>
+## Using trace in a VRF</span>
 
 The `netq trace` command works with VRFs as well:
 

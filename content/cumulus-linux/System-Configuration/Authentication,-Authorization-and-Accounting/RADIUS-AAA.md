@@ -18,7 +18,7 @@ There is no need to create accounts or directories on the switch.
 Authentication is handled with PAM and includes login, `ssh`, `sudo` and
 `su`.
 
-## <span>Install the RADIUS Packages</span>
+## Install the RADIUS Packages</span>
 
 The RADIUS packages are not included in the base Cumulus Linux image;
 there is no RADIUS metapackage.
@@ -71,7 +71,7 @@ During package installation:
     and all privileged RADIUS users to also run ` net add,  ``net del`,
     and `net commit` commands, and to use `sudo`.
 
-## <span>Configure the RADIUS Client</span>
+## Configure the RADIUS Client</span>
 
 To configure the RADIUS client, edit the `/etc/pam_radius_auth.conf`
 file:
@@ -143,7 +143,7 @@ the `/usr/share/pam-configs/radius` file. After you edit the file, you
 must run the `pam-auth-update --package` command. PAM configuration
 keywords are described in the `pam_radius_auth (8)` man page.
 
-## <span>Enable Login without Local Accounts</span>
+## Enable Login without Local Accounts</span>
 
 Because LDAP is not commonly used with switches and adding accounts
 locally is cumbersome, Cumulus Linux includes a mapping capability with
@@ -184,7 +184,7 @@ A flat file mapping is done based on the session number assigned during
 login, which persists across `su` and `sudo`. The mapping is removed at
 logout.
 
-## <span> Local Fallback Authentication</span>
+##  Local Fallback Authentication</span>
 
 If a site wants to allow local fallback authentication for a user when
 none of the RADIUS servers can be reached, you can add a privileged user
@@ -223,7 +223,7 @@ To configure local fallback authentication:
 
         cumulus@switch:~$ sudo passwd johnadmin
 
-## <span>Verify RADIUS Client Configuration</span>
+## Verify RADIUS Client Configuration</span>
 
 To verify that the RADIUS client is configured correctly, log in as a
 non-privileged user and run a `net add interface` command.
@@ -257,7 +257,7 @@ privilege level 15) so is able to add interface swp1.
     +iface swp1
     ...
 
-## <span id="src-8362559_RADIUSAAA-remove" class="confluence-anchor-link"></span><span>Remove RADIUS Client Packages</span>
+## <span id="src-8362559_RADIUSAAA-remove" class="confluence-anchor-link"></span>Remove RADIUS Client Packages</span>
 
 Remove the RADIUS packages with the following command:
 
@@ -304,7 +304,7 @@ file, use that account name instead of *radius\_user*.
     cumulus@switch:~$ sudo deluser --remove-home radius_priv_user
     cumulus@switch:~$ sudo delgroup radius_users
 
-## <span>Limitations</span>
+## Limitations</span>
 
 If two or more RADIUS users are logged in simultaneously, a UID lookup
 only returns the user that logged in first. Any processes run by either
@@ -317,7 +317,7 @@ password file.
 The current algorithm returns the first name matching the UID from the
 mapping file; this might be the first or second user that logged in.
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [TACACS+
     client](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)

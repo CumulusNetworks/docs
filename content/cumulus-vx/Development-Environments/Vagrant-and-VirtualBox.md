@@ -23,7 +23,7 @@ guide](https://www.vagrantup.com/intro/getting-started/index.html).
 
 {{%/notice%}}
 
-## <span>Configure the Vagrant Environment</span>
+## Configure the Vagrant Environment</span>
 
 {{%notice note%}}
 
@@ -78,7 +78,7 @@ newer](https://pypi.python.org/pypi/ansible).
 
 {{%/notice%}}
 
-## <span>Configure a Cumulus VX VM with Vagrant</span>
+## Configure a Cumulus VX VM with Vagrant</span>
 
 1.  In a terminal, create a folder to contain the Vagrant environment,
     then change directories into that folder.
@@ -162,9 +162,9 @@ You can explore the various demos available as part of the
 cldemo-vagrant family of repositories located here:
 <https://github.com/CumulusNetworks/cldemo-vagrant#available-demos>.
 
-## <span>Additional Configuration Options</span>
+## Additional Configuration Options</span>
 
-### <span>Add Switch Port Interfaces to a Cumulus VX VM</span>
+### Add Switch Port Interfaces to a Cumulus VX VM</span>
 
 By default Vagrant only configures the first network interface (eth0)
 for its own use. You must configure additional network interfaces, such
@@ -192,7 +192,7 @@ For more information on creating and using private networks, see
 and
 [docs.vagrantup.com/v2/virtualbox/networking.html](https://docs.vagrantup.com/v2/virtualbox/networking.html).
 
-### <span>Create Multiple Cumulus VX VMs</span>
+### Create Multiple Cumulus VX VMs</span>
 
 Vagrant can create and configure multiple VMs with a single command. For
 example, you can use Vagrant to create multiple Cumulus VX VMs and then
@@ -231,7 +231,7 @@ VM and configure the interfaces as you want; the interfaces will pass
 traffic between themselves as if they are two physical switches
 connected together by four cables.
 
-## <span>Limitations</span>
+## Limitations</span>
 
 At this time, there are some limitations to using Vagrant with Cumulus
 VX:
@@ -241,7 +241,7 @@ VX:
   - The first network interface (eth0) is always managed by Vagrant and
     must be connected to a NAT network.
 
-## <span>Test Configuration</span>
+## Test Configuration</span>
 
 Cumulus VX for Vagrant has been tested in the following environments:
 

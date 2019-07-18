@@ -16,7 +16,7 @@ Linux switch with the ssh-keygen component of the Secure Shell (SSH)
 protocol. Cumulus Linux uses the OpenSSH package to provide this
 functionality. The section below covers how to generate a SSH key pair.
 
-## <span>Generate an SSH Key Pair</span>
+## Generate an SSH Key Pair</span>
 
 1.  Run the `ssh-keygen` command, and follow the prompts, to generate
     the key pair:
@@ -94,7 +94,7 @@ functionality. The section below covers how to generate a SSH key pair.
         basis.
         Last login: Thu Sep 29 16:56:54 2016
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [Debian Documentation - Password-less logins with
     OpenSSH](http://www.debian-administration.org/articles/152)

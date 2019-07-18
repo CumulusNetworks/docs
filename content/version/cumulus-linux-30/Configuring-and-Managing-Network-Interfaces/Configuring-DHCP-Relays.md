@@ -25,7 +25,7 @@ host, leaf and DHCP server using the following topology:
 
 <summary>Contents </summary>
 
-## <span>Configuring the Relays </span>
+## Configuring the Relays </span>
 
 Here is the host configuration:
 

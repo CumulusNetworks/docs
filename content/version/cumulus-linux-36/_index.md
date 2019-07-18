@@ -12,7 +12,7 @@ imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 subsection: true
 ---
-## <span>Introducing Cumulus Linux</span>
+## Introducing Cumulus Linux</span>
 
 Cumulus Linux is the first full-featured Linux operating system for the
 networking industry. The [Debian
@@ -36,7 +36,7 @@ Read the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115015543848)
 for new features and known issues in this release.
 
-### <span>What's New in Cumulus Linux 3.6.2</span>
+### What's New in Cumulus Linux 3.6.2</span>
 
 Cumulus Linux 3.6.2 contains the following new features, platforms, and
 improvements:
@@ -45,17 +45,17 @@ improvements:
     Tomahawk) now generally available
 
   - NCLU commands available for [configuring traditional mode
-    bridges](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode)
+    bridges](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
 
   - [VRF static route leaking with
-    EVPN](Virtual-Routing-and-Forwarding---VRF.html#src-8362412_VirtualRoutingandForwarding-VRF-EVPN_static_route_leak)
+    EVPN](Virtual-Routing-and-Forwarding-VRF.html#src-8362412_VirtualRoutingandForwarding-VRF-EVPN_static_route_leak)
     symmetric routing
 
   - New [`vrf_route_leak_enable`
-    option](Virtual-Routing-and-Forwarding---VRF.html#src-8362412_VirtualRoutingandForwarding-VRF-enable_route_leaking)
+    option](Virtual-Routing-and-Forwarding-VRF.html#src-8362412_VirtualRoutingandForwarding-VRF-enable_route_leaking)
     used to enable VRF route leaking
 
-### <span>What's New in Cumulus Linux 3.6.0</span>
+### What's New in Cumulus Linux 3.6.0</span>
 
 Cumulus Linux 3.6.0 contains a number of new platforms, features and
 improvements:
@@ -124,7 +124,7 @@ For information on bug fixes and known issues present in this release,
 refer to the [product release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003039873-Cumulus-Linux-3-6-Release-Notes).
 
-### <span>Open Source Contributions</span>
+### Open Source Contributions</span>
 
 To implement various Cumulus Linux features, Cumulus Networks has forked
 various software projects, like CFEngine, `Netdev` and some Puppet Labs
@@ -135,7 +135,7 @@ Cumulus Networks has also developed and released new applications as
 open source. The list of open source projects is on the [open source
 software](http://oss.cumulusnetworks.com/) page.
 
-### <span>Hardware Compatibility List</span>
+### Hardware Compatibility List</span>
 
 You can find the most up-to-date hardware compatibility list (HCL)
 [here](http://cumulusnetworks.com/hcl/). Use the HCL to confirm that

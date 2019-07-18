@@ -18,7 +18,7 @@ prints the current settings of the network device. See `man ethtool(8)`
 for details. Not all options are currently supported on switch port
 interfaces.
 
-## <span>Monitor Interface Status Using ethtool</span>
+## Monitor Interface Status Using ethtool</span>
 
 To check the status of an interface using `ethtool`:
 
@@ -86,7 +86,7 @@ To query interface statistics:
             SoftOutTxFifoFull: 0
             HwIfOutQLen: 0
 
-## <span>View and Clear Interface Counters</span>
+## View and Clear Interface Counters</span>
 
 Interface counters contain information about an interface. You can view
 this information when you run `cl-netstat`, `ifconfig`, or `cat
@@ -149,7 +149,7 @@ information:
 </tbody>
 </table>
 
-## <span>Monitor Switch Port SFP/QSFP Hardware Information Using ethtool</span>
+## Monitor Switch Port SFP/QSFP Hardware Information Using ethtool</span>
 
 To see hardware capabilities and measurement information on the SFP or
 QSFP module installed in a particular port, use the `ethtool -m`

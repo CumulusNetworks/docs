@@ -19,7 +19,7 @@ how well your network is operating, the Network Health card workflow is
 the best place to start as it contains the highest view and performance
 rollups.
 
-## <span>Network Health Card Workflow Summary</span>
+## Network Health Card Workflow Summary</span>
 
 The small Network Health card displays:
 
@@ -297,7 +297,7 @@ The full screen Network Health card displays all events in the network.
 </tbody>
 </table>
 
-## <span>View Network Health Summary </span>
+## View Network Health Summary </span>
 
 Overall network health is based on successful validation results. The
 summary includes the percentage of successful results, a trend
@@ -312,7 +312,7 @@ In this example, the overall health is quite low and digging further for
 causes is definitely warranted. Refer to the next section for viewing
 the key health metrics.
 
-## <span>View Key Metrics of Network Health</span>
+## View Key Metrics of Network Health</span>
 
 Overall network health is a calculated average of several key health
 metrics: System, Network Services, and Interface health.
@@ -328,7 +328,7 @@ good. You might choose to dig further on the system health if it did not
 continue to improve. Refer to the following section for additional
 details.
 
-## <span>View System Health</span>
+## View System Health</span>
 
 The system health is a calculated average of the NetQ Agent, Cumulus
 Linux license, and sensor health metrics. In all cases, validation is
@@ -349,7 +349,7 @@ of the card by a distribution of the health score, a trend indicator,
 and a percentage of successful results. The right side of the card
 provides a listing of devices running the services.
 
-### <span>View Devices with the Most Issues</span>
+### View Devices with the Most Issues</span>
 
 It is useful to know which devices are experiencing the most issues with
 their system services in general, as this can help focus troubleshooting
@@ -364,7 +364,7 @@ down to view those with fewer issues. To further investigate the
 critical devices, open the Event cards and filter on the indicated
 switches.
 
-### <span>View Devices with Recent Issues</span>
+### View Devices with Recent Issues</span>
 
 It is useful to know which devices are experiencing the most issues with
 their network services right now, as this can help focus troubleshooting
@@ -375,7 +375,7 @@ are listed at the top. Scroll down to view those with fewer issues. To
 further investigate the critical devices, open the Switch card or the
 Event cards and filter on the indicated switches.
 
-### <span>Filter Results by System Service</span>
+### Filter Results by System Service</span>
 
 You can focus the data in the table on the right, by unselecting one or
 more services. Click the checkbox next to the service you want to remove
@@ -386,7 +386,7 @@ from the data. In this example, we have unchecked Licenses.
 This grays out the associated chart and temporarily removes the data
 related to that service from the table.
 
-## <span>View Network Services Health </span>
+## View Network Services Health </span>
 
 The network services health is a calculated average of the individual
 network protocol and services health metrics. In all cases, validation
@@ -417,7 +417,7 @@ Use the scroll bars on the table to view more columns and rows.
 
 {{%/notice%}}
 
-### <span>View Devices with the Most Issues</span>
+### View Devices with the Most Issues</span>
 
 It is useful to know which devices are experiencing the most issues with
 their network services in general, as this can help focus
@@ -433,7 +433,7 @@ down to view those with fewer issues. To further investigate the
 critical devices, open the Event cards and filter on the indicated
 switches.
 
-### <span>View Devices with Recent Issues</span>
+### View Devices with Recent Issues</span>
 
 It is useful to know which devices are experiencing the most issues with
 their network services right now, as this can help focus troubleshooting
@@ -445,7 +445,7 @@ down to view those with fewer issues. To further investigate the
 critical devices, open the Switch card or the Event cards and filter on
 the indicated switches.
 
-### <span>Filter Results by Network Service</span>
+### Filter Results by Network Service</span>
 
 You can focus the data in the table on the right, by unselecting one or
 more services. Click the checkbox next to the service you want to
@@ -457,7 +457,7 @@ process of removing OSPF.
 This grays out the charts and temporarily removes the data related to
 that service from the table.
 
-## <span>View All Network Protocol and Service Validation Results</span>
+## View All Network Protocol and Service Validation Results</span>
 
 The Network Health card workflow enables you to view all of the results
 of all validations run on the network protocols and services during the

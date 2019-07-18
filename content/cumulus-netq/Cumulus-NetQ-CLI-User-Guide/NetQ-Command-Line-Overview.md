@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321059
 pageID: 12321059
 product: Cumulus NetQ
-version: 2.2.0
+version: 2.2.1
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
@@ -60,17 +60,11 @@ To access the CLI from a switch or server:
 This section describes the core structure and behavior of the NetQ CLI. It includes the following:
 
   - [Command Line Structure](#src-12321059_NetQCommandLineOverview-ComStruct)
-
   - [Command Syntax](#src-12321059_NetQCommandLineOverview-ComSyntax)
-
   - [Command Output](#src-12321059_NetQCommandLineOverview-ComOut)
-
   - [Command Prompts](#src-12321059_NetQCommandLineOverview-ComPrompt)
-
   - [Command Completion](#src-12321059_NetQCommandLineOverview-ComComp)
-
   - [Command Help](#src-12321059_NetQCommandLineOverview-ComHelp)
-
   - [Command History](#src-12321059_NetQCommandLineOverview-ComHist)
 
 ### <span>Command Line Structure</span>
@@ -106,11 +100,8 @@ For example, in the `netq check` command:
 Thus some valid commands are:
 
   - `netq leaf02 check agents json`
-
   - `netq show bgp`
-
   - `netq config restart cli`
-
   - `netq trace 10.0.0.5 from 10.0.0.35`
 
 ### <span>Command Output</span>
@@ -125,7 +116,6 @@ NetQ code examples use the following prompts:
 
   - ` cumulus@switch:~$  ` Indicates the user *cumulus* is logged in to a
     switch to run the example command
-
   - ` cumulus@host:~$  ` Indicates the user *cumulus* is logged in to a
     host to run the example command
 
@@ -183,11 +173,8 @@ modify the command before you run it.
 While the CLI has a flat structure, the commands can be conceptually grouped into four functional categories:
 
   - [Validation Commands](#src-12321059_NetQCommandLineOverview-ChkCmds)
-
   - [Monitoring Commands](#src-12321059_NetQCommandLineOverview-ShowCmds)
-
   - [Configuration Commands](#src-12321059_NetQCommandLineOverview-ConfigCmds)
-
   - [Trace Commands](#src-12321059_NetQCommandLineOverview-TraceCmds)
 
 ### <span>Validation Commands</span>
@@ -195,30 +182,18 @@ While the CLI has a flat structure, the commands can be conceptually grouped int
 The `netq` `check` commands enable the network administrator to validate the current or historical state of the network by looking for errors and misconfigurations in the network. The commands run fabric-wide validations against various configured protocols and services to determine how well the network is operating. Validation checks can be performed for the following:
 
   - **agents**: NetQ Agents operation on all switches and hosts
-
   - **bgp**: BGP (Border Gateway Protocol) operation across the network
     fabric
-
   - **clag**: Cumulus Multi-chassis LAG (link aggregation) operation
-
   - **evpn**: EVPN (Ethernet Virtual Private Network) operation
-
   - **interfaces**: network interface port operation
-
   - **license**: License status
-
   - **lnv**: Lightweight Network Virtualization operation
-
   - **mtu**: Link MTU (maximum transmission unit) consistency across paths
-
   - **ntp**: NTP (Network Time Protocol) operation
-
   - **ospf**: OSPF (Open Shortest Path First) operation
-
   - **sensors**: Temperature/Fan/PSU sensor operation
-
   - **vlan**: VLAN (Virtual Local Area Network) operation
-
   - **vxlan**: VXLAN (Virtual Extensible LAN) data path operation
 
 The commands take the form of `netq check <network-protocol-or-service>
@@ -252,44 +227,25 @@ various protocols or services. The configuration and status can be shown
 for the following:
 
   - **agents**: NetQ Agents status on switches and hosts
-
   - **bgp**: BGP status across the network fabric
-
   - **clag**: CLAG status
-
   - **events**: Display changes over time
-
   - **evpn**: EVPN status
-
   - **interfaces**: network interface port status
-
   - **inventory**: hardware component information
-
   - **ip**: IPv4 status
-
   - **ipv6**: IPv6 status
-
   - **kubernetes**: Kubernetes cluster, daemon, pod, node, service and
     replication status
-
   - **lldp**: LLDP status
-
   - **lnv**: Lightweight Network Virtualization status
-
   - **macs**: MAC table or address information
-
   - **notification**: Slack or PagerDuty notification configurations
-
   - **ntp**: NTP status
-
   - **ospf**: OSPF status
-
   - **sensors**: Temperature/Fan/PSU sensor status
-
   - **services**: System services status
-
   - **vlan**: VLAN status
-
   - **vxlan**: VXLAN data path status
 
 The commands take the form of `netq [<hostname>] show

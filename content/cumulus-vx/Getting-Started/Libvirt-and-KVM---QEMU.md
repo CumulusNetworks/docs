@@ -41,30 +41,30 @@ Performing virtualization in Linux requires three components:
 ## <span>Install libvirt</span>
 
 1.  Review the Linux version of the host:
-    
+
     {{%notice note%}}
-    
-    This guide is validated and verified for Ubuntu Trusty 14.04.5 LTS
+
+This guide is validated and verified for Ubuntu Trusty 14.04.5 LTS
     starting from a clean install.
-    
+
     {{%/notice%}}
-    
+
         local@host:~$ uname -a
         Linux ubuntu-trusty-64 3.13.0-93-generic #140-Ubuntu SMP Mon Jul 18 21:21:05 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
 
 2.  Run the following commands to install `libvirt:`
-    
-        local@host:~$ sudo add-apt-repository ppa:linuxsimba/libvirt-udp-tunnel 
+
+        local@host:~$ sudo add-apt-repository ppa:linuxsimba/libvirt-udp-tunnel
         local@host:~$ sudo apt-get update -y
         local@host:~$ sudo apt-get install libvirt-bin libvirt-dev qemu-utils qemu
         local@host:~$ sudo /etc/init.d/libvirt-bin restart
-    
+
     {{%notice note%}}
-    
-    The `linuxsimba`/`libvirt-udp-tunnel` package repository provides an
+
+The `linuxsimba`/`libvirt-udp-tunnel` package repository provides an
     updated `libvirtd` version that includes enhancements required to
     launch Cumulus VX. The example below shows the installation output:
-    
+
         local@host:~/$ sudo apt-get install libvirt-bin libvirt-dev qemu-utils qemu
         Reading package lists... Done
         Building dependency tree       
@@ -95,18 +95,18 @@ Performing virtualization in Linux requires three components:
         Need to get 31.1 MB of archives.
         After this operation, 166 MB of additional disk space will be used.
         Do you want to continue? [Y/n] Y
-    
+
     {{%/notice%}}
 
 3.  After the installation process is complete, log out, then log back
     in to verify the `libvirt` version.
-    
+
     {{%notice note%}}
-    
-    In this guide, `libvirt` 1.2.16 was verified.
-    
+
+In this guide, `libvirt` 1.2.16 was verified.
+
     {{%/notice%}}
-    
+
         local@host:~# libvirtd --version
         libvirtd (libvirt) 1.2.16
 
@@ -142,17 +142,17 @@ follows:
 
 1.  Copy the `qcow2` image onto a Linux server four times to create the
     four VMs, then name them as follows:
-    
+
       - leaf1.qcow2
-    
+
       - leaf2.qcow2
-    
+
       - spine1.qcow2
-    
+
       - spine2.qcow2
 
 2.  Power on `leaf1.qcow2` and configure it as follows:
-    
+
         sudo /usr/bin/kvm   -curses                             \
                             -name leaf1                       \
                             -pidfile leaf1.pid                \
@@ -169,7 +169,7 @@ follows:
                             leaf1.qcow2
 
 3.  Power on `leaf2.qcow2` and configure it as follows:
-    
+
         sudo /usr/bin/kvm   -curses                             \
                             -name leaf2                       \
                             -pidfile leaf2.pid                \
@@ -186,7 +186,7 @@ follows:
                             leaf2.qcow2
 
 4.  Power on `spine1.qcow2` and configure it as follows:
-    
+
         sudo /usr/bin/kvm   -curses                             \
                             -name spine1                       \
                             -pidfile spine1.pid                \
@@ -203,7 +203,7 @@ follows:
                             spine1.qcow2
 
 5.  Power on spine2 and configure it as follows:
-    
+
         sudo /usr/bin/kvm   -curses                             \
                             -name spine2                       \
                             -pidfile spine2.pid                \
@@ -218,25 +218,25 @@ follows:
                             -netdev socket,udp=127.0.0.1:1611,localaddr=127.0.0.1:1612,id=dev2 \
                             -device virtio-net-pci,mac=00:02:00:00:00:12,addr=6.2,multifunction=off,netdev=dev2,id=swp3 \
                             spine2.qcow2
-    
+
     {{%notice note%}}
-    
+
     The QEMU/KVM commands used here are minimal. You can add more
     parameters, such as `-enable-kvm`, `-serial` or `-monitor`, as
     needed.
-    
+
     {{%/notice%}}
-    
+
     {{%notice note%}}
-    
+
     **Bridging Switch Port Interfaces**
-    
+
     If you intend to bridge the switch ports in the VM, place each
     switch port in the bridge in its own virtual network on the host.
     Otherwise, you might see this error:
-    
+
         br0: received package on swp1 with own address as source address
-    
+
     {{%/notice%}}
 
 ## <span>Next Steps</span>

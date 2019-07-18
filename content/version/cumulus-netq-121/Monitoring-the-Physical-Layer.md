@@ -24,7 +24,7 @@ to:
 
   - Investigate errors: including CRC errors
 
-NetQ uses [LLDP](/display/NETQ121/Link+Layer+Discovery+Protocol) to
+NetQ uses [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) to
 collect port information. It can also identify peer ports for DACs and
 AOCs without using LLDP or even if the link is not UP.
 
@@ -32,7 +32,7 @@ AOCs without using LLDP or even if the link is not UP.
 
 NetQ provides detailed information about the cabling on a given node:
 
-    cumulus@cel-smallxp-13:~$ netq show interfaces physical 
+    cumulus@cel-smallxp-13:~$ netq show interfaces physical
     Matching cables records are:
     Hostname         Interface State Speed   AutoNeg Module    Vendor           Part No          Last Changed
     ---------------- --------- ----- ------- ------- --------- ---------------- ---------------- --------------
@@ -65,7 +65,7 @@ NetQ provides detailed information about the cabling on a given node:
 By running the `netq NODE show interfaces physical module` command, you
 can see detailed information about the modules on a given node:
 
-    cumulus@cel-smallxp-13:~$ netq act-5712-12 show interfaces physical module 
+    cumulus@cel-smallxp-13:~$ netq act-5712-12 show interfaces physical module
     Matching cables records are:
     Hostname         Interface Module    Vendor           Part No          Serial No        Transceiver      Connector        Length Last Changed
     ---------------- --------- --------- ---------------- ---------------- ---------------- ---------------- ---------------- ------ --------------
@@ -74,7 +74,7 @@ can see detailed information about the modules on a given node:
                                                                                             50um (M5),Multim
                                                                                             ode,            
                                                                                             62.5um (M6),Shor
-                                                                                            twave laser w/o 
+                                                                                            twave laser w/o
                                                                                             OFC (SN),interme
                                                                                             diate distance (
                                                                                             I)              
@@ -85,7 +85,7 @@ can see detailed information about the modules on a given node:
                                                                                             50um (M5),Multim                  300m  
                                                                                             ode,            
                                                                                             62.5um (M6),Shor
-                                                                                            twave laser w/o 
+                                                                                            twave laser w/o
                                                                                             OFC (SN),interme
                                                                                             diate distance (
                                                                                             I)              
@@ -95,15 +95,15 @@ can see detailed information about the modules on a given node:
     act-5712-12      swp17     SFP       FINISAR CORP.    FTLF1318P3BTL    PUC00GG          1000Base-LX,Long LC               10km,  17:17:59 ago
                                                                                             wave laser (LC),                  10000m
                                                                                             Longwave laser (
-                                                                                            LL),Single Mode 
+                                                                                            LL),Single Mode
                                                                                             (SM),long distan
                                                                                             ce (L)          
     act-5712-12      swp35     SFP       CISCO-AGILENT    QFBR-5766LP      AGS10335337      1000Base-SX      LC               550m,  9:10:28 ago
                                                                                                                               270m  
     act-5712-12      eth0      RJ45      n/a              n/a              n/a              n/a              n/a              n/a    17:18:09 ago
     act-5712-12      swp8      SFP       Mellanox         MC2609130-003    MT1507VS05177    1000Base-CX,Copp Copper pigtail   3m     17:18:12 ago
-                                                                                            er Passive,Twin 
-                                                                                            Axial Pair (TW) 
+                                                                                            er Passive,Twin
+                                                                                            Axial Pair (TW)
     act-5712-12      swp51s3   QSFP+     CISCO            AFBR-7IER05Z-CS1 AVE1823402U      n/a              n/a              5m     17:17:49 ago
     act-5712-12      swp50s2   QSFP+     Mellanox         MC2609130-003    MT1507VS05177    40G Base-CR4,Twi n/a              3m     17:17:57 ago
                                                                                             n Axial Pair (TW
@@ -113,7 +113,7 @@ can see detailed information about the modules on a given node:
 To see empty ports on a node, use the `netq NODE show interfaces
 physical empty` command:
 
-    cumulus@cel-smallxp-13:~$ netq act-5712-12 show interfaces physical empty 
+    cumulus@cel-smallxp-13:~$ netq act-5712-12 show interfaces physical empty
     Matching cables records are:
     Hostname         Interface State Speed   AutoNeg Module    Vendor           Part No          Last Changed
     ---------------- --------- ----- ------- ------- --------- ---------------- ---------------- --------------
@@ -127,7 +127,7 @@ physical empty` command:
 Similarly, to see plugged in ports, run the `netq NODE show interfaces
 physical plugged` command:
 
-    cumulus@cel-smallxp-13:~$ netq act-5712-12 show interfaces physical plugged 
+    cumulus@cel-smallxp-13:~$ netq act-5712-12 show interfaces physical plugged
     Matching cables records are:
     Hostname         Interface State Speed   AutoNeg Module    Vendor           Part No          Last Changed
     ---------------- --------- ----- ------- ------- --------- ---------------- ---------------- --------------
@@ -163,7 +163,7 @@ physical plugged` command:
 By searching on specific vendors, you can run a cost analysis of your
 network:
 
-    cumulus@cel-smallxp-13:~$ netq act-5712-12 show interfaces physical vendor AVAGO 
+    cumulus@cel-smallxp-13:~$ netq act-5712-12 show interfaces physical vendor AVAGO
     Matching cables records are:
     Hostname         Interface State Speed   AutoNeg Module    Vendor           Part No          Last Changed
     ---------------- --------- ----- ------- ------- --------- ---------------- ---------------- --------------
@@ -173,7 +173,7 @@ network:
 You can also search on part numbers using `netq NODE show interfaces
 physical model PARTNUMBER`:
 
-    cumulus@cel-smallxp-13:~$ netq act-5712-12 show interfaces physical model SFP-H10GB-CU1M 
+    cumulus@cel-smallxp-13:~$ netq act-5712-12 show interfaces physical model SFP-H10GB-CU1M
     Matching cables records are:
     Hostname         Interface State Speed   AutoNeg Module    Vendor           Part No          Last Changed
     ---------------- --------- ----- ------- ------- --------- ---------------- ---------------- --------------
@@ -187,7 +187,7 @@ NetQ checks peer connections using LLDP. For DACs and AOCs, NetQ
 determines the peers using their serial numbers in the port EEPROMs,
 even if the link is not UP.
 
-    cumulus@cel-smallxp-13:~$ netq act-5712-12 show interfaces physical peer 
+    cumulus@cel-smallxp-13:~$ netq act-5712-12 show interfaces physical peer
     Matching cables records are:
     Hostname         Interface Peer Hostname    Peer Interface State Message
     ---------------- --------- ---------------- -------------- ----- ----------------------------
@@ -219,7 +219,7 @@ even if the link is not UP.
 
 You can get peer data for a specific port:
 
-``` 
+```
 cumulus@cel-smallxp-13:~$ netq cel-smallxp-13 show interfaces physical swp31 peer
 Matching cables records are:
 Hostname         Interface Peer Hostname    Peer Interface State Message
@@ -248,8 +248,8 @@ To do a layer 1 configuration check, you run the `netq check interfaces`
 command, which only checks physical interfaces, not bridges, bonds or
 other software constructs.
 
-``` 
-cumulus@cel-smallxp-13:~$ netq check interfaces 
+```
+cumulus@cel-smallxp-13:~$ netq check interfaces
 Checked Nodes: 18, Failed Nodes: 8
 Checked Ports: 741, Failed Ports: 1, Unverified Ports: 414
 Hostname         Interface Peer Hostname    Peer Interface Message
@@ -279,8 +279,8 @@ Use the *and* keyword to check the connections between two peers:
 
 If a link is flapping, NetQ indicates this in a message:
 
-``` 
-cumulus@cel-smallxp-13:~$ netq check interfaces 
+```
+cumulus@cel-smallxp-13:~$ netq check interfaces
 Checked Nodes: 18, Failed Nodes: 8
 Checked Ports: 741, Failed Ports: 1, Unverified Ports: 414
 Hostname         Interface Peer Hostname    Peer Interface Message

@@ -27,8 +27,7 @@ interface to make this happen. With NetQ, network operations changes
 from a manual, reactive, box-by-box approach to an automated, informed
 and agile one.
 
-<span style="color: #353744;"> </span> <span style="color: #353744;">
-The system uses a three-pronged approach to validating networks: </span>
+The system uses a three-pronged approach to validating networks:
 
   - **Preventative Validation**: NetQ easily validates potential network
     configuration changes in a virtualized environment or lab using
@@ -67,19 +66,19 @@ documentation.
 NetQ contains the following applications and key components:
 
   - Telemetry
-    
+
       - NetQ Switch Agents (data collector)
-    
+
       - NetQ Host Agents (data collector)
-    
+
       - NetQ Telemetry Server (storage and processing)
 
   - Image and Provisioning Management
-    
+
       - ONIE (Open Network Install Environment)
-    
+
       - DHCP (Dynamic Host Control Protocol) server
-    
+
       - ZTP (Zero-Touch Provisioning)
 
   - Various User Interfaces
@@ -125,11 +124,9 @@ for the following protocols:
 
   - Routing protocols: BGP, OSPF
 
-  - Network virtualization: LNV, VXLAN, <span style="color: #ff0000;">
-    EVPN </span>
+  - Network virtualization: LNV, VXLAN, EVPN
 
-<span style="color: #353744;"> The NetQ Agent is supported on </span>
-<span style="color: #353744;"> Cumulus Linux 3.3.0 and later. </span>
+The NetQ Agent is supported on Cumulus Linux 3.3.0 and later.
 
 #### <span>Host Agents</span>
 
@@ -142,12 +139,11 @@ switches, plus the following network data:
 
   - Container IP and MAC addresses
 
-<span style="color: #353744;"> The NetQ Agent obtains container
+The NetQ Agent obtains container
 information by listening to the Docker Swarm or Kubernetes orchestration
-tools. </span>
+tools.
 
-<span style="color: #353744;"> The NetQ Agent is supported on hosts
-running </span> Ubuntu 16.04, Red Hat® Enterprise Linux 7, and CentOS 7
+The NetQ Agent is supported on hosts running Ubuntu 16.04, Red Hat® Enterprise Linux 7, and CentOS 7
 Operating Systems.
 
 ### <span>NetQ Telemetry Server</span>
@@ -171,23 +167,19 @@ Notifier, Analysis Engine, and Trace Engine.
 
 ### <span>NetQ Telemetry User Interfaces</span>
 
-<span style="color: #353744;"> NetQ telemetry functionality is available
-through several user interfaces: </span>
+NetQ telemetry functionality is available through several user interfaces:
 
-  - <span style="color: #353744;"> NetQ Command Line Interface (CLI)
-    provides access to network telemetry data </span>
+  - NetQ Command Line Interface (CLI)
+    provides access to network telemetry data
 
-  - <span style="color: #353744;"> NetQ [Service
+  - NetQ [Service
     Console](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/NetQ-Service-Console)
-    provides a browser-based window for accessing the NetQ CLI from
-    anywhere. </span>
+    provides a browser-based window for accessing the NetQ CLI from anywhere.
 
-  - <span style="color: #353744;"> NetQL provides direct access to the
-    data base using a custom query language </span>
+  - NetQL provides direct access to the
+    data base using a custom query language
 
-<span style="color: #353744;"> All of these interfaces query the
-Telemetry Server database for network state and event information.
-</span>
+All of these interfaces query the Telemetry Server database for network state and event information.
 
 ## <span>Data Center Network Deployments</span>
 
@@ -212,20 +204,18 @@ management network overlaid on top, where NetQ is deployed.
 
 The physical *network* hardware includes:
 
-  - <span style="color: #ff0000;"> **Spine** switches: where data is
+  - **Spine** switches: where data is
     aggregated and distributed ; also known as an aggregation switch,
-    end-of-row (EOR) switch or distribution switch </span>
+    end-of-row (EOR) switch or distribution switch
 
   - **Leaf** switches: where servers connect to the network; also known
     as a Top of Rack (TOR) or access switch
 
-  - <span style="color: #ff0000;"> **Server** hosts: where applications
-    are hosted and data served to the user through the network </span>
+  - **Server** hosts: where applications
+    are hosted and data served to the user through the network
 
-  - <span style="color: #ff0000;"> **Exit** switch: where connections to
-    outside the data center occur ; also known as
-    <span style="color: #000000;"> Border Leaf or Service Leaf </span>
-    </span>
+  - **Exit** switch: where connections to outside the data center occur; also
+    known as Border Leaf or Service Leaf
 
   - **Edge** server (optional): where the firewall is the demarcation
     point, peering may occur through the exit switch layer to Internet
@@ -245,7 +235,7 @@ connected to Exit 01.
 
 {{% imgOld 1 %}}
 
-  
+
 <span class="caption">Data Center Network Example</span>
 
 The physical *management* hardware includes:
@@ -561,9 +551,7 @@ used to determine when the event actually happened in conjunction with
 the timestamp.
 
 When retrieving the timestamp, JSON output always returns the time in
-microseconds that have passed since the epoch time (
-<span style="color: #6a6a6a;"> January 1, 1970 </span>
-<span style="color: #545454;"> at 00:00:00 GMT) </span> . Non-JSON
+microseconds that have passed since the epoch time (January 1, 1970 at 00:00:00 GMT). Non-JSON
 output displays how far in the past the event occurred. The closer the
 event is to the present, the more granular is the time shown. For
 example, if an event happened less than an hour ago, NetQ displays the
@@ -603,56 +591,53 @@ to JSON format for parsing in other applications.
 For example, you can check the state of BGP on your network with `netq
 check bgp`:
 
-    cumulus@leaf01:~$ netq check bgp 
+    cumulus@leaf01:~$ netq check bgp
     Total Nodes: 25, Failed Nodes: 2, Total Sessions: 228 , Failed Sessions: 2,
-    Node       Peer Name  Peer Hostname Reason       Time 
-    ---------- ---------- ------------- ------------ ------- 
-    exit01     swp6.2     spine01       Rotten Agent 15h ago 
+    Node       Peer Name  Peer Hostname Reason       Time
+    ---------- ---------- ------------- ------------ -------
+    exit01     swp6.2     spine01       Rotten Agent 15h ago
     spine01    swp3.2     exit01        Idle         15h ago
 
 When you show the output in JSON format, this same command looks like
 this: <span style="color: #353744;"> </span>
 
-    cumulus@leaf01:~$ netq check bgp json 
+    cumulus@leaf01:~$ netq check bgp json
     {
         "failedNodes": [
             {
-                "node": "exit-1", 
-                "reason": "Idle", 
-                "peerId": "firewall-1", 
-                "neighbor": "swp6.2", 
+                "node": "exit-1",
+                "reason": "Idle",
+                "peerId": "firewall-1",
+                "neighbor": "swp6.2",
                 "time": "15h ago"
-            }, 
+            },
             {
-                "node": "firewall-1", 
-                "reason": "Idle", 
-                "peerId": "exit-1", 
-                "neighbor": "swp3.2", 
+                "node": "firewall-1",
+                "reason": "Idle",
+                "peerId": "exit-1",
+                "neighbor": "swp3.2",
                 "time": "15h ago"
             }
-        ], 
+        ],
         "summary": {
-            "checkedNodeCount": 25, 
-            "failedSessionCount": 2, 
-            "failedNodeCount": 2, 
+            "checkedNodeCount": 25,
+            "failedSessionCount": 2,
+            "failedNodeCount": 2,
             "totalSessionCount": 228
         }
     }
 
 ### <span>Telemetry File Locations</span>
 
-<span style="color: #353744;"> The primary configuration file for all
-Cumulus NetQ tools, </span> `netq.yml` <span style="color: #353744;"> ,
-resides in </span> `/etc/netq` <span style="color: #353744;"> by
-default. </span>
+The primary configuration file for all Cumulus NetQ tools, `netq.yml`, resides
+in `/etc/netq` by default.
 
-<span style="color: #353744;"> Log files are stored in `/var/logs/cts`
-by default. </span>
+Log files are stored in `/var/logs/cts` by default.
 
-<span style="color: #353744;"> Refer to [Investigate NetQ
-Issues](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Investigate-NetQ-Issues)
+Refer to
+[Investigate NetQ Issues](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Investigate-NetQ-Issues)
 for a complete listing of configuration files and logs for use in issue
-resolution. </span>
+resolution.
 
 ## <span>Image and Provisioning Management Components</span>
 
@@ -672,8 +657,7 @@ with your own. For more detail about how DHCP works, refer to the
 
 ### <span>Network Installation Manager</span>
 
-<span style="color: #ff0000;"> The Network Install manager uses ONIE
-(Open Network Install Environment) <span style="color: #000000;"> to
+The Network Install manager uses ONIE (Open Network Install Environment) to
 store and distribute </span> network operating system (NOS) images. ONIE
 combines a boot loader and a small operating system for network switches
 that provides an environment for automated provisioning. ONIE utilizes
@@ -682,11 +666,11 @@ and mass storage, and creates an environment for installation. On
 initial boot of a server, ONIE configures the network management
 interface and locates and executes the Cumulus Networks OS installation
 program. For more detail about the ONIE standard, refer to
-[ONIE](https://opencomputeproject.github.io/onie/index.html). </span>
+[ONIE](https://opencomputeproject.github.io/onie/index.html).
 
 ### <span>Provisioning Manager </span>
 
-<span style="color: #000000;"> The Provisioning manager uses </span> ZTP
+The Provisioning manager uses ZTP
 (Zero Touch Provisioning) to store and distribute provisioning scripts.
 ZTP provides a provisioning framework that allows for a one-time,
 user-provided script to be executed. On the first boot of a Cumulus
@@ -696,20 +680,19 @@ installation, connectivity testing, and specifying a hostname. You can
 create your own ZTP script to be used instead by storing it in a
 designated location. For more detail about how ZTP works and tips for
 writing your own scripts, refer to
-[ZTP](/display/NETQ141/Zero+Touch+Provisioning+-+ZTP).
+[ZTP](/cumulus-linux/Installation-Management/Zero-Touch-Provisioning-ZTP/).
 
 ### <span>Command Line Interface</span>
 
 IPM provides a command line interface, TIPCTL, for NOS image management
 and ZTP script management. While initial boot and configuration is
 handled automatically, IPM enables the network administrators and
-operators to manage <span style="color: #000000;"> network </span>
-<span style="color: #000000;"> switch </span> software over the entire
-lifecycle of <span style="color: #000000;"> these devices </span> .
+operators to manage network switch software over the entire
+lifecycle of these devices.
 
 ## <span>Image and Provisioning Management Operation</span>
 
-<span style="color: #ff0000;"> IPM installs and provisions bare metal
+IPM installs and provisions bare metal
 servers to quickly transform them into Cumulus Linux switches. On the
 initial boot of a white box switch, IPM automatically loads the switch
 with the Cumulus Linux OS and provisions it with the network information
@@ -719,33 +702,26 @@ the switch hardware during an initial bring up. The *DHCP* *server*
 listens to port 67 for DHCP client messages and sends messages to client
 port 68. The *tips-traffic* *service* uses port 9300 on the Telemetry
 Server for requests. Objects shown in purple are components of IPM.
-</span>
 
 {{% imgOld 9 %}}
-
-  
 
 After the switch is configured, subsequent configuration and upgrades
 are performed using the IPM CLI.
 
 ### <span>IPM File Locations</span>
 
-<span style="color: #353744;"> Log files are stored in `/var/logs/tips`
-by default. </span>
+Log files are stored in `/var/logs/tips` by default.
 
-<span style="color: #353744;"> Network Operating System (NOS) images are
-stored in </span> <span style="color: #222222;">
-`/var/tips/www/onie/images/` by default. </span>
+Network Operating System (NOS) images are stored in
+`/var/tips/www/onie/images/` by default.
 
-<span style="color: #222222;"> Provisioning scripts are stored in
-`/var/tips/www/ztp/scripts/` by default. </span>
+Provisioning scripts are stored in `/var/tips/www/ztp/scripts/` by default.
 
 ## <span>NetQ Virtual</span>
 
 You can try out NetQ in two different virtual environments. These
 environments enable you to try out NetQ on your own, or to test/validate
 updates to your network before deploying them into production. They are:
-<span style="color: #36424a;"> </span>
 
   - [Cumulus in the
     Cloud](https://cumulusnetworks.com/products/cumulus-in-the-cloud/),
@@ -771,41 +747,21 @@ they can push it to their production network.
 
 ## <span>Available Documentation</span>
 
-<span style="color: #36424a;"> <span style="color: #353744;"> A number
-of user documents are available. These documents provide the information
+A number of user documents are available. These documents provide the information
 you need to proactively monitor your Linux-based network fabric using
 Cumulus NetQ. They assume that you have already installed Cumulus Linux
-and NetQ. </span> <span style="color: #353744;"> You may start anywhere
+and NetQ. You may start anywhere
 in the documentation or read it from start to finish depending on your
 role and familiarity with the NetQ software and Linux networking.
-</span> </span> <span style="color: #353744;"> </span>
 
-<span style="color: #353744;"> The following NetQ documents are
-available: </span>
+The following NetQ documents are available:
 
-  - [Cumulus NetQ Deployment
-    Guide](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/)
-    <span style="color: #353744;"> </span>
+  - [Cumulus NetQ Deployment Guide](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/)
 
-  - <span style="color: #353744;"> [Cumulus NetQ Telemetry User
-    Guide](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/)
-    </span>
+  - [Cumulus NetQ Telemetry User Guide](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/)
 
-  - <span style="color: #353744;"> [Cumulus NetQ Image and Provisioning
-    Management User
-    Guide](/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/)
-    </span>
+  - [Cumulus NetQ Image and Provisioning Management User Guide](/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/)
 
-  - [Cumulus NetQ Release
-    Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360005898274)
+  - [Cumulus NetQ Release Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360005898274)
 
-  - [Cumulus NetQ Data
-    Sheet](https://cumulusnetworks.com/learn/web-scale-networking-resources/product-collateral/netq-data-sheet/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [Cumulus NetQ Data Sheet](https://cumulusnetworks.com/learn/web-scale-networking-resources/product-collateral/netq-data-sheet/)

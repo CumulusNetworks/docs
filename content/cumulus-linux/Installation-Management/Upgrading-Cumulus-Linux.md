@@ -26,13 +26,9 @@ swap of failed switch hardware.
 
 {{%notice tip%}}
 
-<span style="color: #36424a;"> Be sure to read the knowledge base
-article </span> [Upgrades: Network Device and Linux Host Worldview
-Comparison](https://support.cumulusnetworks.com/hc/en-us/articles/360010451353)
-<span style="color: #36424a;"> , which provides a </span>
-<span style="color: #36424a;"> detailed comparison between the n </span>
-<span style="color: #36424a;"> etwork device and Linux host worldview of
-upgrade and installation. </span>
+Be sure to read the knowledge base article [Upgrades: Network Device and Linux Host Worldview Comparison](https://support.cumulusnetworks.com/hc/en-us/articles/360010451353),
+which provides a detailed comparison between the network device and Linux host worldview of
+upgrade and installation.
 
 {{%/notice%}}
 

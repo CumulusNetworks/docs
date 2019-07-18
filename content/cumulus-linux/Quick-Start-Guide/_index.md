@@ -28,12 +28,6 @@ You must have access to a Linux or UNIX shell. If you are running
 Windows, use a Linux environment like [Cygwin](http://www.cygwin.com/)
 as your command line tool for interacting with Cumulus Linux.
 
-<div class="confbox admonition admonition-tip">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
 {{%notice info%}}
 
 If you are a networking engineer but are unfamiliar with Linux concepts,
@@ -46,10 +40,6 @@ videos](http://cumulusnetworks.com/technical-videos/) introducing you to
 Linux and Cumulus Linux-specific concepts.
 
 {{%/notice%}}
-
-</div>
-
-</div>
 
 {{%/notice%}}
 
@@ -101,13 +91,9 @@ Image](/cumulus-linux/Installation-Management/Installing-a-New-Cumulus-Linux-Ima
 to install Cumulus Linux using ONIE in the following ways:
 
   - DHCP/web server with and without DHCP options
-
   - Web server without DHCP
-
   - FTP or TFTP without a web server
-
   - Local file
-
   - USB
 
 {{%/notice%}}
@@ -121,9 +107,7 @@ documentation](https://opencomputeproject.github.io/onie/design-spec/discovery.h
 After installing Cumulus Linux, you are ready to:
 
   - Log in to Cumulus Linux on the switch.
-
   - Install the Cumulus Linux license.
-
   - Configure Cumulus Linux. This quick start guide provides
     instructions on configuring switch ports and a loopback interface.
 
@@ -315,8 +299,7 @@ as described above.
 
 If you are using 4x10G DAC or AOC cables, or want to break out 100G or
 40G switch ports, configure the breakout ports. For more details, see
-[Layer 1 and Switch Port
-Attributes](Switch-Port-Attributes.html#src-8363026_SwitchPortAttributes-breakout).
+[Layer 1 and Switch Port Attributes](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#span-id-src-8363026-switchportattributes-breakout-class-confluence-anchor-link-span-span-breakout-ports-span).
 
 ## <span>Test Cable Connectivity</span>
 

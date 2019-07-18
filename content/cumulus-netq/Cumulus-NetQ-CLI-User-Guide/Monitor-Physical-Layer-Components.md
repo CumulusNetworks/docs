@@ -29,9 +29,9 @@ It helps answer questions such as:
   - Which transceivers are installed?
   - What is the peer for a given port?
 
-NetQ uses [LLDP](/display/NETQ22/Link+Layer+Discovery+Protocol) (Link
+NetQ uses [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) (Link
 Layer Discovery Protocol) to collect port information. NetQ can also
-identify peer ports connected to DACs ( Direct Attached Cables) and AOCs
+identify peer ports connected to DACs (Direct Attached Cables) and AOCs
 (Active Optical Cables) without using LLDP, even if the link is not UP.
 
 ## <span>Monitor Physical Layer Inventory</span>

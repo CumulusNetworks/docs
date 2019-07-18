@@ -23,7 +23,7 @@ With NetQ, you can monitor the number of nodes running the EVPN service,
 view switches with the sessions, total number of VNIs, and alarms
 triggered by the EVPN service. For an overview and how to configure EVPN
 in your data center network, refer to [Ethernet Virtual Private Network
-- EVPN](/display/NETQ22/Ethernet+Virtual+Private+Network+-+EVPN).
+- EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
 
 ### <span>EVPN Service Card Workflow Summary</span>
 
@@ -410,7 +410,7 @@ To view switches and hosts with the most EVPN sessions:
     The table content is sorted by this characteristic, listing nodes
     running the most EVPN sessions at the top. Scroll down to view those
     with the fewest sessions.
-    
+
     {{% imgOld 23 %}}
 
 To compare this data with the same data at a previous time:
@@ -421,18 +421,18 @@ To compare this data with the same data at a previous time:
 
 3.  Change the time period for the data on the new card by hovering over
     the card and clicking <span style="color: #353744;"> </span>
-    
+
     {{% imgOld 24 %}}
-    
+
     .
 
 4.  Select the time period that you want to compare with the current
     time.  
     You can now see whether there are significant differences between
     this time period and the previous time period.  
-    
+
     {{% imgOld 25 %}}
-    
+
     {{% imgOld 26 %}}
 
 If the changes are unexpected, you can investigate further by looking at
@@ -456,7 +456,7 @@ To view switches and hosts with the most layer 2 EVPN sessions:
     The table content is sorted by this characteristic, listing nodes
     running the most layer 2 EVPN sessions at the top. Scroll down to
     view those with the fewest sessions.
-    
+
     {{% imgOld 27 %}}
 
 To compare this data with the same data at a previous time:
@@ -467,18 +467,18 @@ To compare this data with the same data at a previous time:
 
 3.  Change the time period for the data on the new card by hovering over
     the card and clicking
-    
+
     {{% imgOld 28 %}}
-    
+
     .
 
 4.  Select the time period that you want to compare with the current
     time.  
     You can now see whether there are significant differences between
     this time period and the previous time period.  
-    
+
     {{% imgOld 29 %}}
-    
+
     {{% imgOld 30 %}}
 
 If the changes are unexpected, you can investigate further by looking at
@@ -502,7 +502,7 @@ To view switches and hosts with the most layer 3 EVPN sessions:
     The table content is sorted by this characteristic, listing nodes
     running the most layer 3 EVPN sessions at the top. Scroll down to
     view those with the fewest sessions.
-    
+
     {{% imgOld 31 %}}
 
 To compare this data with the same data at a previous time:
@@ -513,18 +513,18 @@ To compare this data with the same data at a previous time:
 
 3.  Change the time period for the data on the new card by hovering over
     the card and clicking
-    
+
     {{% imgOld 32 %}}
-    
+
     .
 
 4.  Select the time period that you want to compare with the current
     time.  
     You can now see whether there are significant differences between
     this time period and the previous time period.  
-    
+
     {{% imgOld 33 %}}
-    
+
     {{% imgOld 34 %}}
 
 If the changes are unexpected, you can investigate further by looking at
@@ -544,9 +544,9 @@ To view switches with the most EVPN alarms:
 1.  Open the large EVPN Service card.
 
 2.  Hover over the header and click
-    
+
     {{% imgOld 35 %}}
-    
+
     .
 
 3.  Select **EVENTS BY MOST ACTIVE DEVICE** from the filter above the
@@ -554,7 +554,7 @@ To view switches with the most EVPN alarms:
     The table content is sorted by this characteristic, listing nodes
     with the most EVPN alarms at the top. Scroll down to view those with
     the fewest alarms.
-    
+
     {{% imgOld 36 %}}
 
 Where to go next depends on what data you see, but a few options
@@ -584,7 +584,7 @@ To view all EVPN events:
 
 2.  Click **All Alarms** tab in the navigation panel. By default, events
     are sorted by Time, with most recent events listed first.
-    
+
     {{% imgOld 37 %}}
 
 Where to go next depends on what data you see, but a few options
@@ -599,9 +599,9 @@ include:
     or some of the events and clicking **Export**.
 
   - Click
-    
+
     {{% imgOld 38 %}}
-    
+
     at the top right to return to your workbench.
 
 ### <span>View Details for All Devices Running EVPN</span>
@@ -668,8 +668,7 @@ To return to original display of results, click the associated tab.
 With NetQ, you can monitor the performance of a single EVPN session,
 including the number of associated VNI, VTEPs and type. For an overview
 and how to configure EVPN in your data center network, refer to
-[Ethernet Virtual Private Network -
-EVPN](/display/NETQ22/Ethernet+Virtual+Private+Network+-+EVPN).
+[Ethernet Virtual Private Network - EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
 
 {{%notice info%}}
 
@@ -956,9 +955,9 @@ To view the summary:
     automatically.
 
 5.  Optionally, switch to the small EVPN Session card.  
-    
+
     {{% imgOld 58 %}}
-    
+
     {{% imgOld 59 %}}
 
 For more detail, select a different size EVPN Session card.
@@ -979,7 +978,7 @@ card:
 
 4.  Double-click the session of interest. The full screen card closes
     automatically.
-    
+
     {{% imgOld 60 %}}
 
 To view the count for a given EVPN session on the *large* EVPN Session
@@ -1025,9 +1024,9 @@ include:
     or some of the events and clicking **Export**.
 
   - Click
-    
+
     {{% imgOld 65 %}}
-    
+
     at the top right to return to your workbench.
 
 <article id="html-search-results" class="ht-content" style="display: none;">

@@ -242,7 +242,7 @@ These commands create the following configuration snippet in the
 
     address-family evpn
       neighbor SPINE activate
-      advertise-all-vni 
+      advertise-all-vni
       vni 10400
         route-target import 100:400
         route-target import 100:500
@@ -417,7 +417,7 @@ These commands create the following configuration in the
         bridge-learning off
         vxlan-id 10100
         vxlan-local-tunnelip 110.0.0.1
-     
+
     auto vtep200
     iface vtep200
          bridge-learning off
@@ -449,20 +449,20 @@ file in a text editor:
         bridge-learning vxlan100=off
         bridge-arp-nd-suppress vxlan100=on
         ip6-forward off
-        ip-forward off 
+        ip-forward off
 
 {{%/notice%}}
 
 You can examine the overall ARP cache:
 
-``` 
+```
 cumulus@switch:~$ net show evpn arp-cache vni 10100
 Number of ARPs (local and remote) known for this VNI: 9
 IP              Type   MAC               Remote VTEP          
-50.1.1.11       local  00:02:00:00:00:01 
-50.1.1.12       local  00:02:00:00:00:02 
+50.1.1.11       local  00:02:00:00:00:01
+50.1.1.12       local  00:02:00:00:00:02
 50.1.1.22       remote 00:02:00:00:00:04 110.0.0.2            
-2001:50:1:1::11 local  00:02:00:00:00:01 
+2001:50:1:1::11 local  00:02:00:00:00:01
 50.1.1.31       remote 00:02:00:00:00:05 110.0.0.3            
 50.1.1.42       remote 00:02:00:00:00:08 110.0.0.4            
 50.1.1.21       remote 00:02:00:00:00:03 110.0.0.2            
@@ -515,7 +515,7 @@ show`, then pipe it through `grep`:
 
 For bridge information, use `net show bridge macs`:
 
-    cumulus@switch:~$ net show bridge macs 
+    cumulus@switch:~$ net show bridge macs
     VLAN      Master    Interface    MAC                TunnelDest    State      Flags          LastSeen
     --------  --------  -----------  -----------------  ------------  ---------  -------------  ----------
     100       bridge    bridge       44:38:39:00:69:8a                permanent                 00:16:44
@@ -613,9 +613,7 @@ file in a text editor:
 With EVPN, the only method of handling BUM traffic is [Head End
 Replication
 (HER)](Lightweight-Network-Virtualization---LNV-Overview.html#src-5866264_LightweightNetworkVirtualization-LNVOverview-head-end).
-HER is enabled by default, as it is when [Lightweight Network
-Virtualization
-(LNV)](/display/CL33/Lightweight+Network+Virtualization+-+LNV+Overview)
+HER is enabled by default, as it is when [Lightweight Network Virtualization (LNV)](/version/cumulus-linux-330/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 is used.
 
 ## <span>EVPN and VXLAN Active-Active Mode</span>
@@ -657,31 +655,31 @@ for leaf03, leaf04, server03, server04). Here is the topology diagram:
 <pre><code>auto lo
 iface lo inet loopback
     address 10.0.0.11/32
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 # uplinks
 auto swp51
 iface swp51
- 
+
 auto swp52
 iface swp52
- 
+
 auto br0
 iface br0
     bridge-ports swp1 vxlan10001 vxlan10100 vxlan10200
     bridge-vlan-aware yes
     bridge-vids 1 100 200
     bridge-pvid 1
- 
+
 auto vxlan10001
 iface vxlan10001
     vxlan-id 10001
     vxlan-local-tunnelip 10.0.0.11
     bridge-access 1
     bridge-learning off
- 
+
 auto vxlan10100
 iface vxlan10100
      vxlan-id 10100
@@ -700,35 +698,35 @@ iface lo inet loopback
     address 10.0.0.12/32
 auto eth0
 iface eth0 inet dhcp
- 
+
 # uplinks
 auto swp51
 iface swp51
- 
+
 auto swp52
 iface swp52
- 
+
 auto br0
 iface br0
     bridge-ports swp2 vxlan10001 vxlan10100 vxlan10200
     bridge-vlan-aware yes
     bridge-vids 1 100 200
     bridge-pvid 1
- 
+
 auto vxlan10001
 iface vxlan10001
     vxlan-id 10001
     vxlan-local-tunnelip 10.0.0.12
     bridge-access 1
     bridge-learning off
- 
+
 auto vxlan10100
 iface vxlan10100
     vxlan-id 10100
     vxlan-local-tunnelip 10.0.0.12
     bridge-access 100
     bridge-learning off
- 
+
 auto vxlan10200
 iface vxlan10200
     vxlan-id 10200
@@ -846,40 +844,40 @@ end</code></pre></td>
 <pre><code>auto lo
 iface lo inet loopback
     address 10.0.0.21/32
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 # downlinks
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
- 
+
 auto swp4
 iface swp4</code></pre></td>
 <td><summary>spine02 /etc/network/interfaces </summary>
 <pre><code>auto lo
 iface lo inet loopback
     address 10.0.0.22/32
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 # downlinks
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
- 
+
 auto swp4
 iface swp4</code></pre></td>
 </tr>
@@ -1095,23 +1093,23 @@ reveals information relevant only for a VTEP.
 
     cumulus@switch:~$ bridge fdb show
     00:02:00:00:00:0f dev swp3 master bridge permanent
-    00:02:00:00:00:01 dev swp3 vlan 1 master bridge 
-    00:02:00:00:00:04 dev peerlink vlan 1 master bridge 
+    00:02:00:00:00:01 dev swp3 vlan 1 master bridge
+    00:02:00:00:00:04 dev peerlink vlan 1 master bridge
     00:02:00:00:00:12 dev peerlink master bridge permanent
     92:b0:8f:b6:82:7b dev vtep100 master bridge permanent
-    00:02:00:00:00:08 dev vtep100 vlan 100 master bridge 
+    00:02:00:00:00:08 dev vtep100 vlan 100 master bridge
     00:00:00:00:00:00 dev vtep100 dst 10.0.0.5 self permanent
     00:00:00:00:00:00 dev vtep100 dst 10.0.0.6 self permanent
     00:00:00:00:00:00 dev vtep100 dst 80.80.80.2 self permanent
-    00:02:00:00:00:08 dev vtep100 dst 80.80.80.2 self 
+    00:02:00:00:00:08 dev vtep100 dst 80.80.80.2 self
     5e:75:42:b8:47:e6 dev vtep200 master bridge permanent
     00:00:00:00:00:00 dev vtep200 dst 10.0.0.5 self permanent
     00:00:00:00:00:00 dev vtep200 dst 10.0.0.6 self permanent
     00:00:00:00:00:00 dev vtep200 dst 80.80.80.2 self permanent
     00:02:00:00:00:10 dev bond0 master bridge permanent
-    02:02:00:00:00:03 dev bond0 vlan 1 master bridge 
-    02:02:00:00:00:02 dev bond0 vlan 1 master bridge 
-    00:02:00:00:00:03 dev bond0 vlan 100 master bridge 
+    02:02:00:00:00:03 dev bond0 vlan 1 master bridge
+    02:02:00:00:00:02 dev bond0 vlan 1 master bridge
+    00:02:00:00:00:03 dev bond0 vlan 100 master bridge
 
 ## <span>BGP Output Commands</span>
 
@@ -1198,7 +1196,7 @@ they are EVPN address-family peers or are exchanging VXLAN information.
 The network device participating in BGP EVPN address-family can be shown
 using the ` show net show bgp evpn summary  `command:
 
-    cumulus@leaf01:~$ net show bgp evpn summary 
+    cumulus@leaf01:~$ net show bgp evpn summary
     BGP router identifier 110.0.0.1, local AS number 65001 vrf-id 0
     BGP table version 0
     RIB entries 15, using 2040 bytes of memory
@@ -1220,10 +1218,10 @@ The following example examines leaf01, where 2 VNIs are configured —
 their IP addresses and the number of MAC addresses and neighbors
 associated with them:
 
-``` 
+```
 cumulus@leaf01:~$ net show evpn vni
 Number of VNIs: 2
-VNI        VxLAN IF              VTEP IP         # MACs   # ARPs   # Remote VTEPs 
+VNI        VxLAN IF              VTEP IP         # MACs   # ARPs   # Remote VTEPs
 10200      vtep200               110.0.0.1       8        8        3              
 10100      vtep100               110.0.0.1       8        9        3          
 ```
@@ -1243,7 +1241,7 @@ You can examine the EVPN configuration for a single VXLAN:
 The corresponding BGP configuration for VNI 10200 is as follows (only
 the EVPN section is shown):
 
-    cumulus@switch:~$ net show configuration files 
+    cumulus@switch:~$ net show configuration files
      
     ...
      
@@ -1264,7 +1262,7 @@ You can examine all local and remote MAC addresses for a VNI by running
 
     cumulus@leaf01:~$ net show evpn mac vni 10100
     Number of MACs (local and remote) known for this VNI: 8
-    MAC               Type   Intf/Remote VTEP      VLAN 
+    MAC               Type   Intf/Remote VTEP      VLAN
     00:02:00:00:00:01 local  swp49s2               100  
     00:02:00:00:00:02 local  swp49s3               100  
     00:02:00:00:00:03 remote 110.0.0.2            
@@ -1272,18 +1270,18 @@ You can examine all local and remote MAC addresses for a VNI by running
     00:02:00:00:00:05 remote 110.0.0.3            
     00:02:00:00:00:06 remote 110.0.0.3            
     00:02:00:00:00:07 remote 110.0.0.4            
-    00:02:00:00:00:08 remote 110.0.0.4 
+    00:02:00:00:00:08 remote 110.0.0.4
 
 You can examine MAC addresses across VNIs using `net show evpn mac vni
 all`:
 
-``` 
+```
 cumulus@leaf01:~$ net show evpn mac vni all
  
 VNI 10200 #MACs (local and remote) 8
  
  
-MAC               Type   Intf/Remote VTEP      VLAN 
+MAC               Type   Intf/Remote VTEP      VLAN
 00:02:00:00:00:01 local  swp49s2               200  
 00:02:00:00:00:02 local  swp49s3               200  
 00:02:00:00:00:03 remote 110.0.0.2            
@@ -1297,7 +1295,7 @@ MAC               Type   Intf/Remote VTEP      VLAN
 VNI 10100 #MACs (local and remote) 8
  
  
-MAC               Type   Intf/Remote VTEP      VLAN 
+MAC               Type   Intf/Remote VTEP      VLAN
 00:02:00:00:00:01 local  swp49s2               100  
 00:02:00:00:00:02 local  swp49s3               100  
 00:02:00:00:00:03 remote 110.0.0.2            
@@ -1314,8 +1312,8 @@ MAC address. This command only works when run on a VTEP:
     cumulus@leaf01:~$ net show evpn mac vni 10100 mac 00:02:00:00:00:03
     MAC: 00:02:00:00:00:03
      Remote VTEP: 110.0.0.2 ARP ref: 1
-    cumulus@leaf01:~$ 
-    cumulus@leaf01:~$ 
+    cumulus@leaf01:~$
+    cumulus@leaf01:~$
     cumulus@leaf01:~$ net show evpn mac vni 10100 mac 00:02:00:00:00:01
     MAC: 00:02:00:00:00:01
      Intf: swp49s2(53) VLAN: 100 ARP ref: 0
@@ -1325,7 +1323,7 @@ MAC address. This command only works when run on a VTEP:
 Run the `net show bgp evpn route` command to display all EVPN routes at
 the same time:
 
-    cumulus@leaf01:~$ net show bgp evpn route 
+    cumulus@leaf01:~$ net show bgp evpn route
     BGP table version is 0, local router ID is 110.0.0.1
     Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
     Origin codes: i - IGP, e - EGP, ? - incomplete
@@ -1394,20 +1392,20 @@ type-specific fields:
 
   - Type 2 route with ARP suppression: \[type\]:\[ESI\]:\[ET\]:\[MAC
     length\]:\[MAC\]:\[IP length\]:\[IP\]
-    
+
       - The Ethernet Segment Id (ESI) and Ethernet Tag (ET) are always
         0.
 
   - Type 3 route: \[type\]:\[ET\]:\[Originating Router IP\]
-    
+
       - The Ethernet Tag (ET) is always 0.
-    
+
       - The "Originating Router IP" is the VTEP local IP for the
         corresponding VNI.
 
 <!-- end list -->
 
-    cumulus@leaf01:~$ net show bgp evpn route type macip 
+    cumulus@leaf01:~$ net show bgp evpn route type macip
     BGP table version is 0, local router ID is 110.0.0.1
     Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
     Origin codes: i - IGP, e - EGP, ? - incomplete

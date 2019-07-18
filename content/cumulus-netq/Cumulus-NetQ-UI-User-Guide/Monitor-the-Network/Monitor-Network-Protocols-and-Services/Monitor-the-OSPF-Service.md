@@ -22,11 +22,9 @@ are described separately here.
 With NetQ, you can monitor the number of nodes running the OSPF service,
 view switches with the most full and unestablished OSPF sessions, and
 view alarms triggered by the OSPF service. For an overview and how to
-configure OSPF to run in your data center network, refer to [Open
-Shortest Path First -
-OSPF](/display/NETQ22/Open+Shortest+Path+First+-+OSPF) or [Open Shortest
-Path First v3 -
-OSPFv3](/display/NETQ22/Open+Shortest+Path+First+v3+-+OSPFv3).
+configure OSPF to run in your data center network, refer to
+[Open Shortest Path First - OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/) or
+[Open Shortest Path First v3 - OSPFv3](/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3/).
 
 ### <span>OSPF Service Card Workflow</span>
 
@@ -399,7 +397,7 @@ To view switches and hosts with the most OSPF sessions:
     The table content is sorted by this characteristic, listing nodes
     running the most OSPF sessions at the top. Scroll down to view those
     with the fewest sessions.
-    
+
     {{% imgOld 22 %}}
 
 To compare this data with the same data at a previous time:
@@ -410,19 +408,19 @@ To compare this data with the same data at a previous time:
 
 3.  Change the time period for the data on the new card by hovering over
     the card and clicking <span style="color: #353744;"> </span>
-    
+
     {{% imgOld 23 %}}
-    
+
     .
 
 4.  Select the time period that you want to compare with the original
     time. We chose *Past Week* for this example.  
-    
+
     {{% imgOld 24 %}}
-    
+
     {{% imgOld 25 %}}
-    
-      
+
+
     You can now see whether there are significant differences between
     this time and the original time. If the changes are unexpected, you
     can investigate further by looking at another time frame,
@@ -443,7 +441,7 @@ To view switches with the most unestablished OSPF sessions:
     The table content is sorted by this characteristic, listing nodes
     with the most unestablished OSPF sessions at the top. Scroll down to
     view those with the fewest unestablished sessions.
-    
+
     {{% imgOld 26 %}}
 
 Where to go next depends on what data you see, but a couple of options
@@ -456,9 +454,9 @@ include:
     chart to persist the table changes.
 
   - Change the time period for the data to compare with a prior time.
-    
+
     {{% imgOld 27 %}}
-    
+
     If the same switches are consistently indicating the most
     unestablished sessions, you might want to look more carefully at
     those switches using the Switches card workflow to determine
@@ -485,9 +483,9 @@ To view switches with the most OSPF alarms:
 1.  Open the large OSPF Service card.
 
 2.  Hover over the header and click
-    
+
     {{% imgOld 28 %}}
-    
+
     .
 
 3.  Select **SWITCHES WITH MOST ALARMS** from the filter above the
@@ -495,7 +493,7 @@ To view switches with the most OSPF alarms:
     The table content is sorted by this characteristic, listing nodes
     with the most OSPF alarms at the top. Scroll down to view those with
     the fewest alarms.
-    
+
     {{% imgOld 29 %}}
 
 Where to go next depends on what data you see, but a few options
@@ -600,10 +598,9 @@ With NetQ, you can monitor a single session of the OSPF service, view
 session state changes, and compare with alarms occurring at the same
 time, as well as monitor the running OSPF configuration and changes to
 the configuration file. For an overview and how to configure OSPF to run
-in your data center network, refer to [Open Shortest Path First -
-OSPF](/display/NETQ22/Open+Shortest+Path+First+-+OSPF) or [Open Shortest
-Path First v3 -
-OSPFv3](/display/NETQ22/Open+Shortest+Path+First+v3+-+OSPFv3).
+in your data center network, refer to
+[Open Shortest Path First - OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/)
+or [Open Shortest Path First v3 - OSPFv3](/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3/).
 
 {{%notice info%}}
 
@@ -1330,9 +1327,9 @@ To view the summary:
     automatically.
 
 5.  Optionally, switch to the small OSPF Session card.  
-    
+
     {{% imgOld 66 %}}
-    
+
     {{% imgOld 67 %}}
 
 ### <span>View OSPF Session State Changes</span>
@@ -1358,7 +1355,7 @@ OSPF Session card:
 
 5.  Double-click the session of interest. The full screen card closes
     automatically.
-    
+
     {{% imgOld 68 %}}
 
 The heat map indicates the status of the session over the designated
@@ -1390,27 +1387,27 @@ To view the configuration file changes:
 1.  Open the large OSPF Session card.
 
 2.  Hover over the card and click
-    
+
     {{% imgOld 70 %}}
-    
+
     to open the **Configuration File Evolution** tab.
 
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
-    
+
     {{% imgOld 71 %}}
 
 4.  Choose between the **File** view and the **Diff** view (selected
     option is dark; File by default).  
     The File view displays the content of the file for you to review.
-    
+
     {{% imgOld 72 %}}
-    
+
     The Diff view displays the changes between this version (on left)
     and the most recent version (on right) side by side. The changes are
     highlighted in red and green. In this example, we don't have a
     change to highlight, so it shows the same file on both sides.
-    
+
     {{% imgOld 73 %}}
 
 ### <span>View All OSPF Session Details</span>

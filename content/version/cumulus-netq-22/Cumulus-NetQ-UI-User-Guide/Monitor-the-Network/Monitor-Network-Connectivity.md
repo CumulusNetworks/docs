@@ -237,7 +237,7 @@ connectivity through a layer 2 path.
 To create a layer 3 trace request:
 
 1.  Open the medium Trace Request card.
-    
+
     {{% imgOld 10 %}}
 
 2.  In the **Source** field, enter the hostname or IP address of the
@@ -245,20 +245,20 @@ To create a layer 3 trace request:
 
 3.  In the **Destination** field, enter the IP address of the device
     where you want to end the trace.  
-    
+
     {{% imgOld 11 %}}
-    
-      
+
+
     In this example, we are starting our trace at *server02* and ending
     it at *10.1.3.103*.
-    
+
     {{%notice tip%}}
-    
-    If you mistype an address, you must double-click it, or backspace
+
+If you mistype an address, you must double-click it, or backspace
     over the error, and retype the address. You cannot select the
     address by dragging over it as this action attempts to move the card
     to another location.
-    
+
     {{%/notice%}}
 
 4.  Click **Run Now**. A corresponding Trace Results card is opened on
@@ -283,9 +283,9 @@ To create the trace request:
 
 4.  In the **VRF** field, enter the identifier for the VRF interface you
     want to use.
-    
+
     {{% imgOld 12 %}}
-    
+
     In this example, we are starting our trace at *leaf01* and ending it
     at *10.1.3.103* using VRF *vrf1.*
 
@@ -304,7 +304,7 @@ connectivity through a layer 3 path.
 To create a layer 2 trace request:
 
 1.  Open the large Trace Request card.
-    
+
     {{% imgOld 13 %}}
 
 2.  In the **Source** field, enter the hostname or IP address of the
@@ -315,9 +315,9 @@ To create a layer 2 trace request:
 
 4.  In the **VLAN ID** field, enter the identifier for the VLAN you want
     to use.
-    
+
     {{% imgOld 14 %}}
-    
+
     In this example, we are starting our trace at *leaf01* and ending it
     at *00:03:00:33:33:01* using VLAN *13.*
 
@@ -346,23 +346,23 @@ To schedule a trace:
     address (layer 3) of the device where you want to end the trace.
 
 4.  Optionally, enter a VLAN ID (layer 2) or VRF interface (layer 3).
-    
+
     {{% imgOld 15 %}}
 
 5.  Click **Timeframe** under **Schedule** to specify how often you want
     to run the trace.
-    
+
     {{% imgOld 16 %}}
 
 6.  Click **Date/Time** to specify the day you want the trace to run for
     the first time.
-    
+
     {{% imgOld 17 %}}
 
 7.  Click **Next**.
 
 8.  Click the time you want the trace to run for the first time.
-    
+
     {{% imgOld 18 %}}
 
 9.  Click **OK**.
@@ -371,7 +371,7 @@ To schedule a trace:
 
 11. Provide a name for the trace. ***Note**: This name must be unique
     for a given user.*
-    
+
     {{% imgOld 19 %}}
 
 12. Click **Save**. You can now run this trace on demand by selecting it
@@ -388,12 +388,12 @@ Request cards.
 To run a scheduled trace now:
 
 1.  Open the small or medium or large Trace Request card.  
-      
-    
+
+
     {{% imgOld 20 %}}
-    
+
     {{% imgOld 21 %}}
-    
+
     {{% imgOld 22 %}}
 
 2.  Select the scheduled trace from the **Select Trace** or **New Trace
@@ -795,7 +795,7 @@ The medium Scheduled Trace Results card displays:
 </tr>
 <tr class="odd">
 <td><p>Charts</p></td>
-<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="https://docs.cumulusnetworks.com/display/NETQ/Validate+Network+Protocol+and+Service+Operations#ValidateNetworkProtocolandServiceOperations-DataGran">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
+<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="http://localhost:1313/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Validate-Network-Protocol-and-Service-Operations/#span-id-src-12321612-safe-id-vmfsawrhdgvozxr3b3jruhjvdg9jb2xhbmrtzxj2awnlt3blcmf0aw9ucy0jrgf0yudyyw4-class-confluence-anchor-link-span-span-granularity-of-data-shown-based-on-time-period-span">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
 <p><strong>Unique Bad Nodes</strong>: Distribution of unique nodes that generated the indicated warnings and/or failures</p></td>
 </tr>
 </tbody>
@@ -1022,7 +1022,7 @@ To view the results:
 
 1.  Open the full screen Trace Request card to view all scheduled traces
     that have been run.
-    
+
     {{% imgOld 68 %}}
 
 2.  Select the scheduled trace you want to view results for by clicking
@@ -1030,12 +1030,12 @@ To view the results:
 
 3.  On the Edit Menu that appears at the bottom of the window, click
     <span style="color: #353744;"> </span>
-    
+
     {{% imgOld 69 %}}
-    
+
     (Open Cards). This opens the medium Scheduled Validation Results
     card(s) for the selected items.
-    
+
     {{% imgOld 70 %}}
 
 4.  Note the distribution of results. Are there many failures? Are they
@@ -1045,7 +1045,7 @@ To view the results:
     percentage of the total results that represents for a given region.
 
 6.  Switch to the large Scheduled Trace Result card.
-    
+
     {{% imgOld 71 %}}
 
 7.  If there are a large number of warnings or failures, view the
@@ -1066,9 +1066,9 @@ To view the results:
 10. You can view the configuration of the request that produced the
     results shown on this card workflow, by hovering over the card and
     clicking <span style="color: #333c4e;"> </span>
-    
+
     {{% imgOld 72 %}}
-    
+
     . If you want to change the configuration, click **Edit** to open
     the large Trace Request card, pre-populated with the current
     configuration. Follow the instructions in [Create a Scheduled Trace
@@ -1084,9 +1084,9 @@ To view the results:
 
 13. View the details of any specific trace result by clicking on the
     trace. A new window opens similar to the following:
-    
+
     {{% imgOld 73 %}}
-    
+
     Scroll to the right to view the information for a given hop. Scroll
     down to view additional paths.  
     This display shows each of the hosts and detailed steps the trace
@@ -1099,9 +1099,9 @@ To view the results:
     and so on.
 
 14. Export this data using the **Export** button or click
-    
+
     {{% imgOld 74 %}}
-    
+
     to return to the results list to view another trace in detail.
 
 <article id="html-search-results" class="ht-content" style="display: none;">

@@ -143,37 +143,37 @@ To enable NTP to run in the mgmt VRF:
     section above.
 
 2.  If NTP is running, stop the service:
-    
+
         cumulus@switch:~$ sudo systemctl stop ntp.service
-    
+
     {{%notice note%}}
-    
+
     By default, NTP is running in the default VRF, and to automatically
     start when the system boots; the NTP service needs to be stopped,
     disabled, and then restarted once the mgmt VRF is configured.
-    
+
     {{%/notice%}}
 
 3.  Disable NTP from automatically starting in the default VRF:
-    
+
         cumulus@switch:~$ sudo systemctl disable ntp.service
 
 4.  Start NTP in the mgmt VRF.
-    
+
         cumulus@switch:~$ sudo systemctl start ntp@mgmt
 
 5.  Verify that NTP peers are active.
-    
+
         cumulus@switch:~$ ntpq -pn
              remote           refid      st t when poll reach   delay   offset  jitter
         ==============================================================================
         *38.229.71.1     204.9.54.119     2 u   42   64  377   31.275   -0.625   3.105
         -104.131.53.252  209.51.161.238   2 u   47   64  377   16.381   -5.251   0.681
         +45.79.10.228    200.98.196.212   2 u   44   64  377   42.998    0.115   0.585
-        +74.207.240.206  127.67.113.92    2 u   43   64  377   73.240   -1.623   0.320 
+        +74.207.240.206  127.67.113.92    2 u   43   64  377   73.240   -1.623   0.320
 
 6.  Enable ntp@mgmt so that it starts when the switch boots:
-    
+
         cumulus@switch:~$ sudo systemctl enable ntp@mgmt
 
 ### <span>Enabling snmpd</span>
@@ -184,33 +184,33 @@ To enable `snmpd` to run in the mgmt VRF:
     section above.
 
 2.  Stop the `snmpd` daemon if it is running:
-    
+
         cumulus@switch:~$ sudo systemctl stop snmpd.service
 
 3.  Disable `snmpd` to ensure it does not start in the default VRF if
     the system is rebooted:
-    
+
         cumulus@switch:~$ sudo systemctl disable snmpd.service
 
 4.  Start `snmpd` in the the mgmt VRF:
-    
+
         cumulus@switch:~$ sudo systemctl start snmpd@mgmt
 
 5.  Enable snmpd@mgmt so it starts when the switch boots:
-    
+
         cumulus@switch:~$ sudo systemctl enable snmpd@mgmt
 
 ### <span>Enabling hsflowd</span>
 
 If you're using
-[sFlow](https://docs.cumulusnetworks.com/display/CL31/Monitoring+System+Statistics+and+Network+Traffic+with+sFlow)
+[sFlow](/version/cumulus-linux-321/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/)
 to monitor traffic in the mgmt VRF, you need to complete the following
 steps to enable it.
 
 1.  Add the `hsflowd` process to the `systemd` configuration file in
     `/etc/vrf`. Edit `/etc/vrf/systemd.conf` in a text editor.
-    
-        cumulus@switch:~$ sudo nano /etc/vrf/systemd.conf 
+
+        cumulus@switch:~$ sudo nano /etc/vrf/systemd.conf
         # Systemd-based services that are expected to be run in a VRF context.
         #
         # If changes are made to this file run systemctl daemon-reload
@@ -228,7 +228,7 @@ steps to enable it.
         zabbix-agent
 
 2.  Stop, disable, reload, reenable and restart the `hsflowd` service.
-    
+
         cumulus@switch:~$ sudo systemctl stop hsflowd.service
         cumulus@switch:~$ sudo systemctl disable hsflowd.service
         cumulus@switch:~$ sudo systemctl daemon-reload
@@ -236,7 +236,7 @@ steps to enable it.
         cumulus@switch:~$ sudo systemctl start hsflowd@mgmt.service
 
 3.  Verify that the hsflowd service is running in the mgmt VRF.
-    
+
         cumulus@switch:~$ ps aux | grep flow
         root      7294  0.0  0.4  81320  2108 ?        Ssl  22:22   0:00 /usr/sbin/hsflowd
         cumulus   7906  0.0  0.4  12728  2056 pts/0    S+   22:34   0:00 grep flow
@@ -293,7 +293,7 @@ in this way (for both BGP and OSPF):
 These commands produce the following configuration snippet in the
 `/etc/quagga/Quagga.conf` file:
 
-    <routing protocol> 
+    <routing protocol>
     redistribute connected route-map REDISTRIBUTE-CONNECTED
      
     route-map REDISTRIBUTE-CONNECTED deny 100
@@ -346,7 +346,7 @@ Note that if you use `ip route get` to return information about a single
 route, the command resolves over the *mgmt* table by default. To get
 information about the route in the switching silicon, use:
 
-    cumulus@switch:~$ net show route <addr> 
+    cumulus@switch:~$ net show route <addr>
 
 To get the route for any VRF, run:
 
@@ -370,16 +370,16 @@ the example below, the management interface, eth0, and the mgmt VRF
 stanzas are added to the *mgmt* interface class:
 
     auto lo
-    iface lo inet loopback 
+    iface lo inet loopback
      
     allow-mgmt eth0
     iface eth0 inet dhcp
         vrf mgmt
-      
+
     allow-mgmt mgmt
     iface mgmt
         address 127.0.0.1/8
-        vrf-table auto 
+        vrf-table auto
 
 When you run `ifupdown2` commands against the interfaces in the mgmt
 class, include `--allow=mgmt` with the commands. For example, to see
@@ -387,7 +387,7 @@ which interfaces are in the mgmt interface class, run:
 
     cumulus@switch:~$ ifquery l --allow=mgmt
     eth0
-    mgmt 
+    mgmt
 
 To reload the configurations for interfaces in the mgmt class, run:
 

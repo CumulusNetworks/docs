@@ -411,7 +411,7 @@ protocol, so we call it MLAG.
 {{%/notice%}}
 
 For instructions on configuring MLAG, refer to the
-[MLAG](/display/NETQ141/Multi-Chassis+Link+Aggregation+-+MLAG) topic in
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) topic in
 the Cumulus Linux User Guide.
 
 With NetQ, you can view the configuration and operation of devices using
@@ -478,7 +478,7 @@ state:
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
-    Peer Interface and IP: peerlink-3.4094 169.254.0.9 
+    Peer Interface and IP: peerlink-3.4094 169.254.0.9
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
@@ -486,13 +486,13 @@ state:
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
-    vx-38            vx-38            -       -                    - 
-    vx-33            vx-33            -       -                    - 
-    hostbond4        hostbond4        1       -                    - 
-    hostbond5        hostbond5        2       -                    - 
-    vx-37            vx-37            -       -                    - 
-    vx-36            vx-36            -       -                    - 
-    vx-35            vx-35            -       -                    - 
+    vx-38            vx-38            -       -                    -
+    vx-33            vx-33            -       -                    -
+    hostbond4        hostbond4        1       -                    -
+    hostbond5        hostbond5        2       -                    -
+    vx-37            vx-37            -       -                    -
+    vx-36            vx-36            -       -                    -
+    vx-35            vx-35            -       -                    -
     vx-34            vx-34            -       -                    -
 
 ## <span>Monitor Time Synchronization Status for Devices</span>
@@ -663,7 +663,7 @@ including the total number of paths available, those with errors and
 warnings, and the MTU of the paths. In this case, the results are
 displayed in pseudo-graphical output.
 
-``` 
+```
 cumulus@switch:~$ netq trace  00:02:00:00:00:02 vlan 1001 from tor-1 vrf vrf1  pretty
 Number of Paths: 4
 Number of Paths with Errors: 0
@@ -678,7 +678,7 @@ Path MTU: 9152
 Alternately, you can use the IP address of the source device, as shown
 in this example.
 
-    cumulus@redis-1:~$  netq trace 00:02:00:00:00:02 vlan 1001 from 6.0.0.8 vrf vrf1  pretty 
+    cumulus@redis-1:~$  netq trace 00:02:00:00:00:02 vlan 1001 from 6.0.0.8 vrf vrf1  pretty
     Number of Paths: 4
     Number of Paths with Errors: 0
     Number of Paths with Warnings: 0

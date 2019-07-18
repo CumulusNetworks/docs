@@ -20,9 +20,9 @@ your Ubuntu or Red Hat Enterprise Linux hosts or in containers.
 
 {{%notice note%}}
 
-All [BFD](/display/HOSTPACK/Bidirectional+Forwarding+Detection+-+BFD)
+All [BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD/)
 (bidirectional forwarding detection) and
-[PTM](/display/HOSTPACK/Prescriptive+Topology+Manager+-+PTM)
+[PTM](/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/)
 (Prescriptive Topology Manager) commands do not work on server hosts
 because PTM is not enabled on the host.
 
@@ -189,9 +189,9 @@ You can modify these settings on the command line.
 
 ### <span>Set the Source on a Route-map for BGP Unnumbered Configurations</span>
 
-When using a [BGP unnumbered interfaces
-configuration](/display/HOSTPACK/Border+Gateway+Protocol+-+BGP), the
-Linux kernel may choose the eth0 management interface for external
+When using a
+[BGP unnumbered interfaces configuration](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/),
+the Linux kernel may choose the eth0 management interface for external
 communications instead of the loopback interface. To ensure that the
 loopback interface is used for external communications, set the source
 for a route-map utilizing the loopback IP address. Add a command similar
@@ -220,26 +220,26 @@ configuration, you need to delete the `frr.conf` file and restart the
 you may remove, see the note below) before proceeding.
 
 1.  Confirm service `integrated-vtysh-config` is enabled:
-    
-    ``` 
+
+    ```
     root@host:~# vtysh -c "show run" | grep integrated
     service integrated-vtysh-config  
     ```
 
 2.  Remove `/etc/frr/frr.conf`:
-    
+
         root@host:~# rm /etc/frr/frr.conf
 
 3.  Restart FRR. On an Ubuntu 16.04 or RHEL 7 host, run this command:
-    
+
         root@host:~# systemctl restart frr.service
-    
+
     On an Ubuntu 14.04 host, run this command:
-    
+
         root@host:~# service frr restart
-    
+
     For a Docker container, on the host, run:
-    
+
         root@host:~# docker exec FRR /usr/lib/frr/frr restart
 
 {{%notice note%}}
@@ -274,7 +274,7 @@ it into the container, as containers do not contain text editors such as
 restart FRR:
 
     root@host:~# docker cp frr.conf FRR:/etc/frr/frr.conf
-    root@host:~# docker exec frr /usr/lib/frr/frr restart 
+    root@host:~# docker exec frr /usr/lib/frr/frr restart
 
 {{%notice note%}}
 
@@ -317,9 +317,7 @@ Remove all containers:
 FRR inherits the IP addresses and any associated routing tables for the
 network interfaces from the `/etc/network/interfaces` file. This is the
 recommended way to define the addresses; do **not** create interfaces
-using FRR. For more information, see [Configuring IP
-Addresses](/display/HOSTPACK/Interface+Configuration+and+Management) in
-the Cumulus Linux user guide.
+using FRR. For more information, see [Configuring IP Addresses](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/) in the Cumulus Linux user guide.
 
 ## <span>The vtysh Modal CLI</span>
 
@@ -459,7 +457,7 @@ running-config` command:
 
     host# show running-config
     Building configuration...
-     
+
     Current configuration:
     !
     hostname frr

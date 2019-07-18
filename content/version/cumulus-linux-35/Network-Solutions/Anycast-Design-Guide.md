@@ -11,9 +11,7 @@ version: '3.5'
 imgData: cumulus-linux-35
 siteSlug: cumulus-linux-35
 ---
-Cumulus Networks' [Routing on the
-Host](https://docs.cumulusnetworks.com/display/ROH/Routing+on+the+Host)
-provides the ability to run
+Cumulus Networks' [Host Pack](/host-pack) provides the ability to run
 [OSPF](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First---OSPF---Protocol)
 or
 [BGP](/version/cumulus-linux-35/Layer-3/Border-Gateway-Protocol---BGP)

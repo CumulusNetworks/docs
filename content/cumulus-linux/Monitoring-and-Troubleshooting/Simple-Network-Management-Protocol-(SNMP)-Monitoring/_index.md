@@ -676,7 +676,7 @@ Cumulus MIB to be recognized on NMS server.
 
   - `/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt`
 
-### <span id="src-8362608_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctcHVibGljX2NvbW11bml0eQ" class="confluence-anchor-link"></span>Set the Community String</span>
+### Set the Community String</span>
 
 The `snmpd` authentication for versions 1 and 2 is disabled by default
 in Cumulus Linux. You can enable this password (called a community
@@ -731,7 +731,7 @@ To enable read-only querying by a client:
 
         cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-## <span id="src-8362608_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctZnJy" class="confluence-anchor-link"></span>Enable SNMP Support for FRRouting</span>
+## Enable SNMP Support for FRRouting</span>
 
 SNMP supports Routing MIBs in
 [FRRouting](/cumulus-linux/Layer-3/FRRouting-Overview/). To enable SNMP
@@ -1434,7 +1434,7 @@ about specific configuration options within the file, look at the
     # defines the actions and the community string
     authCommunity log,execute,net public
 
-## <span id="src-8362608_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3Jpbmctc3VwcG9ydGVkX21pYnM" class="confluence-anchor-link"></span>Supported MIBs</span>
+## Supported MIBs</span>
 
 Below are the MIBs supported by Cumulus Linux, as well as suggested uses
 for them. The overall Cumulus Linux MIB is defined in the
@@ -1456,7 +1456,7 @@ for them. The overall Cumulus Linux MIB is defined in the
 <td><p><a href="https://cumulusnetworks.com/static/mibs/BGP4-MIB.txt" class="external-link">BGP4-MIB</a>,</p>
 <p><a href="https://cumulusnetworks.com/static/mibs/OSPFv2-MIB.txt" class="external-link">OSPFv2-MIB</a>,</p>
 <p><a href="https://cumulusnetworks.com/static/mibs/OSPFv3-MIB.txt" class="external-link">OSPFv3-MIB</a>,</p>
-<p><a href="https://cumulusnetworks.com/static/mibs/RIPv2-MIB.txt" class="external-link">RIPv2-MIB</a><span id="src-8362608_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctYmdwNA"></span></p></td>
+<p><a href="https://cumulusnetworks.com/static/mibs/RIPv2-MIB.txt" class="external-link">RIPv2-MIB</a></p></td>
 <td><p>You can enable FRRouting SNMP support to provide support for OSPF-MIB (RFC-1850), OSPFV3-MIB (RFC-5643), and BGP4-MIB (RFC-1657). See the <a href="#src-8362608_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctZnJy">FRRouting section</a> above.</p></td>
 </tr>
 <tr class="even">
@@ -1589,7 +1589,7 @@ The ENTITY MIB does not show the chassis information in Cumulus Linux.
 
 {{%/notice%}}
 
-## <span id="src-8362608_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctcGFzc3BlcnNpc3Q" class="confluence-anchor-link"></span>Pass Persist Scripts</span>
+## Pass Persist Scripts</span>
 
 The pass persist scripts in Cumulus Linux use the [pass\_persist
 extension](http://net-snmp.sourceforge.net/wiki/index.php/Tut:Extending_snmpd_using_shell_scripts#Pass_persist)

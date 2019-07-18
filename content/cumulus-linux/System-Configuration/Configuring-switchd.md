@@ -121,7 +121,7 @@ though you cannot update the `switchd` configuration with it.
 
 {{%/notice%}}
 
-## <span id="src-8362561_Configuringswitchd-restartswitchd" class="confluence-anchor-link"></span>Restart switchd</span>
+## Restart switchd</span>
 
 Whenever you modify any `switchd` hardware configuration file (typically
 changing any `*.conf` file that requires making a change to the

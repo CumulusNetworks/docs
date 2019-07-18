@@ -112,7 +112,7 @@ For a Docker container, on the host, run:
     Starting FRR monitor daemon: watchfrr.
     Exiting from the script
 
-### <span id="src-5868796_ConfiguringFRRoutingontheHost-integrated_cfg" class="confluence-anchor-link"></span>Integrated Configurations</span>
+### Integrated Configurations</span>
 
 By default, FRR saves the configuration of all daemons in a single
 integrated configuration file, `frr.conf`.

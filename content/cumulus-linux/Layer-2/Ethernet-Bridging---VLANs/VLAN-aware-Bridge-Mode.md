@@ -164,7 +164,7 @@ the management interface.
 
 {{%/notice%}}
 
-### <span id="src-8362673_VLAN-awareBridgeMode-vlan_range" class="confluence-anchor-link"></span>Reserved VLAN Range</span>
+### Reserved VLAN Range</span>
 
 For hardware data plane internal operations, the switching silicon
 requires VLANs for every physical port, Linux bridge, and layer 3
@@ -356,7 +356,7 @@ When you check VLAN membership for that port, it shows that there is
                     100
                     200
 
-### <span id="src-8362673_VLAN-awareBridgeMode-svi" class="confluence-anchor-link"></span>VLAN Layer 3 Addressing — Switch Virtual Interfaces and Other VLAN Attributes </span>
+### VLAN Layer 3 Addressing — Switch Virtual Interfaces and Other VLAN Attributes </span>
 
 When configuring the VLAN attributes for the bridge, specify the
 attributes for each VLAN interface, each of which is named
@@ -400,7 +400,7 @@ You can specify a range of VLANs as well. For example:
 
     cumulus@switch:~$ net add vlan 1-200
 
-### <span id="src-8362673_VLAN-awareBridgeMode-arp" class="confluence-anchor-link"></span>Configure ARP Timers</span>
+### Configure ARP Timers</span>
 
 Cumulus Linux does not often interact directly with end systems as much
 as end systems interact with one another. Thus, after a successful
@@ -419,7 +419,7 @@ change this setting by following the procedures outlined in this
 [knowledge base
 article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
 
-### <span id="src-8362673_VLAN-awareBridgeMode-glob" class="confluence-anchor-link"></span>Configure Multiple Ports in a Range</span>
+### Configure Multiple Ports in a Range</span>
 
 The `bridge-ports` attribute takes a range of numbers. The "swp1-52" in
 the example below indicates that swp1 through swp52 are part of the

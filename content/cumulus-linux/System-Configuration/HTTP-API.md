@@ -129,7 +129,7 @@ traffic.
 
 {{%/notice%}}
 
-### <span id="src-8362591_HTTPAPI-security" class="confluence-anchor-link"></span>Security</span>
+### Security</span>
 
 #### Authentication</span>
 

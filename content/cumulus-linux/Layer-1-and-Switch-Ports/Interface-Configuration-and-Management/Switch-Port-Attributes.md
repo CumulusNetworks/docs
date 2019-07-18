@@ -67,7 +67,7 @@ below](#src-8363026_SwitchPortAttributes-settings). If you need to
 troubleshoot further to bring the link up, follow the sections below to
 set the specific link parameters.
 
-## <span id="src-8363026_SwitchPortAttributes-autoneg_enable" class="confluence-anchor-link"></span>Auto-negotiation</span>
+## Auto-negotiation</span>
 
 To configure auto-negotiation for a Broadcom-based switch, set
 `link-autoneg` to *on* for all the switch ports. For example, to enable
@@ -182,7 +182,7 @@ snippet:
 
 {{%/notice%}}
 
-## <span id="src-8363026_SwitchPortAttributes-mtu" class="confluence-anchor-link"></span>MTU</span>
+## MTU</span>
 
 Interface MTU ([maximum transmission
 unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)) applies
@@ -206,7 +206,7 @@ for both the management interface (eth0) and the data plane ports.
 
 {{%/notice%}}
 
-### <span id="src-8363026_SwitchPortAttributes-global_mtu" class="confluence-anchor-link"></span>Set a Policy for Global System MTU</span>
+### Set a Policy for Global System MTU</span>
 
 For a global policy to set MTU, create a policy document (called
 `mtu.json` here) like the following:
@@ -272,7 +272,7 @@ or their lower interface; for example, swp1.100 inherits its MTU setting
 from swp1. Therefore, specifying an MTU on swp1 ensures that swp1.100
 inherits the MTU setting for swp1.
 
-<span id="src-8363026_SwitchPortAttributes-mtu_vxlan"></span>If you are
+If you are
 working with [VXLANs](/cumulus-linux/Network-Virtualization/), the MTU
 for a virtual network interface (VNI) must be 50 bytes smaller than the
 MTU of the physical interfaces on the switch, as those 50 bytes are
@@ -461,7 +461,7 @@ For **25G, 4x25G Breakout, and 100G Fiber modules and AOCs**, there is
 no classification of 25G cable types for dB loss, BER or length. FEC is
 recommended but might not be required if the BER is low enough.
 
-### <span id="src-8363026_SwitchPortAttributes-cable_class" class="confluence-anchor-link"></span>Determine Cable Class of 100G and 25G DACs</span>
+### Determine Cable Class of 100G and 25G DACs</span>
 
 You can determine the cable class for 100G and 25G DACs from the
 Extended Specification Compliance Code field (SFP28: 0Ah, byte 35,
@@ -644,7 +644,7 @@ To review the FEC setting on the link, run the following command:
     FEC parameters for swp23:
     FEC encodings : None
 
-## <span id="src-8363026_SwitchPortAttributes-settings" class="confluence-anchor-link"></span>Interface Configuration Recommendations for Broadcom Platforms</span>
+## Interface Configuration Recommendations for Broadcom Platforms</span>
 
 The recommended configuration for each type of interface is described in
 the following table. These are the link settings that are applied to the
@@ -983,7 +983,7 @@ remain at 1500.
 
 {{%/notice%}}
 
-## <span id="src-8363026_SwitchPortAttributes-breakout" class="confluence-anchor-link"></span>Breakout Ports</span>
+## Breakout Ports</span>
 
 Cumulus Linux has the ability to:
 
@@ -1248,7 +1248,7 @@ limitation like this:
 
 The means the maximum number of ports for this Dell S6000 is 104.
 
-### <span id="src-8363026_SwitchPortAttributes-mlnx_breakout" class="confluence-anchor-link"></span>Mellanox Logical Port Limits and Breakout Configurations</span>
+### Mellanox Logical Port Limits and Breakout Configurations</span>
 
 The Mellanox SN2700, SN2700B, SN2410 and SN2410B switches all have a
 limit of 64 logical ports in total. However, if you want to break out to
@@ -1283,7 +1283,7 @@ SN2700](https://community.mellanox.com/docs/DOC-2685).
 
 {{%/notice%}}
 
-## <span id="src-8363026_SwitchPortAttributes-ethtool" class="confluence-anchor-link"></span>Configure Interfaces with ethtool </span>
+## Configure Interfaces with ethtool </span>
 
 The Cumulus Linux `ethtool` command is an alternative for configuring
 interfaces as well as viewing and troubleshooting them.
@@ -1379,7 +1379,7 @@ swp4 interface.
             Laser output power                        : 0.5230 mW / -2.81 dBm
             Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
 
-## <span id="src-8363026_SwitchPortAttributes-caveats" class="confluence-anchor-link"></span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
 ### Port Speed and the ifreload -a Command</span>
 

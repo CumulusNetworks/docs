@@ -425,7 +425,7 @@ monitored nodes and their configuration information, as follows:
       },
     ...
 
-## <span id="src-12321983_safe-id-Q3VtdWx1c05ldFFBUElVc2VyR3VpZGUtI1ZpZXdBcGk" class="confluence-anchor-link"></span>View the API</span>
+## View the API</span>
 
 For simplicity, all of the endpoint APIs are combined into a single
 json-formatted file. Click

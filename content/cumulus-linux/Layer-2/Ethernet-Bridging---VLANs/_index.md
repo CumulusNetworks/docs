@@ -96,7 +96,7 @@ The following example output shows a MAC address table for the bridge:
     untagged  bridge    swp1         44:38:39:00:00:03                                    00:00:15
     untagged  bridge    swp1         44:38:39:00:00:04                permanent           20 days, 01:14:03
 
-## <span id="src-8362655_EthernetBridging-VLANs-mac_ageing" class="confluence-anchor-link"></span>MAC Address Ageing</span>
+## MAC Address Ageing</span>
 
 By default, Cumulus Linux stores MAC addresses in the Ethernet switching
 table for 1800 seconds (30 minutes). You can change this setting using
@@ -130,7 +130,7 @@ These commands create the following configuration in the
      
     ...
 
-## <span id="src-8362655_EthernetBridging-VLANs-svi" class="confluence-anchor-link"></span>Configure an SVI (Switch VLAN Interface)</span>
+## Configure an SVI (Switch VLAN Interface)</span>
 
 Bridges can be included as part of a routing topology after being
 assigned an IP address. This enables hosts within the bridge to

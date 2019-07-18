@@ -326,7 +326,7 @@ To create a layer 2 trace request:
     Results](#src-12321680_MonitorNetworkConnectivity-ODTL2) for
     details.
 
-### <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI01vZFNjaFRyYWNl" class="confluence-anchor-link"></span>Create a Trace to Run on a Regular Basis (Scheduled Trace)</span>
+### Create a Trace to Run on a Regular Basis (Scheduled Trace)</span>
 
 There may be paths through your network that you consider critical to
 your everyday or particularly important operations. In that case, it
@@ -403,7 +403,7 @@ To run a scheduled trace now:
 3.  Click **Go** or **Run Now**. A corresponding Trace Results card is
     opened on your workbench.
 
-## <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI09EVHJlc3VsdHM" class="confluence-anchor-link"></span>View On-demand Trace Results</span>
+## View On-demand Trace Results</span>
 
 <span style="color: #333333;"> Once you have started an on-demand trace,
 the results are displayed in the medium Trace Results card by default.
@@ -628,7 +628,7 @@ Results card displays:
 </tbody>
 </table>
 
-### <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI09EVEwy" class="confluence-anchor-link"></span>View Layer 2 Trace Results</span>
+### View Layer 2 Trace Results</span>
 
 When you start the trace, the corresponding results card is opened on
 your workbench. While it is working on the trace, a notice is shown on
@@ -658,7 +658,7 @@ each path had a value of four hops. Similarly, you can view the MTU
 data. If there had been any warnings, the count would have been visible
 in the table.
 
-### <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI09EVEwz" class="confluence-anchor-link"></span>View Layer 3 Trace Results</span>
+### View Layer 3 Trace Results</span>
 
 When you start the trace, the corresponding results card is opened on
 your workbench. While it is working on the trace, a notice is shown on
@@ -985,7 +985,7 @@ The full screen Scheduled Trace Results card displays:
 </tbody>
 </table>
 
-### <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI0RhdGFHcmFu" class="confluence-anchor-link"></span>Granularity of Data Shown Based on Time Period</span>
+### Granularity of Data Shown Based on Time Period</span>
 
 On the medium and large Trace Result cards, the status of the runs is
 represented in heat maps stacked vertically; one for runs with warnings

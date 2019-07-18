@@ -232,7 +232,7 @@ You can configure multiple interfaces at once:
 
 {{%/notice%}}
 
-### <span id="src-8362580_NetworkCommandLineUtility-NCLU-questionmark" class="confluence-anchor-link"></span>Add ? (Question Mark) Ability to NCLU</span>
+### Add ? (Question Mark) Ability to NCLU</span>
 
 While tab completion is enabled by default, you can also configure NCLU
 to use the **?** (question mark character) to look at available
@@ -341,7 +341,7 @@ configuration setup:
     switch1# net show interface
     switch1# net show bridge macs
 
-## <span id="src-8362580_NetworkCommandLineUtility-NCLU-configure-user-accounts" class="confluence-anchor-link"></span>Configure User Accounts</span>
+## Configure User Accounts</span>
 
 You can configure user accounts in Cumulus Linux with read-only or edit
 permissions for NCLU:
@@ -442,14 +442,14 @@ group](TACACS-Plus.html#src-8362558_TACACSPlus-nclu).
 
 {{%/notice%}}
 
-## <span id="src-8362580_NetworkCommandLineUtility-NCLU-restart" class="confluence-anchor-link"></span>Restart the netd Service</span>
+## Restart the netd Service</span>
 
 Whenever you modify `netd.conf` or NSS services change, you must restart
 the `netd` service for the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart netd.service
 
-## <span id="src-8362580_NetworkCommandLineUtility-NCLU-backuptofile" class="confluence-anchor-link"></span>Back Up the Configuration to a Single File</span>
+## Back Up the Configuration to a Single File</span>
 
 You can easily back up your NCLU configuration to a file by outputting
 the results of `net show configuration commands` to a file, then
@@ -468,7 +468,7 @@ configuration by running:
 
     cumulus@leaf01:~$ source leaf01.txt
 
-## <span id="src-8362580_NetworkCommandLineUtility-NCLU-conf" class="confluence-anchor-link"></span>Advanced Configuration</span>
+## Advanced Configuration</span>
 
 NCLU needs no initial configuration; however, if you need to modify its
 configuration, you must manually update the `/etc/netd.conf` file. You

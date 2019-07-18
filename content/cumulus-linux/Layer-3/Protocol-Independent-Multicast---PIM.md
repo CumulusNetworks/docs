@@ -734,7 +734,7 @@ To configure the boundary, use NCLU:
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
 
-## <span id="src-8362899_ProtocolIndependentMulticast-PIM-msdp" class="confluence-anchor-link"></span>Multicast Source Discovery Protocol (MSDP)</span>
+## Multicast Source Discovery Protocol (MSDP)</span>
 
 You can use the Multicast Source Discovery Protocol (MSDP) to connect
 multiple PIM-SM multicast domains together, using the PIM-SM RPs. By

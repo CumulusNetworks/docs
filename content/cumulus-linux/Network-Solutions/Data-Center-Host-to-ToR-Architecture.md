@@ -140,7 +140,7 @@ iface br-20 inet manual
 </tbody>
 </table>
 
-### <span id="src-8362991_DataCenterHosttoToRArchitecture-mlag" class="confluence-anchor-link"></span>MLAG</span>
+### MLAG</span>
 
 ****
 

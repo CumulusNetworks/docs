@@ -531,7 +531,7 @@ If the changes are unexpected, you can investigate further by looking at
 another time frame, determining if more nodes are now running EVPN than
 previously, looking for changes in the topology, and so forth.
 
-### <span id="src-12321294_MonitortheEVPNService-DevMostAlarmsEVPN" class="confluence-anchor-link"></span>View Devices with the Most EVPN-related Alarms</span>
+### View Devices with the Most EVPN-related Alarms</span>
 
 Switches experiencing a large number of EVPN alarms may indicate a
 configuration or performance issue that needs further investigation. You

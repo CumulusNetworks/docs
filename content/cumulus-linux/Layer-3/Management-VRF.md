@@ -45,7 +45,7 @@ expect the loopback IP address to exist in the VRF, such as NTP.
 
 {{%/notice%}}
 
-## <span id="src-8362940_ManagementVRF-enablevrf" class="confluence-anchor-link"></span>Enable Management VRF</span>
+## Enable Management VRF</span>
 
 To enable management VRF on eth0, complete the following steps.
 
@@ -97,7 +97,7 @@ configured as *auto*.
 
 {{%/notice%}}
 
-## <span id="src-8362940_ManagementVRF-services" class="confluence-anchor-link"></span>Run Services within the Management VRF</span>
+## Run Services within the Management VRF</span>
 
 You can run a variety of services within the management VRF instead of
 the default VRF. In most cases, you must stop and disable the instance
@@ -192,7 +192,7 @@ After you enable `ntp@mgmt`, you can verify that NTP peers are active:
     +45.79.10.228    200.98.196.212   2 u   44   64  377   42.998    0.115   0.585
     +74.207.240.206  127.67.113.92    2 u   43   64  377   73.240   -1.623   0.320
 
-### <span id="src-8362940_ManagementVRF-snmpd" class="confluence-anchor-link"></span>Enable Polling with snmpd in a Management VRF</span>
+### Enable Polling with snmpd in a Management VRF</span>
 
 When you enable `snmpd` to run in the management VRF, you need to
 specify that VRF with NCLU so that `snmpd` listens on eth0 in the

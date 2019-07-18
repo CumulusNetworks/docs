@@ -297,7 +297,7 @@ The contents of the `/etc/ntpd.conf` file are listed below.
     # Specify interfaces, don't listen on switch ports
     interface listen eth0
 </details>
-## <span id="src-8362545_SettingDateandTime-PTP" class="confluence-anchor-link"></span>Precision Time Protocol (PTP) Boundary Clock</span>
+## Precision Time Protocol (PTP) Boundary Clock</span>
 
 With the growth of low latency and high performance applications,
 precision timing has become increasingly important. Precision Time

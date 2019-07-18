@@ -34,7 +34,7 @@ From the NetQ Management workbench, you can view the number of users
 with accounts in the system. As an administrator, you can also add,
 modify, and delete user accounts using the User Accounts card.
 
-### <span id="src-12321950_safe-id-TmV0UU1hbmFnZW1lbnQtI0FkZFVzckFjdA" class="confluence-anchor-link"></span>Add New User Account</span>
+### Add New User Account</span>
 
 For each user that monitors at least one aspect of your data center
 network, a user account is needed.

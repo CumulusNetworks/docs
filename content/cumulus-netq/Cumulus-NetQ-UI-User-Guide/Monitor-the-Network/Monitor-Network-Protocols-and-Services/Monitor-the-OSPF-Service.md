@@ -466,7 +466,7 @@ include:
   - Click **Show All Sessions** to investigate all OSPF sessions with
     events in the full screen card.
 
-### <span id="src-12321517_MonitortheOSPFService-DevsMostAlarmsBGP" class="confluence-anchor-link"></span>View Devices with the Most OSPF-related Alarms</span>
+### View Devices with the Most OSPF-related Alarms</span>
 
 Switches or hosts experiencing a large number of OSPF alarms may
 indicate a configuration or performance issue that needs further
@@ -611,7 +611,7 @@ you can view the medium single session card.
 
 {{%/notice%}}
 
-### <span id="src-12321517_safe-id-TW9uaXRvcnRoZU9TUEZTZXJ2aWNlLSNUaW1lUGVyR3Jhbg" class="confluence-anchor-link"></span>Granularity of Data Shown Based on Time Period</span>
+### Granularity of Data Shown Based on Time Period</span>
 
 On the medium and large single OSPF session cards, the status of the
 sessions is represented in heat maps stacked vertically; one for

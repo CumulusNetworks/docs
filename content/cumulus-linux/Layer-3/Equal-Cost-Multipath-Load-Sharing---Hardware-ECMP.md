@@ -53,7 +53,7 @@ Once multiple routes are installed in the routing table, a hash is used
 to determine which path a packet follows.
 
 Cumulus Linux hashes on the following
-<span id="src-8362929_EqualCostMultipathLoadSharing-HardwareECMP-hashfields"></span>fields:
+fields:
 
   - IP protocol
 
@@ -206,7 +206,7 @@ These commands create the following configuration in the
     ...
     cumulus@leaf01:~$
 
-<span id="src-8362929_EqualCostMultipathLoadSharing-HardwareECMP-resilient_hashing"></span>
+
 
 ## Resilient Hashing</span>
 

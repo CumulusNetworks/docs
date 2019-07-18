@@ -158,7 +158,7 @@ To see an exhaustive list of commands, run:
 
     cumulus@switch:~$ netq help list verbose
 
-### <span id="src-12321059_NetQCommandLineOverview-ComHist" class="confluence-anchor-link"></span>Command History</span>
+### Command History</span>
 
 The CLI stores commands issued within a session, which enables you to
 review and rerun commands that have already been run. At the command

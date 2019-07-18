@@ -212,7 +212,7 @@ after running `apt-get upgrade|install|remove|dist-upgrade`. Edit
 
     APT_SNAPSHOT_ENABLE=no
 
-## <span id="src-8362648_UsingSnapshots-rollback" class="confluence-anchor-link"></span>Roll Back to Earlier Snapshots</span>
+## Roll Back to Earlier Snapshots</span>
 
 If you need to restore Cumulus Linux to an earlier state, you can roll
 back to an older snapshot.

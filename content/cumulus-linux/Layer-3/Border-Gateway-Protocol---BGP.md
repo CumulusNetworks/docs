@@ -153,7 +153,7 @@ The following example configures a cluster ID on a route reflector as a
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## <span id="src-8362926_BorderGatewayProtocol-BGP-ecmp" class="confluence-anchor-link"></span>ECMPwith BGP</span>
+## ECMPwith BGP</span>
 
 If a BGP node hears a prefix **p** from multiple peers, it has all the
 information necessary to program the routing table to forward traffic
@@ -178,7 +178,7 @@ prefixes over an IPv4 session and IPv6 prefixes over an IPv6 session. It
 also supports announcing prefixes of both these address families over a
 single IPv4 session or over a single IPv6 session.
 
-## <span id="src-8362926_BorderGatewayProtocol-BGP-config_bgp" class="confluence-anchor-link"></span>Configure BGP</span>
+## Configure BGP</span>
 
 The following example shows a basic BGP configuration. The rest of this
 chapter discusses how to configure other BGP features, such as
@@ -232,7 +232,7 @@ It is node *switchRR*, the route reflector, on which the peer is
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
 
-## <span id="src-8362926_BorderGatewayProtocol-BGP-unnumbered" class="confluence-anchor-link"></span>BGP Unnumbered Interfaces</span>
+## BGP Unnumbered Interfaces</span>
 
 Unnumbered interfaces are interfaces without unique IP addresses. In
 BGP, you configure unnumbered interfaces using *extended next hop
@@ -561,7 +561,7 @@ recommendations in the Internet draft
         applying this setting on all hosts, which might mean many hosts,
         especially if FRRouting is run on the hosts.
 
-## <span id="src-8362926_BorderGatewayProtocol-BGP-rfc-5549" class="confluence-anchor-link"></span>RFC 5549 Support with Global IPv6 Peers (Cumulus Linux 3.7.2 and later)</span>
+## RFC 5549 Support with Global IPv6 Peers (Cumulus Linux 3.7.2 and later)</span>
 
 [RFC 5549](https://tools.ietf.org/html/rfc5549) defines the method used
 for BGP to advertise IPv4 prefixes with IPv6 next hops. The RFC does not
@@ -833,7 +833,7 @@ this:
 
 {{%/notice%}}
 
-## <span id="src-8362926_BorderGatewayProtocol-BGP-add-path" class="confluence-anchor-link"></span>BGP add-path</span>
+## BGP add-path</span>
 
 Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
 
@@ -1064,7 +1064,7 @@ seconds and defaults to 10 seconds.
 
 {{%/notice%}}
 
-## <span id="src-8362926_BorderGatewayProtocol-BGP-peergroups" class="confluence-anchor-link"></span>Peer Groups to Simplify Configuration</span>
+## Peer Groups to Simplify Configuration</span>
 
 When a switch has many peers to connect to, the amount of redundant
 configuration becomes overwhelming. For example, repeating the

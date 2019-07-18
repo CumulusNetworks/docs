@@ -246,7 +246,7 @@ To see all the PoE information for a switch, run `poectl -s`:
 The set commands (priority, enable, disable) either succeed silently or
 display an error message if the command fails.
 
-<span id="src-8362576_PoweroverEthernet-PoE-args"></span>The `poectl`
+The `poectl`
 command takes the following arguments:
 
 <table>

@@ -16,7 +16,7 @@ you may want to configure some of the additional capabilities that NetQ
 offers. This topic describes how to install, setup, and configure these
 capabilities.
 
-## <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-IntegrateNotification" class="confluence-anchor-link"></span>Integrate NetQ with an Event Notification Application</span>
+## Integrate NetQ with an Event Notification Application</span>
 
 To take advantage of the numerous event messages generated and processed
 by NetQ, you must integrate with third-party event notification
@@ -161,7 +161,7 @@ to the notification channels.
 Create one or more PagerDuty and Slack channels to present the
 notifications.
 
-#### <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-PDcli" class="confluence-anchor-link"></span>Configure a PagerDuty Channel</span>
+#### Configure a PagerDuty Channel</span>
 
 NetQ sends notifications to PagerDuty as PagerDuty events.
 
@@ -275,7 +275,7 @@ To configure NetQ to send notifications to Slack:
 
     {{% imgOld 5 %}}
 
-### <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-FilterRule" class="confluence-anchor-link"></span>Create Rules </span>
+### Create Rules </span>
 
 Each rule is comprised of a single key-value pair. The key-value pair
 indicates what messages to include or drop from event information sent
@@ -2279,7 +2279,7 @@ platform.
     swp52           port             swp52
     sysconf         configdiff       updated
 
-### <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-NotifierFilters" class="confluence-anchor-link"></span>Create Filters</span>
+### Create Filters</span>
 
 You can limit or direct event messages using filters. Filters are
 created based on rules you define; like those in the previous section.

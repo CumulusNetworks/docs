@@ -197,7 +197,7 @@ Additionally, you can specify the hostname of the switch with the
      host dc1-tor-sw1 { hardware ethernet 44:38:39:00:1a:6b; fixed-address 192.168.0.101; option host-name "dc1-tor-sw1"; }
     }
 
-### <span id="src-8362632_ZeroTouchProvisioning-ZTP-http_headers" class="confluence-anchor-link"></span>Inspect HTTP Headers</span>
+### Inspect HTTP Headers</span>
 
 The following HTTP headers are sent in the request to the webserver to
 retrieve the provisioning script:
@@ -250,7 +250,7 @@ The script must return an exit code of 0 upon success, as this triggers
 the autoprovisioning process to be marked as complete in the
 autoprovisioning configuration file.
 
-<span id="src-8362632_ZeroTouchProvisioning-ZTP-example_scripts"></span>The
+The
 following script installs Cumulus Linux and its license from a USB drive
 and applies a configuration:
 

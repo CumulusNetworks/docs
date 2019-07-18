@@ -145,7 +145,7 @@ run with standard Linux user permissions.
 
 {{%/notice%}}
 
-## <span id="src-8362558_TACACSPlus-fallback-auth" class="confluence-anchor-link"></span>Local Fallback Authentication</span>
+## Local Fallback Authentication</span>
 
 If a site wants to allow local fallback authentication for a user when
 none of the TACACS servers can be reached, you can add a privileged user
@@ -248,7 +248,7 @@ against the original TACACS+ login name.
 
 For more information, refer to the `audisp.8` and `auditd.8` man pages.
 
-## <span id="src-8362558_TACACSPlus-nclu" class="confluence-anchor-link"></span>Configure NCLU for TACACS+ Users</span>
+## Configure NCLU for TACACS+ Users</span>
 
 When you install or upgrade TACACS+ packages, mapped user accounts are
 created automatically. All *tacacs0* through *tacacs15* users are added
@@ -404,7 +404,7 @@ again until privilege level 0 (user t`acacs0`) is reached. This allows
 use of only the two local users `tacacs0` and `tacacs15`, if minimal
 configuration is desired.
 
-## <span id="src-8362558_TACACSPlus-TACACS_config_params" class="confluence-anchor-link"></span>TACACS Configuration Parameters</span>
+## TACACS Configuration Parameters</span>
 
 The recognized configuration options are the same as the
 `libpam_tacplus` command line arguments; however, not all `pam_tacplus`

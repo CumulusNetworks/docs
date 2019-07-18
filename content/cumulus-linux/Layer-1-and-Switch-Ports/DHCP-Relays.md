@@ -88,7 +88,7 @@ dhcrelay.service` command:
        CGroup: /system.slice/dhcrelay.service
                └─1997 /usr/sbin/dhcrelay --nl -d -q -i vlan1 -i swp51 -i swp52 172.16.1.102
 
-### <span id="src-8363036_DHCPRelays-82" class="confluence-anchor-link"></span>DHCP Option 82</span>
+### DHCP Option 82</span>
 
 You can configure DHCP relays to inject the `circuit-id` field with the
 `-a` option, which you add to the `OPTIONS` line in the
@@ -237,7 +237,7 @@ dhcrelay6.service` command:
        CGroup: /system.slice/dhcrelay6.service
                └─6152 /usr/sbin/dhcrelay -6 --nl -d -q -l vlan1 -u 2001:db8:100::2 swp51 -u 2001:db8:100::2 swp52
 
-## <span id="src-8363036_DHCPRelays-multiple" class="confluence-anchor-link"></span>Configure Multiple DHCP Relays</span>
+## Configure Multiple DHCP Relays</span>
 
 Cumulus Linux supports multiple DHCP relay daemons on a switch to enable
 relaying of packets from different bridges to different upstreams.
@@ -318,7 +318,7 @@ bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
 (for example, vlan100), or the bridge name if you are using traditional
 bridging (for example, br100).
 </details>
-## <span id="src-8363036_DHCPRelays-giaddr" class="confluence-anchor-link"></span>Use the Gateway IP Address as the Source IP for Relayed DHCP Packets (Advanced)</span>
+## Use the Gateway IP Address as the Source IP for Relayed DHCP Packets (Advanced)</span>
 <details>
 <summary>Using the gateway IP address as the source IP for relayed DHCP
 packets </summary>

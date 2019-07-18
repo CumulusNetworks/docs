@@ -379,7 +379,7 @@ TCAM slices in the hardware.
 To put the rule in the mangle table, include `-t mangle`; to put the
 rule in the filter table, omit `-t mangle`.
 
-## <span id="src-8363032_BufferandQueueManagement-pfc" class="confluence-anchor-link"></span>Configure Priority Flow Control</span>
+## Configure Priority Flow Control</span>
 
 *Priority flow control*, as defined in the [IEEE 802.1Qbb
 standard](http://www.ieee802.org/1/pages/802.1bb.html), provides a
@@ -560,7 +560,7 @@ to allow the PFC configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span id="src-8363032_BufferandQueueManagement-pause" class="confluence-anchor-link"></span>Configure Link Pause</span>
+## Configure Link Pause</span>
 
 The PAUSE frame is a flow control mechanism that halts the transmission
 of the transmitter for a specified period of time. A server or other
@@ -619,7 +619,7 @@ to allow link pause configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span id="src-8363032_BufferandQueueManagement-cut_through_mode" class="confluence-anchor-link"></span>Configure Cut-through Mode and Store and Forward Switching</span>
+## Configure Cut-through Mode and Store and Forward Switching</span>
 
 Cut-through mode is disabled in Cumulus Linux by default on switches
 with Broadcom ASICs. With cut-though mode enabled and link pause is
@@ -669,7 +669,7 @@ cut-through mode but does **not** support store and forward switching.
 
 {{%/notice%}}
 
-## <span id="src-8363032_BufferandQueueManagement-ecn" class="confluence-anchor-link"></span>Configure Explicit Congestion Notification</span>
+## Configure Explicit Congestion Notification</span>
 
 *Explicit Congestion Notification* (ECN) is defined by
 [RFC 3168](https://tools.ietf.org/html/rfc3168). ECN gives a Cumulus

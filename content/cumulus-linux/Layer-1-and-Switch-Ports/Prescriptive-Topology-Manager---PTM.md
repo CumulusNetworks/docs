@@ -58,7 +58,7 @@ For more information, see `man ptmd(8)`.
   - User configuration via a `topology.dot` file; [see
     below](#src-8363021_PrescriptiveTopologyManager-PTM-configuring).
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-configuring" class="confluence-anchor-link"></span>Configure PTM</span>
+## Configure PTM</span>
 
 `ptmd` verifies the physical network topology against a DOT-specified
 network graph file, `/etc/ptm.d/topology.dot`.
@@ -80,7 +80,7 @@ information.
 
 {{%/notice%}}
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-example" class="confluence-anchor-link"></span>Basic Topology Example</span>
+## Basic Topology Example</span>
 
 This is a basic example DOT file and its corresponding topology diagram.
 You should use the same `topology.dot` file on all switches, and don't
@@ -100,7 +100,7 @@ pushing/pulling the same exact file on each device\!
 
 {{% imgOld 0 %}}
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-advanced" class="confluence-anchor-link"></span>ptmd Scripts</span>
+## ptmd Scripts</span>
 
 `ptmd` executes scripts at `/etc/ptm.d/if-topo-pass` and
 ` /etc/ptm.d/if-topo-fail  `for each interface that goes through a
@@ -278,7 +278,7 @@ hostname only, like *cumulus-3* below, and ignore the rest of the URL:
 
 {{%/notice%}}
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-bfd" class="confluence-anchor-link"></span>Bidirectional Forwarding Detection (BFD)</span>
+## Bidirectional Forwarding Detection (BFD)</span>
 
 BFD provides low overhead and rapid detection of failures in the paths
 between two network devices. It provides a unified mechanism for link
@@ -288,7 +288,7 @@ devices, including unidirectional path failure detection. For
 information about configuring BFD using PTM, see the [BFD
 topic](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD).
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-frr" class="confluence-anchor-link"></span>Check Link State with FRRouting</span>
+## Check Link State with FRRouting</span>
 
 The FRRouting routing suite enables additional checks to ensure that
 routing adjacencies are formed only on links that have connectivity
@@ -347,7 +347,7 @@ this flag. To check the per-interface `ptm-status`:
       flags: <UP,BROADCAST,RUNNING,MULTICAST>
       HWaddr: c4:54:44:bd:01:41
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-ptmd_commands" class="confluence-anchor-link"></span>ptmd Service Commands</span>
+## ptmd Service Commands</span>
 
 PTM sends client notifications in CSV format.
 

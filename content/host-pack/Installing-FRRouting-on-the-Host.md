@@ -163,7 +163,7 @@ supported in the following environments:
     
         root@host:~# systemctl start frr.service
 
-## <span id="src-5868795_InstallingFRRoutingontheHost-container" class="confluence-anchor-link"></span>Start the Cumulus Host Pack FRR Docker Container</span>
+## Start the Cumulus Host Pack FRR Docker Container</span>
 
 {{%notice note%}}
 

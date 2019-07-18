@@ -194,7 +194,7 @@ You can use
 [`cl-resource-query`](/cumulus-linux/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query)
 to determine the current table sizes on a given switch.
 
-### <span id="src-8362912_Routing-uft" class="confluence-anchor-link"></span>Forwarding Table Profiles</span>
+### Forwarding Table Profiles</span>
 
 Mellanox Spectrum and some Broadcom ASICs provide the ability to
 configure the allocation of forwarding table resources and mechanisms.
@@ -293,7 +293,7 @@ entry takes up twice the space of an IPv4 entry.
 
 {{%/notice%}}
 
-### <span id="src-8362912_Routing-tcam" class="confluence-anchor-link"></span>TCAM Resource Profiles for Mellanox Switches</span>
+### TCAM Resource Profiles for Mellanox Switches</span>
 
 The Mellanox Spectrum ASIC provides the ability to configure the TCAM
 resource allocation, which is shared between IP multicast forwarding

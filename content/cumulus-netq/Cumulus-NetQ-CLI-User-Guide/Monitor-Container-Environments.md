@@ -98,7 +98,7 @@ kubernetes help` to see all the possible commands:
     netq config del agent kubernetes-monitor
     netq config show agent kubernetes-monitor [json]
 
-### <span id="src-12321042_MonitorContainerEnvironments-enable_k8s" class="confluence-anchor-link"></span>Enable Kubernetes Monitoring</span>
+### Enable Kubernetes Monitoring</span>
 
 For NetQ to monitor the containers on a host, you must configure the
 following on the Kubernetes master node:

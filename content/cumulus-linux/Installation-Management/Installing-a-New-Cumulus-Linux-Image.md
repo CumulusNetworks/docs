@@ -55,7 +55,7 @@ In the following procedures:
     options.
   - After you install the Cumulus Linux disk image, you need to install
     the license file. Refer to [Install the
-    License](Quick-Start-Guide.html#src-8362542_QuickStartGuide-install-license).
+    License](/cumulus-linux/Quick-Start-Guide#install-the-license).
 
 ## Install Using a DHCP/Web Server with DHCP Options
 
@@ -278,8 +278,7 @@ USB drive. Instructions are provided for x86 and ARM platforms.
     hundreds of switch installs with zero manual input unlike USB
     installs.
 
-  - <span style="color: #36424a;"> Cumulus Networks also provides
-    *Cumulus on a Stick*, which </span> packages Cumulus Linux images
+  - Cumulus Networks also provides *Cumulus on a Stick*, which packages Cumulus Linux images
     with your license. You can download your personalized ZIP file,
     transfer it to a USB drive, insert the drive into your switch, apply
     power, and you are ready to go. See [Cumulus on a
@@ -288,7 +287,7 @@ USB drive. Instructions are provided for x86 and ARM platforms.
 
 {{%/notice%}}
 
-### Prepare for USB Installation</span>
+### Prepare for USB Installation
 
 1.  From the [Cumulus Networks Downloads
     page](http://cumulusnetworks.com/downloads/), download the
@@ -362,7 +361,7 @@ When using a Mac or Windows computer to rename the installation
 4.  Insert the USB drive into the switch, then continue with the
     appropriate instructions below for your x86 or ARM platform.
 
-### Instructions for x86 Platforms</span>
+### Instructions for x86 Platforms
 <details>
 <summary>Click to expand x86 instructions... </summary>
 
@@ -432,7 +431,7 @@ SSH sessions to the switch get dropped after this step. To complete
     the newly installed instance of Cumulus Linux.
 </details>
 
-### Instructions for ARM Platforms</span>
+### Instructions for ARM Platforms
 <details>
 <summary>Click to expand ARM instructions... </summary>
 
@@ -524,7 +523,7 @@ step.
 5.  After installation completes, the switch automatically reboots into
     the newly installed instance of Cumulus Linux.
 </details>
-## Related Information</span>
+## Related Information
 
   - [ONIE Design
     Specification](http://opencomputeproject.github.io/onie/design-spec/)

@@ -120,7 +120,7 @@ configuration like the following:
 
 ## Disable IGMP and MLD Snooping</span>
 
-<span id="src-8362696_IGMPandMLDSnooping-igmp_disable"></span>To disable
+To disable
 IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
 
 The example NCLU commands below create a VLAN-aware bridge interface for

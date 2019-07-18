@@ -194,7 +194,7 @@ VNIs defined on the system and advertising them to peers. This requires
 additional configuration, [as described
 below](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-allvnis).
 
-### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-allvnis" class="confluence-anchor-link"></span>Advertise All VNIs</span>
+### Advertise All VNIs</span>
 
 A single configuration variable enables the BGP control plane for all
 VNIs configured on the switch. Set the variable `advertise-all-vni` to
@@ -240,7 +240,7 @@ known.
 
 {{%/notice%}}
 
-### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-RD-auto-derivation" class="confluence-anchor-link"></span>Auto-derivation of RDs and RTs</span>
+### Auto-derivation of RDs and RTs</span>
 
 When a local VNI is learned by FRR and there is no explicit
 configuration for that VNI in FRR, the route distinguisher (RD) and
@@ -264,7 +264,7 @@ import RT is treated as "\*:VNI" to determine which received routes are
 applicable to a particular VNI. This only applies when the import RT is
 auto-derived and not configured.
 
-### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-RD-user-defined" class="confluence-anchor-link"></span>User-defined RDs and RTs</span>
+### User-defined RDs and RTs</span>
 
 EVPN also supports manual configuration of RDs and RTs, if you don't
 want them derived automatically. To manually define RDs and RTs, use the
@@ -441,7 +441,7 @@ different VNIs of VXLAN tunnels between 2 VTEPs.
 
 ### BUM Traffic and Head End Replication</span>
 
-<span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-head-end"></span>
+
 <span style="color: #333333;"> With EVPN, the only method of generating
 BUM traffic in hardware is *head end replication*. Head end replication
 is enabled by default in Cumulus Linux. </span>
@@ -454,7 +454,7 @@ instead of relying on an external service node.
 
 Cumulus Linux supports up to 128 VTEPs with head end replication.
 
-## <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-arp" class="confluence-anchor-link"></span>ARP and ND Suppression</span>
+## ARP and ND Suppression</span>
 
 ARP suppression in an EVPN context refers to the ability of a VTEP to
 suppress ARP flooding over VXLAN tunnels as much as possible. Instead, a
@@ -595,7 +595,7 @@ below, change the sysctl entries accordingly.
 After you save your settings, reboot the switch to apply the new
 configuration.
 
-### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-ND_extended_community" class="confluence-anchor-link"></span>Support for EVPN Neighbor Discovery (ND) Extended Community</span>
+### Support for EVPN Neighbor Discovery (ND) Extended Community</span>
 
 In an EVPN VXLAN deployment with ARP and ND suppression where the VTEPs
 are only configured for layer 2, EVPN needs to carry additional
@@ -746,7 +746,7 @@ receive multiple responses, one from each anycast gateway.
 
 {{%/notice%}}
 
-### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-centralized" class="confluence-anchor-link"></span>Centralized Routing</span>
+### Centralized Routing</span>
 
 In centralized routing, a specific VTEP is configured to act as the
 default gateway for all the hosts in a particular subnet throughout the
@@ -794,7 +794,7 @@ These commands create the following configuration snippet in the
 
 {{%/notice%}}
 
-### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-asymmetric" class="confluence-anchor-link"></span>Asymmetric Routing</span>
+### Asymmetric Routing</span>
 
 In distributed asymmetric routing, each VTEP acts as a layer 3 gateway,
 performing routing for its attached hosts. The routing is called
@@ -816,7 +816,7 @@ with an anycast IP/MAC address.
 
 {{%/notice%}}
 
-### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-symmetric" class="confluence-anchor-link"></span>Symmetric Routing</span>
+### Symmetric Routing</span>
 
 In distributed symmetric routing, each VTEP acts as a layer 3 gateway,
 performing routing for its attached hosts. This is the same as in
@@ -1026,7 +1026,7 @@ command. That command is deprecated and should not be used.
 
 {{%/notice%}}
 
-## <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-PBR_type5" class="confluence-anchor-link"></span>Prefix-based Routing — EVPN Type-5 Routes</span>
+## Prefix-based Routing — EVPN Type-5 Routes</span>
 
 EVPN in Cumulus Linux supports prefix-based routing using EVPN type-5
 (prefix) routes. Type-5 routes (or prefix routes) are primarily used to
@@ -1199,7 +1199,7 @@ file using a text editor:
 
 {{%/notice%}}
 
-### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-filter_evpn_route_type" class="confluence-anchor-link"></span>Filter EVPN Routes Based on Type</span>
+### Filter EVPN Routes Based on Type</span>
 
 In many situations, it is desirable to only exchange EVPN routes of a
 particular type. For example, a common deployment scenario for large
@@ -1282,7 +1282,7 @@ For example:
     exit-address-family
     ...
 
-### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-MAC-mobility" class="confluence-anchor-link"></span>Extended Mobility</span>
+### Extended Mobility</span>
 
 Cumulus Linux support for host and virtual machine mobility in an EVPN
 deployment has been enhanced to handle scenarios where the IP to MAC
@@ -1326,7 +1326,7 @@ machine MAC address and IP address with NCLU commands. For example:
      MAC: 44:39:39:ff:00:24
      Local Seq: 2 Remote Seq: 3
 
-### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-dad" class="confluence-anchor-link"></span>Duplicate Address Detection</span>
+### Duplicate Address Detection</span>
 
 Cumulus Linux 3.7.2 and later is able to detect duplicate MAC and
 IPv4/IPv6 addresses on hosts or virtual machines in a VXLAN-EVPN
@@ -1395,7 +1395,7 @@ events occur between two remote VTEPs (VTEP-B and VTEP-C).
 
 {{% imgOld 0 %}}
 
-#### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-configure-dad" class="confluence-anchor-link"></span>Configure Duplicate Address Detection</span>
+#### Configure Duplicate Address Detection</span>
 
 To change the threshold for MAC and IP address moves, run the `net add
 bgp l2vpn evpn dup-addr-detection max-moves <number-of-events> time
@@ -1480,7 +1480,7 @@ All VTEPs get the correct address as soon as the host communicates.
 Silent hosts are learned only after the faulty entries age out, or you
 intervene and clear the faulty MAC and ARP table entries.
 
-#### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-configure-dad" class="confluence-anchor-link"></span>Configure the Freeze Option</span>
+#### Configure the Freeze Option</span>
 
 To enable Cumulus Linux to *freeze* detected duplicate addresses, run
 the `net add bgp l2vpn evpn dup-addr-detection freeze
@@ -1509,7 +1509,7 @@ command](#src-8362732_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress))
 
     cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze permanent
 
-#### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-clearDuplicateAddress" class="confluence-anchor-link"></span>Clear Duplicate Addresses</span>
+#### Clear Duplicate Addresses</span>
 
 To clear a duplicate MAC or IP address (and unfreeze a frozen address),
 run the `net clear evpn dup-addr vni <vni_id> ip <mac/ip address>`
@@ -1538,7 +1538,7 @@ its MAC address is still in a duplicate state.
 
 {{%/notice%}}
 
-#### <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-disableDAD" class="confluence-anchor-link"></span>Disable Duplicate Address Detection</span>
+#### Disable Duplicate Address Detection</span>
 
 By default, duplicate address detection is enabled and a syslog error is
 generated when a duplicate address is detected. To disable duplicate
@@ -2320,7 +2320,7 @@ are as follows:
   - `debug bgp zebra` traces interactions between BGP and zebra for EVPN
     (and other) routes.
 
-## <span id="src-8362732_EthernetVirtualPrivateNetwork-EVPN-caveats" class="confluence-anchor-link"></span>Caveats</span>
+## Caveats</span>
 
 The following caveats apply to EVPN in this version of Cumulus Linux:
 

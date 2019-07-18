@@ -329,7 +329,7 @@ However, removing the `-o` option and interface make it a valid rule.
 
 {{%/notice%}}
 
-### <span id="src-8362563_Netfilter-ACLs-nonatomic" class="confluence-anchor-link"></span>Nonatomic Update Mode and Update Mode</span>
+### Nonatomic Update Mode and Update Mode</span>
 
 In Cumulus Linux, *update mode* is enabled by default. However, this
 mode limits the number of ACL rules that you can configure.
@@ -354,7 +354,7 @@ nonatomic update is performed, which interrupts traffic.
 
 {{% imgOld 9 %}}
 
-#### <span id="src-8362563_Netfilter-ACLs-nonatomic-update-mode" class="confluence-anchor-link"></span>Enable Nonatomic Update Mode</span>
+#### Enable Nonatomic Update Mode</span>
 
 You can enable nonatomic updates for `switchd`, which offer better
 scaling because all TCAM resources are used to actively impact traffic.
@@ -454,7 +454,7 @@ it. To ensure all rules that can be in hardware are hardware
 accelerated, place them in `/etc/cumulus/acl/policy.conf` and install
 them by running `cl-acltool -i`.
 
-### <span id="src-8362563_Netfilter-ACLs-estimate-rules" class="confluence-anchor-link"></span>Estimate the Number of Rules</span>
+### Estimate the Number of Rules</span>
 
 To estimate the number of rules you can create from an ACL entry, first
 determine if that entry is an ingress or an egress. Then, determine if
@@ -497,7 +497,7 @@ entry is one of the following:
 
     {{%/notice%}}
 
-### <span id="src-8362563_Netfilter-ACLs-match-SVI" class="confluence-anchor-link"></span>Match SVI and Bridged Interfaces in Rules</span>
+### Match SVI and Bridged Interfaces in Rules</span>
 
 Cumulus Linux supports matching ACL rules for both ingress and egress
 interfaces on both
@@ -889,7 +889,7 @@ present.
 | Egress raw limit                 | 256                    | 0                      | 512                       | 0                         |
 | Egress limit with default rules  | 256 (29 default)       | 0                      | 512 (29 default)          | 0                         |
 
-### <span id="src-8362563_Netfilter-ACLs-MS-limits" class="confluence-anchor-link"></span>Mellanox Spectrum Limits</span>
+### Mellanox Spectrum Limits</span>
 
 The Mellanox Spectrum ASIC has one common
 [TCAM](https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs)
@@ -915,7 +915,7 @@ rules work under the ip-acl-heavy profile.
 
 {{%/notice%}}
 
-## <span id="src-8362563_Netfilter-ACLs-supported" class="confluence-anchor-link"></span>Supported Rule Types</span>
+## Supported Rule Types</span>
 
 The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux
 implementation on top of the underlying hardware but they are not always
@@ -1077,7 +1077,7 @@ for `ip6tables` and `ebtables`.
 
   - Chain default rules (that are ACCEPT) are also ignored.
 
-### <span id="src-8362563_Netfilter-ACLs-ipv6EgressRules" class="confluence-anchor-link"></span>IPv6 Egress Rules on Broadcom Switches</span>
+### IPv6 Egress Rules on Broadcom Switches</span>
 
 Cumulus Linux 3.7.2 and later supports IPv6 egress rules in `ip6tables`
 on Broadcom switches. Because there are no slices to allocate in the
@@ -1389,7 +1389,7 @@ Spectrum ASIC.
         0     0 ACCEPT     all  --  any    any     10.0.0.17            anywhere             DSCP match 0x00
         0     0 ACCEPT     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000 dpts:webmin:2002Still working
 
-### <span id="src-8362563_Netfilter-ACLs-filteringtcp" class="confluence-anchor-link"></span>Filter Specific TCP Flags</span>
+### Filter Specific TCP Flags</span>
 
 The example solution below creates rules on the INPUT and FORWARD chains
 to drop ingress IPv4 and IPv6 TCP packets when the SYN bit is set and
@@ -1415,7 +1415,7 @@ rule as:
 
 ## Example Scenario</span>
 
-<span id="src-8362563_Netfilter-ACLs-examples"></span>The following
+The following
 example scenario demonstrates how several different rules are applied.
 
 {{% imgOld 10 %}}
@@ -1622,7 +1622,7 @@ limiting at 4000 pps overall. Because there are four pipelines on a
 Tomahawk switch, you might see a fourfold increase of your configured
 rate limits.
 
-#### <span id="src-8362563_Netfilter-ACLs-tomahawk_atomic" class="confluence-anchor-link"></span>Atomic Update Mode Enabled by Default</span>
+#### Atomic Update Mode Enabled by Default</span>
 
 In Cumulus Linux, atomic update mode is enabled by default. If you have
 Tomahawk switches and plan to use SPAN and/or mangle rules, you must

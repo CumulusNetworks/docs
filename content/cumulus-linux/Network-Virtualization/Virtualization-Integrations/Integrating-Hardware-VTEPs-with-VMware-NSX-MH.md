@@ -295,7 +295,7 @@ terminal connected to the switch, run this command:
     status              : {sec_since_connect="18223", sec_since_disconnect="18225", state=ACTIVE}
     target              : "ssl:192.168.100.17:6632"
 
-## <span id="src-8362796_IntegratingHardwareVTEPswithVMwareNSX-MH-config-transport-logical" class="confluence-anchor-link"></span>Configure the Transport and Logical Layers</span>
+## Configure the Transport and Logical Layers</span>
 
 ### Configure the Transport Layer</span>
 
@@ -420,7 +420,7 @@ To define the logical switch ports:
     
     {{% imgOld 12 %}}
 
-## <span id="src-8362796_IntegratingHardwareVTEPswithVMwareNSX-MH-MH-verify-vxlan-config" class="confluence-anchor-link"></span>Verify the VXLAN Configuration</span>
+## Verify the VXLAN Configuration</span>
 
 After configuration is complete, verify the VXLAN configuration in a
 terminal connected to the switch using these Cumulus Linux commands:

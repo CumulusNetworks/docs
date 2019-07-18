@@ -40,7 +40,7 @@ Installing NetQ can be accomplished in one of three ways:
 
 ## Prerequisites</span>
 
-### <span id="src-12320951_InstallNetQ-hwspec" class="confluence-anchor-link"></span>Hardware Requirements</span>
+### Hardware Requirements</span>
 
 NetQ is supported on a variety of hardware.
 
@@ -417,7 +417,7 @@ attach the output of the `opta-support` command.
     switch or host you want to monitor. Refer to [Install NetQ
     Agent](#src-12320951_InstallNetQ-agent) for instructions.
 
-## <span id="src-12320951_InstallNetQ-agent" class="confluence-anchor-link"></span>Install the NetQ Agent</span>
+## Install the NetQ Agent</span>
 
 Whether using the NetQ Appliance or your own hardware, the NetQ Agent
 must be installed on each node you want to monitor. The node can be a:
@@ -451,7 +451,7 @@ so `apt-get` can access the meta package on the Cumulus Networks repository.
 
 {{%/notice%}}
 
-### <span id="src-12320951_InstallNetQ-AgentCL" class="confluence-anchor-link"></span>Install NetQ Agent on a Cumulus Linux Switch</span>
+### Install NetQ Agent on a Cumulus Linux Switch</span>
 
 A simple process installs the NetQ Agent on a Cumulus switch.
 
@@ -532,7 +532,7 @@ The switch or host must have access to the Internet to configure CLI
 Repeat these steps for each Cumulus switch, or use an automation tool to
 install NetQ Agent on multiple Cumulus Linux switches.
 
-### <span id="src-12320951_InstallNetQ-AgentUbuntu" class="confluence-anchor-link"></span>Install NetQ Agent on an Ubuntu Server (Optional)</span>
+### Install NetQ Agent on an Ubuntu Server (Optional)</span>
 
 Before you install the NetQ Agent on an Ubuntu server, make sure the
 following packages are installed and running these minimum versions:
@@ -648,7 +648,7 @@ The switch or host must have access to the Internet to configure
 10. Repeat these steps for all of your hosts running Ubuntu, or use an
     automation tool to streamline the process.
 
-### <span id="src-12320951_InstallNetQ-AgentRHC" class="confluence-anchor-link"></span>Install NetQ Agent on a Red Hat or CentOS Server (Optional)</span>
+### Install NetQ Agent on a Red Hat or CentOS Server (Optional)</span>
 
 Before you install the NetQ Agent on a Red Hat or CentOS server, make
 sure the following packages are installed and running these minimum
@@ -780,7 +780,7 @@ relevant additional instructions after the basic configuration steps:
   - [Configuring the Agent to Communicate over a Specific
     Port](#src-12320951_InstallNetQ-port)
 
-### <span id="src-12320951_InstallNetQ-AgentVRF" class="confluence-anchor-link"></span>Configure the Agent to Use a VRF</span>
+### Configure the Agent to Use a VRF</span>
 
 While optional, Cumulus strongly recommends that you configure NetQ
 Agents to communicate with the NetQ Platform only via a
@@ -798,7 +798,7 @@ You then restart the agent:
     cumulus@leaf01:~$ netq config restart agent
     cumulus@leaf01:~$ netq config restart cli
 
-### <span id="src-12320951_InstallNetQ-port" class="confluence-anchor-link"></span>Configure the Agent to Communicate over a Specific Port</span>
+### Configure the Agent to Communicate over a Specific Port</span>
 
 By default, NetQ uses port 31980 for communication between the NetQ
 Platform and NetQ Agents. If you want the NetQ Agent to communicate with

@@ -257,7 +257,7 @@ privilege level 15) so is able to add interface swp1.
     +iface swp1
     ...
 
-## <span id="src-8362559_RADIUSAAA-remove" class="confluence-anchor-link"></span>Remove RADIUS Client Packages</span>
+## Remove RADIUS Client Packages</span>
 
 Remove the RADIUS packages with the following command:
 

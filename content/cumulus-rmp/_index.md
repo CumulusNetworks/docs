@@ -77,7 +77,7 @@ For further information regarding bug fixes and known issues present in
 the 3.6.0 release, refer to the [product release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003646974-Cumulus-RMP-3-6-Release-Notes).
 
-## <span id="src-5122807_CumulusRMP-features" class="confluence-anchor-link"></span>Cumulus RMP Features</span>
+## Cumulus RMP Features</span>
 
 Cumulus RMP shares much of the same functionality as Cumulus Linux and
 comes preinstalled on your choice of [1G

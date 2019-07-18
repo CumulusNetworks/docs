@@ -86,7 +86,7 @@ the problem.
                                             m failed to Established
     ...
 
-## <span id="src-12321056_MethodsforDiagnosingNetworkIssues-time_machine" class="confluence-anchor-link"></span>Use NetQ as a Time Machine</span>
+## Use NetQ as a Time Machine</span>
 
 With NetQ, you can travel back to a specific point in time or a range of
 times to help you isolate errors and issues.

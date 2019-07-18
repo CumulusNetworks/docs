@@ -350,7 +350,7 @@ so `apt-get` can access the meta package on the Cumulus Networks repository.
 
 {{%/notice%}}
 
-### <span id="src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50Q0w" class="confluence-anchor-link"></span>Upgrade NetQ Agent on a Cumulus Linux Switch</span>
+### Upgrade NetQ Agent on a Cumulus Linux Switch</span>
 
 A simple process installs the NetQ Agent on a Cumulus switch.
 
@@ -417,7 +417,7 @@ If you intend to use VRF, skip to [Configure the Agent to Use
 7.  Repeat these steps for each Cumulus switch, or use an automation
     tool to install NetQ Agent on multiple Cumulus Linux switches.
 
-### <span id="src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50VWJ1bnR1" class="confluence-anchor-link"></span>Upgrade NetQ Agent on an Ubuntu Server (Optional)</span>
+### Upgrade NetQ Agent on an Ubuntu Server (Optional)</span>
 
 To install the NetQ Agent on an Ubuntu server:
 
@@ -477,7 +477,7 @@ The use of `netq-latest` in this example means that a `get` to the
 9.  Repeat these steps for each switch/host running Ubuntu, or use an
     automation tool to install NetQ Agent on multiple switches/hosts.
 
-### <span id="src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50UkhD" class="confluence-anchor-link"></span>Upgrade NetQ Agent on a Red Hat or CentOS Server (Optional)</span>
+### Upgrade NetQ Agent on a Red Hat or CentOS Server (Optional)</span>
 
 To install the NetQ Agent on a Red Hat or CentOS server:
 
@@ -553,7 +553,7 @@ settings, you do not need to do so again.
   - [Configuring the Agent to Use a VRF](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/#span-id-src-12320951-installnetq-agentvrf-class-confluence-anchor-link-span-span-configure-the-agent-to-use-a-vrf-span)
   - [Configuring the Agent to Communicate over a Specific Port](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/#span-id-src-12320951-installnetq-port-class-confluence-anchor-link-span-span-configure-the-agent-to-communicate-over-a-specific-port-span)
 
-### <span id="src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50VlJG" class="confluence-anchor-link"></span>Configure the Agent to Use a VRF Interface</span>
+### Configure the Agent to Use a VRF Interface</span>
 
 While optional, Cumulus strongly recommends that you configure NetQ
 Agents to communicate with the NetQ Platform only via a
@@ -571,7 +571,7 @@ You then restart the agent:
     cumulus@leaf01:~$ netq config restart agent
     cumulus@leaf01:~$ netq config restart cli
 
-### <span id="src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LXBvcnQ" class="confluence-anchor-link"></span>Configure the Agent to Communicate over a Specific Port</span>
+### Configure the Agent to Communicate over a Specific Port</span>
 
 By default, NetQ uses port 8981 for communication between the NetQ
 Platform and NetQ Agents. If you want the NetQ Agent to communicate with

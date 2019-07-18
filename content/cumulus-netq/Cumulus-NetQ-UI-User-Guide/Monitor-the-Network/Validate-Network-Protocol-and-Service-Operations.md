@@ -251,7 +251,7 @@ of the request:
   - [Modify a Scheduled Validation
     Request](#src-12321612_ValidateNetworkProtocolandServiceOperations-EditSchedVal)
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jU2NoVmFsTm93" class="confluence-anchor-link"></span>Run an Existing Scheduled Validation Request On Demand</span>
+### Run an Existing Scheduled Validation Request On Demand</span>
 
 You may find that although you have a validation scheduled to run at a
 later time, you would like to run it now.
@@ -272,7 +272,7 @@ To run a scheduled validation now:
 
     {{% imgOld 11 %}}
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jT25kTm93" class="confluence-anchor-link"></span>Create a New On-demand Validation Request</span>
+### Create a New On-demand Validation Request</span>
 
 When you want to validate the operation of one or more network protocols
 and services right now, you can create and run an on-demand validation
@@ -329,7 +329,7 @@ scheduled request. After which you can run it on demand.
 
     {{% imgOld 19 %}}
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jU2NoTmV3" class="confluence-anchor-link"></span>Create a New Scheduled Validation Request</span>
+### Create a New Scheduled Validation Request</span>
 
 When you want to see validation results on a regular basis, it is useful
 to configure a scheduled validation request to avoid re-creating the
@@ -378,7 +378,7 @@ Results](#src-12321612_ValidateNetworkProtocolandServiceOperations-SchValRes).
 
 {{% imgOld 27 %}}
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jRWRpdFNjaGVkVmFs" class="confluence-anchor-link"></span>Modify an Existing Scheduled Validation Request</span>
+### Modify an Existing Scheduled Validation Request</span>
 
 At some point you might want to change the schedule or validation types
 that are specified in a scheduled validation request.
@@ -404,7 +404,7 @@ or you can wait for it to run the first time according to the schedule
 you specified. Refer to [View Scheduled Validation
 Results](#src-12321612_ValidateNetworkProtocolandServiceOperations-SchValRes).
 
-## <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jT25kVmFsUmVz" class="confluence-anchor-link"></span>View On-demand Validation Results</span>
+## View On-demand Validation Results</span>
 
 The On-demand Validation Result card workflow enables you to view the
 results of on-demand validation requests. When a request has started
@@ -757,7 +757,7 @@ To view the results:
     example, more failures occurred between certain times or on a
     particular device.
 
-## <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jU2NoVmFsUmVz" class="confluence-anchor-link"></span>View Scheduled Validation Results</span>
+## View Scheduled Validation Results</span>
 
 The Scheduled Validation Result card workflow enables you to view the
 results of scheduled validation requests. When a request has completed
@@ -1035,14 +1035,13 @@ validation results for the service.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 75 %}}</p></td>
+<td><p>{{% imgOld 75 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
 </table>
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jRGF0YUdyYW4" class="confluence-anchor-link"></span>Granularity of Data Shown Based on Time Period</span>
+### Granularity of Data Shown Based on Time Period</span>
 
 On the medium and large Validation Result cards, the status of the runs
 is represented in heat maps stacked vertically; one for passing runs,
@@ -1083,14 +1082,7 @@ To view the results:
 
 2.  Select the validation results you want to view by clicking in the
     first column of the result and clicking the check box.
-
-3.  On the Edit Menu that appears at the bottom of the window, click
-    <span style="color: #353744;"> </span>
-
-    {{% imgOld 78 %}}
-
-    (Open Cards). This opens the medium Scheduled Validation Results
-    card(s) for the selected items.  
+3.  On the Edit Menu that appears at the bottom of the window, click {{% imgOld 78 %}} (Open Cards). This opens the medium Scheduled Validation Results card(s) for the selected items.  
 
     {{% imgOld 79 %}}
 
@@ -1099,7 +1091,6 @@ To view the results:
 4.  Note the distribution of results. Are there many failures? Are they
     concentrated together in time? Has the protocol or service recovered
     after the failures?
-
 5.  Hover over the heat maps to view the status numbers and what
     percentage of the total results that represents for a given region.
     The tooltip also shows the number of devices included in the
@@ -1110,25 +1101,15 @@ To view the results:
 
     {{% imgOld 81 %}}
 
-6.  Optionally, click **Open***\<network service\>***Card** to open the
+6.  Optionally, click **Open** \<*network service*\> **Card** link to open the
     medium individual Network Services card. Your current card is not
     closed.
-
 7.  Switch to the large Scheduled Validation card.
-
-8.  Click
-
-    {{% imgOld 82 %}}
-
-    to expand the chart.
+8.  Click {{% imgOld 82 %}} to expand the chart.
 
     {{% imgOld 83 %}}
 
-9.  Collapse the heat map by clicking
-
-    {{% imgOld 84 %}}
-
-    .
+9.  Collapse the heat map by clicking {{% imgOld 84 %}}.
 
     {{% imgOld 85 %}}
 
@@ -1137,26 +1118,18 @@ To view the results:
     filter above the table. This might help narrow the failures down to
     a particular device or small set of devices that you can investigate
     further.
-
 11. Select the **Most Recent** filter above the table to see the events
     that have occurred in the near past at the top of the list.
-
 12. Optionally, view the health of the protocol or service as a whole by
     clicking **Open** \<*network service*\> **Card** (when available).
-
 13. You can view the configuration of the request that produced the
     results shown on this card workflow, by hovering over the card and
-    clicking <span style="color: #333c4e;"> </span>
-
-    {{% imgOld 86 %}}
-
-    . If you want to change the configuration, click **Edit Config** to
+    clicking {{% imgOld 86 %}}. If you want to change the configuration, click **Edit Config** to
     open the large Validation Request card, pre-populated with the
     current configuration. Follow the instructions in [Modify an
     Existing Scheduled Validation
     Request](#src-12321612_ValidateNetworkProtocolandServiceOperations-EditSchedVal)
     to make your changes.
-
 14. To view all data available for all scheduled validation results for
     the given protocol or service, click **Show All Results** or switch
     to the full screen card.
@@ -1166,7 +1139,6 @@ To view the results:
 15. Look for changes and patterns in the results. Scroll to the right.
     Are there more failed sessions or nodes during one or more
     validations?
-
 16. Return to the full screen Validation Results card to view another
     Scheduled Validation Result.
 

@@ -158,7 +158,7 @@ can be accessed by *tables*. Linux provides three tables by default:
 
     {{%notice note%}}
 
-    Cumulus Linux does not support NAT.
+  Cumulus Linux does not support NAT.
 
     {{%/notice%}}
 
@@ -252,10 +252,10 @@ underneath processes packets. Be aware of the following:
 
     {{%notice warning%}}
 
-    If multiple contiguous rules with the same match criteria are
-    applied to `--in-interface`, **only** the first rule gets processed
-    and then terminates processing. This is a misconfiguration; there is
-    no reason to have duplicate rules with different actions.
+  If multiple contiguous rules with the same match criteria are
+  applied to `--in-interface`, **only** the first rule gets processed
+  and then terminates processing. This is a misconfiguration; there is
+  no reason to have duplicate rules with different actions.
 
     {{%/notice%}}
 
@@ -493,7 +493,7 @@ entry is one of the following:
 
     {{%notice note%}}
 
-    Port ranges are only allowed for ingress rules.
+  Port ranges are only allowed for ingress rules.
 
     {{%/notice%}}
 

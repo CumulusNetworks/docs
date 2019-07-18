@@ -1035,8 +1035,7 @@ validation results for the service.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 75 %}}</p></td>
+<td><p>{{% imgOld 75 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -1083,14 +1082,7 @@ To view the results:
 
 2.  Select the validation results you want to view by clicking in the
     first column of the result and clicking the check box.
-
-3.  On the Edit Menu that appears at the bottom of the window, click
-    <span style="color: #353744;"> </span>
-
-    {{% imgOld 78 %}}
-
-    (Open Cards). This opens the medium Scheduled Validation Results
-    card(s) for the selected items.  
+3.  On the Edit Menu that appears at the bottom of the window, click {{% imgOld 78 %}} (Open Cards). This opens the medium Scheduled Validation Results card(s) for the selected items.  
 
     {{% imgOld 79 %}}
 
@@ -1099,7 +1091,6 @@ To view the results:
 4.  Note the distribution of results. Are there many failures? Are they
     concentrated together in time? Has the protocol or service recovered
     after the failures?
-
 5.  Hover over the heat maps to view the status numbers and what
     percentage of the total results that represents for a given region.
     The tooltip also shows the number of devices included in the
@@ -1110,25 +1101,15 @@ To view the results:
 
     {{% imgOld 81 %}}
 
-6.  Optionally, click **Open***\<network service\>***Card** to open the
+6.  Optionally, click **Open** \<*network service*\> **Card** link to open the
     medium individual Network Services card. Your current card is not
     closed.
-
 7.  Switch to the large Scheduled Validation card.
-
-8.  Click
-
-    {{% imgOld 82 %}}
-
-    to expand the chart.
+8.  Click {{% imgOld 82 %}} to expand the chart.
 
     {{% imgOld 83 %}}
 
-9.  Collapse the heat map by clicking
-
-    {{% imgOld 84 %}}
-
-    .
+9.  Collapse the heat map by clicking {{% imgOld 84 %}}.
 
     {{% imgOld 85 %}}
 
@@ -1137,26 +1118,18 @@ To view the results:
     filter above the table. This might help narrow the failures down to
     a particular device or small set of devices that you can investigate
     further.
-
 11. Select the **Most Recent** filter above the table to see the events
     that have occurred in the near past at the top of the list.
-
 12. Optionally, view the health of the protocol or service as a whole by
     clicking **Open** \<*network service*\> **Card** (when available).
-
 13. You can view the configuration of the request that produced the
     results shown on this card workflow, by hovering over the card and
-    clicking <span style="color: #333c4e;"> </span>
-
-    {{% imgOld 86 %}}
-
-    . If you want to change the configuration, click **Edit Config** to
+    clicking {{% imgOld 86 %}}. If you want to change the configuration, click **Edit Config** to
     open the large Validation Request card, pre-populated with the
     current configuration. Follow the instructions in [Modify an
     Existing Scheduled Validation
     Request](#src-12321612_ValidateNetworkProtocolandServiceOperations-EditSchedVal)
     to make your changes.
-
 14. To view all data available for all scheduled validation results for
     the given protocol or service, click **Show All Results** or switch
     to the full screen card.
@@ -1166,7 +1139,6 @@ To view the results:
 15. Look for changes and patterns in the results. Scroll to the right.
     Are there more failed sessions or nodes during one or more
     validations?
-
 16. Return to the full screen Validation Results card to view another
     Scheduled Validation Result.
 

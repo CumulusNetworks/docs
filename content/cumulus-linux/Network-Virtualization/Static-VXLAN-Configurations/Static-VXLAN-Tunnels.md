@@ -51,19 +51,19 @@ For a basic VXLAN configuration, make sure that:
   - Each traditional bridge on the switch has only one VXLAN interface.
     Cumulus Linux does not support more than one VXLAN ID per
     traditional bridge.
-    
+
     {{%notice note%}}
-    
-    When deploying VXLAN with a VLAN-aware bridge, there is no
+
+When deploying VXLAN with a VLAN-aware bridge, there is no
     restriction on using a single VNI. This limitation is only present
     when using the traditional bridge configuration.
-    
+
     {{%/notice%}}
 
   - The VXLAN registration daemon (`vxrd`) is not running. Static VXLAN
     tunnels do not interoperate with LNV or EVPN. If `vxrd` is running,
     stop it with the following command:
-    
+
         cumulus@switch:~ sudo systemctl stop vxrd.service
 
 ## <span>Example Configuration</span>
@@ -302,13 +302,13 @@ supported.
     iface vni300
     vxlan-id 300
     vxlan-local-tunnelip 10.252.255.58
-    vxlan-remoteip 10.250.255.161 
+    vxlan-remoteip 10.250.255.161
     mtu 9000
      
     auto vni258
     iface vni258
     vxlan-id 258
-    vxlan-local-tunnelip 10.252.255.58 
+    vxlan-local-tunnelip 10.252.255.58
     vxlan-remoteip 10.250.255.161
     bridge-access 258
     bridge-learning off

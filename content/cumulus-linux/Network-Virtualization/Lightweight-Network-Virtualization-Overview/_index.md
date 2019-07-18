@@ -13,7 +13,7 @@ siteSlug: cumulus-linux
 ---
 {{%notice warning%}}
 
-As of Cumulus Linux 3.7.4, the lightweight network virtualization
+As of Cumulus Linux 3.7, the lightweight network virtualization
 feature (LNV) has been deprecated. The feature will be removed in
 Cumulus Linux 4.0. Cumulus Networks recommends you use [Ethernet virtual
 private network
@@ -156,7 +156,7 @@ To enable service node replication:
 
     {{%notice note%}}
 
-    You only specify this parameter when head end replication is
+You only specify this parameter when head end replication is
     disabled. For the loopback, the parameter is still named
     `vxrd-svcnode-ip`.
 
@@ -561,7 +561,6 @@ router ospf
 </tbody>
 </table>
 </details>
-### <span>Host Configuration</span>
 
 In this example, the servers are running Ubuntu 14.04. There needs to be
 a trunk mapped from server1 and server2 to the respective switch. In

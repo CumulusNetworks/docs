@@ -120,78 +120,78 @@ sections have been completed.
 To configure leaf1:
 
 1.  Log into the VM using the following credentials:
-    
+
       - username: cumulus
-    
+
       - password: CumulusLinux\!
 
 2.  Configure the interfaces:
-    
+
     1.  Log in as root, using the password CumulusLinux\!
-        
+
             cumulus@leaf1:~$ sudo -i
-    
+
     2.  Open `/etc/network/interfaces` in a text editor.
-    
+
     3.  Edit the interfaces as shown below, and save the file:
-        
+
             # The loopback network interface
             auto lo
               iface lo inet loopback
               address 10.2.1.1/32
-            
+
             # The primary network interface
             auto eth0
               iface eth0 inet dhcp
-            
+
             auto swp1
               iface swp1
               address 10.2.1.1/32
-            
+
             auto swp2
               iface swp2
               address 10.2.1.1/32
-            
+
             auto swp3
               iface swp3
               address 10.4.1.1/24
 
 3.  Configure Quagga
-    
+
     1.  Open the `/etc/quagga/daemons` file in a text editor.
-    
+
     2.  Set `zebra`, `bgpd`, and `ospfd` to yes, and save the file.
-        
+
             zebra=yes
             bgpd=yes
             ospfd=yes
             ...
-    
+
     3.  Create the `/etc/quagga/Quagga.conf` file in a text editor.
-    
+
     4.  Configure the file as shown below, and save the file:
-        
+
             service integrated-vtysh-config
-            
+
             interface swp1
               ip ospf network point-to-point
-            
+
             interface swp2
               ip ospf network point-to-point
-            
+
             router-id 10.2.1.1
-            
+
             router ospf
               ospf router-id 10.2.1.1
               network 10.2.1.1/32 area 0.0.0.0
               network 10.4.1.0/24 area 0.0.0.0
 
 4.  Restart the networking service
-    
+
         root@leaf1:~$ service networking restart
 
 5.  Restart Quagga
-    
+
         root@leaf1:~$ service quagga restart
 
 ### Configuring leaf2, spine1, and spine2 VMs</span>
@@ -201,125 +201,125 @@ as those listed above for `leaf1`, however the file configurations are
 different. Listed below are the configurations for each VM.
 
   - `leaf2`
-    
+
       - `/etc/network/interfaces` file:
-        
+
             # The loopback network interface
             auto lo
               iface lo inet loopback
               address 10.2.1.2/32
-            
+
             # The primary network interface
             auto eth0
               iface eth0 inet dhcp
-            
+
             auto swp1
               iface swp1
               address 10.2.1.2/32
-            
+
             auto swp2
               iface swp2
               address 10.2.1.2/32
-            
+
             auto swp3
               iface swp3
               address 10.4.2.1/25
-    
+
       - `/etc/quagga/Quagga.conf` file:
-        
-            service integrated-vtysh-config 
-            
+
+            service integrated-vtysh-config
+
             interface swp1
               ip ospf network point-to-point
-            
+
             interface swp2
               ip ospf network point-to-point
-            
+
             router-id 10.2.1.2
-            
+
             router ospf
               ospf router-id 10.2.1.2                                                           
               network 10.2.1.2/32 area 0.0.0.0  
               network 10.4.2.0/24 area 0.0.0.0
 
   - `spine1`
-    
+
       - `/etc/network/interfaces` file:
-        
+
             # The loopback network interface
             auto lo
               iface lo inet loopback
               address 10.2.1.3/32
-            
+
             # The primary network interface
             auto eth0
               iface eth0 inet dhcp
-            
+
             auto swp1
               iface swp1
               address 10.2.1.3/32
-            
+
             auto swp2
               iface swp2
               address 10.2.1.3/32
-            
+
             auto swp3
               iface swp3
-    
+
       - `/etc/quagga/Quagga.conf` file:
-        
-        ``` 
-        service integrated-vtysh-config 
-        
+
+        ```
+        service integrated-vtysh-config
+
         interface swp1
           ip ospf network point-to-point
-        
+
         interface swp2
           ip ospf network point-to-point
-        
+
         router-id 10.2.1.3
-        
+
         router ospf
           ospf router-id 10.2.1.3
           network 10.2.1.3/32 area 0.0.0.0  
         ```
 
   - `spine2`
-    
+
       - `/etc/network/interfaces` file:
-        
+
             # The loopback network interface
             auto lo
               iface lo inet loopback
               address 10.2.1.4/32
-            
+
             # The primary network interface
             auto eth0
               iface eth0 inet dhcp
-            
+
             auto swp1
               iface swp1
               address 10.2.1.4/32
-            
+
             auto swp2
               iface swp2
               address 10.2.1.4/32
-            
+
             auto swp3
               iface swp3
-    
+
       - `/etc/quagga/Quagga.conf` file:
-        
-            service integrated-vtysh-config 
-            
+
+            service integrated-vtysh-config
+
             interface swp1
               ip ospf network point-to-point
-            
+
             interface swp2
               ip ospf network point-to-point
-            
+
             router-id 10.2.1.4
-            
+
             router ospf
               ospf router-id 10.2.1.4
               network 10.2.1.4/32 area 0.0.0.0
@@ -336,17 +336,17 @@ continuing.
 Once the VMs have been restarted, you can ping across VMs to test:
 
   - From `leaf1`:
-    
+
       - Ping `leaf2`:
-        
+
             root@leaf1:~# ping 10.2.1.2
-    
+
       - Ping `spine1`:
-        
+
             root@leaf1:~# ping 10.2.1.3
-    
+
       - Ping `spine2`:
-        
+
             root@leaf1:~# ping 10.2.1.4
 
 {{%notice note%}}
@@ -369,23 +369,23 @@ Otherwise, you may see this error:
 ### Using Libvirt</span>
 
 1.  Confirm `libvert` and `qemu` are installed correctly:
-    
+
     1.  Check the Linux version running:
-        
+
             uname -a
-    
+
     2.  Run the following commands to install libvert:
-        
-            cumulus@switch:~$ sudo add-apt-repository ppa:linuxsimba/libvirt-udp-tunnel 
+
+            cumulus@switch:~$ sudo add-apt-repository ppa:linuxsimba/libvirt-udp-tunnel
             cumulus@switch:~$ sudo apt-get update -y
             cumulus@switch:~$ sudo apt-get install libvirt-bin libvirt-dev ansible qemu-utils qemu git htop tree
             cumulus@switch:~$ sudo /etc/init.d/libvirt-bin restart
-    
+
     The linuxsimba/libvirt-udp-tunnel package repository provides an
     updated libvirtd version that provides certain enhancements required
     to launch Cumulus VX. The example below shows the installation
     output:
-    
+
         SERVER:~/$ sudo apt-get install libvirt-bin libvirt-dev qemu-utils qemu
         Reading package lists... Done
         Building dependency tree       
@@ -419,15 +419,15 @@ Otherwise, you may see this error:
 
 2.  After the installation has been complete, logout, then login, and
     verify the `libvert` version:
-    
+
         SERVER:~/$ libvirtd --version
         libvirtd (libvirt) 1.2.16
         Version should be 1.2.16.
 
 3.  Create and define a virsh pool to point to the libvirt based vagrant
     images:
-    
-    ``` 
+
+    ```
     virsh pool-define-as --name NAME --type dir --target /var/lib/libvirt/images
     virsh pool-autostart NAMEvirsh pool-build NAMEvirsh pool-start NAME    
     ```
@@ -439,35 +439,35 @@ Otherwise, you may see this error:
 
 2.  Installing most recent version of vagrant-libvirt plugin – Required
     for best KVM support:
-    
+
         cumulus@switch:~$ git clone https://github.com/pradels/vagrant-libvirt
         cumulus@switch:~$ gem build vagrant-libvirt.gemspec
         cumulus@switch:~$ vagrant plugin install vagrant-libvirt-*.gem
         cumulus@switch:~$ /usr/bin/vagrant plugin list
 
 3.  Install vagrant's `libvirt/cumulus/mutate` plugins:
-    
+
         cumulus@switch:~$ vagrant plugin install vagrant-cumulus
         Installing the 'vagrant-cumulus' plugin. This can take a few minutes...
         Installed the plugin 'vagrant-cumulus (0.1)'!
-        
+
         cumulus@switch:~$ vagrant plugin install vagrant-mutate
         Installing the 'vagrant-mutate' plugin. This can take a few minutes...
         Installed the plugin 'vagrant-mutate (1.1.0)'!
-    
+
       - libvirt plugin - Used to allow libvirt to read VagrantFile
-    
+
       - cumulus plugin - Used to run cumulus specific commands within
         VagrantFile
-    
+
       - mutate plugin - Used to convert a VagrantBox image to a Libvirt
         image
-    
+
     After installing these plugins:
-    
+
         cumulus@switch:~$ vagrant status
         Current machine states:
-        
+
         oob                       not created (virtualbox)
         spine1                    not created (virtualbox)
         spine2                    not created (virtualbox)
@@ -475,26 +475,26 @@ Otherwise, you may see this error:
         leaf2                     not created (virtualbox)
         server1                   not created (virtualbox)
         server2                   not created (virtualbox)
-    
+
     This environment represents multiple VMs. The VMs are all listed
     above with their current state. For more information about a
     specific VM, run `vagrant status NAME`.
 
 4.  Convert VagrantBox image to Libvirt image
-    
+
         cumulus@switch:~$ vagrant box list
         CumulusCommunity/cumulus-vx (virtualbox, 2.5.6)
         cumulus@switch:~$ vagrant mutate CumulusCommunity/cumulus-vx libvirt
         Converting CumulusCommunity/cumulus-vx from virtualbox to libvirt.
             (100.00/100%)
         The box CumulusCommunity/cumulus-vx (libvirt) is now ready to use.
-         
+
         SERVER:~/TAM/Vz-LK$ vagrant box list
         CumulusCommunity/cumulus-vx (libvirt, 2.5.6)
         CumulusCommunity/cumulus-vx (virtualbox, 2.5.6)
 
 5.  Bring up image using --provider libvirt:
-    
+
         cumulus@switch:~/TAM/Vz-LK$ vagrant up oob --provider libvirt
         Bringing machine 'oob' up with 'libvirt' provider...
         ==> oob: Creating image (snapshot of base box volume).
@@ -520,15 +520,15 @@ Otherwise, you may see this error:
         ==> oob:  -- Keymap:            en-us
         ==> oob:  -- TPM Path:          
         ==> oob:  -- INPUT:             type=mouse, bus=ps2
-        ==> oob:  -- Command line : 
+        ==> oob:  -- Command line :
         ==> oob: Creating shared folders metadata...
         ==> oob: Starting domain.
         ==> oob: Waiting for domain to get an IP address...
         ==> oob: Waiting for SSH to become available...
-            oob: 
+            oob:
             oob: Vagrant insecure key detected. Vagrant will automatically replace
             oob: this with a newly generated keypair for better security.
-            oob: 
+            oob:
             oob: Inserting generated public key within guest...
             oob: Removing insecure key from the guest if it's present...
             oob: Key inserted! Disconnecting and reconnecting using new SSH key...
@@ -541,29 +541,8 @@ Otherwise, you may see this error:
 For the next steps regarding configuring Cumulus VX, check out these
 community articles, and the rest of the Cumulus Documentation:
 
-Management Network with Cumulus VX:  
-<https://community.cumulusnetworks.com/cumulus/topics/using-a-management-vm-with-cumulus-vx>
-
-Automation: Network Automation with Cumulus VX  
-<https://community.cumulusnetworks.com/cumulus/topics/testing-network-automation-with-cumulus-vx-3028v0i4u6aw4>
-
-Routing protocols: Unnumbered OSPF/BGP with Cumulus VX  
-<https://community.cumulusnetworks.com/cumulus/topics/un-numbered-ospf-bgp-setup-on-vmware-esxi-with-cumulus-vx>
-
-Network redundancy: Multi-chassis Link Aggregation (MLAG) with Cumulus
-VX  
-<https://community.cumulusnetworks.com/cumulus/topics/spinning-up-a-virtual-mlag-environment>
-
-Network virtualization: Cumulus VX with VMware NSX  
-<https://community.cumulusnetworks.com/cumulus/topics/integrating-cumulus-vx-with-vmware-nsx-using-vmware-esxi>
-
-Cumulus Linux Documentation  
-<http://docs.cumulusnetworks.com/display/DOCS/>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+- [Automation: Network Automation with Cumulus VX](https://forums.cumulusnetworks.com/cumulus-vx-230884/testing-network-automation-with-cumulus-vx-6727777)
+- [Routing protocols: Unnumbered OSPF/BGP with Cumulus VX](https://forums.cumulusnetworks.com/cumulus-vx-230884/unnumbered-ospf-bgp-configuration-on-vmware-esxi-with-cumulus-vx-6728629)
+- [Network redundancy: Multi-chassis Link Aggregation (MLAG) with Cumulus VX](https://forums.cumulusnetworks.com/cumulus-vx-230884/spinning-up-a-virtual-mlag-environment-6722798)
+- [Network virtualization: Cumulus VX with VMware NSX](https://forums.cumulusnetworks.com/cumulus-vx-230884/integrating-cumulus-vx-with-vmware-nsx-using-vmware-esxi-6732766)
+- [Cumulus Linux Documentation](/cumulus-linux)

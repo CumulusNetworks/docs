@@ -132,7 +132,7 @@ environments, visit these links:
 
   - [Cumulus VX release notes](https://support.cumulusnetworks.com/hc/en-us/articles/219623788)
 
-  - [Cumulus Linux documentation](http://docs.cumulusnetworks.com/display/DOCS)
+  - [Cumulus Linux documentation](/cumulus-linux)
 
   - [Cumulus Networks knowledge base](https://support.cumulusnetworks.com/hc/en-us/)
 

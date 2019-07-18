@@ -61,31 +61,28 @@ Cumulus Linux 3.6.0 contains a number of new platforms, features and
 improvements:
 
   - New [platforms](https://cumulusnetworks.com/hcl) include:
-    
+
       - Dell S4128T-ON (10GBASE-T Maverick)
-    
+
       - Dell S5048-ON (25G Tomahawk+)
-    
+
       - Delta AG-5648v1 (25G Tomahawk+)
-    
+
       - Edgecore AS7312-54XS (Tomahawk+)
-    
+
       - Facebook Voyager (100G Tomahawk/DWDM) Early Access
-    
+
       - Penguin Arctica 1600CS (100G Spectrum)
-    
+
       - Penguin Arctica 3200CS (100G Spectrum)
-    
+
       - Penguin Arctica 4808X (10G Spectrum)
 
-  - [Policy-based
-    Routing](/version/cumulus-linux-36/Layer-3/Policy-based-Routing)
+  - [Policy-based Routing](/version/cumulus-linux-36/Layer-3/Policy-based-Routing)
 
-  - [VRF Route
-    Leaking](/display/CL36/Virtual+Routing+and+Forwarding+-+VRF#VirtualRoutingandForwarding-VRF-VRFRouteLeaking)
+  - [VRF Route Leaking](/version/cumulus-linux-36/Layer-3/Virtual-Routing-and-Forwarding-VRF/)
 
-  - [PTP Boundary
-    Clock](Setting-Date-and-Time.html#src-8362040_SettingDateandTime-PTP)
+  - [PTP Boundary Clock](/version/cumulus-linux-36/System-Configuration/Setting-Date-and-Time)
     on Mellanox switches
 
   - [GRE Tunneling](/version/cumulus-linux-36/Layer-3/GRE-Tunneling) on
@@ -99,26 +96,22 @@ improvements:
     commands
 
   - OSPFv3 enhancements:
-    
+
       - Validated interoperability with other routers at a scale of 120
         neighbors
-    
+
       - New NCLU commands to configure
-        [OSPFv3](/display/CL36/Open+Shortest+Path+First+v3+-+OSPFv3+-+Protocol#OpenShortestPathFirstv3-OSPFv3-Protocol-ConfiguringtheOSPFv3Area)
+        [OSPFv3](/version/cumulus-linux-36/Layer-3/Open-Shortest-Path-First-v3-OSPFv3-Protocol/)
 
   - EVPN Enhancements:
-    
-      - [Type-5 routes with asymmetric
-        routing](/display/CL36/Ethernet+Virtual+Private+Network+-+EVPN#EthernetVirtualPrivateNetwork-EVPN-EVPNType-5RoutingwithAsymmetricRouting)
-    
-      - [Originate default EVPN type-5
-        routes](/display/CL36/Ethernet+Virtual+Private+Network+-+EVPN#EthernetVirtualPrivateNetwork-EVPN-OriginatingDefaultEVPNType-5Routes)
-    
-      - [Filter EVPN routes based on
-        type](/display/CL36/Ethernet+Virtual+Private+Network+-+EVPN#EthernetVirtualPrivateNetwork-EVPN-filter_evpn_route_typeFilteringEVPNRoutesBasedonType)
-    
-      - [Control which RIB routes are injected into
-        EVPN](/display/CL36/Ethernet+Virtual+Private+Network+-+EVPN#EthernetVirtualPrivateNetwork-EVPN-ControllingWhichRIBRoutesAreInjectedintoEVPN)
+
+      - [Type-5 routes with asymmetric routing](/version/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#span-id-src-8362224-ethernetvirtualprivatenetwork-evpn-asymmetric-class-confluence-anchor-link-span-span-asymmetric-routing-span)
+
+      - [Originate default EVPN type-5 routes](/version/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#span-originating-default-evpn-type-5-routes-span)
+
+      - [Filter EVPN routes based on type](/version/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#span-id-src-8362224-ethernetvirtualprivatenetwork-evpn-filter-evpn-route-type-class-confluence-anchor-link-span-span-filtering-evpn-routes-based-on-type-span)
+
+      - [Control which RIB routes are injected into EVPN](/version/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#span-controlling-which-rib-routes-are-injected-into-evpn-span)
 
 For information on bug fixes and known issues present in this release,
 refer to the [product release

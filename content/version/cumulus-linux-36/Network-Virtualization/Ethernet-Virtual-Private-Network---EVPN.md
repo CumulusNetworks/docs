@@ -17,8 +17,7 @@ core (the underlay). The initial definition of VXLAN
 ([RFC 7348](https://tools.ietf.org/html/rfc7348)) did not include any
 control plane and relied on a flood-and-learn approach for MAC address
 learning. An alternate deployment model was to use a controller or a
-technology such as [Lightweight Network Virtualization
-(LNV)](/display/CL36/Lightweight+Network+Virtualization+-+LNV+Overview)
+technology such as [Lightweight Network Virtualization (LNV)](/version/cumulus-linux-36/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 in Cumulus Linux.
 
 {{%notice note%}}
@@ -98,8 +97,7 @@ You can provision and manage EVPN using
 For Cumulus Linux 3.4 and later releases, the routing control plane
 (including EVPN) is installed as part of the
 [FRRouting](https://frrouting.org/) (FRR) package. For more information
-about FRR, refer to the [FRR
-Overview](/display/CL36/FRRouting+Overview).
+about FRR, refer to the [FRR Overview](/version/cumulus-linux-36/Layer-3/FRRouting-Overview/).
 
 {{%/notice%}}
 
@@ -270,7 +268,7 @@ want them derived automatically. To manually define RDs and RTs, use the
 These commands create the following configuration snippet in the
 `/etc/frr/frr.conf` file.
 
-``` 
+```
  address-family l2vpn evpn
   advertise-all-vni
   vni 10200
@@ -506,7 +504,7 @@ These commands create the following configuration in the
         bridge-learning off
         vxlan-id 10100
         vxlan-local-tunnelip 10.0.0.1
-     
+
     auto vni200
     iface vni200
          bridge-learning off
@@ -528,7 +526,7 @@ file using a text editor:
         bridge-learning vni100=off
         bridge-arp-nd-suppress vni100=on
         ip6-forward off
-        ip-forward off 
+        ip-forward off
 
 {{%/notice%}}
 
@@ -1132,10 +1130,10 @@ below). The output also shows that MAC learning is disabled (*off*) on
 the VXLAN interface.
 
     cumulus@leaf01:~$ ip -d link show type vxlan
-    9: vni100: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master bridge state UNKNOWN mode DEFAULT group default 
-        link/ether 72:bc:b4:a3:eb:1e brd ff:ff:ff:ff:ff:ff promiscuity 1 
-        vxlan id 10100 local 10.0.0.1 srcport 0 0 dstport 4789 nolearning ageing 300 
-        bridge_slave state forwarding priority 8 cost 100 hairpin off guard off root_block off fastleave off learning off flood on port_id 0x8001 port_no 0x1 designated_port 32769 designated_cost 0 designated_bridge 8000.0:1:0:0:11:0 designated_root 8000.0:1:0:0:11:0 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on neigh_suppress on group_fwd_mask 0x0 group_fwd_mask_str 0x0 group_fwd_maskhi 0x0 group_fwd_maskhi_str 0x0 addrgenmode eui64 
+    9: vni100: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master bridge state UNKNOWN mode DEFAULT group default
+        link/ether 72:bc:b4:a3:eb:1e brd ff:ff:ff:ff:ff:ff promiscuity 1
+        vxlan id 10100 local 10.0.0.1 srcport 0 0 dstport 4789 nolearning ageing 300
+        bridge_slave state forwarding priority 8 cost 100 hairpin off guard off root_block off fastleave off learning off flood on port_id 0x8001 port_no 0x1 designated_port 32769 designated_cost 0 designated_bridge 8000.0:1:0:0:11:0 designated_root 8000.0:1:0:0:11:0 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on neigh_suppress on group_fwd_mask 0x0 group_fwd_mask_str 0x0 group_fwd_maskhi 0x0 group_fwd_maskhi_str 0x0 addrgenmode eui64
     ...
     cumulus@leaf01:~$
 
@@ -1159,14 +1157,14 @@ information from this output includes:
 
     cumulus@leaf01:~$ bridge fdb show
     00:02:00:00:00:13 dev swp3 master bridge permanent
-    00:02:00:00:00:01 dev swp3 vlan 100 master bridge 
-    00:02:00:00:00:02 dev swp4 vlan 100 master bridge 
+    00:02:00:00:00:01 dev swp3 vlan 100 master bridge
+    00:02:00:00:00:02 dev swp4 vlan 100 master bridge
     72:bc:b4:a3:eb:1e dev vni100 master bridge permanent
-    00:02:00:00:00:06 dev vni100 vlan 100 offload master bridge 
+    00:02:00:00:00:06 dev vni100 vlan 100 offload master bridge
     00:00:00:00:00:00 dev vni100 dst 10.0.0.3 self permanent
     00:00:00:00:00:00 dev vni100 dst 10.0.0.4 self permanent
     00:00:00:00:00:00 dev vni100 dst 10.0.0.2 self permanent
-    00:02:00:00:00:06 dev vni100 dst 10.0.0.2 self offload 
+    00:02:00:00:00:06 dev vni100 dst 10.0.0.2 self offload
     ...
 
 A sample output of `ip neigh show` is shown below. Some interesting
@@ -1370,7 +1368,7 @@ VXLAN interface and SVI.
      Number of MACs (local and remote) known for this VNI: 8
      Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 12
      Advertise-gw-macip: No
-    cumulus@leaf01:~$ 
+    cumulus@leaf01:~$
     cumulus@leaf01:~$ net show evpn vni 104001
     VNI: 104001
       Type: L3
@@ -1380,7 +1378,7 @@ VXLAN interface and SVI.
       SVI-If: vlan4001
       State: Up
       Router MAC: 00:01:00:00:11:00
-      L2 VNIs: 10100 10200 
+      L2 VNIs: 10100 10200
     cumulus@leaf01:~$
 
 ### <span>Examining Local and Remote MAC Addresses for a VNI in EVPN</span>
@@ -1390,7 +1388,7 @@ addresses for a VNI. This command is only relevant for a layer 2 VNI:
 
     cumulus@leaf01:~$ net show evpn mac vni 10100
     Number of MACs (local and remote) known for this VNI: 8
-    MAC               Type   Intf/Remote VTEP      VLAN 
+    MAC               Type   Intf/Remote VTEP      VLAN
     00:02:00:00:00:0e remote 10.0.0.4            
     00:02:00:00:00:06 remote 10.0.0.2            
     00:02:00:00:00:05 remote 10.0.0.2            
@@ -1418,10 +1416,10 @@ remote MAC addresses behind a specific VTEP:
     MAC: 00:02:00:00:00:05
      Remote VTEP: 10.0.0.2
      Neighbors:
-        172.16.120.21 
+        172.16.120.21
     cumulus@leaf01:~$ net show evpn mac vni 10100 vtep 10.0.0.3
     VNI 10100
-    MAC               Type   Intf/Remote VTEP      VLAN 
+    MAC               Type   Intf/Remote VTEP      VLAN
     00:02:00:00:00:09 remote 10.0.0.3            
     00:02:00:00:00:0a remote 10.0.0.3            
     cumulus@leaf01:~$
@@ -1507,7 +1505,7 @@ can be used to verify that remote host and prefix routes are installed
 in the VRF routing table and point to the appropriate gateway next hop.
 
     cumulus@leaf01:~$ net show route vrf vrf1
-    show ip route vrf vrf1 
+    show ip route vrf vrf1
     =======================
     Codes: K - kernel route, C - connected, S - static, R - RIP,
            O - OSPF, I - IS-IS, B - BGP, P - PIM, E - EIGRP, N - NHRP,
@@ -1538,7 +1536,7 @@ Run the `net show bgp l2vpn evpn route` command to display all EVPN
 routes, both local and remote. The routes displayed here are based on RD
 as they are across VNIs and VRFs:
 
-    cumulus@leaf01:~$ net show bgp l2vpn evpn route 
+    cumulus@leaf01:~$ net show bgp l2vpn evpn route
     BGP table version is 0, local router ID is 10.0.0.1
     Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
     Origin codes: i - IGP, e - EGP, ? - incomplete
@@ -1574,7 +1572,7 @@ as they are across VNIs and VRFs:
 You can filter the routing table based on EVPN route type. The available
 options are shown below:
 
-    cumulus@leaf01:~$ net show bgp l2vpn evpn route type 
+    cumulus@leaf01:~$ net show bgp l2vpn evpn route type
         macip      :  MAC-IP (Type-2) route
         multicast  :  Multicast
         prefix     :  An IPv4 or IPv6 prefix
@@ -1710,7 +1708,7 @@ route target attributes. You can examine BGP's VRF routing table using
 the `net show bgp vrf <vrf-name> ipv4 unicast` command or the `net show
 bgp vrf <vrf-name> ipv6 unicast` command.
 
-    cumulus@leaf01:~$ net show bgp vrf vrf1 ipv4 unicast 
+    cumulus@leaf01:~$ net show bgp vrf vrf1 ipv4 unicast
     BGP table version is 8, local router ID is 172.16.120.250
     Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
                   i internal, r RIB-failure, S Stale, R Removed
@@ -1855,37 +1853,37 @@ bridging.
 <td><details>
 <summary>leaf01 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf01:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.7/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.7
- 
+
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  920 
+    mtu  920
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.9/30
@@ -1895,21 +1893,21 @@ iface peerlink-3.4094
     clagd-peer-ip 169.254.0.10
     # post-up sysctl -w net.ipv4.conf.peerlink-3/4094.accept_local=1
     clagd-backup-ip 10.0.0.8
- 
+
 auto hostbond4
 iface hostbond4
     bond-slaves swp7
-    mtu  9152 
+    mtu  9152
     clag-id 1
     bridge-pvid 1000
- 
+
 auto hostbond5
 iface hostbond5
     bond-slaves swp8
-    mtu  9152 
+    mtu  9152
     clag-id 2
     bridge-pvid 1001
- 
+
 auto vx-101000
 iface vx-101000
     vxlan-id 101000
@@ -1920,7 +1918,7 @@ iface vx-101000
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101001
 iface vx-101001
     vxlan-id 101001
@@ -1931,7 +1929,7 @@ iface vx-101001
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto VxLanA-1
 iface VxLanA-1
     bridge-vlan-aware yes
@@ -1939,19 +1937,19 @@ iface VxLanA-1
     bridge-stp on
     bridge-vids 1000-1001
     bridge-pvid 1
- 
+
 auto vlan1
 iface vlan1
     vlan-id 1
     vlan-raw-device VxLanA-1
     ip-forward off
- 
+
 auto vlan1000
 iface vlan1000
     vlan-id 1000
     vlan-raw-device VxLanA-1
     ip-forward off
- 
+
 auto vlan1001
 iface vlan1001
     vlan-id 1001
@@ -1960,24 +1958,24 @@ iface vlan1001
 </details></td>
 <td><details>
 <summary>leaf02 /etc/network/interfaces </summary>
-<pre><code>cumulus@leaf02:~$ cat /etc/network/interfaces 
- 
+<pre><code>cumulus@leaf02:~$ cat /etc/network/interfaces
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.8/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.7
- 
+
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
@@ -1986,12 +1984,12 @@ auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.10/30
@@ -2001,21 +1999,21 @@ iface peerlink-3.4094
     clagd-peer-ip 169.254.0.9
     # post-up sysctl -w net.ipv4.conf.peerlink-3/4094.accept_local=1
     clagd-backup-ip 10.0.0.7
- 
+
 auto hostbond4
 iface hostbond4
     bond-slaves swp7
     mtu  9152
     clag-id 1
     bridge-pvid 1000
- 
+
 auto hostbond5
 iface hostbond5
     bond-slaves swp8
     mtu  9152
     clag-id 2
     bridge-pvid 1001
- 
+
 auto vx-101000
 iface vx-101000
     vxlan-id 101000
@@ -2026,7 +2024,7 @@ iface vx-101000
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101001
 iface vx-101001
     vxlan-id 101001
@@ -2037,7 +2035,7 @@ iface vx-101001
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto VxLanA-1
 iface VxLanA-1
     bridge-vlan-aware yes
@@ -2045,19 +2043,19 @@ iface VxLanA-1
     bridge-stp on
     bridge-vids 1000-1001
     bridge-pvid 1
- 
+
 auto vlan1
 iface vlan1
     vlan-id 1
     vlan-raw-device VxLanA-1
     ip-forward off
- 
+
 auto vlan1000
 iface vlan1000
     vlan-id 1000
     vlan-raw-device VxLanA-1
     ip-forward off
- 
+
 auto vlan1001
 iface vlan1001
     vlan-id 1001
@@ -2069,7 +2067,7 @@ iface vlan1001
 <td><details>
 <summary>leaf01 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@leaf01:~$ cat /etc/frr/frr.conf
- 
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -2118,7 +2116,7 @@ line vty
 <td><details>
 <summary>leaf02 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/frr/frr.conf
- 
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -2180,28 +2178,28 @@ line vty
 <td><details>
 <summary>leaf03 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf03:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.9/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.9
- 
+
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
@@ -2210,7 +2208,7 @@ auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.9/30
@@ -2221,21 +2219,21 @@ iface peerlink-3.4094
     clagd-peer-ip 169.254.0.10
     # post-up sysctl -w net.ipv4.conf.peerlink-3/4094.accept_local=1
     clagd-backup-ip 10.0.0.10
- 
+
 auto hostbond4
 iface hostbond4
     bond-slaves swp7
     mtu  9152
     clag-id 1
     bridge-pvid 1000
- 
+
 auto hostbond5
 iface hostbond5
     bond-slaves swp8
     mtu  9152
     clag-id 2
     bridge-pvid 1001
- 
+
 auto vx-101000
 iface vx-101000
     vxlan-id 101000
@@ -2246,7 +2244,7 @@ iface vx-101000
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101001
 iface vx-101001
     vxlan-id 101001
@@ -2257,7 +2255,7 @@ iface vx-101001
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto VxLanA-1
 iface VxLanA-1
     bridge-vlan-aware yes
@@ -2265,19 +2263,19 @@ iface VxLanA-1
     bridge-stp on
     bridge-vids 1000-1001
     bridge-pvid 1
- 
+
 auto vlan1
 iface vlan1
     vlan-id 1
     vlan-raw-device VxLanA-1
     ip-forward off
- 
+
 auto vlan1000
 iface vlan1000
     vlan-id 1000
     vlan-raw-device VxLanA-1
     ip-forward off
- 
+
 auto vlan1001
 iface vlan1001
     vlan-id 1001
@@ -2286,34 +2284,34 @@ iface vlan1001
 </details></td>
 <td><details>
 <summary>leaf04 /etc/network/interfaces </summary>
-<pre><code>cumulus@leaf04:~$ cat /etc/network/interfaces 
- 
+<pre><code>cumulus@leaf04:~$ cat /etc/network/interfaces
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.10/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.9
- 
+
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
@@ -2328,21 +2326,21 @@ iface peerlink-3.4094
     clagd-peer-ip 169.254.0.9
     # post-up sysctl -w net.ipv4.conf.peerlink-3/4094.accept_local=1
     clagd-backup-ip 10.0.0.9
- 
+
 auto hostbond4
 iface hostbond4
     bond-slaves swp7
     mtu  9152
     clag-id 1
     bridge-pvid 1000
- 
+
 auto hostbond5
 iface hostbond5
     bond-slaves swp8
     mtu  9152
     clag-id 2
     bridge-pvid 1001
- 
+
 auto vx-101000
 iface vx-101000
     vxlan-id 101000
@@ -2353,7 +2351,7 @@ iface vx-101000
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101001
 iface vx-101001
     vxlan-id 101001
@@ -2364,7 +2362,7 @@ iface vx-101001
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto VxLanA-1
 iface VxLanA-1
     bridge-vlan-aware yes
@@ -2372,19 +2370,19 @@ iface VxLanA-1
     bridge-stp on
     bridge-vids 1000-1001
     bridge-pvid 1
- 
+
 auto vlan1
 iface vlan1
     vlan-id 1
     vlan-raw-device VxLanA-1
     ip-forward off
- 
+
 auto vlan1000
 iface vlan1000
     vlan-id 1000
     vlan-raw-device VxLanA-1
     ip-forward off
- 
+
 auto vlan1001
 iface vlan1001
     vlan-id 1001
@@ -2396,7 +2394,7 @@ iface vlan1001
 <td><details>
 <summary>leaf03 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@leaf03:~$ cat /etc/frr/frr.conf
- 
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -2445,7 +2443,7 @@ line vty
 <td><details>
 <summary>leaf04 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@leaf04:~$ cat /etc/frr/frr.conf
- 
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -2507,32 +2505,32 @@ line vty
 <td><details>
 <summary>spine01 /etc/network/interfaces </summary>
 <pre><code>cumulus@spine01:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.5/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
- 
+
 auto downlink-1
 iface downlink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto downlink-2
 iface downlink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto downlink-3
 iface downlink-3
     bond-slaves swp5 swp6
@@ -2545,37 +2543,37 @@ iface downlink-4
 <td><details>
 <summary>spine02 /etc/network/interfaces </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.6/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
- 
+
 auto downlink-1
 iface downlink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto downlink-2
 iface downlink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto downlink-3
 iface downlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto downlink-4
 iface downlink-4
     bond-slaves swp7 swp8
@@ -2586,7 +2584,7 @@ iface downlink-4
 <td><details>
 <summary>spine01 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@spine01:~$ cat /etc/frr/frr.conf
- 
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -2646,7 +2644,7 @@ line vty
 <td><details>
 <summary>spine02 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/frr/frr.conf
- 
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -2726,38 +2724,38 @@ centralized routing. MLAG is configured between leaf switches.
 <td><details>
 <summary>leaf01 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf01:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.7/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.7
- 
+
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.9/30
@@ -2767,21 +2765,21 @@ iface peerlink-3.4094
     clagd-sys-mac 44:38:39:ff:ff:01
     clagd-peer-ip 169.254.0.10
     clagd-backup-ip 10.0.0.8
- 
+
 auto hostbond4
 iface hostbond4
     bond-slaves swp7
     mtu  9152
     clag-id 1
     bridge-pvid 1000
- 
+
 auto hostbond5
 iface hostbond5
     bond-slaves swp8
     mtu  9152
     clag-id 2
     bridge-pvid 1001
- 
+
 auto vx-101000
 iface vx-101000
     vxlan-id 101000
@@ -2792,7 +2790,7 @@ iface vx-101000
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101001
 iface vx-101001
     vxlan-id 101001
@@ -2803,7 +2801,7 @@ iface vx-101001
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101002
 iface vx-101002
     vxlan-id 101002
@@ -2814,7 +2812,7 @@ iface vx-101002
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101003
 iface vx-101003
     vxlan-id 101003
@@ -2825,7 +2823,7 @@ iface vx-101003
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto bridge
 iface bridge
     bridge-vlan-aware yes
@@ -2833,11 +2831,11 @@ iface bridge
     bridge-stp on
     bridge-vids 1000-1003
     bridge-pvid 1
- 
+
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vlan1000
 iface vlan1000
     address 45.0.0.2/24
@@ -2846,7 +2844,7 @@ iface vlan1000
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
     vrf vrf1
- 
+
 auto vlan1001
 iface vlan1001
     address 45.0.1.2/24
@@ -2855,11 +2853,11 @@ iface vlan1001
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
     vrf vrf1
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 auto vlan1002
 iface vlan1002
     address 45.0.2.2/24
@@ -2868,7 +2866,7 @@ iface vlan1002
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
     vrf vrf2
- 
+
 auto vlan1003
 iface vlan1003
     address 45.0.3.2/24
@@ -2881,38 +2879,38 @@ iface vlan1003
 <td><details>
 <summary>leaf02 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.8/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.7
- 
+
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.10/30
@@ -2922,21 +2920,21 @@ iface peerlink-3.4094
     clagd-sys-mac 44:38:39:ff:ff:01
     clagd-peer-ip 169.254.0.9
     clagd-backup-ip 10.0.0.7
- 
+
 auto hostbond4
 iface hostbond4
     bond-slaves swp7
     mtu  9152
     clag-id 1
     bridge-pvid 1000
- 
+
 auto hostbond5
 iface hostbond5
     bond-slaves swp8
     mtu  9152
     clag-id 2
     bridge-pvid 1001
- 
+
 auto vx-101000
 iface vx-101000
     vxlan-id 101000
@@ -2947,7 +2945,7 @@ iface vx-101000
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101001
 iface vx-101001
     vxlan-id 101001
@@ -2958,7 +2956,7 @@ iface vx-101001
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101002
 iface vx-101002
     vxlan-id 101002
@@ -2969,7 +2967,7 @@ iface vx-101002
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101003
 iface vx-101003
     vxlan-id 101003
@@ -2980,7 +2978,7 @@ iface vx-101003
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto bridge
 iface bridge
     bridge-vlan-aware yes
@@ -2988,11 +2986,11 @@ iface bridge
     bridge-stp on
     bridge-vids 1000-1003
     bridge-pvid 1
- 
+
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vlan1000
 iface vlan1000
     address 45.0.0.3/24
@@ -3001,7 +2999,7 @@ iface vlan1000
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
     vrf vrf1
- 
+
 auto vlan1001
 iface vlan1001
     address 45.0.1.3/24
@@ -3010,11 +3008,11 @@ iface vlan1001
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
     vrf vrf1
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 auto vlan1002
 iface vlan1002
     address 45.0.2.3/24
@@ -3023,7 +3021,7 @@ iface vlan1002
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
     vrf vrf2
- 
+
 auto vlan1003
 iface vlan1003
     address 45.0.3.3/24
@@ -3037,8 +3035,8 @@ iface vlan1003
 <tr class="even">
 <td><details>
 <summary>leaf01 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@leaf01:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@leaf01:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -3087,8 +3085,8 @@ line vty
 </details></td>
 <td><details>
 <summary>leaf02 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@leaf02:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@leaf02:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -3151,38 +3149,38 @@ line vty
 <td><details>
 <summary>leaf03 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf03:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.9/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.9
- 
+
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.9/30
@@ -3192,21 +3190,21 @@ iface peerlink-3.4094
     clagd-sys-mac 44:38:39:ff:ff:02
     clagd-peer-ip 169.254.0.10
     clagd-backup-ip 10.0.0.10
- 
+
 auto hostbond4
 iface hostbond4
     bond-slaves swp7
     mtu  9152
     clag-id 1
     bridge-pvid 1000
- 
+
 auto hostbond5
 iface hostbond5
     bond-slaves swp8
     mtu  9152
     clag-id 2
     bridge-pvid 1001
- 
+
 auto vx-101000
 iface vx-101000
     vxlan-id 101000
@@ -3217,7 +3215,7 @@ iface vx-101000
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101001
 iface vx-101001
     vxlan-id 101001
@@ -3228,7 +3226,7 @@ iface vx-101001
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101002
 iface vx-101002
     vxlan-id 101002
@@ -3239,7 +3237,7 @@ iface vx-101002
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101003
 iface vx-101003
     vxlan-id 101003
@@ -3250,7 +3248,7 @@ iface vx-101003
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto bridge
 iface bridge
     bridge-vlan-aware yes
@@ -3258,33 +3256,33 @@ iface bridge
     bridge-stp on
     bridge-vids 1000-1003
     bridge-pvid 1
- 
+
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vlan1000
 iface vlan1000
     vlan-id 1000
     vlan-raw-device bridge
     ip-forward off
- 
+
 auto vlan1001
 iface vlan1001
     vlan-id 1001
     vlan-raw-device bridge
     ip-forward off
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 auto vlan1002
 iface vlan1002
     vlan-id 1002
     vlan-raw-device bridge
     ip-forward off
- 
+
 auto vlan1003
 iface vlan1003
     vlan-id 1003
@@ -3294,38 +3292,38 @@ iface vlan1003
 <td><details>
 <summary>leaf04 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf04:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.10/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.9
- 
+
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.10/30
@@ -3335,21 +3333,21 @@ iface peerlink-3.4094
     clagd-sys-mac 44:38:39:ff:ff:02
     clagd-peer-ip 169.254.0.9
     clagd-backup-ip 10.0.0.9
- 
+
 auto hostbond4
 iface hostbond4
     bond-slaves swp7
     mtu  9152
     clag-id 1
     bridge-pvid 1000
- 
+
 auto hostbond5
 iface hostbond5
     bond-slaves swp8
     mtu  9152
     clag-id 2
     bridge-pvid 1001
- 
+
 auto vx-101000
 iface vx-101000
     vxlan-id 101000
@@ -3360,7 +3358,7 @@ iface vx-101000
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101001
 iface vx-101001
     vxlan-id 101001
@@ -3371,7 +3369,7 @@ iface vx-101001
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101002
 iface vx-101002
     vxlan-id 101002
@@ -3382,7 +3380,7 @@ iface vx-101002
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101003
 iface vx-101003
     vxlan-id 101003
@@ -3393,7 +3391,7 @@ iface vx-101003
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto bridge
 iface bridge
     bridge-vlan-aware yes
@@ -3401,33 +3399,33 @@ iface bridge
     bridge-stp on
     bridge-vids 1000-1003
     bridge-pvid 1
- 
+
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vlan1000
 iface vlan1000
     vlan-id 1000
     vlan-raw-device bridge
     ip-forward off
- 
+
 auto vlan1001
 iface vlan1001
     vlan-id 1001
     vlan-raw-device bridge
     ip-forward off
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 auto vlan1002
 iface vlan1002
     vlan-id 1002
     vlan-raw-device bridge
     ip-forward off
- 
+
 auto vlan1003
 iface vlan1003
     vlan-id 1003
@@ -3438,8 +3436,8 @@ iface vlan1003
 <tr class="even">
 <td><details>
 <summary>leaf03 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@leaf03:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@leaf03:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -3487,8 +3485,8 @@ line vty
 </details></td>
 <td><details>
 <summary>leaf04 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@leaf04:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@leaf04:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -3550,37 +3548,37 @@ line vty
 <td><details>
 <summary>spine01 /etc/network/interfaces </summary>
 <pre><code>cumulus@spine01:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.5/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
- 
+
 auto downlink-1
 iface downlink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto downlink-2
 iface downlink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto downlink-3
 iface downlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto downlink-4
 iface downlink-4
     bond-slaves swp7 swp8
@@ -3589,37 +3587,37 @@ iface downlink-4
 <td><details>
 <summary>spine02 /etc/network/interfaces </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.6/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
- 
+
 auto downlink-1
 iface downlink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto downlink-2
 iface downlink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto downlink-3
 iface downlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto downlink-4
 iface downlink-4
     bond-slaves swp7 swp8
@@ -3629,8 +3627,8 @@ iface downlink-4
 <tr class="even">
 <td><details>
 <summary>spine01 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@spine01:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@spine01:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -3689,8 +3687,8 @@ line vty
 </details></td>
 <td><details>
 <summary>spine02 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@spine02:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@spine02:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -3770,38 +3768,38 @@ asymmetric routing. MLAG is configured between leaf switches.
 <td><details>
 <summary>leaf01 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf01:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.7/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.7
- 
+
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.9/30
@@ -3811,21 +3809,21 @@ iface peerlink-3.4094
     clagd-sys-mac 44:38:39:ff:ff:01
     clagd-peer-ip 169.254.0.10
     clagd-backup-ip 10.0.0.8
- 
+
 auto hostbond4
 iface hostbond4
     bond-slaves swp7
     mtu  9152
     clag-id 1
     bridge-pvid 1000
- 
+
 auto hostbond5
 iface hostbond5
     bond-slaves swp8
     mtu  9152
     clag-id 2
     bridge-pvid 1001
- 
+
 auto vx-101000
 iface vx-101000
     vxlan-id 101000
@@ -3836,7 +3834,7 @@ iface vx-101000
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101001
 iface vx-101001
     vxlan-id 101001
@@ -3847,7 +3845,7 @@ iface vx-101001
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101002
 iface vx-101002
     vxlan-id 101002
@@ -3858,7 +3856,7 @@ iface vx-101002
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101003
 iface vx-101003
     vxlan-id 101003
@@ -3869,7 +3867,7 @@ iface vx-101003
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto bridge
 iface bridge
     bridge-vlan-aware yes
@@ -3877,11 +3875,11 @@ iface bridge
     bridge-stp on
     bridge-vids 1000-1003
     bridge-pvid 1
- 
+
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vlan1000
 iface vlan1000
     address 45.0.0.2/24
@@ -3890,7 +3888,7 @@ iface vlan1000
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
     vrf vrf1
- 
+
 auto vlan1001
 iface vlan1001
     address 45.0.1.2/24
@@ -3899,11 +3897,11 @@ iface vlan1001
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
     vrf vrf1
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 auto vlan1002
 iface vlan1002
     address 45.0.2.2/24
@@ -3912,7 +3910,7 @@ iface vlan1002
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
     vrf vrf2
- 
+
 auto vlan1003
 iface vlan1003
     address 45.0.3.2/24
@@ -3925,38 +3923,38 @@ iface vlan1003
 <td><details>
 <summary>leaf02 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.8/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.7
- 
+
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.10/30
@@ -3966,21 +3964,21 @@ iface peerlink-3.4094
     clagd-sys-mac 44:38:39:ff:ff:01
     clagd-peer-ip 169.254.0.9
     clagd-backup-ip 10.0.0.7
- 
+
 auto hostbond4
 iface hostbond4
     bond-slaves swp7
     mtu  9152
     clag-id 1
     bridge-pvid 1000
- 
+
 auto hostbond5
 iface hostbond5
     bond-slaves swp8
     mtu  9152
     clag-id 2
     bridge-pvid 1001
- 
+
 auto vx-101000
 iface vx-101000
     vxlan-id 101000
@@ -3991,7 +3989,7 @@ iface vx-101000
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101001
 iface vx-101001
     vxlan-id 101001
@@ -4002,7 +4000,7 @@ iface vx-101001
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101002
 iface vx-101002
     vxlan-id 101002
@@ -4013,7 +4011,7 @@ iface vx-101002
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101003
 iface vx-101003
     vxlan-id 101003
@@ -4024,7 +4022,7 @@ iface vx-101003
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto bridge
 iface bridge
     bridge-vlan-aware yes
@@ -4032,11 +4030,11 @@ iface bridge
     bridge-stp on
     bridge-vids 1000-1003
     bridge-pvid 1
- 
+
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vlan1000
 iface vlan1000
     address 45.0.0.3/24
@@ -4045,7 +4043,7 @@ iface vlan1000
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
     vrf vrf1
- 
+
 auto vlan1001
 iface vlan1001
     address 45.0.1.3/24
@@ -4054,11 +4052,11 @@ iface vlan1001
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
     vrf vrf1
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 auto vlan1002
 iface vlan1002
     address 45.0.2.3/24
@@ -4067,7 +4065,7 @@ iface vlan1002
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
     vrf vrf2
- 
+
 auto vlan1003
 iface vlan1003
     address 45.0.3.3/24
@@ -4082,7 +4080,7 @@ iface vlan1003
 <td><details>
 <summary>leaf01 /etc/frr/frr.conf </summary>
 <pre><code> cumulus@leaf01:~$ cat /etc/frr/frr.conf
- 
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -4131,7 +4129,7 @@ line vty
 <td><details>
 <summary>leaf02 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/frr/frr.conf
- 
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -4193,38 +4191,38 @@ line vty
 <td><details>
 <summary>leaf03 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf03:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.9/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 36.0.0.9
- 
+
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.9/30
@@ -4234,21 +4232,21 @@ iface peerlink-3.4094
     clagd-sys-mac 44:38:39:ff:ff:02
     clagd-peer-ip 169.254.0.10
     clagd-backup-ip 10.0.0.10
- 
+
 auto hostbond4
 iface hostbond4
     bond-slaves swp7
     mtu  9152
     clag-id 1
     bridge-pvid 1000
- 
+
 auto hostbond5
 iface hostbond5
     bond-slaves swp8
     mtu  9152
     clag-id 2
     bridge-pvid 1001
- 
+
 auto vx-101000
 iface vx-101000
     vxlan-id 101000
@@ -4259,7 +4257,7 @@ iface vx-101000
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101001
 iface vx-101001
     vxlan-id 101001
@@ -4270,7 +4268,7 @@ iface vx-101001
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101002
 iface vx-101002
     vxlan-id 101002
@@ -4281,7 +4279,7 @@ iface vx-101002
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101003
 iface vx-101003
     vxlan-id 101003
@@ -4292,7 +4290,7 @@ iface vx-101003
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto bridge
 iface bridge
     bridge-vlan-aware yes
@@ -4300,11 +4298,11 @@ iface bridge
     bridge-stp on
     bridge-vids 1000-1003
     bridge-pvid 1
- 
+
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vlan1000
 iface vlan1000
     address 45.0.0.2/24
@@ -4313,7 +4311,7 @@ iface vlan1000
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
     vrf vrf1
- 
+
 auto vlan1001
 iface vlan1001
     address 45.0.1.2/24
@@ -4322,11 +4320,11 @@ iface vlan1001
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
     vrf vrf1
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 auto vlan1002
 iface vlan1002
     address 45.0.2.2/24
@@ -4335,7 +4333,7 @@ iface vlan1002
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
     vrf vrf2
- 
+
 auto vlan1003
 iface vlan1003
     address 45.0.3.2/24
@@ -4348,38 +4346,38 @@ iface vlan1003
 <td><details>
 <summary>leaf04 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf04:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.10/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 36.0.0.9
- 
+
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.10/30
@@ -4389,21 +4387,21 @@ iface peerlink-3.4094
     clagd-sys-mac 44:38:39:ff:ff:02
     clagd-peer-ip 169.254.0.9
     clagd-backup-ip 10.0.0.9
- 
+
 auto hostbond4
 iface hostbond4
     bond-slaves swp7
     mtu  9152
     clag-id 1
     bridge-pvid 1000
- 
+
 auto hostbond5
 iface hostbond5
     bond-slaves swp8
     mtu  9152
     clag-id 2
     bridge-pvid 1001
- 
+
 auto vx-101000
 iface vx-101000
     vxlan-id 101000
@@ -4414,7 +4412,7 @@ iface vx-101000
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101001
 iface vx-101001
     vxlan-id 101001
@@ -4425,7 +4423,7 @@ iface vx-101001
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101002
 iface vx-101002
     vxlan-id 101002
@@ -4436,7 +4434,7 @@ iface vx-101002
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto vx-101003
 iface vx-101003
     vxlan-id 101003
@@ -4447,7 +4445,7 @@ iface vx-101003
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
     mtu 9152
- 
+
 auto bridge
 iface bridge
     bridge-vlan-aware yes
@@ -4455,11 +4453,11 @@ iface bridge
     bridge-stp on
     bridge-vids 1000-1003
     bridge-pvid 1
- 
+
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vlan1000
 iface vlan1000
     address 45.0.0.3/24
@@ -4468,7 +4466,7 @@ iface vlan1000
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
     vrf vrf1
- 
+
 auto vlan1001
 iface vlan1001
     address 45.0.1.3/24
@@ -4477,11 +4475,11 @@ iface vlan1001
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
     vrf vrf1
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 auto vlan1002
 iface vlan1002
     address 45.0.2.3/24
@@ -4490,7 +4488,7 @@ iface vlan1002
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
     vrf vrf2
- 
+
 auto vlan1003
 iface vlan1003
     address 45.0.3.3/24
@@ -4504,8 +4502,8 @@ iface vlan1003
 <tr class="even">
 <td><details>
 <summary>leaf03 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@leaf03:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@leaf03:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -4553,8 +4551,8 @@ line vty
 </details></td>
 <td><details>
 <summary>leaf04 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@leaf04:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@leaf04:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -4616,32 +4614,32 @@ line vty
 <td><details>
 <summary>spine01 /etc/network/interfaces </summary>
 <pre><code>cumulus@spine01:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.5/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
- 
+
 auto downlink-1
 iface downlink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto downlink-2
 iface downlink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto downlink-3
 iface downlink-3
     bond-slaves swp5 swp6
@@ -4654,37 +4652,37 @@ iface downlink-4
 <td><details>
 <summary>spine02 /etc/network/interfaces </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5)
- 
+
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
- 
+
 auto lo
 iface lo
     address 10.0.0.6/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
- 
+
 auto downlink-1
 iface downlink-1
     bond-slaves swp1 swp2
     mtu  9202
- 
+
 auto downlink-2
 iface downlink-2
     bond-slaves swp3 swp4
     mtu  9202
- 
+
 auto downlink-3
 iface downlink-3
     bond-slaves swp5 swp6
     mtu  9202
- 
+
 auto downlink-4
 iface downlink-4
     bond-slaves swp7 swp8
@@ -4695,7 +4693,7 @@ iface downlink-4
 <td><details>
 <summary>spine01 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@spine01:~$ cat /etc/frr/frr.conf
- 
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -4755,7 +4753,7 @@ line vty
 <td><details>
 <summary>spine02 /etc/frr/frr.conf </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/frr/frr.conf
- 
+
 log file /var/log/frr/bgpd.log
 !
 log timestamp precision 6
@@ -4837,49 +4835,49 @@ diagram:
 <td><details>
 <summary>leaf01 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf01:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
- 
+
 # The loopback network interface
 auto lo
 iface lo inet loopback
- 
+
 auto eth0
 iface eth0
     address 192.168.0.15/24
     gateway 192.168.0.2
- 
+
 auto lo:1
 iface lo:1
     address 10.0.0.1/32
     #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
     #pre-up sysctl -w net.ipv4.route.gc_timeout=60
     #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
- 
+
 # L2 interfaces - ports, vxlan and bridge
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
     bridge-access 110
- 
+
 auto swp4
 iface swp4
     bridge-access 110
- 
+
 auto swp5
 iface swp5
     bridge-access 210
- 
+
 auto swp6
 iface swp6
     bridge-access 210
- 
+
 auto vni110
 iface vni110
     vxlan-id 10110
@@ -4887,7 +4885,7 @@ iface vni110
     bridge-learning off
     bridge-access 110
     bridge-arp-nd-suppress on
- 
+
 auto vni210
 iface vni210
     vxlan-id 10210
@@ -4895,37 +4893,37 @@ iface vni210
     bridge-learning off
     bridge-access 210
     bridge-arp-nd-suppress on
- 
+
 auto vni4001
 iface vni4001
     vxlan-id 104001
     vxlan-local-tunnelip 10.0.0.1
     bridge-learning off
     bridge-access 4001
- 
+
 auto vni4002
 iface vni4002
     vxlan-id 104002
     vxlan-local-tunnelip 10.0.0.1
     bridge-learning off
     bridge-access 4002
- 
+
 auto bridge
 iface bridge
     bridge-vlan-aware yes
     bridge-ports swp3 swp4 swp5 swp6 vni110 vni210 vni4001 vni4002
     bridge-stp on
     bridge-vids 110 210 4001 4002
- 
+
 # Tenants (VRFs)
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 # Tenant SVIs - anycast GW
 auto vlan110
 iface vlan110
@@ -4934,7 +4932,7 @@ iface vlan110
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 172.16.120.250/24
     vrf vrf1
- 
+
 auto vlan210
 iface vlan210
     address 172.16.130.1/24
@@ -4942,14 +4940,14 @@ iface vlan210
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 172.16.130.250/24
     vrf vrf2
- 
+
 # L3 VLAN interface per tenant (for L3 VNI)
 auto vlan4001
 iface vlan4001
     vlan-id 4001
     vlan-raw-device bridge
     vrf vrf1
- 
+
 auto vlan4002
 iface vlan4002
     vlan-id 4002
@@ -4959,49 +4957,49 @@ iface vlan4002
 <td><details>
 <summary>leaf02 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
- 
+
 # The loopback network interface
 auto lo
 iface lo inet loopback
- 
+
 auto eth0
 iface eth0
     address 192.168.0.15/24
     gateway 192.168.0.2
- 
+
 auto lo:1
 iface lo:1
     address 10.0.0.2/32
     #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
     #pre-up sysctl -w net.ipv4.route.gc_timeout=60
     #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
- 
+
 # L2 interfaces - ports, vxlan and bridge
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
     bridge-access 120
- 
+
 auto swp4
 iface swp4
     bridge-access 120
- 
+
 auto swp5
 iface swp5
     bridge-access 220
- 
+
 auto swp6
 iface swp6
     bridge-access 220
- 
+
 auto vni120
 iface vni120
     vxlan-id 10120
@@ -5009,7 +5007,7 @@ iface vni120
     bridge-learning off
     bridge-access 120
     bridge-arp-nd-suppress on
- 
+
 auto vni220
 iface vni220
     vxlan-id 10220
@@ -5017,37 +5015,37 @@ iface vni220
     bridge-learning off
     bridge-access 220
     bridge-arp-nd-suppress on
- 
+
 auto vni4001
 iface vni4001
     vxlan-id 104001
     vxlan-local-tunnelip 10.0.0.2
     bridge-learning off
     bridge-access 4001
- 
+
 auto vni4002
 iface vni4002
     vxlan-id 104002
     vxlan-local-tunnelip 10.0.0.2
     bridge-learning off
     bridge-access 4002
- 
+
 auto bridge
 iface bridge
     bridge-vlan-aware yes
     bridge-ports swp3 swp4 swp5 swp6 vni120 vni220 vni4001 vni4002
     bridge-stp on
     bridge-vids 120 220 4001 4002
- 
+
 # Tenants (VRFs)
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 # Tenant SVIs - anycast GW
 auto vlan120
 iface vlan120
@@ -5056,7 +5054,7 @@ iface vlan120
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 172.16.120.250/24
     vrf vrf1
- 
+
 auto vlan220
 iface vlan220
     address 172.16.130.2/24
@@ -5064,14 +5062,14 @@ iface vlan220
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 172.16.130.250/24
     vrf vrf2
- 
+
 # L3 VLAN interface per tenant (for L3 VNI)
 auto vlan4001
 iface vlan4001
     vlan-id 4001
     vlan-raw-device bridge
     vrf vrf1
- 
+
 auto vlan4002
 iface vlan4002
     vlan-id 4002
@@ -5082,8 +5080,8 @@ iface vlan4002
 <tr class="even">
 <td><details>
 <summary>leaf01 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@leaf01:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@leaf01:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/frr.log
 log timestamp precision 6
 !
@@ -5126,8 +5124,8 @@ line vty
 </details></td>
 <td><details>
 <summary>leaf02 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@leaf02:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@leaf02:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/frr.log
 log timestamp precision 6
 !
@@ -5184,49 +5182,49 @@ line vty
 <td><details>
 <summary>leaf03 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf03:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
- 
+
 # The loopback network interface
 auto lo
 iface lo inet loopback
- 
+
 auto eth0
 iface eth0
     address 192.168.0.15/24
     gateway 192.168.0.2
- 
+
 auto lo:1
 iface lo:1
     address 10.0.0.3/32
     #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
     #pre-up sysctl -w net.ipv4.route.gc_timeout=60
     #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
- 
+
 # L2 interfaces - ports, vxlan and bridge
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
     bridge-access 130
- 
+
 auto swp4
 iface swp4
     bridge-access 130
- 
+
 auto swp5
 iface swp5
     bridge-access 230
- 
+
 auto swp6
 iface swp6
     bridge-access 230
- 
+
 auto vni130
 iface vni130
     vxlan-id 10130
@@ -5234,7 +5232,7 @@ iface vni130
     bridge-learning off
     bridge-access 130
     bridge-arp-nd-suppress on
- 
+
 auto vni230
 iface vni230
     vxlan-id 10230
@@ -5242,37 +5240,37 @@ iface vni230
     bridge-learning off
     bridge-access 230
     bridge-arp-nd-suppress on
- 
+
 auto vni4001
 iface vni4001
     vxlan-id 104001
     vxlan-local-tunnelip 10.0.0.3
     bridge-learning off
     bridge-access 4001
- 
+
 auto vni4002
 iface vni4002
     vxlan-id 104002
     vxlan-local-tunnelip 10.0.0.3
     bridge-learning off
     bridge-access 4002
- 
+
 auto bridge
 iface bridge
     bridge-vlan-aware yes
     bridge-ports swp3 swp4 swp5 swp6 vni130 vni230 vni4001 vni4002
     bridge-stp on
     bridge-vids 130 230 4001 4002
- 
+
 # Tenants (VRFs)
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 # Tenant SVIs - anycast GW
 auto vlan130
 iface vlan130
@@ -5281,7 +5279,7 @@ iface vlan130
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 172.16.120.250/24
     vrf vrf1
- 
+
 auto vlan230
 iface vlan230
     address 172.16.130.3/24
@@ -5289,14 +5287,14 @@ iface vlan230
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 172.16.130.250/24
     vrf vrf2
- 
+
 # L3 VLAN interface per tenant (for L3 VNI)
 auto vlan4001
 iface vlan4001
     vlan-id 4001
     vlan-raw-device bridge
     vrf vrf1
- 
+
 auto vlan4002
 iface vlan4002
     vlan-id 4002
@@ -5306,49 +5304,49 @@ iface vlan4002
 <td><details>
 <summary>leaf04 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf04:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
- 
+
 # The loopback network interface
 auto lo
 iface lo inet loopback
- 
+
 auto eth0
 iface eth0
     address 192.168.0.15/24
     gateway 192.168.0.2
- 
+
 auto lo:1
 iface lo:1
     address 10.0.0.4/32
     #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
     #pre-up sysctl -w net.ipv4.route.gc_timeout=60
     #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
- 
+
 # L2 interfaces - ports, vxlan and bridge
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
     bridge-access 140
- 
+
 auto swp4
 iface swp4
     bridge-access 140
- 
+
 auto swp5
 iface swp5
     bridge-access 240
- 
+
 auto swp6
 iface swp6
     bridge-access 240
- 
+
 auto vni140
 iface vni140
     vxlan-id 10140
@@ -5356,7 +5354,7 @@ iface vni140
     bridge-learning off
     bridge-access 140
     bridge-arp-nd-suppress on
- 
+
 auto vni240
 iface vni240
     vxlan-id 10240
@@ -5364,37 +5362,37 @@ iface vni240
     bridge-learning off
     bridge-access 240
     bridge-arp-nd-suppress on
- 
+
 auto vni4001
 iface vni4001
     vxlan-id 104001
     vxlan-local-tunnelip 10.0.0.4
     bridge-learning off
     bridge-access 4001
- 
+
 auto vni4002
 iface vni4002
     vxlan-id 104002
     vxlan-local-tunnelip 10.0.0.4
     bridge-learning off
     bridge-access 4002
- 
+
 auto bridge
 iface bridge
     bridge-vlan-aware yes
     bridge-ports swp3 swp4 swp5 swp6 vni140 vni240 vni4001 vni4002
     bridge-stp on
     bridge-vids 140 240 4001 4002
- 
+
 # Tenants (VRFs)
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 # Tenant SVIs - anycast GW
 auto vlan140
 iface vlan140
@@ -5403,7 +5401,7 @@ iface vlan140
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 172.16.120.250/24
     vrf vrf1
- 
+
 auto vlan240
 iface vlan240
     address 172.16.130.4/24
@@ -5411,14 +5409,14 @@ iface vlan240
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 172.16.130.250/24
     vrf vrf2
- 
+
 # L3 VLAN interface per tenant (for L3 VNI)
 auto vlan4001
 iface vlan4001
     vlan-id 4001
     vlan-raw-device bridge
     vrf vrf1
- 
+
 auto vlan4002
 iface vlan4002
     vlan-id 4002
@@ -5429,8 +5427,8 @@ iface vlan4002
 <tr class="even">
 <td><details>
 <summary>leaf03 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@leaf03:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@leaf03:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/frr.log
 log timestamp precision 6
 !
@@ -5473,8 +5471,8 @@ line vty
 </details></td>
 <td><details>
 <summary>leaf04 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@leaf04:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@leaf04:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/frr.log
 log timestamp precision 6
 !
@@ -5545,76 +5543,76 @@ line vty
 <td><details>
 <summary>spine01 /etc/network/interfaces </summary>
 <pre><code>cumulus@spine01:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
- 
+
 # The loopback network interface
 auto lo
 iface lo inet loopback
- 
+
 auto eth0
 iface eth0
     address 192.168.0.15/24
     gateway 192.168.0.2
- 
+
 auto lo:1
 iface lo:1
     address 172.16.110.1/24
- 
+
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
- 
+
 auto swp4
 iface swp4
- 
+
 auto swp5
 iface swp5
- 
+
 auto swp6
 iface swp6</code></pre>
 </details></td>
 <td><details>
 <summary>spine02 /etc/network/interfaces </summary>
 <pre><code>cumulus@spine02:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
- 
+
 # The loopback network interface
 auto lo
 iface lo inet loopback
- 
+
 auto eth0
 iface eth0
     address 192.168.0.15/24
     gateway 192.168.0.2
- 
+
 auto lo:1
 iface lo:1
     address 172.16.110.2/24
- 
+
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
- 
+
 auto swp4
 iface swp4
- 
+
 auto swp5
 iface swp5
- 
+
 auto swp6
 iface swp6</code></pre>
 </details></td>
@@ -5622,8 +5620,8 @@ iface swp6</code></pre>
 <tr class="even">
 <td><details>
 <summary>spine01 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@spine01:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@spine01:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/frr.log
 log timestamp precision 6
 !
@@ -5666,8 +5664,8 @@ line vty
 </details></td>
 <td><details>
 <summary>spine02 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@spine02:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@spine02:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/frr.log
 log timestamp precision 6
 !
@@ -5724,43 +5722,43 @@ line vty
 <td><details>
 <summary>border-leaf01 /etc/network/interfaces </summary>
 <pre><code>cumulus@border-leaf01:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
- 
+
 # The loopback network interface
 auto lo
 iface lo inet loopback
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 auto lo:1
 iface lo:1
     address 10.0.0.5/32
     #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
     #pre-up sysctl -w net.ipv4.route.gc_timeout=60
     #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
- 
+
 # Physical interfaces
 auto swp1s0
 iface swp1s0
- 
+
 auto swp1s1
 iface swp1s1
- 
+
 auto swp1s2
 iface swp1s2
     bridge-vids 2001 2002
- 
+
 auto swp1s3
 iface swp1s3
     bridge-access 150
- 
+
 auto swp2s0
 iface swp2s0
     bridge-access 250
- 
+
 auto vni150
 iface vni150
     vxlan-id 10150
@@ -5768,7 +5766,7 @@ iface vni150
     bridge-learning off
     bridge-access 150
     bridge-arp-nd-suppress on
-    
+
 auto vni250
 iface vni250
     vxlan-id 10250
@@ -5776,16 +5774,16 @@ iface vni250
     bridge-learning off
     bridge-access 250
     bridge-arp-nd-suppress on
- 
+
 # Tenant VRFs
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 # VxLAN interfaces (VLAN to VNI mappings)
 # Need only the L3 VxLAN interfaces
 auto vni4001
@@ -5794,14 +5792,14 @@ iface vni4001
     vxlan-local-tunnelip 10.0.0.5
     bridge-learning off
     bridge-access 4001
- 
+
 auto vni4002
 iface vni4002
     vxlan-id 104002
     vxlan-local-tunnelip 10.0.0.5
     bridge-learning off
     bridge-access 4002
- 
+
 # Bridge
 auto bridge
 iface bridge
@@ -5809,7 +5807,7 @@ iface bridge
       bridge-ports swp1s2 swp1s3 swp2s0 vni150 vni250 vni4001 vni4002 vni16001 vni16002
       bridge-stp on
       bridge-vids 150 250 4001 4002 2001 2002
- 
+
 # Tenant SVIs - anycast GW
 auto vlan150
 iface vlan150
@@ -5818,7 +5816,7 @@ iface vlan150
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 172.16.120.250/24
     vrf vrf1
- 
+
 auto vlan250
 iface vlan250
     address 172.16.130.2/24
@@ -5826,20 +5824,20 @@ iface vlan250
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 172.16.130.250/24
     vrf vrf2
- 
+
 # L3 VLAN interface per tenant (for L3 VNI)
 auto vlan4001
 iface vlan4001
     vlan-id 4001
     vlan-raw-device bridge
     vrf vrf1
- 
+
 auto vlan4002
 iface vlan4002
     vlan-id 4002
     vlan-raw-device bridge
     vrf vrf2
- 
+
 # External-facing L3 VLAN interface per tenant (towards WAN edge)
 #auto swp1s2.4001
 #iface swp1s2.4001
@@ -5850,28 +5848,28 @@ iface vlan4002
 #iface swp1s2.4002
 #    address 172.16.100.6/24
 #    vrf vrf2
- 
+
 auto vlan2001
 iface vlan2001
     vlan-id 2001
     vlan-raw-device bridge
     vrf vrf1
     address 172.16.100.2/24
- 
+
 auto vlan2002
 iface vlan2002
     vlan-id 2002
     vlan-raw-device bridge
     vrf vrf2
     address 172.16.100.6/24
- 
+
 auto vni16001
 iface vni16001
     vxlan-id 16001
     vxlan-local-tunnelip 10.0.0.5
     bridge-learning off
     bridge-access 2001
- 
+
 auto vni16002
 iface vni16002
     vxlan-id 16002
@@ -5882,44 +5880,44 @@ iface vni16002
 <td><details>
 <summary>border-leaf02 /etc/network/interfaces </summary>
 <pre><code>cumulus@border-leaf02:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
- 
+
 # The loopback network interface
 auto lo
 iface lo inet loopback
- 
+
 auto eth0
 iface eth0
     address 192.168.0.15/24
     gateway 192.168.0.2
- 
+
 auto lo:1
 iface lo:1
     address 10.0.0.6/32
     #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
     #pre-up sysctl -w net.ipv4.route.gc_timeout=60
     #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
- 
+
 # Physical interfaces
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
- 
+
 auto swp4
 iface swp4
     bridge-access 160
- 
+
 auto swp5
 iface swp5
     bridge-access 260
- 
+
 auto vni160
 iface vni160
     vxlan-id 10160
@@ -5927,7 +5925,7 @@ iface vni160
     bridge-learning off
     bridge-access 160
     bridge-arp-nd-suppress on
- 
+
 auto vni260
 iface vni260
     vxlan-id 10260
@@ -5935,16 +5933,16 @@ iface vni260
     bridge-learning off
     bridge-access 260
     bridge-arp-nd-suppress on
- 
+
 # Tenant VRFs
 auto vrf1
 iface vrf1
     vrf-table auto
- 
+
 auto vrf2
 iface vrf2
     vrf-table auto
- 
+
 # VxLAN interfaces (VLAN to VNI mappings)
 # Need only the L3 VxLAN interfaces
 auto vni4001
@@ -5953,14 +5951,14 @@ iface vni4001
     vxlan-local-tunnelip 10.0.0.6
     bridge-learning off
     bridge-access 4001
- 
+
 auto vni4002
 iface vni4002
     vxlan-id 104002
     vxlan-local-tunnelip 10.0.0.6
     bridge-learning off
     bridge-access 4002
- 
+
 # Bridge
 auto bridge
 iface bridge
@@ -5968,7 +5966,7 @@ iface bridge
       bridge-ports swp4 swp5 vni160 vni260 vni4001 vni4002
       bridge-stp on
       bridge-vids 160 260 4001 4002
- 
+
 # Tenant SVIs - anycast GW
 auto vlan160
 iface vlan160
@@ -5977,7 +5975,7 @@ iface vlan160
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 172.16.120.250/24
     vrf vrf1
- 
+
 auto vlan260
 iface vlan260
     address 172.16.130.2/24
@@ -5985,26 +5983,26 @@ iface vlan260
     vlan-raw-device bridge
     address-virtual 00:00:5e:00:01:01 172.16.130.250/24
     vrf vrf2
- 
+
 # L3 VLAN interface per tenant (for L3 VNI)
 auto vlan4001
 iface vlan4001
     vlan-id 4001
     vlan-raw-device bridge
     vrf vrf1
- 
+
 auto vlan4002
 iface vlan4002
     vlan-id 4002
     vlan-raw-device bridge
     vrf vrf2
- 
+
 # External-facing L3 VLAN interface per tenant (towards WAN edge)
 auto swp3.4001
 iface swp3.4001
     address 172.16.100.2/24
     vrf vrf1
- 
+
 auto swp3.4002
 iface swp3.4002
     address 172.16.100.6/24
@@ -6014,8 +6012,8 @@ iface swp3.4002
 <tr class="even">
 <td><details>
 <summary>border-leaf01 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@border-leaf01:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@border-leaf01:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/frr.log
 log timestamp precision 6
 !
@@ -6082,8 +6080,8 @@ line vty
 </details></td>
 <td><details>
 <summary>border-leaf02 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@border-leaf02:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@border-leaf02:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/frr.log
 log timestamp precision 6
 !
@@ -6163,60 +6161,60 @@ line vty
 <td><details>
 <summary>router01 /etc/network/interfaces </summary>
 <pre><code>cumulus@router01:~$ cat /etc/network/interfaces
- 
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
- 
+
 # The loopback network interface
 auto lo
 iface lo inet loopback
- 
+
 auto eth0
 iface eth0
     address 192.168.0.15/24
     gateway 192.168.0.2
- 
+
 auto lo:1
 iface lo:1
     address 120.0.0.1/32
     #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
     #pre-up sysctl -w net.ipv4.route.gc_timeout=60
     #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
- 
+
 auto swp1
 iface swp1
- 
+
 auto swp1.2001
 iface swp1.2001
     address 172.16.100.1/24
- 
+
 auto swp1.2002
 iface swp1.2002
     address 172.16.100.5/24
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp2.4001
 iface swp2.4001
     address 172.16.100.1/24
- 
+
 auto swp2.4002
 iface swp2.4002
     address 172.16.100.5/24
- 
+
 auto swp3
 iface swp3
     address 81.1.1.1/24
- 
+
 auto swp4
 iface swp4
     address 81.1.2.1/24
- 
+
 auto swp5
 iface swp5
     address 81.1.3.1/24
- 
+
 auto swp6
 iface swp6
     address 81.1.4.1/24</code></pre>
@@ -6225,8 +6223,8 @@ iface swp6
 <tr class="even">
 <td><details>
 <summary>router01 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@router01:~$ cat /etc/frr/frr.conf 
- 
+<pre><code>cumulus@router01:~$ cat /etc/frr/frr.conf
+
 log file /var/log/frr/frr.log
 log timestamp precision 6
 !
@@ -6261,11 +6259,3 @@ line vty
 </tr>
 </tbody>
 </table>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

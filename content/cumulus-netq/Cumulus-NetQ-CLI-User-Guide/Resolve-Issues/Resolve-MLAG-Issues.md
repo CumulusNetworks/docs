@@ -13,7 +13,7 @@ siteSlug: cumulus-netq-22
 ---
 This topic outlines a few scenarios that illustrate how you use NetQ to
 troubleshoot
-[MLAG](/display/NETQ22/Multi-Chassis+Link+Aggregation+-+MLAG) on Cumulus
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) on Cumulus
 Linux switches. Each starts with a log message that indicates the
 current MLAG state.
 

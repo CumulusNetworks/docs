@@ -318,9 +318,9 @@ continue.
         {{%/notice%}}
 
 2.  Verify that NTP is configured and running. NTP operation is critical
-    to proper operation of NetQ. Refer to [Setting Date and
-    Time](/display/NETQ22/Setting+Date+and+Time) in the *Cumulus Linux
-    User Guide* for details and instructions.
+    to proper operation of NetQ. Refer to
+    [Setting Date and Time](/cumulus-linux/System-Configuration/Setting-Date-and-Time/)
+    in the *Cumulus Linux User Guide* for details and instructions.
 
 3.  Continue the NetQ installation by loading the NetQ Agent on each
     switch or host you want to monitor. Refer to the next section for
@@ -356,11 +356,9 @@ used by both the NetQ Agent and the CLI.
 
 {{%notice info%}}
 
-If your network uses a proxy server for external connections, you should
-first <span style="color: #339966;"> <span style="color: #339966;">
-[configure a global proxy](/display/NETQ22/Configuring+a+Global+Proxy)
-</span> </span> , so apt-get can access the meta package on the Cumulus
-Networks repository.
+If your network uses a proxy server for external connections, you should first
+[configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/), 
+so `apt-get` can access the meta package on the Cumulus Networks repository.
 
 {{%/notice%}}
 

@@ -11,8 +11,7 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-Cumulus Networks' [Routing on the
-Host](https://docs.cumulusnetworks.com/display/ROH/Routing+on+the+Host)
+Cumulus Networks' [Host Pack](/host-pack)
 provides the ability to run
 [OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF) or
 [BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP) directly on

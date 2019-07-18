@@ -117,17 +117,16 @@ following on the Kubernetes master node:
 
 2.  Enable Kubernetes monitoring by NetQ. You can specify a polling
     period between 10 and 120 seconds; 15 seconds is the default.
-    
+
         cumulus@host:~$ netq config add agent kubernetes-monitor poll-period 20
         Successfully added kubernetes monitor. Please restart netq-agent.
 
 3.  Restart the NetQ agent:
-    
+
         cumulus@server01:~$ netq config restart agent
 
 Next, you must enable the NetQ Agent on all the worker nodes, as
-described in the [Install
-NetQ](https://docs.cumulusnetworks.com/display/NETQ140DRAFT/Install+NetQ)
+described in the [Install NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/)
 topic, for complete insight into your container network.
 
 ### <span>View Status of Kubernetes Clusters</span>
@@ -135,7 +134,7 @@ topic, for complete insight into your container network.
 You can get the status of all Kubernetes clusters in the fabric using
 the `netq show kubernetes cluster` command:
 
-    cumulus@switch:~$ netq show kubernetes cluster 
+    cumulus@switch:~$ netq show kubernetes cluster
     Matching kube_cluster records:
     Master                   Cluster Name     Controller Status    Scheduler Status Nodes
     ------------------------ ---------------- -------------------- ---------------- --------------------
@@ -190,7 +189,7 @@ you can verify that no changes have been made to the Kubernetes cluster
 configuration using the *around* keyword. This example shows the changes
 that have been made in the last hour.
 
-    cumulus@server11:~$ netq show kubernetes cluster around 1h 
+    cumulus@server11:~$ netq show kubernetes cluster around 1h
     Matching kube_cluster records:
     Master                   Cluster Name     Controller Status    Scheduler Status Nodes                                    DBState  Last changed
     ------------------------ ---------------- -------------------- ---------------- ---------------------------------------- -------- -------------------------
@@ -210,7 +209,7 @@ including the names, labels, addresses, associated cluster and
 containers, and whether the pod is running. This example shows pods for
 FRR, Nginx, Calico, various Kubernetes components sorted by master node.
 
-    cumulus@server11:~$ netq show kubernetes pod 
+    cumulus@server11:~$ netq show kubernetes pod
     Matching kube_pod records:
     Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed
     ------------------------ ------------ -------------------- ---------------- ------------ -------------------- -------- ------------------------ ----------------
@@ -462,7 +461,7 @@ above command. This example lists all the details of all master and
 worker nodes because the master's hostname — *server11* in this case —
 was included in the query.
 
-    cumulus@server11:~$ netq server11 show kubernetes node components 
+    cumulus@server11:~$ netq server11 show kubernetes node components
     Matching kube_cluster records:
                              Master           Cluster Name         Node Name    Kubelet      KubeProxy         Container Runt
                                                                                                                ime
@@ -527,7 +526,7 @@ You can view information about the pod:
 
 You can view information about the replication controller:
 
-    cumulus@server11:~$ netq server11 show kubernetes replication-controller 
+    cumulus@server11:~$ netq server11 show kubernetes replication-controller
     No matching kube_replica records found
 
 You can view information about a deployment:
@@ -574,7 +573,7 @@ each server interface.
 
 You can show the Kubernetes services in a cluster:
 
-    cumulus@server11:~$ netq show kubernetes service 
+    cumulus@server11:~$ netq show kubernetes service
     Matching kube_service records:
     Master                   Namespace        Service Name         Labels       Type       Cluster IP       External IP      Ports                               Last Changed
     ------------------------ ---------------- -------------------- ------------ ---------- ---------------- ---------------- ----------------------------------- ----------------
@@ -591,7 +590,7 @@ You can show the Kubernetes services in a cluster:
 
 And get detailed information about a Kubernetes service:
 
-    cumulus@server11:~$ netq show kubernetes service name calico-etcd 
+    cumulus@server11:~$ netq show kubernetes service name calico-etcd
     Matching kube_service records:
     Master                   Namespace        Service Name         Labels       Type       Cluster IP       External IP      Ports                               Last Changed
     ------------------------ ---------------- -------------------- ------------ ---------- ---------------- ---------------- ----------------------------------- ----------------
@@ -602,7 +601,7 @@ And get detailed information about a Kubernetes service:
 
 To see the connectivity of a given Kubernetes service, run:
 
-    cumulus@server11:~$ netq show kubernetes service name calico-etcd connectivity 
+    cumulus@server11:~$ netq show kubernetes service name calico-etcd connectivity
     calico-etcd -- calico-etcd-pfg9r -- server11:swp1:torbond1 -- swp6:hostbond2:torc-11
                                      -- server11:swp2:torbond1 -- swp6:hostbond2:torc-12
                                      -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01
@@ -614,7 +613,7 @@ To see the connectivity of a given Kubernetes service, run:
 
 To see the impact of a given Kubernetes service, run:
 
-    cumulus@server11:~$ netq server11 show impact kubernetes service name calico-etcd 
+    cumulus@server11:~$ netq server11 show impact kubernetes service name calico-etcd
     calico-etcd -- calico-etcd-pfg9r -- server11:swp1:torbond1 -- swp6:hostbond2:torc-11
                                      -- server11:swp2:torbond1 -- swp6:hostbond2:torc-12
                                      -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01

@@ -12,7 +12,6 @@ imgData: cumulus-rmp
 siteSlug: cumulus-rmp
 subsection: true
 ---
-<details>
 
 ## <span>Introducing Cumulus RMP</span>
 
@@ -46,14 +45,14 @@ features:
     authentication](/display/RMP/TACACS+Plus#TACACSPlus-fallback-auth)
 
   - New NCLU commands:
-    
+
       - [Show the version of a
         package](/display/RMP/Adding+and+Updating+Packages#AddingandUpdatingPackages-versionDisplay)
-    
+
       - [Show the interface description
         (alias)](/display/RMP/Interface+Configuration+and+Management#InterfaceConfigurationandManagement-show_alias)
         for all interfaces on the switch
-    
+
       - [Change bond mode to IEEE
         802.3ad](/display/RMP/Bonding+-+Link+Aggregation) link
         aggregation mod
@@ -91,12 +90,12 @@ Cumulus RMP shares much of the same functionality as Cumulus Linux and
 comes preinstalled on your choice of [1G
 switches](https://cumulusnetworks.com/products/hardware-compatibility-list/?Type=rmp).
 For more information about each feature, follow the links below to the
-[Cumulus Linux user guide](/display/RMP/Cumulus+Linux+User+Guide):
+[Cumulus Linux user guide](/cumulus-linux):
 
 |                                                                                             |                 |                   |
 | ------------------------------------------------------------------------------------------- | --------------- | ----------------- |
 | **Layer 2 Support**                                                                         | **Cumulus RMP** | **Cumulus Linux** |
-| [LLDP](/display/RMP/Link+Layer+Discovery+Protocol)                                          | ✓               | ✓                 |
+| [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/)                                          | ✓               | ✓                 |
 | [PTM](/display/RMP/Prescriptive+Topology+Manager+-+PTM)                                     | ✓               | ✓                 |
 | [Ethernet bridging](/display/RMP/Ethernet+Bridging+-+VLANs) (VLANs)                         | ✓               | ✓                 |
 | [Bonds/link aggregation](/display/RMP/Bonding+-+Link+Aggregation)                           | ✓               | ✓                 |
@@ -122,7 +121,7 @@ For more information about each feature, follow the links below to the
 | FRRouting                                                                                   |                 | ✓                 |
 | BFD                                                                                         |                 | ✓                 |
 | IPv6                                                                                        |                 | ✓                 |
-| [Management VRF](/display/RMP/Management+VRF)                                               | ✓               | ✓                 |
+| [Management VRF](/cumulus-linux/Layer-3/Management-VRF/)                                               | ✓               | ✓                 |
 | Virtual routing and forwarding (VRF)                                                        |                 | ✓                 |
 | **Additional Functionality**                                                                | **Cumulus RMP** | **Cumulus Linux** |
 | [Network command line utility](/display/RMP/Network+Command+Line+Utility+-+NCLU)            | ✓               | ✓                 |
@@ -134,7 +133,7 @@ For more information about each feature, follow the links below to the
 | Network virtualization (VXLAN, LNV, EVPN, etc.)                                             |                 | ✓                 |
 | [Monitoring & troubleshooting](/display/RMP/Monitoring+and+Troubleshooting)                 | ✓               | ✓                 |
 | [AAA](/display/RMP/LDAP+Authentication+and+Authorization)                                   | ✓               | ✓                 |
-| [ACLs](/display/RMP/Netfilter+-+ACLs)                                                       | ✓               | ✓                 |
+| [ACLs](/cumulus-linux/System-Configuration/Netfilter-ACLs)/)                                                       | ✓               | ✓                 |
 | QoS                                                                                         |                 | ✓                 |
 | [Orchestration](/display/RMP/Upgrading+Cumulus+Linux)                                       | ✓               | ✓                 |
 
@@ -143,13 +142,3 @@ For more information about each feature, follow the links below to the
 The [quick start guide](/cumulus-rmp/Quick-Start-Guide) walks you
 through the steps necessary for getting your Cumulus RMP switch up and
 running after you remove it from the box.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

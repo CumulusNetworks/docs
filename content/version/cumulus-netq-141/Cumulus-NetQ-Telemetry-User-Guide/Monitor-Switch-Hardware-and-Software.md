@@ -31,8 +31,8 @@ It helps answer questions such as:
 
   - Do all switches have NetQ agents running?
 
-NetQ uses [LLDP](/display/NETQ141/Link+Layer+Discovery+Protocol) (Link
-Layer Discovery Protocol) to collect port information. NetQ can also
+NetQ uses [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) 
+(Link Layer Discovery Protocol) to collect port information. NetQ can also
 identify peer ports connected to DACs ( Direct Attached Cables) and AOCs
 (Active Optical Cables) without using LLDP, even if the link is not UP.
 
@@ -190,7 +190,7 @@ a particular CPU architecture using the *arch* keyword. This example
 shows how to determine which architectures are deployed in your network,
 and then shows all devices with an *x86\_64* architecture.
 
-    cumulus@switch:~$ netq show inventory cpu arch 
+    cumulus@switch:~$ netq show inventory cpu arch
         x86_64  :  CPU Architecture
      
     cumulus@switch:~$ netq show inventory cpu arch x86_64

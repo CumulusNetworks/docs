@@ -314,14 +314,14 @@ KVM/QEMU installed.
 
 {{%notice note%}}
 
-If you have changed the IP Address of the NetQ Platform, you need to
+If you have changed the IP address of the NetQ Platform, you need to
 re-register this address with the Kubernetes containers before you can
 continue.
 
 1.  Reset all Kubernetes administrative settings. Run the command twice
     to make sure all directories and files have been reset.
 
-    ` cumulus@netq-platform:~$ sudo kubeadm reset -f  `  
+    `cumulus@netq-platform:~$ sudo kubeadm reset -f  `  
     `cumulus@netq-platform:~$ sudo kubeadm reset -f`
 
 2.  Remove the Kubernetes configuration.  
@@ -329,7 +329,6 @@ continue.
 
 3.  Reset the NetQ Platform install daemon.  
     `cumulus@netq-platform:~$ sudo systemctl reset-failed`  
-    `  `
 
 4.  Reset the Kubernetes service.  
     ` cumulus@netq-platform:~$ sudo systemctl restart cts-kubectl-config
@@ -419,17 +418,16 @@ continue.
 
         {{%notice info%}}
 
-        If any of the applications or services display Status as DOWN
-        after 30 minutes, open a [support
-        ticket](https://cumulusnetworks.com/support/file-a-ticket/) and
-        attach the output of the `opta-support` command.
+If any of the applications or services display status as DOWN after 30 minutes,
+open a [support ticket](https://cumulusnetworks.com/support/file-a-ticket/) and
+attach the output of the `opta-support` command.
 
         {{%/notice%}}
 
 2.  Verify that NTP is configured and running. NTP operation is critical
-    to proper operation of NetQ. Refer to [Setting Date and
-    Time](/display/NETQ22/Setting+Date+and+Time) in the *Cumulus Linux
-    User Guide* for details and instructions.
+    to proper operation of NetQ. Refer to
+    [Setting Date and Time](/cumulus-linux/System-Configuration/Setting-Date-and-Time/)
+    in the *Cumulus Linux User Guide* for details and instructions.
 
 3.  Continue the NetQ installation by loading the NetQ Agent on each
     switch or host you want to monitor. Refer to [Install NetQ
@@ -468,9 +466,8 @@ included here:
 {{%notice info%}}
 
 If your network uses a proxy server for external connections, you should
-first [configure a global
-proxy](/display/NETQ22/Configuring+a+Global+Proxy) so `apt-get` can
-access the meta package on the Cumulus Networks repository.
+first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/)
+so `apt-get` can access the meta package on the Cumulus Networks repository.
 
 {{%/notice%}}
 
@@ -501,8 +498,8 @@ A simple process installs the NetQ Agent on a Cumulus switch.
         cumulus@switch:~$ sudo apt-get update
         cumulus@switch:~$ sudo apt-get install cumulus-netq
 
-3.  Verify that [NTP](/display/NETQ22/Setting+Date+and+Time) is running
-    on the host node. Nodes must be in time synchronization with the
+3.  Verify that [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/)
+    is running on the host node. Nodes must be in time synchronization with the
     NetQ Platform to enable useful statistical analysis.
 
         cumulus@switch:~$ sudo systemctl status ntp
@@ -818,8 +815,8 @@ relevant additional instructions after the basic configuration steps:
 
 While optional, Cumulus strongly recommends that you configure NetQ
 Agents to communicate with the NetQ Platform only via a
-[VRF](/display/NETQ22/Virtual+Routing+and+Forwarding+-+VRF), including a
-[management VRF](/display/NETQ22/Management+VRF). To do so, you need to
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/), including a
+[management VRF](/cumulus-linux/Layer-3/Management-VRF/). To do so, you need to
 specify the VRF name when configuring the NetQ Agent. For example, if
 the management VRF is configured and you want the agent to communicate
 with the NetQ Platform over it, configure the agent like this:

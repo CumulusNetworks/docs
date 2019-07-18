@@ -12,8 +12,7 @@ imgData: hostpack
 siteSlug: hostpack
 ---
 The NetQ Agent monitors container environments the same way it monitors
-[physical
-servers](https://docs.cumulusnetworks.com/display/NETQ/Monitor+Linux+Hosts).
+[physical servers](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Linux-Hosts/).
 There is no special implementation. The NetQ Agent pulls data from the
 container as it would pull data from a Cumulus Linux switch or Linux
 host.
@@ -79,8 +78,7 @@ All NetQ commands provide the ability for JSON output (by appending
 
 Due to the higher memory requirements to run containers, Cumulus
 Networks recommends you run the NetQ Telemetry Server on a host with at
-least 32G RAM. For more information, read the [NetQ user
-guide](https://docs.cumulusnetworks.com/display/NETQ/Methods+for+Diagnosing+Network+Issues#MethodsforDiagnosingNetworkIssues-matrixHowFarBackinTimeCanYouTravel?).
+least 32G RAM. For more information, read the [NetQ user guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/#span-id-src-12321056-methodsfordiagnosingnetworkissues-time-machine-class-confluence-anchor-link-span-span-use-netq-as-a-time-machine-span).
 
 ### <span id="src-7110909_MonitoringContainerEnvironmentswithNetQ-enable_k8s" class="confluence-anchor-link"></span><span>Enable Monitoring of Kubernetes</span>
 
@@ -88,18 +86,17 @@ In order for NetQ to be able to monitor the containers on a host, you
 need to do the following on the master node only:
 
 1.  Configure the host to point to the telemetry server by its IP
-    address. See the [NetQ user
-    guide](https://docs.cumulusnetworks.com/display/NETQ/Monitor+Container+Environments)
+    address. See the [NetQ user guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Container-Environments/)
     for details.
 
 2.  Enable Kubernetes monitoring by NetQ. You can specify a polling
     period between 10 and 120 seconds; 15 seconds is the default.
-    
+
         cumulus@hostd-11:~$ netq config add agent kubernetes-monitor poll-period 20
         Successfully added kubernetes monitor. Please restart netq-agent.
 
 3.  Restart the NetQ agent:
-    
+
         cumulus@server01:~$ netq config restart agent
 
 You still need to [enable the NetQ
@@ -111,7 +108,7 @@ nodes for complete insight into your container network.
 You can get the status of all Kubernetes clusters in the fabric using
 the `netq show kubernetes cluster` command:
 
-    cumulus@hostd-11:~$ netq show kubernetes cluster 
+    cumulus@hostd-11:~$ netq show kubernetes cluster
     Matching kube_cluster records:
     Master                   Cluster Name     Controller Status    Scheduler Status Nodes
     ------------------------ ---------------- -------------------- ---------------- --------------------
@@ -149,7 +146,7 @@ You can output the results to JSON:
 
 You can see the changes made to the cluster:
 
-    cumulus@hostd-11:~$ netq show kubernetes cluster changes 
+    cumulus@hostd-11:~$ netq show kubernetes cluster changes
     Matching kube_cluster records:
     Master                   Cluster Name     Controller Status    Scheduler Status Nodes                                    DBState  Last changed
     ------------------------ ---------------- -------------------- ---------------- ---------------------------------------- -------- ----------------
@@ -177,7 +174,7 @@ the `show` command:
 
 You can show the pods in a cluster:
 
-    cumulus@hostd-11:~$ netq show kubernetes pod 
+    cumulus@hostd-11:~$ netq show kubernetes pod
     Matching kube_pod records:
     Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed
     ------------------------ ------------ -------------------- ---------------- ------------ -------------------- -------- ------------------------ ----------------
@@ -482,7 +479,7 @@ above command. The output below includes all the details of all master
 and worker nodes because the master's hostname — *hostd-11* in this case
 — was included in the query.
 
-    cumulus@hostd-11:~$ netq hostd-11 show kubernetes node components 
+    cumulus@hostd-11:~$ netq hostd-11 show kubernetes node components
      
      
     Matching kube_cluster records:
@@ -555,7 +552,7 @@ You can view information about the pod:
 
 You can view information about the replication controller:
 
-    cumulus@hostd-11:~$ netq hostd-11 show kubernetes replication-controller 
+    cumulus@hostd-11:~$ netq hostd-11 show kubernetes replication-controller
      
      
     No matching kube_replica records found
@@ -605,7 +602,7 @@ each server interface.
 
 You can show the Kubernetes services in a cluster:
 
-    cumulus@hostd-11:~$ netq show kubernetes service 
+    cumulus@hostd-11:~$ netq show kubernetes service
     Matching kube_service records:
     Master                   Namespace        Service Name         Labels       Type       Cluster IP       External IP      Ports                               Last Changed
     ------------------------ ---------------- -------------------- ------------ ---------- ---------------- ---------------- ----------------------------------- ----------------
@@ -622,7 +619,7 @@ You can show the Kubernetes services in a cluster:
 
 And get detailed information about a Kubernetes service:
 
-    cumulus@hostd-11:~$ netq show kubernetes service name calico-etcd 
+    cumulus@hostd-11:~$ netq show kubernetes service name calico-etcd
     Matching kube_service records:
     Master                   Namespace        Service Name         Labels       Type       Cluster IP       External IP      Ports                               Last Changed
     ------------------------ ---------------- -------------------- ------------ ---------- ---------------- ---------------- ----------------------------------- ----------------
@@ -633,7 +630,7 @@ And get detailed information about a Kubernetes service:
 
 To see the connectivity of a given Kubernetes service, run:
 
-    cumulus@hostd-11:~$ netq show kubernetes service name calico-etcd 
+    cumulus@hostd-11:~$ netq show kubernetes service name calico-etcd
     Matching kube_service records:
     Master                   Namespace        Service Name         Labels       Type       Cluster IP       External IP      Ports                               Last Changed
     ------------------------ ---------------- -------------------- ------------ ---------- ---------------- ---------------- ----------------------------------- ----------------
@@ -641,7 +638,7 @@ To see the connectivity of a given Kubernetes service, run:
                                                                    co-etcd
     hostd-12:3.0.0.69        kube-system      calico-etcd          k8s-app:cali ClusterIP  10.96.232.136                     TCP:6666                            2d:13h:49m:3s
                                                                    co-etcd
-    cumulus@hostd-11:~$ netq show kubernetes service name calico-etcd connectivity 
+    cumulus@hostd-11:~$ netq show kubernetes service name calico-etcd connectivity
     calico-etcd -- calico-etcd-pfg9r -- hostd-11:swp1:torbond1 -- swp6:hostbond2:torc-11
                                      -- hostd-11:swp2:torbond1 -- swp6:hostbond2:torc-12
                                      -- hostd-11:swp3:NetQBond-2 -- swp16:NetQBond-16:noc-pr
@@ -653,7 +650,7 @@ To see the connectivity of a given Kubernetes service, run:
 
 To see the impact of a given Kubernetes service, run:
 
-    cumulus@hostd-11:~$ netq hostd-11 show impact kubernetes service name calico-etcd 
+    cumulus@hostd-11:~$ netq hostd-11 show impact kubernetes service name calico-etcd
     calico-etcd -- calico-etcd-pfg9r -- hostd-11:swp1:torbond1 -- swp6:hostbond2:torc-11
                                      -- hostd-11:swp2:torbond1 -- swp6:hostbond2:torc-12
                                      -- hostd-11:swp3:NetQBond-2 -- swp16:NetQBond-16:noc-pr
@@ -661,8 +658,7 @@ To see the impact of a given Kubernetes service, run:
 
 ### <span>Use the NetQ Time Machine Functionality</span>
 
-You can use the ["time machine"
-features](https://docs.cumulusnetworks.com/display/NETQ/Methods+for+Diagnosing+Network+Issues#MethodsforDiagnosingNetworkIssues-time_machine)
+You can use the ["time machine" features](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/#span-id-src-12321056-methodsfordiagnosingnetworkissues-time-machine-class-confluence-anchor-link-span-span-use-netq-as-a-time-machine-span)
 of NetQ on a Kubernetes cluster, using the `around` and `changes`
 commands to go back in time to check the network status and identify any
 changes that occurred on the network.
@@ -753,8 +749,7 @@ Currently, the NetQ Agent does not support:
 
 Due to the higher memory requirements to run containers, Cumulus
 Networks recommends you run the NetQ Telemetry Server on a host with at
-least 32G RAM. For more information, read the [NetQ user
-guide](https://docs.cumulusnetworks.com/display/NETQ/Methods+for+Diagnosing+Network+Issues#MethodsforDiagnosingNetworkIssues-matrixHowFarBackinTimeCanYouTravel?).
+least 32G RAM. For more information, read the [NetQ user guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/#span-id-src-12321056-methodsfordiagnosingnetworkissues-time-machine-class-confluence-anchor-link-span-span-use-netq-as-a-time-machine-span).
 
 ### <span id="src-7110909_MonitoringContainerEnvironmentswithNetQ-enable" class="confluence-anchor-link"></span><span>Enable the Monitoring of Docker Containers</span>
 
@@ -762,18 +757,17 @@ In order for NetQ to be able to monitor the containers on a host, you
 need to do the following on the host:
 
 1.  Configure the host to point to the telemetry server by its IP
-    address. See the [NetQ user
-    guide](https://docs.cumulusnetworks.com/display/NETQ/Monitor+Container+Environments)
+    address. See the [NetQ user guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Container-Environments/)
     for details.
 
 2.  Enable Docker monitoring by NetQ. You can specify a polling period
     between 10 and 120 seconds; 15 seconds is the default.
-    
+
         cumulus@hostd-11:~$ netq config add agent docker-monitor poll-period 20
         Successfully added docker monitor. Please restart netq-agent.
 
 3.  Restart the NetQ agent:
-    
+
         cumulus@server01:~$ netq config restart agent
 
 ### <span>Show Container Summary Information</span>
@@ -782,7 +776,7 @@ To see a high level view of the network, including the number of
 containers installed and running on the network, run `netq show docker
 summary`:
 
-    cumulus@server01:~$ netq show docker summary 
+    cumulus@server01:~$ netq show docker summary
     Hostname    Version     Installed    Running    Images    Swarm Cluster    Networks
     ----------  ----------  -----------  ---------  --------  ---------------  ----------
     exit01      17.06.0-ce           26         26         1                            3
@@ -799,10 +793,10 @@ summary`:
 To view the different container networks and the containers in them, run
 `netq show docker network`:
 
-``` 
+```
 cumulus@server01:~$ netq show docker network
-Network Name     Hostname   subnet          gateway         ipv6      ip masq. 
----------------- ---------- --------------- --------------- --------- -------- 
+Network Name     Hostname   subnet          gateway         ipv6      ip masq.
+---------------- ---------- --------------- --------------- --------- --------
 bridge           exit01     172.17.0.0/16                   Disabled  True     
 bridge           exit02     172.17.0.0/16                   Disabled  True     
 bridge           server01   172.17.0.0/16                   Disabled  True     
@@ -839,7 +833,7 @@ To view all the hosts using a specific container network driver, use
 `netq show docker network driver NAME`. Use the `brief` keyword for a
 shorter summary. Docker supports many network drivers.
 
-    cumulus@server01:~$ netq show docker network driver bridge brief 
+    cumulus@server01:~$ netq show docker network driver bridge brief
     Network Name     Hostname   Driver    subnet          gateway         IP Masq  Containers
     ---------------- ---------- --------- --------------- --------------- -------- -------------------------
     bridge           exit01     bridge    172.17.0.0/16                   True     Name:netcat-8085 IPv4:172
@@ -906,7 +900,7 @@ shorter summary. Docker supports many network drivers.
 To see all the containers on a given container network, run the
 following command, where the container network is named *host*:
 
-    cumulus@server01:~$ netq show docker container network host 
+    cumulus@server01:~$ netq show docker container network host
     Container Name       Hostname   Container IP      IP Masq  Network Name   Service Name    UpTime
     -------------------- ---------- ----------------- -------- -------------- --------------- ---------------
     netcat-9080          exit01     45.0.0.17/26,     False    host                           0:29:42
@@ -956,14 +950,14 @@ Docker Swarm for a service:
     Matching container records are:
     Container Name       Hostname   Container IP      IP Masq  Network Name   Service Name    UpTime
     -------------------- ---------- ----------------- -------- -------------- --------------- ---------------
-    Web.3.xm2jjbe1l60eje hostd-11   10.255.0.9        False    ingress        Web             16:30:47 
-    sgpx8rlq5pf 
-    redis2.nh7ouztl2ap79 hostd-21   172.17.0.2        True     bridge         redis2          16:36:52 
+    Web.3.xm2jjbe1l60eje hostd-11   10.255.0.9        False    ingress        Web             16:30:47
+    sgpx8rlq5pf
+    redis2.nh7ouztl2ap79 hostd-21   172.17.0.2        True     bridge         redis2          16:36:52
     2iyycl5bukfh.lznwsxh
-    8jepg65hr16kccxeau 
-    redis2.rx8uywzrkm9pj hostd-11   172.17.0.2        True     bridge         redis2          16:36:52 
+    8jepg65hr16kccxeau
+    redis2.rx8uywzrkm9pj hostd-11   172.17.0.2        True     bridge         redis2          16:36:52
     e9a81613gfpm.s6fhc09
-    1xwoqmkjdi3y1kxm7z 
+    1xwoqmkjdi3y1kxm7z
     Web.1.m72ghox4y2bfeg hosts-21   10.255.0.7        False    ingress        Web             16:30:47
     f1ukeocjhgn
     Web.2.9t9yuv9za28taz hosts-11   10.255.0.8        False    ingress        Web             16:30:46
@@ -1059,7 +1053,7 @@ docker container name NAME`:
 To search for all the containers on the network with a specific Docker
 image, run `netq show docker container image IMAGE_NAME`:
 
-    cumulus@server01:~$ netq show docker container image chilcano/netcat:jessie 
+    cumulus@server01:~$ netq show docker container image chilcano/netcat:jessie
     Name                 Node       IP                IP Masq. Network        Service Name    Up time
     -------------------- ---------- ----------------- -------- -------------- --------------- ---------------
     netcat-8080          exit01     172.17.0.2        True     bridge                         0:32:09
@@ -1134,7 +1128,7 @@ To determine how a particular container is attached to a network, run
 `netq HOST show docker container network NAME connectivity`. The output
 tells you what host it's launched on, adjacent nodes, adjacent ports.
 
-    cumulus@leaf01:~$ netq server01 show docker container network host connectivity 
+    cumulus@leaf01:~$ netq server01 show docker container network host connectivity
     Name            Swarm Service Cont IP         Network    Node       Port                 Peer Node  Peer Port
     --------------- ------------- --------------- ---------- ---------- -------------------- ---------- --------------------
     netcat-9080                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
@@ -1222,7 +1216,7 @@ You can specify either the TCP or UDP protocol when you observe a given
 flow of traffic on the network and want to identify which container sent
 or received traffic using that protocol from a given port.
 
-    cumulus@tor-1:mgmt-vrf:~$ netq hosts-11 show docker container 6.0.1.5 tcp 
+    cumulus@tor-1:mgmt-vrf:~$ netq hosts-11 show docker container 6.0.1.5 tcp
     Container Name       Node       Proto  Port     Cont IP           Network        Host IP               Host Port
     -------------------- ---------- ------ -------- ----------------- -------------- --------------------- ------------
     netcat-9080          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
@@ -1413,8 +1407,7 @@ To see the impact of a given Docker service, run:
 
 ### <span>Use the NetQ Time Machine Functionality</span>
 
-You can use the ["time machine"
-features](https://docs.cumulusnetworks.com/display/NETQ/Methods+for+Diagnosing+Network+Issues#MethodsforDiagnosingNetworkIssues-time_machine)
+You can use the ["time machine" features](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/#span-id-src-12321056-methodsfordiagnosingnetworkissues-time-machine-class-confluence-anchor-link-span-span-use-netq-as-a-time-machine-span)
 of NetQ on a Docker container, using the `around` and `changes` commands
 to go back in time to check the network status and identify any changes
 that occurred on the network.

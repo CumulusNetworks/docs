@@ -22,8 +22,8 @@ are described separately here.
 With NetQ, you can monitor the number of nodes running the BGP service,
 view switches with the most established and unestablished BGP sessions,
 and view alarms triggered by the BGP service. For an overview and how to
-configure BGP to run in your data center network, refer to [Border
-Gateway Protocol - BGP](/display/NETQ22/Border+Gateway+Protocol+-+BGP).
+configure BGP to run in your data center network, refer to
+[Border Gateway Protocol - BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/).
 
 ### <span>BGP Service Card Workflow</span>
 
@@ -417,7 +417,7 @@ To view switches and hosts with the most BGP sessions:
     The table content is sorted by this characteristic, listing nodes
     running the most BGP sessions at the top. Scroll down to view those
     with the fewest sessions.
-    
+
     {{% imgOld 25 %}}
 
 To compare this data with the same data at a previous time:
@@ -428,19 +428,19 @@ To compare this data with the same data at a previous time:
 
 3.  Change the time period for the data on the new card by hovering over
     the card and clicking <span style="color: #353744;"> </span>
-    
+
     {{% imgOld 26 %}}
-    
+
     .
 
 4.  Select the time period that you want to compare with the original
     time. We chose *Past Week* for this example.  
-    
+
     {{% imgOld 27 %}}
-    
+
     {{% imgOld 28 %}}
-    
-      
+
+
     You can now see whether there are significant differences between
     this time and the original time. If the changes are unexpected, you
     can investigate further by looking at another time frame,
@@ -461,7 +461,7 @@ To view switches with the most unestablished BGP sessions:
     The table content is sorted by this characteristic, listing nodes
     with the most unestablished BGP sessions at the top. Scroll down to
     view those with the fewest unestablished sessions.
-    
+
     {{% imgOld 29 %}}
 
 Where to go next depends on what data you see, but a couple of options
@@ -472,13 +472,13 @@ include:
     smaller time slice.  
     The table content changes to match the hovered content. Click on the
     chart to persist the table changes.
-    
+
     {{% imgOld 30 %}}
 
   - Change the time period for the data to compare with a prior time.
-    
+
     {{% imgOld 31 %}}
-    
+
     If the same switches are consistently indicating the most
     unestablished sessions, you might want to look more carefully at
     those switches using the Switches card workflow to determine
@@ -501,9 +501,9 @@ To view switches with the most BGP alarms:
 1.  Open the large BGP Service card.
 
 2.  Hover over the header and click
-    
+
     {{% imgOld 32 %}}
-    
+
     .
 
 3.  Select **SWITCHES WITH MOST ALARMS** from the filter above the
@@ -511,7 +511,7 @@ To view switches with the most BGP alarms:
     The table content is sorted by this characteristic, listing nodes
     with the most BGP alarms at the top. Scroll down to view those with
     the fewest alarms.
-    
+
     {{% imgOld 33 %}}
 
 Where to go next depends on what data you see, but a few options
@@ -521,19 +521,19 @@ include:
     exhibiting alarms during that smaller time slice.  
     The table content changes to match the hovered content. Click on the
     chart to persist the table changes.
-    
+
     {{% imgOld 34 %}}
 
   - Change the time period for the data to compare with a prior time. If
     the same switches are consistently indicating the most alarms, you
     might want to look more carefully at those switches using the
     Switches card workflow.  
-    
+
     {{% imgOld 35 %}}
-    
+
     {{% imgOld 36 %}}
-    
-      
+
+
     In this example, the total alarm count has reduced significantly
     from one week ago.
 
@@ -551,7 +551,7 @@ To view all BGP events:
 
 2.  Click **All Alarms** tab in the navigation panel.  
     By default, events are listed in most recent to least recent order.
-    
+
     {{% imgOld 37 %}}
 
 Where to go next depends on what data you see, but a couple of options
@@ -628,8 +628,8 @@ With NetQ, you can monitor a single session of the BGP service, view
 session state changes, and compare with alarms occurring at the same
 time, as well as monitor the running BGP configuration and changes to
 the configuration file. For an overview and how to configure BGP to run
-in your data center network, refer to [Border Gateway Protocol -
-BGP](/display/NETQ22/Border+Gateway+Protocol+-+BGP).
+in your data center network, refer to
+[Border Gateway Protocol - BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/).
 
 {{%notice info%}}
 
@@ -1218,9 +1218,9 @@ To view the summary:
     automatically.
 
 5.  Optionally, switch to the small BGP Session card.  
-    
+
     {{% imgOld 67 %}}
-    
+
     {{% imgOld 68 %}}
 
 ### <span>View BGP Session State Changes</span>
@@ -1246,7 +1246,7 @@ BGP Session card:
 
 5.  Double-click the session of interest. The full screen card closes
     automatically.
-    
+
     {{% imgOld 69 %}}
 
 The heat map indicates the status of the session over the designated
@@ -1279,26 +1279,26 @@ To view the configuration file changes:
 1.  Open the large BGP Session card.
 
 2.  Hover over the card and click
-    
+
     {{% imgOld 71 %}}
-    
+
     to open the **BGP Configuration File Evolution** tab.
 
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
-    
+
     {{% imgOld 72 %}}
 
 4.  Choose between the **File** view and the **Diff** view (selected
     option is dark; File by default).  
     The File view displays the content of the file for you to review.
-    
+
     {{% imgOld 73 %}}
-    
+
     The Diff view displays the changes between this version (on left)
     and the most recent version (on right) side by side. The changes are
     highlighted, as seen in this example.
-    
+
     {{% imgOld 74 %}}
 
 ### <span>View All BGP Session Details</span>

@@ -578,14 +578,14 @@ To display only the status of a particular module, use the `module
 The following example command displays the status of transponder module
 1:
 
-``` 
+```
 cumulus@switch:~$ net show transponder module 1
 Module: 1 ready Acacia Comm Inc. AC400-004-330 S/N:170212599 53.75C 11.89V
     Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
  
                                            Network Interfaces                    
                                      L3                           L4             
-                       ---------------------------  --------------------------- 
+                       ---------------------------  ---------------------------
             Modulation 16-qam                       16-qam          
              Frequency 193.70 THz, Channel 52       193.70 THz, Channel 52       
            Current BER 1.626e-04                    1.343e-05                    
@@ -718,54 +718,54 @@ following command:
     cumulus@switch:~$ net show configuration transponders
      
     transponders
-      
+
       AC400_1
-        
+
         Location
           1
-        
+
         NetworkMode
           independent
-        
+
         L3
-          
+
           Location
             0
-          
+
           TxEnable
             true
-          
+
           TxGridSpacing
             50ghz
-          
+
           TxChannel
             52
-          
+
           OutputPower
             1
-          
+
           TxFineTuneFrequency
             0
-          
+
           MasterEnable
             true
-          
+
           ModulationFormat
             16-qam
-          
+
           DifferentialEncoding
             true
-          
+
           FecMode
             25%
-          
+
           Loopback
             false
-          
+
           TxTributaryIndependent
             0
             1
-          
+
           TxTributaryCoupled
             0
             1
@@ -777,8 +777,7 @@ following command:
 
 As an alternative to using NCLU commands to configure the transponder
 modules (described above), you can edit the
-`/etc/cumulus/transponders.ini` file, then [Initiate a hardware
-update](https://docs.cumulusnetworks.com/display/CL36DRAFT/Configuring+Facebook+Voyager+Optical+Interfaces#ConfiguringFacebookVoyagerOpticalInterfaces-InitiatingaHardwareUpdate).
+`/etc/cumulus/transponders.ini` file, then [initiate a hardware update](#span-id-src-8363049-facebookvoyageropticalinterfaces-initiate-hardware-update-class-confluence-anchor-link-span-span-initiate-a-hardware-update-span).
 
 {{%notice note%}}
 
@@ -2240,11 +2239,3 @@ messages.
     2018-04-24T18:18:49.965701+00:00 cumulus voyager_tai_adapter[5793]: Setting FecEncoder (268435459) to false, was true
     ...
     2018-04-24T18:21:24.164981+00:00 cumulus voyager_tai_adapter[5793]: Config has been reloaded
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

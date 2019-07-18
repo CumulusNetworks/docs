@@ -11,12 +11,9 @@ version: 3.4.3
 imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
-Cumulus Networks' [Routing on the
-Host](https://docs.cumulusnetworks.com/display/ROH/Routing+on+the+Host)
-provides the ability to run
+Cumulus Networks' [Host Pack](/host-pack) provides the ability to run
 [OSPF](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First---OSPF---Protocol)
-or
-[BGP](/version/cumulus-linux-343/Layer-Three/Border-Gateway-Protocol---BGP)
+or [BGP](/version/cumulus-linux-343/Layer-Three/Border-Gateway-Protocol---BGP)
 directly on server hosts. This can enable a network architecture known
 as *anycast*, where many servers can provide the same service without
 needing layer 2 extensions or load balancer appliances.

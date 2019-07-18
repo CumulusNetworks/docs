@@ -41,16 +41,16 @@ Optionally, you can:
 
   - Add Free Range (FR) Routing capabilities on your hosts.
 
-## <span>Prerequisites</span>
+## Prerequisites</span>
 
-### <span>Hardware Support</span>
+### Hardware Support</span>
 
 NetQ is supported on a variety of hardware. Refer to the [Cumulus
 Hardware Compatibility
 List](https://cumulusnetworks.com/products/hardware-compatibility-list/)
 for the hardware supported and descriptions of the available options.
 
-### <span>Operating System Support</span>
+### Operating System Support</span>
 
 NetQ 1.4 is supported on the following operating systems:
 
@@ -62,7 +62,7 @@ NetQ 1.4 is supported on the following operating systems:
 
   - CentOS 7
 
-### <span>NetQ Application Support</span>
+### NetQ Application Support</span>
 
   - The NetQ Telemetry application is supported on NetQ 1.0 and later.
 
@@ -72,7 +72,7 @@ NetQ 1.4 is supported on the following operating systems:
     application (an early access feature) is available with NetQ 1.4 and
     later.
 
-## <span>Install Workflow</span>
+## Install Workflow</span>
 
 Installation of NetQ involves installing the Telemetry Server, and
 installing and configuring the NetQ Agents. Additional steps are needed
@@ -87,7 +87,7 @@ validating your network.
 
 {{% imgOld 0 %}}
 
-## <span>Install the NetQ Telemetry Server</span>
+## Install the NetQ Telemetry Server</span>
 
 The NetQ Telemetry Server is comprised of the following components:
 
@@ -317,7 +317,7 @@ To install the Telemetry Server VM:
     
     {{%/notice%}}
 
-### <span>Install Options</span>
+### Install Options</span>
 
 Two options are available when installing NetQ that require additional
 configuration:
@@ -340,7 +340,7 @@ what messages to send and where to send them, *after* installing the
 NetQ Agents. See [Integrate NetQ with Event Notification
 Applications](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Configure-Optional-NetQ-Capabilities).
 
-## <span id="src-10453414_InstallNetQ-agent" class="confluence-anchor-link"></span><span>Install the NetQ Agent</span>
+## <span id="src-10453414_InstallNetQ-agent" class="confluence-anchor-link"></span>Install the NetQ Agent</span>
 
 The NetQ Agent must be installed on each node you want to monitor. The
 node can be a:
@@ -381,7 +381,7 @@ configure a global proxy
 
 {{%/notice%}}
 
-### <span id="src-10453414_InstallNetQ-AgentCL" class="confluence-anchor-link"></span><span>Install NetQ Agent on a Cumulus Linux Switch</span>
+### <span id="src-10453414_InstallNetQ-AgentCL" class="confluence-anchor-link"></span>Install NetQ Agent on a Cumulus Linux Switch</span>
 
 A simple two-step process installs the NetQ Agent on a Cumulus switch.
 
@@ -412,7 +412,7 @@ NetQ Agent on multiple nodes. Refer to [Deployment
 Appendices](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Deployment-Appendices)
 for an example Ansible playbook.
 
-### <span id="src-10453414_InstallNetQ-AgentUbuntu" class="confluence-anchor-link"></span><span>Install NetQ Agent on an Ubuntu Server (Optional)</span>
+### <span id="src-10453414_InstallNetQ-AgentUbuntu" class="confluence-anchor-link"></span>Install NetQ Agent on an Ubuntu Server (Optional)</span>
 
 Before you install the NetQ Agent on an Ubuntu server, make sure the
 following packages are installed and running these minimum versions:
@@ -487,7 +487,7 @@ To install the NetQ Agent on an Ubuntu server:
     
         root@ubuntu:~# systemctl enable netqd ; systemctl restart netqd
 
-### <span id="src-10453414_InstallNetQ-AgentRHC" class="confluence-anchor-link"></span><span>Install NetQ Agent on a Red Hat or CentOS Server (Optional)</span>
+### <span id="src-10453414_InstallNetQ-AgentRHC" class="confluence-anchor-link"></span>Install NetQ Agent on a Red Hat or CentOS Server (Optional)</span>
 
 Before you install the NetQ Agent on a Red Hat or CentOS server, make
 sure the following packages are installed and running these minimum
@@ -556,7 +556,7 @@ To install the NetQ Agent on a Red Hat or CentOS server:
     
         root@rhel7:~# systemctl enable netqd ; systemctl restart netqd
 
-## <span>Set Up the NetQ Agents</span>
+## Set Up the NetQ Agents</span>
 
 Once the NetQ Agents have been installed on the network nodes you want
 to monitor, the NetQ Agents must be configured to obtain useful and
@@ -577,7 +577,7 @@ additional instructions after the basic configuration steps:
   - [Enabling Docker for Container
     Environments](#src-10453414_InstallNetQ-AgentDocker)
 
-### <span id="src-10453414_InstallNetQ-basic" class="confluence-anchor-link"></span><span>Basic Configuration </span>
+### <span id="src-10453414_InstallNetQ-basic" class="confluence-anchor-link"></span>Basic Configuration </span>
 
 This is the minimum configuration required to properly monitor your
 nodes.
@@ -630,7 +630,7 @@ nodes.
         -------------  ------  -----  --------
         198.168.1.254  6379    mgmt   ok 
 
-### <span id="src-10453414_InstallNetQ-AgentVRF" class="confluence-anchor-link"></span><span>Configure the Agent to Use a VRF (Optional)</span>
+### <span id="src-10453414_InstallNetQ-AgentVRF" class="confluence-anchor-link"></span>Configure the Agent to Use a VRF (Optional)</span>
 
 While optional, Cumulus strongly recommends that you configure NetQ
 Agents to communicate with the telemetry server only via a
@@ -648,7 +648,7 @@ You then restart the agent as described in the previous section:
 
     cumulus@leaf01:~$ netq config restart agent
 
-### <span id="src-10453414_InstallNetQ-port" class="confluence-anchor-link"></span><span>Configure the Agent to Communicate over a Specific Port (Optional)</span>
+### <span id="src-10453414_InstallNetQ-port" class="confluence-anchor-link"></span>Configure the Agent to Communicate over a Specific Port (Optional)</span>
 
 By default, NetQ uses port 6379 for communication between the telemetry
 server and NetQ Agents. If you want the NetQ Agent to communicate with
@@ -665,7 +665,7 @@ it on port 6379 or 26379.
 
 {{%/notice%}}
 
-### <span>Enabling Docker for Container Environments</span>
+### Enabling Docker for Container Environments</span>
 
 Before enabling Docker, you must first install Docker. The code examples
 used here were created on an Ubuntu 16.04 host.
@@ -724,7 +724,7 @@ To install and enable Docker:
           poll_period: 15
         ...
 
-## <span>Set Up Security</span>
+## Set Up Security</span>
 
 <span style="color: #ff0000;"> When you set up and configured your
 Cumulus Linux switches, you likely configured a number of the security

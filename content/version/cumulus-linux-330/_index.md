@@ -12,7 +12,7 @@ imgData: cumulus-linux-330
 siteSlug: cumulus-linux-330
 subsection: true
 ---
-## <span>Introducing Cumulus Linux</span>
+## Introducing Cumulus Linux</span>
 
 Cumulus Linux is the networking industry's first full-featured Linux
 operating system. The [Debian
@@ -35,7 +35,7 @@ Read the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115002201048)
 for new features and known issues in this release.
 
-### <span>What's New in Cumulus Linux 3.3</span>
+### What's New in Cumulus Linux 3.3</span>
 
 Cumulus Linux 3.3 adds these new features and platforms, including:
 
@@ -55,11 +55,11 @@ Cumulus Linux 3.3 adds these new features and platforms, including:
     jitter by monitoring traffic patterns to identify bottlenecks early
     and effective plan for capacity.
 
-  - [PIM-SSM](/version/cumulus-linux-330/Layer-Three/Protocol-Independent-Multicast---PIM):
+  - [PIM-SSM](/version/cumulus-linux-330/Layer-Three/Protocol-Independent-Multicast-PIM):
     Source-Specific Multicast for more efficient multicast traffic
     segmentation and higher scalability.
 
-  - [EVPN](/version/cumulus-linux-330/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN):
+  - [EVPN](/version/cumulus-linux-330/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN):
     Includes ARP suppression, static/sticky MAC and interoperability
     with Cisco NXOS.
 
@@ -77,7 +77,7 @@ information regarding bug fixes and known issues present in this
 release, refer to the [product release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115005751148).
 
-### <span>Open Source Contributions</span>
+### Open Source Contributions</span>
 
 Cumulus Networks has forked various software projects, like CFEngine,
 `Netdev` and some Puppet Labs packages in order to implement various
@@ -90,7 +90,7 @@ applications as well.
 The list of open source projects is on the [open source
 software](http://oss.cumulusnetworks.com/) page.
 
-### <span>Hardware Compatibility List</span>
+### Hardware Compatibility List</span>
 
 You can find the most up to date hardware compatibility list (HCL)
 [here](http://cumulusnetworks.com/hcl/). Use the HCL to confirm that

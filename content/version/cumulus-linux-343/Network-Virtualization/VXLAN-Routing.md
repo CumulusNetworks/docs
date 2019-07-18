@@ -35,10 +35,10 @@ If you want to use VXLAN routing on a Trident II switch, you must use a
 
 Features of VXLAN routing include:
 
-  - [EVPN](/version/cumulus-linux-343/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+  - [EVPN](/version/cumulus-linux-343/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
     is the control plane
 
-  - [VRF](/version/cumulus-linux-343/Layer-Three/Virtual-Routing-and-Forwarding---VRF)
+  - [VRF](/version/cumulus-linux-343/Layer-Three/Virtual-Routing-and-Forwarding-VRF)
     support for overlay networks
 
   - Distributed asymmetric routing
@@ -69,13 +69,13 @@ VXLAN routing currently does not support:
 
   - Centralized routing on Mellanox switches only
 
-## <span>VXLAN Routing Data Plane and the Broadcom Tomahawk and Trident II+ Platforms</span>
+## VXLAN Routing Data Plane and the Broadcom Tomahawk and Trident II+ Platforms</span>
 
 On switches with Broadcom ASICs, VXLAN routing is supported only on the
 Tomahawk and Trident II+ platforms. Below are some differences in how
 VXLAN routing works on these switches.
 
-### <span>Trident II+</span>
+### Trident II+</span>
 
 For Trident II+ switches, you can specify a VXLAN routing (RIOT —
 routing in and out of tunnels) profile in the
@@ -104,7 +104,7 @@ The maximum number of VXLAN SVI interfaces that can be allocated is 2k
 If you want to disable VXLAN routing on a Trident II+ switch, set the
 `vxlan_routing_overlay.profile` field to *disable*.
 
-### <span>Tomahawk</span>
+### Tomahawk</span>
 
 The Tomahawk ASIC does not support RIOT natively, so you must configure
 the switch ports for VXLAN routing to use the internal loopback. The
@@ -117,9 +117,9 @@ bandwidth needed.
 
 VXLAN routing using the internal loopback is supported only with
 [VLAN-aware
-bridges](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments);
+bridges](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments);
 you cannot use a bridge in [traditional
-mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging---VLANs/Traditional-Mode-Bridges).
+mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges).
 
 {{%/notice%}}
 
@@ -143,10 +143,10 @@ After you save your changes to the `ports.conf` file, you must [restart
 `switchd`](Configuring-switchd.html#src-7112319_Configuringswitchd-restartswitchd)
 for the changes to take effect.
 
-## <span>Configuring VXLAN Routing</span>
+## Configuring VXLAN Routing</span>
 
 The following configuration using a single VTEP and does not include a
-[VRF](/version/cumulus-linux-343/Layer-Three/Virtual-Routing-and-Forwarding---VRF).
+[VRF](/version/cumulus-linux-343/Layer-Three/Virtual-Routing-and-Forwarding-VRF).
 It uses elements from the following topology:
 
 {{% imgOld 0 %}}
@@ -155,14 +155,14 @@ It uses elements from the following topology:
 
 When configuring VXLAN routing, Cumulus Networks recommends that you
 enable [ARP
-suppression](Ethernet-Virtual-Private-Network---EVPN.html#src-7112514_EthernetVirtualPrivateNetwork-EVPN-arp)
+suppression](Ethernet-Virtual-Private-Network-EVPN.html#src-7112514_EthernetVirtualPrivateNetwork-EVPN-arp)
 on all VXLAN interfaces. Otherwise, when a locally-attached host ARPs
 for the gateway, it will receive multiple responses, one from each
 anycast gateway.
 
 {{%/notice%}}
 
-### <span>Configuring the Underlays</span>
+### Configuring the Underlays</span>
 
 1.  Configure the loopback address on the following network devices.
     
@@ -246,7 +246,7 @@ anycast gateway.
         C * 10.200.0.0/24 is directly connected, vlan200-v0
         C>* 10.200.0.0/24 is directly connected, vlan200
 
-### <span>Configuring the Server-facing Downlinks</span>
+### Configuring the Server-facing Downlinks</span>
 
 Create routed VLANs for the servers. All Virtual IP addreses (ie. VRR)
 are the same since this example configuration uses anycast gateways. See
@@ -281,7 +281,7 @@ virtual address can be reused as the anycast gateway.
 
 {{%/notice%}}
 
-### <span>Configuring BGP EVPN</span>
+### Configuring BGP EVPN</span>
 
 1.  Configure the VTEPs to advertise layer 2 MAC address information via
     EVPN.
@@ -369,7 +369,7 @@ virtual address can be reused as the anycast gateway.
          
         Displayed 6 prefixes (6 paths)
 
-### <span>Configuring the VXLANs</span>
+### Configuring the VXLANs</span>
 
 1.  Configure the VNIs on each VTEP.
     
@@ -534,12 +534,12 @@ virtual address can be reused as the anycast gateway.
         00:00:00:00:00:1b dev vlan200 self permanent
         00:00:00:00:00:1a dev vlan100 self permanent
 
-### <span>Resulting Configurations</span>
+### Resulting Configurations</span>
 
 Following are the resulting interfaces and routing configurations for
 the three nodes you configured above: leaf01, leaf03 and spine01.
 
-#### <span>leaf01</span>
+#### leaf01</span>
 
 <summary>leaf01 /etc/network/interfaces </summary>
 
@@ -648,7 +648,7 @@ the three nodes you configured above: leaf01, leaf03 and spine01.
     line vty
     !
 
-#### <span>leaf03</span>
+#### leaf03</span>
 
 <summary>leaf03 /etc/network/interfaces </summary>
 
@@ -755,7 +755,7 @@ the three nodes you configured above: leaf01, leaf03 and spine01.
     line vty
     !
 
-#### <span>spine01</span>
+#### spine01</span>
 
 <summary>spine01 /etc/network/interfaces </summary>
 
@@ -828,14 +828,14 @@ the three nodes you configured above: leaf01, leaf03 and spine01.
     line vty
     !
 
-## <span>VXLAN Routing with Active-Active VTEPs</span>
+## VXLAN Routing with Active-Active VTEPs</span>
 
 VXLAN routing with active-active VTEPs is configured the same way as
 VXLAN with active-active mode VTEPs. Follow the instructions located in
 the [VXLAN and EVPN Active-Active
 chapter](/display/CL34/Ethernet+Virtual+Private+Network+-+EVPN#EthernetVirtualPrivateNetwork-EVPN-EVPNandVXLANActive-ActiveMode).
 
-## <span>VXLAN with VRFs</span>
+## VXLAN with VRFs</span>
 
 VXLAN can be configured with VRF support. In order to do so, just apply
 the server downlink SVI configuration on the top of rack switches inside
@@ -860,7 +860,7 @@ VRF *BLUE* and cannot communicate with any hosts in VRF *RED*:
     cumulus@leaf01:~$ net pending
     cumulus@leaf01:~$ net commit
 
-## <span>Viewing VXLAN Routing Information</span>
+## Viewing VXLAN Routing Information</span>
 
 You can use the following commands to display VXLAN routing-related
 information:
@@ -900,7 +900,7 @@ To view the forwarding database, use `bridge fdb show`:
     00:00:5e:00:01:01 dev bridge vlan 1001 master bridge permanent
     00:00:5e:00:01:01 dev bridge vlan 1000 master bridge permanent
 
-## <span>Troubleshooting VXLAN Routing</span>
+## Troubleshooting VXLAN Routing</span>
 
 You can investigate control plane VXLAN routing issues with the
 following commands:

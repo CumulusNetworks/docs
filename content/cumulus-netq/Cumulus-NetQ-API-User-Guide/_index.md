@@ -30,7 +30,7 @@ This Cumulus NetQ API User Guide is available in
 [PDF](attachments_12321982_1_Cumulus-NetQ-220-API-User-Guide.pdf) for
 offline viewing.
 
-## <span>API Organization</span>
+## API Organization</span>
 
 The Cumulus NetQ API provides endpoints for:
 
@@ -49,13 +49,13 @@ all devices or you can filter the request by a given hostname.
 Each API returns a predetermined set of data as defined in the API
 models.
 
-## <span>Get Started</span>
+## Get Started</span>
 
 You can access the API gateway and execute requests from a terminal
 interface against your NetQ Platform or NetQ Appliance through port
 32708.
 
-### <span>Log In and Authentication</span>
+### Log In and Authentication</span>
 
 Use your login credentials that were provided as part of the
 installation process. For this release, the default is username *admin*
@@ -71,7 +71,7 @@ To log in and obtain authorization:
 
 3.  Copy the access token for use in making data requests.
 
-### <span>API Requests</span>
+### API Requests</span>
 
 We will use curl to execute our requests. Each request contains an API
 method (GET, POST, etc.), the address and API object to query, a variety
@@ -90,7 +90,7 @@ option.
 
 {{%/notice%}}
 
-### <span>API Responses</span>
+### API Responses</span>
 
 A NetQ API response is comprised of a status code, any relevant error
 codes (if unsuccessful), and the collected data (if successful).
@@ -108,7 +108,7 @@ The following HTTP status codes might be presented in the API responses:
 | 500  | Internal Server Error | Unexpected condition has occurred.                                            | Perform general troubleshooting and try the request again                       |
 | 503  | Service Unavailable   | The service being requested is currently unavailable.                         | Verify the status of the NetQ Platform or Appliance, and the associated service |
 
-## <span>Example Requests and Responses</span>
+## Example Requests and Responses</span>
 
 Some command requests and their responses are shown here, but feel free
 to run your own requests. To run a request, you will need your
@@ -120,7 +120,7 @@ To view all of the endpoints and their associated requests and
 responses, refer to [View the
 API](#src-12321983_CumulusNetQAPIUserGuide-ViewApi).
 
-### <span>Get Network-wide Status of the BGP Service</span>
+### Get Network-wide Status of the BGP Service</span>
 
 Make your request to the *bgp* endpoint to obtain status information
 from all nodes running the BGP service, as follows:
@@ -219,7 +219,7 @@ from all nodes running the BGP service, as follows:
       },
     ...
 
-### <span>Get Status of EVPN on a Specific Switch</span>
+### Get Status of EVPN on a Specific Switch</span>
 
 Make your request to the *evpn/hostname* endpoint to view the status of
 all EVPN sessions running on that node. This example uses the *server01*
@@ -275,7 +275,7 @@ node.
       },
     ...
 
-### <span>Get Status on All Interfaces at a Given Time</span>
+### Get Status on All Interfaces at a Given Time</span>
 
 Make your request to the *interfaces* endpoint to view the status of all
 interfaces. By specifying the *eq-timestamp* option and entering a date
@@ -331,7 +331,7 @@ the last hour by default), as follows:
       },
     ...
 
-### <span>Get a List of All Devices Being Monitored</span>
+### Get a List of All Devices Being Monitored</span>
 
 Make your request to the *inventory* endpoint to get a listing of all
 monitored nodes and their configuration information, as follows:
@@ -425,7 +425,7 @@ monitored nodes and their configuration information, as follows:
       },
     ...
 
-## <span id="src-12321983_safe-id-Q3VtdWx1c05ldFFBUElVc2VyR3VpZGUtI1ZpZXdBcGk" class="confluence-anchor-link"></span><span>View the API</span>
+## <span id="src-12321983_safe-id-Q3VtdWx1c05ldFFBUElVc2VyR3VpZGUtI1ZpZXdBcGk" class="confluence-anchor-link"></span>View the API</span>
 
 For simplicity, all of the endpoint APIs are combined into a single
 json-formatted file. Click

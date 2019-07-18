@@ -12,17 +12,17 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
 *VXLAN active-active mode* allows a pair of
-[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
 switches to act as a single VTEP, providing active-active VXLAN
 termination for bare metal as well as virtualized workloads.
 
 There are some differences whether you're deploying this with
-[EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+[EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
 or
 [LNV](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/).
 This chapter outlines the configurations for both options.
 
-## <span>Terminology</span>
+## Terminology</span>
 
 | Term                     | Definition                                                                                                                                                                                                                                                                                                                                                                                      |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -36,7 +36,7 @@ This chapter outlines the configurations for both options.
 | VXLAN routing            | The industry standard term for the ability to route in and out of a VXLAN. Equivalent to the Broadcom RIOT feature.                                                                                                                                                                                                                                                                             |
 | `clagd-vxlan-anycast-ip` | The anycast address for the MLAG pair to share and bind to when MLAG is up and running.                                                                                                                                                                                                                                                                                                         |
 
-## <span id="src-8362725_VXLANActive-ActiveMode-config" class="confluence-anchor-link"></span><span>Configure VXLAN Active-active Mode</span>
+## <span id="src-8362725_VXLANActive-ActiveMode-config" class="confluence-anchor-link"></span>Configure VXLAN Active-active Mode</span>
 
 VXLAN active-active mode requires the following underlying technologies
 to work correctly.
@@ -59,7 +59,7 @@ to work correctly.
 </tr>
 <tr class="even">
 <td><p>OSPF or BGP</p></td>
-<td><p>Refer to the <a href="/display/CL37/Open+Shortest+Path+First+-+OSPF+-+Protocol">OSPF chapter</a> or the <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP">BGP chapter</a> for more detailed configuration information. Configurations for the BGP demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="/display/CL37/Open+Shortest+Path+First+-+OSPF+-+Protocol">OSPF chapter</a> or the <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP">BGP chapter</a> for more detailed configuration information. Configurations for the BGP demonstration are provided below.</p></td>
 </tr>
 <tr class="odd">
 <td><p>STP</p></td>
@@ -69,7 +69,7 @@ Configurations for the demonstration are provided below.</p></td>
 </tbody>
 </table>
 
-### <span>Active-active VTEP Anycast IP Behavior</span>
+### Active-active VTEP Anycast IP Behavior</span>
 
 You must provision each individual switch within an MLAG pair with a
 virtual IP address in the form of an anycast IP address for VXLAN
@@ -98,7 +98,7 @@ interface on each switch in the MLAG pair.
 
 {{%/notice%}}
 
-### <span>Failure Scenario Behaviors</span>
+### Failure Scenario Behaviors</span>
 
 | Scenario                                                                            | Behavior                                                                                                                                                                                                                                                                                                                                                                            |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -109,7 +109,7 @@ interface on each switch in the MLAG pair.
 | When the peer link goes down but the peer switch is up (the backup link is active). | All VXLAN interfaces are put into a PROTO\_DOWN state on the secondary switch.                                                                                                                                                                                                                                                                                                      |
 | A configuration mismatch between the MLAG switches                                  | The VXLAN interface is placed into a PROTO\_DOWN state on the secondary switch.                                                                                                                                                                                                                                                                                                     |
 
-### <span>Check VXLAN Interface Configuration Consistency</span>
+### Check VXLAN Interface Configuration Consistency</span>
 
 The active-active configuration for a given VXLAN interface must be
 consistent between the MLAG switches for correct traffic behavior. MLAG
@@ -127,7 +127,7 @@ The consistency checks include:
 You can use the `clagctl` command to check if any VXLAN switches are in
 a PROTO\_DOWN state.
 
-### <span>Configure the Anycast IP Address</span>
+### Configure the Anycast IP Address</span>
 
 With MLAG peering, both switches use an anycast IP address for VXLAN
 encapsulation and decapsulation. This allows remote VTEPs to learn the
@@ -148,7 +148,7 @@ address under the loopback interface, as shown below.
       address 10.0.0.12/32
       clagd-vxlan-anycast-ip 10.10.10.20
 
-## <span id="src-8362725_VXLANActive-ActiveMode-example" class="confluence-anchor-link"></span><span>Example VXLAN Active-Active Configuration</span>
+## <span id="src-8362725_VXLANActive-ActiveMode-example" class="confluence-anchor-link"></span>Example VXLAN Active-Active Configuration</span>
 
 {{% imgOld 1 %}}
 
@@ -156,15 +156,15 @@ Note the configuration of the local IP address in the VXLAN interfaces
 below. They are configured with individual IP addresses, which `clagd`
 changes to anycast upon MLAG peering.
 
-### <span>FRRouting Configuration</span>
+### FRRouting Configuration</span>
 
 You can configure the layer 3 fabric using
-[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP) or
-[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF). The
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP) or
+[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF). The
 following example uses BGP unnumbered. The MLAG switch configuration for
 the topology above is shown below.
 
-### <span>Layer 3 IP Addressing</span>
+### Layer 3 IP Addressing</span>
 
 The IP address configuration for this example:
 
@@ -527,7 +527,7 @@ iface swp52    </code></pre></td>
 </tbody>
 </table>
 
-### <span>Host Configuration</span>
+### Host Configuration</span>
 
 In this example, the servers are running Ubuntu 14.04. A layer2 bond
 must be mapped from server01 and server03 to the respective switch. In
@@ -614,7 +614,7 @@ iface bond0.20 inet static
 </tbody>
 </table>
 
-## <span>Using Active-active Mode with LNV</span>
+## Using Active-active Mode with LNV</span>
 
 When using VXLAN active-active mode with [lightweight network
 virtualization](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
@@ -631,7 +631,7 @@ configuration steps are needed:
 
   - Configuring the service node
 
-### <span>Terminology</span>
+### Terminology</span>
 
 <table>
 <colgroup>
@@ -672,7 +672,7 @@ configuration steps are needed:
 </tbody>
 </table>
 
-### <span>Configure the Loopback Interface for Active-active Mode</span>
+### Configure the Loopback Interface for Active-active Mode</span>
 
 You configure active-active mode as you would for EVPN, as described
 above, adding two more configuration options to the loopback interface:
@@ -734,7 +734,7 @@ iface lo inet loopback
 </tbody>
 </table>
 
-### <span>Enable the Registration Daemon</span>
+### Enable the Registration Daemon</span>
 
 You must enable the registration daemon (`vxrd`) on each ToR switch
 acting as a VTEP that is participating in the VXLAN. The daemon is
@@ -750,14 +750,14 @@ installed by default.
 
         cumulus@leaf0X:~$ sudo systemctl restart vxrd.service
 
-### <span>Configure a VTEP</span>
+### Configure a VTEP</span>
 
 The registration node is already configured in
 `/etc/network/interfaces`; no additional configuration is typically
 needed. However, you can configure the VTEP in the `/etc/vxrd.conf` file
 instead, which has additional configuration knobs available.
 
-### <span>Enable the Service Node Daemon</span>
+### Enable the Service Node Daemon</span>
 
 1.  Open the `/etc/default/vxsnd` configuration file in a text editor.
 
@@ -769,7 +769,7 @@ instead, which has additional configuration knobs available.
 
         cumulus@spine0X:~$ sudo systemctl restart vxsnd.service
 
-### <span>Configure the Service Node</span>
+### Configure the Service Node</span>
 
 To configure the service node daemon, edit the `/etc/vxsnd.conf`
 configuration file:
@@ -909,7 +909,7 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 </tbody>
 </table>
 
-## <span>Troubleshooting</span>
+## Troubleshooting</span>
 
 In addition to [troubleshooting single-attached
 configurations](/cumulus-linux/Network-Virtualization/Troubleshooting-VXLANs),
@@ -963,16 +963,16 @@ that there is a `vxlan-id` mis-match on VXLAN10.
               vxlan1   vxlan1             -         -                      -
              vxlan10   -                  -         -                      vxlan-single
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
-### <span>Use VLAN for Peer Link Only Once</span>
+### Use VLAN for Peer Link Only Once</span>
 
 Do not reuse the VLAN used for the peer link layer 3 subinterface for
 any other interface in the system. A high VLAN ID value is recommended.
 For more information on VLAN ID ranges, refer to the [VLAN-aware bridge
 chapter](VLAN-aware-Bridge-Mode.html#src-8362673_VLAN-awareBridgeMode-vlan_range).
 
-### <span>Bonds with Vagrant in Cumulus VX</span>
+### Bonds with Vagrant in Cumulus VX</span>
 
 Bonds (or LACP Etherchannels) fail to work in a Vagrant setup unless the
 link is set to *promiscuous* mode. This is a limitation on virtual
@@ -991,7 +991,7 @@ topologies only, and is not needed on real hardware.
 For more information on using Cumulus VX and Vagrant, refer to the
 [Cumulus VX documentation](/cumulus-vx).
 
-### <span>With LNV, Unique Node ID Required for vxrd in Cumulus VX</span>
+### With LNV, Unique Node ID Required for vxrd in Cumulus VX</span>
 
 `vxrd` requires a unique `node_id` for each individual switch. This
 `node_id` is based off the first interface's MAC address; when using
@@ -1042,7 +1042,7 @@ mode can function correctly.
 
 {{%/notice%}}
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Network virtualization chapter, Cumulus Linux user
     guide](/cumulus-linux/Network-Virtualization/)

@@ -15,7 +15,7 @@ Nutanix Prism is a graphical user interface (GUI) for managing
 infrastructure and virtual environments. In order to use it, you need to
 take special steps within Cumulus Linux before you can configure Prism.
 
-## <span>Configuring Cumulus Linux</span>
+## Configuring Cumulus Linux</span>
 
 1.  SSH to the Cumulus Linux switch that needs to be configured,
     replacing `[switch]` below as appropriate:
@@ -61,7 +61,7 @@ take special steps within Cumulus Linux before you can configure Prism.
         cumulus@switch:~$ sudo systemctl restart snmpd.service
         Restarting network management services: snmpd.
 
-## <span>Configuring Nutanix </span>
+## Configuring Nutanix </span>
 
 1.  Log into the Nutanix Prism. Nutanix defaults to the Home menu,
     referred to as the Dashboard:
@@ -124,7 +124,7 @@ Nutanix hosts are visible.
 
 {{%/notice%}}
 
-## <span>Switch Information Displayed on Nutanix Prism</span>
+## Switch Information Displayed on Nutanix Prism</span>
 
   - Physical Interface (e.g. swp1, swp2). This will only display swp
     interfaces connected to Nutanix hosts by default.
@@ -169,7 +169,7 @@ CLI, login using the default username **nutanix**, and the password
         Switch Vendor Name        : Unknown
         Port Ids                  : 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:52, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:53, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:54, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:55
 
-## <span>Troubleshooting a Nutanix Node</span>
+## Troubleshooting a Nutanix Node</span>
 
 To help visualize the following diagram is provided:
 
@@ -182,7 +182,7 @@ To help visualize the following diagram is provided:
 | Node C (Red)    | vmnic2        | swp51              |
 | Node D (Yellow) | vmnic2        | swp52              |
 
-## <span>Enabling LLDP/CDP on VMware ESXi (Hypervisor on Nutanix)</span>
+## Enabling LLDP/CDP on VMware ESXi (Hypervisor on Nutanix)</span>
 
 1.  Follow the directions on one of the following websites to enable
     CDP:
@@ -246,7 +246,7 @@ To help visualize the following diagram is provided:
         swp51         1G       NotConfigured  ====  swp1               spine01
         swp52         1G       NotConfigured  ====  swp1               spine02
 
-### <span>Enabling LLDP/CDP on Nutanix Acropolis (Hypervisor on Nutanix Acropolis)</span>
+### Enabling LLDP/CDP on Nutanix Acropolis (Hypervisor on Nutanix Acropolis)</span>
 
 [Nutanix Acropolis](http://www.nutanix.com/products/acropolis/) is an
 alternate hypervisor that Nutanix supports. Acropolis Hypervisor uses
@@ -255,7 +255,7 @@ daemons to operating just like Cumulus Linux. LLDP should be enabled for
 each interface on the host. Refer to
 <https://community.mellanox.com/docs/DOC-1522> for setup instructions.
 
-## <span>Troubleshooting Connections without LLDP or CDP</span>
+## Troubleshooting Connections without LLDP or CDP</span>
 
 1.  Find the MAC address information in the Prism GUI, located in:
     **Hardware** \> **Table** \> **Host** \> **Host NICs**

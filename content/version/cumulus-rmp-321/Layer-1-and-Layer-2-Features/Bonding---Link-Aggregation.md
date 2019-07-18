@@ -27,7 +27,7 @@ The benefits of link aggregation include:
 
 The Cumulus RMP uses version 1 of the LAG protocol.
 
-## <span>Hash Distribution</span>
+## Hash Distribution</span>
 
 Egress traffic through a bond is distributed to a slave based on a
 packet hash calculation, providing load balancing over the slaves; many
@@ -51,7 +51,7 @@ over available slaves.
 
 {{%/notice%}}
 
-## <span>Creating a Bond</span>
+## Creating a Bond</span>
 
 Bonds can be created and configured using the Network Command Line
 Utility
@@ -77,7 +77,7 @@ The name of the bond must be:
 
 {{%/notice%}}
 
-### <span>Configuration Options</span>
+### Configuration Options</span>
 
 The configuration options, and their default values, are listed in the
 table below.
@@ -155,7 +155,7 @@ configuration values, refer to the Related Information section below.
 </tbody>
 </table>
 
-## <span>Example Configuration: Bonding 4 Slaves</span>
+## Example Configuration: Bonding 4 Slaves</span>
 
 In the following example, the front panel port interfaces swp1-swp4 are
 slaves in bond0, while swp5 and swp6 are not part of bond0.
@@ -234,7 +234,7 @@ address traffic to the bond.
 
 {{%/notice%}}
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - An interface cannot belong to multiple bonds.
 
@@ -245,7 +245,7 @@ address traffic to the bond.
   - Slave ports within a bond should all be set to the same
     speed/duplex, and should match the link partner’s slave ports.
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Linux Foundation -
     Bonding](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)

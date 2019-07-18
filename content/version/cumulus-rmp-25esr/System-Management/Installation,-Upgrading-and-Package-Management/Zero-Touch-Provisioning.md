@@ -37,11 +37,11 @@ and executed locally on the switch.
 
 <summary>(Click to expand) </summary>
 
-## <span>Commands</span>
+## Commands</span>
 
   - autoprovision
 
-## <span>Zero Touch Provisioning Process</span>
+## Zero Touch Provisioning Process</span>
 
 The zero touch provisioning process involves these steps:
 
@@ -67,7 +67,7 @@ The zero touch provisioning process involves these steps:
 7.  The return code of the script gets examined. If it is 0, then the
     provisioning state is marked as complete.
 
-## <span>Specifying DHCP Option 239</span>
+## Specifying DHCP Option 239</span>
 
 During the DHCP process over `eth0`, Cumulus RMP will request DHCP
 option 239. This option is used to specify the custom provisioning
@@ -94,7 +94,7 @@ Additionally, the hostname of the switch can be specified via the
 
 <span id="src-5116322_ZeroTouchProvisioning-http_headers"></span>
 
-## <span>HTTP Headers</span>
+## HTTP Headers</span>
 
 The following HTTP headers are sent in the request to the Web server to
 retrieve the provisioning script:
@@ -112,7 +112,7 @@ retrieve the provisioning script:
     CUMULUS-PROV-COUNT                                  0
     CUMULUS-PROV-MAX                                    32
 
-## <span>Script Requirements</span>
+## Script Requirements</span>
 
 The script contents must contain the ` CUMULUS-AUTOPROVISIONING  `flag.
 This can be in a comment or remark and does not needed to be echoed or
@@ -132,7 +132,7 @@ RMP, such as:
 The script must return an exit code of 0 upon success, as this triggers
 the provisioning process to be marked as complete.
 
-## <span>Example Scripts</span>
+## Example Scripts</span>
 
 Here is a simple script to install ` puppet  `:
 
@@ -175,7 +175,7 @@ Now ` puppet  `can take over management of the switch, configuration
 authentication, changing the default root password, and setting up
 interfaces and routing protocols.
 
-## <span>Using the autoprovision Command</span>
+## Using the autoprovision Command</span>
 
 You can directly invoke an your provisioning script by running the
 ` autoprovision  `command. You can use this command to enable and
@@ -200,7 +200,7 @@ the switch, use the ` -s  `option:
 
     cumulus@switch:~$ sudo /usr/lib/cumulus/autoprovision -s
 
-## <span>Notes</span>
+## Notes</span>
 
   - During the development of a provisioning script, the switch may need
     to be reset.
@@ -218,7 +218,7 @@ the switch, use the ` -s  `option:
     
       - Disconnecting then reconnecting the switch’s power cord
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /var/lib/cumulus/autoprovision.conf
 

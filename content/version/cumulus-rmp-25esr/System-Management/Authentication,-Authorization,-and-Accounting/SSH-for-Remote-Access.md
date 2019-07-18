@@ -14,7 +14,7 @@ siteSlug: cumulus-rmp-25esr
 You use [SSH](http://en.wikipedia.org/wiki/Secure_Shell) to securely
 access a Cumulus RMP switch remotely.
 
-## <span>Access Using Passkey (Basic Setup)</span>
+## Access Using Passkey (Basic Setup)</span>
 
 Cumulus RMP uses the openSSH package to provide SSH functionality. The
 standard mechanisms of generating passwordless access just applies. The
@@ -59,13 +59,13 @@ RMP.
 
 {{%/notice%}}
 
-### <span>Completely Passwordless System</span>
+### Completely Passwordless System</span>
 
 When generating the passphrase and its associated keys, as in the first
 step above, do not enter a passphrase. Follow all the other
 instructions.
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - <http://www.debian-administration.org/articles/152>
 

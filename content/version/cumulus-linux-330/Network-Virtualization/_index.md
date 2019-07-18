@@ -59,9 +59,9 @@ destination.
 
 {{%/notice%}}
 
-## <span>Caveats/Errata</span>
+## Caveats/Errata</span>
 
-### <span>Cut-through Mode and Store & Forward Switching</span>
+### Cut-through Mode and Store & Forward Switching</span>
 
 [Cut-through
 mode](Buffer-and-Queue-Management.html#src-5866397_BufferandQueueManagement-cut_through_mode)
@@ -73,7 +73,7 @@ Cut-through mode **is** supported for VXLANs in Cumulus Linux on
 switches using Mellanox Spectrum ASICs. However, store and forward
 switching is **not** supported on Spectrum.
 
-### <span>MTU Size for Virtual Network Interfaces</span>
+### MTU Size for Virtual Network Interfaces</span>
 
 The maximum transmission unit (MTU) size for a virtual network interface
 should by 50 bytes smaller than the MTU for the physical interfaces on
@@ -81,7 +81,7 @@ the switch. For more information on setting MTU, read [Layer 1 and
 Switch Port
 Attributes](Layer-1-and-Switch-Port-Attributes.html#src-5866389_Layer1andSwitchPortAttributes-mtu_vxlan).
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [VXLAN IETF
     draft](http://tools.ietf.org/html/draft-mahalingam-dutt-dcops-vxlan-06)

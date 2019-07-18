@@ -24,7 +24,7 @@ one of the following:
 
   - The Cumulus Linux prompt, if Cumulus Linux has been installed.
 
-## <span>Line Card Naming Convention</span>
+## Line Card Naming Convention</span>
 
 Each line card and fabric card has a default identifier, which is
 displayed in the console. The name is one of the following:

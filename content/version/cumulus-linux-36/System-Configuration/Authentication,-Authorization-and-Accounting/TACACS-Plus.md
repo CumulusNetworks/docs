@@ -19,7 +19,7 @@ no need to create accounts or directories on the switch. Accounting
 records are sent to all configured TACACS+ servers by default. Use of
 per-command authorization requires additional setup on the switch.
 
-## <span>Supported Features</span>
+## Supported Features</span>
 
   - Authentication using PAM; includes `login`, `ssh`, `sudo` and `su`
 
@@ -34,7 +34,7 @@ per-command authorization requires additional setup on the switch.
 
   - Up to seven TACACS+ servers
 
-## <span>Installing the TACACS+ Client Packages</span>
+## Installing the TACACS+ Client Packages</span>
 
 TACACS+ requires the following packages to be installed on Cumulus
 Linux. These packages are not part of the base Cumulus Linux image
@@ -45,7 +45,7 @@ To install all required packages, run these commands:
     cumulus@switch:~$ sudo -E apt-get update
     cumulus@switch:~$ sudo -E apt-get install tacplus-client
 
-## <span>Configuring the TACACS+ Client</span>
+## Configuring the TACACS+ Client</span>
 
 After installing TACACS+, edit the `/etc/tacplus_servers` file to add at
 least one server and one shared secret (key). You can specify the
@@ -109,7 +109,7 @@ Only perform configuration in `/usr/share/pam-configs/tacplus`, then run
 
 {{%/notice%}}
 
-## <span>TACACS+ Authentication (login)</span>
+## TACACS+ Authentication (login)</span>
 
 The initial authentication configuration is done through the PAM modules
 and an updated version of the `libpam-tacplus` package. When the package
@@ -137,7 +137,7 @@ run with standard Linux user permissions.
 
 {{%/notice%}}
 
-## <span>TACACS+ Accounting</span>
+## TACACS+ Accounting</span>
 
 TACACS+ accounting is implemented with the `audisp` module, with an
 additional plugin for `auditd`/`audisp`. The plugin maps the auid in the
@@ -192,7 +192,7 @@ against the original TACACS+ login name.
 
 For more information, refer to the `audisp.8` and `auditd.8` man pages.
 
-## <span id="src-8362053_TACACSPlus-nclu" class="confluence-anchor-link"></span><span>Configuring NCLU for TACACS+ Users</span>
+## <span id="src-8362053_TACACSPlus-nclu" class="confluence-anchor-link"></span>Configuring NCLU for TACACS+ Users</span>
 
 When you install or upgrade TACACS+ packages, mapped user accounts are
 created automatically. All *tacacs0* through *tacacs15* users are added
@@ -238,7 +238,7 @@ service. Run:
 
     cumulus@switch:~$ sudo systemctl restart netd
 
-## <span>TACACS+ Per-command Authorization</span>
+## TACACS+ Per-command Authorization</span>
 
 The `tacplus-auth` command handles the per-command authorization. To
 make this an enforced authorization, you must change the TACACS+ login
@@ -256,7 +256,7 @@ a message similar to the following displays:
     tacuser0@switch:~$ net show version
     net not authorized by TACACS+ with given arguments, not executing
 
-### <span>Command Options</span>
+### Command Options</span>
 
 <table>
 <colgroup>
@@ -321,7 +321,7 @@ Use the `man` command on the switch for more information on
 
     cumulus@switch:~$ man tacplus-auth tacplus-restrict
 
-## <span>NSS Plugin</span>
+## NSS Plugin</span>
 
 When used with `pam_tacplus`, TACACS+ authenticated users can log in
 without a local account on the system using the NSS plugin that comes
@@ -348,7 +348,7 @@ again until privilege level 0 (user t`acacs0`) is reached. This allows
 use of only the two local users `tacacs0` and `tacacs15`, if minimal
 configuration is desired.
 
-## <span id="src-8362053_TACACSPlus-TACACS_config_params" class="confluence-anchor-link"></span><span>TACACS Configuration Parameters</span>
+## <span id="src-8362053_TACACSPlus-TACACS_config_params" class="confluence-anchor-link"></span>TACACS Configuration Parameters</span>
 
 The recognized configuration options are the same as the
 `libpam_tacplus` command line arguments; however, not all `pam_tacplus`
@@ -447,7 +447,7 @@ The table below describes the configuration options available:
 </tbody>
 </table>
 
-## <span>Removing the TACACS+ Client Packages</span>
+## Removing the TACACS+ Client Packages</span>
 
 To remove all of the TACACS+ client packages, use the following
 commands:
@@ -460,9 +460,9 @@ To remove the TACACS+ client configuration files as well as the packages
 
     cumulus@switch:~$ sudo -E apt-get autoremove --purge
 
-## <span>Troubleshooting TACACS+</span>
+## Troubleshooting TACACS+</span>
 
-### <span>Debugging Basic Server Connectivity or NSS Issues</span>
+### Debugging Basic Server Connectivity or NSS Issues</span>
 
 You can use the `getent` command to determine if TACACS+ is configured
 correctly and if the local password is stored in the configuration
@@ -501,7 +501,7 @@ these files:
 
 All log messages are stored in `/var/log/syslog`.
 
-#### <span>Incorrect Shared Key</span>
+#### Incorrect Shared Key</span>
 
 The TACACS client on the switch and the TACACS server should have the
 same shared secret key. If this key is incorrect, the following message
@@ -509,7 +509,7 @@ is printed to `syslog`:
 
     2017-09-05T19:57:00.356520+00:00 leaf01 sshd[3176]: nss_tacplus: TACACS+ server 192.168.0.254:49 read failed with protocol error (incorrect shared secret?) user cumulus 
 
-### <span>Debugging Issues with Per-command Authorization</span>
+### Debugging Issues with Per-command Authorization</span>
 
 To debug TACACS user command authorization, have the TACACS+ user enter
 the following command at a shell prompt, then try the command again:
@@ -539,7 +539,7 @@ To disable debugging:
 
     tacuser0@switch:~$ export -n TACACSAUTHDEBUG
 
-### <span>Debug Issues with Accounting Records</span>
+### Debug Issues with Accounting Records</span>
 
 If you have added or deleted TACACS+ servers from the configuration
 files, make sure you notify the `audisp` plugin with this command:
@@ -556,7 +556,7 @@ daemon with:
 
     cumulus@switch:~$ sudo systemctl restart auditd.service
 
-### <span>TACACS Component Software Descriptions</span>
+### TACACS Component Software Descriptions</span>
 
 The following table describes the different pieces of software involved
 with delivering TACACS.
@@ -572,16 +572,16 @@ with delivering TACACS.
 | libsimple-tacacct1\_1.0.0-cl3u2 | Provides an interface for programs to send accounting records to the TACACS+ server. Used by `audisp-tacplus`.                                                                                                                                                                                                                                                                   |
 | libtac2-bin\_1.4.0-cl3u2        | Provides the `tacc` testing program and TACACS+ man page.                                                                                                                                                                                                                                                                                                                        |
 
-## <span>Limitations</span>
+## Limitations</span>
 
-### <span>TACACS+ Client Is only Supported through the Management Interface</span>
+### TACACS+ Client Is only Supported through the Management Interface</span>
 
 The TACACS+ client is only supported through the management interface on
 the switch: eth0, eth1, or the VRF management interface. The TACACS+
 client is not supported through bonds, switch virtual interfaces (SVIs),
 or switch port interfaces (swp).
 
-### <span>Multiple TACACS+ Users</span>
+### Multiple TACACS+ Users</span>
 
 If two or more TACACS+ users are logged in simultaneously with the same
 privilege level, while the accounting records are maintained correctly,
@@ -620,7 +620,7 @@ internal errors such as SIGSEGV). As a result, processes that exit on a
 signal that is not caught and handled, might not generate a STOP
 accounting record.
 
-### <span>Issues with deluser Command</span>
+### Issues with deluser Command</span>
 
 TACACS+ and other non-local users that run the `deluser` command with
 the `--remove-home` option will see an error about not finding the user

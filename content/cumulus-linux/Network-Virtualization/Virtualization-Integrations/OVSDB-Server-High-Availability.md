@@ -66,13 +66,13 @@ the MLAG secondary switch stops communicating with the NSX controller,
 synchronizes with the now active OVSDB server, and takes the standby
 role again.
 
-## <span>Getting Started</span>
+## Getting Started</span>
 
 Before you configure OVSDB server high availability, make sure you have
 **two switches running Cumulus Linux in an MLAG configuration**. Cumulus
 Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`),
 which support [VLAN-aware
-bridges](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
 
 The following example configuration in the `/etc/network/interfaces`
 file shows the *minimum* MLAG configuration required (the MLAG peerlink
@@ -150,7 +150,7 @@ command followed by the `net commit` command.
 
 {{%/notice%}}
 
-## <span>Configure the NSX Integration on the Switch</span>
+## Configure the NSX Integration on the Switch</span>
 
 Before you start configuring the gateway service, the logical switches,
 and ports that comprise the VXLAN, you need to enable and start the
@@ -276,7 +276,7 @@ The certificate and key pairs for authenticating with the NSX
 For information about the configuration script, read `man
 vtep-bootstrap` or run the command `vtep-bootstrap --help`.
 
-## <span id="src-8362860_OVSDBServerHighAvailability-active-config-transport-logical" class="confluence-anchor-link"></span><span>Configure the Transport and Logical Layers</span>
+## <span id="src-8362860_OVSDBServerHighAvailability-active-config-transport-logical" class="confluence-anchor-link"></span>Configure the Transport and Logical Layers</span>
 
 After you finish configuring the NSX integration on both the MLAG
 primary and MLAG secondary switch, you need to configure the transport
@@ -286,7 +286,7 @@ Transport and Logical Layers
 or [Configuring the Transport and Logical Layers
 (NSX-V](Integrating-Hardware-VTEPs-with-VMware-NSX-V.html#src-8362823_IntegratingHardwareVTEPswithVMwareNSX-V-V-config-transport-logical)).
 
-## <span>Troubleshooting</span>
+## Troubleshooting</span>
 
 After you configure OVSDB server high availability, you can check that
 configuration is successful.

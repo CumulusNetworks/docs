@@ -16,7 +16,7 @@ Cumulus NetQ and to take advantage of its monitoring and analytic
 capabilities. These resources are identified here along with information
 about how the content is presented.
 
-## <span>What's New in Cumulus NetQ 2.2</span>
+## What's New in Cumulus NetQ 2.2</span>
 
 Cumulus NetQ is now available as a cloud service, making it even easier
 to scale with your network growth. Just like Cumulus NetQ deployed in
@@ -51,7 +51,7 @@ improvements:
 For further information regarding new features, improvements, bug fixes,
 and known issues present in this release, refer to the [<span style="color: #00AD69;">release notes</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).
 
-## <span>Available Documentation</span>
+## Available Documentation</span>
 
 The NetQ documentation set has been reorganized and updated from prior
 releases. They still provide the information you need to proactively
@@ -79,11 +79,11 @@ The following NetQ documents are available:
   - [<span style="color: #00AD69;">Cumulus NetQ Cloud Release Versioning and Support
     Policy</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
 
-## <span>Document Formatting</span>
+## Document Formatting</span>
 
 This guide uses the following typographical and note conventions.
 
-### <span>Typographical Conventions</span>
+### Typographical Conventions</span>
 
 Throughout the guide, text formatting is used to convey contextual information about the content.
 
@@ -94,7 +94,7 @@ Throughout the guide, text formatting is used to convey contextual information a
 | \[`Text within square brackets`\] | Optional command parameters; may be presented in mixed case or all caps text                                                                |
 | \<`Text within angle brackets`\> | Required command parameter values–variables that are to be replaced with a relevant value; may be presented in mixed case or all caps text |
 
-### <span>Note Conventions </span>
+### Note Conventions </span>
 
 Several note types are used throughout the document. The formatting of the note indicates its intent and urgency.
 

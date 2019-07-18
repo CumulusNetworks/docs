@@ -22,7 +22,7 @@ documentation](https://www.vmware.com/support/pubs/ws_pubs.html).
 
 {{%/notice%}}
 
-## <span>Create a Cumulus VX VM with VMware Workstation</span>
+## Create a Cumulus VX VM with VMware Workstation</span>
 
 {{%notice note%}}
 
@@ -65,7 +65,7 @@ Started](/cumulus-vx/Getting-Started/) page.
         
         {{% imgOld 0 %}}
 
-## <span>Next Steps</span>
+## Next Steps</span>
 
 {{%notice note%}}
 

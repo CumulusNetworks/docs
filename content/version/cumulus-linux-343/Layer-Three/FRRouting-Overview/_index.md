@@ -16,14 +16,14 @@ dynamic routing. FRRouting provides many routing protocols, of which
 Cumulus Linux supports the following:
 
   - Open Shortest Path First
-    ([v2](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First---OSPF---Protocol)
+    ([v2](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol)
     and
-    [v3](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-v3---OSPFv3---Protocol))
+    [v3](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-v3-OSPFv3---Protocol))
 
   - [Border Gateway
-    Protocol](/version/cumulus-linux-343/Layer-Three/Border-Gateway-Protocol---BGP)
+    Protocol](/version/cumulus-linux-343/Layer-Three/Border-Gateway-Protocol-BGP)
 
-## <span>Architecture</span>
+## Architecture</span>
 
 {{% imgOld 0 %}}
 
@@ -36,12 +36,12 @@ the information exchanged.
 It is not uncommon to have more than one protocol daemon running at the
 same time. For example, at the edge of an enterprise, protocols internal
 to an enterprise (called IGP for Interior Gateway Protocol) such as
-[OSPF](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First---OSPF---Protocol)
+[OSPF](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol)
 or RIP run alongside the protocols that connect an enterprise to the
 rest of the world (called EGP or Exterior Gateway Protocol) such as
-[BGP](/version/cumulus-linux-343/Layer-Three/Border-Gateway-Protocol---BGP).
+[BGP](/version/cumulus-linux-343/Layer-Three/Border-Gateway-Protocol-BGP).
 
-## <span>About zebra</span>
+## About zebra</span>
 
 `zebra` is the daemon that resolves the routes provided by multiple
 protocols (including static routes specified by the user) and programs
@@ -52,7 +52,7 @@ defines `zebra` as the IP routing manager for FRRouting that "provides
 kernel routing table updates, interface lookups, and redistribution of
 routes between different routing protocols."
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [frrouting.org](https://frrouting.org)
 

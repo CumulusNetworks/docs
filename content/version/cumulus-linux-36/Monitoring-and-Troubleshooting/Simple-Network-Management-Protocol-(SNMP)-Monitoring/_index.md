@@ -15,7 +15,7 @@ Cumulus Linux uses the open source Net-SNMP agent `snmpd`, version 5.7,
 which provides support for most of the common industry-wide MIBs,
 including interface counters and TCP/UDP IP stack data.
 
-## <span>History</span>
+## History</span>
 
 SNMP is an IETF standards-based network management architecture and
 protocol that traces its roots back to Carnegie-Mellon University in
@@ -30,7 +30,7 @@ pass-through and pass-persist scripts ([see
 below](#src-8362103_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctcGFzc3BlcnNpc3Q)
 for more information on pass persist scripts).
 
-## <span>Introduction to Simple Network Management Protocol</span>
+## Introduction to Simple Network Management Protocol</span>
 
 SNMP Management servers gather information from different systems in a
 consistent manner and the paths to the relevant information are
@@ -45,7 +45,7 @@ Management Stations mainly consist of devices containing SNMP agents.
 The agent running on Cumulus Linux switches and routers is the **snmpd**
 daemon.
 
-### <span>SNMP Managers</span>
+### SNMP Managers</span>
 
 An SNMP Network Management System (NMS) is a computer that is configured
 to poll SNMP agents (in this case, Cumulus Linux switches and routers)
@@ -59,7 +59,7 @@ snmpwalk, snmpbulkget, snmpbulkwalk, and so on). SNMP agents can also
 send unsolicited Traps/Inform messages to the SNMP Manager based on
 predefined criteria (like link changes).
 
-### <span>SNMP Agents</span>
+### SNMP Agents</span>
 
 The SNMP agents (`snmpd`) running on the switches do the bulk of the
 work and are responsible for gathering information about the local
@@ -74,7 +74,7 @@ responses to NMS requests. The `snmpd` agent can also proxy requests and
 act as a **master agent** to sub-agents running on other daemons (FRR,
 LLDP).
 
-### <span>Understanding the Management Information Base (MIB)</span>
+### Understanding the Management Information Base (MIB)</span>
 
 The MIB is a database that is implemented on the daemon (or agent) and
 follows IETF RFC standards to which the manager and agents adhere. It is
@@ -155,7 +155,7 @@ specification. And finally, the 1 or system is the parent for a number
 of child objects (sysDescr, sysObjectID, sysUpTime, sysContact, sysName,
 sysLocation, sysServices, and so on).
 
-## <span>Getting Started</span>
+## Getting Started</span>
 
 The simplest use case for using SNMP consists of creating a readonly
 community password and enabling a listening address for the loopback
@@ -215,7 +215,7 @@ SNMPv2-MIB::sysName`
 
 {{%/notice%}}
 
-## <span>Configuring SNMP</span>
+## Configuring SNMP</span>
 
 For external SNMP NMS systems to poll Cumulus Linux switches and
 routers, you must configure the SNMP agent (snmpd) running on the switch
@@ -275,7 +275,7 @@ commands for `snmpd` to function are a `listening-address` and either a
 
 {{%/notice%}}
 
-### <span>Configuring SNMP with NCLU</span>
+### Configuring SNMP with NCLU</span>
 
 The table below highlights the structure of NCLU commands available for
 configuring SNMP. An example command set is provided below the table.
@@ -436,7 +436,7 @@ host IP address, and create four types of SNMP traps.
     cumulus@switch:~$ net add snmp-server trap-cpu-load-average one-minute 7.45 five-minute 5.14
     cumulus@switch:~$ net add snmp-server trap-snmp-auth-failures
 
-## <span>Configuring SNMP Manually</span>
+## Configuring SNMP Manually</span>
 
 If you need to manually edit the SNMP configuration; for example, if the
 necessary option has not been implemented in NCLU, you need to edit the
@@ -533,7 +533,7 @@ monitor   -o fileName -o fileErrorMsg  &quot;fileTable&quot; fileErrorFlag != 0<
 </tbody>
 </table>
 
-### <span>Starting the SNMP Daemon</span>
+### Starting the SNMP Daemon</span>
 
 Use the recommended process described below to start `snmpd` and monitor
 it using `systemctl`.
@@ -564,7 +564,7 @@ To start the SNMP daemon:
 After the service starts, you can use SNMP to manage various components
 on the switch.
 
-### <span>Configuring SNMP with Management VRF (used prior to Cumulus Linux 3.6)</span>
+### Configuring SNMP with Management VRF (used prior to Cumulus Linux 3.6)</span>
 
 When you configure [Management VRF](/display/CL36/Management+VRF), you
 need to be aware of the interface IP addresses on which SNMP is
@@ -658,7 +658,7 @@ shows how to stop `snmpd` and restart it in the management VRF.
     cumulus@switch:mgmt-vrf:~$ ps aux | grep snmpd
     snmp     30880  0.4  0.3  57176 12276 ?        Ss   20:05   0:00 /usr/sbin/snmpd -y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid -f
 
-### <span>Setting up the Custom Cumulus Networks MIBs</span>
+### Setting up the Custom Cumulus Networks MIBs</span>
 
 No changes are required in the `/etc/snmp/snmpd.conf` file on the switch
 to support the custom Cumulus Networks MIBs. The following lines are
@@ -678,7 +678,7 @@ Cumulus MIB to be recognized on NMS server.
 
   - `/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt`
 
-### <span id="src-8362103_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctcHVibGljX2NvbW11bml0eQ" class="confluence-anchor-link"></span><span>Setting the Community String</span>
+### <span id="src-8362103_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctcHVibGljX2NvbW11bml0eQ" class="confluence-anchor-link"></span>Setting the Community String</span>
 
 The `snmpd` authentication for versions 1 and 2 is disabled by default
 in Cumulus Linux. You can enable this password (called a community
@@ -733,7 +733,7 @@ To enable read-only querying by a client:
     
         cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-## <span id="src-8362103_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctZnJy" class="confluence-anchor-link"></span><span>Enabling SNMP Support for FRRouting</span>
+## <span id="src-8362103_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctZnJy" class="confluence-anchor-link"></span>Enabling SNMP Support for FRRouting</span>
 
 SNMP supports Routing MIBs in
 [FRRouting](/version/cumulus-linux-36/Layer-3/FRRouting-Overview/). To
@@ -795,7 +795,7 @@ first from the switch itself with:
 
     cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost 1.3.6.1.2.1.14
 
-### <span>Enabling the .1.3.6.1.2.1 Range</span>
+### Enabling the .1.3.6.1.2.1 Range</span>
 
 Some MIBs, including storage information, are not included by default in
 `snmpd.conf` in Cumulus Linux. This results in some default views on
@@ -818,7 +818,7 @@ to being a security vulnerability, it might consume more CPU resources.
 To enable the .1.3.6.1.2.1 range, make sure the view name commands
 include the required MIB objects.
 
-### <span>Configuring SNMPv3</span>
+### Configuring SNMPv3</span>
 
 SNMPv3 is often used to enable authentication and encryption, as
 community strings in versions 1 and 2c are sent in plaintext. SNMPv3
@@ -952,9 +952,9 @@ compared with the `net-snmp-config` command used above.)
     snmpwalk -v 3 -u userMD5withDES -l authPriv -a MD5 -x DES -A md5authpass -X desprivpass localhost 1.3.6.1.2.1.1.1
     snmpwalk -v 3 -u userSHAwithAES -l authPriv -a SHA -x AES -A shaauthpass -X aesprivpass localhost 1.3.6.1.2.1.1.1
 
-## <span>Manually Configuring SNMP Traps (Non-NCLU)</span>
+## Manually Configuring SNMP Traps (Non-NCLU)</span>
 
-### <span>Generating Event Notification Traps</span>
+### Generating Event Notification Traps</span>
 
 The Net-SNMP agent provides a method to generate SNMP trap events using
 the Distributed Management (DisMan) Event MIB for various system events,
@@ -970,7 +970,7 @@ including:
 To enable specific types of traps, you need to create the following
 configurations in `/etc/snmp/snmpd.conf`.
 
-#### <span>Defining Access Credentials</span>
+#### Defining Access Credentials</span>
 
 An SNMPv3 username is required to authorize the DisMan service even
 though you are not configuring SNMPv3 here. The example `snmpd.conf`
@@ -1001,7 +1001,7 @@ should be used, not with actually setting this user up.
 
 {{%/notice%}}
 
-#### <span>Defining Trap Receivers</span>
+#### Defining Trap Receivers</span>
 
 The following configuration defines the trap receiver IP address where
 SNMPv2 traps are sent:
@@ -1033,7 +1033,7 @@ Restart the `snmpd` service to apply the changes.
 
     cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-#### <span>SNMP Version 3 Trap and Inform Messages</span>
+#### SNMP Version 3 Trap and Inform Messages</span>
 
 You can configure SNMPv3 trap and inform messages with the ` trapsess
  `configuration command. Inform messages are traps that are acknowledged
@@ -1062,7 +1062,7 @@ apply the changes:
 
     cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-#### <span>Sourcing Traps from a Different Source IP Address</span>
+#### Sourcing Traps from a Different Source IP Address</span>
 
 When client SNMP programs (such as `snmpget`, `snmpwalk`, or `snmptrap`)
 are run from the command line, or when `snmpd` is configured to send a
@@ -1085,7 +1085,7 @@ For more information, read the the `snmp.conf` man page:
                   mation about the format of addresses.
                   This value is also used by snmpd when generating notifications.
 
-#### <span>Monitoring Fans, Power Supplies, and Transformers</span>
+#### Monitoring Fans, Power Supplies, and Transformers</span>
 
 An SNMP agent (`snmpd`) waits for incoming SNMP requests and responds to
 them. If no requests are received, an agent does not initiate any
@@ -1235,7 +1235,7 @@ status, given as a value of *ok(1)*, *unavailable(2)* or
         iso.3.6.1.2.1.47.1.1.1.1.7.110000001 = STRING: "PSU1"
         iso.3.6.1.2.1.47.1.1.1.1.7.110000002 = STRING: "PSU2"
 
-#### <span>Enabling MIB to OID Translation</span>
+#### Enabling MIB to OID Translation</span>
 
 MIB names can be used instead of OIDs, by installing the
 `snmp-mibs-downloader`, to download SNMP MIBs to the switch prior to
@@ -1279,7 +1279,7 @@ enabling traps. This greatly improves the readability of the
     
         #deb http://ftp.us.debian.org/debian/ jessie main non-free
 
-#### <span>Configuring Link Up/Down Notifications</span>
+#### Configuring Link Up/Down Notifications</span>
 
 The `linkUpDownNotifications` directive is used to configure link
 up/down notifications when the operational status of the link changes.
@@ -1295,7 +1295,7 @@ for details.
 
 {{%/notice%}}
 
-#### <span>Configuring Temperature Notifications</span>
+#### Configuring Temperature Notifications</span>
 
 Temperature sensor information for each available sensor is maintained
 in the the lmSensors MIB. Each platform can contain a different number
@@ -1335,7 +1335,7 @@ only temperature sensor 3 at 5 minute intervals.
 
     monitor -I -r 300 lmTemSensor3 -o lmTempSensorsDevice.3 lmTempSensorsValue.3 > 68000
 
-#### <span>Configuring Free Memory Notifications</span>
+#### Configuring Free Memory Notifications</span>
 
 You can monitor free memory using the following directives. The example
 below generates a trap when free memory drops below 1,000,000KB. The
@@ -1343,7 +1343,7 @@ free memory trap also includes the amount of total real memory:
 
     monitor MemFreeTotal -o memTotalReal memTotalFree <  1000000
 
-#### <span>Configuring Processor Load Notifications</span>
+#### Configuring Processor Load Notifications</span>
 
 To monitor CPU load for 1, 5, or 15 minute intervals, use the `load`
 directive with the `monitor` directive. The following example generates
@@ -1352,7 +1352,7 @@ reaches 10%, or the 15 minute interval reaches 5%.
 
     load 12 10 5
 
-#### <span>Configuring Disk Utilization Notifications</span>
+#### Configuring Disk Utilization Notifications</span>
 
 To monitor disk utilization for all disks, use the `includeAllDisks`
 directive together with the `monitor` directive. The example code below
@@ -1361,14 +1361,14 @@ generates a trap when a disk is 99% full:
     includeAllDisks 1%
     monitor -r 60 -o dskPath -o DiskErrMsg "dskTable" diskErrorFlag !=0
 
-#### <span>Configuring Authentication Notifications</span>
+#### Configuring Authentication Notifications</span>
 
 To generate authentication failure traps, use the `authtrapenable`
 directive:
 
     authtrapenable 1
 
-### <span>snmptrapd.conf</span>
+### snmptrapd.conf</span>
 
 Use the Net-SNMP trap daemon to **receive** SNMP traps. The
 `/etc/snmp/snmptrapd.conf` file is used to configure how **incoming**
@@ -1425,7 +1425,7 @@ about specific configuration options within the file, look at the
     # defines the actions and the community string 
     authCommunity log,execute,net public
 
-## <span id="src-8362103_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3Jpbmctc3VwcG9ydGVkX21pYnM" class="confluence-anchor-link"></span><span>Supported MIBs</span>
+## <span id="src-8362103_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3Jpbmctc3VwcG9ydGVkX21pYnM" class="confluence-anchor-link"></span>Supported MIBs</span>
 
 Below are the MIBs supported by Cumulus Linux, as well as suggested uses
 for them. The overall Cumulus Linux MIB is defined in the
@@ -1456,7 +1456,7 @@ for them. The overall Cumulus Linux MIB is defined in the
 </tr>
 <tr class="odd">
 <td><p><a href="https://cumulusnetworks.com/static/mibs/CUMULUS-POE-MIB.txt" class="external-link">CUMULUS-POE-MIB</a></p></td>
-<td><p>The Cumulus Networks custom <a href="/version/cumulus-linux-36/System-Configuration/Power-over-Ethernet---PoE">Power over Ethernet</a> PoE MIB defined in the <code>/usr/share/snmp/mibs/Cumulus-POE-MIB.txt</code> file. For devices that provide PoE, this provides users with the system wide power information in <code>poeSystemValues</code> as well as per interface <code>PoeObjectsEntry</code> values for the <code>poeObjectsTable</code>. Most of this information comes from the <code>poectl</code> command. To enable this MIB, uncomment the following line in <code>/etc/snmp/snmpd.conf</code>:</p>
+<td><p>The Cumulus Networks custom <a href="/version/cumulus-linux-36/System-Configuration/Power-over-Ethernet-PoE">Power over Ethernet</a> PoE MIB defined in the <code>/usr/share/snmp/mibs/Cumulus-POE-MIB.txt</code> file. For devices that provide PoE, this provides users with the system wide power information in <code>poeSystemValues</code> as well as per interface <code>PoeObjectsEntry</code> values for the <code>poeObjectsTable</code>. Most of this information comes from the <code>poectl</code> command. To enable this MIB, uncomment the following line in <code>/etc/snmp/snmpd.conf</code>:</p>
 <pre><code>#pass_persist .1.3.6.1.4.1.40310.3 /usr/share/snmp/cl_poe_pp.py</code></pre></td>
 </tr>
 <tr class="even">
@@ -1581,7 +1581,7 @@ The ENTITY MIB does not show the chassis information in Cumulus Linux.
 
 {{%/notice%}}
 
-## <span id="src-8362103_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctcGFzc3BlcnNpc3Q" class="confluence-anchor-link"></span><span>Pass Persist Scripts</span>
+## <span id="src-8362103_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctcGFzc3BlcnNpc3Q" class="confluence-anchor-link"></span>Pass Persist Scripts</span>
 
 The pass persist scripts in Cumulus Linux use the [pass\_persist
 extension](http://net-snmp.sourceforge.net/wiki/index.php/Tut:Extending_snmpd_using_shell_scripts#Pass_persist)
@@ -1616,9 +1616,9 @@ All the scripts are enabled by default in Cumulus Linux, except for:
   - `cl_poe_pp.py`, which is disabled by default as only certain
     platforms that Cumulus Linux supports are capable of doing [Power
     over
-    Ethernet](/version/cumulus-linux-36/System-Configuration/Power-over-Ethernet---PoE).
+    Ethernet](/version/cumulus-linux-36/System-Configuration/Power-over-Ethernet-PoE).
 
-## <span>Troubleshooting</span>
+## Troubleshooting</span>
 
 Use the following commands to troubleshoot potential SNMP issues:
 

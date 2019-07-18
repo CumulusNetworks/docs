@@ -23,7 +23,7 @@ default on bridges in Cumulus RMP.
 
 To enable STP, configure `brctl stp <bridge> on`.
 
-## <span>Commands</span>
+## Commands</span>
 
   - brctl
 
@@ -32,11 +32,11 @@ To enable STP, configure `brctl stp <bridge> on`.
 `mstpctl` is a utility to configure STP. `mstpd` is started by default
 on bootup. `mstpd` logs and errors are located in `/var/log/daemon.log`.
 
-## <span>Supported Modes</span>
+## Supported Modes</span>
 
 The STP modes Cumulus RMP supports vary depending upon whether the
 [traditional or VLAN-aware bridge driver
-mode](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/)
+mode](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
 is in use.
 
 For a bridge configured in *traditional* mode, PVST and PVRST are
@@ -44,12 +44,12 @@ supported, with the default set to PVRST. Each traditional mode bridge
 has its own separate STP instance.
 
 Bridges configured in
-*[VLAN-aware](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)*
+*[VLAN-aware](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)*
 mode operate **only** in RSTP mode.
 
-## <span>Configuring STP within a Traditional Mode Bridge</span>
+## Configuring STP within a Traditional Mode Bridge</span>
 
-### <span>Creating a Bridge and Configuring PVRST</span>
+### Creating a Bridge and Configuring PVRST</span>
 
 Per VLAN Spanning Tree (PVST) creates a spanning tree instance for a
 bridge. Rapid PVST (PVRST) supports RSTP enhancements for each spanning
@@ -68,7 +68,7 @@ interoperability.
 To create a traditional model bridge, configure the bridge stanza under
 `/etc/network/interfaces`. More information on configuring bridges [can
 be found
-here](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/).
+here](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/).
 To enable STP on the bridge, include the keyword `bridge-stp on`. swp1
 and swp5 are configured for tagging VLAN 100, while swp4 is configured
 to not tag a VLAN across the link.
@@ -108,16 +108,16 @@ to change the default configuration parameters for STP:
      
     cumulus@switch:~$ sudo ifconfig br100 up
 
-## <span>Configuring STP within a VLAN-aware Bridge</span>
+## Configuring STP within a VLAN-aware Bridge</span>
 
-[VLAN-aware](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+[VLAN-aware](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 bridges only operate in RSTP mode. STP BPDUs are transmitted on the
 native VLAN.
 
 If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU,
 it will automatically fall back to 802.1D operation.
 
-### <span>Creating a VLAN-aware Bridge and Configuring RSTP</span>
+### Creating a VLAN-aware Bridge and Configuring RSTP</span>
 
 To create a VLAN-aware mode bridge, configure the bridge stanza under
 `/etc/network/interfaces`.
@@ -135,13 +135,13 @@ To enable the bridge and load the new configuration from
 
     cumulus@switch:~$ sudo ifreload -a
 
-### <span>RSTP Interoperation with MST (802.1s)</span>
+### RSTP Interoperation with MST (802.1s)</span>
 
 RSTP interoperates with MST seamlessly, creating a single instance of
 spanning tree which transmitts BPDUs on the native VLAN. RSTP treats the
 MST domain as if it were one giant switch.
 
-## <span>Viewing Bridge and STP Status/Logs</span>
+## Viewing Bridge and STP Status/Logs</span>
 
 `mstpd` is started by default when the switch boots. `mstpd` logs and
 errors are located in `/var/log/syslog`.
@@ -213,13 +213,13 @@ To get the `mstpd` bridge port state, use:
       Num RX BPDU        0                       Num RX TCN           0
       Num Transition FWD 2                       Num Transition BLK   2
 
-## <span>Configuring Spanning Tree Protocol</span>
+## Configuring Spanning Tree Protocol</span>
 
 There are a number of ways you can customize STP in Cumulus RMP. You
 should exercise extreme caution with many of the settings below to
 prevent malfunctions in STP's loop avoidance.
 
-### <span>PortAdminEdge/PortFast Mode</span>
+### PortAdminEdge/PortFast Mode</span>
 
 `PortAdminEdge` is equivalent to the PortFast feature offered by other
 vendors.
@@ -274,7 +274,7 @@ you create here does not persist after you reboot the switch.
     cumulus@switch:~$ sudo mstpctl setportadminedge br2 swp1 yes
     cumulus@switch:~$ sudo mstpctl setbpduguard br2 swp1 yes
 
-### <span id="src-5122792_SpanningTreeandRapidSpanningTree-bpdu" class="confluence-anchor-link"></span><span> BPDU Guard</span>
+### <span id="src-5122792_SpanningTreeandRapidSpanningTree-bpdu" class="confluence-anchor-link"></span> BPDU Guard</span>
 
 To protect the spanning tree topology from unauthorized switches
 affecting the forwarding path, you can configure *BPDU guard* (Bridge
@@ -283,7 +283,7 @@ new switch to an access port off of a leaf switch. If this new switch is
 configured with a low priority, it could become the new root switch and
 affect the forwarding path for the entire layer 2 topology.
 
-#### <span>Configuring BPDU Guard</span>
+#### Configuring BPDU Guard</span>
 
 For the bridge, configure BPDU guard under the bridge stanza in
 `/etc/network/interfaces`:
@@ -319,7 +319,7 @@ you create here does not persist after you reboot the switch.
     cumulus@switch:~$ sudo mstpctl setbpduguard br2 swp3 yes
     cumulus@switch:~$ sudo mstpctl setbpduguard br2 swp4 yes
 
-#### <span>Recovering a Port Disabled by BPDU Guard</span>
+#### Recovering a Port Disabled by BPDU Guard</span>
 
 If a BPDU is received on the port, STP will bring down the port and log
 an error in `/var/log/syslog`. The following is a sample error:
@@ -395,7 +395,7 @@ configuration on the connected end-station has not been rectified.
       clag role          unknown                 clag dual conn mac   0:0:0:0:0:0
       clag remote portID F.FFF                   clag system mac      0:0:0:0:0:0
 
-### <span>Bridge Assurance</span>
+### Bridge Assurance</span>
 
 On a point-to-point link where RSTP is running, if you want to detect
 unidirectional links and put the port in a discarding state (in error),
@@ -442,7 +442,7 @@ To enable bridge assurance at runtime, run `mstpctl`:
     cumulus@switch:~$ sudo mstpctl showportdetail br1007 swp1.1007 | grep network
       network port       yes                     BA inconsistent      yes
 
-### <span>BPDU Filter</span>
+### BPDU Filter</span>
 
 You can enable `bpdufilter` on a switch port, which filters BPDUs in
 both directions. This effectively disables STP on the port as no BPDUs
@@ -491,7 +491,7 @@ To enable BPDU filter at runtime, run `mstpctl`:
 
     cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 
-### <span>Storm Control</span>
+### Storm Control</span>
 
 *Storm control* provides protection against excessive inbound BUM
 (broadcast, unknown unicast, multicast) traffic on layer 2 switch port
@@ -550,7 +550,7 @@ broadcast traffic and 3000 for multicast traffic:
     cumulus@switch:$ sudo cl-cfg -w switchd interface.swp1.storm_control.broadcast=400
     cumulus@switch:$ sudo cl-cfg -w switchd interface.swp1.storm_control.multicast=3000
 
-### <span>Example Configuration with All Possible Parameters</span>
+### Example Configuration with All Possible Parameters</span>
 
 The persistent configuration for a bridge is set in
 `/etc/network/interfaces`. The configuration below shows every possible
@@ -580,7 +580,7 @@ options:
       mstpctl-bpduguard swp1=no swp2=no
       mstpctl-portbpdufilter swp4=yes
 
-### <span id="src-5122792_SpanningTreeandRapidSpanningTree-params" class="confluence-anchor-link"></span><span>Configuring Other Spanning Tree Parameters</span>
+### <span id="src-5122792_SpanningTreeandRapidSpanningTree-params" class="confluence-anchor-link"></span>Configuring Other Spanning Tree Parameters</span>
 
 Spanning tree parameters are defined in the IEEE
 [802.1D](http://standards.ieee.org/getieee802/download/802.1D-2004.pdf),
@@ -790,11 +790,11 @@ Examples are included below:
 </tbody>
 </table>
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/network/interfaces
 
-## <span>Man Pages</span>
+## Man Pages</span>
 
   - brctl(8)
 
@@ -806,7 +806,7 @@ Examples are included below:
 
   - mstpctl-utils-interfaces(5)
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
 The source code for `mstpd/mstpctl` was written by [Vitalii
 Demianets](mailto:vitas%40nppfactor.kiev.ua) and is hosted at the
@@ -816,7 +816,7 @@ sourceforge URL below.
 
   - [en.wikipedia.org/wiki/Spanning\_Tree\_Protocol](http://en.wikipedia.org/wiki/Spanning_Tree_Protocol)
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - MSTP is not supported currently. However, interoperability with MSTP
     networks can be accomplished using PVRSTP or PVSTP.

@@ -16,7 +16,7 @@ for password recovery. Entering single user mode is
 [platform-specific](http://cumulusnetworks.com/hcl/), so follow the
 appropriate steps for your x86 or PowerPC switch.
 
-## <span>Entering Single User Mode on a PowerPC Switch</span>
+## Entering Single User Mode on a PowerPC Switch</span>
 
 1.  From the console, boot the switch, interrupting the U-Boot countdown
     to enter the U-Boot prompt. Enter the following:
@@ -33,7 +33,7 @@ appropriate steps for your x86 or PowerPC switch.
         cumulus@switch:~$ sudo reboot -f  
         Restarting the system.
 
-## <span>Entering Single User Mode on an x86 Switch</span>
+## Entering Single User Mode on an x86 Switch</span>
 
 From the console, boot the switch. At the GRUB menu, select the image
 slot you wish to boot into with a password:

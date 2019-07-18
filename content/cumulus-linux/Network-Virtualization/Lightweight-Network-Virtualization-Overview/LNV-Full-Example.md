@@ -17,7 +17,7 @@ As of Cumulus Linux 3.7.4, the lightweight network virtualization
 feature (LNV) has been deprecated. The feature will be removed in
 Cumulus Linux 4.0. Cumulus Networks recommends you use [Ethernet virtual
 private network
-(EVPN)](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+(EVPN)](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
 for network virtualization.
 
 {{%/notice%}}
@@ -41,7 +41,7 @@ Cumulus Linux.
 
 {{%/notice%}}
 
-## <span>Example LNV Configuration</span>
+## Example LNV Configuration</span>
 
 The following images illustrate the configuration:
 
@@ -77,7 +77,7 @@ get instructor-led training\!
 
 {{%/notice%}}
 
-### <span>Layer 3 IP Addressing</span>
+### Layer 3 IP Addressing</span>
 
 Here is the configuration for the IP addressing information used in this
 example:
@@ -259,12 +259,12 @@ iface br-30
 </tbody>
 </table>
 
-### <span>FRRouting Configuration</span>
+### FRRouting Configuration</span>
 
 The service nodes and registration nodes must all be routable between
 each other. The layer 3 fabric on Cumulus Linux can either be
-[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP) or
-[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF). In this
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP) or
+[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF). In this
 example, OSPF is used to demonstrate full reachability.
 
 Here is the FRRouting configuration using OSPF:
@@ -386,7 +386,7 @@ router ospf
 </tbody>
 </table>
 
-### <span>Host Configuration</span>
+### Host Configuration</span>
 
 In this example, the servers are running Ubuntu 14.04. You must map a
 trunk from server1 and server2 to the respective switch. In Ubuntu, this
@@ -427,7 +427,7 @@ iface eth3.30 inet static
 </tbody>
 </table>
 
-### <span>Service Node Configuration</span>
+### Service Node Configuration</span>
 
 <table>
 <colgroup>
@@ -524,7 +524,7 @@ svcnode_peers = 10.2.1.3
 </tbody>
 </table>
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [tools.ietf.org/html/rfc7348](https://tools.ietf.org/html/rfc7348)
 

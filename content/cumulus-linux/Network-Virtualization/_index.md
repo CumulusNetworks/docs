@@ -58,9 +58,9 @@ at least one layer 3 hop between the VXLAN source and destination.
 
 {{%/notice%}}
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
-### <span>Cut-through Mode and Store and Forward Switching</span>
+### Cut-through Mode and Store and Forward Switching</span>
 
 On switches using Broadcom Tomahawk, Trident II, Trident II+, and
 Trident3 ASICs, Cumulus Linux supports store and forward switching for
@@ -71,7 +71,7 @@ On switches using Mellanox Spectrum ASICs, Cumulus Linux supports
 cut-through mode for VXLANs but does **not** support store and forward
 switching.
 
-### <span>MTU Size for Virtual Network Interfaces</span>
+### MTU Size for Virtual Network Interfaces</span>
 
 The maximum transmission unit (MTU) size for a virtual network interface
 should be 50 bytes smaller than the MTU for the physical interfaces on
@@ -79,13 +79,13 @@ the switch. For more information on setting MTU, read [Layer 1 and
 Switch Port
 Attributes](Switch-Port-Attributes.html#src-8363026_SwitchPortAttributes-mtu_vxlan).
 
-### <span>VLANs and VXLANs Cannot Share the Same ID</span>
+### VLANs and VXLANs Cannot Share the Same ID</span>
 
 The layer 3 VNI and layer 2 VNI cannot share the same number space; that
 is, you cannot have *vlan10* and *vxlan10*, for example. Otherwise, the
 layer 2 VNI does not get created.
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [VXLAN - RFC 7348](https://tools.ietf.org/html/rfc7348)
 

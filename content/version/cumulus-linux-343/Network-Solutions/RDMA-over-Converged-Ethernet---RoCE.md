@@ -37,7 +37,7 @@ stack:
     (ECN) with RoCEv2 since ECN bits are communicated end-to-end across
     a routed network.
 
-## <span>Enabling RDMA over Converged Ethernet with PFC</span>
+## Enabling RDMA over Converged Ethernet with PFC</span>
 
 RoCEv1 uses the Infiniband (IB) Protocol over converged Ethernet. The IB
 global route header rides directly on top of the Ethernet header. The
@@ -60,7 +60,7 @@ a given CoS group, rather than the entire link.
 
 {{%/notice%}}
 
-## <span>Enabling RDMA over Converged Ethernet with ECN</span>
+## Enabling RDMA over Converged Ethernet with ECN</span>
 
 RoCEv2 requires flow control for lossless Ethernet. RoCEv2 uses the
 Infiniband (IB) Transport Protocol over UDP. The IB transport protocol
@@ -78,7 +78,7 @@ section of the [Buffer and Queue
 Management](/version/cumulus-linux-343/Interface-Configuration-and-Management/Buffer-and-Queue-Management/)
 chapter.
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [RoCE
     introduction](http://www.roceinitiative.org/roce-introduction/) —

@@ -55,7 +55,7 @@ Spectrum platform only.
 
 {{%/notice%}}
 
-## <span>Commands</span>
+## Commands</span>
 
 If you modify the configuration in the
 `/etc/cumulus/datapath/traffic.conf` file, you must [restart
@@ -64,7 +64,7 @@ for the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span>Example Configuration File</span>
+## Example Configuration File</span>
 
 The following example `/etc/cumulus/datapath/traffic.conf` datapath
 configuration file applies to 10G, 40G, and 100G switches on Tomahawk,
@@ -203,7 +203,7 @@ speeds.
     #
     #forwarding_table.profile = default
 
-## <span>Configuring Traffic Marking through ACL Rules</span>
+## Configuring Traffic Marking through ACL Rules</span>
 
 You can mark traffic for egress packets through `iptables` or
 `ip6tables` rule classifications. To enable these rules, you do one of
@@ -257,7 +257,7 @@ TCAM slices in the hardware.
 To put the rule in the mangle table, include `-t mangle`; to put the
 rule in the filter table, omit `-t mangle`.
 
-## <span id="src-7112623_BufferandQueueManagement-pfc" class="confluence-anchor-link"></span><span>Configuring Priority Flow Control</span>
+## <span id="src-7112623_BufferandQueueManagement-pfc" class="confluence-anchor-link"></span>Configuring Priority Flow Control</span>
 
 *Priority flow control*, as defined in the [IEEE 802.1Qbb
 standard](http://www.ieee802.org/1/pages/802.1bb.html), provides a
@@ -396,7 +396,7 @@ pfc.pfc_port_group.tx_enable = true
 pfc.pfc_port_group.rx_enable = true       
 ```
 
-### <span>Understanding Port Groups</span>
+### Understanding Port Groups</span>
 
 A *port group* refers to one or more sequences of contiguous ports.
 Multiple port groups can be defined by:
@@ -438,7 +438,7 @@ to allow the PFC configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span id="src-7112623_BufferandQueueManagement-pause" class="confluence-anchor-link"></span><span>Configuring Link Pause</span>
+## <span id="src-7112623_BufferandQueueManagement-pause" class="confluence-anchor-link"></span>Configuring Link Pause</span>
 
 The PAUSE frame is a flow control mechanism that halts the transmission
 of the transmitter for a specified period of time. A server or other
@@ -485,7 +485,7 @@ to allow link pause configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span id="src-7112623_BufferandQueueManagement-cut_through_mode" class="confluence-anchor-link"></span><span>Configuring Cut-through Mode and Store and Forward Switching</span>
+## <span id="src-7112623_BufferandQueueManagement-cut_through_mode" class="confluence-anchor-link"></span>Configuring Cut-through Mode and Store and Forward Switching</span>
 
 Cut-through mode is disabled in Cumulus Linux by default on switches
 with Broadcom ASICs. With cut-though mode enabled and link pause is
@@ -524,7 +524,7 @@ To enable store and forward switching, set `cut_through_enable` to
     cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf 
     cut_through_enable = false
 
-## <span id="src-7112623_BufferandQueueManagement-ecn" class="confluence-anchor-link"></span><span>Configuring Explicit Congestion Notification</span>
+## <span id="src-7112623_BufferandQueueManagement-ecn" class="confluence-anchor-link"></span>Configuring Explicit Congestion Notification</span>
 
 *Explicit Congestion Notification* (ECN) is defined by
 [RFC 3168](https://tools.ietf.org/html/rfc3168). ECN gives a Cumulus
@@ -629,7 +629,7 @@ to allow the ECN configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [iptables-extensions man
     page](http://ipset.netfilter.org/iptables-extensions.man.html)

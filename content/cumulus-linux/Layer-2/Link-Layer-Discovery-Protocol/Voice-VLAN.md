@@ -27,14 +27,14 @@ VLAN ID (which may or may not be 0) and an 802.1p (3-bit layer 2 COS)
 with a specific value (typically 5 is assigned for voice traffic).
 
 Data traffic is always
-[untagged](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-Tagging).
+[untagged](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging).
 
-## <span>Cumulus Linux Voice VLAN Example</span>
+## Cumulus Linux Voice VLAN Example</span>
 
 {{% imgOld 0 %}}
 
 You can configure the topology above using the following
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU)
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
 commands. In this configuration:
 
   - swp1 data traffic traverses the bridge's native VLAN and the voice
@@ -85,7 +85,7 @@ These commands create the following configuration snippet in the
       bridge-vids 1-1000
       bridge-vlan-aware yes
 
-## <span>Configure LLDP</span>
+## Configure LLDP</span>
 
 Configuring voice VLAN with NCLU does not configure `lldpd` in Cumulus
 Linux, so LLDP-MED does not provide data and voice VLAN information. You
@@ -102,7 +102,7 @@ You can also use the `lldpcli` command to configure an LLDP-MED network
 policy. However, `lldpcli` commands do not persist across reboots of the
 switch.
 
-## <span>Troubleshooting</span>
+## Troubleshooting</span>
 
 The `bridge-vids` can be reviewed with the `net show bridge vlan`
 command:
@@ -137,7 +137,7 @@ untagged  bridge    swp3         08:00:27:9e:98:86                 permanent    
 You can capture LLDP information by checking `syslog` or using `tcpdump`
 on an interface.
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - A static voice VLAN configuration overwrites a switch port's
     existing configuration.

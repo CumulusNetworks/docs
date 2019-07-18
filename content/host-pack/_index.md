@@ -42,7 +42,7 @@ visibility through **NetQ on the Host**.
 
 [](https://cumulusnetworks.com/products/host-pack/)
 
-## <span>Web-scale Connectivity</span>
+## Web-scale Connectivity</span>
 
 [FRRouting on the Host](https://frrouting.org) — the suite of routing
 protocols in Cumulus Linux — delivers layer 3 routing on host servers;
@@ -71,7 +71,7 @@ past the first step of automated configuration management.
 ***Host Pack connectivity is provided through FRRouting on the Host and
 Container Advertiser***
 
-## <span>Web-scale Visibility</span>
+## Web-scale Visibility</span>
 
 In addition to enhanced connectivity support, Host Pack ensures
 real-time reliability and uptime to hosts and containers with visibility
@@ -115,7 +115,7 @@ including:
     connectivity for a container, including adjacency, and can identify
     containers that can be affected by a top of rack switch.
 
-## <span>Supported Environments</span>
+## Supported Environments</span>
 
 Host Pack requires Cumulus Linux 3.3 and later and is supported on the
 following hosts and systems:
@@ -312,7 +312,7 @@ Docker Swarm
 
 </table>
 
-## <span>Getting Started</span>
+## Getting Started</span>
 
 Where you get started with Host Pack depends upon which features you
 intend to use.

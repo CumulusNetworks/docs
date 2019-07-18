@@ -23,7 +23,7 @@ monitoring environments, rather than SNMP.
 
 {{%/notice%}}
 
-## <span>Introduction to SNMP (Simple Network Management Protocol)</span>
+## Introduction to SNMP (Simple Network Management Protocol)</span>
 
 SNMP is an IETF standards-based network management architecture and
 protocol that traces its roots back to Carnegie-Mellon University in
@@ -36,7 +36,7 @@ collaborative open source project. The version used by Cumulus Networks
 is base on the latest `net-snmp` 5.7.3 branch with added custom MIBs and
 pass through and pass persist scripts.
 
-## <span>Configuring Ports for SNMP to Listen for Requests</span>
+## Configuring Ports for SNMP to Listen for Requests</span>
 
 For security reasons, the default port binding for `snmpd` is the
 loopback local address; consequently by default, the SNMP service does
@@ -51,7 +51,7 @@ before enabling and starting `snmpd`. The default configuration has no
 access community strings defined so `snmpd` will not respond to any SNMP
 requests until this is added.
 
-## <span>Starting the SNMP Daemon</span>
+## Starting the SNMP Daemon</span>
 
 The following procedure is the recommended process to start `snmpd` and
 monitor it using `systemctl`.
@@ -82,7 +82,7 @@ To start the SNMP daemon:
 Once the service is started, SNMP can be used to manage various
 components on the Cumulus RMP switch.
 
-## <span>Configuring SNMP</span>
+## Configuring SNMP</span>
 
 Cumulus RMP ships with a production usable default `snmpd.conf` file
 included. This section covers a few basic configuration options in
@@ -103,7 +103,7 @@ v2c environments or the `snmpd` daemon will not respond to any requests.
 
 {{%/notice%}}
 
-### <span>Setting up the Custom Cumulus Networks MIBs</span>
+### Setting up the Custom Cumulus Networks MIBs</span>
 
 {{%notice note%}}
 
@@ -128,7 +128,7 @@ custom Cumulus MIB to be recognized on the destination NMS server.
 
   - `/usr/share/snmp/Cumulus-Resource-Query-MIB.txt`
 
-### <span>Enabling the .1.3.6.1.2.1 Range</span>
+### Enabling the .1.3.6.1.2.1 Range</span>
 
 Some MIBs, including storage information, are not included by default in
 `snmpd.conf` in Cumulus RMP. This results in some default views on
@@ -173,7 +173,7 @@ To enable the .1.3.6.1.2.1 range:
     
         cumulus@switch:~$ sudo systemctl start snmpd.service
 
-### <span>Enabling Public Community</span>
+### Enabling Public Community</span>
 
 The `snmpd` authentication for versions 1 and 2 is disabled by default
 in Cumulus RMP. This password (called a community string) can be enabled
@@ -201,7 +201,7 @@ by setting **rocommunity** (for read-only access) or **rwcommunity**
     
         cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-### <span>Configuring SNMPv3</span>
+### Configuring SNMPv3</span>
 
 Since community strings in versions 1 and 2c are sent in the clear,
 SNMPv3 is often used to enable authentication and encryption. SNMPv3 was
@@ -314,7 +314,7 @@ above.)
     snmpwalk -v 3 -u userMD5withDES -l authPriv -a MD5 -x DES -A md5authpass -X desprivpass localhost 1.3.6.1.2.1.1.1
     snmpwalk -v 3 -u userSHAwithAES -l authPriv -a SHA -x AES -A shaauthpass -X aesprivpass localhost 1.3.6.1.2.1.1.1
 
-## <span>snmpwalk the Switch from Another Linux Device</span>
+## snmpwalk the Switch from Another Linux Device</span>
 
 One of the most important ways to troubleshoot is to snmpwalk the switch
 from another Linux device that can reach the switch running Cumulus RMP.
@@ -376,7 +376,7 @@ Any information gathered here should verify that `snmpd` is running
 correctly on the Cumulus RMP side, reducing locations where a problem
 may reside.
 
-### <span>Troubleshooting Tips Table for snmpwalks</span>
+### Troubleshooting Tips Table for snmpwalks</span>
 
 <table>
 <colgroup>
@@ -414,9 +414,9 @@ Is there an <code>iptables</code> rule blocking? Is the <code>snmpwalk</code> be
 </tbody>
 </table>
 
-## <span>SNMP Traps</span>
+## SNMP Traps</span>
 
-### <span>snmptrapd.conf</span>
+### snmptrapd.conf</span>
 
 The Net-SNMP trap daemon configuration file, `/etc/snmptrapd.conf`, is
 used to configure how incoming traps should be processed. For more
@@ -446,14 +446,14 @@ the following command:
     snmpTrapdAddr localhost
     forward default {{global['snmp_server']}}
 
-### <span>Generating Event Notification Traps</span>
+### Generating Event Notification Traps</span>
 
 The Net-SNMP agent provides a method to generate SNMP trap events, via
 the Distributed Management (DisMan) Event MIB, for various system
 events, including linkup/down, exceeding the temperature sensor
 threshold, CPU load, or memory threshold, or other SNMP MIBs.
 
-#### <span>Monitoring Fans, Power Supplies, or Transformers</span>
+#### Monitoring Fans, Power Supplies, or Transformers</span>
 
 SNMP can be configured to monitor the operational status of an Entity
 MIB or Entity-Sensor MIB. The operational status, given as a value of
@@ -512,7 +512,7 @@ adjusting the values:
     
     {{%/notice%}}
 
-#### <span>Enabling MIB to OID Translation</span>
+#### Enabling MIB to OID Translation</span>
 
 MIB names can be used instead of OIDs, by installing the
 `snmp-mibs-downloader`, to download SNMP MIBs to the switch prior to
@@ -556,7 +556,7 @@ enabling traps. This greatly improves the readability of the
     
         #deb http://ftp.us.debian.org/debian/ jessie main non-free
 
-#### <span>Configuring Trap Events</span>
+#### Configuring Trap Events</span>
 
 The following configurations should be made in `/etc/snmp/snmp.conf`, in
 order to enable specific types of traps. Once configured, restart the
@@ -564,7 +564,7 @@ order to enable specific types of traps. Once configured, restart the
 
     cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-#### <span>Defining Access Credentials</span>
+#### Defining Access Credentials</span>
 
 An SNMPv3 username is required to authorize the DisMan service. The
 example code below uses `cumulusUser` as the username.
@@ -573,7 +573,7 @@ example code below uses `cumulusUser` as the username.
     iquerySecName cumulusUser
     rouser cumulusUser
 
-#### <span>Defining Trap Receivers</span>
+#### Defining Trap Receivers</span>
 
 The example code below creates a trap receiver that is capable of
 receiving SNMPv2 traps.
@@ -594,7 +594,7 @@ name instead of IP address in the `trap2sink` directive.
 
 {{%/notice%}}
 
-#### <span>Configuring LinkUp/Down Notifications</span>
+#### Configuring LinkUp/Down Notifications</span>
 
 The `linkUpDownNotifications` directive is used to configure linkup/down
 notifications when the operational status of the link changes.
@@ -610,7 +610,7 @@ for details.
 
 {{%/notice%}}
 
-#### <span>Configuring Temperature Notifications</span>
+#### Configuring Temperature Notifications</span>
 
 Temperature sensor information for each available sensor is maintained
 in the the lmSensors MIB. Each platform may contain a different number
@@ -651,7 +651,7 @@ used to monitor only temperature sensor three at five minute intervals.
 
     monitor -I -r 300 lmTemSensor3 -o lmTempSensorsDevice.3 lmTempSensorsValue.3 > 68000
 
-#### <span>Configuring Free Memory Notifications</span>
+#### Configuring Free Memory Notifications</span>
 
 You can monitor free memory using the following directives. The example
 below generates a trap when free memory drops below 1,000,000KB. The
@@ -659,7 +659,7 @@ free memory trap also includes the amount of total real memory:
 
     monitor MemFreeTotal -o memTotalReal memTotalFree <  1000000
 
-#### <span>Configuring Processor Load Notifications</span>
+#### Configuring Processor Load Notifications</span>
 
 To monitor CPU load for 1, 5 or 15 minute intervals, use the `load`
 directive in conjunction with the `monitor` directive. The following
@@ -669,7 +669,7 @@ example will generate a trap when the 1 minute interval reaches 12%, the
     load 12 10 5
     monitor -r 60 -o laNames -o laErrMessage "laTable" laErrorFlag !=0
 
-#### <span>Configuring Disk Utilization Notifications</span>
+#### Configuring Disk Utilization Notifications</span>
 
 To monitor disk utilization for all disks, use the `includeAllDisks`
 directive in conjunction with the `monitor` directive. The example code
@@ -678,14 +678,14 @@ below generates a trap when a disk is 99% full:
     includeAllDisks 1%
     monitor -r 60 -o dskPath -o DiskErrMsg "dskTable" diskErrorFlag !=0
 
-#### <span>Configuring Authentication Notifications</span>
+#### Configuring Authentication Notifications</span>
 
 To generate authentication failure traps, use the `authtrapenable`
 directive:
 
     authtrapenable 1
 
-## <span id="src-5127574_SNMPMonitoring-supported_mibs" class="confluence-anchor-link"></span><span>Supported MIBs</span>
+## <span id="src-5127574_SNMPMonitoring-supported_mibs" class="confluence-anchor-link"></span>Supported MIBs</span>
 
 Below are the MIBs supported by Cumulus RMP, as well as suggested uses
 for them. The overall Cumulus RMP MIB is defined in

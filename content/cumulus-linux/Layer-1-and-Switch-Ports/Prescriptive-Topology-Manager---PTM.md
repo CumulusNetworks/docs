@@ -3,7 +3,7 @@ title: Prescriptive Topology Manager - PTM
 author: Cumulus Networks
 weight: 103
 aliases:
- - /display/CL37/Prescriptive-Topology-Manager---PTM
+ - /display/CL37/Prescriptive-Topology-Manager-PTM
  - /pages/viewpage.action?pageId=8363021
 pageID: 8363021
 product: Cumulus Linux
@@ -27,7 +27,7 @@ PTM runs as a daemon, named `ptmd`.
 
 For more information, see `man ptmd(8)`.
 
-## <span>Supported Features</span>
+## Supported Features</span>
 
   - Topology verification using LLDP. `ptmd` creates a client connection
     to the LLDP daemon, `lldpd`, and retrieves the neighbor relationship
@@ -44,7 +44,7 @@ For more information, see `man ptmd(8)`.
     demand mode is not supported. For more information on how BFD
     operates in Cumulus Linux, read the [Bidirectional Forwarding
     Detection -
-    BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD)
+    BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)
     chapter and read `man ptmd(8)`.
 
   - Integration with FRRouting (PTM to FRRouting notification).
@@ -58,7 +58,7 @@ For more information, see `man ptmd(8)`.
   - User configuration via a `topology.dot` file; [see
     below](#src-8363021_PrescriptiveTopologyManager-PTM-configuring).
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-configuring" class="confluence-anchor-link"></span><span>Configure PTM</span>
+## <span id="src-8363021_PrescriptiveTopologyManager-PTM-configuring" class="confluence-anchor-link"></span>Configure PTM</span>
 
 `ptmd` verifies the physical network topology against a DOT-specified
 network graph file, `/etc/ptm.d/topology.dot`.
@@ -80,7 +80,7 @@ information.
 
 {{%/notice%}}
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-example" class="confluence-anchor-link"></span><span>Basic Topology Example</span>
+## <span id="src-8363021_PrescriptiveTopologyManager-PTM-example" class="confluence-anchor-link"></span>Basic Topology Example</span>
 
 This is a basic example DOT file and its corresponding topology diagram.
 You should use the same `topology.dot` file on all switches, and don't
@@ -100,7 +100,7 @@ pushing/pulling the same exact file on each device\!
 
 {{% imgOld 0 %}}
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-advanced" class="confluence-anchor-link"></span><span>ptmd Scripts</span>
+## <span id="src-8363021_PrescriptiveTopologyManager-PTM-advanced" class="confluence-anchor-link"></span>ptmd Scripts</span>
 
 `ptmd` executes scripts at `/etc/ptm.d/if-topo-pass` and
 ` /etc/ptm.d/if-topo-fail  `for each interface that goes through a
@@ -112,12 +112,12 @@ below](#src-8363021_PrescriptiveTopologyManager-PTM-ptmd_commands).
 
 You should modify these default scripts as needed.
 
-## <span>Configuration Parameters</span>
+## Configuration Parameters</span>
 
 You can configure `ptmd` parameters in the topology file. The parameters
 are classified as host-only, global, per-port/node and templates.
 
-### <span>Host-only Parameters</span>
+### Host-only Parameters</span>
 
 *Host-only parameters* apply to the entire host on which PTM is running.
 You can include the `hostnametype` host-only parameter, which specifies
@@ -157,7 +157,7 @@ running on:
              "cumulus":"swp46" -- "switch05.cumulusnetworks.com":"swp22"
     }
 
-### <span>Global Parameters</span>
+### Global Parameters</span>
 
 *Global parameters* apply to every port listed in the topology file.
 There are two global parameters: LLDP and BFD. LLDP is enabled by
@@ -172,7 +172,7 @@ is a per-port override configured. For example:
              "cumulus":"swp46" -- "qct-ly2-04":"swp22"
     }
 
-### <span>Per-port Parameters</span>
+### Per-port Parameters</span>
 
 *Per-port parameters* provide finer-grained control at the port level.
 These parameters override any global or compiled defaults. For example:
@@ -184,7 +184,7 @@ These parameters override any global or compiled defaults. For example:
              "cumulus":"swp46" -- "qct-ly2-04":"swp22"
     }
 
-### <span>Templates</span>
+### Templates</span>
 
 *Templates* provide flexibility in choosing different parameter
 combinations and applying them to a given port. A template instructs
@@ -212,7 +212,7 @@ For example:
 In this template, LLDP1 and LLDP2 are templates for LLDP parameters
 while BFD1 and BFD2 are templates for BFD parameters.
 
-### <span>Supported BFD and LLDP Parameters</span>
+### Supported BFD and LLDP Parameters</span>
 
 `ptmd` supports the following BFD parameters:
 
@@ -278,7 +278,7 @@ hostname only, like *cumulus-3* below, and ignore the rest of the URL:
 
 {{%/notice%}}
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-bfd" class="confluence-anchor-link"></span><span>Bidirectional Forwarding Detection (BFD)</span>
+## <span id="src-8363021_PrescriptiveTopologyManager-PTM-bfd" class="confluence-anchor-link"></span>Bidirectional Forwarding Detection (BFD)</span>
 
 BFD provides low overhead and rapid detection of failures in the paths
 between two network devices. It provides a unified mechanism for link
@@ -286,9 +286,9 @@ detection over all media and protocol layers. Use BFD to detect failures
 for IPv4 and IPv6 single or multihop paths between any two network
 devices, including unidirectional path failure detection. For
 information about configuring BFD using PTM, see the [BFD
-topic](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD).
+topic](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD).
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-frr" class="confluence-anchor-link"></span><span>Check Link State with FRRouting</span>
+## <span id="src-8363021_PrescriptiveTopologyManager-PTM-frr" class="confluence-anchor-link"></span>Check Link State with FRRouting</span>
 
 The FRRouting routing suite enables additional checks to ensure that
 routing adjacencies are formed only on links that have connectivity
@@ -347,7 +347,7 @@ this flag. To check the per-interface `ptm-status`:
       flags: <UP,BROADCAST,RUNNING,MULTICAST>
       HWaddr: c4:54:44:bd:01:41
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-ptmd_commands" class="confluence-anchor-link"></span><span>ptmd Service Commands</span>
+## <span id="src-8363021_PrescriptiveTopologyManager-PTM-ptmd_commands" class="confluence-anchor-link"></span>ptmd Service Commands</span>
 
 PTM sends client notifications in CSV format.
 
@@ -365,7 +365,7 @@ service.
 `cumulus@switch:~$ sudo systemctl status ptmd.service`: Retrieves the
 current running state of `ptmd`.
 
-## <span>ptmctl Commands</span>
+## ptmctl Commands</span>
 
 `ptmctl` is a client of `ptmd`; it retrieves the operational state of
 the ports configured on the switch and information about BFD sessions
@@ -373,7 +373,7 @@ from `ptmd`. `ptmctl` parses the CSV notifications sent by `ptmd`.
 
 See `man ptmctl` for more information.
 
-### <span>ptmctl Examples</span>
+### ptmctl Examples</span>
 
 The examples below contain the following keywords in the output of the
 cbl status column, which are described here:
@@ -490,7 +490,7 @@ tx_timeout  rx_timeout  hop_cnt
 0           0           N/A      501      533      0        0       
 ```
 
-### <span>ptmctl Error Outputs</span>
+### ptmctl Error Outputs</span>
 
 If there are errors in the topology file or there isn’t a session, PTM
 will return appropriate outputs. Typical error strings are:
@@ -535,7 +535,7 @@ graph from working correctly.
 
 {{%/notice%}}
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - Prior to version 2.1, Cumulus Linux stored the `ptmd` configuration
     files in `/etc/cumulus/ptm.d`. When you upgrade to version 2.1 or
@@ -560,7 +560,7 @@ graph from working correctly.
     state, routes on the physical interface are not processed in Quagga,
     but the subinterface is working.
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Bidirectional Forwarding Detection
     (BFD)](http://tools.ietf.org/html/rfc5880)

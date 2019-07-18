@@ -16,7 +16,7 @@ Chef, or Puppet; depending on the outcome of the automation tests, the
 script can either continue the deployment, or roll back the changes
 until the issues are addressed.
 
-## <span>Run NetQ Commands in Automation Scripts</span>
+## Run NetQ Commands in Automation Scripts</span>
 
 Using NetQ for preventative care of your network pairs well with
 automation scripts and playbooks to prevent errors on your network

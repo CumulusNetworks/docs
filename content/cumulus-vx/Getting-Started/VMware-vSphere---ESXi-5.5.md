@@ -3,7 +3,7 @@ title: VMware vSphere - ESXi 5.5
 author: Cumulus Networks
 weight: 37
 aliases:
- - /display/VX/VMware-vSphere---ESXi-5.5
+ - /display/VX/VMware-vSphere-ESXi-5.5
  - /pages/viewpage.action?pageId=5126689
 pageID: 5126689
 product: Cumulus VX
@@ -22,7 +22,7 @@ documentation](https://pubs.vmware.com/vsphere-55/index.jsp).
 
 {{%/notice%}}
 
-## <span>Create a Cumulus VX VM with VMware vSphere - ESXi 5.5</span>
+## Create a Cumulus VX VM with VMware vSphere - ESXi 5.5</span>
 
 {{%notice note%}}
 
@@ -81,7 +81,7 @@ pane.
 
 {{% imgOld 2 %}}
 
-## <span>Next Steps</span>
+## Next Steps</span>
 
 {{%notice note%}}
 

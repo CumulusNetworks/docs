@@ -16,7 +16,7 @@ Utility](/version/cumulus-rmp-321/System-Configuration/Network-Command-Line-Util
 (NCLU) can quickly return a lot of information about your network
 configuration.
 
-## <span>Using net show Commands</span>
+## Using net show Commands</span>
 
 Running `net show` and pressing TAB displays all available command line
 arguments usable by `net`. The output looks like this:
@@ -46,7 +46,7 @@ arguments usable by `net`. The output looks like this:
         system         :  System information
         version        :  Version number
 
-## <span>Showing Interfaces</span>
+## Showing Interfaces</span>
 
 To show all available interfaces that are physically UP, run `netshow
 interface`:
@@ -103,7 +103,7 @@ system`:
     Build: Cumulus RMP 3.2.0
     Uptime: 2 days, 21:31:00
 
-## <span>Other Useful netshow Features</span>
+## Other Useful netshow Features</span>
 
 `netshow` uses the [python
 network-docopt](https://pypi.python.org/pypi/network-docopt) package.

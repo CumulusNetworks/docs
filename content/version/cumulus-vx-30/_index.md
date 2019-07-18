@@ -22,7 +22,7 @@ The environment can be used to learn about, and evaluate, Cumulus Linux,
 anytime and anywhere, producing sandbox environments for prototype
 assessment, pre-production rollouts, and script development.
 
-## <span>What's New</span>
+## What's New</span>
 
 Major enhancements have been made for Cumulus VX 3.0 with the goal of
 producing a true learning, testing, and pre-production tool. These
@@ -52,7 +52,7 @@ behaves like a real switch. For that reason, tools like
 be built alongside Cumulus Linux, rather than with a staggered delay, to
 allow for testing ahead of a production upgrade.
 
-## <span>Supported Platforms</span>
+## Supported Platforms</span>
 
   - Integrates with [KVM](http://www.linux-kvm.org/page/Downloads),
     [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and
@@ -61,7 +61,7 @@ allow for testing ahead of a production upgrade.
   - Runs within [GNS3](http://www.gns3.com) and
     [Vagrant](https://www.vagrantup.com) environments
 
-## <span>About the Virtual Machine</span>
+## About the Virtual Machine</span>
 
 Cumulus VX runs in a virtual machine (VM) on a standard x86 environment.
 The VM is a 64-bit operating system, built on the same foundation as
@@ -80,13 +80,13 @@ various hypervisors:
 
   - A Box image for use with Vagrant.
 
-## <span>Comparisons with Other Cumulus Networks Products</span>
+## Comparisons with Other Cumulus Networks Products</span>
 
 Cumulus VX is a virtual appliance that simulates a Cumulus Linux or
 Cumulus RMP environment. To see how these systems compare, [read this
 article](/version/cumulus-vx-30/Comparing-Cumulus-VX-with-Other-Cumulus-Networks-Products).
 
-## <span>Community Support</span>
+## Community Support</span>
 
 Cumulus VX is a [community-supported
 product](https://support.cumulusnetworks.com/hc/en-us/articles/206382248).
@@ -94,7 +94,7 @@ Join the [Cumulus Networks
 community](https://community.cumulusnetworks.com/cumulus/categories/cumulus_vx)
 and ask for or offer help.
 
-## <span>Downloading the Cumulus VX Image</span>
+## Downloading the Cumulus VX Image</span>
 
 To get started, you need to download some software as well as the
 [Cumulus VX disk
@@ -119,7 +119,7 @@ read the appropriate steps below:
   - [Using Cumulus VX with
     GNS3](http://docs.cumulusnetworks.com/display/VX/Using+Cumulus+VX+with+GNS3)
 
-## <span>Logging in to the VM</span>
+## Logging in to the VM</span>
 
 The Cumulus VX VM has these default login credentials:
 
@@ -130,7 +130,7 @@ The Cumulus VX VM has these default login credentials:
 The cumulus user has `sudo` privileges, just like a Cumulus Linux
 switch.
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
 For more information about Cumulus VX, Cumulus Linux and supported
 environments, visit these links:
@@ -158,7 +158,7 @@ environments, visit these links:
 
 {{% imgOld 0 %}}
 
-## <span>Recently Updated Pages</span>
+## Recently Updated Pages</span>
 
   - Cumulus VX Getting Started GuideMay 13, 2019 • updated by [Dan
     Cawley](https://docs.cumulusnetworks.com/display/~dcawley) • [view
@@ -189,7 +189,7 @@ More](https://docs.cumulusnetworks.com/plugins/recently-updated/changes.action?t
 ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/wait.gif](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/wait.gif)  
 <span class="caption">Please wait</span>
 
-## <span>Space Contributors</span>
+## Space Contributors</span>
 
   - [Dan Cawley](https://docs.cumulusnetworks.com/display/~dcawley) (58
     days ago)

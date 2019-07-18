@@ -63,7 +63,7 @@ Changes to the `traffic.conf` file require you to [restart
 `switchd`](Configuring-switchd.html#src-5115907_Configuringswitchd-restartswitchd)
 .
 
-## <span>Commands</span>
+## Commands</span>
 
 If you modify the configuration in the
 `/etc/cumulus/datapath/traffic.conf` file, you must [restart
@@ -72,7 +72,7 @@ for the changes to take effect:
 
     cumulus@switch:~$ sudo service switchd restart
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
 The following configuration applies to 10G and 40G switches only ([any
 switch](http://cumulusnetworks.com/hcl/) on the Trident, Trident+, or
@@ -188,7 +188,7 @@ cut_through_enable = true
 #ecmp_max_paths = 0      
 ```
 
-## <span>Configuring Traffic Marking through ACL Rules</span>
+## Configuring Traffic Marking through ACL Rules</span>
 
 You can mark traffic for egress packets through `iptables` or
 `ip6tables` rule classifications. To enable these rules, you do one of
@@ -237,7 +237,7 @@ TCAM slices in the hardware.
 To put the rule in the mangle table, include `-t mangle`; to put the
 rule in the filter table, omit `-t mangle`.
 
-## <span>Configuring Link Pause</span>
+## Configuring Link Pause</span>
 
 The PAUSE frame is a flow control mechanism that halts the transmission
 of the transmitter for a specified period of time. A server or other
@@ -310,12 +310,12 @@ to allow link pause configuration changes to take effect:
 
     cumulus@switch:~$ sudo service switchd restart
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [iptables-extensions man
     page](http://ipset.netfilter.org/iptables-extensions.man.html)
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - You can configure Quality of Service (QoS) for 10G and 40G switches
     only; that is, any switch on the Trident, Trident+, or Trident II

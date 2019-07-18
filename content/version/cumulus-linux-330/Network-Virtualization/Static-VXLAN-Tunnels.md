@@ -21,7 +21,7 @@ MidoNet](/version/cumulus-linux-330/Network-Virtualization/Integrating-Hardware-
 or [VMware
 NSX](/version/cumulus-linux-330/Network-Virtualization/Integrating-with-VMware-NSX)
 and even new standards like
-[EVPN](/version/cumulus-linux-330/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+[EVPN](/version/cumulus-linux-330/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
 are attempts to address these complexities, however do retain their own
 complexities.
 
@@ -33,7 +33,7 @@ configuration, since you are simply mapping which VTEPs are in a
 particular VNI, so you can avoid the tedious process of defining
 connections to every VLAN on every other VTEP on every other rack.
 
-## <span>Requirements</span>
+## Requirements</span>
 
 While they should be interoperable with other vendors, Cumulus Networks
 supports static VXLAN tunnels only on switches in the [Cumulus Linux
@@ -58,14 +58,14 @@ For a basic VXLAN configuration, you should ensure that:
     
         cumulus@switch:~ sudo systemctl stop vxrd.service
 
-## <span>Example Configuration</span>
+## Example Configuration</span>
 
 The following topology is used in this chapter. Each IP address
 corresponds to the switch's loopback address:
 
 {{% imgOld 0 %}}
 
-## <span>Configuring Static VXLAN Tunnels</span>
+## Configuring Static VXLAN Tunnels</span>
 
 To configure static VXLAN tunnels, for each leaf you need to do the
 following:
@@ -273,7 +273,7 @@ iface vni-10
 </tbody>
 </table>
 
-## <span>Verifying the Configuration</span>
+## Verifying the Configuration</span>
 
 Once you configure all the leaf switches, check for replication entries:
 

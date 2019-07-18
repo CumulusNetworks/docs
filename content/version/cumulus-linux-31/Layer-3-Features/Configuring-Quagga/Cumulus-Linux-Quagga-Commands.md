@@ -32,16 +32,16 @@ as follows:
 <tbody>
 <tr class="odd">
 <td><p>cl-bgp</p></td>
-<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol---BGP">BGP</a> commands. See <code>man cl-bgp</code> for details.</p></td>
+<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP">BGP</a> commands. See <code>man cl-bgp</code> for details.</p></td>
 </tr>
 <tr class="even">
 <td><p>cl-ospf</p></td>
-<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First---OSPF---Protocol">OSPFv2</a> commands. For example:<br />
+<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol">OSPFv2</a> commands. For example:<br />
 <code>cumulus@switch:~$ sudo cl-ospf area 0.0.0.1 range 10.10.10.0/24</code></p></td>
 </tr>
 <tr class="odd">
 <td><p>cl-ospf6</p></td>
-<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-v3---OSPFv3---Protocol">OSPFv3</a> commands.</p></td>
+<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-v3-OSPFv3---Protocol">OSPFv3</a> commands.</p></td>
 </tr>
 <tr class="even">
 <td><p>cl-ra</p></td>
@@ -54,7 +54,7 @@ as follows:
 </tbody>
 </table>
 
-## <span>Comparing vtysh and Cumulus Linux Commands</span>
+## Comparing vtysh and Cumulus Linux Commands</span>
 
 The following table compares the various Quagga commands with their
 Cumulus Linux CLI counterparts.
@@ -105,7 +105,7 @@ switch(config-if)# ipv6 address  3002:2123:1234:1abc::21/64</code></pre></td>
 <td><pre><code>cumulus@switch:~$ sudo cl-rctl interface add swp3 ipv6 address 3002:2123:abcd:2120::41/64</code></pre></td>
 </tr>
 <tr class="even">
-<td><p>Enable topology checking (<a href="/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager---PTM">PTM</a>)</p></td>
+<td><p>Enable topology checking (<a href="/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM">PTM</a>)</p></td>
 <td><pre><code>switch(config)# ptm-enable</code></pre></td>
 <td><pre><code>cumulus@switch:~$ sudo cl-rctl ptm-enable set</code></pre></td>
 </tr>
@@ -139,7 +139,7 @@ switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
 <td><pre><code>cumulus@switch:~$ sudo cl-ospf debug show</code></pre></td>
 </tr>
 <tr class="even">
-<td><p>Display <a href="/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol---BGP">BGP</a> information</p></td>
+<td><p>Display <a href="/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP">BGP</a> information</p></td>
 <td><pre><code>switch# show ip bgp summary</code></pre></td>
 <td><pre><code>cumulus@switch:~$ sudo cl-bgp summary </code></pre></td>
 </tr>

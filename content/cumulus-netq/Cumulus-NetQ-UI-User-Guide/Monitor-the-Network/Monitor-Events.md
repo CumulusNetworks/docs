@@ -21,7 +21,7 @@ To focus on events from a single device perspective, refer to
 Switches](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-Switches)
 </span> .
 
-## <span>Monitor Alarms</span>
+## Monitor Alarms</span>
 
 You can easily monitor critical events occurring across your network
 using the Alarms card. You can determine the number of events for the
@@ -30,7 +30,7 @@ in the network. The content of the cards in the workflow is described
 first, and then followed by common tasks you would perform using this
 card workflow.
 
-### <span>Alarms Card Workflow Summary</span>
+### Alarms Card Workflow Summary</span>
 
 The small Alarms card displays:
 
@@ -231,7 +231,7 @@ The full screen Alarms card provides tabs for all events.
 </tbody>
 </table>
 
-### <span>View Alarm Status Summary</span>
+### View Alarm Status Summary</span>
 
 A summary of the critical alarms in the network includes the number of
 alarms, a trend indicator, a performance indicator, and a distribution
@@ -247,7 +247,7 @@ average number of alarms during this time period. This would indicate a
 need to investigate further. Note that with such a small number of
 alarms, the rating may be a bit skewed.
 
-### <span>View the Distribution of Alarms</span>
+### View the Distribution of Alarms</span>
 
 It is helpful to know where and when alarms are occurring in your
 network. The Alarms card workflow enables you to see the distribution of
@@ -259,12 +259,12 @@ to view all of the charts.
 
 {{% imgOld 11 %}}
 
-### <span>Monitor System and Interface Alarm Details</span>
+### Monitor System and Interface Alarm Details</span>
 
 The Alarms card workflow enables users to easily view and track critical
 severity system and interface alarms occurring anywhere in your network.
 
-#### <span>View All System and Interface Alarms</span>
+#### View All System and Interface Alarms</span>
 
 You can view the alarms associated with the system and interfaces using
 the Alarms card workflow. You can sort alarms based on their occurrence
@@ -281,7 +281,7 @@ the associated alarms is also displayed.
 By default, the list of the most recent alarms for the systems and
 interfaces is displayed when viewing the large cards.
 
-#### <span>View Devices with the Most Alarms</span>
+#### View Devices with the Most Alarms</span>
 
 You can filter instead for the devices that have the most alarms.
 
@@ -290,7 +290,7 @@ then select **Devices by event count** from the dropdown.
 
 {{% imgOld 13 %}}
 
-#### <span>Filter Alarms by System or Interface</span>
+#### Filter Alarms by System or Interface</span>
 
 You can focus your view to include alarms for selected system or
 interface categories.
@@ -312,7 +312,7 @@ In this example, we removed the Services from the event listing.
 
 {{% imgOld 14 %}}
 
-#### <span>Compare Alarms with a Prior Time</span>
+#### Compare Alarms with a Prior Time</span>
 
 You can change the time period for the data to compare with a prior
 time. If the same devices are consistently indicating the most alarms,
@@ -350,7 +350,7 @@ To compare two time periods:
     has the most alarms in each time period, so it might be worth
     investigating this device in more detail.
 
-### <span>View All Events</span>
+### View All Events</span>
 
 You can view all events in the network either by clicking the **Show All
 Events** link under the table on the large Alarm Events card, or by
@@ -368,7 +368,7 @@ To return to your workbench, click
 
 in the top right corner of the card.
 
-## <span>Monitor Info Events</span>
+## Monitor Info Events</span>
 
 You can easily monitor warning, info, and debug severity events
 occurring across your network using the Info card. You can determine the
@@ -377,7 +377,7 @@ protocols and services components in the network. The content of the
 cards in the workflow is described first, and then followed by common
 tasks you would perform using this card workflow.
 
-### <span>Info Card Workflow Summary</span>
+### Info Card Workflow Summary</span>
 
 The Info card workflow enables users to easily view and track
 informational alarms occurring anywhere in your network.
@@ -574,7 +574,7 @@ The full screen Info card provides tabs for all events.
 </tbody>
 </table>
 
-### <span>View Info Status Summary</span>
+### View Info Status Summary</span>
 
 A summary of the informational events occurring in the network can be
 found on the small, medium, and large Info cards. Additional details are
@@ -605,7 +605,7 @@ Hover over segment of chart to view the count for each type.
 To view the summary with the large Info card, open the card. The left
 side of the card provides the same capabilities as the medium Info card.
 
-### <span>Compare Timing of Info and Alarm Events</span>
+### Compare Timing of Info and Alarm Events</span>
 
 While you can see the relative relationship between info and alarm
 events on the small Info card, the medium and large cards provide
@@ -628,7 +628,7 @@ and distributions. Some other possible scenarios:
     severity debug are seen. You would not expect to see an increase in
     critical alarms.
 
-### <span>View All Info Events Sorted by Time of Occurrence</span>
+### View All Info Events Sorted by Time of Occurrence</span>
 
 You can view all info events using the large Info card. Open the large
 card and confirm the **Events By Most Recent** option is selected in the
@@ -639,7 +639,7 @@ an earlier time within the selected time period for the card.
 
 {{% imgOld 34 %}}
 
-### <span>View Devices with the Most Info Events</span>
+### View Devices with the Most Info Events</span>
 
 You can filter instead for the devices that have the most info events by
 selecting the **Devices by Event Count** option from the filter above
@@ -649,7 +649,7 @@ the table.
 
 {{% imgOld 36 %}}
 
-### <span>View All Events</span>
+### View All Events</span>
 
 You can view all events in the network either by clicking the **Show All
 Events** link under the table on the large Info Events card, or by
@@ -667,7 +667,7 @@ To return to your workbench, click
 
 in the top right corner of the card.
 
-## <span>Events Reference</span>
+## Events Reference</span>
 
 The following table lists all event messages organized by type, by
 default. Click the column header to sort the list by that

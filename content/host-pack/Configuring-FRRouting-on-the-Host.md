@@ -28,7 +28,7 @@ because PTM is not enabled on the host.
 
 {{%/notice%}}
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
 At startup, FRR reads a set of files to determine the startup
 configuration. The files and what they contain are specified below:
@@ -54,7 +54,7 @@ details.
 
 {{%/notice%}}
 
-## <span>Configure FRRouting</span>
+## Configure FRRouting</span>
 
 FRR does not start by default. Before you run FRR, make sure all you
 have enabled relevant daemons that you intend to use — `zebra`, `bgpd`,
@@ -94,7 +94,7 @@ After you copy the file to the container, start FRR, as described below.
 
 {{%/notice%}}
 
-### <span>Start the FRR Service</span>
+### Start the FRR Service</span>
 
 On an Ubuntu 16.04 or RHEL 7 host, enable and start the FRR service:
 
@@ -112,7 +112,7 @@ For a Docker container, on the host, run:
     Starting FRR monitor daemon: watchfrr.
     Exiting from the script
 
-### <span id="src-5868796_ConfiguringFRRoutingontheHost-integrated_cfg" class="confluence-anchor-link"></span><span>Integrated Configurations</span>
+### <span id="src-5868796_ConfiguringFRRoutingontheHost-integrated_cfg" class="confluence-anchor-link"></span>Integrated Configurations</span>
 
 By default, FRR saves the configuration of all daemons in a single
 integrated configuration file, `frr.conf`.
@@ -152,7 +152,7 @@ this:
     Configuration saved to /etc/frr/bgpd.conf
     [OK]
 
-### <span>Cumulus FRR Defaults for the Data Center</span>
+### Cumulus FRR Defaults for the Data Center</span>
 
 Located within the default configuration of FRRouting is the following
 line:
@@ -187,7 +187,7 @@ completes. However, it sets the following FRR options:
 
 You can modify these settings on the command line.
 
-### <span>Set the Source on a Route-map for BGP Unnumbered Configurations</span>
+### Set the Source on a Route-map for BGP Unnumbered Configurations</span>
 
 When using a
 [BGP unnumbered interfaces configuration](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/),
@@ -212,7 +212,7 @@ looks like this:
      
     10.97.1.1 via 169.254.0.1 dev eth1 proto bgp src 10.97.1.161 metric 20 onlink
 
-### <span>Restore the Default Configuration</span>
+### Restore the Default Configuration</span>
 
 If you need to restore the FRR configuration to the default running
 configuration, you need to delete the `frr.conf` file and restart the
@@ -250,7 +250,7 @@ or `ospf6d.conf`) instead of `frr.conf` in step 2 above.
 
 {{%/notice%}}
 
-## <span>Configure FRR in a Container</span>
+## Configure FRR in a Container</span>
 
 If you're using FRR with containers, you have three ways to configure
 FRR:
@@ -301,7 +301,7 @@ When you log into to privileged container, the prompt does not change.
 
 Configure FRR as you would for a host, described above.
 
-### <span>Stop and Remove Containers</span>
+### Stop and Remove Containers</span>
 
 To stop and remove all containers (a container must be stopped before it
 can be removed):
@@ -312,14 +312,14 @@ Remove all containers:
 
     root@host:/etc/apt/sources.list.d# docker rm $(docker ps -a -q)
 
-## <span>Interface IP Addresses</span>
+## Interface IP Addresses</span>
 
 FRR inherits the IP addresses and any associated routing tables for the
 network interfaces from the `/etc/network/interfaces` file. This is the
 recommended way to define the addresses; do **not** create interfaces
 using FRR. For more information, see [Configuring IP Addresses](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/) in the Cumulus Linux user guide.
 
-## <span>The vtysh Modal CLI</span>
+## The vtysh Modal CLI</span>
 
 FRR provides a [CLI](http://docs.frrouting.org/en/latest/vtysh.html) –
 `vtysh` – for configuring and displaying the state of the protocols. It
@@ -517,7 +517,7 @@ started, `vtysh` silently ignores those commands.
 
 {{%/notice%}}
 
-## <span>Example vtysh Commands</span>
+## Example vtysh Commands</span>
 
 This section illustrates various `vtysh` commands for use when
 configuring FRR.
@@ -598,7 +598,7 @@ host(config-if)# ipv6 ospf6 hello-interval  60</code></pre></td>
 </tbody>
 </table>
 
-## <span>Reload the FRR Configuration</span>
+## Reload the FRR Configuration</span>
 
 If you make a change to your routing configuration, you need to reload
 so your changes take place. *FRR reload* enables you to apply only the
@@ -629,14 +629,14 @@ in `/etc/frr/frr.conf`:
 
     root@host:~# vtysh -c 'show run'
 
-### <span>Reload FRR in a Container</span>
+### Reload FRR in a Container</span>
 
 When you change the FRR configuration, you need to reload FRR for your
 changes to take place. Run the following command:
 
     root@host:# docker exec -it frr /usr/lib/frr/frr-reload.py --reload /etc/frr/frr.conf
 
-## <span>Debug Steps</span>
+## Debug Steps</span>
 
 If the running configuration is not what you expected, please [submit a
 support
@@ -650,7 +650,7 @@ supply the following information:
 
   - The contents of the `/var/log/frr/` directory
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [FRR BGP
     documentation](http://docs.frrouting.org/en/latest/bgp.html)

@@ -17,7 +17,7 @@ Snapshots are performed automatically right before and after you upgrade
 Cumulus Linux using [package
 install](Upgrading-Cumulus-Linux.html#src-8362647_UpgradingCumulusLinux-apt_upgrade),
 and right before and after you commit a switch configuration using
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU).
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
 In addition, you can take a snapshot at any time. You can roll back the
 entire file system to a specific snapshot or just retrieve specific
 files.
@@ -34,12 +34,12 @@ The primary snapshot components include:
     back to earlier snapshots, view existing snapshots, or delete one or
     more snapshots.
 
-  - [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU)
+  - [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
     — takes snapshots automatically before and after committing network
     configurations. You can use NCLU to roll back to earlier snapshots,
     view existing snapshots, or delete one or more snapshots.
 
-## <span>Install the Snapshot Package</span>
+## Install the Snapshot Package</span>
 
 If you are upgrading from a version of Cumulus Linux earlier than
 version 3.2, you need to install the `cumulus-snapshot` package before
@@ -49,7 +49,7 @@ you can use snapshots.
     cumulus@switch:~$ sudo -E apt-get install cumulus-snapshot
     cumulus@switch:~$ sudo -E apt-get upgrade
 
-## <span>Take and Manage Snapshots</span>
+## Take and Manage Snapshots</span>
 
 Snapshots are taken automatically:
 
@@ -66,7 +66,7 @@ You can also take snapshots as needed using the `snapper` utility. Run:
 For more information about using `snapper`, run `snapper --help` or `man
 snapper(8)`.
 
-### <span>View Available Snapshots</span>
+### View Available Snapshots</span>
 
 You can use both NCLU and `snapper` to view available snapshots on the
 switch.
@@ -104,7 +104,7 @@ pre    | 31 |       | Fri 02 Dec 2016 12:18:08 AM UTC | root | number  | nclu pr
 post   | 32 | 31    | Fri 02 Dec 2016 12:18:10 AM UTC | root | number  | nclu post 'ACL' (user cumulus)         |            
 ```
 
-### <span>View Differences between Snapshots</span>
+### View Differences between Snapshots</span>
 
 To see a line by line comparison of changes between two snapshots, run
 the `sudo snapper diff` command:
@@ -153,7 +153,7 @@ added, or deleted files only, run the `sudo snapper status` command:
     c..... /etc/cumulus/acl/policy.d/50_nclu_acl.rules
     c..... /var/lib/cumulus/nclu/nclu_acl.conf
 
-### <span>Delete Snapshots</span>
+### Delete Snapshots</span>
 
 You can remove one or more snapshots using NCLU or snapper.
 
@@ -212,7 +212,7 @@ after running `apt-get upgrade|install|remove|dist-upgrade`. Edit
 
     APT_SNAPSHOT_ENABLE=no
 
-## <span id="src-8362648_UsingSnapshots-rollback" class="confluence-anchor-link"></span><span>Roll Back to Earlier Snapshots</span>
+## <span id="src-8362648_UsingSnapshots-rollback" class="confluence-anchor-link"></span>Roll Back to Earlier Snapshots</span>
 
 If you need to restore Cumulus Linux to an earlier state, you can roll
 back to an older snapshot.
@@ -244,7 +244,7 @@ history:
 Running `net rollback description turtle` rolls the configuration back
 to the state it was in when you ran `net commit description rocket`.
 
-### <span>Roll Back with snapper</span>
+### Roll Back with snapper</span>
 
 For any snapshot on the switch, you can use `snapper` to roll back to a
 specific snapshot. When running `snapper rollback`, you must reboot the
@@ -266,7 +266,7 @@ You can also copy the file directly from the snapshot directory:
 
 {{%/notice%}}
 
-## <span>Configure Automatic Time-based Snapshots</span>
+## Configure Automatic Time-based Snapshots</span>
 
 You can configure Cumulus Linux to take hourly snapshots. Enable
 `TIMELINE_CREATE` in the snapper configuration:
@@ -297,7 +297,7 @@ You can configure Cumulus Linux to take hourly snapshots. Enable
     TIMELINE_LIMIT_YEARLY  | 5    
     TIMELINE_MIN_AGE       | 1800 
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
 You might notice that the root partition is mounted multiple times. This
 is due to the way the `btrfs` file system handles subvolumes, mounting

@@ -38,7 +38,7 @@ services.
 
 {{%/notice%}}
 
-## <span>Configuring the Host Interfaces</span>
+## Configuring the Host Interfaces</span>
 
 Configure the host interfaces for both IPv4 and IPv6 for DHCP by adding
 the DHCP port relay to the IPv4 and IPv6 host interfaces.
@@ -81,7 +81,7 @@ snippet:
 
 {{%/notice%}}
 
-## <span>Configuring the DHCP Relays on Cumulus RMP Switches</span>
+## Configuring the DHCP Relays on Cumulus RMP Switches</span>
 
 Configure the IPv4 and IPv6 DHCP relays on each leaf switch. You need to
 run two independent instances of `dhcrelay`, one for IPv4 and one for
@@ -100,7 +100,7 @@ switch itself may hang after starting or restarting.
 
 {{%/notice%}}
 
-### <span>Configuring the DHCP Relay Interfaces</span>
+### Configuring the DHCP Relay Interfaces</span>
 
 As described above, you can configure the interfaces on the DHCP relay
 (the Cumulus Linux or Cumulus RMP switch) a number of ways, either as
@@ -132,9 +132,9 @@ These commands create the following code snippet in
 {{%/notice%}}
 
 A layer 2 bridge can be configured in either
-[VLAN-aware](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+[VLAN-aware](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 or
-[traditional](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/Traditional-Mode-Bridges)
+[traditional](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges)
 mode.
 
 {{%notice info%}}
@@ -191,7 +191,7 @@ below:
 
 {{%/notice%}}
 
-### <span>Configuring IPv4 DHCP Relays</span>
+### Configuring IPv4 DHCP Relays</span>
 
 Edit `dhcrelay.service`, as described below. The IPv4 `dhcrelay.service`
 *Unit* script calls `/etc/default/isc-dhcp-relay` to find launch
@@ -243,7 +243,7 @@ service so the configuration persists between reloads:
 
     cumulus@switch:~$ sudo systemctl enable dhcrelay.service
 
-### <span>Configuring IPv6 DHCP Relays</span>
+### Configuring IPv6 DHCP Relays</span>
 
 If you're configuring IPv6, you need to create the `dhcrelay6.service`
 file and populate its content, as described below. The
@@ -284,7 +284,7 @@ service so the configuration persists between reloads:
 
     cumulus@switch:~$ sudo systemctl enable dhcrelay6.service
 
-## <span>Configuring DHCP Server on Cumulus RMP Switches</span>
+## Configuring DHCP Server on Cumulus RMP Switches</span>
 
 You can use the following sample configurations for `dhcp.conf` and
 `dhcpd6.conf` to start both an IPv4 and an IPv6 DHCP server. The
@@ -295,7 +295,7 @@ pools:
 
   - Pool 2: Subnet that includes the addresses
 
-### <span>Configuring the IPv4 DHCP Server</span>
+### Configuring the IPv4 DHCP Server</span>
 
 In a text editor, edit the `dhcpd.conf` file with a configuration
 similar to the following:
@@ -326,7 +326,7 @@ After you've finished configuring the DHCP server, enable the ` dhcpd
 
     cumulus@switch:~$ sudo systemctl enable dhcpd.service
 
-### <span>Configuring the IPv6 DHCP Server</span>
+### Configuring the IPv6 DHCP Server</span>
 
 In a text editor, edit the `dhcpd6.conf` file with a configuration
 similar to the following:
@@ -363,7 +363,7 @@ After you've finished configuring the DHCP server, enable the`  dhcpd6
 
     cumulus@switch:~$ sudo systemctl enable dhcpd6.service
 
-## <span>Troubleshooting the DHCP Relays</span>
+## Troubleshooting the DHCP Relays</span>
 
 If you are experiencing issues with the DHCP relay, you can run the
 following commands to determine whether or not the issue is with

@@ -59,9 +59,9 @@ destination.
 
 {{%/notice%}}
 
-## <span>Caveats/Errata</span>
+## Caveats/Errata</span>
 
-### <span>Cut-through Mode</span>
+### Cut-through Mode</span>
 
 Cut-through mode is disabled in Cumulus Linux by default. With
 cut-though mode enabled and link pause is asserted, Cumulus Linux
@@ -100,14 +100,14 @@ in `/etc/cumulus/datapath/traffic.conf`:
     cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf 
     cut_through_enable = false
 
-### <span>MTU Size for Virtual Network Interfaces</span>
+### MTU Size for Virtual Network Interfaces</span>
 
 The maximum transmission unit (MTU) size for a virtual network interface
 should by 50 bytes smaller than the MTU for the physical interfaces on
 the switch. For more information, read [Layer 1 and Switch Port
 Attributes](Layer-1-and-Switch-Port-Attributes.html#src-5126996_Layer1andSwitchPortAttributes-mtu_vxlan).
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [VXLAN IETF
     draft](http://tools.ietf.org/html/draft-mahalingam-dutt-dcops-vxlan-06)

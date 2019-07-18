@@ -28,20 +28,20 @@ in Cumulus NetQ 1.2.
 
 {{%/notice%}}
 
-## <span>Commands</span>
+## Commands</span>
 
   - netq query
 
   - netq config add|del experimental
 
-## <span>Enabling NetQL</span>
+## Enabling NetQL</span>
 
 Since NetQL is an early access feature, you must enable the experimental
 option of the NetQ CLI:
 
     cumulus@switch:~$ netq config add experimental
 
-## <span>Usage</span>
+## Usage</span>
 
 NetQL is a generic structured query language modeled on SQL. The general
 command syntax is:
@@ -80,7 +80,7 @@ The following is a real-world example:
 The keywords are not case sensitive, so you can use *SELECT*, *Select*
 or *select*. The all caps usage is for easier parsing of the queries.
 
-## <span>Tables and Fields</span>
+## Tables and Fields</span>
 
 One example field is *hostname*, which is present in every table.
 Example tables include Route, Link and BgpSession.
@@ -135,7 +135,7 @@ An example query on a single table is:
 
 NetQL displays the values of the specified fields in tabular output.
 
-## <span>Conditions</span>
+## Conditions</span>
 
 Conditions select what data is presented. An example of a condition is
 *hostname="leaf01"*. Use double quotes ("") for the specific values you
@@ -170,7 +170,7 @@ An example conditional query is:
     leaf02      swp3.2       spine01          655563  655435      Established
     leaf02      swp3.3       spine01          655563  655435      Established
 
-## <span>Grouping Results</span>
+## Grouping Results</span>
 
 When you want to see not only the value of a field, but also the
 aggregated output such as a count or sum, you must specify on which
@@ -192,7 +192,7 @@ for each host, the query is:
     leaf05                     13
     leaf06                     13 
 
-## <span>Ordering Results</span>
+## Ordering Results</span>
 
 You can specify which columns you want the output sorted on using the
 "ORDER BY" clause of the query. The general format of the ORDER BY
@@ -276,7 +276,7 @@ list of each ASN:
     --------------------------------------------------------------------------------------------------------
     set([655435L, 655559L, 655560L, 655561L, 655562L, 655563L, 655564L, 655536L, 655537L, 655538L, 655539L])
 
-## <span>Regular Expressions</span>
+## Regular Expressions</span>
 
 You can use any regular expression that Redis supports. They include,
 but are not limited to, the following examples:
@@ -305,7 +305,7 @@ For example:
     leaf01      swp3         spine01          655559  655435      Established
     leaf01      swp4         spine02          655559  655435      Established
 
-## <span>JSON Output</span>
+## JSON Output</span>
 
 Any command's output can be returned in JSON format by ending the
 command with the optional `json` keyword, as follows:

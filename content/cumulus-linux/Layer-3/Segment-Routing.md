@@ -30,13 +30,13 @@ switching (MPLS) controllers program labels into the network for traffic
 engineering.
 
 Cumulus Linux provides full label-based forwarding, relying on
-[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP) for label
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP) for label
 exchange. However, Cumulus Linux does not provide LDP interoperability
 for MPLS and it does not support
-[VRFs](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF) for
+[VRFs](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF) for
 tenant isolation.
 
-## <span>Features</span>
+## Features</span>
 
 Segment routing is MPLS for the data plane **only**. In this EA release,
 Cumulus Linux does not impose the labels, the host does. The MTUs should
@@ -45,7 +45,7 @@ Segment routing supports the following features:
 
   - MPLS label edge router (LER) functionality for IPv4 and IPv6 routing
     with
-    [ECMP](/cumulus-linux/Layer-3/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP).
+    [ECMP](/cumulus-linux/Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP).
     An ingress LER first adds an MPLS label to an IP packet. An egress
     LER removes the outermost MPLS label (also called *popping* the
     label).
@@ -60,7 +60,7 @@ Segment routing supports the following features:
   - FRR support for BGP/MPLS segment routing based on
     [draft-ietf-idr-bgp-prefix-sid-06](https://datatracker.ietf.org/doc/draft-ietf-idr-bgp-prefix-sid/).
 
-## <span>Example Configuration</span>
+## Example Configuration</span>
 
 Consider the following topology. Typically, host1 sends traffic to host2
 through r1, r2 and r3. However, you can use segment routing to route
@@ -462,11 +462,11 @@ line vty
 </tbody>
 </table>
 
-## <span>Configure Segment Routing</span>
+## Configure Segment Routing</span>
 
 To configure the segment routing example above, use the `label-index`
 option in
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU).
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
 Configure the following on each node:
 
     cumulus@switch:~$ net add bgp network 10.1.1.1/32 label-index 1
@@ -503,7 +503,7 @@ label-index.
     !
     mpls label global-block 100 200
 
-## <span>View the Configuration</span>
+## View the Configuration</span>
 
 You can see the label-index when you show the BGP configuration on a
 router.

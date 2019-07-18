@@ -24,7 +24,7 @@ users, and authorization of user actions.
 NSS enables PAM to use LDAP to provide user authentication, group
 mapping, and information for other services on the system.
 
-## <span>Configure LDAP Authentication</span>
+## Configure LDAP Authentication</span>
 
 There are 3 common ways to configure LDAP authentication on Linux:
 
@@ -38,7 +38,7 @@ This chapter describes using `libnss-ldapd` only. From internal testing,
 this library worked best with Cumulus Linux and is the easiest to
 configure, automate, and troubleshoot.
 
-## <span>Install libnss-ldapd</span>
+## Install libnss-ldapd</span>
 
 The `libpam-ldapd` package depends on `nslcd`. To install
 `libnss-ldapd`, `libpam-ldapd`, and `ldap-utils`, run the following
@@ -135,7 +135,7 @@ getting locked out of the system.
 
 {{%/notice%}}
 
-## <span>Configure nslcd.conf</span>
+## Configure nslcd.conf</span>
 
 After installation, you need to update the main configuration file
 (`/etc/nslcd.conf`) to accommodate the expected LDAP server settings.
@@ -152,7 +152,7 @@ LDAP.
 
 {{%/notice%}}
 
-### <span>Connection</span>
+### Connection</span>
 
 The LDAP client starts a session by connecting to the LDAP server on TCP
 and UDP port 389, or on port 636 for LDAPS. Depending on the
@@ -185,7 +185,7 @@ and the credentials that are created for the client device.
     binddn cn=CLswitch,ou=infra,dc=example,dc=com
     bindpw CuMuLuS
 
-### <span>Search Function</span>
+### Search Function</span>
 
 When an LDAP client requests information about a resource, it must
 connect and bind to the server. Then, it performs one or more resource
@@ -202,7 +202,7 @@ idea to define a more specific search base for the common *maps*
     base passwd ou=people,dc=example,dc=com
     base group ou=groups,dc=example,dc=com
 
-### <span>Search Filters</span>
+### Search Filters</span>
 
 It is also common to use search filters to specify criteria used when
 searching for objects within the directory. This is used to limit the
@@ -211,7 +211,7 @@ search scope when authenticating users. The default filters applied are:
     filter passwd (objectClass=posixAccount)
     filter group (objectClass=posixGroup)
 
-### <span>Attribute Mapping</span>
+### Attribute Mapping</span>
 
 The *map* configuration allows you to override the attributes pushed
 from LDAP. To override an attribute for a given *map*, specify the
@@ -228,7 +228,7 @@ the manpage for `nslcd.conf` (such as *passwd* or *group*).
 
 {{%/notice%}}
 
-### <span>Example Configuration</span>
+### Example Configuration</span>
 
 Here is an example configuration using Cumulus Linux.
 
@@ -300,9 +300,9 @@ Here is an example configuration using Cumulus Linux.
     map    group gidNumber     objectSid:S-1-5-21-1391733952-3059161487-1245441232
     map    group cn            sAMAccountName
 
-## <span>Troubleshooting</span>
+## Troubleshooting</span>
 
-### <span>nslcd Debug Mode</span>
+### nslcd Debug Mode</span>
 
 When setting up LDAP authentication for the first time, Cumulus Networks
 recommends you turn off the `nslcd` service using the `systemctl stop
@@ -363,9 +363,9 @@ debug output indicates that user *myuser* exists:
 Notice how the `<passwd="myuser">` shows that the specific *myuser* user
 was queried.
 
-### <span>Common Problems</span>
+### Common Problems</span>
 
-#### <span>SSL/TLS</span>
+#### SSL/TLS</span>
 
   - The FQDN of the LDAP server URI does not match the FQDN in the
     CA-signed server certificate exactly.
@@ -375,7 +375,7 @@ was queried.
     Check the permission on each directory in the path of the root SSL
     certificate. Ensure that it is readable by the `nslcd` user.
 
-#### <span>NSCD</span>
+#### NSCD</span>
 
   - If the `nscd cache` daemon is also enabled and you make some changes
     to the user from LDAP, you can clear the cache using the following
@@ -398,7 +398,7 @@ was queried.
 
     3.  Try the authentication again.
 
-#### <span>LDAP</span>
+#### LDAP</span>
 
   - The search filter returns wrong results. Check for typos in the
     search filter. Use `ldapsearch` to test your filter.
@@ -417,7 +417,7 @@ was queried.
         # /etc/nsswitch.conf
         passwd:         ldap compat
 
-## <span>Configure LDAP Authorization</span>
+## Configure LDAP Authorization</span>
 
 Linux uses the *sudo* command to allow non-administrator users (such as
 the default *cumulus* user account) to perform privileged operations. To
@@ -434,7 +434,7 @@ usage description. Here's an illustration of this in `/etc/sudoers`:
     %sudo ALL=(ALL:ALL) ALL
     %netadmin ALL=(ALL:ALL) ALL
 
-## <span>Active Directory Configuration</span>
+## Active Directory Configuration</span>
 
 Active Directory (AD) is a fully featured LDAP-based NIS server created
 by Microsoft. It offers unique features that classic OpenLDAP servers
@@ -445,7 +445,7 @@ from testing LDAP clients on Cumulus Linux with Active Directory
 (AD/LDAP), are available in our [knowledge
 base](https://support.cumulusnetworks.com/hc/en-us/articles/204383797).
 
-## <span>LDAP Verification Tools</span>
+## LDAP Verification Tools</span>
 
 Typically, password and group information is retrieved from LDAP and
 cached by the LDAP client daemon. To test the LDAP interaction, you can
@@ -453,7 +453,7 @@ use these command-line tools to trigger an LDAP query from the device.
 This helps to create the best filters and verify the information sent
 back from the LDAP server.
 
-### <span>Identify a User with the id Command</span>
+### Identify a User with the id Command</span>
 
 The `id` command performs a username lookup by following the lookup
 information sources in NSS for the *passwd* service. This simply returns
@@ -467,7 +467,7 @@ passwd map configured with the sources `compat ldap`:
     cumulus@switch:~$ id myuser
     uid=1230(myuser) gid=3000(Development) groups=3000(Development),500(Employees),27(sudo)
 
-### <span>getent</span>
+### getent</span>
 
 The `getent` command retrieves all records found with NSS for a given
 map. It can also get a specific entry under that map. You can perform
@@ -497,7 +497,7 @@ Running the command `getent passwd` or `getent group` without a specific
 request returns **all** local and LDAP entries for the *passwd* and
 *group* maps.
 
-### <span>LDAP search</span>
+### LDAP search</span>
 
 The `ldapsearch` command performs LDAP operations directly on the LDAP
 server. This does not interact with NSS. This command helps display what
@@ -547,7 +547,7 @@ specifies the search DN and the attribute to look up.
     # numResponses: 2
     # numEntries: 1
 </details>
-### <span>LDAP Browsers</span>
+### LDAP Browsers</span>
 
 There are several GUI LDAP clients available that help to work with LDAP
 servers. These are free tools to help show the structure of the LDAP
@@ -557,7 +557,7 @@ database graphically.
 
   - [LDAPManager](http://ldapmanager.sourceforge.net/)
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Debian - configuring LDAP
     authentication](https://wiki.debian.org/LDAP/NSS)

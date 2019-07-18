@@ -22,7 +22,7 @@ Puppet for configuration management greatly increases the speed and
 accuracy of the next major upgrade; these tools also enable the quick
 swap of failed switch hardware.
 
-## <span id="src-8362647_UpgradingCumulusLinux-before-upgrade" class="confluence-anchor-link"></span><span id="src-8362647_UpgradingCumulusLinux-FilesToNeverMigrate" class="confluence-anchor-link"></span><span>Before You Upgrade Cumulus Linux</span>
+## <span id="src-8362647_UpgradingCumulusLinux-before-upgrade" class="confluence-anchor-link"></span><span id="src-8362647_UpgradingCumulusLinux-FilesToNeverMigrate" class="confluence-anchor-link"></span>Before You Upgrade Cumulus Linux</span>
 
 {{%notice tip%}}
 
@@ -49,7 +49,7 @@ of a backup strategy.
 | `/etc/resolv.conf`          | DNS resolution                                                                                       | Not unique to Cumulus Linux: [wiki.debian.org/NetworkConfiguration](https://wiki.debian.org/NetworkConfiguration#The_resolv.conf_configuration_file) | [www.debian.org/doc/manuals/debian-reference/ch05.en.html](https://www.debian.org/doc/manuals/debian-reference/ch05.en.html) |
 | `/etc/frr/`                 | Routing application (responsible for BGP and OSPF)                                                   | [FRRouting Overview](/cumulus-linux/Layer-3/FRRouting-Overview/)                                                                                     | N/A                                                                                                                          |
 | `/etc/hostname`             | Configuration file for the hostname of the switch                                                    | [Quick Start Guide](Quick-Start-Guide.html#src-8362542_QuickStartGuide-ConfiguringtheHostnameandTimeZone)                                            | [wiki.debian.org/HowTo/ChangeHostname](https://wiki.debian.org/HowTo/ChangeHostname)                                         |
-| `/etc/cumulus/acl/*`        | Netfilter configuration                                                                              | [Netfilter - ACLs](/cumulus-linux/System-Configuration/Netfilter---ACLs/)                                                                            | N/A                                                                                                                          |
+| `/etc/cumulus/acl/*`        | Netfilter configuration                                                                              | [Netfilter - ACLs](/cumulus-linux/System-Configuration/Netfilter-ACLs/)                                                                            | N/A                                                                                                                          |
 | `/etc/cumulus/ports.conf`   | Breakout cable configuration file                                                                    | [Switch Port Attributes](Switch-Port-Attributes.html#src-8363026_SwitchPortAttributes-ConfiguringBreakoutPorts)                                      | N/A; please read the guide on breakout cables                                                                                |
 | `/etc/cumulus/switchd.conf` | Switchd configuration                                                                                | [Configuring switchd](/cumulus-linux/System-Configuration/Configuring-switchd)                                                                       | N/A; please read the guide on switchd configuration                                                                          |
 </details>
@@ -184,7 +184,7 @@ any changes you made to the file. Be sure to back up this file and the
 database file `conf.db` before upgrading. <span style="color: #36424a;">
 </span>
 </details>
-## <span>Upgrade Cumulus Linux</span>
+## Upgrade Cumulus Linux</span>
 
 You can upgrade Cumulus Linux in one of two ways:
 
@@ -203,7 +203,7 @@ upgrade.
 
 {{%/notice%}}
 
-### <span>Should I Install a Disk Image or Upgrade Packages?</span>
+### Should I Install a Disk Image or Upgrade Packages?</span>
 
 The decision to upgrade Cumulus Linux by either installing a disk image
 or upgrading packages depends on your environment and your preferences.
@@ -279,7 +279,7 @@ Be aware of the following when upgrading packages:
     be different on different switches, depending on the configuration
     and package installation history.
 
-### <span>Disk Image Install (ONIE)</span>
+### Disk Image Install (ONIE)</span>
 
 ONIE is an open source project (equivalent to PXE on servers) that
 enables the installation of network operating systems (NOS) on a bare
@@ -309,7 +309,7 @@ To upgrade the switch with a new disk image using ONIE:
 
 6.  Reinstall third party applications and associated configurations.
 
-### <span id="src-8362647_UpgradingCumulusLinux-apt_upgrade" class="confluence-anchor-link"></span><span>Package Upgrade</span>
+### <span id="src-8362647_UpgradingCumulusLinux-apt_upgrade" class="confluence-anchor-link"></span>Package Upgrade</span>
 
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow,
 where you use an installer to install a base image, then perform any
@@ -403,7 +403,7 @@ If you see errors for expired GPG keys that prevent you from
 6.  Verify correct operation with the old configurations on the new
     version.
 
-### <span>Upgrade Notes </span>
+### Upgrade Notes </span>
 
 *Package upgrade* always updates to the latest available release in the
 Cumulus Linux repository. For example, if you are currently running
@@ -428,15 +428,15 @@ packages, be aware of the following:
     to display Cumulus Linux 3.5.0, which is the originally installed
     base image.
 
-## <span id="src-8362647_UpgradingCumulusLinux-mlag" class="confluence-anchor-link"></span><span>Upgrade Switches in an MLAG Pair</span>
+## <span id="src-8362647_UpgradingCumulusLinux-mlag" class="confluence-anchor-link"></span>Upgrade Switches in an MLAG Pair</span>
 
 If you are using
-[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG) to
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG) to
 dual connect two switches in your environment, follow the steps below
 according to the version of Cumulus Linux from which you are upgrading.
 <span style="color: #36424a;"> </span>
 
-### <span>Upgrade from Cumulus Linux 3.y.z to a Later 3.y.z Release</span>
+### Upgrade from Cumulus Linux 3.y.z to a Later 3.y.z Release</span>
 
 When you upgrade Cumulus Linux from 3.y.z to a later 3.y.z release, you
 can either install a disk image using ONIE or use package upgrade. Both
@@ -510,10 +510,10 @@ To upgrade the switches:
 
         cumulus@switch:~$ clagctl priority 32768
 
-### <span>Upgrade from Cumulus Linux 2.y.z to 3.y.z</span>
+### Upgrade from Cumulus Linux 2.y.z to 3.y.z</span>
 
 If you are using
-[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG) to
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG) to
 dual connect two switches in your environment and those switches are
 still running Cumulus Linux 2.5 ESR or any other release earlier than
 3.0.0, the switches are not dual-connected after you upgrade the first
@@ -581,7 +581,7 @@ ONIE; you cannot use package upgrade:
     The two switches are dual-connected again and traffic flows to both
     switches.
 
-## <span>Roll Back a Cumulus Linux Installation</span>
+## Roll Back a Cumulus Linux Installation</span>
 
 Even the most well planned and tested upgrades can result in unforeseen
 problems; sometimes the best solution is to roll back to the previous
@@ -605,7 +605,7 @@ The method you employ is specific to your deployment strategy, so
 providing detailed steps for each scenario is outside the scope of this
 document.
 
-## <span>Third Party Packages</span>
+## Third Party Packages</span>
 
 Third party packages in the *Linux host* world often use the same
 package system as the distribution into which it is to be installed (for
@@ -624,7 +624,7 @@ After you upgrade using a full disk image install, you need to reinstall
 any third party packages or any Cumulus Linux add-on packages, such as
 `vxsnd` or `vxrd`.
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Upgrades: Network Device Worldview and Linux Host Worldview
     Comparison](https://support.cumulusnetworks.com/hc/en-us/articles/360010451353)
@@ -636,10 +636,10 @@ any third party packages or any Cumulus Linux add-on packages, such as
     Specification](http://opencomputeproject.github.io/onie/design-spec/)
 
   - [Multi-Chassis Link Aggregation -
-    MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+    MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
 
   - [Configuration File Migration
     Script](https://support.cumulusnetworks.com/hc/en-us/articles/360011472734-Configuration-File-Migration-Script)
 
   - [Zero Touch Provisioning -
-    ZTP](/cumulus-linux/Installation-Management/Zero-Touch-Provisioning---ZTP)
+    ZTP](/cumulus-linux/Installation-Management/Zero-Touch-Provisioning-ZTP)

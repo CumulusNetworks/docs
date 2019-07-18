@@ -12,7 +12,7 @@ imgData: cumulus-netq-121
 siteSlug: cumulus-netq-121
 subsection: true
 ---
-## <span>Introducing Cumulus NetQ</span>
+## Introducing Cumulus NetQ</span>
 
 Cumulus NetQ is a fabric-wide, telemetry-based validation system, that
 enables organizations to validate network state, both during regular
@@ -54,17 +54,17 @@ Read the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115015123487)
 for new features and known issues in this release.
 
-## <span>What's New in Cumulus NetQ 1.2.1</span>
+## What's New in Cumulus NetQ 1.2.1</span>
 
 Cumulus NetQ 1.2.1 includes updates required for compatibility with
 Cumulus Linux 3.5.0.
 
-### <span>Compatibility with Cumulus Linux</span>
+### Compatibility with Cumulus Linux</span>
 
 Cumulus NetQ 1.2.1 is compatible with Cumulus Linux versions 3.3.0
 through 3.5.z.
 
-## <span>What's New in NetQ 1.2.0</span>
+## What's New in NetQ 1.2.0</span>
 
 NetQ 1.2.0 includes the following new features and enhancements:
 
@@ -92,7 +92,7 @@ For further information regarding bug fixes and known issues present in
 this release, refer to the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115015123487).
 
-## <span>NetQ Components</span>
+## NetQ Components</span>
 
 {{% imgOld 0 %}}
 
@@ -108,7 +108,7 @@ NetQ comprises the following components:
 
 Each is described below.
 
-### <span>NetQ Agent</span>
+### NetQ Agent</span>
 
 The back-end Python agent installed on every monitored *node* in the
 network — including Cumulus Linux switches, Linux bare-metal hosts and
@@ -143,13 +143,13 @@ It also listens to the Docker event stream to monitor Docker containers
 running on a host and gathers container networking information such as
 NAT translations, networks and container IP and MAC addresses.
 
-### <span>NetQ Telemetry Server</span>
+### NetQ Telemetry Server</span>
 
 The database/key-value store where all network information sent from
 NetQ Agents running on the network is collected, aggregated and queried
 from.
 
-### <span>NetQ Analysis Engine</span>
+### NetQ Analysis Engine</span>
 
 The NetQ Analysis Engine is the backend engine utilized when querying
 NetQ via the CLI, service console, or notifier. The engine has two
@@ -170,7 +170,7 @@ parts:
     responds to events pushed by the NetQ Agent, sending alerts to a
     configured channel, such as Slack, PagerDuty or `syslog`.
 
-### <span>NetQ Service Console</span>
+### NetQ Service Console</span>
 
 The [Service Console](/version/cumulus-netq-121/NetQ-Service-Console)
 provides a browser-based window for accessing the NetQ CLI from

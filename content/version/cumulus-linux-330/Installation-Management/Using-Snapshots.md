@@ -38,7 +38,7 @@ The primary snapshot components are:
     configurations. You can use NCLU to roll back to earlier snapshots,
     view existing snapshots, or delete one or more snapshots.
 
-## <span>Installing the Snapshot Package</span>
+## Installing the Snapshot Package</span>
 
 If you're upgrading from a version of Cumulus Linux earlier than version
 3.2, you need to install the `cumulus-snapshot` package before you can
@@ -48,7 +48,7 @@ use snapshots.
     cumulus@switch:~$ sudo apt-get install cumulus-snapshot
     cumulus@switch:~$ sudo apt-get upgrade
 
-## <span>Taking and Managing Snapshots</span>
+## Taking and Managing Snapshots</span>
 
 As described above, snapshots are taken automatically:
 
@@ -65,7 +65,7 @@ You can also take snapshots as needed using the `snapper` utility. Run:
 For more information about using `snapper`, run `snapper --help` or `man
 snapper(8)`.
 
-### <span>Viewing Available Snapshots</span>
+### Viewing Available Snapshots</span>
 
 You can use both NCLU and `snapper` to view available snapshots on the
 switch.
@@ -103,7 +103,7 @@ pre    | 31 |       | Fri 02 Dec 2016 12:18:08 AM UTC | root | number  | nclu pr
 post   | 32 | 31    | Fri 02 Dec 2016 12:18:10 AM UTC | root | number  | nclu post 'ACL' (user cumulus)         |            
 ```
 
-### <span>Viewing Differences between Snapshots</span>
+### Viewing Differences between Snapshots</span>
 
 To see a line by line comparison of changes between two snapshots, run:
 
@@ -151,7 +151,7 @@ files only, run:
     c..... /etc/cumulus/acl/policy.d/50_nclu_acl.rules
     c..... /var/lib/cumulus/nclu/nclu_acl.conf
 
-### <span>Deleting Snapshots</span>
+### Deleting Snapshots</span>
 
 You can remove one or more snapshots using both NCLU and snapper.
 
@@ -209,7 +209,7 @@ and running `apt-get upgrade|install|remove|dist-upgrade`. Edit
 
     APT_SNAPSHOT_ENABLE=no
 
-## <span>Rolling Back to Earlier Snapshots</span>
+## Rolling Back to Earlier Snapshots</span>
 
 If you need to restore Cumulus Linux to an earlier state, you can roll
 back to an older snapshot.
@@ -240,7 +240,7 @@ You can also copy the file directly from the snapshot directory:
 
 {{%/notice%}}
 
-## <span>Configuring Automatic Time-based Snapshots</span>
+## Configuring Automatic Time-based Snapshots</span>
 
 You can configure Cumulus Linux to take hourly snapshots. You need to
 enable `TIMELINE_CREATE` in the snapper configuration:
@@ -271,9 +271,9 @@ enable `TIMELINE_CREATE` in the snapper configuration:
     TIMELINE_LIMIT_YEARLY  | 5    
     TIMELINE_MIN_AGE       | 1800 
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
-### <span>root Partition Mounted Multiple Times</span>
+### root Partition Mounted Multiple Times</span>
 
 You may notice that the root partition gets mounted multiple times. This
 is due to the way the `btrfs` file system handles subvolumes, mounting

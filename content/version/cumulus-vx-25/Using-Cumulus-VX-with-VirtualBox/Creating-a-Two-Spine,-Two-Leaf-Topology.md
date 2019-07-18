@@ -17,7 +17,7 @@ represents one leaf or spine switch (Cumulus VX-leaf1, Cumulus VX-leaf2,
 Cumulus VX-spine1 and Cumulus VX-spine2). Then you configure each VM's
 network interfaces and routing settings.
 
-## <span>Configuring the leaf1 VM</span>
+## Configuring the leaf1 VM</span>
 
 Import the Cumulus VX-leaf1 VM into VirtualBox, then configure its
 settings.
@@ -62,7 +62,7 @@ settings.
     
     {{% imgOld 1 %}}
 
-## <span>Configuring the leaf2 VM</span>
+## Configuring the leaf2 VM</span>
 
 Import the Cumulus VX-leaf2 VM into VirtualBox, reinitializing the MAC
 addresses as stated above, then configure its settings.
@@ -97,7 +97,7 @@ addresses as stated above, then configure its settings.
     
     {{% imgOld 2 %}}
 
-## <span>Configuring the spine1 VM</span>
+## Configuring the spine1 VM</span>
 
 Import the Cumulus VX-spine1 VM into VirtualBox, reinitializing the MAC
 addresses as stated above, then configure its settings.
@@ -132,7 +132,7 @@ addresses as stated above, then configure its settings.
     
     {{% imgOld 3 %}}
 
-## <span>Configuring the spine2 VM</span>
+## Configuring the spine2 VM</span>
 
 Import the Cumulus VX-spine2 VM into VirtualBox, reinitializing the MAC
 addresses as stated above, then configure its settings.
@@ -167,13 +167,13 @@ addresses as stated above, then configure its settings.
     
     {{% imgOld 4 %}}
 
-## <span>Configuring Network Interfaces and Quagga</span>
+## Configuring Network Interfaces and Quagga</span>
 
 The next step is to configure the 2 leaf/2 spine topology. This includes
 setting up the network interfaces, and Quagga, and assumes the previous
 sections have been completed.
 
-### <span>Configuring leaf1 VM</span>
+### Configuring leaf1 VM</span>
 
 To configure leaf1:
 
@@ -252,13 +252,13 @@ To configure leaf1:
     
         root@leaf1:~$ service quagga restart
 
-### <span>Configuring leaf2, spine1, and spine2 VMs</span>
+### Configuring leaf2, spine1, and spine2 VMs</span>
 
 The configuration steps for leaf2, spine1, and spine2 are the same as
 those listed above for leaf1, however the file configurations are
 different. Listed below are the configurations for each VM.
 
-#### <span>leaf2</span>
+#### leaf2</span>
 
   - `/etc/network/interfaces` file:
     
@@ -300,7 +300,7 @@ different. Listed below are the configurations for each VM.
           network 10.2.1.2/32 area 0.0.0.0  
           network 10.4.2.0/24 area 0.0.0.0
 
-#### <span>spine1</span>
+#### spine1</span>
 
   - `/etc/network/interfaces` file:
     
@@ -342,7 +342,7 @@ different. Listed below are the configurations for each VM.
       network 10.2.1.3/32 area 0.0.0.0  
     ```
 
-#### <span>spine2</span>
+#### spine2</span>
 
   - `/etc/network/interfaces` file:
     
@@ -389,7 +389,7 @@ continuing.
 
 {{%/notice%}}
 
-## <span>Testing the Connections</span>
+## Testing the Connections</span>
 
 Once the VMs have been restarted, you can ping across VMs to test. From
 leaf1:
@@ -406,7 +406,7 @@ leaf1:
     
         root@leaf1:~# ping 10.2.1.4
 
-## <span>Further Information</span>
+## Further Information</span>
 
 For the next steps regarding configuring Cumulus VX, check out these
 community articles, and the rest of the Cumulus Documentation:

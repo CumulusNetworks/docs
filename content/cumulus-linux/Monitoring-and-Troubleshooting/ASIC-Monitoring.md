@@ -28,7 +28,7 @@ ASIC monitoring is currently supported on Mellanox switches only.
 
 {{%/notice%}}
 
-## <span>What Type of Statistics Can You Collect?</span>
+## What Type of Statistics Can You Collect?</span>
 
 You can collect the following type of statistics with the ASIC
 monitoring tool:
@@ -43,7 +43,7 @@ monitoring tool:
   - Buffer congestion occupancy per port, priority and buffer pool, and
     at input and output ports
 
-## <span>Collecting Queue Lengths in Histograms</span>
+## Collecting Queue Lengths in Histograms</span>
 
 The Mellanox Spectrum ASIC provides a mechanism to measure and report
 egress queue lengths in histograms (a graphical representation of data,
@@ -100,7 +100,7 @@ bytes 125 times within one second.
 
 {{% imgOld 0 %}}
 
-## <span>Configure ASIC Monitoring</span>
+## Configure ASIC Monitoring</span>
 
 The ASIC monitoring tool is managed by the `asic-monitor` service,
 (which is managed by `systemd`). The `asic-monitor` service reads the
@@ -243,11 +243,11 @@ boundary size, and sampling time) only apply to the histogram monitor.
 All ASIC monitor settings are described in [ASIC Monitoring
 Settings](#src-8362627_ASICMonitoring-ASIC_Settings).
 
-## <span>Configuration Examples</span>
+## Configuration Examples</span>
 
 Several configuration examples are provided below.
 
-### <span>Queue Length Histograms</span>
+### Queue Length Histograms</span>
 
 In the following example:
 
@@ -279,7 +279,7 @@ In the following example:
     monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
     monitor.histogram_pg.histogram.sample_time_ns         = 1024
 
-### <span>Packet Drops Due to Errors</span>
+### Packet Drops Due to Errors</span>
 
 In the following example:
 
@@ -302,7 +302,7 @@ In the following example:
     monitor.discards_pg.snapshot.file                  = /var/lib/cumulus/discard_stats
     monitor.discards_pg.snapshot.file_count            = 16
 
-### <span>Queue Length (Histogram) with Collect Actions</span>
+### Queue Length (Histogram) with Collect Actions</span>
 
 A collect action triggers the collection of additional information. You
 can daisy chain multiple monitors (port groups) into a single collect
@@ -382,7 +382,7 @@ additional settings required for each *action*.
 
 {{%/notice%}}
 
-## <span id="src-8362627_ASICMonitoring-snapshotExample" class="confluence-anchor-link"></span><span>Example Snapshot File </span>
+## <span id="src-8362627_ASICMonitoring-snapshotExample" class="confluence-anchor-link"></span>Example Snapshot File </span>
 
 A snapshot action writes a snapshot of the current state of the ASIC to
 a file. Because parsing the file and finding the information can be
@@ -391,7 +391,7 @@ the file. The following example shows a snapshot of queue lengths.
 
     {"timestamp_info": {"start_datetime": "2017-03-16 21:36:40.775026", "end_datetime": "2017-03-16 21:36:40.775848"}, "buffer_info": null, "packet_info": null, "histogram_info": {"swp2": {"0": 55531}, "swp32": {"0": 48668}, "swp1": {"0": 64578}}}
 
-## <span>Example Log Message</span>
+## Example Log Message</span>
 
 A log action writes out the ASIC state to the `/var/log/syslog` file. In
 the following example, when the size of the queue reaches 500 bytes, the
@@ -399,7 +399,7 @@ system sends this message to the `/var/log/syslog` file:
 
     2018-02-26T20:14:41.560840+00:00 cumulus asic-monitor-module INFO:  2018-02-26 20:14:41.559967: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg.
 
-## <span id="src-8362627_ASICMonitoring-ASIC_Settings" class="confluence-anchor-link"></span><span>ASIC Monitoring Settings</span>
+## <span id="src-8362627_ASICMonitoring-ASIC_Settings" class="confluence-anchor-link"></span>ASIC Monitoring Settings</span>
 
 The following table provides descriptions of the ASIC monitor settings.
 

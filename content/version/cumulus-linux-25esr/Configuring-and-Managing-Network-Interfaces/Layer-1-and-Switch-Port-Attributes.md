@@ -16,13 +16,13 @@ siteSlug: cumulus-linux-25esr
 This chapter discusses the various network interfaces on a switch
 running Cumulus Linux.
 
-## <span>Commands</span>
+## Commands</span>
 
   - ethtool
 
   - ip
 
-## <span>Man Pages</span>
+## Man Pages</span>
 
   - man ethtool
 
@@ -34,11 +34,11 @@ running Cumulus Linux.
 
   - man ip link
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/network/interfaces
 
-## <span>Interface Types</span>
+## Interface Types</span>
 
 Cumulus Linux exposes network interfaces for several types of physical
 and logical devices:
@@ -54,7 +54,7 @@ and logical devices:
   - (optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or
     port channels)
 
-## <span>Settings</span>
+## Settings</span>
 
 You can set the MTU, speed, duplex and auto-negotiation settings under a
 physical or logical interface stanza:
@@ -71,7 +71,7 @@ To load the updated configuration, run the `ifreload -a` command:
 
     cumulus@switch:~$ sudo ifreload -a
 
-### <span>Port Speed and Duplexing</span>
+### Port Speed and Duplexing</span>
 
 Cumulus Linux supports both half- and
 [full-duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
@@ -123,7 +123,7 @@ You can also configure these settings at run time, using `ethtool`.
 </tbody>
 </table>
 
-#### <span>Port Speed Limitations</span>
+#### Port Speed Limitations</span>
 
 Ports can be configured to one speed less than their maximum speed.
 
@@ -135,7 +135,7 @@ Ports can be configured to one speed less than their maximum speed.
 
 \*Requires the port to be converted into a breakout port.
 
-### <span>Auto-negotiation</span>
+### Auto-negotiation</span>
 
 You can enable or disable
 [auto-negotiation](http://en.wikipedia.org/wiki/Autonegotiation) (that
@@ -172,7 +172,7 @@ interfaces.
 </tbody>
 </table>
 
-### <span id="src-5116098_Layer1andSwitchPortAttributes-mtu" class="confluence-anchor-link"></span><span>MTU</span>
+### <span id="src-5116098_Layer1andSwitchPortAttributes-mtu" class="confluence-anchor-link"></span>MTU</span>
 
 Interface MTU applies to the management port, front panel port, bridge,
 VLAN subinterfaces and bonds.
@@ -240,7 +240,7 @@ To show MTU, use `ip link show`:
     3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 
-#### <span id="src-5116098_Layer1andSwitchPortAttributes-mtu_vxlan" class="confluence-anchor-link"></span><span>Configuring MTU for a VXLAN Virtual Network Interface</span>
+#### <span id="src-5116098_Layer1andSwitchPortAttributes-mtu_vxlan" class="confluence-anchor-link"></span>Configuring MTU for a VXLAN Virtual Network Interface</span>
 
 If you are working with
 [VXLANs](/display/CL25ESR/Network+Virtualization), the MTU for a virtual
@@ -252,7 +252,7 @@ much higher than the default 1500.
 Two common MTUs for physical interfaces are 9216 and 9000 bytes. The
 corresponding MTUs for the VNIs would be 9166 and 8950.
 
-## <span>Configuring Breakout Ports</span>
+## Configuring Breakout Ports</span>
 
 Cumulus Linux has the ability to:
 
@@ -262,7 +262,7 @@ Cumulus Linux has the ability to:
   - Combine (also called *aggregating* or *ganging*) four 10G switch
     ports into one 40G port for use with a breakout cable ([not to be
     confused with a
-    bond](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Bonding---Link-Aggregation)).
+    bond](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Bonding-Link-Aggregation)).
 
 A typical DAC (directly-attached copper) 40G 1xQSFP to 10G 4xSFP+ looks
 like this:
@@ -275,7 +275,7 @@ configuration (run `sudo service switchd restart`; [this interrupts
 network
 services](Configuring-switchd.html#src-5115907_Configuringswitchd-restartswitchd)).
 
-### <span>Breaking out a 40G port into 4x10G Ports</span>
+### Breaking out a 40G port into 4x10G Ports</span>
 
 {{%notice info%}}
 
@@ -315,7 +315,7 @@ To load the change restart `switchd`:
 Many services depend on `switchd`. It is highly recommended to restart
 Cumulus Linux if possible in this situation.
 
-### <span>Combining Four 10G Ports into One 40G Port</span>
+### Combining Four 10G Ports into One 40G Port</span>
 
 To gang (aggregate) four 10G ports into one 40G port for use with a
 breakout cable, you must edit `/etc/cumulus/ports.conf`.
@@ -371,7 +371,7 @@ Cumulus Linux if possible in this situation.
 
 {{%/notice%}}
 
-## <span>Logical Switch Port Limitations</span>
+## Logical Switch Port Limitations</span>
 
 40G switches with Trident II chipsets (check the *40G Portfolio* section
 of the
@@ -414,9 +414,9 @@ limitation like this:
 
 The means the maximum number of ports for this Dell S6000 is 104.
 
-## <span>Verification and Troubleshooting Commands</span>
+## Verification and Troubleshooting Commands</span>
 
-### <span>Statistics</span>
+### Statistics</span>
 
 High-level interface statistics are available with the `ip -s link`
 command:
@@ -460,7 +460,7 @@ Low-level interface statistics are available with `ethtool`:
          SoftOutTxFifoFull: 0
          HwIfOutQLen: 0
 
-### <span>Querying SFP Port Information</span>
+### Querying SFP Port Information</span>
 
 You can verify SFP settings using `ethtool -m`. The following example
 shows the output for 1G and 10G modules:
@@ -476,7 +476,7 @@ shows the output for 1G and 10G modules:
                   RXPower : -3.2532dBm
                   TXPower : -2.0817dBm
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - <http://wiki.debian.org/NetworkConfiguration>
 

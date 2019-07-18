@@ -17,7 +17,7 @@ Cumulus RMP.
 
 The `switchd` configuration is stored in `/etc/cumulus/switchd.conf`.
 
-## <span>The switchd File System</span>
+## The switchd File System</span>
 
 `switchd` also exports a file system, mounted on `/cumulus/switchd`,
 that presents all the `switchd` configuration options as a series of
@@ -90,7 +90,7 @@ a switch with one switch port configured:
     |           `-- max_total
     `-- version
 
-## <span>Configuring switchd Parameters</span>
+## Configuring switchd Parameters</span>
 
 You can use `cl-cfg` to configure many `switchd` parameters at runtime
 (like interfaces or route table utilization), which minimizes disruption
@@ -123,7 +123,7 @@ though you cannot update the `switchd` configuration with it.
 
 {{%/notice%}}
 
-## <span id="src-5127546_Configuringswitchd-restartswitchd" class="confluence-anchor-link"></span><span>Restarting switchd</span>
+## <span id="src-5127546_Configuringswitchd-restartswitchd" class="confluence-anchor-link"></span>Restarting switchd</span>
 
 Whenever you modify your network configuration (typically changing any
 `*.conf` file, like `/etc/cumulus/datapath/traffic.conf`), you must

@@ -22,7 +22,7 @@ following ways:
 
   - Disabling or enabling a specific daemon
 
-## <span>Using systemd and the systemctl Command</span>
+## Using systemd and the systemctl Command</span>
 
 In general, you manage services using `systemd` via the `systemctl`
 command. You use it with any service on the switch to
@@ -42,7 +42,7 @@ written **after** the systemctl subcommand, not before it.
 
 {{%/notice%}}
 
-### <span>Understanding the systemctl Subcommands</span>
+### Understanding the systemctl Subcommands</span>
 
 `systemctl` has a number of subcommands that perform a specific
 operation on a given daemon.
@@ -74,7 +74,7 @@ operation on a given daemon.
     this so that any new *Wants* or *WantedBy* lines create the symlinks
     necessary for ordering. This has no side effects on other daemons.
 
-### <span>Ensuring a Service Starts after Multiple Restarts</span>
+### Ensuring a Service Starts after Multiple Restarts</span>
 
 By default, `systemd` is configured to try to restart a particular
 service only a certain number of times within a given interval before
@@ -100,7 +100,7 @@ you know you are going to restart frequently (multiple times within the
 StartLimitInterval), you can run the same command before you issue the
 restart request. This also applies to stop followed by start.
 
-## <span>Identifying Active Listener Ports for IPv4 and IPv6</span>
+## Identifying Active Listener Ports for IPv4 and IPv6</span>
 
 You can identify the active listener ports under both IPv4 and IPv6
 using the `lsof` command:
@@ -122,7 +122,7 @@ using the `lsof` command:
     ntpd 1882 104 21u IPv6 3966 0t0 UDP [fe80::7272:cfff:fe96:6639]:123
     sshd 2496 0 4u IPv6 5811 0t0 TCP *:22 (LISTEN)
 
-## <span>Identifying Daemons Currently Active or Stopped</span>
+## Identifying Daemons Currently Active or Stopped</span>
 
 To determine which daemons are currently active or stopped, run
 `cl-service-summary`:
@@ -167,7 +167,7 @@ command, then pipe the results to `grep`, using the - or + operators:
      [ - ] ptmd
      ...
 
-## <span>Identifying Boot Time State of a Specific Daemon</span>
+## Identifying Boot Time State of a Specific Daemon</span>
 
 The `ls` command can provide the boot time state of a daemon. A file
 link with a name starting with **S** identifies a boot-time-enabled

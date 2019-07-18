@@ -13,11 +13,11 @@ siteSlug: cumulus-rmp-30
 ---
 This chapter introduces monitoring and troubleshooting Cumulus RMP.
 
-## <span>Commands</span>
+## Commands</span>
 
   - cl-support
 
-## <span>Using the Serial Console</span>
+## Using the Serial Console</span>
 
 The serial console can be a useful tool for debugging issues, especially
 when you find yourself rebooting the switch often or if you don’t have a
@@ -26,7 +26,7 @@ reliable network connection.
 The default serial console baud rate is 115200, which is the baud rate
 [ONIE](http://opencomputeproject.github.io/onie/) uses.
 
-### <span>Configuring the Serial Console</span>
+### Configuring the Serial Console</span>
 
 On x86 switches, you configure serial console baud rate by editing
 `grub`.
@@ -81,7 +81,7 @@ To change the serial console baud rate:
 
 4.  Reboot the switch.
 
-## <span>Diagnostics Using cl-support</span>
+## Diagnostics Using cl-support</span>
 
 You can use `cl-support` to generate a single export file that contains
 various details and the configuration from a switch. This is useful for
@@ -156,7 +156,7 @@ You can save a lot of disk space and perhaps some time if you do not run
 
 {{%/notice%}}
 
-## <span id="src-5118688_MonitoringandTroubleshooting-syslog_server" class="confluence-anchor-link"></span><span>Sending Log Files to a syslog Server</span>
+## <span id="src-5118688_MonitoringandTroubleshooting-syslog_server" class="confluence-anchor-link"></span>Sending Log Files to a syslog Server</span>
 
 All logging on Cumulus RMP is done with
 [rsyslog](http://www.rsyslog.com/). `rsyslog` provides both local
@@ -261,7 +261,7 @@ file, where *@* indicates UDP, *192.168.1.2* is the IP address of the
 `syslog` server, and *514* is the UDP port. The value *switchd* must
 match the value in `$InputFileTag`.
 
-## <span>Next Steps</span>
+## Next Steps</span>
 
 The links listed below discuss more specific monitoring topics.
 

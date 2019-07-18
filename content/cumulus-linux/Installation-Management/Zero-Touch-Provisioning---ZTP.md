@@ -3,7 +3,7 @@ title: Zero Touch Provisioning - ZTP
 author: Cumulus Networks
 weight: 51
 aliases:
- - /display/CL37/Zero-Touch-Provisioning---ZTP
+ - /display/CL37/Zero-Touch-Provisioning-ZTP
  - /pages/viewpage.action?pageId=8362632
 pageID: 8362632
 product: Cumulus Linux
@@ -40,7 +40,7 @@ ways, in this order:
 
 Each method is discussed in greater detail below.
 
-## <span>Zero Touch Provisioning Using a Local File</span>
+## Zero Touch Provisioning Using a Local File</span>
 
 ZTP only looks once for a ZTP script on the local file system when the
 switch boots. ZTP searches for an install script that matches an
@@ -70,7 +70,7 @@ For example:
 You can also trigger the ZTP process manually by running the `ztp --run
 <URL>` command, where the URL is the path to the ZTP script.
 
-## <span>Zero Touch Provisioning Using a USB Drive (ZTP-USB)</span>
+## Zero Touch Provisioning Using a USB Drive (ZTP-USB)</span>
 
 {{%notice note%}}
 
@@ -120,7 +120,7 @@ partition.
 
 {{%/notice%}}
 
-## <span>Zero Touch Provisioning over DHCP</span>
+## Zero Touch Provisioning over DHCP</span>
 
 If the `ztp` process does not discover a local/ONIE script or applicable
 USB drive, it checks DHCP every ten seconds for up to five minutes for
@@ -158,7 +158,7 @@ The zero touch provisioning process over DHCP follows these steps:
     provisioning state is marked as complete in the autoprovisioning
     configuration file.
 
-### <span>Trigger ZTP over DHCP</span>
+### Trigger ZTP over DHCP</span>
 
 If provisioning has not already occurred, it is possible to trigger the
 zero touch provisioning process over DHCP when eth0 is set to use DHCP
@@ -173,7 +173,7 @@ and one of the following events occur:
 You can also run the `ztp --run <URL>` command, where the `URL` is the
 path to the ZTP script.
 
-### <span>Configure the DHCP Server</span>
+### Configure the DHCP Server</span>
 
 During the DHCP process over eth0, Cumulus Linux requests DHCP option
 239. This option is used to specify the custom provisioning script.
@@ -197,7 +197,7 @@ Additionally, you can specify the hostname of the switch with the
      host dc1-tor-sw1 { hardware ethernet 44:38:39:00:1a:6b; fixed-address 192.168.0.101; option host-name "dc1-tor-sw1"; }
     }
 
-### <span id="src-8362632_ZeroTouchProvisioning-ZTP-http_headers" class="confluence-anchor-link"></span><span>Inspect HTTP Headers</span>
+### <span id="src-8362632_ZeroTouchProvisioning-ZTP-http_headers" class="confluence-anchor-link"></span>Inspect HTTP Headers</span>
 
 The following HTTP headers are sent in the request to the webserver to
 retrieve the provisioning script:
@@ -217,7 +217,7 @@ retrieve the provisioning script:
     CUMULUS-PROV-COUNT                                  0
     CUMULUS-PROV-MAX                                    32
 
-## <span>Write ZTP Scripts </span>
+## Write ZTP Scripts </span>
 
 {{%notice note%}}
 
@@ -295,14 +295,14 @@ and applies a configuration:
 Several ZTP example scripts are available in the [Cumulus GitHub
 repository](https://github.com/CumulusNetworks/example-ztp-scripts).
 
-## <span>Best Practices for ZTP Scripts</span>
+## Best Practices for ZTP Scripts</span>
 
 ZTP scripts come in different forms and frequently perform many of the
 same tasks. As BASH is the most common language used for ZTP scripts,
 the following BASH snippets are provided to accelerate your ability to
 perform common tasks with robust error checking.
 
-### <span>Install a License</span>
+### Install a License</span>
 
 Use the following function to include error checking for license file
 installation.
@@ -321,7 +321,7 @@ installation.
         fi
     }
 
-### <span>Test DNS Name Resolution</span>
+### Test DNS Name Resolution</span>
 
 DNS names are frequently used in ZTP scripts. The `ping_until_reachable`
 function tests that each DNS name resolves into a reachable IP address.
@@ -348,7 +348,7 @@ function in the context of a larger task.
         fi
     }
 
-### <span>Check the Cumulus Linux Release</span>
+### Check the Cumulus Linux Release</span>
 
 The following script segment demonstrates how to check which Cumulus
 Linux release is running currently and upgrades the node if the release
@@ -375,7 +375,7 @@ server and the ZTP script is reachable.
     fi
     exit 0
 
-### <span>Apply Management VRF Configuration</span>
+### Apply Management VRF Configuration</span>
 
 If you apply a management VRF in your script, either apply it last or
 reboot instead. If you do *not* apply a management VRF last, you need to
@@ -383,7 +383,7 @@ prepend any commands that require `eth0` to communicate out with
 `/usr/bin/vrf task exec mgmt`; for example, `/usr/bin/vrf task exec mgmt
 apt-get update -y`.
 
-### <span>Perform Ansible Provisioning Callbacks</span>
+### Perform Ansible Provisioning Callbacks</span>
 
 After initially configuring a node with ZTP, use [Provisioning
 Callbacks](http://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html#provisioning-callbacks)
@@ -393,7 +393,7 @@ provisioning callback:
 
     /usr/bin/curl -H "Content-Type:application/json" -k -X POST --data '{"host_config_key":"'somekey'"}' -u username:password http://ansible.example.com/api/v2/job_templates/1111/callback/
 
-### <span>Disable the DHCP Hostname Override Setting</span>
+### Disable the DHCP Hostname Override Setting</span>
 
 Make sure to disable the DHCP hostname override setting in your script
 (NCLU does this for in Cumulus Linux 3.5 and above).
@@ -404,7 +404,7 @@ Make sure to disable the DHCP hostname override setting in your script
         hostnamectl set-hostname $1
     }
 
-### <span>NCLU in ZTP Scripts </span>
+### NCLU in ZTP Scripts </span>
 
 {{%notice note%}}
 
@@ -429,7 +429,7 @@ NCLU has time to start up before being called.
     net add time ntp server 192.168.0.254 iburst
     net commit
 
-## <span>Test ZTP Scripts</span>
+## Test ZTP Scripts</span>
 
 There are a few commands you can use to test and debug your ZTP scripts.
 
@@ -561,7 +561,7 @@ Use the following command to check `syslog` for information about ZTP:
 
     cumulus@switch:~$ sudo grep -i ztp /var/log/syslog
 
-## <span>Common ZTP Script Errors</span>
+## Common ZTP Script Errors</span>
 
 *Could not find referenced script/interpreter in downloaded payload.*
 
@@ -632,7 +632,7 @@ Use the translate (`tr`) command on any Linux system to remove the
     #CUMULUS-AUTOPROVISIONING
     root@oob-mgmt-server:/var/www/html# 
 
-## <span>Manually Use the ztp Command</span>
+## Manually Use the ztp Command</span>
 
 To enable zero touch provisioning, use the `-e` option:
 
@@ -693,7 +693,7 @@ To see the current `ztp` state, use the `-s` option:
     Method Switch manually configured  
     URL None
 
-## <span>Notes</span>
+## Notes</span>
 
   - During the development of a provisioning script, the switch might
     need to be rebooted.

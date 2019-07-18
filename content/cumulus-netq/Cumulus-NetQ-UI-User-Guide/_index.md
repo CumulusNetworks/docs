@@ -20,7 +20,7 @@ individual components of the network, the network as a whole, and the
 NetQ software itself using the NetQ graphical user interface (GUI). If
 you prefer to use a command line interface, refer to the
 <span style="color: #ff0000;"> [Cumulus NetQ CLI User
-Guide](/version/cumulus-netq-22/Cumulus-NetQ-CLI-User-Guide/) </span> .
+Guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/) </span> .
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

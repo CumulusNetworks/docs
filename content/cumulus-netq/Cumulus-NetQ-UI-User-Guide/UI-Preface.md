@@ -30,21 +30,21 @@ improvements:
 *For on-site and SaaS*
 
   - Graphical User Interface (UI)
-    
+
       - Added ability to monitor and validate OSPF network protocol and
         services operation
-    
+
       - Added ability to validate MTU, Sensors, VLAN and VXLAN protocols
-    
+
       - Added events for MTU, OSPF, VLAN, and VXLAN
-    
+
       - Added new standard user role, *user*, with reduced access
         permission compared to the administrative user
-    
+
       - Added Prescriptive Topology Manager (PTM) events
 
   - Command Line Interface (CLI)
-    
+
       - Included Interface Statistics as an early access feature
 
 *For SaaS only*
@@ -82,11 +82,11 @@ the other available documents. </span>
 available: </span>
 
   - <span style="color: #353744;"> [Cumulus NetQ Deployment
-    Guide](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/)
+    Guide](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/)
     </span>
 
   - <span style="color: #353744;"> [Cumulus NetQ CLI User
-    Guide](/version/cumulus-netq-22/Cumulus-NetQ-CLI-User-Guide/)
+    Guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/)
     </span>
 
   - Cumulus NetQ UI User Guide <span style="color: #353744;"> (this

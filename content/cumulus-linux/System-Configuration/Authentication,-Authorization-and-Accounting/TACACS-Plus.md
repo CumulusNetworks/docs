@@ -156,11 +156,11 @@ To configure local fallback authentication:
 1.  Edit the `/etc/nsswitch.conf` file to remove the keyword `tacplus`
     from the line starting with `passwd`. (You need to add the keyword
     back in step 3.)
-    
+
     An example of the `/etc/nsswitch.conf` file with the keyword
     `tacplus` removed from the line starting with `passwd` is shown
     below.
-    
+
         cumulus@switch:~$ sudo vi /etc/nsswitch.conf
         #
         # Example configuration of GNU Name Service Switch functionality.
@@ -175,14 +175,14 @@ To configure local fallback authentication:
 2.  To enable the local privileged user to run `sudo` and NCLU commands,
     run the `adduser` commands shown below. In the example commands, the
     TACACS account name is tacadmin.
-    
+
     {{%notice note%}}
-    
-    The first `adduser` command prompts for information and a password.
+
+The first `adduser` command prompts for information and a password.
     You can skip most of the requested information by pressing ENTER.
-    
+
     {{%/notice%}}
-    
+
         cumulus@switch:~$ sudo adduser --ingroup tacacs tacadmin
         cumulus@switch:~$ sudo adduser tacadmin netedit
         cumulus@switch:~$ sudo adduser tacadmin sudo
@@ -192,7 +192,7 @@ To configure local fallback authentication:
     first step).
 
 4.  Restart the `netd` service with the following command:
-    
+
         cumulus@switch:~$ sudo systemctl restart netd
 
 ## <span>TACACS+ Accounting</span>
@@ -275,18 +275,18 @@ as the root user.
 To add the users, edit the `/etc/netd.conf` file:
 
     cumulus@switch:~$ sudo nano /etc/netd.conf
-      
+
     ...
-      
+
     # Control which users/groups are allowed to run "add", "del",
     # "clear", "abort", and "commit" commands.
     users_with_edit = root, cumulus, tacacs15
     groups_with_edit = netedit
-      
+
     # Control which users/groups are allowed to run "show" commands
     users_with_show = root, cumulus
     groups_with_show = netshow, netedit, tacacs
-      
+
     ...
 
 After you save and exit the `netd.conf` file, restart the `netd`
@@ -570,7 +570,7 @@ is printed to `syslog`:
 To debug TACACS user command authorization, have the TACACS+ user enter
 the following command at a shell prompt, then try the command again:
 
-    tacuser0@switch:~$ export TACACSAUTHDEBUG=1 
+    tacuser0@switch:~$ export TACACSAUTHDEBUG=1
 
 When this debugging is enabled, additional information is shown for the
 command authorization conversation with the TACACS+ server:

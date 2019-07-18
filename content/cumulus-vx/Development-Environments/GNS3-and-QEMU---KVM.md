@@ -8,8 +8,8 @@ aliases:
 pageID: 5126717
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 Before you run your virtual network under GNS3, make sure you:
 

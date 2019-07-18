@@ -1,7 +1,7 @@
 ---
 title: Quick Start Guide
 author: Cumulus Networks
-weight: 11
+weight: 5
 aliases:
  - /display/CL37/Quick-Start-Guide
  - /pages/viewpage.action?pageId=8362542
@@ -232,7 +232,7 @@ hostname the next time you reboot the switch.
 To update the timezone, use NTP interactive mode:
 
 1.  Run the following command in a terminal:
-    
+
         sudo dpkg-reconfigure tzdata
 
 2.  Follow the on screen menu options to select the geographic area and
@@ -278,17 +278,17 @@ There are three ways to install the license onto the switch:
     license and copy it to a server accessible from the switch. On the
     switch, use the following command to transfer the file directly on
     the switch, then install the license file:
-    
+
         cumulus@switch:~$ scp user@my_server:/home/user/my_license_file.txt .
         cumulus@switch:~$ sudo cl-license -i my_license_file.txt
 
   - Copy the file to an HTTP server (not HTTPS), then reference the URL
     when you run `cl-license`:
-    
+
         cumulus@switch:~$ sudo cl-license -i <URL>
 
   - Copy and paste the license key into the `cl-license` command:
-    
+
         cumulus@switch:~$ sudo cl-license -i
         <paste license key>
         ^+d
@@ -494,9 +494,9 @@ To view the changes in the kernel, use the `ip addr show` command:
      
     ...
      
-    14: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+    14: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
         link/ether 44:38:39:00:00:04 brd ff:ff:ff:ff:ff:ff
-        inet6 fe80::4638:39ff:fe00:4/64 scope link 
+        inet6 fe80::4638:39ff:fe00:4/64 scope link
            valid_lft forever preferred_lft forever
     ...
 

@@ -126,13 +126,13 @@ configuration with the following commands:
 
   - `net del all` deletes all configurations and stops the IEEE 802.1X
     service.
-    
+
     {{%notice note%}}
-    
-    The `net del all` command does not remove [management
-    VRF](/cumulus-linux/Layer-3/Management-VRF) configurations; NCLU
-    does not interact with eth0 interfaces and management VRF.
-    
+
+The `net del all` command does not remove [management
+VRF](/cumulus-linux/Layer-3/Management-VRF) configurations; NCLU
+does not interact with eth0 interfaces and management VRF.
+
     {{%/notice%}}
 
 ### <span>Tab Completion, Verification, and Inline Help</span>
@@ -152,7 +152,7 @@ commands:
      
     cumulus@switch:~$ net add bgp router-id 1.1.1.1
     cumulus@switch:~$ net add int swp10 mtu <TAB>
-        <552-9216> : 
+        <552-9216> :
     cumulus@switch:~$ net add int swp10 mtu 9300
     ERROR: Command not found
      
@@ -244,12 +244,12 @@ following file:
 Uncomment the very last line in the `.inputrc` file so that the file
 changes from this:
 
-    # Uncomment to use ? as an alternative to 
+    # Uncomment to use ? as an alternative to
     # ?: complete
 
 to this:
 
-    # Uncomment to use ? as an alternative to 
+    # Uncomment to use ? as an alternative to
      ?: complete
 
 Save the file and reconnect to the switch. The ? (question mark) ability
@@ -280,7 +280,7 @@ terminal. This is normal, expected behavior.
 NCLU has a number of built in examples to guide users through basic
 configuration setup:
 
-    cumulus@switch:~$ net example 
+    cumulus@switch:~$ net example
         acl              :  access-list
         bgp              :  Border Gateway Protocol
         bond             :  Bond, port-channel, etc
@@ -294,7 +294,7 @@ configuration setup:
         ospf             :  Open Shortest Path First (OSPFv2)
         vlan-interfaces  :  IP interfaces for VLANs
      
-    cumulus@switch:~$ net example bridge 
+    cumulus@switch:~$ net example bridge
      
     Scenario
     ========

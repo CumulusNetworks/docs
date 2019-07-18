@@ -8,8 +8,8 @@ aliases:
 pageID: 5126707
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 This section provides some additional configuration specific to Cumulus
 VX and shows some basic commands you can try to get started with Cumulus

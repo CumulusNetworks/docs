@@ -178,7 +178,7 @@ The IP address configuration for this example:
 <td><pre><code>auto lo
 iface lo inet loopback
     address 10.0.0.21/32
-    
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -231,7 +231,7 @@ iface swp30</code></pre></td>
 iface lo inet loopback
     address 10.0.0.11/32
     clagd-vxlan-anycast-ip 10.10.10.20
-       
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -245,32 +245,32 @@ iface swp50
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
-      
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.1/30
   clagd-peer-ip 169.254.1.2
-  clagd-backup-ip 10.0.0.12 
+  clagd-backup-ip 10.0.0.12
   clagd-sys-mac 44:38:39:FF:40:94
  
 # Downlinks
 auto swp1
 iface swp1
  
-auto bond0 
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
-    
+
 auto bridge
 iface bridge
   bridge-vlan-aware yes
   bridge-ports peerlink bond0 vni10 vni20
   bridge-vids 10 20
-      
+
 auto vlan10
 iface vlan10
- 
+
 auto vlan20
 iface vlan20
  
@@ -304,7 +304,7 @@ iface swp52  </code></pre></td>
 iface lo inet loopback
     address 10.0.0.12/32
     clagd-vxlan-anycast-ip 10.10.10.20
-       
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -318,7 +318,7 @@ iface swp50
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
-       
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.2/30
@@ -330,20 +330,20 @@ iface peerlink.4094
 auto swp1
 iface swp1
  
-auto bond0 
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
-    
+
 auto bridge
 iface bridge
   bridge-vlan-aware yes
   bridge-ports peerlink bond0 vni10 vni20
   bridge-vids 10 20
-    
+
 auto vlan10
 iface vlan10
-  
+
 auto vlan20
 iface vlan20
  
@@ -356,7 +356,7 @@ iface vni10
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
   bridge-arp-nd-suppress on
-    
+
 auto vni20
 iface vni20
   vxlan-id 20
@@ -379,7 +379,7 @@ iface swp52  </code></pre></td>
 iface lo inet loopback
   address 10.0.0.13/32
   clagd-vxlan-anycast-ip 10.10.10.30
-       
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -393,7 +393,7 @@ iface sw50p
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
-       
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.1/30
@@ -404,24 +404,24 @@ iface peerlink.4094
 # Downlinks
 auto swp1
 iface swp1
-  
-auto bond0 
+
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
-    
+
 auto bridge
 iface bridge
   bridge-vlan-aware yes
   bridge-ports peerlink bond0 vni10 vni20
   bridge-vids 10 20
-    
+
 auto vlan10
 iface vlan10
-  
+
 auto vlan20
 iface vlan20
- 
+
 auto vni10
 iface vni10
   vxlan-id 10
@@ -431,7 +431,7 @@ iface vni10
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
   bridge-arp-nd-suppress on
-    
+
 auto vni20
 iface vni20
   vxlan-id 20
@@ -442,7 +442,7 @@ iface vni20
   mstpctl-portbpdufilter yes
   bridge-arp-nd-suppress on
  
- 
+
 # uplinks
 auto swp51
 iface swp51
@@ -453,7 +453,7 @@ iface swp52    </code></pre></td>
 iface lo inet loopback
   address 10.0.0.14/32
   clagd-vxlan-anycast-ip 10.10.10.30
-       
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -467,7 +467,7 @@ iface swp50
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
-       
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.2/30
@@ -478,24 +478,24 @@ iface peerlink.4094
 # Downlinks
 auto swp1
 iface swp1
-  
-auto bond0 
+
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
-    
+
 auto bridge
 iface bridge
   bridge-vlan-aware yes
   bridge-ports peerlink bond0 vni10 vni20
   bridge-vids 10 20
-    
+
 auto vlan10
 iface vlan10
-  
+
 auto vlan20
 iface vlan20
- 
+
 auto vni10
 iface vni10
   vxlan-id 10
@@ -505,7 +505,7 @@ iface vni10
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
   bridge-arp-nd-suppress on
-    
+
 auto vni20
 iface vni20
   vxlan-id 20
@@ -516,7 +516,7 @@ iface vni20
   mstpctl-portbpdufilter yes
   bridge-arp-nd-suppress on
  
-  
+
 # uplinks
 auto swp51
 iface swp51
@@ -546,18 +546,18 @@ iface lo inet loopback
 auto lo
 iface lo inet static
   address 10.0.0.31/32
-  
+
 auto eth0
 iface eth0 inet dhcp
  
 auto eth1
 iface eth1 inet manual
     bond-master bond0
-        
+
 auto eth2
 iface eth2 inet manual
     bond-master bond0
-    
+
 auto bond0
 iface bond0 inet static
   bond-slaves none
@@ -571,7 +571,7 @@ iface bond0 inet static
 auto bond0.10
 iface bond0.10 inet static
   address 172.16.10.101/24
-  
+
 auto bond0.20
 iface bond0.20 inet static
   address 172.16.20.101/24</code></pre></td>
@@ -581,18 +581,18 @@ iface lo inet loopback
 auto lo
 iface lo inet static
   address 10.0.0.33/32
-  
+
 auto eth0
 iface eth0 inet dhcp
  
 auto eth1
 iface eth1 inet manual
     bond-master bond0
-        
+
 auto eth2
 iface eth2 inet manual
     bond-master bond0
-    
+
 auto bond0
 iface bond0 inet static
   bond-slaves none
@@ -606,7 +606,7 @@ iface bond0 inet static
 auto bond0.10
 iface bond0.10 inet static
   address 172.16.10.103/24
-  
+
 auto bond0.20
 iface bond0.20 inet static
   address 172.16.20.103/24</code></pre></td>
@@ -743,11 +743,11 @@ installed by default.
 1.  Open the `/etc/default/vxrd` configuration file in a text editor.
 
 2.  Enable the daemon, then save the file.
-    
+
         START=yes
 
 3.  Restart the `vxrd` daemon.
-    
+
         cumulus@leaf0X:~$ sudo systemctl restart vxrd.service
 
 ### <span>Configure a VTEP</span>
@@ -762,11 +762,11 @@ instead, which has additional configuration knobs available.
 1.  Open the `/etc/default/vxsnd` configuration file in a text editor.
 
 2.  Enable the daemon, then save the file:
-    
+
         START=yes
 
 3.  Restart the daemon.
-    
+
         cumulus@spine0X:~$ sudo systemctl restart vxsnd.service
 
 ### <span>Configure the Service Node</span>
@@ -791,47 +791,47 @@ svcnode_peers = 10.0.0.21 10.0.0.22</code></pre>
 <pre><code>[common]
 # Log level is one of DEBUG, INFO, WARNING, ERROR, CRITICAL
 #loglevel = INFO
- 
+
 # Destination for log message.  Can be a file name, &#39;stdout&#39;, or &#39;syslog&#39;
 #logdest = syslog
- 
+
 # log file size in bytes. Used when logdest is a file
 #logfilesize = 512000
- 
+
 # maximum number of log files stored on disk. Used when logdest is a file
 #logbackupcount = 14
- 
+
 # The file to write the pid. If using monit, this must match the one
 # in the vxsnd.rc
 #pidfile = /var/run/vxsnd.pid
- 
+
 # The file name for the unix domain socket used for mgmt.
 #udsfile = /var/run/vxsnd.sock
- 
+
 # UDP port for vxfld control messages
 #vxfld_port = 10001
- 
+
 # This is the address to which registration daemons send control messages for
 # registration and/or BUM packets for replication
 svcnode_ip = 10.10.10.10
- 
+
 # Holdtime (in seconds) for soft state. It is used when sending a
 # register msg to peers in response to learning a &lt;vni, addr&gt; from a
 # VXLAN data pkt
 #holdtime = 90
- 
+
 # Local IP address to bind to for receiving inter-vxsnd control traffic
 src_ip = 10.0.0.21
- 
+
 [vxsnd]
 # Space separated list of IP addresses of vxsnd to share state with
 svcnode_peers = 10.0.0.21 10.0.0.22
- 
+
 # When set to true, the service node will listen for vxlan data traffic
 # Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
 # for False
 #enable_vxlan_listen = true
- 
+
 # When set to true, the svcnode_ip will be installed on the loopback
 # interface, and it will be withdrawn when the vxsnd is no longer in
 # service.  If set to true, the svcnode_ip configuration
@@ -839,7 +839,7 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 # Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
 # for False
 #install_svcnode_ip = false
- 
+
 # Seconds to wait before checking the database to age out stale entries
 #age_check = 90</code></pre>
 </details></td>
@@ -853,47 +853,47 @@ svcnode_peers = 10.0.0.21 10.0.0.22</code></pre>
 <pre><code>[common]
 # Log level is one of DEBUG, INFO, WARNING, ERROR, CRITICAL
 #loglevel = INFO
- 
+
 # Destination for log message.  Can be a file name, &#39;stdout&#39;, or &#39;syslog&#39;
 #logdest = syslog
- 
+
 # log file size in bytes. Used when logdest is a file
 #logfilesize = 512000
- 
+
 # maximum number of log files stored on disk. Used when logdest is a file
 #logbackupcount = 14
- 
+
 # The file to write the pid. If using monit, this must match the one
 # in the vxsnd.rc
 #pidfile = /var/run/vxsnd.pid
- 
+
 # The file name for the unix domain socket used for mgmt.
 #udsfile = /var/run/vxsnd.sock
- 
+
 # UDP port for vxfld control messages
 #vxfld_port = 10001
- 
+
 # This is the address to which registration daemons send control messages for
 # registration and/or BUM packets for replication
 svcnode_ip = 10.10.10.10
- 
+
 # Holdtime (in seconds) for soft state. It is used when sending a
 # register msg to peers in response to learning a &lt;vni, addr&gt; from a
 # VXLAN data pkt
 #holdtime = 90
- 
+
 # Local IP address to bind to for receiving inter-vxsnd control traffic
 src_ip = 10.0.0.22
- 
+
 [vxsnd]
 # Space separated list of IP addresses of vxsnd to share state with
 svcnode_peers = 10.0.0.21 10.0.0.22
- 
+
 # When set to true, the service node will listen for vxlan data traffic
 # Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
 # for False
 #enable_vxlan_listen = true
- 
+
 # When set to true, the svcnode_ip will be installed on the loopback
 # interface, and it will be withdrawn when the vxsnd is no longer in
 # service.  If set to true, the svcnode_ip configuration
@@ -901,7 +901,7 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 # Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
 # for False
 #install_svcnode_ip = false
- 
+
 # Seconds to wait before checking the database to age out stale entries
 #age_check = 90</code></pre>
 </details></td>
@@ -989,7 +989,7 @@ topologies only, and is not needed on real hardware.
       post-up ip link set $IFACE promisc on
 
 For more information on using Cumulus VX and Vagrant, refer to the
-[Cumulus VX documentation](https://docs.cumulusnetworks.com/display/VX).
+[Cumulus VX documentation](/cumulus-vx).
 
 ### <span>With LNV, Unique Node ID Required for vxrd in Cumulus VX</span>
 
@@ -1031,7 +1031,7 @@ To set the `node_id` manually:
 
 2.  Set the `node_id` value within the `common` section, then save the
     file:
-    
+
         [common]
         node_id = 13
 

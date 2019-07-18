@@ -11,6 +11,10 @@ version: 2.2.0
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
+<<<<<<< HEAD
+=======
+
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
 Installing NetQ can be accomplished in one of three ways:
 
   - If you have purchased a NetQ (On-site) or Cloud Appliance, refer to
@@ -26,8 +30,16 @@ Installing NetQ can be accomplished in one of three ways:
   - If you already have a switch (running Cumulus Linux version 3.3.2 or
     later) and you want to add NetQ functionality to it, follow the
     instructions in this topic to:
+<<<<<<< HEAD
       - Verify your server meets the hardware and software requirements.
       - Load the software onto the switch.
+=======
+
+      - Verify your server meets the hardware and software requirements.
+
+      - Load the software onto the switch.
+
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
       - Load the NetQ Agent onto the switches and hosts you want to
         monitor.
   - If you are upgrading from a prior version of NetQ, refer to [Upgrade
@@ -140,11 +152,22 @@ image:
 1.  **IMPORTANT**: Confirm that your server hardware meets the
     requirements set out [here](#src-12320951_InstallNetQ-hwspec).
 2.  Download the NetQ Platform image.
+<<<<<<< HEAD
     1.  On the [Cumulus
         Downloads](https://cumulusnetworks.com/downloads/) page, select
         *NetQ* from the **Product** list box.
     2.  Click *2.2* from the **Version** list box, and then select
         *2.2.x* from the submenu.
+=======
+
+    1.  On the [Cumulus
+        Downloads](https://cumulusnetworks.com/downloads/) page, select
+        *NetQ* from the **Product** list box.
+
+    2.  Click *2.2* from the **Version** list box, and then select
+        *2.2.x* from the submenu.
+
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
     3.  Optionally, select the hypervisor you wish to use (*VMware,
         VMware (Cloud),* *KVM (Cloud)*, or *KVM*) from the
         **Hypervisor/Platform** list box.  
@@ -235,9 +258,15 @@ KVM/QEMU installed.
 
     {{%notice tip%}}
 
+<<<<<<< HEAD
 Copy, instead of moving, the original QCOW2 image that
     was downloaded to avoid re-downloading it again later
     should you need to perform this process again.
+=======
+    Copy, instead of moving, the original QCOW2 image that was
+    downloaded to avoid re-downloading it again later should you need to
+    perform this process again.
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
 
     {{%/notice%}}
 
@@ -253,9 +282,15 @@ Copy, instead of moving, the original QCOW2 image that
          --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
          --network=type=direct,source=eth0,model=virtio --import --noautoconsole
 
+<<<<<<< HEAD
     {{%notice note%}}
 
 Replace the disk path value with the location where the QCOW2 image
+=======
+    {{%notice info%}}
+
+    Replace the disk path value with the location where the QCOW2 image
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
     is to reside. Replace network model value (eth0 in the above
     example) with the name of the interface where the VM is connected to
     the external network.
@@ -269,9 +304,15 @@ Replace the disk path value with the location where the QCOW2 image
          --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
          --network=bridge=br0,model=virtio --import --noautoconsole
 
+<<<<<<< HEAD
     {{%notice note%}}
 
 Replace network bridge value (br0 in the above example) with the
+=======
+    {{%notice info%}}
+
+    Replace network bridge value (br0 in the above example) with the
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
     name of the (pre-existing) bridge interface where the VM is
     connected to the external network.
 
@@ -299,7 +340,11 @@ continue.
 1.  Reset all Kubernetes administrative settings. Run the command twice
     to make sure all directories and files have been reset.
 
+<<<<<<< HEAD
     `cumulus@netq-platform:~$ sudo kubeadm reset -f`  
+=======
+    ` cumulus@netq-platform:~$ sudo kubeadm reset -f  `  
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
     `cumulus@netq-platform:~$ sudo kubeadm reset -f`
 
 2.  Remove the Kubernetes configuration.  
@@ -311,10 +356,17 @@ continue.
 4.  Reset the Kubernetes service.  
     ` cumulus@netq-platform:~$ sudo systemctl restart cts-kubectl-config
      `  
+<<<<<<< HEAD
     **Note**: Allow 15 minutes for the prompt to return.
 
 5.  Reboot the VM.  
     **Note**: Allow 5-10 minutes for the VM to boot.
+=======
+    ***Note***: Allow 15 minutes for the prompt to return.
+
+5.  Reboot the VM.  
+    ***Note***: Allow 5-10 minutes for the VM to boot.
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
 
 {{%/notice%}}
 
@@ -341,7 +393,11 @@ continue.
             cumulus@<netq-platform-hostname>:~$ 
 
     2.  Run the following command to verify all applications are
+<<<<<<< HEAD
         operating properly. **Note**: Please allow 10-15 minutes for
+=======
+        operating properly. ***Note***: Please allow 10-15 minutes for
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
         all applications to come up and report their status.
 
             cumulus@<netq-platform-hostname>:~$ netq show opta-health
@@ -394,9 +450,15 @@ continue.
              
             cumulus@<netq-platform-hostname>:~$
 
+<<<<<<< HEAD
         {{%notice note%}}
 
 If any of the applications or services display Status as DOWN
+=======
+        {{%notice info%}}
+
+        If any of the applications or services display Status as DOWN
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
         after 30 minutes, open a [support
         ticket](https://cumulusnetworks.com/support/file-a-ticket/) and
         attach the output of the `opta-support` command.
@@ -452,7 +514,11 @@ access the meta package on the Cumulus Networks repository.
 A simple process installs the NetQ Agent on a Cumulus switch.
 
 1.  Edit the `/etc/apt/sources.list` file to add the repository for
+<<<<<<< HEAD
     Cumulus NetQ. **Note** that NetQ has a separate repository from
+=======
+    Cumulus NetQ. ***Note*** that NetQ has a separate repository from
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
     Cumulus Linux.
 
         cumulus@switch:~$ sudo nano /etc/apt/sources.list
@@ -462,7 +528,11 @@ A simple process installs the NetQ Agent on a Cumulus switch.
 
     {{%notice tip%}}
 
+<<<<<<< HEAD
 The repository `deb http://apps3.cumulusnetworks.com/repos/deb
+=======
+    The repository `deb http://apps3.cumulusnetworks.com/repos/deb
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
     CumulusLinux-3 netq-latest` can be used if you want to always
     retrieve the latest posted version of NetQ.
 
@@ -507,13 +577,17 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb
 
   - For NetQ Platform or NetQ Appliance:
 
+<<<<<<< HEAD
         ```
+=======
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
         cumulus@switch:~$ netq config add cli server 192.168.1.254
         cumulus@switch:~$ netq config restart cli
         ```
 
   - For NetQ Cloud Appliance:
 
+<<<<<<< HEAD
         ```cumulus@switch:~$ netq config add cli server <api-url> access-key <user-access-key> secret-key <user-secret-key> port 443
         cumulus@switch:~$ netq config restart cli
         ```
@@ -521,6 +595,14 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb
     {{%notice note%}}
 
 The switch or host must have access to the Internet to configure CLI
+=======
+        cumulus@switch:~$ netq config add cli server <api-url> access-key <user-access-key> secret-key <user-secret-key> port 443
+        cumulus@switch:~$ netq config restart cli
+
+    {{%notice info%}}
+
+    The switch or host must have access to the Internet to configure CLI
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
     access.
 
     {{%/notice%}}
@@ -540,7 +622,11 @@ following packages are installed and running these minimum versions:
 
     {{%notice info%}}
 
+<<<<<<< HEAD
 Make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not
+=======
+    Make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
     include `lldpd` by default, which is required for the installation.
     To install this package, run the following commands:
 
@@ -568,7 +654,11 @@ To install the NetQ Agent on an Ubuntu server:
 
     {{%notice note%}}
 
+<<<<<<< HEAD
 The use of `netq-latest` in this example means that a `get` to the
+=======
+    The use of `netq-latest` in this example means that a `get` to the
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
     repository always retrieves the latest version of NetQ, even in the
     case where a major version update has been made. If you want to keep
     the repository on a specific version — such as `netq-2.2` — use that
@@ -583,6 +673,10 @@ The use of `netq-latest` in this example means that a `get` to the
 4.  Configure the NTP server.
 
     1.  Open the `/etc/ntp.conf` file in your text editor of choice.
+<<<<<<< HEAD
+=======
+
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
     2.  Under the Server section, specify the NTP server IP address or
         hostname.
 
@@ -628,6 +722,11 @@ The use of `netq-latest` in this example means that a `get` to the
             Updated cli server 192.168.1.254 vrf default. Please restart netqd (netq config restart cli).
             root@ubuntu:~# netq config restart cli
 
+<<<<<<< HEAD
+=======
+    <!-- end list -->
+
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
       - For NetQ Cloud Appliance:
 
             root@ubuntu:~# netq config add cli server <api-url> access-key <user-access-key> secret-key <user-secret-key> port 443
@@ -655,7 +754,12 @@ versions:
     {{%notice info%}}
 
 Make sure you are running lldp**d**, not lldp**ad**.
+<<<<<<< HEAD
 CentOS does not include `lldpd` by default, nor does it include
+=======
+
+    CentOS does not include `lldpd` by default, nor does it include
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
     `wget`, which is required for the installation. To install this
     package, run the following commands:
 
@@ -701,6 +805,10 @@ To install the NetQ Agent on a Red Hat or CentOS server:
 4.  Configure the NTP server.
 
     1.  Open the `/etc/ntp.conf` file in your text editor of choice.
+<<<<<<< HEAD
+=======
+
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
     2.  Under the Server section, specify the NTP server IP address or
         hostname.
 
@@ -740,13 +848,21 @@ To install the NetQ Agent on a Red Hat or CentOS server:
 
 9.  Optionally, configure the switch or host to run the NetQ CLI.
 
+<<<<<<< HEAD
     -  For NetQ Platform or NetQ Appliance:
+=======
+    1.  For NetQ Platform or NetQ Appliance:
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
 
             root@rhel7:~# netq config add cli server 192.168.1.254
             Updated cli server 192.168.1.254 vrf default. Please restart netqd (netq config restart cli).
             root@rhel7:~# netq config restart cli
 
+<<<<<<< HEAD
     -  For NetQ Cloud Appliance:
+=======
+    2.  For NetQ Cloud Appliance:
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
 
             root@rhel7:~# netq config add cli server <api-url> access-key <user-access-key> secret-key <user-secret-key> port 443
             root@rhel7:~# netq config restart cli
@@ -818,7 +934,11 @@ to use the CLI for configuration.
 
 ## <span>Set Up Security</span>
 
+<<<<<<< HEAD
 When you set up and configured your
+=======
+hen you set up and configured your
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
 Cumulus Linux switches, you likely configured a number of the security
 features available. Cumulus recommends the same security measures be
 followed for the NetQ Platform in the out-of-band-network. Refer to the
@@ -830,6 +950,7 @@ Your Cumulus Linux switches have a number
 of ports open by default. A few additional ports must be opened to run
 the NetQ software (refer to [Default Open Ports in Cumulus Linux and
 NetQ](https://support.cumulusnetworks.com/hc/en-us/articles/228281808-Default-Open-Ports-in-Cumulus-Linux-and-NetQ)
+<<<<<<< HEAD
 article). 
 
 
@@ -842,4 +963,7 @@ article).
 
 </footer>
 
+=======
+article).
+>>>>>>> df723742e04c45b2cf3126ee0ee382498c835eb5
 </details>

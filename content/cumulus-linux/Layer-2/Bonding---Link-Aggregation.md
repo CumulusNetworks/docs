@@ -75,11 +75,11 @@ Follow the steps below to create a new bond:
 
 2.  Add a bond using the `net add bond` command, replacing `[bond-name]`
     with the name of the bond, and `[slaves]` with the list of slaves:
-    
+
         cumulus@switch:~$ net add bond [bond-name] bond slaves [slaves]
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
-    
+
     The bond is configured by default in IEEE 802.3ad link aggregation
     mode. To configure the bond in balance-xor mode, see [bond
     mode](#src-8362653_Bonding-LinkAggregation-bond_mode) below.
@@ -244,7 +244,7 @@ These commands create the following configuration in the
 To view the bond, use
 [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU):
 
-    cumulus@switch:~$ net show interface bond1 
+    cumulus@switch:~$ net show interface bond1
         Name    MAC                Speed    MTU    Mode
     --  ------  -----------------  -------  -----  ------
     UP  bond1   00:02:00:00:00:12  20G      1500   Bond
@@ -307,11 +307,6 @@ file:
         address 10.0.0.1/30
         bond-slaves swp1 swp2 swp3 swp4
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
 
 {{%notice info%}}
 
@@ -319,10 +314,6 @@ If the bond is going to become part of a bridge, you do not need to
 specify an IP address.
 
 {{%/notice%}}
-
-</div>
-
-</div>
 
 {{%/notice%}}
 
@@ -372,7 +363,7 @@ address traffic to the bond.
     sure they match the link partner’s slave ports.
 
   - On a [Cumulus
-    RMP](https://docs.cumulusnetworks.com/display/RMP/Cumulus+RMP)
+    RMP](/cumulus-rmp)
     switch, if you create a bond with multiple 10G member ports, traffic
     gets dropped when the bond uses members of the same *unit* listed in
     the `/var/lib/cumulus/porttab` file. For example, traffic gets
@@ -385,13 +376,13 @@ address traffic to the bond.
     swp52 xe0 1 0 -1 0  
     Single port member bonds, bonds with different units (xe0 or xe1, as
     above), or layer 3 bonds do not have this issue.
-    
+
     {{%notice note%}}
-    
-    On Cumulus RMP switches, which are built with two Hurricane2 ASICs,
+
+On Cumulus RMP switches, which are built with two Hurricane2 ASICs,
     you cannot form an LACP bond on links that terminate on different
     Hurricane2 ASICs.
-    
+
     {{%/notice%}}
 
 ## <span id="src-8362653_Bonding-LinkAggregation-related-information" class="confluence-anchor-link"></span><span>Related Information</span>

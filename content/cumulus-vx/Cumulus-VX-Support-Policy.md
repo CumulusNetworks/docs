@@ -8,8 +8,8 @@ aliases:
 pageID: 5126708
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 As a Cumulus Linux customer, you can now receive formal GSS support for
 Cumulus VX instances used to:

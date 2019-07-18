@@ -8,8 +8,8 @@ aliases:
 pageID: 5126686
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 subsection: true
 ---
 Cumulus VX is a free virtual environment designed for cloud and network
@@ -46,11 +46,11 @@ various hypervisors:
 Cumulus VX integrates with the following hypervisors:
 
   - VMware
-    
+
       - vSphere - ESXi 5.5
-    
+
       - VMware Fusion
-    
+
       - VMware Workstation
 
   - VirtualBox
@@ -66,19 +66,16 @@ environments:
 
 ## <span>Documentation</span>
 
-  - [What's New in Cumulus
-    VX](/version/cumulus-vx-34/What's-New-in-Cumulus-VX)
+  - [What's New in Cumulus VX](/cumulus-vx/What's-New-in-Cumulus-VX)
 
-  - [Cumulus VX Support
-    Policy](/version/cumulus-vx-34/Cumulus-VX-Support-Policy)
+  - [Cumulus VX Support Policy](/cumulus-vx/Cumulus-VX-Support-Policy)
 
   - [Comparing Cumulus VX to other Cumulus Networks
-    Products](/version/cumulus-vx-34/Comparing-Cumulus-VX-to-other-Cumulus-Networks-Products)
+    Products](/cumulus-vx/Comparing-Cumulus-VX-to-other-Cumulus-Networks-Products)
 
-  - [Getting Started](/version/cumulus-vx-34/Getting-Started/)
+  - [Getting Started](/cumulus-vx/Getting-Started/)
 
-  - [Development
-    Environments](/version/cumulus-vx-34/Development-Environments/)
+  - [Development Environments](/cumulus-vx/Development-Environments/)
 
 ## <span>Related Links</span>
 
@@ -109,7 +106,7 @@ environments, visit these links:
     notes](https://support.cumulusnetworks.com/hc/en-us/articles/115009425847-Cumulus-VX-3-3-2-Release-Notes)
 
   - [Cumulus Linux
-    documentation](http://docs.cumulusnetworks.com/display/DOCS)
+    documentation](/cumulus-linux)
 
   - [Cumulus Networks knowledge
     base](https://support.cumulusnetworks.com/hc/en-us/)
@@ -126,56 +123,6 @@ environments, visit these links:
   - [GNS3
     documentation](http://docs.gns3.com/appliances/cumulus-vx.html)
 
-## <span>Recently Updated Pages</span>
-
-  - Cumulus VX DocumentationMay 13, 2019 • updated by [Dan
-    Cawley](https://docs.cumulusnetworks.com/display/~dcawley) • [view
-    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=5126686&selectedPageVersions=15&selectedPageVersions=14)
-
-  - [Cumulus VX Support
-    Policy](/version/cumulus-vx-34/Cumulus-VX-Support-Policy)Mar 21,
-    2019 • updated by [Pete
-    Bratach](https://docs.cumulusnetworks.com/display/~pete) • [view
-    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=5126708&selectedPageVersions=4&selectedPageVersions=3)
-
-  - [Getting Started](/version/cumulus-vx-34/Getting-Started/)Feb 14,
-    2019 • updated by [Ania
-    Rolland](https://docs.cumulusnetworks.com/display/~ania) • [view
-    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=5126687&selectedPageVersions=8&selectedPageVersions=7)
-
-  - [Next Steps](/version/cumulus-vx-34/Next-Steps)Feb 12, 2019 •
-    updated by [Pete
-    Bratach](https://docs.cumulusnetworks.com/display/~pete) • [view
-    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=5126707&selectedPageVersions=6&selectedPageVersions=5)
-
-  - [Create a Two-Leaf, Two-Spine
-    Topology](/version/cumulus-vx-34/Create-a-Two-Leaf-Two-Spine-Topology)Jan
-    07, 2019 • updated by [Pete
-    Bratach](https://docs.cumulusnetworks.com/display/~pete) • [view
-    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=5126706&selectedPageVersions=17&selectedPageVersions=16)
-
-[Show
-More](https://docs.cumulusnetworks.com/plugins/recently-updated/changes.action?theme=concise&pageSize=5&startIndex=5&searchToken=78349&spaceKeys=VX&contentType=page)
-
-![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/wait.gif](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/wait.gif)  
-<span class="caption">Please wait</span>
-
-## <span>Space Contributors</span>
-
-  - [Pete Bratach](https://docs.cumulusnetworks.com/display/~pete) (538
-    days ago)
-
-  - [Ania Rolland](https://docs.cumulusnetworks.com/display/~ania) (406
-    days ago)
-
-  - [Dan Cawley](https://docs.cumulusnetworks.com/display/~dcawley) (58
-    days ago)
-
-  - [Sean Cavanaugh](https://docs.cumulusnetworks.com/display/~sean)
-    (705 days ago)
-
-  - [Tom Wells](https://docs.cumulusnetworks.com/display/~tom) (803 days
-    ago)
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

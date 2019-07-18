@@ -8,8 +8,8 @@ aliases:
 pageID: 5126687
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 To install Cumulus VX, first download and install the preferred
 hypervisor platform or development environment, then download the
@@ -65,18 +65,16 @@ the Cumulus VX image, follow the relevant link below for detailed setup
 instructions:
 
   - [VMware vSphere - ESXi
-    5.5](/version/cumulus-vx-34/Getting-Started/VMware-vSphere---ESXi-5.5)
+    5.5](/cumulus-vx/Getting-Started/VMware-vSphere---ESXi-5.5)
 
-  - [VMware
-    Fusion](/version/cumulus-vx-34/Getting-Started/VMware-Fusion)
+  - [VMware Fusion](/cumulus-vx/Getting-Started/VMware-Fusion)
 
-  - [VMware
-    Workstation](/version/cumulus-vx-34/Getting-Started/VMware-Workstation)
+  - [VMware Workstation](/cumulus-vx/Getting-Started/VMware-Workstation)
 
-  - [VirtualBox](/version/cumulus-vx-34/Getting-Started/VirtualBox)
+  - [VirtualBox](/cumulus-vx/Getting-Started/VirtualBox)
 
   - [Libvirt and KVM -
-    QEMU](/version/cumulus-vx-34/Getting-Started/Libvirt-and-KVM---QEMU)
+    QEMU](/cumulus-vx/Getting-Started/Libvirt-and-KVM---QEMU)
 
 ## <span>Log in to the VM</span>
 

@@ -87,7 +87,7 @@ Spectrum ASICs.
 
 2.  Enable DOS prevention checks by changing the following value to
     `true`, and save the file:
-    
+
         # To turn on/off Denial of Service (DOS) prevention checks
         dos_enable = true
 
@@ -95,7 +95,7 @@ Spectrum ASICs.
     `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf`
     file in a text editor and set the following checks to *true*, and
     save the file:
-    
+
         cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf
         # Enabling/disabling Denial of service (DOS) prevetion checks
         # To change the default configuration:
@@ -114,35 +114,35 @@ Spectrum ASICs.
         dos.icmpv4_length = true
         dos.icmpv6_length = true
         dos.ipv6_min_frag = true
-    
+
     {{%notice note%}}
-    
-    Configuring any of the following settings affects the [BFD
+
+Configuring any of the following settings affects the [BFD
     echo](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD)
     function. For example, if you enable `dos.udp_ports_eq`, all the BFD
     packets will get dropped because the BFD protocol uses the same
     source and destination UDP ports.
-    
+
     dos.sip\_eq\_dip
-    
+
     dos.smac\_eq\_dmac
-    
+
     dos.tcp\_ctrl0\_seq0
-    
+
     dos.tcp\_flags\_fup\_seq0
-    
+
     dos.tcp\_flags\_syn\_fin
-    
+
     dos.tcp\_ports\_eq
-    
+
     dos.tcp\_syn\_frag
-    
+
     dos.udp\_ports\_eq
-    
+
     {{%/notice%}}
 
 4.  Restart `switchd` to enable DDOS protection:
-    
+
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
 <article id="html-search-results" class="ht-content" style="display: none;">

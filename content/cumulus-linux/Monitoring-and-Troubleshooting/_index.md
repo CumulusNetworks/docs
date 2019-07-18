@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-<details>
-
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 
 ## <span>Serial Console</span>
@@ -95,13 +93,13 @@ To change the serial console baud rate:
     `/etc/default/grub` are as follows; replace the *115200* value with
     a valid value specified above in the `--speed` variable in the first
     line and in the `console` variable in the second line:
-    
+
         GRUB_SERIAL_COMMAND="serial --port=0x2f8 --speed=115200 --word=8 --parity=no --stop=1"              
         GRUB_CMDLINE_LINUX="console=ttyS1,115200n8 cl_platform=accton_as5712_54x"
 
 2.  After you save your changes to the grub configuration, type the
     following at the command prompt:
-    
+
         cumulus@switch:~$ update-grub
 
 3.  If you plan on accessing your switch's BIOS over the serial console,
@@ -137,7 +135,7 @@ system:
      
     Build............ Cumulus Linux 3.7.4~1551312781.35d3264
     Uptime........... 8 days, 12:24:01.770000
-     
+
     Model............ Cel REDSTONE
     CPU.............. x86_64 Intel Atom C2538 2.4 GHz
     Memory........... 4GB
@@ -259,47 +257,47 @@ If you need to send other log files — such as `switchd` logs — to a
     dropped in, such as `20-clagd.conf` or `25-switchd.conf`. Our
     example file is called `/etc/rsyslog.d/11-remotesyslog.conf`. Add
     content similar to the following:
-    
+
         ## Logging switchd messages to remote syslog server
          
         @192.168.1.2:514
-    
+
     This configuration sends log messages to a remote `syslog` server
     for the following processes: `clagd`, `switchd`, `ptmd`, `rdnbrd`,
     `netd` and `syslog`. It follows the same syntax as the
     `/var/log/syslog` file, where *@* indicates UDP, *192.168.1.2* is
     the IP address of the `syslog` server, and *514* is the UDP port.
-    
+
     {{%notice note%}}
-    
+
     For TCP-based syslog, use two @@ before the IP address:
     *@@192.168.1.2:514*.
-    
+
     Running `syslog` over TCP places a burden on the switch to queue
     packets in the `syslog` buffer. This may cause detrimental effects
     if the remote `syslog` server becomes unavailable.
-    
+
     {{%/notice%}}
-    
+
     {{%notice note%}}
-    
+
     The numbering of the files in `/etc/rsyslog.d/` dictates how the
     rules are installed into `rsyslog.d`. If you want to remotely log
     only the messages in `/var/syslog`, and not those in
     `/var/log/clagd.log` or `/var/log/switchd.log`, for instance, then
     name the file `98-remotesyslog.conf`, since it's lower than the
     `/var/syslog` file `99-syslog.conf` only.
-    
+
     {{%/notice%}}
-    
+
     {{%notice note%}}
-    
+
     Do not use the `imfile` module with any file written by `rsyslogd`.
-    
+
     {{%/notice%}}
 
 2.  Restart `rsyslog`.
-    
+
         cumulus@switch:~$ sudo systemctl restart rsyslog.service
 
 ### <span id="src-8362592_MonitoringandTroubleshooting-mgmtvrf" class="confluence-anchor-link"></span><span>Write to syslog with Management VRF Enabled</span>
@@ -332,11 +330,11 @@ documentation](http://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxso
 
     module(load="imuxsock"
           SysSock.RateLimit.Interval="2" SysSock.RateLimit.Burst="50")
-
+<details>
 <summary>The following test script shows an example of rate-limit output
 in Cumulus Linux ... </summary>
 
-    root@leaf1:mgmt-vrf:/home/cumulus# cat ./syslog.py 
+    root@leaf1:mgmt-vrf:/home/cumulus# cat ./syslog.py
     #!/usr/bin/python
     import syslog
     message_count=100
@@ -344,11 +342,11 @@ in Cumulus Linux ... </summary>
     for i in range(0,message_count):
     syslog.syslog("Message Number:%s"%(i))
     print "DONE."
-     
-    root@leaf1:mgmt-vrf:/home/cumulus# ./syslog.py 
+
+    root@leaf1:mgmt-vrf:/home/cumulus# ./syslog.py
     Sending 100 Messages...
     DONE.
-     
+
     root@leaf1:mgmt-vrf:/home/cumulus# tail -n 60 /var/log/syslog
     2017-02-22T19:59:50.043342+00:00 leaf1 syslog.py[22830]: Message Number:0
     2017-02-22T19:59:50.043723+00:00 leaf1 syslog.py[22830]: Message Number:1
@@ -363,7 +361,7 @@ in Cumulus Linux ... </summary>
     2017-02-22T19:59:50.057936+00:00 leaf1 syslog.py[22830]: Message Number:48
     2017-02-22T19:59:50.058125+00:00 leaf1 syslog.py[22830]: Message Number:49
     2017-02-22T19:59:50.058324+00:00 leaf1 rsyslogd-2177: imuxsock[pid 22830]: begin to drop messages due to rate-limiting
-
+</details>
 ### <span>Harmless syslog Error: Failed to reset devices.list</span>
 
 The following message gets logged to `/var/log/syslog` when you run
@@ -468,13 +466,3 @@ To see the contents of the `syslog` file, use the `tcpdump -X` option:
 ## <span>Next Steps</span>
 
 The links below discuss more specific monitoring topics.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

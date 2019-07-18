@@ -31,7 +31,7 @@ In addition, you can augment the deployment with:
     network and virtual machines.
 
   - Out-of-band management and IPMI access using [Cumulus
-    RMP](https://docs.cumulusnetworks.com/display/RMP/Cumulus+RMP) or a
+    RMP](/cumulus-rmp) or a
     generic Cumulus Linux switch, enabling the full provisioning of a
     zero-touch data and management network, eliminating any network
     deployment delays when standing up a Nutanix cluster.
@@ -48,7 +48,7 @@ Cumulus HCS has two major components:
     a message to the Cumulus Linux switch with the physical server name
     and relevant VLANs. The switch then dynamically provisions the
     configuration on the ports of the specific physical server.  
-      
+
     Cumulus HCS periodically polls Nutanix Prism for information about
     VMs in the cluster. When a new VM is discovered, the service
     automatically identifies the physical Nutanix server hosting the VM
@@ -135,8 +135,8 @@ USB stick with at least 1GB of storage.
     and password and the server IP address, then save and close the
     file.  
     </span>
-    
-        # Fill in the parameters below to allow for ZTP to 
+
+        # Fill in the parameters below to allow for ZTP to
         # automatically configure the switch for Nutanix
         #
         # The username for the Nutanix API. Likely the username you use to login to Prism. (Required)
@@ -177,41 +177,41 @@ below to configure Cumulus Linux, Nutanix and Cumulus HCS.
     and must be the same on both MLAG peers. If you are deploying more
     than one pair of switches with MLAG, the `sys-mac` must be unique
     for each pair of MLAG-configured switches.
-    
+
         cumulus@leaf01:~$ net add interface swp49,swp50 mtu 9216
         cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:FF:40:00 interface swp49,swp50 primary
         cumulus@leaf01:~$ net commit
-    
+
         cumulus@leaf02:~$ net add interface swp49,swp50 mtu 9216
         cumulus@leaf02:~$ net add clag peer sys-mac 44:38:39:FF:40:00 interface swp49,swp50 secondary
         cumulus@leaf02:~$ net commit
 
 2.  Configure the default layer 2 bridge. Add a unique IP address to
     each leaf in the same subnet as the CVM.
-    
+
         cumulus@leaf01:~$ net add bridge bridge ports peerlink
         cumulus@leaf01:~$ net add bridge bridge pvid 1
         cumulus@leaf01:~$ net add vlan 1 ip address 10.1.1.201/24
         cumulus@leaf01:~$ net commit
-    
+
         cumulus@leaf02:~$ net add bridge bridge ports peerlink
         cumulus@leaf02:~$ net add bridge bridge pvid 1
         cumulus@leaf02:~$ net add vlan 1 ip address 10.1.1.202/24
         cumulus@leaf02:~$ net commit
-    
+
     {{%notice note%}}
-    
+
     In both configurations the `pvid` value of *1* indicates the native
     VLAN ID. If you don't know the value for the native VLAN ID, use
     *1*.
-    
+
     {{%/notice%}}
 
 3.  Edit the `/etc/default/cumulus-hyperconverged` file and set the
     Nutanix username, password and server IP address. Do this on both
     switches (leaf01 and leaf02). Cumulus Linux uses the settings in
     this file to authenticate and communicate with the Nutanix cluster.
-    
+
         cumulus@leaf02:~$ sudo nano /etc/default/cumulus-hyperconverged
          
         ### /etc/default/cumulus-hyperconverged config file
@@ -233,31 +233,31 @@ below to configure Cumulus Linux, Nutanix and Cumulus HCS.
         LOGLEVEL=verbose
         # periodic sync timeout (optional)
         #PERIODIC_SYNC_TIMEOUT=60
-    
+
     {{%notice tip%}}
-    
+
     These settings are defined
     [below](#src-9012165_CumulusHyperconvergedSolutionwithNutanix-chs_settings).
-    
+
     {{%/notice%}}
-    
+
     {{%notice note%}}
-    
+
     The server IP address may be a specific Nutanix CVM address or the
     virtual cluster IP address.
-    
+
     {{%/notice%}}
 
 4.  Enable and start Cumulus HCS on leaf01 and leaf02.
-    
+
         cumulus@leaf01:~$ sudo systemctl enable cumulus-hyperconverged
         cumulus@leaf01:~$ sudo systemctl start cumulus-hyperconverged
-    
+
         cumulus@leaf02:~$ sudo systemctl enable cumulus-hyperconverged
         cumulus@leaf02:~$ sudo systemctl start cumulus-hyperconverged
 
 5.  Verify that the service is running on leaf01 and leaf02.
-    
+
         cumulus@leaf01:~$ sudo systemctl status cumulus-hyperconverged
         ● cumulus-hyperconverged.service - Cumulus Linux Hyperconverged Daemon
            Loaded: loaded (/lib/systemd/system/cumulus-hyperconverged.service; enabled)
@@ -266,7 +266,7 @@ below to configure Cumulus Linux, Nutanix and Cumulus HCS.
            CGroup: /system.slice/cumulus-hyperconverged.service
                    ├─4206 /usr/bin/python /usr/bin/cumulus-hyperconverged
                    └─6300 /usr/sbin/lldpcli -f json watch
-    
+
         cumulus@leaf02:~$ sudo systemctl status cumulus-hyperconverged
         ● cumulus-hyperconverged.service - Cumulus Linux Hyperconverged Daemon
            Loaded: loaded (/lib/systemd/system/cumulus-hyperconverged.service; enabled)
@@ -275,21 +275,21 @@ below to configure Cumulus Linux, Nutanix and Cumulus HCS.
            CGroup: /system.slice/cumulus-hyperconverged.service
                    ├─4207 /usr/bin/python /usr/bin/cumulus-hyperconverged
                    └─4300 /usr/sbin/lldpcli -f json watch
-    
+
     {{%notice tip%}}
-    
+
     If the service fails to start, you may find more information in the
     service's log file. View the log with `sudo journalctl -u
     cumulus-hyperconverged`.
-    
+
     {{%/notice%}}
 
 6.  Enable the server-facing ports to accept inbound LLDP frames and
     configure jumbo MTU on both leaf01 and leaf02.
-    
+
         cumulus@leaf01:~$ net add interface swp1-48 mtu 9216
         cumulus@leaf01:~$ net commit
-    
+
         cumulus@leaf02:~$ net add interface swp1-48 mtu 9216
         cumulus@leaf02:~$ net commit
 
@@ -399,9 +399,7 @@ and only be assigned to a single switch pair in your network.
 
 You can configure out-of-band management in one of two ways:
 
-  - Using [Cumulus
-    RMP](https://docs.cumulusnetworks.com/display/RMP/Cumulus+RMP),
-    which is the recommended way.
+  - Using [Cumulus RMP](/cumulus-rmp), which is the recommended way.
 
   - Running Cumulus Linux on a [supported 1G non-Cumulus RMP
     switch](https://cumulusnetworks.com/products/hardware-compatibility-list/?Speed=1G).
@@ -544,7 +542,7 @@ details of the Nutanix node and verify the `SysDescr` field.
     site](https://cumulusnetworks.com/networking-solutions/converged-infrastructure/)
     on the Cumulus Networks website
 
-  
+
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-<details>
-
 Hardware datapath configuration manages packet buffering, queueing and
 scheduling in hardware. There are two configuration input files:
 
@@ -21,15 +19,15 @@ scheduling in hardware. There are two configuration input files:
 
   - `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/[bcm|mlx]/datapath.conf`,
     which assigns buffer space and egress queues
-    
+
     {{%notice note%}}
-    
-    While it's possible to change the buffer limits in the datapath.conf
+
+While it's possible to change the buffer limits in the datapath.conf
     file, Cumulus Networks strongly recommends you [work with a Cumulus
     support
     engineer](https://support.cumulusnetworks.com/hc/en-us/requests/new)
     to do so.
-    
+
     {{%/notice%}}
 
 Each packet is assigned to an ASIC Class of Service (CoS) value based on
@@ -106,30 +104,30 @@ Keep in mind the following about the configuration:
 
   - Per-port remark packet fields and mapping apply to the designated
     set of ports.
-
+<details>
 <summary>Click to view sample traffic.conf file ... </summary>
 
     cumulus@switch:~$ cat /etc/cumulus/datapath/traffic.conf
-    # 
+    #
     # /etc/cumulus/datapath/traffic.conf
     #                                                                              
-     
+
     # packet header field used to determine the packet priority level          
     # fields include {802.1p, dscp}
     traffic.packet_priority_source_set = [802.1p,dscp]                                 
-                                            
+
     # remark packet priority value                                             
     # fields include {802.1p, none}                                            
     # remark packet priority value
     # fields include {802.1p, dscp}
     traffic.packet_priority_remark_set = [802.1p,dscp]
-     
+
     # packet priority remark values assigned from each internal cos value
     # internal cos values {cos_0..cos_7}
     # (internal cos 3 has been reserved for CPU-generated traffic)
     #
     # 802.1p values = {0..7}
-     
+
     traffic.cos_0.priority_remark.8021p = [1]
     traffic.cos_1.priority_remark.8021p = [0]
     traffic.cos_2.priority_remark.8021p = [3]
@@ -138,7 +136,7 @@ Keep in mind the following about the configuration:
     traffic.cos_5.priority_remark.8021p = [5]
     traffic.cos_6.priority_remark.8021p = [7]
     traffic.cos_7.priority_remark.8021p = [6]
-     
+
     # dscp values = {0..63}
     traffic.cos_0.priority_remark.dscp = [1]
     traffic.cos_1.priority_remark.dscp = [9]
@@ -148,7 +146,7 @@ Keep in mind the following about the configuration:
     traffic.cos_5.priority_remark.dscp = [41]
     traffic.cos_6.priority_remark.dscp = [49]
     traffic.cos_7.priority_remark.dscp = [57]
-     
+
     # Per-port remark packet fields and mapping: applies to the designated set of ports.
     remark.port_group_list = [remark_port_group]
     remark.remark_port_group.packet_priority_remark_set = [802.1p,dscp]
@@ -161,7 +159,7 @@ Keep in mind the following about the configuration:
     remark.remark_port_group.cos_5.priority_remark.dscp = [42]
     remark.remark_port_group.cos_6.priority_remark.dscp = [50]
     remark.remark_port_group.cos_7.priority_remark.dscp = [58]                     
-                                                                                 
+
     # packet priority values assigned to each internal cos value              
     # internal cos values {cos_0..cos_7}                                   
     # (internal cos 3 has been reserved for CPU-generated traffic)      
@@ -175,7 +173,7 @@ Keep in mind the following about the configuration:
     traffic.cos_5.priority_source.8021p = [5]
     traffic.cos_6.priority_source.8021p = [6]
     traffic.cos_7.priority_source.8021p = [7]
-     
+
     # dscp values = {0..63}
     traffic.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]
     traffic.cos_1.priority_source.dscp = [8,9,10,11,12,13,14,15]
@@ -185,7 +183,7 @@ Keep in mind the following about the configuration:
     traffic.cos_5.priority_source.dscp = []
     traffic.cos_6.priority_source.dscp = []
     traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]          
-     
+
     # Per-port source packet fields and mapping: applies to the designated set of ports.
     source.port_group_list = [source_port_group]
     source.source_port_group.packet_priority_source_set = [802.1p,dscp]
@@ -198,17 +196,17 @@ Keep in mind the following about the configuration:
     source.source_port_group.cos_5.priority_source.8021p = [2]
     source.source_port_group.cos_6.priority_source.8021p = [1]
     source.source_port_group.cos_7.priority_source.8021p = [0]            
-                                                                  
+
     # priority groups                                             
     traffic.priority_group_list = [control, service, bulk]        
-                                                                  
+
     # internal cos values assigned to each priority group         
     # each cos value should be assigned exactly once              
     # internal cos values {0..7}                                  
     priority_group.control.cos_list = [7]                         
     priority_group.service.cos_list = [2]                         
-    priority_group.bulk.cos_list = [0,1,3,4,5,6] 
-     
+    priority_group.bulk.cos_list = [0,1,3,4,5,6]
+
     # to configure priority flow control on a group of ports:
     # -- assign cos value(s) to the cos list
     # -- add or replace a port group names in the port group list
@@ -228,8 +226,8 @@ Keep in mind the following about the configuration:
     # pfc.pfc_port_group.xon_delta = 2000
     # pfc.pfc_port_group.tx_enable = true
     # pfc.pfc_port_group.rx_enable = true                 
-                                                                  
-    # to configure pause on a group of ports: 
+
+    # to configure pause on a group of ports:
     # -- add or replace port group names in the port group list
     # -- for each port group in the list
     #    -- populate the port set, e.g.
@@ -237,8 +235,8 @@ Keep in mind the following about the configuration:
     #    -- set a pause buffer size in bytes for each port in the group
     #    -- set the xoff byte limit (buffer limit that triggers pause frames transmit to start)
     #    -- set the xon byte delta (buffer limit that triggers pause frames transmit to stop)
-     
-    # link pause 
+
+    # link pause
     # link_pause.port_group_list = [pause_port_group]
     # link_pause.pause_port_group.port_set = swp1-swp4,swp6
     # link_pause.pause_port_group.port_buffer_bytes = 25000
@@ -246,62 +244,62 @@ Keep in mind the following about the configuration:
     # link_pause.pause_port_group.xon_delta = 2000
     # link_pause.pause_port_group.rx_enable = true
     # link_pause.pause_port_group.tx_enable = true                   
-      
+
     # scheduling algorithm: algorithm values = {dwrr}
-    scheduling.algorithm = dwrr 
-      
+    scheduling.algorithm = dwrr
+
     # traffic group scheduling weight
     # weight values = {0..127}     
     # '0' indicates strict priority
     priority_group.control.weight = 0
     priority_group.service.weight = 32
     priority_group.bulk.weight = 16                     
-                                                              
+
     # To turn on/off Denial of service (DOS) prevention checks
     dos_enable = false                                
-                                                      
+
     # Cut-through is disabled by default on all chips with the exception of
     # Spectrum. On Spectrum cut-through cannot be disabled.
     #cut_through_enable = false
-                                                      
+
     # Enable resilient hashing                        
     #resilient_hash_enable = FALSE                    
-                                                      
+
     # Resilient hashing flowset entries per ECMP group
     # Valid values - 64, 128, 256, 512, 1024
     #resilient_hash_entries_ecmp = 128   
-                                 
+
     # Enable symmetric hashing   
     #symmetric_hash_enable = TRUE
-     
-    # Set sflow/sample ingress cpu packet rate and burst in packets/sec 
-    # Values: {0..16384} 
+
+    # Set sflow/sample ingress cpu packet rate and burst in packets/sec
+    # Values: {0..16384}
     #sflow.rate = 16384  
-    #sflow.burst = 16384 
-     
-    #Specify the maximum number of paths per route entry. 
-    #  Maximum paths supported is 200. 
-    #  Default value 0 takes the number of physical ports as the max path size. 
+    #sflow.burst = 16384
+
+    #Specify the maximum number of paths per route entry.
+    #  Maximum paths supported is 200.
+    #  Default value 0 takes the number of physical ports as the max path size.
     #ecmp_max_paths = 0
-     
+
     #Specify the hash seed for Equal cost multipath entries
     # Default value 0
     # Value Rang: {0..4294967295}
     #ecmp_hash_seed = 42
-     
+
     # Specify the forwarding table resource allocation profile, applicable
     # only on platforms that support universal forwarding resources.
     #
     # /usr/cumulus/sbin/cl-rsource-query reports the allocated table sizes
     # based on the profile setting.
-    # 
+    #
     #   Values: one of {'default', 'l2-heavy', 'v4-lpm-heavy', 'v6-lpm-heavy'}
     #   Default value: 'default'
     #   Note: some devices may support more modes, please consult user
     #         guide for more details
     #
     #forwarding_table.profile = default
-
+</details>
 {{%notice note%}}
 
 On Mellanox Spectrum switches, packet priority remark must be enabled on
@@ -498,7 +496,7 @@ control (PFC) requires configuring the following settings in
 The following configuration example shows PFC configured for ports swp1
 through swp4 and swp6:
 
-``` 
+```
 # to configure priority flow control on a group of ports:
 # -- assign cos value(s) to the cos list
 # -- add or replace a port group names in the port group list
@@ -543,7 +541,7 @@ sequences of contiguous ports; you can see which ports are contiguous in
 
   - A sequence of regular and breakout ports, provided they are all in a
     contiguous range. For example:
-    
+
         ...
         swp2
         swp3
@@ -595,8 +593,8 @@ the traffic for a specific ingress port.
 Here is an example configuration that enables both types of link pause
 for swp1 through swp4 and swp6:
 
-``` 
-# to configure pause on a group of ports: 
+```
+# to configure pause on a group of ports:
 # -- add or replace port group names in the port group list
 # -- for each port group in the list
 #    -- populate the port set, e.g.
@@ -605,7 +603,7 @@ for swp1 through swp4 and swp6:
 #    -- set the xoff byte limit (buffer limit that triggers pause frames transmit to start)
 #    -- set the xon byte delta (buffer limit that triggers pause frames transmit to stop)
  
-# link pause 
+# link pause
 link_pause.port_group_list = [pause_port_group]
 link_pause.pause_port_group.port_set = swp1-swp4,swp6
 link_pause.pause_port_group.port_buffer_bytes = 25000
@@ -648,7 +646,7 @@ mode in `/etc/cumulus/datapath/traffic.conf`.
 To disable link pause, comment out the `link_pause*` section in
 `/etc/cumulus/datapath/traffic.conf`:
 
-    cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf 
+    cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
     #link_pause.port_group_list = [port_group_0]
     #link_pause.port_group_0.port_set = swp45-swp54
     #link_pause.port_group_0.rx_enable = true
@@ -657,7 +655,7 @@ To disable link pause, comment out the `link_pause*` section in
 To enable store and forward switching, set `cut_through_enable` to
 *false* in `/etc/cumulus/datapath/traffic.conf`:
 
-    cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf 
+    cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
     cut_through_enable = false
 
 {{%notice note%}}
@@ -791,13 +789,3 @@ On Broadcom switches, the buffer status is not visible currently.
 
   - [iptables-extensions man
     page](http://ipset.netfilter.org/iptables-extensions.man.html)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

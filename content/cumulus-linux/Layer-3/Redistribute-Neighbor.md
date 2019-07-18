@@ -11,8 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-<details>
-
 *Redistribute neighbor* provides a mechanism for IP subnets to span
 racks without forcing the end hosts to run a routing protocol.
 
@@ -117,19 +115,19 @@ steps can be applied to any of the leafs.
     host-facing interfaces as well as a /32 prefix. In this case, swp1
     and swp2 are configured as they are the ports facing server01 and
     server02:
-    
+
         cumulus@leaf01:~$ net add loopback lo ip address 10.0.0.11/32
         cumulus@leaf01:~$ net add interface swp1-2 ip address 10.0.0.11/32
-        cumulus@leaf01:~$ net pending 
+        cumulus@leaf01:~$ net pending
         cumulus@leaf01:~$ net commit
-    
+
     The commands produce the following configuration in the
     `/etc/network/interfaces` file:
-    
+
         auto lo
         iface lo inet loopback
           address 10.0.0.11/32
-              
+
         auto swp1
         iface swp1
           address 10.0.0.11/32
@@ -139,40 +137,40 @@ steps can be applied to any of the leafs.
           address 10.0.0.11/32
 
 2.  Enable the daemon so it starts at bootup:
-    
+
         cumulus@leaf01:~$ sudo systemctl enable rdnbrd.service
 
 3.  Start the daemon:
-    
+
         cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
 
 4.  Configure routing:
-    
+
     1.  Define a route-map that matches on the host-facing interfaces:
-        
+
             cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 10 match interface swp1
             cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 20 match interface swp2
-    
+
     2.  Import routing table 10 and apply the route-map:
-        
+
             cumulus@leaf01:~$ net add routing import-table 10 route-map REDIST_NEIGHBOR
-    
+
     3.  Redistribute the imported *table* routes in into the appropriate
         routing protocol.  
         **BGP:**
-        
+
             cumulus@leaf01:~$ net add bgp autonomous-system 65001
             cumulus@leaf01:~$ net add bgp ipv4 unicast redistribute table 10
-        
+
         **OSPF:**
-        
+
             cumulus@leaf01:~$ net add ospf redistribute table 10
-    
+
     4.  Save the configuration by committing your changes.
-        
+
             cumulus@leaf01:~$ net pending
             cumulus@leaf01:~$ net commit
-
+<details>
 <summary>Click here to expand the contents of /etc/frr/frr.conf
 </summary>
 
@@ -194,10 +192,10 @@ This configuration uses OSPF as the routing protocol.
       redistribute table 10
      exit-address-family
     !
-    route-map REDIST_NEIGHBOR permit 10 
+    route-map REDIST_NEIGHBOR permit 10
      match interface swp1
     !
-    route-map REDIST_NEIGHBOR permit 20 
+    route-map REDIST_NEIGHBOR permit 20
      match interface swp2
     !
     router ospf
@@ -205,7 +203,7 @@ This configuration uses OSPF as the routing protocol.
     !
     line vty
     !
-
+</details>
 ### <span>Configure the Host(s)</span>
 
 There are a few possible host configurations that range in complexity.
@@ -241,7 +239,7 @@ via eth2. You should note:
 
   - The post-up `ip route replace` is used to install a default route
     via one or both leaf nodes if both swp1 and swp2 are up.
-    
+
         user@server01:$ cat /etc/network/interfaces
         # The loopback network interface
         auto lo
@@ -256,7 +254,7 @@ via eth2. You should note:
           address 10.1.0.101/32
           post-up for i in {1..3}; do arping -q -c 1 -w 0 -i eth1 10.0.0.11; sleep 1; done
           post-up ip route add 0.0.0.0/0 nexthop via 10.0.0.11 dev eth1 onlink nexthop via 10.0.0.12 dev eth2 onlink || true
-              
+
         auto eth2
         iface eth2
           address 10.1.0.101/32
@@ -330,7 +328,7 @@ Doing so can cause the `rdnbrd` service to crash.
 
 Use `systemd` to check:
 
-    cumulus@leaf01$ systemctl status rdnbrd.service 
+    cumulus@leaf01$ systemctl status rdnbrd.service
     * rdnbrd.service - Cumulus Linux Redistribute Neighbor Service
      Loaded: loaded (/lib/systemd/system/rdnbrd.service; enabled)
      Active: active (running) since Wed 2016-05-04 18:29:03 UTC; 1h 13min ago
@@ -343,19 +341,19 @@ Use `systemd` to check:
 Editing the `/etc/rdnbrd.conf` file, then run `systemctl restart
 rdnbrd.service`:
 
-    cumulus@leaf01$ cat /etc/rdnbrd.conf 
+    cumulus@leaf01$ cat /etc/rdnbrd.conf
     # syslog logging level CRITICAL, ERROR, WARNING, INFO, or DEBUG
     loglevel = INFO
-     
+
     # TX an ARP request to known hosts every keepalive seconds
     keepalive = 1
-     
+
     # If a host does not send an ARP reply for holdtime consider the host down
     holdtime = 3
-     
+
     # Install /32 routes for each host into this table
     route_table = 10
-     
+
     # Uncomment to enable ARP debugs on specific interfaces.
     # Note that ARP debugs can be very chatty.
     # debug_arp = swp1 swp2 swp3 br1
@@ -405,7 +403,7 @@ For BGP, check the advertised routes to the neighbor.
     cumulus@leaf01:~$ sudo vtysh
     Hello, this is Quagga (version 0.99.23.1+cl3u2).
     Copyright 1996-2005 Kunihiro Ishiguro, et al.
-    leaf01# show ip bgp neighbor swp51 advertised-routes 
+    leaf01# show ip bgp neighbor swp51 advertised-routes
     BGP table version is 5, local router ID is 10.0.0.11
     Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
                   i internal, r RIB-failure, S Stale, R Removed
@@ -427,20 +425,20 @@ imported/advertised:
 
 1.  Verify that ARP neighbor entries are being populated into the Kernel
     routing table 10.
-    
+
         cumulus@switch:~$ ip route show table 10
         10.0.1.101 dev swp1 scope link
-    
+
     If these routes are not being generated, verify the following:
-    
+
       - That the `rdnbrd` daemon is running
-    
+
       - Check `/etc/rdnbrd.conf` to verify the correct table number is
         used
 
 2.  Verify that routes are being imported into FRRouting from the kernel
     routing table 10.
-    
+
         cumulus@switch:~$ sudo vtysh
         Hello, this is Quagga (version 0.99.23.1+cl3u2).
         Copyright 1996-2005 Kunihiro Ishiguro, et al.
@@ -450,30 +448,20 @@ imported/advertised:
                O - OSPF, I - IS-IS, B - BGP, A - Babel, T - Table,
                > - selected route, * - FIB route
          T[10]>* 10.0.1.101/32 [19/0] is directly connected, swp1, 01:25:29
-    
+
     Both the \> and \* should be present so that table 10 routes are
     installed as preferred into the routing table. If the routes are not
     being installed, verify the following:
-    
+
       - The imported distance of the locally imported kernel routes
         using the `ip import 10 distance X` command, where X is **not**
         less than the adminstrative distance of the routing protocol. If
         the distance is too low, routes learned from the protocol may
         overwrite the locally imported routes.
-    
+
       - The routes are in the kernel routing table.
 
 3.  Confirm that routes are in the BGP/OSPF database and are being
     advertised.
-    
+
         switch# show ip bgp
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

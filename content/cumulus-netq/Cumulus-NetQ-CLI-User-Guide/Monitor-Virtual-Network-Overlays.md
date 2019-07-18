@@ -301,7 +301,7 @@ shows the events that have occurred in the last 48 hours.
 ## <span>Monitor LNV</span>
 
 Lightweight Network Virtualization (LNV) is a technique for deploying
-[VXLANs](https://docs.cumulusnetworks.com/display/DRAFT37/Network+Virtualization)
+[VXLANs](/cumulus-linux/Network-Virtualization)
 without a central controller on bare metal switches. LNV enables data
 center network administrators and operators to create a data path
 between bridges on top of a layer 3 fabric. With NetQ, you can monitor
@@ -356,8 +356,7 @@ example shows the status of LNV about 30 minutes ago.
     leaf22            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
 
 For more information about and configuration of LNV, refer to the
-[Cumulus Linux LNV
-Overview](https://docs.cumulusnetworks.com/display/DRAFT37/Lightweight+Network+Virtualization+Overview)
+[Cumulus Linux LNV Overview](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 topic.
 
 <article id="html-search-results" class="ht-content" style="display: none;">

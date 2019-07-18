@@ -8,8 +8,8 @@ aliases:
 pageID: 5126710
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 Cumulus Networks has made major enhancements for Cumulus VX 3.x to
 produce a true learning, testing, and pre-production tool. These

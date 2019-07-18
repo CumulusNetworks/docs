@@ -8,8 +8,8 @@ aliases:
 pageID: 5126706
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 The following sections describe how to configure network interfaces and
 FRRouting for a two-leaf/two-spine Cumulus VX network topology:
@@ -28,8 +28,8 @@ FRRouting for a two-leaf/two-spine Cumulus VX network topology:
 These instructions assume that you have installed the relevant images
 and hypervisors, created four VMs with appropriate names, and that the
 VMs are running. Refer to the [Getting
-Started](/version/cumulus-vx-34/Getting-Started/) chapter of this guide
-for more information on setting up the VMs.
+Started](/cumulus-vx/Getting-Started/) chapter of this guide for more
+information on setting up the VMs.
 
 {{%/notice%}}
 

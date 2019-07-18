@@ -15,7 +15,7 @@ At various points in time, you might want to change which network nodes
 are being monitored by NetQ or look more closely at a network node for
 troubleshooting purposes. Adding the NetQ Agent to a switch or host is
 described in [Install
-NetQ](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Install-NetQ).
+NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ).
 Disabling an Agent is described here and managing NetQ Agent logging is
 also presented.
 
@@ -180,7 +180,7 @@ the logging level to a less heavy mode or completely disable agent
 logging altogether when you are finished troubleshooting.
 
 To change the logging level, run the
-following command and restart the agent service: 
+following command and restart the agent service:
 
     cumulus@switch:~$ netq config add agent loglevel <LOG_LEVEL> 
     cumulus@switch:~$ netq config restart agent

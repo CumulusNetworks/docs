@@ -66,10 +66,10 @@ Cumulus NetQ Primer before reading the other available documents.
 The following NetQ documents are available:
 
   - [Cumulus NetQ Deployment
-    Guide](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/)
+    Guide](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/)
   - Cumulus NetQ CLI User Guide (this guide)
   - [Cumulus NetQ UI User
-    Guide](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/)
+    Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/)
   - [<span style="color: #00AD69;">Cumulus NetQ Release
     Notes</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374)
   - [<span style="color: #00AD69;">What the NetQ Validation System

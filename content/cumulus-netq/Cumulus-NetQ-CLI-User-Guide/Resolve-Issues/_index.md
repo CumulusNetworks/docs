@@ -19,11 +19,3 @@ pattern as shown in this diagram.
 
 This topic describes some of the tools and commands you can use to
 troubleshoot issues with the network and NetQ itself.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

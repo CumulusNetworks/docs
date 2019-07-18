@@ -35,7 +35,7 @@ Installing NetQ can be accomplished in one of three ways:
       - Load the NetQ Agent onto the switches and hosts you want to
         monitor.
   - If you are upgrading from a prior version of NetQ, refer to [Upgrade
-    NetQ](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/)
+    NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/)
     instead.
 
 ## Prerequisites</span>
@@ -100,7 +100,7 @@ Installation of NetQ involves installing the NetQ software, and
 installing and configuring the NetQ Agents. Additional steps are needed
 to [Integrate NetQ with Event
 Notification
-Applications](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware).
+Applications](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware).
 This flow chart shows the required steps to install and setup
 NetQ to start validating your network, and the optional steps of
 integrating with event notification applications and monitoring hosts.
@@ -818,7 +818,7 @@ integrate NetQ with the PagerDuty or Slack notification tools. To do so
 you need to configure both the notification application itself to
 receive the messages, and NetQ with what messages to send and where to
 send them. Refer to [Integrate NetQ with Event Notification
-Applications](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware)
+Applications](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware)
 to use the CLI for configuration.
 
 ## Set Up Security</span>

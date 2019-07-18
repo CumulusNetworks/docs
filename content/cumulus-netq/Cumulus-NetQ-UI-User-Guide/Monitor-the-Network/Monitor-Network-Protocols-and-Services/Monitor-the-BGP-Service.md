@@ -483,7 +483,7 @@ include:
     unestablished sessions, you might want to look more carefully at
     those switches using the Switches card workflow to determine
     probable causes. Refer to [Monitor
-    Switches](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
+    Switches](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
 
   - Click **Show All Sessions** to investigate all BGP sessions with
     events in the full screen card.

@@ -27,7 +27,7 @@ removed.
 Once the route is created, FRR sees the newly added route in the kernel
 routing table and redistributes the route into BGP or OSPF depending
 upon which [routing protocol you
-enabled](/version/hostpack/Configuring-FRRouting-on-the-Host). This demo
+enabled](/host-pack/Configuring-FRRouting-on-the-Host). This demo
 uses BGP unnumbered as the routing protocol. Using BGP unnumbered in
 this scenario means that no IPv4 addresses need to be configured on the
 uplinks from the server.

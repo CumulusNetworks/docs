@@ -13,7 +13,7 @@ siteSlug: cumulus-netq-22
 ---
 The NetQ Agent monitors container environments the same way it monitors
 [physical
-servers](/version/cumulus-netq-22/Cumulus-NetQ-CLI-User-Guide/Monitor-Linux-Hosts).
+servers](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Linux-Hosts).
 There is no special implementation. The NetQ Agent pulls data from the
 container as it would pull data from a Cumulus Linux switch or Linux
 host. It can be installed on a Linux server or in a Linux VM. NetQ Agent
@@ -105,7 +105,7 @@ following on the Kubernetes master node:
 
 1.  Configure the host to point to the NetQ Platform by its IP address.
     See the [Install
-    NetQ](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
+    NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
     topic for details.
 
 2.  Enable Kubernetes monitoring by NetQ. You can specify a polling
@@ -614,7 +614,7 @@ To see the impact of a given Kubernetes service, run:
 ### View Kubernetes Cluster Configuration in the Past</span>
 
 You can use the ["time machine"
-features](/version/cumulus-netq-22/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues)
+features](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues)
 of NetQ on a Kubernetes cluster, using the `around` option to go back
 in time to check the network status and identify any changes that
 occurred on the network.

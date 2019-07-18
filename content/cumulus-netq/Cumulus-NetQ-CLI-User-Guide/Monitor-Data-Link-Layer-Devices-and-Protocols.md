@@ -18,19 +18,14 @@ network ensures consistent and error-free communications between
 devices. NetQ provides the ability to:
 
   - Monitor and validate device and protocol configurations
-
   - View available communication paths between devices
 
 It helps answer questions such as:
 
   - Is a VLAN misconfigured?
-
   - Is there an MTU mismatch in my network?
-
   - Is MLAG configured correctly?
-
   - Is there an STP loop?
-
   - Can device A reach device B using MAC addresses?
 
 ## <span>Monitor LLDP Operation</span>
@@ -89,7 +84,7 @@ This example shows the interface and peer information that is advertised for eac
 Interface (link) health can be monitored using the `netq show
 interfaces` command. You can view status of the links, whether they are
 operating over a VRF interface, the MTU of the link, and so forth. Using
-the *hostname* keyword enables you to view only the interfaces for a
+the `hostname` option enables you to view only the interfaces for a
 given device. View changes to interfaces using the `netq show events`
 command.
 
@@ -221,7 +216,7 @@ that are up.
 ### <span>View the Total Number of Interfaces</span>
 
 For a quick view of the amount of interfaces currently operating on a
-device, use the `hostname` and `count` keywords together.
+device, use the `hostname` and `count` options together.
 
 This example shows the count of interfaces on the *leaf03* switch.
 
@@ -291,7 +286,7 @@ misconfiguration.
 
 ## <span>Monitor VLAN Configurations</span>
 
-<span style="color: #36424a;"> </span> A VLAN (Virtual Local Area
+A VLAN (Virtual Local Area
 Network) enables devices on one or more LANs to communicate as if they
 were on the same network, without being physically connected. The VLAN
 enables network administrators to
@@ -318,13 +313,9 @@ When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
   - d: day(s)
-
   - h: hour(s)
-
   - m: minute(s)
-
   - s: second(s)
-
   - now
 
 For time ranges, the `<text-time>` is the most recent time and the
@@ -382,7 +373,7 @@ and the last time it was changed.
 
 You can determine the MAC addresses associated with a given VLAN using
 the `netq show macs vlan` command. The command also provides the
-hostname of the devices, the egress port for the interface, whether the
+hostnames of the devices, the egress port for the interface, whether the
 MAC address originated from the given device, whether it learns the MAC
 address from the peer (remote=yes), and the last time the configuration
 was changed.

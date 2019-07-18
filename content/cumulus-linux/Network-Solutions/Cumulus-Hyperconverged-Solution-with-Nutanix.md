@@ -201,7 +201,7 @@ below to configure Cumulus Linux, Nutanix and Cumulus HCS.
 
     {{%notice note%}}
 
-    In both configurations the `pvid` value of *1* indicates the native
+In both configurations the `pvid` value of *1* indicates the native
     VLAN ID. If you don't know the value for the native VLAN ID, use
     *1*.
 
@@ -236,14 +236,14 @@ below to configure Cumulus Linux, Nutanix and Cumulus HCS.
 
     {{%notice tip%}}
 
-    These settings are defined
+These settings are defined
     [below](#src-9012165_CumulusHyperconvergedSolutionwithNutanix-chs_settings).
 
     {{%/notice%}}
 
     {{%notice note%}}
 
-    The server IP address may be a specific Nutanix CVM address or the
+The server IP address may be a specific Nutanix CVM address or the
     virtual cluster IP address.
 
     {{%/notice%}}
@@ -278,7 +278,7 @@ below to configure Cumulus Linux, Nutanix and Cumulus HCS.
 
     {{%notice tip%}}
 
-    If the service fails to start, you may find more information in the
+If the service fails to start, you may find more information in the
     service's log file. View the log with `sudo journalctl -u
     cumulus-hyperconverged`.
 

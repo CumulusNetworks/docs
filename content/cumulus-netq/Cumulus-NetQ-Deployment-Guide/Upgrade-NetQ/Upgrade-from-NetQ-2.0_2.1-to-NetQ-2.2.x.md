@@ -19,12 +19,12 @@ and NetQ 2.1 releases to NetQ 2.2.x.
 Cumulus Networks recommends only upgrading NetQ during a network
 maintenance window.
 
-Any data you have collected while using NetQ 2.1.0 is maintained during
-this upgrade process.
-
 {{%/notice%}}
 
 {{%notice note%}}
+
+Any data you have collected while using NetQ 2.1.0 is maintained during
+this upgrade process.
 
 Events generated during the upgrade process will not be available in the
 database. Once the upgrade process is complete, the agents re-sync with
@@ -43,11 +43,8 @@ Instructions for installing NetQ 2.2.x for the first time can be found
 Before you begin the upgrade process, please note the following:
 
   - The minimum supported Cumulus Linux version for NetQ 2.2.x is 3.3.2.
-
   - You must upgrade your NetQ Agents as well as the NetQ Platform.
-
   - You can upgrade to NetQ 2.2.x without upgrading Cumulus Linux.
-
   - The NetQ installer pod `netq-installer` should be up in either the
     *Containercreating* or *Running* state. The `netq-installer` pod
     state could also be *ContainerCreating*, in which case the host is
@@ -58,14 +55,11 @@ Before you begin the upgrade process, please note the following:
 To upgrade the NetQ Platform:
 
 1.  Download the NetQ Platform VM upgrade image.
-
     1.  On the [Cumulus
         Downloads](https://cumulusnetworks.com/downloads/) page, select
         *NetQ* from the **Product** list box.
-
     2.  Click *2.2* from the **Version** list box, and then select
         *2.2.x* from the submenu.
-
     3.  Optionally, select the hypervisor you wish to use (*VMware,
         VMware (cloud), KVM,* or *KVM (cloud)*) from the
         **Hypervisor/Platform** list box.  
@@ -81,7 +75,6 @@ To upgrade the NetQ Platform:
 
     5.  Click **Upgrade** for the relevant version, being careful to
         select the correct deployment version.
-
 2.  From a terminal window, log in to the NetQ Platform using your login
     credentials. This example uses the default *cumulus/CumulusLinux\!*
     credentials.
@@ -123,20 +116,20 @@ To upgrade the NetQ Platform:
 
 8.  Configure SSH access.
 
-    {{%notice info%}}
+    {{%notice note%}}
 
-    If you perform the upgrade more than once, you can skip this step
+If you perform the upgrade more than once, you can skip this step
     after performing it once.
 
-    If you have an existing SSH key, skip to step 8c.
+If you have an existing SSH key, skip to step 8c.
 
     {{%/notice%}}
 
     1.  Generate the SSH key to enable you to run the script.
 
-        {{%notice info%}}
+        {{%notice note%}}
 
-        Leave the passphrase blank to simplify running the script.
+Leave the passphrase blank to simplify running the script.
 
         {{%/notice%}}
 
@@ -198,13 +191,13 @@ To upgrade the NetQ Platform:
         [Fri 21 Jun 2019 09:20:31 PM UTC] - Successfully updated netq apps ....
         root@netq-appliance:/mnt/installables#
 
-    {{%notice info%}}
+    {{%notice note%}}
 
-    Please allow about an hour for the upgrade to complete.
+Please allow about an hour for the upgrade to complete.
 
     {{%/notice%}}
 
-{{%notice note%}}
+{{%notice info%}}
 
 If you have changed the IP Address of the NetQ Platform, you need to
 re-register this address with the Kubernetes containers before you can
@@ -213,22 +206,21 @@ continue.
 1.  Reset all Kubernetes administrative settings. Run the command twice
     to make sure all directories and files have been reset.
 
-    ` cumulus@switch:~$ sudo kubeadm reset -f  `  
+    `cumulus@switch:~$ sudo kubeadm reset -f`  
     `cumulus@switch:~$ sudo kubeadm reset -f`
 
 2.  Remove the Kubernetes configuration.  
     `cumulus@switch:~$ sudo rm /home/cumulus/.kube/config`
 
 3.  Reset the NetQ Platform install daemon.  
-    `cumulus@switch:~$ sudo systemctl reset-failed`  
-    `  `
+    `cumulus@switch:~$ sudo systemctl reset-failed`
 
 4.  Reset the Kubernetes service.  
-    ` cumulus@switch:~$ sudo systemctl restart cts-kubectl-config  `  
-    ***Note***: Allow 15 minutes for the prompt to return.
+    `cumulus@switch:~$ sudo systemctl restart cts-kubectl-config`  
+    **Note**: Allow 15 minutes for the prompt to return.
 
 5.  Reboot the VM.  
-    ***Note***: Allow 5-10 minutes for the VM to boot.
+    **Note**: Allow 5-10 minutes for the VM to boot.
 
 {{%/notice%}}
 
@@ -255,7 +247,7 @@ continue.
             cumulus@<netq-platform-hostname>:~$ 
 
     2.  Run the following command to verify all applications are
-        operating properly. ***Note***: Please allow 10-15 minutes for
+        operating properly. **Note**: Please allow 10-15 minutes for
         all applications to come up and report their status.
 
             cumulus@<netq-platform-hostname>:~$ netq show opta-health
@@ -308,9 +300,9 @@ continue.
              
             cumulus@<netq-platform-hostname>:~$
 
-        {{%notice info%}}
+        {{%notice note%}}
 
-        If any of the applications or services display Status as DOWN
+If any of the applications or services display Status as DOWN
         after 30 minutes, open a [support
         ticket](https://cumulusnetworks.com/support/file-a-ticket/) and
         attach the output of the `opta-support` command.
@@ -333,9 +325,7 @@ should be upgraded on each of the existing nodes you want to monitor.
 The node can be a:
 
   - Switch running Cumulus Linux version 3.3.2 or later
-
   - Server running Red Hat RHEL 7.1, Ubuntu 16.04 or CentOS 7
-
   - Linux virtual machine running any of the above Linux operating
     systems
 
@@ -347,17 +337,15 @@ used by both the NetQ Agent and the CLI.
 
   - [Upgrade NetQ Agent on a Cumulus Linux
     Switch](#src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50Q0w)
-
   - [Upgrade NetQ Agent on an Ubuntu
     Server](#src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50VWJ1bnR1)
-
   - [Upgrade NetQ Agent on a Red Hat or CentOS
     Server](#src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50UkhD)
 
 {{%notice info%}}
 
 If your network uses a proxy server for external connections, you should first
-[configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/), 
+[configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/),
 so `apt-get` can access the meta package on the Cumulus Networks repository.
 
 {{%/notice%}}
@@ -367,7 +355,7 @@ so `apt-get` can access the meta package on the Cumulus Networks repository.
 A simple process installs the NetQ Agent on a Cumulus switch.
 
 1.  Edit the `/etc/apt/sources.list` file to add the repository for
-    Cumulus NetQ. ***Note*** that NetQ has a separate repository from
+    Cumulus NetQ. **Note** that NetQ has a separate repository from
     Cumulus Linux.
 
         cumulus@switch:~$ sudo nano /etc/apt/sources.list
@@ -377,7 +365,7 @@ A simple process installs the NetQ Agent on a Cumulus switch.
 
     {{%notice tip%}}
 
-    The repository `deb http://apps3.cumulusnetworks.com/repos/deb
+The repository `deb http://apps3.cumulusnetworks.com/repos/deb
     CumulusLinux-3 netq-latest` can be used if you want to always
     retrieve the latest posted version of NetQ.
 
@@ -404,12 +392,16 @@ A simple process installs the NetQ Agent on a Cumulus switch.
     and, optionally, configure the switch or host to run the NetQ CLI.
     In this example, the IP address for the agent and cli servers is
     *192.168.1.254*.  
-    **Note:** If you intend to use VRF, skip to [Configure the Agent to
-    Use
+
+    {{%notice info%}}
+
+If you intend to use VRF, skip to [Configure the Agent to Use
     VRF](#src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50VlJG).
     If you intend to specify a port for communication, skip to
     [Configure the Agent to Communicate over a Specific
     Port](#src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LXBvcnQ).
+
+    {{%/notice%}}
 
         cumulus@switch:~$ netq config add agent server 192.168.1.254
         cumulus@switch:~$ netq config add cli server 192.168.1.254
@@ -422,7 +414,7 @@ A simple process installs the NetQ Agent on a Cumulus switch.
         cumulus@switch:~$ netq config restart agent
         cumulus@switch:~$ netq config restart cli
 
-    Repeat these steps for each Cumulus switch, or use an automation
+7.  Repeat these steps for each Cumulus switch, or use an automation
     tool to install NetQ Agent on multiple Cumulus Linux switches.
 
 ### <span id="src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50VWJ1bnR1" class="confluence-anchor-link"></span><span>Upgrade NetQ Agent on an Ubuntu Server (Optional)</span>
@@ -443,7 +435,7 @@ To install the NetQ Agent on an Ubuntu server:
 
     {{%notice note%}}
 
-    The use of `netq-latest` in this example means that a `get` to the
+The use of `netq-latest` in this example means that a `get` to the
     repository always retrieves the latest version of NetQ, even in the
     case where a major version update has been made. If you want to keep
     the repository on a specific version — such as `netq-2.1` — use that
@@ -559,7 +551,6 @@ for the other type of nodes. If you have already configured these
 settings, you do not need to do so again.
 
   - [Configuring the Agent to Use a VRF](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/#span-id-src-12320951-installnetq-agentvrf-class-confluence-anchor-link-span-span-configure-the-agent-to-use-a-vrf-span)
-
   - [Configuring the Agent to Communicate over a Specific Port](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/#span-id-src-12320951-installnetq-port-class-confluence-anchor-link-span-span-configure-the-agent-to-communicate-over-a-specific-port-span)
 
 ### <span id="src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50VlJG" class="confluence-anchor-link"></span><span>Configure the Agent to Use a VRF Interface</span>
@@ -571,12 +562,11 @@ Agents to communicate with the NetQ Platform only via a
 specify the VRF name when configuring the NetQ Agent. For example, if
 the management VRF is configured and you want the agent to communicate
 with the NetQ Platform over it, configure the agent like this:
-<span style="color: #222222;"> </span>
 
     cumulus@leaf01:~$ netq config add agent server 192.168.1.254 vrf mgmt
     cumulus@leaf01:~$ netq config add cli server 192.168.254 vrf mgmt
 
-You then restart the agent: <span style="color: #222222;"> </span>
+You then restart the agent:
 
     cumulus@leaf01:~$ netq config restart agent
     cumulus@leaf01:~$ netq config restart cli
@@ -590,7 +580,7 @@ number when configuring the NetQ Agent like this:
 
     cumulus@switch:~$ netq config add agent server 192.168.1.254 port 7379
 
-You then restart the agent: <span style="color: #222222;"> </span>
+You then restart the agent:
 
     cumulus@leaf01:~$ netq config restart agent
 

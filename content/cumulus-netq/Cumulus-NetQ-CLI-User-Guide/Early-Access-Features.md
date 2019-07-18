@@ -40,7 +40,6 @@ collects the following statistics:
 
   - **Transmit**: tx\_bytes, tx\_carrier, tx\_colls, tx\_drop, tx\_errs,
     tx\_packets
-
   - **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame,
     rx\_multicast, rx\_packets
 

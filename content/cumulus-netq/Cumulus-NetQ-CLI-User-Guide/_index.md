@@ -13,7 +13,7 @@ siteSlug: cumulus-netq-22
 ---
 This guide is intended for network administrators who are responsible
 for monitoring and troubleshooting the network in their data center
-environment. NetQ 2.0 offers the ability to easily monitor and manage
+environment. NetQ 2.x offers the ability to easily monitor and manage
 your data center network infrastructure and operational health. This
 guide provides instructions and information about monitoring individual
 components of the network, the network as a whole, and the NetQ software

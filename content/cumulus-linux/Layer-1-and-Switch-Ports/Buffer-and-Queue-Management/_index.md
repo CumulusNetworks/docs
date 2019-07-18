@@ -22,7 +22,7 @@ scheduling in hardware. There are two configuration input files:
 
     {{%notice note%}}
 
-    While it's possible to change the buffer limits in the datapath.conf
+While it's possible to change the buffer limits in the datapath.conf
     file, Cumulus Networks strongly recommends you [work with a Cumulus
     support
     engineer](https://support.cumulusnetworks.com/hc/en-us/requests/new)

@@ -398,22 +398,23 @@ In this example, we look at the state of all fans with the name *fan1*.
 
 Use tab completion to determine the names of the fans in your switches:
 
-    cumulus@switch:~$ netq show sensors fan <<press tab>>
-        around : Go back in time to around ...
-        fan1 : Fan Name
-        fan2 : Fan Name
-        fan3 : Fan Name
-        fan4 : Fan Name
-        fan5 : Fan Name
-        fan6 : Fan Name
-        json : Provide output in JSON
-        psu1fan1 : Fan Name
-        psu2fan1 : Fan Name
-        <ENTER>
-
+```
+cumulus@switch:~$ netq show sensors fan <<press tab>>
+   around : Go back in time to around ...
+   fan1 : Fan Name
+   fan2 : Fan Name
+   fan3 : Fan Name
+   fan4 : Fan Name
+   fan5 : Fan Name
+   fan6 : Fan Name
+   json : Provide output in JSON
+   psu1fan1 : Fan Name
+   psu2fan1 : Fan Name
+   <ENTER>
+```
 {{%/notice%}}
 
-To view the status for a particular switch, use the optional *hostname*
+To view the status for a particular switch, use the optional `hostname`
 parameter.
 
     cumulus@switch:~$ netq leaf01 show sensors fan fan1
@@ -447,7 +448,7 @@ In this example, we look at the state of all PSUs with the name *psu2*.
 {{%notice tip%}}
 
 Use Tab completion to determine the names of the PSUs in your switches.
-Use the optional *hostname* parameter to view the PSU state for a given
+Use the optional `hostname` parameter to view the PSU state for a given
 switch.
 
 {{%/notice%}}
@@ -497,10 +498,10 @@ switch.
 
 ### <span>View All Sensor Data</span>
 
-<span style="color: #36424a;"> To view all fan data, all PSU data, or
+To view all fan data, all PSU data, or
 all temperature data from the sensors, you must view all of the sensor
 data. The more consistently you name your sensors, the easier it will be
-to view the full sensor data. </span>
+to view the full sensor data.
 
     cumulus@switch:~$ netq show sensors all
     Matching sensors records:
@@ -535,7 +536,7 @@ to view the full sensor data. </span>
 
 You can view the events that are triggered by the sensors using the
 `netq show events` command. You can narrow the focus to only critical
-events using the severity *level* option.
+events using the severity `level` option.
 
     cumulus@switch:~$ netq show events type sensors
     No matching events records found
@@ -555,10 +556,10 @@ The syntax for this command is:
 
 {{%notice note%}}
 
-The keyword values for the `name` keyword is specific to your
+The values for the `name` option are specific to your
 deployment. For example, if you have devices with only one type of OS,
 say Cumulus Linux, then that is the only option available for the
-`os-name` keyword value. If you have multiple OSs running, say you also
+`os-name` option value. If you have multiple OSs running, say you also
 have Ubuntu, then that would also be an option for you.
 
 {{%/notice%}}

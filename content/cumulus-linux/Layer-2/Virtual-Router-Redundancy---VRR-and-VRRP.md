@@ -85,39 +85,11 @@ prevent MAC address conflicts with other interfaces in the same bridged
 network. The reserved range is `00:00:5E:00:01:00` to
 `00:00:5E:00:01:ff`.
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
-{{%notice info%}}
-
 Cumulus Networks recommends using MAC addresses from the reserved range
 when configuring VRR.
 
-{{%/notice%}}
-
-</div>
-
-</div>
-
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
-{{%notice info%}}
-
 The reserved MAC address range for VRR is the same as for the Virtual
 Router Redundancy Protocol (VRRP), as they serve similar purposes.
-
-{{%/notice%}}
-
-</div>
-
-</div>
 
 {{%/notice%}}
 
@@ -130,34 +102,32 @@ the redundant routers. To configure the routers, add a bridge with the
 following interfaces to each router:
 
   - One bond interface or switch port interface to each host.
-    
+
     {{%notice note%}}
-    
-    For networks using MLAG, use bond interfaces. Otherwise, use switch
+
+For networks using MLAG, use bond interfaces. Otherwise, use switch
     port interfaces.
-    
+
     {{%/notice%}}
 
   - One or more interfaces to each peer router.
-    
+
     {{%notice note%}}
-    
-    Multiple inter-peer links are typically bonded interfaces that
+
+Multiple inter-peer links are typically bonded interfaces that
     accommodate higher bandwidth between the routers and offer link
     redundancy.
-    
+
     {{%/notice%}}
-    
+
     {{%notice note%}}
-    
-    The VLAN interface must have unique IP addresses for both the
+
+The VLAN interface must have unique IP addresses for both the
     physical (the `address` option below) and virtual (the
     `address-virtual` option below) interfaces, as the unique address is
     used when the switch initiates an ARP request.
-    
-    {{%/notice%}}
 
-{{%notice info has%}}
+    {{%/notice%}}
 
 **Example VRR Configuration**
 
@@ -187,8 +157,6 @@ snippet:
         address-virtual 00:00:5e:00:01:01 2001:db8::f/32 192.0.2.254/24
         vlan-id 500
         vlan-raw-device bridge
-
-{{%/notice%}}
 
 #### <span>Configure the Hosts</span>
 
@@ -244,53 +212,53 @@ cumulus@leaf01:~$ net commit</code></pre>
 <pre><code>auto eth0
 iface eth0
     address 192.168.0.21/24
-  
+
 auto bridge
 iface bridge
     bridge-ports server01 peerlink
     bridge-vids 100 200 300 400
     bridge-vlan-aware yes
     mstpctl-treeprio 4096
- 
+
 auto server01
 iface server01
     alias LACP etherchannel to uplink on server01
     bond-slaves swp1
     clag-id 1
     mtu 9216
-  
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
-  
+
 auto peerlink.4094
 iface peerlink.4094
     address 169.254.255.1/30
     clagd-backup-ip 192.168.0.22
     clagd-peer-ip 169.254.255.2
     clagd-sys-mac 44:38:39:FF:40:90
-  
+
 auto vlan100
 iface vlan100
     address 10.0.1.2/24
     address-virtual 44:38:39:FF:00:01 10.0.1.1/24
     vlan-id 100
     vlan-raw-device bridge
- 
+
 auto vlan200
 iface vlan200
     address 10.0.2.2/24
     address-virtual 44:38:39:FF:00:02 10.0.2.1/24
     vlan-id 200
     vlan-raw-device bridge
- 
+
 auto vlan300
 iface vlan300
     address 10.0.3.2/24
     address-virtual 44:38:39:FF:00:03 10.0.3.1/24
     vlan-id 300
     vlan-raw-device bridge
- 
+
 auto vlan400
 iface vlan400
     address 10.0.4.2/24
@@ -325,53 +293,53 @@ cumulus@leaf02:~$ net commit</code></pre>
 <pre><code>auto eth0
 iface eth0
     address 192.168.0.22/24
-  
+
 auto bridge
 iface bridge
     bridge-ports server01 peerlink
     bridge-vids 100 200 300 400
     bridge-vlan-aware yes
     mstpctl-treeprio 4096
- 
+
 auto server01
 iface server01
     alias LACP etherchannel to uplink on server01
     bond-slaves swp1
     clag-id 1
     mtu 9216
-  
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
-  
+
 auto peerlink.4094
 iface peerlink.4094
     address 169.254.255.2/30
     clagd-backup-ip 192.168.0.21
     clagd-peer-ip 169.254.255.1
     clagd-sys-mac 44:38:39:FF:40:90
-  
+
 auto vlan100
 iface vlan100
     address 10.0.1.3/24
     address-virtual 44:38:39:FF:00:01 10.0.1.1/24
     vlan-id 100
     vlan-raw-device bridge
- 
+
 auto vlan200
 iface vlan200
     address 10.0.2.3/24
     address-virtual 44:38:39:FF:00:02 10.0.2.1/24
     vlan-id 200
     vlan-raw-device bridge
- 
+
 auto vlan300
 iface vlan300
     address 10.0.3.3/24
     address-virtual 44:38:39:FF:00:03 10.0.3.1/24
     vlan-id 300
     vlan-raw-device bridge
- 
+
 auto vlan400
 iface vlan400
     address 10.0.4.3/24
@@ -483,7 +451,7 @@ the IP addresses of the virtual router.
 
 {{%notice note%}}
 
-  - VRRP is supported in Cumulus Linux 3.7.4.
+  - VRRP is supported in Cumulus Linux 3.7.4 and later.
 
   - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol
     version is VRRPv3.
@@ -540,23 +508,23 @@ it has a priority of 254. *spine02* is the backup VRRP router.
     cumulus@spine01:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
     cumulus@spine01:~$ net add interface swp1 vrrp 44 priority 254
     cumulus@spine01:~$ net add interface swp1 vrrp 44 advertisement-interval 5000
-    cumulus@spine01:~$ net pending 
+    cumulus@spine01:~$ net pending
     cumulus@spine01:~$ net commit
 
 **spine02**
 
     cumulus@spine02:~$ net add interface swp1 vrrp 44 10.0.0.1/24
     cumulus@spine02:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
-    cumulus@spine02:~$ net pending 
+    cumulus@spine02:~$ net pending
     cumulus@spine02:~$ net commit
 
 The NCLU commands save the configuration in the `/etc/frr/frr.conf`
 file. For example:
 
-    cumulus@spine01:~$ sudo cat /etc/frr/frr.conf 
+    cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
     ...
     interface swp1
-     vrrp 44 
+     vrrp 44
      vrrp 44 advertisement-interval 5000
      vrrp 44 priority 254
      vrrp 44 ip 10.0.0.1

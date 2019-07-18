@@ -1,7 +1,9 @@
-baseURL = "docs.cumulusnetworks.com"
+
 languageCode = "en-us"
 title = "Cumulus Networks Documentation"
-theme =["netDocs", "book"]
+theme = "netDocs"
+baseURL = "example.com"
+relURLs = true
 
 #Book configuration
 disablePathToLower = true

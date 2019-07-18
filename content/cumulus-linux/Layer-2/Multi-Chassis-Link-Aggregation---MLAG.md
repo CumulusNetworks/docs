@@ -80,7 +80,7 @@ MLAG has these requirements:
 
     {{%notice tip%}}
 
-    If for some reason you cannot use LACP, you can also use
+If for some reason you cannot use LACP, you can also use
     [balance-xor
     mode](Bonding---Link-Aggregation.html#src-8362653_Bonding-LinkAggregation-balance_xor)
     to dual-connect host-facing bonds in an MLAG environment. If you do,
@@ -1080,21 +1080,9 @@ goes down. When this happens, the `clagd` service uses the backup link
 to check the health of the peer switch. To configure a backup link, add
 ` clagd-backup-ip <ADDRESS>  `to the peer link configuration:
 
-{{%notice tip%}}
-
-**Specifying a Backup Link**
-
     cumulus@spine01:~$ net add interface peerlink.4094 clag backup-ip 192.0.2.50
     cumulus@spine01:~$ net pending
     cumulus@spine01:~$ net commit
-
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
-{{%notice tip%}}
 
 The backup IP address must be different than the peer link IP address
 (`clagd-peer-ip`). It must be reachable by a route that does not use the
@@ -1129,12 +1117,6 @@ IP address for this purpose. Which one should you choose?
     address using the OOB network (provided you have implemented an OOB
     network).
 
-{{%/notice%}}
-
-</div>
-
-</div>
-
 You can also specify the backup UDP port. The port defaults to 5342, but
 you can configure it as an argument in `clagd-args` using `--backupPort
 <PORT>`.
@@ -1160,8 +1142,6 @@ To see the backup IP address, run the `net show clag` command:
            exit01-02   -                  2930      -                      -              
            leaf01-02   leaf01-02          1012      -                      -
 
-{{%/notice%}}
-
 ### <span id="src-8362677_Multi-ChassisLinkAggregation-MLAG-vrf_backup" class="confluence-anchor-link"></span><span>Specify a Backup Link to a VRF</span>
 
 You can configure the backup link to a
@@ -1170,29 +1150,11 @@ You can configure the backup link to a
 name of the VRF or management VRF with the ` clagd-backup-ip  `command.
 Here is a sample configuration:
 
-{{%notice tip%}}
-
-**Specifying a Backup Link to a VRF**
-
     cumulus@spine01:~$ net add interface peerlink.4094 clag backup-ip 192.168.0.22 vrf mgmt
     cumulus@spine01:~$ net pending
     cumulus@spine01:~$ net commit
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
-{{%notice tip%}}
-
 You cannot use the VRF on a peer link subinterface.
-
-{{%/notice%}}
-
-</div>
-
-</div>
 
 Verify the backup link by running the `net show clag backup-ip` command:
 
@@ -1202,10 +1164,6 @@ Backup info:
 IP: 192.168.0.12; State: active; Role: primary
 Peer priority and id: 32768 44:38:39:00:00:12; Peer role: secondary          
 ```
-
-{{%/notice%}}
-
-{{%notice tip%}}
 
 **Comparing VRF and Management VRF Configurations**
 
@@ -1254,8 +1212,6 @@ command:
                bond3   bond3              3         -                      -     
      
     ...
-
-{{%/notice%}}
 
 ## <span>Monitor Dual-Connected Peers</span>
 
@@ -1333,8 +1289,6 @@ layer 3 uplink interfaces. In the event of a peer link failure, MLAG
 does not remove static routes or bring down a BGP or OSPF adjacency
 unless a separate link state daemon such as ` ifplugd  `is used.
 
-{{%notice tip%}}
-
 **MLAG and Peer Link Peering**
 
 When using MLAG with VRR, Cumulus Networks recommends you set up a
@@ -1368,26 +1322,10 @@ peerlink.4094 interface as well:
     cumulus@switch:~$ net add bgp l2vpn evpn neighbor peerlink.4094 activate
     cumulus@switch:~$ net commit
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
-{{%notice tip%}}
-
 Be aware of an existing issue when you use NCLU to create an iBGP
 peering, it creates an eBGP peering instead. For more information, see
 [release
 note 1222](https://support.cumulusnetworks.com/hc/en-us/articles/360007793174-Cumulus-Linux-3-7-Release-Notes#RN1222).
-
-{{%/notice%}}
-
-</div>
-
-</div>
-
-{{%/notice%}}
 
 ## <span>IGMP Snooping with MLAG</span>
 
@@ -1421,9 +1359,7 @@ configured for an interface) and the `clagd` service is running. When
 `clagd` is explicitly stopped, for example with the `systemctl stop
 clagd.service` command, monitoring of `clagd` is also stopped.
 
-{{%notice tip%}}
-
-**Checking clagd Status**
+**Check clagd Status**
 
 You can check the status of `clagd` monitoring by using the
 `cl-service-summary` command:
@@ -1461,8 +1397,6 @@ Or the `systemctl status` command:
     Feb 01 23:24:31 leaf01 clagd[1717]: Role is now primary; Reload timeout
     Hint: Some lines were ellipsized, use -l to show in full.
 
-{{%/notice%}}
-
 ## <span>MLAG Best Practices</span>
 
 For MLAG to function properly, you must configure the dual-connected
@@ -1485,17 +1419,11 @@ of the bridge. If you want to set an MTU other than the default of 1500
 bytes, you must configure the MTU on each physical interface and bond
 interface that are members of the MLAG bridges in the entire bridged
 domain.
-<details>
-<summary>For example ... </summary>
 
 For example, if an MTU of 9216 is desired through the MLAG domain in the
 example shown above, on all four leaf switches, configure `mtu 9216` for
 each of the following bond interfaces, as they are members of the bridge
 named *bridge*: peerlink, uplink, server01.
-
-{{%notice tip%}}
-
-**Configuring MTU**
 
     cumulus@leaf01:~$ net add bond peerlink mtu 9216
     cumulus@leaf01:~$ net add bond uplink mtu 9216
@@ -1558,8 +1486,6 @@ The above commands produce the following configuration in the
     iface peerlink
         mtu 9216
 
-{{%/notice%}}
-<details>
 ### <span>Peer Link Sizing</span>
 
 The peer link carries very little traffic when compared to the bandwidth
@@ -1635,7 +1561,7 @@ Assurance](Spanning-Tree-and-Rapid-Spanning-Tree.html#src-8362689_SpanningTreean
 
 {{%notice tip%}}
 
-**Debugging STP with MLAG**
+**Debug STP with MLAG**
 
 Running `net show <interface> spanning-tree` displays MLAG information
 that can be useful when debugging:
@@ -1674,7 +1600,9 @@ that can be useful when debugging:
 
 ## <span>Troubleshooting</span>
 
-### <span>Viewing the MLAG Log File</span>
+Here are some troubleshooting tips.
+
+### <span>View the MLAG Log File</span>
 
 By default, when `clagd` is running, it logs its status to the
 `/var/log/clagd.log` file and `syslog`. Example log file output is

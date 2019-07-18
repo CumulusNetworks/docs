@@ -11,7 +11,7 @@ version: 2.2.0
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
-<details>
+
 
 This document describes the steps required to upgrade from NetQ 1.x to
 NetQ 2.2.x on your hardware.
@@ -24,7 +24,7 @@ Cumulus NetQ Cloud
 Appliance](https://cumulusnetworks.com/products/cumulus-express/getting-started/cumulus-netq-cloud/)
 </span> for instructions on installing and configuring the appliance.
 
-{{%notice info%}}
+{{%notice note%}}
 
 Data collected in the NetQ 1.x environment cannot be migrated to the
 NetQ 2.2 environment. Event notification configurations must also be
@@ -184,7 +184,7 @@ To install the NetQ software onto your own hardware:
     You can use these examples for reference or use your own hypervisor
     instructions.
 
-<summary>VMware example </summary>
+<details><summary>VMware example </summary>
 
 This example shows the VM setup process using an OVA file with VMware
 ESXi.
@@ -242,7 +242,8 @@ ESXi.
 
     {{% imgOld 11 %}}
 
-<summary>KVM example </summary>
+</details>
+<details><summary>KVM example </summary>
 
 This example shows the VM setup process for a system with Libvirt and
 KVM/QEMU installed.
@@ -311,6 +312,7 @@ KVM/QEMU installed.
         $ ip addr show eth0
         $ net add interface eth0 ip address 10.0.0.1
         $ net commit
+</details>
 
 {{%notice note%}}
 

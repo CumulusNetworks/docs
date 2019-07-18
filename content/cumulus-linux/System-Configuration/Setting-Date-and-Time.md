@@ -380,9 +380,7 @@ To configure a boundary clock:
 
     {{%notice note%}}
 
-    PTP *is* supported on BGP unnumbered interfaces.
-
-    PTP is *not* supported on switched virtual interfaces (SVIs).
+PTP *is* supported on BGP unnumbered interfaces. PTP is *not* supported on switched virtual interfaces (SVIs).
 
     {{%/notice%}}
 

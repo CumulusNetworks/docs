@@ -47,19 +47,16 @@ following elements to the configuration:
 
   - You can set two STP attributes on the bridge ports: *portautoedge*
     and *portrestrole*.
-    
+
     {{%notice note%}}
-    
-    The **** *portautoedge* attribute defaults to *yes*; to use a
-    setting other than the default, you must set this attribute to *no*.
-    
-    The *portrestrrole* attribute defaults to *no*, but to use a setting
+
+The **** *portautoedge* attribute defaults to *yes*; to use a
+    setting other than the default, you must set this attribute to *no*. The *portrestrrole* attribute defaults to *no*, but to use a setting
     other than the default, you must specify this attribute **without**
     setting an option.
-    
     The defaults for these attributes do not appear in the NCLU
     configuration.
-    
+
     {{%/notice%}}
 
 To configure a traditional mode bridge using NCLU, do the following:
@@ -93,10 +90,10 @@ These commands create the following configuration snippet in the
     iface swp4
      
     ...
-    auto my_bridge_A 
-    iface my_bridge_A 
-        address 10.10.10.10/24 
-        bridge-ports swp1 swp2 swp3 swp4 
+    auto my_bridge_A
+    iface my_bridge_A
+        address 10.10.10.10/24
+        bridge-ports swp1 swp2 swp3 swp4
         bridge-vlan-aware no
 
 Verify the configuration by running `net show config commands`:
@@ -120,13 +117,13 @@ To create a traditional mode bridge manually, you need to hand edit the
 2.  Add a new stanza to create the bridge, and save the file. The
     example below creates a bridge with STP enabled and the MAC address
     ageing timer configured to a lower value than the default:
-    
+
         auto my_bridge
         iface my_bridge
             bridge-ports bond0 swp5 swp6
             bridge-ageing 150
             bridge-stp on
-    
+
     <table>
     <colgroup>
     <col style="width: 33%" />
@@ -159,27 +156,23 @@ To create a traditional mode bridge manually, you need to hand edit the
     </tr>
     </tbody>
     </table>
-    
+
     {{%notice note%}}
-    
-    The name of the bridge must be:
-    
-      - Compliant with Linux interface naming conventions.
-    
-      - Unique within the switch.
-    
+
+The name of the bridge must be compliant with Linux interface naming conventions and unique within the switch.
+
     {{%/notice%}}
-    
+
     {{%notice warning%}}
-    
-    Do not try to bridge the management port, eth0, with any switch
+
+Do not try to bridge the management port, eth0, with any switch
     ports (like swp0, swp1, and so forth). For example, if you created a
     bridge with eth0 and swp1, it will **not** work.
-    
+
     {{%/notice%}}
 
 3.  Reload the network configuration using the `ifreload` command:
-    
+
         cumulus@switch:~$ sudo ifreload -a
 
 {{%notice info%}}
@@ -208,7 +201,7 @@ This example configuration looks like this in the
     iface bridge-A
         bridge-ports swp1 swp2
         bridge-stp on
-     
+           
     auto bridge-B
     iface bridge-B
         bridge-ports swp3 swp4
@@ -270,8 +263,7 @@ To create the above example, add the following configuration to the
     iface br-VLAN100
      bridge-ports swp1.100 swp2.100
      bridge-stp on
-     
-     
+
     auto br-VLAN200
     iface br-VLAN200
      bridge-ports swp1.200 swp2.200

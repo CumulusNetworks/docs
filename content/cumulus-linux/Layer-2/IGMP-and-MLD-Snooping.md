@@ -86,7 +86,7 @@ use a configuration like the following:
     auto bridge.100
     vlan bridge.100
       bridge-igmp-querier-src 123.1.1.1
-     
+
     auto bridge
     iface bridge
       bridge-ports swp1 swp2 swp3
@@ -123,10 +123,6 @@ configuration like the following:
 <span id="src-8362696_IGMPandMLDSnooping-igmp_disable"></span>To disable
 IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
 
-{{%notice info%}}
-
-**Example Disable IGMP MLD Snooping Configuration**
-
 The example NCLU commands below create a VLAN-aware bridge interface for
 a VRR-enabled network:
 
@@ -145,8 +141,6 @@ example bridge in `/etc/network/interfaces`:
       bridge-pvid 1
       bridge-vids 100 200
       bridge-vlan-aware yes
-
-{{%/notice%}}
 
 ## <span>Troubleshooting</span>
 

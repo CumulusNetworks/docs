@@ -11,6 +11,11 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
+This section describes
+
+  - Static VXLAN tunnels
+  - Static MAC bindings with VXLAN
+  
 <article id="html-search-results" class="ht-content" style="display: none;">
 
 </article>

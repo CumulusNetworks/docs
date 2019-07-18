@@ -192,29 +192,29 @@ To configure MD5 authentication:
     The following example command creates key ID *1* with the message
     digest key *__thisisthekey:  
     __*
-    
+
         cumulus@switch:~$ net add interface swp1 ospf message-digest-key 1 md5 thisisthekey
-    
+
     {{%notice info%}}
-    
-    You can remove existing MD5 authentication hashes with the `net del
+
+You can remove existing MD5 authentication hashes with the `net del
     interface <interface> ospf message-digest-key <KEYID> md5 <KEY>`
     command.
-    
+
     {{%/notice%}}
 
 2.  Enable authorization with the `net add interface <interface> ospf
     authentication message-digest` command.
-    
+
         cumulus@switch:~$ net add interface swp1 ospf authentication message-digest
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
-    
+
     These commands creates the following configuration in the
     `/etc/frr/frr.conf` file:
-    
+
         cumulus@switch:~$ sudo cat /etc/frr/frr.conf 
-        ... 
+        ...
         interface swp1
          ip ospf area 0.0.0.0
          ip ospf authentication message-digest
@@ -243,7 +243,7 @@ To configure a range:
     switch(config)# exit
     switch# write mem
     switch# exit
-    cumulus@switch:~$ 
+    cumulus@switch:~$
 
 {{%notice tip%}}
 
@@ -330,7 +330,7 @@ To configure multi-instance OSPF:
     instance2 ..."* to the `ospfd` line, specifying an instance ID for
     each separate instance. For example, the following configuration has
     OSPF enabled with 2 `ospfd` instances, 11 and 22:
-    
+
         cumulus@switch:~$ cat /etc/frr/daemons
         zebra=yes
         bgpd=no
@@ -341,20 +341,20 @@ To configure multi-instance OSPF:
         isisd=no
 
 2.  After you modify the `daemons` file, restart FRRouting:
-    
+
         cumulus@switch:~$ sudo systemctl restart frr.service
 
 3.  Configure each instance:
-    
+
         cumulus@switch:~$ net add interface swp1 ospf instance-id 11 
-        cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0 
+        cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
         cumulus@switch:~$ net add ospf router-id 1.1.1.1
         cumulus@switch:~$ net add interface swp2 ospf instance-id 22
         cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
         cumulus@switch:~$ net add ospf router-id 1.1.1.1
 
 4.  Confirm the configuration:
-    
+
         cumulus@switch:~$ net show configuration ospf
          
         hostname zebra
@@ -419,7 +419,7 @@ To configure multi-instance OSPF:
         end
 
 5.  Confirm that all the OSPF instances are running:
-    
+
         cumulus@switch:~$ ps -ax | grep ospf
         21135 ?        S<s    0:00 /usr/lib/frr/ospfd --daemon -A 127.0.0.1 -n 11
         21139 ?        S<s    0:00 /usr/lib/frr/ospfd --daemon -A 127.0.0.1 -n 22
@@ -468,7 +468,7 @@ configuration file for each instance. The `ospfd.conf` file must include
 the instance ID in the file name. Continuing with our example, you would
 create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
 
-    cumulus@switch:~$ cat /etc/frr/ospfd-11.conf 
+    cumulus@switch:~$ cat /etc/frr/ospfd-11.conf
     !
     hostname zebra
     log file /var/log/frr/zebra.log
@@ -680,7 +680,7 @@ depends on layer 1 failure detection capabilities and at the worst case
     switch(config)# exit
     switch# write mem
     switch# exit
-    cumulus@switch:~$ 
+    cumulus@switch:~$
 
 **Example configuration for event 2**:
 

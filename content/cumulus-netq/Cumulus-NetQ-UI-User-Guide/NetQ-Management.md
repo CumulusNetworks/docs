@@ -16,9 +16,7 @@ application-wide settings for the NetQ UI from a single location.
 
 Individual users have the ability to set preferences specific to their
 workspaces. This information is covered separately. Refer to
-<span style="color: #ff0000;"> [User
-Settings](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview)
-</span> .
+[User Settings](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview).
 
 ## <span>NetQ Management Workbench</span>
 
@@ -26,11 +24,7 @@ The NetQ Management workbench is accessed from the main menu and from
 the header of an open workbench. For the user or users responsible for
 maintaining the application, this is a good place to start each day.
 
-To open the workbench, click
-
-{{% imgOld 0 %}}
-
-, and select **Management** under the **Admin** column.
+To open the workbench, click {{% imgOld 0 %}}, and select **Management** under the **Admin** column.
 
 {{% imgOld 1 %}}
 
@@ -48,9 +42,7 @@ network, a user account is needed.
 To add a new user account:
 
 1.  Click **Manage** on the User Accounts card.
-
 2.  Click the **User Accounts** tab.
-
 3.  Click **Add User**.
 
     {{% imgOld 2 %}}
@@ -60,56 +52,38 @@ To add a new user account:
 
     {{%notice note%}}
 
-    Be especially careful entering the email address as you *cannot*
+Be especially careful entering the email address as you *cannot*
     change it once you save the account. If you save a mistyped email
     address, you must delete the account and create a new one.
 
     {{%/notice%}}
 
-5.  Select the user type: Admin or User.
-
-6.  Enter your password in the Admin Password field (only users with
+5.  Select the user type: *Admin* or *User*.
+6.  Enter your password in the **Admin Password** field (only users with
     administrative permissions can add users).
 
 7.  Create a password for the user.
 
     1.  Enter a password for the user.
-
     2.  Re-enter the user password. If you do not enter a matching
         password, it will be underlined in red.
 
 8.  Click **Save** to create the user account, or **Cancel** to discard
     the user account.  
+
     By default the User Accounts table is sorted by *User ID*. Change
     the sort by clicking in any of the headers.  
 
     {{% imgOld 3 %}}
 
-    {{%notice info%}}
+    {{%notice note%}}
 
-    There is only the *admin* role at this time. Any user account you
+There is only the *admin* role at this time. Any user account you
     create will have administrator permissions.
 
     {{%/notice%}}
 
 9.  Repeat these steps to add all of your users.
-
-<!-- end list -->
-
-1.  Click **Manage** on the User Accounts card.
-
-2.  Click the **User Accounts** tab.
-
-3.  Hover over the account you want to change, and click the checkbox
-    next to it.
-
-4.  In the Edit menu that appears at the bottom of the window, click
-
-    {{% imgOld 4 %}}
-
-    .
-
-5.  Modify the selected item, as described below.
 
 ### <span>Edit a User Name</span>
 
@@ -119,21 +93,11 @@ easily.
 To change a user name:
 
 1.  Click **Manage** on the User Accounts card.
-
 2.  Click the **User Accounts** tab.
-
 3.  Hover over the account you want to change, and click the checkbox
     next to it.
-
-4.  In the Edit menu that appears at the bottom of the window, click
-    <span style="color: #222222;"> </span>
-
-    {{% imgOld 5 %}}
-
-    .
-
+4.  In the Edit menu that appears at the bottom of the window, click {{% imgOld 5 %}}.
 5.  Modify the first and/or last name as needed.
-
 6.  Enter your admin password.
 
     {{% imgOld 6 %}}
@@ -148,30 +112,18 @@ change a password for a particular user account.
 To change a password:
 
 1.  Click **Manage** on the User Accounts card.
-
 2.  Click the **User Accounts** tab.
-
 3.  Hover over the account you want to change, and click the checkbox
     next to it.
-
-4.  In the Edit menu that appears at the bottom of the window, click
-    <span style="color: #222222;"> </span>
-
-    {{% imgOld 7 %}}
-
-    .
-
+4.  In the Edit menu that appears at the bottom of the window, click {{% imgOld 7 %}}.
 5.  Click **Reset Password**.
-
 6.  Enter your admin password.
 
     {{% imgOld 8 %}}
 
 7.  Enter a new password for the user.
-
 8.  Re-enter the user password. If the password you enter does not
     match, the Save is gray (not activated).
-
 9.  Click **Save** to commit the change, or **Cancel** to discard the
     change.
 
@@ -185,25 +137,15 @@ modify their access rights.
 To change access permissions:
 
 1.  Click **Manage** on the User Accounts card.
-
 2.  Click the **User Accounts** tab.
-
 3.  Hover over the account you want to change, and click the checkbox
     next to it.
-
-4.  In the Edit menu that appears at the bottom of the window, click
-    <span style="color: #222222;"> </span>
-
-    {{% imgOld 9 %}}
-
-    .
-
+4.  In the Edit menu that appears at the bottom of the window, click {{% imgOld 9 %}}.
 5.  Select the appropriate user type from the dropdown list.
 
     {{% imgOld 10 %}}
 
 6.  Enter your admin password.
-
 7.  Click **Save** to commit the change, or **Cancel** to discard the
     change.
 
@@ -224,11 +166,8 @@ Accounts tab.
 To export information for one or more user accounts:
 
 1.  Click **Manage** on the User Accounts card.
-
 2.  Click the **User Accounts** tab.
-
 3.  Hover over and select at least one user account.
-
 4.  To export all user accounts, click **Select All** and then **Export
     Selected**.
 
@@ -254,18 +193,16 @@ network or for temporary troubleshooting.
 To add a trace:
 
 1.  Click **Manage** on the Scheduled Traces card.
-
 2.  Click the **Scheduled Traces** tab.
-
 3.  Click **Add Trace** to open the large New Trace Request card.
 
     {{% imgOld 12 %}}
 
 4.  Enter source and destination addresses.
 
-    {{%notice info%}}
+    {{%notice note%}}
 
-    For layer 2 traces, the source must be a hostname and the
+For layer 2 traces, the source must be a hostname and the
     destination must be a MAC address. For layer 3 traces, the source
     can be a hostname or IP address, and the destination must be an IP
     address.
@@ -274,12 +211,11 @@ To add a trace:
 
 5.  Specify a VLAN for a layer 2 trace or (optionally) a VRF for a layer
     3 trace.
-
 6.  Set the schedule for the trace, by selecting how often to run the
     trace and when to start it the first time.
-
 7.  Click **Save As New** to add the trace. You are prompted to enter a
     name for the trace in the **Name** field.  
+
     If you want to run the new trace right away for a baseline, select
     the trace you just added from the dropdown list, and click **Run
     Now**.
@@ -292,11 +228,8 @@ Scheduled Traces tab.
 To export one or more scheduled trace configurations:
 
 1.  Click **Manage** on the Scheduled Trace card.
-
 2.  Click the **Scheduled Traces** tab.
-
 3.  Hover over and select at least one trace.
-
 4.  To export all validations, click **Select All** and then **Export
     Selected**.
 
@@ -323,14 +256,8 @@ results (editing or cloning) or if it would be best to create a new one.
 To view the configurations:
 
 1.  Click **Manage** on the Scheduled Validations card.
-
 2.  Click the **Scheduled Validations** tab.
-
-3.  Click
-
-    {{% imgOld 14 %}}
-
-    in the top right to return to your NetQ Management cards.
+3.  Click {{% imgOld 14 %}} in the top right to return to your NetQ Management cards.
 
 ### <span>Export Scheduled Validation Configurations</span>
 
@@ -340,11 +267,8 @@ time using the Scheduled Validations tab.
 To export a scheduled validation:
 
 1.  Click **Manage** on the Scheduled Validations card.
-
 2.  Click the **Scheduled Validations** tab.
-
 3.  Hover over and select at least one validation.
-
 4.  To export all validations, click **Select All** and then **Export
     Selected**.
 
@@ -361,17 +285,12 @@ Validations tab.
 To add a scheduled validation:
 
 1.  Click **Manage** on the Scheduled Validations card.
-
 2.  Click the **Scheduled Validations** tab.
-
 3.  Click **Add Validation** to open the large Validation Request card.
 
     {{% imgOld 16 %}}
 
-4.  Configure the request. Refer to [Validate Network Protocol and
-    Service
-    Operations](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Validate-Network-Protocol-and-Service-Operations)
-    for details.
+4.  Configure the request. Refer to [Validate Network Protocol and Service Operations](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Validate-Network-Protocol-and-Service-Operations) for details.
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

@@ -27,8 +27,8 @@ The small Network Health card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -38,7 +38,7 @@ The small Network Health card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #222222;"> </span></p>
+<td>
 <p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
@@ -80,8 +80,8 @@ trend of the:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -95,8 +95,7 @@ trend of the:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 3 %}}</p></td>
+<td><p>{{% imgOld 3 %}}</p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
 <tr class="odd">
@@ -134,8 +133,8 @@ The *System Health* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -149,8 +148,7 @@ The *System Health* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 5 %}}</p></td>
+<td><p>{{% imgOld 5 %}}</p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
 <tr class="odd">
@@ -193,8 +191,8 @@ The *Network Services Health* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -208,13 +206,12 @@ The *Network Services Health* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 7 %}}</p></td>
+<td><p>{{% imgOld 7 %}}</p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
 <tr class="odd">
 <td><p>Health trend</p></td>
-<td><p>Trend of BGP, CLAG, EVPN, LNV, NTP, and VXLAN services health, represented by an arrow:</p>
+<td><p>Trend of BGP, CLAG, EVPN, LNV, NTP, OSPF, and VXLAN services health, represented by an arrow:</p>
 <ul>
 <li><p><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</p></li>
 <li><p><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</p></li>
@@ -252,8 +249,8 @@ The full screen Network Health card displays all events in the network.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -294,8 +291,7 @@ The full screen Network Health card displays all events in the network.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 10 %}}</p></td>
+<td><p>{{% imgOld 10 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -344,16 +340,11 @@ information about each component from the large Network Health card.
 To view information about each system component:
 
 1.  Open the large Network Health card.
+2.  Hover over the card and click {{% imgOld 13 %}}.
 
-2.  Hover over the card and click
-    
-    {{% imgOld 13 %}}
-    
-    .
-    
     {{% imgOld 14 %}}
 
-The health of each protocol or service is represented on the left side
+    The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,
 and a percentage of successful results. The right side of the card
 provides a listing of devices running the services.
@@ -408,16 +399,11 @@ card.
 To view information about each network protocol or service:
 
 1.  Open the large Network Health card.
+2.  Hover over the card and click {{% imgOld 17 %}}.
 
-2.  Hover over the card and click
-    
-    {{% imgOld 17 %}}
-    
-    .
-    
     {{% imgOld 18 %}}
 
-The health of each protocol or service is represented on the left side
+    The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,
 and a percentage of successful results. The right side of the card
 provides a listing of devices running the services.
@@ -480,15 +466,13 @@ designated time period.
 To view all the validation results:
 
 1.  Open the full screen Network Health card.
-
 2.  Click *\<network protocol or service name\>* tab in the navigation
     panel.
-
 3.  Look for patterns in the data. For example, when did nodes,
     sessions, links, ports, or devices start failing validation? Was it
     at a specific time? Was it when you starting running the service on
     more nodes? Did sessions fail, but nodes were fine?
-    
+
     {{% imgOld 21 %}}
 
 Where to go next depends on what data you see, but a few options
@@ -496,17 +480,15 @@ include:
 
   - Look for matching event information for the failure points in a
     given protocol or service.
-
   - When you find failures in one protocol, compare with higher level
     protocols to see if they fail at a similar time (or vice versa with
     supporting services).
-
   - Export the data for use in another analytics tool, by clicking
     **Export** and providing a name for the data file.
 
-  
 
-  
+
+
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

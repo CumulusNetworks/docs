@@ -17,7 +17,7 @@ Alarms card workflow tracks critical severity events, whereas the Info
 card workflow tracks all warning, info, and debug severity events.
 
 To focus on events from a single device perspective, refer to
-[Monitor Switches](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
+[Monitor Switches](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
 
 ## Monitor Alarms
 
@@ -651,7 +651,7 @@ characteristic. Click {{% imgOld 40 %}} in any column header to toggle the sort 
 The messages can be viewed through third-party notification
 applications. For details about configuring notifications using the NetQ
 CLI, refer to [Integrate with Third-party Software and
-Hardware](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware).
+Hardware](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware).
 
 {{%/notice%}}
 

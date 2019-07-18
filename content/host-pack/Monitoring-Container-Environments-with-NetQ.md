@@ -100,7 +100,7 @@ need to do the following on the master node only:
         cumulus@server01:~$ netq config restart agent
 
 You still need to [enable the NetQ
-Agent](/version/hostpack/Installing-NetQ-on-the-Host) on all the worker
+Agent](/host-pack/Installing-NetQ-on-the-Host) on all the worker
 nodes for complete insight into your container network.
 
 ### Show Kubernetes Clusters</span>

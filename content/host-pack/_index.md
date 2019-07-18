@@ -315,6 +315,7 @@ intend to use.
 
   - If you want to use routing on your servers, or with the containers
     on a host, you need to
+<<<<<<< Updated upstream
     [install](Installing-FRRouting-on-the-Host) and
     [configure](Configuring-FRRouting-on-the-Host)
     FRRouting on the Host.
@@ -329,3 +330,27 @@ intend to use.
     containers, you need to
     [install](Installing-NetQ-on-the-Host) and
     [configure](Configuring-NetQ-on-the-Host) it.
+=======
+    [install](/host-pack/Installing-FRRouting-on-the-Host) and
+    [configure](/host-pack/Configuring-FRRouting-on-the-Host)
+    FRRouting on the Host.
+
+  - If you are using containers on your host servers, make sure [Docker
+    is installed](/host-pack/Installing-Docker).
+
+  - If you want to use Container Advertiser, you need to [install and
+    configure](/host-pack/Configuring-Container-Advertiser) it.
+
+  - If you plan on using NetQ on the Host to monitor the hosts and
+    containers, you need to
+    [install](/host-pack/Installing-NetQ-on-the-Host) and
+    [configure](/host-pack/Configuring-NetQ-on-the-Host) it.
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+>>>>>>> Stashed changes

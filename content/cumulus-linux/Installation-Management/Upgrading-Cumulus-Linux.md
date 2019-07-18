@@ -22,7 +22,11 @@ Puppet for configuration management greatly increases the speed and
 accuracy of the next major upgrade; these tools also enable the quick
 swap of failed switch hardware.
 
+<<<<<<< Updated upstream
 ## Before You Upgrade Cumulus Linux
+=======
+## Before You Upgrade Cumulus Linux</span>
+>>>>>>> Stashed changes
 
 {{%notice tip%}}
 
@@ -170,7 +174,12 @@ If you have custom user accounts, consider including
 | `/root/.ansible`         | Ansible tmp files. Do not copy.                                                    |
 | `/home/cumulus/.ansible` | Ansible tmp files. Do not copy.                                                    |
 
+<<<<<<< Updated upstream
 If you are using certain forms of [network
+=======
+If
+you are using certain forms of [network
+>>>>>>> Stashed changes
 virtualization](/cumulus-linux/Network-Virtualization/), including
 [VMware NSX-V](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V)
 or [Midokura
@@ -307,7 +316,11 @@ To upgrade the switch with a new disk image using ONIE:
 
 6.  Reinstall third party applications and associated configurations.
 
+<<<<<<< Updated upstream
 ### Package Upgrade
+=======
+### Package Upgrade</span>
+>>>>>>> Stashed changes
 
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow,
 where you use an installer to install a base image, then perform any
@@ -426,7 +439,11 @@ packages, be aware of the following:
     to display Cumulus Linux 3.5.0, which is the originally installed
     base image.
 
+<<<<<<< Updated upstream
 ## Upgrade Switches in an MLAG Pair
+=======
+## Upgrade Switches in an MLAG Pair</span>
+>>>>>>> Stashed changes
 
 If you are using
 [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG) to

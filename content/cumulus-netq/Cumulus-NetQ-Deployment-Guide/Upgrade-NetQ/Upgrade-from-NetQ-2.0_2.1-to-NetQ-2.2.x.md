@@ -34,9 +34,9 @@ Platform.
 {{%/notice%}}
 
 To upgrade from NetQ 1.x to NetQ 2.2.x, please follow the instructions
-[here](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-from-NetQ-1.x-to-NetQ-2.2.x).
+[here](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-from-NetQ-1.x-to-NetQ-2.2.x).
 Instructions for installing NetQ 2.2.x for the first time can be found
-[here](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Install-NetQ).
+[here](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ).
 
 ## Prerequisites</span>
 

@@ -28,7 +28,7 @@ its own card workflow containing:
     sessions, alarms or other relevant data.
 
 Refer to [NetQ User Interface
-Overview](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview)
+Overview](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview)
 for information about navigating the card workflows and performing
 common actions.
 

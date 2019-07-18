@@ -30,7 +30,7 @@ implemented with Intel x86 or ARM-based architectures. If you are unsure what ar
 
 When NetQ is installed, the CLI is also installed and enabled (refer to
 the [Install
-NetQ](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
+NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
 topic). Simply log in to any network node to access the command line.
 
 To access the CLI from a switch or server:
@@ -122,7 +122,7 @@ NetQ code examples use the following prompts:
 The switches must be running the Cumulus Linux operating system (OS),
 NetQ Platform software, and the NetQ Agent. The hosts must be running
 CentOS, RHEL, or Ubuntu OS and the NetQ Agent. Refer to the [Install
-NetQ](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
+NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
 topic for details.
 
 ### Command Completion</span>
@@ -324,9 +324,9 @@ The `netq config` and `netq notification` commands enable the network administra
 
 The agent commands enable the network administrator to configure
 individual NetQ Agents. Refer to [Cumulus NetQ
-Primer](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Cumulus-NetQ-Primer)
+Primer](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Cumulus-NetQ-Primer)
 for a description of NetQ Agents and to [Manage NetQ
-Agents](/version/cumulus-netq-22/Cumulus-NetQ-CLI-User-Guide/Manage-NetQ-Agents)
+Agents](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Manage-NetQ-Agents)
 for more detailed usage examples.
 
 The agent configuration commands enable you to add and remove agents
@@ -426,7 +426,7 @@ This example shows how to configure a PagerDuty channel:
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
     Successfully added/updated channel pd-netq-events
 
-Refer to [Integrate with Third-party Software and Hardware](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware) for details about using these commands and additional examples.
+Refer to [Integrate with Third-party Software and Hardware](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware) for details about using these commands and additional examples.
 
 ### Trace Commands</span>
 

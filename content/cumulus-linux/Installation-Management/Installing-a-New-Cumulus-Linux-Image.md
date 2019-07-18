@@ -57,7 +57,11 @@ In the following procedures:
     the license file. Refer to [Install the
     License](/cumulus-linux/Quick-Start-Guide#install-the-license).
 
+<<<<<<< Updated upstream
 ## Install Using a DHCP/Web Server with DHCP Options
+=======
+## Install Using a DHCP/Web Server with DHCP Options</span>
+>>>>>>> Stashed changes
 
 To install Cumulus Linux using a DHCP/web server *with* DHCP options,
 set up a DHCP/web server on your laptop and connect the eth0 management
@@ -107,7 +111,11 @@ assignment):
 If you do not have a web server, you can use [this free Apache
 example](https://www.apachefriends.org/index.html).
 
+<<<<<<< Updated upstream
 ## Install Using a DHCP/Web Server without DHCP Options
+=======
+## Install Using a DHCP/Web Server without DHCP Options</span>
+>>>>>>> Stashed changes
 
 Follow the steps below if you have a laptop on the same network and the
 switch can pull DHCP from the corporate network, but you *cannot* modify
@@ -132,7 +140,11 @@ DHCP options (maybe it is controlled by another team).
 
         cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin && sudo reboot
 </details>
+<<<<<<< Updated upstream
 ## Install Using a Web Server with no DHCP
+=======
+## Install Using a Web Server with no DHCP</span>
+>>>>>>> Stashed changes
 
 Follow the steps below if your laptop is on the same network as the
 switch eth0 interface but *no* DHCP server is available.
@@ -180,7 +192,11 @@ this procedure remotely.
 
         cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin && sudo reboot
 </details>
+<<<<<<< Updated upstream
 ## Install Using FTP Without a Web Server
+=======
+## Install Using FTP Without a Web Server</span>
+>>>>>>> Stashed changes
 
 Follow the steps below if your laptop is on the same network as the
 switch eth0 interface but *no* DHCP server is available.
@@ -223,8 +239,15 @@ switch eth0 interface but *no* DHCP server is available.
 
         cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin && sudo reboot
 </details>
+<<<<<<< Updated upstream
 
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 ## Install Using a Local File
+=======
+## Install Using a Local File</span>
+>>>>>>> Stashed changes
 
 Follow the steps below to install the disk image referencing a local
 file.
@@ -265,8 +288,15 @@ file.
 
         cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin && sudo reboot
 </details>
+<<<<<<< Updated upstream
 
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 ## Install Using a USB Drive
+=======
+## Install Using a USB Drive</span>
+>>>>>>> Stashed changes
 
 Follow the steps below to install the Cumulus Linux disk image using a
 USB drive. Instructions are provided for x86 and ARM platforms.

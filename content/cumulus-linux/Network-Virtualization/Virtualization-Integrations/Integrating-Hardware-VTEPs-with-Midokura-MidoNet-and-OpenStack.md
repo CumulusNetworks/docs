@@ -326,7 +326,7 @@ Manager GUI.
 
     {{%notice note%}}
 
-    Verify the connection-state as CONNECTED. If ERROR is returned, you
+Verify the connection-state as CONNECTED. If ERROR is returned, you
     must debug. Typically this only fails if the `management-ip` and or
     the `management-port` settings are incorrect.
 

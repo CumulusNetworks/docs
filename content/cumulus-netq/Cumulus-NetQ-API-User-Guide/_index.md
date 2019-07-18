@@ -26,7 +26,7 @@ For information regarding new features, improvements, bug fixes, and
 known issues present in this release, refer to the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).
 
-This Cumulus NetQ CLI User Guide is available in
+This Cumulus NetQ API User Guide is available in
 [PDF](attachments_12321982_1_Cumulus-NetQ-220-API-User-Guide.pdf) for
 offline viewing.
 
@@ -36,16 +36,11 @@ The Cumulus NetQ API provides endpoints for:
 
   - **Network routing protocols**: BGP, EVPN, LLDP, CLAG, MSTP,
     Neighbors, NTP, Routes
-
   - **Virtual networks**: VLAN
-
   - **Services**: Services
-
   - **Interfaces**: Interface, Port
-
   - **Inventory and Devices**: Address, Inventory, MAC Address tables,
     Node, Sensors
-
   - **Events**: Events
 
 Each endpoint has its own API. You can make requests for all data and
@@ -69,11 +64,10 @@ and password *admin*.
 To log in and obtain authorization:
 
 1.  Open a terminal window.
-
 2.  Enter the following curl command.
 
-        <computer-name>:~ <username>$ curl --insecure -X POST "https://<netq.domain>:32708/netq/auth/v1/login" -H "Content-Type: application/json" -d "{ \"username\": \"admin\", \"password\": \"admin\"}"
-        {"premises":[{"opid":0,"name":"OPID0"}],"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJvcGlkIjowLCJyb2xlIjoiYWRtaW4iLCJleHBpcmVzQXQiOjE1NTYxMjUzNzgyODB9._D2Ibhmo_BWSfAMnF2FzddjndTn8LP8CAFFGIj5tn0A","customer_id":0,"id":"admin","expires_at":1556125378280,"terms_of_use_accepted":true}
+        <computer-name>:~ <username>$ curl --insecure -X POST "https://<netq.domain>:32708/netq/auth/v1/login" -H "Content-Type: application/json" -d "{"username":"admin","password":"admin"}"
+        {"premises":[{"opid":0,"name":"OPID0"}],"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJvcGlkIjowLCJyb2xlIjoiYWRtaW4iLCJleHBpcmVzQXQiOjE1NTYxMjUzNzgyODB9.\_D2Ibhmo_BWSfAMnF2FzddjndTn8LP8CAFFGIj5tn0A","customer_id":0,"id":"admin","expires_at":1556125378280,"terms_of_use_accepted":true}
 
 3.  Copy the access token for use in making data requests.
 
@@ -84,16 +78,11 @@ method (GET, POST, etc.), the address and API object to query, a variety
 of headers, and sometimes a body. In the log in step you used above:
 
   - API method = POST
-
-  - Address and API object =
-    "https://\<netq.domain\>:32708/netq/auth/v1/login"
-
+  - Address and API object = "https://\<netq.domain\>:32708/netq/auth/v1/login"
   - Headers = -H "Content-Type: application/json"
+  - Body = -d "{"username":"admin","password":"admin"}"
 
-  - Body = -d "{ \\"username\\": \\"admin\\", \\"password\\":
-    \\"admin\\"}"
-
-{{%notice info%}}
+{{%notice note%}}
 
 We have used the *insecure* option to work around any certificate issues
 with our development configuration. You would likely not use this

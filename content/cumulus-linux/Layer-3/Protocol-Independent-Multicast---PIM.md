@@ -11,7 +11,6 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-<details>
 
 Protocol Independent Multicast (PIM) is a multicast control plane
 protocol that advertises multicast sources and receivers over a routed
@@ -116,7 +115,7 @@ Cumulus Linux supports only PIM Sparse Mode.
  Hello, cksum 0xfdbb (correct)
  Hold Time Option (1), length 2, Value: 1m45s
  0x0000: 0069
- LAN Prune Delay Option (2), length 4, Value: 
+ LAN Prune Delay Option (2), length 4, Value:
  T-bit=0, LAN delay 500ms, Override interval 2500ms
  0x0000: 01f4 09c4
  DR Priority Option (19), length 4, Value: 1
@@ -315,14 +314,14 @@ To configure a group to never follow the SPT, complete the following
 steps:
 
 1.  Create the necessary prefix-lists using the FRRouting CLI:
-    
+
         cumulus@switch:~$ sudo vtysh
         switch# configure terminal
         switch(config)# ip prefix-list spt-range permit 235.0.0.0/8 ge 32
         switch(config)# ip prefix-list spt-range permit 238.0.0.0/8 ge 32
 
 2.  Configure SPT switchover for the *spt-range* prefix-list:
-    
+
         switch(config)# ip pim spt-switchover infinity prefix-list spt-range
 
 You can view the configured prefix-list with the `net show mroute`
@@ -408,70 +407,70 @@ The `show ip pim nexthop` provides you with a way to review which
 nexthop is selected for a specific source/group:
 
     cumulus@switch:~$ sudo vtysh
-    switch# show ip pim nexthop 
-    Number of registered addresses: 3 
+    switch# show ip pim nexthop
+    Number of registered addresses: 3
     Address         Interface      Nexthop
     -------------------------------------------
-    6.0.0.9         swp31s0        169.254.0.9 
-    6.0.0.9         swp31s1        169.254.0.25 
-    6.0.0.11        lo             0.0.0.0 
-    6.0.0.10        swp31s0        169.254.0.9 
-    6.0.0.10        swp31s1        169.254.0.25 
+    6.0.0.9         swp31s0        169.254.0.9
+    6.0.0.9         swp31s1        169.254.0.25
+    6.0.0.11        lo             0.0.0.0
+    6.0.0.10        swp31s0        169.254.0.9
+    6.0.0.10        swp31s1        169.254.0.25
 
 ## <span>Configure PIM</span>
 
 To configure PIM using NCLU:
 
 1.  Configure the PIM interface:
-    
-        cumulus@switch:~$ net add interface swp1 pim sm 
-    
+
+        cumulus@switch:~$ net add interface swp1 pim sm
+
     {{%notice note%}}
-    
-    PIM must be enabled on all interfaces facing multicast sources or
+
+PIM must be enabled on all interfaces facing multicast sources or
     multicast receivers, as well as on the interface where the RP
     address is configured.
-    
+
     {{%/notice%}}
 
 2.  **Optional:** Run the following command to enable IGMP (either
     version 2 or 3) on the interfaces with hosts attached. IGMP version
     3 is the default, so you only need to specify the version if you
     want to use IGMP version 2:
-    
+
         cumulus@switch:~$ net add interface swp1 igmp version 2
-    
+
     {{%notice note%}}
-    
-    You must configure IGMP on all interfaces where multicast receivers
+
+You must configure IGMP on all interfaces where multicast receivers
     exist.
-    
+
     {{%/notice%}}
 
 3.  Configure a group mapping for a static RP:
-    
+
         cumulus@switch:~$ net add pim rp 192.168.0.1
-    
+
     {{%notice note%}}
-    
-    Unless you are using PIM SSM, each PIM-SM enabled device must
+
+Unless you are using PIM SSM, each PIM-SM enabled device must
     configure a static RP to a group mapping, and all PIM-SM enabled
     devices must have the same RP to group mapping configuration.
-    
+
     IP PIM RP group ranges can overlap. Cumulus Linux performs a longest
     prefix match (LPM) to determine the RP. For example:
-    
+
         cumulus@switch:~$ net add pim rp 192.168.0.1 224.10.0.0/16
         cumulus@switch:~$ net add pim rp 192.168.0.2 224.10.2.0/24
-    
+
     In this example, if the group is in 224.10.2.5, the RP that gets
     selected is 192.168.0.2. If the group is 224.10.15, the RP that gets
     selected is 192.168.0.1.
-    
+
     {{%/notice%}}
 
 4.  Review and commit your changes:
-    
+
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
 
@@ -488,67 +487,67 @@ To configure PIM on a switch using FRR:
 
 2.  Add the following line to the end of the file to enable `pimd`, then
     save the file:
-    
+
         zebra=yes
         pimd=yes
 
 3.  Run the `systemctl restart` command to restart FRRouting:
-    
+
         cumulus@switch:~$ sudo systemctl restart frr
 
 4.  In a terminal, run the `vtysh` command to start the FRRouting CLI on
     the switch.
-    
+
         cumulus@switch:~$ sudo vtysh
-        cumulus# 
+        cumulus#
 
 5.  Run the following commands to configure the PIM interfaces:
-    
+
         cumulus# configure terminal
         cumulus(config)# int swp1
         cumulus(config-if)# ip pim sm
-    
+
     {{%notice note%}}
-    
-    PIM must be enabled on all interfaces facing multicast sources or
+
+PIM must be enabled on all interfaces facing multicast sources or
     multicast receivers, as well as on the interface where the RP
     address is configured.
-    
+
     {{%/notice%}}
 
 6.  **Optional:** Run the following commands to enable IGMP (either
     version 2 or 3) on the interfaces with hosts attached. IGMP version
     3 is the default; you only need to specify the version if you want
     to use IGMP version 2:
-    
+
         cumulus# configure terminal
         cumulus(config)# int swp1 
-        cumulus(config-if)# ip igmp 
+        cumulus(config-if)# ip igmp
         cumulus(config-if)# ip igmp version 2 #skip this step if you are using version 3
-    
+
     {{%notice note%}}
-    
-    You must configure IGMP on all interfaces where multicast receivers
+
+You must configure IGMP on all interfaces where multicast receivers
     exist.
-    
+
     {{%/notice%}}
 
 7.  Configure a group mapping for a static RP:
-    
-        cumulus# configure terminal 
+
+        cumulus# configure terminal
         cumulus(config)# ip pim rp 192.168.0.1
-    
+
     {{%notice note%}}
-    
-    Each PIM-SM enabled device must configure a static RP to a group
+
+Each PIM-SM enabled device must configure a static RP to a group
     mapping, and all PIM-SM enabled devices must have the same RP to
     group mapping configuration.
-    
+
     IP PIM RP group ranges can overlap. Cumulus Linux performs a longest
     prefix match (LPM) to determine the RP. For example:
-    
+
         cumulus(config)# ip pim rp 10.0.0.13 224.10.0.0/16
-    
+
     {{%/notice%}}
 
 ### <span>Example Configurations</span>
@@ -686,7 +685,7 @@ ranges that should be considered must be in the prefix-list
 
     cumulus@switch:~$ net add pim prefix-list ipv4 ssm range permit 232.0.0.0/8 ge 32
     cumulus@switch:~$ net add pim prefix-list ipv4 ssm range permit 238.0.0.0/8 ge 32
-    cumulus@switch:~$ net add pim prefix-list ipv4 ssm range permit 
+    cumulus@switch:~$ net add pim prefix-list ipv4 ssm range permit
     cumulus@switch:~$ net add pim ssm prefix-list ssm-range
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
@@ -730,7 +729,7 @@ To configure the boundary, use NCLU:
 1.  Create a prefix-list as above.
 
 2.  Configure the IP multicast boundary:
-    
+
         cumulus@switch:~$ net add <interface> multicast boundary oil <prefix-list>
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
@@ -767,44 +766,44 @@ the MSDP:
 
 1.  Add an anycast IP address to the loopback interface for each RP in
     the domain:
-    
+
         cumulus@rp01:~$ net add loopback lo ip address 10.1.1.1/32
         cumulus@rp01:~$ net add loopback lo ip address 10.1.1.100/32
 
 2.  On every multicast switch, configure the group to RP mapping using
     the anycast address:
-    
+
         cumulus@switch:$ net add pim rp 100.1.1.100 224.0.0.0/4
         cumulus@switch:$ net pending
         cumulus@switch:$ net commit
 
 3.  Configure the MSDP mesh group for all active RPs (the following
     example uses 3 RPs):
-    
+
     {{%notice note%}}
-    
+
     The mesh group must include all RPs in the domain as members, with a
     unique address as the source. This configuration results in MSDP
     peerings between all RPs.
-    
+
     {{%/notice%}}
-    
+
         cumulus@rp01:$ net add msdp mesh-group cumulus member 100.1.1.2
         cumulus@rp01:$ net add msdp mesh-group cumulus member 100.1.1.3
-    
+
         cumulus@rp02:$ net add msdp mesh-group cumulus member 100.1.1.1
         cumulus@rp02:$ net add msdp mesh-group cumulus member 100.1.1.3
-    
+
         cumulus@rp03:$ net add msdp mesh-group cumulus member 100.1.1.1
         cumulus@rp03:$ net add msdp mesh-group cumulus member 100.1.1.2
 
 4.  Pick the local loopback address as the source of the MSDP control
     packets:
-    
+
         cumulus@rp01:$ net add msdp mesh-group cumulus source 100.1.1.1
-    
+
         cumulus@rp02:$ net add msdp mesh-group cumulus source 100.1.1.2
-    
+
         cumulus@rp03:$ net add msdp mesh-group cumulus source 100.1.1.3
 
 5.  Inject the anycast IP address into the IGP of the domain.
@@ -1046,8 +1045,8 @@ These commands create the following configuration in the
     vrf purple
       ip pim rp 192.168.0.1 224.0.0.0/4
     !
-    vrf blue 
-      ip pim rp 192.168.0.1 224.0.0.0/4 
+    vrf blue
+      ip pim rp 192.168.0.1 224.0.0.0/4
     !
      
     int swp1 vrf purple
@@ -1060,7 +1059,7 @@ These commands create the following configuration in the
      
     int swp49.1 vrf purple
         ip pim sm
-       
+
     int swp49.2
        ip pim sm
      
@@ -1122,7 +1121,7 @@ To assess this issue:
   - Review the FHR. The output interface of `pimreg` can be seen here.
     If this does not change to an interface within a few seconds, the
     FHR is likely stuck.
-    
+
         cumulus@fhr:~$ net show mroute
         Source          Group           Proto  Input      Output     TTL  Uptime
         172.16.5.105    239.2.2.3       PIM    br0        pimreg     1    00:03:59
@@ -1131,7 +1130,7 @@ To troubleshoot the issue:
 
 1.  Validate that the FHR can reach the RP. If the RP and FHR can not
     communicate, the registration process fails:
-    
+
         cumulus@fhr:~$ ping 10.0.0.21 -I br0
         PING 10.0.0.21 (10.0.0.21) from 172.16.5.1 br0: 56(84) bytes of data.
         ^C
@@ -1140,7 +1139,7 @@ To troubleshoot the issue:
 
 2.  On the RP, use `tcpdump` to see if the PIM register packets are
     arriving:
-    
+
         cumulus@rp01:~$ sudo tcpdump -i swp30
         tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
         listening on swp30, link-type EN10MB (Ethernet), capture size 262144 bytes
@@ -1148,7 +1147,7 @@ To troubleshoot the issue:
 
 3.  If PIM registration packets are being received, verify that they are
     seen by PIM by issuing `debug pim packets` from within FRRouting:
-    
+
         cumulus@fhr:~$ sudo vtysh -c "debug pim packets"
         PIM Packet debugging is on
          
@@ -1157,7 +1156,7 @@ To troubleshoot the issue:
 
 4.  Repeat the process on the FHR to see if PIM register stop messages
     are being received on the FHR and passed to the PIM process:
-    
+
         cumulus@fhr:~$ sudo tcpdump -i swp51
         23:58:59.841625 IP 172.16.5.1 > 10.0.0.21: PIMv2, Register, length 28
         23:58:59.842466 IP 10.0.0.21 > 172.16.5.1: PIMv2, Register Stop, length 18
@@ -1193,14 +1192,14 @@ that IGMPv3 joins are being sent by the receiver:
 To troubleshoot this issue:
 
 1.  Verify that multicast traffic is being received:
-    
+
         cumulus@fhr:~$ sudo tcpdump -i br0
         tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
         listening on br0, link-type EN10MB (Ethernet), capture size 262144 bytes
         00:11:52.944745 IP 172.16.5.105.51570 > 239.2.2.9.1000: UDP, length 9
 
 2.  Verify that PIM is configured on the interface facing the source:
-    
+
         fhr# show run
         !
         interface br0
@@ -1209,14 +1208,14 @@ To troubleshoot this issue:
 
 3.  If PIM is configured, verify that the RPF interface for the source
     matches the interface on which the multicast traffic is received:
-    
+
         fhr# show ip rpf 172.16.5.105
         Routing entry for 172.16.5.0/24 using Multicast RIB
           Known via "connected", distance 0, metric 0, best
           * directly connected, br0
 
 4.  Verify that an RP is configured for the multicast group:
-    
+
         fhr# show ip pim rp-info
         RP address       group/prefix-list   OIF         I am RP
         10.0.0.21        224.0.0.0/4         swp51       no
@@ -1259,13 +1258,13 @@ Switches](Routing.html#src-8362912_Routing-tcam).
 
 Run the following commands to verify the state of MSDP sessions:
 
-    cumulus@switch:~$ net show msdp mesh-group 
+    cumulus@switch:~$ net show msdp mesh-group
     Mesh group : pod1
       Source : 100.1.1.1
       Member                 State
       100.1.1.2        established
       100.1.1.3        established
-    cumulus@switch:~$ 
+    cumulus@switch:~$
     cumulus@switch:~$ net show msdp peer       
     Peer                       Local        State    Uptime   SaCnt
     100.1.1.2              100.1.1.1  established  00:07:21       0

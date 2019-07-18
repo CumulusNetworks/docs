@@ -19,17 +19,17 @@ take special steps within Cumulus Linux before you can configure Prism.
 
 1.  SSH to the Cumulus Linux switch that needs to be configured,
     replacing `[switch]` below as appropriate:
-    
+
         cumulus@switch:~$ ssh cumulus@[switch]
 
 2.  Confirm the switch is running Cumulus Linux 2.5.5 or newer:
-    
+
         cumulus@switch:~$ net show system
         Hostname......... celRED
          
         Build............ Cumulus Linux 3.7.4~1551312781.35d3264
         Uptime........... 8 days, 12:24:01.770000
-         
+
         Model............ Cel REDSTONE
         CPU.............. x86_64 Intel Atom C2538 2.4 GHz
         Memory........... 4GB
@@ -43,22 +43,22 @@ take special steps within Cumulus Linux before you can configure Prism.
 
 4.  Uncomment the following 3 lines in the `/etc/snmp/snmpd.conf` file,
     and save the file:
-    
+
       - bridge\_pp.py
-        
+
             pass_persist .1.3.6.1.2.1.17 /usr/share/snmp/bridge_pp.py
-    
+
       - Community
-        
+
             rocommunity public  default    -V systemonly
-    
+
       - Line directly below the Q-BRIDGE-MIB (.1.3.6.1.2.1.17)
-        
+
             # BRIDGE-MIB and Q-BRIDGE-MIB tables
             view   systemonly  included   .1.3.6.1.2.1.17
 
 5.  Restart `snmpd`:
-    
+
         cumulus@switch:~$ sudo systemctl restart snmpd.service
         Restarting network management services: snmpd.
 
@@ -66,15 +66,15 @@ take special steps within Cumulus Linux before you can configure Prism.
 
 1.  Log into the Nutanix Prism. Nutanix defaults to the Home menu,
     referred to as the Dashboard:
-    
+
     {{% imgOld 0 %}}
 
 2.  Click on the gear icon
-    
+
     {{% imgOld 1 %}}
-    
+
     in the top right corner of the dashboard, and select NetworkSwitch:
-    
+
     {{% imgOld 2 %}}
 
 3.  Click the **+Add Switch Configuration** button in the **Network
@@ -82,9 +82,9 @@ take special steps within Cumulus Linux before you can configure Prism.
 
 4.  Fill out the **Network Switch Configuration** for the Top of Rack
     (ToR) switch configured for snmpd in the previous section:
-    
+
     {{% imgOld 3 %}}
-    
+
     | Configuration Parameter         | Description                                                                                     | Value Used in Example                                   |
     | ------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
     | Switch Management IP Address    | This can be any IP address on the box. In the screenshot above, the eth0 management IP is used. | 192.168.0.111                                           |
@@ -92,13 +92,13 @@ take special steps within Cumulus Linux before you can configure Prism.
     | SNMP Profile                    | Saved profiles, for easy configuration when hooking up to multiple switches.                    | None                                                    |
     | SNMP Version                    | SNMP v2c or SNMP v3. Cumulus Linux has only been tested with SNMP v2c for Nutanix integration.  | SNMP v2c                                                |
     | SNMP Community Name             | SNMP v2c uses communities to share MIBs. The default community for snmpd is 'public'.           | public                                                  |
-    
+
 
     {{%notice note%}}
-    
-    The rest of the values were not touched for this demonstration. They
+
+The rest of the values were not touched for this demonstration. They
     are usually used with SNMP v3.
-    
+
     {{%/notice%}}
 
 5.  Save the configuration. The switch will now be present in the
@@ -107,7 +107,7 @@ take special steps within Cumulus Linux before you can configure Prism.
 6.  Close the pop up window to return to the dashboard.
 
 7.  Open the **Hardware** option from the **Home** dropdown menu:
-    
+
     {{% imgOld 4 %}}
 
 8.  Click the **Table** button.
@@ -115,7 +115,7 @@ take special steps within Cumulus Linux before you can configure Prism.
 9.  Click the **Switch** button. Configured switches are shown in the
     table, as indicated in the screenshot below, and can be selected in
     order to view interface statistics:
-    
+
     {{% imgOld 5 %}}
 
 {{%notice note%}}
@@ -187,17 +187,17 @@ To help visualize the following diagram is provided:
 
 1.  Follow the directions on one of the following websites to enable
     CDP:
-    
+
       - [kb.vmware.com/selfservice/microsites/search.do?language=en\_US\&cmd=displayKC\&externalId=1003885](http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1003885)
-    
+
       - [wahlnetwork.com/2012/07/17/utilizing-cdp-and-lldp-with-vsphere-networking/](http://wahlnetwork.com/2012/07/17/utilizing-cdp-and-lldp-with-vsphere-networking/)
-        
+
         For example, switch CDP on:
-        
+
             root@NX-1050-A:~] esxcli network vswitch standard set -c both -v vSwitch0
-        
+
         Then confirm it is running:
-        
+
             root@NX-1050-A:~] esxcli network vswitch standard list -v vSwitch0
             vSwitch0
                Name: vSwitch0
@@ -213,13 +213,13 @@ To help visualize the following diagram is provided:
                Beacon Required By:
                Uplinks: vmnic3, vmnic2, vmnic1, vmnic0
                Portgroups: VM Network, Management Network
-        
+
         The **both** means CDP is now running, and the lldp dameon on
         Cumulus Linux is capable of 'seeing' CDP devices.
 
 2.  After the next CDP interval, the Cumulus Linux box will pick up the
     interface via the `lldp` daemon:
-    
+
         cumulus@switch:~$ lldpctl show neighbor swp49
         -------------------------------------------------------------------------------
         LLDP neighbors:
@@ -237,7 +237,7 @@ To help visualize the following diagram is provided:
         -------------------------------------------------------------------------------
 
 3.  Use ` net show  `to look at `lldp` information:
-    
+
         cumulus@switch:~$ net show lldp
          
         Local Port    Speed    Mode                 Remote Port        Remote  Host     Summary
@@ -263,7 +263,7 @@ enabled for each interface on the host. Refer to
     represents vmnic0 which is tied to NX-1050-A).
 
 3.  List out all the MAC addresses associated to the bridge:
-    
+
         cumulus@switch:~$ brctl showmacs br-ntnx
         port name mac addr      vlan    is local?   ageing timer
         swp9      00:02:00:00:00:06 0   no        66.94
@@ -299,15 +299,15 @@ enabled for each interface on the host. Refer to
         swp52     74:e6:e2:f5:a2:b4 0   yes        0.00
         swp9      8e:0f:73:1b:f8:24 0   no         2.73
         swp9      c8:1f:66:ba:60:cf 0   no        66.94
-    
+
     Alternatively, you can use `grep`:
-    
+
         cumulus@switch:~$ brctl showmacs br-ntnx | grep 0c:c4:7a:09:a2:43
         swp49     0c:c4:7a:09:a2:43 0   no         4.58
-    
+
     vmnic1 is now hooked up to swp49. This matches what is seen in
     `lldp`:
-    
+
         cumulus@switch:~$ lldpctl show neighbor swp49
         -------------------------------------------------------------------------------
         LLDP neighbors:

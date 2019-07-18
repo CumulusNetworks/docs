@@ -211,7 +211,7 @@ To monitor queue lengths using a histogram:
 
     {{%notice note%}}
 
-    Restarting the `asic-monitor` service does not disrupt traffic or
+Restarting the `asic-monitor` service does not disrupt traffic or
     require you to restart `switchd`. The service is enabled by default
     when you boot the switch and restarts when you restart `switchd`.
 
@@ -219,9 +219,9 @@ To monitor queue lengths using a histogram:
 
     {{%notice note%}}
 
-    **Important**
+**Important**
 
-    Overhead is involved in collecting the data, which uses both the CPU
+Overhead is involved in collecting the data, which uses both the CPU
     and SDK process and can affect execution of `switchd`. Snapshots and
     logs can occupy a lot of disk space if you do not limit their
     number.

@@ -3,7 +3,7 @@ title: DHCP Relays
 author: Cumulus Networks
 weight: 95
 aliases:
- - /display/CL36/DHCP-Relays
+ - /display/CL36/DHCP+Relays
  - /pages/viewpage.action?pageId=8362502
 pageID: 8362502
 product: Cumulus Linux

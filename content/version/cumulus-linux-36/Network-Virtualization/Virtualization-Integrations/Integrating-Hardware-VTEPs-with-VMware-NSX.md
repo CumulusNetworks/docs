@@ -3,7 +3,7 @@ title: Integrating Hardware VTEPs with VMware NSX
 author: Cumulus Networks
 weight: 413
 aliases:
- - /display/CL36/Integrating-Hardware-VTEPs-with-VMware-NSX
+ - /display/CL36/Integrating+Hardware+VTEPs+with+VMware+NSX
  - /pages/viewpage.action?pageId=8362288
 pageID: 8362288
 product: Cumulus Linux

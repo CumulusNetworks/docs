@@ -3,7 +3,7 @@ title: SSH for Remote Access
 author: Cumulus Networks
 weight: 127
 aliases:
- - /display/RMP31/SSH-for-Remote-Access
+ - /display/RMP31/SSH+for+Remote+Access
  - /pages/viewpage.action?pageId=5122734
 pageID: 5122734
 product: Cumulus RMP

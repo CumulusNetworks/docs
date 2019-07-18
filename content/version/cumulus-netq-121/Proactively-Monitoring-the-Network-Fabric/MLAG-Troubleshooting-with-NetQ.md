@@ -3,7 +3,7 @@ title: MLAG Troubleshooting with NetQ
 author: Cumulus Networks
 weight: 61
 aliases:
- - /display/NETQ121/MLAG-Troubleshooting-with-NetQ
+ - /display/NETQ121/MLAG+Troubleshooting+with+NetQ
  - /pages/viewpage.action?pageId=8356554
 pageID: 8356554
 product: Cumulus NetQ

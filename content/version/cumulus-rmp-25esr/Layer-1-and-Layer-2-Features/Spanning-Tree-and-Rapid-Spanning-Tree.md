@@ -3,7 +3,7 @@ title: Spanning Tree and Rapid Spanning Tree
 author: Cumulus Networks
 weight: 65
 aliases:
- - /display/RMP25ESR/Spanning-Tree-and-Rapid-Spanning-Tree
+ - /display/RMP25ESR/Spanning+Tree+and+Rapid+Spanning+Tree
  - /pages/viewpage.action?pageId=5116353
 pageID: 5116353
 product: Cumulus RMP

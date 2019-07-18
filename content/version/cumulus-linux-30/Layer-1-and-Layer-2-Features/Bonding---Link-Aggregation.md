@@ -3,7 +3,7 @@ title: Bonding - Link Aggregation
 author: Cumulus Networks
 weight: 103
 aliases:
- - /display/CL30/Bonding---Link-Aggregation
+ - /display/CL30/Bonding+++Link+Aggregation
  - /pages/viewpage.action?pageId=5118275
 pageID: 5118275
 product: Cumulus Linux

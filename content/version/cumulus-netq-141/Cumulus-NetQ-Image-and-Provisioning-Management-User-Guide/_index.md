@@ -3,7 +3,7 @@ title: Cumulus NetQ Image and Provisioning Management User Guide
 author: Cumulus Networks
 weight: 11
 aliases:
- - /display/NETQ141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide
+ - /display/NETQ141/Cumulus+NetQ+Image+and+Provisioning+Management+User+Guide
  - /pages/viewpage.action?pageId=10453535
 pageID: 10453535
 product: Cumulus NetQ

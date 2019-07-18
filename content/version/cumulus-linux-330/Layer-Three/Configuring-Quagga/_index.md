@@ -3,7 +3,7 @@ title: Configuring Quagga
 author: Cumulus Networks
 weight: 169
 aliases:
- - /display/CL33/Configuring-Quagga
+ - /display/CL33/Configuring+Quagga
  - /pages/viewpage.action?pageId=5866431
 pageID: 5866431
 product: Cumulus Linux

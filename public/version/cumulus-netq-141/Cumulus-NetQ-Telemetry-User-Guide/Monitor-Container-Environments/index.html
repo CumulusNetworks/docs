@@ -1,0 +1,5131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Monitor Container Environments | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/docs.cumulusnetworks.com/book.min.a378d8a2da6f5357a83a43dff33d6f77fb70401e0399d5ba78faf81d7a1ae1a8.css">
+
+  
+  <link rel="icon" href="/docs.cumulusnetworks.com/icons/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+  
+  
+  <script src = "/docs.cumulusnetworks.com/js/codecopy.js"> </script>
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+      
+    
+    <ul>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-linux/ >
+        Cumulus Linux </a> </li>
+    
+      <li class = "active" ><a href = docs.cumulusnetworks.com/cumulus-netq/ >
+        Cumulus NetQ </a> </li>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-vx/ >
+        Cumulus VX </a> </li>
+    
+      <li>
+        <div id="products-dropdown" class="dropdown">
+            <button class="btn" type="button" id="dropdownMenuButton">
+              Products
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="">Cumulus RMP</a>
+              <a class="dropdown-item" href="">Cumulus Chassis</a>
+              <a class="dropdown-item" href="">Cumulus Host Pack</a>
+            </div>
+        </div>
+      </li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v1.4.1
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/cumulus-netq/"> v2.2.0</a>
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-10/"> v1.0.0</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-110/"> v1.1.0</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-121/"> v1.2.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-141/"> v1.4.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-21/"> v2.1</a>
+            
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="docs.cumulusnetworks.com">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+            
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/" >
+    Cumulus NetQ
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/" >
+    Cumulus NetQ Image and Provisioning Management User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/IPM-Preface/" >
+    IPM Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/IPM-Command-Line-Overview/" >
+    IPM Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/Activate-and-Initialize-IPM/" >
+    Activate and Initialize IPM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/Configure-and-Manage-DHCP-Options/" >
+    Configure and Manage DHCP Options
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/Manage-Network-Operating-System-Images/" >
+    Manage Network Operating System Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/Manage-Zero-Touch-Provisioning-Scripts/" >
+    Manage Zero-Touch Provisioning Scripts
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/" >
+    Cumulus NetQ Telemetry User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/" >
+    Early Access Features
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Extend-NetQ-with-Custom-Commands/" >
+    Extend NetQ with Custom Commands
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Query-the-NetQ-Database/" >
+    Query the NetQ Database
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Collect-Interface-Statistics/" >
+    Collect Interface Statistics
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Event-Message-Reference/" >
+    Event Message Reference
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Resolve-MLAG-Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Investigate-NetQ-Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Telemetry-Preface/" >
+    Telemetry Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/NetQ-Command-Line-Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/NetQ-Service-Console/" >
+    NetQ Service Console
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Overall-Network-Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Switch-Hardware-and-Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Physical-Layer-Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Data-Link-Layer-Devices-and-Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Network-Layer-Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Virtual-Network-Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Linux-Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Container-Environments/"  class="active" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Automate-Common-and-Repetitive-Tasks/" >
+    Automate Common and Repetitive Tasks
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Deployment-Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Configure-Optional-NetQ-Capabilities/" >
+    Configure Optional NetQ Capabilities
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Maintain-NetQ/" >
+    Maintain NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Deployment-Appendices/" >
+    Deployment Appendices
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "/docs.cumulusnetworks.com/js/menuBundle.js"> </script>
+
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/docs.cumulusnetworks.com/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Monitor Container Environments</strong>
+      </header>
+
+      
+      
+<div class= "notices info" id = "info" >
+    This documentation is for an older version of the software. If you are using the current version of Cumulus Linux, this content may not be up to date. The current version of the documentation is available [here](https://docs.cumulusnetworks.com/).
+  </div>
+<article class="markdown">
+<h1>Monitor Container Environments</h1>
+
+<p>The NetQ Agent monitors container environments the same way it monitors
+<a href="/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Linux-Hosts">physical
+servers</a>.
+There is no special implementation. The NetQ Agent pulls data from the
+container as it would pull data from a Cumulus Linux switch or Linux
+host. It can be installed on a Linux server or in a Linux VM. NetQ Agent
+integrates with container orchestrators including Kubernetes and Docker
+Swarm.</p>
+
+<p>NetQ monitors many aspects of containers on your network, including
+their:</p>
+
+<ul>
+<li><p><strong>Identity</strong>: The NetQ agent tracks every container&rsquo;s IP and MAC
+address, name, image, and more. NetQ can locate containers across
+the fabric based on a container&rsquo;s name, image, IP or MAC address,
+and protocol and port pair.</p></li>
+
+<li><p><strong>Port mapping on a network</strong>: The NetQ agent tracks protocol and
+ports exposed by a container. NetQ can identify containers exposing
+a specific protocol and port pair on a network.</p></li>
+
+<li><p><strong>Connectivity</strong>: NetQ can provide information on network
+connectivity for a container, including adjacency, and can identify
+containers that can be affected by a top of rack switch.</p></li>
+</ul>
+
+<p>NetQ helps answer questions such as:</p>
+
+<ul>
+<li><p>Where is this container located?</p></li>
+
+<li><p>Open ports? What image is being used?</p></li>
+
+<li><p>Which containers are part of this service? How are they connected?</p></li>
+</ul>
+
+<h2 id="span-use-netq-with-kubernetes-clusters-span"><span>Use NetQ with Kubernetes Clusters</span></h2>
+
+<p>The NetQ Agent interfaces with a Kubernetes API server and listens to
+Kubernetes events. The NetQ Agent monitors network identity and physical
+network connectivity of Kubernetes resources like Pods, Daemon sets,
+Service, and so forth. NetQ works with any container network interface
+(CNI), such as Calico or Flannel.</p>
+
+<p>The NetQ Kubernetes integration enables network administrators to:</p>
+
+<ul>
+<li><p>Identify and locate pods, deployment, replica-set and services
+deployed within the network using IP, name, label, and so forth.</p></li>
+
+<li><p>Track network connectivity of all pods of a service, deployment and
+replica set.</p></li>
+
+<li><p>Locate what pods have been deployed adjacent to a top of rack (ToR)
+switch.</p></li>
+
+<li><p>Check what pod, services, replica set or deployment can be impacted
+by a specific ToR switch.</p></li>
+</ul>
+
+<p>NetQ also helps network administrators identify changes within a
+Kubernetes cluster and determine if such changes had an adverse effect
+on the network performance (caused by a noisy neighbor for example).
+Additionally, NetQ helps the infrastructure administrator determine how
+Kubernetes workloads are distributed within a network.</p>
+
+<h3 id="span-requirements-span"><span>Requirements</span></h3>
+
+<p>The NetQ Agent supports Kubernetes version 1.9.2 or later.</p>
+
+<p>Due to the higher memory requirements to run containers, Cumulus
+Networks recommends you run the NetQ Telemetry Server (TS) on a host
+with at least 32G RAM. For more information, refer to the <a href="/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues">How Far Back
+in Time Can You
+Travel?</a>
+topic.</p>
+
+<h3 id="span-command-summary-span"><span>Command Summary</span></h3>
+
+<p>There is a large set of commands available to monitor Kubernetes
+configurations, including the ability to monitor clusters, nodes,
+daemon-set, deployment, pods, replication, and services:</p>
+
+<pre><code>netq [&lt;hostname&gt;] show kubernetes cluster [name &lt;kube-cluster-name&gt;] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes cluster [name &lt;kube-cluster-name&gt;] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes node [components] [name &lt;kube-node-name&gt;] [cluster &lt;kube-cluster-name&gt; ] [label &lt;kube-node-label&gt;] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes node [components] [name &lt;kube-node-name&gt;] [cluster &lt;kube-cluster-name&gt; ] [label &lt;kube-node-label&gt;] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+ 
+netq [&lt;hostname&gt;] show kubernetes daemon-set [name &lt;kube-ds-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-ds-label&gt;] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes daemon-set [name &lt;kube-ds-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-ds-label&gt;] connectivity [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes daemon-set [name &lt;kube-ds-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-ds-label&gt;] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+ 
+netq [&lt;hostname&gt;] show kubernetes deployment [name &lt;kube-deployment-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-deployment-label&gt;] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes deployment [name &lt;kube-deployment-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-deployment-label&gt;] connectivity [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes deployment [name &lt;kube-deployment-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-deployment-label&gt;] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq &lt;hostname&gt; show impact kubernetes deployment [master &lt;kube-master-node&gt;] [name &lt;kube-deployment-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-deployment-label&gt;] [around &lt;text-time&gt;] [json]Requirements
+ 
+netq [&lt;hostname&gt;] show kubernetes pod [name &lt;kube-pod-name&gt;] [cluster &lt;kube-cluster-name&gt; ] [namespace &lt;namespace&gt;] [label &lt;kube-pod-label&gt;] [pod-ip &lt;kube-pod-ipaddress&gt;] [node &lt;kube-node-name&gt;] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes pod [name &lt;kube-pod-name&gt;] [cluster &lt;kube-cluster-name&gt; ] [namespace &lt;namespace&gt;] [label &lt;kube-pod-label&gt;] [pod-ip &lt;kube-pod-ipaddress&gt;] [node &lt;kube-node-name&gt;] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+ 
+netq [&lt;hostname&gt;] show kubernetes replication-controller [name &lt;kube-rc-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-rc-label&gt;] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes replication-controller [name &lt;kube-rc-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;]  [label &lt;kube-rc-label&gt;] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes replica-set [name &lt;kube-rs-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-rs-label&gt;] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes replica-set [name &lt;kube-rs-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-rs-label&gt;] connectivity [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes replica-set [name &lt;kube-rs-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-rs-label&gt;] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq &lt;hostname&gt; show impact kubernetes replica-set [master &lt;kube-master-node&gt;] [name &lt;kube-rs-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-rs-label&gt;] [around &lt;text-time&gt;] [json]
+ 
+netq [&lt;hostname&gt;] show kubernetes service [name &lt;kube-service-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-service-label&gt;] [service-cluster-ip &lt;kube-service-cluster-ip&gt;] [service-external-ip &lt;kube-service-external-ip&gt;] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes service [name &lt;kube-service-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-service-label&gt;] [service-cluster-ip &lt;kube-service-cluster-ip&gt;] [service-external-ip &lt;kube-service-external-ip&gt;] connectivity [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show kubernetes service [name &lt;kube-service-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-service-label&gt;] [service-cluster-ip &lt;kube-service-cluster-ip&gt;] [service-external-ip &lt;kube-service-external-ip&gt;] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq &lt;hostname&gt;  show impact kubernetes service [master &lt;kube-master-node&gt;] [name &lt;kube-service-name&gt;] [cluster &lt;kube-cluster-name&gt;] [namespace &lt;namespace&gt;] [label &lt;kube-service-label&gt;] [service-cluster-ip &lt;kube-service-cluster-ip&gt;] [service-external-ip &lt;kube-service-external-ip&gt;] [around &lt;text-time&gt;] [json]
+</code></pre>
+
+<h3 id="span-id-src-10453489-monitorcontainerenvironments-enable-k8s-class-confluence-anchor-link-span-span-enable-kubernetes-monitoring-span"><span id="src-10453489_MonitorContainerEnvironments-enable_k8s" class="confluence-anchor-link"></span><span>Enable Kubernetes Monitoring</span></h3>
+
+<p>For NetQ to monitor the containers on a host, you must configure the
+following on the Kubernetes master node:</p>
+
+<ol>
+<li><p>Configure the host to point to the TS by its IP address. See the
+<a href="/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ">Install
+NetQ</a>
+topic for details.</p></li>
+
+<li><p>Enable Kubernetes monitoring by NetQ. You can specify a polling
+period between 10 and 120 seconds; 15 seconds is the default.</p>
+
+<pre><code>cumulus@host:~$ netq config add agent kubernetes-monitor poll-period 20
+Successfully added kubernetes monitor. Please restart netq-agent.
+</code></pre></li>
+
+<li><p>Restart the NetQ agent:</p>
+
+<pre><code>cumulus@server01:~$ netq config restart agent
+</code></pre></li>
+</ol>
+
+<p>Next, you must enable the NetQ Agent on all the worker nodes, as
+described in the <a href="/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ">Install
+NetQ</a>
+topic, for complete insight into your container network.</p>
+
+<h3 id="span-view-status-of-kubernetes-clusters-span"><span>View Status of Kubernetes Clusters</span></h3>
+
+<p>You can get the status of all Kubernetes clusters in the fabric using
+the <code>netq show kubernetes cluster</code> command:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq show kubernetes cluster 
+Matching kube_cluster records:
+Master                   Cluster Name     Controller Status    Scheduler Status Nodes
+------------------------ ---------------- -------------------- ---------------- --------------------
+hostd-11:3.0.0.68        default          Healthy              Healthy          hostd-11 hostd-13 ho
+                                                                                std-22 hosts-11 host
+                                                                                s-12 hosts-23 hosts-
+                                                                                24
+hostd-12:3.0.0.69        default          Healthy              Healthy          hostd-12 hostd-21 ho
+                                                                                std-23 hosts-13 host
+                                                                                s-14 hosts-21 hosts-
+                                                                                22
+</code></pre>
+
+<p>To filter the list, you can specify the hostname of the master before
+the <code>show</code> command:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq hostd-11 show kubernetes cluster
+Matching kube_cluster records:
+Master                   Cluster Name     Controller Status    Scheduler Status Nodes
+------------------------ ---------------- -------------------- ---------------- --------------------
+hostd-11:3.0.0.68        default          Healthy              Healthy          hostd-11 hostd-13 ho
+                                                                                std-22 hosts-11 host
+                                                                                s-12 hosts-23 hosts-
+                                                                                24
+</code></pre>
+
+<p>Optionally, you can output the results in JSON format:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq show kubernetes cluster json
+{
+    &quot;kube_cluster&quot;:[
+        {
+            &quot;clusterName&quot;:&quot;default&quot;,
+            &quot;schedulerStatus&quot;:&quot;Healthy&quot;,
+            &quot;master&quot;:&quot;hostd-12:3.0.0.69&quot;,
+            &quot;nodes&quot;:&quot;hostd-12 hostd-21 hostd-23 hosts-13 hosts-14 hosts-21 hosts-22&quot;,
+            &quot;controllerStatus&quot;:&quot;Healthy&quot;
+        },
+        {
+            &quot;clusterName&quot;:&quot;default&quot;,
+            &quot;schedulerStatus&quot;:&quot;Healthy&quot;,
+            &quot;master&quot;:&quot;hostd-11:3.0.0.68&quot;,
+            &quot;nodes&quot;:&quot;hostd-11 hostd-13 hostd-22 hosts-11 hosts-12 hosts-23 hosts-24&quot;,
+            &quot;controllerStatus&quot;:&quot;Healthy&quot;
+    }
+    ],
+    &quot;truncatedResult&quot;:false
+}
+</code></pre>
+
+<h3 id="span-view-changes-to-a-cluster-span"><span>View Changes to a Cluster</span></h3>
+
+<p>If data collection from the NetQ Agents is not occurring as it once was,
+you can verify that no changes have been made to the Kubernetes cluster
+configuration using the <em>changes</em> keyword. This example shows the
+changes that have been made in the last hour. If you want to view a
+larger timeframe, specify that with the <em>between</em> option.</p>
+
+<pre><code>cumulus@hostd-11:~$ netq show kubernetes cluster changes 
+Matching kube_cluster records:
+Master                   Cluster Name     Controller Status    Scheduler Status Nodes                                    DBState  Last changed
+------------------------ ---------------- -------------------- ---------------- ---------------------------------------- -------- ----------------
+hostd-11:3.0.0.68        default          Healthy              Healthy          hostd-11 hostd-13 hostd-22 hosts-11 host Add      2d:13h:54m:26s
+                                                                                s-12 hosts-23 hosts-24
+hostd-12:3.0.0.69        default          Healthy              Healthy          hostd-12 hostd-21 hostd-23 hosts-13 host Add      2d:13h:54m:35s
+                                                                                s-14 hosts-21 hosts-22
+hostd-12:3.0.0.69        default          Healthy              Healthy          hostd-12 hostd-21 hostd-23 hosts-13      Add      2d:13h:54m:50s
+hostd-11:3.0.0.68        default          Healthy              Healthy          hostd-11                                 Add      2d:13h:54m:57s
+hostd-12:3.0.0.69        default          Healthy              Healthy          hostd-12                                 Add      2d:13h:55m:50s
+</code></pre>
+
+<p><span style="color: #36424a;"><br />
+View Kubernetes Pod Information </span></p>
+
+<p>You can show configuration and status of the pods in a cluster,
+including the names, labels, addresses, associated cluster and
+containers, and whether the pod is running. This example shows pods for
+FRR, Nginx, Calico, various Kubernetes components sorted by master node.</p>
+
+<pre><code>cumulus@hostd-11:~$ netq show kubernetes pod 
+Matching kube_pod records:
+Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed
+------------------------ ------------ -------------------- ---------------- ------------ -------------------- -------- ------------------------ ----------------
+hostd-11:3.0.0.68        default      cumulus-frr-8vssx    3.0.0.70         hostd-13     pod-template-generat Running  cumulus-frr:f8cac70bb217 2d:13h:54m:1s
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+hostd-11:3.0.0.68        default      cumulus-frr-dkkgp    3.0.5.135        hosts-24     pod-template-generat Running  cumulus-frr:577a60d5f40c 2d:13h:54m:1s
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+hostd-11:3.0.0.68        default      cumulus-frr-f4bgx    3.0.3.196        hosts-11     pod-template-generat Running  cumulus-frr:1bc73154a9f5 2d:13h:54m:1s
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+hostd-11:3.0.0.68        default      cumulus-frr-gqqxn    3.0.2.5          hostd-22     pod-template-generat Running  cumulus-frr:3ee0396d126a 2d:13h:54m:1s
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+hostd-11:3.0.0.68        default      cumulus-frr-kdh9f    3.0.3.197        hosts-12     pod-template-generat Running  cumulus-frr:94b6329ecb50 2d:13h:54m:1s
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+hostd-11:3.0.0.68        default      cumulus-frr-mvv8m    3.0.5.134        hosts-23     pod-template-generat Running  cumulus-frr:b5845299ce3c 2d:13h:54m:1s
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+hostd-11:3.0.0.68        default      httpd-5456469bfd-bq9 10.244.49.65     hostd-22     app:httpd            Running  httpd:79b7f532be2d       2d:13h:48m:18s
+                                      zm
+hostd-11:3.0.0.68        default      influxdb-6cdb566dd-8 10.244.162.128   hostd-13     app:influx           Running  influxdb:15dce703cdec    2d:13h:48m:18s
+                                      9lwn
+hostd-11:3.0.0.68        default      nginx-8586cf59-26pj5 10.244.9.193     hosts-24     run:nginx            Running  nginx:6e2b65070c86       2d:13h:53m:29s
+hostd-11:3.0.0.68        default      nginx-8586cf59-c82ns 10.244.40.128    hosts-12     run:nginx            Running  nginx:01b017c26725       2d:13h:53m:29s
+hostd-11:3.0.0.68        default      nginx-8586cf59-wjwgp 10.244.49.64     hostd-22     run:nginx            Running  nginx:ed2b4254e328       2d:13h:53m:29s
+hostd-11:3.0.0.68        kube-system  calico-etcd-pfg9r    3.0.0.68         hostd-11     k8s-app:calico-etcd  Running  calico-etcd:f95f44b745a7 2d:13h:55m:59s
+                                                                                         pod-template-generat
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:142071906
+                                                                                         5
+hostd-11:3.0.0.68        kube-system  calico-kube-controll 3.0.2.5          hostd-22     k8s-app:calico-kube- Running  calico-kube-controllers: 2d:13h:54m:56s
+                                      ers-d669cc78f-4r5t2                                controllers                   3688b0c5e9c5
+hostd-11:3.0.0.68        kube-system  calico-node-4px69    3.0.2.5          hostd-22     k8s-app:calico-node  Running  calico-node:1d01648ebba4 2d:13h:55m:41s
+                                                                                         pod-template-generat          install-cni:da350802a3d2
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+hostd-11:3.0.0.68        kube-system  calico-node-bt8w6    3.0.3.196        hosts-11     k8s-app:calico-node  Running  calico-node:9b3358a07e5e 2d:13h:55m:38s
+                                                                                         pod-template-generat          install-cni:d38713e6fdd8
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+hostd-11:3.0.0.68        kube-system  calico-node-gtmkv    3.0.3.197        hosts-12     k8s-app:calico-node  Running  calico-node:48fcc6c40a6b 2d:13h:55m:34s
+                                                                                         pod-template-generat          install-cni:f0838a313eff
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+hostd-11:3.0.0.68        kube-system  calico-node-mvslq    3.0.5.134        hosts-23     k8s-app:calico-node  Running  calico-node:7b361aece76c 2d:13h:55m:33s
+                                                                                         pod-template-generat          install-cni:f2da6bc36bf8
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+hostd-11:3.0.0.68        kube-system  calico-node-sjj2s    3.0.5.135        hosts-24     k8s-app:calico-node  Running  calico-node:6e13b2b73031 2d:13h:55m:29s
+                                                                                         pod-template-generat          install-cni:fa4b2b17fba9
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+hostd-11:3.0.0.68        kube-system  calico-node-vdkk5    3.0.0.70         hostd-13     k8s-app:calico-node  Running  calico-node:fb3ec9429281 2d:13h:55m:36s
+                                                                                         pod-template-generat          install-cni:b56980da7294
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+hostd-11:3.0.0.68        kube-system  calico-node-zzfkr    3.0.0.68         hostd-11     k8s-app:calico-node  Running  calico-node:c1ac399dd862 2d:13h:55m:59s
+                                                                                         pod-template-generat          install-cni:60a779fdc47a
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+hostd-11:3.0.0.68        kube-system  etcd-hostd-11        3.0.0.68         hostd-11     tier:control-plane c Running  etcd:dde63d44a2f5        2d:13h:56m:44s
+                                                                                         omponent:etcd
+hostd-11:3.0.0.68        kube-system  kube-apiserver-hostd 3.0.0.68         hostd-11     tier:control-plane c Running  kube-apiserver:0cd557bbf 2d:13h:56m:44s
+                                      -11                                                omponent:kube-apiser          2fe
+                                                                                         ver
+hostd-11:3.0.0.68        kube-system  kube-controller-mana 3.0.0.68         hostd-11     tier:control-plane c Running  kube-controller-manager: 2d:13h:56m:44s
+                                      ger-hostd-11                                       omponent:kube-contro          89b2323d09b2
+                                                                                         ller-manager
+hostd-11:3.0.0.68        kube-system  kube-dns-6f4fd4bdf-p 10.244.34.64     hosts-23     k8s-app:kube-dns     Running  dnsmasq:284d9d363999 kub 2d:13h:54m:56s
+                                      lv7p                                                                             edns:bd8bdc49b950 sideca
+                                                                                                                       r:fe10820ffb19
+hostd-11:3.0.0.68        kube-system  kube-proxy-4cx2t     3.0.3.197        hosts-12     k8s-app:kube-proxy p Running  kube-proxy:49b0936a4212  2d:13h:55m:34s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-11:3.0.0.68        kube-system  kube-proxy-7674k     3.0.3.196        hosts-11     k8s-app:kube-proxy p Running  kube-proxy:5dc2f5fe0fad  2d:13h:55m:38s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-11:3.0.0.68        kube-system  kube-proxy-ck5cn     3.0.2.5          hostd-22     k8s-app:kube-proxy p Running  kube-proxy:6944f7ff8c18  2d:13h:55m:41s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-11:3.0.0.68        kube-system  kube-proxy-f9dt8     3.0.0.68         hostd-11     k8s-app:kube-proxy p Running  kube-proxy:032cc82ef3f8  2d:13h:55m:59s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-11:3.0.0.68        kube-system  kube-proxy-j6qw6     3.0.5.135        hosts-24     k8s-app:kube-proxy p Running  kube-proxy:10544e43212e  2d:13h:55m:29s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-11:3.0.0.68        kube-system  kube-proxy-lq8zz     3.0.5.134        hosts-23     k8s-app:kube-proxy p Running  kube-proxy:1bcfa09bb186  2d:13h:55m:33s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-11:3.0.0.68        kube-system  kube-proxy-vg7kj     3.0.0.70         hostd-13     k8s-app:kube-proxy p Running  kube-proxy:8fed384b68e5  2d:13h:55m:36s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-11:3.0.0.68        kube-system  kube-scheduler-hostd 3.0.0.68         hostd-11     tier:control-plane c Running  kube-scheduler:c262a8071 2d:13h:56m:44s
+                                      -11                                                omponent:kube-schedu          3cb
+                                                                                         ler
+hostd-12:3.0.0.69        default      cumulus-frr-2gkdv    3.0.2.4          hostd-21     pod-template-generat Running  cumulus-frr:25d1109f8898 2d:13h:54m:39s
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+hostd-12:3.0.0.69        default      cumulus-frr-b9dm5    3.0.3.199        hosts-14     pod-template-generat Running  cumulus-frr:45063f9a095f 2d:13h:54m:39s
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+hostd-12:3.0.0.69        default      cumulus-frr-rtqhv    3.0.2.6          hostd-23     pod-template-generat Running  cumulus-frr:63e802a52ea2 2d:13h:54m:39s
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+hostd-12:3.0.0.69        default      cumulus-frr-tddrg    3.0.5.133        hosts-22     pod-template-generat Running  cumulus-frr:52dd54e4ac9f 2d:13h:54m:39s
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+hostd-12:3.0.0.69        default      cumulus-frr-vx7jp    3.0.5.132        hosts-21     pod-template-generat Running  cumulus-frr:1c20addfcbd3 2d:13h:54m:39s
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+hostd-12:3.0.0.69        default      cumulus-frr-x7ft5    3.0.3.198        hosts-13     pod-template-generat Running  cumulus-frr:b0f63792732e 2d:13h:54m:39s
+                                                                                         ion:1 name:cumulus-f
+                                                                                         rr controller-revisi
+                                                                                         on-hash:3710533951
+hostd-12:3.0.0.69        kube-system  calico-etcd-btqgt    3.0.0.69         hostd-12     k8s-app:calico-etcd  Running  calico-etcd:72b1a16968fb 2d:13h:56m:52s
+                                                                                         pod-template-generat
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:142071906
+                                                                                         5
+hostd-12:3.0.0.69        kube-system  calico-kube-controll 3.0.5.132        hosts-21     k8s-app:calico-kube- Running  calico-kube-controllers: 2d:13h:54m:49s
+                                      ers-d669cc78f-bdnzk                                controllers                   6821bf04696f
+hostd-12:3.0.0.69        kube-system  calico-node-4g6vd    3.0.3.198        hosts-13     k8s-app:calico-node  Running  calico-node:1046b559a50c 2d:13h:55m:53s
+                                                                                         pod-template-generat          install-cni:0a136851da17
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:490828062
+hostd-12:3.0.0.69        kube-system  calico-node-4hg6l    3.0.0.69         hostd-12     k8s-app:calico-node  Running  calico-node:4e7acc83f8e8 2d:13h:56m:52s
+                                                                                         pod-template-generat          install-cni:a26e76de289e
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:490828062
+hostd-12:3.0.0.69        kube-system  calico-node-4p66v    3.0.2.6          hostd-23     k8s-app:calico-node  Running  calico-node:a7a44072e4e2 2d:13h:56m:0s
+                                                                                         pod-template-generat          install-cni:9a19da2b2308
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:490828062
+hostd-12:3.0.0.69        kube-system  calico-node-5z7k4    3.0.5.133        hosts-22     k8s-app:calico-node  Running  calico-node:9878b0606158 2d:13h:55m:45s
+                                                                                         pod-template-generat          install-cni:489f8f326cf9
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:490828062
+hostd-12:3.0.0.69        kube-system  calico-node-885s6    3.0.5.132        hosts-21     k8s-app:calico-node  Running  calico-node:24a696f0406c 2d:13h:55m:48s
+                                                                                         pod-template-generat          install-cni:15f626e44a6d
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:490828062
+hostd-12:3.0.0.69        kube-system  calico-node-c8wjf    3.0.3.199        hosts-14     k8s-app:calico-node  Running  calico-node:597c8b2053f4 2d:13h:55m:50s
+                                                                                         pod-template-generat          install-cni:646e8df27be8
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:490828062
+hostd-12:3.0.0.69        kube-system  calico-node-gkkgk    3.0.2.4          hostd-21     k8s-app:calico-node  Running  calico-node:73806361f929 2d:13h:56m:5s
+                                                                                         pod-template-generat          install-cni:2f9fedf26968
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:490828062
+hostd-12:3.0.0.69        kube-system  etcd-hostd-12        3.0.0.69         hostd-12     tier:control-plane c Running  etcd:cba8d4559e7f        2d:13h:57m:52s
+                                                                                         omponent:etcd
+hostd-12:3.0.0.69        kube-system  kube-apiserver-hostd 3.0.0.69         hostd-12     tier:control-plane c Running  kube-apiserver:bbb852aed 2d:13h:57m:52s
+                                      -12                                                omponent:kube-apiser          a1e
+                                                                                         ver
+hostd-12:3.0.0.69        kube-system  kube-controller-mana 3.0.0.69         hostd-12     tier:control-plane c Running  kube-controller-manager: 2d:13h:57m:52s
+                                      ger-hostd-12                                       omponent:kube-contro          f3d5501adbf3
+                                                                                         ller-manager
+hostd-12:3.0.0.69        kube-system  kube-dns-6f4fd4bdf-5 10.245.104.128   hosts-22     k8s-app:kube-dns     Running  dnsmasq:b9149784c5d0 kub 2d:13h:54m:49s
+                                      psn4                                                                             edns:370104ad260c sideca
+                                                                                                                       r:2dc9ac7eb34b
+hostd-12:3.0.0.69        kube-system  kube-proxy-56dq8     3.0.5.132        hosts-21     k8s-app:kube-proxy p Running  kube-proxy:c3f9944efcac  2d:13h:55m:48s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-12:3.0.0.69        kube-system  kube-proxy-5c9rx     3.0.2.4          hostd-21     k8s-app:kube-proxy p Running  kube-proxy:7266de023ad9  2d:13h:56m:5s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-12:3.0.0.69        kube-system  kube-proxy-5pznh     3.0.3.198        hosts-13     k8s-app:kube-proxy p Running  kube-proxy:846a571b6fd2  2d:13h:55m:53s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-12:3.0.0.69        kube-system  kube-proxy-8mt6w     3.0.2.6          hostd-23     k8s-app:kube-proxy p Running  kube-proxy:9de8b5c76565  2d:13h:56m:0s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-12:3.0.0.69        kube-system  kube-proxy-9qngl     3.0.3.199        hosts-14     k8s-app:kube-proxy p Running  kube-proxy:638ffdb9ed51  2d:13h:55m:50s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-12:3.0.0.69        kube-system  kube-proxy-k568l     3.0.0.69         hostd-12     k8s-app:kube-proxy p Running  kube-proxy:a0e081e5a141  2d:13h:56m:52s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-12:3.0.0.69        kube-system  kube-proxy-mwf6s     3.0.5.133        hosts-22     k8s-app:kube-proxy p Running  kube-proxy:55d80158e5fc  2d:13h:55m:45s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-12:3.0.0.69        kube-system  kube-scheduler-hostd 3.0.0.69         hostd-12     tier:control-plane c Running  kube-scheduler:d941808cd 2d:13h:57m:52s
+                                      -12                                                omponent:kube-schedu          f2a
+                                                                                         ler
+</code></pre>
+
+<p>You can filter this information to focus on a particular pod:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq show kubernetes pod node hostd-11
+Matching kube_pod records:
+Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed
+------------------------ ------------ -------------------- ---------------- ------------ -------------------- -------- ------------------------ ----------------
+hostd-11:3.0.0.68        kube-system  calico-etcd-pfg9r    3.0.0.68         hostd-11     k8s-app:calico-etcd  Running  calico-etcd:f95f44b745a7 2d:14h:0m:59s
+                                                                                         pod-template-generat
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:142071906
+                                                                                         5
+hostd-11:3.0.0.68        kube-system  calico-node-zzfkr    3.0.0.68         hostd-11     k8s-app:calico-node  Running  calico-node:c1ac399dd862 2d:14h:0m:59s
+                                                                                         pod-template-generat          install-cni:60a779fdc47a
+                                                                                         ion:1 controller-rev
+                                                                                         ision-hash:324404111
+                                                                                         9
+hostd-11:3.0.0.68        kube-system  etcd-hostd-11        3.0.0.68         hostd-11     tier:control-plane c Running  etcd:dde63d44a2f5        2d:14h:1m:44s
+                                                                                         omponent:etcd
+hostd-11:3.0.0.68        kube-system  kube-apiserver-hostd 3.0.0.68         hostd-11     tier:control-plane c Running  kube-apiserver:0cd557bbf 2d:14h:1m:44s
+                                      -11                                                omponent:kube-apiser          2fe
+                                                                                         ver
+hostd-11:3.0.0.68        kube-system  kube-controller-mana 3.0.0.68         hostd-11     tier:control-plane c Running  kube-controller-manager: 2d:14h:1m:44s
+                                      ger-hostd-11                                       omponent:kube-contro          89b2323d09b2
+                                                                                         ller-manager
+hostd-11:3.0.0.68        kube-system  kube-proxy-f9dt8     3.0.0.68         hostd-11     k8s-app:kube-proxy p Running  kube-proxy:032cc82ef3f8  2d:14h:0m:59s
+                                                                                         od-template-generati
+                                                                                         on:1 controller-revi
+                                                                                         sion-hash:3953509896
+hostd-11:3.0.0.68        kube-system  kube-scheduler-hostd 3.0.0.68         hostd-11     tier:control-plane c Running  kube-scheduler:c262a8071 2d:14h:1m:44s
+                                      -11                                                omponent:kube-schedu          3cb
+                                                                                         ler
+</code></pre>
+
+<h3 id="span-view-kubernetes-node-information-span"><span>View Kubernetes Node Information</span></h3>
+
+<p>You can view a lot of information about a node, including the pod CIDR
+and kubelet status.</p>
+
+<pre><code>cumulus@host:~$ netq hostd-11 show kubernetes node
+Matching kube_cluster records:
+Master                   Cluster Name     Node Name            Role       Status           Labels               Pod CIDR                 Last Changed
+------------------------ ---------------- -------------------- ---------- ---------------- -------------------- ------------------------ ----------------
+hostd-11:3.0.0.68        default          hostd-11             master     KubeletReady     node-role.kubernetes 10.224.0.0/24            14h:23m:46s
+                                                                                           .io/master: kubernet
+                                                                                           es.io/hostname:hostd
+                                                                                           -11 beta.kubernetes.
+                                                                                           io/arch:amd64 beta.k
+                                                                                           ubernetes.io/os:linu
+                                                                                           x
+hostd-11:3.0.0.68        default          hostd-13             worker     KubeletReady     kubernetes.io/hostna 10.224.3.0/24            14h:19m:56s
+                                                                                           me:hostd-13 beta.kub
+                                                                                           ernetes.io/arch:amd6
+                                                                                           4 beta.kubernetes.io
+                                                                                           /os:linux
+hostd-11:3.0.0.68        default          hostd-22             worker     KubeletReady     kubernetes.io/hostna 10.224.1.0/24            14h:24m:31s
+                                                                                           me:hostd-22 beta.kub
+                                                                                           ernetes.io/arch:amd6
+                                                                                           4 beta.kubernetes.io
+                                                                                           /os:linux
+hostd-11:3.0.0.68        default          hosts-11             worker     KubeletReady     kubernetes.io/hostna 10.224.2.0/24            14h:24m:16s
+                                                                                           me:hosts-11 beta.kub
+                                                                                           ernetes.io/arch:amd6
+                                                                                           4 beta.kubernetes.io
+                                                                                           /os:linux
+hostd-11:3.0.0.68        default          hosts-12             worker     KubeletReady     kubernetes.io/hostna 10.224.4.0/24            14h:24m:16s
+                                                                                           me:hosts-12 beta.kub
+                                                                                           ernetes.io/arch:amd6
+                                                                                           4 beta.kubernetes.io
+                                                                                           /os:linux
+hostd-11:3.0.0.68        default          hosts-23             worker     KubeletReady     kubernetes.io/hostna 10.224.5.0/24            14h:24m:16s
+                                                                                           me:hosts-23 beta.kub
+                                                                                           ernetes.io/arch:amd6
+                                                                                           4 beta.kubernetes.io
+                                                                                           /os:linux
+hostd-11:3.0.0.68        default          hosts-24             worker     KubeletReady     kubernetes.io/hostna 10.224.6.0/24            14h:24m:1s
+                                                                                           me:hosts-24 beta.kub
+                                                                                           ernetes.io/arch:amd6
+                                                                                           4 beta.kubernetes.io
+                                                                                           /os:linux
+</code></pre>
+
+<p>To display the kubelet or Docker version, append <code>components</code> to the
+above command. This example lists all the details of all master and
+worker nodes because the master&rsquo;s hostname — <em>hostd-11</em> in this case —
+was included in the query.</p>
+
+<pre><code>cumulus@hostd-11:~$ netq hostd-11 show kubernetes node components 
+Matching kube_cluster records:
+                         Master           Cluster Name         Node Name    Kubelet      KubeProxy         Container Runt
+                                                                                                           ime
+------------------------ ---------------- -------------------- ------------ ------------ ----------------- --------------
+hostd-11:3.0.0.68        default          hostd-11             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+hostd-11:3.0.0.68        default          hostd-13             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+hostd-11:3.0.0.68        default          hostd-22             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+hostd-11:3.0.0.68        default          hosts-11             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+hostd-11:3.0.0.68        default          hosts-12             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+hostd-11:3.0.0.68        default          hosts-23             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+hostd-11:3.0.0.68        default          hosts-24             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+</code></pre>
+
+<p>To view only the details for a worker node, specify the hostname at the
+end of the command after the <code>name</code> command:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq hostd-11 show kubernetes node components name hostd-13
+Matching kube_cluster records:
+                         Master           Cluster Name         Node Name    Kubelet      KubeProxy         Container Runt
+                                                                                                           ime
+------------------------ ---------------- -------------------- ------------ ------------ ----------------- --------------
+hostd-11:3.0.0.68        default          hostd-13             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
+</code></pre>
+
+<p>You can view information about the replica set:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq hostd-11 show kubernetes replica-set
+Matching kube_replica records:
+Master                   Cluster Name Namespace        Replication Name               Labels               Replicas                           Ready Replicas Last Changed
+------------------------ ------------ ---------------- ------------------------------ -------------------- ---------------------------------- -------------- ----------------
+hostd-11:3.0.0.68        default      default          influxdb-6cdb566dd             app:influx           1                                  1              14h:19m:28s
+hostd-11:3.0.0.68        default      default          nginx-8586cf59                 run:nginx            3                                  3              14h:24m:39s
+hostd-11:3.0.0.68        default      default          httpd-5456469bfd               app:httpd            1                                  1              14h:19m:28s
+hostd-11:3.0.0.68        default      kube-system      kube-dns-6f4fd4bdf             k8s-app:kube-dns     1                                  1              14h:27m:9s
+hostd-11:3.0.0.68        default      kube-system      calico-kube-controllers-d669cc k8s-app:calico-kube- 1                                  1              14h:27m:9s
+                                                       78f                            controllers
+</code></pre>
+
+<p>You can view information about the daemon set:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq hostd-11 show kubernetes daemon-set namespace default
+Matching kube_daemonset records:
+Master                   Cluster Name Namespace        Daemon Set Name                Labels               Desired Count Ready Count Last Changed
+------------------------ ------------ ---------------- ------------------------------ -------------------- ------------- ----------- ----------------
+hostd-11:3.0.0.68        default      default          cumulus-frr                    k8s-app:cumulus-frr  6             6           14h:25m:37s
+</code></pre>
+
+<p>You can view information about the pod:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq hostd-11 show kubernetes pod namespace default label nginx
+Matching kube_pod records:
+Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed
+------------------------ ------------ -------------------- ---------------- ------------ -------------------- -------- ------------------------ ----------------
+hostd-11:3.0.0.68        default      nginx-8586cf59-26pj5 10.244.9.193     hosts-24     run:nginx            Running  nginx:6e2b65070c86       14h:25m:24s
+hostd-11:3.0.0.68        default      nginx-8586cf59-c82ns 10.244.40.128    hosts-12     run:nginx            Running  nginx:01b017c26725       14h:25m:24s
+hostd-11:3.0.0.68        default      nginx-8586cf59-wjwgp 10.244.49.64     hostd-22     run:nginx            Running  nginx:ed2b4254e328       14h:25m:24s
+ 
+cumulus@hostd-11:~$ netq hostd-11 show kubernetes pod namespace default label app
+Matching kube_pod records:
+Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed
+------------------------ ------------ -------------------- ---------------- ------------ -------------------- -------- ------------------------ ----------------
+hostd-11:3.0.0.68        default      httpd-5456469bfd-bq9 10.244.49.65     hostd-22     app:httpd            Running  httpd:79b7f532be2d       14h:20m:34s
+                                      zm
+hostd-11:3.0.0.68        default      influxdb-6cdb566dd-8 10.244.162.128   hostd-13     app:influx           Running  influxdb:15dce703cdec    14h:20m:34s
+                                      9lwn
+</code></pre>
+
+<p>You can view information about the replication controller:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq hostd-11 show kubernetes replication-controller 
+No matching kube_replica records found
+</code></pre>
+
+<p>You can view information about a deployment:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq hostd-11 show kubernetes deployment name nginx
+Matching kube_deployment records:
+Master                   Namespace       Name                 Replicas                           Ready Replicas Labels                         Last Changed
+------------------------ --------------- -------------------- ---------------------------------- -------------- ------------------------------ ----------------
+hostd-11:3.0.0.68        default         nginx                3                                  3              run:nginx                      14h:27m:20s
+</code></pre>
+
+<p>You can search for information using labels as well. The label search is
+similar to a &ldquo;contains&rdquo; regular expression search. In the following
+example, we are looking for all nodes that contain <em>kube</em> in the
+replication set name or label:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq hostd-11 show kubernetes replica-set label kube
+Matching kube_replica records:
+Master                   Cluster Name Namespace        Replication Name               Labels               Replicas                           Ready Replicas Last Changed
+------------------------ ------------ ---------------- ------------------------------ -------------------- ---------------------------------- -------------- ----------------
+hostd-11:3.0.0.68        default      kube-system      kube-dns-6f4fd4bdf             k8s-app:kube-dns     1                                  1              14h:30m:41s
+hostd-11:3.0.0.68        default      kube-system      calico-kube-controllers-d669cc k8s-app:calico-kube- 1                                  1              14h:30m:41s
+                                                       78f                            controllers
+</code></pre>
+
+<h3 id="span-view-container-connectivity-span"><span>View Container Connectivity</span></h3>
+
+<p>You can view the connectivity graph of a Kubernetes pod, seeing its
+replica set, deployment or service level. The impact/connectivity graph
+starts with the server where the pod is deployed, and shows the peer for
+each server interface.</p>
+
+<pre><code>cumulus@hostd-11:~$ netq hostd-11 show kubernetes deployment name nginx connectivity
+nginx -- nginx-8586cf59-wjwgp -- hostd-22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                              -- hostd-22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                              -- hostd-22:swp3:NetQBond-2 -- swp20:NetQBond-20:noc-pr
+                              -- hostd-22:swp4:NetQBond-2 -- swp20:NetQBond-20:noc-se
+      -- nginx-8586cf59-c82ns -- hosts-12:swp2:NetQBond-1 -- swp23:NetQBond-23:noc-pr
+                              -- hosts-12:swp3:NetQBond-1 -- swp23:NetQBond-23:noc-se
+                              -- hosts-12:swp1:swp1 -- swp6:VlanA-1:tor-1
+      -- nginx-8586cf59-26pj5 -- hosts-24:swp2:NetQBond-1 -- swp29:NetQBond-29:noc-pr
+                              -- hosts-24:swp3:NetQBond-1 -- swp29:NetQBond-29:noc-se
+                              -- hosts-24:swp1:swp1 -- swp8:VlanA-1:tor-2
+</code></pre>
+
+<h3 id="span-view-kubernetes-service-connectivity-and-impact-span"><span>View Kubernetes Service Connectivity and Impact</span></h3>
+
+<p>You can show the Kubernetes services in a cluster:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq show kubernetes service 
+Matching kube_service records:
+Master                   Namespace        Service Name         Labels       Type       Cluster IP       External IP      Ports                               Last Changed
+------------------------ ---------------- -------------------- ------------ ---------- ---------------- ---------------- ----------------------------------- ----------------
+hostd-11:3.0.0.68        default          kubernetes                        ClusterIP  10.96.0.1                         TCP:443                             2d:13h:45m:30s
+hostd-11:3.0.0.68        kube-system      calico-etcd          k8s-app:cali ClusterIP  10.96.232.136                     TCP:6666                            2d:13h:45m:27s
+                                                               co-etcd
+hostd-11:3.0.0.68        kube-system      kube-dns             k8s-app:kube ClusterIP  10.96.0.10                        UDP:53 TCP:53                       2d:13h:45m:28s
+                                                               -dns
+hostd-12:3.0.0.69        default          kubernetes                        ClusterIP  10.96.0.1                         TCP:443                             2d:13h:46m:24s
+hostd-12:3.0.0.69        kube-system      calico-etcd          k8s-app:cali ClusterIP  10.96.232.136                     TCP:6666                            2d:13h:46m:20s
+                                                               co-etcd
+hostd-12:3.0.0.69        kube-system      kube-dns             k8s-app:kube ClusterIP  10.96.0.10                        UDP:53 TCP:53                       2d:13h:46m:20s
+                                                               -dns
+</code></pre>
+
+<p>And get detailed information about a Kubernetes service:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq show kubernetes service name calico-etcd 
+Matching kube_service records:
+Master                   Namespace        Service Name         Labels       Type       Cluster IP       External IP      Ports                               Last Changed
+------------------------ ---------------- -------------------- ------------ ---------- ---------------- ---------------- ----------------------------------- ----------------
+hostd-11:3.0.0.68        kube-system      calico-etcd          k8s-app:cali ClusterIP  10.96.232.136                     TCP:6666                            2d:13h:48m:10s
+                                                               co-etcd
+hostd-12:3.0.0.69        kube-system      calico-etcd          k8s-app:cali ClusterIP  10.96.232.136                     TCP:6666                            2d:13h:49m:3s
+                                                               co-etcd
+</code></pre>
+
+<p>To see the connectivity of a given Kubernetes service, run:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq show kubernetes service name calico-etcd connectivity 
+calico-etcd -- calico-etcd-pfg9r -- hostd-11:swp1:torbond1 -- swp6:hostbond2:torc-11
+                                 -- hostd-11:swp2:torbond1 -- swp6:hostbond2:torc-12
+                                 -- hostd-11:swp3:NetQBond-2 -- swp16:NetQBond-16:noc-pr
+                                 -- hostd-11:swp4:NetQBond-2 -- swp16:NetQBond-16:noc-se
+calico-etcd -- calico-etcd-btqgt -- hostd-12:swp1:torbond1 -- swp7:hostbond3:torc-11
+                                 -- hostd-12:swp2:torbond1 -- swp7:hostbond3:torc-12
+                                 -- hostd-12:swp3:NetQBond-2 -- swp17:NetQBond-17:noc-pr
+                                 -- hostd-12:swp4:NetQBond-2 -- swp17:NetQBond-17:noc-se
+</code></pre>
+
+<p>To see the impact of a given Kubernetes service, run:</p>
+
+<pre><code>cumulus@hostd-11:~$ netq hostd-11 show impact kubernetes service name calico-etcd 
+calico-etcd -- calico-etcd-pfg9r -- hostd-11:swp1:torbond1 -- swp6:hostbond2:torc-11
+                                 -- hostd-11:swp2:torbond1 -- swp6:hostbond2:torc-12
+                                 -- hostd-11:swp3:NetQBond-2 -- swp16:NetQBond-16:noc-pr
+                                 -- hostd-11:swp4:NetQBond-2 -- swp16:NetQBond-16:noc-se
+</code></pre>
+
+<h3 id="span-view-kubernetes-cluster-configuration-in-the-past-span"><span>View Kubernetes Cluster Configuration in the Past</span></h3>
+
+<p>You can use the <a href="/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues">&ldquo;time machine&rdquo;
+features</a>
+of NetQ on a Kubernetes cluster, using the <code>around</code> and <code>changes</code>
+commands to go back in time to check the network status and identify any
+changes that occurred on the network.</p>
+
+<p>This example shows the current state of the network. Notice there is a
+node named <em>hosts-23</em>. hosts-23 is there because the node <em>hostd-22</em>
+went down and Kubernetes spun up a third replica on a different host to
+satisfy the deployment requirement.</p>
+
+<pre><code>cumulus@redis-1:~$ netq hostd-11 show kubernetes deployment name nginx connectivity
+nginx -- nginx-8586cf59-fqtnj -- hosts-12:swp2:NetQBond-1 -- swp23:NetQBond-23:noc-pr
+                              -- hosts-12:swp3:NetQBond-1 -- swp23:NetQBond-23:noc-se
+                              -- hosts-12:swp1:swp1 -- swp6:VlanA-1:tor-1
+      -- nginx-8586cf59-8g487 -- hosts-24:swp2:NetQBond-1 -- swp29:NetQBond-29:noc-pr
+                              -- hosts-24:swp3:NetQBond-1 -- swp29:NetQBond-29:noc-se
+                              -- hosts-24:swp1:swp1 -- swp8:VlanA-1:tor-2
+      -- nginx-8586cf59-2hb8t -- hosts-23:swp1:swp1 -- swp7:VlanA-1:tor-2
+                              -- hosts-23:swp2:NetQBond-1 -- swp28:NetQBond-28:noc-pr
+                              -- hosts-23:swp3:NetQBond-1 -- swp28:NetQBond-28:noc-se
+</code></pre>
+
+<p>You can see this by going back in time 10 minutes. <em>hosts-23</em> was not
+present, whereas <em>hostd-22</em> <strong>was</strong> present:</p>
+
+<pre><code>cumulus@redis-1:~$ netq hostd-11 show kubernetes deployment name nginx connectivity around 10m
+nginx -- nginx-8586cf59-fqtnj -- hosts-12:swp2:NetQBond-1 -- swp23:NetQBond-23:noc-pr
+                              -- hosts-12:swp3:NetQBond-1 -- swp23:NetQBond-23:noc-se
+                              -- hosts-12:swp1:swp1 -- swp6:VlanA-1:tor-1
+      -- nginx-8586cf59-2xxs4 -- hostd-22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                              -- hostd-22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                              -- hostd-22:swp3:NetQBond-2 -- swp20:NetQBond-20:noc-pr
+                              -- hostd-22:swp4:NetQBond-2 -- swp20:NetQBond-20:noc-se
+      -- nginx-8586cf59-8g487 -- hosts-24:swp2:NetQBond-1 -- swp29:NetQBond-29:noc-pr
+                              -- hosts-24:swp3:NetQBond-1 -- swp29:NetQBond-29:noc-se
+                              -- hosts-24:swp1:swp1 -- swp8:VlanA-1:tor-2
+ 
+</code></pre>
+
+<p>You can determine the impact on the Kubernetes deployment in the event a
+host or switch goes down. The output is color coded (not shown in the
+example below) so you can clearly see the impact: green shows no impact,
+yellow shows partial impact, and red shows full impact.</p>
+
+<pre><code>cumulus@hostd-11:~$ netq torc-21 show impact kubernetes deployment name nginx
+nginx -- nginx-8586cf59-wjwgp -- hostd-22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                              -- hostd-22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                              -- hostd-22:swp3:NetQBond-2 -- swp20:NetQBond-20:noc-pr
+                              -- hostd-22:swp4:NetQBond-2 -- swp20:NetQBond-20:noc-se
+      -- nginx-8586cf59-c82ns -- hosts-12:swp2:NetQBond-1 -- swp23:NetQBond-23:noc-pr
+                              -- hosts-12:swp3:NetQBond-1 -- swp23:NetQBond-23:noc-se
+                              -- hosts-12:swp1:swp1 -- swp6:VlanA-1:tor-1
+      -- nginx-8586cf59-26pj5 -- hosts-24:swp2:NetQBond-1 -- swp29:NetQBond-29:noc-pr
+                              -- hosts-24:swp3:NetQBond-1 -- swp29:NetQBond-29:noc-se
+                              -- hosts-24:swp1:swp1 -- swp8:VlanA-1:tor-2
+cumulus@hostd-11:~$ netq hosts-12 show impact kubernetes deployment name nginx
+nginx -- nginx-8586cf59-wjwgp -- hostd-22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                              -- hostd-22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                              -- hostd-22:swp3:NetQBond-2 -- swp20:NetQBond-20:noc-pr
+                              -- hostd-22:swp4:NetQBond-2 -- swp20:NetQBond-20:noc-se
+      -- nginx-8586cf59-c82ns -- hosts-12:swp2:NetQBond-1 -- swp23:NetQBond-23:noc-pr
+                              -- hosts-12:swp3:NetQBond-1 -- swp23:NetQBond-23:noc-se
+                              -- hosts-12:swp1:swp1 -- swp6:VlanA-1:tor-1
+      -- nginx-8586cf59-26pj5 -- hosts-24:swp2:NetQBond-1 -- swp29:NetQBond-29:noc-pr
+                              -- hosts-24:swp3:NetQBond-1 -- swp29:NetQBond-29:noc-se
+</code></pre>
+
+<h2 id="span-use-netq-with-docker-swarm-span"><span>Use NetQ with Docker Swarm</span></h2>
+
+<p>The NetQ Agent parses the following Docker events:</p>
+
+<ul>
+<li><p>Image: pull and delete</p></li>
+
+<li><p>Container: run, stop, start, restart, attach and detach</p></li>
+
+<li><p>Network: create, connect, disconnect and destroy</p></li>
+</ul>
+
+<p>Currently, the NetQ Agent does not support:</p>
+
+<ul>
+<li><p>Monitoring Docker volume mount and unmount events</p></li>
+
+<li><p>Plugin install and deletes</p></li>
+
+<li><p>Third party network configuration through plugins like Calico</p></li>
+</ul>
+
+<h3 id="span-requirements-span-1"><span>Requirements</span></h3>
+
+<p>The NetQ Agent supports Docker version 1.13 (Jan 2017), 17.03 or later,
+including Docker Swarm.</p>
+
+<p>Due to the higher memory requirements to run containers, Cumulus
+Networks recommends you run the NetQ Telemetry Server on a host with at
+least 32G RAM. For more information, read the <a href="/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues">How Far Back in Time Can
+You
+Travel?</a>
+topic.</p>
+
+<h3 id="span-command-summary-span-1"><span>Command Summary</span></h3>
+
+<p>NetQ provides a set of commands to monitor Docker configurations,
+including the ability to monitor network, service, Swarm cluster,
+network, and nodes:</p>
+
+<pre><code>netq &lt;hostname&gt; show docker container adjacent [interfaces &lt;remote-physical-interface&gt;] [around &lt;text-time&gt;] [json]
+ 
+netq [&lt;hostname&gt;] show docker summary [&lt;docker-version&gt;] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show docker summary [&lt;docker-version&gt;] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq [&lt;hostname&gt;] show docker network [name &lt;network-name&gt; | &lt;ipv4/prefixlen&gt;] [brief] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show docker network [name &lt;network-name&gt; | &lt;ipv4/prefixlen&gt;] [brief] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq [&lt;hostname&gt;] show docker network driver &lt;network-driver&gt; [brief] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show docker network driver &lt;network-driver&gt; [brief] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq [&lt;hostname&gt;] show docker service [name &lt;swarm-service-name&gt; | mode &lt;mode&gt;] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show docker service [name &lt;swarm-service-name&gt; | mode &lt;mode&gt;] connectivity [vrf &lt;vrf&gt;] [around &lt;text-time&gt;] [json]
+netq &lt;hostname&gt; show impact docker service [&lt;swarm-service-name&gt;] [vrf &lt;vrf&gt;] [around &lt;text-time&gt;] [json]
+ 
+netq [&lt;hostname&gt;] show docker swarm cluster [node-name &lt;cluster-node&gt;] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show docker swarm cluster [&lt;cluster-name&gt;] [node-name &lt;cluster-node&gt;] [around &lt;text-time&gt;] [json]
+netq &lt;hostname&gt; show docker swarm cluster changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq &lt;hostname&gt; show docker swarm cluster [&lt;cluster-name&gt;] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq [&lt;hostname&gt;] show docker swarm network [&lt;swarm-service-name&gt;] [around &lt;text-time&gt;] [json]
+netq &lt;hostname&gt; show docker swarm network [&lt;swarm-service-name&gt;] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq [&lt;hostname&gt;] show docker swarm node [&lt;node-name&gt; | role &lt;role&gt;] [cluster &lt;cluster-name&gt;] [around &lt;text-time&gt;] [json]
+netq &lt;hostname&gt; show docker swarm node [&lt;node-name&gt; | role &lt;role&gt;] [cluster &lt;cluster-name&gt;] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+</code></pre>
+
+<h3 id="span-id-src-10453489-monitorcontainerenvironments-enable-class-confluence-anchor-link-span-span-enable-docker-container-monitoring-span"><span id="src-10453489_MonitorContainerEnvironments-enable" class="confluence-anchor-link"></span><span>Enable Docker Container Monitoring</span></h3>
+
+<p>For NetQ to monitor the Docker containers on a host, you must configure
+the following on the host:</p>
+
+<ol>
+<li><p>Configure the host to point to the telemetry server by its IP
+address. Refer to the <a href="/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ">Install
+NetQ</a>
+topic for details.</p></li>
+
+<li><p>Enable Docker monitoring by NetQ. You can specify a polling period
+between 10 and 120 seconds; 15 seconds is the default.</p>
+
+<pre><code>cumulus@hostd-11:~$ netq config add agent docker-monitor poll-period 20
+Successfully added docker monitor. Please restart netq-agent.
+</code></pre></li>
+
+<li><p>Restart the NetQ agent:</p>
+
+<pre><code>cumulus@server01:~$ netq config restart agent
+</code></pre></li>
+</ol>
+
+<h3 id="span-view-container-summary-information-span"><span>View Container Summary Information</span></h3>
+
+<p>To see a high level view of the network, including the number of
+containers installed and running on the network, run the <code>netq show
+docker summary</code> command:</p>
+
+<pre><code>cumulus@host:~$ netq show docker summary 
+Hostname    Version     Installed    Running    Images    Swarm Cluster    Networks
+----------  ----------  -----------  ---------  --------  ---------------  ----------
+exit01      17.06.0-ce           26         26         1                            3
+exit02      17.06.0-ce            1          0         3                            3
+server01    17.06.0-ce           14         14         4  default                   5
+server02    17.06.0-ce            0          0         0                            3
+server03    17.06.0-ce            0          0         0                            3
+server04    17.06.0-ce            0          0         0                            3
+server01    17.06.0-ce           13         13         1  default                   3
+server02    17.06.0-ce            0          0         0                            3
+</code></pre>
+
+<h3 id="span-identify-containers-on-the-network-span"><span>Identify Containers on the Network</span></h3>
+
+<p>To view the different container networks and the containers in them, run
+<code>netq show docker network</code>:</p>
+
+<pre><code>cumulus@host:~$ netq show docker network
+Network Name     Hostname   subnet          gateway         ipv6      ip masq. 
+---------------- ---------- --------------- --------------- --------- -------- 
+bridge           exit01     172.17.0.0/16                   Disabled  True     
+bridge           exit02     172.17.0.0/16                   Disabled  True     
+bridge           server01   172.17.0.0/16                   Disabled  True     
+bridge           server02   172.17.0.0/16                   Disabled  True     
+bridge           server03   172.17.0.0/16                   Disabled  True     
+bridge           server04   172.17.0.0/16                   Disabled  True     
+bridge           server01   172.17.0.0/16                   Disabled  True     
+bridge           server02   172.17.0.0/16                   Disabled  True     
+bridge           server03   172.17.0.0/16                   Disabled  True     
+bridge           server04   172.17.0.0/16                   Disabled  True    
+host             exit01                                     Disabled  False    
+host             exit02                                     Disabled  False    
+host             server01                                   Disabled  False    
+host             server02                                   Disabled  False    
+host             server03                                   Disabled  False   
+host             server04                                   Disabled  False   
+host             server01                                   Disabled  False    
+host             server02                                   Disabled  False    
+host             server03                                   Disabled  False    
+host             server04                                   Disabled  False    
+none             exit01                                     Disabled  False    
+none             exit02                                     Disabled  False    
+none             server01                                   Disabled  False    
+none             server02                                   Disabled  False    
+none             server03                                   Disabled  False    
+none             server04                                   Disabled  False    
+none             server01                                   Disabled  False    
+none             server02                                   Disabled  False    
+none             server03                                   Disabled  False    
+none             server04                                   Disabled  False    
+</code></pre>
+
+<h3 id="span-view-deployed-container-network-drivers-span"><span>View Deployed Container Network Drivers</span></h3>
+
+<p>To view all the hosts using a specific container network driver, use
+<code>netq show docker network driver NAME</code>. Use the <code>brief</code> keyword for a
+shorter summary. Docker supports many network drivers.</p>
+
+<pre><code>cumulus@host:~$ netq show docker network driver bridge brief 
+Network Name     Hostname   Driver    subnet          gateway         IP Masq  Containers
+---------------- ---------- --------- --------------- --------------- -------- -------------------------
+bridge           exit01     bridge    172.17.0.0/16                   True     Name:netcat-8085 IPv4:172
+                                                                               .17.0.7/16,
+                                                                               Name:netcat-8082 IPv4:172
+                                                                               .17.0.4/16,
+                                                                               Name:netcat-8083 IPv4:172
+                                                                               .17.0.5/16,
+                                                                               Name:netcat-8089 IPv4:172
+                                                                               .17.0.11/16,
+                                                                               Name:netcat-8081 IPv4:172
+                                                                               .17.0.3/16,
+                                                                               Name:netcat-8084 IPv4:172
+                                                                               .17.0.6/16,
+                                                                               Name:netcat-8090 IPv4:172
+                                                                               .17.0.12/16,
+                                                                               Name:netcat-8080 IPv4:172
+                                                                               .17.0.2/16,
+                                                                               Name:netcat-8091 IPv4:172
+                                                                               .17.0.13/16,
+                                                                               Name:netcat-8092 IPv4:172
+                                                                               .17.0.14/16,
+                                                                               Name:netcat-8088 IPv4:172
+                                                                               .17.0.10/16,
+                                                                               Name:netcat-8087 IPv4:172
+                                                                               .17.0.9/16,
+                                                                               Name:netcat-8086 IPv4:172
+                                                                               .17.0.8/16
+bridge           exit02     bridge    172.17.0.0/16                   True     
+bridge           server01   bridge    172.17.0.0/16                   True     
+bridge           server02   bridge    172.17.0.0/16                   True     
+bridge           server03   bridge    172.17.0.0/16                   True     
+bridge           server04   bridge    172.17.0.0/16                   True     
+bridge           server01   bridge    172.17.0.0/16                   True     Name:netcat-8082 IPv4:172
+                                                                               .17.0.4/16,
+                                                                               Name:netcat-8085 IPv4:172
+                                                                               .17.0.7/16,
+                                                                               Name:netcat-8083 IPv4:172
+                                                                               .17.0.5/16,
+                                                                               Name:netcat-8086 IPv4:172
+                                                                               .17.0.8/16,
+                                                                               Name:netcat-8089 IPv4:172
+                                                                               .17.0.11/16,
+                                                                               Name:netcat-8084 IPv4:172
+                                                                               .17.0.6/16,
+                                                                               Name:netcat-8092 IPv4:172
+                                                                               .17.0.14/16,
+                                                                               Name:netcat-8087 IPv4:172
+                                                                               .17.0.9/16,
+                                                                               Name:netcat-8080 IPv4:172
+                                                                               .17.0.2/16,
+                                                                               Name:netcat-8081 IPv4:172
+                                                                               .17.0.3/16,
+                                                                               Name:netcat-8090 IPv4:172
+                                                                               .17.0.12/16,
+                                                                               Name:netcat-8091 IPv4:172
+                                                                               .17.0.13/16,
+                                                                               Name:netcat-8088 IPv4:172
+                                                                               .17.0.10/16
+bridge           server02   bridge    172.17.0.0/16                   True
+bridge           server03   bridge    172.17.0.0/16                   True
+bridge           server04   bridge    172.17.0.0/16                   True
+</code></pre>
+
+<h3 id="span-view-all-containers-in-a-network-span"><span>View All Containers in a Network</span></h3>
+
+<p>To see all the containers on a given container network, run the
+following command, where the container network is named <em>host</em>:</p>
+
+<pre><code>cumulus@host:~$ netq show docker container network host 
+Container Name       Hostname   Container IP      IP Masq  Network Name   Service Name    UpTime
+-------------------- ---------- ----------------- -------- -------------- --------------- ---------------
+netcat-9080          exit01     45.0.0.17/26,     False    host                           0:29:42
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9081          exit01     45.0.0.17/26,     False    host                           0:29:41
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9082          exit01     45.0.0.17/26,     False    host                           0:29:42
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9083          exit01     45.0.0.17/26,     False    host                           0:29:39
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9084          exit01     45.0.0.17/26,     False    host                           0:29:40
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9085          exit01     45.0.0.17/26,     False    host                           0:29:40
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9086          exit01     45.0.0.17/26,     False    host                           0:29:39
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9087          exit01     45.0.0.17/26,     False    host                           0:29:38
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9088          exit01     45.0.0.17/26,     False    host                           0:29:37
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9089          exit01     45.0.0.17/26,     False    host                           0:29:38
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9090          exit01     45.0.0.17/26,     False    host                           0:29:36
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9091          exit01     45.0.0.17/26,     False    host                           0:29:37
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9092          exit01     45.0.0.17/26,     False    host                           0:29:38
+                                27.0.0.3/32,
+                                192.168.0.15/24
+</code></pre>
+
+<p>The Service Name column is populated when a container is created by
+Docker Swarm for a service:</p>
+
+<pre><code>cumulus@leaf01:mgmt-vrf:~$ netq show docker container
+Matching container records are:
+Container Name       Hostname   Container IP      IP Masq  Network Name   Service Name    UpTime
+-------------------- ---------- ----------------- -------- -------------- --------------- ---------------
+Web.3.xm2jjbe1l60eje hostd-11   10.255.0.9        False    ingress        Web             16:30:47 
+sgpx8rlq5pf 
+redis2.nh7ouztl2ap79 hostd-21   172.17.0.2        True     bridge         redis2          16:36:52 
+2iyycl5bukfh.lznwsxh
+8jepg65hr16kccxeau 
+redis2.rx8uywzrkm9pj hostd-11   172.17.0.2        True     bridge         redis2          16:36:52 
+e9a81613gfpm.s6fhc09
+1xwoqmkjdi3y1kxm7z 
+Web.1.m72ghox4y2bfeg hosts-21   10.255.0.7        False    ingress        Web             16:30:47
+f1ukeocjhgn
+Web.2.9t9yuv9za28taz hosts-11   10.255.0.8        False    ingress        Web             16:30:46
+3mee6pr8d11
+Web.3.kv0icnnh7fxb45 hosts-21   10.255.0.11       False    ingress        Web             14:31:58
+</code></pre>
+
+<h3 id="span-view-container-adjacency-span"><span>View Container Adjacency</span></h3>
+
+<p>NetQ can list all the containers running on hosts adjacent to a top of
+rack switch. This helps in analyzing what impact the ToR switch can have
+on an application. Run <code>netq NODE show docker container adjacent</code>to
+identify all the containers that may have been launched on hosts
+adjacent to a given node:</p>
+
+<pre><code>cumulus@leaf01:~$ netq leaf01 show docker container adjacent
+Interface            Peer Node  Peer Interface        Container Name       IP                   Network    Service Name
+-------------------- ---------- --------------------- -------------------- -------------------- ---------- ---------------
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9090                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9082                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9091                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9086                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9081                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9083                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9087                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9088                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9085                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9080                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9084                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9089                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9092                               host
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8089          172.17.0.11          bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8084          172.17.0.6           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8092          172.17.0.14          bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8083          172.17.0.5           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8085          172.17.0.7           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8081          172.17.0.3           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8080          172.17.0.2           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8086          172.17.0.8           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8088          172.17.0.10          bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8082          172.17.0.4           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8091          172.17.0.13          bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8090          172.17.0.12          bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8087          172.17.0.9           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8091          172.17.0.13          bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8083          172.17.0.5           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8087          172.17.0.9           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8082          172.17.0.4           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8080          172.17.0.2           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8092          172.17.0.14          bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8086          172.17.0.8           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8084          172.17.0.6           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8088          172.17.0.10          bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8090          172.17.0.12          bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8085          172.17.0.7           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8089          172.17.0.11          bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8081          172.17.0.3           bridge
+</code></pre>
+
+<p>You can filter this output for a given interface:</p>
+
+<pre><code>cumulus@switch:~$ netq leaf01 show docker container adjacent interfaces swp6
+Interface            Peer Node  Peer Interface        Container Name       IP                   Network    Service Name
+-------------------- ---------- --------------------- -------------------- -------------------- ---------- ---------------
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9090                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9082                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9091                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9086                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9081                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9083                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9087                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9088                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9085                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9080                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9084                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9089                               host                                
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9092                               host
+</code></pre>
+
+<h3 id="span-show-container-specific-information-span"><span>Show Container-Specific Information</span></h3>
+
+<p>You can see information about a given container by running <code>netq show
+docker container name NAME</code>:</p>
+
+<pre><code>cumulus@host:~$ netq show docker container name netcat-9092
+Name                 Node       IP                IP Masq. Network        Service Name    Up time
+-------------------- ---------- ----------------- -------- -------------- --------------- ---------------
+netcat-9092          exit01     45.0.0.17/26,     False    host                           0:34:15
+                                27.0.0.3/32,
+                                192.168.0.15/24
+</code></pre>
+
+<h3 id="span-show-containers-with-a-specific-image-span"><span>Show Containers with a Specific Image</span></h3>
+
+<p>To search for all the containers on the network with a specific Docker
+image, run <code>netq show docker container image IMAGE_NAME</code>:</p>
+
+<pre><code>cumulus@host:~$ netq show docker container image chilcano/netcat:jessie 
+Name                 Node       IP                IP Masq. Network        Service Name    Up time
+-------------------- ---------- ----------------- -------- -------------- --------------- ---------------
+netcat-8080          exit01     172.17.0.2        True     bridge                         0:32:09
+netcat-8080          server01   172.17.0.2        True     bridge                         0:23:11
+netcat-8081          exit01     172.17.0.3        True     bridge                         0:32:07
+netcat-8081          server01   172.17.0.3        True     bridge                         0:23:10
+netcat-8082          exit01     172.17.0.4        True     bridge                         0:32:08
+netcat-8082          server01   172.17.0.4        True     bridge                         0:23:08
+netcat-8083          exit01     172.17.0.5        True     bridge                         0:32:07
+netcat-8083          server01   172.17.0.5        True     bridge                         0:23:07
+netcat-8084          exit01     172.17.0.6        True     bridge                         0:32:07
+netcat-8084          server01   172.17.0.6        True     bridge                         0:23:09
+netcat-8085          exit01     172.17.0.7        True     bridge                         0:32:05
+netcat-8085          server01   172.17.0.7        True     bridge                         0:23:06
+netcat-8086          exit01     172.17.0.8        True     bridge                         0:32:06
+netcat-8086          server01   172.17.0.8        True     bridge                         0:23:06
+netcat-8087          exit01     172.17.0.9        True     bridge                         0:32:05
+netcat-8087          server01   172.17.0.9        True     bridge                         0:23:06
+netcat-8088          exit01     172.17.0.10       True     bridge                         0:32:04
+netcat-8088          server01   172.17.0.10       True     bridge                         0:23:06
+netcat-8089          exit01     172.17.0.11       True     bridge                         0:32:02
+netcat-8089          server01   172.17.0.11       True     bridge                         0:23:03
+netcat-8090          exit01     172.17.0.12       True     bridge                         0:32:01
+netcat-8090          server01   172.17.0.12       True     bridge                         0:23:05
+netcat-8091          exit01     172.17.0.13       True     bridge                         0:32:03
+netcat-8091          server01   172.17.0.13       True     bridge                         0:23:04
+netcat-8092          exit01     172.17.0.14       True     bridge                         0:31:59
+netcat-8092          server01   172.17.0.14       True     bridge                         0:23:03
+netcat-9080          exit01     45.0.0.17/26,     False    host                           0:31:51
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9081          exit01     45.0.0.17/26,     False    host                           0:31:51
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9082          exit01     45.0.0.17/26,     False    host                           0:31:52
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9083          exit01     45.0.0.17/26,     False    host                           0:31:49
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9084          exit01     45.0.0.17/26,     False    host                           0:31:50
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9085          exit01     45.0.0.17/26,     False    host                           0:31:50
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9086          exit01     45.0.0.17/26,     False    host                           0:31:48
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9087          exit01     45.0.0.17/26,     False    host                           0:31:48
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9088          exit01     45.0.0.17/26,     False    host                           0:31:47
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9089          exit01     45.0.0.17/26,     False    host                           0:31:48
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9090          exit01     45.0.0.17/26,     False    host                           0:31:46
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9091          exit01     45.0.0.17/26,     False    host                           0:31:47
+                                27.0.0.3/32,
+                                192.168.0.15/24
+netcat-9092          exit01     45.0.0.17/26,     False    host                           0:31:47
+                                27.0.0.3/32,
+                                192.168.0.15/24
+</code></pre>
+
+<h3 id="span-show-container-connectivity-span"><span>Show Container Connectivity</span></h3>
+
+<p>Run <code>netq HOST show docker container network NAME connectivity</code> to
+determine how a particular container is attached to a network. The
+output tells you the host where the container was launched, adjacent
+nodes, and adjacent ports.</p>
+
+<pre><code>cumulus@leaf01:~$ netq server01 show docker container network host connectivity 
+Name            Swarm Service Cont IP         Network    Node       Port                 Peer Node  Peer Port
+--------------- ------------- --------------- ---------- ---------- -------------------- ---------- --------------------
+netcat-9080                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
+netcat-9080                                   host       server01   swp3:NetQBond-1      noc-se     swp21:NetQBond-19
+netcat-9080                                   host       server01   swp1:swp1            tor-1      Local Node tor-1 and
+                                                                                                    Ports swp6 &lt;==&gt; Remo
+                                                                                                    te  Node/s hosts-11
+                                                                                                    and Ports swp1
+netcat-9081                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
+netcat-9081                                   host       server01   swp3:NetQBond-1      noc-se     swp21:NetQBond-19
+netcat-9081                                   host       server01   swp1:swp1            tor-1      Local Node tor-1 and
+                                                                                                    Ports swp6 &lt;==&gt; Remo
+                                                                                                    te  Node/s hosts-11
+                                                                                                    and Ports swp1
+netcat-9082                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
+netcat-9082                                   host       server01   swp3:NetQBond-1      noc-se     swp21:NetQBond-19
+netcat-9082                                   host       server01   swp1:swp1            tor-1      Local Node tor-1 and
+                                                                                                    Ports swp6 &lt;==&gt; Remo
+                                                                                                    te  Node/s hosts-11
+                                                                                                    and Ports swp1
+netcat-9083                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
+netcat-9083                                   host       server01   swp3:NetQBond-1      noc-se     swp21:NetQBond-19
+netcat-9083                                   host       server01   swp1:swp1            tor-1      Local Node tor-1 and
+                                                                                                    Ports swp6 &lt;==&gt; Remo
+                                                                                                    te  Node/s hosts-11
+                                                                                                    and Ports swp1
+netcat-9084                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
+netcat-9084                                   host       server01   swp3:NetQBond-1      noc-se     swp21:NetQBond-19
+netcat-9084                                   host       server01   swp1:swp1            tor-1      Local Node tor-1 and
+                                                                                                    Ports swp6 &lt;==&gt; Remo
+                                                                                                    te  Node/s hosts-11
+                                                                                                    and Ports swp1
+netcat-9085                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
+netcat-9085                                   host       server01   swp3:NetQBond-1      noc-se     swp21:NetQBond-19
+netcat-9085                                   host       server01   swp1:swp1            tor-1      Local Node tor-1 and
+                                                                                                    Ports swp6 &lt;==&gt; Remo
+                                                                                                    te  Node/s hosts-11
+                                                                                                    and Ports swp1
+netcat-9086                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
+netcat-9086                                   host       server01   swp3:NetQBond-1      noc-se     swp21:NetQBond-19
+netcat-9086                                   host       server01   swp1:swp1            tor-1      Local Node tor-1 and
+                                                                                                    Ports swp6 &lt;==&gt; Remo
+                                                                                                    te  Node/s hosts-11
+                                                                                                    and Ports swp1
+netcat-9087                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
+netcat-9087                                   host       server01   swp3:NetQBond-1      noc-se     swp21:NetQBond-19
+netcat-9087                                   host       server01   swp1:swp1            tor-1      Local Node tor-1 and
+                                                                                                    Ports swp6 &lt;==&gt; Remo
+                                                                                                    te  Node/s hosts-11
+                                                                                                    and Ports swp1
+netcat-9088                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
+netcat-9088                                   host       server01   swp3:NetQBond-1      noc-se     swp21:NetQBond-19
+netcat-9088                                   host       server01   swp1:swp1            tor-1      Local Node tor-1 and
+                                                                                                    Ports swp6 &lt;==&gt; Remo
+                                                                                                    te  Node/s hosts-11
+                                                                                                    and Ports swp1
+netcat-9089                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
+netcat-9089                                   host       server01   swp3:NetQBond-1      noc-se     swp21:NetQBond-19
+netcat-9089                                   host       server01   swp1:swp1            tor-1      Local Node tor-1 and
+                                                                                                    Ports swp6 &lt;==&gt; Remo
+                                                                                                    te  Node/s hosts-11
+                                                                                                    and Ports swp1
+netcat-9090                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
+netcat-9090                                   host       server01   swp3:NetQBond-1      noc-se     swp21:NetQBond-19
+netcat-9090                                   host       server01   swp1:swp1            tor-1      Local Node tor-1 and
+                                                                                                    Ports swp6 &lt;==&gt; Remo
+                                                                                                    te  Node/s hosts-11
+                                                                                                    and Ports swp1
+netcat-9091                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
+netcat-9091                                   host       server01   swp3:NetQBond-1      noc-se     swp21:NetQBond-19
+netcat-9091                                   host       server01   swp1:swp1            tor-1      Local Node tor-1 and
+                                                                                                    Ports swp6 &lt;==&gt; Remo
+                                                                                                    te  Node/s hosts-11
+                                                                                                    and Ports swp1
+netcat-9092                                   host       server01   swp2:NetQBond-1      noc-pr     swp21:NetQBond-19
+netcat-9092                                   host       server01   swp3:NetQBond-1      noc-se     swp21:NetQBond-19
+netcat-9092                                   host       server01   swp1:swp1            tor-1      Local Node tor-1 and
+                                                                                                    Ports swp6 &lt;==&gt; Remo
+                                                                                                    te  Node/s hosts-11
+                                                                                                    and Ports swp1
+</code></pre>
+
+<h3 id="span-check-network-traffic-over-a-given-protocol-span"><span>Check Network Traffic over a Given Protocol</span></h3>
+
+<p>You can specify either the TCP or UDP protocol when you observe a given
+flow of traffic on the network and want to identify which container sent
+or received traffic using that protocol from a given port.</p>
+
+<pre><code>cumulus@switch:mgmt-vrf:~$ netq hosts-11 show docker container 6.0.1.5 tcp 
+Container Name       Node       Proto  Port     Cont IP           Network        Host IP               Host Port
+-------------------- ---------- ------ -------- ----------------- -------------- --------------------- ------------
+netcat-9080          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
+netcat-9080          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
+netcat-9081          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
+netcat-9081          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
+netcat-9082          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
+netcat-9082          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
+netcat-9083          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
+netcat-9083          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
+netcat-9084          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
+netcat-9084          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
+netcat-9085          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
+netcat-9085          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
+netcat-9086          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
+netcat-9086          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
+netcat-9087          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
+netcat-9087          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
+netcat-9088          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
+netcat-9088          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
+netcat-9089          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
+netcat-9089          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
+netcat-9090          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
+netcat-9090          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
+netcat-9091          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
+netcat-9091          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
+netcat-9092          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
+netcat-9092          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
+</code></pre>
+
+<h3 id="span-show-docker-swarm-clusters-and-networks-span"><span>Show Docker Swarm Clusters and Networks</span></h3>
+
+<p>To see the elements of a Docker Swarm cluster, run:</p>
+
+<pre><code>cumulus@host:~$ netq show docker swarm cluster
+Matching swarm records are:
+Cluster Name    Num Nodes Manager Nodes                            Worker Nodes
+--------------- --------- ---------------------------------------- ------------------------------
+default         3         server01:45.0.0.20:2377,                 server01, server02, server03
+                          server02:45.0.0.24:2377
+default         2         server05:45.0.0.27:2377                  server04, server05
+</code></pre>
+
+<p>Optionally, you can output the results in JSON format:</p>
+
+<pre><code>cumulus@host:~$ netq show docker swarm cluster json
+{
+    &quot;swarm&quot;: [
+        {
+            &quot;clusterName&quot;: &quot;default&quot;,
+            &quot;managerNodes&quot;: &quot;server01:45.0.0.20:2377, server02:45.0.0.24:2377&quot;,
+            &quot;workerNodes&quot;: &quot;server01, server02, server03&quot;,
+            &quot;numNodes&quot;: 3
+        },
+        {
+            &quot;clusterName&quot;: &quot;default&quot;,
+            &quot;managerNodes&quot;: &quot;server05:45.0.0.27:2377&quot;,
+            &quot;workerNodes&quot;: &quot;server04, server05&quot;,
+            &quot;numNodes&quot;: 2
+        }
+    ],
+    &quot;truncatedResult&quot;: false
+}
+</code></pre>
+
+<p>You can see the changes made to the cluster:</p>
+
+<pre><code>cumulus@host:~$ netq server01 show docker swarm cluster changes
+Matching swarm records are:
+Hostname    Cluster Name    Num Nodes  Manager Nodes                            Worker Nodes                   DBState    Last changed
+------------ --------------- --------- ---------------------------------------- ------------------------------ ---------- --------------------
+server01    default         3          server01:45.0.0.20:2377,                 server01, server02, server03   Add        12:54.9260 ago
+                                       server02:45.0.0.24:2377
+server01    default         2          server01:45.0.0.20:2377,                 server01, server02             Add        14:10.5203 ago
+                                       server02:45.0.0.24:2377
+</code></pre>
+
+<p>You can show the nodes in a swarm:</p>
+
+<pre><code>cumulus@host:~$ netq show docker swarm node
+Matching swarm records are:
+Swarm Node    Node Id                    Cluster Name    Role     Docker Version    State    Availability
+------------  -------------------------  --------------  -------  ----------------  -------  --------------
+server01      knyao3pkk8h872cep3vabrpum  default         manager  17.06.1-ce        ready    active
+server02      jatmsbs71rv9nmqw5grqncqw2  default         manager  17.06.1-ce        ready    active
+server03      tqrj8ro7b1ycymihquawr1szr  default         worker   17.06.1-ce        ready    active
+server04      gwp89587uujywot6d2fo5vi3e  default         worker   17.06.1-ce        ready    active
+server05      26boo6bak3exgi6nox8dmm2o2  default         manager  17.06.1-ce        ready    active
+</code></pre>
+
+<p>You can drill down to get information about a specific node in a swarm:</p>
+
+<pre><code>cumulus@host:~$ netq show docker swarm cluster node-name server04
+Matching swarm records are:
+Cluster Name    Num Nodes Manager Nodes                            Worker Nodes
+--------------- --------- ---------------------------------------- ------------------------------
+default         2         server05:45.0.0.27:2377                  server04, server05
+</code></pre>
+
+<p>To view configuration at an earlier point in time, run:</p>
+
+<pre><code>cumulus@server05:~$ netq show docker swarm cluster node-name server04 around 10m
+Matching swarm records are:
+Cluster Name    Num Nodes Manager Nodes                            Worker Nodes
+--------------- --------- ---------------------------------------- ------------------------------
+default         2         server05:45.0.0.27:2377                  server04, server05
+</code></pre>
+
+<p>For details about a Docker Swarm network, run:</p>
+
+<pre><code>cumulus@server01:~$ netq show docker swarm network nginx
+Matching swarm records are:
+Service Name    Port Mapping               Virtual IP      Network Name
+--------------  -------------------------  --------------  --------------
+nginx           tcp:9080:80, tcp:9443:443  10.255.0.12/16  ingress
+</code></pre>
+
+<h3 id="span-show-docker-service-connectivity-and-impact-span"><span>Show Docker Service Connectivity and Impact</span></h3>
+
+<p>You can show the Docker services in a cluster:</p>
+
+<pre><code>cumulus@host:~$ netq show docker service
+Matching service records are:
+Service Name    Manager    Cluster    Mode        Replicas    Running
+--------------  ---------  ---------  ----------  ----------  ---------
+redis           server01   default    Replicated           6          6
+redis           server02   default    Replicated           6          6
+</code></pre>
+
+<p>And get detailed information about a Docker service:</p>
+
+<pre><code>cumulus@host:~$ netq show docker container service redis
+Matching container records are:
+Container Name       Hostname   Container IP      IP Masq  Network Name   Service Name    UpTime
+-------------------- ---------- ----------------- -------- -------------- --------------- ---------------
+redis.1.d3k6fyx3cmdn server01   10.255.0.6        False    ingress        redis           0:07:11
+3y5tr0uveuenk
+redis.2.qcs7kt3si79i server02   10.255.0.11       False    ingress        redis           0:06:42
+s98tdkbid9k03
+redis.3.kh4bvgcpmnfg server02   10.255.0.7        False    ingress        redis           0:06:41
+hvihbx2oi9xb0
+redis.4.48h1jm5gq3u9 server03   10.255.0.8        False    ingress        redis           0:06:42
+rmtb68lzap6kp
+redis.5.kz1djm3gczst server03   10.255.0.9        False    ingress        redis           0:06:42
+w8xf34oa9592z
+redis.6.jicycmsbe8qj server01   10.255.0.10       False    ingress        redis           0:06:50
+kw2m5c1mn7dxb
+</code></pre>
+
+<p>To see the connectivity of a given Docker service, run:</p>
+
+<pre><code>cumulus@host:~$ netq show docker service name redis connectivity
+redis -- redis.3.kh4bvgcpmnfghvihbx2oi9xb0 -- server02 -- leaf01
+                                                    -- exit01
+                                                    -- leaf05
+    -- redis.5.kz1djm3gczstw8xf34oa9592z -- server03 -- leaf05
+                                                    -- leaf01
+                                                    -- exit01
+    -- redis.1.d3k6fyx3cmdn3y5tr0uveuenk -- server01 -- leaf03
+                                                    -- leaf02
+                                                    -- leaf01
+                                                    -- exit01
+    -- redis.6.jicycmsbe8qjkw2m5c1mn7dxb -- server01 -- leaf03
+                                                    -- leaf02
+                                                    -- leaf01
+                                                    -- exit01
+    -- redis.4.48h1jm5gq3u9rmtb68lzap6kp -- server03 -- leaf05
+                                                    -- leaf01
+                                                    -- exit01
+    -- redis.2.qcs7kt3si79is98tdkbid9k03 -- server02 -- leaf01
+                                                    -- exit01
+                                                    -- leaf05
+</code></pre>
+
+<p>You can determine the impact on the Docker deployment in the event a
+host or switch goes down. The output is color coded (not shown in the
+example below) so you can clearly see the impact: green shows no impact,
+yellow shows partial impact, and red shows full impact.</p>
+
+<pre><code>cumulus@server01:~$ netq leaf05 show impact docker service redis
+redis -- redis.3.kh4bvgcpmnfghvihbx2oi9xb0 -- server02 -- leaf01
+                                                    -- exit01
+                                                    -- leaf05
+    -- redis.5.kz1djm3gczstw8xf34oa9592z -- server03 -- leaf05
+                                                    -- leaf01
+                                                    -- exit01
+    -- redis.1.d3k6fyx3cmdn3y5tr0uveuenk -- server01 -- leaf03
+                                                    -- leaf02
+                                                    -- leaf01
+                                                    -- exit01
+    -- redis.6.jicycmsbe8qjkw2m5c1mn7dxb -- server01 -- leaf03
+                                                    -- leaf02
+                                                    -- leaf01
+                                                    -- exit01
+    -- redis.4.48h1jm5gq3u9rmtb68lzap6kp -- server03 -- leaf05
+                                                    -- leaf01
+                                                    -- exit01
+    -- redis.2.qcs7kt3si79is98tdkbid9k03 -- server02 -- leaf01
+                                                    -- exit01
+                                                    -- leaf05
+</code></pre>
+
+<h3 id="span-view-docker-configuration-in-the-past-span"><span>View Docker Configuration in the Past</span></h3>
+
+<p>You can use the <a href="/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues">&ldquo;time machine&rdquo;
+features</a>
+of NetQ on a Docker container, using the <code>around</code> and <code>changes</code> commands
+to go back in time to check the network status and identify any changes
+that occurred on the network. This example shows the state of the
+network one hour earlier.</p>
+
+<pre><code>cumulus@leaf01:~$ netq leaf01 show docker container adjacent around 1h
+Interface            Peer Node  Peer Interface        Container Name       IP                   Network    Service Name
+-------------------- ---------- --------------------- -------------------- -------------------- ---------- ---------------
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9090                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9082                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9091                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9086                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9081                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9083                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9087                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9088                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9085                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9080                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9084                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9089                               host
+swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9092                               host
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8089          172.17.0.11          bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8084          172.17.0.6           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8092          172.17.0.14          bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8083          172.17.0.5           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8085          172.17.0.7           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8081          172.17.0.3           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8080          172.17.0.2           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8086          172.17.0.8           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8088          172.17.0.10          bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8082          172.17.0.4           bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8091          172.17.0.13          bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8090          172.17.0.12          bridge
+swp7:VlanA-1         server02   mac:00:02:00:00:00:2a netcat-8087          172.17.0.9           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8091          172.17.0.13          bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8083          172.17.0.5           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8087          172.17.0.9           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8082          172.17.0.4           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8080          172.17.0.2           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8092          172.17.0.14          bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8086          172.17.0.8           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8084          172.17.0.6           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8088          172.17.0.10          bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8090          172.17.0.12          bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8085          172.17.0.7           bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8089          172.17.0.11          bridge
+swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8081          172.17.0.3           bridge
+</code></pre>
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+</article>
+
+      <script src="https://utteranc.es/client.js"
+        repo="CumulusNetworks/docs-internal"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+    <div class="toc">
+    
+      <button>
+      <a href="https://github.com/CumulusNetworks/docs/edit/master/content/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Container-Environments.md" target="_blank" rel="noopener"><img src="/docs.cumulusnetworks.com/svg/pencil-circle.svg" alt="Edit" /> Edit this page</a>
+      </button>
+    
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#span-use-netq-with-kubernetes-clusters-span"><span>Use NetQ with Kubernetes Clusters</span></a>
+<ul>
+<li><a href="#span-requirements-span"><span>Requirements</span></a></li>
+<li><a href="#span-command-summary-span"><span>Command Summary</span></a></li>
+<li><a href="#span-id-src-10453489-monitorcontainerenvironments-enable-k8s-class-confluence-anchor-link-span-span-enable-kubernetes-monitoring-span"><span id="src-10453489_MonitorContainerEnvironments-enable_k8s" class="confluence-anchor-link"></span><span>Enable Kubernetes Monitoring</span></a></li>
+<li><a href="#span-view-status-of-kubernetes-clusters-span"><span>View Status of Kubernetes Clusters</span></a></li>
+<li><a href="#span-view-changes-to-a-cluster-span"><span>View Changes to a Cluster</span></a></li>
+<li><a href="#span-view-kubernetes-node-information-span"><span>View Kubernetes Node Information</span></a></li>
+<li><a href="#span-view-container-connectivity-span"><span>View Container Connectivity</span></a></li>
+<li><a href="#span-view-kubernetes-service-connectivity-and-impact-span"><span>View Kubernetes Service Connectivity and Impact</span></a></li>
+<li><a href="#span-view-kubernetes-cluster-configuration-in-the-past-span"><span>View Kubernetes Cluster Configuration in the Past</span></a></li>
+</ul></li>
+<li><a href="#span-use-netq-with-docker-swarm-span"><span>Use NetQ with Docker Swarm</span></a>
+<ul>
+<li><a href="#span-requirements-span-1"><span>Requirements</span></a></li>
+<li><a href="#span-command-summary-span-1"><span>Command Summary</span></a></li>
+<li><a href="#span-id-src-10453489-monitorcontainerenvironments-enable-class-confluence-anchor-link-span-span-enable-docker-container-monitoring-span"><span id="src-10453489_MonitorContainerEnvironments-enable" class="confluence-anchor-link"></span><span>Enable Docker Container Monitoring</span></a></li>
+<li><a href="#span-view-container-summary-information-span"><span>View Container Summary Information</span></a></li>
+<li><a href="#span-identify-containers-on-the-network-span"><span>Identify Containers on the Network</span></a></li>
+<li><a href="#span-view-deployed-container-network-drivers-span"><span>View Deployed Container Network Drivers</span></a></li>
+<li><a href="#span-view-all-containers-in-a-network-span"><span>View All Containers in a Network</span></a></li>
+<li><a href="#span-view-container-adjacency-span"><span>View Container Adjacency</span></a></li>
+<li><a href="#span-show-container-specific-information-span"><span>Show Container-Specific Information</span></a></li>
+<li><a href="#span-show-containers-with-a-specific-image-span"><span>Show Containers with a Specific Image</span></a></li>
+<li><a href="#span-show-container-connectivity-span"><span>Show Container Connectivity</span></a></li>
+<li><a href="#span-check-network-traffic-over-a-given-protocol-span"><span>Check Network Traffic over a Given Protocol</span></a></li>
+<li><a href="#span-show-docker-swarm-clusters-and-networks-span"><span>Show Docker Swarm Clusters and Networks</span></a></li>
+<li><a href="#span-show-docker-service-connectivity-and-impact-span"><span>Show Docker Service Connectivity and Impact</span></a></li>
+<li><a href="#span-view-docker-configuration-in-the-past-span"><span>View Docker Configuration in the Past</span></a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+  
+
+</aside>
+
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

@@ -3,7 +3,7 @@ title: Configuring the NetQ Virtual Environment
 author: Cumulus Networks
 weight: 27
 aliases:
- - /display/NETQ10/Configuring-the-NetQ-Virtual-Environment
+ - /display/NETQ10/Configuring+the+NetQ+Virtual+Environment
  - /pages/viewpage.action?pageId=6488222
 pageID: 6488222
 product: Cumulus NetQ
@@ -28,7 +28,8 @@ the virtual environment.
 
 These steps assume that both Vagrant and VirtualBox have been
 downloaded. For more information on downloading Vagrant and VirtualBox,
-refer to the [Cumulus VX Getting Started](/cumulus-vx/Getting-Started/)
+refer to the [Cumulus VX Getting
+Started](https://docs.cumulusnetworks.com/display/VX/Getting+Started)
 documentation.
 
 {{%/notice%}}
@@ -38,22 +39,22 @@ documentation.
     website](https://cumulusnetworks.com/downloads/).
 
 2.  In a terminal, add the NetQ Telemetry Server to Vagrant:
-
+    
         user@machine:~$ vagrant box add cumulus-netq-telemetry-server-amd64-1.0.0-vagrant.box --name=cumulus/ts
 
 3.  Clone the demo:
-
+    
         user@machine:~$ git clone https://github.com/cumulusnetworks/netqdemo-1.0 netqdemo
 
 4.  From the `netqdemo` directory, run the `vagrant up` command to start
     the demo.
-
+    
         user@machine:~$ cd netqdemo
         user@machine:~/netqdemo$ vagrant up
 
 5.  Once the vagrant instance has started, ssh into the NetQ Telemetry
     Server, which serves as the `oob-mgmt-server` in the topology:
-
+    
         user@machine:~$ vagrant ssh oob-mgmt-server
 
 <article id="html-search-results" class="ht-content" style="display: none;">

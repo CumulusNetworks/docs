@@ -3,7 +3,7 @@ title: NetQ Service Console
 author: Cumulus Networks
 weight: 21
 aliases:
- - /display/NETQ10/NetQ-Service-Console
+ - /display/NETQ10/NetQ+Service+Console
  - /pages/viewpage.action?pageId=6488214
 pageID: 6488214
 product: Cumulus NetQ

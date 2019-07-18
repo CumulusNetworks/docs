@@ -3,7 +3,7 @@ title: Managing Application Daemons
 author: Cumulus Networks
 weight: 97
 aliases:
- - /display/RMP25ESR/Managing-Application-Daemons
+ - /display/RMP25ESR/Managing+Application+Daemons
  - /pages/viewpage.action?pageId=5116328
 pageID: 5116328
 product: Cumulus RMP

@@ -3,7 +3,7 @@ title: Querying the NetQ Database
 author: Cumulus Networks
 weight: 77
 aliases:
- - /display/NETQ121/Querying-the-NetQ-Database
+ - /display/NETQ121/Querying+the+NetQ+Database
  - /pages/viewpage.action?pageId=8356587
 pageID: 8356587
 product: Cumulus NetQ

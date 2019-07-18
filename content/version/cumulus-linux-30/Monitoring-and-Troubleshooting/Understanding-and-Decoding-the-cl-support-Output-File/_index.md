@@ -3,7 +3,7 @@ title: Understanding and Decoding the cl-support Output File
 author: Cumulus Networks
 weight: 171
 aliases:
- - /display/CL30/Understanding-and-Decoding-the-cl-support-Output-File
+ - /display/CL30/Understanding+and+Decoding+the+cl+support+Output+File
  - /pages/viewpage.action?pageId=5118236
 pageID: 5118236
 product: Cumulus Linux

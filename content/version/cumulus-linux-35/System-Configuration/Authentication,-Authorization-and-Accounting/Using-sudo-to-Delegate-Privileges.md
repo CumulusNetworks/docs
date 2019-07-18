@@ -3,7 +3,7 @@ title: Using sudo to Delegate Privileges
 author: Cumulus Networks
 weight: 271
 aliases:
- - /display/CL35/Using-sudo-to-Delegate-Privileges
+ - /display/CL35/Using+sudo+to+Delegate+Privileges
  - /pages/viewpage.action?pageId=8357336
 pageID: 8357336
 product: Cumulus Linux

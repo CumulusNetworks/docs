@@ -3,7 +3,7 @@ title: Default Cumulus Linux ACL Configuration
 author: Cumulus Networks
 weight: 269
 aliases:
- - /display/CL33/Default-Cumulus-Linux-ACL-Configuration
+ - /display/CL33/Default+Cumulus+Linux+ACL+Configuration
  - /pages/viewpage.action?pageId=5866121
 pageID: 5866121
 product: Cumulus Linux
@@ -11,11 +11,16 @@ version: 3.3.0
 imgData: cumulus-linux-330
 siteSlug: cumulus-linux-330
 ---
+<details>
 
 The Cumulus Linux default ACL configuration is split into three parts,
-as outlined in the [netfilter ACL documentation](/version/cumulus-linux-330/System-Configuration/Netfilter-ACLs): IP tables, IPv6 tables,
+as outlined in the [netfilter ACL
+documentation](/display/CL33/Netfilter+-+ACLs): IP tables, IPv6 tables,
 and EB tables. The sections below cover the default configurations for
-each part, while the default file can be seen here:
+each part, while the default file can be seen by clicking the Default
+ACL Configuration link:
+
+<summary>Default ACL Configuration </summary>
 
     cumulus@switch:~$ sudo cl-acltool -L all
     -------------------------------
@@ -59,43 +64,43 @@ each part, while the default file can be seen here:
         0     0 POLICE     all  --  swp+   any     anywhere             anywhere             ADDRTYPE match dst-type LOCAL POLICE  mode:pkt rate:1000 burst:1000 class:0
         0     0 POLICE     all  --  swp+   any     anywhere             anywhere             ADDRTYPE match dst-type IPROUTER POLICE  mode:pkt rate:400 burst:100 class:0
         0     0 SETCLASS   all  --  swp+   any     anywhere             anywhere             SETCLASS  class:0
-
+     
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
         0     0 DROP       all  --  swp+   any     240.0.0.0/5          anywhere            
         0     0 DROP       all  --  swp+   any     loopback/8           anywhere            
         0     0 DROP       all  --  swp+   any     base-address.mcast.net/8  anywhere            
         0     0 DROP       all  --  swp+   any     255.255.255.255      anywhere            
-
+     
     Chain OUTPUT (policy ACCEPT 107 packets, 12590 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
-
+     
+     
     TABLE mangle :
     Chain PREROUTING (policy ACCEPT 172 packets, 17871 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain INPUT (policy ACCEPT 172 packets, 17871 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain OUTPUT (policy ACCEPT 111 packets, 18134 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain POSTROUTING (policy ACCEPT 111 packets, 18134 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
-
+     
+     
     TABLE raw :
     Chain PREROUTING (policy ACCEPT 173 packets, 17923 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain OUTPUT (policy ACCEPT 112 packets, 18978 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
-
+     
+     
     --------------------------------
     Listing rules of type ip6tables:
     --------------------------------
@@ -126,49 +131,49 @@ each part, while the default file can be seen here:
         0     0 POLICE     all      swp+   any     anywhere             anywhere             ADDRTYPE match dst-type LOCAL POLICE  mode:pkt rate:1000 burst:1000 class:0
         0     0 POLICE     all      swp+   any     anywhere             anywhere             ADDRTYPE match dst-type IPROUTER POLICE  mode:pkt rate:400 burst:100 class:0
         0     0 SETCLASS   all      swp+   any     anywhere             anywhere             SETCLASS  class:0
-
+     
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
         0     0 DROP       all      swp+   any     ip6-mcastprefix/8    anywhere            
         0     0 DROP       all      swp+   any     ::/128               anywhere            
         0     0 DROP       all      swp+   any     ::ffff:0.0.0.0/96    anywhere            
         0     0 DROP       all      swp+   any     localhost/128        anywhere            
-
+     
     Chain OUTPUT (policy ACCEPT 5 packets, 408 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
-
+     
+     
     TABLE mangle :
     Chain PREROUTING (policy ACCEPT 7 packets, 718 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain POSTROUTING (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
-
+     
+     
     TABLE raw :
     Chain PREROUTING (policy ACCEPT 7 packets, 718 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
+     
     Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
-
+     
+     
     -------------------------------
     Listing rules of type ebtables:
     -------------------------------
     TABLE filter :
     Bridge table: filter
-
+     
     Bridge chain: INPUT, entries: 16, policy: ACCEPT
     -d BGA -i swp+ -j setclass --class 7 , pcnt = 0 -- bcnt = 0
     -d BGA -j police --set-mode pkt --set-rate 2000 --set-burst 2000 , pcnt = 0 -- bcnt = 0
@@ -186,9 +191,9 @@ each part, while the default file can be seen here:
     -p IPv6 -i swp+ -j ACCEPT , pcnt = 0 -- bcnt = 0
     -i swp+ -j setclass --class 0 , pcnt = 0 -- bcnt = 0
     -j police --set-mode pkt --set-rate 100 --set-burst 100 , pcnt = 0 -- bcnt = 0
-
+     
     Bridge chain: FORWARD, entries: 0, policy: ACCEPT
-
+     
     Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 
 ## <span>IP Tables</span>
@@ -494,3 +499,13 @@ Set class is internal to the switch. It does not set any precedence
 bits.
 
 {{%/notice%}}
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+
+</details>

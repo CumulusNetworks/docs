@@ -3,7 +3,7 @@ title: Using Cumulus VX with VMware vSphere - ESXi 5.5
 author: Cumulus Networks
 weight: 35
 aliases:
- - /display/VX30/Using-Cumulus-VX-with-VMware-vSphere---ESXi-5.5
+ - /display/VX30/Using+Cumulus+VX+with+VMware+vSphere+++ESXi+5.5
  - /pages/viewpage.action?pageId=5126615
 pageID: 5126615
 product: Cumulus VX

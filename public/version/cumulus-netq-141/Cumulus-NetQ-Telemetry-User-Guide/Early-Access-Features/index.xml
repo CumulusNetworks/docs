@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Early Access Features on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/</link>
+    <description>Recent content in Early Access Features on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Extend NetQ with Custom Commands</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Extend-NetQ-with-Custom-Commands/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Extend-NetQ-with-Custom-Commands/</guid>
+      <description>NetQ provides the ability to codify playbooks and extend NetQ with custom commands for use cases specific to your network.
+The summary of steps required to do this is a follows:
+ The extensions must be written in Python or Cython.
+ The commands need to be added must use network doctopt.
+ The .py file (or the compiled .so if using Cython) is now copied to /usr/lib/python2.7/dist-packages/netq_apps/modules/addons.
+ Enable the add-ons with the netq config add addons command</description>
+    </item>
+    
+    <item>
+      <title>Query the NetQ Database</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Query-the-NetQ-Database/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Query-the-NetQ-Database/</guid>
+      <description>You can query for even more NetQ data using the SQL-like NetQ Query Language (NetQL) so you can conduct your own custom analysis or otherwise extend NetQ functionality for your specific environment without having to write your own custom code. NetQL directly queries the NetQ database for data that isn&amp;rsquo;t exposed via the check, show and trace commands.
+NetQL is an early access feature in Cumulus NetQ 1.3 and later.</description>
+    </item>
+    
+    <item>
+      <title>Collect Interface Statistics</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Collect-Interface-Statistics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Collect-Interface-Statistics/</guid>
+      <description>Switches collect statistics about the performance of their interfaces. The NetQ Agent on each switch collects these statistics every 15 seconds by reading /proc/net/dev, and then sending them to the NetQ Telemetry Server where it is stored in its InfluxDB in procnetdev. The Telemetry Server netq-stats-pushd service manages the receipt and storage of the statistics.
+Only statistics for physical interfaces are collected; NetQ does not collect statistics for non-physical interfaces, such as bonds, bridges, and VXLANs.</description>
+    </item>
+    
+  </channel>
+</rss>

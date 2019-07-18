@@ -3,7 +3,7 @@ title: Monitor Virtual Network Overlays
 author: Cumulus Networks
 weight: 65
 aliases:
- - /display/NETQ141/Monitor-Virtual-Network-Overlays
+ - /display/NETQ141/Monitor+Virtual+Network+Overlays
  - /pages/viewpage.action?pageId=10453524
 pageID: 10453524
 product: Cumulus NetQ
@@ -167,7 +167,7 @@ netq show interface command. You can also view this information for a
 given device by adding a hostname to the `show` command. This example
 shows the detailed VXLAN interface information for the leaf02 switch.
 
-    cumulus@switch:~$ netq leaf02 show interfaces type vxlan
+    cumulus@switch:~$ netq leaf02 show interfaces type vxlan 
     Matching link records:
     Hostname          Interface                 Type             State      VRF             Details                             Last Changed
     ----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
@@ -218,9 +218,8 @@ same unit of measure.
 {{%/notice%}}
 
 For more information about and configuration of EVPN in your data
-center, refer to the
-[Cumulus Linux EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/)
-topic.
+center, refer to the [Cumulus Linux
+EVPN](/display/NETQ141/Ethernet+Virtual+Private+Network+-+EVPN) topic.
 
 ### <span>View the Status of EVPN</span>
 
@@ -351,7 +350,8 @@ keywords. This example shows the status of LNV about 30 minutes ago.
     torc-22           RD         HER      up         4      6      45m:22.548s
 
 For more information about and configuration of LNV, refer to the
-[Cumulus Linux LNV Overview](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+[Cumulus Linux LNV
+Overview](/display/NETQ141/Lightweight+Network+Virtualization+Overview)
 topic.
 
 ## <span>View Communication Paths between Devices</span>
@@ -402,7 +402,7 @@ devices, as shown in this example using the *pretty* output option.
     Path MTU: 9216 
      
      leaf03 swp52 -- swp3 spine02 swp1 -- swp52 leaf01  
-     leaf03 swp51 -- swp3 spine01 swp1 -- swp51 leaf01
+     leaf03 swp51 -- swp3 spine01 swp1 -- swp51 leaf01 
 
 For more information about the trace command, run the `netq example
 trace` command.

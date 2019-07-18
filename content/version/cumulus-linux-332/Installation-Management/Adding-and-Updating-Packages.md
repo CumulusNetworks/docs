@@ -3,7 +3,7 @@ title: Adding and Updating Packages
 author: Cumulus Networks
 weight: 49
 aliases:
- - /display/CL332/Adding-and-Updating-Packages
+ - /display/CL332/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=5868946
 pageID: 5868946
 product: Cumulus Linux

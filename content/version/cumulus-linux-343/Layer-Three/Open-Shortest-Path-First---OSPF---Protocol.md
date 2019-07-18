@@ -3,7 +3,7 @@ title: Open Shortest Path First - OSPF - Protocol
 author: Cumulus Networks
 weight: 181
 aliases:
- - /display/CL34/Open-Shortest-Path-First---OSPF---Protocol
+ - /display/CL34/Open+Shortest+Path+First+++OSPF+++Protocol
  - /pages/viewpage.action?pageId=7112661
 pageID: 7112661
 product: Cumulus Linux

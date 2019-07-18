@@ -3,7 +3,7 @@ title: Configure and Manage DHCP Options
 author: Cumulus Networks
 weight: 33
 aliases:
- - /display/NETQ141/Configure-and-Manage-DHCP-Options
+ - /display/NETQ141/Configure+and+Manage+DHCP+Options
  - /pages/viewpage.action?pageId=10453548
 pageID: 10453548
 product: Cumulus NetQ

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System Management on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/System-Management/</link>
+    <description>Recent content in System Management on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-rmp-25esr/System-Management/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Setting Date and Time</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/System-Management/Setting-Date-and-Time/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/System-Management/Setting-Date-and-Time/</guid>
+      <description>Setting the time zone, date and time requires root privileges; use sudo.
+Commands  date
+ dpkg-reconfigure tzdata
+ hwclock
+ ntpd (daemon)
+ ntpq
+  Setting the Time Zone To see the current time zone, list the contents of /etc/timezone:
+cumulus@switch:~$ cat /etc/timezone US/Eastern  To set the time zone, run dpkg-reconfigure tzdata as root:
+cumulus@switch:~$ sudo dpkg-reconfigure tzdata  Then navigate the menus to enable the time zone you want.</description>
+    </item>
+    
+    <item>
+      <title>Configuring switchd</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/System-Management/Configuring-switchd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/System-Management/Configuring-switchd/</guid>
+      <description>switchd is the daemon at the heart of Cumulus RMP. It communicates between the switch and Cumulus RMP, and all the applications running on Cumulus RMP.
+The switchd configuration is stored in /etc/cumulus/switchd.conf.
+The switchd File System switchd also exports a file system, mounted on /cumulus/switchd, that presents all the switchd configuration options as a series of files arranged in a tree structure. You can see the contents by parsing the switchd tree; run tree /cumulus/switchd.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Installation Management on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-linux-321/Installation-Management/</link>
+    <description>Recent content in Installation Management on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-linux-321/Installation-Management/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Adding and Updating Packages</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-321/Installation-Management/Adding-and-Updating-Packages/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-321/Installation-Management/Adding-and-Updating-Packages/</guid>
+      <description>You use the Advanced Packaging Tool (apt) to manage additional applications (in the form of packages) and to install the latest updates.
+Before running any apt-get commands or after changing the /etc/apt/sources.list file , you need to run apt-get update .
+Updating the Package Cache To work properly, APT relies on a local cache of the available packages. You must populate the cache initially, and then periodically update it with apt-get update:</description>
+    </item>
+    
+    <item>
+      <title>Zero Touch Provisioning - ZTP</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-321/Installation-Management/Zero-Touch-Provisioning-ZTP/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-321/Installation-Management/Zero-Touch-Provisioning-ZTP/</guid>
+      <description>Zero touch provisioning (ZTP) enables network devices to be quickly deployed in large-scale environments. On first boot, Cumulus Linux will invoke ZTP, which executes the provisioning automation used to deploy the device for its intended role in the network.
+The provisioning framework allows for a one-time, user-provided script to be executed. You can develop this script using a variety of automation tools and scripting languages, providing ample flexibility for you to design the provisioning scheme to meet your needs.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cumulus NetQ Deployment Guide on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/</link>
+    <description>Recent content in Cumulus NetQ Deployment Guide on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deployment Preface</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Deployment-Preface/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Deployment-Preface/</guid>
+      <description>A variety of resources are available for you to become familiar with Cumulus NetQ and aid in its deployment. These are identified here along with information about how the content is presented.
+What&amp;rsquo;s New in Cumulus NetQ 1.4.0 Cumulus NetQ 1.4.0 includes the following new features and updates:
+ Added
+ support for monitoring up to 200 Cumulus Linux nodes 
+ validation of symmetric VXLAN routes through CLI</description>
+    </item>
+    
+    <item>
+      <title>Install NetQ</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ/</guid>
+      <description>This topic provides step-by-step instructions for installing Cumulus NetQ 1.4 with Cumulus Linux 3.3.2 or later. It provides setup instructions for the Telemetry Server, for the Cumulus Linux switches, and for the Linux-based hosts.
+Cumulus NetQ core telemetry and analytics capabilities require two components to be installed to gain access to the network connectivity and actionable insights NetQ provides:
+ NetQ Telemetry application installed on the Telemetry Server
+ cumulus-netq meta package installed on Cumulus® Linux® switches</description>
+    </item>
+    
+    <item>
+      <title>Configure Optional NetQ Capabilities</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Configure-Optional-NetQ-Capabilities/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Configure-Optional-NetQ-Capabilities/</guid>
+      <description>After you have installed the Telemetry Server and the NetQ Agents, you may want to configure some of the additional capabilities that NetQ offers. This topic describes how to install, setup, and configure these capabilities.
+Activate Early Access Features NetQ contains early access features that provide advanced access to new functionality before it becomes generally available. The telemetry-based early access features are bundled into the netq-apps package (installed automatically with NetQ) ; there is no specific EA package like there typically is with Cumulus Linux.</description>
+    </item>
+    
+    <item>
+      <title>Maintain NetQ</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Maintain-NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Maintain-NetQ/</guid>
+      <description>While regular maintenance of NetQ is not required, there are some tasks that you may want to perform in the course of everyday operations. As the network changes, you might have the need to add or remove monitored nodes, notification integrations, and NetQ Agents for example. You might also need to restore NetQ to a prior version or upgrade to a new version.
+Manage the Telemetry Server Because the Telemetry Server (TS) contains the configurations for event notification integrations and NetQ Notifier filters, you might need to modify these configurations at some point in the life cycle of your deployment.</description>
+    </item>
+    
+    <item>
+      <title>Deployment Appendices</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Deployment-Appendices/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Deployment-Appendices/</guid>
+      <description>This topic contains additional reference material that may be useful when deploying the Cumulus NetQ software.
+Example NetQ Switch Configuration File The following sample netq.yml file is located in /etc/netq/ on the NetQ Telemetry Server. Note that netq.yml looks different on a switch or host monitored by NetQ; for example, the backend server IP address and port would be uncommented and listed .
+Editing /etc/netq/config.d to configure NetQ Notifier or putting other YML files in the /etc/netq directory overrides the configuration in /etc/netq/netq.</description>
+    </item>
+    
+  </channel>
+</rss>

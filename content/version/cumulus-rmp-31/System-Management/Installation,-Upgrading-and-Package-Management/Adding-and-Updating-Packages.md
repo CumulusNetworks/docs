@@ -3,7 +3,7 @@ title: Adding and Updating Packages
 author: Cumulus Networks
 weight: 147
 aliases:
- - /display/RMP31/Adding-and-Updating-Packages
+ - /display/RMP31/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=5122746
 pageID: 5122746
 product: Cumulus RMP

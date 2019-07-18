@@ -3,7 +3,7 @@ title: Ethernet Virtual Private Network - EVPN
 author: Cumulus Networks
 weight: 143
 aliases:
- - /display/CL35/Ethernet-Virtual-Private-Network---EVPN
+ - /display/CL35/Ethernet+Virtual+Private+Network+++EVPN
  - /pages/viewpage.action?pageId=8357510
 pageID: 8357510
 product: Cumulus Linux
@@ -17,7 +17,8 @@ core (the underlay). The initial definition of VXLAN
 ([RFC 7348](https://tools.ietf.org/html/rfc7348)) did not include any
 control plane and relied on a flood-and-learn approach for MAC address
 learning. An alternate deployment model was to use a controller or a
-technology such as [Lightweight Network Virtualization (LNV)](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+technology such as [Lightweight Network Virtualization
+(LNV)](/display/CL35/Lightweight+Network+Virtualization+-+LNV+Overview)
 in Cumulus Linux.
 
 {{%notice note%}}
@@ -92,7 +93,8 @@ You can provision and manage EVPN using
 For Cumulus Linux 3.4 and later releases, the routing control plane
 (including EVPN) is installed as part of the
 [FRRouting](https://frrouting.org) (FRR) package. For more information
-about FRR, refer to the [FRR Overview](/version/cumulus-linux-35/Layer-3/FRRouting-Overview/).
+about FRR, refer to the [FRR
+Overview](/display/CL35/FRRouting+Overview).
 
 {{%/notice%}}
 
@@ -258,7 +260,7 @@ want them derived automatically. To manually define RDs and RTs, use the
 These commands create the following configuration snippet in
 `/etc/frr/frr.conf`:
 
-```
+``` 
  address-family l2vpn evpn
   advertise-all-vni
   vni 10200
@@ -406,7 +408,10 @@ file in a text editor:
 With EVPN, the only method of handling BUM traffic is [Head End
 Replication
 (HER)](Lightweight-Network-Virtualization---LNV-Overview.html#src-8357484_LightweightNetworkVirtualization-LNVOverview-head-end).
-HER is enabled by default, as it is when [Lightweight Network Virtualization (LNV)](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization-Overview/) is used.
+HER is enabled by default, as it is when [Lightweight Network
+Virtualization
+(LNV)](/display/CL35/Lightweight+Network+Virtualization+-+LNV+Overview)
+is used.
 
 ## <span id="src-8357510_EthernetVirtualPrivateNetwork-EVPN-arp" class="confluence-anchor-link"></span><span>ARP and ND Suppression</span>
 
@@ -483,7 +488,7 @@ These commands create the following configuration in the
         bridge-learning off
         vxlan-id 10100
         vxlan-local-tunnelip 110.0.0.1
-
+     
     auto vni200
     iface vni200
          bridge-learning off
@@ -505,7 +510,7 @@ file in a text editor:
         bridge-learning vni100=off
         bridge-arp-nd-suppress vni100=on
         ip6-forward off
-        ip-forward off
+        ip-forward off 
 
 {{%/notice%}}
 
@@ -997,10 +1002,10 @@ below). The output also shows that MAC learning is disabled (*off*) on
 the VXLAN interface.
 
     cumulus@leaf01:~$ ip -d link show type vxlan
-    9: vni100: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master bridge state UNKNOWN mode DEFAULT group default
-        link/ether 72:bc:b4:a3:eb:1e brd ff:ff:ff:ff:ff:ff promiscuity 1
-        vxlan id 10100 local 110.0.0.1 srcport 0 0 dstport 4789 nolearning ageing 300
-        bridge_slave state forwarding priority 8 cost 100 hairpin off guard off root_block off fastleave off learning off flood on port_id 0x8001 port_no 0x1 designated_port 32769 designated_cost 0 designated_bridge 8000.0:1:0:0:11:0 designated_root 8000.0:1:0:0:11:0 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on neigh_suppress on group_fwd_mask 0x0 group_fwd_mask_str 0x0 group_fwd_maskhi 0x0 group_fwd_maskhi_str 0x0 addrgenmode eui64
+    9: vni100: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master bridge state UNKNOWN mode DEFAULT group default 
+        link/ether 72:bc:b4:a3:eb:1e brd ff:ff:ff:ff:ff:ff promiscuity 1 
+        vxlan id 10100 local 110.0.0.1 srcport 0 0 dstport 4789 nolearning ageing 300 
+        bridge_slave state forwarding priority 8 cost 100 hairpin off guard off root_block off fastleave off learning off flood on port_id 0x8001 port_no 0x1 designated_port 32769 designated_cost 0 designated_bridge 8000.0:1:0:0:11:0 designated_root 8000.0:1:0:0:11:0 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on neigh_suppress on group_fwd_mask 0x0 group_fwd_mask_str 0x0 group_fwd_maskhi 0x0 group_fwd_maskhi_str 0x0 addrgenmode eui64 
     ...
     cumulus@leaf01:~$
 
@@ -1024,14 +1029,14 @@ of interest from this output are:
 
     cumulus@leaf01:~$ bridge fdb show
     00:02:00:00:00:13 dev swp3 master bridge permanent
-    00:02:00:00:00:01 dev swp3 vlan 100 master bridge
-    00:02:00:00:00:02 dev swp4 vlan 100 master bridge
+    00:02:00:00:00:01 dev swp3 vlan 100 master bridge 
+    00:02:00:00:00:02 dev swp4 vlan 100 master bridge 
     72:bc:b4:a3:eb:1e dev vni100 master bridge permanent
-    00:02:00:00:00:06 dev vni100 vlan 100 offload master bridge
+    00:02:00:00:00:06 dev vni100 vlan 100 offload master bridge 
     00:00:00:00:00:00 dev vni100 dst 110.0.0.3 self permanent
     00:00:00:00:00:00 dev vni100 dst 110.0.0.4 self permanent
     00:00:00:00:00:00 dev vni100 dst 110.0.0.2 self permanent
-    00:02:00:00:00:06 dev vni100 dst 110.0.0.2 self offload
+    00:02:00:00:00:06 dev vni100 dst 110.0.0.2 self offload 
     ...
 
 A sample output of `ip neigh show` is depicted below. Some interesting
@@ -1221,7 +1226,7 @@ VRF as well as the states of its underlying VXLAN interface and SVI.
      Number of MACs (local and remote) known for this VNI: 8
      Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 12
      Advertise-gw-macip: No
-    cumulus@leaf01:~$
+    cumulus@leaf01:~$ 
     cumulus@leaf01:~$ net show evpn vni 104001
     VNI: 104001
       Type: L3
@@ -1231,7 +1236,7 @@ VRF as well as the states of its underlying VXLAN interface and SVI.
       SVI-If: vlan4001
       State: Up
       Router MAC: 00:01:00:00:11:00
-      L2 VNIs: 10100 10200
+      L2 VNIs: 10100 10200 
     cumulus@leaf01:~$
 
 ### <span>Examining Local and Remote MAC Addresses for a VNI in EVPN</span>
@@ -1242,7 +1247,7 @@ L2-VNI:
 
     cumulus@leaf01:~$ net show evpn mac vni 10100
     Number of MACs (local and remote) known for this VNI: 8
-    MAC               Type   Intf/Remote VTEP      VLAN
+    MAC               Type   Intf/Remote VTEP      VLAN 
     00:02:00:00:00:0e remote 110.0.0.4            
     00:02:00:00:00:06 remote 110.0.0.2            
     00:02:00:00:00:05 remote 110.0.0.2            
@@ -1270,10 +1275,10 @@ remote MAC addresses behind a specific VTEP:
     MAC: 00:02:00:00:00:05
      Remote VTEP: 110.0.0.2
      Neighbors:
-        50.1.1.21
+        50.1.1.21 
     cumulus@leaf01:~$ net show evpn mac vni 10100 vtep 110.0.0.3
     VNI 10100
-    MAC               Type   Intf/Remote VTEP      VLAN
+    MAC               Type   Intf/Remote VTEP      VLAN 
     00:02:00:00:00:09 remote 110.0.0.3            
     00:02:00:00:00:0a remote 110.0.0.3            
     cumulus@leaf01:~$
@@ -1359,7 +1364,7 @@ can be used to verify that remote host and prefix routes are installed
 in the VRF routing table and point to the appropriate gateway next hop:
 
     cumulus@leaf01:~$ net show route vrf vrf1
-    show ip route vrf vrf1
+    show ip route vrf vrf1 
     =======================
     Codes: K - kernel route, C - connected, S - static, R - RIP,
            O - OSPF, I - IS-IS, B - BGP, P - PIM, E - EIGRP, N - NHRP,
@@ -1390,7 +1395,7 @@ Run the `net show bgp l2vpn evpn route` command to display all EVPN
 routes, both local and remote. The routes displayed here are based on RD
 as they are across VNIs and VRFs:
 
-    cumulus@leaf01:~$ net show bgp l2vpn evpn route
+    cumulus@leaf01:~$ net show bgp l2vpn evpn route 
     BGP table version is 0, local router ID is 110.0.0.1
     Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
     Origin codes: i - IGP, e - EGP, ? - incomplete
@@ -1426,7 +1431,7 @@ as they are across VNIs and VRFs:
 The routing table can be filtered based on EVPN route type. The
 available options are as shown below:
 
-    cumulus@leaf01:~$ net show bgp l2vpn evpn route type
+    cumulus@leaf01:~$ net show bgp l2vpn evpn route type 
         macip      :  MAC-IP (Type-2) route
         multicast  :  Multicast
         prefix     :  An IPv4 or IPv6 prefix
@@ -1562,7 +1567,7 @@ route target attributes. You can examine BGP's VRF routing table using
 `net show bgp vrf <vrf-name> ipv4 unicast` (or `net show bgp vrf
 <vrf-name> ipv6 unicast`):
 
-    cumulus@leaf01:~$ net show bgp vrf vrf1 ipv4 unicast
+    cumulus@leaf01:~$ net show bgp vrf vrf1 ipv4 unicast 
     BGP table version is 8, local router ID is 50.1.1.250
     Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
                   i internal, r RIB-failure, S Stale, R Removed
@@ -1708,38 +1713,38 @@ for leaf03, leaf04, server03, server04). Here is the topology diagram:
 <pre><code>auto lo
 iface lo inet loopback
     address 10.0.0.11/32
-
+ 
 auto eth0
 iface eth0 inet dhcp
-
+ 
 # uplinks
 auto swp51
 iface swp51
-
+ 
 auto swp52
 iface swp52
-
+ 
 auto bridge
 iface bridge
     bridge-ports swp1 vxlan10001 vxlan10100 vxlan10200
     bridge-vlan-aware yes
     bridge-vids 1 100 200
     bridge-pvid 1
-
+ 
 auto vxlan10001
 iface vxlan10001
     vxlan-id 10001
     vxlan-local-tunnelip 10.0.0.11
     bridge-access 1
     bridge-learning off
-
+ 
 auto vxlan10100
 iface vxlan10100
      vxlan-id 10100
      vxlan-local-tunnelip 10.0.0.11
      bridge-access 100
      bridge-learning off
-
+ 
 auto vxlan10200
 iface vxlan10200
      vxlan-id 10200
@@ -1752,38 +1757,38 @@ iface vxlan10200
 <pre><code>auto lo
 iface lo inet loopback
     address 10.0.0.12/32
-
+ 
 auto eth0
 iface eth0 inet dhcp
-
+ 
 # uplinks
 auto swp51
 iface swp51
-
+ 
 auto swp52
 iface swp52
-
+ 
 auto bridge
 iface bridge
     bridge-ports swp2 vxlan10001 vxlan10100 vxlan10200
     bridge-vlan-aware yes
     bridge-vids 1 100 200
     bridge-pvid 1
-
+ 
 auto vxlan10001
 iface vxlan10001
     vxlan-id 10001
     vxlan-local-tunnelip 10.0.0.12
     bridge-access 1
     bridge-learning off
-
+ 
 auto vxlan10100
 iface vxlan10100
     vxlan-id 10100
     vxlan-local-tunnelip 10.0.0.12
     bridge-access 100
     bridge-learning off
-
+ 
 auto vxlan10200
 iface vxlan10200
     vxlan-id 10200
@@ -1907,20 +1912,20 @@ end</code></pre>
 <pre><code>auto lo
 iface lo inet loopback
     address 10.0.0.21/32
-
+ 
 auto eth0
 iface eth0 inet dhcp
-
+ 
 # downlinks
 auto swp1
 iface swp1
-
+ 
 auto swp2
 iface swp2
-
+ 
 auto swp3
 iface swp3
-
+ 
 auto swp4
 iface swp4</code></pre>
 </details></td>
@@ -1929,20 +1934,20 @@ iface swp4</code></pre>
 <pre><code>auto lo
 iface lo inet loopback
     address 10.0.0.22/32
-
+ 
 auto eth0
 iface eth0 inet dhcp
-
+ 
 # downlinks
 auto swp1
 iface swp1
-
+ 
 auto swp2
 iface swp2
-
+ 
 auto swp3
 iface swp3
-
+ 
 auto swp4
 iface swp4</code></pre>
 </details></td>
@@ -2133,66 +2138,66 @@ leaf03, leaf04, server02, server04). Here is the topology diagram:
 <td><details>
 <summary>leaf01 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf01:~$ cat /etc/network/interfaces
-
+ 
 auto lo
 iface lo inet loopback
     alias loopback
     address 10.0.0.11/32
     clagd-vxlan-anycast-ip 10.10.10.20
-
+ 
 auto eth0
 iface eth0 inet dhcp
-
+ 
 # uplinks
 auto swp51
 iface swp51
-
+ 
 auto swp52
 iface swp52
-
+ 
 #host connections
 auto swp1
 iface swp1
-
+ 
 auto server01
 iface server01
   alias server01 MLAG bond
   bond-slaves swp1
   clag-id 1
-
+ 
 auto peerlink
 iface peerlink
   alias MLAG peerlink bond
   bond-slaves swp49 swp50
-
+ 
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.1/30
   clagd-peer-ip 169.254.1.2
   clagd-backup-ip 192.168.200.12
   clagd-sys-mac 44:38:39:FF:40:94
-
+ 
 auto bridge
 iface bridge
     bridge-ports server01 peerlink vxlan10001 vxlan10100 vxlan10200
     bridge-vlan-aware yes
     bridge-vids 1 100 200
     bridge-pvid 1
-
+ 
 auto vxlan10001
 iface vxlan10001
     vxlan-id 10001
     vxlan-local-tunnelip 10.0.0.11
     bridge-access 1
     bridge-learning off
-
+ 
 auto vxlan10100
 iface vxlan10100
      vxlan-id 10100
      vxlan-local-tunnelip 10.0.0.11
      bridge-access 100
      bridge-learning off
-
+ 
 auto vxlan10200
 iface vxlan10200
      vxlan-id 10200
@@ -2203,66 +2208,66 @@ iface vxlan10200
 <td><details>
 <summary>leaf02 /etc/network/interfaces </summary>
 <pre><code>cumulus@leaf02:~$ cat /etc/network/interfaces
-
+ 
 auto lo
 iface lo inet loopback
     alias loopback
     address 10.0.0.12/32
     clagd-vxlan-anycast-ip 10.10.10.20
-
+ 
 auto eth0
 iface eth0 inet dhcp
-
+ 
 # uplinks
 auto swp51
 iface swp51
-
+ 
 auto swp52
 iface swp52
-
+ 
 #host connections
 auto swp1
 iface swp1
-
+ 
 auto server01
 iface server01
   alias server01 MLAG bond
   bond-slaves swp1
   clag-id 1
-
+ 
 auto peerlink
 iface peerlink
   alias MLAG peerlink bond
   bond-slaves swp49 swp50
-
+ 
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.2/30
   clagd-peer-ip 169.254.1.1
   clagd-backup-ip 192.168.200.11
   clagd-sys-mac 44:38:39:FF:40:94
-
+ 
 auto bridge
 iface bridge
     bridge-ports server01 peerlink vxlan10001 vxlan10100 vxlan10200
     bridge-vlan-aware yes
     bridge-vids 1 100 200
     bridge-pvid 1
-
+ 
 auto vxlan10001
 iface vxlan10001
     vxlan-id 10001
     vxlan-local-tunnelip 10.0.0.12
     bridge-access 1
     bridge-learning off
-
+ 
 auto vxlan10100
 iface vxlan10100
      vxlan-id 10100
      vxlan-local-tunnelip 10.0.0.12
      bridge-access 100
      bridge-learning off
-
+ 
 auto vxlan10200
 iface vxlan10200
      vxlan-id 10200
@@ -2274,7 +2279,7 @@ iface vxlan10200
 <tr class="even">
 <td><details>
 <summary>leaf01 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@leaf01:~$ cat /etc/frr/frr.conf
+<pre><code>cumulus@leaf01:~$ cat /etc/frr/frr.conf 
 !
 username cumulus nopassword
 !
@@ -2320,7 +2325,7 @@ end</code></pre>
 </details></td>
 <td><details>
 <summary>leaf02 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@leaf02:~$ cat /etc/frr/frr.conf
+<pre><code>cumulus@leaf02:~$ cat /etc/frr/frr.conf 
 !
 username cumulus nopassword
 !
@@ -2421,7 +2426,7 @@ iface swp4</code></pre></td>
 <tr class="even">
 <td><details>
 <summary>spine01 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@spine01:~$ cat /etc/frr/frr.conf
+<pre><code>cumulus@spine01:~$ cat /etc/frr/frr.conf 
 !
 username cumulus nopassword
 !
@@ -2475,7 +2480,7 @@ end</code></pre>
 </details></td>
 <td><details>
 <summary>spine02 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@spine02:~$ cat /etc/frr/frr.conf
+<pre><code>cumulus@spine02:~$ cat /etc/frr/frr.conf 
 !
 username cumulus nopassword
 !

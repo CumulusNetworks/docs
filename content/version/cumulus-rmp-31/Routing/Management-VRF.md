@@ -3,7 +3,7 @@ title: Management VRF
 author: Cumulus Networks
 weight: 91
 aliases:
- - /display/RMP31/Management-VRF
+ - /display/RMP31/Management+VRF
  - /pages/viewpage.action?pageId=5122801
 pageID: 5122801
 product: Cumulus RMP

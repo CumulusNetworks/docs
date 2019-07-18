@@ -3,7 +3,7 @@ title: Spanning Tree and Rapid Spanning Tree
 author: Cumulus Networks
 weight: 111
 aliases:
- - /display/CL34/Spanning-Tree-and-Rapid-Spanning-Tree
+ - /display/CL34/Spanning+Tree+and+Rapid+Spanning+Tree
  - /pages/viewpage.action?pageId=7112441
 pageID: 7112441
 product: Cumulus Linux

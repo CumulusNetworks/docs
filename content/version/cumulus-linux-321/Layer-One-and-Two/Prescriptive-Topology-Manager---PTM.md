@@ -3,7 +3,7 @@ title: Prescriptive Topology Manager - PTM
 author: Cumulus Networks
 weight: 105
 aliases:
- - /display/CL321/Prescriptive-Topology-Manager---PTM
+ - /display/CL321/Prescriptive+Topology+Manager+++PTM
  - /pages/viewpage.action?pageId=5126832
 pageID: 5126832
 product: Cumulus Linux

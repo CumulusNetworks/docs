@@ -3,7 +3,7 @@ title: HTTP API
 author: Cumulus Networks
 weight: 79
 aliases:
- - /display/CL36/HTTP-API
+ - /display/CL36/HTTP+API
  - /pages/viewpage.action?pageId=8362086
 pageID: 8362086
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: Troubleshooting Log Files
 author: Cumulus Networks
 weight: 435
 aliases:
- - /display/CL35/Troubleshooting-Log-Files
+ - /display/CL35/Troubleshooting+Log+Files
  - /pages/viewpage.action?pageId=8357384
 pageID: 8357384
 product: Cumulus Linux

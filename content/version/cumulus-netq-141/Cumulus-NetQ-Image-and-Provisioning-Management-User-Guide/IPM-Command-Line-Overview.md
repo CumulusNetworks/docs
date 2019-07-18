@@ -3,7 +3,7 @@ title: IPM Command Line Overview
 author: Cumulus Networks
 weight: 29
 aliases:
- - /display/NETQ141/IPM-Command-Line-Overview
+ - /display/NETQ141/IPM+Command+Line+Overview
  - /pages/viewpage.action?pageId=10453537
 pageID: 10453537
 product: Cumulus NetQ
@@ -31,7 +31,7 @@ provisioning): </span>
 
   - **ztp:** manages mappings between ZTP scripts and the
     meta-information the
-    [ZTP](/cumulus-linux/Installation-Management/Zero-Touch-Provisioning-ZTP/) tool sends.
+    [ZTP](/display/NETQ141/Zero+Touch+Provisioning+-+ZTP) tool sends.
 
 The TIPCTL syntax is organized around the command actions–add, delete,
 show, configure, import, sync, and reset–for each of the functions, as
@@ -39,9 +39,10 @@ appropriate.
 
 {{%notice note%}}
 
-The NetQ IPM command line interface only runs on switches and server hosts
-implemented with Intel x86 or ARM-based architectures. If you are unsure what
-architecture your switch or server employs, check the Cumulus [Hardware Compatibility
+The NetQ IPM command line interface only runs on switches and server
+hosts implemented with Intel x86 or ARM-based architectures.
+<span style="color: #353744;"> If you are unsure what architecture your
+switch or server employs, check the Cumulus [Hardware Compatibility
 List](https://cumulusnetworks.com/products/hardware-compatibility-list/)
 and verify the value in the **Platforms** tab \> **CPU** column. </span>
 
@@ -60,12 +61,12 @@ commands at the prompt. <span style="color: #353744;"> </span>
 1.  <span style="color: #353744;"> Log in to TS. This example uses a
     username of *Cumulus* and a Telemetry Server with a name of *ts*.  
     </span>
-
+    
         <computer>:~Cumulus$ ssh ts
 
 2.  <span style="color: #353744;"> Enter your password, if required, to
     reach the command prompt. For example: </span>
-
+    
         Enter passphrase for key '/Users/<username>/.ssh/id_rsa': 
         Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-112-generic x86_64)
          * Documentation:  https://help.ubuntu.com
@@ -76,7 +77,7 @@ commands at the prompt. <span style="color: #353744;"> </span>
 
 3.  <span style="color: #353744;"> Run commands. For example:  
     </span>
-
+    
         Cumulus@ts:~$ tipctl config setup
         Cumulus@ts:~$ tipctl add ztp 
 

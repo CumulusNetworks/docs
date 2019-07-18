@@ -3,7 +3,7 @@ title: Ethernet Bridging - VLANs
 author: Cumulus Networks
 weight: 73
 aliases:
- - /display/RMP25ESR/Ethernet-Bridging---VLANs
+ - /display/RMP25ESR/Ethernet+Bridging+++VLANs
  - /pages/viewpage.action?pageId=5116341
 pageID: 5116341
 product: Cumulus RMP

@@ -3,7 +3,7 @@ title: Using Snapshots
 author: Cumulus Networks
 weight: 47
 aliases:
- - /display/CL332/Using-Snapshots
+ - /display/CL332/Using+Snapshots
  - /pages/viewpage.action?pageId=5868963
 pageID: 5868963
 product: Cumulus Linux

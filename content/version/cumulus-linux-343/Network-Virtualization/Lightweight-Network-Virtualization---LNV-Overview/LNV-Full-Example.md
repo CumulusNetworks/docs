@@ -3,7 +3,7 @@ title: LNV Full Example
 author: Cumulus Networks
 weight: 353
 aliases:
- - /display/CL34/LNV-Full-Example
+ - /display/CL34/LNV+Full+Example
  - /pages/viewpage.action?pageId=7112494
 pageID: 7112494
 product: Cumulus Linux

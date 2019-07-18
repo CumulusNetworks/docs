@@ -3,7 +3,7 @@ title: Traditional Mode Bridges
 author: Cumulus Networks
 weight: 305
 aliases:
- - /display/CL332/Traditional-Mode-Bridges
+ - /display/CL332/Traditional+Mode+Bridges
  - /pages/viewpage.action?pageId=5868987
 pageID: 5868987
 product: Cumulus Linux

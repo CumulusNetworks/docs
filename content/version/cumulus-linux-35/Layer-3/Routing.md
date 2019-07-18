@@ -42,7 +42,7 @@ To delete a static route, run:
 
 To view static routes, run:
 
-    cumulus@switch:~$ net show route static
+    cumulus@switch:~$ net show route static 
     RIB entry for static
     ====================
     Codes: K - kernel route, C - connected, S - static, R - RIP,
@@ -210,7 +210,7 @@ your network architecture and specify the profile name for the
 
     cumulus@switch:~$ cat /etc/cumulus/datapath/traffic.conf | grep forwarding_table -B 4
     # Manage shared forwarding table allocations
-    # Valid profiles -
+    # Valid profiles - 
     # default, l2-heavy, v4-lpm-heavy, v6-lpm-heavy
     #
     forwarding_table.profile = default
@@ -252,7 +252,8 @@ file.
         2. default, ipmc-heavy, acl-heavy, ipmc-max
            tcam_resource.profile = default
 
-After you specify a different profile, [restart `switchd`](/version/cumulus-linux-35/System-Configuration/Configuring-switchd/#span-id-src-8357343-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-span-restarting-switchd-span)
+After you specify a different profile, [restart
+`switchd`](/display/CL35/Configuring+switchd#Configuringswitchd-restartswitchd)
 for the change to take effect.
 
 When [nonatomic
@@ -368,16 +369,16 @@ Running `ifup` a second time on eth0 successfully installs the route.
 There are two ways you can work around this issue.
 
   - Add a sleep 2 to the eth0 interface in `/etc/network/interfaces`:
-
+    
         cumulus@switch:~$ net add interface eth0 ipv6 address 2001:620:5ca1:160::45/64 post-up /bin/sleep 2s
         cumulus@switch:~$ net add interface eth0 post-up /sbin/ip route add default via 2001:620:5ca1:160::1 src 2001:620:5ca11:160::45 dev eth0
 
   - Exclude the `src` parameter to the `ip route add` that causes the
     need for the delay. If the `src` parameter is removed, the route is
     added correctly.
-
+    
         cumulus@switch:~$ net add interface eth0 post-up /sbin/ip route add default via 2001:620:5ca1:160::1 dev eth0
-
+    
         cumulus@switch:~$ ifdown eth0
         Stopping NTP server: ntpd.
         Starting NTP server: ntpd.
@@ -386,9 +387,9 @@ There are two ways you can work around this issue.
         Stopping NTP server: ntpd.
         Starting NTP server: ntpd.
         cumulus@switch:~$ ip -6 r s
-        2001:620:5ca1:160::/64 dev eth0  proto kernel  metric 256
-        fe80::/64 dev eth0  proto kernel  metric 256
-        default via 2001:620:5ca1:160::1 dev eth0  metric 1024
+        2001:620:5ca1:160::/64 dev eth0  proto kernel  metric 256 
+        fe80::/64 dev eth0  proto kernel  metric 256 
+        default via 2001:620:5ca1:160::1 dev eth0  metric 1024 
 
 ## <span>Related Information</span>
 

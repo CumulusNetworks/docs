@@ -3,7 +3,7 @@ title: Single User Mode - Boot Recovery
 author: Cumulus Networks
 weight: 153
 aliases:
- - /display/CL25ESR/Single-User-Mode---Boot-Recovery
+ - /display/CL25ESR/Single+User+Mode+++Boot+Recovery
  - /pages/viewpage.action?pageId=5115975
 pageID: 5115975
 product: Cumulus Linux

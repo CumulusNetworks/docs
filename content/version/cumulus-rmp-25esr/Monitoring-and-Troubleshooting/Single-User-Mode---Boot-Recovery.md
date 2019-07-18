@@ -3,7 +3,7 @@ title: Single User Mode - Boot Recovery
 author: Cumulus Networks
 weight: 85
 aliases:
- - /display/RMP25ESR/Single-User-Mode---Boot-Recovery
+ - /display/RMP25ESR/Single+User+Mode+++Boot+Recovery
  - /pages/viewpage.action?pageId=5116335
 pageID: 5116335
 product: Cumulus RMP

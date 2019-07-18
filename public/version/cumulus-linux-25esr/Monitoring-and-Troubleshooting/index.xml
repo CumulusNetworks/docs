@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monitoring and Troubleshooting on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/</link>
+    <description>Recent content in Monitoring and Troubleshooting on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Single User Mode - Boot Recovery</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery/</guid>
+      <description>Use single user mode to assist in troubleshooting system boot issues or for password recovery. Entering single user mode is platform-specific, so follow the appropriate steps for your x86, ARM or PowerPC switch.
+Entering Single User Mode on an x86 Switch  Boot the switch, as soon as you see the GRUB menu, use the ^ and v arrow keys to select the boot entry you wish to modify, then press e to edit the entry.</description>
+    </item>
+    
+    <item>
+      <title>Using netshow to Troubleshoot Your Network Configuration</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Using-netshow-to-Troubleshoot-Your-Network-Configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Using-netshow-to-Troubleshoot-Your-Network-Configuration/</guid>
+      <description>netshow is a tool in Cumulus Linux that quickly returns a lot of information about your network configuration. It&amp;rsquo;s a tool designed by network operators for network troubleshooters since existing command line tools have too many options. netshow addresses this by leveraging the network troubleshooting experience from a wide group of troubleshooters and boiling it down to just a few important options. netshow quickly aggregates basic network information on Linux devices with numerous interfaces.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring Interfaces and Transceivers Using ethtool</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Monitoring-Interfaces-and-Transceivers-Using-ethtool/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Monitoring-Interfaces-and-Transceivers-Using-ethtool/</guid>
+      <description>The ethtool command enables you to query or control the network driver and hardware settings. It takes the device name (like swp1) as an argument. When the device name is the only argument to ethtool, it prints the current settings of the network device. See man ethtool(8) for details. Not all options are currently supported on switch port interfaces.
+Commands  cl-netstat
+ ethtool
+  Monitoring Interface Status Using ethtool To check the status of an interface using ethtool:</description>
+    </item>
+    
+    <item>
+      <title>Resource Diagnostics Using cl-resource-query</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/</guid>
+      <description>You can use cl-resource-query to retrieve information about host entries, MAC entries, L2 and L3 routes, and ECMPs (equal-cost multi-path routes, see Load Balancing) that are in use. This is especially useful because Cumulus Linux syncs routes between the kernel and the switching silicon. If the required resource pools in hardware fill up, new kernel routes can cause existing routes to move from being fully allocated to being partially allocated.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring System Hardware</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/</guid>
+      <description>You monitor system hardware in these ways, using:
+ decode-syseeprom
+ sensors
+ smond
+ Net-SNMP
+ watchdog
+  Commands  decode-syseeprom
+ dmidecode
+ lshw
+ sensors
+ smond
+  Monitoring Hardware Using decode-syseeprom The decode-syseeprom command enables you to retrieve information about the switch&amp;rsquo;s EEPROM. If the EEPROM is writable, you can set values on the EEPROM.
+For example:
+cumulus@switch:~$ decode-syseeprom TlvInfo Header: Id String: TlvInfo Version: 1 Total Length: 114 TLV Name Code Len Value -------------------- ---- --- ----- Product Name 0x21 4 4804 Part Number 0x22 14 R0596-F0009-00 Device Version 0x26 1 2 Serial Number 0x23 19 D1012023918PE000012 Manufacture Date 0x25 19 10/09/2013 20:39:02 Base MAC Address 0x24 6 00:E0:EC:25:7B:D0 MAC Addresses 0x2A 2 53 Vendor Name 0x2D 17 Penguin Computing Label Revision 0x27 4 4804 Manufacture Country 0x2C 2 CN CRC-32 0xFE 4 0x96543BC5 (checksum valid)  Command Options Usage: /usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t]</description>
+    </item>
+    
+    <item>
+      <title>Monitoring System Statistics and Network Traffic with sFlow</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/</guid>
+      <description>sFlow is a monitoring protocol that samples network packets, application operations, and system counters. sFlow enables you to monitor your network traffic as well as your switch state and performance metrics. An outside server, known as an sFlow collector, is required to collect and analyze this data.
+hsflowd is the daemon that samples and sends sFlow data to configured collectors. hsflowd is not included in the base Cumulus Linux installation.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring Virtual Device Counters</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Monitoring-Virtual-Device-Counters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Monitoring-Virtual-Device-Counters/</guid>
+      <description>Cumulus Linux gathers statistics for VXLANs and VLANs using virtual device counters. These counters are supported on Trident II-based platforms only; see the Cumulus Networks HCL for a list of supported Trident II platforms.
+You can retrieve the data from these counters using tools like ip -s link show, ifconfig, /proc/net/dev, or netstat -i.
+Sample VXLAN Statistics VXLAN statistics are available as follows:
+ Aggregate statistics are available per VNI; this includes access and network statistics.</description>
+    </item>
+    
+    <item>
+      <title>Managing Application Daemons</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Managing-Application-Daemons/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Managing-Application-Daemons/</guid>
+      <description>You manage application daemons in Cumulus Linux in the following ways:
+ Identifying active listener ports
+ Identifying daemons currently active or stopped
+ Identifying boot time state of a specific daemon
+ Disabling or enabling a specific daemon
+  Identifying Active Listener Ports for IPv4 and IPv6 You can identify the active listener ports under both IPv4 and IPv6 using the lsof command:
+cumulus@switch:~$ sudo lsof -Pnl +M -i4 COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME ntpd 1882 104 16u IPv4 3954 0t0 UDP *:123 ntpd 1882 104 18u IPv4 3963 0t0 UDP 127.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting Network Interfaces</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/</guid>
+      <description>The following sections describe various ways you can troubleshoot ifupdown2.
+Enabling Logging for Networking The /etc/default/networking file contains two settings for logging:
+ To get ifupdown2 logs when the switch boots (stored in syslog)
+ To enable logging when you run service networking [start|stop|reload]
+  This file also contains an option for excluding interfaces when you boot the switch or run service networking start|stop|reload. You can exclude any interface specified in /etc/network/interfaces.</description>
+    </item>
+    
+    <item>
+      <title>Network Troubleshooting</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Network-Troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Network-Troubleshooting/</guid>
+      <description>Cumulus Linux contains a number of command line and analytical tools to help you troubleshoot issues with your network.
+Commands  arp
+ cl-acltool
+ ip
+ mz
+ ping
+ tcpdump
+ traceroute
+  Checking Reachability Using ping ping is used to check reachability of a host. ping also calculates the time it takes for packets to travel the round trip. See man ping for details.
+To test the connection to an IPv4 host:</description>
+    </item>
+    
+    <item>
+      <title>SNMP Monitoring</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/SNMP-Monitoring/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/SNMP-Monitoring/</guid>
+      <description>Cumulus Linux 2.5.x utilizes the open source Net-SNMP agent snmpd, v5.4.3, which provides support for most of the common industry-wide MIBs, including interface counters and TCP/UDP IP stack data.
+Cumulus Linux does not prevent customers from extending SNMP features. However, Cumulus Networks encourages the use of higher performance monitoring environments, rather than SNMP.
+ Starting the SNMP Daemon snmpd is disabled by default in Cumulus Linux 2.5.x. The following procedure is the recommended process to start snmpd, and monitor it using jdoo.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -3,7 +3,7 @@ title: Troubleshooting the etc Directory
 author: Cumulus Networks
 weight: 177
 aliases:
- - /display/RMP31/Troubleshooting-the-etc-Directory
+ - /display/RMP31/Troubleshooting+the+etc+Directory
  - /pages/viewpage.action?pageId=5122757
 pageID: 5122757
 product: Cumulus RMP

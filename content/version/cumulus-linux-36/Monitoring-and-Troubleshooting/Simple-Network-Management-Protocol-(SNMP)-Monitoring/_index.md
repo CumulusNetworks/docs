@@ -3,7 +3,7 @@ title: Simple Network Management Protocol (SNMP) Monitoring
 author: Cumulus Networks
 weight: 227
 aliases:
- - /display/CL36/Simple-Network-Management-Protocol-(SNMP)-Monitoring
+ - /display/CL36/Simple+Network+Management+Protocol+(SNMP)+Monitoring
  - /pages/viewpage.action?pageId=8362103
 pageID: 8362103
 product: Cumulus Linux
@@ -114,7 +114,7 @@ package).
     sysLocation OBJECT-TYPE
       -- FROM       SNMPv2-MIB
       -- TEXTUAL CONVENTION DisplayString
-      SYNTAX        OCTET STRING (0..255)
+      SYNTAX        OCTET STRING (0..255) 
       DISPLAY-HINT  "255a"
       MAX-ACCESS    read-write
       STATUS        current
@@ -326,8 +326,8 @@ net add snmp-server listening-address all-v6</code></pre></td>
 <td><p><code>net add snmp-server username [user name] (auth-none|auth-md5|auth-sha) &lt;authentication password&gt; [(encrypt-des|encrypt-aes) &lt;encryption password&gt;] (oid &lt;OID&gt;|view &lt;view name&gt;)</code></p></td>
 <td><p>Creates an SNMPv3 username and the necessary credentials for access. You can restrict a user to a particular OID tree or predefined view name if these are specified. If you specify auth-none, no authentication password is required. Otherwise, an MD5 or SHA password is required for access to the MIB objects. If specified, an encryption password is used to hide the contents of the request and response packets.</p>
 <pre><code>net add snmp-server username testusernoauth  auth-none
-net add snmp-server username testuserauth    auth-md5  myauthmd5password
-net add snmp-server username testuserboth    auth-md5  mynewmd5password   encrypt-aes  myencryptsecret
+net add snmp-server username testuserauth    auth-md5  myauthmd5password 
+net add snmp-server username testuserboth    auth-md5  mynewmd5password   encrypt-aes  myencryptsecret 
 net add snmp-server username limiteduser1    auth-md5  md5password1       encrypt-aes  myaessecret       oid 1.3.6.1.2.1.1</code></pre></td>
 </tr>
 <tr class="odd">
@@ -481,7 +481,7 @@ rocommunity cumulustestpassword</code></pre></td>
 <tr class="odd">
 <td><p><strong>view</strong></p></td>
 <td><p>This command defines a view name that specifies a subset of the overall OID tree. You can reference this restricted view by name in the <code>rocommunity</code> command to link the view to a password that is used to see this restricted OID subset. By default, the <code>snmpd.conf</code> file contains numerous views with the <em>systemonly</em> view name.</p>
-<pre><code>view   systemonly  included   .1.3.6.1.2.1.1
+<pre><code>view   systemonly  included   .1.3.6.1.2.1.1 
  
 view   systemonly  included   .1.3.6.1.2.1.2
  
@@ -509,7 +509,7 @@ rouser snmptrapusernameX</code></pre></td>
 <td><p>This command enables link up and link down trap notifications, assuming the other trap configurations settings are set. This command configures the Event MIB tables to monitor the ifTable for network interfaces being taken up or down, and triggering a <em>linkUp</em> or <em>linkDown</em> notification as appropriate. This is equivalent to the following configuration:</p>
 <pre><code>notificationEvent  linkUpTrap    linkUp   ifIndex ifAdminStatus ifOperStatus
  
-notificationEvent  linkDownTrap  linkDown ifIndex ifAdminStatus ifOperStatus
+notificationEvent  linkDownTrap  linkDown ifIndex ifAdminStatus ifOperStatus 
  
 monitor  -r 60 -e linkUpTrap   &quot;Generate linkUp&quot; ifOperStatus != 2
  
@@ -541,24 +541,24 @@ it using `systemctl`.
 To start the SNMP daemon:
 
 1.  Start the `snmpd` daemon:
-
+    
         cumulus@switch:~$ sudo systemctl start snmpd.service
 
 2.  Configure the `snmpd` daemon to start automatically after reboot:
-
+    
         cumulus@switch:~$ sudo systemctl enable snmpd.service
 
 3.  To enable `snmpd` to restart automatically after failure:
-
+    
     1.  Create a file called
         `/etc/systemd/system/snmpd.service.d/restart.conf`.
-
+    
     2.  Add the following lines:
-
+        
             [Service]
             Restart=always
             RestartSec=60
-
+    
     3.  Run `sudo systemctl daemon-reload`.
 
 After the service starts, you can use SNMP to manage various components
@@ -566,7 +566,7 @@ on the switch.
 
 ### <span>Configuring SNMP with Management VRF (used prior to Cumulus Linux 3.6)</span>
 
-When you configure [Management VRF](/version/cumulus-linux-36/Layer-3/Management-VRF/), you
+When you configure [Management VRF](/display/CL36/Management+VRF), you
 need to be aware of the interface IP addresses on which SNMP is
 listening. If you set listening-address to all, the `snmpd` daemon
 responds to incoming requests on all interfaces that are in the default
@@ -646,7 +646,7 @@ shows how to stop `snmpd` and restart it in the management VRF.
     cumulus@switch:mgmt-vrf:~$ systemctl stop snmpd.service
     cumulus@switch:mgmt-vrf:~$ systemctl disable snmpd.service
     cumulus@switch:mgmt-vrf:~$ ps aux | grep snmpd
-    cumulus@switch:mgmt-vrf:~$
+    cumulus@switch:mgmt-vrf:~$ 
     cumulus@switch:mgmt-vrf:~$ systemctl start snmpd@mgmt.service
     cumulus@switch:mgmt-vrf:~$ systemctl enable snmpd.service
     cumulus@switch:mgmt-vrf:~$ systemctl status snmpd@mgmt.service
@@ -692,9 +692,9 @@ To enable read-only querying by a client:
 
 2.  To allow read-only access, uncomment the following line, then save
     the file:
-
+    
         rocommunity public default -V systemonly
-
+    
     <table>
     <colgroup>
     <col style="width: 50%" />
@@ -730,7 +730,7 @@ To enable read-only querying by a client:
     </table>
 
 3.  Restart `snmpd`:
-
+    
         cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 ## <span id="src-8362103_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctZnJy" class="confluence-anchor-link"></span><span>Enabling SNMP Support for FRRouting</span>
@@ -761,7 +761,7 @@ and to 1.3.6.1.2.1.191 for the OSPv3 MIB.
 To enable SNMP support for FRRouting:
 
 1.  Configure AgentX access in FRRouting:
-
+    
         cumulus@switch:~$ net add routing agentx
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
@@ -769,24 +769,24 @@ To enable SNMP support for FRRouting:
 2.  Update the SNMP configuration to enable FRRouting to respond to SNMP
     requests. Open the `/etc/snmp/snmpd.conf` file in a text editor and
     verify that the following configuration exists:
-
-        agentxsocket /var/agentx/master
+    
+        agentxsocket /var/agentx/master 
         agentxperms 777 777 snmp snmp
         master agentx
-
+    
     {{%notice note%}}
-
+    
     Make sure that the `/var/agentx` directory is world-readable and
     world-searchable (octal mode 755).
-
+    
     {{%/notice%}}
 
 3.  Optionally, you might need to expose various MIBs:
-
+    
       - For the BGP4 MIB, allow access to `1.3.6.1.2.1.15`
-
+    
       - For the OSPF MIB, allow access to `1.3.6.1.2.1.14`
-
+    
       - For the OSPFV3 MIB, allow access to `1.3.6.1.2.1.191`
 
 To verify the configuration, run `snmpwalk`. For example, if you have a
@@ -892,7 +892,7 @@ the localhost:
     snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.1.1.0
     snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.2.1.0
     snmpwalk -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1
-
+      
     # check user3 which has both authentication and encryption (authPriv)
     snmpget -v 3 -u user3 -l authPriv -a MD5 -A user3password -x DES -X user3encryption localhost .1.3.6.1.2.1.1.1.0
     snmpwalk -v 3 -u user3 -l authPriv -a MD5 -A user3password -x DES -X user3encryption localhost .1.3.6.1.2.1
@@ -904,26 +904,26 @@ configuring SNMPv3 users without creating cleartext passwords:
 
 1.  Install the `net-snmp-config` script that is in `libsnmp-dev`
     package:
-
+    
         cumulus@switch:~$ sudo -E apt-get update
         cumulus@switch:~$ sudo -E apt-get install libsnmp-dev
 
 2.  Stop the daemon:
-
+    
         cumulus@switch:~$ sudo systemctl stop snmpd.service
 
 3.  Use the `net-snmp-config` command to create two users, one with MD5
     and DES, and the next with SHA and AES.
-
+    
     {{%notice note%}}
-
+    
     The minimum password length is eight characters and the arguments
     `-a` and `-x` have different meanings in `net-snmp-config` than
     `snmpwalk`.
-
+    
     {{%/notice%}}
-
-        cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a md5authpass -x desprivpass -A MD5 -X DES userMD5withDES
+    
+        cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a md5authpass -x desprivpass -A MD5 -X DES userMD5withDES 
         cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
         cumulus@switch:~$ sudo systemctl start snmpd.service
 
@@ -1008,7 +1008,7 @@ SNMPv2 traps are sent:
 
     trap2sink 192.168.1.1 public
     # For SNMPv1 Traps, use
-    # trapsink  192.168.1.1  public
+    # trapsink  192.168.1.1  public 
 
 {{%notice note%}}
 
@@ -1037,7 +1037,7 @@ Restart the `snmpd` service to apply the changes.
 
 You can configure SNMPv3 trap and inform messages with the ` trapsess
  `configuration command. Inform messages are traps that are acknowledged
-by the receiving trap daemon. You configure inform messages with the`
+by the receiving trap daemon. You configure inform messages with the` 
 -Ci  `parameter. You must specify the EngineID of the receiving trap
 server with the `-e` field.
 
@@ -1098,7 +1098,7 @@ way:
 
     monitor [OPTIONS] NAME EXPRESSION
      
-                  defines  a  MIB  object to monitor.  If the EXPRESSION condition holds then
+                  defines  a  MIB  object to monitor.  If the EXPRESSION condition holds then 
                   this will trigger the corresponding event, and either send a notification or
                   apply a SET assignment (or both).  Note that the event will only be triggered once,
                   when the expression first matches.  This monitor entry will not fire again until the
@@ -1185,7 +1185,7 @@ status, given as a value of *ok(1)*, *unavailable(2)* or
 `/etc/snmp/snmpd.conf` and adjusting the values:
 
   - Using the `entPhySensorOperStatus` integer:
-
+    
         # without installing extra MIBS we can check the check Fan1 status
         # if the Fan1 index is 100011001, monitor this specific OID (-I) every 10 seconds (-r), and defines additional information to be included in the trap (-o).
         monitor -I -r 10  -o 1.3.6.1.2.1.47.1.1.1.1.7.100011001 "Fan1 Not OK"  1.3.6.1.2.1.99.1.1.1.5.100011001 > 1
@@ -1193,29 +1193,29 @@ status, given as a value of *ok(1)*, *unavailable(2)* or
         monitor  -r 10  -o 1.3.6.1.2.1.47.1.1.1.1.7  "Sensor Status Failure"  1.3.6.1.2.1.99.1.1.1.5 > 1
 
   - Using the OID name:
-
+    
         # for a specific fan called Fan1 with an index 100011001
         monitor -I -r 10  -o entPhysicalName.100011001 "Fan1 Not OK"  entPhySensorOperStatus.100011001 > 1
         # for any Entity Status not OK ( greater than 1)
         monitor  -r 10  -o entPhysicalName  "Sensor Status Failure"  entPhySensorOperStatus > 1
-
+    
     {{%notice note%}}
-
+    
     You can use the OID name if the `snmp-mibs-downloader` package is
     installed.
-
+    
     {{%/notice%}}
-
+    
     {{%notice note%}}
-
+    
     The `entPhySensorOperStatus` integer can be found by walking the
     `entPhysicalName` table.
-
+    
     {{%/notice%}}
 
   - To get all sensor information, run `snmpwalk` on the
     `entPhysicalName` table. For example:
-
+    
         cumulus@leaf01:~$ snmpwalk -v 2c -cpublic localhost .1.3.6.1.2.1.47.1.1.1.1.7
         iso.3.6.1.2.1.47.1.1.1.1.7.100000001 = STRING: "PSU1Temp1"
         iso.3.6.1.2.1.47.1.1.1.1.7.100000002 = STRING: "PSU2Temp1"
@@ -1245,20 +1245,20 @@ enabling traps. This greatly improves the readability of the
 1.  Open `/etc/apt/sources.list` in a text editor.
 
 2.  Add the `non-free` repository, then save the file:
-
+    
         cumulus@switch:~$ sudo deb http://ftp.us.debian.org/debian/ jessie main non-free
 
 3.  Update the switch:
-
+    
         cumulus@switch:~$ sudo -E apt-get update
 
 4.  Install the `snmp-mibs-downloader`:
-
+    
         cumulus@switch:~$ sudo -E apt-get install snmp-mibs-downloader
 
 5.  Open the `/etc/snmp/snmp.conf` file to verify that the `mibs :` line
     is commented out:
-
+    
         #
         # As the snmp packages come without MIB files due to license reasons, loading
         # of MIBs is disabled by default. If you added the MIBs you can reenable
@@ -1267,7 +1267,7 @@ enabling traps. This greatly improves the readability of the
 
 6.  Open the `/etc/default/snmpd` file to verify that the `export MIBS=`
     line is commented out:
-
+    
         # This file controls the activity of snmpd and snmptrapd
          
         # Don't load any MIBs by default.
@@ -1276,7 +1276,7 @@ enabling traps. This greatly improves the readability of the
 
 7.  After you confirm the configuration, remove or comment out the
     `non-free` repository in `/etc/apt/sources.list`.
-
+    
         #deb http://ftp.us.debian.org/debian/ jessie main non-free
 
 #### <span>Configuring Link Up/Down Notifications</span>
@@ -1314,7 +1314,7 @@ To monitor the sensors individually, first use the `sensors` command to
 determine which sensors are available to be monitored on the platform.
 
     cumulus@switch:~$ sudo sensors
-
+      
     CY8C3245-i2c-4-2e
     Adapter: i2c-0-mux (chan_id 2)
     fan5: 7006 RPM (min = 2500 RPM, max = 23000 RPM)
@@ -1421,8 +1421,8 @@ about specific configuration options within the file, look at the
     # this is the default (port 162) and defines the listening
     # protocol and address  (e.g.  udp:10.10.10.10)
     snmpTrapdAddr localhost
-    #
-    # defines the actions and the community string
+    # 
+    # defines the actions and the community string 
     authCommunity log,execute,net public
 
 ## <span id="src-8362103_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3Jpbmctc3VwcG9ydGVkX21pYnM" class="confluence-anchor-link"></span><span>Supported MIBs</span>

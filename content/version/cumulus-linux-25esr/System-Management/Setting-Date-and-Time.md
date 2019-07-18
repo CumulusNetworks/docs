@@ -3,7 +3,7 @@ title: Setting Date and Time
 author: Cumulus Networks
 weight: 55
 aliases:
- - /display/CL25ESR/Setting-Date-and-Time
+ - /display/CL25ESR/Setting+Date+and+Time
  - /pages/viewpage.action?pageId=5115899
 pageID: 5115899
 product: Cumulus Linux

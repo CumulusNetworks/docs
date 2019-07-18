@@ -3,7 +3,7 @@ title: Using Nutanix Prism as a Monitoring Tool
 author: Cumulus Networks
 weight: 361
 aliases:
- - /display/CL31/Using-Nutanix-Prism-as-a-Monitoring-Tool
+ - /display/CL31/Using+Nutanix+Prism+as+a+Monitoring+Tool
  - /pages/viewpage.action?pageId=5121973
 pageID: 5121973
 product: Cumulus Linux

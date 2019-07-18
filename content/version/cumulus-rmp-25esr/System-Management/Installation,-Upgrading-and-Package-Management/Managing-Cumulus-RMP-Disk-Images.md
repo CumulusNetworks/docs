@@ -3,7 +3,7 @@ title: Managing Cumulus RMP Disk Images
 author: Cumulus Networks
 weight: 131
 aliases:
- - /display/RMP25ESR/Managing-Cumulus-RMP-Disk-Images
+ - /display/RMP25ESR/Managing+Cumulus+RMP+Disk+Images
  - /pages/viewpage.action?pageId=5116319
 pageID: 5116319
 product: Cumulus RMP

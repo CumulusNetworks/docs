@@ -3,7 +3,7 @@ title: Troubleshooting the support Directory
 author: Cumulus Networks
 weight: 321
 aliases:
- - /display/CL31/Troubleshooting-the-support-Directory
+ - /display/CL31/Troubleshooting+the+support+Directory
  - /pages/viewpage.action?pageId=5121959
 pageID: 5121959
 product: Cumulus Linux

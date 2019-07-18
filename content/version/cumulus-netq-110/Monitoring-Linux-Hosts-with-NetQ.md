@@ -3,7 +3,7 @@ title: Monitoring Linux Hosts with NetQ
 author: Cumulus Networks
 weight: 25
 aliases:
- - /display/NETQ110/Monitoring-Linux-Hosts-with-NetQ
+ - /display/NETQ110/Monitoring+Linux+Hosts+with+NetQ
  - /pages/viewpage.action?pageId=7111333
 pageID: 7111333
 product: Cumulus NetQ
@@ -25,4 +25,13 @@ The NetQ Agent is supported on the following Linux hosts:
   - Ubuntu 16.04
 
 You need to install the OS-specific NetQ metapack on every host you want
-to monitor with NetQ. For more information, see the [Host Pack user guide](/host-pack).
+to monitor with NetQ. For more information, see the [Host Pack user
+guide](https://docs.cumulusnetworks.com/display/HOSTPACK/Monitoring+Linux+Hosts+with+NetQ).
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>

@@ -3,7 +3,7 @@ title: Configuring and Managing Network Interfaces
 author: Cumulus Networks
 weight: 17
 aliases:
- - /display/RMP30/Configuring-and-Managing-Network-Interfaces
+ - /display/RMP30/Configuring+and+Managing+Network+Interfaces
  - /pages/viewpage.action?pageId=5118733
 pageID: 5118733
 product: Cumulus RMP

@@ -3,7 +3,7 @@ title: Using Cumulus VX with VirtualBox
 author: Cumulus Networks
 weight: 13
 aliases:
- - /display/VX30/Using-Cumulus-VX-with-VirtualBox
+ - /display/VX30/Using+Cumulus+VX+with+VirtualBox
  - /pages/viewpage.action?pageId=5126581
 pageID: 5126581
 product: Cumulus VX

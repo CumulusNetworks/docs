@@ -3,7 +3,7 @@ title: Layer 1 and Switch Port Attributes
 author: Cumulus Networks
 weight: 81
 aliases:
- - /display/CL31/Layer-1-and-Switch-Port-Attributes
+ - /display/CL31/Layer+1+and+Switch+Port+Attributes
  - /pages/viewpage.action?pageId=5122107
 pageID: 5122107
 product: Cumulus Linux

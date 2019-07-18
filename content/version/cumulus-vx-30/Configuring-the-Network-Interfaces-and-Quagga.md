@@ -3,7 +3,7 @@ title: Configuring the Network Interfaces and Quagga
 author: Cumulus Networks
 weight: 23
 aliases:
- - /display/VX30/Configuring-the-Network-Interfaces-and-Quagga
+ - /display/VX30/Configuring+the+Network+Interfaces+and+Quagga
  - /pages/viewpage.action?pageId=5126617
 pageID: 5126617
 product: Cumulus VX

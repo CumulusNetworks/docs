@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cumulus NetQ on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-netq-21/</link>
+    <description>Recent content in Cumulus NetQ on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-netq-21/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cumulus NetQ API User Guide</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-API-User-Guide/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-API-User-Guide/</guid>
+      <description>The NetQ API provides access to key telemetry and system monitoring data gathered about the performance and operation of your data center network and devices so that you can view that data in your internal or third-party analytic tools. The API gives you access to the health of individual switches, network protocols and services, and views of network-wide inventory and events.
+This guide provides an overview of the API framework and some examples of how to use the API to extract the data you need.</description>
+    </item>
+    
+  </channel>
+</rss>

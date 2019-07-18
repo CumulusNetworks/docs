@@ -3,7 +3,7 @@ title: Monitoring System Hardware
 author: Cumulus Networks
 weight: 107
 aliases:
- - /display/RMP31/Monitoring-System-Hardware
+ - /display/RMP31/Monitoring+System+Hardware
  - /pages/viewpage.action?pageId=5122751
 pageID: 5122751
 product: Cumulus RMP

@@ -3,7 +3,7 @@ title: Network Switch Port LED and Status LED Guidelines
 author: Cumulus Networks
 weight: 449
 aliases:
- - /display/CL36/Network-Switch-Port-LED-and-Status-LED-Guidelines
+ - /display/CL36/Network+Switch+Port+LED+and+Status+LED+Guidelines
  - /pages/viewpage.action?pageId=8362090
 pageID: 8362090
 product: Cumulus Linux

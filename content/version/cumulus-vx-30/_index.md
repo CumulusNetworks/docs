@@ -3,7 +3,7 @@ title: Cumulus VX Getting Started Guide
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/VX30/Cumulus-VX-Getting-Started-Guide
+ - /display/VX30/Cumulus+VX+Getting+Started+Guide
  - /pages/viewpage.action?pageId=5126578
 pageID: 5126578
 product: Cumulus VX
@@ -157,3 +157,50 @@ environments, visit these links:
     documentation](https://community.gns3.com/community/software/documentation)
 
 {{% imgOld 0 %}}
+
+## <span>Recently Updated Pages</span>
+
+  - Cumulus VX Getting Started GuideMay 13, 2019 • updated by [Dan
+    Cawley](https://docs.cumulusnetworks.com/display/~dcawley) • [view
+    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=5126578&selectedPageVersions=2&selectedPageVersions=1)
+
+  - [Using Cumulus VX with
+    KVM](/version/cumulus-vx-30/Using-Cumulus-VX-with-KVM)May 02, 2017 •
+    updated by [Rama
+    Darbha](https://docs.cumulusnetworks.com/display/~rama) • [view
+    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=5126595&selectedPageVersions=2&selectedPageVersions=1)
+
+  - Cumulus VX Getting Started GuideJun 09, 2016 • created by [Tom
+    Wells](https://docs.cumulusnetworks.com/display/~tom)
+
+  - [Using Cumulus VX with
+    VirtualBox](/version/cumulus-vx-30/Using-Cumulus-VX-with-VirtualBox/)May
+    09, 2016 • created by [Tom
+    Wells](https://docs.cumulusnetworks.com/display/~tom)
+
+  - [Creating a Two-Spine, Two-Leaf
+    Topology](/version/cumulus-vx-30/Using-Cumulus-VX-with-VirtualBox/Creating-a-Two-Spine-Two-Leaf-Topology)Apr
+    28, 2016 • created by [Tom
+    Wells](https://docs.cumulusnetworks.com/display/~tom)
+
+[Show
+More](https://docs.cumulusnetworks.com/plugins/recently-updated/changes.action?theme=concise&pageSize=5&startIndex=5&searchToken=78331&spaceKeys=VX30&contentType=page)
+
+![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/wait.gif](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/wait.gif)  
+<span class="caption">Please wait</span>
+
+## <span>Space Contributors</span>
+
+  - [Dan Cawley](https://docs.cumulusnetworks.com/display/~dcawley) (58
+    days ago)
+
+  - [Tom Wells](https://docs.cumulusnetworks.com/display/~tom) (1125
+    days ago)
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>

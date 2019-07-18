@@ -3,7 +3,7 @@ title: Resource Diagnostics Using cl-resource-query
 author: Cumulus Networks
 weight: 213
 aliases:
- - /display/CL36/Resource-Diagnostics-Using-cl-resource-query
+ - /display/CL36/Resource+Diagnostics+Using+cl+resource+query
  - /pages/viewpage.action?pageId=8362088
 pageID: 8362088
 product: Cumulus Linux
@@ -11,7 +11,6 @@ version: '3.6'
 imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 ---
-
 You can use the `cl-resource-query` command to retrieve information
 about host entries, MAC entries, layer 2 and layer 3 routes, and
 [ECMP](Network-Topology.html#src-8362385_NetworkTopology-load_balancing)
@@ -36,7 +35,7 @@ To monitor the routes in Cumulus Linux hardware, use the
 `cl-resource-query` command. The results vary between switches running
 on different chipsets.
 
-The example below shows `cl-resource-query` results for a Broadcom
+The example below shows`  cl-resource-query ` results for a Broadcom
 Tomahawk switch:
 
     cumulus@switch:~$ sudo cl-resource-query
@@ -71,7 +70,7 @@ Tomahawk switch:
     Egress ACL ipv6 filter table:           0,   0% of maximum value      0 (allocated: 0)
     ACL L4 port range checkers:             2,   6% of maximum value     32
 
-The example below shows `cl-resource-query` results for a Broadcom
+The example below shows`  cl-resource-query ` results for a Broadcom
 Trident II switch:
 
     cumulus@switch:~$ sudo cl-resource-query
@@ -109,6 +108,16 @@ Trident II switch:
 {{%notice note%}}
 
 Ingress ACL and Egress ACL entries show the counts in single wide (*not*
-double-wide). For information about ACL entries, see [Estimating the Number of ACL Rules](/version/cumulus-linux-36/System-Configuration/Netfilter-ACLs/#span-estimating-the-number-of-rules-span).
+double-wide). For information about ACL entries, see [Estimating the
+Number of ACL
+Rules](/display/CL36/Netfilter+-+ACLs#Netfilter-ACLs-EstimatingtheNumberofRules).
 
 {{%/notice%}}
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>

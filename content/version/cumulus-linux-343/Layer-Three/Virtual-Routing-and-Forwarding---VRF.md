@@ -3,7 +3,7 @@ title: Virtual Routing and Forwarding - VRF
 author: Cumulus Networks
 weight: 193
 aliases:
- - /display/CL34/Virtual-Routing-and-Forwarding---VRF
+ - /display/CL34/Virtual+Routing+and+Forwarding+++VRF
  - /pages/viewpage.action?pageId=7112681
 pageID: 7112681
 product: Cumulus Linux

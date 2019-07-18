@@ -3,7 +3,7 @@ title: Integrating with VMware NSX
 author: Cumulus Networks
 weight: 137
 aliases:
- - /display/CL332/Integrating-with-VMware-NSX
+ - /display/CL332/Integrating+with+VMware+NSX
  - /pages/viewpage.action?pageId=5869019
 pageID: 5869019
 product: Cumulus Linux

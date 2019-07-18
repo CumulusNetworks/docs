@@ -3,7 +3,7 @@ title: Managing Application Daemons
 author: Cumulus Networks
 weight: 169
 aliases:
- - /display/CL25ESR/Managing-Application-Daemons
+ - /display/CL25ESR/Managing+Application+Daemons
  - /pages/viewpage.action?pageId=5115967
 pageID: 5115967
 product: Cumulus Linux

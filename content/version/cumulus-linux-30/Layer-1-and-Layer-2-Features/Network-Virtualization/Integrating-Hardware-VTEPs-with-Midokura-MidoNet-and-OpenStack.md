@@ -3,7 +3,7 @@ title: Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
 author: Cumulus Networks
 weight: 251
 aliases:
- - /display/CL30/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack
+ - /display/CL30/Integrating+Hardware+VTEPs+with+Midokura+MidoNet+and+OpenStack
  - /pages/viewpage.action?pageId=5118308
 pageID: 5118308
 product: Cumulus Linux

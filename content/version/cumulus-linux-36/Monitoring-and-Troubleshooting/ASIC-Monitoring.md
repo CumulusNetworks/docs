@@ -3,7 +3,7 @@ title: ASIC Monitoring
 author: Cumulus Networks
 weight: 219
 aliases:
- - /display/CL36/ASIC-Monitoring
+ - /display/CL36/ASIC+Monitoring
  - /pages/viewpage.action?pageId=8362122
 pageID: 8362122
 product: Cumulus Linux

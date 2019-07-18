@@ -3,7 +3,7 @@ title: Quick Start Guide
 author: Cumulus Networks
 weight: 11
 aliases:
- - /display/CL35/Quick-Start-Guide
+ - /display/CL35/Quick+Start+Guide
  - /pages/viewpage.action?pageId=8357328
 pageID: 8357328
 product: Cumulus Linux

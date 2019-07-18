@@ -3,7 +3,7 @@ title: LACP Bypass
 author: Cumulus Networks
 weight: 121
 aliases:
- - /display/CL332/LACP-Bypass
+ - /display/CL332/LACP+Bypass
  - /pages/viewpage.action?pageId=5869007
 pageID: 5869007
 product: Cumulus Linux

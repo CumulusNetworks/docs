@@ -3,7 +3,7 @@ title: Troubleshooting Network Interfaces
 author: Cumulus Networks
 weight: 111
 aliases:
- - /display/RMP30/Troubleshooting-Network-Interfaces
+ - /display/RMP30/Troubleshooting+Network+Interfaces
  - /pages/viewpage.action?pageId=5118699
 pageID: 5118699
 product: Cumulus RMP

@@ -3,7 +3,7 @@ title: Resolve MLAG Issues
 author: Cumulus Networks
 weight: 127
 aliases:
- - /display/NETQ141/Resolve-MLAG-Issues
+ - /display/NETQ141/Resolve+MLAG+Issues
  - /pages/viewpage.action?pageId=10453528
 pageID: 10453528
 product: Cumulus NetQ

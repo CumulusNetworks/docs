@@ -3,7 +3,7 @@ title: Getting to Know NetQ
 author: Cumulus Networks
 weight: 13
 aliases:
- - /display/NETQ110/Getting-to-Know-NetQ
+ - /display/NETQ110/Getting+to+Know+NetQ
  - /pages/viewpage.action?pageId=7111332
 pageID: 7111332
 product: Cumulus NetQ

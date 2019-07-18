@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Getting Started with NetQ on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-netq-121/Getting-Started-with-NetQ/</link>
+    <description>Recent content in Getting Started with NetQ on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-netq-121/Getting-Started-with-NetQ/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Configuring High Availability Mode</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-121/Getting-Started-with-NetQ/Configuring-High-Availability-Mode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-121/Getting-Started-with-NetQ/Configuring-High-Availability-Mode/</guid>
+      <description>NetQ supports high availability — that is, the ability to continue functioning even in the absence of a single failure of the telemetry server node. To make the NetQ Telemetry Server highly available (HA mode), you need to run three instances of the telemetry server. Currently, exactly three instances are supported in HA mode. Of the three instances, one is considered the master and is writeable while the other two are read-only replicas.</description>
+    </item>
+    
+    <item>
+      <title>Upgrading NetQ</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-121/Getting-Started-with-NetQ/Upgrading-NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-121/Getting-Started-with-NetQ/Upgrading-NetQ/</guid>
+      <description>This section covers the process for upgrading NetQ. The upgrade process involves upgrading each of the various components of NetQ (the NetQ Telemetry Server, and both the host and Cumulus Linux agents), and then connecting the upgraded NetQ Telemetry Server to the network.
+Cumulus Networks recommends only upgrading NetQ during a network maintenance window.
+ Events generated during the upgrade process will not be available in the database. Once the upgrade process is complete, the agents will re-sync with the current state of the Host or Cumulus Linux switch with the Telemetry server.</description>
+    </item>
+    
+  </channel>
+</rss>

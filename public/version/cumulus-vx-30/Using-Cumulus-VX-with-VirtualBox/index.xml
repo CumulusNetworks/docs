@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Using Cumulus VX with VirtualBox on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-vx-30/Using-Cumulus-VX-with-VirtualBox/</link>
+    <description>Recent content in Using Cumulus VX with VirtualBox on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-vx-30/Using-Cumulus-VX-with-VirtualBox/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Creating a Two-Spine, Two-Leaf Topology</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-vx-30/Using-Cumulus-VX-with-VirtualBox/Creating-a-Two-Spine-Two-Leaf-Topology/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-vx-30/Using-Cumulus-VX-with-VirtualBox/Creating-a-Two-Spine-Two-Leaf-Topology/</guid>
+      <description>To create a two-spine/two-leaf configuration, you start by importing the OVA image into VirtualBox four times, as each instance of the VM represents one leaf or spine switch (Cumulus VX-leaf1, Cumulus VX-leaf2, Cumulus VX-spine1 and Cumulus VX-spine2). Then you configure each VM&amp;rsquo;s network interfaces and routing settings.
+Configuring the leaf1 VM Import the Cumulus VX-leaf1 VM into VirtualBox, then configure its settings.
+ Double-click the OVA image file to open VirtualBox.</description>
+    </item>
+    
+    <item>
+      <title>An Alternative Method for Adding More Nodes to the Network</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-vx-30/Using-Cumulus-VX-with-VirtualBox/An-Alternative-Method-for-Adding-More-Nodes-to-the-Network/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-vx-30/Using-Cumulus-VX-with-VirtualBox/An-Alternative-Method-for-Adding-More-Nodes-to-the-Network/</guid>
+      <description>Another way you can add a VM to one or more of the internal virtual networks in VirtualBox is by cloning the VM. However, keep the following in mind:
+ To quickly set up any configurations that you want across multiple nodes on your system, configure the settings on the original VM, then clone the VM using Machine &amp;gt; Clone.
+For example, if you want to include a management VM for the new topology you are going to create, you can set the eth0 port to be on a virtual network that the management VM is on, so when you clone the new VM, it will duplicate this port, giving you an out-of-band (OOB) network.</description>
+    </item>
+    
+  </channel>
+</rss>

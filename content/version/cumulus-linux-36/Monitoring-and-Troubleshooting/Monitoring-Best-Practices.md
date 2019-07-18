@@ -3,7 +3,7 @@ title: Monitoring Best Practices
 author: Cumulus Networks
 weight: 229
 aliases:
- - /display/CL36/Monitoring-Best-Practices
+ - /display/CL36/Monitoring+Best+Practices
  - /pages/viewpage.action?pageId=8362120
 pageID: 8362120
 product: Cumulus Linux
@@ -642,7 +642,8 @@ BFD, and associated logs are documented in the code.
 {{%notice note%}}
 
 Cumulus Networks recommends that you track peering information through
-PTM. For more information, refer to the [Prescriptive Topology Manager documentation](/version/cumulus-linux-36/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/).
+PTM. For more information, refer to the [Prescriptive Topology Manager
+documentation](/display/CL36/Prescriptive+Topology+Manager+-+PTM).
 
 {{%/notice%}}
 

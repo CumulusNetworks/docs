@@ -3,7 +3,7 @@ title: Cumulus Linux User Guide
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/CL31/Cumulus-Linux-User-Guide
+ - /display/CL31/Cumulus+Linux+User+Guide
  - /pages/viewpage.action?pageId=5121907
 pageID: 5121907
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: Monitoring Interfaces and Transceivers Using ethtool
 author: Cumulus Networks
 weight: 87
 aliases:
- - /display/RMP25ESR/Monitoring-Interfaces-and-Transceivers-Using-ethtool
+ - /display/RMP25ESR/Monitoring+Interfaces+and+Transceivers+Using+ethtool
  - /pages/viewpage.action?pageId=5116324
 pageID: 5116324
 product: Cumulus RMP

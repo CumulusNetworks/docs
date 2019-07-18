@@ -3,7 +3,7 @@ title: Cumulus RMP User Guide
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/RMP25ESR/Cumulus-RMP-User-Guide
+ - /display/RMP25ESR/Cumulus+RMP+User+Guide
  - /pages/viewpage.action?pageId=5116301
 pageID: 5116301
 product: Cumulus RMP

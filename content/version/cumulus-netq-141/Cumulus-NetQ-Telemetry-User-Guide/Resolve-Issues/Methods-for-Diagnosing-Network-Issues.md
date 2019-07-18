@@ -3,7 +3,7 @@ title: Methods for Diagnosing Network Issues
 author: Cumulus Networks
 weight: 125
 aliases:
- - /display/NETQ141/Methods-for-Diagnosing-Network-Issues
+ - /display/NETQ141/Methods+for+Diagnosing+Network+Issues
  - /pages/viewpage.action?pageId=10453530
 pageID: 10453530
 product: Cumulus NetQ

@@ -3,7 +3,7 @@ title: Using Cumulus VX with KVM
 author: Cumulus Networks
 weight: 15
 aliases:
- - /display/VX25/Using-Cumulus-VX-with-KVM
+ - /display/VX25/Using+Cumulus+VX+with+KVM
  - /pages/viewpage.action?pageId=5115403
 pageID: 5115403
 product: Cumulus VX

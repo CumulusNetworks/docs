@@ -3,7 +3,7 @@ title: Taking Preventative Steps with Your Network
 author: Cumulus Networks
 weight: 15
 aliases:
- - /display/NETQ10/Taking-Preventative-Steps-with-Your-Network
+ - /display/NETQ10/Taking+Preventative+Steps+with+Your+Network
  - /pages/viewpage.action?pageId=6488223
 pageID: 6488223
 product: Cumulus NetQ

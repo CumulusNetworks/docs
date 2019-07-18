@@ -3,7 +3,7 @@ title: Performing Network Diagnostics
 author: Cumulus Networks
 weight: 21
 aliases:
- - /display/NETQ121/Performing-Network-Diagnostics
+ - /display/NETQ121/Performing+Network+Diagnostics
  - /pages/viewpage.action?pageId=8356555
 pageID: 8356555
 product: Cumulus NetQ

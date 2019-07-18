@@ -3,7 +3,7 @@ title: Configuring DHCP Relays
 author: Cumulus Networks
 weight: 59
 aliases:
- - /display/RMP30/Configuring-DHCP-Relays
+ - /display/RMP30/Configuring+DHCP+Relays
  - /pages/viewpage.action?pageId=5118737
 pageID: 5118737
 product: Cumulus RMP

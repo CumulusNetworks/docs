@@ -3,7 +3,7 @@ title: Configuring switchd
 author: Cumulus Networks
 weight: 73
 aliases:
- - /display/CL33/Configuring-switchd
+ - /display/CL33/Configuring+switchd
  - /pages/viewpage.action?pageId=5866112
 pageID: 5866112
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: Managing Application Daemons
 author: Cumulus Networks
 weight: 63
 aliases:
- - /display/CL31/Managing-Application-Daemons
+ - /display/CL31/Managing+Application+Daemons
  - /pages/viewpage.action?pageId=5121946
 pageID: 5121946
 product: Cumulus Linux

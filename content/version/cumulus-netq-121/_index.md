@@ -3,7 +3,7 @@ title: Cumulus NetQ
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/NETQ121/Cumulus-NetQ
+ - /display/NETQ121/Cumulus+NetQ
  - /pages/viewpage.action?pageId=8356534
 pageID: 8356534
 product: Cumulus NetQ

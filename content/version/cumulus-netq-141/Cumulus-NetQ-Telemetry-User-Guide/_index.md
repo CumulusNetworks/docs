@@ -3,7 +3,7 @@ title: Cumulus NetQ Telemetry User Guide
 author: Cumulus Networks
 weight: 13
 aliases:
- - /display/NETQ141/Cumulus-NetQ-Telemetry-User-Guide
+ - /display/NETQ141/Cumulus+NetQ+Telemetry+User+Guide
  - /pages/viewpage.action?pageId=10453453
 pageID: 10453453
 product: Cumulus NetQ

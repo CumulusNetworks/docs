@@ -3,7 +3,7 @@ title: Setting Date and Time
 author: Cumulus Networks
 weight: 57
 aliases:
- - /display/CL31/Setting-Date-and-Time
+ - /display/CL31/Setting+Date+and+Time
  - /pages/viewpage.action?pageId=5121923
 pageID: 5121923
 product: Cumulus Linux

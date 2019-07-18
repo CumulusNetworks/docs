@@ -1,0 +1,6384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Configuring and Managing Network Interfaces | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/docs.cumulusnetworks.com/book.min.a378d8a2da6f5357a83a43dff33d6f77fb70401e0399d5ba78faf81d7a1ae1a8.css">
+
+  
+  <link rel="icon" href="/docs.cumulusnetworks.com/icons/favicon.png" type="image/x-icon">
+
+  
+  <link rel="alternate" type="application/rss+xml" href="docs.cumulusnetworks.com/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/index.xml" title="Cumulus Networks Documentation" />
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+  
+  
+  <script src = "/docs.cumulusnetworks.com/js/codecopy.js"> </script>
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+      
+    
+    <ul>
+    
+      <li class = "active" ><a href = docs.cumulusnetworks.com/cumulus-linux/ >
+        Cumulus Linux </a> </li>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-netq/ >
+        Cumulus NetQ </a> </li>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-vx/ >
+        Cumulus VX </a> </li>
+    
+      <li>
+        <div id="products-dropdown" class="dropdown">
+            <button class="btn" type="button" id="dropdownMenuButton">
+              Products
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="">Cumulus RMP</a>
+              <a class="dropdown-item" href="">Cumulus Chassis</a>
+              <a class="dropdown-item" href="">Cumulus Host Pack</a>
+            </div>
+        </div>
+      </li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v3.0.1
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/cumulus-linux/"> v3.7.7</a>
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-25esr/"> v2.5.12</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-30/"> v3.0.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-31/"> v3.1.2</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-321/"> v3.2.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-330/"> v3.3.0</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-332/"> v3.3.2</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-343/"> v3.4.3</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-35/"> v3.5</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-36/"> v3.6</a>
+            
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="docs.cumulusnetworks.com">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+            
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/" >
+    Installation, Upgrading and Package Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Installing-a-New-Cumulus-Linux-Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/Adding-and-Updating-Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/Zero-Touch-Provisioning-ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/System-Management/" >
+    System Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/System-Management/Authentication-Authorization-and-Accounting/" >
+    Authentication, Authorization, and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/System-Management/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/System-Management/Authentication-Authorization-and-Accounting/User-Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/System-Management/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/System-Management/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/System-Management/Setting-Date-and-Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/System-Management/Netfilter-ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/System-Management/Managing-Application-Daemons/" >
+    Managing Application Daemons
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/System-Management/Configuring-switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/System-Management/Power-over-Ethernet-PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/System-Management/Configuring-a-Global-Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/"  class="active" >
+    Configuring and Managing Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/" >
+    Layer 1 and Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/Buffer-and-Queue-Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/Configuring-DHCP-Relays/" >
+    Configuring DHCP Relays
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/" >
+    Layer 1 and Layer 2 Features
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/" >
+    VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/" >
+    Lightweight Network Virtualization - LNV
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/LNV-VXLAN-Active-Active-Mode/" >
+    LNV VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/LNV-Full-Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Integrating-with-VMware-NSX/" >
+    Integrating with VMware NSX
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Static-MAC-Bindings-with-VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Link-Layer-Discovery-Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Bonding-Link-Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/LACP-Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Virtual-Router-Redundancy-VRR/" >
+    Virtual Router Redundancy - VRR
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/IGMP-and-MLD-Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/" >
+    Layer 3 Features
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Configuring-Quagga/" >
+    Configuring Quagga
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Configuring-Quagga/Cumulus-Linux-Quagga-Commands/" >
+    Cumulus Linux Quagga Commands
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Introduction-to-Routing-Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Network-Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Quagga-Overview/" >
+    Quagga Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol/" >
+    Open Shortest Path First - OSPF - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-v3-OSPFv3-Protocol/" >
+    Open Shortest Path First v3 - OSPFv3 - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP/" >
+    Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Bidirectional-Forwarding-Detection-BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Redistribute-Neighbor/" >
+    Redistribute Neighbor
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF/" >
+    Virtual Routing and Forwarding - VRF
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Layer-3-Features/Management-VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/" >
+    Understanding and Decoding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-Log-Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-the-etc-Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-the-support-Directory/" >
+    Troubleshooting the support Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/Network-Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/Network-Troubleshooting/Using-netshow-to-Troubleshoot-Your-Network-Configuration/" >
+    Using netshow to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/Monitoring-Virtual-Device-Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Monitoring-and-Troubleshooting/SNMP-Monitoring/" >
+    SNMP Monitoring
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Network-Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Network-Solutions/Cumulus-Networks-Services-Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Network-Solutions/Docker-on-Cumulus-Linux/" >
+    Docker on Cumulus Linux
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Whats-New-in-Cumulus-Linux-3.0.1/" >
+    What&#39;s New in Cumulus Linux 3.0.1
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Quick-Start-Guide/" >
+    Quick Start Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-30/Cumulus-Linux-Index/" >
+    Cumulus Linux Index
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "/docs.cumulusnetworks.com/js/menuBundle.js"> </script>
+
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/docs.cumulusnetworks.com/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Configuring and Managing Network Interfaces</strong>
+      </header>
+
+      
+      
+<div class= "notices info" id = "info" >
+  This documentation is for an older version of the software. If you are using the current version of Cumulus Linux, this content may not be up to date. The current version of the documentation is available [here](https://docs.cumulusnetworks.com/).
+  </div>
+<article class="markdown">
+<h1>Configuring and Managing Network Interfaces</h1>
+
+<p><details></p>
+
+<p><code>ifupdown</code> is the network interface manager for Cumulus Linux. Cumulus
+Linux 2.1 and later uses an updated version of this tool, <code>ifupdown2</code>.</p>
+
+<p>For more information on network interfaces, see <a href="/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes">Layer 1 and Switch Port
+Attributes</a>.</p>
+
+
+<div class="notices info" > <p>By default, <code>ifupdown</code> is quiet; use the verbose option <code>-v</code> when you
+want to know what is going on when bringing an interface down or up.</p>
+ </div>
+
+
+<h2 id="span-commands-span"><span>Commands</span></h2>
+
+<ul>
+<li><p>ifdown</p></li>
+
+<li><p>ifquery</p></li>
+
+<li><p>ifreload</p></li>
+
+<li><p>ifup</p></li>
+
+<li><p>mako-render</p></li>
+</ul>
+
+<h2 id="span-man-pages-span"><span>Man Pages</span></h2>
+
+<p>The following man pages have been updated for <code>ifupdown2</code>:</p>
+
+<ul>
+<li><p>man ifdown(8)</p></li>
+
+<li><p>man ifquery(8)</p></li>
+
+<li><p>man ifreload</p></li>
+
+<li><p>man ifup(8)</p></li>
+
+<li><p>man ifupdown-addons-interfaces(5)</p></li>
+
+<li><p>man interfaces(5)</p></li>
+</ul>
+
+<h2 id="span-configuration-files-span"><span>Configuration Files</span></h2>
+
+<ul>
+<li>/etc/network/interfaces</li>
+</ul>
+
+<h2 id="span-basic-commands-span"><span>Basic Commands</span></h2>
+
+<p>To bring up an interface or apply changes to an existing interface, run:</p>
+
+<pre><code>cumulus@switch:~$ sudo ifup &lt;ifname&gt;
+</code></pre>
+
+<p>To bring down a single interface, run:</p>
+
+<pre><code>cumulus@switch:~$ sudo ifdown &lt;ifname&gt;
+</code></pre>
+
+<p><summary>Runtime Configuration (Advanced) </summary></p>
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<div class="notices warning" > <p></p>
+<p>A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.</p>
+<p></p>
+ </div>
+
+<p>To administratively bring an interface up or down, run:</p>
+<pre><code>cumulus@switch:~$ sudo ip link set dev swp1 {up|down}</code></pre>
+
+<div class="notices note" > <p></p>
+<p>If you specified <em>manual</em> as the address family, you must bring up that interface manually using <code>ifconfig</code>. For example, if you configured a bridge like this:</p>
+<pre><code>auto bridge01
+iface bridge01 inet manual</code></pre>
+<p>You can only bring it up by running <code>ifconfig bridge01 up</code>.</p>
+<p></p>
+ </div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="notices info" > <p><code>ifdown</code> always deletes logical interfaces after bringing them down. Use
+the <code>--admin-state</code> option if you only want to administratively bring
+the interface up or down.</p>
+ </div>
+
+
+<p>To see the link and administrative state, use the <code>ip link show</code>
+command:</p>
+
+<pre><code>cumulus@switch:~$ ip link show dev swp1 
+3: swp1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
+    link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
+</code></pre>
+
+<p>In this example, swp1 is administratively UP and the physical link is UP
+(LOWER_UP flag). More information on interface administrative state and
+physical state can be found in <a href="https://support.cumulusnetworks.com/hc/en-us/articles/202693826" target="_blank">this knowledge base
+article</a>.</p>
+
+<h2 id="span-id-src-5118370-configuringandmanagingnetworkinterfaces-classes-class-confluence-anchor-link-span-span-ifupdown2-interface-classes-span"><span id="src-5118370_ConfiguringandManagingNetworkInterfaces-classes" class="confluence-anchor-link"></span><span>ifupdown2 Interface Classes</span></h2>
+
+<p><code>ifupdown2</code> provides for the grouping of interfaces into separate
+classes, where a class is simply a user-defined label used to group
+interfaces that share a common function (like uplink, downlink or
+compute). You specify classes in <code>/etc/network/interfaces</code>.</p>
+
+<p>The most common class users are familiar with is <em>auto</em>, which you
+configure like this:</p>
+
+<pre><code>auto swp1
+iface swp1
+</code></pre>
+
+<p>You can add other classes using the <em>allow</em> prefix. For example, if you
+have multiple interfaces used for uplinks, you can make up a class
+called <em>uplinks:</em></p>
+
+<pre><code>auto swp1
+allow-uplink swp1
+iface swp1 inet static
+    address 10.1.1.1/31
+
+auto swp2
+allow-uplink swp2
+iface swp2 inet static
+    address 10.1.1.3/31
+</code></pre>
+
+<p>This allows you to perform operations on only these interfaces using the
+&ndash;allow-uplinks option, or still use the <code>-a</code> options since these
+interfaces are also in the auto class:</p>
+
+<pre><code>cumulus@switch:~$ sudo ifup --allow=uplinks 
+cumulus@switch:~$ sudo ifreload -a 
+</code></pre>
+
+<p>Another example where this feature is useful is if you&rsquo;re using
+<a href="/version/cumulus-linux-30/Layer-3-Features/Management-VRF">Management
+VRF</a>, you can
+use the special interface class called <em>mgmt</em>, and put the management
+interface into that class:</p>
+
+<pre><code>allow-mgmt eth0
+iface eth0 inet dhcp
+    vrf mgmt
+allow-mgmt mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto
+</code></pre>
+
+<p>All <code>ifupdown2</code> commands (<code>ifup</code>, <code>ifdown</code>, <code>ifquery</code>, <code>ifreload</code>) can
+take a class. Include the <code>--allow=&lt;class&gt;</code> option when you run the
+command. For example, to reload the configuration for the management
+interface described above, run:</p>
+
+<pre><code>cumulus@switch:~$ sudo ifreload --allow=mgmt 
+</code></pre>
+
+<h3 id="span-bringing-all-auto-interfaces-up-or-down-span"><span>Bringing All auto Interfaces Up or Down</span></h3>
+
+<p>You can easily bring up or down all interfaces marked with the common
+<code>auto</code> class in <code>/etc/network/interfaces</code>. Use the <code>-a</code> option. For
+further details, see individual man pages for <code>ifup(8)</code>, <code>ifdown(8)</code>,
+<code>ifreload(8)</code>.</p>
+
+<p>To administratively bring up all interfaces marked auto, run:</p>
+
+<pre><code>cumulus@switch:~$ sudo ifup -a
+</code></pre>
+
+<p>To administratively bring down all interfaces marked auto, run:</p>
+
+<pre><code>cumulus@switch:~$ sudo ifdown -a
+</code></pre>
+
+<p>To reload all network interfaces marked <code>auto</code>, use the <code>ifreload</code>
+command, which is equivalent to running <code>ifdown</code> then <code>ifup</code>, the one
+difference being that <code>ifreload</code> skips any configurations that didn&rsquo;t
+change):</p>
+
+<pre><code>cumulus@switch:~$ sudo ifreload -a
+</code></pre>
+
+<h2 id="span-configuring-a-loopback-interface-span"><span>Configuring a Loopback Interface</span></h2>
+
+<p>Cumulus Linux has a loopback preconfigured in <code>/etc/network/interfaces</code>.
+When the switch boots up, it has a loopback interface, called <em>lo</em>,
+which is up and assigned an IP address of 127.0.0.1.</p>
+
+
+<div class="notices tip" > <p>The loopback interface <em>lo</em> must always be specified in
+<code>/etc/network/interfaces</code> and must always be up.</p>
+ </div>
+
+
+<p><span id="src-5118370_ConfiguringandManagingNetworkInterfaces-ip"></span>ifupdown
+Behavior with Child Interfaces</p>
+
+<p>By default, <code>ifupdown</code> recognizes and uses any interface present on the
+system — whether a VLAN, bond or physical interface — that is listed as
+a dependent of an interface. You are not required to list them in the
+<code>interfaces</code> file unless they need a specific configuration, for <a href="/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes">MTU,
+link speed, and so
+forth</a>.
+And if you need to delete a child interface, you should delete all
+references to that interface from the <code>interfaces</code> file.</p>
+
+<p>For this example, swp1 and swp2 below do not need an entry in the
+<code>interfaces</code> file. The following stanzas defined in
+<code>/etc/network/interfaces</code> provide the exact same configuration:</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p><strong>With Child Interfaces Defined</strong></p>
+<pre><code>auto swp1
+iface swp1
+ 
+auto swp2
+iface swp2
+ 
+auto bridge
+iface bridge
+    bridge-vlan-aware yes
+    bridge-ports swp1 swp2
+    bridge-vids 1-100
+    bridge-pvid 1
+    bridge-stp on</code></pre></td>
+<td><p><strong>Without Child Interfaces Defined</strong></p>
+<pre><code>auto bridge
+iface bridge
+    bridge-vlan-aware yes
+    bridge-ports swp1 swp2
+    bridge-vids 1-100
+    bridge-pvid 1
+    bridge-stp on</code></pre></td>
+</tr>
+</tbody>
+</table>
+
+<p><summary>Bridge in Traditional Mode - Example </summary></p>
+
+<p>For this example, swp1.100 and swp2.100 below do not need an entry in
+the <code>interfaces</code> file. The following stanzas defined in
+<code>/etc/network/interfaces</code> provide the exact same configuration:</p>
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p><strong>With Child Interfaces Defined</strong></p>
+<pre><code>auto swp1.100
+iface swp1.100
+ 
+auto swp2.100
+iface swp2.100
+ 
+auto br-100
+iface br-100
+    address 10.0.12.2/24
+    address 2001:dad:beef::3/64
+    bridge-ports swp1.100 swp2.100
+    bridge-stp on</code></pre></td>
+<td><p><strong>Without Child Interfaces Defined</strong></p>
+<pre><code>auto br-100
+iface br-100
+    address 10.0.12.2/24
+    address 2001:dad:beef::3/64
+    bridge-ports swp1.100 swp2.100
+    bridge-stp on</code></pre></td>
+</tr>
+</tbody>
+</table>
+
+<p>For more information on the bridge in traditional mode vs the bridge in
+VLAN-aware mode, please read <a href="https://support.cumulusnetworks.com/hc/en-us/articles/204909397" target="_blank">this knowledge base
+article</a>.</p>
+
+<h2 id="span-ifupdown2-interface-dependencies-span"><span>ifupdown2 Interface Dependencies</span></h2>
+
+<p><code>ifupdown2</code> understands interface dependency relationships. When <code>ifup</code>
+and <code>ifdown</code> are run with all interfaces, they always run with all
+interfaces in dependency order. When run with the interface list on the
+command line, the default behavior is to not run with dependents. But if
+there are any built-in dependents, they will be brought up or down.</p>
+
+<p>To run with dependents when you specify the interface list, use the
+<code>--with-depends</code> option. <code>--with-depends</code> walks through all dependents
+in the dependency tree rooted at the interface you specify. Consider the
+following example configuration:</p>
+
+<pre><code>auto bond1
+iface bond1
+    address 100.0.0.2/16
+    bond-slaves swp29 swp30
+
+auto bond2
+iface bond2
+    address 100.0.0.5/16
+    bond-slaves swp31 swp32
+
+auto br2001
+iface br2001
+    address 12.0.1.3/24
+    bridge-ports bond1.2001 bond2.2001
+    bridge-stp on
+</code></pre>
+
+<p>Using <code>ifup --with-depends br2001</code> brings up all dependents of br2001:
+bond1.2001, bond2.2001, bond1, bond2, bond1.2001, bond2.2001, swp29,
+swp30, swp31, swp32.</p>
+
+<pre><code>cumulus@switch:~$ sudo ifup --with-depends br2001
+</code></pre>
+
+<p>Similarly, specifying <code>ifdown --with-depends br2001</code> brings down all
+dependents of br2001: bond1.2001, bond2.2001, bond1, bond2, bond1.2001,
+bond2.2001, swp29, swp30, swp31, swp32.</p>
+
+<pre><code>cumulus@switch:~$ sudo ifdown --with-depends br2001
+</code></pre>
+
+
+<div class="notices warning" > <p>As mentioned earlier, <code>ifdown2</code> always deletes logical interfaces after
+bringing them down. Use the <code>--admin-state</code> option if you only want to
+administratively bring the interface up or down. In terms of the above
+example, <code>ifdown br2001</code> deletes <code>br2001</code>.</p>
+ </div>
+
+
+<p>To guide you through which interfaces will be brought down and up, use
+the <code>--print-dependency</code> option to get the list of dependents.</p>
+
+<p>Use <code>ifquery --print-dependency=list -a</code> to get the dependency list of
+all interfaces:</p>
+
+<pre><code>cumulus@switch:~$ sudo ifquery --print-dependency=list -a
+lo : None
+eth0 : None
+bond0 : ['swp25', 'swp26']
+bond1 : ['swp29', 'swp30']
+bond2 : ['swp31', 'swp32']
+br0 : ['bond1', 'bond2']
+bond1.2000 : ['bond1']
+bond2.2000 : ['bond2']
+br2000 : ['bond1.2000', 'bond2.2000']
+bond1.2001 : ['bond1']
+bond2.2001 : ['bond2']
+br2001 : ['bond1.2001', 'bond2.2001']
+swp40 : None
+swp25 : None
+swp26 : None
+swp29 : None
+swp30 : None
+swp31 : None
+swp32 : None
+</code></pre>
+
+<p>To print the dependency list of a single interface, use:</p>
+
+<pre><code>cumulus@switch:~$ sudo ifquery --print-dependency=list br2001
+br2001 : ['bond1.2001', 'bond2.2001']
+bond1.2001 : ['bond1']
+bond2.2001 : ['bond2']
+bond1 : ['swp29', 'swp30']
+bond2 : ['swp31', 'swp32']
+swp29 : None
+swp30 : None
+swp31 : None
+swp32 : None
+</code></pre>
+
+<p>To print the dependency information of an interface in <code>dot</code> format:</p>
+
+<pre><code>cumulus@switch:~$ sudo ifquery --print-dependency=dot br2001
+/* Generated by GvGen v.0.9 (http://software.inl.fr/trac/wiki/GvGen) */
+digraph G {
+    compound=true;
+    node1 [label=&quot;br2001&quot;];
+    node2 [label=&quot;bond1.2001&quot;];
+    node3 [label=&quot;bond2.2001&quot;];
+    node4 [label=&quot;bond1&quot;];
+    node5 [label=&quot;bond2&quot;];
+    node6 [label=&quot;swp29&quot;];
+    node7 [label=&quot;swp30&quot;];
+    node8 [label=&quot;swp31&quot;];
+    node9 [label=&quot;swp32&quot;];
+    node1-&gt;node2;
+    node1-&gt;node3;
+    node2-&gt;node4;
+    node3-&gt;node5;
+    node4-&gt;node6;
+    node4-&gt;node7;
+    node5-&gt;node8;
+    node5-&gt;node9;
+}
+</code></pre>
+
+<p>You can use <code>dot</code> to render the graph on an external system where <code>dot</code>
+is installed.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/5118370/interfaces.png" alt = "/images/download/attachments/5118370/interfaces.png"
+
+
+ />
+
+
+<p>To print the dependency information of the entire <code>interfaces</code> file:</p>
+
+<pre><code>cumulus@switch:~$ sudo ifquery --print-dependency=dot -a &gt;interfaces_all.dot
+</code></pre>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/5118370/interfaces_all.png" alt = "/images/download/attachments/5118370/interfaces_all.png"
+
+
+width = 500
+
+ />
+
+
+<h3 id="span-ifup-handling-of-upper-parent-interfaces-span"><span>ifup Handling of Upper (Parent) Interfaces</span></h3>
+
+<p>When you run <code>ifup</code> on a logical interface (like a bridge, bond or VLAN
+interface), if the <code>ifup</code> resulted in the creation of the logical
+interface, by default it implicitly tries to execute on the interface&rsquo;s
+upper (or parent) interfaces as well. This helps in most cases,
+especially when a bond is brought down and up, as in the example below.
+This section describes the behavior of bringing up the upper interfaces.</p>
+
+<p>Consider this example configuration:</p>
+
+<pre><code>auto br100
+iface br100
+    bridge-ports bond1.100 bond2.100
+
+auto bond1
+iface bond1
+    bond-slaves swp1 swp2
+</code></pre>
+
+<p>If you run <code>ifdown bond1</code>, <code>ifdown</code> deletes bond1 and the VLAN interface
+on bond1 (bond1.100); it also removes bond1 from the bridge br100. Next,
+when you run <code>ifup bond1</code>, it creates bond1 and the VLAN interface on
+bond1 (bond1.100); it also executes <code>ifup br100</code> to add the bond VLAN
+interface (bond1.100) to the bridge br100.</p>
+
+<p>As you can see above, implicitly bringing up the upper interface helps,
+but there can be cases where an upper interface (like br100) is not in
+the right state, which can result in warnings. The warnings are mostly
+harmless.</p>
+
+<p>If you want to disable these warnings, you can disable the implicit
+upper interface handling by setting <code>skip_upperifaces=1</code> in
+<code>/etc/network/ifupdown2/ifupdown2.conf</code>.</p>
+
+<p>With <code>skip_upperifaces=1</code>, you will have to explicitly execute <code>ifup</code> on
+the upper interfaces. In this case, you will have to run <code>ifup br100</code>
+after an <code>ifup bond1</code> to add bond1 back to bridge br100.</p>
+
+
+<div class="notices note" > <p>Although specifying a subinterface like swp1.100 and then running <code>ifup
+swp1.100</code> will also result in the automatic creation of the swp1
+interface in the kernel, Cumulus Networks recommends you specify the
+parent interface swp1 as well. A parent interface is one where any
+physical layer configuration can reside, such as <code>link-speed 1000</code> or
+<code>link-duplex full</code>.</p>
+
+<p>It&rsquo;s important to note that if you only create swp1.100 and not swp1,
+then you cannot run <code>ifup swp1</code> since you did not specify it.</p>
+ </div>
+
+
+<h2 id="span-configuring-ip-addresses-span"><span>Configuring IP Addresses</span></h2>
+
+<p>In <code>/etc/network/interfaces</code>, list all IP addresses as shown below under
+the <code>iface</code> section (see <code>man interfaces</code> for more information):</p>
+
+<pre><code>auto swp1
+iface swp1
+    address 12.0.0.1/30
+    address 12.0.0.2/30
+</code></pre>
+
+<p>The address method and address family are not mandatory. They default to
+<code>inet/inet6</code> and <code>static</code>, but <code>inet/inet6</code> <strong>must</strong> be specified if you
+need to specify <code>dhcp</code> or <code>loopback</code>:</p>
+
+<pre><code>auto lo
+iface lo inet loopback
+</code></pre>
+
+<p>You can specify both IPv4 and IPv6 addresses in the same <code>iface</code> stanza:</p>
+
+<pre><code>auto swp1
+iface swp1
+    address 192.0.2.1/30
+    address 192.0.2.2/30
+    address 2001:DB8::1/126
+</code></pre>
+
+<p><summary>Runtime Configuration (Advanced) </summary></p>
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<div class="notices warning" > <p></p>
+<p>A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.</p>
+<p></p>
+ </div>
+
+<p>To make non-persistent changes to interfaces at runtime, use <code>ip addr add</code>:</p>
+<pre><code>cumulus@switch:~$ sudo ip addr add 192.0.2.1/30 dev swp1
+cumulus@switch:~$ sudo ip addr add 2001:DB8::1/126 dev swp1</code></pre>
+<p>To remove an addresses from an interface, use <code>ip addr del</code>:</p>
+<pre><code>cumulus@switch:~$ sudo ip addr del 192.0.2.1/30 dev swp1
+cumulus@switch:~$ sudo ip addr del 2001:DB8::1/126 dev swp1</code></pre>
+<p>See <code>man ip</code> for more details on the options available to manage and query interfaces.</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>To show the assigned address on an interface, use <code>ip addr show</code>:</p>
+
+<pre><code>cumulus@switch:~$ ip addr show dev swp1
+3: swp1: &lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP qlen 500
+    link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
+    inet 192.0.2.1/30 scope global swp1
+   inet 192.0.2.2/30 scope global swp1
+    inet6 2001:DB8::1/126 scope global tentative
+       valid_lft forever preferred_lft forever
+</code></pre>
+
+<h3 id="span-purging-existing-ip-addresses-on-an-interface-span"><span>Purging Existing IP Addresses on an Interface</span></h3>
+
+<p>By default, <code>ifupdown2</code> purges existing IP addresses on an interface. If
+you have other processes that manage IP addresses for an interface, you
+can disable this feature including the <code>address-purge</code> setting in the
+interface&rsquo;s configuration. For example, add the following to the
+interface configuration in <code>/etc/network/interfaces</code>:</p>
+
+<pre><code>auto swp1
+iface swp1
+    address-purge no
+</code></pre>
+
+
+<div class="notices note" > <p>Purging existing addresses on interfaces with multiple <code>iface</code> stanzas
+is not supported. Doing so can result in the configuration of multiple
+addresses for an interface after you change an interface address and
+reload the configuration with <code>ifreload -a</code>. If this happens, you must
+shut down and restart the interface with <code>ifup</code> and <code>ifdown</code>, or
+manually delete superfluous addresses with <code>ip address delete
+specify.ip.address.here/mask dev DEVICE</code>. See also the <a href="#src-5118370_ConfiguringandManagingNetworkInterfaces-caveats">Caveats and
+Errata</a>
+section below for some cautions about using multiple <code>iface</code> stanzas for
+the same interface.</p>
+ </div>
+
+
+<h2 id="span-specifying-user-commands-span"><span>Specifying User Commands</span></h2>
+
+<p>You can specify additional user commands in the <code>interfaces</code> file. As
+shown in the example below, the interface stanzas in
+<code>/etc/network/interfaces</code> can have a command that runs at pre-up, up,
+post-up, pre-down, down, and post-down:</p>
+
+<pre><code>auto swp1
+iface swp1
+    address 12.0.0.1/30
+    up /sbin/foo bar
+</code></pre>
+
+<p>Any valid command can be hooked in the sequencing of bringing an
+interface up or down, although commands should be limited in scope to
+network-related commands associated with the particular interface.</p>
+
+<p>For example, it wouldn&rsquo;t make sense to install some Debian package on
+<code>ifup</code> of swp1, even though that is technically possible. See <code>man
+interfaces</code> for more details.</p>
+
+<h2 id="span-sourcing-interface-file-snippets-span"><span>Sourcing Interface File Snippets</span></h2>
+
+<p>Sourcing interface files helps organize and manage the <code>interfaces(5)</code>
+file. For example:</p>
+
+<pre><code>cumulus@switch:~$ cat /etc/network/interfaces
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+source /etc/network/interfaces.d/bond0
+</code></pre>
+
+<p>The contents of the sourced file used above are:</p>
+
+<pre><code>cumulus@switch:~$ cat /etc/network/interfaces.d/bond0
+auto bond0
+iface bond0
+    address 14.0.0.9/30
+    address 2001:ded:beef:2::1/64
+    bond-slaves swp25 swp26
+</code></pre>
+
+<h2 id="span-using-globs-for-port-lists-span"><span>Using Globs for Port Lists</span></h2>
+
+<p>Some modules support globs to define port lists (that is, a range of
+ports). You can use the <code>glob</code> keyword to specify bridge ports and bond
+slaves:</p>
+
+<pre><code>auto br0
+iface br0
+    bridge-ports glob swp1-6.100
+
+auto br1
+iface br1
+    bridge-ports glob swp7-9.100  swp11.100 glob swp15-18.100
+</code></pre>
+
+<h2 id="span-using-templates-span"><span>Using Templates</span></h2>
+
+<p><code>ifupdown2</code> supports <a href="http://www.makotemplates.org/" target="_blank">Mako-style
+templates</a>. The Mako template engine is
+run over the <code>interfaces</code> file before parsing.</p>
+
+<p>Use the template to declare cookie-cutter bridges in the <code>interfaces</code>
+file:</p>
+
+<pre><code>%for v in [11,12]:
+auto vlan${v}
+iface vlan${v}
+    address 10.20.${v}.3/24
+    bridge-ports glob swp19-20.${v}
+    bridge-stp on
+%endfor
+</code></pre>
+
+<p>And use it to declare addresses in the <code>interfaces</code> file:</p>
+
+<pre><code>%for i in [1,12]:
+auto swp${i}
+iface swp${i}
+    address 10.20.${i}.3/24
+</code></pre>
+
+
+<div class="notices note" > <p>Regarding Mako syntax, use square brackets (<code>[1,12]</code>) to specify a list
+of individual numbers (in this case, 1 and 12). Use <code>range(1,12)</code> to
+specify a range of interfaces.</p>
+ </div>
+
+
+
+<div class="notices tip" > <p>You can test your template and confirm it evaluates correctly by running
+<code>mako-render /etc/network/interfaces</code>.</p>
+ </div>
+
+
+
+<div class="notices tip" > <p>For more examples of configuring Mako templates, read this <a href="https://support.cumulusnetworks.com/hc/en-us/articles/202868023" target="_blank">knowledge
+base
+article</a>.</p>
+ </div>
+
+
+<h2 id="span-adding-descriptions-to-interfaces-span"><span>Adding Descriptions to Interfaces</span></h2>
+
+<p>You can add descriptions to the interfaces configured in
+<code>/etc/network/interfaces</code> by using the <em>alias</em> keyword. For example:</p>
+
+<pre><code>auto swp1
+iface swp1
+    alias swp1 hypervisor_port_1
+</code></pre>
+
+<p>You can query interface descriptions by running <code>ip link show</code>. The
+alias appears on the <code>alias</code> line:</p>
+
+<pre><code>cumulus@switch$ ip link show swp1
+3: swp1: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 500
+    link/ether aa:aa:aa:aa:aa:bc brd ff:ff:ff:ff:ff:ff
+    alias hypervisor_port_1
+</code></pre>
+
+<p>Interface descriptions also appear in the <a href="Monitoring-System-Hardware.html#src-5118231_MonitoringSystemHardware-snmp" target="_blank">SNMP
+OID</a>
+<a href="http://www.net-snmp.org/docs/mibs/ifMIBObjects.html#ifAlias" target="_blank">IF-MIB::ifAlias</a>.</p>
+
+
+<div class="notices note" > <p>Aliases are limited to 256 characters.</p>
+ </div>
+
+
+<p><span id="src-5118370_ConfiguringandManagingNetworkInterfaces-caveats"></span></p>
+
+<h2 id="span-caveats-and-errata-span"><span>Caveats and Errata</span></h2>
+
+<p>While <code>ifupdown2</code> supports the inclusion of multiple <code>iface</code> stanzas for
+the same interface, Cumulus Networks recommends you use a single <code>iface</code>
+stanza for each interface, if possible.</p>
+
+<p>There are cases where you must specify more than one <code>iface</code> stanza for
+the same interface. For example, the configuration for a single
+interface can come from many places, like a template or a sourced file.</p>
+
+<p>If you do specify multiple <code>iface</code> stanzas for the same interface, make
+sure the stanzas do not specify the same interface attributes.
+Otherwise, unexpected behavior can result.</p>
+
+<p>For example, swp1 is configured in two places:</p>
+
+<pre><code>cumulus@switch:~$ cat /etc/network/interfaces
+
+source /etc/interfaces.d/speed_settings
+
+auto swp1
+iface swp1
+  address 10.0.14.2/24
+</code></pre>
+
+<p>As well as <code>/etc/interfaces.d/speed_settings</code></p>
+
+<pre><code>cumulus@switch:~$ cat /etc/interfaces.d/speed_settings
+
+auto swp1
+iface swp1
+  link-speed 1000
+  link-duplex full
+</code></pre>
+
+<p><code>ifupdown2</code> correctly parses a configuration like this because the same
+attributes are not specified in multiple <code>iface</code> stanzas.</p>
+
+<p>And, as stated in the note above, you cannot purge existing addresses on
+interfaces with multiple <code>iface</code> stanzas.</p>
+
+<h2 id="span-useful-links-span"><span>Useful Links</span></h2>
+
+<ul>
+<li><p><a href="http://wiki.debian.org/NetworkConfiguration" target="_blank">http://wiki.debian.org/NetworkConfiguration</a></p></li>
+
+<li><p><a href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding" target="_blank">http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding</a></p></li>
+
+<li><p><a href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge" target="_blank">http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge</a></p></li>
+
+<li><p><a href="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" target="_blank">http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan</a></p></li>
+</ul>
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+
+<p></details></p>
+</article>
+
+      <script src="https://utteranc.es/client.js"
+        repo="CumulusNetworks/docs-internal"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+    <div class="toc">
+    
+      <button>
+      <a href="https://github.com/CumulusNetworks/docs/edit/master/content/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/_index.md" target="_blank" rel="noopener"><img src="/docs.cumulusnetworks.com/svg/pencil-circle.svg" alt="Edit" /> Edit this page</a>
+      </button>
+    
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#span-commands-span"><span>Commands</span></a></li>
+<li><a href="#span-man-pages-span"><span>Man Pages</span></a></li>
+<li><a href="#span-configuration-files-span"><span>Configuration Files</span></a></li>
+<li><a href="#span-basic-commands-span"><span>Basic Commands</span></a></li>
+<li><a href="#span-id-src-5118370-configuringandmanagingnetworkinterfaces-classes-class-confluence-anchor-link-span-span-ifupdown2-interface-classes-span"><span id="src-5118370_ConfiguringandManagingNetworkInterfaces-classes" class="confluence-anchor-link"></span><span>ifupdown2 Interface Classes</span></a>
+<ul>
+<li><a href="#span-bringing-all-auto-interfaces-up-or-down-span"><span>Bringing All auto Interfaces Up or Down</span></a></li>
+</ul></li>
+<li><a href="#span-configuring-a-loopback-interface-span"><span>Configuring a Loopback Interface</span></a></li>
+<li><a href="#span-ifupdown2-interface-dependencies-span"><span>ifupdown2 Interface Dependencies</span></a>
+<ul>
+<li><a href="#span-ifup-handling-of-upper-parent-interfaces-span"><span>ifup Handling of Upper (Parent) Interfaces</span></a></li>
+</ul></li>
+<li><a href="#span-configuring-ip-addresses-span"><span>Configuring IP Addresses</span></a>
+<ul>
+<li><a href="#span-purging-existing-ip-addresses-on-an-interface-span"><span>Purging Existing IP Addresses on an Interface</span></a></li>
+</ul></li>
+<li><a href="#span-specifying-user-commands-span"><span>Specifying User Commands</span></a></li>
+<li><a href="#span-sourcing-interface-file-snippets-span"><span>Sourcing Interface File Snippets</span></a></li>
+<li><a href="#span-using-globs-for-port-lists-span"><span>Using Globs for Port Lists</span></a></li>
+<li><a href="#span-using-templates-span"><span>Using Templates</span></a></li>
+<li><a href="#span-adding-descriptions-to-interfaces-span"><span>Adding Descriptions to Interfaces</span></a></li>
+<li><a href="#span-caveats-and-errata-span"><span>Caveats and Errata</span></a></li>
+<li><a href="#span-useful-links-span"><span>Useful Links</span></a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+  
+
+</aside>
+
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

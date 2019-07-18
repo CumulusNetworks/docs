@@ -3,7 +3,7 @@ title: Configuring High Availability Mode
 author: Cumulus Networks
 weight: 47
 aliases:
- - /display/NETQ121/Configuring-High-Availability-Mode
+ - /display/NETQ121/Configuring+High+Availability+Mode
  - /pages/viewpage.action?pageId=8356542
 pageID: 8356542
 product: Cumulus NetQ

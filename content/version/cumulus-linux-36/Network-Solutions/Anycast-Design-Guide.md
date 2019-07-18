@@ -3,7 +3,7 @@ title: Anycast Design Guide
 author: Cumulus Networks
 weight: 253
 aliases:
- - /display/CL36/Anycast-Design-Guide
+ - /display/CL36/Anycast+Design+Guide
  - /pages/viewpage.action?pageId=8362476
 pageID: 8362476
 product: Cumulus Linux
@@ -11,9 +11,12 @@ version: '3.6'
 imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 ---
-Cumulus Networks' [Host Pack](/host-pack) provides the ability to run
+Cumulus Networks' [Routing on the
+Host](https://docs.cumulusnetworks.com/display/ROH/Routing+on+the+Host)
+provides the ability to run
 [OSPF](/version/cumulus-linux-36/Layer-3/Open-Shortest-Path-First---OSPF---Protocol)
-or [BGP](/version/cumulus-linux-36/Layer-3/Border-Gateway-Protocol---BGP)
+or
+[BGP](/version/cumulus-linux-36/Layer-3/Border-Gateway-Protocol---BGP)
 directly on server hosts. This can enable a network architecture known
 as *anycast*, where many servers can provide the same service without
 needing layer 2 extensions or load balancer appliances.

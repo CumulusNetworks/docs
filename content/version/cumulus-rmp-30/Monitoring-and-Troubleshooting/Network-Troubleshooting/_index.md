@@ -3,7 +3,7 @@ title: Network Troubleshooting
 author: Cumulus Networks
 weight: 113
 aliases:
- - /display/RMP30/Network-Troubleshooting
+ - /display/RMP30/Network+Troubleshooting
  - /pages/viewpage.action?pageId=5118691
 pageID: 5118691
 product: Cumulus RMP

@@ -3,7 +3,7 @@ title: Bonding - Link Aggregation
 author: Cumulus Networks
 weight: 77
 aliases:
- - /display/RMP30/Bonding---Link-Aggregation
+ - /display/RMP30/Bonding+++Link+Aggregation
  - /pages/viewpage.action?pageId=5118715
 pageID: 5118715
 product: Cumulus RMP

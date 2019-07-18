@@ -3,7 +3,7 @@ title: Protocol Independent Multicast - PIM
 author: Cumulus Networks
 weight: 197
 aliases:
- - /display/CL36/Protocol-Independent-Multicast---PIM
+ - /display/CL36/Protocol+Independent+Multicast+++PIM
  - /pages/viewpage.action?pageId=8362369
 pageID: 8362369
 product: Cumulus Linux

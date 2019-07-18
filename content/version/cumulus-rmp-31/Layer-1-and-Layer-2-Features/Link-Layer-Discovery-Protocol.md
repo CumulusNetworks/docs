@@ -3,7 +3,7 @@ title: Link Layer Discovery Protocol
 author: Cumulus Networks
 weight: 73
 aliases:
- - /display/RMP31/Link-Layer-Discovery-Protocol
+ - /display/RMP31/Link+Layer+Discovery+Protocol
  - /pages/viewpage.action?pageId=5122772
 pageID: 5122772
 product: Cumulus RMP

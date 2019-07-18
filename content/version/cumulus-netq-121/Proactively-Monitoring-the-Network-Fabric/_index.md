@@ -3,7 +3,7 @@ title: Proactively Monitoring the Network Fabric
 author: Cumulus Networks
 weight: 19
 aliases:
- - /display/NETQ121/Proactively-Monitoring-the-Network-Fabric
+ - /display/NETQ121/Proactively+Monitoring+the+Network+Fabric
  - /pages/viewpage.action?pageId=8356545
 pageID: 8356545
 product: Cumulus NetQ

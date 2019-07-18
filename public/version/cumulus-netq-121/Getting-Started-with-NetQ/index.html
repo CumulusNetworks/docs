@@ -1,0 +1,4106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Getting Started with NetQ | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/docs.cumulusnetworks.com/book.min.a378d8a2da6f5357a83a43dff33d6f77fb70401e0399d5ba78faf81d7a1ae1a8.css">
+
+  
+  <link rel="icon" href="/docs.cumulusnetworks.com/icons/favicon.png" type="image/x-icon">
+
+  
+  <link rel="alternate" type="application/rss+xml" href="docs.cumulusnetworks.com/version/cumulus-netq-121/Getting-Started-with-NetQ/index.xml" title="Cumulus Networks Documentation" />
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+  
+  
+  <script src = "/docs.cumulusnetworks.com/js/codecopy.js"> </script>
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+      
+    
+    <ul>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-linux/ >
+        Cumulus Linux </a> </li>
+    
+      <li class = "active" ><a href = docs.cumulusnetworks.com/cumulus-netq/ >
+        Cumulus NetQ </a> </li>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-vx/ >
+        Cumulus VX </a> </li>
+    
+      <li>
+        <div id="products-dropdown" class="dropdown">
+            <button class="btn" type="button" id="dropdownMenuButton">
+              Products
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="">Cumulus RMP</a>
+              <a class="dropdown-item" href="">Cumulus Chassis</a>
+              <a class="dropdown-item" href="">Cumulus Host Pack</a>
+            </div>
+        </div>
+      </li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v1.2.1
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/cumulus-netq/"> v2.2.0</a>
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-10/"> v1.0.0</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-110/"> v1.1.0</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-121/"> v1.2.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-141/"> v1.4.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-21/"> v2.1</a>
+            
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="docs.cumulusnetworks.com">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+            
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/" >
+    Cumulus NetQ
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Getting-Started-with-NetQ/"  class="active" >
+    Getting Started with NetQ
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Getting-Started-with-NetQ/Configuring-High-Availability-Mode/" >
+    Configuring High Availability Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Getting-Started-with-NetQ/Upgrading-NetQ/" >
+    Upgrading NetQ
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Proactively-Monitoring-the-Network-Fabric/" >
+    Proactively Monitoring the Network Fabric
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Proactively-Monitoring-the-Network-Fabric/MLAG-Troubleshooting-with-NetQ/" >
+    MLAG Troubleshooting with NetQ
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/" >
+    Early Access Features
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/Chassis-Integration/" >
+    Chassis Integration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/Extending-NetQ-with-Custom-Commands/" >
+    Extending NetQ with Custom Commands
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/Querying-the-NetQ-Database/" >
+    Querying the NetQ Database
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/Collecting-Interface-Statistics/" >
+    Collecting Interface Statistics
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Getting-to-Know-NetQ/" >
+    Getting to Know NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/NetQ-Service-Console/" >
+    NetQ Service Console
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Taking-Preventative-Steps-with-Your-Network/" >
+    Taking Preventative Steps with Your Network
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Performing-Network-Diagnostics/" >
+    Performing Network Diagnostics
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Monitoring-the-Physical-Layer/" >
+    Monitoring the Physical Layer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Monitoring-Linux-Hosts-with-NetQ/" >
+    Monitoring Linux Hosts with NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Monitoring-Container-Environments-with-NetQ/" >
+    Monitoring Container Environments with NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Using-NetQ-Virtual-Environments/" >
+    Using NetQ Virtual Environments
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Restoring-from-Backups-with-NetQ/" >
+    Restoring from Backups with NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-121/Troubleshooting-NetQ/" >
+    Troubleshooting NetQ
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "/docs.cumulusnetworks.com/js/menuBundle.js"> </script>
+
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/docs.cumulusnetworks.com/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Getting Started with NetQ</strong>
+      </header>
+
+      
+      
+<div class= "notices info" id = "info" >
+  This documentation is for an older version of the software. If you are using the current version of Cumulus Linux, this content may not be up to date. The current version of the documentation is available [here](https://docs.cumulusnetworks.com/).
+  </div>
+<article class="markdown">
+<h1>Getting Started with NetQ</h1>
+
+<p><details></p>
+
+<p>NetQ is comprised of two main install components: the NetQ Telemetry
+Server, and the <code>cumulus-netq</code> metapackage which gets installed on
+Cumulus Linux switches. Additionally, for host network visibility and
+containers, you can install host OS-specific metapackages.</p>
+
+<p>This section walks through the basic install and setup steps for
+installing and running NetQ on the following supported operating
+systems:</p>
+
+<ul>
+<li><p>Cumulus Linux</p></li>
+
+<li><p>Ubuntu 16.04</p></li>
+
+<li><p>Red Hat Enterprise Linux 7</p></li>
+
+<li><p>CentOS 7</p></li>
+</ul>
+
+
+<div class="notices tip" > <p>Before you get started, you should review the <a href="https://support.cumulusnetworks.com/hc/en-us/articles/115015123487" target="_blank">release
+notes</a>
+for this version.</p>
+ </div>
+
+
+<h2 id="span-install-the-netq-telemetry-server-span"><span>Install the NetQ Telemetry Server</span></h2>
+
+<p>The NetQ Telemetry Server comprises a set of individual Docker
+containers for each of the various server components that are used by
+NetQ, for the NetQ CLI used by the service console, and for the <a href="/version/cumulus-netq-121/NetQ-Service-Console">service
+console</a> itself.</p>
+
+<p>It is available in one of two formats:</p>
+
+<ul>
+<li><p>VMware ESXi 6.5 virtual machine</p></li>
+
+<li><p>A QCOW/KVM image for use on Ubuntu 16.04 and Red Hat Enterprise
+Linux 7 hosts</p></li>
+</ul>
+
+
+<div class="notices note" > <p>Cumulus Networks recommends you install the telemetry server on an
+out-of-band management network to ensure it can monitor in-band network
+issues without being affected itself. Ideally, you should run the
+telemetry server on a separate, powerful server for maximum usability
+and performance. For more information on system requirements, <a href="Performing-Network-Diagnostics.html#src-8356555_PerformingNetworkDiagnostics-matrix" target="_blank">read this
+chapter</a>.</p>
+ </div>
+
+
+
+<div class="notices note" > <p>The NetQ telemetry server containers are completely separate from any
+containers you may have on the hosts you are monitoring with NetQ. The
+NetQ containers will not overwrite the host containers and vice versa.</p>
+ </div>
+
+
+<ol>
+<li><p>Download the NetQ Telemetry Server virtual machine. On the
+<a href="https://cumulusnetworks.com/downloads/" target="_blank">Downloads</a> page, select
+<em>NetQ</em> from the <strong>Product</strong> menu, then click <strong>Download</strong> for the
+appropriate hypervisor — KVM or VMware.</p></li>
+
+<li><p>Import the virtual machine into your
+<a href="https://docs.cumulusnetworks.com/display/VX/Libvirt+and+KVM+QEMU+Installation+on+Ubuntu+16.04" target="_blank">KVM</a>
+or
+<a href="https://docs.cumulusnetworks.com/display/VX/VMware+vSphere+-+ESXi+5.5" target="_blank">VMware</a>
+hypervisor.</p></li>
+
+<li><p>Start the NetQ Telemetry Server. There are two default user accounts
+you can use to log in:</p>
+
+<ul>
+<li><p>The primary username is <em>admin</em>, and the default password is
+<em>CumulusNetQ!</em>.</p></li>
+
+<li><p>The alternate username is <em>cumulus</em>, and its password is
+<em>CumulusLinux!</em>.</p></li>
+</ul></li>
+</ol>
+
+<p>Once the NetQ Telemetry Server is installed, if you&rsquo;re interested using
+the telemetry server in high availability (HA) mode, please read the <a href="/version/cumulus-netq-121/Getting-Started-with-NetQ/Configuring-High-Availability-Mode">HA
+mode
+chapter</a>
+to learn how to configure the telemetry server instances. For both HA
+and standalone modes, you need to configure NetQ Notifier.</p>
+
+<p>In addition, if you intend to use NetQ with applications like PagerDuty
+or Slack, you need to configure those applications to receive
+notifications from NetQ Notifier.</p>
+
+
+<div class="notices tip" > <p>Note the external IP address of the host where the telemetry server is
+running, as you need this to correctly configure the NetQ Agent on every
+node you want to monitor. The telemetry server gets its IP address from
+DHCP; to get the IP address, run <code>ifconfig eth0</code> on the telemetry
+server.</p>
+
+<p>For HA mode, you need to note the IP addresses of all three instances of
+the telemetry server.</p>
+
+<p>If you need the telemetry server to have a static IP address, manually
+assign one:</p>
+
+<ol>
+<li><p>Edit the <code>/etc/network/interfaces</code>file:</p>
+
+<pre><code>root@ts1:~# vi /etc/network/interfaces 
+</code></pre></li>
+
+<li><p>Add the <code>address</code> and <code>gateway</code> lines to the eth0 configuration,
+specifying the telemetry server&rsquo;s IP address and the IP address of
+the gateway:</p>
+
+<pre><code>auto eth0
+iface eth0
+    address 198.51.100.10
+    gateway 198.51.100.1
+</code></pre></li>
+
+<li><p>Save the file and exit.</p></li>
+</ol>
+ </div>
+
+
+<h2 id="span-id-src-8356538-gettingstartedwithnetq-agent-class-confluence-anchor-link-span-span-install-the-netq-agent-span"><span id="src-8356538_GettingStartedwithNetQ-agent" class="confluence-anchor-link"></span><span>Install the NetQ Agent</span></h2>
+
+<p>To manage a node with NetQ Agent and send notifications with NetQ
+Notifier, you need to install an OS-specific metapackage on each node.
+The node can be a:</p>
+
+<ul>
+<li><p>Cumulus Linux switch running version 3.3.0 or later</p></li>
+
+<li><p>Server running Red Hat RHEL 7.1, Ubuntu 16.04 or CentOS 7</p></li>
+
+<li><p>Linux virtual machine running one of the above Linux operating
+systems</p></li>
+</ul>
+
+<p>The metapackage contains the NetQ Agent, the NetQ command line interface
+and the NetQ library, which contains a set of modules used by both the
+agent and the CLI.</p>
+
+<p>Install the metapackage on each node to monitor, then configure the NetQ
+Agent on the node.</p>
+
+
+<div class="notices note" > <p>If your network uses a proxy server for external connections, you should
+<a href="/display/NETQ121/Configuring+a+Global+Proxy">configure a global proxy</a>
+so <code>apt-get</code> can access the metapackage on the Cumulus Networks
+repository.</p>
+ </div>
+
+
+<h3 id="span-installing-on-a-cumulus-linux-switch-span"><span>Installing on a Cumulus Linux Switch</span></h3>
+
+<ol>
+<li><p>Edit <code>/etc/apt/sources.list</code> and add the following line:</p>
+
+<pre><code>cumulus@switch:~$ sudo nano /etc/apt/sources.list
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest
+</code></pre></li>
+
+<li><p>Update the local <code>apt</code> repository, then install the metapackage on
+the switch:</p>
+
+<pre><code>cumulus@switch:~$ sudo apt-get update &amp;&amp; sudo apt-get install cumulus-netq
+</code></pre></li>
+</ol>
+
+<h3 id="span-installing-on-an-ubuntu-red-hat-or-centos-server-span"><span>Installing on an Ubuntu, Red Hat or CentOS Server</span></h3>
+
+<p>To install NetQ on Linux servers running Ubuntu, Red Hat or CentOS,
+please read the <a href="https://docs.cumulusnetworks.com/display/HOSTPACK/Installing+NetQ+on+the+Host" target="_blank">Host Pack
+documentation</a>.</p>
+
+<h2 id="span-id-src-8356538-gettingstartedwithnetq-nodeconfig-class-confluence-anchor-link-span-span-configuring-the-netq-agent-on-a-node-span"><span id="src-8356538_GettingStartedwithNetQ-nodeconfig" class="confluence-anchor-link"></span><span>Configuring the NetQ Agent on a Node</span></h2>
+
+<p>Once you install the NetQ packages and configure the NetQ Telemetry
+Server, you need to configure NetQ on each Cumulus Linux switch to
+monitor that node on your network.</p>
+
+<ol>
+<li><p>To ensure useful output, ensure that
+<a href="https://docs.cumulusnetworks.com/display/CL31/Setting+Date+and+Time" target="_blank">NTP</a>
+is running.</p></li>
+
+<li><p>On the host, after you install the NetQ metapackage, restart
+<code>rsyslog</code> so logs are sent to the correct destination:</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl restart rsyslog
+</code></pre></li>
+
+<li><p>Link the host to the telemetry server you configured above; in the
+following example, the IP address for the telemetry server host is
+<em>198.51.100.10</em>:</p>
+
+<pre><code>cumulus@switch:~$ netq config add server 198.51.100.10
+</code></pre>
+
+<p>This command updated the configuration in the <code>/etc/netq/netq.yml</code>
+file. It also enables the NetQ CLI.</p></li>
+
+<li><p>Restart the <code>netq</code> agent.</p>
+
+<pre><code>cumulus@switch:~$ netq config restart agent
+</code></pre>
+
+
+<div class="notices note" > <pre><code>After starting or restarting the agent, verify that the agent can
+reach the server by running the following command:
+
+    cumulus@switch:~$ netq config show server
+     
+    Server         Port    Vrf    Status
+    -------------  ------  -----  --------
+    198.51.100.10  6379    mgmt   ok
+</code></pre>
+ </div>
+</li>
+</ol>
+
+<h3 id="span-id-src-8356538-gettingstartedwithnetq-vrf-class-confluence-anchor-link-span-span-configuring-the-agent-to-use-a-vrf-span"><span id="src-8356538_GettingStartedwithNetQ-vrf" class="confluence-anchor-link"></span><span>Configuring the Agent to Use a VRF</span></h3>
+
+<p>If you want the NetQ Agent to communicate with the telemetry server only
+via a <a href="/display/NETQ121/Virtual+Routing+and+Forwarding+-+VRF">VRF</a>,
+including a <a href="/display/NETQ121/Management+VRF">management VRF</a>, you need
+to specify the VRF name when configuring the NetQ Agent. For example, if
+the management VRF is configured and you want the agent to communicate
+with the telemetry server over it, configure the agent like this:</p>
+
+<pre><code>cumulus@switch:~$ netq config add server 198.51.100.10 vrf mgmt
+</code></pre>
+
+<p>You then restart the agent as described in the previous section:</p>
+
+<pre><code>cumulus@switch:~$ netq config restart agent
+</code></pre>
+
+<h3 id="span-id-src-8356538-gettingstartedwithnetq-port-class-confluence-anchor-link-span-span-configuring-the-agent-to-communicate-over-a-specific-port-span"><span id="src-8356538_GettingStartedwithNetQ-port" class="confluence-anchor-link"></span><span> Configuring the Agent to Communicate over a Specific Port</span></h3>
+
+<p>By default, NetQ uses port 6379 for communication between the telemetry
+server and NetQ Agents. If you want the NetQ Agent to communicate with
+the telemetry server via a different port, you need to specify the port
+number when configuring the NetQ Agent like this:</p>
+
+<pre><code>cumulus@switch:~$ netq config add server 198.51.100.10 port 7379
+</code></pre>
+
+
+<div class="notices tip" > <p>If you are using NetQ in <a href="/version/cumulus-netq-121/Getting-Started-with-NetQ/Configuring-High-Availability-Mode">high availability
+mode</a>,
+you can only configure it on port 6379 or 26379.</p>
+ </div>
+
+
+<h3 id="span-removing-or-decommissioning-an-agent-from-a-node-span"><span>Removing or Decommissioning an Agent from a Node</span></h3>
+
+<p>You can decommission a NetQ agent on a given node. You may need to do
+this when you</p>
+
+<ul>
+<li><p>RMA the switch or host being monitored</p></li>
+
+<li><p>Change the hostname of the switch or host being monitored</p></li>
+
+<li><p>You move the switch or host being monitored from one data center to
+another</p></li>
+</ul>
+
+
+<div class="notices warning" > <p><strong>Early Access Feature</strong></p>
+
+<p>Decommissioning a NetQ Agent is an <a href="https://support.cumulusnetworks.com/hc/en-us/articles/202933878" target="_blank">early access
+feature</a>
+in Cumulus NetQ 1.2.</p>
+ </div>
+
+
+<p>Decommissioning the node removes the agent from the NetQ database.
+However, the history for this node is preserved in case you need to go
+back in time to perform a diagnostic investigation.</p>
+
+<p>To decommission the NetQ agent on a node, do the following steps:</p>
+
+<ol>
+<li><p>Enable the EA features:</p>
+
+<pre><code>cumulus@switch:~$ netq config add experimental
+</code></pre></li>
+
+<li><p>Decommission the agent on the hostname specified by <em>[hostname]</em>:</p>
+
+<pre><code>cumulus@switch:~$ netq decommission [hostname] purge
+</code></pre></li>
+
+<li><p>Then restart the agent for the change to take effect:</p>
+
+<pre><code>cumulus@switch:~$ netq config restart agent
+</code></pre></li>
+</ol>
+
+<h3 id="span-configuring-debug-logging-for-the-netq-agent-span"><span>Configuring Debug Logging for the NetQ Agent</span></h3>
+
+<p>In order to debug the NetQ Agent, you need to enable debug-level
+logging:</p>
+
+<ol>
+<li><p>Edit the <code>/etc/netq/netq.yml</code> file and add a log_level section for
+the NetQ Agent:</p>
+
+<pre><code>netq-agent:
+  log_level: debug
+</code></pre></li>
+
+<li><p>Restart the NetQ Agent:</p>
+
+<pre><code>cumulus@switch:~$ netq config restart agent
+</code></pre></li>
+</ol>
+
+<h2 id="span-id-src-8356538-gettingstartedwithnetq-notifier-class-confluence-anchor-link-span-span-configuring-netq-notifier-on-the-telemetry-server-span"><span id="src-8356538_GettingStartedwithNetQ-notifier" class="confluence-anchor-link"></span><span>Configuring NetQ Notifier on the Telemetry Server</span></h2>
+
+<p>NetQ Notifier listens to events from the telemetry server database. When
+NetQ Notifier is running on the NetQ Telemetry Server, it sends out
+alerts. NetQ Notifier runs in the NetQ Telemetry Server virtual machine
+only; the NetQ Agents on the nodes only communicate with it. If the
+telemetry server is being run in <a href="/version/cumulus-netq-121/Getting-Started-with-NetQ/Configuring-High-Availability-Mode">HA
+mode</a>,
+then the Notifier only runs on the telemetry server that is the master,
+and the Notifier on the master telemetry server is the only one to
+accept messages to publish.</p>
+
+<p>NetQ Notifier runs exclusively in a virtual machine; its configuration
+is stored in the <code>/etc/netq/netq.yml</code> file and you control it using
+<code>systemd</code> commands (such as <code>systemctl stop|start netq-notifier</code>). The
+<code>netq.yml</code> file also contains the configuration for the NetQ CLI running
+in the VM.</p>
+
+<p>You need to configure two things for NetQ Notifier:</p>
+
+<ul>
+<li><p>The events for which you want to receive notifications/alerts, like
+sensors or BGP session notifications.</p></li>
+
+<li><p>The integrations for where to send those notifications; by default,
+they are <code>rsyslog</code>, PagerDuty and Slack.</p></li>
+</ul>
+
+<p>NetQ Notifier sends out alerts based on the configured log level, which
+is one of the following:</p>
+
+<ul>
+<li><p>debug: Used for debugging-related messages.</p></li>
+
+<li><p>info: Used for informational, high-volume messages.</p></li>
+
+<li><p>warning: Used for warning conditions.</p></li>
+
+<li><p>error: Used for error conditions.</p></li>
+</ul>
+
+<p>The default log level setting is <em>info</em>, so NetQ Notifier sends out
+alerts for info, warning and error conditions.</p>
+
+<p>By default, all notifications/alerts are enabled, and logged in
+<code>/var/log/netq-notifier.log</code>. You only need to edit the notifications if
+there is something you don&rsquo;t want to monitor.</p>
+
+<p>NetQ Notifier is already integrated with <code>rsyslog</code>. To integrate with
+PagerDuty or Slack, you need to specify some parameters.</p>
+
+<p>To configure alerts and integrations on the NetQ Telemetry Server:</p>
+
+<ol>
+<li><p>As the sudo user, open <code>/etc/netq/netq.yml</code> in a text editor.</p></li>
+
+<li><p>Configure the following in the <code>/etc/netq/netq.yml</code> file:</p>
+
+<ul>
+<li><p>Change the log level: If you want a more restrictive level than
+info.</p></li>
+
+<li><p>Configure application notifications: To customize any
+notifications, uncomment the relevant section under
+<strong>netq-notifier Configurations</strong> and make changes accordingly.</p></li>
+
+<li><p>Configure PagerDuty and Slack integrations. You can see where to
+input the information for these integrations in the <a href="#src-8356538_GettingStartedwithNetQ-example">example
+<code>netq.yml</code> file</a>
+below.</p>
+
+<ul>
+<li><p>For PagerDuty, enter the API access key (also called the
+<a href="https://v2.developer.pagerduty.com/docs/authentication" target="_blank">authorization
+token</a>)
+and the
+<a href="https://v2.developer.pagerduty.com/docs/events-api-v2" target="_blank">integration</a>
+key (also called the service_key or routing_key).</p></li>
+
+<li><p>For Slack, enter the webhook URL. To get the webhook URL, in
+the Slack dropdown menu, click <strong>Apps &amp; integrations</strong>, then
+click <strong>Manage</strong> &gt; <strong>Custom Integrations</strong> &gt; <strong>Incoming
+WebHooks</strong> &gt; select <strong>Add Configuration</strong> &gt; select the
+channel to receive the notifications such as
+<em>#netq-notifier</em> in the <strong>Post to Channel</strong> dropdown &gt;
+then click <strong>Add Incoming WebHook integration</strong>. The URL
+produced by Slack looks similar to the one pictured below:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/8356538/netq-slack-webhook.png" alt = "/images/download/attachments/8356538/netq-slack-webhook.png"
+
+
+ />
+
+
+<p>Copy the URL from the <strong>Webhook URL</strong> field into the
+<code>/etc/netq/netq.yml</code> file under the <strong>Slack Notifications</strong>
+section. Uncomment the lines in the sections labeled
+<em>netq-notifier</em>, <em>notifier-integrations</em> and
+<em>notifier-filters</em>, then add the webhook URL value provided
+by Slack:</p>
+
+<pre><code>netq-notifier:
+  log_level: info
+ 
+...
+ 
+notifier-integrations:
+  - name: notifier-slack-channel-1
+    type: slack
+    webhook: &quot;https://hooks.slack.com/services/sometext/moretext/evenmoretext&quot;
+    severity: INFO,
+    tag: &quot;@netqts-sys&quot;
+ 
+...
+ 
+notifier-filters:
+  - name: default
+    rule:
+    output:
+      - ALL
+</code></pre></li>
+</ul></li>
+</ul>
+
+<p>When you are finished editing the file, save and close it.</p></li>
+
+<li><p>Stop then start the NetQ Notifier daemon to apply the new
+configuration:</p>
+
+<pre><code>cumulus@netq-appliance:~$ sudo systemctl restart netq-notifier
+</code></pre>
+
+
+<div class="notices note" > <pre><code>If your webhook does not immediately send a message to your channel,
+look for errors in syntax. Check the log file located at
+`/var/log/netq-notifier.log`.
+</code></pre>
+ </div>
+</li>
+</ol>
+
+<h2 id="span-id-src-8356538-gettingstartedwithnetq-example-class-confluence-anchor-link-span-span-example-etc-netq-netq-yml-configuration-span"><span id="src-8356538_GettingStartedwithNetQ-example" class="confluence-anchor-link"></span><span>Example /etc/netq/netq.yml Configuration</span></h2>
+
+<p>The following sample <code>/etc/netq/netq.yml</code> file is on the NetQ Telemetry
+Server itself. Note that the <code>netq.yml</code> looks different on a switch or
+host monitored by NetQ; for example, the backend server IP address and
+port would be uncommented and listed.</p>
+
+
+<div class="notices warning" > <p>Editing <code>/etc/netq/config.d</code> to configure NetQ Notifier or putting other
+YML files in the <code>/etc/netq</code> directory overrides the configuration in
+<code>/etc/netq/netq.yml</code>.</p>
+ </div>
+
+
+<p><summary>Example /etc/netq/netq.yml configuration file </summary></p>
+
+<pre><code>cumulus@netq-appliance:~$ cat /etc/netq/netq.yml 
+## Netq configuration File.
+## Configuration is also read from files in /etc/netq/config.d/ and have
+## precedence over config in /etc/netq/netq.yml.
+
+## ----- Common configurations -----
+
+## Backend Configuration for all netq agents and apps on this host.
+##
+#backend:
+#  server: 
+#  port: 6379
+## ----- netq-agent configurations -----
+
+## Netq Agent Configuration
+##
+## log_level: Could be debug, info, warning or error. Default is info.
+##
+#netq-agent:
+#  log_level: info
+## Docker Agent Configuration
+##
+## docker_enable: Enable Docker monitoring. Default is True.
+## docker_poll_period: Docker poll period in secs. Default is 15 secs.
+##
+#docker:
+#  enable: true
+#  poll_period: 15
+## ----- netq configurations -----
+## Netq configuration
+##
+## log_level: Could be debug, info, warning or error. Default is info.
+##
+#netqd:
+#  log_level: info
+## ----- netq-notifier configurations -----
+
+## Netq Notifier configuration
+##
+## log_level: Could be debug, info, warning or error. Default is info.
+##
+#netq-notifier:
+#  log_level: info
+## Slack Notifications
+##
+## NetQ Notifier Filter Configuration
+##
+## NetQ Notifier sends notifications to integrations(syslog, slack or pagerduty)
+## based on the events that are happening across the network.
+## Notifications are generated based on the filters that have been specified in
+## &quot;notifier-filters&quot;.  NetQ Agents generate an event when something interesting
+## happens on the host (switch or server) its running on. The Notifier is always
+## listening for these events and once it receives an event, it makes it go
+## through a set of filters.
+##
+## A filter has 3 stages:
+## a) Rule: Defines a set of conditions against which an incoming event is
+## matched. Input to this stage is an incoming event and the event is sent to
+## the next stage if there is a match. If there is a match, the event
+## information is passed to the action stage. The rule is a dictionary of
+## key-value pairs, where the &quot;key&quot; is an item associated with the event and
+## &quot;value&quot; is the value of that item,
+## e.g. type: Link
+##      hostname: leaf-01
+##      ifname: swp1
+## The Default rule, if none is specified or if it is empty, is to always assume
+## a match.
+## Notifier-filter rules are matched sequentially and we stop only when a match
+## is found. You can make the notifier continue matching filters even if a match
+## is found, by adding &quot;terminate_on_match: False&quot; to the filter.Values
+## specified in the rule are matched with those received in a event using python
+## regular expressions  https://docs.python.org/2/library/re.html
+## We can also match for message severity and print messages only if it is above
+## the given severity. Message severity levels are: INFO, WARNING, ERROR and
+## CRITICAL in ascending order.
+##
+## b) Action: action to perform if the &quot;rule&quot; is matched.  The action stage
+## take the event provided by the &quot;rule&quot; stage and generates a message
+## dictionary with a message and its severity. Multiple actions can be
+## prescribed in the &quot;action&quot; list. &quot;action&quot; is typically a python function that
+## is provided with the tool or a custom one written by the user. If no action
+## is provided, we default to a generic handler which looks at the event and
+## based on the event runs the relevant notification function.
+##
+## c) output: This stage takes the message dictionary provided by the action
+## stage and sends the message and severity to the right integration to display
+## the message. If the output is None the message is not sent to any integration
+## or syslog. If output is empty, the message is sent only to syslog. Else the
+## message is sent to the list of integrations specified in the output list and
+## syslog. If ALL is specified, the message is sent to all integrations.
+## Integrations are defined in notifier-integrations.
+##
+## The config file comes with the following default filter:
+##
+## notifier-filters:
+## - name: default
+##   rule:
+##   output:
+##     - ALL
+##
+## which is an empty rule, empty action and output to all. This defaults to
+## match all rules and then perform the default action which is to run the
+## generic handler mentioned in the action stage above.
+##
+## NetQ Integration Configuration
+##
+## The integrations refer to the external tool where you would like to receive
+## the notification. An integration is added as a list element to
+## &quot;notifier-integrations&quot;. Each integration must have a &quot;name&quot; and &quot;type&quot;.
+## Severity is optional and lets you send messages above that level to the
+## integration. Allowed values are: INFO, WARNING, ERROR, CRITICAL in increasing
+## order. Currently allowed &quot;type&quot; are &quot;slack&quot; and &quot;pagerduty&quot;. You can define
+## multiple slack or PD integrations.
+##
+##For Slack integration, along with a name and &quot;type: slack&quot;, you also need to
+## also provide the Incoming Webhook of the channel. The webhook URL for your
+## channel can be found or created in Slack at:
+##   Apps -&gt; Custom Integrations -&gt; Incoming Webhooks.
+## Tags are optional and are strings that are attached to the end of th
+## notification message.
+## E.g.
+# notifier-integrations:
+# - name: notifier-slack-channel-1
+#   type: slack
+#   webhook: &quot;https://&lt;slack-webhook1&gt;&quot;
+#   severity: INFO,
+#   tag: &quot;@slack-tag1&quot;
+##
+## For pagerDuty, along with name and &quot;type: pagerduty&quot;, you also need to
+## provide the &quot;api_access_key&quot; and &quot;api_integration_key&quot; from Pagerduty.
+## A unique API Access Key which can be created on your PagerDuty website at:
+## Configuration -&gt; API Access -&gt; Create New API Key
+## An 'Integration Key' can be created/found on your PagerDuty website at:
+## Configuration -&gt; Services -&gt; Add New Service -&gt; New Integration -&gt;
+##   Select Integration Type as 'Use our API directly: Events API v2'.
+## E.g. pagerduty integration along with slack
+# notifier-integrations:
+# - name: notifier-slack-channel-1
+#   type: slack
+#   webhook: &quot;https://&lt;slack-webhook1&gt;&quot;
+#   severity: INFO
+#   tag: &quot;@slack-tag1&quot;
+# - name: notifier-pagerduty
+#   type: pagerduty
+#   severity: WARNING
+#   api_access_key: &lt;API Key&gt;
+#   api_integration_key: &lt;API Integration Key&gt;
+##
+## Customizing Notifications
+## Here are some examples on how to customize your notifications:
+##
+## a) Filter notifications to integrations (Slack or PD) based on Severity,
+## i.e., WARNING to PD, INFO to Slack
+# notifier-integrations:
+# - name: notifier-slack-channel-1
+#   type: slack
+#   webhook: &quot;https://&lt;slack-webhook1&quot;
+#   severity: INFO  &lt;==== Set the severity type here
+#   tag: &quot;@slack-tag1&quot;
+# - name: notifier-pagerduty
+#   type: pagerduty
+#   severity: WARNING &lt;==== Set the severity type here
+#   api_access_key: &quot;&lt;API Key&gt;&quot;
+#   api_integration_key: &quot;&lt;API Integration Key&gt;&quot;
+#
+##
+## b) Drop all notifications coming from a switch/host say, leaf-01
+# notifier-filters:
+# - name: leaf-01 drop
+#   rule:
+#     hostname: leaf-01
+#   output:
+#     - None
+# - name: default
+#   rule:
+#   output:
+#     - ALL
+##
+## c) Drop all notifications coming from switches whose name starts with leaf
+# notifier-filters:
+# - name: leaf drop
+#   rule:
+#     hostname: &quot;leaf-.*&quot;
+#   output:
+#     - None
+# - name: default
+#   rule:
+#   output:
+#     - ALL
+##
+## d) Drop all notifications coming from a particular link, e.g. leaf-01 swp1
+# notifier-filters:
+# - name: leaf-01 swp1 drop
+#   rule:
+#     type: Link
+#     hostname: leaf-01
+#     ifname: swp1
+#   output:
+#     - None
+# - name: default
+#   rule:
+#   output:
+#    - ALL
+##
+## e) Send BGP Session state notifications to particular slack channel
+## (slack-channel-BGP), rest to another one (slack-channel-catchall)
+# notifier-filters:
+# - name: BGP slack channel
+#   rule:
+#     type: BgpSession
+#   output:
+#     - slack-channel-BGP
+# - name: default
+#   rule:
+#   output:
+#     - slack-channel-catchall
+##
+## f) Send BgpSession notifications based on severity to different slack channels
+# notifier-filters:
+# - name: BGP severity slack channel
+#   rule:
+#     type: BgpSession
+#     severity: WARNING
+#   output:
+#     - slack-channel-BGP-info
+# - name: default
+#   rule:
+#   output:
+#     - slack-channel-catchall
+##
+## g) Drop all temperature related alerts
+# notifier-filters:
+# - name: temp drop
+#   rule:
+#     type: Temp
+#   output:
+#     - None
+# - name: default
+#   rule:
+#   output:
+#     - ALL
+notifier-filters:
+  - name: default
+    rule:
+    output:
+      - ALL
+</code></pre>
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+
+<p></details></p>
+</article>
+
+      <script src="https://utteranc.es/client.js"
+        repo="CumulusNetworks/docs-internal"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+    <div class="toc">
+    
+      <button>
+      <a href="https://github.com/CumulusNetworks/docs/edit/master/content/version/cumulus-netq-121/Getting-Started-with-NetQ/_index.md" target="_blank" rel="noopener"><img src="/docs.cumulusnetworks.com/svg/pencil-circle.svg" alt="Edit" /> Edit this page</a>
+      </button>
+    
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#span-install-the-netq-telemetry-server-span"><span>Install the NetQ Telemetry Server</span></a></li>
+<li><a href="#span-id-src-8356538-gettingstartedwithnetq-agent-class-confluence-anchor-link-span-span-install-the-netq-agent-span"><span id="src-8356538_GettingStartedwithNetQ-agent" class="confluence-anchor-link"></span><span>Install the NetQ Agent</span></a>
+<ul>
+<li><a href="#span-installing-on-a-cumulus-linux-switch-span"><span>Installing on a Cumulus Linux Switch</span></a></li>
+<li><a href="#span-installing-on-an-ubuntu-red-hat-or-centos-server-span"><span>Installing on an Ubuntu, Red Hat or CentOS Server</span></a></li>
+</ul></li>
+<li><a href="#span-id-src-8356538-gettingstartedwithnetq-nodeconfig-class-confluence-anchor-link-span-span-configuring-the-netq-agent-on-a-node-span"><span id="src-8356538_GettingStartedwithNetQ-nodeconfig" class="confluence-anchor-link"></span><span>Configuring the NetQ Agent on a Node</span></a>
+<ul>
+<li><a href="#span-id-src-8356538-gettingstartedwithnetq-vrf-class-confluence-anchor-link-span-span-configuring-the-agent-to-use-a-vrf-span"><span id="src-8356538_GettingStartedwithNetQ-vrf" class="confluence-anchor-link"></span><span>Configuring the Agent to Use a VRF</span></a></li>
+<li><a href="#span-id-src-8356538-gettingstartedwithnetq-port-class-confluence-anchor-link-span-span-configuring-the-agent-to-communicate-over-a-specific-port-span"><span id="src-8356538_GettingStartedwithNetQ-port" class="confluence-anchor-link"></span><span> Configuring the Agent to Communicate over a Specific Port</span></a></li>
+<li><a href="#span-removing-or-decommissioning-an-agent-from-a-node-span"><span>Removing or Decommissioning an Agent from a Node</span></a></li>
+<li><a href="#span-configuring-debug-logging-for-the-netq-agent-span"><span>Configuring Debug Logging for the NetQ Agent</span></a></li>
+</ul></li>
+<li><a href="#span-id-src-8356538-gettingstartedwithnetq-notifier-class-confluence-anchor-link-span-span-configuring-netq-notifier-on-the-telemetry-server-span"><span id="src-8356538_GettingStartedwithNetQ-notifier" class="confluence-anchor-link"></span><span>Configuring NetQ Notifier on the Telemetry Server</span></a></li>
+<li><a href="#span-id-src-8356538-gettingstartedwithnetq-example-class-confluence-anchor-link-span-span-example-etc-netq-netq-yml-configuration-span"><span id="src-8356538_GettingStartedwithNetQ-example" class="confluence-anchor-link"></span><span>Example /etc/netq/netq.yml Configuration</span></a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+  
+
+</aside>
+
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

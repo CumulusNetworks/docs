@@ -3,7 +3,7 @@ title: Monitoring Best Practices
 author: Cumulus Networks
 weight: 183
 aliases:
- - /display/CL31/Monitoring-Best-Practices
+ - /display/CL31/Monitoring+Best+Practices
  - /pages/viewpage.action?pageId=5121980
 pageID: 5121980
 product: Cumulus Linux
@@ -419,14 +419,14 @@ cumulus@switch:~$ netshow interfaces all -j</code></pre></td>
 <td><p>Port state</p></td>
 <td><pre><code>cumulus@switch:~$     
 ip link show
-
+    
 cumulus@switch:~$ netshow interfaces all -j</code></pre></td>
 </tr>
 <tr class="even">
 <td><p>Bond state</p></td>
 <td><pre><code>cumulus@switch:~$     
 cat /proc/net/bonding/[bond]
-
+    
 cumulus@switch:~$ netshow interfaces all -j</code></pre></td>
 </tr>
 </tbody>
@@ -653,7 +653,8 @@ and associated logs are documented in the code.
 {{%notice note%}}
 
 Peering information should be tracked through PTM. For more information,
-refer to the [Prescriptive Topology Manager documentation](/version/cumulus-linux-31/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/).
+refer to the [Prescriptive Topology Manager
+documentation](/display/CL31/Prescriptive+Topology+Manager+-+PTM).
 
 {{%/notice%}}
 
@@ -1040,7 +1041,7 @@ sshd[31830]: pam_unix(sshd:session): session opened for user cumulus by (uid=0)<
 
 ### <span>Device Super User Command Logs</span>
 
-
+  
 <span style="color: #000000;"> </span>
 
 <table>
@@ -1067,7 +1068,7 @@ sudo: pam_unix(sudo:session): session closed for user root</code></pre></td>
 </tbody>
 </table>
 
-
+  
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

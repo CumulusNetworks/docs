@@ -3,7 +3,7 @@ title: Configuring a Global Proxy
 author: Cumulus Networks
 weight: 69
 aliases:
- - /display/CL30/Configuring-a-Global-Proxy
+ - /display/CL30/Configuring+a+Global+Proxy
  - /pages/viewpage.action?pageId=5118227
 pageID: 5118227
 product: Cumulus Linux

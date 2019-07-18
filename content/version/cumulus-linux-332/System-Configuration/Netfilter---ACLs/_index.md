@@ -3,7 +3,7 @@ title: Netfilter - ACLs
 author: Cumulus Networks
 weight: 69
 aliases:
- - /display/CL332/Netfilter---ACLs
+ - /display/CL332/Netfilter+++ACLs
  - /pages/viewpage.action?pageId=5868887
 pageID: 5868887
 product: Cumulus Linux
@@ -11,6 +11,7 @@ version: 3.3.2
 imgData: cumulus-linux-332
 siteSlug: cumulus-linux-332
 ---
+<details>
 
 [Netfilter](http://www.netfilter.org/) is the packet filtering framework
 in Cumulus Linux as well as most other Linux distributions. There are a
@@ -47,40 +48,42 @@ use which tool.
 If you need help getting started setting up ACLs, run `net example acl`
 to see a basic configuration:
 
-    cumulus@leaf01:~$ net example acl
+<summary>Click to see the example ... </summary>
 
+    cumulus@leaf01:~$ net example acl 
+     
     Scenario
     ========
     We would like to use access-lists on 'switch' to
     - Restrict inbound traffic on swp1 to traffic from 10.1.1.0/24 destined for 10.1.2.0/24
     - Restrict outbound traffic on swp2 to http, https, or ssh
-
-
+     
+     
          *switch
             /\
       swp1 /  \ swp2
           /    \
          /      \
      host-11   host-12
-
-
-
+     
+     
+     
     switch net commands
     ====================
-
+     
     Create an ACL that accepts traffic from 10.1.1.0/24 destined for 10.1.2.0/24
     and drops all other traffic
-
+     
     switch# net add acl ipv4 MYACL accept source-ip 10.1.1.0/24 dest-ip 10.1.2.0/24
     switch# net add acl ipv4 MYACL drop source-ip any dest-ip any
-
+     
     Apply MYACL inbound on swp1
-
+     
     switch# net add interface swp1 acl ipv4 MYACL inbound
-
+     
     Create an ACL that accepts http, https, or ssh traffic and drops all
     other traffic.
-
+     
     switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port http
     switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port http dest-ip any dest-port any
     switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port https
@@ -88,13 +91,13 @@ to see a basic configuration:
     switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port ssh
     switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port ssh dest-ip any dest-port any
     switch# net add acl ipv4 WEB_OR_SSH drop source-ip any dest-ip any
-
+     
     Apply WEB_OR_SSH outbound on swp2
     switch# net add interface swp2 acl ipv4 WEB_OR_SSH outbound
-
+     
     commit the staged changes
     switch# net commit
-
+     
     Verification
     ============
     switch# net show configuration acl
@@ -145,11 +148,11 @@ can be accessed by *tables*. Linux provides three tables by default:
   - **Filter**: Classifies traffic or filters traffic
 
   - **NAT**: Applies Network Address Translation rules
-
+    
     {{%notice note%}}
-
+    
     Cumulus Linux does not support NAT.
-
+    
     {{%/notice%}}
 
   - **Mangle**: Alters packets as they move through the switch
@@ -238,18 +241,18 @@ aware of:
     `--in-interface` option, creates the internal ASIC classification,
     and **continues to process** the next rule, which does the
     rate-limiting for the matched protocol:
-
+    
         -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport $BFD_ECHO_PORT -j SETCLASS --class 7
         -A $INGRESS_CHAIN -p udp --dport $BFD_ECHO_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000
-
+    
     {{%notice warning%}}
-
+    
     If multiple contiguous rules with the same match criteria are
     applied to `--in-interface`, **only** the first rule gets processed
     and then terminates processing. This would also be a
     misconfiguration, because there is no reason to have duplicate rules
     with different actions.
-
+    
     {{%/notice%}}
 
   - When processing traffic, rules affecting the FORWARD chain that
@@ -260,13 +263,13 @@ aware of:
     that matches any interface applied so that you can maintain order of
     operations with other input interface rules. Take the following
     rules, for example:
-
+    
         -A FORWARD -i $PORTA -j ACCEPT
         -A FORWARD -o $PORTA -j ACCEPT   <-- This rule is performed LAST (because of egress interface matching)
         -A FORWARD -i $PORTB -j DROP
-
+    
     If you modify the rules like this, they are performed in order:
-
+    
         -A FORWARD -i $PORTA -j ACCEPT
         -A FORWARD -i swp+ -o $PORTA -j ACCEPT   <-- These rules are performed in order (because of wildcard match on ingress interface)
         -A FORWARD -i $PORTB -j DROP
@@ -348,12 +351,12 @@ To always start `switchd` with nonatomic updates:
 1.  Edit `/etc/cumulus/switchd.conf`.
 
 2.  Add the following line to the file:
-
-        acl.non_atomic_update_mode = TRUE
+    
+        acl.non_atomic_update_mode = TRUE 
 
 3.  [Restart
     `switchd`](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5114824):
-
+    
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
 {{%notice note%}}
@@ -380,12 +383,12 @@ Appears to work, and the rule appears when you run `cl-acltool -L`:
 
     cumulus@switch:~$ sudo cl-acltool -L ip
     -------------------------------
-    Listing rules of type iptables:
-    -------------------------------
+    Listing rules of type iptables: 
+    ------------------------------- 
      
     TABLE filter :
-    Chain INPUT (policy ACCEPT 72 packets, 5236 bytes)
-    pkts bytes target prot opt in out source destination
+    Chain INPUT (policy ACCEPT 72 packets, 5236 bytes) 
+    pkts bytes target prot opt in out source destination 
     0 0 DROP icmp -- any any anywhere anywhere icmp echo-request
 
 However, the rule is not synced to hardware when applied in this fashion
@@ -409,26 +412,26 @@ entry is one of the following:
     into one rule for each input interface (listed after
     `--in-interface` below). For example, this entry splits into two
     rules:
-
+    
         -A FORWARD --in-interface swp1s0,swp1s1 -p icmp -j ACCEPT
 
   - An entry with multiple comma-separated output interfaces is split
     into one rule for each output interface (listed after
     `--out-interface` below). This entry splits into two rules:
-
+    
         -A FORWARD --in-interface swp+ --out-interface swp1s0,swp1s1 -p icmp -j ACCEPT
 
   - An entry with both input and output comma-separated interfaces is
     split into one rule for each combination of input and output
     interface (listed after `--in-interface` and `--out-interface`
     below). This entry splits into four rules:
-
+    
         -A FORWARD --in-interface swp1s0,swp1s1 --out-interface swp1s2,swp1s3 -p icmp -j ACCEPT
 
   - An entry with multiple L4 port ranges is split into one rule for
     each range (listed after `--dports` below). For example, this entry
     splits into two rules:
-
+    
         -A FORWARD --in-interface swp+ -p tcp -m multiport --dports 1050:1051,1055:1056 -j ACCEPT
 
 ### <span>Matching SVI/Bridged Interfaces in Rules</span>
@@ -529,7 +532,7 @@ example:
 After you commit your changes, you can verify the rule you created with
 NCLU by running `net show configuration acl`:
 
-    cumulus@switch:~$ net show configuration acl
+    cumulus@switch:~$ net show configuration acl 
     acl ipv4 EXAMPLEv4 priority 10 accept tcp source-ip 10.0.14.2/32 source-port any dest-ip 10.0.15.8/32 dest-port any
      
     interface swp1
@@ -538,7 +541,7 @@ NCLU by running `net show configuration acl`:
 Or you can see all of the rules installed by running `cat` on the
 `50_nclu_acl.rules` file:
 
-    cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/50_nclu_acl.rules
+    cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/50_nclu_acl.rules 
     [iptables]
     # swp1: acl ipv4 EXAMPLE1 inbound
     -A FORWARD --in-interface swp1 --out-interface swp2 -j ACCEPT -p tcp -s 10.0.14.2/32 -d 10.0.15.8/32 --dport 110
@@ -577,24 +580,24 @@ using NCLU.
 To examine the current state of chains and list all installed rules,
 run:
 
-    cumulus@switch:~$ sudo cl-acltool -L all
-    -------------------------------
-    Listing rules of type iptables:
-    -------------------------------
+    cumulus@switch:~$ sudo cl-acltool -L all 
+    ------------------------------- 
+    Listing rules of type iptables: 
+    ------------------------------- 
      
-    TABLE filter :
-    Chain INPUT (policy ACCEPT 90 packets, 14456 bytes)
-    pkts bytes target prot opt in out source destination
-    0 0 DROP all -- swp+ any 240.0.0.0/5 anywhere
-    0 0 DROP all -- swp+ any loopback/8 anywhere
-    0 0 DROP all -- swp+ any base-address.mcast.net/8 anywhere
+    TABLE filter : 
+    Chain INPUT (policy ACCEPT 90 packets, 14456 bytes) 
+    pkts bytes target prot opt in out source destination 
+    0 0 DROP all -- swp+ any 240.0.0.0/5 anywhere 
+    0 0 DROP all -- swp+ any loopback/8 anywhere 
+    0 0 DROP all -- swp+ any base-address.mcast.net/8 anywhere 
     0 0 DROP all -- swp+ any 255.255.255.255 anywhere ...
 
 To list installed rules using native `iptables`, `ip6tables` and
 `ebtables`, use the `-L` option with the respective commands:
 
-    cumulus@switch:~$ sudo iptables -L
-    cumulus@switch:~$ sudo ip6tables -L
+    cumulus@switch:~$ sudo iptables -L 
+    cumulus@switch:~$ sudo ip6tables -L 
     cumulus@switch:~$ sudo ebtables -L
 
 To flush all installed rules, run:
@@ -646,16 +649,16 @@ By default:
 
 Here is an example ACL policy file:
 
-    [iptables]
-    -A INPUT --in-interface swp1 -p tcp --dport 80 -j ACCEPT
-    -A FORWARD --in-interface swp1 -p tcp --dport 80 -j ACCEPT
+    [iptables] 
+    -A INPUT --in-interface swp1 -p tcp --dport 80 -j ACCEPT 
+    -A FORWARD --in-interface swp1 -p tcp --dport 80 -j ACCEPT 
      
-    [ip6tables]
-    -A INPUT --in-interface swp1 -p tcp --dport 80 -j ACCEPT
-    -A FORWARD --in-interface swp1 -p tcp --dport 80 -j ACCEPT
-
-    [ebtables]
-    -A INPUT -p IPv4 -j ACCEPT
+    [ip6tables] 
+    -A INPUT --in-interface swp1 -p tcp --dport 80 -j ACCEPT 
+    -A FORWARD --in-interface swp1 -p tcp --dport 80 -j ACCEPT 
+      
+    [ebtables] 
+    -A INPUT -p IPv4 -j ACCEPT 
     -A FORWARD -p IPv4 -j ACCEPT
 
 You can use wildcards or variables to specify chain and interface lists
@@ -671,16 +674,16 @@ may be kernel restrictions in supporting more complex wildcards likes
 
 {{%/notice%}}
 
-    INGRESS = swp+
-    INPUT_PORT_CHAIN = INPUT,FORWARD
+    INGRESS = swp+ 
+    INPUT_PORT_CHAIN = INPUT,FORWARD 
      
-    [iptables]
-    -A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT
-
-    [ip6tables]
-    -A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT
+    [iptables] 
+    -A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT 
+      
+    [ip6tables] 
+    -A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT 
      
-    [ebtables]
+    [ebtables] 
     -A INPUT -p IPv4 -j ACCEPT
 
 ACL rules for the system can be written into multiple files under the
@@ -692,34 +695,34 @@ Use multiple files to stack rules. The example below shows two rules
 files separating rules for management and datapath traffic:
 
     cumulus@switch:~$ ls /etc/cumulus/acl/policy.d/ 
-    00sample_mgmt.rules 01sample_datapath.rules
-    cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/00sample_mgmt.rules
-
-    INGRESS_INTF = swp+
-    INGRESS_CHAIN = INPUT
-
-    [iptables]
-    # protect the switch management
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 10.0.11.2 -d 10.0.12.8 -p tcp -j ACCEPT
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -d 10.0.16.8 -p udp -j DROP
+    00sample_mgmt.rules 01sample_datapath.rules 
+    cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/00sample_mgmt.rules 
+      
+    INGRESS_INTF = swp+ 
+    INGRESS_CHAIN = INPUT 
+      
+    [iptables] 
+    # protect the switch management 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 10.0.11.2 -d 10.0.12.8 -p tcp -j ACCEPT 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -d 10.0.16.8 -p udp -j DROP 
      
-    cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/01sample_datapath.rules
-    INGRESS_INTF = swp+
-    INGRESS_CHAIN = INPUT, FORWARD
+    cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/01sample_datapath.rules 
+    INGRESS_INTF = swp+ 
+    INGRESS_CHAIN = INPUT, FORWARD 
      
-    [iptables]
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.5 -p icmp -j ACCEPT
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.6 -d 192.0.2.4 -j DROP
+    [iptables] 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.5 -p icmp -j ACCEPT 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.6 -d 192.0.2.4 -j DROP 
     -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.2 -d 192.0.2.8 -j DROP
 
 Install all ACL policies under a directory:
 
-    cumulus@switch:~$ sudo cl-acltool -i -P ./rules
-    Reading files under rules
-    Reading rule file ./rules/01_http_rules.txt ...
-    Processing rules in file ./rules/01_http_rules.txt ...
-    Installing acl policy ...
+    cumulus@switch:~$ sudo cl-acltool -i -P ./rules 
+    Reading files under rules 
+    Reading rule file ./rules/01_http_rules.txt ... 
+    Processing rules in file ./rules/01_http_rules.txt ... 
+    Installing acl policy ... 
     Done.
 
 Install all rules and policies included in
@@ -737,20 +740,20 @@ to install a rule in a policy file called `01_new.datapathacl`, you
 would add `include /etc/cumulus/acl/policy.d/01_new.rules` to
 `policy.conf`, as in this example:
 
-    cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.conf
+    cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.conf 
      
-    #
-    # This file is a master file for acl policy file inclusion
-    #
-    # Note: This is not a file where you list acl rules.
-    #
-    # This file can contain:
-    # - include lines with acl policy files
-    #   example:
-    #     include <filepath>
-    #
-    # see manpage cl-acltool(5) and cl-acltool(8) for how to write policy files
-    #
+    # 
+    # This file is a master file for acl policy file inclusion 
+    # 
+    # Note: This is not a file where you list acl rules. 
+    # 
+    # This file can contain: 
+    # - include lines with acl policy files 
+    #   example: 
+    #     include <filepath> 
+    # 
+    # see manpage cl-acltool(5) and cl-acltool(8) for how to write policy files 
+    # 
      
     include /etc/cumulus/acl/policy.d/01_new.datapathacl
 
@@ -1046,40 +1049,40 @@ switch. You specify them in
 
 <summary>View the contents of the file ... </summary>
 
-    INGRESS_INTF = swp+
-    INGRESS_CHAIN = INPUT
-    INNFWD_CHAIN = INPUT,FORWARD
-    MARTIAN_SOURCES_4 = "240.0.0.0/5,127.0.0.0/8,224.0.0.0/8,255.255.255.255/32"
-    MARTIAN_SOURCES_6 = "ff00::/8,::/128,::ffff:0.0.0.0/96,::1/128"
-
-
-    # Custom Policy Section
-    SSH_SOURCES_4 = "192.168.0.0/24"
-    NTP_SERVERS_4 = "192.168.0.1/32,192.168.0.4/32"
-    DNS_SERVERS_4 = "192.168.0.1/32,192.168.0.4/32"
-    SNMP_SERVERS_4 = "192.168.0.1/32"
-
-
-    [iptables]
-    -A $INNFWD_CHAIN --in-interface $INGRESS_INTF -s $MARTIAN_SOURCES_4 -j DROP
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p ospf -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --sport bgp -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p icmp -j POLICE --set-mode pkt --set-rate 100 --set-burst 40 --set-class 2
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport bootps:bootpc -j POLICE --set-mode pkt --set-rate 100 --set-burst 100 --set-class 2
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bootps:bootpc -j POLICE --set-mode pkt --set-rate 100 --set-burst 100 --set-class 2
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p igmp -j POLICE --set-mode pkt --set-rate 300 --set-burst 100 --set-class 6
-
-
-    # Custom policy
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport 22 -s $SSH_SOURCES_4 -j ACCEPT
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --sport 123 -s $NTP_SERVERS_4 -j ACCEPT
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --sport 53 -s $DNS_SERVERS_4 -j ACCEPT
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport 161 -s $SNMP_SERVERS_4 -j ACCEPT
-
-
-    # Allow UDP traceroute when we are the current TTL expired hop
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport 1024:65535 -m ttl --ttl-eq 1 -j ACCEPT
+    INGRESS_INTF = swp+ 
+    INGRESS_CHAIN = INPUT 
+    INNFWD_CHAIN = INPUT,FORWARD 
+    MARTIAN_SOURCES_4 = "240.0.0.0/5,127.0.0.0/8,224.0.0.0/8,255.255.255.255/32" 
+    MARTIAN_SOURCES_6 = "ff00::/8,::/128,::ffff:0.0.0.0/96,::1/128" 
+     
+      
+    # Custom Policy Section 
+    SSH_SOURCES_4 = "192.168.0.0/24" 
+    NTP_SERVERS_4 = "192.168.0.1/32,192.168.0.4/32" 
+    DNS_SERVERS_4 = "192.168.0.1/32,192.168.0.4/32" 
+    SNMP_SERVERS_4 = "192.168.0.1/32" 
+     
+      
+    [iptables] 
+    -A $INNFWD_CHAIN --in-interface $INGRESS_INTF -s $MARTIAN_SOURCES_4 -j DROP 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p ospf -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --sport bgp -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p icmp -j POLICE --set-mode pkt --set-rate 100 --set-burst 40 --set-class 2 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport bootps:bootpc -j POLICE --set-mode pkt --set-rate 100 --set-burst 100 --set-class 2 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bootps:bootpc -j POLICE --set-mode pkt --set-rate 100 --set-burst 100 --set-class 2 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p igmp -j POLICE --set-mode pkt --set-rate 300 --set-burst 100 --set-class 6 
+     
+      
+    # Custom policy 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport 22 -s $SSH_SOURCES_4 -j ACCEPT 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --sport 123 -s $NTP_SERVERS_4 -j ACCEPT 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --sport 53 -s $DNS_SERVERS_4 -j ACCEPT 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport 161 -s $SNMP_SERVERS_4 -j ACCEPT 
+     
+      
+    # Allow UDP traceroute when we are the current TTL expired hop 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport 1024:65535 -m ttl --ttl-eq 1 -j ACCEPT 
     -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -j DROP
 
 ### <span>Setting DSCP on Transit Traffic</span>
@@ -1092,7 +1095,7 @@ in the examples below.
     [iptables]
      
     #Set SSH as high priority traffic.
-    -t mangle -A FORWARD -p tcp --dport 22  -j DSCP --set-dscp 46
+    -t mangle -A FORWARD -p tcp --dport 22  -j DSCP --set-dscp 46 
      
     #Set everything coming in SWP1 as AF13
     -t mangle -A FORWARD --in-interface swp1 -j DSCP --set-dscp 14
@@ -1271,7 +1274,7 @@ examples. The configuration for each switch appears in
     iface br-tag100 
         address 10.0.100.1/24
         bridge_ports swp2.100 bond2.100 
-        bridge_stp on
+        bridge_stp on 
      
     ...
 
@@ -1429,7 +1432,8 @@ To do so, enable non-atomic update mode by setting the value for
 
     acl.non_atomic_update_mode = TRUE
 
-Then [restart `switchd`](/version/cumulus-linux-332/System-Configuration/Configuring-switchd/#span-id-src-5868885-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-span-restarting-switchd-span).
+Then [restart
+`switchd`](https://docs.cumulusnetworks.com/display/CL30/Configuring+switchd#Configuringswitchd-restartswitchd).
 
 #### <span>Packets Undercounted during ACL Updates</span>
 
@@ -1454,13 +1458,13 @@ can be used directly and does work. However, you should consider using
   - Running `cl-acltool -i` (the installation command) resets all rules
     and deletes anything that is not stored in
     `/etc/cumulus/acl/policy.conf`.
-
+    
     For example, running the following command works:
-
+    
         cumulus@switch:~$ sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
-
+    
     And the rules appear when you run `cl-acltool -L`:
-
+    
         cumulus@switch:~$ sudo cl-acltool -L ip
         -------------------------------
         Listing rules of type iptables:
@@ -1470,7 +1474,7 @@ can be used directly and does work. However, you should consider using
          pkts bytes target  prot opt in   out   source    destination
          
             0     0 DROP    icmp --  any  any   anywhere  anywhere      icmp echo-request
-
+    
     However, running `cl-acltool -i` or `reboot` removes them. To ensure
     all rules that can be in hardware are hardware accelerated, place
     them in `/etc/cumulus/acl/policy.conf` and run `cl-acltool -i`.
@@ -1505,3 +1509,13 @@ following is displayed:
 
 The Dell S3048-ON has a limit of 24576 MAC address entries, instead of
 32K for other 1G switches.
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+
+</details>

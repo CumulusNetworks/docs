@@ -3,7 +3,7 @@ title: Adding and Updating Packages
 author: Cumulus Networks
 weight: 133
 aliases:
- - /display/RMP25ESR/Adding-and-Updating-Packages
+ - /display/RMP25ESR/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=5116321
 pageID: 5116321
 product: Cumulus RMP

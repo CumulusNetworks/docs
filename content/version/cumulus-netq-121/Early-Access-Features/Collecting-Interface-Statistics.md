@@ -3,7 +3,7 @@ title: Collecting Interface Statistics
 author: Cumulus Networks
 weight: 79
 aliases:
- - /display/NETQ121/Collecting-Interface-Statistics
+ - /display/NETQ121/Collecting+Interface+Statistics
  - /pages/viewpage.action?pageId=8356589
 pageID: 8356589
 product: Cumulus NetQ

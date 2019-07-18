@@ -3,7 +3,7 @@ title: SNMP Monitoring
 author: Cumulus Networks
 weight: 181
 aliases:
- - /display/CL31/SNMP-Monitoring
+ - /display/CL31/SNMP+Monitoring
  - /pages/viewpage.action?pageId=5121965
 pageID: 5121965
 product: Cumulus Linux

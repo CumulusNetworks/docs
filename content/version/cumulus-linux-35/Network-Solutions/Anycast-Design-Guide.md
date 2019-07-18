@@ -3,7 +3,7 @@ title: Anycast Design Guide
 author: Cumulus Networks
 weight: 241
 aliases:
- - /display/CL35/Anycast-Design-Guide
+ - /display/CL35/Anycast+Design+Guide
  - /pages/viewpage.action?pageId=8357790
 pageID: 8357790
 product: Cumulus Linux
@@ -11,7 +11,9 @@ version: '3.5'
 imgData: cumulus-linux-35
 siteSlug: cumulus-linux-35
 ---
-Cumulus Networks' [Host Pack](/host-pack) provides the ability to run
+Cumulus Networks' [Routing on the
+Host](https://docs.cumulusnetworks.com/display/ROH/Routing+on+the+Host)
+provides the ability to run
 [OSPF](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First---OSPF---Protocol)
 or
 [BGP](/version/cumulus-linux-35/Layer-3/Border-Gateway-Protocol---BGP)

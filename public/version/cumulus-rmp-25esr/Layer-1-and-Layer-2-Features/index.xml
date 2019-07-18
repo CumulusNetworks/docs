@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Layer 1 and Layer 2 Features on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/</link>
+    <description>Recent content in Layer 1 and Layer 2 Features on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spanning Tree and Rapid Spanning Tree</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree/</guid>
+      <description>Spanning tree protocol (STP) is always recommended in layer 2 topologies, as it prevents bridge loops and broadcast radiation on a bridged network.
+mstpd is a daemon that implements IEEE802.1D 2004 and IEEE802.1Q 2011. Currently, STP is disabled by default on the bridge in Cumulus RMP.
+To enable STP, configure brctl stp &amp;lt;bridge&amp;gt; on.
+The STP modes Cumulus RMP supports vary depending upon which bridge driver mode is in use.</description>
+    </item>
+    
+    <item>
+      <title>Link Layer Discovery Protocol</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Link-Layer-Discovery-Protocol/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Link-Layer-Discovery-Protocol/</guid>
+      <description>The lldpddaemon implements the IEEE802.1AB (Link Layer Discovery Protocol, or LLDP) standard. LLDP allows you to know which ports are neighbors of a given port. By default, lldpd runs as a daemon and is started at system boot. lldpd command line arguments are placed in /etc/default/lldpd. lldpd configuration options are placed in /etc/lldpd.conf or under /etc/lldpd.d/.
+For more details on the command line arguments and config options, please see man lldpd(8).</description>
+    </item>
+    
+    <item>
+      <title>Prescriptive Topology Manager - PTM</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM/</guid>
+      <description>In data center topologies, right cabling is a time-consuming endeavor and is error prone. Prescriptive Topology Manager (PTM) is a dynamic cabling verification tool to help detect and eliminate such errors. It takes a graphviz-DOT specified network cabling plan (something many operators already generate), stored in a topology.dot file, and couples it with runtime information derived from LLDP to verify that the cabling matches the specification. The check is performed on every link transition on each node in the network.</description>
+    </item>
+    
+    <item>
+      <title>Bonding - Link Aggregation</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Bonding-Link-Aggregation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Bonding-Link-Aggregation/</guid>
+      <description>Linux bonding provides a method for aggregating multiple network interfaces (the slaves) into a single logical bonded interface (the bond). Cumulus RMP bonding supports the IEEE 802.3ad link aggregation mode. Link aggregation allows one or more links to be aggregated together to form a link aggregation group (LAG), such that a media access control (MAC) client can treat the link aggregation group as if it were a single link. The benefits of link aggregation are:</description>
+    </item>
+    
+  </channel>
+</rss>

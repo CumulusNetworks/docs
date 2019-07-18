@@ -3,7 +3,7 @@ title: VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
 author: Cumulus Networks
 weight: 323
 aliases:
- - /display/CL34/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments
+ - /display/CL34/VLAN+aware+Bridge+Mode+for+Large+scale+Layer+2+Environments
  - /pages/viewpage.action?pageId=7112421
 pageID: 7112421
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: Configuring Border Gateway Protocol - BGP
 author: Cumulus Networks
 weight: 135
 aliases:
- - /display/CL25ESR/Configuring-Border-Gateway-Protocol---BGP
+ - /display/CL25ESR/Configuring+Border+Gateway+Protocol+++BGP
  - /pages/viewpage.action?pageId=5116113
 pageID: 5116113
 product: Cumulus Linux

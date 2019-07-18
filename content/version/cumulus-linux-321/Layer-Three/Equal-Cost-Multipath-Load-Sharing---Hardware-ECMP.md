@@ -3,7 +3,7 @@ title: Equal Cost Multipath Load Sharing - Hardware ECMP
 author: Cumulus Networks
 weight: 171
 aliases:
- - /display/CL321/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP
+ - /display/CL321/Equal+Cost+Multipath+Load+Sharing+++Hardware+ECMP
  - /pages/viewpage.action?pageId=5127052
 pageID: 5127052
 product: Cumulus Linux

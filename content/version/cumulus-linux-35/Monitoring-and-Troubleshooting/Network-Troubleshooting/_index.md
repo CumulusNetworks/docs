@@ -3,7 +3,7 @@ title: Network Troubleshooting
 author: Cumulus Networks
 weight: 217
 aliases:
- - /display/CL35/Network-Troubleshooting
+ - /display/CL35/Network+Troubleshooting
  - /pages/viewpage.action?pageId=8357378
 pageID: 8357378
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: Extend NetQ with Custom Commands
 author: Cumulus Networks
 weight: 107
 aliases:
- - /display/NETQ141/Extend-NetQ-with-Custom-Commands
+ - /display/NETQ141/Extend+NetQ+with+Custom+Commands
  - /pages/viewpage.action?pageId=10453497
 pageID: 10453497
 product: Cumulus NetQ

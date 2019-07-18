@@ -3,7 +3,7 @@ title: Configuring DHCP Relays
 author: Cumulus Networks
 weight: 95
 aliases:
- - /display/CL34/Configuring-DHCP-Relays
+ - /display/CL34/Configuring+DHCP+Relays
  - /pages/viewpage.action?pageId=7112627
 pageID: 7112627
 product: Cumulus Linux

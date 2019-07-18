@@ -3,7 +3,7 @@ title: 'Creating a Two-Spine, Two-Leaf Topology'
 author: Cumulus Networks
 weight: 51
 aliases:
- - '/display/VX25/Creating-a-Two-Spine,-Two-Leaf-Topology'
+ - '/display/VX25/Creating+a+Two+Spine,+Two+Leaf+Topology'
  - /pages/viewpage.action?pageId=5115392
 pageID: 5115392
 product: Cumulus VX

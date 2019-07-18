@@ -3,7 +3,7 @@ title: Cumulus Linux User Guide
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/CL25ESR/Cumulus-Linux-User-Guide
+ - /display/CL25ESR/Cumulus+Linux+User+Guide
  - /pages/viewpage.action?pageId=5115887
 pageID: 5115887
 product: Cumulus Linux

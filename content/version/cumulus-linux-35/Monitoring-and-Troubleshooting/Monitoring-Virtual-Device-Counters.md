@@ -3,7 +3,7 @@ title: Monitoring Virtual Device Counters
 author: Cumulus Networks
 weight: 209
 aliases:
- - /display/CL35/Monitoring-Virtual-Device-Counters
+ - /display/CL35/Monitoring+Virtual+Device+Counters
  - /pages/viewpage.action?pageId=8357387
 pageID: 8357387
 product: Cumulus Linux

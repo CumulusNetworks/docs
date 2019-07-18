@@ -3,7 +3,7 @@ title: Introduction to Routing Protocols
 author: Cumulus Networks
 weight: 123
 aliases:
- - /display/CL25ESR/Introduction-to-Routing-Protocols
+ - /display/CL25ESR/Introduction+to+Routing+Protocols
  - /pages/viewpage.action?pageId=5116103
 pageID: 5116103
 product: Cumulus Linux

@@ -1,0 +1,4343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Upgrade the NetQ Appliance | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/docs.cumulusnetworks.com/book.min.a378d8a2da6f5357a83a43dff33d6f77fb70401e0399d5ba78faf81d7a1ae1a8.css">
+
+  
+  <link rel="icon" href="/docs.cumulusnetworks.com/icons/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+  
+  
+  <script src = "/docs.cumulusnetworks.com/js/codecopy.js"> </script>
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+      
+    
+    <ul>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-linux/ >
+        Cumulus Linux </a> </li>
+    
+      <li class = "active" ><a href = docs.cumulusnetworks.com/cumulus-netq/ >
+        Cumulus NetQ </a> </li>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-vx/ >
+        Cumulus VX </a> </li>
+    
+      <li>
+        <div id="products-dropdown" class="dropdown">
+            <button class="btn" type="button" id="dropdownMenuButton">
+              Products
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="">Cumulus RMP</a>
+              <a class="dropdown-item" href="">Cumulus Chassis</a>
+              <a class="dropdown-item" href="">Cumulus Host Pack</a>
+            </div>
+        </div>
+      </li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v2.1
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/cumulus-netq/"> v2.2.0</a>
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-10/"> v1.0.0</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-110/"> v1.1.0</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-121/"> v1.2.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-141/"> v1.4.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-21/"> v2.1</a>
+            
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="docs.cumulusnetworks.com">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+            
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/" >
+    Cumulus NetQ
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Resolve-MLAG-Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Investigate-NetQ-Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/CLI-Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/NetQ-Command-Line-Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Monitor-Overall-Network-Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Monitor-Switch-Hardware-and-Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Monitor-Physical-Layer-Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Monitor-Data-Link-Layer-Devices-and-Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Monitor-Network-Layer-Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Monitor-Virtual-Network-Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Monitor-Linux-Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Monitor-Container-Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Manage-NetQ-Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Early-Access-Features/" >
+    Early Access Features
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/" >
+    Upgrade NetQ
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-from-NetQ-1.x-to-NetQ-2.2.x/" >
+    Upgrade from NetQ 1.x to NetQ 2.2.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-from-NetQ-2.0_2.1-to-NetQ-2.2.x/" >
+    Upgrade from NetQ 2.0/2.1 to NetQ 2.2.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-the-NetQ-Appliance/"  class="active" >
+    Upgrade the NetQ Appliance
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Deployment-Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Cumulus-NetQ-Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Install-NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware/" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/" >
+    Backup and Restore NetQ
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/Monitor-the-BGP-Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/Monitor-the-EVPN-Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/Monitor-the-LLDP-Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/Monitor-the-MLAG-Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/Monitor-the-OSPF-Service/" >
+    Monitor the OSPF Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Validate-Network-Protocol-and-Service-Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/UI-Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/NetQ-Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-API-User-Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "/docs.cumulusnetworks.com/js/menuBundle.js"> </script>
+
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/docs.cumulusnetworks.com/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Upgrade the NetQ Appliance</strong>
+      </header>
+
+      
+      
+<div class= "notices info" id = "info" >
+    This documentation is for an older version of the software. If you are using the current version of Cumulus Linux, this content may not be up to date. The current version of the documentation is available [here](https://docs.cumulusnetworks.com/).
+  </div>
+<article class="markdown">
+<h1>Upgrade the NetQ Appliance</h1>
+
+<p>This document describes the steps required to upgrade the NetQ Appliance
+from NetQ 2.1 to NetQ 2.2.x.</p>
+
+
+<div class="notices info" > <p>Cumulus Networks recommends only upgrading NetQ during a network
+maintenance window.</p>
+
+<p>Any data you have collected while using NetQ 2.2.0 is maintained during
+this upgrade process.</p>
+ </div>
+
+
+
+<div class="notices note" > <p>Events generated during the upgrade process will not be available in the
+database. Once the upgrade process is complete, the agents re-sync with
+the current state of the Host or Cumulus Linux switch with the NetQ
+Platform.</p>
+ </div>
+
+
+<h2 id="span-prerequisites-span"><span>Prerequisites</span></h2>
+
+<p>Before you begin the upgrade process, please note the following:</p>
+
+<ul>
+<li><p>Cumulus recommends upgrading your NetQ Agents to obtain the latest
+features and bug fixes, but it is not required.</p></li>
+
+<li><p>The NetQ installer pod <code>netq-installer</code> should be up in either the
+<em>Containercreating</em> or <em>Running</em> state. The <code>netq-installer</code> pod
+state could also be <em>ContainerCreating</em>, in which case the host is
+initializing with the SSH keys.</p></li>
+</ul>
+
+
+<div class="notices info" > <p><strong>Best Practice</strong></p>
+
+<p>Cumulus Networks recommends you install the NetQ Appliance as part of an
+out-of-band management network to ensure it can monitor in-band network
+issues without being affected itself.</p>
+ </div>
+
+
+<h2 id="span-upgrade-the-netq-appliance-span"><span>Upgrade the NetQ Appliance</span></h2>
+
+<p>To upgrade the NetQ Appliance software:</p>
+
+<ol>
+<li><p>Download the appliance upgrade image:</p>
+
+<ol>
+<li><p>On the <a href="https://cumulusnetworks.com/downloads/" target="_blank">Cumulus
+Downloads</a> page, select
+<em>NetQ</em> from the <strong>Product</strong> list box.</p></li>
+
+<li><p>Click <em>2.2</em> from the <strong>Version</strong> list box, and then select
+<em>2.2.x</em> from the submenu.</p></li>
+
+<li><p>Select <em>Appliance</em> from the <strong>Hypervisor/Platform</strong> list box.<br />
+<strong>Note</strong>: Do not select <em>Appliance (Cloud)</em> as this does not
+provide the needed functionality for your NetQ Appliance.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/12321037/image2019-6-28-15_51_15.png" alt = "/images/download/attachments/12321037/image2019-6-28-15_51_15.png"
+
+
+width = 500
+
+ />
+</li>
+
+<li><p>Click <strong>Upgrade</strong>.</p></li>
+</ol></li>
+
+<li><p>From a terminal window, log in to the NetQ Appliance using your
+login credentials. This example uses the default
+<em>cumulus/CumulusLinux!</em> credentials.</p>
+
+<pre><code>&lt;computer&gt;:~&lt;username&gt;$ ssh cumulus@netq-appliance
+cumulus@netq-appliance's password: 
+cumulus@netq-appliance:~$ 
+</code></pre></li>
+
+<li><p>Change to the root user.</p>
+
+<pre><code>cumulus@netq-appliance:~$ sudo -i
+[sudo] password for cumulus:
+root@netq-appliance:~#
+</code></pre></li>
+
+<li><p>Copy the upgrade image file (<code>NetQ-2.2.x.tgz</code>) into your new
+directory.</p>
+
+<pre><code>root@netq-appliance:~# cd /mnt/installables/
+root@netq-appliance:/mnt/installables# cp /home/usr/dir/&lt;NetQ-image&gt;.tgz ./ 
+</code></pre></li>
+
+<li><p>Export the installer script.</p>
+
+<pre><code>root@netq-appliance:/mnt/installables# tar -xvf &lt;NetQ-image&gt;.tgz ./netq-install.sh
+</code></pre></li>
+
+<li><p>Verify the contents of the directory. You should have the image file
+and the <code>netq-install.sh</code> script.</p>
+
+<pre><code>root@netq-appliance:/mnt/installables# ls -l
+total 9607744
+-rw-r--r-- 1 cumulus cumulus 5911383922 Apr 23 11:13 &lt;NetQ-image&gt;.tgz
+-rwxr-xr-x 1 _lldpd _lldpd 4309 Apr 23 10:34 netq-install.sh
+root@netq-appliance:/mnt/installables#
+</code></pre></li>
+
+<li><p>Configure SSH access.</p>
+
+
+<div class="notices info" > <pre><code>If you perform the upgrade more than once, you can skip this step
+after performing it once.
+
+If you have an existing SSH key, skip to step 8c.
+</code></pre>
+ </div>
+
+
+<ol>
+<li><p>Generate the SSH key to enable you to run the script.</p>
+
+
+<div class="notices info" > <pre><code>    Leave the passphrase blank to simplify running the script.
+</code></pre>
+ </div>
+
+
+<pre><code>root@netq-appliance:/mnt/installables# ssh-keygen -t rsa -b 4096
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+Created directory '/root/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again:
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+</code></pre></li>
+
+<li><p>Copy the key to the <code>authorized_keys</code> directory.</p>
+
+<pre><code>root@netq-appliance:/mnt/installables# cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+root@netq-appliance:/mnt/installables# chmod 0600 ~/.ssh/authorized_keys
+root@netq-appliance:/mnt/installables#
+</code></pre></li>
+
+<li><p>Associate the key with the installer.</p>
+
+<pre><code>root@netq-appliance:/mnt/installables/# ./netq-install.sh --usekey ~/.ssh/id_rsa
+[Fri 21 Jun 2019 06:34:47 AM UTC] - This Script can only be invoked by user: root
+[Fri 21 Jun 2019 06:34:47 AM UTC] - The logged in user is root
+[Fri 21 Jun 2019 06:34:47 AM UTC] - Install directory /mnt/installables exists on system.
+[Fri 21 Jun 2019 06:34:47 AM UTC] - File /root/.ssh/id_rsa exists on system...
+[Fri 21 Jun 2019 06:34:47 AM UTC] - checking the presence of existing instaler-ssh-keys secret/instaler-ssh-keys created
+[Fri 21 Jun 2019 06:34:48 AM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
+[Fri 21 Jun 2019 06:34:58 AM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
+[Fri 21 Jun 2019 06:35:08 AM UTC] - Able to find the netq-installer up and running...
+</code></pre></li>
+</ol></li>
+
+<li><p>Upgrade the NetQ software. This example shows an upgrade to version
+2.2.0, on-site deployment.</p>
+
+<pre><code>root@netq-appliance:/mnt/installables# ./netq-install.sh  --installbundle  /mnt/installables/NetQ-2.2.0.tgz --updateapps
+[Fri 21 Jun 2019 08:18:37 PM UTC] - File /mnt/installables/NetQ-2.2.0.tgz exists on system for updating netq-installer ...
+[Fri 21 Jun 2019 08:18:37 PM UTC] - Check the netq-installer is up and running to process requests ....
+[Fri 21 Jun 2019 08:18:37 PM UTC] - Checking the Status of netq-installer ....
+[Fri 21 Jun 2019 08:18:37 PM UTC] - The netq-installer is up and running ...
+[Fri 21 Jun 2019 08:18:37 PM UTC] - Updating the netq-installer ...
+[Fri 21 Jun 2019 08:18:37 PM UTC] - Able to execute the command for updating netq-installer ...
+[Fri 21 Jun 2019 08:18:37 PM UTC] - Checking initialization of netq-installer update ...
+[Fri 21 Jun 2019 08:18:37 PM UTC] - Update of netq-installer is in progress ...
+******************************0
+[Fri 21 Jun 2019 08:28:39 PM UTC] - Successfully updated netq installer....
+0,/mnt/installables/NetQ-2.2.0.tgz
+[Fri 21 Jun 2019 08:28:39 PM UTC] - File /mnt/installables/NetQ-2.2.0.tgz exists on system for updating netq apps...
+[Fri 21 Jun 2019 08:28:39 PM UTC] - User selected to update netq-apps ...
+[Fri 21 Jun 2019 08:28:39 PM UTC] - Checking the Status of netq-installer ....
+[Fri 21 Jun 2019 08:28:41 PM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
+[Fri 21 Jun 2019 08:28:52 PM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
+[Fri 21 Jun 2019 08:29:03 PM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
+[Fri 21 Jun 2019 08:29:14 PM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
+[Fri 21 Jun 2019 08:29:24 PM UTC] - The netq-installer is up and running ...
+[Fri 21 Jun 2019 08:29:24 PM UTC] - Able to execute the command for netq apps updates ...
+[Fri 21 Jun 2019 08:29:24 PM UTC] - Checking initialization of apps update ...
+[Fri 21 Jun 2019 08:29:29 PM UTC] - netq apps update is in progress ...
+************************************************************************************************************************************    ******************************************************************************************************************************************************************************
+0
+[Fri 21 Jun 2019 09:20:31 PM UTC] - Successfully updated netq apps ....
+root@netq-appliance:/mnt/installables#
+</code></pre>
+
+
+<div class="notices info" > <pre><code>Please allow about an hour for the upgrade to complete.
+</code></pre>
+ </div>
+</li>
+</ol>
+
+
+<div class="notices note" > <p>If you have changed the IP Address of the NetQ Appliance, you need to
+re-register this address with the Kubernetes containers before you can
+continue.</p>
+
+<ol>
+<li><p>Reset all Kubernetes administrative settings. Run the command twice
+to make sure all directories and files have been reset.<br />
+<code>cumulus@switch:~$ sudo kubeadm reset -f</code><br />
+<code>cumulus@switch:~$ sudo kubeadm reset -f</code></p></li>
+
+<li><p>Remove the Kubernetes configuration.<br />
+<code>cumulus@switch:~$ sudo rm /home/cumulus/.kube/config</code></p></li>
+
+<li><p>Reset the NetQ Platform install daemon.<br />
+<code>cumulus@switch:~$ sudo systemctl reset-failed</code></p></li>
+
+<li><p>Reset the Kubernetes service.<br />
+<code>cumulus@switch:~$ sudo systemctl restart cts-kubectl-config</code><br />
+*<strong>Note</strong>: Allow 15 minutes for the prompt to return.*</p></li>
+
+<li><p>Reboot the VM.<br />
+*<strong>Note</strong>: Allow 5-10 minutes for the VM to boot.*</p></li>
+</ol>
+ </div>
+
+
+<h3 id="span-verify-the-installation-span"><span>Verify the Installation</span></h3>
+
+<p>Verify you can access the NetQ CLI.</p>
+
+<ol>
+<li><p>From a terminal window, log in to the NetQ Appliance using the
+default credentials (<em>cumulus/CumulusLinux!</em>).</p>
+
+<pre><code>&lt;computer&gt;:~&lt;username&gt;$ ssh cumulus@&lt;netq-appliance-ipaddress&gt;
+Warning: Permanently added '&lt;netq-appliance-hostname&gt;,192.168.1.254' (ECDSA) to the list of known hosts.
+cumulus@&lt;netq-platform-hostname&gt;'s password: &lt;enter CumulusLinux! here&gt;
+ 
+Welcome to Cumulus (R) Linux (R)
+ 
+For support and online technical documentation, visit
+http://www.cumulusnetworks.com/support
+ 
+The registered trademark Linux (R) is used pursuant to a sublicense from LMI,
+the exclusive licensee of Linus Torvalds, owner of the mark on a world-wide
+basis.
+ 
+cumulus@&lt;netq-appliance-hostname&gt;:~$ 
+</code></pre></li>
+
+<li><p>Run the following command to verify all applications and services
+are operating properly. *<strong>Note</strong>: Please allow 10-15 minutes for
+all applications to come up and report their status.*</p>
+
+<pre><code>cumulus@&lt;netq-appliance-hostname&gt;:~$ netq show opta-health
+Application                    Status    Health    Kafka Stream    Git Hash    Timestamp
+-----------------------------  --------  --------  --------------  ----------  ------------------------
+netq-app-macfdb                UP        true      up              14b42e6     Mon Jun  3 20:20:35 2019
+netq-app-interface             UP        true                      0fe11c6     Mon Jun  3 20:20:34 2019
+netq-app-vlan                  UP        true                      4daed85     Mon Jun  3 20:20:35 2019
+netq-app-sensors               UP        true      up              f37272c     Mon Jun  3 20:20:34 2019
+netq-app-topology              UP        true                      3f4a887     Mon Jun  3 20:20:34 2019
+kafka-broker                   UP                                              Mon Jun  3 20:20:35 2019
+netq-app-mstpinfo              UP        true      up              ef5565d     Mon Jun  3 20:20:35 2019
+netq-app-address               UP        true      up              7e0d03d     Mon Jun  3 20:20:35 2019
+netq-gui                       UP                                              Mon Jun  3 20:20:35 2019
+netq-app-kube                  UP        true      up              fbcaa9d     Mon Jun  3 20:20:34 2019
+netq-app-link                  UP        true      up              6c2b21a     Mon Jun  3 20:20:35 2019
+netq-app-ptm                   UP        true      up              7162771     Mon Jun  3 20:20:34 2019
+netq-opta                      UP        true                                  Mon Jun  3 20:20:34 2019
+netq-app-clagsession           UP        true      up              356dda9     Mon Jun  3 20:20:34 2019
+netq-endpoint-gateway          UP        true                      295e9ed     Mon Jun  3 20:20:34 2019
+netq-app-ospf                  UP        true      up              e0e2ab0     Mon Jun  3 20:20:34 2019
+netq-app-lldp                  UP        true      up              90582de     Mon Jun  3 20:20:35 2019
+netq-app-inventory             UP        true      up              bbf9938     Mon Jun  3 20:20:34 2019
+netq-app-tracecheck-scheduler  UP        true                      5484c68     Mon Jun  3 20:20:34 2019
+netq-app-infra                 UP        true      up              13f9e7c     Mon Jun  3 20:20:34 2019
+kafka-connect                  UP                                              Mon Jun  3 20:20:35 2019
+netq-app-search                UP        true      up              e47aaba     Mon Jun  3 20:20:34 2019
+netq-app-procdevstats          UP        true      up              b8e280e     Mon Jun  3 20:20:34 2019
+netq-app-vxlan                 UP        true      up              123c577     Mon Jun  3 20:20:34 2019
+zookeeper                      UP                                              Mon Jun  3 20:20:35 2019
+netq-app-resource-util         UP        true      up              41dfb07     Mon Jun  3 20:20:34 2019
+netq-app-evpn                  UP        true      up              05a4003     Mon Jun  3 20:20:34 2019
+netq-api-gateway               UP        true                      c40231a     Mon Jun  3 20:20:34 2019
+netq-app-port                  UP        true      up              4592b70     Mon Jun  3 20:20:35 2019
+netq-app-macs                  UP        true                      dd6cd96     Mon Jun  3 20:20:35 2019
+netq-app-notifier              UP        true      up              da57b69     Mon Jun  3 20:20:35 2019
+netq-app-events                UP        true      up              8f7b4d9     Mon Jun  3 20:20:34 2019
+netq-app-services              UP        true      up              5094f4a     Mon Jun  3 20:20:34 2019
+cassandra                      UP                                              Mon Jun  3 20:20:35 2019
+netq-app-configdiff            UP        true      up              3be2ef1     Mon Jun  3 20:20:34 2019
+netq-app-neighbor              UP        true      up              9ebe479     Mon Jun  3 20:20:35 2019
+netq-app-bgp                   UP        true      up              e68f7a8     Mon Jun  3 20:20:35 2019
+schema-registry                UP                                              Mon Jun  3 20:20:35 2019
+netq-app-lnv                   UP        true      up              a9ca80a     Mon Jun  3 20:20:34 2019
+netq-app-healthdashboard       UP        true                      eea044c     Mon Jun  3 20:20:34 2019
+netq-app-ntp                   UP        true      up              651c86f     Mon Jun  3 20:20:35 2019
+netq-app-customermgmt          UP        true                      7250354     Mon Jun  3 20:20:34 2019
+netq-app-node                  UP        true      up              f676c9a     Mon Jun  3 20:20:34 2019
+netq-app-route                 UP        true      up              6e31f98     Mon Jun  3 20:20:35 2019
+ 
+cumulus@&lt;netq-appliance-hostname&gt;:~$
+</code></pre>
+
+
+<div class="notices info" > <pre><code>If any of the applications or services display Status as DOWN after
+30 minutes, open a [support
+ticket](https://cumulusnetworks.com/support/file-a-ticket/) and
+attach the output of the `opta-support` command.
+</code></pre>
+ </div>
+</li>
+
+<li><p>Verify that NTP is configured and running. NTP operation is critical
+to proper operation of NetQ. Refer to <a href="/display/NETQ21/Setting+Date+and+Time">Setting Date and
+Time</a> in the <em>Cumulus Linux
+User Guide</em> for details and instructions.</p></li>
+
+<li><p>Continue the NetQ installation by loading the NetQ Agent on each
+switch or host you want to monitor. Refer to the next section for
+instructions.</p></li>
+</ol>
+
+<h2 id="span-upgrade-the-netq-agents-span"><span>Upgrade the NetQ Agents</span></h2>
+
+<p>The NetQ Agent should be upgraded on each of the existing nodes you want
+to monitor. The node can be a:</p>
+
+<ul>
+<li><p>Switch running Cumulus Linux version 3.3.2 or later</p></li>
+
+<li><p>Server running Red Hat RHEL 7.1, Ubuntu 16.04 or CentOS 7</p></li>
+
+<li><p>Linux virtual machine running any of the above Linux operating
+systems</p></li>
+</ul>
+
+<p>To upgrade the NetQ Agent you need to install the OS-specific meta
+package, <code>cumulus-netq</code>, on each switch. Optionally, you can install it
+on hosts. The meta package contains the NetQ Agent, the NetQ command
+line interface (CLI), and the NetQ library. The library contains modules
+used by both the NetQ Agent and the CLI.</p>
+
+<ul>
+<li><p><a href="#src-12321037_UpgradetheNetQAppliance-AgentCL">Upgrade NetQ Agent on a Cumulus Linux
+Switch</a></p></li>
+
+<li><p><a href="#src-12321037_UpgradetheNetQAppliance-AgentUbuntu">Upgrade NetQ Agent on an Ubuntu
+Server</a></p></li>
+
+<li><p><a href="#src-12321037_UpgradetheNetQAppliance-AgentRHC">Upgrade NetQ Agent on a Red Hat or CentOS
+Server</a></p></li>
+</ul>
+
+
+<div class="notices info" > <p>If your network uses a proxy server for external connections, you should
+first <span style="color: #339966;"> <a href="/display/NETQ21/Configuring+a+Global+Proxy">configure a global
+proxy</a> </span> , so apt-get
+can access the meta package on the Cumulus Networks repository.</p>
+ </div>
+
+
+<h3 id="span-id-src-12321037-upgradethenetqappliance-agentcl-class-confluence-anchor-link-span-span-upgrade-netq-agent-on-a-cumulus-linux-switch-span"><span id="src-12321037_UpgradetheNetQAppliance-AgentCL" class="confluence-anchor-link"></span><span> Upgrade NetQ Agent on a Cumulus Linux Switch</span></h3>
+
+<p>A simple process installs the NetQ Agent on a Cumulus switch.</p>
+
+<ol>
+<li><p>Edit the <code>/etc/apt/sources.list</code> file to add the
+<span style="color: #000000;"> repository for Cumulus NetQ.
+*<strong>Note</strong> that NetQ has a separate repository from Cumulus Linux.</p>
+
+<ul>
+<li><p></span></p>
+
+<p>cumulus@switch:~$ sudo nano /etc/apt/sources.list
+&hellip;
+deb <a href="http://apps3.cumulusnetworks.com/repos/deb" target="_blank">http://apps3.cumulusnetworks.com/repos/deb</a> CumulusLinux-3 netq-2.2
+&hellip;</p></li>
+</ul>
+
+
+<div class="notices tip" > <pre><code>The repository `deb http://apps3.cumulusnetworks.com/repos/deb
+CumulusLinux-3 netq-latest` can be used if you want to always
+retrieve the latest posted version of NetQ.
+</code></pre>
+ </div>
+</li>
+
+<li><p>Update the local <code>apt</code> repository, then install the NetQ meta
+package on the switch.</p>
+
+<pre><code>cumulus@switch:~$ sudo apt-get update
+cumulus@switch:~$ sudo apt-get install cumulus-netq 
+</code></pre></li>
+
+<li><p>Verify the upgrade.</p>
+
+<pre><code>cumulus@switch:~$ dpkg -l | grep netq
+ii  cumulus-netq                      2.2.0-cl3u17~1557345432.a60ec9a    all          This meta-package provides installation of Cumulus NetQ packages.
+ii  netq-agent                        2.2.0-cl3u17~1559681411.2bba220    amd64        Cumulus NetQ Telemetry Agent for Cumulus Linux
+ii  netq-apps                         2.2.0-cl3u17~1559681411.2bba220    amd64        Cumulus NetQ Fabric Validation Application for Cumulus Linux
+</code></pre></li>
+
+<li><p>Restart <code>rsyslog</code> so log files are sent to the correct destination.</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl restart rsyslog.service
+</code></pre></li>
+
+<li><p>Configure the NetQ Agent to send telemetry data to the NetQ Platform
+and, optionally, configure the switch or host to run the NetQ CLI.
+In this example, the IP address for the agent and cli servers is
+<em>192.168.1.254</em>.<br />
+<strong>Note:</strong> If you intend to use VRF, skip to <a href="#src-12321037_UpgradetheNetQAppliance-AgentVRF">Configure the Agent to
+Use VRF</a>. If you
+intend to specify a port for communication, skip to <a href="#src-12321037_UpgradetheNetQAppliance-port">Configure the
+Agent to Communicate over a Specific
+Port</a>.</p>
+
+<pre><code>cumulus@switch:~$ netq config add agent server 192.168.1.254
+cumulus@switch:~$ netq config add cli server 192.168.1.254
+</code></pre>
+
+<p>This command updates the configuration in the <code>/etc/netq/netq.yml</code>
+file and enables the NetQ CLI.</p></li>
+
+<li><p>Restart NetQ Agent and CLI.</p>
+
+<pre><code>cumulus@switch:~$ netq config restart agent
+cumulus@switch:~$ netq config restart cli
+</code></pre></li>
+
+<li><p>Repeat these steps for each Cumulus switch, or use an automation
+tool to install NetQ Agent on multiple Cumulus Linux switches.</p></li>
+</ol>
+
+<h3 id="span-id-src-12321037-upgradethenetqappliance-agentubuntu-class-confluence-anchor-link-span-span-upgrade-netq-agent-on-an-ubuntu-server-optional-span"><span id="src-12321037_UpgradetheNetQAppliance-AgentUbuntu" class="confluence-anchor-link"></span><span>Upgrade NetQ Agent on an Ubuntu Server (Optional)</span></h3>
+
+<p>To install the NetQ Agent on an Ubuntu server:</p>
+
+<ol>
+<li><p>Reference and update the local <code>apt</code> repository.</p>
+
+<pre><code>root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+</code></pre></li>
+
+<li><p>In <code>/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list</code>, verify
+the following repository is included:</p>
+
+<pre><code>root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
+...
+</code></pre>
+
+
+<div class="notices note" > <pre><code>The use of `netq-latest` in this example means that a `get` to the
+repository always retrieves the latest version of NetQ, even in the
+case where a major version update has been made. If you want to keep
+the repository on a specific version — such as `netq-2.1` — use that
+instead.
+</code></pre>
+ </div>
+</li>
+
+<li><p>Install the meta package on the server.</p>
+
+<pre><code>root@ubuntu:~# apt-get update
+root@ubuntu:~# apt-get install cumulus-netq
+</code></pre></li>
+
+<li><p>Verify the upgrade.</p>
+
+<pre><code>root@ubuntu:~$ dpkg -l | grep netq
+ii  cumulus-netq                      2.1.2-cl3u17~1557345432.a60ec9a    all          This meta-package provides installation of Cumulus NetQ packages.
+ii  netq-agent                        2.1.2-cl3u17~1559681411.2bba220    amd64        Cumulus NetQ Telemetry Agent for Cumulus Linux
+ii  netq-apps                         2.1.2-cl3u17~1559681411.2bba220    amd64        Cumulus NetQ Fabric Validation Application for Cumulus Linux
+</code></pre></li>
+
+<li><p>Configure the NetQ Agent to send telemetry data to the NetQ
+Platform.</p>
+
+<pre><code>user@ubuntu:~# netq config add agent server &lt;netq-platform-ip-address&gt;
+Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
+</code></pre></li>
+
+<li><p>Restart the NetQ Agent</p>
+
+<pre><code>user@ubuntu:~# netq config restart agent
+</code></pre></li>
+
+<li><p>Optionally, configure the Ubuntu server to run the NetQ CLI.</p>
+
+<pre><code>user@ubuntu:~# netq config add cli server &lt;netq-platform-ip-address&gt;
+Updated cli server 192.168.1.254 vrf default. Please restart netqd (netq config restart cli).
+</code></pre></li>
+
+<li><p>Restart the CLI.</p>
+
+<pre><code>user@ubuntu:~# netq config restart cli
+</code></pre></li>
+
+<li><p>Repeat these steps for each switch/host running Ubuntu, or use an
+automation tool to install NetQ Agent on multiple switches/hosts.</p></li>
+</ol>
+
+<h3 id="span-id-src-12321037-upgradethenetqappliance-agentrhc-class-confluence-anchor-link-span-span-upgrade-netq-agent-on-a-red-hat-or-centos-server-optional-span"><span id="src-12321037_UpgradetheNetQAppliance-AgentRHC" class="confluence-anchor-link"></span><span>Upgrade NetQ Agent on a Red Hat or CentOS Server (Optional)</span></h3>
+
+<p>To install the NetQ Agent on a Red Hat or CentOS server:</p>
+
+<ol>
+<li><p>Reference and update the local <code>yum</code> repository.</p>
+
+<pre><code>root@rhel7:~# rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
+root@rhel7:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo &gt; /etc/yum.repos.d/cumulus-host-el.repo
+</code></pre></li>
+
+<li><p>Edit <code>/etc/yum.repos.d/cumulus-host-el.repo</code> to set the <code>enabled=1</code>
+flag for the two NetQ repositories.</p>
+
+<pre><code>[cumulus@firewall-2 ~]$ cat /etc/yum.repos.d/cumulus-host-el.repo 
+[cumulus-arch-netq-2.2]
+name=Cumulus netq packages
+baseurl=http://rohbuild03.mvlab.cumulusnetworks.com/dev/rpm/el/7/netq-latest/$basearch
+gpgcheck=1
+enabled=1
+
+[cumulus-noarch-netq-2.2]
+name=Cumulus netq architecture-independent packages
+baseurl=http://rohbuild03.mvlab.cumulusnetworks.com/dev/rpm/el/7/netq-latest/noarch
+gpgcheck=1
+enabled=1
+
+[cumulus-src-netq-2.2]
+name=Cumulus netq source packages
+baseurl=http://rohbuild03.mvlab.cumulusnetworks.com/dev/rpm/el/7/netq-latest/src
+gpgcheck=1
+enabled=1
+</code></pre></li>
+
+<li><p>Update the NetQ meta packages on the server.</p>
+
+<pre><code>root@rhel7:~# yum update cumulus-netq.x86_64
+</code></pre></li>
+
+<li><p>Verify the upgrade.</p>
+
+<pre><code>root@ubuntu:~$ yum list installed | grep netq
+ii  cumulus-netq                      2.2.0-cl3u17~1557345432.a60ec9a    all          This meta-package provides installation of Cumulus NetQ packages.
+ii  netq-agent                        2.2.0-cl3u17~1559681411.2bba220    amd64        Cumulus NetQ Telemetry Agent for Cumulus Linux
+ii  netq-apps                         2.2.0-cl3u17~1559681411.2bba220    amd64        Cumulus NetQ Fabric Validation Application for Cumulus Linux
+</code></pre></li>
+
+<li><p>Configure the NetQ Agent to send telemetry data to the NetQ
+Platform.</p>
+
+<pre><code>root@rhel7:~# netq config add agent server &lt;netq-platform-ip-address&gt;
+Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
+</code></pre></li>
+
+<li><p>Restart the NetQ Agent.</p>
+
+<pre><code>root@rhel7:~# netq config restart agent
+</code></pre></li>
+
+<li><p>Optionally, configure the RHEL/CentOS server to run the NetQ CLI.</p>
+
+<pre><code>root@rhel7:~# netq config add cli server &lt;netq-platform-ip-address&gt;
+Updated cli server 192.168.1.254 vrf default. Please restart netqd (netq config restart cli).
+</code></pre></li>
+
+<li><p>Restart the CLI.</p>
+
+<pre><code>root@rhel7:~# netq config restart cli
+</code></pre></li>
+
+<li><p>Repeat these steps for each switch/host running Ubuntu, or use an
+automation tool to install NetQ Agent on multiple switches/hosts.</p></li>
+</ol>
+
+<h2 id="span-configure-optional-netq-agent-settings-span"><span>Configure Optional NetQ Agent Settings</span></h2>
+
+<p>Once the NetQ Agents have been installed on the network nodes you want
+to monitor, the NetQ Agents must be configured to obtain useful and
+relevant data. The code examples shown in this section illustrate how to
+configure the NetQ Agent on a Cumulus switch, but it is exactly the same
+for the other type of nodes. If you have already configured these
+settings, you do not need to do so again.</p>
+
+<ul>
+<li><p><a href="http://docs.cumulusnetworks.com#AgentVRF" target="_blank">Configuring the Agent to Use a
+VRF</a></p></li>
+
+<li><p><a href="http://docs.cumulusnetworks.com#port" target="_blank">Configuring the Agent to Communicate over a Specific
+Port</a></p></li>
+</ul>
+
+<h3 id="span-id-src-12321037-upgradethenetqappliance-agentvrf-class-confluence-anchor-link-span-span-configure-the-agent-to-use-a-vrf-interface-span"><span id="src-12321037_UpgradetheNetQAppliance-AgentVRF" class="confluence-anchor-link"></span><span>Configure the Agent to Use a VRF Interface</span></h3>
+
+<p>While optional, Cumulus strongly recommends that you configure NetQ
+Agents to communicate with the NetQ Platform only via a
+<a href="/display/NETQ21/Virtual+Routing+and+Forwarding+-+VRF">VRF</a>, including a
+<a href="/display/NETQ21/Management+VRF">management VRF</a>. To do so, you need to
+specify the VRF name when configuring the NetQ Agent. For example, if
+the management VRF is configured and you want the agent to communicate
+with the NetQ Platform over it, configure the agent like this:
+<span style="color: #222222;"> </span></p>
+
+<pre><code>cumulus@leaf01:~$ netq config add agent server 192.168.1.254 vrf mgmt
+cumulus@leaf01:~$ netq config add cli server 192.168.254 vrf mgmt
+</code></pre>
+
+<p>You then restart the agent: <span style="color: #222222;"> </span></p>
+
+<pre><code>cumulus@leaf01:~$ netq config restart agent
+cumulus@leaf01:~$ netq config restart cli
+</code></pre>
+
+<h3 id="span-id-src-12321037-upgradethenetqappliance-port-class-confluence-anchor-link-span-span-configure-the-agent-to-communicate-over-a-specific-port-span"><span id="src-12321037_UpgradetheNetQAppliance-port" class="confluence-anchor-link"></span><span>Configure the Agent to Communicate over a Specific Port</span></h3>
+
+<p>By default, NetQ uses port 8981 for communication between the NetQ
+Platform and NetQ Agents. If you want the NetQ Agent to communicate with
+the NetQ Platform via a different port, you need to specify the port
+number when configuring the NetQ Agent like this:</p>
+
+<pre><code>cumulus@switch:~$ netq config add agent server 192.168.1.254 port 7379
+</code></pre>
+
+<p>You then restart the agent: <span style="color: #222222;"> </span></p>
+
+<pre><code>cumulus@leaf01:~$ netq config restart agent
+</code></pre>
+
+<h2 id="span-upgrade-tips-span"><span>Upgrade Tips</span></h2>
+
+<p>After you have upgraded NetQ, if you find that some issues remain,
+review these commonly encountered scenarios. If NetQ is still not
+operating as expected, please open a <a href="https://cumulusnetworks.com/support/file-a-ticket/" target="_blank">support
+ticket</a> with a
+detailed description of your issues.</p>
+
+<h3 id="span-no-ip-address-assigned-to-the-netq-appliance-on-boot-span"><span>No IP Address Assigned to the NetQ Appliance on Boot</span></h3>
+
+<p>A user did not configure an IP address when the system was first booted.
+Later the user assigned an IP address to eth0, but the NetQ appliance
+does not appear to be functioning.</p>
+
+<p><span style="color: #222222;"> You must reset </span> the install daemon
+<span style="color: #222222;"> and restart the Kubernetes service.
+Follow these steps: </span></p>
+
+<ol>
+<li><p>Reset the NetQ Appliance install daemon.</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl reset-failed
+</code></pre></li>
+
+<li><p>Restart the Kubernetes service.</p>
+
+<pre><code>cumulus@switch:~$ sudo systemctl restart cts-kubectl-config
+</code></pre></li>
+</ol>
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+</article>
+
+      <script src="https://utteranc.es/client.js"
+        repo="CumulusNetworks/docs-internal"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+    <div class="toc">
+    
+      <button>
+      <a href="https://github.com/CumulusNetworks/docs/edit/master/content/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-the-NetQ-Appliance.md" target="_blank" rel="noopener"><img src="/docs.cumulusnetworks.com/svg/pencil-circle.svg" alt="Edit" /> Edit this page</a>
+      </button>
+    
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#span-prerequisites-span"><span>Prerequisites</span></a></li>
+<li><a href="#span-upgrade-the-netq-appliance-span"><span>Upgrade the NetQ Appliance</span></a>
+<ul>
+<li><a href="#span-verify-the-installation-span"><span>Verify the Installation</span></a></li>
+</ul></li>
+<li><a href="#span-upgrade-the-netq-agents-span"><span>Upgrade the NetQ Agents</span></a>
+<ul>
+<li><a href="#span-id-src-12321037-upgradethenetqappliance-agentcl-class-confluence-anchor-link-span-span-upgrade-netq-agent-on-a-cumulus-linux-switch-span"><span id="src-12321037_UpgradetheNetQAppliance-AgentCL" class="confluence-anchor-link"></span><span> Upgrade NetQ Agent on a Cumulus Linux Switch</span></a></li>
+<li><a href="#span-id-src-12321037-upgradethenetqappliance-agentubuntu-class-confluence-anchor-link-span-span-upgrade-netq-agent-on-an-ubuntu-server-optional-span"><span id="src-12321037_UpgradetheNetQAppliance-AgentUbuntu" class="confluence-anchor-link"></span><span>Upgrade NetQ Agent on an Ubuntu Server (Optional)</span></a></li>
+<li><a href="#span-id-src-12321037-upgradethenetqappliance-agentrhc-class-confluence-anchor-link-span-span-upgrade-netq-agent-on-a-red-hat-or-centos-server-optional-span"><span id="src-12321037_UpgradetheNetQAppliance-AgentRHC" class="confluence-anchor-link"></span><span>Upgrade NetQ Agent on a Red Hat or CentOS Server (Optional)</span></a></li>
+</ul></li>
+<li><a href="#span-configure-optional-netq-agent-settings-span"><span>Configure Optional NetQ Agent Settings</span></a>
+<ul>
+<li><a href="#span-id-src-12321037-upgradethenetqappliance-agentvrf-class-confluence-anchor-link-span-span-configure-the-agent-to-use-a-vrf-interface-span"><span id="src-12321037_UpgradetheNetQAppliance-AgentVRF" class="confluence-anchor-link"></span><span>Configure the Agent to Use a VRF Interface</span></a></li>
+<li><a href="#span-id-src-12321037-upgradethenetqappliance-port-class-confluence-anchor-link-span-span-configure-the-agent-to-communicate-over-a-specific-port-span"><span id="src-12321037_UpgradetheNetQAppliance-port" class="confluence-anchor-link"></span><span>Configure the Agent to Communicate over a Specific Port</span></a></li>
+</ul></li>
+<li><a href="#span-upgrade-tips-span"><span>Upgrade Tips</span></a>
+<ul>
+<li><a href="#span-no-ip-address-assigned-to-the-netq-appliance-on-boot-span"><span>No IP Address Assigned to the NetQ Appliance on Boot</span></a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+  
+
+</aside>
+
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

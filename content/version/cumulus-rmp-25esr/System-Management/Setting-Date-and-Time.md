@@ -3,7 +3,7 @@ title: Setting Date and Time
 author: Cumulus Networks
 weight: 35
 aliases:
- - /display/RMP25ESR/Setting-Date-and-Time
+ - /display/RMP25ESR/Setting+Date+and+Time
  - /pages/viewpage.action?pageId=5116309
 pageID: 5116309
 product: Cumulus RMP

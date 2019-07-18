@@ -3,7 +3,7 @@ title: Network Topology
 author: Cumulus Networks
 weight: 125
 aliases:
- - /display/CL25ESR/Network-Topology
+ - /display/CL25ESR/Network+Topology
  - /pages/viewpage.action?pageId=5116104
 pageID: 5116104
 product: Cumulus Linux

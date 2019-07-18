@@ -3,7 +3,7 @@ title: Configure Optional NetQ Capabilities
 author: Cumulus Networks
 weight: 91
 aliases:
- - /display/NETQ141/Configure-Optional-NetQ-Capabilities
+ - /display/NETQ141/Configure+Optional+NetQ+Capabilities
  - /pages/viewpage.action?pageId=10453429
 pageID: 10453429
 product: Cumulus NetQ

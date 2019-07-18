@@ -3,7 +3,7 @@ title: Configuring switchd
 author: Cumulus Networks
 weight: 39
 aliases:
- - /display/RMP25ESR/Configuring-switchd
+ - /display/RMP25ESR/Configuring+switchd
  - /pages/viewpage.action?pageId=5116317
 pageID: 5116317
 product: Cumulus RMP

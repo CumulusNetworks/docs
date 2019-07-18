@@ -1,0 +1,6722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Integrate with Third-party Software and Hardware | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/docs.cumulusnetworks.com/book.min.a378d8a2da6f5357a83a43dff33d6f77fb70401e0399d5ba78faf81d7a1ae1a8.css">
+
+  
+  <link rel="icon" href="/docs.cumulusnetworks.com/icons/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+  
+  
+  <script src = "/docs.cumulusnetworks.com/js/codecopy.js"> </script>
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+      
+    
+    <ul>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-linux/ >
+        Cumulus Linux </a> </li>
+    
+      <li class = "active" ><a href = docs.cumulusnetworks.com/cumulus-netq/ >
+        Cumulus NetQ </a> </li>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-vx/ >
+        Cumulus VX </a> </li>
+    
+      <li>
+        <div id="products-dropdown" class="dropdown">
+            <button class="btn" type="button" id="dropdownMenuButton">
+              Products
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="">Cumulus RMP</a>
+              <a class="dropdown-item" href="">Cumulus Chassis</a>
+              <a class="dropdown-item" href="">Cumulus Host Pack</a>
+            </div>
+        </div>
+      </li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v2.2.0
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/cumulus-netq/"> v2.2.0</a>
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-10/"> v1.0.0</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-110/"> v1.1.0</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-121/"> v1.2.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-141/"> v1.4.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-21/"> v2.1</a>
+            
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="docs.cumulusnetworks.com">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul id = "top" class = "cn-book-section-container">
+  
+    
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/" >
+    Cumulus NetQ
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-API-User-Guide/" >
+    Cumulus NetQ API User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-Deployment-Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/" >
+    Upgrade NetQ
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-from-NetQ-1.x-to-NetQ-2.2.x/" >
+    Upgrade from NetQ 1.x to NetQ 2.2.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-from-NetQ-2.0_2.1-to-NetQ-2.2.x/" >
+    Upgrade from NetQ 2.0/2.1 to NetQ 2.2.x
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-the-NetQ-Appliance/" >
+    Upgrade the NetQ Appliance
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Deployment-Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Cumulus-NetQ-Primer/" >
+    Cumulus NetQ Primer
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware/"  class="active" >
+    Integrate with Third-party Software and Hardware
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/" >
+    Cumulus NetQ CLI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Resolve-MLAG-Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Investigate-NetQ-Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/CLI-Preface/" >
+    CLI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/NetQ-Command-Line-Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Overall-Network-Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Switch-Hardware-and-Software/" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Physical-Layer-Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Data-Link-Layer-Devices-and-Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Network-Layer-Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Virtual-Network-Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Linux-Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Container-Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Manage-NetQ-Agents/" >
+    Manage NetQ Agents
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Early-Access-Features/" >
+    Early Access Features
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/" >
+    Cumulus NetQ UI User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/" >
+    Monitor the Network
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/" >
+    Monitor Network Protocols and Services
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/Monitor-the-BGP-Service/" >
+    Monitor the BGP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/Monitor-the-EVPN-Service/" >
+    Monitor the EVPN Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/Monitor-the-LLDP-Service/" >
+    Monitor the LLDP Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/Monitor-the-MLAG-Service/" >
+    Monitor the MLAG Service
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/Monitor-the-OSPF-Service/" >
+    Monitor the OSPF Service
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Health/" >
+    Monitor Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Validate-Network-Protocol-and-Service-Operations/" >
+    Validate Network Protocol and Service Operations
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Inventory/" >
+    Monitor Network Inventory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Events/" >
+    Monitor Events
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Connectivity/" >
+    Monitor Network Connectivity
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/UI-Preface/" >
+    UI Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/" >
+    NetQ User Interface Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-Management/" >
+    NetQ Management
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Switches/" >
+    Monitor Switches
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "/docs.cumulusnetworks.com/js/menuBundle.js"> </script>
+
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/docs.cumulusnetworks.com/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Integrate with Third-party Software and Hardware</strong>
+      </header>
+
+      
+      
+<article class="markdown">
+<h1>Integrate with Third-party Software and Hardware</h1>
+
+<p>After you have installed NetQ applications package and the NetQ Agents,
+you may want to configure some of the additional capabilities that NetQ
+offers. This topic describes how to install, setup, and configure these
+capabilities.</p>
+
+<h2 id="span-id-src-12320911-integratewiththird-partysoftwareandhardware-integratenotification-class-confluence-anchor-link-span-span-integrate-netq-with-an-event-notification-application-span"><span id="src-12320911_IntegratewithThird-partySoftwareandHardware-IntegrateNotification" class="confluence-anchor-link"></span><span>Integrate NetQ with an Event Notification Application</span></h2>
+
+<p>To take advantage of the numerous event messages generated and processed
+by NetQ, you must integrate with third-party event notification
+applications. You can integrate NetQ with the PagerDuty and Slack tools.
+You may integrate with one or both of these applications.</p>
+
+<p>Each network protocol and service in the NetQ Platform receives the raw
+data stream from the NetQ Agents, processes the data and delivers events
+to the Notification function. Notification then stores, filters and
+sends messages to any configured notification applications. Filters are
+based on rules you create. You must have at least one rule per filter.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/12320911/image2019-6-28-12_29_45.png" alt = "/images/download/attachments/12320911/image2019-6-28-12_29_45.png"
+
+
+width = 650
+
+ />
+
+
+
+<div class="notices note" > <p>You may choose to implement a proxy server (that sits between the NetQ
+Platform and the integration channels) that receives, processes and
+distributes the notifications rather than having them sent directly to
+the integration channel. If you use such a proxy, you must configure
+NetQ with the proxy information.</p>
+ </div>
+
+
+<p>In either case, notifications are generated for the following types of
+events:</p>
+
+<ul>
+<li>Network Protocols
+
+<ul>
+<li>BGP status and session state</li>
+<li>CLAG (MLAG) status and session state</li>
+<li>EVPN status and session state</li>
+<li>LLDP status</li>
+<li>LNV status and session state *</li>
+<li>OSFP status and session state *</li>
+<li>VLAN status and session state *</li>
+<li>VXLAN status and session state *</li>
+</ul></li>
+<li>Interfaces
+
+<ul>
+<li>Link status</li>
+<li>Ports and cables status</li>
+</ul></li>
+<li>Services status
+
+<ul>
+<li>NetQ Agent status</li>
+<li>PTM</li>
+<li>SSH *</li>
+<li>NTP status *</li>
+</ul></li>
+<li>Trace status</li>
+<li>Sensors
+
+<ul>
+<li>Fan status</li>
+<li>PSU (power supply unit) status</li>
+<li>Temperature status</li>
+</ul></li>
+<li>System
+
+<ul>
+<li>Configuration File changes</li>
+<li>Cumulus Linux License status *</li>
+<li>Cumulus Linux Support status</li>
+</ul></li>
+</ul>
+
+<p><em>* This type of event can only be viewed in the CLI with this release.</em></p>
+
+<h3 id="span-event-message-format-span"><span>Event Message Format</span></h3>
+
+<p>Messages have the following structure:
+<code>&lt;message-type&gt;&lt;timestamp&gt;&lt;opid&gt;&lt;hostname&gt;&lt;severity&gt;&lt;message&gt;</code></p>
+
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>message type</td>
+<td>Category of event; <em>bgp</em>, <em>clag</em>, <em>configdiff</em>, <em>evpn</em>, <em>link</em>, <em>lldp</em>, <em>lnv</em>, <em>node</em>, <em>ntp</em>, <em>ospf</em>, <em>port</em>, <em>sensor</em>, <em>services</em>, <em>trace</em>, <em>vlan</em> or <em>vxlan</em></td>
+</tr>
+
+<tr>
+<td>timestamp</td>
+<td>Date and time event occurred</td>
+</tr>
+
+<tr>
+<td>opid</td>
+<td>Identifier of the service or process that generated the event</td>
+</tr>
+
+<tr>
+<td>hostname</td>
+<td>Hostname of network device where event occurred</td>
+</tr>
+
+<tr>
+<td>severity</td>
+<td>Severity level in which the given event is classified; <em>debug</em>, <em>error</em>, <em>info</em>, <em>warning,</em> or <em>critical</em></td>
+</tr>
+
+<tr>
+<td>message</td>
+<td>Text description of event</td>
+</tr>
+</tbody>
+</table>
+
+<p>For example:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/12320911/image2019-3-28-11_19_50.png" alt = "/images/download/attachments/12320911/image2019-3-28-11_19_50.png"
+
+
+width = 700
+
+ />
+
+
+<p>To set up the integrations, you must configure NetQ with at least one
+channel. Optionally, you can define rules and filters to refine what
+messages you want to view and where to send them. You can also configure
+a proxy server to receive, process, and forward the messages. This is
+accomplished using the NetQ CLI in the following order:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/12320911/image2019-5-31-14_57_21.png" alt = "/images/download/attachments/12320911/image2019-5-31-14_57_21.png"
+
+
+width = 700
+
+ />
+
+
+<h3 id="span-notification-commands-overview-span"><span>Notification Commands Overview</span></h3>
+
+<p>The NetQ Command Line Interface (CLI) is used to filter and send
+notifications to third-party tools based on severity, service,
+event-type, and device. You can use TAB completion or the <code>help</code> option
+to assist when needed. The command syntax is:</p>
+
+<pre><code>##Proxy
+netq add notification proxy &lt;text-proxy-hostname&gt; [port &lt;text-proxy-port&gt;]
+netq show notification proxy
+netq del notification proxy
+ 
+##Channels
+netq add notification channel slack &lt;text-channel-name&gt; webhook &lt;text-webhook-url&gt; [severity info|severity warning|severity error|severity debug] [tag &lt;text-slack-tag&gt;]
+netq add notification channel pagerduty &lt;text-channel-name&gt; integration-key &lt;text-integration-key&gt; [severity info|severity warning|severity error|severity debug]
+ 
+##Rules and Filters
+netq add notification rule &lt;text-rule-name&gt; key &lt;text-rule-key&gt; value &lt;text-rule-value&gt;
+netq add notification filter &lt;text-filter-name&gt; [severity info|severity warning|severity error|severity debug] [rule &lt;text-rule-name-anchor&gt;] [channel &lt;text-channel-name-anchor&gt;] [before &lt;text-filter-name-anchor&gt;|after &lt;text-filter-name-anchor&gt;]
+ 
+##Management
+netq del notification channel &lt;text-channel-name-anchor&gt;
+netq del notification filter &lt;text-filter-name-anchor&gt;
+netq del notification rule &lt;text-rule-name-anchor&gt;
+netq show notification [channel|filter|rule] [json]
+</code></pre>
+
+<p>The options are described in the following sections where they are used.</p>
+
+<h3 id="span-configure-a-proxy-server-span"><span>Configure a Proxy Server</span></h3>
+
+<p>To send notification messages through a proxy server instead of directly
+to a notification channel, you configure NetQ with the hostname and
+optionally a port of a proxy server. If no port is specified, NetQ
+defaults to port 80. Only one proxy server is currently supported. To
+simplify deployment, configure your proxy server before configuring
+channels, rules, or filters.To configure the proxy server:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification proxy &lt;text-proxy-hostname&gt; [port &lt;text-proxy-port]
+cumulus@switch:~$ netq add notification proxy proxy4
+Successfully configured notifier proxy proxy4:80
+</code></pre>
+
+<p>You can view the proxy server settings by running the <code>netq show
+notification proxy</code> command.</p>
+
+<pre><code>cumulus@switch:~$ netq show notification proxy
+Matching config_notify records:
+Proxy URL          Slack Enabled              PagerDuty Enabled
+------------------ -------------------------- ----------------------------------
+proxy4:80          yes                        yes
+</code></pre>
+
+<p>You can remove the proxy server by running the <code>netq del notification
+proxy</code> command. This changes the NetQ behavior to send events directly
+to the notification channels.</p>
+
+<pre><code>cumulus@switch:~$ netq del notification proxy
+Successfully overwrote notifier proxy to null
+</code></pre>
+
+<h3 id="span-create-channels-span"><span>Create Channels</span></h3>
+
+<p>Create one or more PagerDuty and Slack channels to present the
+notifications.</p>
+
+<h4 id="span-id-src-12320911-integratewiththird-partysoftwareandhardware-pdcli-class-confluence-anchor-link-span-span-configure-a-pagerduty-channel-span"><span id="src-12320911_IntegratewithThird-partySoftwareandHardware-PDcli" class="confluence-anchor-link"></span><span>Configure a PagerDuty Channel</span></h4>
+
+<p>NetQ sends notifications to PagerDuty as PagerDuty events.</p>
+
+<p>For example:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/12320911/NetQ-PagerDuty.png" alt = "/images/download/attachments/12320911/NetQ-PagerDuty.png"
+
+height = 250
+
+
+ />
+
+
+<p>To configure the NetQ notifier to send notifications to PagerDuty:</p>
+
+<ol>
+<li><p>Configure the following options using the <code>netq add notification
+channel</code> command:</p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>CHANNEL_TYPE &lt;text-channel-name&gt;</td>
+<td>The third-party notification channel and name; use <em>pagerduty</em> in this case.</td>
+</tr>
+
+<tr>
+<td>integration-key &lt;text-integration-key&gt;</td>
+<td>The <a href="https://v2.developer.pagerduty.com/docs/events-api-v2" target="_blank">integration</a> key is also called the service_key or routing_key. The default is an empty string (&ldquo;&rdquo;).</td>
+</tr>
+
+<tr>
+<td>severity</td>
+<td>(Optional) The log level to set, which can be one of <em>info</em>, <em>warning</em>, <em>error</em>, <em>critical</em> or <em>debug</em>. The severity defaults to <em>info</em>.</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
+Successfully added/updated channel pd-netq-events
+</code></pre></li>
+
+<li><p>Verify that the channel is configured properly.</p>
+
+<pre><code>cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+pd-netq-events  pagerduty        info             integration-key: c6d666e
+                                                  210a8425298ef7abde0d1998      
+</code></pre></li>
+</ol>
+
+<h4 id="span-configure-a-slack-channel-span"><span>Configure a Slack Channel</span></h4>
+
+<p>NetQ Notifier sends notifications to Slack as incoming webhooks for a
+Slack channel you configure. For example:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/12320911/image2019-3-28-11_47_15.png" alt = "/images/download/attachments/12320911/image2019-3-28-11_47_15.png"
+
+height = 250
+
+
+ />
+
+
+<p>To configure NetQ to send notifications to Slack:</p>
+
+<ol>
+<li><p>If needed, create one or more Slack channels on which to receive the
+notifications.</p>
+
+<ol>
+<li>Click <strong>+</strong> next to <strong>Channels</strong>.</li>
+<li>Enter a name for the channel, and click <strong>Create Channel</strong>.</li>
+<li>Navigate to the new channel.</li>
+<li>Click <strong>+ Add an app</strong> link below the channel name to open the
+application directory.</li>
+<li>In the search box, start typing <em>incoming</em> and select **
+<strong>Incoming WebHooks</strong> when it appears.</li>
+<li>Click <strong>Add Configuration</strong> and enter the name of the channel
+you created (where you want to post notifications).</li>
+<li>Click <strong>Add Incoming WebHooks integration</strong>.</li>
+<li>Save WebHook URL in a text file for use in next step.</li>
+</ol></li>
+
+<li><p>Configure the following options in the <code>netq config add
+notification channel</code> command:</p>
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Option</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>CHANNEL_TYPE &lt;text-channel-name&gt;</p></td>
+<td><p>The third-party notification channel name; use <em>slack</em> in this case.</p></td>
+</tr>
+<tr class="even">
+<td><p>WEBHOOK</p></td>
+<td><p>Copy the WebHook URL from the text file OR in the desired channel, locate the initial message indicating the addition of the webhook, click <strong>incoming-webhook</strong> link, click <strong>Settings</strong>.</p>
+<p>Example URL: <code>https://hooks.slack.com/services/text/moretext/evenmoretext</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>severity</p></td>
+<td><p>The log level to set, which can be one of <em>error, warning, info,</em> or <em>debug</em>. The severity defaults to <em>info</em>.</p></td>
+</tr>
+<tr class="even">
+<td><p>tag</p></td>
+<td><p>Optional tag appended to the Slack notification to highlight particular channels or people. The tag value must be preceded by the @ sign. For example, <em>@netq-info</em>.</p></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+Successfully added/updated channel netq-events
+</code></pre></li>
+
+<li><p>Verify the channel is configured correctly.<br />
+From the CLI:</p>
+
+<pre><code>cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity Channel Info
+--------------- ---------------- -------- ----------------------
+slk-netq-events slack            info     webhook:https://hooks.s
+                                          lack.com/services/text/
+                                          moretext/evenmoretext                                     
+</code></pre>
+
+<p>From the Slack Channel:</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/12320911/image2019-2-15-14_33_54.png" alt = "/images/download/attachments/12320911/image2019-2-15-14_33_54.png"
+
+
+width = 400
+
+ />
+</li>
+</ol>
+
+<h3 id="span-id-src-12320911-integratewiththird-partysoftwareandhardware-filterrule-class-confluence-anchor-link-span-span-create-rules-span"><span id="src-12320911_IntegratewithThird-partySoftwareandHardware-FilterRule" class="confluence-anchor-link"></span><span>Create Rules </span></h3>
+
+<p>Each rule is comprised of a single key-value pair. The key-value pair
+indicates what messages to include or drop from event information sent
+to a notification channel. You can create more than one rule for a
+single filter. Creating multiple rules for a given filter can provide a
+very defined filter. For example, you can specify rules around hostnames
+or interface names, enabling you to filter messages specific to those
+hosts or interfaces. You should have already defined the PagerDuty or
+Slack channels (as described earlier).</p>
+
+<p>There is a fixed set of valid rule keys. Values are entered as regular
+expressions and <em>vary according to your deployment</em>.</p>
+
+<table class="confluenceTable">
+
+<thead class=" ">
+
+<tr>
+
+<td class="confluenceTh" rowspan="1" colspan="1">
+
+Service
+
+</td>
+
+<td class="confluenceTh" rowspan="1" colspan="1">
+
+Rule Key
+
+</td>
+
+<td class="confluenceTh" rowspan="1" colspan="1">
+
+Description
+
+</td>
+
+<td class="confluenceTh" rowspan="1" colspan="1">
+
+Example Rule Values
+
+</td>
+
+</tr>
+
+</thead>
+
+<tfoot class=" ">
+
+</tfoot>
+
+<tbody class=" ">
+
+<tr>
+
+<td class="confluenceTd" rowspan="9" colspan="1">
+
+BGP
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+message_type
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Network protocol or service identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+bgp
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+hostname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+User-defined, text-based name for a switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server02, leaf11, exit01, spine-4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+peer
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+User-defined, text-based name for a peer switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server4, leaf-3, exit02, spine06
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+desc
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Text description
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+vrf
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Name of VRF interface
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+mgmt, default
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous state of the BGP service
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Established, Failed
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current state of the BGP service
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Established, Failed
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_last_reset_time
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous time that BGP service was reset
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Apr3, 2019, 4:17 pm
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_last_reset_time
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Most recent time that BGP service was reset
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Apr8, 2019, 11:38 am
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="6" colspan="1">
+
+MLAG (CLAG)
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+message_type
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Network protocol or service identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+clag
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+hostname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+User-defined, text-based name for a switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server02, leaf-9, exit01, spine04
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_conflicted_bonds
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous pair of interfaces in a conflicted bond
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+swp7 swp8, swp3 swp4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_conflicted_bonds
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current pair of interfaces in a conflicted bond
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+swp11 swp12, swp23 swp24
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_state_protodownbond
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous state of the bond
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+protodown, up
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_state_protodownbond
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current state of the bond
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+protodown, up
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="5" colspan="1">
+
+ConfigDiff
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+message_type
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Network protocol or service identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+configdiff
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+hostname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+User-defined, text-based name for a switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server02, leaf11, exit01, spine-4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+vni
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Virtual Network Instance identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+12, 23
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous state of the configuration file
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+created, modified
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current state of the configuration file
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+created, modified
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="7" colspan="1">
+
+EVPN
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+message_type
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Network protocol or service identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+evpn
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+hostname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+User-defined, text-based name for a switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server02, leaf-9, exit01, spine04
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+vni
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Virtual Network Instance identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+12, 23
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_in_kernel_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous VNI state, in kernel or not
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+true, false
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_in_kernel_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current VNI state, in kernel or not
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+true, false
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_adv_all_vni_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous VNI advertising state, advertising all or not
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+true, false
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_adv_all_vni_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current VNI advertising state, advertising all or not
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+true, false
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="3" colspan="1">
+
+Link
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+message_type
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Network protocol or service identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+link
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+hostname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+User-defined, text-based name for a switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server02, leaf-6, exit01, spine7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ifname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Software interface name
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+eth0, swp53
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="7" colspan="1">
+
+LLDP
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+message_type
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Network protocol or service identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+lldp
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+hostname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+User-defined, text-based name for a switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server02, leaf41, exit01, spine-5, tor-36
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ifname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Software interface name
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+eth1, swp12
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_peer_ifname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous software interface name
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+eth1, swp12, swp27
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_peer_ifname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Curent software interface name
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+eth1, swp12, swp27
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_peer_hostname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous user-defined, text-based name for a peer switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server02, leaf41, exit01, spine-5, tor-36
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_peer_hostname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current user-defined, text-based name for a peer switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server02, leaf41, exit01, spine-5, tor-36
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="4" colspan="1">
+
+Node
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+message_type
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Network protocol or service identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+node
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+hostname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+User-defined, text-based name for a switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server02, leaf41, exit01, spine-5, tor-36
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ntp_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current state of NTP service
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+in sync, not sync
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+db_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current state of DB
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Add, Update, Del, Dead
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="4" colspan="1">
+
+NTP
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+message_type
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Network protocol or service identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ntp
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+hostname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+User-defined, text-based name for a switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server02, leaf-9, exit01, spine04
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous state of service
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+in sync, not sync
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current state of service
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+in sync, not sync
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="20" colspan="1">
+
+Port
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+message_type
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Network protocol or service identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+port
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+hostname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+User-defined, text-based name for a switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server02, leaf13, exit01, spine-8, tor-36
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ifname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Interface name
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+eth0, swp14
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_speed
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous speed rating of port
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+10 G, 25 G, 40 G, unknown
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_transreceiver
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous transceiver
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+40G Base-CR4, 25G Base-CR
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_vendor_name
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous vendor name of installed port module
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Amphenol, OEM, Mellanox, Fiberstore, Finisar
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_serial_number
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous serial number of installed port module
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+MT1507VS05177, AVE1823402U, PTN1VH2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_supported_fec
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous forward error correction (FEC) support status
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+none, Base R, RS
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_advertised_fec
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous FEC advertising state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+true, false, not reported
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_fec
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous FEC capability
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+none
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_autoneg
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous activation state of auto-negotiation
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+on, off
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_speed
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current speed rating of port
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+10 G, 25 G, 40 G
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_transreceiver
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current transceiver
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+40G Base-CR4, 25G Base-CR
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_vendor_name
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current vendor name of installed port module
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Amphenol, OEM, Mellanox, Fiberstore, Finisar
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_part_number
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current part number of installed port module
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+SFP-H10GB-CU1M, MC3309130-001, 603020003
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_serial_number
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current serial number of installed port module
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+MT1507VS05177, AVE1823402U, PTN1VH2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_supported_fec
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current FEC support status
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+none, Base R, RS
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_advertised_fec
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current FEC advertising state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+true, false
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_fec
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current FEC capability
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+none
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_autoneg
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current activation state of auto-negotiation
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+on, off
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="10" colspan="1">
+
+Sensors
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+sensor
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Network protocol or service identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Fan: fan1, fan-2  
+Power Supply Unit: psu1, psu2  
+Temperature: psu1temp1, temp2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+hostname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+User-defined, text-based name for a switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server02, leaf-26, exit01, spine2-4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous state of a fan, power supply unit, or thermal sensor
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Fan: ok, absent, bad  
+PSU: ok, absent, bad  
+Temp: ok, busted, bad, critical
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current state of a fan, power supply unit, or thermal sensor
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Fan: ok, absent, bad  
+PSU: ok, absent, bad  
+Temp: ok, busted, bad, critical
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_s_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous state of a fan or power supply unit.
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Fan: up, down  
+PSU: up, down
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_s_state
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current state of a fan or power supply unit.
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Fan: up, down  
+PSU: up, down
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_s_max
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current maximum temperature threshold value
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Temp: 110
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_s_crit
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current critical high temperature threshold value
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Temp: 85
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_s_lcrit
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current critical low temperature threshold value
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Temp: -25
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_s_min
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current minimum temperature threshold value
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Temp: -50
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="7" colspan="1">
+
+Services
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+message_type
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Network protocol or service identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+services
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+hostname
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+User-defined, text-based name for a switch or host
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+server02, leaf03, exit01, spine-8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+name
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Name of service
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+clagd, lldpd, ssh, ntp, netqd, net-agent
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_pid
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous process or service identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+12323, 52941
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_pid
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current process or service identifier
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+12323, 52941
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+old_status
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Previous status of service
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+up, down
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+new_status
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+Current status of service
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+up, down
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+
+<div class="notices note" > <p>Rule names are case sensitive, and no wildcards are permitted. Rule
+names may contain spaces, but must be enclosed with single quotes in
+commands. It is easier to use dashes in place of spaces or mixed case
+for better readability. For example, use bgpSessionChanges or
+BGP-session-changes or BGPsessions, instead of &lsquo;BGP Session Changes&rsquo;.</p>
+
+<p>Use Tab completion to view the command options syntax.</p>
+ </div>
+
+
+<h4 id="span-example-rules-span"><span>Example Rules</span></h4>
+
+<p>Create a BGP Rule Based on Hostname:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification rule bgpHostname key hostname value spine-01
+Successfully added/updated rule bgpHostname 
+</code></pre>
+
+<p>Create a Rule Based on a Configuration File State Change:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification rule sysconf key configdiff value updated
+Successfully added/updated rule sysconf
+</code></pre>
+
+<p>Create an EVPN Rule Based on a VNI:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification rule evpnVni key vni value 42
+Successfully added/updated rule evpnVni
+</code></pre>
+
+<p>Create an Interface Rule Based on FEC Support:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification rule fecSupport key new_supported_fec value supported
+Successfully added/updated rule fecSupport
+</code></pre>
+
+<p>Create a Service Rule Based on a Status Change:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification rule svcStatus key new_status value down
+Successfully added/updated rule svcStatus
+</code></pre>
+
+<p>Create a Sensor Rule Based on a Threshold:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification rule overTemp key new_s_crit value 24
+Successfully added/updated rule overTemp
+</code></pre>
+
+<p>Create an Interface Rule Based on Port:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification rule swp52 key port value swp52
+Successfully added/updated rule swp52 
+</code></pre>
+
+<h4 id="span-view-the-rule-configurations-span"><span>View the Rule Configurations</span></h4>
+
+<p>Use the <code>netq show notification</code> command to view the rules on your
+platform.</p>
+
+<pre><code>cumulus@switch:~$ netq show notification rule
+ 
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+fecSupport      new_supported_fe supported
+                c
+overTemp        new_s_crit       24
+svcStatus       new_status       down
+swp52           port             swp52
+sysconf         configdiff       updated
+</code></pre>
+
+<h3 id="span-id-src-12320911-integratewiththird-partysoftwareandhardware-notifierfilters-class-confluence-anchor-link-span-span-create-filters-span"><span id="src-12320911_IntegratewithThird-partySoftwareandHardware-NotifierFilters" class="confluence-anchor-link"></span><span>Create Filters</span></h3>
+
+<p>You can limit or direct event messages using filters. Filters are
+created based on rules you define; like those in the previous section.
+Each filter contains one or more rules. When a message matches the rule,
+it is sent to the indicated destination. Before you can create filters,
+you need to have already defined the rules and configured PagerDuty
+and/or Slack channels (as described earlier).</p>
+
+<p>As filters are created, they are added to the bottom of a filter list.
+By default, filters are processed in the order they appear in this list
+(from top to bottom) until a match is found. This means that each event
+message is first evaluated by the first filter listed, and if it matches
+then it is processed, ignoring all other filters, and the system moves
+on to the next event message received. If the event does not match the
+first filter, it is tested against the second filter, and if it matches
+then it is processed and the system moves on to the next event received.
+And so forth. Events that do not match any filter are ignored.</p>
+
+<p>You may need to change the order of filters in the list to ensure you
+capture the events you want and drop the events you do not want. This is
+possible using the <em>before</em> or <em>after</em> keywords to ensure one rule is
+processed before or after another.</p>
+
+<p>This diagram shows an example with four defined filters with sample
+output results.</p>
+
+
+
+
+
+
+
+
+<img class = "confluence-embedded-image" src = "/images/download/attachments/12320911/NQ-210-Filter-Process-Flow.png" alt = "/images/download/attachments/12320911/NQ-210-Filter-Process-Flow.png"
+
+
+width = 350
+
+ />
+
+
+
+<div class="notices note" > <p>Filter names may contain spaces, but <em>must</em> be enclosed with single
+quotes in commands. It is easier to use dashes in place of spaces or
+mixed case for better readability. For example, use bgpSessionChanges or
+BGP-session-changes or BGPsessions, instead of &lsquo;BGP Session Changes&rsquo;.
+Filter names are also case sensitive.</p>
+ </div>
+
+
+<h4 id="span-example-filters-span"><span>Example Filters</span></h4>
+
+<p>Create a filter for BGP Events on a Particular Device:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification filter bgpSpine rule bgpHostname channel pd-netq-events
+Successfully added/updated filter bgpSpine
+</code></pre>
+
+<p>Create a Filter for a Given VNI in Your EVPN Overlay:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification filter vni42 severity warning rule evpnVni channel pd-netq-events
+Successfully added/updated filter vni42
+</code></pre>
+
+<p>Create a Filter for when a Configuration File has been Updated:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
+Successfully added/updated filter configChange
+</code></pre>
+
+<p>Create a Filter to Monitor Ports with FEC Support:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification filter newFEC rule fecSupport channel slk-netq-events
+Successfully added/updated filter newFEC
+</code></pre>
+
+<p>Create a Filter to Monitor for Services that Change to a Down State:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification filter svcDown severity error rule svcStatus channel slk-netq-events
+Successfully added/updated filter svcDown
+</code></pre>
+
+<p>Create a Filter to Monitor Overheating Platforms:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification filter critTemp severity error rule overTemp channel pd-netq-events
+Successfully added/updated filter critTemp
+</code></pre>
+
+<p>Create a Filter to Drop Messages from a Given Interface, and match
+against this filter before any other filters. To create a drop style
+filter, do not specify a channel. To put the filter first, use the
+<em>before</em> option.</p>
+
+<pre><code>cumulus@switch:~$ netq add notification filter swp52Drop severity error rule swp52 before bgpSpine
+Successfully added/updated filter swp52Drop
+</code></pre>
+
+<h4 id="span-view-the-filter-configurations-span"><span>View the Filter Configurations</span></h4>
+
+<p>Use the <code>netq show notification</code> command to view the filters on your
+platform.</p>
+
+<pre><code>cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+swp52Drop       1          error            NetqDefaultChann swp52
+                                            el
+bgpSpine        2          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           3          warning          pd-netq-events   evpnVni
+configChange    4          info             slk-netq-events  sysconf
+newFEC          5          info             slk-netq-events  fecSupport
+svcDown         6          critical         slk-netq-events  svcStatus
+critTemp        7          critical         pd-netq-events   overTemp
+</code></pre>
+
+<h4 id="span-reorder-filters-span"><span>Reorder Filters</span></h4>
+
+<p>When you look at the results of the <code>netq show notification filter</code>
+command above, you might notice that although you have the drop-based
+filter first (no point in looking at something you are going to drop
+anyway, so that is good), but the critical severity events are processed
+last, per the current definitions. If you wanted to process those before
+lesser severity events, you can reorder the list using the <em>before</em> and
+<em>after</em> options.</p>
+
+<p>For example, to put the two critical severity event filters just below
+the drop filter:</p>
+
+<pre><code>cumulus@switch:~$ netq add notification filter critTemp after swp52Drop
+Successfully added/updated filter critTemp
+cumulus@switch:~$ netq add notification filter svcDown before bgpSpine
+Successfully added/updated filter svcDown
+</code></pre>
+
+
+<div class="notices tip" > <p>You do not need to reenter all the severity, channel, and rule
+information for existing rules if you only want to change their
+processing order.</p>
+ </div>
+
+
+<p>Run the <code>netq show notification</code> command again to verify the changes:</p>
+
+<pre><code>cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+swp52Drop       1          error            NetqDefaultChann swp52
+                                            el
+critTemp        2          critical         pd-netq-events   overTemp
+svcDown         3          critical         slk-netq-events  svcStatus
+bgpSpine        4          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           5          warning          pd-netq-events   evpnVni
+configChange    6          info             slk-netq-events  sysconf
+newFEC          7          info             slk-netq-events  fecSupport
+</code></pre>
+
+<h2 id="span-example-notification-configurations-span"><span>Example Notification Configurations</span></h2>
+
+<p>Putting all of these channel, rule, and filter definitions together you
+create a complete notification configuration. The following are example
+notification configurations are created using the three-step process
+outlined above. Refer to <a href="#src-12320911_IntegratewithThird-partySoftwareandHardware-IntegrateNotification">Integrate NetQ with an Event Notification
+Application</a>
+for details and instructions for creating channels, rules, and filters.</p>
+
+<h3 id="span-create-a-notification-for-bgp-events-from-a-selected-switch-span"><span>Create a Notification for BGP Events from a Selected Switch</span></h3>
+
+<p>In this example, we created a notification integration with a PagerDuty
+channel called <em>pd-netq-events</em>. We then created a rule <em>bgpHostname</em>
+and a filter called <em>4bgpSpine</em> for any notifications from <em>spine-01</em>.
+The result is that any info severity event messages from Spine-01 are
+filtered to the <em>pd-netq-events</em> ** channel.</p>
+
+<pre><code>cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
+Successfully added/updated channel pd-netq-events
+cumulus@switch:~$ netq add notification rule bgpHostname key node value spine-01
+Successfully added/updated rule bgpHostname
+ 
+cumulus@switch:~$ netq add notification filter bgpSpine rule bgpHostname channel pd-netq-events
+Successfully added/updated filter bgpSpine
+cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+pd-netq-events  pagerduty        info             integration-key: 1234567
+                                                  890   
+
+cumulus@switch:~$ netq show notification rule
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+ 
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+bgpSpine        1          info             pd-netq-events   bgpHostnam
+                                                             e
+</code></pre>
+
+<h3 id="span-create-a-notification-for-warnings-on-a-given-evpn-vni-span"><span>Create a Notification for Warnings on a Given EVPN VNI</span></h3>
+
+<p>In this example, we created a notification integration with a PagerDuty
+channel called <em>pd-netq-events</em>. We then created a rule <em>evpnVni</em> and a
+filter called <em>3vni42</em> for any warnings messages from VNI 42 on the EVPN
+overlay network. The result is that any warning severity event messages
+from VNI 42 are filtered to the <em>pd-netq-events</em> channel.</p>
+
+<pre><code>cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
+Successfully added/updated channel pd-netq-events
+ 
+cumulus@switch:~$ netq add notification rule evpnVni key vni value 42
+Successfully added/updated rule evpnVni
+ 
+cumulus@switch:~$ netq add notification filter vni42 rule evpnVni channel pd-netq-events
+Successfully added/updated filter vni42
+ 
+cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+pd-netq-events  pagerduty        info             integration-key: 1234567
+                                                  890   
+
+cumulus@switch:~$ netq show notification rule
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+ 
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+bgpSpine        1          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           2          warning          pd-netq-events   evpnVni
+</code></pre>
+
+<h3 id="span-create-a-notification-for-configuration-file-changes-span"><span>Create a Notification for Configuration File Changes</span></h3>
+
+<p>In this example, we created a notification integration with a Slack
+channel called <em>slk-netq-events</em>. We then created a rule <em>sysconf</em> and a
+filter called <em>configChange</em> for any configuration file update messages.
+The result is that any configuration update messages are filtered to the
+<em>slk-netq-events</em> channel.</p>
+
+<pre><code>cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+Successfully added/updated channel slk-netq-events
+ 
+cumulus@switch:~$ netq add notification rule sysconf key configdiff value updated
+Successfully added/updated rule sysconf
+ 
+cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
+Successfully added/updated filter configChange
+ 
+cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity Channel Info
+--------------- ---------------- -------- ----------------------
+slk-netq-events slack            info     webhook:https://hooks.s
+                                          lack.com/services/text/
+                                          moretext/evenmoretext     
+ 
+cumulus@switch:~$ netq show notification rule
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+sysconf         configdiff       updated
+
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+bgpSpine        1          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           2          warning          pd-netq-events   evpnVni
+configChange    3          info             slk-netq-events  sysconf
+</code></pre>
+
+<h3 id="span-create-a-notification-for-when-a-service-goes-down-span"><span>Create a Notification for When a Service Goes Down</span></h3>
+
+<p>In this example, we created a notification integration with a Slack
+channel called <em>slk-netq-events</em>. We then created a rule <em>svcStatus</em> and
+a filter called <em>svcDown</em> for any services state messages indicating a
+service is no longer operational. The result is that any service down
+messages are filtered to the <em>slk-netq-events</em> channel.</p>
+
+<pre><code>cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+Successfully added/updated channel slk-netq-events
+ 
+cumulus@switch:~$ netq add notification rule svcStatus key new_status value down
+Successfully added/updated rule svcStatus
+ 
+cumulus@switch:~$ netq add notification filter svcDown severity error rule svcStatus channel slk-netq-events
+Successfully added/updated filter svcDown
+ 
+cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity Channel Info
+--------------- ---------------- -------- ----------------------
+slk-netq-events slack            info     webhook:https://hooks.s
+                                          lack.com/services/text/
+                                          moretext/evenmoretext     
+ 
+cumulus@switch:~$ netq show notification rule
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+svcStatus       new_status       down
+sysconf         configdiff       updated
+
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+bgpSpine        1          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           2          warning          pd-netq-events   evpnVni
+configChange    3          info             slk-netq-events  sysconf
+svcDown         4          critical         slk-netq-events  svcStatus
+</code></pre>
+
+<h3 id="span-create-a-filter-to-drop-notifications-from-a-given-interface-span"><span>Create a Filter to Drop Notifications from a Given Interface</span></h3>
+
+<p>In this example, we created a notification integration with a Slack
+channel called <em>slk-netq-events</em>. We then created a rule <em>swp52</em> and a
+filter called <em>swp52Drop</em> that drops all notifications for events from
+interface <em>swp52</em>.</p>
+
+<pre><code>cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+Successfully added/updated channel slk-netq-events
+ 
+cumulus@switch:~$ netq add notification rule swp52 key port value swp52
+Successfully added/updated rule swp52
+ 
+cumulus@switch:~$ netq add notification filter swp52Drop severity error rule swp52 before bgpSpine
+Successfully added/updated filter swp52Drop
+ 
+cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity Channel Info
+--------------- ---------------- -------- ----------------------
+slk-netq-events slack            info     webhook:https://hooks.s
+                                          lack.com/services/text/
+                                          moretext/evenmoretext     
+ 
+cumulus@switch:~$ netq show notification rule
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+svcStatus       new_status       down
+swp52           port             swp52
+sysconf         configdiff       updated
+
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+swp52Drop       1          error            NetqDefaultChann swp52
+                                            el
+bgpSpine        2          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           3          warning          pd-netq-events   evpnVni
+configChange    4          info             slk-netq-events  sysconf
+svcDown         5          critical         slk-netq-events  svcStatus
+</code></pre>
+
+<h3 id="span-create-a-notification-for-a-given-device-that-has-a-tendency-to-overheat-using-multiple-rules-span"><span>Create a Notification for a Given Device that has a Tendency to Overheat (using multiple rules)</span></h3>
+
+<p>In this example, we created a notification when switch <em>leaf04</em> has
+passed over the high temperature threshold. Two rules were needed to
+create this notification, one to identify the specific device and one to
+identify the temperature trigger. We sent the message to the
+<em>pd-netq-events</em> channel.</p>
+
+<pre><code>cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
+Successfully added/updated channel pd-netq-events
+ 
+cumulus@switch:~$ netq add notification rule switchLeaf04 key hostname value leaf04
+Successfully added/updated rule switchLeaf04
+cumulus@switch:~$ netq add notification rule overTemp key new_s_crit value 24
+Successfully added/updated rule overTemp
+ 
+cumulus@switch:~$ netq add notification filter critTemp rule switchLeaf04 channel pd-netq-events
+Successfully added/updated filter critTemp
+cumulus@switch:~$ netq add notification filter critTemp severity critical rule overTemp channel pd-netq-events
+Successfully added/updated filter critTemp
+ 
+cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+pd-netq-events  pagerduty        info             integration-key: 1234567
+                                                  890
+
+cumulus@switch:~$ netq show notification rule
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+overTemp        new_s_crit       24
+svcStatus       new_status       down
+switchLeaf04    hostname         leaf04
+swp52           port             swp52
+sysconf         configdiff       updated
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+swp52Drop       1          error            NetqDefaultChann swp52
+                                            el
+bgpSpine        2          info             pd-netq-events   bgpHostnam
+                                                             e
+vni42           3          warning          pd-netq-events   evpnVni
+configChange    4          info             slk-netq-events  sysconf
+svcDown         5          critical         slk-netq-events  svcStatus
+critTemp        6          critical         pd-netq-events   switchLeaf
+                                                             04
+                                                             overTemp                                                
+</code></pre>
+
+<h3 id="span-view-notification-configurations-in-json-format-span"><span>View Notification Configurations in JSON Format</span></h3>
+
+<p>You can view configured integrations using the <code>netq show notification</code>
+commands. To view the channels, filters, and rules, run the three
+flavors of the command. Include the <code>json</code> option to display
+JSON-formatted output.</p>
+
+<p>For example:</p>
+
+<pre><code>cumulus@switch:~$ netq show notification channel json
+{
+    &quot;config_notify&quot;:[
+        {
+            &quot;type&quot;:&quot;slack&quot;,
+            &quot;name&quot;:&quot;slk-netq-events&quot;,
+            &quot;channelInfo&quot;:&quot;webhook:https://hooks.slack.com/services/text/moretext/evenmoretext&quot;,
+            &quot;severity&quot;:&quot;info&quot;
+        },
+        {
+            &quot;type&quot;:&quot;pagerduty&quot;,
+            &quot;name&quot;:&quot;pd-netq-events&quot;,
+            &quot;channelInfo&quot;:&quot;integration-key: 1234567890&quot;,
+            &quot;severity&quot;:&quot;info&quot;
+    }
+    ],
+    &quot;truncatedResult&quot;:false
+}
+ 
+cumulus@switch:~$ netq show notification rule json
+{
+    &quot;config_notify&quot;:[
+        {
+            &quot;ruleKey&quot;:&quot;hostname&quot;,
+            &quot;ruleValue&quot;:&quot;spine-01&quot;,
+            &quot;name&quot;:&quot;bgpHostname&quot;
+        },
+        {
+            &quot;ruleKey&quot;:&quot;vni&quot;,
+            &quot;ruleValue&quot;:42,
+            &quot;name&quot;:&quot;evpnVni&quot;
+        },
+        {
+            &quot;ruleKey&quot;:&quot;new_supported_fec&quot;,
+            &quot;ruleValue&quot;:&quot;supported&quot;,
+            &quot;name&quot;:&quot;fecSupport&quot;
+        },
+        {
+            &quot;ruleKey&quot;:&quot;new_s_crit&quot;,
+            &quot;ruleValue&quot;:24,
+            &quot;name&quot;:&quot;overTemp&quot;
+        },
+        {
+            &quot;ruleKey&quot;:&quot;new_status&quot;,
+            &quot;ruleValue&quot;:&quot;down&quot;,
+            &quot;name&quot;:&quot;svcStatus&quot;
+        },
+        {
+            &quot;ruleKey&quot;:&quot;configdiff&quot;,
+            &quot;ruleValue&quot;:&quot;updated&quot;,
+            &quot;name&quot;:&quot;sysconf&quot;
+    }
+    ],
+    &quot;truncatedResult&quot;:false
+}
+ 
+cumulus@switch:~$ netq show notification filter json
+{
+    &quot;config_notify&quot;:[
+        {
+            &quot;channels&quot;:&quot;pd-netq-events&quot;,
+            &quot;rules&quot;:&quot;overTemp&quot;,
+            &quot;name&quot;:&quot;1critTemp&quot;,
+            &quot;severity&quot;:&quot;critical&quot;
+        },
+        {
+            &quot;channels&quot;:&quot;pd-netq-events&quot;,
+            &quot;rules&quot;:&quot;evpnVni&quot;,
+            &quot;name&quot;:&quot;3vni42&quot;,
+            &quot;severity&quot;:&quot;warning&quot;
+        },
+        {
+            &quot;channels&quot;:&quot;pd-netq-events&quot;,
+            &quot;rules&quot;:&quot;bgpHostname&quot;,
+            &quot;name&quot;:&quot;4bgpSpine&quot;,
+            &quot;severity&quot;:&quot;info&quot;
+        },
+        {
+            &quot;channels&quot;:&quot;slk-netq-events&quot;,
+            &quot;rules&quot;:&quot;sysconf&quot;,
+            &quot;name&quot;:&quot;configChange&quot;,
+            &quot;severity&quot;:&quot;info&quot;
+        },
+        {
+            &quot;channels&quot;:&quot;slk-netq-events&quot;,
+            &quot;rules&quot;:&quot;fecSupport&quot;,
+            &quot;name&quot;:&quot;newFEC&quot;,
+            &quot;severity&quot;:&quot;info&quot;
+        },
+        {
+            &quot;channels&quot;:&quot;slk-netq-events&quot;,
+            &quot;rules&quot;:&quot;svcStatus&quot;,
+            &quot;name&quot;:&quot;svcDown&quot;,
+            &quot;severity&quot;:&quot;critical&quot;
+    }
+    ],
+    &quot;truncatedResult&quot;:false
+}
+</code></pre>
+
+<h2 id="span-manage-event-notification-integrations-span"><span>Manage Event Notification Integrations</span></h2>
+
+<p>You might need to modify event
+notification configurations at some point in the lifecycle of your
+deployment. Optionally, you might want to configure a proxy.</p>
+
+<h3 id="span-remove-an-event-notification-channel-span"><span>Remove an Event Notification Channel</span></h3>
+
+<p>You can delete an event notification integration using the <code>netq config
+del notification</code> command. You can verify it has been removed using the
+related <code>show</code> command.</p>
+
+<p>For example, to remove a Slack integration and verify it is no longer in
+the configuration:</p>
+
+<pre><code>cumulus@switch:~$ netq del notification channel slk-netq-events
+cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+pd-netq-events  pagerduty        info             integration-key: 1234567
+                                                  890
+</code></pre>
+
+<h3 id="span-delete-an-event-notification-rule-span"><span>Delete an Event Notification Rule</span></h3>
+
+<p>To delete a rule, use the following command, then verify it has been
+removed:</p>
+
+<pre><code>cumulus@switch:~$ netq del notification rule swp52
+cumulus@switch:~$ netq show notification rule
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+overTemp        new_s_crit       24
+svcStatus       new_status       down
+switchLeaf04    hostname         leaf04
+sysconf         configdiff       updated
+</code></pre>
+
+<h3 id="span-delete-an-event-notification-filter-span"><span>Delete an Event Notification Filter</span></h3>
+
+<p>To delete a filter, use the following command, then verify it has been
+removed:</p>
+
+<pre><code>cumulus@switch:~$ netq del notification filter bgpSpine
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+swp52Drop       1          error            NetqDefaultChann swp52
+                                            el
+vni42           2          warning          pd-netq-events   evpnVni
+configChange    3          info             slk-netq-events  sysconf
+svcDown         4          critical         slk-netq-events  svcStatus
+critTemp        5          critical         pd-netq-events   switchLeaf
+                                                             04
+                                                             overTemp
+</code></pre>
+
+<h2 id="span-integrate-with-a-hardware-chassis-span"><span>Integrate with a Hardware Chassis</span></h2>
+
+<p>NetQ can run within a <a href="https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/" target="_blank">Facebook Backpack
+chassis</a>,
+<a href="https://cumulusnetworks.com/products/cumulus-express/getting-started/cx10256s-omp800/" target="_blank">Cumulus Express CX-10256-S
+chassis</a>
+or <a href="https://cumulusnetworks.com/products/cumulus-express/getting-started/cx10256s-omp800/" target="_blank">Edgecore OMP-800
+chassis</a>.</p>
+
+<p>Keep the following issues in mind if you intend to use NetQ with a
+chassis:</p>
+
+<ul>
+<li>You must assign a unique hostname to every node that runs the NetQ
+Agent. By default, all the fabric cards in the chassis have the same
+hostname.</li>
+<li>The NetQ Agent must be installed on every line card.</li>
+<li>No information is returned about the ASIC when you run <code>netq show
+inventory asic</code>. This is a known issue.</li>
+
+<li><p>Since the chassis sensor information is shared, every line card and
+fabric card can report the same sensor data. By default, sensor data
+is disabled on a chassis to avoid this duplication . To enable
+sensor data on a line card, edit <code>/etc/netq/netq.yml</code> or
+<code>/etc/netq/config.d/user.yml</code> and set the <code>send_chassis_sensor_data</code>
+keyword to <em>true</em>, then restart the NetQ Agent with <code>netq config
+agent restart</code>. Configuring NetQ in this way prevents any
+duplication of data in the NetQ database.</p>
+
+<pre><code>cumulus@chassis:~$ sudo nano /etc/netq/netq.yml
+ 
+...
+netq-agent:
+  send_chassis_sensor_data: true
+...
+</code></pre></li>
+</ul>
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+</article>
+
+      <script src="https://utteranc.es/client.js"
+        repo="CumulusNetworks/docs-internal"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+    <div class="toc">
+    
+      <button>
+      <a href="https://github.com/CumulusNetworks/docs/edit/master/content/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware.md" target="_blank" rel="noopener"><img src="/docs.cumulusnetworks.com/svg/pencil-circle.svg" alt="Edit" /> Edit this page</a>
+      </button>
+    
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#span-id-src-12320911-integratewiththird-partysoftwareandhardware-integratenotification-class-confluence-anchor-link-span-span-integrate-netq-with-an-event-notification-application-span"><span id="src-12320911_IntegratewithThird-partySoftwareandHardware-IntegrateNotification" class="confluence-anchor-link"></span><span>Integrate NetQ with an Event Notification Application</span></a>
+<ul>
+<li><a href="#span-event-message-format-span"><span>Event Message Format</span></a></li>
+<li><a href="#span-notification-commands-overview-span"><span>Notification Commands Overview</span></a></li>
+<li><a href="#span-configure-a-proxy-server-span"><span>Configure a Proxy Server</span></a></li>
+<li><a href="#span-create-channels-span"><span>Create Channels</span></a>
+<ul>
+<li><a href="#span-id-src-12320911-integratewiththird-partysoftwareandhardware-pdcli-class-confluence-anchor-link-span-span-configure-a-pagerduty-channel-span"><span id="src-12320911_IntegratewithThird-partySoftwareandHardware-PDcli" class="confluence-anchor-link"></span><span>Configure a PagerDuty Channel</span></a></li>
+<li><a href="#span-configure-a-slack-channel-span"><span>Configure a Slack Channel</span></a></li>
+</ul></li>
+<li><a href="#span-id-src-12320911-integratewiththird-partysoftwareandhardware-filterrule-class-confluence-anchor-link-span-span-create-rules-span"><span id="src-12320911_IntegratewithThird-partySoftwareandHardware-FilterRule" class="confluence-anchor-link"></span><span>Create Rules </span></a>
+<ul>
+<li><a href="#span-example-rules-span"><span>Example Rules</span></a></li>
+<li><a href="#span-view-the-rule-configurations-span"><span>View the Rule Configurations</span></a></li>
+</ul></li>
+<li><a href="#span-id-src-12320911-integratewiththird-partysoftwareandhardware-notifierfilters-class-confluence-anchor-link-span-span-create-filters-span"><span id="src-12320911_IntegratewithThird-partySoftwareandHardware-NotifierFilters" class="confluence-anchor-link"></span><span>Create Filters</span></a>
+<ul>
+<li><a href="#span-example-filters-span"><span>Example Filters</span></a></li>
+<li><a href="#span-view-the-filter-configurations-span"><span>View the Filter Configurations</span></a></li>
+<li><a href="#span-reorder-filters-span"><span>Reorder Filters</span></a></li>
+</ul></li>
+</ul></li>
+<li><a href="#span-example-notification-configurations-span"><span>Example Notification Configurations</span></a>
+<ul>
+<li><a href="#span-create-a-notification-for-bgp-events-from-a-selected-switch-span"><span>Create a Notification for BGP Events from a Selected Switch</span></a></li>
+<li><a href="#span-create-a-notification-for-warnings-on-a-given-evpn-vni-span"><span>Create a Notification for Warnings on a Given EVPN VNI</span></a></li>
+<li><a href="#span-create-a-notification-for-configuration-file-changes-span"><span>Create a Notification for Configuration File Changes</span></a></li>
+<li><a href="#span-create-a-notification-for-when-a-service-goes-down-span"><span>Create a Notification for When a Service Goes Down</span></a></li>
+<li><a href="#span-create-a-filter-to-drop-notifications-from-a-given-interface-span"><span>Create a Filter to Drop Notifications from a Given Interface</span></a></li>
+<li><a href="#span-create-a-notification-for-a-given-device-that-has-a-tendency-to-overheat-using-multiple-rules-span"><span>Create a Notification for a Given Device that has a Tendency to Overheat (using multiple rules)</span></a></li>
+<li><a href="#span-view-notification-configurations-in-json-format-span"><span>View Notification Configurations in JSON Format</span></a></li>
+</ul></li>
+<li><a href="#span-manage-event-notification-integrations-span"><span>Manage Event Notification Integrations</span></a>
+<ul>
+<li><a href="#span-remove-an-event-notification-channel-span"><span>Remove an Event Notification Channel</span></a></li>
+<li><a href="#span-delete-an-event-notification-rule-span"><span>Delete an Event Notification Rule</span></a></li>
+<li><a href="#span-delete-an-event-notification-filter-span"><span>Delete an Event Notification Filter</span></a></li>
+</ul></li>
+<li><a href="#span-integrate-with-a-hardware-chassis-span"><span>Integrate with a Hardware Chassis</span></a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+  
+
+</aside>
+
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

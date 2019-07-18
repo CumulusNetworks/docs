@@ -3,7 +3,7 @@ title: Monitor Overall Network Health
 author: Cumulus Networks
 weight: 55
 aliases:
- - /display/NETQ141/Monitor-Overall-Network-Health
+ - /display/NETQ141/Monitor+Overall+Network+Health
  - /pages/viewpage.action?pageId=10453519
 pageID: 10453519
 product: Cumulus NetQ

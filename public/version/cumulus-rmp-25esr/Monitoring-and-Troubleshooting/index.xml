@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monitoring and Troubleshooting on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/</link>
+    <description>Recent content in Monitoring and Troubleshooting on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Single User Mode - Boot Recovery</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery/</guid>
+      <description>Use single user mode to assist in troubleshooting system boot issues or for password recovery. Entering single user mode is platform-specific, so follow the appropriate steps for your x86 or PowerPC switch.
+Entering Single User Mode on a PowerPC Switch  From the console, boot the switch, interrupting the U-Boot countdown to enter the U-Boot prompt. Enter the following:
+=&amp;gt; setenv lbootargs init=/bin/sh =&amp;gt; boot  After the system boots, the shell command prompt appears.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring Interfaces and Transceivers Using ethtool</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Monitoring-Interfaces-and-Transceivers-Using-ethtool/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Monitoring-Interfaces-and-Transceivers-Using-ethtool/</guid>
+      <description>The ethtool command enables you to query or control the network driver and hardware settings. It takes the device name (like swp1) as an argument. When the device name is the only argument to ethtool, it prints the current settings of the network device. See man ethtool(8) for details. Not all options are currently supported on switch port interfaces.
+Commands  cl-netstat
+ ethtool
+  Monitoring Interfaces Using ethtool To check the status of an interface using ethtool:</description>
+    </item>
+    
+    <item>
+      <title>Resource Diagnostics Using cl-resource-query</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/</guid>
+      <description>You can use cl-resource-queryto retrieve information about host entries, MAC entries, L2 and L3 routes, and ingress and degrees ACL counters and entries that are in use. This is especially useful because Cumulus RMP syncs routes between the kernel and the switching silicon. If the required resource pools in hardware fill up, new kernel routes can cause existing routes to move from being fully allocated to being partially allocated.
+In order to avoid this, routes in the hardware should be monitored and kept below the ASIC limits.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring System Hardware</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/</guid>
+      <description>You monitor system hardware in these ways, using:
+ decode-syseeprom
+ sensors
+ smond
+ Net-SNMP
+ watchdog
+  Commands  decode-syseeprom
+ dmidecode
+ lshw
+ sensors
+ smond
+  Monitoring Hardware Using decode-syseeprom The decode-syseeprom command enables you to retrieve information about the switch&amp;rsquo;s EEPROM. If the EEPROM is writable, you can set values on the EEPROM.
+For example:
+cumulus@switch:~# decode-syseeprom TlvInfo Header: Id String: TlvInfo Version: 1 Total Length: 159 TLV Name Code Len Value -------------------- ---- --- ----- Product Name 0x21 6 Pebble Part Number 0x22 14 R0854-G0008-02 Serial Number 0x23 19 D2070023918PE000012 Manufacture Date 0x25 19 01/15/2015 14:30:00 Device Version 0x26 1 2 Label Revision 0x27 6 Pebble Platform Name 0x28 6 Pebble MAC Addresses 0x2A 2 73 Manufacturer 0x2B 9 CELESTICA Manufacture Country 0x2C 3 CHN Vendor Name 0x2D 9 CELESTICA Diag Version 0x2E 5 1.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring System Statistics and Network Traffic with sFlow</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/</guid>
+      <description>sFlow is a monitoring protocol that samples network packets, application operations, and system counters. sFlow enables you to monitor your network traffic as well as your switch state and performance metrics. An outside server, known as an sFlow collector, is required to collect and analyze this data.
+hsflowd is the daemon that samples and sends sFlow data to configured collectors. hsflowd is not included in the base Cumulus RMP installation.</description>
+    </item>
+    
+    <item>
+      <title>Managing Application Daemons</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Managing-Application-Daemons/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Managing-Application-Daemons/</guid>
+      <description>You manage application daemons in Cumulus RMP in the following ways:
+ Identifying active listener ports
+ Identifying daemons currently active or stopped
+ Identifying boot time state of a specific daemon
+ Disabling or enabling a specific daemon
+  Identifying Active Listener Ports for IPv4 and IPv6 You can identify the active listener ports under both IPv4 and IPv6 using the lsof command:
+cumulus@switch:~$ sudo lsof -Pnl +M -i4 COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME ntpd 1882 104 16u IPv4 3954 0t0 UDP *:123 ntpd 1882 104 18u IPv4 3963 0t0 UDP 127.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting Network Interfaces</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/</guid>
+      <description>The following sections describe various ways you can troubleshoot ifupdown2.
+Enabling Logging for Networking The /etc/default/networking file contains two settings for logging:
+ To get ifupdown2 logs when the switch boots (stored in syslog)
+ To enable logging when you run service networking [start|stop|reload]
+  This file also contains an option for excluding interfaces when you boot the switch or run service networking start|stop|reload. You can exclude any interface specified in /etc/network/interfaces.</description>
+    </item>
+    
+    <item>
+      <title>Network Troubleshooting</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Network-Troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Network-Troubleshooting/</guid>
+      <description>Cumulus RMP contains a number of command line and analytical tools to help you troubleshoot issues with your network.
+Commands  arp
+ cl-acltool
+ ip
+ mz
+ ping
+ traceroute
+  Checking Reachability Using ping pingis used to check reachability of a host. pingalso calculates the time it takes for packets to travel the round trip. See manpingfor details.
+To test the connection to an IPv4 host:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -3,7 +3,7 @@ title: Network Solutions
 author: Cumulus Networks
 weight: 27
 aliases:
- - /display/CL33/Network-Solutions
+ - /display/CL33/Network+Solutions
  - /pages/viewpage.action?pageId=5866470
 pageID: 5866470
 product: Cumulus Linux

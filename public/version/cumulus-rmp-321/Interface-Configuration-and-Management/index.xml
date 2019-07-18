@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Interface Configuration and Management on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-rmp-321/Interface-Configuration-and-Management/</link>
+    <description>Recent content in Interface Configuration and Management on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-rmp-321/Interface-Configuration-and-Management/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Layer 1 and Switch Port Attributes</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-321/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-321/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes/</guid>
+      <description>This chapter discusses the various network interfaces on a switch running Cumulus RMP, how to configure various interface-level settings (if needed) and some troubleshooting commands.
+Interface Types Cumulus RMP exposes network interfaces for several types of physical and logical devices:
+ lo, network loopback device
+ ethN, switch management port(s), for out of band management only
+ swpN, switch front panel ports
+ (optional) brN, bridges (IEEE 802.1Q VLANs)</description>
+    </item>
+    
+    <item>
+      <title>Configuring DHCP Relays and Servers</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-321/Interface-Configuration-and-Management/Configuring-DHCP-Relays-and-Servers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-321/Interface-Configuration-and-Management/Configuring-DHCP-Relays-and-Servers/</guid>
+      <description>You can configure an interface so it can make DHCP relay requests for IPv4 and IPv6.
+To run DHCP for both IPv4 and IPv6, you need to initiate the DHCP relay and DHCP server twice: once for IPv4 and once for IPv6. Following are the configurations on the host, DHCP relay and DHCP server using the following topology:
+For the configurations used in this chapter, both the DHCP server and DHCP relay are switches running Cumulus RMP; however, the DHCP server can also be located on a dedicated switch in your environment.</description>
+    </item>
+    
+  </channel>
+</rss>

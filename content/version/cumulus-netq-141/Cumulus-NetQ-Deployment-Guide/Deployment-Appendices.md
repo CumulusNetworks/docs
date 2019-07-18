@@ -3,7 +3,7 @@ title: Deployment Appendices
 author: Cumulus Networks
 weight: 95
 aliases:
- - /display/NETQ141/Deployment-Appendices
+ - /display/NETQ141/Deployment+Appendices
  - /pages/viewpage.action?pageId=10453427
 pageID: 10453427
 product: Cumulus NetQ

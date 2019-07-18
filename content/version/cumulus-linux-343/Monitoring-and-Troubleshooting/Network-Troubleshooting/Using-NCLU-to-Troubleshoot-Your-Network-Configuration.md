@@ -3,7 +3,7 @@ title: Using NCLU to Troubleshoot Your Network Configuration
 author: Cumulus Networks
 weight: 427
 aliases:
- - /display/CL34/Using-NCLU-to-Troubleshoot-Your-Network-Configuration
+ - /display/CL34/Using+NCLU+to+Troubleshoot+Your+Network+Configuration
  - /pages/viewpage.action?pageId=7112356
 pageID: 7112356
 product: Cumulus Linux

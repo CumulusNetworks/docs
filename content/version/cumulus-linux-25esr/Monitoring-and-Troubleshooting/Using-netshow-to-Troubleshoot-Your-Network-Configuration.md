@@ -3,7 +3,7 @@ title: Using netshow to Troubleshoot Your Network Configuration
 author: Cumulus Networks
 weight: 155
 aliases:
- - /display/CL25ESR/Using-netshow-to-Troubleshoot-Your-Network-Configuration
+ - /display/CL25ESR/Using+netshow+to+Troubleshoot+Your+Network+Configuration
  - /pages/viewpage.action?pageId=5115984
 pageID: 5115984
 product: Cumulus Linux

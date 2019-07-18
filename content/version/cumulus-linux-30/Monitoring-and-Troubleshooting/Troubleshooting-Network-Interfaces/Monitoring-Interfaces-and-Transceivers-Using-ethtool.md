@@ -3,7 +3,7 @@ title: Monitoring Interfaces and Transceivers Using ethtool
 author: Cumulus Networks
 weight: 295
 aliases:
- - /display/CL30/Monitoring-Interfaces-and-Transceivers-Using-ethtool
+ - /display/CL30/Monitoring+Interfaces+and+Transceivers+Using+ethtool
  - /pages/viewpage.action?pageId=5118241
 pageID: 5118241
 product: Cumulus Linux

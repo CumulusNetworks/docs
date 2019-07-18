@@ -3,7 +3,7 @@ title: Investigate NetQ Issues
 author: Cumulus Networks
 weight: 129
 aliases:
- - /display/NETQ141/Investigate-NetQ-Issues
+ - /display/NETQ141/Investigate+NetQ+Issues
  - /pages/viewpage.action?pageId=10453531
 pageID: 10453531
 product: Cumulus NetQ

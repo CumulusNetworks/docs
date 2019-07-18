@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Early Access Features on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/</link>
+    <description>Recent content in Early Access Features on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chassis Integration</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/Chassis-Integration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/Chassis-Integration/</guid>
+      <description>NetQ can run within a Facebook Backpack chassis, Cumulus Express CX-10256-S chassis or Edgecore OMP-800 chassis, but it is considered to be an early access feature.
+Keep the following issues in mind if you intend to use NetQ with a chassis:
+ You must assign a unique hostname to every node that runs the NetQ Agent. By default, all the fabric cards in the chassis have the same hostname.
+ The NetQ Agent must be installed on every line card.</description>
+    </item>
+    
+    <item>
+      <title>Extending NetQ with Custom Commands</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/Extending-NetQ-with-Custom-Commands/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/Extending-NetQ-with-Custom-Commands/</guid>
+      <description>NetQ provides the ability to codify playbooks and extend NetQ with custom commands for use cases specific to your network.
+The summary of steps required to do this is a follows:
+ The extensions must be written in Python or Cython.
+ The commands need to be added must use network doctopt.
+ The .py file (or the compiled .so if using Cython) is now copied to /usr/lib/python2.7/dist-packages/netq_apps/modules/addons.
+ Enable the add-ons with the netq config add addons command</description>
+    </item>
+    
+    <item>
+      <title>Querying the NetQ Database</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/Querying-the-NetQ-Database/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/Querying-the-NetQ-Database/</guid>
+      <description>You can query for even more NetQ data using the SQL-like NetQ Query Language (NetQL) so you can conduct your own custom analysis or otherwise extend NetQ functionality for your specific environment without having to write your own custom code. NetQL directly queries the NetQ database for data that isn&amp;rsquo;t exposed via the check, show and trace commands.
+Early Access Feature
+NetQL is an early access feature in Cumulus NetQ 1.</description>
+    </item>
+    
+    <item>
+      <title>Collecting Interface Statistics</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/Collecting-Interface-Statistics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-121/Early-Access-Features/Collecting-Interface-Statistics/</guid>
+      <description>The NetQ Agent collects interface counters from /proc/net/dev and pushes them to the NetQ Telemetry Server, where they are stored in a container running an InfluxDB database. Only counters for physical interfaces are collected; NetQ does not collect counters for non-physical interfaces like bonds, bridges and VXLANs.
+The NetQ Agent uses the netq-stats-pushd service to collect counters and push them to the database on the telemetry server. The service collects counters every 15 seconds.</description>
+    </item>
+    
+  </channel>
+</rss>

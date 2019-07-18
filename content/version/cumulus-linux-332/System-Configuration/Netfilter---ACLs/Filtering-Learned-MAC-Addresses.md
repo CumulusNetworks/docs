@@ -3,7 +3,7 @@ title: Filtering Learned MAC Addresses
 author: Cumulus Networks
 weight: 279
 aliases:
- - /display/CL332/Filtering-Learned-MAC-Addresses
+ - /display/CL332/Filtering+Learned+MAC+Addresses
  - /pages/viewpage.action?pageId=5868895
 pageID: 5868895
 product: Cumulus Linux

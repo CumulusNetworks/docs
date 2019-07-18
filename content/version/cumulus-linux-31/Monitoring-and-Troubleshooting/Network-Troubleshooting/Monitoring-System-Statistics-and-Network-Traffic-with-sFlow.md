@@ -3,7 +3,7 @@ title: Monitoring System Statistics and Network Traffic with sFlow
 author: Cumulus Networks
 weight: 347
 aliases:
- - /display/CL31/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow
+ - /display/CL31/Monitoring+System+Statistics+and+Network+Traffic+with+sFlow
  - /pages/viewpage.action?pageId=5121951
 pageID: 5121951
 product: Cumulus Linux

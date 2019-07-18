@@ -3,7 +3,7 @@ title: Using GNS3 with VirtualBox VMs
 author: Cumulus Networks
 weight: 67
 aliases:
- - /display/VX30/Using-GNS3-with-VirtualBox-VMs
+ - /display/VX30/Using+GNS3+with+VirtualBox+VMs
  - /pages/viewpage.action?pageId=5126600
 pageID: 5126600
 product: Cumulus VX

@@ -3,7 +3,7 @@ title: Zero Touch Provisioning
 author: Cumulus Networks
 weight: 149
 aliases:
- - /display/RMP30/Zero-Touch-Provisioning
+ - /display/RMP30/Zero+Touch+Provisioning
  - /pages/viewpage.action?pageId=5118686
 pageID: 5118686
 product: Cumulus RMP

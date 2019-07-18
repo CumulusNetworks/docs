@@ -3,7 +3,7 @@ title: Ethernet Virtual Private Network - EVPN
 author: Cumulus Networks
 weight: 293
 aliases:
- - /display/CL31/Ethernet-Virtual-Private-Network---EVPN
+ - /display/CL31/Ethernet+Virtual+Private+Network+++EVPN
  - /pages/viewpage.action?pageId=5122076
 pageID: 5122076
 product: Cumulus Linux

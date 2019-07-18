@@ -3,7 +3,7 @@ title: Configuring FRRouting
 author: Cumulus Networks
 weight: 173
 aliases:
- - /display/CL36/Configuring-FRRouting
+ - /display/CL36/Configuring+FRRouting
  - /pages/viewpage.action?pageId=8362389
 pageID: 8362389
 product: Cumulus Linux

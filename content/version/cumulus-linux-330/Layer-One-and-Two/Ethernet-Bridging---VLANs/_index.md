@@ -3,7 +3,7 @@ title: Ethernet Bridging - VLANs
 author: Cumulus Networks
 weight: 117
 aliases:
- - /display/CL33/Ethernet-Bridging---VLANs
+ - /display/CL33/Ethernet+Bridging+++VLANs
  - /pages/viewpage.action?pageId=5866190
 pageID: 5866190
 product: Cumulus Linux

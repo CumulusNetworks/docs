@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cumulus Host Pack on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/host-pack/</link>
+    <description>Recent content in Cumulus Host Pack on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/host-pack/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Installing FRRouting on the Host</title>
+      <link>docs.cumulusnetworks.com/host-pack/Installing-FRRouting-on-the-Host/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/host-pack/Installing-FRRouting-on-the-Host/</guid>
+      <description>To use Host Pack to bring routing to your host servers, you must install the FRRouting (FRR) package on those servers. FRRouting on the Host is supported in the following environments:
+ Ubuntu 14.04-LTS, Trusty Tahr
+ Ubuntu 16.04-LTS, Xenial Xerus
+ Red Hat Enterprise Linux 7
+ CentOS 7
+ Docker containers
+  Install the FRR Package on a Bare Metal Server  If FRRouting is already installed on the host, you must uninstall that package before you install FRR.</description>
+    </item>
+    
+    <item>
+      <title>Configuring FRRouting on the Host</title>
+      <link>docs.cumulusnetworks.com/host-pack/Configuring-FRRouting-on-the-Host/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/host-pack/Configuring-FRRouting-on-the-Host/</guid>
+      <description>This section provides an overview of configuring FRRouting (FRR), the IP routing protocol suite for Linux and Unix platforms so you can configure routing directly to your Ubuntu or Red Hat Enterprise Linux hosts or in containers.
+All BFD (bidirectional forwarding detection) and PTM (Prescriptive Topology Manager) commands do not work on server hosts because PTM is not enabled on the host.
+ Configuration Files At startup, FRR reads a set of files to determine the startup configuration.</description>
+    </item>
+    
+    <item>
+      <title>Installing NetQ on the Host</title>
+      <link>docs.cumulusnetworks.com/host-pack/Installing-NetQ-on-the-Host/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/host-pack/Installing-NetQ-on-the-Host/</guid>
+      <description>NetQ on the Host is the version of NetQ you install on physical servers and in container hosts.
+Install on an Ubuntu Server Before you install the NetQ Agent on an Ubuntu server, make sure the following packages are installed and running these minimum versions:
+ docker-ce 17.06.1~ce-0~ubuntu amd64
+This package is required only if you plan to monitor Docker instances on the host; otherwise do not install it.    iproute 1:4.</description>
+    </item>
+    
+    <item>
+      <title>Configuring NetQ on the Host</title>
+      <link>docs.cumulusnetworks.com/host-pack/Configuring-NetQ-on-the-Host/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/host-pack/Configuring-NetQ-on-the-Host/</guid>
+      <description>Once you install the NetQ packages and configure the NetQ Telemetry Server, you need to configure NetQ on each node (Linux host) to monitor that node on your network.
+ To ensure useful output, ensure that NTP is running.
+ On the host, after you install the NetQ metapackage, restart rsyslog so logs are sent to the correct destination:
+root@host:~# systemctl restart rsyslog  CentOS, RHEL or Ubuntu hosts only: Enable and restart the netqd service:</description>
+    </item>
+    
+    <item>
+      <title>Installing Docker</title>
+      <link>docs.cumulusnetworks.com/host-pack/Installing-Docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/host-pack/Installing-Docker/</guid>
+      <description>Before using a Docker container, you must first install Docker. The following steps were done on an Ubuntu 16.04 host.
+ Add the Docker repository key.
+root@host:~# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  Install the Docker repository.
+root@host:~# echo &amp;quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&amp;quot; | sudo tee /etc/apt/sources.list.d/docker.list  Update the package lists.
+root@host:~# apt-get update  Install Docker on the Ubuntu host.
+root@host:~# apt-get install -y docker-ce  Check that the Docker service is running on the Ubuntu 16.</description>
+    </item>
+    
+    <item>
+      <title>Configuring Container Advertiser</title>
+      <link>docs.cumulusnetworks.com/host-pack/Configuring-Container-Advertiser/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/host-pack/Configuring-Container-Advertiser/</guid>
+      <description>Container Advertiser and FRRouting (FRR) work together on the host to advertise containers into the routed fabric.
+Container Advertiser Architecture As Docker creates and destroys containers, the Container Advertiser listens to the docker-engine API events stream. When a container creation event is detected, a corresponding /32 host route is created in table 30 of the Linux kernel routing tables. Similarly, when a container destruction event is detected, the corresponding /32 host route is removed.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring Linux Hosts with NetQ</title>
+      <link>docs.cumulusnetworks.com/host-pack/Monitoring-Linux-Hosts-with-NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/host-pack/Monitoring-Linux-Hosts-with-NetQ/</guid>
+      <description>Running NetQ on Linux hosts provides unprecedented network visibility, giving the network operator a complete view of the entire infastrucutre’s network connectivity instead of just from the network devices.
+The NetQ Agent is supported on the following Linux hosts:
+ CentOS 7
+ Red Hat Enterprise Linux 7.1
+ Ubuntu 16.04
+  You need to install the OS-specific NetQ metapack on every host you want to monitor with NetQ.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring Container Environments with NetQ</title>
+      <link>docs.cumulusnetworks.com/host-pack/Monitoring-Container-Environments-with-NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/host-pack/Monitoring-Container-Environments-with-NetQ/</guid>
+      <description>The NetQ Agent monitors container environments the same way it monitors physical servers. There is no special implementation. The NetQ Agent pulls data from the container as it would pull data from a Cumulus Linux switch or Linux host.
+NetQ interacts with containers managed by both Docker Swarm and Kubernetes.
+NetQ monitors many aspects of containers on your network, including their:
+ Identity: The NetQ agent tracks every container&amp;rsquo;s IP and MAC address, name, image, and more.</description>
+    </item>
+    
+  </channel>
+</rss>

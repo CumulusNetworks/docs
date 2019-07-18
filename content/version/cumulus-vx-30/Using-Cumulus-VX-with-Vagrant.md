@@ -3,7 +3,7 @@ title: Using Cumulus VX with Vagrant
 author: Cumulus Networks
 weight: 17
 aliases:
- - /display/VX30/Using-Cumulus-VX-with-Vagrant
+ - /display/VX30/Using+Cumulus+VX+with+Vagrant
  - /pages/viewpage.action?pageId=5126596
 pageID: 5126596
 product: Cumulus VX

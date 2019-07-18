@@ -3,7 +3,7 @@ title: Open Shortest Path First v3 - OSPFv3 - Protocol
 author: Cumulus Networks
 weight: 165
 aliases:
- - /display/CL321/Open-Shortest-Path-First-v3---OSPFv3---Protocol
+ - /display/CL321/Open+Shortest+Path+First+v3+++OSPFv3+++Protocol
  - /pages/viewpage.action?pageId=5127047
 pageID: 5127047
 product: Cumulus Linux

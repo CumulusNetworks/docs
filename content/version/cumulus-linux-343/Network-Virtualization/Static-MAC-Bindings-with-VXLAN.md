@@ -3,7 +3,7 @@ title: Static MAC Bindings with VXLAN
 author: Cumulus Networks
 weight: 147
 aliases:
- - /display/CL34/Static-MAC-Bindings-with-VXLAN
+ - /display/CL34/Static+MAC+Bindings+with+VXLAN
  - /pages/viewpage.action?pageId=7112511
 pageID: 7112511
 product: Cumulus Linux

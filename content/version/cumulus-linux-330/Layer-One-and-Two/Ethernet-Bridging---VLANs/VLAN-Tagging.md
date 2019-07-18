@@ -3,7 +3,7 @@ title: VLAN Tagging
 author: Cumulus Networks
 weight: 299
 aliases:
- - /display/CL33/VLAN-Tagging
+ - /display/CL33/VLAN+Tagging
  - /pages/viewpage.action?pageId=5866203
 pageID: 5866203
 product: Cumulus Linux

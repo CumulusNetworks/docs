@@ -3,7 +3,7 @@ title: Border Gateway Protocol - BGP
 author: Cumulus Networks
 weight: 167
 aliases:
- - /display/CL321/Border-Gateway-Protocol---BGP
+ - /display/CL321/Border+Gateway+Protocol+++BGP
  - /pages/viewpage.action?pageId=5127049
 pageID: 5127049
 product: Cumulus Linux

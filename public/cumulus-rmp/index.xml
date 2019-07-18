@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cumulus RMP on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/cumulus-rmp/</link>
+    <description>Recent content in Cumulus RMP on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/cumulus-rmp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Quick Start Guide</title>
+      <link>docs.cumulusnetworks.com/cumulus-rmp/Quick-Start-Guide/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/cumulus-rmp/Quick-Start-Guide/</guid>
+      <description>This quick start guide provides an end-to-end setup process for installing and running Cumulus RMP, as well as a collection of example commands for getting started after installation is complete.
+Prerequisites
+Intermediate Linux knowledge is assumed for this guide. You should be familiar with basic text editing, Unix file permissions, and process monitoring. A variety of text editors are pre-installed, including vi and nano.
+You must have access to a Linux or UNIX shell.</description>
+    </item>
+    
+  </channel>
+</rss>

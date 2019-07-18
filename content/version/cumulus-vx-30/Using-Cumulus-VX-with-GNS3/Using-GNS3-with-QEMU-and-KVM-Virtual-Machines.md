@@ -3,7 +3,7 @@ title: Using GNS3 with QEMU and KVM Virtual Machines
 author: Cumulus Networks
 weight: 65
 aliases:
- - /display/VX30/Using-GNS3-with-QEMU-and-KVM-Virtual-Machines
+ - /display/VX30/Using+GNS3+with+QEMU+and+KVM+Virtual+Machines
  - /pages/viewpage.action?pageId=5126603
 pageID: 5126603
 product: Cumulus VX

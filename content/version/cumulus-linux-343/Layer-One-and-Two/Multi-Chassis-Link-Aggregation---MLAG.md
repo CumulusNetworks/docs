@@ -3,7 +3,7 @@ title: Multi-Chassis Link Aggregation - MLAG
 author: Cumulus Networks
 weight: 121
 aliases:
- - /display/CL34/Multi-Chassis-Link-Aggregation---MLAG
+ - /display/CL34/Multi+Chassis+Link+Aggregation+++MLAG
  - /pages/viewpage.action?pageId=7112429
 pageID: 7112429
 product: Cumulus Linux

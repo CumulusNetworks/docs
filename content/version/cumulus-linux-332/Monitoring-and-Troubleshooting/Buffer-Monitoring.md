@@ -3,7 +3,7 @@ title: Buffer Monitoring
 author: Cumulus Networks
 weight: 213
 aliases:
- - /display/CL332/Buffer-Monitoring
+ - /display/CL332/Buffer+Monitoring
  - /pages/viewpage.action?pageId=5868944
 pageID: 5868944
 product: Cumulus Linux

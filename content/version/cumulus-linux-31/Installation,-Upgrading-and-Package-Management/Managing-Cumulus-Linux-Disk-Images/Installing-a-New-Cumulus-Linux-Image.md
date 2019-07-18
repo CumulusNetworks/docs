@@ -3,7 +3,7 @@ title: Installing a New Cumulus Linux Image
 author: Cumulus Networks
 weight: 213
 aliases:
- - /display/CL31/Installing-a-New-Cumulus-Linux-Image
+ - /display/CL31/Installing+a+New+Cumulus+Linux+Image
  - /pages/viewpage.action?pageId=5121994
 pageID: 5121994
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: Docker on Cumulus Linux
 author: Cumulus Networks
 weight: 249
 aliases:
- - /display/CL36/Docker-on-Cumulus-Linux
+ - /display/CL36/Docker+on+Cumulus+Linux
  - /pages/viewpage.action?pageId=8362446
 pageID: 8362446
 product: Cumulus Linux

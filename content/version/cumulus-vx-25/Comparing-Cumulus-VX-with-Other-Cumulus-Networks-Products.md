@@ -3,7 +3,7 @@ title: Comparing Cumulus VX with Other Cumulus Networks Products
 author: Cumulus Networks
 weight: 21
 aliases:
- - /display/VX25/Comparing-Cumulus-VX-with-Other-Cumulus-Networks-Products
+ - /display/VX25/Comparing+Cumulus+VX+with+Other+Cumulus+Networks+Products
  - /pages/viewpage.action?pageId=5115425
 pageID: 5115425
 product: Cumulus VX

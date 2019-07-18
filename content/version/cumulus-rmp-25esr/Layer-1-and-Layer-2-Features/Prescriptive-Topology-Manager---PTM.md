@@ -3,7 +3,7 @@ title: Prescriptive Topology Manager - PTM
 author: Cumulus Networks
 weight: 69
 aliases:
- - /display/RMP25ESR/Prescriptive-Topology-Manager---PTM
+ - /display/RMP25ESR/Prescriptive+Topology+Manager+++PTM
  - /pages/viewpage.action?pageId=5116338
 pageID: 5116338
 product: Cumulus RMP

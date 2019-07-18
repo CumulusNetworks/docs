@@ -3,7 +3,7 @@ title: Comparing NCLU and vtysh Commands
 author: Cumulus Networks
 weight: 345
 aliases:
- - /display/CL332/Comparing-NCLU-and-vtysh-Commands
+ - /display/CL332/Comparing+NCLU+and+vtysh+Commands
  - /pages/viewpage.action?pageId=5869214
 pageID: 5869214
 product: Cumulus Linux

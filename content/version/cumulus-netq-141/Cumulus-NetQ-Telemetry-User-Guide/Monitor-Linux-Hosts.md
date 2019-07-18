@@ -3,7 +3,7 @@ title: Monitor Linux Hosts
 author: Cumulus Networks
 weight: 67
 aliases:
- - /display/NETQ141/Monitor-Linux-Hosts
+ - /display/NETQ141/Monitor+Linux+Hosts
  - /pages/viewpage.action?pageId=10453490
 pageID: 10453490
 product: Cumulus NetQ

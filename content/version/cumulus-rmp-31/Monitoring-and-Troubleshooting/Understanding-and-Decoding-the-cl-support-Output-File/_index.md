@@ -3,7 +3,7 @@ title: Understanding and Decoding the cl-support Output File
 author: Cumulus Networks
 weight: 109
 aliases:
- - /display/RMP31/Understanding-and-Decoding-the-cl-support-Output-File
+ - /display/RMP31/Understanding+and+Decoding+the+cl+support+Output+File
  - /pages/viewpage.action?pageId=5122756
 pageID: 5122756
 product: Cumulus RMP

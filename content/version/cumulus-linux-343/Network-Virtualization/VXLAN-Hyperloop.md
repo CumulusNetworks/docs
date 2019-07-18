@@ -3,7 +3,7 @@ title: VXLAN Hyperloop
 author: Cumulus Networks
 weight: 155
 aliases:
- - /display/CL34/VXLAN-Hyperloop
+ - /display/CL34/VXLAN+Hyperloop
  - /pages/viewpage.action?pageId=7112552
 pageID: 7112552
 product: Cumulus Linux

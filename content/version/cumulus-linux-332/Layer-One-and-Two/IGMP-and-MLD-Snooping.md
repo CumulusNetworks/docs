@@ -3,7 +3,7 @@ title: IGMP and MLD Snooping
 author: Cumulus Networks
 weight: 125
 aliases:
- - /display/CL332/IGMP-and-MLD-Snooping
+ - /display/CL332/IGMP+and+MLD+Snooping
  - /pages/viewpage.action?pageId=5869009
 pageID: 5869009
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: Layer One and Two
 author: Cumulus Networks
 weight: 19
 aliases:
- - /display/CL33/Layer-One-and-Two
+ - /display/CL33/Layer+One+and+Two
  - /pages/viewpage.action?pageId=5866183
 pageID: 5866183
 product: Cumulus Linux

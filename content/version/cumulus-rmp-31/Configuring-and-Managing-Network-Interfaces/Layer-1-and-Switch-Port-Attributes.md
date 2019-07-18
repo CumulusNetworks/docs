@@ -3,7 +3,7 @@ title: Layer 1 and Switch Port Attributes
 author: Cumulus Networks
 weight: 55
 aliases:
- - /display/RMP31/Layer-1-and-Switch-Port-Attributes
+ - /display/RMP31/Layer+1+and+Switch+Port+Attributes
  - /pages/viewpage.action?pageId=5122796
 pageID: 5122796
 product: Cumulus RMP

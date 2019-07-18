@@ -3,7 +3,7 @@ title: TACACS Plus
 author: Cumulus Networks
 weight: 265
 aliases:
- - /display/CL332/TACACS-Plus
+ - /display/CL332/TACACS+Plus
  - /pages/viewpage.action?pageId=5868883
 pageID: 5868883
 product: Cumulus Linux

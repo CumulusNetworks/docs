@@ -3,7 +3,7 @@ title: LDAP Authentication and Authorization
 author: Cumulus Networks
 weight: 263
 aliases:
- - /display/CL332/LDAP-Authentication-and-Authorization
+ - /display/CL332/LDAP+Authentication+and+Authorization
  - /pages/viewpage.action?pageId=5868881
 pageID: 5868881
 product: Cumulus Linux

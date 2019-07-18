@@ -3,7 +3,7 @@ title: Upgrading Cumulus Linux
 author: Cumulus Networks
 weight: 45
 aliases:
- - /display/CL33/Upgrading-Cumulus-Linux
+ - /display/CL33/Upgrading+Cumulus+Linux
  - /pages/viewpage.action?pageId=5866181
 pageID: 5866181
 product: Cumulus Linux

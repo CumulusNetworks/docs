@@ -3,7 +3,7 @@ title: Network Command Line Utility
 author: Cumulus Networks
 weight: 59
 aliases:
- - /display/RMP31/Network-Command-Line-Utility
+ - /display/RMP31/Network+Command+Line+Utility
  - /pages/viewpage.action?pageId=5122799
 pageID: 5122799
 product: Cumulus RMP

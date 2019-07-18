@@ -3,7 +3,7 @@ title: SSH for Remote Access
 author: Cumulus Networks
 weight: 279
 aliases:
- - /display/CL36/SSH-for-Remote-Access
+ - /display/CL36/SSH+for+Remote+Access
  - /pages/viewpage.action?pageId=8362046
 pageID: 8362046
 product: Cumulus Linux

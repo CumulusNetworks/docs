@@ -3,7 +3,7 @@ title: Power over Ethernet - PoE
 author: Cumulus Networks
 weight: 75
 aliases:
- - /display/CL332/Power-over-Ethernet---PoE
+ - /display/CL332/Power+over+Ethernet+++PoE
  - /pages/viewpage.action?pageId=5868896
 pageID: 5868896
 product: Cumulus Linux

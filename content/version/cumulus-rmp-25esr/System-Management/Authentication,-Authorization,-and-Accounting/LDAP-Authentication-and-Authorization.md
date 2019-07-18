@@ -3,7 +3,7 @@ title: LDAP Authentication and Authorization
 author: Cumulus Networks
 weight: 119
 aliases:
- - /display/RMP25ESR/LDAP-Authentication-and-Authorization
+ - /display/RMP25ESR/LDAP+Authentication+and+Authorization
  - /pages/viewpage.action?pageId=5116314
 pageID: 5116314
 product: Cumulus RMP

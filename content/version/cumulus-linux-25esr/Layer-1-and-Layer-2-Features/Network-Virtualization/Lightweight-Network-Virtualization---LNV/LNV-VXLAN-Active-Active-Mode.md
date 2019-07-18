@@ -3,7 +3,7 @@ title: LNV VXLAN Active-Active Mode
 author: Cumulus Networks
 weight: 281
 aliases:
- - /display/CL25ESR/LNV-VXLAN-Active-Active-Mode
+ - /display/CL25ESR/LNV+VXLAN+Active+Active+Mode
  - /pages/viewpage.action?pageId=5116066
 pageID: 5116066
 product: Cumulus Linux

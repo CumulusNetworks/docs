@@ -3,7 +3,7 @@ title: Configuring and Managing Network Interfaces
 author: Cumulus Networks
 weight: 19
 aliases:
- - /display/CL30/Configuring-and-Managing-Network-Interfaces
+ - /display/CL30/Configuring+and+Managing+Network+Interfaces
  - /pages/viewpage.action?pageId=5118370
 pageID: 5118370
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: Using netshow to Troubleshoot Your Network Configuration
 author: Cumulus Networks
 weight: 203
 aliases:
- - /display/RMP31/Using-netshow-to-Troubleshoot-Your-Network-Configuration
+ - /display/RMP31/Using+netshow+to+Troubleshoot+Your+Network+Configuration
  - /pages/viewpage.action?pageId=5122755
 pageID: 5122755
 product: Cumulus RMP

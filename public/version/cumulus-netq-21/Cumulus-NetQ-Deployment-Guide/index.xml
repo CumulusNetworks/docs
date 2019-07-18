@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cumulus NetQ Deployment Guide on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/</link>
+    <description>Recent content in Cumulus NetQ Deployment Guide on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deployment Preface</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Deployment-Preface/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Deployment-Preface/</guid>
+      <description>A variety of resources are available for you to become familiar with Cumulus NetQ and aid in its deployment. These are identified here along with information about how the content is presented.
+What&amp;rsquo;s New in Cumulus NetQ 2.2 Cumulus NetQ is now available as a cloud service, making it even easier to scale with your network growth. Just like Cumulus NetQ deployed in your premises, real-time data collection and fabric-wide performance analysis are available through the cloud service.</description>
+    </item>
+    
+    <item>
+      <title>Cumulus NetQ Primer</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Cumulus-NetQ-Primer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Cumulus-NetQ-Primer/</guid>
+      <description>Cumulus® NetQ is a highly-scalable, modern network operations tool set that provides visibility and troubleshooting of your overlay and underlay networks in real-time. NetQ delivers actionable insights and operational intelligence about the health of your data center — from the container, virtual machine, or host, all the way to the switch and port. NetQ correlates configuration and operational status, and instantly identifies and tracks state changes while simplifying management for the entire Linux-based data center.</description>
+    </item>
+    
+    <item>
+      <title>Install NetQ</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Install-NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Install-NetQ/</guid>
+      <description>Installing NetQ can be accomplished in one of three ways:
+ If you have purchased a NetQ (On-site) or Cloud Appliance, refer to Getting started with the Cumulus NetQ Appliance  or Getting started with the Cumulus NetQ Cloud Appliance  for instructions on installing and configuring the appliance. Then return to this topic for instructions on how to load the NetQ Agent on any switches and hosts you want to monitor.</description>
+    </item>
+    
+    <item>
+      <title>Integrate with Third-party Software and Hardware</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware/</guid>
+      <description>After you have installed NetQ applications package and the NetQ Agents, you may want to configure some of the additional capabilities that NetQ offers. This topic describes how to install, setup, and configure these capabilities.
+Integrate NetQ with an Event Notification Application To take advantage of the numerous event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with the PagerDuty and Slack tools.</description>
+    </item>
+    
+    <item>
+      <title>Backup and Restore NetQ</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/</guid>
+      <description>It is recommended that you back up your NetQ data according to your company policy. This topic describes how to backup and also restore your NetQ data.
+Backup and restore can be performed as needed or it can be scheduled through a cron job. NetQ 2.x data is stored in a Cassandra database. Only one backup file is supported, and can be restored as needed. The backup can be created from one running cluster and restored to another cluster.</description>
+    </item>
+    
+  </channel>
+</rss>

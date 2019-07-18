@@ -3,7 +3,7 @@ title: RADIUS AAA
 author: Cumulus Networks
 weight: 277
 aliases:
- - /display/CL35/RADIUS-AAA
+ - /display/CL35/RADIUS+AAA
  - /pages/viewpage.action?pageId=8357341
 pageID: 8357341
 product: Cumulus Linux

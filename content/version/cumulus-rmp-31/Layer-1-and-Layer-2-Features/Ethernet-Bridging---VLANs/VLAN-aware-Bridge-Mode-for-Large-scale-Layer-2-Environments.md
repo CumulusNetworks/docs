@@ -3,7 +3,7 @@ title: VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
 author: Cumulus Networks
 weight: 163
 aliases:
- - /display/RMP31/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments
+ - /display/RMP31/VLAN+aware+Bridge+Mode+for+Large+scale+Layer+2+Environments
  - /pages/viewpage.action?pageId=5122788
 pageID: 5122788
 product: Cumulus RMP

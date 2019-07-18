@@ -1,0 +1,5993 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Quick Start Guide | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/docs.cumulusnetworks.com/book.min.a378d8a2da6f5357a83a43dff33d6f77fb70401e0399d5ba78faf81d7a1ae1a8.css">
+
+  
+  <link rel="icon" href="/docs.cumulusnetworks.com/icons/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+  
+  
+  <script src = "/docs.cumulusnetworks.com/js/codecopy.js"> </script>
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+      
+    
+    <ul>
+    
+      <li class = "active" ><a href = docs.cumulusnetworks.com/cumulus-linux/ >
+        Cumulus Linux </a> </li>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-netq/ >
+        Cumulus NetQ </a> </li>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-vx/ >
+        Cumulus VX </a> </li>
+    
+      <li>
+        <div id="products-dropdown" class="dropdown">
+            <button class="btn" type="button" id="dropdownMenuButton">
+              Products
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="">Cumulus RMP</a>
+              <a class="dropdown-item" href="">Cumulus Chassis</a>
+              <a class="dropdown-item" href="">Cumulus Host Pack</a>
+            </div>
+        </div>
+      </li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v2.5.12
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/cumulus-linux/"> v3.7.7</a>
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-25esr/"> v2.5.12</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-30/"> v3.0.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-31/"> v3.1.2</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-321/"> v3.2.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-330/"> v3.3.0</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-332/"> v3.3.2</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-343/"> v3.4.3</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-35/"> v3.5</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-linux-36/"> v3.6</a>
+            
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="docs.cumulusnetworks.com">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+            
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/" >
+    Cumulus Linux User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/" >
+    Installation, Upgrading and Package Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/" >
+    Managing Cumulus Linux Disk Images
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Installing-a-New-Cumulus-Linux-Image/" >
+    Installing a New Cumulus Linux Image
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux/" >
+    Upgrading Cumulus Linux
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Adding-and-Updating-Packages/" >
+    Adding and Updating Packages
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Zero-Touch-Provisioning-ZTP/" >
+    Zero Touch Provisioning - ZTP
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/System-Management/" >
+    System Management
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/System-Management/Authentication-Authorization-and-Accounting/" >
+    Authentication, Authorization, and Accounting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/System-Management/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access/" >
+    SSH for Remote Access
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/System-Management/Authentication-Authorization-and-Accounting/User-Accounts/" >
+    User Accounts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/System-Management/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges/" >
+    Using sudo to Delegate Privileges
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/System-Management/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization/" >
+    LDAP Authentication and Authorization
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/System-Management/Setting-Date-and-Time/" >
+    Setting Date and Time
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/System-Management/Netfilter-ACLs/" >
+    Netfilter - ACLs
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/System-Management/Configuring-switchd/" >
+    Configuring switchd
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/System-Management/Power-over-Ethernet-PoE/" >
+    Power over Ethernet - PoE
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/System-Management/Configuring-a-Global-Proxy/" >
+    Configuring a Global Proxy
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Configuring-and-Managing-Network-Interfaces/" >
+    Configuring and Managing Network Interfaces
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/" >
+    Layer 1 and Switch Port Attributes
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Configuring-and-Managing-Network-Interfaces/Buffer-and-Queue-Management/" >
+    Buffer and Queue Management
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/" >
+    Layer 1 and Layer 2 Features
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/" >
+    Ethernet Bridging - VLANs
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-Tagging/" >
+    VLAN Tagging
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/" >
+    VLAN-aware Bridge Mode for Large-scale Layer 2 Environments
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Network-Virtualization/" >
+    Network Virtualization
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/" >
+    Lightweight Network Virtualization - LNV
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/LNV-VXLAN-Active-Active-Mode/" >
+    LNV VXLAN Active-Active Mode
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/LNV-Full-Example/" >
+    LNV Full Example
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Network-Virtualization/Integrating-with-VMware-NSX/" >
+    Integrating with VMware NSX
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Network-Virtualization/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack/" >
+    Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Network-Virtualization/Static-MAC-Bindings-with-VXLAN/" >
+    Static MAC Bindings with VXLAN
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree/" >
+    Spanning Tree and Rapid Spanning Tree
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Link-Layer-Discovery-Protocol/" >
+    Link Layer Discovery Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM/" >
+    Prescriptive Topology Manager - PTM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Bonding-Link-Aggregation/" >
+    Bonding - Link Aggregation
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG/" >
+    Multi-Chassis Link Aggregation - MLAG
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/LACP-Bypass/" >
+    LACP Bypass
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Virtual-Router-Redundancy-VRR/" >
+    Virtual Router Redundancy - VRR
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/IGMP-and-MLD-Snooping/" >
+    IGMP and MLD Snooping
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-3-Features/" >
+    Layer 3 Features
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-3-Features/Routing/" >
+    Routing
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-3-Features/Introduction-to-Routing-Protocols/" >
+    Introduction to Routing Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-3-Features/Network-Topology/" >
+    Network Topology
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-3-Features/Quagga-Overview/" >
+    Quagga Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-3-Features/Configuring-Quagga/" >
+    Configuring Quagga
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol/" >
+    Open Shortest Path First - OSPF - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First-v3-OSPFv3-Protocol/" >
+    Open Shortest Path First v3 - OSPFv3 - Protocol
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-3-Features/Configuring-Border-Gateway-Protocol-BGP/" >
+    Configuring Border Gateway Protocol - BGP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-3-Features/Bidirectional-Forwarding-Detection-BFD/" >
+    Bidirectional Forwarding Detection - BFD
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-3-Features/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/" >
+    Equal Cost Multipath Load Sharing - Hardware ECMP
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Layer-3-Features/Management-VRF/" >
+    Management VRF
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/" >
+    Monitoring and Troubleshooting
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/" >
+    Understanding and Decoding the cl-support Output File
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-Log-Files/" >
+    Troubleshooting Log Files
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-the-etc-Directory/" >
+    Troubleshooting the etc Directory
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-the-support-Directory/" >
+    Troubleshooting the support Directory
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery/" >
+    Single User Mode - Boot Recovery
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Using-netshow-to-Troubleshoot-Your-Network-Configuration/" >
+    Using netshow to Troubleshoot Your Network Configuration
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Monitoring-Interfaces-and-Transceivers-Using-ethtool/" >
+    Monitoring Interfaces and Transceivers Using ethtool
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/" >
+    Resource Diagnostics Using cl-resource-query
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/" >
+    Monitoring System Hardware
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/" >
+    Monitoring System Statistics and Network Traffic with sFlow
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Monitoring-Virtual-Device-Counters/" >
+    Monitoring Virtual Device Counters
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Managing-Application-Daemons/" >
+    Managing Application Daemons
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/" >
+    Troubleshooting Network Interfaces
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Network-Troubleshooting/" >
+    Network Troubleshooting
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/SNMP-Monitoring/" >
+    SNMP Monitoring
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Network-Solutions/" >
+    Network Solutions
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Network-Solutions/Data-Center-Host-to-ToR-Architecture/" >
+    Data Center Host to ToR Architecture
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Network-Solutions/Cumulus-Networks-Services-Demos/" >
+    Cumulus Networks Services Demos
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Quick-Start-Guide/"  class="active" >
+    Quick Start Guide
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Cumulus-Linux-Index/" >
+    Cumulus Linux Index
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "/docs.cumulusnetworks.com/js/menuBundle.js"> </script>
+
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/docs.cumulusnetworks.com/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Quick Start Guide</strong>
+      </header>
+
+      
+      
+<div class= "notices info" id = "info" >
+    This documentation is for an older version of the software. If you are using the current version of Cumulus Linux, this content may not be up to date. The current version of the documentation is available [here](https://docs.cumulusnetworks.com/).
+  </div>
+<article class="markdown">
+<h1>Quick Start Guide</h1>
+
+<p>This chapter helps you get up and running with Cumulus Linux quickly and
+easily.</p>
+
+<h2 id="span-what-s-new-in-cumulus-linux-2-5-12-span"><span>What&rsquo;s New in Cumulus Linux 2.5.12</span></h2>
+
+<p>Cumulus Linux 2.5.12 is part of Cumulus Linux 2.5 ESR and as such,
+contains bug fixes only. The <a href="https://support.cumulusnetworks.com/hc/en-us/articles/115001896847" target="_blank">release
+notes</a>
+contain information about the release as well as the fixed and known
+issues.</p>
+
+<h2 id="span-open-source-contributions-span"><span>Open Source Contributions</span></h2>
+
+<p>Cumulus Networks has forked various software projects, like CFEngine,
+Netdev and some Puppet Labs packages in order to implement various
+Cumulus Linux features. The forked code resides in the Cumulus Networks
+<a href="https://github.com/CumulusNetworks" target="_blank">GitHub repository</a>.</p>
+
+<p>Cumulus Networks developed and released as open source some new
+applications as well.</p>
+
+<p>The list of open source projects is on the <a href="http://oss.cumulusnetworks.com" target="_blank">open source
+software</a> page.</p>
+
+<h2 id="span-prerequisites-span"><span>Prerequisites</span></h2>
+
+<p>Prior intermediate Linux knowledge is assumed for this guide. You should
+be familiar with basic text editing, Unix file permissions, and process
+monitoring. A variety of text editors are pre-installed, including <code>vi</code>
+and <code>nano</code>.</p>
+
+<p>You must have access to a Linux or UNIX shell. If you are running
+Windows, you should use a Linux environment like
+<a href="http://www.cygwin.com" target="_blank">Cygwin</a> as your command line tool for
+interacting with Cumulus Linux.</p>
+
+
+<div class="notices tip" > <p>If you&rsquo;re a networking engineer but are unfamiliar with Linux concepts,
+use <a href="https://support.cumulusnetworks.com/hc/en-us/articles/201787636" target="_blank">this reference
+guide</a>
+to see examples of the Cumulus Linux CLI and configuration options, and
+their equivalent Cisco Nexus 3000 NX-OS commands and settings for
+comparison. You can also <a href="http://cumulusnetworks.com/technical-videos/" target="_blank">watch a series of short
+videos</a> introducing you to
+Linux in general and some Cumulus Linux-specific concepts in particular.</p>
+ </div>
+
+
+<h2 id="span-hardware-compatibility-list-span"><span>Hardware Compatibility List</span></h2>
+
+<p>You can find the most up to date hardware compatibility list (HCL)
+<a href="http://cumulusnetworks.com/hcl/" target="_blank">here</a>. Use the HCL to confirm that
+your switch model is supported by Cumulus Networks. The HCL is updated
+regularly, listing products by port configuration, manufacturer, and SKU
+part number.</p>
+
+<p><span id="src-5115897_QuickStartGuide-install"></span></p>
+
+<h2 id="span-installing-cumulus-linux-span"><span>Installing Cumulus Linux</span></h2>
+
+<p>This quick start guide walks you through the steps necessary for getting
+Cumulus Linux up and running on your switch, which includes:</p>
+
+<ol>
+<li><p>Powering on the switch and entering ONIE, the Open Network Install
+Environment.</p></li>
+
+<li><p>Installing Cumulus Linux on the switch via ONIE.</p></li>
+
+<li><p>Booting into Cumulus Linux and installing the license.</p></li>
+
+<li><p>Rebooting the switch to activate the switch ports.</p></li>
+
+<li><p>Configuring switch ports and a loopback interface.</p></li>
+</ol>
+
+<p>To install Cumulus Linux, you use
+<a href="https://github.com/opencomputeproject/onie" target="_blank">ONIE</a> (Open Network Install
+Environment), an extension to the traditional U-Boot software that
+allows for automatic discovery of a network installer image. This
+facilitates the ecosystem model of procuring switches, with a user&rsquo;s own
+choice of operating system loaded, such as Cumulus Linux.</p>
+
+
+<div class="notices note" > <p>If Cumulus Linux is already installed on your switch, and you need to
+upgrade the software only, you can skip to <a href="#src-5115897_QuickStartGuide-upgrading-cumulus-linux">Upgrading Cumulus
+Linux</a> below.</p>
+ </div>
+
+
+<p>The easiest way to install Cumulus Linux with ONIE is via local HTTP
+discovery:</p>
+
+<ol>
+<li><p>If your host (like a laptop or server) is IPv6-enabled, make sure it
+is running a Web server.</p>
+
+<p>If the host is IPv4-enabled, make sure it is running DHCP as well as
+a Web server.</p></li>
+
+<li><p><a href="http://cumulusnetworks.com/downloads/" target="_blank">Download</a> the Cumulus Linux
+installation file to the root directory of the Web server. Rename
+this file <code>onie-installer</code>.</p></li>
+
+<li><p>Connect your host via Ethernet cable to the management Ethernet port
+of the switch.</p></li>
+
+<li><p>Power on the switch. The switch downloads the ONIE image installer
+and boots it. You can watch the progress of the install in your
+terminal. After the installation finishes, the Cumulus Linux login
+prompt appears in the terminal window.</p></li>
+</ol>
+
+
+<div class="notices note" > <p>These steps describe a flexible unattended installation method. You
+should not need a console cable. A fresh install via ONIE using a local
+Web server should generally complete in less than 10 minutes.</p>
+
+<p>You have more options for installing Cumulus Linux with ONIE. Read
+<a href="/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Installing-a-New-Cumulus-Linux-Image">Installing a New Cumulus Linux
+Image</a>
+to install Cumulus Linux using ONIE in the following ways:</p>
+
+<ul>
+<li><p>DHCP/Web server with and without DHCP options</p></li>
+
+<li><p>Web server without DHCP</p></li>
+
+<li><p>FTP or TFTP without a Web server</p></li>
+
+<li><p>Local file</p></li>
+
+<li><p>USB</p></li>
+</ul>
+ </div>
+
+
+<p>ONIE supports many other discovery mechanisms using USB (copy the
+installer to the root of the drive), DHCPv6 and DHCPv4, and image copy
+methods including HTTP, FTP, and TFTP. For more information on these
+discovery methods, refer to the <a href="https://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-method" target="_blank">ONIE
+documentation</a>.</p>
+
+<p>After installing Cumulus Linux, you are ready to:</p>
+
+<ul>
+<li><p>Log in to Cumulus Linux on the switch.</p></li>
+
+<li><p>Install the Cumulus Linux license.</p></li>
+
+<li><p>Configure Cumulus Linux. This quick start guide provides
+instructions on configuring switch ports and a loopback interface.</p></li>
+</ul>
+
+<h2 id="span-id-src-5115897-quickstartguide-upgrading-cumulus-linux-class-confluence-anchor-link-span-span-upgrading-cumulus-linux-span"><span id="src-5115897_QuickStartGuide-upgrading-cumulus-linux" class="confluence-anchor-link"></span><span>Upgrading Cumulus Linux</span></h2>
+
+<p>If you already have Cumulus Linux installed on your switch and are
+upgrading to a maintenance release (X.Y.Z, like 2.5.1) from an earlier
+release in the same major and minor release family <strong>only</strong> (like 2.2.1
+to 2.2.2, or 2.5.0 to 2.5.1), you can use various methods, including
+<code>apt-get,</code> to upgrade to the new version instead. See <a href="Managing-Cumulus-Linux-Disk-Images.html#src-5115988_ManagingCumulusLinuxDiskImages-upgrade" target="_blank">Upgrading Cumulus
+Linux</a>
+for details.</p>
+
+<h2 id="span-configuring-cumulus-linux-span"><span>Configuring Cumulus Linux</span></h2>
+
+<p>When bringing up Cumulus Linux for the first time, the management port
+makes a DHCPv4 request. To determine the IP address of the switch, you
+can cross reference the MAC address of the switch with your DHCP server.
+The MAC address should be located on the side of the switch or on the
+box in which the unit was shipped.</p>
+
+<h3 id="span-login-credentials-span"><span>Login Credentials</span></h3>
+
+<p>The default installation includes one system account, <em>root</em>, with full
+system privileges, and one user account, <em>cumulus</em>, with <code>sudo</code>
+privileges. The <em>root</em> account password is set to null by default (which
+prohibits login), while the <em>cumulus</em> account is configured with this
+default password:</p>
+
+<pre><code>CumulusLinux!
+</code></pre>
+
+<p>In this quick start guide, you will use the <em>cumulus</em> account to
+configure Cumulus Linux.</p>
+
+
+<div class="notices warning" > <p>For best security, you should change the default password (using the
+<code>passwd</code>command) before you configure Cumulus Linux on the switch.</p>
+ </div>
+
+
+<p>All accounts except root are permitted remote SSH login; sudo may be
+used to grant a non-root account root-level access. Commands which
+change the system configuration require this elevated level of access.</p>
+
+<p>For more information about sudo, read <a href="/version/cumulus-linux-25esr/System-Management/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges">Using sudo to Delegate
+Privileges</a>.</p>
+
+<h3 id="span-serial-console-management-span"><span>Serial Console Management</span></h3>
+
+<p>Users are encouraged to perform management and configuration over the
+network, either in band or out of band. Use of the serial console is
+fully supported; however, many customers prefer the convenience of
+network-based management.</p>
+
+<p>Typically, switches will ship from the manufacturer with a mating DB9
+serial cable. Switches with ONIE are always set to a 115200 baud rate.</p>
+
+<h3 id="span-wired-ethernet-management-span"><span>Wired Ethernet Management</span></h3>
+
+<p>Switches supported in Cumulus Linux always contain at least one
+dedicated Ethernet management port, which is named eth0. This interface
+is geared specifically for out-of-band management use. The management
+interface uses DHCPv4 for addressing by default. You can set a static IP
+address in the
+<a href="http://manpages.debian.net/man/5/interfaces" target="_blank">/etc/network/interfaces</a>
+file:</p>
+
+<pre><code>auto eth0
+iface eth0
+    address 192.0.2.42/24
+    gateway 192.0.2.1
+</code></pre>
+
+<h3 id="span-configuring-the-hostname-and-time-zone-span"><span>Configuring the Hostname and Time Zone</span></h3>
+
+<p>To change the hostname, modify the <code>/etc/hostname</code> and <code>/etc/hosts</code>
+files with the desired hostname and reboot the switch. First, edit
+<code>/etc/hostname</code>:</p>
+
+<pre><code>cumulus@switch:~$ sudo vi /etc/hostname
+</code></pre>
+
+<p>Then replace the 127.0.1.1 IP address in <code>/etc/hosts</code> with the new
+hostname:</p>
+
+<pre><code>cumulus@switch:~$ sudo vi /etc/hosts
+</code></pre>
+
+<p>Reboot the switch:</p>
+
+<pre><code>cumulus@switch:~$ sudo reboot
+</code></pre>
+
+<p>To update the time zone, update the <code>/etc/timezone</code> file with the
+<a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank">correct
+timezone</a>,
+run <code>dpkg-reconfigure --frontend noninteractive tzdata</code>, then reboot the
+switch:</p>
+
+<pre><code>cumulus@switch:~$ sudo vi /etc/timezone
+cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata
+cumulus@switch:~$ sudo reboot
+</code></pre>
+
+
+<div class="notices note" > <p>It is possible to change the hostname without a reboot via a script
+available on <a href="https://github.com/CumulusNetworks/customer-scripts/blob/master/change_hostname.sh" target="_blank">Cumulus Networks GitHub
+site</a>.</p>
+ </div>
+
+
+<h3 id="span-installing-the-license-span"><span>Installing the License</span></h3>
+
+<p>Cumulus Linux is licensed on a per-instance basis. Each network system
+is fully operational, enabling any capability to be utilized on the
+switch with the exception of forwarding on switch panel ports. Only eth0
+and console ports are activated on an unlicensed instance of Cumulus
+Linux. Enabling front panel ports requires a license.</p>
+
+<p>You should have received a license key from Cumulus Networks or an
+authorized reseller. Here is a sample license key:</p>
+
+<pre><code>user@company.com|thequickbrownfoxjumpsoverthelazydog312
+</code></pre>
+
+<p>There are three ways to install the license onto the switch:</p>
+
+<ul>
+<li><p>Copy it from a local server. Create a text file with the license and
+copy it to a server accessible from the switch. On the switch, use
+the following command to transfer the file directly on the switch,
+then install the license file:</p>
+
+<pre><code>cumulus@switch:~$ scp user@my_server:/home/user/my_license_file.txt .
+cumulus@switch:~$ sudo cl-license -i my_license_file.txt
+</code></pre></li>
+
+<li><p>Copy the file to an HTTP server (not HTTPS), then reference the URL
+when you run <code>cl-license</code>:</p>
+
+<pre><code>cumulus@switch:~$ sudo cl-license -i &lt;URL&gt;
+</code></pre></li>
+
+<li><p>Copy and paste the license key into the <code>cl-license</code> command:</p>
+
+<pre><code>cumulus@switch:~$ sudo cl-license -i
+&lt;paste license key&gt;
+^+d
+</code></pre></li>
+</ul>
+
+<p>Once the license is installed successfully, reboot the system:</p>
+
+<pre><code>cumulus@switch:~$ sudo reboot
+</code></pre>
+
+<p>After the switch reboots, all front panel ports will be active. The
+front panel ports are identified as switch ports, and show up as swp1,
+swp2, and so forth.</p>
+
+<h2 id="span-configuring-4x10g-port-configuration-splitter-cables-span"><span>Configuring 4x10G Port Configuration (Splitter Cables)</span></h2>
+
+<p>If you are using 4x10G DAC or AOC cables, edit the
+<code>/etc/cumulus/ports.conf</code> to enable support for these cables then
+<a href="Configuring-switchd.html#src-5115907_Configuringswitchd-restartswitchd" target="_blank">restart the <code>switchd</code>
+service</a>
+using the <code>sudo service switchd restart</code> command. For more details, see
+<a href="/version/cumulus-linux-25esr/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes">Layer 1 and Switch Port
+Attributes</a>.</p>
+
+<h2 id="span-testing-cable-connectivity-span"><span>Testing Cable Connectivity</span></h2>
+
+<p>By default, all data plane ports (every Ethernet port except the
+management interface, eth0) are disabled.</p>
+
+<p>To test cable connectivity, administratively enable a port using <code>ip
+link set &lt;interface&gt; up</code>:</p>
+
+<pre><code>cumulus@switch:~$ sudo ip link set swp1 up
+</code></pre>
+
+<p>Run the following bash script, as root, to administratively enable all
+physical ports:</p>
+
+<pre><code>cumulus@switch:~$ sudo su -
+cumulus@switch:~$ for i in /sys/class/net/*; do iface=`basename $i`; if [[ $iface == swp* ]]; then ip link set $iface up; fi done
+</code></pre>
+
+<p>To view link status, use <code>ip link show</code>. The following examples show the
+output of a port in &ldquo;admin down&rdquo;, &ldquo;down&rdquo; and &ldquo;up&rdquo; mode, respectively:</p>
+
+<pre><code># Administratively Down
+swp1: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 1000
+
+# Administratively Up but Layer 2 protocol is Down
+swp1: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 500
+
+# Administratively Up, Layer 2 protocol is Up
+swp1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
+</code></pre>
+
+<h2 id="span-configuring-switch-ports-span"><span>Configuring Switch Ports</span></h2>
+
+<h3 id="span-layer-2-port-configuration-span"><span>Layer 2 Port Configuration</span></h3>
+
+<p>Cumulus Linux does not put all ports into a bridge by default. To
+configure a front panel port or create a bridge, edit the
+<code>/etc/network/interfaces</code> file. After saving the file, to activate the
+change, use the <code>ifup</code> command.</p>
+
+<h4 id="span-examples-span"><span>Examples</span></h4>
+
+<p>In the following configuration example, the front panel port swp1 is
+placed into a bridge called br0:</p>
+
+<pre><code>auto br0
+iface br0
+  bridge-ports swp1
+  bridge-stp on
+</code></pre>
+
+<p>To put a range of ports into a bridge, use the <code>glob</code> keyword. For
+example, add swp1 through swp10, swp12, and swp14 through swp20 to br0:</p>
+
+<pre><code>auto br0
+iface br0
+  bridge-ports glob swp1-10 swp12 glob swp14-20
+  bridge-stp on
+</code></pre>
+
+<p>To activate or apply the configuration to the kernel:</p>
+
+<pre><code># First, check for typos:
+cumulus@switch:~$ sudo ifquery -a
+
+# Then activate the change if no errors are found:
+cumulus@switch:~$ sudo ifup -a
+</code></pre>
+
+<p>To view the changes in the kernel, use the <code>brctl</code> command:</p>
+
+<pre><code>cumulus@switch:~$ brctl show
+bridge name     bridge id              STP enabled     interfaces
+br0             8000.089e01cedcc2       yes              swp1
+</code></pre>
+
+
+<div class="notices note" > <p>A script is available to generate a configuration that <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203508477" target="_blank">places all
+physical ports in a single
+bridge</a>.</p>
+ </div>
+
+
+<h3 id="span-layer-3-port-configuration-span"><span>Layer 3 Port Configuration</span></h3>
+
+<p>To configure a front panel port or bridge interface as a Layer 3 port,
+edit the <code>/etc/network/interfaces</code> file.</p>
+
+<p>In the following configuration example, the front panel port swp1 is
+configured a Layer 3 access port:</p>
+
+<pre><code>auto swp1
+iface swp1
+  address 10.1.1.1/30
+</code></pre>
+
+<p>To add an IP address to a bridge interface, include the address under
+the <code>iface</code> configuration in <code>/etc/network/interfaces</code>:</p>
+
+<pre><code>auto br0
+iface br0
+  address 10.2.2.1/24
+  bridge-ports glob swp1-10 swp12 glob swp14-20
+  bridge-stp on
+</code></pre>
+
+<p>To activate or apply the configuration to the kernel:</p>
+
+<pre><code># First check for typos:
+cumulus@switch:~$ sudo ifquery -a
+
+# Then activate the change if no errors are found:
+cumulus@switch:~$ sudo ifup -a
+</code></pre>
+
+<p>To view the changes in the kernel use the <code>ip addr show</code> command:</p>
+
+<pre><code>br0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP
+link/ether 00:02:00:00:00:28 brd ff:ff:ff:ff:ff:ff
+inet 10.2.2.1/24 scope global br0
+
+swp1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP
+link/ether 44:38:39:00:6e:fe brd ff:ff:ff:ff:ff:ff
+inet 10.1.1.1/30 scope global swp1
+</code></pre>
+
+<h2 id="span-configuring-a-loopback-interface-span"><span>Configuring a Loopback Interface</span></h2>
+
+<p>Cumulus Linux has a loopback preconfigured in <code>/etc/network/interfaces</code>.
+When the switch boots up, it has a loopback interface, called <em>lo</em> ,
+which is up and assigned an IP address of 127.0.0.1.</p>
+
+<p>To see the status of the loopback interface (lo), use the <code>ip addr show
+lo</code> command:</p>
+
+<pre><code>cumulus@switch:~$ ip addr show lo
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 16436 qdisc noqueue state UNKNOWN
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+</code></pre>
+
+<p>Note that the loopback is up and is assigned an IP address of 127.0.0.1.</p>
+
+<p>To add an IP address to a loopback interface, add it directly under the
+<code>iface lo inet loopback</code> definition in <code>/etc/network/interfaces</code>:</p>
+
+<pre><code>auto lo
+iface lo inet loopback
+    address 10.1.1.1
+</code></pre>
+
+
+<div class="notices note" > <p>If an IP address is configured without a mask, as shown above, the IP
+address becomes a /32. So, in the above case, 10.1.1.1 is actually
+10.1.1.<sup>1</sup>&frasl;<sub>32</sub>.</p>
+ </div>
+
+
+<p>Multiple loopback addresses can be configured by adding additional
+<code>address</code> lines:</p>
+
+<pre><code>auto lo
+iface lo inet loopback
+    address 10.1.1.1
+    address 172.16.2.1/24
+</code></pre>
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+</article>
+
+      <script src="https://utteranc.es/client.js"
+        repo="CumulusNetworks/docs-internal"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+    <div class="toc">
+    
+      <button>
+      <a href="https://github.com/CumulusNetworks/docs/edit/master/content/version/cumulus-linux-25esr/Quick-Start-Guide.md" target="_blank" rel="noopener"><img src="/docs.cumulusnetworks.com/svg/pencil-circle.svg" alt="Edit" /> Edit this page</a>
+      </button>
+    
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#span-what-s-new-in-cumulus-linux-2-5-12-span"><span>What&rsquo;s New in Cumulus Linux 2.5.12</span></a></li>
+<li><a href="#span-open-source-contributions-span"><span>Open Source Contributions</span></a></li>
+<li><a href="#span-prerequisites-span"><span>Prerequisites</span></a></li>
+<li><a href="#span-hardware-compatibility-list-span"><span>Hardware Compatibility List</span></a></li>
+<li><a href="#span-installing-cumulus-linux-span"><span>Installing Cumulus Linux</span></a></li>
+<li><a href="#span-id-src-5115897-quickstartguide-upgrading-cumulus-linux-class-confluence-anchor-link-span-span-upgrading-cumulus-linux-span"><span id="src-5115897_QuickStartGuide-upgrading-cumulus-linux" class="confluence-anchor-link"></span><span>Upgrading Cumulus Linux</span></a></li>
+<li><a href="#span-configuring-cumulus-linux-span"><span>Configuring Cumulus Linux</span></a>
+<ul>
+<li><a href="#span-login-credentials-span"><span>Login Credentials</span></a></li>
+<li><a href="#span-serial-console-management-span"><span>Serial Console Management</span></a></li>
+<li><a href="#span-wired-ethernet-management-span"><span>Wired Ethernet Management</span></a></li>
+<li><a href="#span-configuring-the-hostname-and-time-zone-span"><span>Configuring the Hostname and Time Zone</span></a></li>
+<li><a href="#span-installing-the-license-span"><span>Installing the License</span></a></li>
+</ul></li>
+<li><a href="#span-configuring-4x10g-port-configuration-splitter-cables-span"><span>Configuring 4x10G Port Configuration (Splitter Cables)</span></a></li>
+<li><a href="#span-testing-cable-connectivity-span"><span>Testing Cable Connectivity</span></a></li>
+<li><a href="#span-configuring-switch-ports-span"><span>Configuring Switch Ports</span></a>
+<ul>
+<li><a href="#span-layer-2-port-configuration-span"><span>Layer 2 Port Configuration</span></a>
+<ul>
+<li><a href="#span-examples-span"><span>Examples</span></a></li>
+</ul></li>
+<li><a href="#span-layer-3-port-configuration-span"><span>Layer 3 Port Configuration</span></a></li>
+</ul></li>
+<li><a href="#span-configuring-a-loopback-interface-span"><span>Configuring a Loopback Interface</span></a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+  
+
+</aside>
+
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

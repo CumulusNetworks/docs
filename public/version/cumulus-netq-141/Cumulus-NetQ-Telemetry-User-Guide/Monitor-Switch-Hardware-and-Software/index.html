@@ -1,0 +1,4340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Monitor Switch Hardware and Software | Cumulus Networks Documentation</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+  
+  
+  
+  <link rel="stylesheet" href="/docs.cumulusnetworks.com/book.min.a378d8a2da6f5357a83a43dff33d6f77fb70401e0399d5ba78faf81d7a1ae1a8.css">
+
+  
+  <link rel="icon" href="/docs.cumulusnetworks.com/icons/favicon.png" type="image/x-icon">
+
+  
+  <!--
+  Made with Book Theme
+  https://github.com/alex-shpak/hugo-book
+  -->
+
+  
+  
+  <script src = "/docs.cumulusnetworks.com/js/codecopy.js"> </script>
+
+</head>
+
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  
+  <header id="site-nav">
+    <div class="header-wrapper flex">
+      <a href="/">
+        <img src="/header-logo.png" alt="Cumulus Networks">
+        <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
+        <span>Docs</span>
+      </a>
+      <ul class="flex">
+        <li><a href="//cumulusnetworks.com">HOME</a></li>
+        <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
+        <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+        <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+        <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
+        <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+      </ul>
+      <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+  <div id="product-nav" class="flex">
+      
+    
+    <ul>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-linux/ >
+        Cumulus Linux </a> </li>
+    
+      <li class = "active" ><a href = docs.cumulusnetworks.com/cumulus-netq/ >
+        Cumulus NetQ </a> </li>
+    
+      <li><a href = docs.cumulusnetworks.com/cumulus-vx/ >
+        Cumulus VX </a> </li>
+    
+      <li>
+        <div id="products-dropdown" class="dropdown">
+            <button class="btn" type="button" id="dropdownMenuButton">
+              Products
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="">Cumulus RMP</a>
+              <a class="dropdown-item" href="">Cumulus Chassis</a>
+              <a class="dropdown-item" href="">Cumulus Host Pack</a>
+            </div>
+        </div>
+      </li>
+    </ul>
+    <div class="search-container">
+      <div id="doc-search-box">
+        <input type="text" class="doc-search-input" placeholder="Search" value="">
+        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+      </div>
+      <div id="dropdown" class="dropdown">
+          <button class="btn" type="button" id="dropdownMenuButton">
+            v1.4.1
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/cumulus-netq/"> v2.2.0</a>
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-10/"> v1.0.0</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-110/"> v1.1.0</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-121/"> v1.2.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-141/"> v1.4.1</a>
+            
+            
+            
+             
+             
+            <a class = "dropdown-item" href = "docs.cumulusnetworks.com/version/cumulus-netq-21/"> v2.1</a>
+            
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+             
+            
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+             
+            
+          </div>
+      </div>
+    </div>
+  </div>
+  <main class="flex container">
+    <aside class="book-menu fixed">
+
+      <nav role="navigation">
+        <h2 class="book-brand">
+          <a href="docs.cumulusnetworks.com">Cumulus Networks Documentation</a>
+        </h2>
+        
+        
+
+
+
+
+  <ul class = "cn-book-section-container" id = "top">
+    
+        
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+            
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/" >
+    Cumulus NetQ
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/" >
+    Cumulus NetQ Image and Provisioning Management User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/IPM-Preface/" >
+    IPM Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/IPM-Command-Line-Overview/" >
+    IPM Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/Activate-and-Initialize-IPM/" >
+    Activate and Initialize IPM
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/Configure-and-Manage-DHCP-Options/" >
+    Configure and Manage DHCP Options
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/Manage-Network-Operating-System-Images/" >
+    Manage Network Operating System Images
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/Manage-Zero-Touch-Provisioning-Scripts/" >
+    Manage Zero-Touch Provisioning Scripts
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/" >
+    Cumulus NetQ Telemetry User Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/" >
+    Early Access Features
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Extend-NetQ-with-Custom-Commands/" >
+    Extend NetQ with Custom Commands
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Query-the-NetQ-Database/" >
+    Query the NetQ Database
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Collect-Interface-Statistics/" >
+    Collect Interface Statistics
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/" >
+    Resolve Issues
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Event-Message-Reference/" >
+    Event Message Reference
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/" >
+    Methods for Diagnosing Network Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Resolve-MLAG-Issues/" >
+    Resolve MLAG Issues
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Investigate-NetQ-Issues/" >
+    Investigate NetQ Issues
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Telemetry-Preface/" >
+    Telemetry Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/NetQ-Command-Line-Overview/" >
+    NetQ Command Line Overview
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/NetQ-Service-Console/" >
+    NetQ Service Console
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Overall-Network-Health/" >
+    Monitor Overall Network Health
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Switch-Hardware-and-Software/"  class="active" >
+    Monitor Switch Hardware and Software
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Physical-Layer-Components/" >
+    Monitor Physical Layer Components
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Data-Link-Layer-Devices-and-Protocols/" >
+    Monitor Data Link Layer Devices and Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Network-Layer-Protocols/" >
+    Monitor Network Layer Protocols
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Virtual-Network-Overlays/" >
+    Monitor Virtual Network Overlays
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Linux-Hosts/" >
+    Monitor Linux Hosts
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Container-Environments/" >
+    Monitor Container Environments
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Automate-Common-and-Repetitive-Tasks/" >
+    Automate Common and Repetitive Tasks
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+      
+
+  <li class="cn-book-section">
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/" >
+    Cumulus NetQ Deployment Guide
+  </a>
+
+
+
+      
+
+  <ul class="cn-book-section-container" id = "subsection">
+    
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Deployment-Preface/" >
+    Deployment Preface
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ/" >
+    Install NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Configure-Optional-NetQ-Capabilities/" >
+    Configure Optional NetQ Capabilities
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Maintain-NetQ/" >
+    Maintain NetQ
+  </a>
+
+
+    </li>
+    
+    <li >
+      
+
+  <a href="docs.cumulusnetworks.com/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Deployment-Appendices/" >
+    Deployment Appendices
+  </a>
+
+
+    </li>
+    
+  </ul>
+
+
+  </li>
+
+
+    
+    
+  </ul>
+
+
+  </li>
+
+
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+          
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+      </nav>
+
+      
+      
+      
+      
+
+      <script src = "/docs.cumulusnetworks.com/js/menuBundle.js"> </script>
+
+
+    </aside>
+
+    <div class="book-page">
+
+      
+      <header class="align-center justify-between book-header">
+        <label for="menu-control">
+          <img src="/docs.cumulusnetworks.com/svg/menu.svg" alt="Menu" />
+        </label>
+        <strong>Monitor Switch Hardware and Software</strong>
+      </header>
+
+      
+      
+<div class= "notices info" id = "info" >
+    This documentation is for an older version of the software. If you are using the current version of Cumulus Linux, this content may not be up to date. The current version of the documentation is available [here](https://docs.cumulusnetworks.com/).
+  </div>
+<article class="markdown">
+<h1>Monitor Switch Hardware and Software</h1>
+
+<p>With NetQ, a network administrator can monitor both the switch hardware
+and its operating system for misconfigurations or misbehaving services.
+NetQ provides the ability to:</p>
+
+<ul>
+<li><p>Validate configurations</p></li>
+
+<li><p>Validate service operations</p></li>
+
+<li><p>Identify inventory</p></li>
+</ul>
+
+<p>It helps answer questions such as:</p>
+
+<ul>
+<li><p>What switches do I have in the network?</p></li>
+
+<li><p>Are all of my services running?</p></li>
+
+<li><p>Are all switches licensed correctly?</p></li>
+
+<li><p>Do all switches have NetQ agents running?</p></li>
+</ul>
+
+<p>NetQ uses <a href="/display/NETQ141/Link+Layer+Discovery+Protocol">LLDP</a> (Link
+Layer Discovery Protocol) to collect port information. NetQ can also
+identify peer ports connected to DACs ( Direct Attached Cables) and AOCs
+(Active Optical Cables) without using LLDP, even if the link is not UP.</p>
+
+<h2 id="span-monitor-switch-and-host-hardware-information-span"><span>Monitor Switch and Host Hardware Information</span></h2>
+
+<p>NetQ enables you to view either a summary or details about key
+components on your switch or host, including the motherboard, ASIC,
+microprocessor, disk and memory information. The <code>netq show inventory</code>
+command is used to view the information for a single device or for all
+of your devices at once, depending on what you want to see.</p>
+
+<p>The syntax for this command is:</p>
+
+<pre><code>netq [&lt;hostname&gt;] show inventory brief [json]
+netq [&lt;hostname&gt;] show inventory asic [vendor &lt;asic-vendor&gt;| model &lt;asic-model&gt;| model-id &lt;asic-model-id&gt;] [json]
+netq [&lt;hostname&gt;] show inventory board [vendor &lt;board-vendor&gt;|model &lt;board-model&gt;] [json]
+netq [&lt;hostname&gt;] show inventory cpu [arch &lt;cpu-arch&gt;] [json]
+netq [&lt;hostname&gt;] show inventory disk [name &lt;disk-name&gt;|transport &lt;disk-transport&gt;| vendor &lt;disk-vendor&gt;] [json]
+netq [&lt;hostname&gt;] show inventory memory [type &lt;memory-type&gt;|vendor &lt;memory-vendor&gt;] [json]
+</code></pre>
+
+
+<div class="notices info" > <p>The keyword values for the <code>model</code>, <code>disk</code>, <code>arch</code>, <code>name</code>, <code>transport</code>,
+and <code>type</code> keywords are specific to your deployment. For example, if you
+have devices with CPU architectures of only one type, say Intel x86,
+then that is the only option available for the <code>cpu-arch</code> keyword value.
+If you have multiple CPU architectures, say you also have ARMv7, then
+that would also be an option for you.</p>
+ </div>
+
+
+<h3 id="span-view-information-about-the-asic-on-a-switch-span"><span>View Information about the ASIC on a Switch</span></h3>
+
+<p>You can view the vendor, model, model identifier, core bandwidth
+capability, and ports of the ASIC installed on your switch motherboard.
+This example shows all of these for all devices.</p>
+
+<pre><code>cumulus@switch:~$ netq show inventory asic
+Matching inventory records:
+Hostname          Vendor               Model                          Model ID                  Core BW        Ports
+----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
+dell-z9100-05     Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
+mlx-2100-05       Mellanox             Spectrum                       MT52132                   N/A            16 x 100G-QSFP28
+mlx-2410a1-05     Mellanox             Spectrum                       MT52132                   N/A            48 x 25G-SFP28 &amp; 8 x 100G-QSFP28
+mlx-2700-11       Mellanox             Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
+qct-ix1-08        Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
+qct-ix7-04        Broadcom             Trident3                       BCM56870                  N/A            32 x 100G-QSFP28
+qct-ix7-04        N/A                  N/A                            N/A                       N/A            N/A
+st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+st1-l2            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+st1-l3            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+st1-s1            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
+st1-s2            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
+</code></pre>
+
+<p>You can filter the results of the command to view devices with a
+particular characteristic. This example shows all devices that use a
+Broadcom ASIC.</p>
+
+<pre><code>cumulus@netq-ts:~$ netq show inventory asic vendor Broadcom
+Matching inventory records:
+Hostname          Vendor               Model                          Model ID                  Core BW        Ports
+----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
+dell-z9100-05     Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
+qct-ix1-08        Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
+qct-ix7-04        Broadcom             Trident3                       BCM56870                  N/A            32 x 100G-QSFP28
+st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+st1-l2            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+st1-l3            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+st1-s1            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
+st1-s2            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
+</code></pre>
+
+<p>You can filter the results of the command view the ASIC information for
+a particular switch. This example shows the ASIC information for
+<em>st1-11</em> switch.</p>
+
+<pre><code>cumulus@switch:~$ netq leaf02 show inventory asic
+Matching inventory records:
+Hostname          Vendor               Model                          Model ID                  Core BW        Ports
+----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
+st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ &amp; 6 x 40G-QSFP+
+</code></pre>
+
+<h3 id="span-view-information-about-the-motherboard-in-a-switch-span"><span>View Information about the Motherboard in a Switch</span></h3>
+
+<p>You can view the vendor, model, base MAC address, serial number, part
+number, revision, and manufacturing date for a switch motherboard on a
+single device or on all devices. This example shows all of the
+motherboard data for all devices.</p>
+
+<pre><code>cumulus@switch:~$ netq show inventory board
+Matching inventory records:
+Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
+dell-z9100-05     DELL                 Z9100-ON                       4C:76:25:E7:42:C0  CN03GT5N779315C20001      03GT5N           A00    12/04/2015
+mlx-2100-05       Penguin              Arctica 1600cs                 7C:FE:90:F5:61:C0  MT1623X10078              MSN2100-CB2FO    N/A    06/09/2016
+mlx-2410a1-05     Mellanox             SN2410                         EC:0D:9A:4E:55:C0  MT1734X00067              MSN2410-CB2F_QP3 N/A    08/24/2017
+mlx-2700-11       Penguin              Arctica 3200cs                 44:38:39:00:AB:80  MT1604X21036              MSN2700-CS2FO    N/A    01/31/2016
+qct-ix1-08        QCT                  QuantaMesh BMS T7032-IX1       54:AB:3A:78:69:51  QTFCO7623002C             1IX1UZZ0ST6      H3B    05/30/2016
+qct-ix7-04        QCT                  IX7                            D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
+qct-ix7-04        QCT                  T7032-IX7                      D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
+st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+st1-l3            Penguin              Arctica 4806xp                 44:38:39:00:70:49  N/A                       N/A              N/A    N/A
+st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
+st1-s2            Dell                 S6000-ON                       44:38:39:00:80:81  N/A                       N/A              N/A    N/A
+</code></pre>
+
+<p>You can filter the results of the command to capture only those devices
+with a particular motherboard vendor. This example shows only the
+devices with <em>Celestica</em> motherboards.</p>
+
+<pre><code>cumulus@switch:~$ netq show inventory board vendor celestica
+Matching inventory records:
+Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
+st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+</code></pre>
+
+<p>You can filter the results of the command to view the model for a
+particular switch. This example shows the motherboard vendor for the
+<em>st1-s1</em> switch.</p>
+
+<pre><code>cumulus@switch:~$ netq st1-s1 show inventory board
+Matching inventory records:
+Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
+st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
+</code></pre>
+
+<h3 id="span-view-information-about-the-cpu-on-a-switch-span"><span>View Information about the CPU on a Switch</span></h3>
+
+<p>You can view the architecture, model, operating frequency, and the
+number of cores for the CPU on a single device or for all devices. This
+example shows these CPU characteristics for all devices.</p>
+
+<pre><code>cumulus@nswitch:~$ netq show inventory cpu
+Matching inventory records:
+Hostname          Arch     Model                          Freq       Cores
+----------------- -------- ------------------------------ ---------- -----
+dell-z9100-05     x86_64   Intel(R) Atom(TM) C2538        2.40GHz    4
+mlx-2100-05       x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
+mlx-2410a1-05     x86_64   Intel(R) Celeron(R)  1047UE    1.40GHz    2
+mlx-2700-11       x86_64   Intel(R) Celeron(R)  1047UE    1.40GHz    2
+qct-ix1-08        x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
+qct-ix7-04        x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
+st1-l1            x86_64   Intel(R) Atom(TM) C2538        2.41GHz    4
+st1-l2            x86_64   Intel(R) Atom(TM) C2538        2.41GHz    4
+st1-l3            x86_64   Intel(R) Atom(TM) C2538        2.40GHz    4
+st1-s1            x86_64   Intel(R) Atom(TM)  S1220       1.60GHz    4
+st1-s2            x86_64   Intel(R) Atom(TM)  S1220       1.60GHz    4
+</code></pre>
+
+<p>You can filter the results of the command to view which switches employ
+a particular CPU architecture using the <em>arch</em> keyword. This example
+shows how to determine which architectures are deployed in your network,
+and then shows all devices with an <em>x86_64</em> architecture.</p>
+
+<pre><code>cumulus@switch:~$ netq show inventory cpu arch 
+    x86_64  :  CPU Architecture
+ 
+cumulus@switch:~$ netq show inventory cpu arch x86_64
+Matching inventory records:
+Hostname          Arch     Model                          Freq       Cores
+----------------- -------- ------------------------------ ---------- -----
+leaf01            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+leaf02            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+leaf03            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+leaf04            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+oob-mgmt-server   x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+server01          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+server03          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+server04          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+spine01           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+</code></pre>
+
+<p>You can filter the results to view CPU information for a single switch,
+as shown here for <em>server02</em>.</p>
+
+<pre><code>cumulus@switch:~$ netq server02 show inventory cpu
+ 
+Matching inventory records:
+Hostname          Arch     Model                          Freq       Cores
+----------------- -------- ------------------------------ ---------- -----
+server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                           ss Core i7)
+</code></pre>
+
+<h3 id="span-view-information-about-the-disk-on-a-switch-span"><span>View Information about the Disk on a Switch</span></h3>
+
+<p>You can view the name or operating system, type, transport, size,
+vendor, and model of the disk on a single device or all devices. This
+example shows all of these disk characteristics for all devices.</p>
+
+<pre><code>cumulus@switch:~$ netq show inventory disk
+Matching inventory records:
+Hostname          Name            Type             Transport          Size       Vendor               Model
+----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
+leaf01            vda             disk             N/A                6G         0x1af4               N/A
+leaf02            vda             disk             N/A                6G         0x1af4               N/A
+leaf03            vda             disk             N/A                6G         0x1af4               N/A
+leaf04            vda             disk             N/A                6G         0x1af4               N/A
+oob-mgmt-server   vda             disk             N/A                256G       0x1af4               N/A
+server01          vda             disk             N/A                301G       0x1af4               N/A
+server02          vda             disk             N/A                301G       0x1af4               N/A
+server03          vda             disk             N/A                301G       0x1af4               N/A
+server04          vda             disk             N/A                301G       0x1af4               N/A
+spine01           vda             disk             N/A                6G         0x1af4               N/A
+spine02           vda             disk             N/A                6G         0x1af4               N/A
+</code></pre>
+
+<p>You can filter the results of the command to view the disk information
+for a particular device. This example shows disk information for
+<em>leaf03</em> switch.</p>
+
+<pre><code>cumulus@switch:~$ netq leaf03 show inventory disk
+Matching inventory records:
+Hostname          Name            Type             Transport          Size       Vendor               Model
+----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
+leaf03            vda             disk             N/A                6G         0x1af4               N/A
+</code></pre>
+
+<h3 id="span-view-memory-information-for-a-switch-span"><span>View Memory Information for a Switch</span></h3>
+
+<p>You can view the name, type, size, speed, vendor, and serial number for
+the memory installed in a single device or all devices. This example
+shows all of these characteristics for all devices.</p>
+
+<pre><code>cumulus@switch:~$ netq show inventory memory
+Matching inventory records:
+Hostname          Name            Type             Size       Speed      Vendor               Serial No
+----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
+dell-z9100-05     DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   Hynix                14391421
+mlx-2100-05       DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   InnoDisk Corporation 00000000
+mlx-2410a1-05     ChannelA-DIMM0  DDR3             8192 MB    1600 MHz   017A                 87416232
+                  BANK 0
+mlx-2700-11       ChannelA-DIMM0  DDR3             8192 MB    1600 MHz   017A                 73215444
+                  BANK 0
+mlx-2700-11       ChannelB-DIMM0  DDR3             8192 MB    1600 MHz   017A                 73215444
+                  BANK 2
+qct-ix1-08        N/A             N/A              7907.45MB  N/A        N/A                  N/A
+qct-ix7-04        DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   Transcend            00211415
+st1-l1            DIMM0 BANK 0    DDR3             4096 MB    1333 MHz   N/A                  N/A
+st1-l2            DIMM0 BANK 0    DDR3             4096 MB    1333 MHz   N/A                  N/A
+st1-l3            DIMM0 BANK 0    DDR3             4096 MB    1600 MHz   N/A                  N/A
+st1-s1            A1_DIMM0 A1_BAN DDR3             8192 MB    1333 MHz   A1_Manufacturer0     A1_SerNum0
+                  K0
+st1-s2            A1_DIMM0 A1_BAN DDR3             8192 MB    1333 MHz   A1_Manufacturer0     A1_SerNum0
+                  K0
+</code></pre>
+
+<p>You can filter the results of the command to view devices with a
+particular memory type or vendor. This example shows all of the devices
+with memory from <em>QEMU</em> .</p>
+
+<pre><code>cumulus@switch:~$ netq show inventory memory vendor QEMU
+Matching inventory records:
+Hostname          Name            Type             Size       Speed      Vendor               Serial No
+----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
+leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+leaf02            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+leaf03            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+leaf04            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+oob-mgmt-server   DIMM 0          RAM              4096 MB    Unknown    QEMU                 Not Specified
+server01          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
+server02          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
+server03          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
+server04          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
+spine01           DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+spine02           DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+</code></pre>
+
+<p>You can filter the results to view memory information for a single
+switch, as shown here for leaf01.</p>
+
+<pre><code>cumulus@switch:~$ netq leaf01 show inventory memory
+ 
+Matching inventory records:
+Hostname          Name            Type             Size       Speed      Vendor               Serial No
+----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
+leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+</code></pre>
+
+<h3 id="span-view-a-summary-of-all-hardware-information-for-a-switch-span"><span>View a Summary of All Hardware Information for a Switch</span></h3>
+
+<p>While the detail can be very helpful, sometimes a simple overview of the
+hardware inventory is better. This example shows the basic hardware
+information for all devices.</p>
+
+<pre><code>cumulus@switch:~$ netq show inventory brief
+ 
+Matching inventory records:
+Hostname          Switch               OS              CPU      ASIC            Ports
+----------------- -------------------- --------------- -------- --------------- -----------------------------------
+leaf01            VX                   Cumulus Linux   x86_64   N/A             N/A
+leaf02            VX                   Cumulus Linux   x86_64   N/A             N/A
+leaf03            VX                   Cumulus Linux   x86_64   N/A             N/A
+leaf04            VX                   Cumulus Linux   x86_64   N/A             N/A
+oob-mgmt-server   VX                   Cumulus Linux   x86_64   N/A             N/A
+server01          N/A                  Ubuntu          x86_64   N/A             N/A
+server02          N/A                  Ubuntu          x86_64   N/A             N/A
+server03          N/A                  Ubuntu          x86_64   N/A             N/A
+server04          N/A                  Ubuntu          x86_64   N/A             N/A
+spine01           VX                   Cumulus Linux   x86_64   N/A             N/A
+spine02           VX                   Cumulus Linux   x86_64   N/A             N/A
+</code></pre>
+
+<h2 id="span-monitor-switch-software-information-span"><span>Monitor Switch Software Information</span></h2>
+
+<p>NetQ enables you to view either a summary or details about the operating
+system and license, and whether NetQ Agents are running on your switch
+or host. The <code>netq show inventory</code> command is used to view the OS and
+license information for a single device or for all of your devices at
+once, depending on what you want to see. The <code>netq show agents</code> command
+is used to view the state of the NetQ Agents. You are also able to view
+the historical state of these items for one or all devices to determine
+if there have been any changes to their status.</p>
+
+<p>The syntax for this command is:</p>
+
+<pre><code>netq [&lt;hostname&gt;] show inventory brief [json]
+netq [&lt;hostname&gt;] show inventory license [cumulus] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show inventory license [cumulus] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq [&lt;hostname&gt;] show inventory os [version &lt;os-version&gt;|name &lt;os-name&gt;] [json]
+netq [&lt;hostname&gt;] show inventory os [version &lt;os-version&gt;|name &lt;os-name&gt;] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+</code></pre>
+
+
+<div class="notices info" > <p>The keyword values for the <code>name</code> keyword is specific to your
+deployment. For example, if you have devices with only one type of OS,
+say Cumulus Linux, then that is the only option available for the
+<code>os-name</code> keyword value. If you have multiple OSs running, say you also
+have Ubuntu, then that would also be an option for you.</p>
+ </div>
+
+
+
+<div class="notices info" > <p>When entering a time value, you must include a numeric value <em>and</em> the
+unit of measure:</p>
+
+<ul>
+<li><p>w: week(s)</p></li>
+
+<li><p>d: day(s)</p></li>
+
+<li><p>h: hour(s)</p></li>
+
+<li><p>m: minute(s)</p></li>
+
+<li><p>s: second(s)</p></li>
+
+<li><p>now</p></li>
+</ul>
+
+<p>For time ranges, the <code>&lt;text-time&gt;</code> is the most recent time and the
+<code>&lt;text-endtime&gt;</code> is the oldest time. The values do not have to have the
+same unit of measure.</p>
+ </div>
+
+
+<h3 id="span-view-os-information-for-a-switch-span"><span>View OS Information for a Switch</span></h3>
+
+<p>You can view the name and version of the OS on a switch, and when it was
+last modified. This example shows the OS information for all devices.</p>
+
+<pre><code>cumulus@switch:~$ netq show inventory os
+ 
+Matching inventory records:
+Hostname          Name            Version                              Last Changed
+----------------- --------------- ------------------------------------ -------------------------
+leaf01            Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:3s
+leaf02            Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:15s
+leaf03            Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:10s
+leaf04            Cumulus Linux   3.6.1.0~1748339104.32814bc           21d:23h:26m:6s
+oob-mgmt-server   Cumulus Linux   3.7.0~1533263174.bce9472             19d:7h:46m:24s
+server04          Ubuntu          16.04                                21d:23h:26m:7s
+server04          Ubuntu          16.04                                21d:23h:26m:13s
+server04          Ubuntu          16.04                                21d:23h:26m:35s
+server04          Ubuntu          16.04                                21d:23h:26m:52s
+spine01           Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:7s
+spine02           Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:9s
+</code></pre>
+
+<p>You can filter the results of the command to view only devices with a
+particular operating system or version. This can be especially helpful
+when you suspect that a particular device has not been upgraded as
+expected. This example shows all devices with the Cumulus Linux version
+3.6.1 installed.</p>
+
+<pre><code>cumulus@switch:~$ netq show inventory os version 3.6.1
+ 
+Matching inventory records:
+Hostname          Name            Version                              Last Changed
+----------------- --------------- ------------------------------------ -------------------------
+leaf04            Cumulus Linux   3.6.1.0~1748339104.32814bc           21d:23h:26m:6s
+</code></pre>
+
+<p>This example shows changes that have been made to the OS on all devices
+between 16 and 21 days ago. Remember to use measurement units on the
+time values.</p>
+
+<pre><code>cumulus@switch:~$ netq show inventory os changes between 16d and 21d
+Matching inventory records:
+Hostname          Name            Version                              DB State   Last Changed
+----------------- --------------- ------------------------------------ ---------- -------------------------
+mlx-2410a1-05     Cumulus Linux   3.7.0                                Add        16d:1h:39m:30s
+mlx-2700-11       Cumulus Linux   3.7.0                                Add        16d:1h:39m:32s
+mlx-2100-05       Cumulus Linux   3.7.0                                Add        16d:1h:39m:32s
+mlx-2100-05       Cumulus Linux   3.7.0~1533263174.bce9472             Add        20d:0h:52m:4s
+mlx-2700-11       Cumulus Linux   3.7.0~1533263174.bce9472             Add        20d:0h:52m:22s
+mlx-2100-05       Cumulus Linux   3.7.0~1533263174.bce9472             Add        20d:18h:49m:31s
+mlx-2700-11       Cumulus Linux   3.7.0~1533263174.bce9472             Add        20d:18h:49m:32s
+</code></pre>
+
+<h3 id="span-view-license-information-for-a-switch-span"><span>View License Information for a Switch</span></h3>
+
+<p><span style="color: #333333;"> You can view the name and current state
+of the license (whether it valid or not), and when it was last updated
+for one or more devices. If a license is no longer valid on a switch, it
+does not operate correctly. This example shows the license information
+for all devices. </span></p>
+
+<pre><code>cumulus@switch:~$ netq show inventory license
+ 
+Matching inventory records:
+Hostname          Name            State      Last Changed
+----------------- --------------- ---------- -------------------------
+leaf01            Cumulus Linux   ok         21d:23h:43m:4s
+leaf02            Cumulus Linux   ok         21d:23h:43m:16s
+leaf03            Cumulus Linux   ok         21d:23h:43m:12s
+leaf04            Cumulus Linux   ok         21d:23h:43m:7s
+oob-mgmt-server   Cumulus Linux   ok         19d:8h:3m:34s
+server01          Cumulus Linux   N/A        21d:23h:43m:8s
+server02          Cumulus Linux   N/A        21d:23h:43m:17s
+server03          Cumulus Linux   N/A        21d:23h:43m:25s
+server04          Cumulus Linux   N/A        21d:23h:43m:31s
+spine01           Cumulus Linux   ok         21d:23h:43m:8s
+spine02           Cumulus Linux   ok         21d:23h:43m:11s
+</code></pre>
+
+<p>You can view the historical state of licenses using the around and
+changes keywords. This example shows the license state for all devices
+about 7 days ago. Remember to use measurement units on the time values.</p>
+
+<pre><code>cumulus@switch:~$ netq show inventory license around 7d
+ 
+Matching inventory records:
+Hostname          Name            State      Last Changed
+----------------- --------------- ---------- -------------------------
+leaf01            Cumulus Linux   ok         14d:23h:43m:4s
+leaf02            Cumulus Linux   ok         14d:23h:43m:16s
+leaf03            Cumulus Linux   ok         14d:23h:43m:12s
+leaf04            Cumulus Linux   ok         14d:23h:43m:7s
+oob-mgmt-server   Cumulus Linux   ok         13d:8h:3m:34s
+server01          Cumulus Linux   N/A        14d:23h:43m:8s
+server02          Cumulus Linux   N/A        14d:23h:43m:17s
+server03          Cumulus Linux   N/A        14d:23h:43m:25s
+server04          Cumulus Linux   N/A        14d:23h:43m:31s
+spine01           Cumulus Linux   ok         14d:23h:43m:8s
+spine02           Cumulus Linux   ok         14d:23h:43m:11s
+</code></pre>
+
+<p>You can filter the results to show license changes during a particular
+timeframe for a particular device. This example shows that there have
+been no changes to the license state on spine01 between now and two
+weeks ago.</p>
+
+<pre><code>cumulus@switch:~$ netq spine01 show inventory license changes between now and 2w
+No matching inventory records found
+</code></pre>
+
+<h3 id="span-view-summary-of-operating-system-on-a-switch-span"><span>View Summary of Operating System on a Switch</span></h3>
+
+<p>As with the hardware information, you can view a summary of the software
+information using the <em>brief</em> keyword. Specify a hostname to view the
+summary for a specific device.</p>
+
+<pre><code>cumulus@switch:~$ netq show inventory brief
+ 
+Matching inventory records:
+Hostname          Switch               OS              CPU      ASIC            Ports
+----------------- -------------------- --------------- -------- --------------- -----------------------------------
+leaf01            VX                   Cumulus Linux   x86_64   N/A             N/A
+leaf02            VX                   Cumulus Linux   x86_64   N/A             N/A
+leaf03            VX                   Cumulus Linux   x86_64   N/A             N/A
+leaf04            VX                   Cumulus Linux   x86_64   N/A             N/A
+oob-mgmt-server   VX                   Cumulus Linux   x86_64   N/A             N/A
+server01          N/A                  Ubuntu          x86_64   N/A             N/A
+server02          N/A                  Ubuntu          x86_64   N/A             N/A
+server03          N/A                  Ubuntu          x86_64   N/A             N/A
+server04          N/A                  Ubuntu          x86_64   N/A             N/A
+spine01           VX                   Cumulus Linux   x86_64   N/A             N/A
+spine02           VX                   Cumulus Linux   x86_64   N/A             N/A
+</code></pre>
+
+<h3 id="span-validate-netq-agents-are-running-span"><span>Validate NetQ Agents are Running</span></h3>
+
+<p>You can confirm that NetQ Agents are running on switches and hosts (if
+installed) using the <code>netq show agents</code> command. Viewing the <strong>Status</strong>
+column of the output indicates whether the agent is up and current,
+labelled <em>Fresh</em>, or down and stale, labelled <em>Rotten</em>. Additional
+information is provided about the agent status, including whether it is
+time synchronized, how long it has been up, and the last time its state
+changed.</p>
+
+<p>This example shows NetQ Agent state on all devices. You can view the
+state for a single device using the <em>hostname</em> keyword.</p>
+
+<pre><code>cumulus@switch:~$ netq show agents
+ 
+Matching agents records:
+Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
+----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
+leaf01            Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:39m:26s            22d:4h:19m:6s             22d:0h:8m:20s              18.417234s
+leaf02            Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:33m:0s             22d:4h:18m:26s            22d:0h:8m:33s              15.413085s
+leaf03            Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:35m:14s            22d:4h:18m:56s            22d:0h:8m:28s              31.478846s
+leaf04            Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:35m:48s            22d:4h:19m:5s             22d:0h:8m:23s              17.819782s
+oob-mgmt-server   Fresh            yes      1.4.0-cl3u10~1534306219.882a7e7      22d:0h:10m:32s            19d:8h:28m:38s            19d:8h:28m:38s             12.330358s
+server01          Fresh            yes      1.3.0-ub16.04u9~1522971904.b08ca60   22d:4h:25m:58s            11m:46.982s               11m:46.982s                11.973292s
+server02          Fresh            yes      1.3.0-ub16.04u9~1522971904.b08ca60   22d:4h:25m:57s            10m:11.888s               10m:11.888s                7.469695s
+server03          Fresh            yes      1.3.0-ub16.04u9~1522971904.b08ca60   22d:4h:26m:9s             9m:49.763s                9m:49.763s                 15.437087s
+server04          Fresh            yes      1.3.0-ub16.04u9~1522971904.b08ca60   22d:4h:26m:36s            22d:4h:21m:6s             22d:0h:8m:23s              13.428345s
+spine01           Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:40m:8s             22d:4h:18m:53s            22d:0h:8m:24s              32.40132s
+spine02           Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:33m:13s            22d:4h:19m:7s             22d:0h:8m:27s              23.748967s
+</code></pre>
+
+<p>You can view the state of NetQ Agents at an earlier time using the
+<em>around</em> and <em>changes</em> keywords.</p>
+
+<h2 id="span-monitor-software-services-span"><span>Monitor Software Services</span></h2>
+
+<p>Cumulus Linux and NetQ run a number of services to deliver the various
+features of these products. You can monitor their status using the <code>netq
+show services</code> command. The services related to system-level operation
+are described here. Monitoring of other services, such as those related
+to routing, are described with those topics. NetQ automatically monitors
+t he following services:</p>
+
+<ul>
+<li><p>bgpd: BGP (Border Gateway Protocol) daemon</p></li>
+
+<li><p>clagd: MLAG (Multi-chassis Link Aggregation) daemon</p></li>
+
+<li><p>cumulus-chassis-ssh: Secure Shell for hardware chassis</p></li>
+
+<li><p>cumulus-chassisd: Chassis daemon</p></li>
+
+<li><p>ledmgrd: Switch LED manager daemon</p></li>
+
+<li><p>lldpd: LLDP (Link Layer Discovery Protocol) daemon</p></li>
+
+<li><p>mstpd: MSTP (Multiple Spanning Tree Protocol) daemon</p></li>
+
+<li><p>neighmgrd: Neighbor Manager daemon for BGP and OSPF</p></li>
+
+<li><p>netq-agent: NetQ Agent service</p></li>
+
+<li><p>netq-notifier: NetQ Notifier service</p></li>
+
+<li><p>netqd: NetQ telemetry application daemon</p></li>
+
+<li><p>ntp: NTP service</p></li>
+
+<li><p>ospf6d : OSPFv6 (Open Shortest Path First) daemon</p></li>
+
+<li><p>ospfd: OSPF daemon</p></li>
+
+<li><p>ptmd: PTM (Prescriptive Topology Manager) daemon</p></li>
+
+<li><p>pwmd : PWM ( <span style="color: #ff0000;"> Password </span>
+Manager) daemon</p></li>
+
+<li><p>rsyslog: Rocket-fast system event logging processing service</p></li>
+
+<li><p>smond: System monitor daemon</p></li>
+
+<li><p>ssh: Secure Shell service for switches and servers</p></li>
+
+<li><p>status: License validation service</p></li>
+
+<li><p>syslog: System event logging service</p></li>
+
+<li><p>vrf: VRF (Virtual Route Forwarding) service</p></li>
+
+<li><p>vxrd: Registration daemon for VXLAN BUM (
+<span style="color: #24292e;"> broadcast, unknown unicast, and
+multicast) </span> Flooding (VXFLD)</p></li>
+
+<li><p>vxsnd: Service node daemon for VXFLD</p></li>
+
+<li><p>zebra: GNU Zebra routing daemon</p></li>
+</ul>
+
+<p>The CLI syntax for viewing the status of services is:</p>
+
+<pre><code>netq [&lt;hostname&gt;] show services [&lt;service-name&gt;] [vrf &lt;vrf&gt;] [active|monitored] [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show services [&lt;service-name&gt;] [vrf &lt;vrf&gt;] [active|monitored] changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq [&lt;hostname&gt;] show services [&lt;service-name&gt;] [vrf &lt;vrf&gt;] status (ok|warning|error|fail) [around &lt;text-time&gt;] [json]
+netq [&lt;hostname&gt;] show services [&lt;service-name&gt;] [vrf &lt;vrf&gt;] status (ok|warning|error|fail) changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]
+netq [&lt;hostname&gt;] show services [&lt;service-name&gt;] [vrf &lt;vrf&gt;] status (ok|warning|error|fail) changes [json]
+</code></pre>
+
+
+<div class="notices info" > <p>The <em>active</em> and <em>monitored</em> keywords are not processed correctly in
+this release. Refer to the <span style="color: #ff0000;"> <a href="https://support.cumulusnetworks.com/hc/en-us/articles/360005898274" target="_blank">Release
+Notes</a>
+</span> for more detail.</p>
+ </div>
+
+
+<h3 id="span-view-all-services-on-all-devices-span"><span>View All Services on All Devices</span></h3>
+
+<p>This example shows all of the available services on each device and
+whether each is enabled, active, and monitored, along with how long the
+service has been running and the last time it was changed.</p>
+
+<pre><code>cumulus@switch:~$ netq show services
+ 
+Matching services records:
+Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+leaf02            bgpd                 2013  default         yes     yes    yes       ok               5h:1m:10s                 6m:41.781s
+leaf02            clagd                1169  default         yes     yes    yes       ok               5h:2m:0s                  6m:42.777s
+leaf02            cumulus-chassis-ssh  n/a   default         no      no     no        n/a              2d:4h:15m:58s             2d:4h:15m:58s
+leaf02            cumulus-chassisd     n/a   default         no      no     no        n/a              2d:4h:15m:58s             2d:4h:15m:58s
+leaf02            ledmgrd              612   default         yes     yes    no        ok               5h:2m:15s                 6m:50.946s
+leaf02            lldpd                1160  default         yes     yes    yes       ok               5h:2m:3s                  6m:28.313s
+leaf02            mstpd                448   default         yes     yes    yes       ok               5h:2m:19s                 6m:42.884s
+leaf02            neighmgrd            1094  default         yes     yes    no        ok               5h:2m:5s                  6m:50.940s
+leaf02            netq-agent           n/a   default         no      no     yes       n/a              6m:50.943s                6m:50.943s
+leaf02            netq-notifier        n/a   default         no      no     yes       n/a              2d:4h:15m:58s             2d:4h:15m:58s
+leaf02            netqd                n/a   default         no      no     yes       n/a              6m:50.944s                6m:50.944s
+leaf02            ntp                  n/a   default         no      no     yes       n/a              6m:50.936s                6m:50.936s
+leaf02            ospf6d               n/a   default         no      no     no        n/a              2d:4h:15m:58s             2d:4h:15m:58s
+leaf02            ospfd                n/a   default         no      no     yes       n/a              6m:41.922s                6m:41.922s
+leaf02            ptmd                 1162  default         yes     yes    no        ok               5h:2m:3s                  6m:51.441s
+leaf02            pwmd                 613   default         yes     yes    no        ok               5h:2m:15s                 6m:50.948s
+leaf02            smond                609   default         yes     yes    yes       ok               5h:2m:15s                 6m:28.279s
+leaf02            ssh                  1125  default         yes     yes    no        ok               5h:2m:5s                  6m:50.935s
+leaf02            syslog               393   default         yes     yes    no        ok               5h:2m:19s                 6m:50.934
+leaf02            vxrd                 n/a   default         no      no     yes       n/a              6m:9.742s                 6m:9.742s
+leaf02            vxsnd                n/a   default         no      no     yes       n/a              6m:9.756s                 6m:9.756s
+leaf02            zebra                2006  default         yes     yes    yes       ok               6m:28.244s                6m:28.244s
+server01          lldpd                1359  default         yes     yes    yes       ok               2h:0m:25s                 4h:59m:45s
+server01          netq-agent           1363  default         yes     yes    yes       ok               2h:0m:26s                 5h:0m:7s
+server01          netq-notifier        n/a   default         no      no     yes       n/a              2d:4h:16m:1s              2d:4h:16m:1s
+server01          netqd                1355  default         yes     yes    yes       ok               2h:0m:26s                 5h:0m:7s
+server01          ntp                  0     default         yes     yes    yes       ok               2h:0m:20s                 5h:0m:7s
+server01          ssh                  1358  default         yes     yes    no        ok               2h:0m:25s                 5h:0m:7s
+server01          syslog               967   default         yes     yes    no        ok               2h:0m:27s                 5h:0m:7s
+...
+</code></pre>
+
+<p>You can also view services information in JSON format:</p>
+
+<pre><code>cumulus@switch:~$ netq show services json
+{
+    &quot;services&quot;:[
+        {
+            &quot;status&quot;:&quot;ok&quot;,
+            &quot;uptime&quot;:1537904537.0,
+            &quot;monitored&quot;:&quot;yes&quot;,
+            &quot;service&quot;:&quot;netqd&quot;,
+            &quot;lastChanged&quot;:1537893777.617677927,
+            &quot;pid&quot;:&quot;1047&quot;,
+            &quot;hostname&quot;:&quot;edge01&quot;,
+            &quot;enabled&quot;:&quot;yes&quot;,
+            &quot;vrf&quot;:&quot;default&quot;,
+            &quot;active&quot;:&quot;yes&quot;
+        },
+        {
+            &quot;status&quot;:&quot;ok&quot;,
+            &quot;uptime&quot;:1537904537.0,
+            &quot;monitored&quot;:&quot;yes&quot;,
+            &quot;service&quot;:&quot;netq-agent&quot;,
+            &quot;lastChanged&quot;:1537893777.6185410023,
+            &quot;pid&quot;:&quot;1052&quot;,
+            &quot;hostname&quot;:&quot;edge01&quot;,
+            &quot;enabled&quot;:&quot;yes&quot;,
+            &quot;vrf&quot;:&quot;default&quot;,
+            &quot;active&quot;:&quot;yes&quot;
+        },
+...
+</code></pre>
+
+<p>If you want to view the service information for a given device, simply
+use the <em>hostname</em> variable to the command.</p>
+
+<h3 id="span-view-information-about-a-given-service-on-all-devices-span"><span>View Information about a Given Service on All Devices</span></h3>
+
+<p>You can view the status of a given service at the current time, at a
+prior point in time, or view the changes that have occurred for the
+service during a specified timeframe.</p>
+
+<p>This example shows how to view the status of the NTP service across the
+network. In this case, VRF is configured so the NTP service runs on both
+the default and management interface. You can perform the same command
+with the other services, such as <code>netq-agent</code>, <code>netq-notifier</code>, and
+<code>syslog</code>.</p>
+
+<pre><code>cumulus@switch:~$ netq show services ntp
+ 
+Matching services records:
+Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+edge01            ntp                  0     default         yes     yes    yes       ok               2d:1h:24m:10s             2d:4h:23m:36s
+exit01            ntp                  1238  mgmt            yes     yes    yes       ok               5h:9m:8s                  8m:4.578s
+exit01            ntp                  n/a   default         no      no     yes       n/a              8m:4.583s                 8m:4.583s
+exit02            ntp                  1233  mgmt            yes     yes    yes       ok               5h:9m:8s                  7m:41.133s
+exit02            ntp                  n/a   default         no      no     yes       n/a              7m:41.137s                7m:41.137s
+internet          ntp                  n/a   default         no      no     yes       n/a              5h:9m:6s                  5h:9m:6s
+internet          ntp                  n/a   mgmt            yes     no     yes       n/a              5h:8m:51s                 5h:8m:51s
+leaf01            ntp                  1555  mgmt            yes     yes    yes       ok               5h:9m:10s                 1h:1m:5s
+leaf01            ntp                  n/a   default         no      no     yes       n/a              1h:1m:5s                  1h:1m:5s
+leaf02            ntp                  1565  mgmt            yes     yes    yes       ok               5h:9m:9s                  14m:25.774s
+leaf02            ntp                  n/a   default         no      no     yes       n/a              14m:25.778s               14m:25.778s
+leaf03            ntp                  1564  mgmt            yes     yes    yes       ok               5h:9m:9s                  13m:36.464s
+leaf03            ntp                  n/a   default         no      no     yes       n/a              13m:36.469s               13m:36.469s
+leaf04            ntp                  1551  mgmt            yes     yes    yes       ok               5h:9m:8s                  10m:15.960s
+leaf04            ntp                  n/a   default         no      no     yes       n/a              10m:15.964s               10m:15.964s
+oob-mgmt-server   ntp                  813   default         yes     yes    yes       ok               2d:4h:25m:35s             2d:4h:23m:9s
+server01          ntp                  0     default         yes     yes    yes       ok               2h:7m:55s                 5h:7m:42s
+server02          ntp                  0     default         yes     yes    yes       ok               2h:7m:55s                 5h:7m:42s
+server03          ntp                  0     default         yes     yes    yes       ok               2h:7m:55s                 5h:7m:42s
+server04          ntp                  0     default         yes     yes    yes       ok               2h:7m:55s                 5h:7m:42s
+spine01           ntp                  1188  mgmt            yes     yes    yes       ok               5h:9m:8s                  9m:32.856s
+spine01           ntp                  n/a   default         no      no     yes       n/a              9m:32.861s                9m:32.861s
+spine02           ntp                  1188  mgmt            yes     yes    yes       ok               5h:9m:7s                  9m:4.722s
+spine02           ntp                  n/a   default         no      no     yes       n/a              9m:4.726s                 9m:4.726s
+</code></pre>
+
+<p>This example shows the status of the BGP daemon.</p>
+
+<pre><code>cumulus@switch:~$ netq show services bgpd
+ 
+Matching services records:
+Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+exit01            bgpd                 1627  default         yes     yes    yes       ok               5h:25m:43s                24m:55.103s
+exit02            bgpd                 1628  default         yes     yes    yes       ok               5h:25m:36s                24m:33.633s
+internet          bgpd                 1493  default         yes     yes    yes       ok               5h:25m:34s                5h:25m:20s
+leaf01            bgpd                 2009  default         yes     yes    yes       ok               5h:25m:44s                1h:17m:57s
+leaf02            bgpd                 2013  default         yes     yes    yes       ok               5h:25m:44s                31m:16.166s
+leaf03            bgpd                 2010  default         yes     yes    yes       ok               5h:25m:44s                30m:27.992s
+leaf04            bgpd                 1998  default         yes     yes    yes       ok               5h:25m:43s                27m:7.428s
+spine01           bgpd                 1559  default         yes     yes    yes       ok               5h:25m:35s                26m:24.326s
+spine02           bgpd                 1553  default         yes     yes    yes       ok               5h:25m:35s                25m:56.141s
+</code></pre>
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+</article>
+
+      <script src="https://utteranc.es/client.js"
+        repo="CumulusNetworks/docs-internal"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+
+    </div>
+    
+
+      
+
+
+  
+
+    <aside class="book-toc fixed">
+
+  
+    <div class="toc">
+    
+      <button>
+      <a href="https://github.com/CumulusNetworks/docs/edit/master/content/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Switch-Hardware-and-Software.md" target="_blank" rel="noopener"><img src="/docs.cumulusnetworks.com/svg/pencil-circle.svg" alt="Edit" /> Edit this page</a>
+      </button>
+    
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#span-monitor-switch-and-host-hardware-information-span"><span>Monitor Switch and Host Hardware Information</span></a>
+<ul>
+<li><a href="#span-view-information-about-the-asic-on-a-switch-span"><span>View Information about the ASIC on a Switch</span></a></li>
+<li><a href="#span-view-information-about-the-motherboard-in-a-switch-span"><span>View Information about the Motherboard in a Switch</span></a></li>
+<li><a href="#span-view-information-about-the-cpu-on-a-switch-span"><span>View Information about the CPU on a Switch</span></a></li>
+<li><a href="#span-view-information-about-the-disk-on-a-switch-span"><span>View Information about the Disk on a Switch</span></a></li>
+<li><a href="#span-view-memory-information-for-a-switch-span"><span>View Memory Information for a Switch</span></a></li>
+<li><a href="#span-view-a-summary-of-all-hardware-information-for-a-switch-span"><span>View a Summary of All Hardware Information for a Switch</span></a></li>
+</ul></li>
+<li><a href="#span-monitor-switch-software-information-span"><span>Monitor Switch Software Information</span></a>
+<ul>
+<li><a href="#span-view-os-information-for-a-switch-span"><span>View OS Information for a Switch</span></a></li>
+<li><a href="#span-view-license-information-for-a-switch-span"><span>View License Information for a Switch</span></a></li>
+<li><a href="#span-view-summary-of-operating-system-on-a-switch-span"><span>View Summary of Operating System on a Switch</span></a></li>
+<li><a href="#span-validate-netq-agents-are-running-span"><span>Validate NetQ Agents are Running</span></a></li>
+</ul></li>
+<li><a href="#span-monitor-software-services-span"><span>Monitor Software Services</span></a>
+<ul>
+<li><a href="#span-view-all-services-on-all-devices-span"><span>View All Services on All Devices</span></a></li>
+<li><a href="#span-view-information-about-a-given-service-on-all-devices-span"><span>View Information about a Given Service on All Devices</span></a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+  
+
+</aside>
+
+
+
+
+
+
+  </main>
+  <footer class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-content">
+            <div class="mb-4">
+                <img src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+            </div>
+            <ul class="mb-4">
+              <li><h4>Products</h4></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-linux/">Cumulus Linux</a></li>
+              <li><a href="//cumulusnetworks.com/products/netq/">Cumulus NetQ</a></li>
+              <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>Learn</h4></li>
+              <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
+              <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
+              <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
+            </ul>
+            <ul class="mb-4">
+              <li><h4>About</h4></li>
+              <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
+              <li><a href="//cumulusnetworks.com/about/careers/">Careers</a></li>
+              <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
+              <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
+              <li><a href="//cumulusnetworks.com/community/">Community</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="//twitter.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//linkedin.com/company/cumulus-networks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                      .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M6.5 22.5h-5v-13h5zm9-9a2 2 0 0 0-2 2v7h-5v-13h5v1.485a6.307 6.307 0 0 1 3.99-1.495c2.962 0 5.01 2.2 5.01 6.355V22.5h-5v-7a2 2 0 0 0-2-2zM6.5 5A2.5 2.5 0 1 1 4 2.5 2.5 2.5 0 0 1 6.5 5z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//vimeo.com/CumulusNetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                      <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                      </style>
+                    </defs>
+                    <path class="a" d="M.5 7.393l.933 1.224S3.36 7.1 4 7.859s3.1 9.925 3.915 11.617c.714 1.483 2.684 3.444 4.845 2.042s9.34-7.529 10.626-14.769-8.642-5.723-9.693.583c2.627-1.577 4.03.642 2.686 3.154s-2.569 4.145-3.211 4.145-1.135-1.679-1.868-4.613c-.76-3.035-.755-8.5-3.911-7.882C4.412 2.721.5 7.393.5 7.393z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//www.github.com/cumulusnetworks/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <path class="a" d="M19.459 17c0-5.969-4.126-3.532-7.5-3.532s-7.5-2.375-7.5 3.532a3.5 3.5 0 0 0 3.5 3.5h8a3.5 3.5 0 0 0 3.5-3.5z"></path>
+                    <path class="a" d="M21.489 10.214l.032.023s2.646-4.572-.6-7.237c-2 0-5.058 3.3-5.058 3.3l.022.016A14.152 14.152 0 0 0 8.1 6.3C8.083 6.285 5.037 3 3.042 3c-3.173 2.6-.729 7.012-.614 7.217a8.876 8.876 0 0 0-1.395 5.743c.241 3.126 2.847 6.54 5.982 6.54H16.9c3.135 0 5.742-3.414 5.982-6.54a8.857 8.857 0 0 0-1.393-5.746z"></path>
+                    <ellipse class="a" cx="15.48" cy="17" rx="1" ry="1.5"></ellipse>
+                    <ellipse class="a" cx="8.48" cy="17" rx="1" ry="1.5"></ellipse>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <style>
+                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+                        </style>
+                    </defs>
+                    <rect class="a" x=".5" y=".5" width="23" height="23" rx="6" ry="6"></rect>
+                    <circle class="a" cx="12" cy="12" r="6"></circle>
+                    <circle class="a" cx="19" cy="5" r="1.5"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <p>Cumulus Networks<sup>®</sup> — Data center networking software for the open, modern data center.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <ul>
+                      <li><a href="//cumulusnetworks.com/legal/trademarks/">Trademarks</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/privacy/">Privacy</a></li>
+                      <li><a href="//cumulusnetworks.com/legal/">Terms of service</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+  
+
+</body>
+
+</html>

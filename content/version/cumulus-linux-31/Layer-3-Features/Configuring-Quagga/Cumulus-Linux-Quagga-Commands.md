@@ -3,7 +3,7 @@ title: Cumulus Linux Quagga Commands
 author: Cumulus Networks
 weight: 305
 aliases:
- - /display/CL31/Cumulus-Linux-Quagga-Commands
+ - /display/CL31/Cumulus+Linux+Quagga+Commands
  - /pages/viewpage.action?pageId=5122124
 pageID: 5122124
 product: Cumulus Linux

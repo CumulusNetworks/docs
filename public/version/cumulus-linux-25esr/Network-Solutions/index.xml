@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network Solutions on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Network-Solutions/</link>
+    <description>Recent content in Network Solutions on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-linux-25esr/Network-Solutions/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data Center Host to ToR Architecture</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Network-Solutions/Data-Center-Host-to-ToR-Architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Network-Solutions/Data-Center-Host-to-ToR-Architecture/</guid>
+      <description>This chapter discusses the various architectures and strategies available from the top of rack (ToR) switches all the way down to the server hosts.
+Layer 2 - Architecture     Traditional Spanning Tree - Single Attached
+ Summary
+ More Information
+    
+ 
+
+ Bond/Etherchannel is not configured on host to multiple switches (bonds can still occur but only to one switch at a time), so leaf01 and leaf02 see two different MAC addresses.</description>
+    </item>
+    
+    <item>
+      <title>Cumulus Networks Services Demos</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Network-Solutions/Cumulus-Networks-Services-Demos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-linux-25esr/Network-Solutions/Cumulus-Networks-Services-Demos/</guid>
+      <description>The Cumulus Networks Services team demos provide a virtual environment built using either VirtualBox or libvirt using Vagrant to manage the VMs. This environment utilizes the reference topology shown below. Vagrant and Cumulus VX can be used together to build virtual simulations of production networks to validate configurations, develop automation code and simulate failure scenarios.
+Reference Topology The Cumulus Networks reference topology includes cabling (in DOT format for dual use with PTM), MAC addressing, IP addressing, switches and servers.</description>
+    </item>
+    
+  </channel>
+</rss>

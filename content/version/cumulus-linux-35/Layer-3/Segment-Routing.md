@@ -3,7 +3,7 @@ title: Segment Routing
 author: Cumulus Networks
 weight: 191
 aliases:
- - /display/CL35/Segment-Routing
+ - /display/CL35/Segment+Routing
  - /pages/viewpage.action?pageId=8357754
 pageID: 8357754
 product: Cumulus Linux

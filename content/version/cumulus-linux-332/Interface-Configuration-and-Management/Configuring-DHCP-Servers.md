@@ -3,7 +3,7 @@ title: Configuring DHCP Servers
 author: Cumulus Networks
 weight: 95
 aliases:
- - /display/CL332/Configuring-DHCP-Servers
+ - /display/CL332/Configuring+DHCP+Servers
  - /pages/viewpage.action?pageId=5869188
 pageID: 5869188
 product: Cumulus Linux

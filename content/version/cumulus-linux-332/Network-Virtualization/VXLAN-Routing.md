@@ -3,7 +3,7 @@ title: VXLAN Routing
 author: Cumulus Networks
 weight: 149
 aliases:
- - /display/CL332/VXLAN-Routing
+ - /display/CL332/VXLAN+Routing
  - /pages/viewpage.action?pageId=5869077
 pageID: 5869077
 product: Cumulus Linux

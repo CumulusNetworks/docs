@@ -3,7 +3,7 @@ title: Monitoring System Statistics and Network Traffic with sFlow
 author: Cumulus Networks
 weight: 205
 aliases:
- - /display/RMP31/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow
+ - /display/RMP31/Monitoring+System+Statistics+and+Network+Traffic+with+sFlow
  - /pages/viewpage.action?pageId=5122753
 pageID: 5122753
 product: Cumulus RMP

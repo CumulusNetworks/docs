@@ -3,7 +3,7 @@ title: Bidirectional Forwarding Detection - BFD
 author: Cumulus Networks
 weight: 145
 aliases:
- - /display/CL31/Bidirectional-Forwarding-Detection---BFD
+ - /display/CL31/Bidirectional+Forwarding+Detection+++BFD
  - /pages/viewpage.action?pageId=5122142
 pageID: 5122142
 product: Cumulus Linux

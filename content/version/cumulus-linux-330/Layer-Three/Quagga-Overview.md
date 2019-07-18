@@ -3,7 +3,7 @@ title: Quagga Overview
 author: Cumulus Networks
 weight: 167
 aliases:
- - /display/CL33/Quagga-Overview
+ - /display/CL33/Quagga+Overview
  - /pages/viewpage.action?pageId=5866430
 pageID: 5866430
 product: Cumulus Linux

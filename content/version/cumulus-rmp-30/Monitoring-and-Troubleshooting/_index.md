@@ -3,7 +3,7 @@ title: Monitoring and Troubleshooting
 author: Cumulus Networks
 weight: 23
 aliases:
- - /display/RMP30/Monitoring-and-Troubleshooting
+ - /display/RMP30/Monitoring+and+Troubleshooting
  - /pages/viewpage.action?pageId=5118688
 pageID: 5118688
 product: Cumulus RMP

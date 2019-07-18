@@ -3,7 +3,7 @@ title: Network Troubleshooting
 author: Cumulus Networks
 weight: 173
 aliases:
- - /display/CL25ESR/Network-Troubleshooting
+ - /display/CL25ESR/Network+Troubleshooting
  - /pages/viewpage.action?pageId=5115968
 pageID: 5115968
 product: Cumulus Linux

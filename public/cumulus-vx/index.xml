@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cumulus VX Documentation on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/cumulus-vx/</link>
+    <description>Recent content in Cumulus VX Documentation on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/cumulus-vx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>What&#39;s New in Cumulus VX</title>
+      <link>docs.cumulusnetworks.com/cumulus-vx/Whats-New-in-Cumulus-VX/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/cumulus-vx/Whats-New-in-Cumulus-VX/</guid>
+      <description>Cumulus Networks has made major enhancements for Cumulus VX 3.x to produce a true learning, testing, and pre-production tool. These enhancements include:
+ In Cumulus VX 3.4.0, FRRouting replaces Quagga as the routing suite. The new configuration file /etc/frr/frr.conf replaces /etc/quagga/Quagga.conf and the daemons file is now located in /etc/frr/daemons.
+ Cumulus VX now includes ONIE with onie-nos-install support to show the installation steps.
+ The VX image comes with a GRUB Menu containing ONIE and CL.</description>
+    </item>
+    
+    <item>
+      <title>Comparing Cumulus VX to other Cumulus Networks Products</title>
+      <link>docs.cumulusnetworks.com/cumulus-vx/Comparing-Cumulus-VX-to-other-Cumulus-Networks-Products/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/cumulus-vx/Comparing-Cumulus-VX-to-other-Cumulus-Networks-Products/</guid>
+      <description>Cumulus VX is not a production-ready virtual switch or router. It has the same foundation as Cumulus Linux and Cumulus RMP, including all the control plane elements, but without an actual ASIC or NPU for line rate performance or hardware acceleration.
+You can use tools like jdoo to monitor the virtual switch. The same automation, zero touch provisioning, security, and QoS tools are available.
+The following table outlines the similarities and differences between Cumulus VX and other Cumulus Networks operating systems:</description>
+    </item>
+    
+    <item>
+      <title>Cumulus VX Support Policy</title>
+      <link>docs.cumulusnetworks.com/cumulus-vx/Cumulus-VX-Support-Policy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/cumulus-vx/Cumulus-VX-Support-Policy/</guid>
+      <description>As a Cumulus Linux customer, you can now receive formal GSS support for Cumulus VX instances used to:
+ Test and stage network topologies before deploying to production.
+ Analyze, troubleshoot, and correct issues with configurations and software bugs in Cumulus VX that might also apply to Cumulus Linux running on physical devices.
+ Analyze, troubleshoot, and correct issues with Cumulus VX if behaving differently than physical devices.
+This does not apply in scenarios where it is not possible to emulate physical hardware with virtualization.</description>
+    </item>
+    
+    <item>
+      <title>Create a Two-Leaf, Two-Spine Topology</title>
+      <link>docs.cumulusnetworks.com/cumulus-vx/Create-a-Two-Leaf-Two-Spine-Topology/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/cumulus-vx/Create-a-Two-Leaf-Two-Spine-Topology/</guid>
+      <description>The following sections describe how to configure network interfaces and FRRouting for a two-leaf/two-spine Cumulus VX network topology:
+ Two spine VMs that represent two spine (aggregation layer) switches on the network.
+ Two leaf VMs that represent two leaf (access layer) switches on the network.
+  These instructions assume that you have installed the relevant images and hypervisors, created four VMs with appropriate names, and that the VMs are running.</description>
+    </item>
+    
+    <item>
+      <title>Next Steps</title>
+      <link>docs.cumulusnetworks.com/cumulus-vx/Next-Steps/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/cumulus-vx/Next-Steps/</guid>
+      <description>This section provides some additional configuration specific to Cumulus VX and shows some basic commands you can try to get started with Cumulus Linux. Additional resources for further reading and more advanced configuration are also provided.
+Perform Additional Configuration To provide easier access in video-focused hypervisors (such as VirtualBox), Cumulus VX is configured by default to redirect the grub menu and the kernel output to the video console. Follow the steps below to send both the grub menu and the kernel output back to the serial console.</description>
+    </item>
+    
+    <item>
+      <title>Cumulus VX Getting Started Guide</title>
+      <link>docs.cumulusnetworks.com/cumulus-vx/Cumulus-VX-Getting-Started-Guide/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/cumulus-vx/Cumulus-VX-Getting-Started-Guide/</guid>
+      <description>The license could not be verified: License Certificate has expired!
+  </description>
+    </item>
+    
+  </channel>
+</rss>

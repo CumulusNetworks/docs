@@ -3,7 +3,7 @@ title: Troubleshooting NetQ
 author: Cumulus Networks
 weight: 31
 aliases:
- - /display/NETQ10/Troubleshooting-NetQ
+ - /display/NETQ10/Troubleshooting+NetQ
  - /pages/viewpage.action?pageId=6488225
 pageID: 6488225
 product: Cumulus NetQ

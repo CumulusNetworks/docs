@@ -3,7 +3,7 @@ title: Using netq to Troubleshoot the Network
 author: Cumulus Networks
 weight: 349
 aliases:
- - /display/CL31/Using-netq-to-Troubleshoot-the-Network
+ - /display/CL31/Using+netq+to+Troubleshoot+the+Network
  - /pages/viewpage.action?pageId=5121955
 pageID: 5121955
 product: Cumulus Linux

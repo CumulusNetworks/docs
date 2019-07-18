@@ -3,7 +3,7 @@ title: User Accounts
 author: Cumulus Networks
 weight: 129
 aliases:
- - /display/RMP30/User-Accounts
+ - /display/RMP30/User+Accounts
  - /pages/viewpage.action?pageId=5118675
 pageID: 5118675
 product: Cumulus RMP

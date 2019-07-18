@@ -3,7 +3,7 @@ title: Using Cumulus VX with VMware Fusion
 author: Cumulus Networks
 weight: 37
 aliases:
- - /display/VX30/Using-Cumulus-VX-with-VMware-Fusion
+ - /display/VX30/Using+Cumulus+VX+with+VMware+Fusion
  - /pages/viewpage.action?pageId=5126614
 pageID: 5126614
 product: Cumulus VX

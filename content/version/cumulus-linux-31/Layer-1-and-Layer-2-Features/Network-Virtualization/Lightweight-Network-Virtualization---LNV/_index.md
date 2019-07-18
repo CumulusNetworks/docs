@@ -3,7 +3,7 @@ title: Lightweight Network Virtualization - LNV
 author: Cumulus Networks
 weight: 289
 aliases:
- - /display/CL31/Lightweight-Network-Virtualization---LNV
+ - /display/CL31/Lightweight+Network+Virtualization+++LNV
  - /pages/viewpage.action?pageId=5122049
 pageID: 5122049
 product: Cumulus Linux

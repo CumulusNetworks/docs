@@ -3,7 +3,7 @@ title: Management VRF
 author: Cumulus Networks
 weight: 141
 aliases:
- - /display/CL25ESR/Management-VRF
+ - /display/CL25ESR/Management+VRF
  - /pages/viewpage.action?pageId=5116126
 pageID: 5116126
 product: Cumulus Linux

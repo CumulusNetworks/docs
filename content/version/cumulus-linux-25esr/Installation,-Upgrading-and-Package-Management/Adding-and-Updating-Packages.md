@@ -3,7 +3,7 @@ title: Adding and Updating Packages
 author: Cumulus Networks
 weight: 41
 aliases:
- - /display/CL25ESR/Adding-and-Updating-Packages
+ - /display/CL25ESR/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=5115986
 pageID: 5115986
 product: Cumulus Linux

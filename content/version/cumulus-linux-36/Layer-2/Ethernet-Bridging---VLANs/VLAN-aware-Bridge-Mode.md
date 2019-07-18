@@ -3,7 +3,7 @@ title: VLAN-aware Bridge Mode
 author: Cumulus Networks
 weight: 351
 aliases:
- - /display/CL36/VLAN-aware-Bridge-Mode
+ - /display/CL36/VLAN+aware+Bridge+Mode
  - /pages/viewpage.action?pageId=8362164
 pageID: 8362164
 product: Cumulus Linux

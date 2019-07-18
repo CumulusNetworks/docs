@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cumulus RMP User Guide on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-rmp-321/</link>
+    <description>Recent content in Cumulus RMP User Guide on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-rmp-321/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Quick Start Guide</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-321/Quick-Start-Guide/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-321/Quick-Start-Guide/</guid>
+      <description>This quick start guide provides an end-to-end setup process for installing and running Cumulus RMP, as well as a collection of example commands for getting started once installation is complete.
+Prerequisites
+Prior intermediate Linux knowledge is assumed for this guide. You should be familiar with basic text editing, Unix file permissions, and process monitoring. A variety of text editors are pre-installed, including vi and nano.
+You must have access to a Linux or UNIX shell.</description>
+    </item>
+    
+    <item>
+      <title>Cumulus RMP Index</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-rmp-321/Cumulus-RMP-Index/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-rmp-321/Cumulus-RMP-Index/</guid>
+      <description>A
+ aaa
+ access_ports
+ active_image_slot
+ active_listener_ports
+ alternate_image_slot
+ alternating_images
+ aoc_cables
+ application_daemons
+ apt
+ apt-get
+ asic
+ authentication
+ auto-negotiation
+ autoprovision
+  B
+ bfd
+ bidirectional_forwarding_detection
+ bonds
+ boot_recovery
+ bpdu_filter
+ bpdu_guard
+ brctl
+ bridge
+ bridge-ports
+ bridging
+ bridging_adding_interfaces
+ bridging_ip_addresses
+ bridging_routing
+ btrfs
+ buffering
+  C
+ cable_connectivity
+ cabling</description>
+    </item>
+    
+  </channel>
+</rss>

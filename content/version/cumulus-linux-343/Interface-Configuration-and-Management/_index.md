@@ -3,7 +3,7 @@ title: Interface Configuration and Management
 author: Cumulus Networks
 weight: 17
 aliases:
- - /display/CL34/Interface-Configuration-and-Management
+ - /display/CL34/Interface+Configuration+and+Management
  - /pages/viewpage.action?pageId=7112612
 pageID: 7112612
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: Troubleshooting Network Interfaces
 author: Cumulus Networks
 weight: 201
 aliases:
- - /display/CL321/Troubleshooting-Network-Interfaces
+ - /display/CL321/Troubleshooting+Network+Interfaces
  - /pages/viewpage.action?pageId=5126787
 pageID: 5126787
 product: Cumulus Linux

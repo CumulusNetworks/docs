@@ -3,7 +3,7 @@ title: Configuring Hardware-enabled DDOS Protection
 author: Cumulus Networks
 weight: 291
 aliases:
- - /display/CL332/Configuring-Hardware-enabled-DDOS-Protection
+ - /display/CL332/Configuring+Hardware+enabled+DDOS+Protection
  - /pages/viewpage.action?pageId=5869181
 pageID: 5869181
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: Zero Touch Provisioning - ZTP
 author: Cumulus Networks
 weight: 45
 aliases:
- - /display/CL31/Zero-Touch-Provisioning---ZTP
+ - /display/CL31/Zero+Touch+Provisioning+++ZTP
  - /pages/viewpage.action?pageId=5121983
 pageID: 5121983
 product: Cumulus Linux

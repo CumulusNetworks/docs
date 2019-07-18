@@ -3,7 +3,7 @@ title: Automate Common and Repetitive Tasks
 author: Cumulus Networks
 weight: 71
 aliases:
- - /display/NETQ141/Automate-Common-and-Repetitive-Tasks
+ - /display/NETQ141/Automate+Common+and+Repetitive+Tasks
  - /pages/viewpage.action?pageId=10453520
 pageID: 10453520
 product: Cumulus NetQ

@@ -3,7 +3,7 @@ title: 'Installation, Upgrading and Package Management'
 author: Cumulus Networks
 weight: 45
 aliases:
- - '/display/RMP30/Installation,-Upgrading-and-Package-Management'
+ - '/display/RMP30/Installation,+Upgrading+and+Package+Management'
  - /pages/viewpage.action?pageId=5118681
 pageID: 5118681
 product: Cumulus RMP

@@ -3,7 +3,7 @@ title: Setting Date and Time
 author: Cumulus Networks
 weight: 65
 aliases:
- - /display/CL36/Setting-Date-and-Time
+ - /display/CL36/Setting+Date+and+Time
  - /pages/viewpage.action?pageId=8362040
 pageID: 8362040
 product: Cumulus Linux
@@ -11,6 +11,7 @@ version: '3.6'
 imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 ---
+<details>
 
 Setting the time zone, date and time requires root privileges; use
 `sudo`.
@@ -158,7 +159,7 @@ To verify that `ntpd` is running on the system:
 
 To check the NTP peer status:
 
-    cumulus@switch:~$ net show time ntp servers
+    cumulus@switch:~$ net show time ntp servers 
          remote           refid      st t when poll reach   delay   offset  jitter
     ==============================================================================
     +minime.fdf.net  58.180.158.150   3 u  140 1024  377   55.659    0.339   1.464
@@ -220,22 +221,22 @@ The contents of the `/etc/ntpd.conf` file are listed below.
 <summary>Default ntpd.conf file ... </summary>
 
     # /etc/ntp.conf, configuration for ntpd; see ntp.conf(5) for help
-
+     
     driftfile /var/lib/ntp/ntp.drift
-
-
+     
+     
     # Enable this if you want statistics to be logged.
     #statsdir /var/log/ntpstats/
-
+     
     statistics loopstats peerstats clockstats
     filegen loopstats file loopstats type day enable
     filegen peerstats file peerstats type day enable
     filegen clockstats file clockstats type day enable
-
-
+     
+     
     # You do need to talk to an NTP server or two (or three).
     #server ntp.your-provider.example
-
+     
     # pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
     # pick a different set every time it starts up.  Please consider joining the
     # pool: <http://www.pool.ntp.org/join.html>
@@ -243,8 +244,8 @@ The contents of the `/etc/ntpd.conf` file are listed below.
     server 1.cumulusnetworks.pool.ntp.org iburst
     server 2.cumulusnetworks.pool.ntp.org iburst
     server 3.cumulusnetworks.pool.ntp.org iburst
-
-
+     
+     
     # Access control configuration; see /usr/share/doc/ntp-doc/html/accopt.html for
     # details.  The web page <http://support.ntp.org/bin/view/Support/AccessRestrictions>
     # might also be helpful.
@@ -252,29 +253,29 @@ The contents of the `/etc/ntpd.conf` file are listed below.
     # Note that "restrict" applies to both servers and clients, so a configuration
     # that might be intended to block requests from certain clients could also end
     # up blocking replies from your own upstream servers.
-
+     
     # By default, exchange time with everybody, but don't allow configuration.
     restrict -4 default kod notrap nomodify nopeer noquery
     restrict -6 default kod notrap nomodify nopeer noquery
-
+     
     # Local users may interrogate the ntp server more closely.
     restrict 127.0.0.1
     restrict ::1
-
+     
     # Clients from this (example!) subnet have unlimited access, but only if
     # cryptographically authenticated.
     #restrict 192.168.123.0 mask 255.255.255.0 notrust
-
-
+     
+     
     # If you want to provide time to your local subnet, change the next line.
     # (Again, the address is an example only.)
     #broadcast 192.168.123.255
-
+     
     # If you want to listen to time broadcasts on your local subnet, de-comment the
     # next lines.  Please do this only if you trust everybody on the network!
     #disable auth
     #broadcastclient
-
+     
     # Specify interfaces, don't listen on switch ports
     interface listen eth0
 
@@ -336,7 +337,7 @@ receive the time.
 
 {{% imgOld 0 %}}
 
-
+  
 
 ### <span>Enabling the PTP Boundary Clock on the Switch</span>
 
@@ -344,11 +345,11 @@ To enable the PTP boundary clock on the switch:
 
 1.  Open the `/etc/cumulus/switchd.conf` file in a text editor and add
     the following line:
-
+    
         ptp.timestamping = TRUE
 
 2.  Restart `switchd`:
-
+    
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
 ### <span>Configuring the PTP Boundary Clock</span>
@@ -358,41 +359,41 @@ To configure a boundary clock:
 1.  Configure the interfaces on the switch that you want to use for PTP.
     Each interface must be configured as a layer 3 routed interface with
     an IP address.
-
+    
     {{%notice note%}}
-
+    
     PTP *is* supported on BGP unnumbered interfaces.
-
+    
     PTP is *not* supported on switched virtual interfaces (SVIs).
-
+    
     {{%/notice%}}
-
+    
         cumulus@switch:~$ net add interface swp13s0 ip address 10.0.0.9/32
         cumulus@switch:~$ net add interface swp13s1 ip address 10.0.0.10/32
 
 2.  Configure PTP options on the switch:
-
+    
       - Set the `gm-capable` option to `no` to configure the switch to
         be a boundary clock.
-
+    
       - Set the priority, which selects the best master clock. You can
         set priority 1 or 2. For each priority, you can use a number
         between 0 and 255. The default priority is 255. For the boundary
         clock, use a number above 128. The lower priority is applied
         first.
-
+    
       - Add the `time-stamping` parameter. The switch automatically
         enables hardware time-stamping to capture timestamps from an
         Ethernet frame at the physical layer. If you are testing PTP in
         a virtual environment, hardware time-stamping is not available;
         however the `time-stamping` parameter is still required.
-
+    
       - Add the PTP master and slave interfaces. You do not specify
         which is a master interface and which is a slave interface; this
         is determined by the PTP packet received.
-
+    
     The following commands provide an example configuration:
-
+    
         cumulus@switch:~$ net add ptp global gm-capable no
         cumulus@switch:~$ net add ptp global priority2 254
         cumulus@switch:~$ net add ptp global priority1 254
@@ -401,17 +402,17 @@ To configure a boundary clock:
         cumulus@switch:~$ net add ptp interface swp13s1
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
-
+    
     The `ptp4l` man page describes all the configuration parameters.
 
 3.  Restart the `ptp4l` and `phc2sys` daemons:
-
+    
         cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
-
+    
     The configuration is saved in the `/etc/ptp4l.conf` file.
 
 4.  Enable the services to start at boot time:
-
+    
         cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
 
 ### <span>Example Configuration</span>
@@ -446,40 +447,40 @@ To view a summary of the PTP configuration on the switch, run the `net
 show configuration ptp` command:
 
     cumulus@switch:~$ net show configuration ptp
-
+      
     ptp
       global
      
         slaveOnly
           0
-
+        
         priority1
           255
-
+        
         priority2
           255
-
+        
         domainNumber
           0
-
+        
         logging_level
           5
-
+        
         path_trace_enabled
           0
-
+        
         use_syslog
           1
-
+        
         verbose
           0
-
+        
         summary_interval
           0
-
+        
         time_stamping
           hardware
-
+        
         gmCapable
           0
       swp15s0
@@ -615,3 +616,13 @@ configuration file.
   - [wiki.debian.org/NTP](http://wiki.debian.org/NTP)
 
   - [en.wikipedia.org/wiki/Precision\_Time\_Protocol](https://en.wikipedia.org/wiki/Precision_Time_Protocol)
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+
+</details>

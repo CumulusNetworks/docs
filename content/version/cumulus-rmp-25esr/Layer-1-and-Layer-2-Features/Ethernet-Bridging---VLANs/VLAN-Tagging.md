@@ -3,7 +3,7 @@ title: VLAN Tagging
 author: Cumulus Networks
 weight: 147
 aliases:
- - /display/RMP25ESR/VLAN-Tagging
+ - /display/RMP25ESR/VLAN+Tagging
  - /pages/viewpage.action?pageId=5116352
 pageID: 5116352
 product: Cumulus RMP

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cumulus NetQ on Cumulus Networks Documentation</title>
+    <link>docs.cumulusnetworks.com/version/cumulus-netq-10/</link>
+    <description>Recent content in Cumulus NetQ on Cumulus Networks Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="docs.cumulusnetworks.com/version/cumulus-netq-10/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting Started with NetQ</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-10/Getting-Started-with-NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-10/Getting-Started-with-NetQ/</guid>
+      <description>NetQ is comprised of two main install components: the NetQ Telemetry Server, and the cumulus-netq metapackage which gets installed on Cumulus Linux switches. Additionally, for host network visibility and containers, you can install host OS-specific metapackages.
+This section walks through the basic install and setup steps for installing and running NetQ on the following supported operating systems:
+ Cumulus Linux
+ Ubuntu 16.04
+ Red Hat Enterprise Linux 7</description>
+    </item>
+    
+    <item>
+      <title>Getting to Know NetQ</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-10/Getting-to-Know-NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-10/Getting-to-Know-NetQ/</guid>
+      <description>After you&amp;rsquo;ve installed NetQ, running netq example gives you some pointers as to how it helps you solve issues across your network.
+cumulus@oob-mgmt-server:~$ netq example check : Perform fabric-wide checks find-duplicates : Find Duplicate IP or MAC find-origin : Find Origin of Route/MAC regexp : Using Regular Expressions resolve : Annotate input with names and interesting info startup : NetQ Quickstart trace : Control Path Trace cumulus@switch:~$ netq example trace Control Path Trace ================== Commands ======== netq trace &amp;lt;mac&amp;gt; [vlan &amp;lt;1-4096&amp;gt;] from &amp;lt;hostname&amp;gt; [vrf &amp;lt;vrf&amp;gt;] [around &amp;lt;text-time&amp;gt;] [json] netq trace &amp;lt;ip&amp;gt; from (&amp;lt;hostname&amp;gt;|&amp;lt;ip-src&amp;gt;) [vrf &amp;lt;vrf&amp;gt;] [around &amp;lt;text-time&amp;gt;] [json] Usage ===== netq trace provides control path tracing (no real packets are sent) from a specified source to a specified destination.</description>
+    </item>
+    
+    <item>
+      <title>Taking Preventative Steps with Your Network</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-10/Taking-Preventative-Steps-with-Your-Network/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-10/Taking-Preventative-Steps-with-Your-Network/</guid>
+      <description>NetQ provides quality assurance capabilities to detect erroneous or undesired network configurations before the changes are rolled into production. NetQ can be used to test existing or design topologies, validate configuration changes, and review the state of the network in real time, allowing it to integrate effectively with CI/CD environments. NetQ commands can also be run in an automation tool; depending on the outcome of the automation tests, the script can either continue the deployment, or roll back the changes until the issues are addressed.</description>
+    </item>
+    
+    <item>
+      <title>Performing Network Diagnostics</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-10/Performing-Network-Diagnostics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-10/Performing-Network-Diagnostics/</guid>
+      <description>NetQ provides users with the ability to go back in time to replay the network state, see fabric-wide event changelogs and root cause state deviations. The NetQ Telemetry Server maintains data collected by NetQ agents in a time-series database, making fabric-wide events available for analysis. This enables you to replay and analyze network-wide events for better visibility and to correlate patterns. This allows for root-cause analysis and optimization of network configs for the future.</description>
+    </item>
+    
+    <item>
+      <title>NetQ Service Console</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-10/NetQ-Service-Console/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-10/NetQ-Service-Console/</guid>
+      <description>The NetQ Telemetry Server provides access to the NetQ Service Console, a graphical user interface (GUI) for NetQ. The service console in turn provides terminal access to any node in the fabric.
+The Cumulus NetQ Service Console utilizes elements of Portainer. You can read the Portainer license file here.
+ Connecting to the Service Console To connect to the service console, open a browser, and go to the IP address of the telemetry server.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring Linux Hosts with NetQ</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-10/Monitoring-Linux-Hosts-with-NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-10/Monitoring-Linux-Hosts-with-NetQ/</guid>
+      <description>Running NetQ on Linux hosts provides unprecedented network visibility, giving the network operator a complete view of the entire infastrucutre’s network connectivity instead of just from the network devices.
+The NetQ Agent is supported on the following Linux hosts:
+ CentOS 7
+ Red Hat Enterprise Linux 7.1
+ Ubuntu 16.04
+  You need to install the OS-specific NetQ metapack on every host you want to monitor with NetQ.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring Container Environments with NetQ</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-10/Monitoring-Container-Environments-with-NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-10/Monitoring-Container-Environments-with-NetQ/</guid>
+      <description>The NetQ Agent monitors Docker containers the same way it monitors physical servers. There is no special implementation. The NetQ Agent pulls Docker data from the container as it would pull data from a Cumulus Linux switch or Linux host.
+NetQ monitors many aspects of containers on your network, including their:
+ Identity: The NetQ agent tracks every container&amp;rsquo;s IP and MAC address, name, image, and more. NetQ can locate containers across the fabric based on a container&amp;rsquo;s name, image, IP or MAC address, and protocol and port pair.</description>
+    </item>
+    
+    <item>
+      <title>Configuring the NetQ Virtual Environment</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-10/Configuring-the-NetQ-Virtual-Environment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-10/Configuring-the-NetQ-Virtual-Environment/</guid>
+      <description>A virtual NetQ demo environment is available on the Cumulus Networks GitHub site, allowing you to try out NetQ on your own, or to test/validate updates to your network before deploying them into production.
+The environment uses a series of Cumulus VX virtual machines built using the Cumulus Networks reference topology. This section provides high level instructions for installing and configuring the virtual environment.
+Setting up the Demo Environment with Vagrant and VirtualBox These steps assume that both Vagrant and VirtualBox have been downloaded.</description>
+    </item>
+    
+    <item>
+      <title>Restoring from Backups with NetQ</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-10/Restoring-from-Backups-with-NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-10/Restoring-from-Backups-with-NetQ/</guid>
+      <description>NetQ automatically takes snapshots of the NetQ Telemetry Server at five minute intervals. These snapshots can be used to restore to a previous configuration, or to diagnose existing issues with the configuration. For information regarding how long snapshot data is stored, refer to the How Far Back in Time Can You Travel section.
+There are no configuration steps required for setting up backups. NetQ snapshots occur automatically.
+ Backup Locations Backup snapshots can be found in two file locations on the NetQ Telemetry Server:</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting NetQ</title>
+      <link>docs.cumulusnetworks.com/version/cumulus-netq-10/Troubleshooting-NetQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>docs.cumulusnetworks.com/version/cumulus-netq-10/Troubleshooting-NetQ/</guid>
+      <description>To aid in troubleshooting issues with NetQ, there are several configuration and log files on the telemetry server that can provide insight into the root cause of the issue:
+   File Description     /appliance/cfg/netq/netq.yml The NetQ Telemetry Server configuration file.   /var/log/docker/netq/cli_1/netqd.log The NetQ daemon log file for the NetQ CLI.   /var/log/docker/netq/notifier_1/netq-notifier.log The NetQ Notifier log file.    A node running the NetQ Agent has the following configuration and log files:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -3,7 +3,7 @@ title: Manage Zero-Touch Provisioning Scripts
 author: Cumulus Networks
 weight: 37
 aliases:
- - /display/NETQ141/Manage-Zero-Touch-Provisioning-Scripts
+ - /display/NETQ141/Manage+Zero+Touch+Provisioning+Scripts
  - /pages/viewpage.action?pageId=10453549
 pageID: 10453549
 product: Cumulus NetQ

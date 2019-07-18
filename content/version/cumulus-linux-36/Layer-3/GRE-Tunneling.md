@@ -3,7 +3,7 @@ title: GRE Tunneling
 author: Cumulus Networks
 weight: 195
 aliases:
- - /display/CL36/GRE-Tunneling
+ - /display/CL36/GRE+Tunneling
  - /pages/viewpage.action?pageId=8362432
 pageID: 8362432
 product: Cumulus Linux
@@ -11,6 +11,7 @@ version: '3.6'
 imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 ---
+<details>
 
 {{%notice warning%}}
 
@@ -91,7 +92,7 @@ endpoint is 10.0.0.9.
 
 {{% imgOld 1 %}}
 
-
+  
 
 **Tunnel-R1 commands:**
 
@@ -112,7 +113,7 @@ of running the commands from the command line (as above), you can add
 the following commands directly in the `/etc/network/interfaces` file.
 
     cumulus@switch:~$ sudo nano /etc/network/interfaces
-    # Tunnel-R1 configuration
+    # Tunnel-R1 configuration 
     auto swp1 #underlay interface for tunnel
     iface swp1
         link-speed 10000
@@ -187,3 +188,13 @@ command. Make sure you run the `ifreload - a` command after you update
 the interfaces file.
 
 {{%/notice%}}
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+
+</details>

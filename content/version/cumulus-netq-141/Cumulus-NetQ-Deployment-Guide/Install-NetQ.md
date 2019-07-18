@@ -3,7 +3,7 @@ title: Install NetQ
 author: Cumulus Networks
 weight: 89
 aliases:
- - /display/NETQ141/Install-NetQ
+ - /display/NETQ141/Install+NetQ
  - /pages/viewpage.action?pageId=10453414
 pageID: 10453414
 product: Cumulus NetQ
@@ -140,180 +140,181 @@ not overwrite the host containers and vice versa.
 To install the Telemetry Server VM:
 
 1.  Download the NetQ Telemetry Server (TS) VM.
-
+    
     1.  On the [Cumulus
         Downloads](https://cumulusnetworks.com/downloads/) page, select
         *NetQ* from the **Product** list box.
-
+    
     2.  Optionally, select the latest available version from the
         **Version** list box.
-
+    
     3.  Optionally, select the hypervisor you wish to use from the
         **Hypervisor** list box.
-
+        
         {{% imgOld 1 %}}
-
+    
     4.  Scroll down to review the images that match your selection
         criteria, and click **Download** for the VM you want.
-
+        
         {{% imgOld 2 %}}
 
 2.  Import the VM into your
-    [KVM](/cumulus-vx/Getting-Started/Libvirt-and-KVM-QEMU/) or
-    [VMware](/cumulus-vx/Getting-Started/VMware-vSphere-ESXi-5.5/)
+    [KVM](https://docs.cumulusnetworks.com/display/VX/Vagrant+and+Libvirt+with+KVM+or+QEMU)
+    or
+    [VMware](https://docs.cumulusnetworks.com/display/VX/VMware+vSphere+-+ESXi+5.5)
     hypervisor.  
     This step is shown using KVM with Virtual Machine Manager.
-
+    
     1.  Open Virtual Machine Manager.
-
+    
     2.  Import the image.
-
+        
         1.  Select **File** \> **New Virtual Machine**, or click the New
             VM icon.
-
+        
         2.  Select **Import existing disk image**.
-
+        
         3.  Click **Forward**.  
             <span style="color: #5f6a72;"> </span>
-
+            
             {{% imgOld 3 %}}
-
+    
     3.  Place the image in the `/var/lib` directory.
-
+        
         1.  Select the Cumulus image you just downloaded.
-
+        
         2.  <span style="color: #5f6a72;"> Click **Choose Volume**.  
             <span style="color: #5f6a72;"> </span></span>
-
+            
             {{% imgOld 4 %}}
-
-
-
+            
+              
+        
         3.  Type, or browse for, the location where you want to store
             the volume. The directory must already exist.  
-
+              
             <span style="color: #5f6a72;"> </span>
-
+            
             {{% imgOld 5 %}}
-
+        
         4.  Select **Generic** for the **OS type** and **Version**.
-
+        
         5.  Click **Forward**.
-
+    
     4.  Allocate the amount of memory and number of CPUs you want
         available to this VM.
-
+        
         {{%notice info%}}
-
+        
         The amount of RAM recommended for the NetQ TS is dependent on
         your configuration and a number of other criteria; refer to the
         [Methods for Diagnosing Network
         Issues](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues)
         topic for more information.
-
+        
         {{%/notice%}}
-
+        
         {{% imgOld 6 %}}
-
+        
         1.  Increase or decrease the amount of **Memory** and **number
             of CPUs** using the + and - symbols to best meet your
             environment needs.
-
+        
         2.  Click **Forward**.
-
+    
     5.  Prepare for installation.
-
+        
         1.  Provide a unique and useful name for the VM.
-
+        
         2.  Select **Customize configuration before install**.
-
+        
         3.  Click **Finish** to open the configuration options.  
             <span style="color: #5f6a72;"> </span>
-
+            
             {{% imgOld 7 %}}
-
+    
     6.  Configure custom CPU parameters.
-
+        
         1.  Click **CPUs**.
-
+        
         2.  Increase or decrease the **Current** and **Maximum
             allocation** of CPUs using the + and - symbols to best meet
             your environment needs.
-
+        
         3.  Select **Copy host CPU configuration**.
-
+        
         4.  Click **Apply**.  
-
+              
             <span style="color: #5f6a72;"> </span>
-
+            
             {{% imgOld 8 %}}
-
+    
     7.  Configure custom network interface card (NIC) parameters.
-
+        
         1.  Click **NIC**.
-
+        
         2.  Select the **Network source**.
-
+        
         3.  Select or type the **Device model**.
-
+        
         4.  Verify the **MAC address** for the NIC.
-
+        
         5.  Click **Apply**.
-
+            
             {{% imgOld 9 %}}
 
 3.  Verify NetQ TS VM has started.  
     If the VM did not start automatically, click **Begin
     Installation**.  
     There are two default user accounts you can use to log in:
-
+    
       - The primary username is *admin*, and its associated password is
         *CumulusNetQ\!*.
-
+    
       - An alternate username is *cumulus*, and its associated password
         is *CumulusLinux\!*.
 
 4.  Note the external IP address of the switch where the TS is running.
     It is needed to configure the NetQ Agents on each node you want to
     monitor.
-
+    
     {{%notice tip%}}
-
+    
     The TS obtains its IP address from DHCP. To determine the assigned
     IP address, log in to the TS and run `ifconfig eth0`. Use the `inet
     addr` or `int6 addr` for the TS IP address based on whether you are
     running IPv4 or IPv6.
-
+    
         cumulus@cumulus:~$ ifconfig eth0
-        eth0   Link encap:Ethernet HWaddr 52:54:00:b8:1e:05
+        eth0   Link encap:Ethernet HWaddr 52:54:00:b8:1e:05 
                inet addr:192.168.0.254 Bcast:192.168.0.255 Mask:255.255.255.0
                inet6 addr: fe80::5054:ff:feb8:1e05/64 Scope:Link
                UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
                RX packets:8752 errors:0 dropped:1 overruns:0 frame:0
                TX packets:340 errors:0 dropped:0 overruns:0 carrier:0
-               collisions:0 txqueuelen:1000
+               collisions:0 txqueuelen:1000 
                RX bytes:567055 (553.7 KiB) TX bytes:34284 (33.4 KiB)
-
+    
     For HA mode, you need to note the IP addresses of all three
     instances of the TS.
-
+    
     If you need the TS to have a static IP address, manually assign one:
-
+    
     1.  Edit the ` /etc/network/interfaces  `file.
-
-            root@ts1:~# vi /etc/network/interfaces
-
+        
+            root@ts1:~# vi /etc/network/interfaces 
+    
     2.  Add the `address` and `gateway` lines to the eth0 configuration,
         specifying the TS's IP address and the IP address of the
         gateway.
-
+        
             auto eth0
             iface eth0
                 address 198.51.100.10
                 gateway 198.51.100.1
-
+    
     3.  Save the file and exit.
-
+    
     {{%/notice%}}
 
 ### <span>Install Options</span>
@@ -371,9 +372,11 @@ included here:
 
 {{%notice info%}}
 
-If your network uses a proxy server for external connections, you should first
-[configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/)
-so `apt-get` can access the meta package on the Cumulus Networks repository
+If your network uses a proxy server for external connections, you should
+first <span style="color: #339966;"> [<span style="color: #339966;">
+configure a global proxy
+</span>](/display/NETQ141/Configuring+a+Global+Proxy) </span> so
+`apt-get` can access the meta package on the Cumulus Networks repository
 .
 
 {{%/notice%}}
@@ -385,23 +388,23 @@ A simple two-step process installs the NetQ Agent on a Cumulus switch.
 1.  On a switch, edit `/etc/apt/sources.list` to add the repository for
     Cumulus NetQ. Note that NetQ has a separate repository from Cumulus
     Linux.
-
+    
         cumulus@leaf01:~$ sudo nano /etc/apt/sources.list
         ...
         deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-1.4
         ...
-
+    
     {{%notice tip%}}
-
+    
     The repository `deb http://apps3.cumulusnetworks.com/repos/deb
     CumulusLinux-3 netq-latest` can be used if you want to always
     retrieve the latest posted version of NetQ.
-
+    
     {{%/notice%}}
 
 2.  Update the local `apt` repository, then install the NetQ meta
     package on the switch.
-
+    
         cumulus@leaf01:~$ sudo apt-get update && sudo apt-get install cumulus-netq
 
 Repeat these steps for each node, or use an automation tool to install
@@ -423,65 +426,65 @@ following packages are installed and running these minimum versions:
   - ntp 1:4.2.8p4+dfsg-3ubuntu5.6 amd64
 
   - docker-ce 17.06.1\~ce-0\~ubuntu amd64
-
+    
     {{%notice info%}}
-
+    
     This package is required only if you plan to monitor Docker
     instances on the host; otherwise do not install it.
-
+    
     {{%/notice%}}
-
+    
     {{%notice info%}}
-
+    
     Make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not
     include `lldpd` by default, which is required for the installation.
     To install this package, run the following commands:
-
+    
         root@ubuntu:~# apt-get update
         root@ubuntu:~# apt-get install lldpd
         root@ubuntu:~# systemctl enable lldpd.service
         root@ubuntu:~# systemctl start lldpd.service
-
+    
     {{%/notice%}}
 
 To install the NetQ Agent on an Ubuntu server:
 
 1.  Reference and update the local `apt` repository.
-
+    
         root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
 
 2.  Create the file
     `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add
     the following lines:
-
+    
         root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
         ...
         deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
         deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial roh-3
         ...
-
+    
     {{%notice note%}}
-
+    
     The use of `netq-latest` in this example means that a get to the
     repository always retrieves the last version of NetQ, even in the
     case where a major version update has been made. If you want to keep
     the repository on a specific version — such as `netq-1.4` — use that
     instead.
-
+    
     {{%/notice%}}
 
 3.  Install NTP on the server.
-
+    
         root@ubuntu:~# apt install ntp
         root@ubuntu:~# systemctl enable ntp
         root@ubuntu:~# systemctl start ntp
 
 4.  Install the meta package on the server.
-
+    
         root@ubuntu:~# apt-get update ; apt-get install cumulus-netq
 
 5.  Restart the NetQ daemon.
-
+    
         root@ubuntu:~# systemctl enable netqd ; systemctl restart netqd
 
 ### <span id="src-10453414_InstallNetQ-AgentRHC" class="confluence-anchor-link"></span><span>Install NetQ Agent on a Red Hat or CentOS Server (Optional)</span>
@@ -493,21 +496,21 @@ versions:
   - iproute-3.10.0-54.el7\_2.1.x86\_64
 
   - lldpd-0.9.7-5.el7.x86\_64
-
+    
     {{%notice info%}}
-
+    
     Make sure you are running lldp**d**, not lldp**ad**.
-
+    
     CentOS does not include `lldpd` by default, nor does it include
     `wget`, which is required for the installation. To install this
     package, run the following commands:
-
+    
         root@centos:~# yum -y install epel-release
         root@centos:~# yum -y install lldpd
         root@centos:~# systemctl enable lldpd.service
         root@centos:~# systemctl start lldpd.service
         root@centos:~# yum install wget
-
+    
     {{%/notice%}}
 
   - ntp-4.2.6p5-25.el7.centos.2.x86\_64
@@ -517,18 +520,18 @@ versions:
 To install the NetQ Agent on a Red Hat or CentOS server:
 
 1.  Reference and update the local `yum` repository.
-
+    
         root@rhel7:~# rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
         root@rhel7:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo > /etc/yum.repos.d/cumulus-host-el.repo
 
 2.  Edit `/etc/yum.repos.d/cumulus-host-el.repo` to set the `enabled=1`
     flag for the two NetQ repositories.
-
+    
         root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
-        ...
+        ... 
         [cumulus-arch-netq-1.1]
         name=Cumulus netq packages
-        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-1.1/$basearch
+        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-1.1/$basearch 
         gpgcheck=1
         enabled=1
         [cumulus-noarch-netq-1.1]
@@ -539,18 +542,18 @@ To install the NetQ Agent on a Red Hat or CentOS server:
         ...
 
 3.  Install NTP on the server.
-
+    
         root@rhel7:~# yum install ntp
         root@rhel7:~# systemctl enable ntpd
         root@rhel7:~# systemctl start ntpd
 
 4.  Install the Bash completion and NetQ meta packages on the server.
-
+    
         root@rhel7:~# yum -y install bash-completion
         root@rhel7:~# yum install cumulus-netq
 
 5.  Restart the NetQ daemon.
-
+    
         root@rhel7:~# systemctl enable netqd ; systemctl restart netqd
 
 ## <span>Set Up the NetQ Agents</span>
@@ -579,10 +582,10 @@ additional instructions after the basic configuration steps:
 This is the minimum configuration required to properly monitor your
 nodes.
 
-1.  Verify that [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) is running
+1.  Verify that [NTP](/display/NETQ141/Setting+Date+and+Time) is running
     on the host node. Nodes must be in time synchronization with the
     Telemetry Server to enable useful statistical analysis.
-
+    
         cumulus@switch:~$ sudo systemctl status ntp
         [sudo] password for cumulus:
         ● ntp.service - LSB: Start NTP daemon
@@ -593,34 +596,34 @@ nodes.
                    └─2873 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -c /var/lib/ntp/ntp.conf.dhcp -u 109:114
 
 2.  Restart `rsyslog` so log files are sent to the correct destination.
-
+    
         cumulus@switch:~$ sudo systemctl status ntp
 
 3.  Link the host node to the TS you configured above.  
     In this code example, the IP address for the TS is *198.168.1.254.*
     Note: Run `ifconfig eth0` on the TS if you forgot to write down the
     address.
-
+    
         cumulus@switch:~$ netq config add server 198.168.1.254
-
+    
     This command updates the configuration in the `/etc/netq/netq.yml`
     file and enables the NetQ CLI.
 
 4.  Restart NetQ Agent.
-
+    
         cumulus@switch:~$ netq config restart agent
-
+    
     {{%notice note%}}
-
+    
     If you see the following error, it means you haven't added the
     telemetry server or the server wasn't configured:
-
+    
         Error: Please specify IP address of DB server
-
+    
     {{%/notice%}}
 
 5.  Verify NetQ Agent can reach the TS.
-
+    
         cumulus@switch:~$ netq config show server
          
         Server         Port    Vrf    Status
@@ -631,8 +634,8 @@ nodes.
 
 While optional, Cumulus strongly recommends that you configure NetQ
 Agents to communicate with the telemetry server only via a
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/), including
-a [management VRF](/cumulus-linux/Layer-3/Management-VRF/). To do so, you need
+[VRF](/display/NETQ141/Virtual+Routing+and+Forwarding+-+VRF), including
+a [management VRF](/display/NETQ141/Management+VRF). To do so, you need
 to specify the VRF name when configuring the NetQ Agent. For example, if
 the management VRF is configured and you want the agent to communicate
 with the telemetry server over it, configure the agent like this:
@@ -670,23 +673,23 @@ used here were created on an Ubuntu 16.04 host.
 To install and enable Docker:
 
 1.  Add the Docker repository key.
-
+    
         root@host:~# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 2.  Install the Docker repository.
-
+    
         root@host:~# echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
 
 3.  Update the package lists.
-
+    
         root@host:~# apt-get update
 
 4.  Install Docker on the Ubuntu host.
-
+    
         root@host:~# apt-get install -y docker-ce
 
 5.  Check that the Docker service is running on the Ubuntu 16.04 host.
-
+    
         root@host:~# systemctl status docker
         ● docker.service - Docker Application Container Engine
            Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
@@ -699,22 +702,22 @@ To install and enable Docker:
 
 6.  **Optional:** Add the docker group to your user account to be able
     to run docker commands without using `sudo`.
-
+    
         user@host:~$ sudo adduser ${USER} docker
-
+    
     {{%notice note%}}
-
+    
     Adding groups to different users requires a logout and login to take
     effect.
-
+    
     {{%/notice%}}
 
 7.  Enable Docker by adding the following three lines to the `netq.yml`
     file on the container host. This command also sets how often to pull
     data from the container to every 15 seconds.
-
+    
         root@host:~# vi /etc/cts/netq/netq.yml
-
+          
         ...
         docker:
           enable: true

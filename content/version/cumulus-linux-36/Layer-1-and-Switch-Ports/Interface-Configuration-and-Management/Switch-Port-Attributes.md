@@ -3,7 +3,7 @@ title: Switch Port Attributes
 author: Cumulus Networks
 weight: 315
 aliases:
- - /display/CL36/Switch-Port-Attributes
+ - /display/CL36/Switch+Port+Attributes
  - /pages/viewpage.action?pageId=8362492
 pageID: 8362492
 product: Cumulus Linux

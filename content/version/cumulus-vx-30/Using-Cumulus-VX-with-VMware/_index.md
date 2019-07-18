@@ -3,7 +3,7 @@ title: Using Cumulus VX with VMware
 author: Cumulus Networks
 weight: 11
 aliases:
- - /display/VX30/Using-Cumulus-VX-with-VMware
+ - /display/VX30/Using+Cumulus+VX+with+VMware
  - /pages/viewpage.action?pageId=5126605
 pageID: 5126605
 product: Cumulus VX

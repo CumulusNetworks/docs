@@ -3,7 +3,7 @@ title: Manage Network Operating System Images
 author: Cumulus Networks
 weight: 35
 aliases:
- - /display/NETQ141/Manage-Network-Operating-System-Images
+ - /display/NETQ141/Manage+Network+Operating+System+Images
  - /pages/viewpage.action?pageId=10453545
 pageID: 10453545
 product: Cumulus NetQ

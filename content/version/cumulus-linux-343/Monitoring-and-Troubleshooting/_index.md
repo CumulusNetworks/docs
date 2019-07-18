@@ -3,7 +3,7 @@ title: Monitoring and Troubleshooting
 author: Cumulus Networks
 weight: 25
 aliases:
- - /display/CL34/Monitoring-and-Troubleshooting
+ - /display/CL34/Monitoring+and+Troubleshooting
  - /pages/viewpage.action?pageId=7112349
 pageID: 7112349
 product: Cumulus Linux

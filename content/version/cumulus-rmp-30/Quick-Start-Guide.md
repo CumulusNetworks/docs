@@ -3,7 +3,7 @@ title: Quick Start Guide
 author: Cumulus Networks
 weight: 13
 aliases:
- - /display/RMP30/Quick-Start-Guide
+ - /display/RMP30/Quick+Start+Guide
  - /pages/viewpage.action?pageId=5118670
 pageID: 5118670
 product: Cumulus RMP

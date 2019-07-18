@@ -3,7 +3,7 @@ title: Cumulus Networks Services Demos
 author: Cumulus Networks
 weight: 221
 aliases:
- - /display/CL321/Cumulus-Networks-Services-Demos
+ - /display/CL321/Cumulus+Networks+Services+Demos
  - /pages/viewpage.action?pageId=5127084
 pageID: 5127084
 product: Cumulus Linux

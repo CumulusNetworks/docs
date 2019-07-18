@@ -3,7 +3,7 @@ title: Data Center Host to ToR Architecture
 author: Cumulus Networks
 weight: 241
 aliases:
- - /display/CL34/Data-Center-Host-to-ToR-Architecture
+ - /display/CL34/Data+Center+Host+to+ToR+Architecture
  - /pages/viewpage.action?pageId=7112714
 pageID: 7112714
 product: Cumulus Linux

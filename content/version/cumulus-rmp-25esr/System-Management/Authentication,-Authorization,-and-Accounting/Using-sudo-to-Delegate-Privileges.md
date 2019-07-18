@@ -3,7 +3,7 @@ title: Using sudo to Delegate Privileges
 author: Cumulus Networks
 weight: 117
 aliases:
- - /display/RMP25ESR/Using-sudo-to-Delegate-Privileges
+ - /display/RMP25ESR/Using+sudo+to+Delegate+Privileges
  - /pages/viewpage.action?pageId=5116313
 pageID: 5116313
 product: Cumulus RMP

@@ -3,7 +3,7 @@ title: Configuring Switch Port Attributes
 author: Cumulus Networks
 weight: 53
 aliases:
- - /display/RMP25ESR/Configuring-Switch-Port-Attributes
+ - /display/RMP25ESR/Configuring+Switch+Port+Attributes
  - /pages/viewpage.action?pageId=5116358
 pageID: 5116358
 product: Cumulus RMP

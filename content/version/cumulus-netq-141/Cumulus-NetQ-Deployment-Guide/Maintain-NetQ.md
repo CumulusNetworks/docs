@@ -3,7 +3,7 @@ title: Maintain NetQ
 author: Cumulus Networks
 weight: 93
 aliases:
- - /display/NETQ141/Maintain-NetQ
+ - /display/NETQ141/Maintain+NetQ
  - /pages/viewpage.action?pageId=10453451
 pageID: 10453451
 product: Cumulus NetQ

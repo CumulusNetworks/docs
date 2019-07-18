@@ -3,7 +3,7 @@ title: Activate and Initialize IPM
 author: Cumulus Networks
 weight: 31
 aliases:
- - /display/NETQ141/Activate-and-Initialize-IPM
+ - /display/NETQ141/Activate+and+Initialize+IPM
  - /pages/viewpage.action?pageId=10453539
 pageID: 10453539
 product: Cumulus NetQ

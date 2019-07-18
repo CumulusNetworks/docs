@@ -3,7 +3,7 @@ title: VXLAN Routing
 author: Cumulus Networks
 weight: 151
 aliases:
- - /display/CL34/VXLAN-Routing
+ - /display/CL34/VXLAN+Routing
  - /pages/viewpage.action?pageId=7112516
 pageID: 7112516
 product: Cumulus Linux
@@ -165,55 +165,55 @@ anycast gateway.
 ### <span>Configuring the Underlays</span>
 
 1.  Configure the loopback address on the following network devices.
-
+    
     leaf01:
-
+    
         cumulus@leaf01:~$ net add loopback lo ip address 10.0.0.11/32
-
+    
     leaf03:
-
+    
         cumulus@leaf03:~$ net add loopback lo ip address 10.0.0.13/32
-
+    
     spine01:
-
+    
         cumulus@spine01:~$ net add loopback lo ip address 10.0.0.21/32
 
 2.  Advertise the loopback addresses into the underlay.
-
+    
     leaf01:
-
+    
         cumulus@leaf01:~$ net add bgp autonomous-system 65011
         cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
         cumulus@leaf01:~$ net add bgp network 10.0.0.11/32
-
+    
     leaf03:
-
+    
         cumulus@leaf03:~$ net add bgp autonomous-system 65013
         cumulus@leaf03:~$ net add bgp neighbor swp51 remote-as external
         cumulus@leaf03:~$ net add bgp network 10.0.0.13/32
-
+    
     spine01:
-
+    
         cumulus@spine01:~$ net add bgp autonomous-system 65020
         cumulus@spine01:~$ net add bgp neighbor swp1 remote-as external
         cumulus@spine01:~$ net add bgp neighbor swp3 remote-as external
 
 3.  Review and commit your changes:
-
+    
         cumulus@leaf01:~$ net pending
         cumulus@leaf01:~$ net commit
-
+    
         cumulus@leaf03:~$ net pending
         cumulus@leaf03:~$ net commit
-
+    
         cumulus@spine01:~$ net pending
         cumulus@spine01:~$ net commit
 
 4.  Verify the loopback addresses are advertised and learned by all
     VTEPs (look for the line that starts with B\>\*).
-
+    
     leaf01:
-
+    
         cumulus@leaf01:~$ net show route
          
         show ip route
@@ -228,9 +228,9 @@ anycast gateway.
         C>* 10.100.0.0/24 is directly connected, vlan100
         C * 10.200.0.0/24 is directly connected, vlan200-v0
         C>* 10.200.0.0/24 is directly connected, vlan200
-
+    
     leaf03:
-
+    
         cumulus@leaf03:~$ net show route
          
         show ip route
@@ -285,32 +285,32 @@ virtual address can be reused as the anycast gateway.
 
 1.  Configure the VTEPs to advertise layer 2 MAC address information via
     EVPN.
-
+    
     leaf01:
-
+    
         cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor swp51 activate
         cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-all-vni
         cumulus@leaf01:~$ net pending
         cumulus@leaf01:~$ net commit
-
+    
     leaf03:
-
+    
         cumulus@leaf03:~$ net add bgp l2vpn evpn neighbor swp51 activate
         cumulus@leaf03:~$ net add bgp l2vpn evpn advertise-all-vni
         cumulus@leaf03:~$ net pending
         cumulus@leaf03:~$ net commit
-
+    
     spine01:
-
+    
         cumulus@leaf03:~$ net add bgp l2vpn evpn neighbor swp1 activate
         cumulus@leaf03:~$ net add bgp l2vpn evpn neighbor swp3 activate
         cumulus@leaf03:~$ net pending
         cumulus@leaf03:~$ net commit
 
 2.  Verify EVPN is peering.
-
+    
     leaf01:
-
+    
         cumulus@leaf01:~$ net show bgp l2vpn evpn route
          
         BGP table version is 0, local router ID is 10.200.0.2
@@ -338,9 +338,9 @@ virtual address can be reused as the anycast gateway.
                             10.0.0.11                          32768 i
          
         Displayed 6 prefixes (6 paths)
-
+    
     leaf03:
-
+    
         cumulus@leaf03:~$ net show bgp l2vpn evpn route
          
         BGP table version is 0, local router ID is 10.0.0.13
@@ -372,9 +372,9 @@ virtual address can be reused as the anycast gateway.
 ### <span>Configuring the VXLANs</span>
 
 1.  Configure the VNIs on each VTEP.
-
+    
     leaf01:
-
+    
         cumulus@leaf01:~$ net add vxlan VNI100 vxlan id 10100
         cumulus@leaf01:~$ net add vxlan VNI100 bridge access 100
         cumulus@leaf01:~$ net add vxlan VNI100 vxlan local-tunnelip 10.0.0.11
@@ -382,9 +382,9 @@ virtual address can be reused as the anycast gateway.
         cumulus@leaf01:~$ net add vxlan VNI200 bridge access 200
         cumulus@leaf01:~$ net add vxlan VNI200 vxlan local-tunnelip 10.0.0.11
         cumulus@leaf01:~$ net add bridge bridge ports VNI100,VNI200
-
+    
     leaf03:
-
+    
         cumulus@leaf03:~$ net add vxlan VNI100 vxlan id 10100
         cumulus@leaf03:~$ net add vxlan VNI100 bridge access 100
         cumulus@leaf03:~$ net add vxlan VNI100 vxlan local-tunnelip 10.0.0.13
@@ -395,18 +395,18 @@ virtual address can be reused as the anycast gateway.
 
 2.  Disable bridge learning and enable ARP suppression for VXLAN
     routing, then review and commit your changes.
-
+    
     leaf01:
-
+    
         cumulus@leaf01:~$ net add vxlan VNI100 bridge learning off
         cumulus@leaf01:~$ net add vxlan VNI100 bridge arp-nd-suppress on
         cumulus@leaf01:~$ net add vxlan VNI200 bridge learning off
         cumulus@leaf01:~$ net add vxlan VNI200 bridge arp-nd-suppress on
         cumulus@leaf01:~$ net pending
         cumulus@leaf01:~$ net commit
-
+    
     leaf03:
-
+    
         cumulus@leaf03:~$ net add vxlan VNI100 bridge learning off
         cumulus@leaf03:~$ net add vxlan VNI100 bridge arp-nd-suppress on
         cumulus@leaf03:~$ net add vxlan VNI200 bridge learning off
@@ -415,9 +415,9 @@ virtual address can be reused as the anycast gateway.
         cumulus@leaf03:~$ net commit
 
 3.  Verify the VXLAN entries are being learned in EVPN.
-
+    
     leaf01:
-
+    
         cumulus@leaf01:~$ net show bgp l2vpn evpn route
          
         BGP table version is 0, local router ID is 10.200.0.2
@@ -451,9 +451,9 @@ virtual address can be reused as the anycast gateway.
                             10.0.0.11                          32768 i
          
         Displayed 9 prefixes (9 paths)
-
+    
     leaf03:
-
+    
         cumulus@leaf03:~$ net show bgp l2vpn evpn route
          
         BGP table version is 0, local router ID is 10.0.0.13
@@ -489,9 +489,9 @@ virtual address can be reused as the anycast gateway.
         Displayed 9 prefixes (9 paths)
 
 4.  Verify the VXLAN entries are programmed into the bridge table.
-
+    
     leaf01:
-
+    
         cumulus@leaf01:~$ bridge fdb show
         90:e2:ba:7e:98:94 dev swp1 vlan 100 master bridge
         34:17:eb:f6:36:c5 dev swp1 master bridge permanent
@@ -511,9 +511,9 @@ virtual address can be reused as the anycast gateway.
         00:00:00:00:00:1a dev bridge vlan 100 master bridge permanent
         00:00:00:00:00:1b dev vlan200 self permanent
         00:00:00:00:00:1a dev vlan100 self permanent
-
+    
     leaf03:
-
+    
         cumulus@leaf03:~$  bridge fdb show
         90:e2:ba:7e:96:d8 dev swp1 vlan 200 master bridge
         2c:60:0c:72:eb:70 dev swp1 master bridge permanent
@@ -546,30 +546,30 @@ the three nodes you configured above: leaf01, leaf03 and spine01.
     cumulus@leaf01:mgmt-vrf:~$ cat /etc/network/interfaces
     # This file describes the network interfaces available on your system
     # and how to activate them. For more information, see interfaces(5).
-
+     
     source /etc/network/interfaces.d/*.intf
-
+     
     # The loopback network interface
     auto lo
     iface lo inet loopback
         address 10.0.0.11/32
-
+     
     # The primary network interface
     auto eth0
     iface eth0 inet dhcp
         vrf mgmt
-
+     
     iface eth1 inet dhcp
-
+     
     auto swp1
     iface swp1
         bridge-access 100
         mtu 9216
-
+     
     auto swp51
     iface swp51
         mtu 9216
-
+     
     auto VNI100
     iface VNI100
         bridge-access 100
@@ -580,7 +580,7 @@ the three nodes you configured above: leaf01, leaf03 and spine01.
         mtu 9152
         vxlan-id 10100
         vxlan-local-tunnelip 10.0.0.11
-
+     
     auto VNI200
     iface VNI200
         bridge-access 200
@@ -591,25 +591,25 @@ the three nodes you configured above: leaf01, leaf03 and spine01.
         mtu 9152
         vxlan-id 10200
         vxlan-local-tunnelip 10.0.0.11
-
+     
     auto bridge
     iface bridge
         bridge-ports VNI100 VNI200 swp1
         bridge-vids 100 200
         bridge-vlan-aware yes
-
+     
     auto mgmt
     iface mgmt
         address 127.0.0.1/8
         vrf-table auto
-
+     
     auto vlan100
     iface vlan100
         address 10.100.0.2/24
         address-virtual 00:00:00:00:00:1a 10.100.0.1/24
         vlan-id 100
         vlan-raw-device bridge
-
+     
     auto vlan200
     iface vlan200
         address 10.200.0.2/24
@@ -655,28 +655,28 @@ the three nodes you configured above: leaf01, leaf03 and spine01.
     cumulus@leaf03:mgmt-vrf:~$ cat /etc/network/interfaces
     # This file describes the network interfaces available on your system
     # and how to activate them. For more information, see interfaces(5).
-
+     
     source /etc/network/interfaces.d/*.intf
-
+     
     # The loopback network interface
     auto lo
     iface lo inet loopback
         address 10.0.0.13/32
-
+     
     # The primary network interface
     auto eth0
     iface eth0 inet dhcp
         vrf mgmt
-
+     
     auto swp1
     iface swp1
         bridge-access 200
         mtu 9216
-
+     
     auto swp51
     iface swp51
         mtu 9216
-
+     
     auto VNI100
     iface VNI100
         bridge-access 100
@@ -687,7 +687,7 @@ the three nodes you configured above: leaf01, leaf03 and spine01.
         mtu 9152
         vxlan-id 10100
         vxlan-local-tunnelip 10.0.0.13
-
+     
     auto VNI200
     iface VNI200
         bridge-access 200
@@ -698,25 +698,25 @@ the three nodes you configured above: leaf01, leaf03 and spine01.
         mtu 9152
         vxlan-id 10200
         vxlan-local-tunnelip 10.0.0.13
-
+     
     auto bridge
     iface bridge
         bridge-ports VNI100 VNI200 swp1
         bridge-vids 100 200
         bridge-vlan-aware yes
-
+     
     auto mgmt
     iface mgmt
         address 127.0.0.1/8
         vrf-table auto
-
+     
     auto vlan100
     iface vlan100
         address 10.100.0.4/24
         address-virtual 00:00:00:00:00:1a 10.100.0.1/24
         vlan-id 100
         vlan-raw-device bridge
-
+     
     auto vlan200
     iface vlan200
         address 10.200.0.4/24
@@ -762,36 +762,36 @@ the three nodes you configured above: leaf01, leaf03 and spine01.
     cumulus@spine01:mgmt-vrf:~$ cat /etc/network/interfaces
     # This file describes the network interfaces available on your system
     # and how to activate them. For more information, see interfaces(5).
-
+     
     source /etc/network/interfaces.d/*.intf
-
+     
     # The loopback network interface
     auto lo
     iface lo inet loopback
         address 10.0.0.21/32
-
+     
     # The primary network interface
     auto eth0
     iface eth0 inet dhcp
         vrf mgmt
-
+     
     auto swp1
     iface swp1
         mtu 9216
-
+     
     auto swp2
     iface swp2
-
+     
     auto swp3
     iface swp3
         mtu 9216
-
+     
     auto swp51
     iface swp51
-
+     
     auto swp52
     iface swp52
-
+     
     auto mgmt
     iface mgmt
         address 127.0.0.1/8
@@ -832,7 +832,8 @@ the three nodes you configured above: leaf01, leaf03 and spine01.
 
 VXLAN routing with active-active VTEPs is configured the same way as
 VXLAN with active-active mode VTEPs. Follow the instructions located in
-the [VXLAN and EVPN Active-Active chapter](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode/).
+the [VXLAN and EVPN Active-Active
+chapter](/display/CL34/Ethernet+Virtual+Private+Network+-+EVPN#EthernetVirtualPrivateNetwork-EVPN-EVPNandVXLANActive-ActiveMode).
 
 ## <span>VXLAN with VRFs</span>
 
@@ -881,12 +882,12 @@ To get basic information about a VXLAN, use `ip link show`:
 To view the routing table, use `ip route`:
 
     cumulus@switch:~$ ip route
-    45.0.0.0/26 dev vlan1000 proto kernel  scope link  src 45.0.0.16
+    45.0.0.0/26 dev vlan1000 proto kernel  scope link  src 45.0.0.16 
     45.0.0.64/26 dev vlan1001  proto kernel  scope link  src 45.0.0.80
 
 To view the neighbor table, run `ip neighbor`:
 
-    cumulus@switch:~$ ip neighbor
+    cumulus@switch:~$ ip neighbor 
     45.0.0.70 dev vlan1001 lladdr 00:02:00:00:00:0c STALE
     45.0.0.72 dev vlan1001 lladdr 00:02:00:00:00:10 REACHABLE
     45.0.0.5 dev vlan1000 lladdr 00:02:00:00:00:0a REACHABLE

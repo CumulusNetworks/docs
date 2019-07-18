@@ -3,7 +3,10 @@ title: Cumulus Linux User Guide
 author: Cumulus Networks
 weight: 1
 aliases:
+ - /display/CL37/
+ - /display/DOCS/
  - /display/CL37/Cumulus-Linux-User-Guide
+ - /display/DOCS/Cumulus-Linux-User-Guide
  - /pages/viewpage.action?pageId=8362527
 pageID: 8362527
 product: Cumulus Linux
@@ -27,15 +30,8 @@ solutions, and monitoring and troubleshooting recommendations. In
 addition, the quick start guide provides an end-to-end setup process to
 get you started.
 
-This documentation is current as of May 7, 2019 for version 3.7.6. Visit
-the [Cumulus Networks Web site](http://docs.cumulusnetworks.com) for the
-most up to date documentation.
 
-Read the [release
-notes](https://cumulusnetworks.zendesk.com/knowledge/articles/360007793174)
-for new features and known issues in this release.
-
-### <span>What's New in this Release?</span>
+### What's New in this Release?
 
 For information on new features, bug fixes, and known issues present in
 this release, refer to the [product release

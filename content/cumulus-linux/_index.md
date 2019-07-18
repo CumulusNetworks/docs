@@ -12,7 +12,7 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 subsection: true
 ---
-## <span>What is Cumulus Linux?</span>
+## What is Cumulus Linux?
 
 Cumulus Linux is the first full-featured Linux operating system for the
 networking industry. The [Debian
@@ -27,13 +27,13 @@ solutions, and monitoring and troubleshooting recommendations. In
 addition, the quick start guide provides an end-to-end setup process to
 get you started.
 
-### <span>What's New in this Release?</span>
+### What's New in this Release?
 
 For information on new features, bug fixes, and known issues present in
 this release, refer to the [product release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360007793174-Cumulus-Linux-3-7-Release-Notes).
 
-### <span>Open Source Contributions</span>
+### Open Source Contributions
 
 To implement various Cumulus Linux features, Cumulus Networks has forked
 various software projects, like CFEngine, `Netdev` and some Puppet Labs
@@ -44,7 +44,7 @@ Cumulus Networks has also developed and released new applications as
 open source. The list of open source projects is on the [open source
 software](http://oss.cumulusnetworks.com/) page.
 
-### <span>Hardware Compatibility List</span>
+### Hardware Compatibility List
 
 You can find the most up-to-date hardware compatibility list (HCL)
 [here](http://cumulusnetworks.com/hcl/). Use the HCL to confirm that

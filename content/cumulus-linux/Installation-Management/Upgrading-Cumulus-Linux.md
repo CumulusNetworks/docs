@@ -388,7 +388,7 @@ To upgrade the switch using package upgrade:
 
     {{%notice note%}}
 
-    If you see errors for expired GPG keys that prevent you from
+If you see errors for expired GPG keys that prevent you from
     upgrading packages, follow the steps in [Upgrading Expired GPG
     Keys](https://support.cumulusnetworks.com/hc/en-us/articles/360002663013-Updating-Expired-GPG-Keys).
 

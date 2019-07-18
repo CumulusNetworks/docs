@@ -20,21 +20,19 @@ functionality. This section describes how to generate an SSH key pair.
 
 1.  To generate the SSH key pair, run the `ssh-keygen` command and
     follow the prompts:
-    
+
     {{%notice info%}}
-    
-    **Configure a Passwordless System**
-    
-    To configure a completely passwordless system, do not enter a
+
+To configure a completely passwordless system, do not enter a
     passphrase when prompted in the following step.
-    
+
     {{%/notice%}}
-    
+
         cumulus@leaf01:~$ ssh-keygen
         Generating public/private rsa key pair.
-        Enter file in which to save the key (/home/cumulus/.ssh/id_rsa): 
-        Enter passphrase (empty for no passphrase): 
-        Enter same passphrase again: 
+        Enter file in which to save the key (/home/cumulus/.ssh/id_rsa):
+        Enter passphrase (empty for no passphrase):
+        Enter same passphrase again:
         Your identification has been saved in /home/cumulus/.ssh/id_rsa.
         Your public key has been saved in /home/cumulus/.ssh/id_rsa.pub.
         The key fingerprint is:
@@ -54,7 +52,7 @@ functionality. This section describes how to generate an SSH key pair.
 
 2.  To copy the generated public key to the desired location, run the
     `ssh-copy-id` command and follow the prompts:
-    
+
         cumulus@leaf01:~$ ssh-copy-id -i /home/cumulus/.ssh/id_rsa.pub cumulus@leaf02
         The authenticity of host 'leaf02 (192.168.0.11)' can't be established.
         ECDSA key fingerprint is b1:ce:b7:6a:20:f4:06:3a:09:3c:d9:42:de:99:66:6e.
@@ -64,22 +62,22 @@ functionality. This section describes how to generate an SSH key pair.
         cumulus@leaf01's password:
          
         Number of key(s) added: 1
-    
+
     {{%notice warning%}}
-    
-    `ssh-copy-id` does not work if the username on the remote switch is
+
+`ssh-copy-id` does not work if the username on the remote switch is
     different from the username on the local switch. To work around this
     issue, use the `scp` command instead:
-    
+
         cumulus@leaf01:~$ scp .ssh/id_rsa.pub cumulus@leaf02:.ssh/authorized_keys
         Enter passphrase for key '/home/cumulus/.ssh/id_rsa':
         id_rsa.pub
-    
+
     {{%/notice%}}
 
 3.  Connect to the remote switch to confirm that the authentication keys
     are in place:
-    
+
         cumulus@leaf01:~$ ssh cumulus@leaf02
          
         Welcome to Cumulus VX (TM)

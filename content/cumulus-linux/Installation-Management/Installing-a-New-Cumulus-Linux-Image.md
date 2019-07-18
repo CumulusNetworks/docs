@@ -21,7 +21,6 @@ states:
 
   - No image is installed on the switch (the switch is only running
     ONIE).
-
   - Cumulus Linux is already installed on the switch but you want to use
     ONIE to reinstall Cumulus Linux or upgrade to a newer version.
 
@@ -50,13 +49,10 @@ In the following procedures:
   - You can name your Cumulus Linux installer disk image using any of
     the [ONIE naming schemes mentioned
     here](http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
-
   - In the example commands, `[PLATFORM]` can be any supported Cumulus
     Linux platform, such as *x86\_64*, or *arm*.
-
   - Run the `sudo onie-install -h` command to show the ONIE installer
     options.
-
   - After you install the Cumulus Linux disk image, you need to install
     the license file. Refer to [Install the
     License](Quick-Start-Guide.html#src-8362542_QuickStartGuide-install-license).
@@ -530,12 +526,9 @@ step.
 
   - [ONIE Design
     Specification](http://opencomputeproject.github.io/onie/design-spec/)
-
   - [Cumulus Networks Downloads
     page](http://cumulusnetworks.com/downloads/)
-
   - [Cumulus on a
     Stick](https://cumulusnetworks.com/cumulus-on-a-stick/)
-
   - [Managing Cumulus Linux Disk
     Images](/cumulus-linux/Installation-Management/Managing-Cumulus-Linux-Disk-Images)

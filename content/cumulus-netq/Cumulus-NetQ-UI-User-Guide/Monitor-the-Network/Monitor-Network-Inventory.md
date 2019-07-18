@@ -32,11 +32,7 @@ For monitoring inventory and performance on a switch-by-switch basis,
 refer to the <span style="color: #ff0000;"> [Monitor
 Switches](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
 
-<<<<<<< HEAD
 ## Devices Inventory Card Workflow Summary
-=======
-## Devices Inventory Card Workflow Summary</span>
->>>>>>> 70f418f90b4701124dbb1b542c3e553b930fc2f7
 
 The small Devices Inventory card displays:
 
@@ -191,11 +187,7 @@ network.
 
 {{%/notice%}}
 
-<<<<<<< HEAD
 ## View Which Operating Systems Are Running on Your Network Devices
-=======
-## View Which Operating Systems Are Running on Your Network Devices</span>
->>>>>>> 70f418f90b4701124dbb1b542c3e553b930fc2f7
 
 You can view the distribution of operating systems running on your
 switches and hosts. This is useful for verifying which versions of the
@@ -215,11 +207,7 @@ network.
 
 {{%/notice%}}
 
-<<<<<<< HEAD
 ## View Switch Components
-=======
-## View Switch Components</span>
->>>>>>> 70f418f90b4701124dbb1b542c3e553b930fc2f7
 
 To view switch components, open the large Devices Inventory card. By
 default the Switches tab is shown displaying the total number of
@@ -228,11 +216,7 @@ and specific platforms deployed on all of your switches.
 
 {{% imgOld 17 %}}
 
-<<<<<<< HEAD
 ### Highlight a Selected Component Type
-=======
-### Highlight a Selected Component Type</span>
->>>>>>> 70f418f90b4701124dbb1b542c3e553b930fc2f7
 
 You can hover over any of the segments in a component distribution chart
 to highlight a specific type of the given component. When you *hover*, a
@@ -252,11 +236,7 @@ Additionally, sympathetic highlighting is used to show the related
 component types relevant to the highlighted segment and the number of
 unique component types associated with this type (shown in blue here).
 
-<<<<<<< HEAD
 ### Focus on a Selected Component Type
-=======
-### Focus on a Selected Component Type</span>
->>>>>>> 70f418f90b4701124dbb1b542c3e553b930fc2f7
 
 To dig deeper on a particular component type, you can filter the card
 data by that type. In this procedure, the result of filtering on the OS
@@ -281,11 +261,7 @@ To view component type data:
 
 4.  To return to the full complement of components, click the {{% imgOld 23 %}} in the filter tag.
 
-<<<<<<< HEAD
 ### Navigate to Related Cards
-=======
-### Navigate to Related Cards</span>
->>>>>>> 70f418f90b4701124dbb1b542c3e553b930fc2f7
 
 The large Switches card provides quick links to full-screen cards in the
 Device Inventory workflow.
@@ -298,11 +274,7 @@ To navigate to a related card:
 
     {{% imgOld 24 %}}
 
-<<<<<<< HEAD
 ### Navigate to the Switch Inventory Workflow
-=======
-### Navigate to the Switch Inventory Workflow</span>
->>>>>>> 70f418f90b4701124dbb1b542c3e553b930fc2f7
 
 While the Device Inventory cards provide a network-wide view, you may
 want to see more detail about your switch inventory. This can be found
@@ -311,11 +283,7 @@ the **Switch Inventory** button at the top right of the Switches card.
 
 {{% imgOld 25 %}}
 
-<<<<<<< HEAD
 ## View All Switches
-=======
-## View All Switches</span>
->>>>>>> 70f418f90b4701124dbb1b542c3e553b930fc2f7
 
 You can view all stored attributes for all switches in your network. To
 view all switch details, open the full screen Devices Inventory card and
@@ -325,11 +293,7 @@ click the **All Switches** tab in the navigation panel.
 
 To return to your workbench, click {{% imgOld 27 %}} in the top right corner of the card.
 
-<<<<<<< HEAD
 ## View All Hosts
-=======
-## View All Hosts</span>
->>>>>>> 70f418f90b4701124dbb1b542c3e553b930fc2f7
 
 You can view all stored attributes for all hosts in your network. To
 view all hosts details, open the full screen Devices Inventory card and

@@ -24,7 +24,7 @@ instructions for Docker.
 1.  Add the following line to the end of
     `/etc/apt/sources.list.d/jessie.list` in a text editor, and save the
     file:
-    
+
         cumulus@switch:$ sudo nano /etc/apt/sources.list.d/jessie.list
          
         ...
@@ -34,21 +34,21 @@ instructions for Docker.
 
 2.  Create the `/etc/apt/sources.list.d/docker.list` file, add the
     following line in a text editor, and save the file:
-    
+
         cumulus@switch:$ sudo nano /etc/apt/sources.list.d/docker.list
          
         deb https://apt.dockerproject.org/repo debian-jessie main
 
 ### <span>Install the Authentication Key</span>
 
-1.  Install the authentication key for Docker:
-    
+Install the authentication key for Docker:
+
         cumulus@switch:$ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
 ### <span>Install the docker-engine Package</span>
 
-1.  Install Docker:
-    
+Install Docker:
+
         cumulus@switch:$ sudo -E apt-get update -y
         cumulus@switch:$ sudo -E apt-get install docker-engine -qy
 
@@ -56,7 +56,7 @@ instructions for Docker.
 
 1.  Add `docker` as a new line at the bottom of `/etc/vrf/systemd.conf`,
     and save the file.
-    
+
         cumulus@switch:$ sudo nano /etc/vrf/systemd.conf
          
         ...
@@ -64,13 +64,13 @@ instructions for Docker.
         docker
 
 2.  Create a directory for the `systemd` configuration file for Docker:
-    
+
         cumulus@switch:$ sudo mkdir -p /etc/systemd/system/docker.service.d/
 
 3.  In a text editor, create a file called
     `/etc/systemd/system/docker.service.d/noiptables-mgmt-vrf.conf`, add
     the following lines to it, then save the file:
-    
+
         cumulus@switch:$ sudo nano /etc/systemd/system/docker.service.d/noiptables-mgmt-vrf.conf
          
         [Service]
@@ -79,8 +79,8 @@ instructions for Docker.
 
 ### <span>Stop/Disable the Docker Services</span>
 
-1.  Stop the various Docker services:
-    
+Stop the various Docker services:
+
         cumulus@switch:$ sudo systemctl daemon-reload
         cumulus@switch:$ sudo systemctl stop docker.socket
         cumulus@switch:$ sudo systemctl disable docker.socket
@@ -91,15 +91,15 @@ instructions for Docker.
 
 1.  Enable the Docker management daemon so it starts when the switch
     boots:
-    
+
         cumulus@switch:$ sudo systemctl enable docker@mgmt
 
 2.  Start the Docker management daemon:
-    
+
         cumulus@switch:$ sudo systemctl start docker@mgmt
 
 3.  Run the Ubuntu container and launch the terminal instance:
-    
+
         cumulus@switch:$ docker run -i -t ubuntu /bin/bash
 
 ## <span>Performance Notes</span>

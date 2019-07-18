@@ -275,8 +275,7 @@ and alarm threshold settings.
 <td><p>HwIfInDiscards</p></td>
 <td><p>The number of inbound packets that were chosen to be discarded even though no errors had been detected to prevent their being deliverable to a higher-layer protocol. One possible reason for discarding such a packet could be to free up buffer space.</p>
 <p>The sum of all Rx discards on an interface including all of the more specific itemized ethtool counters. It also accounts for all other drops that do not have a more specific ethtool drop reason when a frame arrives that doesn't result in a valid forwarding decision - STP discarding, IGMP snooping drop, VLAN tag not configured</p>
-<p><strong>MLAG issue for RX_DRPs</strong></p>
-<p><strong>(Also in bcmcmd counter <a href="https://wiki.cumulusnetworks.com/display/SD/Finding+packet+drops+in+a+Broadcom+chip#FindingpacketdropsinaBroadcomchip-DefaultDebugCounterSettings" class="external-link">RDBGC0</a><a href="https://wiki.cumulusnetworks.com/display/SD/Finding+packet+drops+in+a+Broadcom+chip#FindingpacketdropsinaBroadcomchip-DefaultDebugCounterSettings" class="external-link">)</a></strong></p></td>
+</td>
 </tr>
 <tr class="even">
 <td><p>HwIfInL3Drops</p></td>
@@ -325,12 +324,11 @@ and alarm threshold settings.
 <tr class="even">
 <td><p>HwIfOutDiscards</p></td>
 <td><p>The number of outbound packets which were chosen to be discarded even though no errors had been detected to prevent their being transmitted. One possible reason for discarding such a packet could be to free up buffer space.</p>
-<p><strong>(Also in bcmcmd counter <a href="https://wiki.cumulusnetworks.com/display/SD/Finding+packet+drops+in+a+Broadcom+chip#FindingpacketdropsinaBroadcomchip-DefaultDebugCounterSettings" class="external-link">TDBGC3</a>)</strong></p></td>
+</td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutErrors</p></td>
-<td><p>For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.</p>
-<p><strong>(Also in bcmcmd counter TERR)</strong></p></td>
+<td><p>For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors.</p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfOutQDrops</p></td>

@@ -17,8 +17,6 @@ commands for getting started after installation is complete.
 
 {{%notice info%}}
 
-**Prerequisites**
-
 Intermediate-level Linux knowledge is assumed for this guide. You should
 be familiar with basic text editing, Unix file permissions, and process
 monitoring. A variety of text editors are pre-installed, including `vi`
@@ -28,8 +26,6 @@ You must have access to a Linux or UNIX shell. If you are running
 Windows, use a Linux environment like [Cygwin](http://www.cygwin.com/)
 as your command line tool for interacting with Cumulus Linux.
 
-{{%notice info%}}
-
 If you are a networking engineer but are unfamiliar with Linux concepts,
 refer to [this reference
 guide](https://support.cumulusnetworks.com/hc/en-us/articles/201787636)
@@ -38,8 +34,6 @@ equivalent Cisco Nexus 3000 NX-OS commands and settings. You can also
 [watch a series of short
 videos](http://cumulusnetworks.com/technical-videos/) introducing you to
 Linux and Cumulus Linux-specific concepts.
-
-{{%/notice%}}
 
 {{%/notice%}}
 
@@ -149,8 +143,7 @@ Privileges](/cumulus-linux/System-Configuration/Authentication-Authorization-and
 ### <span>Serial Console Management</span>
 
 You are encouraged to perform management and configuration over the
-network, [either in band or out of
-band](Upgrading-Cumulus-Linux.html#src-8362647_UpgradingCumulusLinux-outofband).
+network, either in band or out of band.
 Using a serial console is fully supported; however, many customers
 prefer the convenience of network-based management.
 
@@ -166,8 +159,6 @@ interface uses DHCPv4 for addressing by default. You can set a static IP
 address with the Network Command Line Utility (NCLU).
 
 {{%notice info%}}
-
-**Example IP Configuration**
 
 Set the static IP address with the `interface address` and `interface
 gateway` NCLU commands:
@@ -378,10 +369,6 @@ bridge, use the following examples as a guide.
 
 #### <span>Examples</span>
 
-{{%notice info%}}
-
-**Example One**
-
 In the following configuration example, the front panel port swp1 is
 placed into a bridge called *bridge*. The NCLU commands are:
 
@@ -397,12 +384,6 @@ snippet:
         bridge-ports swp1
         bridge-vlan-aware yes
 
-{{%/notice%}}
-
-{{%notice info%}}
-
-**Example Two**
-
 You can add a range of ports in one command. For example, add swp1
 through swp10, swp12, and swp14 through swp20 to bridge:
 
@@ -417,8 +398,6 @@ The commands above produce the following snippet in the
     iface bridge
         bridge-ports swp1 swp2 swp3 swp4 swp5 swp6 swp7 swp8 swp9 swp10 swp12 swp14 swp15 swp16 swp17 swp18 swp19 swp20
         bridge-vlan-aware yes
-
-{{%/notice%}}
 
 To view the changes in the kernel, use the `brctl` command:
 

@@ -882,7 +882,7 @@ Log files are stored in `/var/logs/` by
 default.
 
 Refer to [Investigate NetQ
-Issues](/version/cumulus-netq-22/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Investigate-NetQ-Issues)
+Issues](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Investigate-NetQ-Issues)
 for a complete listing of configuration files and logs for use in issue
 resolution.
 

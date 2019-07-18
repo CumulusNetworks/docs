@@ -30,7 +30,7 @@ The Devices Inventory card workflow helps answer questions such as:
 
 For monitoring inventory and performance on a switch-by-switch basis,
 refer to the <span style="color: #ff0000;"> [Monitor
-Switches](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
+Switches](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
 
 ## Devices Inventory Card Workflow Summary
 

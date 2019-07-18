@@ -103,7 +103,7 @@ To decommission a node from the NetQ database:
 
         cumulus@netq-appliance:~$ netq decommission <hostname>
 
-## <span id="src-12321061_ManageNetQAgents-AgentLog" class="confluence-anchor-link"></span>Configure Logging for a NetQ Agent</span>
+## Configure Logging for a NetQ Agent</span>
 
 The logging level used for a NetQ Agent determines what types of events
 are logged about the NetQ Agent on the switch or host.

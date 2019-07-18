@@ -53,7 +53,7 @@ between the two links to S1 and S2 in any way that you configure on the
 host. Similarly, traffic inbound to H1 can traverse S1 or S2 and arrive
 at H1.
 
-## <span id="src-8362677_Multi-ChassisLinkAggregation-MLAG-reqs" class="confluence-anchor-link"></span>MLAG Requirements</span>
+## MLAG Requirements</span>
 
 MLAG has these requirements:
 
@@ -158,7 +158,7 @@ address by the running `net show bridge macs` command or by examining
 the `/sys/class/net/<bondname>/bonding/ad_partner_mac sysfs` file for
 each bond.
 
-## <span id="src-8362677_Multi-ChassisLinkAggregation-MLAG-configuring" class="confluence-anchor-link"></span>Configure MLAG</span>
+## Configure MLAG</span>
 
 To configure MLAG, you need to:
 
@@ -380,7 +380,7 @@ interfaces.
 
 {{%/notice%}}
 
-### <span id="src-8362677_Multi-ChassisLinkAggregation-MLAG-roles" class="confluence-anchor-link"></span>Switch Roles and Priority Setting</span>
+### Switch Roles and Priority Setting</span>
 
 Each MLAG-enabled switch in the pair has a *role*. When the peering
 relationship is established between the two switches, one switch is put
@@ -420,7 +420,7 @@ the LACP system ID to be the bond interface MAC address instead of the
 `clagd-sys-mac` and the switch in primary role uses the `clagd-sys-mac`
 as the LACP system ID on the bonds.
 
-## <span id="src-8362677_Multi-ChassisLinkAggregation-MLAG-example" class="confluence-anchor-link"></span>Example MLAG Configuration</span>
+## Example MLAG Configuration</span>
 
 The example configuration below configures two bonds for MLAG, each with
 a single port, a peer link that is a bond with two member ports, and
@@ -1040,7 +1040,7 @@ For a deeper comparison of traditional versus VLAN-aware bridge modes,
 read this [knowledge base
 article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
 
-## <span id="src-8362677_Multi-ChassisLinkAggregation-MLAG-protodown" class="confluence-anchor-link"></span>Peer Link Interfaces and the protodown State</span>
+## Peer Link Interfaces and the protodown State</span>
 
 In addition to the standard UP and DOWN administrative states, an
 interface that is a member of an MLAG bond can also be in a `protodown`
@@ -1073,7 +1073,7 @@ The following `ip link show` command output shows an interface in
     3: swp1 state DOWN: <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP> mtu 9216 master pfifo_fast master host-bond1 state DOWN mode DEFAULT qlen 500 protodown on
        link/ether 44:38:39:00:69:84 brd ff:ff:ff:ff:ff:ff
 
-### <span id="src-8362677_Multi-ChassisLinkAggregation-MLAG-backup" class="confluence-anchor-link"></span>Specify a Backup Link</span>
+### Specify a Backup Link</span>
 
 You can specify a backup link for your peer links in case the peer link
 goes down. When this happens, the `clagd` service uses the backup link
@@ -1142,7 +1142,7 @@ To see the backup IP address, run the `net show clag` command:
            exit01-02   -                  2930      -                      -              
            leaf01-02   leaf01-02          1012      -                      -
 
-### <span id="src-8362677_Multi-ChassisLinkAggregation-MLAG-vrf_backup" class="confluence-anchor-link"></span>Specify a Backup Link to a VRF</span>
+### Specify a Backup Link to a VRF</span>
 
 You can configure the backup link to a
 [VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF) or
@@ -1405,7 +1405,7 @@ note above in the [Configuring
 MLAG](#src-8362677_Multi-ChassisLinkAggregation-MLAG-configuring)
 section.
 
-### <span id="src-8362677_Multi-ChassisLinkAggregation-MLAG-mtu" class="confluence-anchor-link"></span>MTU in an MLAG Configuration</span>
+### MTU in an MLAG Configuration</span>
 
 The best way to configure
 [MTU](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes)
@@ -1543,7 +1543,7 @@ pair, you might allocate 20G to 30G of bandwidth to the peer link —
 which accounts for half of the single-connected bandwidth for four to
 six hosts.
 
-### <span id="src-8362677_Multi-ChassisLinkAggregation-MLAG-scenarios" class="confluence-anchor-link"></span>Failover Redundancy Scenarios</span>
+### Failover Redundancy Scenarios</span>
 
 To get a better understanding of how STP and LACP behave in response to
 various failover redundancy scenarios, read [this knowledge base
@@ -1620,7 +1620,7 @@ below:
     2016-10-03T20:31:58.527464+00:00 spine01 clagd[1235]: leaf03-04 is now dual connected.
     2016-10-03T22:47:35.255317+00:00 spine01 clagd[1235]: leaf01-02 is now dual connected.
 
-### <span id="src-8362677_Multi-ChassisLinkAggregation-MLAG-drops" class="confluence-anchor-link"></span>Large Packet Drops on the Peer Link Interface</span>
+### Large Packet Drops on the Peer Link Interface</span>
 
 A large volume of packet drops across one of the peer link interfaces
 can be expected. These drops serve to prevent looping of BUM (broadcast,

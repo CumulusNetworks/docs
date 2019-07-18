@@ -542,7 +542,7 @@ multiple interfaces. </span> The following example enables loopback mode
 on the L1, L2, L3, and L4 network interfaces:
 
     cumulus@switch:~$ net add interface L1-4 facility-loopback
-    cumulus@switch:~$ net pending 
+    cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
 To disable loopback mode, run the `net del interface <interface>
@@ -550,7 +550,7 @@ facility-loopback` command. The following example disables loopback mode
 on the L1, L2, L3, and L4 network interfaces:
 
     cumulus@switch:~$ net del interface L1-4 facility-loopback
-    cumulus@switch:~$ net pending 
+    cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
 {{%notice note%}}
@@ -615,14 +615,14 @@ To display only the status of a particular module, use the `module
 The following example command displays the status of transponder module
 1:
 
-``` 
+```
 cumulus@switch:~$ net show transponder module 1
 Module: 1 ready Acacia Comm Inc. AC400-004-330 S/N:170212599 53.75C 11.89V
     Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
  
                                            Network Interfaces                    
                                      L3                           L4             
-                       ---------------------------  --------------------------- 
+                       ---------------------------  ---------------------------
             Modulation 16-qam                       16-qam          
              Frequency 193.70 THz, Channel 52       193.70 THz, Channel 52       
            Current BER 1.626e-04                    1.343e-05
@@ -692,7 +692,7 @@ format:
                     },
     ...
 
-### <span id="src-8363049_FacebookVoyagerOpticalInterfaces-display_channel_freq" class="confluence-anchor-link"></span>Display Available Channel Frequencies</span>
+### Display Available Channel Frequencies</span>
 
 To display a map of available channel frequencies, numbers, and
 wavelengths, run the `net show transponder frequency-map [json]`
@@ -757,54 +757,54 @@ following command:
     cumulus@switch:~$ net show configuration transponders
      
     transponders
-      
+
       AC400_1
-        
+
         Location
           1
-        
+
         NetworkMode
           independent
-        
+
         L3
-          
+
           Location
             0
-          
+
           TxEnable
             true
-          
+
           TxGridSpacing
             50ghz
-          
+
           TxChannel
             52
-          
+
           OutputPower
             1
-          
+
           TxFineTuneFrequency
             0
-          
+
           MasterEnable
             true
-          
+
           ModulationFormat
             16-qam
-          
+
           DifferentialEncoding
             true
-          
+
           FecMode
             25%
-          
+
           Loopback
             false
-          
+
           TxTributaryIndependent
             0
             1
-          
+
           TxTributaryCoupled
             0
             1
@@ -812,7 +812,7 @@ following command:
             15
     ...
 
-### <span id="src-8363049_FacebookVoyagerOpticalInterfaces-edit_transponders.ini" class="confluence-anchor-link"></span>Edit the transponders.ini File</span>
+### Edit the transponders.ini File</span>
 
 As an alternative to using NCLU commands to configure the transponder
 modules (described above), you can edit the
@@ -2241,7 +2241,7 @@ data from the appropriate network interface, not this attribute.
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-<span id="src-8363049_FacebookVoyagerOpticalInterfaces-terminalLoopback"></span>`Loopback`
+`Loopback`
 
 </td>
 
@@ -2287,7 +2287,7 @@ interface group.
     RxTributaryCoupled=0
     Loopback=false
 
-### <span id="src-8363049_FacebookVoyagerOpticalInterfaces-initiate-hardware-update" class="confluence-anchor-link"></span>Initiate a Hardware Update</span>
+### Initiate a Hardware Update</span>
 
 After making a change to the `transponders.ini` file, you must program
 the change into the hardware by issuing a `systemd reload` command:

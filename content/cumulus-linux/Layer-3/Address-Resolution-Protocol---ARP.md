@@ -233,7 +233,7 @@ Note that Cumulus Linux implements this change at boot time using the
     net.ipv4.conf.default.arp_ignore=1
     cumulus@switch:~$
 
-## <span id="src-8362976_AddressResolutionProtocol-ARP-port" class="confluence-anchor-link"></span>Change Port-specific ARP Parameters</span>
+## Change Port-specific ARP Parameters</span>
 
 The simplest way to configure port-specific ARP parameters in a running
 device is with the following command:

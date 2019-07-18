@@ -251,7 +251,7 @@ of the request:
   - [Modify a Scheduled Validation
     Request](#src-12321612_ValidateNetworkProtocolandServiceOperations-EditSchedVal)
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jU2NoVmFsTm93" class="confluence-anchor-link"></span>Run an Existing Scheduled Validation Request On Demand</span>
+### Run an Existing Scheduled Validation Request On Demand</span>
 
 You may find that although you have a validation scheduled to run at a
 later time, you would like to run it now.
@@ -272,7 +272,7 @@ To run a scheduled validation now:
 
     {{% imgOld 11 %}}
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jT25kTm93" class="confluence-anchor-link"></span>Create a New On-demand Validation Request</span>
+### Create a New On-demand Validation Request</span>
 
 When you want to validate the operation of one or more network protocols
 and services right now, you can create and run an on-demand validation
@@ -329,7 +329,7 @@ scheduled request. After which you can run it on demand.
 
     {{% imgOld 19 %}}
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jU2NoTmV3" class="confluence-anchor-link"></span>Create a New Scheduled Validation Request</span>
+### Create a New Scheduled Validation Request</span>
 
 When you want to see validation results on a regular basis, it is useful
 to configure a scheduled validation request to avoid re-creating the
@@ -378,7 +378,7 @@ Results](#src-12321612_ValidateNetworkProtocolandServiceOperations-SchValRes).
 
 {{% imgOld 27 %}}
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jRWRpdFNjaGVkVmFs" class="confluence-anchor-link"></span>Modify an Existing Scheduled Validation Request</span>
+### Modify an Existing Scheduled Validation Request</span>
 
 At some point you might want to change the schedule or validation types
 that are specified in a scheduled validation request.
@@ -404,7 +404,7 @@ or you can wait for it to run the first time according to the schedule
 you specified. Refer to [View Scheduled Validation
 Results](#src-12321612_ValidateNetworkProtocolandServiceOperations-SchValRes).
 
-## <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jT25kVmFsUmVz" class="confluence-anchor-link"></span>View On-demand Validation Results</span>
+## View On-demand Validation Results</span>
 
 The On-demand Validation Result card workflow enables you to view the
 results of on-demand validation requests. When a request has started
@@ -757,7 +757,7 @@ To view the results:
     example, more failures occurred between certain times or on a
     particular device.
 
-## <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jU2NoVmFsUmVz" class="confluence-anchor-link"></span>View Scheduled Validation Results</span>
+## View Scheduled Validation Results</span>
 
 The Scheduled Validation Result card workflow enables you to view the
 results of scheduled validation requests. When a request has completed
@@ -1041,7 +1041,7 @@ validation results for the service.
 </tbody>
 </table>
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jRGF0YUdyYW4" class="confluence-anchor-link"></span>Granularity of Data Shown Based on Time Period</span>
+### Granularity of Data Shown Based on Time Period</span>
 
 On the medium and large Validation Result cards, the status of the runs
 is represented in heat maps stacked vertically; one for passing runs,

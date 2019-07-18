@@ -190,7 +190,7 @@ cumulus@switch:~$ net commit</code></pre></td>
 </tbody>
 </table>
 
-### <span id="src-8362653_Bonding-LinkAggregation-balance_xor" class="confluence-anchor-link"></span>Enable balance-xor Mode</span>
+### Enable balance-xor Mode</span>
 
 When you enable *balance-xor mode*, the bonding of slave interfaces are
 static and all slave interfaces are active for load balancing and fault
@@ -381,7 +381,7 @@ On Cumulus RMP switches, which are built with two Hurricane2 ASICs,
 
     {{%/notice%}}
 
-## <span id="src-8362653_Bonding-LinkAggregation-related-information" class="confluence-anchor-link"></span>Related Information</span>
+## Related Information</span>
 
   - [Linux Foundation -
     Bonding](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)

@@ -67,7 +67,7 @@ These commands create the following configuration in the
     iface swp1
         link-down yes
 
-## <span id="src-8363023_InterfaceConfigurationandManagement-classes" class="confluence-anchor-link"></span>ifupdown2 Interface Classes</span>
+## ifupdown2 Interface Classes</span>
 
 `ifupdown2` provides for the grouping of interfaces into separate
 classes, where a class is a user-defined label that groups interfaces
@@ -163,7 +163,7 @@ compound command:
 
 {{%/notice%}}
 
-## <span id="src-8363023_InterfaceConfigurationandManagement-loopback" class="confluence-anchor-link"></span>Configure a Loopback Interface</span>
+## Configure a Loopback Interface</span>
 
 Cumulus Linux has a loopback preconfigured in `/etc/network/interfaces`.
 When the switch boots up, it has a loopback interface, called *lo*,
@@ -176,7 +176,7 @@ The loopback interface *lo* must always be specified in
 
 {{%/notice%}}
 
-## <span id="src-8363023_InterfaceConfigurationandManagement-ip" class="confluence-anchor-link"></span>ifupdown Behavior with Child Interfaces</span>
+## ifupdown Behavior with Child Interfaces</span>
 
 By default, `ifupdown` recognizes and uses any interface present on the
 system — whether a VLAN, bond or physical interface — that is listed as
@@ -391,7 +391,7 @@ To print the dependency information of the entire `interfaces` file:
 
 {{% imgOld 1 %}}
 
-## <span id="src-8363023_InterfaceConfigurationandManagement-subinterface" class="confluence-anchor-link"></span>Subinterfaces</span>
+## Subinterfaces</span>
 
 On Linux an *interface* is a network device, and can be either a
 physical device like switch port (such as swp1), or virtual, like a VLAN
@@ -470,7 +470,7 @@ then you cannot run `ifup swp1` since you did not specify it.
 
 {{%/notice%}}
 
-## <span id="src-8363023_InterfaceConfigurationandManagement-ip" class="confluence-anchor-link"></span>Configure IP Addresses</span>
+## Configure IP Addresses</span>
 
 IP addresses are configured with the `net add interface` command.
 
@@ -923,7 +923,7 @@ Aliases are limited to 256 characters.
 
 {{%/notice%}}
 
-<span id="src-8363023_InterfaceConfigurationandManagement-show_alias"></span>To
+To
 show the interface description (alias) for all interfaces on the switch,
 run the `net show interface alias` command. For example:
 

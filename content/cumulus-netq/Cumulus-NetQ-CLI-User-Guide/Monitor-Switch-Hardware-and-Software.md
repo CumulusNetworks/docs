@@ -963,7 +963,7 @@ This example shows the status of the BGP daemon.
 
 To view changes over a given time period, use the `netq show events`
 command. For more detailed information about events, refer to [Monitor
-Events](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Events).
+Events](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Events).
 
 In this example, we want to view changes to the bgpd service in the last
 48 hours.

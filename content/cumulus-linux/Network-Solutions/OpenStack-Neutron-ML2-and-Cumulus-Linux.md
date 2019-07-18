@@ -58,7 +58,7 @@ Cumulus Linux switches, you need the following:
 Additional REST API calls have been added to support the configuration
 of bridge using the bridge name instead of network ID.
 
-## <span id="src-8362989_OpenStackNeutronML2andCumulusLinux-install" class="confluence-anchor-link"></span>Install and Configure the Cumulus Networks Modular Layer 2 Mechanism Driver</span>
+## Install and Configure the Cumulus Networks Modular Layer 2 Mechanism Driver</span>
 
 You need to install the Cumulus Networks ML2 mechanism driver on your
 Neutron host, which is available upstream:

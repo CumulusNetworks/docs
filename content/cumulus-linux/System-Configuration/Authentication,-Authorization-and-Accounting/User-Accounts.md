@@ -68,7 +68,7 @@ following:
 
   - Set a password
 
-### <span id="src-8362553_UserAccounts-ssh_key" class="confluence-anchor-link"></span>Generate an SSH Key for the root Account</span>
+### Generate an SSH Key for the root Account</span>
 
 1.  In a terminal on your host system (not the switch), check to see if
     a key already exists:
@@ -99,7 +99,7 @@ following:
         cumulus@switch:~$ sudo mkdir -p /root/.ssh
         cumulus@switch:~$ echo <SSH public key string> | sudo tee -a /root/.ssh/authorized_keys
 
-### <span id="src-8362553_UserAccounts-root_passwd" class="confluence-anchor-link"></span>Set the root User Password</span>
+### Set the root User Password</span>
 
 1.  Run the following command:
     

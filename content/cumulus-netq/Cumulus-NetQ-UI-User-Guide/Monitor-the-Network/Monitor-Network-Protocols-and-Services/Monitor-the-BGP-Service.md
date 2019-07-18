@@ -483,12 +483,12 @@ include:
     unestablished sessions, you might want to look more carefully at
     those switches using the Switches card workflow to determine
     probable causes. Refer to [Monitor
-    Switches](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
+    Switches](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
 
   - Click **Show All Sessions** to investigate all BGP sessions with
     events in the full screen card.
 
-### <span id="src-12321221_MonitortheBGPService-DevsMostAlarmsBGP" class="confluence-anchor-link"></span>View Devices with the Most BGP-related Alarms</span>
+### View Devices with the Most BGP-related Alarms</span>
 
 Switches or hosts experiencing a large number of BGP alarms may indicate
 a configuration or performance issue that needs further investigation.
@@ -640,7 +640,7 @@ you can view the medium single session card.
 
 {{%/notice%}}
 
-### <span id="src-12321221_safe-id-TW9uaXRvcnRoZUJHUFNlcnZpY2UtI1RpbWVQZXJHcmFu" class="confluence-anchor-link"></span>Granularity of Data Shown Based on Time Period</span>
+### Granularity of Data Shown Based on Time Period</span>
 
 On the medium and large single BGP session cards, the status of the
 sessions is represented in heat maps stacked vertically; one for

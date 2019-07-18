@@ -191,7 +191,7 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
      TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
 
-## <span id="src-8362596_NetworkTroubleshooting-counter_acl" class="confluence-anchor-link"></span>Create Counter ACL Rules</span>
+## Create Counter ACL Rules</span>
 
 In Linux, all ACL rules are always counted. To create an ACL rule for
 counting purposes only, set the rule action to ACCEPT. See the
@@ -236,7 +236,7 @@ to reinstall all the rules.
 
 {{%/notice%}}
 
-## <span id="src-8362596_NetworkTroubleshooting-span" class="confluence-anchor-link"></span>Configure SPAN and ERSPAN</span>
+## Configure SPAN and ERSPAN</span>
 
 SPAN (Switched Port Analyzer) provides for the mirroring of all packets
 coming in from or going out of an interface (the *SPAN source*), and
@@ -290,7 +290,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
 
 {{%/notice%}}
 
-### <span id="src-8362596_NetworkTroubleshooting-span_limits" class="confluence-anchor-link"></span>Limitations for SPAN/ERSPAN</span>
+### Limitations for SPAN/ERSPAN</span>
 
   - For Broadcom switches, Cumulus Linux supports a maximum of two SPAN
     destinations.
@@ -427,7 +427,7 @@ Verify that the SPAN rules were installed:
     38025 7034K SPAN       all  --  swp4   any     anywhere             anywhere             dport:swp19
     50832   55M SPAN       all  --  any    swp4    anywhere             anywhere             dport:swp19
 
-#### <span id="src-8362596_NetworkTroubleshooting-span_outgoing" class="confluence-anchor-link"></span>SPAN Sessions that Reference an Outgoing Interface</span>
+#### SPAN Sessions that Reference an Outgoing Interface</span>
 
 SPAN sessions that reference an outgoing interface create the mirrored
 packets based on the ingress interface before the routing/switching
@@ -537,7 +537,7 @@ frame** option.
 
 {{%/notice%}}
 
-### <span id="src-8362596_NetworkTroubleshooting-selective_spanning" class="confluence-anchor-link"></span>Selective Spanning</span>
+### Selective Spanning</span>
 
 SPAN/ERSPAN traffic rules can be configured to limit the traffic that is
 spanned, to reduce the volume of copied data.

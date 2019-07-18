@@ -271,7 +271,7 @@ To reset any interface list to none:
 
     cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
 </details>
-## <span id="src-8362650_LinkLayerDiscoveryProtocol-snmp" class="confluence-anchor-link"></span>Enable the SNMP Subagent in LLDP</span>
+## Enable the SNMP Subagent in LLDP</span>
 
 LLDP does not enable the SNMP subagent by default. You need to edit
 `/etc/default/lldpd` and enable the `-x` option.

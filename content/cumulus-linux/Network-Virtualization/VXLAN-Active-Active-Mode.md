@@ -36,7 +36,7 @@ This chapter outlines the configurations for both options.
 | VXLAN routing            | The industry standard term for the ability to route in and out of a VXLAN. Equivalent to the Broadcom RIOT feature.                                                                                                                                                                                                                                                                             |
 | `clagd-vxlan-anycast-ip` | The anycast address for the MLAG pair to share and bind to when MLAG is up and running.                                                                                                                                                                                                                                                                                                         |
 
-## <span id="src-8362725_VXLANActive-ActiveMode-config" class="confluence-anchor-link"></span>Configure VXLAN Active-active Mode</span>
+## Configure VXLAN Active-active Mode</span>
 
 VXLAN active-active mode requires the following underlying technologies
 to work correctly.
@@ -148,7 +148,7 @@ address under the loopback interface, as shown below.
       address 10.0.0.12/32
       clagd-vxlan-anycast-ip 10.10.10.20
 
-## <span id="src-8362725_VXLANActive-ActiveMode-example" class="confluence-anchor-link"></span>Example VXLAN Active-Active Configuration</span>
+## Example VXLAN Active-Active Configuration</span>
 
 {{% imgOld 1 %}}
 

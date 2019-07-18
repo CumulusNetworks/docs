@@ -402,7 +402,7 @@ re-enables PortAutoEdge on swp1:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-### <span id="src-8362689_SpanningTreeandRapidSpanningTree-bpdu" class="confluence-anchor-link"></span>BPDU Guard</span>
+### BPDU Guard</span>
 
 To protect the spanning tree topology from unauthorized switches
 affecting the forwarding path, you can configure *BPDU guard* (Bridge
@@ -593,7 +593,7 @@ following:
     cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
      
 
-### <span id="src-8362689_SpanningTreeandRapidSpanningTree-params" class="confluence-anchor-link"></span>Spanning Tree Parameter List</span>
+### Spanning Tree Parameter List</span>
 
 Spanning tree parameters are defined in the IEEE
 [802.1D](http://standards.ieee.org/findstds/standard/802.1D-2004.html),

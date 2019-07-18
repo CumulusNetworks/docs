@@ -163,7 +163,7 @@ mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode).
 
 {{%/notice%}}
 
-## <span id="src-8362747_VXLANRouting-t2" class="confluence-anchor-link"></span>VXLAN Routing Data Plane and Broadcom Trident II Platforms</span>
+## VXLAN Routing Data Plane and Broadcom Trident II Platforms</span>
 
 The Trident II ASIC does not support RIOT natively or VXLAN routing
 using internal loopback. To achieve VXLAN routing in a deployment using

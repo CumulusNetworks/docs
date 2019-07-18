@@ -309,7 +309,7 @@ Here is a brief tabular summary of the area type differences:
 | Stub area             | LSA types 1, 2, 3, 4 area-scoped, No type 5 externals, inter-area routes summarized |
 | Totally stubby area   | LSA types 1, 2 area-scoped, default summary, No type 3, 4, 5 LSA types allowed      |
 
-### <span id="src-8362922_OpenShortestPathFirst-OSPF-multi-instance" class="confluence-anchor-link"></span>Multiple ospfd Instances</span>
+### Multiple ospfd Instances</span>
 
 The `ospfd` daemon can have multiple independent processes.
 
@@ -532,7 +532,7 @@ create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
 
 {{%/notice%}}
 
-### <span id="src-8362922_OpenShortestPathFirst-OSPF-acrb" class="confluence-anchor-link"></span>Auto-cost Reference Bandwidth</span>
+### Auto-cost Reference Bandwidth</span>
 
 *Auto-cost reference bandwidth* provides the ability to dynamically
 calculate the OSPF interface cost to cater for higher speed links. You
@@ -567,7 +567,7 @@ These commands create the following configuration in the
      
     ...
 
-## <span id="src-8362922_OpenShortestPathFirst-OSPF-ospf_unnum" class="confluence-anchor-link"></span>Unnumbered Interfaces</span>
+## Unnumbered Interfaces</span>
 
 Unnumbered interfaces are interfaces without unique IP addresses. In
 OSPFv2, configuring unnumbered interfaces reduces the links between
@@ -686,7 +686,7 @@ depends on layer 1 failure detection capabilities and at the worst case
 
     cumulus@switch:~$ net add interface swp1 ospf cost 65535
 
-## <span id="src-8362922_OpenShortestPathFirst-OSPF-ospf_debug" class="confluence-anchor-link"></span>Troubleshooting</span>
+## Troubleshooting</span>
 
   - To debug neighbor states, run the `net show ospf neighbor` command.
 

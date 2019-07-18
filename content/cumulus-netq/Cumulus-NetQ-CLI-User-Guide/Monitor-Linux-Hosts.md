@@ -23,7 +23,7 @@ The NetQ Agent is supported on the following Linux hosts:
   - Ubuntu 16.04
 
 You need to [install the OS-specific NetQ
-metapack](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
+metapack](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
 on every host you want to monitor with NetQ.
 
 The NetQ Agent monitors the following on Linux hosts:
@@ -34,7 +34,7 @@ The NetQ Agent monitors the following on Linux hosts:
   - Routing on the Host: BGP, OSPF
   - systemctl for services
   - Docker containers — refer to the [Monitor Container
-    Environments](/version/cumulus-netq-22/Cumulus-NetQ-CLI-User-Guide/Monitor-Container-Environments)
+    Environments](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Container-Environments)
     topic
 
 Using NetQ on a Linux host is the same as using it on a Cumulus Linux

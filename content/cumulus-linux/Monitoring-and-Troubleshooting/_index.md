@@ -170,7 +170,7 @@ Cumulus Networks as this file helps in the investigation of issues.
     -e MODULES: Enable modules. Comma separated module list (run with -e help for module names)
     -d MODULES: Disable modules. Comma separated module list (run with -d help for module names)
 
-## <span id="src-8362592_MonitoringandTroubleshooting-syslog_server" class="confluence-anchor-link"></span>Send Log Files to a syslog Server</span>
+## Send Log Files to a syslog Server</span>
 
 ### NCLU</span>
 
@@ -300,7 +300,7 @@ Do not use the `imfile` module with any file written by `rsyslogd`.
 
         cumulus@switch:~$ sudo systemctl restart rsyslog.service
 
-### <span id="src-8362592_MonitoringandTroubleshooting-mgmtvrf" class="confluence-anchor-link"></span>Write to syslog with Management VRF Enabled</span>
+### Write to syslog with Management VRF Enabled</span>
 
 You can write to syslog with [management
 VRF](/cumulus-linux/Layer-3/Management-VRF) enabled by applying the

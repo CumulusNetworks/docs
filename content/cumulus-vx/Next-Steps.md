@@ -16,7 +16,7 @@ VX and shows some basic commands you can try to get started with Cumulus
 Linux. Additional resources for further reading and more advanced
 configuration are also provided.
 
-## Perform Additional Configuration</span>
+## Perform Additional Configuration
 
 To provide easier access in video-focused hypervisors (such as
 VirtualBox), Cumulus VX is configured by default to redirect the grub
@@ -30,21 +30,21 @@ If the VM has **not** been booted:
 
 2.  Modify the Linux command line directly, removing all references to
     the console entries:
-    
+
     **Original Version:**
-    
+
     {{% imgOld 0 %}}
-    
+
     **Configured Version:**
-    
+
     {{% imgOld 1 %}}
-    
+
     {{%notice note%}}
-    
+
     The example images above are for the ONIE-RESCUE entry, not the
     standard boot entry. The configuration process is the same for both
     entries.
-    
+
     {{%/notice%}}
 
 3.  Start the VM.
@@ -52,14 +52,14 @@ If the VM has **not** been booted:
 If the VM is already running:
 
 1.  Run the following commands as the sudo user:
-    
+
         cumulus@switch:~$ sed -i 's/^#//' /etc/default/grub.d/00-installer-defaults.cfg
         cumulus@switch:~$ sed -r -i '/^GRUB_CMDLINE_LINUX=/ s/(console=ttyS0,115200n8) (console=tty0)/\2 \1/' /etc/default/grub
         cumulus@switch:~$ update-grub 
 
 2.  Restart the VM to implement the change.
 
-## Try Basic Commands</span>
+## Try Basic Commands
 
 After you have configured the Cumulus VX instances and performed
 additional configuration, use the wider Cumulus Linux documentation
@@ -114,34 +114,19 @@ This command updates both the `/etc/hostname` and `/etc/hosts` files.
 
     cumulus@switch:~$ net add hostname <hostname>
 
-## Further Information</span>
+## Further Information
 
 Check out these community articles and the rest of the Cumulus Linux
 documentation:
 
-  - [Automation: Network automation with Cumulus
-    VX](https://forums.cumulusnetworks.com/cumulus-vx-230884/testing-network-automation-with-cumulus-vx-6727777)
+  - [Automation: Network automation with Cumulus VX](https://forums.cumulusnetworks.com/cumulus-vx-230884/testing-network-automation-with-cumulus-vx-6727777)
 
-  - [Routing protocols: Unnumbered OSPF/BGP with Cumulus
-    VX](https://forums.cumulusnetworks.com/cumulus-vx-230884/unnumbered-ospf-bgp-configuration-on-vmware-esxi-with-cumulus-vx-6728629)
+  - [Routing protocols: Unnumbered OSPF/BGP with Cumulus VX](https://forums.cumulusnetworks.com/cumulus-vx-230884/unnumbered-ospf-bgp-configuration-on-vmware-esxi-with-cumulus-vx-6728629)
 
-  - [Network redundancy: Multi-chassis Link Aggregation (MLAG) with
-    Cumulus
-    VX](https://forums.cumulusnetworks.com/cumulus-vx-230884/spinning-up-a-virtual-mlag-environment-6722798)
+  - [Network redundancy: Multi-chassis Link Aggregation (MLAG) with Cumulus VX](https://forums.cumulusnetworks.com/cumulus-vx-230884/spinning-up-a-virtual-mlag-environment-6722798)
 
-  - [Network virtualization: Cumulus VX with VMware
-    NSX](https://forums.cumulusnetworks.com/cumulus-vx-230884/integrating-cumulus-vx-with-vmware-nsx-using-vmware-esxi-6732766)
+  - [Network virtualization: Cumulus VX with VMware NSX](https://forums.cumulusnetworks.com/cumulus-vx-230884/integrating-cumulus-vx-with-vmware-nsx-using-vmware-esxi-6732766)
 
-  - [Cumulus Linux
-    documentation](http://docs.cumulusnetworks.com/display/DOCS/)
+  - [Cumulus Linux documentation](/cumulus-linux)
 
-  - [Cumulus Networks knowledge
-    base](https://support.cumulusnetworks.com/hc/en-us/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [Cumulus Networks knowledge base](https://support.cumulusnetworks.com/hc/en-us/)

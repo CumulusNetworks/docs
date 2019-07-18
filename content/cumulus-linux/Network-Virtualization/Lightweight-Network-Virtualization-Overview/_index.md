@@ -118,7 +118,7 @@ to every remote VTEP.
 
 {{%/notice%}}
 
-#### <span id="src-8362706_LightweightNetworkVirtualizationOverview-head-end" class="confluence-anchor-link"></span>Head End Replication</span>
+#### Head End Replication</span>
 
 The Broadcom switch with the Tomahawk, Trident II+, and Trident II ASIC
 and the Mellanox switch with the Spectrum ASIC are capable of head end
@@ -619,7 +619,7 @@ Linux):
     Set name-type for VLAN subsystem. Should be visible in /proc/net/vlan/config
     Added VLAN with VID == 30 to IF -:eth3:-
 
-## <span id="src-8362706_LightweightNetworkVirtualizationOverview-mapping" class="confluence-anchor-link"></span>Configure the VLAN to VXLAN Mapping</span>
+## Configure the VLAN to VXLAN Mapping</span>
 
 Configure the VLANs and associated VXLANs. In this example, there are 3
 VLANs and 3 VXLAN IDs (VNIs). VLANs 10, 20 and 30 are used and
@@ -849,7 +849,7 @@ For the registration daemon:
      
     May 11 11:42:55 cumulus vxrd[929]: INFO: Starting (pid 929) ...
 
-## <span id="src-8362706_LightweightNetworkVirtualizationOverview-regnode" class="confluence-anchor-link"></span>Configure the Registration Node</span>
+## Configure the Registration Node</span>
 
 The registration node was configured earlier in
 `/etc/network/interfaces` in the [VXLAN
@@ -964,7 +964,7 @@ Use *1*, *yes*, *true,* or *on* for True for each relevant option. Use
 
 {{%/notice%}}
 
-## <span id="src-8362706_LightweightNetworkVirtualizationOverview-loadbalancing" class="confluence-anchor-link"></span>Advanced LNV Usage</span>
+## Advanced LNV Usage</span>
 
 ### Scale LNV by Load Balancing with Anycast</span>
 

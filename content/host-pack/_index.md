@@ -36,13 +36,9 @@ Cumulus Host Pack enables a web-scale network by providing connectivity
 through **FRRouting on the Host** and **Container Advertiser** and
 visibility through **NetQ on the Host**.
 
-[](https://cumulusnetworks.com/products/host-pack/)
-
 [{{% imgOld 0 %}}](https://cumulusnetworks.com/products/host-pack/)
 
-[](https://cumulusnetworks.com/products/host-pack/)
-
-## Web-scale Connectivity</span>
+## Web-scale Connectivity
 
 [FRRouting on the Host](https://frrouting.org) — the suite of routing
 protocols in Cumulus Linux — delivers layer 3 routing on host servers;
@@ -71,7 +67,7 @@ past the first step of automated configuration management.
 ***Host Pack connectivity is provided through FRRouting on the Host and
 Container Advertiser***
 
-## Web-scale Visibility</span>
+## Web-scale Visibility
 
 In addition to enhanced connectivity support, Host Pack ensures
 real-time reliability and uptime to hosts and containers with visibility
@@ -115,7 +111,7 @@ including:
     connectivity for a container, including adjacency, and can identify
     containers that can be affected by a top of rack switch.
 
-## Supported Environments</span>
+## Supported Environments
 
 Host Pack requires Cumulus Linux 3.3 and later and is supported on the
 following hosts and systems:
@@ -312,27 +308,43 @@ Docker Swarm
 
 </table>
 
-## Getting Started</span>
+## Getting Started
 
 Where you get started with Host Pack depends upon which features you
 intend to use.
 
   - If you want to use routing on your servers, or with the containers
     on a host, you need to
-    [install](/version/hostpack/Installing-FRRouting-on-the-Host) and
-    [configure](/version/hostpack/Configuring-FRRouting-on-the-Host)
+<<<<<<< Updated upstream
+    [install](Installing-FRRouting-on-the-Host) and
+    [configure](Configuring-FRRouting-on-the-Host)
     FRRouting on the Host.
 
-  - If you are using containers on your host servers, make sure [Docker
-    is installed](/version/hostpack/Installing-Docker).
+  - If you are using containers on your host servers, make sure
+    [Docker is installed](Installing-Docker).
 
-  - If you want to use Container Advertiser, you need to [install and
-    configure](/version/hostpack/Configuring-Container-Advertiser) it.
+  - If you want to use Container Advertiser, you need to
+    [install and configure](Configuring-Container-Advertiser) it.
 
   - If you plan on using NetQ on the Host to monitor the hosts and
     containers, you need to
-    [install](/version/hostpack/Installing-NetQ-on-the-Host) and
-    [configure](/version/hostpack/Configuring-NetQ-on-the-Host) it.
+    [install](Installing-NetQ-on-the-Host) and
+    [configure](Configuring-NetQ-on-the-Host) it.
+=======
+    [install](/host-pack/Installing-FRRouting-on-the-Host) and
+    [configure](/host-pack/Configuring-FRRouting-on-the-Host)
+    FRRouting on the Host.
+
+  - If you are using containers on your host servers, make sure [Docker
+    is installed](/host-pack/Installing-Docker).
+
+  - If you want to use Container Advertiser, you need to [install and
+    configure](/host-pack/Configuring-Container-Advertiser) it.
+
+  - If you plan on using NetQ on the Host to monitor the hosts and
+    containers, you need to
+    [install](/host-pack/Installing-NetQ-on-the-Host) and
+    [configure](/host-pack/Configuring-NetQ-on-the-Host) it.
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 
@@ -341,3 +353,4 @@ intend to use.
 <footer id="ht-footer">
 
 </footer>
+>>>>>>> Stashed changes

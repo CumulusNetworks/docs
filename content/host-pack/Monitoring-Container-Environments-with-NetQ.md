@@ -80,7 +80,7 @@ Due to the higher memory requirements to run containers, Cumulus
 Networks recommends you run the NetQ Telemetry Server on a host with at
 least 32G RAM. For more information, read the [NetQ user guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/#span-id-src-12321056-methodsfordiagnosingnetworkissues-time-machine-class-confluence-anchor-link-span-span-use-netq-as-a-time-machine-span).
 
-### <span id="src-7110909_MonitoringContainerEnvironmentswithNetQ-enable_k8s" class="confluence-anchor-link"></span>Enable Monitoring of Kubernetes</span>
+### Enable Monitoring of Kubernetes</span>
 
 In order for NetQ to be able to monitor the containers on a host, you
 need to do the following on the master node only:
@@ -100,7 +100,7 @@ need to do the following on the master node only:
         cumulus@server01:~$ netq config restart agent
 
 You still need to [enable the NetQ
-Agent](/version/hostpack/Installing-NetQ-on-the-Host) on all the worker
+Agent](/host-pack/Installing-NetQ-on-the-Host) on all the worker
 nodes for complete insight into your container network.
 
 ### Show Kubernetes Clusters</span>
@@ -751,7 +751,7 @@ Due to the higher memory requirements to run containers, Cumulus
 Networks recommends you run the NetQ Telemetry Server on a host with at
 least 32G RAM. For more information, read the [NetQ user guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/#span-id-src-12321056-methodsfordiagnosingnetworkissues-time-machine-class-confluence-anchor-link-span-span-use-netq-as-a-time-machine-span).
 
-### <span id="src-7110909_MonitoringContainerEnvironmentswithNetQ-enable" class="confluence-anchor-link"></span>Enable the Monitoring of Docker Containers</span>
+### Enable the Monitoring of Docker Containers</span>
 
 In order for NetQ to be able to monitor the containers on a host, you
 need to do the following on the host:

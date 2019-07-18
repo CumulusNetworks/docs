@@ -24,9 +24,8 @@ development.
 
 Cumulus VX runs in a virtual machine (VM) on a standard x86 environment.
 The VM is a 64-bit operating system, built on the same foundation as
-[Cumulus Linux](http://docs.cumulusnetworks.com/display/DOCS), running
-Debian Linux Jessie 4.1, using `virtio` drivers for network and HDD
-interfaces as well as the logical volume manager (LVM).
+[Cumulus Linux](/cumulus-linux), running Debian Linux Jessie 4.1, using `virtio`
+drivers for network and HDD interfaces as well as the logical volume manager (LVM).
 
 Five versions of the virtual disk image are available for use across
 various hypervisors:

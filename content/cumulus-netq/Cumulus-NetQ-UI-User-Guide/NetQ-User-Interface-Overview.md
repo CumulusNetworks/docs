@@ -510,7 +510,7 @@ To move a card:
 
     {{% imgOld 34 %}}
 
-### <span id="src-12321856_NetQUserInterfaceOverview-AddDelCard" class="confluence-anchor-link"></span>Add or Remove a Card</span>
+### Add or Remove a Card</span>
 
 You can add or remove cards from a workbench at any time.
 
@@ -633,7 +633,7 @@ To add a card deck:
 1.  Click {{% imgOld 43 %}} in the workbench task bar.
 2.  Select the deck you want to add to your workbench.
 
-## <span id="src-12321856_safe-id-TmV0UVVzZXJJbnRlcmZhY2VPdmVydmlldy0jVXNyU2V0" class="confluence-anchor-link"></span>User Settings</span>
+## User Settings</span>
 
 You can customize the NetQ application display, change their account
 password, and manage their workbenches.

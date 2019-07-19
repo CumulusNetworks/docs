@@ -174,13 +174,11 @@ The loopback interface *lo* must always be specified in `/etc/network/interfaces
 
 By default, `ifupdown` recognizes and uses any interface present on the
 system — whether a VLAN, bond or physical interface — that is listed as
-a dependent of an interface. You are not required to list them in the
-`interfaces` file unless they need a specific configuration, such [MTU or link speed](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes).
+a dependent of an interface. You are not required to list them in the `interfaces` file unless they need a specific configuration, such [MTU or link speed](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes).
 And if you need to delete a child interface, you should delete all
 references to that interface from the `interfaces` file.
 
-For this example, swp1 and swp2 below do not need an entry in the
-`interfaces` file. The following stanzas defined in
+For this example, swp1 and swp2 below do not need an entry in the `interfaces` file. The following stanzas defined in
 `/etc/network/interfaces` provide the exact same configuration:
 
 <table>
@@ -215,11 +213,11 @@ iface bridge
 </tr>
 </tbody>
 </table>
+
 <details>
 <summary>Bridge in Traditional Mode - Example </summary>
 
-For this example, swp1.100 and swp2.100 below do not need an entry in
-the `interfaces` file. The following stanzas defined in
+For this example, swp1.100 and swp2.100 below do not need an entry in the `interfaces` file. The following stanzas defined in
 `/etc/network/interfaces` provide the exact same configuration:
 
 <table>
@@ -257,6 +255,7 @@ For more information on the bridge in traditional mode vs the bridge in
 VLAN-aware mode, please read [this knowledge base
 article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
 </details>
+
 ## ifupdown2 Interface Dependencies
 
 `ifupdown2` understands interface dependency relationships. When `ifup`
@@ -685,8 +684,7 @@ slaves:
     cumulus@switch:~$ net commit
 
 While you must use commas to separate different ranges of ports in the
-NCLU command, the /etc/network/interfaces file renders the list of ports
-individually, as in the example output below.
+NCLU command, the `/etc/network/interfaces` file renders the list of ports individually, as in the example output below.
 
 These commands produce the following snippet in the
 `/etc/network/interfaces` file:
@@ -896,16 +894,9 @@ interfaces with multiple `iface` stanzas.
 
 ### ifupdown2 and sysctl
 
-For sysctl commands in <span style="color: #000000;"> the </span>
-`pre-up` <span style="color: #000000;"> , `up`</span>
-<span style="color: #000000;"> , </span> `post-up` </span> ,
-<span style="color: #000000;"> </span> `pre-down`
-<span style="color: #000000;"> , </span> `down`, and
-<span style="color: #000000;"> </span> `post-down` lines that use the
-`$IFACE` <span style="color: #000000;"> </span> variable, if the
-interface name contains a dot (.), `ifupdown2` does not change the name
-to work with sysctl. For example, the interface name `bridge.1` is not
-converted to <span style="color: #000000;"> `bridge/1` </span> .
+For sysctl commands in the `pre-up` , `up`, `post-up`, `pre-down`, `down`, and `post-down` lines that use the
+`$IFACE` variable, if the interface name contains a dot (.), `ifupdown2` does not change the name to work with sysctl. For example, the interface name `bridge.1` is not
+converted to `bridge/1`.
 
 ### Long Interface Names
 

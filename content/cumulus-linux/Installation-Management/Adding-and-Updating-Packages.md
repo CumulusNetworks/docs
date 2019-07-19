@@ -242,11 +242,8 @@ To add a new package:
 
     {{%notice tip%}}
 
-<<<<<<< Updated upstream
   In some cases, installing a new package might also upgrade
-=======
-    In some cases, installing a new package might also upgrade
->>>>>>> Stashed changes
+
     additional existing packages due to dependencies. To view these
     additional packages before you install, run the `apt-get install
     --dry-run` command.

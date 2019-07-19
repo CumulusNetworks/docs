@@ -17,10 +17,9 @@ insight into all aspects of the service. This is accomplished through
 two card workflows, one for the service and one for the session. They
 are described separately here.
 
-{{%notice info%}}
+{{%notice note%}}
 
 **MLAG or CLAG?**
-
 The Cumulus Linux implementation of MLAG is referred to by other vendors
 as CLAG, MC-LAG or VPC. The Cumulus NetQ UI uses the CLAG terminology.
 
@@ -41,8 +40,8 @@ The small CLAG Service card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -52,13 +51,12 @@ The small CLAG Service card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 1 %}}</p></td>
+<td><p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
 <td><p>Title</p></td>
-<td><p><strong>CLAG</strong>: All CLAG Sessions, or the CLAG Service</p></td>
+<td><p>CLAG: All CLAG Sessions, or the CLAG Service</p></td>
 </tr>
 <tr class="odd">
 <td><p>{{% imgOld 2 %}}</p></td>
@@ -81,8 +79,8 @@ The medium CLAG Service card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -96,13 +94,12 @@ The medium CLAG Service card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 5 %}}</p></td>
+<td><p>{{% imgOld 5 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>Network Services | <strong></strong> All CLAG Sessions</p></td>
+<td><p>Network Services | All CLAG Sessions</p></td>
 </tr>
 <tr class="even">
 <td><p>{{% imgOld 6 %}}</p></td>
@@ -113,13 +110,11 @@ The medium CLAG Service card displays:
 <td><p>Total number of CLAG-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 8 %}}</p></td>
+<td><p>{{% imgOld 8 %}}</p></td>
 <td><p>Total number of sessions with an inactive backup IP address</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 9 %}}</p></td>
+<td><p>{{% imgOld 9 %}}</p></td>
 <td><p>Total number of bonds with only a single connection</p></td>
 </tr>
 <tr class="even">
@@ -145,8 +140,8 @@ The *All CLAG Sessions Summary* tab which displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -160,8 +155,7 @@ The *All CLAG Sessions Summary* tab which displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 11 %}}</p></td>
+<td><p>{{% imgOld 11 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -190,8 +184,8 @@ The *All CLAG Sessions Summary* tab which displays:
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
-<td><p>When the <strong>SWITCHES WITH MOST SESSIONS</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of session count—devices with the largest number of sessions are listed first</p>
-<p>When the <strong>SWITCHES WITH MOST UNESTABLISHED SESSIONS</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of unestablished session count—devices with the largest number of unestablished sessions are listed first</p></td>
+<td><p>When the <strong>Switches with Most Sessions</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of session count—devices with the largest number of sessions are listed first</p>
+<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of unestablished session count—devices with the largest number of unestablished sessions are listed first</p></td>
 </tr>
 <tr class="even">
 <td><p>Show All Sessions</p></td>
@@ -207,8 +201,8 @@ sessions, and all alarms.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -227,8 +221,7 @@ sessions, and all alarms.
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 16 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 16 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -247,15 +240,15 @@ sessions, and all alarms.
 <ul>
 <li><p>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</p></li>
 <li><p>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</p></li>
-<li><p>Model Id: Identifier of networking ASIC model. Example values include <span style="color: #222222;"> BCM56960 and BCM56854. </span></p></li>
-<li><p>Ports: Indicates port configuration of the switch. Example values include <span style="color: #222222;"> 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+. </span></p></li>
+<li><p>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</p></li>
+<li><p>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</p></li>
 <li><p>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</p></li>
 </ul></li>
 <li><p><strong>CPU</strong></p>
 <ul>
 <li><p>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</p></li>
-<li><p>Max Freq: Highest rated frequency for CPU. Example values include <span style="color: #222222;"> 2.40 GHz and 1.74 GHz. </span></p></li>
-<li><p>Model: Chip family. Example values include <span style="color: #222222;"> Intel Atom C2538 and Intel Atom C2338. </span></p></li>
+<li><p>Max Freq: Highest rated frequency for CPU. Example values include 2.40 GHz and 1.74 GHz.</p></li>
+<li><p>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</p></li>
 <li><p>Nos: Number of cores. Example values include 2, 4, and 8.</p></li>
 </ul></li>
 <li><p><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</p></li>
@@ -270,8 +263,8 @@ sessions, and all alarms.
 <li><p><strong>Platform</strong></p>
 <ul>
 <li><p>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</p></li>
-<li><p>MAC: System MAC address. Example value: <span style="color: #545454;"> 17:01:AB:EE:C3:F5. </span></p></li>
-<li><p>Model: <span style="color: #222222;"> Manufacturer's model name. Examples values include AS7712-32X and S4048-ON. </span></p></li>
+<li><p>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</p></li>
+<li><p>Model: Manufacturer's model name. Examples values include AS7712-32X and S4048-ON.</p></li>
 <li><p>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</p></li>
 <li><p>Revision: Release version of the platform</p></li>
 <li><p>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</p></li>
@@ -311,7 +304,7 @@ sessions, and all alarms.
 <td><p>All Alarms tab</p></td>
 <td><p>Displays all CLAG events network-wide. By default, the event list is sorted by time, with the most recent events listed first. The tab provides the following additional data about each event:</p>
 <ul>
-<li><p><strong>Message</strong>: Text description of a BGP-related event. Example: Clag conflicted bond changed from swp7 swp8 to @swp9 swp10</p></li>
+<li><p><strong>Message</strong>: Text description of a BGP-related event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10</p></li>
 <li><p><strong>Source</strong>: Hostname of network device that generated the event</p></li>
 <li><p><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</p></li>
 <li><p><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>clag</em> in this card workflow.</p></li>
@@ -322,8 +315,7 @@ sessions, and all alarms.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 17 %}}</p></td>
+<td><p>{{% imgOld 17 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -368,8 +360,7 @@ to look for any differences.
 To view switches and hosts with the most CLAG sessions:
 
 1.  Open the large CLAG Service card.
-
-2.  Select **SWITCHES WITH MOST SESSIONS** from the filter above the
+2.  Select **Switches with Most Sessions** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
     running the most CLAG sessions at the top. Scroll down to view those
@@ -380,16 +371,9 @@ To view switches and hosts with the most CLAG sessions:
 To compare this data with the same data at a previous time:
 
 1.  Open another large CLAG Service card.
-
 2.  Move the new card next to the original card if needed.
-
 3.  Change the time period for the data on the new card by hovering over
-    the card and clicking <span style="color: #353744;">
-
-    {{% imgOld 21 %}}
-
-    .
-
+    the card and clicking {{% imgOld 21 %}}.
 4.  Select the time period that you want to compare with the current
     time.  
     You can now see whether there are significant differences between
@@ -398,7 +382,6 @@ To compare this data with the same data at a previous time:
     {{% imgOld 22 %}}
 
     {{% imgOld 23 %}}
-
 
     If the changes are unexpected, you can investigate further by
     looking at another time frame, determining if more nodes are now
@@ -413,9 +396,7 @@ establishing CLAG sessions; both currently and in the past.
 To view switches with the most unestablished CLAG sessions:
 
 1.  Open the large CLAG Service card.
-
-2.  Select **SWITCHES WITH MOST UNESTABLISHED SESSIONS** from the filter
-    above the table.  
+2.  Select **Switches with Most Unestablished Sessions** from the filter above the table.
     The table content is sorted by this characteristic, listing nodes
     with the most unestablished CLAG sessions at the top. Scroll down to
     view those with the fewest unestablished sessions.
@@ -460,14 +441,8 @@ information about possible causes for the alarms.
 To view switches with most CLAG alarms:
 
 1.  Open the large CLAG Service card.
-
-2.  Hover over the header and click
-
-    {{% imgOld 28 %}}
-
-    .
-
-3.  Select **EVENTS BY MOST ACTIVE DEVICE** from the filter above the
+2.  Hover over the header and click {{% imgOld 28 %}}.
+3.  Select **Events by Most Active Device** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
     with the most CLAG alarms at the top. Scroll down to view those with
@@ -505,7 +480,6 @@ events in the designated time period.
 To view all CLAG events:
 
 1.  Open the full screen CLAG Service card.
-
 2.  Click **All Alarms** tab.
 
     {{% imgOld 33 %}}
@@ -515,25 +489,15 @@ include:
 
   - Open the **All Switches** or **All Sessions** tabs to look more
     closely at the alarms from the switch or session perspective.
-
   - Sort on other parameters:
-
       - by **Message** to determine the frequency of particular events
-
       - by **Severity** to determine the most critical events
-
       - by **Time** to find events that may have occurred at a
         particular time to try to correlate them with other system
         events
-
   - Export the data to a file by clicking **Export** or selecting a
     subset and clicking **Export Selected** in edit menu
-
-  - Return to your workbench by clicking
-
-    {{% imgOld 34 %}}
-
-    in the top right corner
+  - Return to your workbench by clicking {{% imgOld 34 %}} in the top right corner
 
 ### View Detailed Information About All Switches Running CLAG
 
@@ -545,11 +509,7 @@ click the **All Switches** tab.
 
 {{% imgOld 35 %}}
 
-To return to your workbench, click
-
-{{% imgOld 36 %}}
-
-in the top right corner.
+To return to your workbench, click {{% imgOld 36 %}} in the top right corner.
 
 ### Take Actions on Data Displayed in Results List
 
@@ -586,7 +546,7 @@ triggered by the CLAG service. For an overview and how to configure CLAG
 in your data center network, refer to
 [Multi-Chassis Link Aggregation - MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
 
-{{%notice info%}}
+{{%notice note%}}
 
 To access the single session cards, you must open the full screen CLAG
 Service (all sessions) card and double-click on a session.
@@ -621,8 +581,7 @@ the table showing the resulting time blocks.
 | 1 month     | 2,086          | 30                 | 1 day                        |
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
 
-<span style="color: #36424a;"> CLAG Session Card Workflow Summary
-</span>
+### CLAG Session Card Workflow Summary
 
 The small CLAG Session card displays:
 
@@ -630,8 +589,8 @@ The small CLAG Session card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -641,28 +600,20 @@ The small CLAG Session card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 41 %}}</p></td>
+<td><p>{{% imgOld 41 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
 <td><p>Title</p></td>
-<td><p><strong>CLAG Session</strong></p></td>
+<td><p>CLAG Session</p></td>
 </tr>
 <tr class="odd">
 <td><p> </p></td>
 <td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session.</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 42 %}}</p>
-, <span style="color: #353744;"> </span>
-<p>{{% imgOld 43 %}}</p>
-</span></td>
-<td><p>Indication of host role, primary</p>
-<p>{{% imgOld 44 %}}</p>
-or secondary
-<p>{{% imgOld 45 %}}</p></td>
+<td><p>{{% imgOld 42 %}}, {{% imgOld 43 %}}</p></td>
+<td><p>Indication of host role, primary {{% imgOld 44 %}} or secondary {{% imgOld 45 %}}</p></td>
 </tr>
 </tbody>
 </table>
@@ -673,8 +624,8 @@ The medium CLAG Session card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -688,8 +639,7 @@ The medium CLAG Session card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 47 %}}</p></td>
+<td><p>{{% imgOld 47 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -697,21 +647,12 @@ The medium CLAG Session card displays:
 <td><p>Network Services | CLAG Session</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 48 %}}</p></td>
-<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click on <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 49 %}}</p>
-to open associated device card.</td>
+<td><p>{{% imgOld 48 %}}</p></td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click on {{% imgOld 49 %}} to open associated device card.</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 50 %}}</p>
-,
-<p>{{% imgOld 51 %}}</p></td>
-<td><p>Indication of host role, primary</p>
-<p>{{% imgOld 52 %}}</p>
-or secondary
-<p>{{% imgOld 53 %}}</p></td>
+<td><p>{{% imgOld 50 %}}, {{% imgOld 51 %}}</p></td>
+<td><p>Indication of host role, primary {{% imgOld 52 %}} or secondary {{% imgOld 53 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Time period</p></td>
@@ -748,8 +689,8 @@ The *Session Summary* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -763,30 +704,20 @@ The *Session Summary* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 55 %}}</p></td>
+<td><p>{{% imgOld 55 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>(Network Services | CLAG Session) <strong>Session Summary</strong></p></td>
+<td><p>(Network Services | CLAG Session) Session Summary</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 56 %}}</p></td>
-<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click on <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 57 %}}</p>
-to open associated device card.</td>
+<td><p>{{% imgOld 56 %}}</p></td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click on {{% imgOld 57 %}} to open associated device card.</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 58 %}}</p>
-,
-<p>{{% imgOld 59 %}}</p></td>
-<td><p>Indication of host role, primary</p>
-<p>{{% imgOld 60 %}}</p>
-or secondary
-<p>{{% imgOld 61 %}}</p></td>
+<td><p>{{% imgOld 58 %}}, {{% imgOld 59 %}}</p></td>
+<td><p>Indication of host role, primary {{% imgOld 60 %}} or secondary {{% imgOld 61 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Alarm Count Chart</p></td>
@@ -841,8 +772,8 @@ The *Configuration File Evolution* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -856,30 +787,20 @@ The *Configuration File Evolution* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 63 %}}</p></td>
+<td><p>{{% imgOld 63 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>(Network Services | CLAG Session) <strong>Configuration File Evolution</strong></p></td>
+<td><p>(Network Services | CLAG Session) Configuration File Evolution</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 64 %}}</p></td>
-<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 65 %}}</p>
-to open associated device card.</td>
+<td><p>{{% imgOld 64 %}}</p></td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on {{% imgOld 65 %}} to open associated device card.</td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 66 %}}</p>
-,
-<p>{{% imgOld 67 %}}</p></td>
-<td><p>Indication of host role, primary</p>
-<p>{{% imgOld 68 %}}</p>
-or secondary
-<p>{{% imgOld 69 %}}</p></td>
+<td><p>{{% imgOld 66 %}}, {{% imgOld 67 %}}</p></td>
+<td><p>Indication of host role, primary {{% imgOld 68 %}} or secondary {{% imgOld 69 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Timestamps</p></td>
@@ -900,8 +821,8 @@ and all events.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -920,8 +841,7 @@ and all events.
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 72 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 72 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -958,7 +878,7 @@ and all events.
 <td><p>All Events tab</p></td>
 <td><p>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:</p>
 <ul>
-<li><p><strong>Message</strong>: Text description of an event. Example: Clag conflicted bond changed from swp7 swp8 to @swp9 swp10</p></li>
+<li><p><strong>Message</strong>: Text description of an event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10</p></li>
 <li><p><strong>Source</strong>: Hostname of network device that generated the event</p></li>
 <li><p><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</p></li>
 <li><p><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>clag</em> in this card workflow.</p></li>
@@ -969,7 +889,7 @@ and all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
+<td>
 <p>{{% imgOld 73 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
@@ -984,15 +904,12 @@ workflow, showing the node and its peer and current status.
 To view the summary:
 
 1.  Open the full screen CLAG Service card.
-
 2.  Select a session from the listing to view.
-
 3.  Close the full screen card to view the medium CLAG Session card.  
 
     {{% imgOld 74 %}}
 
     {{% imgOld 75 %}}
-
 
     In the left example, we see that the tor1 switch plays the secondary
     role in this session with the switch at 44:38:39:ff:01:01. In the
@@ -1012,9 +929,7 @@ causes.
 To view the state transitions for a given CLAG session:
 
 1.  Open the full screen CLAG Service card.
-
 2.  Select a session from the listing to view.
-
 3.  Close the full screen card to view the medium CLAG Session card.
 
     {{% imgOld 76 %}}
@@ -1045,13 +960,7 @@ causes for alarms or sessions losing their connections.
 To view the configuration file changes:
 
 1.  Open the large CLAG Session card.
-
-2.  Hover over the card and click
-
-    {{% imgOld 78 %}}
-
-    to open the **Configuration File Evolution** tab.
-
+2.  Hover over the card and click {{% imgOld 78 %}} to open the **Configuration File Evolution** tab.
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
 
@@ -1086,23 +995,14 @@ include:
 
   - Open the **All Events** tabs to look more closely at the alarm and
     info events fin the network.
-
   - Sort on other parameters:
-
       - by **Single Bonds** to determine which interface sets are only
         connected to one of the switches
-
       - by **Backup IP and Backup IP Active** to determine if the
         correct backup IP address is specified for the service
-
   - Export the data to a file by clicking **Export** or selecting a
     subset and clicking **Export Selected** in edit menu
-
-  - Return to your workbench by clicking
-
-    {{% imgOld 83 %}}
-
-    in the top right corner
+  - Return to your workbench by clicking {{% imgOld 83 %}} in the top right corner
 
 ### View All Events
 
@@ -1119,25 +1019,15 @@ include:
 
   - Open the **All CLAG Sessions** tabs to look more closely at the
     individual sessions.
-
   - Sort on other parameters:
-
       - by **Message** to determine the frequency of particular events
-
       - by **Severity** to determine the most critical events
-
       - by **Time** to find events that may have occurred at a
         particular time to try to correlate them with other system
         events
-
   - Export the data to a file by clicking **Export** or selecting a
     subset and clicking **Export Selected** in edit menu
-
-  - Return to your workbench by clicking
-
-    {{% imgOld 85 %}}
-
-    in the top right corner
+  - Return to your workbench by clicking {{% imgOld 85 %}} in the top right corner
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

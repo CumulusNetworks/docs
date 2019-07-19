@@ -34,8 +34,8 @@ The small OSPF Service card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -45,13 +45,12 @@ The small OSPF Service card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 1 %}}</p></td>
+<td><p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
 <td><p>Title</p></td>
-<td><p><strong>OSPF</strong>: All OSPF Sessions, or the OSPF Service</p></td>
+<td><p>OSPF: All OSPF Sessions, or the OSPF Service</p></td>
 </tr>
 <tr class="odd">
 <td><p>{{% imgOld 2 %}}</p></td>
@@ -74,8 +73,8 @@ The medium OSPF Service card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -89,8 +88,7 @@ The medium OSPF Service card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 5 %}}</p></td>
+<td><p>{{% imgOld 5 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -128,8 +126,8 @@ The *Sessions Summary* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -143,8 +141,7 @@ The *Sessions Summary* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 9 %}}</p></td>
+<td><p>{{% imgOld 9 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -189,8 +186,8 @@ The *Alarms* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -204,8 +201,7 @@ The *Alarms* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 13 %}}</p></td>
+<td><p>{{% imgOld 13 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -242,8 +238,8 @@ sessions, and all alarms.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -262,8 +258,7 @@ sessions, and all alarms.
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 18 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 18 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -282,15 +277,15 @@ sessions, and all alarms.
 <ul>
 <li><p>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</p></li>
 <li><p>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</p></li>
-<li><p>Model Id: Identifier of networking ASIC model. Example values include <span style="color: #222222;"> BCM56960 and BCM56854. </span></p></li>
-<li><p>Ports: Indicates port configuration of the switch. Example values include <span style="color: #222222;"> 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+. </span></p></li>
+<li><p>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</p></li>
+<li><p>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</p></li>
 <li><p>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</p></li>
 </ul></li>
 <li><p><strong>CPU</strong></p>
 <ul>
 <li><p>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</p></li>
-<li><p>Max Freq: Highest rated frequency for CPU. Example values include <span style="color: #222222;"> 2.40 GHz and 1.74 GHz. </span></p></li>
-<li><p>Model: Chip family. Example values include <span style="color: #222222;"> Intel Atom C2538 and Intel Atom C2338. </span></p></li>
+<li><p>Max Freq: Highest rated frequency for CPU. Example values include 2.40 GHz and 1.74 GHz.</p></li>
+<li><p>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</p></li>
 <li><p>Nos: Number of cores. Example values include 2, 4, and 8.</p></li>
 </ul></li>
 <li><p><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</p></li>
@@ -305,8 +300,8 @@ sessions, and all alarms.
 <li><p><strong>Platform</strong></p>
 <ul>
 <li><p>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</p></li>
-<li><p>MAC: System MAC address. Example value: <span style="color: #545454;"> 17:01:AB:EE:C3:F5. </span></p></li>
-<li><p>Model: <span style="color: #222222;"> Manufacturer's model name. Examples values include AS7712-32X and S4048-ON. </span></p></li>
+<li><p>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</p></li>
+<li><p>Model: Manufacturer's model name. Examples values include AS7712-32X and S4048-ON.</p></li>
 <li><p>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</p></li>
 <li><p>Revision: Release version of the platform</p></li>
 <li><p>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</p></li>
@@ -348,8 +343,7 @@ sessions, and all alarms.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 19 %}}</p></td>
+<td><p>{{% imgOld 19 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -391,8 +385,7 @@ an earlier time to look for any differences.
 To view switches and hosts with the most OSPF sessions:
 
 1.  Open the large OSPF Service card.
-
-2.  Select **SWITCHES WITH MOST SESSIONS** from the filter above the
+2.  Select **Switches with Most Sessions** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
     running the most OSPF sessions at the top. Scroll down to view those
@@ -403,16 +396,9 @@ To view switches and hosts with the most OSPF sessions:
 To compare this data with the same data at a previous time:
 
 1.  Open another large OSPF Service card.
-
 2.  Move the new card next to the original card if needed.
-
 3.  Change the time period for the data on the new card by hovering over
-    the card and clicking <span style="color: #353744;"> </span>
-
-    {{% imgOld 23 %}}
-
-    .
-
+    the card and clicking {{% imgOld 23 %}}.
 4.  Select the time period that you want to compare with the original
     time. We chose *Past Week* for this example.  
 
@@ -435,8 +421,7 @@ establishing OSPF sessions; both currently and in the past.
 To view switches with the most unestablished OSPF sessions:
 
 1.  Open the large OSPF Service card.
-
-2.  Select **SWITCHES WITH MOST UNESTABLISHED SESSIONS** from the filter
+2.  Select **Switches with Most Unestablished Sessions** from the filter
     above the table.  
     The table content is sorted by this characteristic, listing nodes
     with the most unestablished OSPF sessions at the top. Scroll down to
@@ -452,7 +437,6 @@ include:
     smaller time slice.  
     The table content changes to match the hovered content. Click on the
     chart to persist the table changes.
-
   - Change the time period for the data to compare with a prior time.
 
     {{% imgOld 27 %}}
@@ -481,14 +465,8 @@ OSPF session.
 To view switches with the most OSPF alarms:
 
 1.  Open the large OSPF Service card.
-
-2.  Hover over the header and click
-
-    {{% imgOld 28 %}}
-
-    .
-
-3.  Select **SWITCHES WITH MOST ALARMS** from the filter above the
+2.  Hover over the header and click {{% imgOld 28 %}}.
+3.  Select **Switches with Most Alarms** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
     with the most OSPF alarms at the top. Scroll down to view those with
@@ -503,12 +481,10 @@ include:
     exhibiting alarms during that smaller time slice.  
     The table content changes to match the hovered content. Click on the
     chart to persist the table changes.
-
   - Change the time period for the data to compare with a prior time. If
     the same switches are consistently indicating the most alarms, you
     might want to look more carefully at those switches using the
     Switches card workflow.
-
   - Click **Show All Sessions** to investigate all OSPF sessions with
     events in the full screen card.
 
@@ -520,7 +496,6 @@ OSPF events in the designated time period.
 To view all OSPF events:
 
 1.  Open the full screen OSPF Service card.
-
 2.  Click **All Alarms** tab in the navigation panel.  
     By default, events are listed in most recent to least recent order.
 
@@ -529,7 +504,6 @@ include:
 
   - Open one of the other full screen tabs in this flow to focus on
     devices or sessions.
-
   - Export the data for use in another analytics tool, by clicking
     **Export** and providing a name for the data file.
 
@@ -543,11 +517,7 @@ click the **All Switches** tab.
 
 {{% imgOld 30 %}}
 
-To return to your workbench, click
-
-{{% imgOld 31 %}}
-
-in the top right corner.
+To return to your workbench, click {{% imgOld 31 %}} in the top right corner.
 
 ### View Details for All OSPF Sessions
 
@@ -559,11 +529,7 @@ click the **All Sessions** tab.
 
 {{% imgOld 32 %}}
 
-To return to your workbench, click
-
-{{% imgOld 33 %}}
-
-in the top right corner.
+To return to your workbench, click {{% imgOld 33 %}} in the top right corner.
 
 ### Take Actions on Data Displayed in Results List
 
@@ -602,7 +568,7 @@ in your data center network, refer to
 [Open Shortest Path First - OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/)
 or [Open Shortest Path First v3 - OSPFv3](/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3/).
 
-{{%notice info%}}
+{{%notice note%}}
 
 To access the single session cards, you must open the full screen OSPF
 Service (all sessions) card, click the All Sessions tab, and
@@ -639,8 +605,7 @@ common time periods in the table showing the resulting time blocks.
 | 1 month     | 2,086          | 30                 | 1 day                        |
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
 
-<span style="color: #36424a;"> OSPF Session Card Workflow Summary
-</span>
+### OSPF Session Card Workflow Summary
 
 The small OSPF Session card displays:
 
@@ -648,8 +613,8 @@ The small OSPF Session card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -659,29 +624,21 @@ The small OSPF Session card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 38 %}}</p></td>
+<td><p>{{% imgOld 38 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
 <td><p>Title</p></td>
-<td><p><strong>OSPF Session</strong></p></td>
+<td><p>OSPF Session</p></td>
 </tr>
 <tr class="odd">
 <td><p> </p></td>
 <td><p>Hostnames of the two devices in a session. Arrow points from the host to the peer.</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 39 %}}</p>
-, <span style="color: #353744;"> </span>
-<p>{{% imgOld 40 %}}</p>
-</span></td>
+<td><p>{{% imgOld 39 %}}, {{% imgOld 40 %}}</p></td>
 <td><p>Current state of OSPF.</p>
-<p>{{% imgOld 41 %}}</p>
-Full or
-<p>{{% imgOld 42 %}}</p>
-2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
+<p>{{% imgOld 41 %}} Full or {{% imgOld 42 %}} 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
 </tr>
 </tbody>
 </table>
@@ -692,8 +649,8 @@ The medium OSPF Session card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -719,15 +676,9 @@ The medium OSPF Session card displays:
 <td><p>Hostnames of the two devices in a session. Arrow points in the direction of the session.</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 45 %}}</p>
-,
-<p>{{% imgOld 46 %}}</p></td>
+<td><p>{{% imgOld 45 %}}, {{% imgOld 46 %}}</p></td>
 <td><p>Current state of OSPF.</p>
-<p>{{% imgOld 47 %}}</p>
-Full or
-<p>{{% imgOld 48 %}}</p>
-2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
+<p>{{% imgOld 47 %}} Full or {{% imgOld 48 %}} 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
 </tr>
 <tr class="even">
 <td><p>Time period for chart</p></td>
@@ -735,7 +686,7 @@ Full or
 </tr>
 <tr class="odd">
 <td><p>Session State Changes Chart</p></td>
-<td><p>Heat map of the state of the given session over the given time period. The status is sampled at a rate consistent with the time period. For example, for a 24 hour period, a status is collected every hour. Refer to <a href="#src-12321517_MonitortheOSPFService-TimePerGran">Granularity of Data Shown Based on Time Period</a>.</p></td>
+<td><p>Heat map of the state of the given session over the given time period. The status is sampled at a rate consistent with the time period. For example, for a 24 hour period, a status is collected every hour. Refer to <a href="#granularity-of-data-shown-based-on-time">Granularity of Data Shown Based on Time Period</a>.</p></td>
 </tr>
 <tr class="even">
 <td><p>Ifname</p></td>
@@ -756,11 +707,14 @@ The large OSPF Session card contains two tabs.
 
 The *Session Summary* tab displays:
 
-<span style="color: #000000;"> </span>
-
 {{% imgOld 49 %}}
 
 <table class="confluenceTable">
+
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
 
 <thead class=" ">
 
@@ -885,8 +839,7 @@ Session State Changes Chart
 Heat map of the state of the given session over the given time period.
 The status is sampled at a rate consistent with the time period. For
 example, for a 24 hour period, a status is collected every hour. Refer
-to [Granularity of Data Shown Based on Time
-Period](#src-12321517_MonitortheOSPFService-TimePerGran) .
+to <a href="#granularity-of-data-shown-based-on-time">Granularity of Data Shown Based on Time Period</a>.
 
 </td>
 
@@ -975,7 +928,7 @@ Is Unnumbered
 <td class="confluenceTd" rowspan="1" colspan="1">
 
 Indicates if the session is part of an unnumbered OSPF configuration
-(*true*) or part of a numbered OSPF configuration (*false*)
+(true) or part of a numbered OSPF configuration (false)
 
 </td>
 
@@ -1007,8 +960,8 @@ Is Passive
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-Indicates if the host is in a passive state (*true*) or active state
-(*false*).
+Indicates if the host is in a passive state (true) or active state
+(false).
 
 </td>
 
@@ -1040,8 +993,8 @@ Is IPv6
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-Indicates if the IP address of the host device is IPv6 (*true*) or IPv4
-(*false*)
+Indicates if the IP address of the host device is IPv6 (true) or IPv4
+(false)
 
 </td>
 
@@ -1192,8 +1145,8 @@ The *Configuration File Evolution* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1207,31 +1160,21 @@ The *Configuration File Evolution* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 57 %}}</p></td>
+<td><p>{{% imgOld 57 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>(Network Services | OSPF Session) <strong>Configuration File Evolution</strong></p></td>
+<td><p>(Network Services | OSPF Session) Configuration File Evolution</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 58 %}}</p></td>
-<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 59 %}}</p>
-to open associated device card.</td>
+<td><p>{{% imgOld 58 %}}</p></td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on {{% imgOld 59 %}} to open associated device card.</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 60 %}}</p>
-,
-<p>{{% imgOld 61 %}}</p></td>
+<td><p>{{% imgOld 60 %}}, {{% imgOld 61 %}}</p></td>
 <td><p>Current state of OSPF.</p>
-<p>{{% imgOld 62 %}}</p>
-Full or
-<p>{{% imgOld 63 %}}</p>
-2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
+<p>{{% imgOld 62 %}} Full or {{% imgOld 63 %}} 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</p></td>
 </tr>
 <tr class="even">
 <td><p>Timestamps</p></td>
@@ -1252,8 +1195,8 @@ and all events.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1303,8 +1246,7 @@ and all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 65 %}}</p></td>
+<td><p>{{% imgOld 65 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -1318,14 +1260,10 @@ workflow, showing the node and its peer and current status.
 To view the summary:
 
 1.  Add the Network Services | All OSPF Sessions card.
-
 2.  Switch to the full screen card.
-
 3.  Click the **All Sessions** tab.
-
 4.  Double-click the session of interest. The full screen card closes
     automatically.
-
 5.  Optionally, switch to the small OSPF Session card.  
 
     {{% imgOld 66 %}}
@@ -1346,13 +1284,9 @@ To view the state transitions for a given OSPF session, on the *medium*
 OSPF Session card:
 
 1.  Add the Network Services | All OSPF Sessions card.
-
 2.  Switch to the full screen card.
-
 3.  Open the large OSPF Service card.
-
 4.  Click the **All Sessions** tab.
-
 5.  Double-click the session of interest. The full screen card closes
     automatically.
 
@@ -1385,13 +1319,7 @@ causes for alarms or sessions losing their connections.
 To view the configuration file changes:
 
 1.  Open the large OSPF Session card.
-
-2.  Hover over the card and click
-
-    {{% imgOld 70 %}}
-
-    to open the **Configuration File Evolution** tab.
-
+2.  Hover over the card and click {{% imgOld 70 %}} to open the **Configuration File Evolution** tab.
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
 
@@ -1420,11 +1348,7 @@ click the **All OSPF Sessions** tab.
 
 {{% imgOld 74 %}}
 
-To return to your workbench, click
-
-{{% imgOld 75 %}}
-
-in the top right corner.
+To return to your workbench, click {{% imgOld 75 %}} in the top right corner.
 
 ### View All Events
 
@@ -1436,11 +1360,7 @@ the **All Events** tab.
 
 {{% imgOld 76 %}}
 
-To return to your workbench, click
-
-{{% imgOld 77 %}}
-
-in the top right corner.
+To return to your workbench, click {{% imgOld 77 %}} in the top right corner.
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

@@ -1,7 +1,7 @@
 ---
 title: Monitor Network Connectivity
 author: Cumulus Networks
-weight: 149
+weight: 171
 aliases:
  - /display/NETQ22/Monitor-Network-Connectivity
  - /pages/viewpage.action?pageId=12321680

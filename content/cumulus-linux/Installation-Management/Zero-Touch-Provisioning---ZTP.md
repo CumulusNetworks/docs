@@ -108,7 +108,12 @@ Follow these steps to perform zero touch provisioning using a USB drive:
     name first, and ending at the most generic.
 
 3.  The contents of the script are parsed to ensure it contains the
+<<<<<<< Updated upstream
     `CUMULUS-AUTOPROVISIONING` flag.
+=======
+    `CUMULUS-AUTOPROVISIONING` flag (see [example
+    scripts](#example-scripts)).
+>>>>>>> Stashed changes
 
 {{%notice note%}}
 
@@ -143,12 +148,20 @@ The zero touch provisioning process over DHCP follows these steps:
 
 4.  The zero touch provisioning process requests the contents of the
     script from the URL, sending additional [HTTP
+<<<<<<< Updated upstream
     headers](#inspect-http-headers)
+=======
+    headers](#http-headers)
+>>>>>>> Stashed changes
     containing details about the switch.
 
 5.  The contents of the script are parsed to ensure it contains the
     `CUMULUS-AUTOPROVISIONING` flag (see [example
+<<<<<<< Updated upstream
     scripts](#write-ztp-scripts)).
+=======
+    scripts](#example-scripts)).
+>>>>>>> Stashed changes
 
 6.  If provisioning is necessary, the script executes locally on the
     switch with root privileges.

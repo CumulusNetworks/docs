@@ -17,7 +17,7 @@ insight into all aspects of the service. This is accomplished through
 two card workflows, one for the service and one for the session. They
 are described separately here.
 
-## Monitor the BGP Service (All Sessions)</span>
+## Monitor the BGP Service (All Sessions)
 
 With NetQ, you can monitor the number of nodes running the BGP service,
 view switches with the most established and unestablished BGP sessions,
@@ -25,7 +25,7 @@ and view alarms triggered by the BGP service. For an overview and how to
 configure BGP to run in your data center network, refer to
 [Border Gateway Protocol - BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/).
 
-### BGP Service Card Workflow</span>
+### BGP Service Card Workflow
 
 The small BGP Service card displays:
 
@@ -371,7 +371,7 @@ sessions, and all alarms.
 </tbody>
 </table>
 
-### View Service Status Summary</span>
+### View Service Status Summary
 
 A summary of the BGP service is available from the Network Services card
 workflow, including the number of nodes running the service, the number
@@ -383,7 +383,7 @@ To view the summary, open the small BGP Service card.
 
 For more detail, select a different size BGP Service card.
 
-### View the Distribution of Sessions and Alarms</span>
+### View the Distribution of Sessions and Alarms
 
 It is useful to know the number of network nodes running the BGP
 protocol over a period of time, as it gives you insight into the amount
@@ -400,7 +400,7 @@ To view these distributions, open the medium BGP Service card.
 If a visual correlation is apparent, you can dig a little deeper with
 the large BGP Service card tabs.
 
-### View Devices with the Most BGP Sessions</span>
+### View Devices with the Most BGP Sessions
 
 You can view the load from BGP on your switches and hosts using the
 large Network Services card. This data enables you to see which switches
@@ -447,7 +447,7 @@ To compare this data with the same data at a previous time:
     determining if more nodes are now running BGP than previously,
     looking for changes in the topology, and so forth.
 
-### View Devices with the Most Unestablished BGP Sessions</span>
+### View Devices with the Most Unestablished BGP Sessions
 
 You can identify switches and hosts that are experiencing difficulties
 establishing BGP sessions; both currently and in the past.
@@ -488,7 +488,7 @@ include:
   - Click **Show All Sessions** to investigate all BGP sessions with
     events in the full screen card.
 
-### View Devices with the Most BGP-related Alarms</span>
+### View Devices with the Most BGP-related Alarms
 
 Switches or hosts experiencing a large number of BGP alarms may indicate
 a configuration or performance issue that needs further investigation.
@@ -540,7 +540,7 @@ include:
   - Click **Show All Sessions** to investigate all BGP sessions with
     events in the full screen card.
 
-### View All BGP Events</span>
+### View All BGP Events
 
 The BGP Network Services card workflow enables you to view all of the
 BGP events in the designated time period.
@@ -563,7 +563,7 @@ include:
   - Export the data for use in another analytics tool, by clicking
     **Export** and providing a name for the data file.
 
-### View Details for All Devices Running BGP</span>
+### View Details for All Devices Running BGP
 
 You can view all stored attributes of all switches and hosts running BGP
 in your network in the full screen card.
@@ -579,7 +579,7 @@ To return to your workbench, click
 
 in the top right corner.
 
-### View Details for All BGP Sessions</span>
+### View Details for All BGP Sessions
 
 You can view all stored attributes of all BGP sessions in your network
 in the full-screen card.
@@ -595,7 +595,7 @@ To return to your workbench, click
 
 in the top right corner.
 
-### Take Actions on Data Displayed in Results List</span>
+### Take Actions on Data Displayed in Results List
 
 In the full screen BGP Service card, you can determine which results are
 displayed in the results list, and which are exported.
@@ -622,7 +622,7 @@ You can perform the following actions on the results list:
 
 To return to original display of results, click the associated tab.
 
-## Monitor a Single BGP Session</span>
+## Monitor a Single BGP Session
 
 With NetQ, you can monitor a single session of the BGP service, view
 session state changes, and compare with alarms occurring at the same
@@ -640,7 +640,7 @@ you can view the medium single session card.
 
 {{%/notice%}}
 
-### Granularity of Data Shown Based on Time Period</span>
+### Granularity of Data Shown Based on Time Period
 
 On the medium and large single BGP session cards, the status of the
 sessions is represented in heat maps stacked vertically; one for
@@ -1201,7 +1201,7 @@ all events.
 </tbody>
 </table>
 
-### View Session Status Summary</span>
+### View Session Status Summary
 
 A summary of the BGP session is available from the BGP Session card
 workflow, showing the node and its peer and current status.
@@ -1223,7 +1223,7 @@ To view the summary:
 
     {{% imgOld 68 %}}
 
-### View BGP Session State Changes</span>
+### View BGP Session State Changes
 
 You can view the state of a given BGP session from the medium and large
 BGP Session Network Service cards. For a given time period, you can
@@ -1267,7 +1267,7 @@ hostname, and router id, VRF, and Tx/Rx families identifying the session
 in more detail. The Connection Drop Count gives you a sense of the
 session performance.
 
-### View Changes to the BGP Service Configuration File</span>
+### View Changes to the BGP Service Configuration File
 
 Each time a change is made to the configuration file for the BGP
 service, NetQ logs the change and enables you to compare it with the
@@ -1301,7 +1301,7 @@ To view the configuration file changes:
 
     {{% imgOld 74 %}}
 
-### View All BGP Session Details</span>
+### View All BGP Session Details
 
 You can view all stored attributes of all of the BGP sessions associated
 with the two devices on this card.
@@ -1317,7 +1317,7 @@ To return to your workbench, click
 
 in the top right corner.
 
-### View All Events</span>
+### View All Events
 
 You can view all of the alarm and info events for the two devices on
 this card.

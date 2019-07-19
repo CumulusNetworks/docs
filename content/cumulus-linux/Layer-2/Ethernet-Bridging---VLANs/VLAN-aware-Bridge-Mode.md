@@ -44,7 +44,7 @@ VLAN-aware bridge on a given switch.
 
 {{%/notice%}}
 
-## Configure a VLAN-aware Bridge</span>
+## Configure a VLAN-aware Bridge
 
 VLAN-aware bridges can be configured with the Network Command Line
 Utility
@@ -164,7 +164,7 @@ the management interface.
 
 {{%/notice%}}
 
-### Reserved VLAN Range</span>
+### Reserved VLAN Range
 
 For hardware data plane internal operations, the switching silicon
 requires VLANs for every physical port, Linux bridge, and layer 3
@@ -200,9 +200,9 @@ While restarting `switchd`, all running ports will flap, and
 
     {{%/notice%}}
 
-## Example Configurations</span>
+## Example Configurations
 
-### VLAN Filtering/VLAN Pruning</span>
+### VLAN Filtering/VLAN Pruning
 
 By default, the bridge port inherits the bridge VIDs. A port's
 configuration can override the bridge VIDs, by using the `bridge-vids`
@@ -239,7 +239,7 @@ iface swp3
 </tbody>
 </table>
 
-### Untagged/Access Ports</span>
+### Untagged/Access Ports
 
 Access ports ignore all tagged packets. In the configuration below, swp1
 and swp2 are configured as access ports, while all untagged traffic goes
@@ -282,7 +282,7 @@ iface swp2
 </tbody>
 </table>
 
-### Drop Untagged Frames</span>
+### Drop Untagged Frames
 
 With VLAN-aware bridge mode, you can configure a switch port to drop any
 untagged frames. To do this, add `bridge-allow-untagged no` to the
@@ -356,7 +356,7 @@ When you check VLAN membership for that port, it shows that there is
                     100
                     200
 
-### VLAN Layer 3 Addressing — Switch Virtual Interfaces and Other VLAN Attributes </span>
+### VLAN Layer 3 Addressing — Switch Virtual Interfaces and Other VLAN Attributes 
 
 When configuring the VLAN attributes for the bridge, specify the
 attributes for each VLAN interface, each of which is named
@@ -400,7 +400,7 @@ You can specify a range of VLANs as well. For example:
 
     cumulus@switch:~$ net add vlan 1-200
 
-### Configure ARP Timers</span>
+### Configure ARP Timers
 
 Cumulus Linux does not often interact directly with end systems as much
 as end systems interact with one another. Thus, after a successful
@@ -419,7 +419,7 @@ change this setting by following the procedures outlined in this
 [knowledge base
 article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
 
-### Configure Multiple Ports in a Range</span>
+### Configure Multiple Ports in a Range
 
 The `bridge-ports` attribute takes a range of numbers. The "swp1-52" in
 the example below indicates that swp1 through swp52 are part of the
@@ -439,7 +439,7 @@ These commands create the following configuration in the
           bridge-vids 310 700 707 712 850 910
           bridge-vlan-aware yes
 
-### Access Ports and Pruned VLANs</span>
+### Access Ports and Pruned VLANs
 
 The following example configuration contains an access port and switch
 port that are *pruned*; they only sends and receive traffic tagged
@@ -491,7 +491,7 @@ all the defined VLANs.
      
     ...
 
-### Large Bond Set Configuration</span>
+### Large Bond Set Configuration
 
 The configuration below demonstrates a VLAN-aware bridge with a large
 set of bonds. The bond configurations are generated from a
@@ -576,7 +576,7 @@ set of bonds. The bond configurations are generated from a
      
     ...
 
-### VXLANs with VLAN-aware Bridges</span>
+### VXLANs with VLAN-aware Bridges
 
 Cumulus Linux supports using VXLANs with VLAN-aware bridge
 configuration. This provides improved scalability, as multiple VXLANs
@@ -622,7 +622,7 @@ simultaneously.
      
     ...
 
-### Configure a Static MAC Address Entry</span>
+### Configure a Static MAC Address Entry
 
 You can add a static MAC address entry to the layer 2 table for an
 interface within the VLAN-aware bridge by running a command similar to
@@ -640,9 +640,9 @@ the following:
     44:38:39:00:00:7c dev bridge vlan 500 master bridge permanent
     12:12:12:12:12:12 dev bridge master bridge permanent
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
-### Spanning Tree Protocol (STP)</span>
+### Spanning Tree Protocol (STP)
 
 VLAN-aware mode supports a single instance of STP across all VLANs, as
 STP is enabled on a per-bridge basis. A common practice when using a
@@ -653,18 +653,18 @@ switch in the spanning tree instance.
 
 Cumulus Linux supports Rapid Spanning Tree Protocol (RSTP).
 
-### IGMP Snooping</span>
+### IGMP Snooping
 
 IGMP snooping and group membership are supported on a per-VLAN basis,
 though the IGMP snooping configuration (including enable/disable and
 mrouter ports) are defined on a per-bridge port basis.
 
-### VLAN Translation</span>
+### VLAN Translation
 
 A bridge in VLAN-aware mode cannot have VLAN translation enabled for it.
 Only traditional mode bridges can utilize VLAN translation.
 
-### Convert Bridges between Supported Modes</span>
+### Convert Bridges between Supported Modes
 
 Traditional mode bridges cannot be automatically converted to/from a
 VLAN-aware bridge. The original configuration must be deleted, and all

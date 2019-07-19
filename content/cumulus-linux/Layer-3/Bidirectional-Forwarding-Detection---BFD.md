@@ -24,7 +24,7 @@ Cumulus Linux does not support demand mode in BFD.
 
 {{%/notice%}}
 
-## BFD Multihop Routed Paths</span>
+## BFD Multihop Routed Paths
 
 BFD multihop sessions are built over arbitrary paths between two
 systems, which results in some complexity that does not exist for single
@@ -44,7 +44,7 @@ hop sessions. Here are some best practices for using multihop paths:
 Multihop BFD sessions are supported for both IPv4 and IPv6 peers. See
 below for more details.
 
-## BFD Parameters</span>
+## BFD Parameters
 
 You can configure the following BFD parameters for both IPv4 and IPv6
 sessions:
@@ -56,7 +56,7 @@ sessions:
 
   - The detection time multiplier.
 
-## Configure BFD</span>
+## Configure BFD
 
 You configure BFD one of two ways: by specifying the configuration in
 the [PTM `topology.dot`
@@ -108,7 +108,7 @@ table before BFD can start sending control packets.
 
 {{%/notice%}}
 
-## BFD in BGP</span>
+## BFD in BGP
 
 For FRRouting when using **BGP**, neighbors are registered and
 de-registered with
@@ -154,7 +154,7 @@ parameters can be configured for each BGP neighbor. For example:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## BFD in OSPF</span>
+## BFD in OSPF
 
 For FRRouting using **OSFP**, neighbors are registered and de-registered
 dynamically with
@@ -176,7 +176,7 @@ These commands create the following configuration snippet in the
      ipv6 ospf6 bfd 5 500 500
     end
 
-## OSPF Show Commands</span>
+## OSPF Show Commands
 
 The BFD lines at the end of each code block shows the corresponding IPv6
 or IPv4 OSPF interface or neighbor information.
@@ -252,7 +252,7 @@ or IPv4 OSPF interface or neighbor information.
           Detect Mul: 5, Min Rx interval: 500, Min Tx interval: 500
           Status: Down, Last update: 0:00:01:29
 
-## Scripts</span>
+## Scripts
 
 `ptmd` executes scripts at `/etc/ptm.d/bfd-sess-down` and
 ` /etc/ptm.d/bfd-sess-up  `for when BFD sessions go down or up, running
@@ -261,7 +261,7 @@ when a BFD session goes up.
 
 You should modify these default scripts as needed.
 
-## Echo Function</span>
+## Echo Function
 
 Cumulus Linux supports the *echo function* for IPv4 single hops only,
 and with the asynchronous operating mode only (Cumulus Linux does not
@@ -285,7 +285,7 @@ are sent out at this required minimum echo Rx interval. This indicates
 to the peer that the local system can loop back the echo packets. Echo
 packets are transmitted if the peer supports receiving echo packets.
 
-### About the Echo Packet</span>
+### About the Echo Packet
 
 BFD echo packets are encapsulated into UDP packets over destination and
 source UDP port number 3785. The BFD echo packet format is
@@ -380,7 +380,7 @@ Where:
     receives the packet after being looped back by the receiving system,
     this value uniquely identifies the BFD session.
 
-### Transmit and Receive Echo Packets</span>
+### Transmit and Receive Echo Packets
 
 BFD echo packets are transmitted for a BFD session only when the peer
 has advertised a non-zero value for the required minimum echo Rx
@@ -392,7 +392,7 @@ BFD echo packets are looped back to the originating node for a BFD
 session only if locally the `echoMinRx` and `echoSupport` are configured
 to a non-zero values.
 
-### Echo Function Parameters</span>
+### Echo Function Parameters
 
 You configure the echo function by setting the following parameters in
 the topology file at the global, template and port level:
@@ -410,7 +410,7 @@ the topology file at the global, template and port level:
   - **slowMinTx:** The minimum interval between transmitting BFD control
     packets when the echo packets are being exchanged.
 
-## Troubleshooting </span>
+## Troubleshooting
 
 You can use the following commands to view information about active BFD
 sessions.
@@ -418,12 +418,12 @@ sessions.
 To return information on active BFD sessions, use the `net show bfd
 sessions` command:
 
-``` 
+```
 cumulus@switch:~$ net show bfd sessions
  
 ----------------------------------------------------------
-port  peer        state  local         type       diag 
-                                                         
+port  peer        state  local         type       diag
+
 ----------------------------------------------------------
 swp1  11.0.0.2    Up     N/A           singlehop  N/A  
 N/A   12.12.12.1  Up     12.12.12.4    multihop   N/A   
@@ -441,23 +441,23 @@ IPv6-connected peer):
     ----------------------------------------------------------------------------------------
     swp1  fe80::202:ff:fe00:1  Up     N/A    singlehop  N/A   3     300         900         
     swp1  3101:abc:bcad::2     Up     N/A    singlehop  N/A   3     300         900         
-     
+
     #continuation of output
     ---------------------------------------------------------------------
-    echo        echo        max      rx_ctrl  tx_ctrl  rx_echo  tx_echo 
+    echo        echo        max      rx_ctrl  tx_ctrl  rx_echo  tx_echo
     tx_timeout  rx_timeout  hop_cnt                                     
     ---------------------------------------------------------------------
     0           0           N/A      187172   185986   0        0       
     0           0           N/A      501      533      0        0
 
-## Related Information</span>
+## Related Information
 
   - <span style="color: #222222;"> [RFC 5880 - Bidirectional Forwarding
-    Detection](https://tools.ietf.org/html/rfc5880) </span>
+    Detection](https://tools.ietf.org/html/rfc5880)
 
   - <span style="color: #222222;"> <span style="color: #222222;">
     [RFC 5881 - BFD for IPv4 and IPv6 (Single
-    Hop)](https://tools.ietf.org/html/rfc5881) </span> </span>
+    Hop)](https://tools.ietf.org/html/rfc5881) </span>
 
   - <span style="color: #222222;"> <span style="color: #222222;">
     <span style="color: #222222;"> [RFC 5882 - Generic Application of

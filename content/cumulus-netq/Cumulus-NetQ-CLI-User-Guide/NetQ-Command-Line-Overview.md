@@ -26,7 +26,7 @@ implemented with Intel x86 or ARM-based architectures. If you are unsure what ar
 
 {{%/notice%}}
 
-## CLI Access</span>
+## CLI Access
 
 When NetQ is installed, the CLI is also installed and enabled (refer to
 the [Install
@@ -55,7 +55,7 @@ To access the CLI from a switch or server:
         cumulus@switch:~$ netq show agents
         cumulus@switch:~$ netq check bgp
 
-### Command Line Basics</span>
+### Command Line Basics
 
 This section describes the core structure and behavior of the NetQ CLI. It includes the following:
 
@@ -67,11 +67,11 @@ This section describes the core structure and behavior of the NetQ CLI. It inclu
   - [Command Help](#src-12321059_NetQCommandLineOverview-ComHelp)
   - [Command History](#src-12321059_NetQCommandLineOverview-ComHist)
 
-### Command Line Structure</span>
+### Command Line Structure
 
 The Cumulus NetQ command line has a flat structure as opposed to a modal structure. This means that all commands can be run from the primary prompt instead of only in a specific mode. For example, some command lines require the administrator to switch between a configuration mode and an operation mode. Configuration commands can only be run in the configuration mode and operational commands can only be run in operation mode. This structure requires the administrator to switch between modes to run commands which can be tedious and time consuming. Cumulus NetQ command line enables the administrator to run all of its commands at the same level.
 
-### Command Syntax</span>
+### Command Syntax
 
 NetQ CLI commands all begin with `netq`. Cumulus NetQ commands fall into one of four syntax categories: validation (check), monitoring (show), configuration, and trace.
 
@@ -104,13 +104,13 @@ Thus some valid commands are:
   - `netq config restart cli`
   - `netq trace 10.0.0.5 from 10.0.0.35`
 
-### Command Output</span>
+### Command Output
 
-The command output presents results in color for many commands. </span> Results with errors are shown in <span style="color: #ff0000;">red</span>, and warnings are shown in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings are shown in either black or <span style="color: #00ff00;">green</span>. VTEPs are shown in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output is shown in **bold**, and a router interface is wrapped in angle brackets (\< \>). To view the output with only black text, run the `netq config del color` command. You can view output with colors again by running `netq config add color`.
+The command output presents results in color for many commands.  Results with errors are shown in <span style="color: #ff0000;">red</span>, and warnings are shown in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings are shown in either black or <span style="color: #00ff00;">green</span>. VTEPs are shown in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output is shown in **bold**, and a router interface is wrapped in angle brackets (\< \>). To view the output with only black text, run the `netq config del color` command. You can view output with colors again by running `netq config add color`.
 
 All check and show commands are run with a default timeframe of now to one hour ago, unless you specify an approximate time using the `around` keyword. For example, running `netq check bgp` shows the status of BGP over the last hour. Running `netq show bgp around 3h` shows the status of BGP three hours ago.
 
-### Command Prompts</span>
+### Command Prompts
 
 NetQ code examples use the following prompts:
 
@@ -125,7 +125,7 @@ CentOS, RHEL, or Ubuntu OS and the NetQ Agent. Refer to the [Install
 NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
 topic for details.
 
-### Command Completion</span>
+### Command Completion
 
 As you enter commands, you can get help with the valid keywords or options using the **Tab** key. For example, using Tab completion with `netq check` displays the possible objects for the command, and returns you to the command prompt to complete the command.
 
@@ -145,7 +145,7 @@ As you enter commands, you can get help with the valid keywords or options using
         vxlan       :  VXLAN data path
     cumulus@switch:~$ netq check 
 
-### Command Help</span>
+### Command Help
 
 As you enter commands, you can get help with command syntax by entering `help` at various points within a command entry. For example, to find out what options are available for a BGP check, enter `help` after entering a portion of the `netq check` command. In this example, you can see that there are no additional required parameters and two optional parameters, `vrf` and `around`, that can be used with a BGP check.
 
@@ -158,7 +158,7 @@ To see an exhaustive list of commands, run:
 
     cumulus@switch:~$ netq help list verbose
 
-### Command History</span>
+### Command History
 
 The CLI stores commands issued within a session, which enables you to
 review and rerun commands that have already been run. At the command
@@ -168,7 +168,7 @@ found a given command, you can run the command by pressing **Enter**,
 just as you would if you had entered it manually. Optionally you can
 modify the command before you run it.
 
-## Command Categories</span>
+## Command Categories
 
 While the CLI has a flat structure, the commands can be conceptually grouped into four functional categories:
 
@@ -177,7 +177,7 @@ While the CLI has a flat structure, the commands can be conceptually grouped int
   - [Configuration Commands](#src-12321059_NetQCommandLineOverview-ConfigCmds)
   - [Trace Commands](#src-12321059_NetQCommandLineOverview-TraceCmds)
 
-### Validation Commands</span>
+### Validation Commands
 
 The `netq` `check` commands enable the network administrator to validate the current or historical state of the network by looking for errors and misconfigurations in the network. The commands run fabric-wide validations against various configured protocols and services to determine how well the network is operating. Validation checks can be performed for the following:
 
@@ -219,7 +219,7 @@ the *failedNodes* section, respectively.
         }
     }
 
-### Monitoring Commands</span>
+### Monitoring Commands
 
 The `netq show` commands enable the network administrator to view
 details about the current or historical configuration and status of the
@@ -316,11 +316,11 @@ agents` command.
     ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
     leaf01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:49m:59s             2d:2h:49m:51s             2d:2h:49m:51s              Sun Apr 21 16:00:59 2019
 
-### Configuration Commands</span>
+### Configuration Commands
 
 The `netq config` and `netq notification` commands enable the network administrator to manage NetQ Agent and CLI server configuration, set up container monitoring, and event notification.
 
-#### NetQ Agent Configuration </span>
+#### NetQ Agent Configuration
 
 The agent commands enable the network administrator to configure
 individual NetQ Agents. Refer to [Cumulus NetQ
@@ -377,7 +377,7 @@ agent` command.
 
 {{%/notice%}}
 
-#### CLI Configuration</span>
+#### CLI Configuration
 
 The CLI commands enable the network administrator to configure and
 manage the CLI component. These commands enable you to add or remove CLI
@@ -409,7 +409,7 @@ This example shows how to enable the CLI on a NetQ Cloud Appliance.
 
     netq config add cli server api.netq.cumulusnetworks.com access-key <user-access-key> secret-key <user-secret-key> port 443
 
-#### Event Notification Commands</span>
+#### Event Notification Commands
 
 The notification configuration commands enable you to add, remove and show notification application integrations. These commands create the channels, filters, and rules needed to control event messaging. The commands include:
 
@@ -428,7 +428,7 @@ This example shows how to configure a PagerDuty channel:
 
 Refer to [Integrate with Third-party Software and Hardware](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware) for details about using these commands and additional examples.
 
-### Trace Commands</span>
+### Trace Commands
 
 The `trace` commands enable the network administrator to view the available paths between two nodes on the network currently and at a time in the past. You can perform a layer 2 or layer 3 trace, and view the output in one of three formats (*json*, *pretty*, and *detail*). JSON output provides the output in a JSON file format for ease of importing to other applications or software. Pretty output lines up the paths in a pseudo-graphical manner to help visualize multiple paths. Detail output is useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. The detail output displays a table with a row for each path.
 
@@ -506,14 +506,14 @@ The trace command syntax is:
                                                            swp4 -- swp3 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
                                                            swp3 -- swp3 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
 
-## Command Changes</span>
+## Command Changes
 
 A number of commands have changed in this release to accommodate the
 addition of new keywords and options or to simplify their syntax.
 Additionally, new commands have been added and others have been removed.
 A summary of those changes is provided here.
 
-### New Commands</span>
+### New Commands
 
 The following table summarizes the new commands available with this
 release.
@@ -524,7 +524,7 @@ release.
 | `netq upgrade opta interface <text-opta-ifname> key <text-opta-key>`                                                       | Upgrades the NetQ software on the NetQ Cloud Appliance.                         |
 | `netq [<hostname>] show interface-stats [errors\|all] [<physical-port>] [around <text-time>] [json]`                     | This is an early access feature that displays a variety of interface statistics. |
 
-### Modified Commands</span>
+### Modified Commands
 
 The following table summarizes the commands that have been changed with
 this release.
@@ -535,7 +535,7 @@ this release.
 | `netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key>] [premise <text-premise-name>] [port <text-gateway-port>] [vrf <text-vrf-name>]` | `netq config add cli server`                                               | This adds the CLI daemon to the switch or host where this command is run. When using a NetQ Cloud Appliance, the access-key, secret-key, and port are required.              |
 | `netq config show cli premises [json]`                                                                                                                                                      | `netq config show cli [json]`                                              | Displays configuration settings for the CLI for all cloud premises.                                                                                                          |
 
-### Deprecated Commands</span>
+### Deprecated Commands
 
 The following table summarizes the commands that have been removed and a
 recommended alternative, if appropriate.

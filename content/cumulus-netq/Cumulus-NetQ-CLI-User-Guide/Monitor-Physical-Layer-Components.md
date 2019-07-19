@@ -34,7 +34,7 @@ Layer Discovery Protocol) to collect port information. NetQ can also
 identify peer ports connected to DACs (Direct Attached Cables) and AOCs
 (Active Optical Cables) without using LLDP, even if the link is not UP.
 
-## Monitor Physical Layer Inventory</span>
+## Monitor Physical Layer Inventory
 
 Keeping track of the various physical layer components in your switches
 and servers ensures you have a fully functioning network and provides
@@ -75,7 +75,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### View Detailed Cable Information for All Devices</span>
+### View Detailed Cable Information for All Devices
 
 You can view what cables are connected to each interface port for all
 devices, including the module type, vendor, part number and performance
@@ -120,7 +120,7 @@ cable information and status for all interface ports on all devices.
     leaf01            swp2                      up         1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:52:03 2019
     ...
 
-### View Detailed Module Information for a Given Device</span>
+### View Detailed Module Information for a Given Device
 
 You can view detailed information about the transceiver modules on each
 interface port, including serial number, transceiver type, connector and
@@ -158,7 +158,7 @@ switch.
                                                                                                                           Axial Pair (TW)
     leaf02            swp52                     SFP       FINISAR CORP.        FCLF8522P2BTL    PTN1VH2                   1000Base-T       RJ45             100m   Thu Feb  7 22:49:37 2019
 
-### View Ports without Cables Connected for a Given Device</span>
+### View Ports without Cables Connected for a Given Device
 
 Checking for empty ports enables you to compare expected versus actual
 deployment. This can be very helpful during deployment or during
@@ -173,7 +173,7 @@ that are empty on leaf01 switch.
     leaf01           swp49     down  Unknown    on      empty     n/a              n/a              Thu Feb  7 22:49:37 2019
     leaf01           swp52     down  Unknown    on      empty     n/a              n/a              Thu Feb  7 22:49:37 2019
 
-### View Ports with Cables Connected for a Given Device</span>
+### View Ports with Cables Connected for a Given Device
 
 In a similar manner as checking for empty ports, you can check for ports
 that have cables connected, enabling you to compare expected versus
@@ -206,7 +206,7 @@ attached cables.
     leaf01            swp52                     up         40G        off     QSFP+     Amphenol             603020003        Thu Feb  7 22:49:37 2019
     leaf01            swp54                     down       40G        off     QSFP+     Amphenol             624410002        Thu Feb  7 22:49:37 2019
 
-### View Components from a Given Vendor</span>
+### View Components from a Given Vendor
 
 By filtering for a specific cable vendor, you can collect information
 such as how many ports use components from that vendor and when they
@@ -223,7 +223,7 @@ using components by an *OEM* vendor.
     leaf01            swp37                     down       10G        off     SFP       OEM                  SFP-H10GB-CU1M   Thu Feb  7 22:49:37 2019
     leaf01            swp38                     down       10G        off     SFP       OEM                  SFP-H10GB-CU1M   Thu Feb  7 22:49:37 2019
 
-### View All Devices Using a Given Component</span>
+### View All Devices Using a Given Component
 
 You can view all of the devices with ports using a particular component.
 This could be helpful when you need to change out a particular component
@@ -245,7 +245,7 @@ and then those devices with a part number of QSFP-H40G-CU1M installed.
     leaf01            swp50                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   Thu Feb  7 18:31:20 2019
     leaf02            swp52                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   Thu Feb  7 18:31:20 2019
 
-### View Changes to Physical Components</span>
+### View Changes to Physical Components
 
 Because components are often changed, NetQ enables you to determine
 what, if any, changes have been made to the physical components on your
@@ -305,7 +305,7 @@ scenarios for all devices in the network.
     cumulus@switch:~$ netq show events type interfaces-physical between 0s and 5h
     No matching cables records found
 
-## Validate Physical Layer Configuration</span>
+## Validate Physical Layer Configuration
 
 Beyond knowing what physical components are deployed, it is valuable to
 know that they are configured and operating correctly. NetQ enables you
@@ -316,7 +316,7 @@ NetQ checks peer connections using LLDP. For DACs and AOCs, NetQ
 determines the peers using their serial numbers in the port EEPROMs,
 even if the link is not UP.
 
-### Confirm Peer Connections</span>
+### Confirm Peer Connections
 
 You can validate peer connections for all devices in your network or for
 a specific device or port. This example shows the peer hosts and their
@@ -347,7 +347,7 @@ Hostname          Interface                 Peer Hostname     Peer Interface    
 leaf01            swp47                     leaf02            swp47                     up   
 ```
 
-### Discover Misconfigurations</span>
+### Discover Misconfigurations
 
 You can verify that the following configurations are the same on both
 sides of a peer interface:
@@ -463,7 +463,7 @@ Auto-negotiation is *off* on the leafs, but *on* on the servers.
     server03          eth1                      leaf03            swp1                      Autoneg mismatch (on, off)         
     server04          eth2                      leaf04            swp2                      Autoneg mismatch (on, off)         
 
-### Identify Flapping Links</span>
+### Identify Flapping Links
 
 You can also determine whether a link is flapping using the `netq check
 interfaces` command. If a link is flapping, NetQ indicates this in a
@@ -482,7 +482,7 @@ leaf02            -                         -                 -                 
 ```
 
 <span style="color: #ff0000;">  
-</span>
+
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

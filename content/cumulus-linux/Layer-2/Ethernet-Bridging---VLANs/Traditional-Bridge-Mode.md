@@ -209,7 +209,7 @@ This example configuration looks like this in the
 
 {{%/notice%}}
 
-## <span id="src-8362670_TraditionalBridgeMode-VLAN_tagging" class="confluence-anchor-link"></span>Trunks in Traditional Bridge Mode</span>
+## Trunks in Traditional Bridge Mode</span>
 
 The [IEEE standard](http://www.ieee802.org/1/pages/802.1Q.html) for
 trunking is 802.1Q. The 802.1Q specification adds a 4 byte header within
@@ -274,7 +274,7 @@ To create the above example, add the following configuration to the
 You can find more examples of VLAN tagging in [the VLAN tagging
 chapter](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging).
 
-### <span id="src-8362670_TraditionalBridgeMode-arp" class="confluence-anchor-link"></span>Configure ARP Timers</span>
+### Configure ARP Timers</span>
 
 Cumulus Linux does not often interact directly with end systems as much
 as end systems interact with one another. Thus, after a successful

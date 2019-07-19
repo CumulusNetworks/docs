@@ -101,7 +101,7 @@ bandwidth.
 So, in modern data centers, people build networks with anywhere from 4
 to 32 spine switches.
 
-## <span id="src-8362915_NetworkTopology-load_balancing" class="confluence-anchor-link"></span>Load Balancing</span>
+## Load Balancing</span>
 
 In a Clos network, traffic is load balanced across the multiple links
 using equal cost multi-pathing (ECMP).

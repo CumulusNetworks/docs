@@ -18,7 +18,7 @@ Individual users have the ability to set preferences specific to their
 workspaces. This information is covered separately. Refer to
 [User Settings](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview).
 
-## NetQ Management Workbench</span>
+## NetQ Management Workbench
 
 The NetQ Management workbench is accessed from the main menu and from
 the header of an open workbench. For the user or users responsible for
@@ -28,13 +28,13 @@ To open the workbench, click {{% imgOld 0 %}}, and select **Management** under t
 
 {{% imgOld 1 %}}
 
-## Manage User Accounts</span>
+## Manage User Accounts
 
 From the NetQ Management workbench, you can view the number of users
 with accounts in the system. As an administrator, you can also add,
 modify, and delete user accounts using the User Accounts card.
 
-### <span id="src-12321950_safe-id-TmV0UU1hbmFnZW1lbnQtI0FkZFVzckFjdA" class="confluence-anchor-link"></span>Add New User Account</span>
+### Add New User Account
 
 For each user that monitors at least one aspect of your data center
 network, a user account is needed.
@@ -85,7 +85,7 @@ There is only the *admin* role at this time. Any user account you
 
 9.  Repeat these steps to add all of your users.
 
-### Edit a User Name</span>
+### Edit a User Name
 
 If a user's first or last name was incorrectly entered, you can fix them
 easily.
@@ -104,7 +104,7 @@ To change a user name:
 
 7.  Click **Save** to commit the changes or **Cancel** to discard them.
 
-### Change a User's Password</span>
+### Change a User's Password
 
 Should a user forget his password or for security reasons, you can
 change a password for a particular user account.
@@ -127,7 +127,7 @@ To change a password:
 9.  Click **Save** to commit the change, or **Cancel** to discard the
     change.
 
-### Change a User's Access Permissions</span>
+### Change a User's Access Permissions
 
 If a particular user has only standard user permissions and they need
 administrator permissions to perform their job (or the opposite, they
@@ -149,7 +149,7 @@ To change access permissions:
 7.  Click **Save** to commit the change, or **Cancel** to discard the
     change.
 
-### Correct a Mistyped User ID (Email Address)</span>
+### Correct a Mistyped User ID (Email Address)
 
 You cannot edit a user's email address, because this is the identifier
 the system uses for authentication. If you need to change an email
@@ -158,7 +158,7 @@ User Account](#src-12321950_NetQManagement-AddUsrAct). You should delete
 the incorrect user account. Select the user account, and click
 **Delete** in the Edit menu.
 
-### Export a List of User Accounts</span>
+### Export a List of User Accounts
 
 You can export user account information at any time using the User
 Accounts tab.
@@ -176,7 +176,7 @@ To export information for one or more user accounts:
 5.  To export specific user accounts, select only those accounts you
     want to export, and click **Export Selected**.
 
-## Manage Scheduled Traces</span>
+## Manage Scheduled Traces
 
 From the NetQ Management workbench, you can view the number of traces
 scheduled to run in the system. A set of default traces are provided
@@ -184,7 +184,7 @@ with the NetQ GUI. As an administrator, you can run one or more
 scheduled traces, add new scheduled traces, and edit or delete existing
 traces.
 
-### Add a Scheduled Trace</span>
+### Add a Scheduled Trace
 
 You can create a scheduled trace to provide regular status about a
 particularly important connection between a pair of devices in your
@@ -220,7 +220,7 @@ For layer 2 traces, the source must be a hostname and the
     the trace you just added from the dropdown list, and click **Run
     Now**.
 
-### Export a Scheduled Trace</span>
+### Export a Scheduled Trace
 
 You can export a scheduled trace configuration at any time using the
 Scheduled Traces tab.
@@ -238,7 +238,7 @@ To export one or more scheduled trace configurations:
 5.  To export specific traces, select only those traces you want to
     export, and click **Export Selected**.
 
-## Manage Scheduled Validations</span>
+## Manage Scheduled Validations
 
 From the NetQ Management workbench, you can view the total number of
 validations scheduled to run in the system. A set of default scheduled
@@ -246,7 +246,7 @@ validations are provided and preconfigured with the NetQ UI. As an
 administrator, you can view and export the configurations for all
 scheduled validations, or add a new validation.
 
-### View Scheduled Validation Configurations</span>
+### View Scheduled Validation Configurations
 
 You can view the configuration of a scheduled validation at any time.
 This can be useful when you are trying to determine if the validation
@@ -259,7 +259,7 @@ To view the configurations:
 2.  Click the **Scheduled Validations** tab.
 3.  Click {{% imgOld 14 %}} in the top right to return to your NetQ Management cards.
 
-### Export Scheduled Validation Configurations</span>
+### Export Scheduled Validation Configurations
 
 You can export one or more scheduled validation configurations at any
 time using the Scheduled Validations tab.
@@ -277,7 +277,7 @@ To export a scheduled validation:
 5.  To export specific validations, select only those validations you
     want to export, and click **Export Selected**.
 
-### Add a Scheduled Validation</span>
+### Add a Scheduled Validation
 
 You can add a scheduled validation at any time using the Scheduled
 Validations tab.

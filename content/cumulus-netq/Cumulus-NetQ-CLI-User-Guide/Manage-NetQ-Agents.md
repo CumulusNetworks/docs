@@ -19,7 +19,7 @@ NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ).
 Disabling an Agent is described here and managing NetQ Agent logging is
 also presented.
 
-## Modify the Configuration of the NetQ Agent on a Node</span>
+## Modify the Configuration of the NetQ Agent on a Node
 
 The agent configuration commands enable
 you to add and remove agents from switches and hosts, start and stop
@@ -65,7 +65,7 @@ agent` command.
 
 {{%/notice%}}
 
-## Disable the NetQ Agent on a Node</span>
+## Disable the NetQ Agent on a Node
 
 You can temporarily disable NetQ Agent on a node. Disabling the agent
 maintains the activity history in the NetQ database.
@@ -75,7 +75,7 @@ node:
 
     cumulus@switch:~$ netq config stop agent
 
-## Remove the NetQ Agent from a Node</span>
+## Remove the NetQ Agent from a Node
 
 You can decommission a NetQ Agent on a given node. You might need to do
 this when you:
@@ -103,7 +103,7 @@ To decommission a node from the NetQ database:
 
         cumulus@netq-appliance:~$ netq decommission <hostname>
 
-## <span id="src-12321061_ManageNetQAgents-AgentLog" class="confluence-anchor-link"></span>Configure Logging for a NetQ Agent</span>
+## Configure Logging for a NetQ Agent
 
 The logging level used for a NetQ Agent determines what types of events
 are logged about the NetQ Agent on the switch or host.

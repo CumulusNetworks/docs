@@ -140,7 +140,6 @@ clicking the Default ACL Configuration link:
     Chain OUTPUT (policy ACCEPT 5 packets, 408 bytes)
      pkts bytes target     prot opt in     out     source               destination         
 
-
     TABLE mangle :
     Chain PREROUTING (policy ACCEPT 7 packets, 718 bytes)
      pkts bytes target     prot opt in     out     source               destination         
@@ -164,7 +163,6 @@ clicking the Default ACL Configuration link:
 
     Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-
 
     -------------------------------
     Listing rules of type ebtables:
@@ -194,7 +192,7 @@ clicking the Default ACL Configuration link:
 
     Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 </details>
-## IP Tables</span>
+## IP Tables
 
 <table>
 <colgroup>
@@ -308,7 +306,7 @@ bits.
 
 {{%/notice%}}
 
-## IPv6 Tables</span>
+## IPv6 Tables
 
 <table>
 <colgroup>
@@ -439,7 +437,7 @@ bits.
 
 {{%/notice%}}
 
-## EB Tables</span>
+## EB Tables
 
 <table>
 <colgroup>

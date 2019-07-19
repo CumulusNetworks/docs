@@ -29,7 +29,7 @@ You manage services in Cumulus Linux in the following ways:
 
   - Identify active listener ports
 
-## systemd and the systemctl Command</span>
+## systemd and the systemctl Command
 
 In general, you manage services using `systemd` via the `systemctl`
 command. You use it with any service on the switch to start, stop,
@@ -136,7 +136,7 @@ To see all the currently running services, run:
                  └─mstpd.service
                    └─436 /sbin/mstpd -d -v2
 
-### systemctl Subcommands</span>
+### systemctl Subcommands
 
 `systemctl` has a number of subcommands that perform a specific
 operation on a given service.
@@ -174,7 +174,7 @@ hit an error it will be automatically respawned by systemd. Systemd is
 effectively the caretaker of services in modern Linux systems and is
 responsible for starting all the necessary services at boot time.
 
-### Ensure a Service Starts after Multiple Restarts</span>
+### Ensure a Service Starts after Multiple Restarts
 
 By default, `systemd` is configured to try to restart a particular
 service only a certain number of times within a given interval before
@@ -200,14 +200,14 @@ you know you are going to restart frequently (multiple times within the
 StartLimitInterval), you can run the same command before you issue the
 restart request. This also applies to stop followed by start.
 
-### Keep systemd Services from Hanging after Starting</span>
+### Keep systemd Services from Hanging after Starting
 
 If you start, restart, or reload any `systemd` service that can be
 started from another `systemd` service, you must use the `--no-block`
 option with `systemctl`. Otherwise, that service or even the switch
 itself might hang after starting or restarting.
 
-## Identify Active Listener Ports for IPv4 and IPv6</span>
+## Identify Active Listener Ports for IPv4 and IPv6
 
 You can identify the active listener ports under both IPv4 and IPv6
 using the `netstat` command:
@@ -236,7 +236,7 @@ using the `netstat` command:
     udp6       0      0 :::4784                 :::*                                909/ptmd        
     udp6       0      0 :::3784                 :::*                                909/ptmd
 
-## Identify Services Currently Active or Stopped</span>
+## Identify Services Currently Active or Stopped
 
 To determine which services are currently active or stopped, run the
 `cl-service-summary` command:
@@ -497,7 +497,7 @@ to list all services on the switch and see which ones are enabled:
     210 unit files listed.
     lines 165-213/213 (END)
 </details>
-## Identify Essential Services</span>
+## Identify Essential Services
 
 If you need to know which services are required to run when the switch
 boots, run:
@@ -539,7 +539,7 @@ To identify the services needed for a multi-user environment, run:
 </tbody>
 </table>
 
-### Important Services</span>
+### Important Services
 
 The following table lists the most important services in Cumulus Linux.
 

@@ -276,7 +276,7 @@ The certificate and key pairs for authenticating with the NSX
 For information about the configuration script, read `man
 vtep-bootstrap` or run the command `vtep-bootstrap --help`.
 
-## <span id="src-8362860_OVSDBServerHighAvailability-active-config-transport-logical" class="confluence-anchor-link"></span>Configure the Transport and Logical Layers</span>
+## Configure the Transport and Logical Layers</span>
 
 After you finish configuring the NSX integration on both the MLAG
 primary and MLAG secondary switch, you need to configure the transport

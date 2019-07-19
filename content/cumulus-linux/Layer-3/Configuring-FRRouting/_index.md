@@ -49,7 +49,7 @@ you are enabling. For example, to enable BGP, set both `zebra` and
     babeld=no
     pimd=no
 
-### <span id="src-8362919_ConfiguringFRRouting-enableFRR" class="confluence-anchor-link"></span>Enable and Start FRRouting</span>
+### Enable and Start FRRouting</span>
 
 Once you enable the appropriate daemons, then you need to enable and
 start the FRRouting service.
@@ -75,7 +75,7 @@ Linux](/cumulus-linux/System-Configuration/Services-and-Daemons-in-Cumulus-Linux
 
 {{%/notice%}}
 
-### <span id="src-8362919_ConfiguringFRRouting-integrated_cfg" class="confluence-anchor-link"></span>Integrated Configurations</span>
+### Integrated Configurations</span>
 
 By default in Cumulus Linux, FRRouting saves the configuration of all
 daemons in a single integrated configuration file, `frr.conf`.
@@ -161,7 +161,7 @@ Addresses](Interface-Configuration-and-Management.html#src-8363023_InterfaceConf
 and [Virtual Routing and Forwarding -
 VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF).
 
-## <span id="src-8362919_ConfiguringFRRouting-vtysh" class="confluence-anchor-link"></span>FRRouting vtysh Modal CLI</span>
+## FRRouting vtysh Modal CLI</span>
 
 FRRouting provides a CLI – `vtysh` – for configuring and displaying the
 state of the protocols. It is invoked by running:

@@ -33,7 +33,7 @@ Platform.
 
 {{%/notice%}}
 
-## Prerequisites</span>
+## Prerequisites
 
 Before you begin the upgrade process, please note the following:
 
@@ -52,7 +52,7 @@ issues without being affected itself.
 
 {{%/notice%}}
 
-## Upgrade the NetQ Appliance</span>
+## Upgrade the NetQ Appliance
 
 To upgrade the NetQ Appliance software:
 
@@ -211,7 +211,7 @@ continue.
 
 {{%/notice%}}
 
-### Verify the Installation</span>
+### Verify the Installation
 
 Verify you can access the NetQ CLI.
 
@@ -305,7 +305,7 @@ If any of the applications or services display Status as DOWN after
     switch or host you want to monitor. Refer to the next section for
     instructions.
 
-## Upgrade the NetQ Agents</span>
+## Upgrade the NetQ Agents
 
 The NetQ Agent should be upgraded on each of the existing nodes you want
 to monitor. The node can be a:
@@ -336,7 +336,7 @@ so `apt-get` can access the meta package on the Cumulus Networks repository.
 
 {{%/notice%}}
 
-### <span id="src-12321037_UpgradetheNetQAppliance-AgentCL" class="confluence-anchor-link"></span> Upgrade NetQ Agent on a Cumulus Linux Switch</span>
+###  Upgrade NetQ Agent on a Cumulus Linux Switch
 
 A simple process installs the NetQ Agent on a Cumulus switch.
 
@@ -402,7 +402,7 @@ If you intend to use VRF, skip to [Configure the Agent to
 7.  Repeat these steps for each Cumulus switch, or use an automation
     tool to install NetQ Agent on multiple Cumulus Linux switches.
 
-### <span id="src-12321037_UpgradetheNetQAppliance-AgentUbuntu" class="confluence-anchor-link"></span>Upgrade NetQ Agent on an Ubuntu Server (Optional)</span>
+### Upgrade NetQ Agent on an Ubuntu Server (Optional)
 
 To install the NetQ Agent on an Ubuntu server:
 
@@ -462,7 +462,7 @@ The use of `netq-latest` in this example means that a `get` to the
 9.  Repeat these steps for each switch/host running Ubuntu, or use an
     automation tool to install NetQ Agent on multiple switches/hosts.
 
-### <span id="src-12321037_UpgradetheNetQAppliance-AgentRHC" class="confluence-anchor-link"></span>Upgrade NetQ Agent on a Red Hat or CentOS Server (Optional)</span>
+### Upgrade NetQ Agent on a Red Hat or CentOS Server (Optional)
 
 To install the NetQ Agent on a Red Hat or CentOS server:
 
@@ -526,7 +526,7 @@ To install the NetQ Agent on a Red Hat or CentOS server:
 9.  Repeat these steps for each switch/host running Ubuntu, or use an
     automation tool to install NetQ Agent on multiple switches/hosts.
 
-## Configure Optional NetQ Agent Settings</span>
+## Configure Optional NetQ Agent Settings
 
 Once the NetQ Agents have been installed on the network nodes you want
 to monitor, the NetQ Agents must be configured to obtain useful and
@@ -540,7 +540,7 @@ settings, you do not need to do so again.
   - [Configuring the Agent to Communicate over a Specific
     Port](http://docs.cumulusnetworks.com#port)
 
-### <span id="src-12321037_UpgradetheNetQAppliance-AgentVRF" class="confluence-anchor-link"></span>Configure the Agent to Use a VRF Interface</span>
+### Configure the Agent to Use a VRF Interface
 
 While optional, Cumulus strongly recommends that you configure NetQ
 Agents to communicate with the NetQ Platform only via a
@@ -558,7 +558,7 @@ You then restart the agent:
     cumulus@leaf01:~$ netq config restart agent
     cumulus@leaf01:~$ netq config restart cli
 
-### <span id="src-12321037_UpgradetheNetQAppliance-port" class="confluence-anchor-link"></span>Configure the Agent to Communicate over a Specific Port</span>
+### Configure the Agent to Communicate over a Specific Port
 
 By default, NetQ uses port 8981 for communication between the NetQ
 Platform and NetQ Agents. If you want the NetQ Agent to communicate with
@@ -571,7 +571,7 @@ You then restart the agent:
 
     cumulus@leaf01:~$ netq config restart agent
 
-## Upgrade Tips</span>
+## Upgrade Tips
 
 After you have upgraded NetQ, if you find that some issues remain,
 review these commonly encountered scenarios. If NetQ is still not
@@ -579,13 +579,13 @@ operating as expected, please open a [support
 ticket](https://cumulusnetworks.com/support/file-a-ticket/) with a
 detailed description of your issues.
 
-### No IP Address Assigned to the NetQ Appliance on Boot</span>
+### No IP Address Assigned to the NetQ Appliance on Boot
 
 A user did not configure an IP address when the system was first booted.
 Later the user assigned an IP address to eth0, but the NetQ appliance
 does not appear to be functioning.
 
-You must reset </span> the install daemon and restart the Kubernetes service.
+You must reset  the install daemon and restart the Kubernetes service.
 Follow these steps:
 
 1.  Reset the NetQ Appliance install daemon.
@@ -595,11 +595,3 @@ Follow these steps:
 2.  Restart the Kubernetes service.
 
         cumulus@switch:~$ sudo systemctl restart cts-kubectl-config
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

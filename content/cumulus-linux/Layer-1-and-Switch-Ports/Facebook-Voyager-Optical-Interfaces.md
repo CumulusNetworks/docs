@@ -20,7 +20,7 @@ physical fiber, they do not interact with each other, similar to VLANs
 on a trunk. Each wavelength can transport very high speeds over very
 long distances.
 
-## The Voyager Platform</span>
+## The Voyager Platform
 
 The Voyager platform has 16 ports on the front of the switch:
 
@@ -41,7 +41,7 @@ The `fc` designations on the Tomahawk stand for Falcon Core. Each AC400
 module has four 100G interfaces connected to the Tomahawk and two
 interfaces connected to the front of the box.
 
-### Inside the AC400</span>
+### Inside the AC400
 
 The way in which the client ports are mapped to the network ports in an
 AC400 depends on the modulation format and coupling mode. Cumulus Linux
@@ -80,7 +80,7 @@ this modulation format. However, unlike other modulation formats that
 use independent mode, the coupled mode means that data from each client
 interface is carried on both of the network interfaces.
 
-### Client to Network Connection</span>
+### Client to Network Connection
 
 For each of the five supported modulation configurations, the client
 interface to network interface connections are as follows:
@@ -112,7 +112,7 @@ interface to network interface connections are as follows:
 </tbody>
 </table>
 
-## Configure the Voyager Ports</span>
+## Configure the Voyager Ports
 
 To configure the five modulation and coupling configurations described
 above, edit the `/etc/cumulus/ports.conf` file. The ports do not exist
@@ -196,7 +196,7 @@ for all of the modes.
     L3=3/2  # Creates swpL3s0, swpL3s1, and swpL3s2
     L4=3/2  # Creates no "swpL4" ports since L4 is ganged with L3
 
-## Configure the Transponder Modules</span>
+## Configure the Transponder Modules
 
 The Voyager platform contains two AC400 transponder modules, which you
 configure with NCLU commands.
@@ -210,13 +210,12 @@ system; L1, L2, L3, or L4.
 Using NCLU commands is the preferred way to configure the transponder
 modules. However, as an alternative, you can edit the
 `/etc/cumulus/transponders.ini` file to make configuration changes. See
-[Edit the transponder.ini
-file](#src-8363049_FacebookVoyagerOpticalInterfaces-edit_transponders.ini)
+[Edit the transponder.ini file](#edit-the-transponders-ini-file)
 below.
 
 {{%/notice%}}
 
-### Set the Transponder State</span>
+### Set the Transponder State
 
 Each transponder module has a state, which is set to `ready` by default.
 The available transponder states are listed below.
@@ -259,7 +258,7 @@ specified.
 
 {{%/notice%}}
 
-### Disable the Transmitter</span>
+### Disable the Transmitter
 
 You can disable or enable the transmitter of an individual network
 interface.
@@ -300,7 +299,7 @@ This command creates the following configuration snippet in the
     TxEnable = true
     ...
 
-### Change the Grid Spacing</span>
+### Change the Grid Spacing
 
 You can set grid spacing between two adjacent channels (the distance
 between channel frequencies) to 12.5GHz or 50GHz. The default spacing is
@@ -326,7 +325,7 @@ file:
     TxGridSpacing = 12.5ghz
     ...
 
-### Set the Channel Frequency </span>
+### Set the Channel Frequency
 
 To set the frequency used by the network interface, run the `net add
 interface <trans-port> frequency <trans-frequency>` command.
@@ -382,9 +381,9 @@ completion:
 To see a complete list of the frequencies, channels, and wavelengths,
 run the `net show transponder frequency-map` command (described in
 [Display Available
-Frequencies](#src-8363049_FacebookVoyagerOpticalInterfaces-display_channel_freq)).
+Frequencies](#display-available-channel-frequencies).
 
-### Set the Transmit Power</span>
+### Set the Transmit Power
 
 To set the amount of transmit power for a network interface, run the
 `net add interface <trans-port> power <trans-dBm>` command.
@@ -411,7 +410,7 @@ file:
     OutputPower = 10.0
     ...
 
-### Change the Modulation</span>
+### Change the Modulation
 
 To change the modulation technique used on a network interface, run the
 `net add interface <trans-port> modulation (16-qam|8-qam|pm-qpsk)`
@@ -447,7 +446,7 @@ pm-qpsk. Attempting to change the modulation from pm-qpsk while
 15%\_ac100 FEC is configured is not allowed. First change the FEC mode
 to something other than 15%\_ac100 and then the modulation.
 
-### Set the Differential Encoding</span>
+### Set the Differential Encoding
 
 To select non-differential encoding on the network interface, run the
 `net add interface <trans-port> non-differential` command. To revert to
@@ -500,7 +499,7 @@ This command creates the following configuration snippet in the
     DifferentialEncoding = true
     ...
 
-### Change Forward Error Correction</span>
+### Change Forward Error Correction
 
 To select Forward Error Correction (FEC) mode, run the `net add
 interface <trans-port> fec (15%|15%_ac100|25%)` command. The available
@@ -530,7 +529,7 @@ This command creates the following configuration snippet in the
     FecMode = 15%
     ...
 
-### Configure a Line Side Loopback</span>
+### Configure a Line Side Loopback
 
 Line side loopback mode enables you to send and receive data from the
 same network interface port to verify that the port is operational.
@@ -542,7 +541,7 @@ multiple interfaces. </span> The following example enables loopback mode
 on the L1, L2, L3, and L4 network interfaces:
 
     cumulus@switch:~$ net add interface L1-4 facility-loopback
-    cumulus@switch:~$ net pending 
+    cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
 To disable loopback mode, run the `net del interface <interface>
@@ -550,7 +549,7 @@ facility-loopback` command. The following example disables loopback mode
 on the L1, L2, L3, and L4 network interfaces:
 
     cumulus@switch:~$ net del interface L1-4 facility-loopback
-    cumulus@switch:~$ net pending 
+    cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
 {{%notice note%}}
@@ -558,12 +557,12 @@ on the L1, L2, L3, and L4 network interfaces:
 To enable loopback on the client interface (internal loopback for DWDM
 testing), edit the `/etc/cumulus/transponders.ini` file. See [Edit the
 transponder.ini
-file](#src-8363049_FacebookVoyagerOpticalInterfaces-edit_transponders.ini)
+file](#edit-the-transponders-ini-file)
 below
 
 {{%/notice%}}
 
-### Display the Transponder Status</span>
+### Display the Transponder Status
 
 To display the current status of the transponder module, run the `net
 show transponder` command. The first two lines of command output
@@ -615,14 +614,14 @@ To display only the status of a particular module, use the `module
 The following example command displays the status of transponder module
 1:
 
-``` 
+```
 cumulus@switch:~$ net show transponder module 1
 Module: 1 ready Acacia Comm Inc. AC400-004-330 S/N:170212599 53.75C 11.89V
     Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
  
                                            Network Interfaces                    
                                      L3                           L4             
-                       ---------------------------  --------------------------- 
+                       ---------------------------  ---------------------------
             Modulation 16-qam                       16-qam          
              Frequency 193.70 THz, Channel 52       193.70 THz, Channel 52       
            Current BER 1.626e-04                    1.343e-05
@@ -692,7 +691,7 @@ format:
                     },
     ...
 
-### <span id="src-8363049_FacebookVoyagerOpticalInterfaces-display_channel_freq" class="confluence-anchor-link"></span>Display Available Channel Frequencies</span>
+### Display Available Channel Frequencies
 
 To display a map of available channel frequencies, numbers, and
 wavelengths, run the `net show transponder frequency-map [json]`
@@ -749,7 +748,7 @@ frequencies, numbers, and wavelengths in JSON format.
         ],
     ...
 
-### Display the Current Transponder Configuration</span>
+### Display the Current Transponder Configuration
 
 To display the current configuration state of the transponders, run the
 following command:
@@ -757,54 +756,54 @@ following command:
     cumulus@switch:~$ net show configuration transponders
      
     transponders
-      
+
       AC400_1
-        
+
         Location
           1
-        
+
         NetworkMode
           independent
-        
+
         L3
-          
+
           Location
             0
-          
+
           TxEnable
             true
-          
+
           TxGridSpacing
             50ghz
-          
+
           TxChannel
             52
-          
+
           OutputPower
             1
-          
+
           TxFineTuneFrequency
             0
-          
+
           MasterEnable
             true
-          
+
           ModulationFormat
             16-qam
-          
+
           DifferentialEncoding
             true
-          
+
           FecMode
             25%
-          
+
           Loopback
             false
-          
+
           TxTributaryIndependent
             0
             1
-          
+
           TxTributaryCoupled
             0
             1
@@ -812,12 +811,12 @@ following command:
             15
     ...
 
-### <span id="src-8363049_FacebookVoyagerOpticalInterfaces-edit_transponders.ini" class="confluence-anchor-link"></span>Edit the transponders.ini File</span>
+### Edit the transponders.ini File
 
 As an alternative to using NCLU commands to configure the transponder
 modules (described above), you can edit the
 `/etc/cumulus/transponders.ini` file, then [Initiate a hardware
-update](#src-8363049_FacebookVoyagerOpticalInterfaces-initiate-hardware-update).
+update](#initiate-a-hardware-update).
 
 {{%notice note%}}
 
@@ -1075,7 +1074,7 @@ The file contains four configuration groups:
 
   - The client interface groups
 
-#### Modules Group</span>
+#### Modules Group
 
 The **Modules** **group** identifies the names of the other groups in
 the file. This is the *root* group from which all other groups are
@@ -1093,7 +1092,7 @@ these two groups.
     [Modules]
     Names=AC400_1,AC400_2
 
-#### Module Groups</span>
+#### Module Groups
 
 The **module groups** are i <span style="color: #222222;"> ndividual
 groups for each of the predefined modules and </span> define the
@@ -1175,7 +1174,7 @@ file. The operational status of the module is `ready`.
     HostInterfaces=Client0,Client1,Client2,Client3
     OperStatus=ready
 
-#### Network Interface Groups</span>
+#### Network Interface Groups
 
 The network interface groups define the attributes of the network
 interfaces on the module. The name of a network interface group is
@@ -1861,7 +1860,7 @@ disabled.
     TxTributaryCoupled=0,1,2,15
     Loopback=false
 
-#### Client Interface Groups</span>
+#### Client Interface Groups
 
 The client interface groups define the attributes of the client
 interfaces on the module. The name of a client interface group is
@@ -2241,7 +2240,7 @@ data from the appropriate network interface, not this attribute.
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-<span id="src-8363049_FacebookVoyagerOpticalInterfaces-terminalLoopback"></span>`Loopback`
+`Loopback`
 
 </td>
 
@@ -2287,7 +2286,7 @@ interface group.
     RxTributaryCoupled=0
     Loopback=false
 
-### <span id="src-8363049_FacebookVoyagerOpticalInterfaces-initiate-hardware-update" class="confluence-anchor-link"></span>Initiate a Hardware Update</span>
+### Initiate a Hardware Update
 
 After making a change to the `transponders.ini` file, you must program
 the change into the hardware by issuing a `systemd reload` command:

@@ -27,13 +27,13 @@ refer to the [Monitor Network
 Health](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Health)
 topic.
 
-## Create Validation Requests</span>
+## Create Validation Requests
 
 The Validation Request card workflow is used to create on-demand
 validation requests to evaluate the health of your network protocols and
 services.
 
-### Validation Request Card Workflow</span>
+### Validation Request Card Workflow
 
 The small Validation Request card displays:
 
@@ -231,7 +231,7 @@ validation requests.
 </tbody>
 </table>
 
-### Creating Requests</span>
+### Creating Requests
 
 There are several types of validation requests that a user can make.
 Each has a slightly different flow through the Validation Request card,
@@ -251,7 +251,7 @@ of the request:
   - [Modify a Scheduled Validation
     Request](#src-12321612_ValidateNetworkProtocolandServiceOperations-EditSchedVal)
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jU2NoVmFsTm93" class="confluence-anchor-link"></span>Run an Existing Scheduled Validation Request On Demand</span>
+### Run an Existing Scheduled Validation Request On Demand
 
 You may find that although you have a validation scheduled to run at a
 later time, you would like to run it now.
@@ -272,7 +272,7 @@ To run a scheduled validation now:
 
     {{% imgOld 11 %}}
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jT25kTm93" class="confluence-anchor-link"></span>Create a New On-demand Validation Request</span>
+### Create a New On-demand Validation Request
 
 When you want to validate the operation of one or more network protocols
 and services right now, you can create and run an on-demand validation
@@ -329,7 +329,7 @@ scheduled request. After which you can run it on demand.
 
     {{% imgOld 19 %}}
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jU2NoTmV3" class="confluence-anchor-link"></span>Create a New Scheduled Validation Request</span>
+### Create a New Scheduled Validation Request
 
 When you want to see validation results on a regular basis, it is useful
 to configure a scheduled validation request to avoid re-creating the
@@ -378,7 +378,7 @@ Results](#src-12321612_ValidateNetworkProtocolandServiceOperations-SchValRes).
 
 {{% imgOld 27 %}}
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jRWRpdFNjaGVkVmFs" class="confluence-anchor-link"></span>Modify an Existing Scheduled Validation Request</span>
+### Modify an Existing Scheduled Validation Request
 
 At some point you might want to change the schedule or validation types
 that are specified in a scheduled validation request.
@@ -404,7 +404,7 @@ or you can wait for it to run the first time according to the schedule
 you specified. Refer to [View Scheduled Validation
 Results](#src-12321612_ValidateNetworkProtocolandServiceOperations-SchValRes).
 
-## <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jT25kVmFsUmVz" class="confluence-anchor-link"></span>View On-demand Validation Results</span>
+## View On-demand Validation Results
 
 The On-demand Validation Result card workflow enables you to view the
 results of on-demand validation requests. When a request has started
@@ -413,7 +413,7 @@ your workbench. When multiple network protocols or services are included
 in a validation, a validation result card is opened for each protocol
 and service.
 
-### On-Demand Validation Result Card Workflow</span>
+### On-Demand Validation Result Card Workflow
 
 The small Validation Result card displays:
 
@@ -704,7 +704,7 @@ validation results.
 </tbody>
 </table>
 
-### View On-demand Validation Results</span>
+### View On-demand Validation Results
 
 Once an on-demand validation request has completed, the results are
 available in the corresponding Validation Result card.
@@ -757,7 +757,7 @@ To view the results:
     example, more failures occurred between certain times or on a
     particular device.
 
-## <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jU2NoVmFsUmVz" class="confluence-anchor-link"></span>View Scheduled Validation Results</span>
+## View Scheduled Validation Results
 
 The Scheduled Validation Result card workflow enables you to view the
 results of scheduled validation requests. When a request has completed
@@ -765,7 +765,7 @@ processing, you can access the Validation Result card from the full
 screen Validation Request card. Each protocol and service has its own
 validation result card, but the content is similar on each.
 
-### Scheduled Validation Result Card Workflow Summary</span>
+### Scheduled Validation Result Card Workflow Summary
 
 The small Validation Result card displays:
 
@@ -1041,7 +1041,7 @@ validation results for the service.
 </tbody>
 </table>
 
-### <span id="src-12321612_safe-id-VmFsaWRhdGVOZXR3b3JrUHJvdG9jb2xhbmRTZXJ2aWNlT3BlcmF0aW9ucy0jRGF0YUdyYW4" class="confluence-anchor-link"></span>Granularity of Data Shown Based on Time Period</span>
+### Granularity of Data Shown Based on Time Period
 
 On the medium and large Validation Result cards, the status of the runs
 is represented in heat maps stacked vertically; one for passing runs,
@@ -1068,7 +1068,7 @@ time periods in the table showing the resulting time blocks and regions.
 | 1 month     | 2,086          | 30                 | 1 day                        |
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
 
-### View Scheduled Validation Results</span>
+### View Scheduled Validation Results
 
 Once a scheduled validation request has completed, the results are
 available in the corresponding Validation Result card.

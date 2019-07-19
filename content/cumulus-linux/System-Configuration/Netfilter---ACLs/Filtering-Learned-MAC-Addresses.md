@@ -128,7 +128,7 @@ These commands create the following configuration in the
         pre-up bridge fdb add 00:00:00:00:00:55 dev swp5 master static vlan 500
         pre-up bridge fdb add 00:00:00:00:00:66 dev swp6 master static vlan 600
 
-## Interactions with EVPN</span>
+## Interactions with EVPN
 
 If you are using
 [EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN),

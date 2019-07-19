@@ -17,7 +17,7 @@ The *cumulus* account is a normal user and is in the group *sudo*.
 You can add more user accounts as needed. Like the *cumulus* account,
 these accounts must use `sudo` to execute privileged commands.
 
-## sudo Basics</span>
+## sudo Basics
 
 `sudo` allows you to execute a command as superuser or another user as
 specified by the security policy. See `man sudo(8)` for details.
@@ -67,7 +67,7 @@ The example below shows how to use `sudo` as a non-privileged user
     3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master br0 state UP mode DEFAULT qlen 500
     link/ether 44:38:39:00:27:9f brd ff:ff:ff:ff:ff:ff
 
-## sudoers Examples</span>
+## sudoers Examples
 
 The following examples show how you grant as few privileges as necessary
 to a user or group of users to allow them to perform the required task.
@@ -133,7 +133,7 @@ be prefixed with `sudo.`
 <td><p>Package management</p></td>
 <td><p>Install packages</p></td>
 <td><pre><code>apt-get install vim</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get install *</code></pre></td>
+<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get install * </code></pre></td>
 </tr>
 <tr class="even">
 <td><p>Package management</p></td>
@@ -169,7 +169,7 @@ be prefixed with `sudo.`
 <td><p>Interfaces</p></td>
 <td><p>Modify any interface</p></td>
 <td><pre><code>ip link set dev swp1 {up|down}</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/ip link set *</code></pre></td>
+<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/ip link set * </code></pre></td>
 </tr>
 <tr class="even">
 <td><p>Interfaces</p></td>
@@ -193,13 +193,13 @@ be prefixed with `sudo.`
 <td><p>Interfaces</p></td>
 <td><p>Any IP address chg</p></td>
 <td><pre><code>ip addr {add|del} 192.0.2.1/30 dev swp1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/ip addr *</code></pre></td>
+<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/ip addr * </code></pre></td>
 </tr>
 <tr class="even">
 <td><p>Interfaces</p></td>
 <td><p>Only set IP address</p></td>
 <td><pre><code>ip addr add 192.0.2.1/30 dev swp1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/ip addr add *</code></pre></td>
+<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/ip addr add * </code></pre></td>
 </tr>
 <tr class="odd">
 <td><p>Ethernet bridging</p></td>
@@ -211,7 +211,7 @@ be prefixed with `sudo.`
 <td><p>Ethernet bridging</p></td>
 <td><p>Add bridges and ints</p></td>
 <td><pre><code>brctl addbr br0 / brctl addif br0 swp1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/brctl addbr *,/sbin/brctl addif *</code></pre></td>
+<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/brctl addbr \*,/sbin/brctl addif * </code></pre></td>
 </tr>
 <tr class="odd">
 <td><p>Spanning tree</p></td>
@@ -223,7 +223,7 @@ be prefixed with `sudo.`
 <td><p>Troubleshooting</p></td>
 <td><p>Restart switchd</p></td>
 <td><pre><code>systemctl restart switchd.service</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/sbin/service switchd *</code></pre></td>
+<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/sbin/service switchd * </code></pre></td>
 </tr>
 <tr class="odd">
 <td><p>Troubleshooting</p></td>
@@ -241,24 +241,24 @@ be prefixed with `sudo.`
 <td><p>L3</p></td>
 <td><p>Add static routes</p></td>
 <td><pre><code>ip route add 10.2.0.0/16 via 10.0.0.1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/bin/ip route add *</code></pre></td>
+<td><pre><code>%noc ALL=(ALL) NOPASSWD:/bin/ip route add * </code></pre></td>
 </tr>
 <tr class="even">
 <td><p>L3</p></td>
 <td><p>Delete static routes</p></td>
 <td><pre><code>ip route del 10.2.0.0/16 via 10.0.0.1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/bin/ip route del *</code></pre></td>
+<td><pre><code>%noc ALL=(ALL) NOPASSWD:/bin/ip route del * </code></pre></td>
 </tr>
 <tr class="odd">
 <td><p>L3</p></td>
 <td><p>Any static route chg</p></td>
-<td><pre><code>ip route *</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/bin/ip route *</code></pre></td>
+<td><pre><code>ip route * </code></pre></td>
+<td><pre><code>%noc ALL=(ALL) NOPASSWD:/bin/ip route * </code></pre></td>
 </tr>
 <tr class="even">
 <td><p>L3</p></td>
 <td><p>Any iproute command</p></td>
-<td><pre><code>ip *</code></pre></td>
+<td><pre><code>ip * </code></pre></td>
 <td><pre><code>%noc ALL=(ALL) NOPASSWD:/bin/ip</code></pre></td>
 </tr>
 <tr class="odd">
@@ -270,12 +270,9 @@ be prefixed with `sudo.`
 </tbody>
 </table>
 
-## Related Information</span>
+## Related Information
 
   - [sudo](https://wiki.debian.org/sudo)
-
-  - [Adding Yourself to
-    sudoers](http://rubypond.com/blog/adding-yourself-to-the-sudoers-file)
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

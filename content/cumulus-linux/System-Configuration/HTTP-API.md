@@ -29,7 +29,7 @@ The service is not enabled by default on non-chassis hardware.
 
 {{%/notice%}}
 
-### HTTP API Basics</span>
+### HTTP API Basics
 
 {{%notice note%}}
 
@@ -61,7 +61,7 @@ Each service runs as a background daemon once started.
 
 {{%/notice%}}
 
-### Configuration</span>
+### Configuration
 
 There are two configuration files associated with the HTTP API services:
 
@@ -76,7 +76,7 @@ Generally, only the configuration file relevant to your hardware needs
 to be edited, as the associated services determine the appropriate
 configuration file to use at run time.
 
-#### Enable External Traffic on a Chassis</span>
+#### Enable External Traffic on a Chassis
 
 The HTTP API services are configured to listen on port 8080 for chassis
 hardware by default. However, only HTTP traffic originating from
@@ -93,17 +93,17 @@ services to also accept HTTP requests originating from external sources:
     file.
 
 4.  Verify the configuration file is still valid:
-    
+
         cumulus@switch:~$ sudo nginx -c /etc/nginx/sites-available/nginx-restapi-chassis.conf -t
-    
+
     If the configuration file is not valid, return to step 1; review any
     changes that were made, and correct the errors.
 
 5.  Restart the daemons:
-    
+
         cumulus@switch:~$ sudo systemctl restart restserver
 
-#### IP and Port Settings</span>
+#### IP and Port Settings
 
 The IP:port combinations that services listen to can be modified by
 changing the parameters of the `listen` directive(s). By default,
@@ -129,9 +129,9 @@ traffic.
 
 {{%/notice%}}
 
-### <span id="src-8362591_HTTPAPI-security" class="confluence-anchor-link"></span>Security</span>
+### Security
 
-#### Authentication</span>
+#### Authentication
 
 The default configuration requires all HTTP requests from external
 sources (not internal switch traffic) to set the HTTP Basic
@@ -139,7 +139,7 @@ Authentication header.
 
 The user and password should correspond to a user on the host switch.
 
-#### Transport Layer Security</span>
+#### Transport Layer Security
 
 All traffic must be secured in transport using TLSv1.2 by default.
 Cumulus Linux contains a self-signed certificate and private key used
@@ -155,12 +155,12 @@ documentation](https://help.ubuntu.com/lts/serverguide/certificates-and-security
 {{%notice warning%}}
 
 Do not copy the `cumulus.pem` or `cumulus.key` files. After
-installation, edit the “ssl\_certificate” and “ssl\_certificate\_key”
+installation, edit the `ssl\_certificate` and `ssl\_certificate\_key`
 values in the configuration file for your hardware.
 
 {{%/notice%}}
 
-### cURL Examples</span>
+### cURL Examples
 
 This section contains several example cURL commands for sending HTTP
 requests to a non-chassis host. The following settings are used for
@@ -183,9 +183,9 @@ set to `application/json`.
 
 {{%notice info%}}
 
-cURL’s `-k` flag is necessary when the server uses a self-signed
+The cURL `-k` flag is necessary when the server uses a self-signed
 certificate. This is the default configuration (see the [Security
-section](#src-8362591_HTTPAPI-security)). To display the response
+section](#security)). To display the response
 headers, include `-D` flag in the command.
 
 {{%/notice%}}

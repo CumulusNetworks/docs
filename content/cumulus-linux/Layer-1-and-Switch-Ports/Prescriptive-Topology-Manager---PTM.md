@@ -27,7 +27,7 @@ PTM runs as a daemon, named `ptmd`.
 
 For more information, see `man ptmd(8)`.
 
-## Supported Features</span>
+## Supported Features
 
   - Topology verification using LLDP. `ptmd` creates a client connection
     to the LLDP daemon, `lldpd`, and retrieves the neighbor relationship
@@ -56,9 +56,9 @@ For more information, see `man ptmd(8)`.
   - Event notifications: see Scripts below.
 
   - User configuration via a `topology.dot` file; [see
-    below](#src-8363021_PrescriptiveTopologyManager-PTM-configuring).
+    below](#configure-PTM).
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-configuring" class="confluence-anchor-link"></span>Configure PTM</span>
+## Configure PTM
 
 `ptmd` verifies the physical network topology against a DOT-specified
 network graph file, `/etc/ptm.d/topology.dot`.
@@ -80,7 +80,7 @@ information.
 
 {{%/notice%}}
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-example" class="confluence-anchor-link"></span>Basic Topology Example</span>
+## Basic Topology Example
 
 This is a basic example DOT file and its corresponding topology diagram.
 You should use the same `topology.dot` file on all switches, and don't
@@ -100,7 +100,7 @@ pushing/pulling the same exact file on each device\!
 
 {{% imgOld 0 %}}
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-advanced" class="confluence-anchor-link"></span>ptmd Scripts</span>
+## ptmd Scripts
 
 `ptmd` executes scripts at `/etc/ptm.d/if-topo-pass` and
 ` /etc/ptm.d/if-topo-fail  `for each interface that goes through a
@@ -108,16 +108,16 @@ change, running `if-topo-pass` when an LLDP or BFD check passes and
 running `if-topo-fails` when the check fails. The scripts receive an
 argument string that is the result of the `ptmctl` command, described in
 the [`ptmd` commands section
-below](#src-8363021_PrescriptiveTopologyManager-PTM-ptmd_commands).
+below](#ptmd-service-commands).
 
 You should modify these default scripts as needed.
 
-## Configuration Parameters</span>
+## Configuration Parameters
 
 You can configure `ptmd` parameters in the topology file. The parameters
 are classified as host-only, global, per-port/node and templates.
 
-### Host-only Parameters</span>
+### Host-only Parameters
 
 *Host-only parameters* apply to the entire host on which PTM is running.
 You can include the `hostnametype` host-only parameter, which specifies
@@ -157,7 +157,7 @@ running on:
              "cumulus":"swp46" -- "switch05.cumulusnetworks.com":"swp22"
     }
 
-### Global Parameters</span>
+### Global Parameters
 
 *Global parameters* apply to every port listed in the topology file.
 There are two global parameters: LLDP and BFD. LLDP is enabled by
@@ -172,7 +172,7 @@ is a per-port override configured. For example:
              "cumulus":"swp46" -- "qct-ly2-04":"swp22"
     }
 
-### Per-port Parameters</span>
+### Per-port Parameters
 
 *Per-port parameters* provide finer-grained control at the port level.
 These parameters override any global or compiled defaults. For example:
@@ -184,7 +184,7 @@ These parameters override any global or compiled defaults. For example:
              "cumulus":"swp46" -- "qct-ly2-04":"swp22"
     }
 
-### Templates</span>
+### Templates
 
 *Templates* provide flexibility in choosing different parameter
 combinations and applying them to a given port. A template instructs
@@ -212,7 +212,7 @@ For example:
 In this template, LLDP1 and LLDP2 are templates for LLDP parameters
 while BFD1 and BFD2 are templates for BFD parameters.
 
-### Supported BFD and LLDP Parameters</span>
+### Supported BFD and LLDP Parameters
 
 `ptmd` supports the following BFD parameters:
 
@@ -227,12 +227,12 @@ while BFD1 and BFD2 are templates for BFD parameters.
 
   - `afi`: the address family to be supported for the edge. The address
     family must be one of the following:
-    
+
       - *v4*: BFD sessions will be built for only IPv4 connected peer.
         This is the default value.
-    
+
       - *v6*: BFD sessions will be built for only IPv6 connected peer.
-    
+
       - *both*: BFD sessions will be built for both IPv4 and IPv6
         connected peers.
 
@@ -271,14 +271,14 @@ FQDN, like *cumulus-2.domain.com* in the example below. If you do not
 specify anything for `match_hostname`, `ptmd` will match based on
 hostname only, like *cumulus-3* below, and ignore the rest of the URL:
 
-    graph G { 
-             "cumulus-1":"swp44" -- "cumulus-2.domain.com":"swp20" [LLDP="match_hostname=fqdn"] 
-             "cumulus-1":"swp46" -- "cumulus-3":"swp22" [LLDP="match_type=portdescr"] 
+    graph G {
+             "cumulus-1":"swp44" -- "cumulus-2.domain.com":"swp20" [LLDP="match_hostname=fqdn"]
+             "cumulus-1":"swp46" -- "cumulus-3":"swp22" [LLDP="match_type=portdescr"]
     }
 
 {{%/notice%}}
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-bfd" class="confluence-anchor-link"></span>Bidirectional Forwarding Detection (BFD)</span>
+## Bidirectional Forwarding Detection (BFD)
 
 BFD provides low overhead and rapid detection of failures in the paths
 between two network devices. It provides a unified mechanism for link
@@ -288,7 +288,7 @@ devices, including unidirectional path failure detection. For
 information about configuring BFD using PTM, see the [BFD
 topic](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD).
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-frr" class="confluence-anchor-link"></span>Check Link State with FRRouting</span>
+## Check Link State with FRRouting
 
 The FRRouting routing suite enables additional checks to ensure that
 routing adjacencies are formed only on links that have connectivity
@@ -309,24 +309,24 @@ To enable the global `ptm-enable` option, run the following FRRouting
 command:
 
     cumulus@switch:~$ sudo vtysh
-     
+
     switch# configure terminal
     switch(config)# ptm-enable
     switch(config)# end
     switch# write memory
     switch# exit
-    cumulus@switch:~$ 
+    cumulus@switch:~$
 
 To disable the checks, delete the `ptm-enable` parameter from the
 interface. For example:
 
-    cumulus@switch:~$ net del interface swp51 ptm-enable 
+    cumulus@switch:~$ net del interface swp51 ptm-enable
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
 If you need to re-enable PTM for that interface, run:
 
-    cumulus@switch:~$ net add interface swp51 ptm-enable 
+    cumulus@switch:~$ net add interface swp51 ptm-enable
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
@@ -343,11 +343,11 @@ this flag. To check the per-interface `ptm-status`:
       Link downs:     0    last: (never)
       PTM status: disabled
       vrf: Default-IP-Routing-Table
-      index 3 metric 0 mtu 1550 
+      index 3 metric 0 mtu 1550
       flags: <UP,BROADCAST,RUNNING,MULTICAST>
       HWaddr: c4:54:44:bd:01:41
 
-## <span id="src-8363021_PrescriptiveTopologyManager-PTM-ptmd_commands" class="confluence-anchor-link"></span>ptmd Service Commands</span>
+## ptmd Service Commands
 
 PTM sends client notifications in CSV format.
 
@@ -365,7 +365,7 @@ service.
 `cumulus@switch:~$ sudo systemctl status ptmd.service`: Retrieves the
 current running state of `ptmd`.
 
-## ptmctl Commands</span>
+## ptmctl Commands
 
 `ptmctl` is a client of `ptmd`; it retrieves the operational state of
 the ports configured on the switch and information about BFD sessions
@@ -373,7 +373,7 @@ from `ptmd`. `ptmctl` parses the CSV notifications sent by `ptmd`.
 
 See `man ptmctl` for more information.
 
-### ptmctl Examples</span>
+### ptmctl Examples
 
 The examples below contain the following keywords in the output of the
 cbl status column, which are described here:
@@ -409,14 +409,14 @@ cbl status column, which are described here:
 
 For basic output, use `ptmctl` without any options:
 
-``` 
+```
 cumulus@switch:~$ sudo ptmctl
  
 -------------------------------------------------------------
 port  cbl     BFD     BFD                  BFD    BFD       
       status  status  peer                 local  type      
 -------------------------------------------------------------
-swp1  pass    pass    11.0.0.2             N/A    singlehop 
+swp1  pass    pass    11.0.0.2             N/A    singlehop
 swp2  pass    N/A     N/A                  N/A    N/A        
 swp3  pass    N/A     N/A                  N/A    N/A  
 ```
@@ -444,12 +444,12 @@ For more detailed output, use the `-d` option:
 To return information on active BFD sessions `ptmd` is tracking, use the
 `-b` option:
 
-``` 
+```
 cumulus@switch:~$ sudo ptmctl -b
  
 ----------------------------------------------------------
-port  peer        state  local         type       diag 
-                                                         
+port  peer        state  local         type       diag
+
 ----------------------------------------------------------
 swp1  11.0.0.2    Up     N/A           singlehop  N/A  
 N/A   12.12.12.1  Up     12.12.12.4    multihop   N/A    
@@ -465,13 +465,13 @@ active neighbors currently being tracked by `ptmd`.
                            descr  on     upd
     ---------------------------------------------
     swp45 h1       swp1    swp1   IfName 5m:59s
-    swp46 h2       swp1    swp1   IfName 5m:59s 
+    swp46 h2       swp1    swp1   IfName 5m:59s
 
 To return detailed information on active BFD sessions `ptmd` is
 tracking, use the `-b` and `-d` options (results are for an
 IPv6-connected peer):
 
-``` 
+```
 cumulus@switch:~$ sudo ptmctl -b -d
  
 ----------------------------------------------------------------------------------------
@@ -483,14 +483,14 @@ swp1  3101:abc:bcad::2     Up     N/A    singlehop  N/A   3     300         900
  
 #continuation of output
 ---------------------------------------------------------------------
-echo        echo        max      rx_ctrl  tx_ctrl  rx_echo  tx_echo 
+echo        echo        max      rx_ctrl  tx_ctrl  rx_echo  tx_echo
 tx_timeout  rx_timeout  hop_cnt                                     
 ---------------------------------------------------------------------
 0           0           N/A      187172   185986   0        0       
 0           0           N/A      501      533      0        0       
 ```
 
-### ptmctl Error Outputs</span>
+### ptmctl Error Outputs
 
 If there are errors in the topology file or there isn’t a session, PTM
 will return appropriate outputs. Typical error strings are:
@@ -535,18 +535,18 @@ graph from working correctly.
 
 {{%/notice%}}
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - Prior to version 2.1, Cumulus Linux stored the `ptmd` configuration
     files in `/etc/cumulus/ptm.d`. When you upgrade to version 2.1 or
     later, all the existing `ptmd` files are copied from their original
     location to `/etc/ptm.d` with a `dpkg-old` extension, except for
     `topology.dot`, which gets copied to `/etc/ptm.d`.
-    
+
     If you customized the `if-topo-pass` and `if-topo-fail` scripts,
     they are also copied to `dpkg-old`, and you must modify them so they
     can parse the CSV output correctly.
-    
+
     Sample `if-topo-pass` and `if-topo-fail` scripts are available in
     `/etc/ptm.d`. A sample `topology.dot` file is available in
     `/usr/share/doc/ptmd/examples`.
@@ -554,13 +554,13 @@ graph from working correctly.
   - When PTMD is incorrectly in a failure state and the Zebra interface
     is enabled, PIF BGP sessions are not establishing the route, but the
     subinterface on top of it does establish routes.
-    
+
     If the subinterface is configured on the physical interface and the
     physical interface is incorrectly marked as being in a PTM FAIL
     state, routes on the physical interface are not processed in Quagga,
     but the subinterface is working.
 
-## Related Information</span>
+## Related Information
 
   - [Bidirectional Forwarding Detection
     (BFD)](http://tools.ietf.org/html/rfc5880)

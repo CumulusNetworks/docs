@@ -26,14 +26,12 @@ finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
 [VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF),
 including the [management VRF](/cumulus-linux/Layer-3/Management-VRF),
-follow [these
-steps](Management-VRF.html#src-8362940_ManagementVRF-services) for
-configuring them. See also the [VRF
-chapter](Virtual-Routing-and-Forwarding-VRF.html#src-8362942_VirtualRoutingandForwarding-VRF-dhcp).
+follow [these steps](/cumulus-linux/Layer-3/Management-VRF/#run-services-within-the-management-vrf) for
+configuring them. See also the [VRF chapter](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf).
 
 {{%/notice%}}
 
-## Configure IPv4 DHCP Relays</span>
+## Configure IPv4 DHCP Relays
 
 Configure `isc-dhcp-relay` using
 [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU),
@@ -88,7 +86,7 @@ dhcrelay.service` command:
        CGroup: /system.slice/dhcrelay.service
                └─1997 /usr/sbin/dhcrelay --nl -d -q -i vlan1 -i swp51 -i swp52 172.16.1.102
 
-### <span id="src-8363036_DHCPRelays-82" class="confluence-anchor-link"></span>DHCP Option 82</span>
+### DHCP Option 8
 
 You can configure DHCP relays to inject the `circuit-id` field with the
 `-a` option, which you add to the `OPTIONS` line in the
@@ -99,7 +97,7 @@ injected into this field. You can change this behavior by adding the
 port (swp) on which the discover packet arrives is placed in the
 `circuit-id` field.
 
-### Control the Gateway IP Address with RFC 3527 </span>
+### Control the Gateway IP Address with RFC 3527
 
 When DHCP relay is required in an environment that relies on an anycast
 gateway (such as EVPN), a unique IP address is necessary on each device
@@ -201,7 +199,7 @@ The above command creates the following configuration in the
     # Additional options that are passed to the DHCP relay daemon?
     OPTIONS="-U 10.0.0.3%swp2"
 
-## Configure IPv6 DHCP Relays</span>
+## Configure IPv6 DHCP Relays
 
 If you are configuring IPv6, the `/etc/default/isc-dhcp-relay6`
 variables file has a different format than the
@@ -237,7 +235,7 @@ dhcrelay6.service` command:
        CGroup: /system.slice/dhcrelay6.service
                └─6152 /usr/sbin/dhcrelay -6 --nl -d -q -l vlan1 -u 2001:db8:100::2 swp51 -u 2001:db8:100::2 swp52
 
-## <span id="src-8363036_DHCPRelays-multiple" class="confluence-anchor-link"></span>Configure Multiple DHCP Relays</span>
+## Configure Multiple DHCP Relays
 
 Cumulus Linux supports multiple DHCP relay daemons on a switch to enable
 relaying of packets from different bridges to different upstreams.
@@ -276,13 +274,13 @@ To configure multiple DHCP relay daemons on a switch:
 
         cumulus@switch:~$ sudo systemctl start dhcrelay@<dhcp-name>
 
-## Configure a DHCP Relay with VRR</span>
+## Configure a DHCP Relay with VRR
 
 The configuration procedure for DHCP relay with VRR is the same as
 documented above. Note that D <span style="color: #222222;"> HCP relay
 must run on the SVI and not on the -v0 interface. </span>
 
-## Configure the DHCP Relay Service Manually (Advanced)</span>
+## Configure the DHCP Relay Service Manually (Advanced)
 <details>
 <summary>Configuring the DHCP service manually ... </summary>
 
@@ -318,7 +316,7 @@ bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
 (for example, vlan100), or the bridge name if you are using traditional
 bridging (for example, br100).
 </details>
-## <span id="src-8363036_DHCPRelays-giaddr" class="confluence-anchor-link"></span>Use the Gateway IP Address as the Source IP for Relayed DHCP Packets (Advanced)</span>
+## Use the Gateway IP Address as the Source IP for Relayed DHCP Packets (Advanced)
 <details>
 <summary>Using the gateway IP address as the source IP for relayed DHCP
 packets </summary>
@@ -362,7 +360,7 @@ These commands create the following configuration in the
     # Additional options that are passed to the DHCP relay daemon?
     OPTIONS="--giaddr-src"
 </details>
-## Troubleshooting</span>
+## Troubleshooting
 
 If you are experiencing issues with the DHCP relay, run the following
 commands to determine if the issue is with `systemd`. The following
@@ -401,7 +399,7 @@ a time period:
     Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp52
     Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp51
 
-### Configuration Errors</span>
+### Configuration Errors
 
 If you configure DHCP relays by editing the
 `/etc/default/isc-dhcp-relay` <span style="color: #333333;"> file

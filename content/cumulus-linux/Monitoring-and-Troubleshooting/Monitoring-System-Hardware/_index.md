@@ -72,7 +72,7 @@ configuration information that’s been populated in the BIOS.
 You can use `apt-get` to install the `lshw` program on the switch, which
 also retrieves hardware configuration information.
 
-## <span id="src-8362594_MonitoringSystemHardware-smond" class="confluence-anchor-link"></span>Monitor System Units Using smond</span>
+## Monitor System Units Using smond</span>
 
 The `smond` daemon monitors system units like power supply and fan,
 updates their corresponding LEDs, and logs the change in the state.
@@ -221,12 +221,12 @@ printed. Example chip names include:
 
   - lm78-\*
 
-## <span id="src-8362594_MonitoringSystemHardware-snmp" class="confluence-anchor-link"></span>Monitor Switch Hardware Using SNMP</span>
+## Monitor Switch Hardware Using SNMP</span>
 
 The Net-SNMP documentation is discussed
 [here](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/).
 
-## <span id="src-8362594_MonitoringSystemHardware-watchdog" class="confluence-anchor-link"></span>Keep the Switch Alive Using the Hardware Watchdog</span>
+## Keep the Switch Alive Using the Hardware Watchdog</span>
 
 Cumulus Linux includes a simplified version of the ` wd_keepalive(8)
  `daemon from the standard ` watchdog  `Debian package. `wd_keepalive`

@@ -40,7 +40,7 @@ ways, in this order:
 
 Each method is discussed in greater detail below.
 
-## Zero Touch Provisioning Using a Local File</span>
+## Zero Touch Provisioning Using a Local File
 
 ZTP only looks once for a ZTP script on the local file system when the
 switch boots. ZTP searches for an install script that matches an
@@ -70,7 +70,7 @@ For example:
 You can also trigger the ZTP process manually by running the `ztp --run
 <URL>` command, where the URL is the path to the ZTP script.
 
-## Zero Touch Provisioning Using a USB Drive (ZTP-USB)</span>
+## Zero Touch Provisioning Using a USB Drive (ZTP-USB)
 
 {{%notice note%}}
 
@@ -108,8 +108,8 @@ Follow these steps to perform zero touch provisioning using a USB drive:
     name first, and ending at the most generic.
 
 3.  The contents of the script are parsed to ensure it contains the
-    `CUMULUS-AUTOPROVISIONING` flag (see [example
-    scripts](#src-8362632_ZeroTouchProvisioning-ZTP-example_scripts)).
+
+    `CUMULUS-AUTOPROVISIONING` flag.
 
 {{%notice note%}}
 
@@ -120,7 +120,7 @@ partition.
 
 {{%/notice%}}
 
-## Zero Touch Provisioning over DHCP</span>
+## Zero Touch Provisioning over DHCP
 
 If the `ztp` process does not discover a local/ONIE script or applicable
 USB drive, it checks DHCP every ten seconds for up to five minutes for
@@ -144,12 +144,14 @@ The zero touch provisioning process over DHCP follows these steps:
 
 4.  The zero touch provisioning process requests the contents of the
     script from the URL, sending additional [HTTP
-    headers](#src-8362632_ZeroTouchProvisioning-ZTP-http_headers)
+    headers](#inspect-http-headers)
+
     containing details about the switch.
 
 5.  The contents of the script are parsed to ensure it contains the
     `CUMULUS-AUTOPROVISIONING` flag (see [example
-    scripts](#src-8362632_ZeroTouchProvisioning-ZTP-example_scripts)).
+    scripts](#write-ztp-scripts)).
+
 
 6.  If provisioning is necessary, the script executes locally on the
     switch with root privileges.
@@ -158,7 +160,7 @@ The zero touch provisioning process over DHCP follows these steps:
     provisioning state is marked as complete in the autoprovisioning
     configuration file.
 
-### Trigger ZTP over DHCP</span>
+### Trigger ZTP over DHCP
 
 If provisioning has not already occurred, it is possible to trigger the
 zero touch provisioning process over DHCP when eth0 is set to use DHCP
@@ -173,7 +175,7 @@ and one of the following events occur:
 You can also run the `ztp --run <URL>` command, where the `URL` is the
 path to the ZTP script.
 
-### Configure the DHCP Server</span>
+### Configure the DHCP Server
 
 During the DHCP process over eth0, Cumulus Linux requests DHCP option
 239. This option is used to specify the custom provisioning script.
@@ -197,7 +199,7 @@ Additionally, you can specify the hostname of the switch with the
      host dc1-tor-sw1 { hardware ethernet 44:38:39:00:1a:6b; fixed-address 192.168.0.101; option host-name "dc1-tor-sw1"; }
     }
 
-### <span id="src-8362632_ZeroTouchProvisioning-ZTP-http_headers" class="confluence-anchor-link"></span>Inspect HTTP Headers</span>
+### Inspect HTTP Headers
 
 The following HTTP headers are sent in the request to the webserver to
 retrieve the provisioning script:
@@ -217,7 +219,7 @@ retrieve the provisioning script:
     CUMULUS-PROV-COUNT                                  0
     CUMULUS-PROV-MAX                                    32
 
-## Write ZTP Scripts </span>
+## Write ZTP Scripts
 
 {{%notice note%}}
 
@@ -250,7 +252,7 @@ The script must return an exit code of 0 upon success, as this triggers
 the autoprovisioning process to be marked as complete in the
 autoprovisioning configuration file.
 
-<span id="src-8362632_ZeroTouchProvisioning-ZTP-example_scripts"></span>The
+The
 following script installs Cumulus Linux and its license from a USB drive
 and applies a configuration:
 
@@ -262,7 +264,7 @@ and applies a configuration:
      
     # Log all output from this script
     exec >> /var/log/autoprovision 2>&1
-    date "+%FT%T ztp starting script $0" 
+    date "+%FT%T ztp starting script $0"
      
     trap error ERR
      
@@ -295,33 +297,33 @@ and applies a configuration:
 Several ZTP example scripts are available in the [Cumulus GitHub
 repository](https://github.com/CumulusNetworks/example-ztp-scripts).
 
-## Best Practices for ZTP Scripts</span>
+## Best Practices for ZTP Scripts
 
 ZTP scripts come in different forms and frequently perform many of the
 same tasks. As BASH is the most common language used for ZTP scripts,
 the following BASH snippets are provided to accelerate your ability to
 perform common tasks with robust error checking.
 
-### Install a License</span>
+### Install a License
 
 Use the following function to include error checking for license file
 installation.
 
     function install_license(){
         # Install license
-        echo "$(date) INFO: Installing License..." 
+        echo "$(date) INFO: Installing License..."
         echo $1 | /usr/cumulus/bin/cl-license -i
         return_code=$?
         if [ "$return_code" == "0" ]; then
-            echo "$(date) INFO: License Installed." 
+            echo "$(date) INFO: License Installed."
         else
             echo "$(date) ERROR: License not installed. Return code was: $return_code"
-            /usr/cumulus/bin/cl-license 
+            /usr/cumulus/bin/cl-license
             exit 1
         fi
     }
 
-### Test DNS Name Resolution</span>
+### Test DNS Name Resolution
 
 DNS names are frequently used in ZTP scripts. The `ping_until_reachable`
 function tests that each DNS name resolves into a reachable IP address.
@@ -348,7 +350,7 @@ function in the context of a larger task.
         fi
     }
 
-### Check the Cumulus Linux Release</span>
+### Check the Cumulus Linux Release
 
 The following script segment demonstrates how to check which Cumulus
 Linux release is running currently and upgrades the node if the release
@@ -375,7 +377,7 @@ server and the ZTP script is reachable.
     fi
     exit 0
 
-### Apply Management VRF Configuration</span>
+### Apply Management VRF Configuration
 
 If you apply a management VRF in your script, either apply it last or
 reboot instead. If you do *not* apply a management VRF last, you need to
@@ -383,7 +385,7 @@ prepend any commands that require `eth0` to communicate out with
 `/usr/bin/vrf task exec mgmt`; for example, `/usr/bin/vrf task exec mgmt
 apt-get update -y`.
 
-### Perform Ansible Provisioning Callbacks</span>
+### Perform Ansible Provisioning Callbacks
 
 After initially configuring a node with ZTP, use [Provisioning
 Callbacks](http://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html#provisioning-callbacks)
@@ -393,7 +395,7 @@ provisioning callback:
 
     /usr/bin/curl -H "Content-Type:application/json" -k -X POST --data '{"host_config_key":"'somekey'"}' -u username:password http://ansible.example.com/api/v2/job_templates/1111/callback/
 
-### Disable the DHCP Hostname Override Setting</span>
+### Disable the DHCP Hostname Override Setting
 
 Make sure to disable the DHCP hostname override setting in your script
 (NCLU does this for in Cumulus Linux 3.5 and above).
@@ -404,7 +406,7 @@ Make sure to disable the DHCP hostname override setting in your script
         hostnamectl set-hostname $1
     }
 
-### NCLU in ZTP Scripts </span>
+### NCLU in ZTP Scripts
 
 {{%notice note%}}
 
@@ -429,7 +431,7 @@ NCLU has time to start up before being called.
     net add time ntp server 192.168.0.254 iburst
     net commit
 
-## Test ZTP Scripts</span>
+## Test ZTP Scripts
 
 There are a few commands you can use to test and debug your ZTP scripts.
 
@@ -438,9 +440,9 @@ failed. Include the `-v` option when you run `ztp`:
 
     cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh
     Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
-                                                                                   
+
     Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 2016):  
-                                                                                   
+
     ZTP: Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
     ZTP Manual: URL response code 200
     ZTP Manual: Found Marker CUMULUS-AUTOPROVISIONING
@@ -453,7 +455,7 @@ execution, you can run the `ztp -s` command.
 
     cumulus@switch:~$ ztp -s
     ZTP INFO:
-     
+
     State              enabled
     Version            1.0
     Result             Script Failure
@@ -483,7 +485,7 @@ see if any failures occur:
     May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Script returned failure
     May 11 16:38:45 dell-s6000-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE
     May 11 16:38:45 dell-s6000-01 systemd[1]: Unit ztp.service entered failed state.
-    cumulus@switch:~$ 
+    cumulus@switch:~$
     cumulus@switch:~$ sudo journalctl -l -u ztp.service --no-pager
     -- Logs begin at Wed 2016-05-11 16:37:42 UTC, end at Wed 2016-05-11 16:40:39 UTC. --
     May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/lib/cumulus/ztp: Sate Directory does not exist. Creating it...
@@ -540,9 +542,9 @@ as above.
 
     cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh
     Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
-                                                                                   
+
     Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 2016):  
-                                                                                   
+
     ZTP: Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
     ZTP Manual: URL response code 200
     ZTP Manual: Found Marker CUMULUS-AUTOPROVISIONING
@@ -561,7 +563,7 @@ Use the following command to check `syslog` for information about ZTP:
 
     cumulus@switch:~$ sudo grep -i ztp /var/log/syslog
 
-## Common ZTP Script Errors</span>
+## Common ZTP Script Errors
 
 *Could not find referenced script/interpreter in downloaded payload.*
 
@@ -593,7 +595,7 @@ end-of-line encodings.
 Use the `cat -v ztp.sh` command to view the contents of the script and
 search for any hidden characters.
 
-    root@oob-mgmt-server:/var/www/html# cat -v ./ztp_oob_windows.sh 
+    root@oob-mgmt-server:/var/www/html# cat -v ./ztp_oob_windows.sh
     #!/bin/bash^M
     ^M
     ###################^M
@@ -609,7 +611,7 @@ search for any hidden characters.
     ^M
     # The line below is required to be a valid ZTP script^M
     #CUMULUS-AUTOPROVISIONING^M
-    root@oob-mgmt-server:/var/www/html# 
+    root@oob-mgmt-server:/var/www/html#
 
 The `^M` characters in the output of your ZTP script, as shown above,
 indicate the presence of Windows end-of-line encodings that you need to
@@ -619,7 +621,7 @@ Use the translate (`tr`) command on any Linux system to remove the
 `'\r'` characters from the file.
 
     root@oob-mgmt-server:/var/www/html# tr -d '\r' < ztp_oob_windows.sh > ztp_oob_unix.sh
-    root@oob-mgmt-server:/var/www/html# cat -v ./ztp_oob_unix.sh 
+    root@oob-mgmt-server:/var/www/html# cat -v ./ztp_oob_unix.sh
     #!/bin/bash
     ###################
     #   ZTP Script
@@ -630,9 +632,9 @@ Use the translate (`tr`) command on any Linux system to remove the
     exit 0
     # The line below is required to be a valid ZTP script
     #CUMULUS-AUTOPROVISIONING
-    root@oob-mgmt-server:/var/www/html# 
+    root@oob-mgmt-server:/var/www/html#
 
-## Manually Use the ztp Command</span>
+## Manually Use the ztp Command
 
 To enable zero touch provisioning, use the `-e` option:
 
@@ -686,14 +688,14 @@ To see the current `ztp` state, use the `-s` option:
 
     cumulus@switch:~$ sudo ztp -s
     ZTP INFO:
-    State disabled 
-    Version 1.0 
-    Result success 
-    Date Thu May 5 16:49:33 2016 UTC 
+    State disabled
+    Version 1.0
+    Result success
+    Date Thu May 5 16:49:33 2016 UTC
     Method Switch manually configured  
     URL None
 
-## Notes</span>
+## Notes
 
   - During the development of a provisioning script, the switch might
     need to be rebooted.

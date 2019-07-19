@@ -28,7 +28,7 @@ identify peer ports connected to DACs (Direct Attached Cables) and AOCs
 The NetQ CLI provides the `netq show inventory`, `netq show sensors`,
 and `netq show events` commands to monitor switches.
 
-## Monitor Switch and Host Hardware Information</span>
+## Monitor Switch and Host Hardware Information
 
 You can view summary information about all switches and hosts along with
 their key components, including the motherboard, ASIC, microprocessor,
@@ -90,7 +90,7 @@ systems running on each set of devices, large cards with component
 information statistics, and full-screen cards displaying tables with
 attributes of all switches and all hosts in your network.
 
-### View a Summary of Your Network Inventory</span>
+### View a Summary of Your Network Inventory
 
 While the detail can be very helpful, sometimes a simple overview of the
 hardware inventory is better. This example shows the basic hardware
@@ -115,7 +115,7 @@ information for all devices.
     spine01           VX                   CL              x86_64   VX              N/A
     spine02           VX                   CL              x86_64   VX              N/A
 
-### View Information about the ASIC on all Switches</span>
+### View Information about the ASIC on all Switches
 
 You can view the vendor, model, model identifier, core bandwidth
 capability, and ports of the ASIC installed on your switch motherboard.
@@ -165,7 +165,7 @@ a particular switch. This example shows the ASIC information for
     ----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
     st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
 
-### View Information about the Motherboard in a Switch</span>
+### View Information about the Motherboard in a Switch
 
 You can view the vendor, model, base MAC address, serial number, part
 number, revision, and manufacturing date for a switch motherboard on a
@@ -214,7 +214,7 @@ particular switch. This example shows the motherboard vendor for the
     ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
     st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
 
-### View Information about the CPU on a Switch</span>
+### View Information about the CPU on a Switch
 
 You can view the architecture, model, operating frequency, and the
 number of cores for the CPU on a single device or for all devices. This
@@ -282,7 +282,7 @@ as shown here for *server02*.
     server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                                ss Core i7)
 
-### View Information about the Disk on a Switch</span>
+### View Information about the Disk on a Switch
 
 You can view the name or operating system, type, transport, size,
 vendor, and model of the disk on a single device or all devices. This
@@ -314,7 +314,7 @@ for a particular device. This example shows disk information for
     ----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
     leaf03            vda             disk             N/A                6G         0x1af4               N/A
 
-### View Memory Information for a Switch</span>
+### View Memory Information for a Switch
 
 You can view the name, type, size, speed, vendor, and serial number for
 the memory installed in a single device or all devices. This example
@@ -372,7 +372,7 @@ switch, as shown here for leaf01.
     ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
     leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
 
-### View Fan Health for All Switches</span>
+### View Fan Health for All Switches
 
 Fan, power supply unit, and temperature sensors are available to provide
 additional data about the NetQ Platform operation. To view the health of
@@ -422,7 +422,7 @@ parameter.
     ----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
     leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
 
-### View PSU Health for All Switches</span>
+### View PSU Health for All Switches
 
 Fan, power supply unit, and temperature sensors are available to provide
 additional data about the NetQ Platform operation. To view the health of
@@ -453,7 +453,7 @@ switch.
 
 {{%/notice%}}
 
-### View the Temperature in All switches</span>
+### View the Temperature in All switches
 
 Fan, power supply unit, and temperature sensors are available to provide
 additional data about the NetQ Platform operation. To view the
@@ -496,7 +496,7 @@ switch.
 
 {{%/notice%}}
 
-### View All Sensor Data</span>
+### View All Sensor Data
 
 To view all fan data, all PSU data, or
 all temperature data from the sensors, you must view all of the sensor
@@ -532,7 +532,7 @@ to view the full sensor data.
     exit02            psu1temp1       psu1 temp sensor                    ok                                             Fri Apr 19 16:01:33 2019
     ...
 
-### View All Sensor-related Events</span>
+### View All Sensor-related Events
 
 You can view the events that are triggered by the sensors using the
 `netq show events` command. You can narrow the focus to only critical
@@ -544,7 +544,7 @@ events using the severity `level` option.
     cumulus@switch:~$ netq show events level critical type sensors
     No matching events records found
 
-## Monitor Switch Software Information</span>
+## Monitor Switch Software Information
 
 The syntax for this command is:
 
@@ -582,7 +582,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### View OS Information for a Switch</span>
+### View OS Information for a Switch
 
 You can view the name and version of the OS on a switch, and when it was
 last modified. This example shows the OS information for all devices.
@@ -640,7 +640,7 @@ time values.
     mlx-2100-05       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:42 2019
     mlx-2700-11       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:51 2019
 
-### View License Information for a Switch</span>
+### View License Information for a Switch
 
 You can view the name and current state
 of the license (whether it valid or not), and when it was last updated
@@ -698,7 +698,7 @@ ago.
     cumulus@switch:~$ netq spine01 show events type license between now and 24h
     No matching events records found
 
-### View Summary of Operating System on a Switch</span>
+### View Summary of Operating System on a Switch
 
 As with the hardware information, you can view a summary of the software
 information using the `brief` keyword. Specify a hostname to view the
@@ -723,7 +723,7 @@ summary for a specific device.
     spine01           VX                   CL              x86_64   VX              N/A
     spine02           VX                   CL              x86_64   VX              N/A
 
-### Validate NetQ Agents are Running</span>
+### Validate NetQ Agents are Running
 
 You can confirm that NetQ Agents are running on switches and hosts (if
 installed) using the `netq show agents` command. Viewing the **Status**
@@ -761,7 +761,7 @@ You can narrow your focus in several ways:
   - View the state of NetQ Agents at an earlier time using the *around*
     keyword.
 
-## Monitor Software Services</span>
+## Monitor Software Services
 
 Cumulus Linux and NetQ run a number of services to deliver the various
 features of these products. You can monitor their status using the `netq
@@ -797,7 +797,7 @@ The CLI syntax for viewing the status of services is:
     netq [<hostname>] show services [<service-name>] [vrf <vrf>] status (ok|warning|error|fail) [around <text-time>] [json]
     netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] type services [between <text-time> and <text-endtime>] [json]
 
-### View All Services on All Devices</span>
+### View All Services on All Devices
 
 This example shows all of the available services on each device and
 whether each is enabled, active, and monitored, along with how long the
@@ -904,7 +904,7 @@ You can also view services information in JSON format:
 If you want to view the service information for a given device, simply
 use the `hostname` option when running the command.
 
-### View Information about a Given Service on All Devices</span>
+### View Information about a Given Service on All Devices
 
 You can view the status of a given service at the current time, at a
 prior point in time, or view the changes that have occurred for the
@@ -959,11 +959,11 @@ This example shows the status of the BGP daemon.
     leaf21            bgpd                 3512  default         yes     yes    yes       ok               1d:6h:51m:1s              Fri Feb 15 17:32:00 2019
     leaf22            bgpd                 3536  default         yes     yes    yes       ok               1d:6h:54m:54s             Fri Feb 15 17:28:07 2019
 
-### View Events Related to a Given Service</span>
+### View Events Related to a Given Service
 
 To view changes over a given time period, use the `netq show events`
 command. For more detailed information about events, refer to [Monitor
-Events](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Events).
+Events](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Events).
 
 In this example, we want to view changes to the bgpd service in the last
 48 hours.

@@ -11,21 +11,19 @@ version: 2.5.12
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---
-<details>
 
 Ethernet bridges provide a means for hosts to communicate at layer 2.
 Bridge members can be individual physical interfaces, bonds or logical
 interfaces that traverse an 802.1Q VLAN trunk. Cumulus Linux does not
 put all ports into a bridge by default.
 
-Cumulus Linux 2.5.0 introduced a new method for configuring bridges that
-are
-*[VLAN-aware](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)*
-. The bridge driver in Cumulus Linux 2.5.x is capable of VLAN filtering,
+Cumulus Linux 2.5.0 introduced a new method for configuring bridges that are
+*[VLAN-aware](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)*. The bridge driver in Cumulus Linux 2.5.x is
+capable of VLAN filtering,
 which allows for configurations that are similar to incumbent network
 devices. While Cumulus Linux supports Ethernet bridges in traditional
 mode Cumulus Networks **** recommends using
-[VLAN-aware](http://docs.cumulusnetworks.com/display/DOCS/VLAN-aware+Bridge+Mode+for+Large-scale+Layer+2+Environments)
+[VLAN-aware](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/)
 mode unless you are using VXLANs in your network.
 
 For a comparison of traditional and VLAN-aware modes, read [this
@@ -42,11 +40,11 @@ you **must** use traditional bridge mode.
 
 {{%/notice%}}
 
-## Configuration Files</span>
+## Configuration Files
 
   - /etc/network/interfaces
 
-## Commands</span>
+## Commands
 
   - brctl
 
@@ -56,14 +54,14 @@ you **must** use traditional bridge mode.
 
   - ip link
 
-## Creating a Bridge between Physical Interfaces</span>
+## Creating a Bridge between Physical Interfaces
 
 The basic use of bridging is to connect all of the physical and logical
 interfaces in the system into a single layer 2 domain.
 
 {{% imgOld 0 %}}
 
-### Creating the Bridge and Adding Interfaces</span>
+### Creating the Bridge and Adding Interfaces
 
 You statically manage bridge configurations in
 `/etc/network/interfaces`. The following configuration snippet details
@@ -125,9 +123,9 @@ you create here does not persist after you reboot the switch.
 To create the bridge and interfaces on the bridge, run:
 
     cumulus@switch:~$ sudo brctl addbr my_bridge
-    
+
     cumulus@switch:~$ sudo brctl addif my_bridge bond0 swp5 swp6
-    
+
     cumulus@switch:~$ sudo brctl show
     bridge name        bridge id          STP enabled     interfaces
     my_bridge          8000.44383900129b  yes             bond0
@@ -140,7 +138,7 @@ To create the bridge and interfaces on the bridge, run:
 
     cumulus@switch:~$ sudo for I in {5..6}; do  ip link set up dev swp$I; done
 
-### Showing and Verifying the Bridge Configuration</span>
+### Showing and Verifying the Bridge Configuration
 
     cumulus@switch:~$ ip link show my_bridge
     56: my_bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT
@@ -166,7 +164,7 @@ network configuration.
                                               Root Port: bond0
                                               VlanID: Untagged
 
-#### Bridge Interface MAC Address and MTU</span>
+#### Bridge Interface MAC Address and MTU
 
 A bridge is a logical interface with a MAC address and an
 [MTU](Layer-1-and-Switch-Port-Attributes.html#src-5116098_Layer1andSwitchPortAttributes-mtu)
@@ -178,7 +176,7 @@ bridge, at which point the bridge will inherit from the next member
 interface, if any. The bridge can also be assigned an IP address, as
 discussed later in this section.
 
-## Examining MAC Addresses</span>
+## Examining MAC Addresses
 
 A bridge forwards frames by looking up the destination MAC address. A
 bridge learns the source MAC address of a frame when the frame enters
@@ -224,7 +222,7 @@ command:
 
 {{%/notice%}}
 
-## Multiple Bridges</span>
+## Multiple Bridges
 
 Sometimes it is useful to logically divide a switch into multiple layer
 2 domains, so that hosts in one domain can communicate with other hosts
@@ -244,7 +242,7 @@ To configure multiple bridges, edit `/etc/network/interfaces`:
     iface bridge-A
         bridge-ports swp1 swp2
         bridge-stp on
-    
+
     auto bridge-B
     iface bridge-B
         bridge-ports swp3 swp4
@@ -265,26 +263,26 @@ you create here does not persist after you reboot the switch.
 {{%/notice%}}
 
     cumulus@switch:~$ sudo brctl addbr bridge-A
-    
+
     cumulus@switch:~$ sudo brctl addif bridge-A swp1 swp2
-    
+
     cumulus@switch:~$ sudo brctl addbr bridge-B
-    
+
     cumulus@switch:~$ sudo brctl addif bridge-B swp3 swp4
-    
+
     cumulus@switch:~$ sudo for I in {1..4}; do  ip link set up dev swp$I; done
-    
+
     cumulus@switch:~$ sudo ip link set up dev bridge-A
-    
+
     cumulus@switch:~$ sudo ip link set up dev bridge-B
-    
+
     cumulus@switch:~$ sudo brctl show
      bridge name     bridge id               STP enabled     interfaces
      bridge-A        8000.44383900129b       yes             swp1
                                                              swp2
      bridge-B        8000.44383900129d       yes             swp3
                                                              swp4
-            
+
     cumulus@switch:~$ ip link show bridge-A
     97: bridge-A: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT
      link/ether 70:72:cf:9d:4e:35 brd ff:ff:ff:ff:ff:ff
@@ -307,7 +305,7 @@ network configuration.
                                              Root Port: swp3
                                              VlanID: Untagged
 
-## Configuring an SVI (Switch VLAN Interface)</span>
+## Configuring an SVI (Switch VLAN Interface)
 
 A bridge creates a layer 2 forwarding domain for hosts to communicate. A
 bridge can be assigned an IP address — typically of the same subnet as
@@ -349,7 +347,7 @@ command:
 
     cumulus@switch:~$ sudo ifreload -a
 
-### Showing and Verifying the Bridge Configuration</span>
+### Showing and Verifying the Bridge Configuration
 
     cumulus@switch$ ip addr show bridge-A
     106: bridge-A: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP
@@ -388,7 +386,7 @@ you create here does not persist after you reboot the switch.
 To add an IP address to a bridge:
 
     cumulus@switch:~$ sudo ip addr add 192.0.2.101/24 dev bridge-A
-    
+
     cumulus@switch:~$ sudo ip addr add 192.0.2.102/24 dev bridge-B
 
 <summary>Using netshow to Display the SVI </summary>
@@ -408,7 +406,7 @@ network configuration.
                                              Root Port: swp3
                                              VlanID: Untagged
 
-## <span id="src-5116009_EthernetBridging-VLANs-VLAN_tagging" class="confluence-anchor-link"></span>Using Trunks in Traditional Bridging Mode</span>
+## Using Trunks in Traditional Bridging Mode
 
 The [IEEE standard](http://www.ieee802.org/1/pages/802.1Q.html) for
 trunking is 802.1Q. The 802.1Q specification adds a 4 byte header within
@@ -451,7 +449,7 @@ native VLAN, thus merging those two VLANs and their spanning tree state.
 
 {{%/notice%}}
 
-### Trunk Example</span>
+### Trunk Example
 
 {{% imgOld 3 %}}
 
@@ -470,7 +468,7 @@ To bring up br-VLAN100 and br-VLAN200, use the `ifreload` command:
 
     cumulus@switch:~$ sudo ifreload -a
 
-### Showing and Verifying the Trunk</span>
+### Showing and Verifying the Trunk
 
     cumulus@switch:~$ brctl show
     bridge name bridge id         STP enabled interfaces
@@ -494,12 +492,12 @@ your network configuration.
                                                STP: rootSwitch(32768)
                                                VlanID: 200
 
-### Additional Examples</span>
+### Additional Examples
 
 You can find additional examples of VLAN tagging in [this
 chapter](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-Tagging).
 
-## Configuration Files</span>
+## Configuration Files
 
   - /etc/network/interfaces
 
@@ -513,7 +511,7 @@ chapter](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Brid
 
   - /etc/network/if-up.d/
 
-## Useful Links</span>
+## Useful Links
 
   - [www.linuxfoundation.org/collaborate/workgroups/networking/bridge](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
 
@@ -521,7 +519,7 @@ chapter](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Brid
 
   - [www.linuxjournal.com/article/8172](http://www.linuxjournal.com/article/8172)
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - The same bridge cannot contain multiple subinterfaces of the
     **same** port as members. Attempting to apply such a configuration
@@ -532,13 +530,3 @@ chapter](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Brid
     present as a normal interface in a VLAN-aware bridge, when the
     traditional bridge's bond subinterface is brought down, it flaps the
     bridge.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

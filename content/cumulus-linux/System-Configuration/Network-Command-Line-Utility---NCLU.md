@@ -40,7 +40,7 @@ configure both the `/etc/network/interfaces` and `/etc/frr/frr.conf`
 files with `net`, in addition to running show and clear commands related
 to `ifupdown2` and FRRouting.
 
-## Install NCLU</span>
+## Install NCLU
 
 If you upgraded Cumulus Linux from a version earlier than 3.2 instead of
 performing a full disk image install, you need to install the `nclu`
@@ -61,7 +61,7 @@ the following message:
 
 {{%/notice%}}
 
-## NCLU Basics</span>
+## NCLU Basics
 
 Use the following workflow to stage and commit changes to Cumulus Linux
 with NCLU:
@@ -135,7 +135,7 @@ does not interact with eth0 interfaces and management VRF.
 
     {{%/notice%}}
 
-### Tab Completion, Verification, and Inline Help</span>
+### Tab Completion, Verification, and Inline Help
 
 In addition to tab completion and partial keyword command
 identification, NCLU includes verification checks to ensure correct
@@ -232,7 +232,7 @@ You can configure multiple interfaces at once:
 
 {{%/notice%}}
 
-### <span id="src-8362580_NetworkCommandLineUtility-NCLU-questionmark" class="confluence-anchor-link"></span>Add ? (Question Mark) Ability to NCLU</span>
+### Add ? (Question Mark) Ability to NCLU
 
 While tab completion is enabled by default, you can also configure NCLU
 to use the **?** (question mark character) to look at available
@@ -275,12 +275,13 @@ terminal. This is normal, expected behavior.
 
 {{%/notice%}}
 
-### Built-In Examples</span>
+### Built-In Examples
 
 NCLU has a number of built in examples to guide users through basic
 configuration setup:
 
-    cumulus@switch:~$ net example
+```
+  cumulus@switch:~$ net example
         acl              :  access-list
         bgp              :  Border Gateway Protocol
         bond             :  Bond, port-channel, etc
@@ -309,6 +310,7 @@ configuration setup:
     - assign IP 20.0.0.1/24 to the SVI for vlan 20
     - configure swp3 as a trunk for vlans 10, 11, 12 and 20
                   swp3
+
          *switch1 --------- switch2
             /\
       swp1 /  \ swp2
@@ -340,8 +342,9 @@ configuration setup:
     ============
     switch1# net show interface
     switch1# net show bridge macs
+```
 
-## <span id="src-8362580_NetworkCommandLineUtility-NCLU-configure-user-accounts" class="confluence-anchor-link"></span>Configure User Accounts</span>
+## Configure User Accounts
 
 You can configure user accounts in Cumulus Linux with read-only or edit
 permissions for NCLU:
@@ -363,9 +366,10 @@ an existing user account called *myuser*.
 
 To add a new user account with NCLU show permissions:
 
-    cumulus@switch:~$ sudo adduser --ingroup netshow myuser
+``` cumulus@switch:~$ sudo adduser --ingroup netshow myuser
     Adding user `myuser' ...
     Adding new user `myuser' (1001) with group `netshow' …
+```
 
 To add NCLU show permissions to a user account that already exists:
 
@@ -376,16 +380,18 @@ To add NCLU show permissions to a user account that already exists:
 
 To add a new user account with NCLU edit permissions:
 
-    cumulus@switch:~$ sudo adduser --ingroup netedit myuser
+``` cumulus@switch:~$ sudo adduser --ingroup netedit myuser
     Adding user `myuser' ...
     Adding new user `myuser' (1001) with group `netedit' …
+```
 
 To add NCLU edit permissions to a user account that already exists:
 
-    cumulus@switch:~$ sudo addgroup myuser netedit
+```cumulus@switch:~$ sudo addgroup myuser netedit
     Adding user `myuser' to group `netedit' ...
     Adding user myuser to group netedit
     Done
+```
 
 {{%notice note%}}
 
@@ -406,7 +412,7 @@ error displays:
     myuser@switch:~$ net add hostname host01
     ERROR: User username does not have permission to make networking changes.
 
-## Edit the netd.conf File</span>
+## Edit the netd.conf File
 
 Instead of using the NCLU commands described above, you can manually
 configure users and groups to be able to run NCLU commands.
@@ -438,18 +444,18 @@ To configure a new user group to use NCLU, add that group to the
 
 Use caution giving edit permissions to groups. For example, don't give
 edit permissions to the [*tacacs*
-group](TACACS-Plus.html#src-8362558_TACACSPlus-nclu).
+group](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus#configure-nclu-for-tacacs-plus-users).
 
 {{%/notice%}}
 
-## <span id="src-8362580_NetworkCommandLineUtility-NCLU-restart" class="confluence-anchor-link"></span>Restart the netd Service</span>
+## Restart the netd Service
 
 Whenever you modify `netd.conf` or NSS services change, you must restart
 the `netd` service for the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart netd.service
 
-## <span id="src-8362580_NetworkCommandLineUtility-NCLU-backuptofile" class="confluence-anchor-link"></span>Back Up the Configuration to a Single File</span>
+## Back Up the Configuration to a Single File
 
 You can easily back up your NCLU configuration to a file by outputting
 the results of `net show configuration commands` to a file, then
@@ -468,7 +474,7 @@ configuration by running:
 
     cumulus@leaf01:~$ source leaf01.txt
 
-## <span id="src-8362580_NetworkCommandLineUtility-NCLU-conf" class="confluence-anchor-link"></span>Advanced Configuration</span>
+## Advanced Configuration
 
 NCLU needs no initial configuration; however, if you need to modify its
 configuration, you must manually update the `/etc/netd.conf` file. You

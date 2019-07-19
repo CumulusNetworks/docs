@@ -166,8 +166,7 @@ logging.
 3.  Optionally, verify connection to the NetQ platform by viewing the
     `netq-agent.log` messages.
 
-**Example: Configure warning-level
-logging**
+**Example: Configure warning-level logging**
 
     cumulus@switch:~$ netq config add agent loglevel warning
     cumulus@switch:~$ netq config restart agent
@@ -190,7 +189,7 @@ To disable all logging:
     cumulus@switch:~$ netq config del agent loglevel 
     cumulus@switch:~$ netq config restart agent
 
-`  `
+
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

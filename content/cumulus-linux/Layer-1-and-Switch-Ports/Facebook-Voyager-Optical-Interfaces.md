@@ -313,9 +313,7 @@ spacing on L2 to 12.5GHz:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<span style="color: #36424a;"> </span> This command creates the
-following configuration snippet in the `/etc/cumulus/transponders.ini`
-file:
+This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini` file:
 
     cumulus@switch:~$ cat /etc/cumulus/transponders.ini
     ...
@@ -396,9 +394,7 @@ sets the transmit power for L1 to 10.0 dBm.
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<span style="color: #36424a;"> </span> This command creates the
-following configuration snippet in the `/etc/cumulus/transponders.ini`
-file:
+This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini` file:
 
     cumulus@switch:~$ cat /etc/cumulus/transponders.ini
     ...
@@ -535,9 +531,7 @@ Line side loopback mode enables you to send and receive data from the
 same network interface port to verify that the port is operational.
 
 To enable line side loopback mode, run the `net add interface
-<interface> facility-loopback` command. You can enable
-<span style="color: #000000;"> line side loopback mode on one or
-multiple interfaces. </span> The following example enables loopback mode
+<interface> facility-loopback` command. You can enable line side loopback mode on one or multiple interfaces. The following example enables loopback mode
 on the L1, L2, L3, and L4 network interfaces:
 
     cumulus@switch:~$ net add interface L1-4 facility-loopback
@@ -838,7 +832,9 @@ file. Key-value pairs have the form `key=value`. Spaces before and after
 the = character are ignored. Lines beginning with \# and blank lines are
 considered comments.
 
-Here is an example `/etc/cumulus/transponders.ini` file:
+<details>
+
+<summary>Here is an example `/etc/cumulus/transponders.ini` file:</summary>
 
     #
     # Configuration file for Voyager transponder modules
@@ -1064,6 +1060,8 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     RxTributaryCoupled=65535
     Loopback=false
 
+</details>
+
 The file contains four configuration groups:
 
   - The Modules group
@@ -1094,9 +1092,7 @@ these two groups.
 
 #### Module Groups
 
-The **module groups** are i <span style="color: #222222;"> ndividual
-groups for each of the predefined modules and </span> define the
-attributes of the transponders in the system. The name of a module group
+The **module groups** are in ndividual groups for each of the predefined modules and define the attributes of the transponders in the system. The name of a module group
 is defined in the values of the `Names` key in the Modules group (shown
 above).
 

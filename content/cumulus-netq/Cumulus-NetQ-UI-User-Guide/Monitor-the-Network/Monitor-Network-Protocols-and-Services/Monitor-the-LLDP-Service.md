@@ -33,8 +33,8 @@ The small LLDP Service card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -44,13 +44,12 @@ The small LLDP Service card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 1 %}}</p></td>
+<td><p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
 <td><p>Title</p></td>
-<td><p><strong>LLDP</strong>: All LLDP Sessions, or the LLDP Service</p></td>
+<td><p>LLDP: All LLDP Sessions, or the LLDP Service</p></td>
 </tr>
 <tr class="odd">
 <td><p>{{% imgOld 2 %}}</p></td>
@@ -73,8 +72,8 @@ The medium LLDP Service card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -88,13 +87,12 @@ The medium LLDP Service card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 5 %}}</p></td>
+<td><p>{{% imgOld 5 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p><strong>LLDP</strong>: All LLDP Sessions, or the LLDP Service</p></td>
+<td><p>LLDP: All LLDP Sessions, or the LLDP Service</p></td>
 </tr>
 <tr class="even">
 <td><p>{{% imgOld 6 %}}</p></td>
@@ -127,8 +125,8 @@ The *Sessions Summary* tab which displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -142,8 +140,7 @@ The *Sessions Summary* tab which displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 9 %}}</p></td>
+<td><p>{{% imgOld 9 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -172,8 +169,8 @@ The *Sessions Summary* tab which displays:
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
-<td><p>When the <strong>SWITCHES WITH MOST SESSIONS</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of session count—devices with the largest number of sessions are listed first</p>
-<p>When the <strong>SWITCHES WITH MOST UNESTABLISHED SESSIONS</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of unestablished session count—devices with the largest number of unestablished sessions are listed first</p></td>
+<td><p>When the <strong>Switches with Most Sessions</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of session count—devices with the largest number of sessions are listed first</p>
+<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of unestablished session count—devices with the largest number of unestablished sessions are listed first</p></td>
 </tr>
 <tr class="even">
 <td><p>Show All Sessions</p></td>
@@ -188,8 +185,8 @@ The *Alarms* tab which displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -203,13 +200,12 @@ The *Alarms* tab which displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 13 %}}</p></td>
+<td><p>{{% imgOld 13 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p><strong>Alarms</strong> (visible when you hover over card)</p></td>
+<td><p>Alarms (visible when you hover over card)</p></td>
 </tr>
 <tr class="even">
 <td><p>{{% imgOld 14 %}}</p></td>
@@ -225,7 +221,7 @@ The *Alarms* tab which displays:
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
-<td><p>When the <strong>EVENTS BY MOST ACTIVE DEVICE</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of alarm count—devices with the largest number of sessions are listed first</p></td>
+<td><p>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of alarm count—devices with the largest number of sessions are listed first</p></td>
 </tr>
 <tr class="even">
 <td><p>Show All Sessions</p></td>
@@ -241,8 +237,8 @@ sessions, and all alarms.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -261,8 +257,7 @@ sessions, and all alarms.
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 18 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 18 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -270,23 +265,26 @@ sessions, and all alarms.
 </tr>
 <tr class="odd">
 <td><p>All Switches tab</p></td>
-<td><p>Displays all switches and hosts running the LLDP service. By default, the device list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each device:</p>
+<td><p>Displays all switches and hosts running the EVPN service. By default, the device list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each device:</p>
 <ul>
 <li><p><strong>Agent</strong></p>
 <ul>
 <li><p>State: Indicates communication state of the NetQ Agent on a given device. Values include Fresh (heard from recently) and Rotten (not heard from recently).</p></li>
-<li><p>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.<strong>ASIC</strong></p></li>
+<li><p>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.</p></li>
+</ul></li>
+<li><p><strong>ASIC</strong></p>
+<ul>
 <li><p>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</p></li>
 <li><p>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</p></li>
-<li><p>Model Id: Identifier of networking ASIC model. Example values include <span style="color: #222222;"> BCM56960 and BCM56854. </span></p></li>
-<li><p>Ports: Indicates port configuration of the switch. Example values include <span style="color: #222222;"> 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+. </span></p></li>
+<li><p>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</p></li>
+<li><p>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</p></li>
 <li><p>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</p></li>
-</ul>
-<p><strong>CPU</strong></p>
+</ul></li>
+<li><p><strong>CPU</strong></p>
 <ul>
 <li><p>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</p></li>
-<li><p>Max Freq: Highest rated frequency for CPU. Example values include <span style="color: #222222;"> 2.40 GHz and 1.74 GHz. </span></p></li>
-<li><p>Model: Chip family. Example values include <span style="color: #222222;"> Intel Atom C2538 and Intel Atom C2338. </span></p></li>
+<li><p>Max Freq: Highest rated frequency for CPU. Example values include  2.40 GHz and 1.74 GHz.</p></li>
+<li><p>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</p></li>
 <li><p>Nos: Number of cores. Example values include 2, 4, and 8.</p></li>
 </ul></li>
 <li><p><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</p></li>
@@ -301,14 +299,32 @@ sessions, and all alarms.
 <li><p><strong>Platform</strong></p>
 <ul>
 <li><p>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</p></li>
-<li><p>MAC: System MAC address. Example value: <span style="color: #545454;"> 17:01:AB:EE:C3:F5. </span></p></li>
-<li><p>Model: <span style="color: #222222;"> Manufacturer's model name. Examples values include AS7712-32X and S4048-ON. </span></p></li>
+<li><p>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</p></li>
+<li><p>Model: Manufacturer's model name. Examples include AS7712-32X and S4048-ON.</p></li>
 <li><p>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</p></li>
 <li><p>Revision: Release version of the platform</p></li>
 <li><p>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</p></li>
 <li><p>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</p></li>
 </ul></li>
 <li><p><strong>Time:</strong> Date and time the data was collected from device.</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>All Sessions tab</p></td>
+<td><p>Displays all EVPN sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:</p>
+<ul>
+<li><p><strong>Adv All Vni</strong>: Indicates whether the VNI state is advertising all VNIs (true) or not (false)</p></li>
+<li><p><strong>Adv Gw Ip</strong>: Indicates whether the host device is advertising the gateway IP address (true) or not (false)</p></li>
+<li><p><strong>DB State</strong>: Session state of the DB</p></li>
+<li><p><strong>Export RT</strong>: IP address and port of the export route target used in the filtering mechanism for BGP route exchange</p></li>
+<li><p><strong>Import RT</strong>: IP address and port of the import route target used in the filtering mechanism for BGP route exchange</p></li>
+<li><p><strong>In Kernel</strong>: Indicates whether the associated VNI is in the kernel (in kernel) or not (not in kernel)</p></li>
+<li><p><strong>Is L3</strong>: Indicates whether the session is part of a layer 3 configuration (true) or not (false)</p></li>
+<li><p><strong>Origin Ip</strong>: Host device's local VXLAN tunnel IP address for the EVPN instance</p></li>
+<li><p><strong>OPID</strong>: LLDP service identifier</p></li>
+<li><p><strong>Rd</strong>: Route distinguisher used in the filtering mechanism for BGP route exchange</p></li>
+<li><p><strong>Timestamp</strong>: Date and time the session was started, deleted, updated or marked as dead (device is down)</p></li>
+<li><p><strong>Vni</strong>: Name of the VNI where session is running</p></li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -349,8 +365,7 @@ sessions, and all alarms.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 19 %}}</p></td>
+<td><p>{{% imgOld 19 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -412,8 +427,7 @@ to look for any differences.
 To view switches and hosts with the most LLDP sessions:
 
 1.  Open the large LLDP Service card.
-
-2.  Select **SWITCHES WITH MOST SESSIONS** from the filter above the
+2.  Select **Switches with Most Sessions** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
     running the most LLDP sessions at the top. Scroll down to view those
@@ -424,16 +438,9 @@ To view switches and hosts with the most LLDP sessions:
 To compare this data with the same data at a previous time:
 
 1.  Open another large LLDP Service card.
-
 2.  Move the new card next to the original card if needed.
-
 3.  Change the time period for the data on the new card by hovering over
-    the card and clicking <span style="color: #353744;"> </span>
-
-    {{% imgOld 24 %}}
-
-    .
-
+    the card and clicking {{% imgOld 24 %}}.
 4.  Select the time period that you want to compare with the current
     time.  
     You can now see whether there are significant differences between
@@ -442,7 +449,6 @@ To compare this data with the same data at a previous time:
     {{% imgOld 25 %}}
 
     {{% imgOld 26 %}}
-
 
     In this case, notice that the alarms have reduced significantly in
     the last week. If the changes are unexpected, you can investigate
@@ -458,8 +464,7 @@ establishing LLDP sessions; both currently and in the past.
 To view switches with the most unestablished LLDP sessions:
 
 1.  Open the large LLDP Service card.
-
-2.  Select **SWITCHES WITH MOST UNESTABLISHED SESSIONS** from the filter
+2.  Select **Switches with Most Unestablished Sessions** from the filter
     above the table.  
     The table content is sorted by this characteristic, listing nodes
     with the most unestablished CLAG sessions at the top. Scroll down to
@@ -484,7 +489,6 @@ include:
 
     {{% imgOld 30 %}}
 
-
     If the same switches are consistently indicating the most
     unestablished sessions, you might want to look more carefully at
     those switches using the Switches card workflow to determine
@@ -505,14 +509,8 @@ information about possible causes for the alarms.
 To view switches with most LLDP alarms:
 
 1.  Open the large LLDP Service card.
-
-2.  Hover over the header and click
-
-    {{% imgOld 31 %}}
-
-    .
-
-3.  Select **EVENTS BY MOST ACTIVE DEVICE** from the filter above the
+2.  Hover over the header and click {{% imgOld 31 %}}.
+3.  Select **Events by Most Active Device** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
     with the most BGP alarms at the top. Scroll down to view those with
@@ -527,12 +525,10 @@ include:
     exhibiting alarms during that smaller time slice.  
     The table content changes to match the hovered content. Click on the
     chart to persist the table changes.
-
   - Change the time period for the data to compare with a prior time. If
     the same switches are consistently indicating the most alarms, you
     might want to look more carefully at those switches using the
     Switches card workflow.
-
   - Click **Show All Sessions** to investigate all switches running LLDP
     sessions in the full screen card.
 
@@ -544,7 +540,6 @@ LLDP events in the designated time period.
 To view all LLDP events:
 
 1.  Open the full screen LLDP Service card.
-
 2.  Click the **All Alarms** tab.
 
     {{% imgOld 33 %}}
@@ -554,24 +549,14 @@ include:
 
   - Open the **All Switches** or **All Sessions** tabs to look more
     closely at the alarms from the switch or session perspective.
-
-Sort on other parameters:
-
-  -   - by **Message** to determine the frequency of particular events
-
+  - Sort on other parameters:
+      - by **Message** to determine the frequency of particular events
       - by **Severity** to determine the most critical events
-
       - by **Time** to find events that may have occurred at a
         particular time to try to correlate them with other system
         events
-
   - Export data to a file
-
-  - Return to your workbench by clicking
-
-    {{% imgOld 34 %}}
-
-    in the top right corner
+  - Return to your workbench by clicking {{% imgOld 34 %}} in the top right corner
 
 ### View Detailed Information About All Switches Running LLDP
 
@@ -583,11 +568,7 @@ To view all switch details, open the LLDP Service card, and click the
 
 {{% imgOld 35 %}}
 
-Return to your workbench by clicking
-
-{{% imgOld 36 %}}
-
-in the top right corner.
+Return to your workbench by clicking {{% imgOld 36 %}} in the top right corner.
 
 ### View Detailed Information About All LLDP Sessions
 
@@ -599,11 +580,7 @@ To view all session details, open the LLDP Service card, and click the
 
 {{% imgOld 37 %}}
 
-Return to your workbench by clicking
-
-{{% imgOld 38 %}}
-
-in the top right corner.
+Return to your workbench by clicking {{% imgOld 38 %}} in the top right corner.
 
 ### Take Actions on Data Displayed in Results List
 
@@ -640,7 +617,7 @@ same time, as well as monitor the running LLDP configuration and changes
 to the configuration file. For an overview and how to configure LLDP in
 your data center network, refer to [Link Layer Discovery Protocol](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/).
 
-{{%notice info%}}
+{{%notice note%}}
 
 To access the single session cards, you must open the full screen LLDP
 Service (all sessions) card and click on a session. Close the full
@@ -685,8 +662,8 @@ The small LLDP Session card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -696,8 +673,7 @@ The small LLDP Session card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 43 %}}</p></td>
+<td><p>{{% imgOld 43 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
@@ -709,16 +685,9 @@ The small LLDP Session card displays:
 <td><p>Host and peer devices in session. Arrow points from host to peer.</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 44 %}}</p>
-, <span style="color: #353744;"> </span>
-<p>{{% imgOld 45 %}}</p>
-</span></td>
-<td><p>Indicates whether the host sees the peer or not;</p>
-<p>{{% imgOld 46 %}}</p>
-has a peer,
-<p>{{% imgOld 47 %}}</p>
-no peer</td>
+<td><p>{{% imgOld 44 %}}, {{% imgOld 45 %}}</p></td>
+<td><p>Indicates whether the host sees the peer or not; {{% imgOld 46 %}} has a peer,
+{{% imgOld 47 %}} no peer</p></td>
 </tr>
 </tbody>
 </table>
@@ -729,8 +698,8 @@ The medium LLDP Session card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -744,8 +713,7 @@ The medium LLDP Session card displays:
 <td><p>Range of time in which the displayed data was collected</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 49 %}}</p></td>
+<td><p>{{% imgOld 49 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -757,15 +725,9 @@ The medium LLDP Session card displays:
 <td><p>Host and peer devices in session. Arrow points from host to peer.</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 50 %}}</p>
-,
-<p>{{% imgOld 51 %}}</p></td>
-<td><p>Indicates whether the host sees the peer or not;</p>
-<p>{{% imgOld 52 %}}</p>
-has a peer,
-<p>{{% imgOld 53 %}}</p>
-no peer</td>
+<td><p>{{% imgOld 50 %}}, {{% imgOld 51 %}}</p></td>
+<td><p>Indicates whether the host sees the peer or not; {{% imgOld 52 %}} has a peer,
+ {{% imgOld 53 %}} no peer</p></td>
 </tr>
 <tr class="even">
 <td><p>Time period</p></td>
@@ -802,8 +764,8 @@ The *Session Summary* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -817,28 +779,21 @@ The *Session Summary* tab displays:
 <td><p>Range of time in which the displayed data was collected</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 55 %}}</p></td>
+<td><p>{{% imgOld 55 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p><strong>Summary Session</strong> (Network Services | LLDP Session)</p></td>
+<td><p>Summary Session (Network Services | LLDP Session)</p></td>
 </tr>
 <tr class="even">
 <td><p> </p></td>
 <td><p>Host and peer devices in session. Arrow points from host to peer.</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 56 %}}</p>
-,
-<p>{{% imgOld 57 %}}</p></td>
-<td><p>Indicates whether the host sees the peer or not;</p>
-<p>{{% imgOld 58 %}}</p>
-has a peer,
-<p>{{% imgOld 59 %}}</p>
-no peer</td>
+<td><p>{{% imgOld 56 %}}, {{% imgOld 57 %}}</p></td>
+<td><p>Indicates whether the host sees the peer or not; {{% imgOld 58 %}} has a peer,
+{{% imgOld 59 %}} no peer</p></td>
 </tr>
 <tr class="even">
 <td><p>Heat map</p></td>
@@ -873,8 +828,8 @@ The *Configuration File Evolution* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -888,30 +843,20 @@ The *Configuration File Evolution* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 61 %}}</p></td>
+<td><p>{{% imgOld 61 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>(Network Services | LLDP Session) <strong>Configuration File Evolution</strong></p></td>
+<td><p>(Network Services | LLDP Session) Configuration File Evolution</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 62 %}}</p></td>
-<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 63 %}}</p>
-to open associated device card.</td>
+<td><p>{{% imgOld 62 %}}</p></td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on {{% imgOld 63 %}} to open associated device card.</td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 64 %}}</p>
-,
-<p>{{% imgOld 65 %}}</p></td>
-<td><p>Indication of detected peer, Has Peer</p>
-<p>{{% imgOld 66 %}}</p>
-or No Peer
-<p>{{% imgOld 67 %}}</p></td>
+<td><p>{{% imgOld 64 %}}, {{% imgOld 65 %}}</p></td>
+<td><p>Indication of detected peer, Has Peer {{% imgOld 66 %}} or No Peer {{% imgOld 67 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Timestamps</p></td>
@@ -932,8 +877,8 @@ and all events.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -952,8 +897,7 @@ and all events.
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 70 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 70 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -997,8 +941,7 @@ and all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 71 %}}</p></td>
+<td><p>{{% imgOld 71 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -1011,13 +954,9 @@ workflow, showing the node and its peer and current status.
 
 To view the summary:
 
-1.  Open the full screen LLDP Service card
-
-2.  Double-click on a session. The full screen card closes
-    automatically.
-
+1.  Open the full screen LLDP Service card.
+2.  Double-click on a session. The full screen card closes automatically.
 3.  Locate the medium LLDP Session card.
-
 4.  Optionally, open the small LLDP Session card.  
 
     {{% imgOld 72 %}}
@@ -1038,10 +977,7 @@ To view the neighbor availability for a given LLDP session on the medium
 card:
 
 1.  Open the full screen LLDP Service card.
-
-2.  Double-click on a session. The full screen card closes
-    automatically.
-
+2.  Double-click on a session. The full screen card closes automatically.
 3.  Locate the medium LLDP Session card.
 
     {{% imgOld 74 %}}
@@ -1071,13 +1007,7 @@ causes for alarms or sessions losing their connections.
 To view the configuration file changes:
 
 1.  Open the large LLDP Session card.
-
-2.  Hover over the card and click
-
-    {{% imgOld 76 %}}
-
-    to open the **LLDP Configuration File Evolution** tab.
-
+2.  Hover over the card and click {{% imgOld 76 %}} to open the **LLDP Configuration File Evolution** tab.
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
 
@@ -1107,11 +1037,7 @@ click the **All LLDP Sessions** tab.
 
 {{% imgOld 80 %}}
 
-To return to your workbench, click
-
-{{% imgOld 81 %}}
-
-in the top right of the card.
+To return to your workbench, click {{% imgOld 81 %}} in the top right of the card.
 
 ### View All Events
 
@@ -1127,27 +1053,15 @@ include:
 
   - Open the **All LLDP Sessions** tabs to look more closely at the
     details of the sessions between these two devices.
-
   - Sort on other parameters:
-
       - by **Message** to determine the frequency of particular events
-
       - by **Severity** to determine the most critical events
-
       - by **Time** to find events that may have occurred at a
         particular time to try to correlate them with other system
         events
-
   - Export data to a file
+  - Return to your workbench by clicking {{% imgOld 83 %}} in the top right corner
 
-  - Return to your workbench by clicking
-
-    {{% imgOld 83 %}}
-
-    in the top right corner
-
-[<span style="color: #707070;">
-</span>](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=9014295)
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

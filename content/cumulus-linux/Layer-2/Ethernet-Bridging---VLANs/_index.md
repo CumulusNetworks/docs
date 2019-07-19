@@ -15,13 +15,13 @@ Ethernet bridges provide a means for hosts to communicate through layer
 2, by connecting all of the physical and logical interfaces in the
 system into a single layer 2 domain. The bridge is a logical interface
 with a MAC address and an
-[MTU](Switch-Port-Attributes.html#src-8363026_SwitchPortAttributes-mtu)
+[MTU](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#mtu)
 (maximum transmission unit). The bridge MTU is the minimum MTU among all
 its members. By default, the [bridge's MAC
 address](https://support.cumulusnetworks.com/hc/en-us/articles/360005695794)
 is the MAC address of the first port in the `bridge-ports` list. The
 bridge can also be assigned an IP address, as discussed
-[below](#src-8362655_EthernetBridging-VLANs-svi).
+[below](#configure-an-svi-switch-vlan-interface).
 
 {{%notice note%}}
 
@@ -66,18 +66,18 @@ VLAN-aware bridge on a given switch.
 
 {{%/notice%}}
 
-## Create a VLAN-aware Bridge</span>
+## Create a VLAN-aware Bridge
 
 To learn about VLAN-aware bridges and how to configure them, read
 [VLAN-aware Bridge
 Mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
 
-## Create a Traditional Mode Bridge</span>
+## Create a Traditional Mode Bridge
 
 To create a traditional mode bridge, see [Traditional Bridge
 Mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode).
 
-## Configure Bridge MAC Addresses</span>
+## Configure Bridge MAC Addresses
 
 The MAC address for a frame is learned when the frame enters the bridge
 via an interface. The MAC address is recorded in the bridge table, and
@@ -90,24 +90,24 @@ exceeded, the MAC address is deleted from the bridge table.
 
 The following example output shows a MAC address table for the bridge:
 
-    cumulus@switch:~$ net show bridge macs 
+    cumulus@switch:~$ net show bridge macs
     VLAN      Master    Interface    MAC                  TunnelDest  State      Flags    LastSeen
     --------  --------  -----------  -----------------  ------------  ---------  -------  -----------------
     untagged  bridge    swp1         44:38:39:00:00:03                                    00:00:15
     untagged  bridge    swp1         44:38:39:00:00:04                permanent           20 days, 01:14:03
 
-## MAC Address Ageing</span>
+## MAC Address Ageing
 
 By default, Cumulus Linux stores MAC addresses in the Ethernet switching
 table for 1800 seconds (30 minutes). You can change this setting using
 NCLU.
 
 The `bridge-ageing` option is in the [NCLU
-blacklist](Network-Command-Line-Utility-NCLU.html#src-8362580_NetworkCommandLineUtility-NCLU-conf),
+blacklist](cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU/#edit-the-netd-conf-file),
 as it's not frequently used. To configure this setting, you need to
 remove the `bridge-ageing` keyword from the `ifupdown_blacklist` in
 `/etc/netd.conf`. [Restart the `netd`
-service](Network-Command-Line-Utility-NCLU.html#src-8362580_NetworkCommandLineUtility-NCLU-restart)
+service](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU/#restart-the-netd-service)
 after you edit the file.
 
 Now you can change the setting using NCLU. For example, to change the
@@ -130,7 +130,7 @@ These commands create the following configuration in the
      
     ...
 
-## Configure an SVI (Switch VLAN Interface)</span>
+## Configure an SVI (Switch VLAN Interface)
 
 Bridges can be included as part of a routing topology after being
 assigned an IP address. This enables hosts within the bridge to
@@ -230,7 +230,7 @@ Now add the dummy interface to your network configuration:
 1.  Create a dummy interface, and add it to the bridge configuration.
     You do this by editing the `/etc/network/interfaces` file and adding
     the dummy interface stanza before the bridge stanza:
-    
+
         cumulus@switch:~$ sudo nano /etc/network/interfaces
         ...
          
@@ -244,7 +244,7 @@ Now add the dummy interface to your network configuration:
 
 2.  Continue editing the `interfaces` file. Add the dummy interface to
     the `bridge-ports` line in the bridge configuration:
-    
+
         auto bridge
         iface bridge
             bridge-vlan-aware yes
@@ -253,7 +253,7 @@ Now add the dummy interface to your network configuration:
             bridge-pvid 1
 
 3.  Save and exit the file, then reload the configuration:
-    
+
         cumulus@switch:~$ sudo ifreload -a
 
 Now, even when swp3 is down, both the dummy interface and the bridge
@@ -269,7 +269,7 @@ remain up:
     35: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
         link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
 
-## IPv6 Link-local Address Generation</span>
+## IPv6 Link-local Address Generation
 
 By default, Cumulus Linux automatically generates IPv6 [link-local
 addresses](https://en.wikipedia.org/wiki/Link-local_address) on VLAN
@@ -336,7 +336,7 @@ or
 
 This removes the relevant configuration from the `interfaces` file.
 
-## Understanding \`bridge fdb\` Output</span>
+## Understanding \`bridge fdb\` Output
 
 The `bridge fdb` command in Linux interacts with the forwarding database
 table, which the bridge uses to store MAC addresses it has learned and
@@ -363,7 +363,7 @@ explanation:
 Consider the following output of the `bridge fdb show` command:
 
     cumulus@switch:~$ bridge fdb show | grep 02:02:00:00:00:08
-    02:02:00:00:00:08 dev vx-1001 vlan 1001 offload master bridge 
+    02:02:00:00:00:08 dev vx-1001 vlan 1001 offload master bridge
     02:02:00:00:00:08 dev vx-1001 dst 27.0.0.10 self offload
 
 Some things you should note about the output:
@@ -382,7 +382,7 @@ Some things you should note about the output:
   - All FDB entries pointing to a VXLAN port appear as two such entries
     with the second entry augmenting the remote destination information.
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - A bridge cannot contain multiple subinterfaces of the **same** port.
     Attempting this configuration results in an error.
@@ -407,7 +407,7 @@ Some things you should note about the output:
     Virtual Private Network -
     EVPN](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=8366455).
 
-## Related Information</span>
+## Related Information
 
   - [Linux Foundation -
     VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)

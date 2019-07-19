@@ -37,7 +37,7 @@ Keep in the mind the following caveats with all-active mode:
     slave interfaces when the LACP bond is in all-active mode.
     Therefore, only use all-active mode on host-facing LACP bonds.
     Cumulus Networks highly recommends you configure [STP BPDU
-    guard](Spanning-Tree-and-Rapid-Spanning-Tree.html#src-8362689_SpanningTreeandRapidSpanningTree-bpdu)
+    guard](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard)
     along with all-active mode.
 
 {{%notice note%}}
@@ -155,13 +155,13 @@ interface <bond>` on the bond and its slave interfaces:
 Use the `cat` command to verify that LACP bypass is enabled on a bond
 and its slave interfaces:
 
-    cumulus@switch:~$ cat /sys/class/net/bond1/bonding/lacp_bypass 
+    cumulus@switch:~$ cat /sys/class/net/bond1/bonding/lacp_bypass
     on 1
     cumulus@switch:~$ cat /sys/class/net/bond1/bonding/slaves
     swp51 swp52
-    cumulus@switch:~$ cat /sys/class/net/swp52/bonding_slave/ad_rx_bypass 
+    cumulus@switch:~$ cat /sys/class/net/swp52/bonding_slave/ad_rx_bypass
     1
-    cumulus@switch:~$ cat /sys/class/net/swp51/bonding_slave/ad_rx_bypass 
+    cumulus@switch:~$ cat /sys/class/net/swp51/bonding_slave/ad_rx_bypass
     1
 
 The following configuration shows LACP bypass enabled for multiple
@@ -169,7 +169,7 @@ active interfaces (all-active mode) with a bridge in [traditional bridge
 mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode):
 
     auto bond1
-    iface bond1 
+    iface bond1
         bond-slaves swp3 swp4
         bond-lacp-bypass-allow 1
      

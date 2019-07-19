@@ -62,8 +62,7 @@ enable auto-negotiation on each port. When enabled, Cumulus Linux
 automatically configures the best link parameter settings based on the
 module type (speed, duplex, auto-negotiation, and FEC where supported).
 To understand the default configuration for the various port and cable
-types, see the [table
-below](#src-8363026_SwitchPortAttributes-settings). If you need to
+types, see the [tablebelow](#interface-configuration-recommendations-for-broadcom-platforms). If you need to
 troubleshoot further to bring the link up, follow the sections below to
 set the specific link parameters.
 
@@ -79,14 +78,13 @@ auto-negotiation for swp1 through swp52:
 
 Any time you enable auto-negotiation, Cumulus Linux restores the default
 configuration settings specified in the [table
-below](#src-8363026_SwitchPortAttributes-sett).
+below](#interface-configuration-recommendations-for-broadcom-platforms).
 
 By default on a Broadcom-based switch, auto-negotiation is disabled —
 except on 10G and 1000BASE-T fixed copper switch ports, where it is
 required for links to work. For RJ-45 SFP adapters, you need to manually
 configure the desired link speed and auto-negotiation as described in
-the [default settings table
-below](#src-8363026_SwitchPortAttributes-settings).
+the [default settings table below]()#interface-configuration-recommendations-for-broadcom-platforms).
 
 If you disable auto-negotiation later or never enable it, then you have
 to configure any settings that deviate from the port default — such as
@@ -114,13 +112,13 @@ If you do decide to disable auto-negotiation, be aware of the following:
 For 1000BASE-T RJ-45 SFP adapters, auto-negotiation is automatically
 done on the SFP PHY, so enabling auto-negotiation on the port settings
 is not required. You must manually configure these ports using the
-[settings below](#src-8363026_SwitchPortAttributes-settings).
+[settings below](#interface-configuration-recommendations-for-broadcom-platforms).
 
 {{%/notice%}}
 
 Depending upon the connector used for a port, enabling auto-negotiation
 also enables forward error correction (FEC), if the cable requires it
-(see the [table below](#src-8363026_SwitchPortAttributes-settings)). The
+(see the [table below](#interface-configuration-recommendations-for-broadcom-platforms)). The
 correct FEC mode is set based on the speed of the cable when
 auto-negotiation is enabled.
 
@@ -146,7 +144,7 @@ You can configure ports to one speed less than their maximum speed.
 | 100G             | 50G\* & 40G (with or without breakout port), 25G\*, 10G\* |
 
 \*Requires the port to be converted into a breakout port. See
-[Configuring Breakout Ports](#src-8363026_SwitchPortAttributes-breakout)
+[Configuring Breakout Ports](#breakout-ports)
 below.
 
 {{%notice info%}}
@@ -177,8 +175,7 @@ snippet:
 
   - For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform,
     you must edit the `/etc/cumulus/ports.conf` file and configure the
-    four ports in the same core to be 10G. See [Caveats and
-    Errata](#src-8363026_SwitchPortAttributes-caveats) below.
+    four ports in the same core to be 10G. See [Caveats and Errata](#caveats-and-errata) below.
 
 {{%/notice%}}
 
@@ -448,7 +445,7 @@ If a cable is manufactured to CA-25G-S classification and FEC is not
 enabled, the BER might be unacceptable in a production network. It is
 important to set the FEC according to the cable class (or better) to
 have acceptable bit error rates. See [Determining Cable
-Class](#src-8363026_SwitchPortAttributes-cable_class) below.
+Class](#determine-cable-class-of-100g-and-25g-dacs) below.
 
 You can check bit errors using `cl-netstat` (`RX_ERR` column) or
 `ethtool -S` (`HwIfInErrors` counter) after a large amount of traffic
@@ -1014,7 +1011,7 @@ with `net commit`:
 
     cumulus@switch:~$ net add interface swp4 breakout disabled
 
-Also, [see below](#src-8363026_SwitchPortAttributes-mlnx_breakout) for
+Also, [see below](#mellanox-logical-port-limits-and-breakout-configurations) for
 how to configure breakout ports on Mellanox switches.
 
 {{%/notice%}}
@@ -1046,7 +1043,7 @@ reconfigure the ports and create four interfaces in the
 
 When you commit your change configuring the breakout ports, `switchd`
 restarts to apply the changes. The restart [interrupts network
-services](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd).
+services](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd).
 
 {{%/notice%}}
 
@@ -1165,7 +1162,7 @@ To remove a breakout port, you need to do the following:
          
 
 3.  [Restart
-    `switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd).
+    `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd).
 
 ### Combine Four 10G Ports into One 40G Port
 
@@ -1462,7 +1459,7 @@ error occurs while removing and reinserting QSFP module.
 You cannot remove the QSFPx2 module while the switch is powered on, as
 it is not hot-swappable. However, if an *Operation timed out* error
 occurs, you can get the link to come up by [restarting
-`switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd);
+`switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
 however, this disrupts your network.
 
 On the T3048-LY9, run the following commands:

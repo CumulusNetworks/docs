@@ -24,7 +24,7 @@ In Cumulus Linux 3.7.4 and later, IGMP and MLD snooping is supported
 over VXLAN bridges on Broadcom switches; however, this feature is *not*
 enabled by default. To enable IGMP and MLD over VXLAN, see [Configure
 IGMP/MLD Snooping over
-VXLAN](#src-8362696_safe-id-SUdNUGFuZE1MRFNub29waW5nLUNvbmZpZ3VyZUlHTVAvTUxEU25vb3BpbmdvdmVyVlhMQU4).
+VXLAN](#configure-igmp-mld-snooping-over-vxlan).
 
 {{%/notice%}}
 
@@ -46,7 +46,7 @@ ports interested in receiving multicast traffic destined to that group.
 
 {{% imgOld 0 %}}
 
-## Configure IGMP/MLD Snooping over VXLAN</span>
+## Configure IGMP/MLD Snooping over VXLAN
 
 Cumulus Linux 3.7.4 and later supports IGMP/MLD snooping over VXLAN
 bridges on Broadcom switches, where VXLAN ports are set as router ports.
@@ -60,13 +60,13 @@ mcsnoop yes` command:
 
 Cumulus Networks recommends that you also configure IGMP/MLD querier.
 See [Configure IGMP/MLD
-Querier](#src-8362696_safe-id-SUdNUGFuZE1MRFNub29waW5nLUNvbmZpZ3VyZUlHTVAvTUxEUXVlcmllcg),
+Querier](#configure-igmp-mld-querier),
 below.
 
 To disable IGMP/MLD snooping over VXLAN, run the `net add bridge
 <bridge> mcsnoop no` command.
 
-## Configure IGMP/MLD Querier</span>
+## Configure IGMP/MLD Querier
 
 If no multicast router is sending queries to configure IGMP/MLD querier
 on the switch, you can add a configuration similar to the following in
@@ -118,7 +118,7 @@ configuration like the following:
       bridge-mcquerier 1
       bridge-mcqifaddr 1
 
-## Disable IGMP and MLD Snooping</span>
+## Disable IGMP and MLD Snooping
 
 To disable
 IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
@@ -142,7 +142,7 @@ example bridge in `/etc/network/interfaces`:
       bridge-vids 100 200
       bridge-vlan-aware yes
 
-## Troubleshooting</span>
+## Troubleshooting
 
 To show the IGMP/MLD snooping bridge state, run `brctl showstp
 <bridge>`:
@@ -205,7 +205,7 @@ command. To show router ports and group information use the `bridge -d
      dev bridge port swp2 grp ff1a::9 permanent 0.00
      router ports on bridge: swp3
 
-## Related Information</span>
+## Related Information
 
   - [tools.ietf.org/html/rfc4541](https://tools.ietf.org/html/rfc4541)
 

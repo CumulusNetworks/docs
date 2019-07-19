@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
 
   <!-- Favicon -->
-  <link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/x-icon">
+  <link rel="icon" href="{{ "icons/favicon.png" | relURL }}" type="image/x-icon">
 
   <!-- RSS -->
   {{ with .OutputFormats.Get "rss" -}}
@@ -36,7 +36,7 @@
         <a href="/">
           <img src="/header-logo.png" alt="Cumulus Networks">
           <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
-          <span>Docs</span>
+          Docs</span>
         </a>
         <ul class="flex">
           <li><a href="//cumulusnetworks.com">HOME</a></li>
@@ -47,9 +47,9 @@
           <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
         </ul>
         <div class="burger-menu">
-          <span></span>
-          <span></span>
-          <span></span>
+          </span>
+          </span>
+          </span>
         </div>
       </div>
     </div>
@@ -67,7 +67,7 @@
         <div class="row">
           <div class="col-12 text-center">
             <h3 class="header-fancy">
-              <span>Get Started</span>
+              Get Started</span>
             </h3>
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
@@ -76,7 +76,7 @@
             <p class="small">An open network operating system designed for efficiency, automation and scale</p>
             <ul>
               <li><a href="/cumulus-linux/">Overview</a></li>
-              <li><a href="/cumulus-linux/">Quick start guide</a></li>
+              <li><a href="/cumulus-linux/Quick-Start-Guide">Quick start guide</a></li>
               <li><a href="/cumulus-linux/">Installation management</a></li>
             </ul>
           </div>
@@ -85,19 +85,20 @@
             <h3>Cumulus NetQ</h3>
             <p class="small">A network operations tool that provides visibility and intelligence into the health of your network</p>
             <ul>
-              <li><a href="/cumulus-netq/">Overview</a></li>
-              <li><a href="/cumulus-netq/">Quick start guide</a></li>
-              <li><a href="/cumulus-netq/">Installation management</a></li>
+              <li><a href="/cumulus-netq/Cumulus-NetQ-Deployment-Guide/">Deployment guide</a></li>
+              <li><a href="/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/">CLI user guide</a></li>
+              <li><a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/">UI user guide</a></li>
+              <li><a href="/cumulus-netq/Cumulus-NetQ-API-User-Guide/">API user guide</a></li>
             </ul>
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
-            <img src="/home-products-cumulus-express.jpg" alt="Cumulus Express" class="mb-6">
-            <h3>Cumulus Express</h3>
-            <p class="small">Accelerate your time to market with a Cumulus Express switch — preloaded with Cumulus Linux</p>
+            <a href="/cumulus-vx/"><img src="/home-products-cumulus-express.jpg" alt="Cumulus Express" class="mb-6"></a>
+            <h3>Cumulus VX</h3>
+            <p class="small">A free virtual appliance &mdash; download and build a virtual data center using any popular hypervisor</p>
             <ul>
-              <li><a href="">Overview</a></li>
-              <li><a href="">Quick start guide</a></li>
-              <li><a href="">Installation management</a></li>
+              <li><a href="/cumulus-vx">Overview</a></li>
+              <li><a href="/cumulus-vx/Getting-Started/">Getting started</a></li>
+              <li><a href="/cumulus-vx/Development-Environments/">Development environments</a></li>
             </ul>
           </div>
         </div>
@@ -108,44 +109,44 @@
         <div class="row">
           <div class="col-12 text-center">
             <h3 class="header-fancy">
-              <span>Additional Resources</span>
+              Additional Resources</span>
             </h3>
           </div>
           <div class="col-12 mb-3">
             <div class="card-deck">
               <div class="card">
-                <a href=""></a>
-                <h3><img src="/server.svg">HCL</h3>
-                <p>Taxidermy schlitz semiotics quinoa copper mug knausgaard messenger bag yr put a bird on it gastropub</p>
-                <span>View our hardware <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
+                <a href="https://cumulusnetworks.com/hcl/"></a>
+                <h3><img src="/server.svg">Hardware Compatibility List</h3>
+                <p>See all the platforms that Cumulus Linux and Cumulus RMP support.</p>
+                View our HCL <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
               </div>
               <div class="card">
-                <a href=""></a>
+                <a href="https://cumulusnetworks.com/support/"></a>
                 <h3><img src="/headphones-customer-support.svg">Support</h3>
-                <p>Taxidermy schlitz semiotics quinoa copper mug knausgaard messenger bag yr put a bird on it gastropub</p>
-                <span>Submit a ticket <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
+                <p>View our various support offerings, including submitting tickets, participating in the community, reading the knowledge base and keeping up with security announcements.</p>
+                See support items <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
               </div>
               <div class="w-100 d-none d-sm-block d-xl-none mb-4"><!-- wrap every 2 on sm--></div>
               <div class="card">
-                <a href=""></a>
+                <a href="https://support.cumulusnetworks.com/hc/en-us/sections/200398876-Release-Notes"></a>
                 <h3><img src="/book-open.svg">Release notes</h3>
-                <p>Taxidermy schlitz semiotics quinoa copper mug knausgaard messenger bag yr put a bird on it gastropub</p>
-                <span>View release notes <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
+                <p>Release notes provide information on all the new features, fixed and new known issues for every product release.</p>
+                View release notes <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
               </div>
-              <div class="card">
+              <!-- <div class="card">
                   <a href=""></a>
                   <h3><img src="/check-double.svg">Contribute</h3>
                   <p>Taxidermy schlitz semiotics quinoa copper mug knausgaard messenger bag yr put a bird on it gastropub</p>
-                  <span>Learn more <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
-                </div>
+                  Learn more <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
+                </div> -->
             </div>
           </div>
-          <div class="col-12 mt-5">
+        <!--  <div class="col-12 mt-5">
             <div class="resources-search">
               <input type="text" class="resources-search-input" placeholder="Search the documentation" value="">
               <button type="submit">Search</button>
             </div>
-          </div>  
+          </div> -->
         </div>
       </div>
     </section>
@@ -154,31 +155,30 @@
           <div class="row">
             <div class="col-12 text-center">
               <h3 class="header-fancy">
-                <span>Additional Products</span>
+                Additional Products</span>
               </h3>
             </div>
             <div class="col-6 col-lg-4">
               <h3>Host Pack</h3>
               <ul>
-                <li><a href="">Overview</a></li>
-                <li><a href="">Quick start guide</a></li>
-                <li><a href="">Installation management</a></li>
+                <li><a href="/host-pack">Overview</a></li>
+                <li><a href="/host-pack/Installing-FRRouting-on-the-Host/">Install FRRouting on the host</a></li>
+                <li><a href="/host-pack/Configuring-FRRouting-on-the-Host/">Configure FRRouting on the host</a></li>
               </ul>
             </div>
             <div class="col-6 col-lg-4">
               <h3>Cumulus RMP</h3>
               <ul>
-                <li><a href="">Overview</a></li>
-                <li><a href="">Quick start guide</a></li>
-                <li><a href="">Installation management</a></li>
+                <li><a href="/cumulus-rmp">Overview</a></li>
+                <li><a href="/cumulus-rmp/Quick-Start-Guide/">Quick start guide</a></li>
               </ul>
             </div>
             <div class="col-6 col-lg-4">
               <h3>Chassis</h3>
               <ul>
-                <li><a href="">Overview</a></li>
-                <li><a href="">Quick start guide</a></li>
-                <li><a href="">Installation management</a></li>
+                <li><a href="/chassis">Overview</a></li>
+                <li><a href="/chassis/Chassis-Default-Configurations/">Default configurations</a></li>
+                <li><a href="/chassis/Chassis-specific-Commands/">Chassis-specific commands</a></li>
               </ul>
             </div>
           </div>

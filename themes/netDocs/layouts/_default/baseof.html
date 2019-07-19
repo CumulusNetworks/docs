@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
 
   <!-- Favicon -->
-  <link rel="icon" href= "icons/favicon.png" type="image/x-icon">
+  <link rel="icon" href="{{ "icons/favicon.png" | relURL }}" type="image/x-icon">
 
   <!-- RSS -->
   {{ with .OutputFormats.Get "rss" -}}
@@ -43,7 +43,7 @@
       <a href="/">
         <img src="/header-logo.png" alt="Cumulus Networks">
         <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
-        <span>Docs</span>
+        Docs</span>
       </a>
       <ul class="flex">
         <li><a href="//cumulusnetworks.com">HOME</a></li>
@@ -54,9 +54,9 @@
         <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
       </ul>
       <div class="burger-menu">
-        <span></span>
-        <span></span>
-        <span></span>
+        </span>
+        </span>
+        </span>
       </div>
     </div>
   </header>
@@ -84,7 +84,7 @@
     <div class="search-container">
       <div id="doc-search-box">
         <input type="text" class="doc-search-input" placeholder="Search" value="">
-        <span><button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
+        <button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
       </div>
       <div id="dropdown" class="dropdown">
           <button class="btn" type="button" id="dropdownMenuButton">

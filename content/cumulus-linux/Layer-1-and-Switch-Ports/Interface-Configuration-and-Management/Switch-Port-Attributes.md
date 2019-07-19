@@ -586,8 +586,8 @@ command:
     FEC parameters for swp12:
     FEC encodings : RS
 
-<span style="color: #333333;"> To disable FEC on a link, run the
-following NCLU commands: </span>
+To disable FEC on a link, run the
+following NCLU commands:
 
     cumulus@switch:~$ sudo net add interface swp23 link fec off
     cumulus@switch:~$ sudo net commit
@@ -672,7 +672,7 @@ iface swp1
   link-speed 100</code></pre></td>
 <td><ul>
 <li><p>10M or 100M speeds are possible with auto-negotiation OFF on both sides. Testing on an Edgecore AS4610-54P revealed the ASIC reporting auto-negotiation as ON.</p></li>
-<li><p><a href="/cumulus-linux/System-Configuration/Power-over-Ethernet-PoE">Power over Ethernet</a> may require auto-negotiation to be ON.</p></li>
+<li><p>Power over Ethernet may require auto-negotiation to be ON.</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -731,7 +731,7 @@ iface swp1
 <td><ul>
 <li><p>Without auto-negotiation, the link stays up when there is a single fiber break.</p></li>
 </ul>
-<p>See the limitation discussed in <a href="#src-8363026_SwitchPortAttributes-10Gand1GSFPsInsertedina25GPort">10G and 1G SFPs Inserted in a 25G Port</a>, below</p></td>
+<p>See the limitation discussed in 10G and 1G SFPs Inserted in a 25G Port, below</p></td>
 </tr>
 <tr class="odd">
 <td><p>10GBASE-T<br />
@@ -1167,10 +1167,9 @@ switch.
 The Mellanox SN2700, SN2700B, SN2410 and SN2410B switches all have a
 limit of 64 logical ports in total.
 
-<span style="color: #333333;"> Before you configure any logical/unganged
-ports on a switch, check the limitations listed in </span>
-`/etc/cumulus/ports.conf` <span style="color: #333333;"> ; this file is
-specific to each manufacturer. </span>
+Before you configure any logical/unganged
+ports on a switch, check the limitations listed in `/etc/cumulus/ports.conf`; this file is
+specific to each manufacturer.
 
 For example, the Dell S6000 `ports.conf` file indicates the logical port
 limitation like this:
@@ -1229,13 +1228,9 @@ configuration in `/etc/cumulus/ports.conf`:
 There is no limitation on any port if interfaces are configured in 2x50G
 mode.
 
-{{%notice tip%}}
-
 Here is an example showing how to configure breakout cables for the
 [Mellanox Spectrum
 SN2700](https://community.mellanox.com/docs/DOC-2685).
-
-{{%/notice%}}
 
 ## Configure Interfaces with ethtool
 
@@ -1255,6 +1250,8 @@ To view the FEC setting on an interface, run:
     FEC encodings : RS
 
 ## Verification and Troubleshooting Commands
+
+This section provides troublshooting tips.
 
 ### Statistics
 
@@ -1383,7 +1380,7 @@ order; for example, swp1, swp2, swp3, and swp4.
         ...
 
 2.  [Restart
-    `switchd`](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=8366282).
+    `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd).
 
 3.  If you want to set the speed of any SFPs to 1G, set the port speed
     to 1000 Mbps using NCLU commands; this is *not* necessary for 10G

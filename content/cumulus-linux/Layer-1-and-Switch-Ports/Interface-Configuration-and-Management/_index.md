@@ -130,13 +130,8 @@ interface described above, run:
     cumulus@switch:~$ sudo ifreload --allow=mgmt
 
 You can easily bring up or down all interfaces marked with the common
-`auto` <span style="color: #333333;"> class in </span>
-`/etc/network/interfaces` <span style="color: #333333;"> . Use the
-</span> `-a` <span style="color: #333333;"> option. For further details,
-see individual man pages for </span> `ifup(8)`
-<span style="color: #333333;"> , </span> `ifdown(8)`
-<span style="color: #333333;"> , </span> `ifreload(8)`
-<span style="color: #333333;"> . </span>
+`auto` class in `/etc/network/interfaces`. Use the `-a` option. For further details,
+see individual man pages for `ifup(8)`, `ifdown(8)`, `ifreload(8)`.
 
 To administratively bring up all interfaces marked auto, run:
 
@@ -153,7 +148,7 @@ change):
 
     cumulus@switch:~$ sudo ifreload -a
 
-{{%notice tip%}}
+{{%notice note%}}
 
 Some syntax checks are done by default, however it may be safer to apply
 the configs only if the syntax check passes, using the following
@@ -166,13 +161,12 @@ compound command:
 ## Configure a Loopback Interface
 
 Cumulus Linux has a loopback preconfigured in `/etc/network/interfaces`.
-When the switch boots up, it has a loopback interface, called *lo*,
+When the switch boots up, it has a loopback interface called *lo*,
 which is up and assigned an IP address of 127.0.0.1.
 
-{{%notice tip%}}
+{{%notice note%}}
 
-The loopback interface *lo* must always be specified in
-`/etc/network/interfaces` and must always be up.
+The loopback interface *lo* must always be specified in `/etc/network/interfaces` and must always be up.
 
 {{%/notice%}}
 
@@ -181,9 +175,7 @@ The loopback interface *lo* must always be specified in
 By default, `ifupdown` recognizes and uses any interface present on the
 system — whether a VLAN, bond or physical interface — that is listed as
 a dependent of an interface. You are not required to list them in the
-`interfaces` file unless they need a specific configuration, for [MTU,
-link speed, and so
-forth](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes).
+`interfaces` file unless they need a specific configuration, such [MTU or link speed](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes).
 And if you need to delete a child interface, you should delete all
 references to that interface from the `interfaces` file.
 
@@ -308,9 +300,8 @@ bond2.2001, swp29, swp30, swp31, swp32.
 
 {{%notice warning%}}
 
-As mentioned earlier, `ifdown2` always deletes logical interfaces after
-bringing them down. Use the `--admin-state` option if you only want to
-administratively bring the interface up or down. In terms of the above
+`ifdown2` always deletes logical interfaces after bringing them down. Use the `--admin-state` option if you only want to
+administratively bring the interface up or down. In the above
 example, `ifdown br2001` deletes `br2001`.
 
 {{%/notice%}}

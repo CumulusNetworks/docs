@@ -24,7 +24,7 @@ want to know what is going on when bringing an interface down or up.
 
 {{%/notice%}}
 
-## Basic Commands</span>
+## Basic Commands
 
 To bring up an interface or apply changes to an existing interface, run:
 
@@ -67,7 +67,7 @@ These commands create the following configuration in the
     iface swp1
         link-down yes
 
-## ifupdown2 Interface Classes</span>
+## ifupdown2 Interface Classes
 
 `ifupdown2` provides for the grouping of interfaces into separate
 classes, where a class is a user-defined label that groups interfaces
@@ -163,7 +163,7 @@ compound command:
 
 {{%/notice%}}
 
-## Configure a Loopback Interface</span>
+## Configure a Loopback Interface
 
 Cumulus Linux has a loopback preconfigured in `/etc/network/interfaces`.
 When the switch boots up, it has a loopback interface, called *lo*,
@@ -176,7 +176,7 @@ The loopback interface *lo* must always be specified in
 
 {{%/notice%}}
 
-## ifupdown Behavior with Child Interfaces</span>
+## ifupdown Behavior with Child Interfaces
 
 By default, `ifupdown` recognizes and uses any interface present on the
 system — whether a VLAN, bond or physical interface — that is listed as
@@ -265,7 +265,7 @@ For more information on the bridge in traditional mode vs the bridge in
 VLAN-aware mode, please read [this knowledge base
 article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
 </details>
-## ifupdown2 Interface Dependencies</span>
+## ifupdown2 Interface Dependencies
 
 `ifupdown2` understands interface dependency relationships. When `ifup`
 and `ifdown` are run with all interfaces, they always run with all
@@ -391,7 +391,7 @@ To print the dependency information of the entire `interfaces` file:
 
 {{% imgOld 1 %}}
 
-## Subinterfaces</span>
+## Subinterfaces
 
 On Linux an *interface* is a network device, and can be either a
 physical device like switch port (such as swp1), or virtual, like a VLAN
@@ -418,7 +418,7 @@ configured the subinterface with
 The peerlink.4094 subinterface only receives traffic tagged for VLAN
 4094.
 
-## ifup and Upper (Parent) Interfaces</span>
+## ifup and Upper (Parent) Interfaces
 
 When you run `ifup` on a logical interface (like a bridge, bond or VLAN
 interface), if the `ifup` resulted in the creation of the logical
@@ -470,7 +470,7 @@ then you cannot run `ifup swp1` since you did not specify it.
 
 {{%/notice%}}
 
-## Configure IP Addresses</span>
+## Configure IP Addresses
 
 IP addresses are configured with the `net add interface` command.
 
@@ -521,7 +521,7 @@ examples are valid:
 
 <div class="confbox admonition admonition-note">
 
-<span class="admonition-icon confluence-information-macro-icon"></span>
+
 
 <div class="admonition-body">
 
@@ -551,7 +551,7 @@ To show the assigned address on an interface, use `ip addr show`:
         inet6 2001:DB8::1/126 scope global tentative
            valid_lft forever preferred_lft forever
 
-### Specify IP Address Scope </span>
+### Specify IP Address Scope
 
 `ifupdown2` does not honor the configured IP address scope setting in
 `/etc/network/interfaces`, treating all addresses as global. It does not
@@ -605,7 +605,7 @@ Now it has the correct scope:
     inet6 fe80::76e6:e2ff:fef5:6286/64 scope link
     valid_lft forever preferred_lft forever
 
-### Purge Existing IP Addresses on an Interface</span>
+### Purge Existing IP Addresses on an Interface
 
 By default, `ifupdown2` purges existing IP addresses on an interface. If
 you have other processes that manage IP addresses for an interface, you
@@ -638,7 +638,7 @@ the same interface.
 
 {{%/notice%}}
 
-## Specify User Commands</span>
+## Specify User Commands
 
 You can specify additional user commands in the `interfaces` file. As
 shown in the example below, the interface stanzas in
@@ -694,7 +694,7 @@ This command creates the following configuration in the
 
 {{%/notice%}}
 
-## Source Interface File Snippets</span>
+## Source Interface File Snippets
 
 Sourcing interface files helps organize and manage the `interfaces`
 file. For example:
@@ -719,7 +719,7 @@ The contents of the sourced file used above are:
         address 2001:ded:beef:2::1/64
         bond-slaves swp25 swp26
 
-## Use Globs for Port Lists</span>
+## Use Globs for Port Lists
 
 NCLU supports globs to define port lists (that is, a range of ports).
 The `glob` keyword is implied when you specify bridge ports and bond
@@ -770,7 +770,7 @@ These commands produce the following snippet in the
     auto swp12
     iface swp12
 
-## Use Templates</span>
+## Use Templates
 
 `ifupdown2` supports [Mako-style
 templates](http://www.makotemplates.org/). The Mako template engine is
@@ -826,7 +826,7 @@ For example:
     ## % endfor
     ##
 
-## Run ifupdown Scripts under /etc/network/ with ifupdown2</span>
+## Run ifupdown Scripts under /etc/network/ with ifupdown2
 
 <span style="color: #434343;"> Unlike the traditional
 <span style="color: #434343;"> `ifupdown` </span>
@@ -879,7 +879,7 @@ commands:
     associated with the interface, formatted in a comma-separated list;
     for example, `"inet,inet6"` .
 
-## Add Descriptions to Interfaces</span>
+## Add Descriptions to Interfaces
 
 You can add descriptions to the interfaces configured in
 `/etc/network/interfaces` by using the *alias* keyword.
@@ -945,7 +945,7 @@ run the `net show interface alias` command. For example:
 To show the interface description for all interfaces on the switch in
 JSON format, run the `net show interface alias json` command.
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
 While `ifupdown2` supports the inclusion of multiple `iface` stanzas for
 the same interface, Cumulus Networks recommends you use a single `iface`
@@ -984,10 +984,10 @@ attributes are not specified in multiple `iface` stanzas.
 And, as stated in the note above, you cannot purge existing addresses on
 interfaces with multiple `iface` stanzas.
 
-### ifupdown2 and sysctl</span>
+### ifupdown2 and sysctl
 
 For sysctl commands in <span style="color: #000000;"> the </span>
-`pre-up` <span style="color: #000000;"> , `up`
+`pre-up` <span style="color: #000000;"> , `up`</span>
 <span style="color: #000000;"> , </span> `post-up` </span> ,
 <span style="color: #000000;"> </span> `pre-down`
 <span style="color: #000000;"> , </span> `down`, and
@@ -997,7 +997,7 @@ interface name contains a dot (.), `ifupdown2` does not change the name
 to work with sysctl. For example, the interface name `bridge.1` is not
 converted to <span style="color: #000000;"> `bridge/1` </span> .
 
-### Long Interface Names</span>
+### Long Interface Names
 
 The Linux kernel limits interface names to 15 characters in length and
 cannot have a number as the first character. Longer interface names can
@@ -1007,7 +1007,7 @@ the `/etc/network/interfaces` file, then restart the networking.service.
     cumulus@switch:~$ sudo vi /etc/network/interfaces
     cumulus@switch:~$ sudo systemctl restart networking.service
 
-## Related Information</span>
+## Related Information
 
   - [Debian - Network
     Configuration](http://wiki.debian.org/NetworkConfiguration)

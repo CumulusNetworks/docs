@@ -15,7 +15,11 @@ Cumulus Linux supports the ability to take snapshots of the complete
 file system as well as the ability to roll back to a previous snapshot.
 Snapshots are performed automatically right before and after you upgrade
 Cumulus Linux using [package
+<<<<<<< Updated upstream
 install](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/),
+=======
+install](/cumulus-linux/Upgrading-Cumulus-Linux/#apt-upgrade),
+>>>>>>> Stashed changes
 and right before and after you commit a switch configuration using
 [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
 In addition, you can take a snapshot at any time. You can roll back the

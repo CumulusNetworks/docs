@@ -38,7 +38,7 @@ Please visit the [Cumulus Networks documentation
 site](http://docs.cumulusnetworks.com) for the most up to date
 documentation.
 
-## Cumulus NetQ Operational Advantages</span>
+## Cumulus NetQ Operational Advantages
 
 Unlike other network operations tools, NetQ delivers significant
 operational improvements to your network
@@ -48,7 +48,7 @@ hardware and software status and eliminating the guesswork associated
 with investigating issues through the analysis and presentation of
 detailed, focused data.
 
-### Demystify Overlay Networks</span>
+### Demystify Overlay Networks
 
 While overlay networks provide significant advantages in network
 management, it can be difficult to troubleshoot issues that occur in the
@@ -68,7 +68,7 @@ In summary:
 | Hard to find out what happened in the past | View historical activity with time-machine view                     |
 | Periodically sampled data                  | Real-time collection of telemetry data for a more complete data set |
 
-### Protect Network Integrity with NetQ Validation</span>
+### Protect Network Integrity with NetQ Validation
 
 Network configuration changes can cause numerous trouble tickets because
 you are not able to test a new configuration before deploying it. When
@@ -110,7 +110,7 @@ correlate the logs/events with the issues</p></td>
 </tbody>
 </table>
 
-### Active Network-wide Troubleshooting</span>
+### Active Network-wide Troubleshooting
 
 Troubleshooting networks is challenging in the best of times, but trying
 to do so manually, one box at a time, and digging through a series of
@@ -150,7 +150,7 @@ correlate the logs/events with the issues</p></td>
 </tbody>
 </table>
 
-### Track Connectivity with NetQ Trace</span>
+### Track Connectivity with NetQ Trace
 
 Conventional trace only traverses the data path looking for problems,
 and does so on a node to node basis. For paths with a small number of
@@ -168,7 +168,7 @@ In summary:
 | View portion of entire path                             | View all paths between devices all at once to find problem paths     |
 | Node-to-node check on misconfigurations                 | View any misconfigurations along all hops from source to destination |
 
-## Cumulus NetQ Components</span>
+## Cumulus NetQ Components
 
 NetQ contains the following applications and key components:
 
@@ -194,14 +194,14 @@ analytics tools.
 Each of the NetQ components used to gather, store and process data about
 the network state are described here.
 
-## NetQ Agents</span>
+## NetQ Agents
 
 NetQ Agents are software installed and running on every monitored *node*
 in the network — including Cumulus® Linux® switches, Linux bare-metal
 hosts, and virtual machines. The NetQ Agents push network data regularly
 and event information immediately to the NetQ Platform.
 
-### Switch Agents</span>
+### Switch Agents
 
 The NetQ Agents running on Cumulus Linux switches gather the following
 network data via [Netlink](https://tools.ietf.org/html/rfc3549):
@@ -221,7 +221,7 @@ for the following protocols:
 
 The NetQ Agent is supported on Cumulus Linux 3.3.2 and later.
 
-### Host Agents</span>
+### Host Agents
 
 The NetQ Agents running on hosts gather the same information as that for
 switches, plus the following network data:
@@ -235,7 +235,7 @@ information by listening to the Kubernetes orchestration tool.
 The NetQ Agent is supported on hosts running Ubuntu 16.04, Red Hat®
 Enterprise Linux 7, and CentOS 7 Operating Systems.
 
-## NetQ Components</span>
+## NetQ Components
 
 The NetQ components perform the data collection, storage, and processing
 for delivery to various user interfaces. It is comprised of a collection
@@ -244,7 +244,7 @@ software queries this server, rather than individual devices enabling
 greater scalability of the system. Each of these components is described
 briefly here.
 
-### Data Aggregation</span>
+### Data Aggregation
 
 The data aggregation component collects data coming from all of the NetQ
 Agents. It then filters, compresses, and forwards the data to the
@@ -254,26 +254,26 @@ In addition to the telemetry data collected from the NetQ Agents, the
 aggregation component collects information from the switches and hosts,
 such as vendor, model, version, and basic operational state.
 
-### Data Stores</span>
+### Data Stores
 
 Two types of data stores are used in the NetQ product. The first stores
 the raw data, data aggregations, and discrete events needed for quick
 response to data requests. The second stores data based on correlations,
 transformations and processing of the raw data.
 
-### Real-time Streaming</span>
+### Real-time Streaming
 
 The streaming component processes the incoming raw data from the
 aggregation server in real time. It reads the metrics and stores them as
 a time series, and triggers alarms based on anomaly detection,
 thresholds, and events.
 
-### Network Services</span>
+### Network Services
 
 The network services component monitors protocols and services operation
 individually and on a network-wide basis and stores status details.
 
-### User Interfaces</span>
+### User Interfaces
 
 NetQ data is available through several
 user interfaces:
@@ -286,7 +286,7 @@ The CLI and UI query the RESTful API for
 the data to present. Standard integrations can be configured to
 integrate with third-party notification tools.
 
-## Data Center Network Deployments</span>
+## Data Center Network Deployments
 
 There are two deployment types
 that are commonly deployed for network management in the data center:
@@ -304,7 +304,7 @@ routed environments whenever possible.
 
 {{%/notice%}}
 
-### Out-of-Band Management Deployment</span>
+### Out-of-Band Management Deployment
 
 Cumulus Networks recommends deploying NetQ on an out-of-band (OOB)
 management network to separate network management traffic from standard
@@ -357,7 +357,7 @@ through a virtual network overlay, shown with purple lines.
 
 {{% imgOld 3 %}}
 
-### In-band Management Deployment</span>
+### In-band Management Deployment
 
 While not the preferred deployment method, you might choose to implement
 NetQ within your data network. In this scenario, there is no overlay and
@@ -370,7 +370,7 @@ NetQ Platform for troubleshooting.
 
 {{% imgOld 4 %}}
 
-## NetQ Operation</span>
+## NetQ Operation
 
 In any of the above deployments, NetQ offers network-wide configuration
 and device management, proactive monitoring capabilities, and
@@ -378,7 +378,7 @@ performance diagnostics for complete management of your network. Each
 component of the solution provides a critical element to make this
 possible.
 
-### The NetQ Agent</span>
+### The NetQ Agent
 
 From a software perspective, a network
 switch has software associated with the hardware platform, the operating
@@ -406,7 +406,7 @@ and operating correctly.
 For example, if the NetQ Agent learns that an interface has gone down, a
 new BGP neighbor has been configured, or a container has moved, it
 provides that information to the <span style="color: #36424a;"> NetQ
-Platform </span> . That information can then be used to notify users of
+Platform  . That information can then be used to notify users of
 the operational state change through various channels. By default, data
 is logged in the database, but you can use the CLI (`netq show events`)
 or configure the Event Service in NetQ to send the information to a
@@ -437,7 +437,7 @@ becoming very warm, various levels of alarms are generated. These are
 then communicated through notifications according to the Event Service
 configuration.
 
-### The NetQ Platform</span>
+### The NetQ Platform
 
 Once the collected data is sent to and stored in the NetQ database, you
 can:
@@ -619,7 +619,7 @@ switch *leaf04* interface *swp2* has gone down.
 
 {{% imgOld 7 %}}
 
-### Timestamps in NetQ</span>
+### Timestamps in NetQ
 
 Every event or entry in the NetQ database is stored with a timestamp of
 when the event was captured by the NetQ Agent on the switch or server.
@@ -787,7 +787,7 @@ once again relative to the start time of the Agent.
 
 {{%/notice%}}
 
-### Exporting NetQ Data</span>
+### Exporting NetQ Data
 
 Data from the NetQ Platform can be exported in a couple of ways:
 
@@ -871,7 +871,7 @@ and click **Export**.
 
 {{% imgOld 8 %}}
 
-### Key File Locations</span>
+### Key File Locations
 
 The primary configuration file for all
 Cumulus NetQ tools, `netq.yml`,

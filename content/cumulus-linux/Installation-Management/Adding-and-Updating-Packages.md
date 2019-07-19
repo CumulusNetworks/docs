@@ -242,7 +242,11 @@ To add a new package:
 
     {{%notice tip%}}
 
+<<<<<<< Updated upstream
   In some cases, installing a new package might also upgrade
+=======
+    In some cases, installing a new package might also upgrade
+>>>>>>> Stashed changes
     additional existing packages due to dependencies. To view these
     additional packages before you install, run the `apt-get install
     --dry-run` command.
@@ -404,11 +408,3 @@ To enable the Supplemental Repository:
     tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)
 
   - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

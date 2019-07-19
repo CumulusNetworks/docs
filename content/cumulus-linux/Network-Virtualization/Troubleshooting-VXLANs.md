@@ -14,7 +14,7 @@ siteSlug: cumulus-linux
 This topic discusses various ways you can verify and troubleshoot
 VXLANs.
 
-## Verify the Registration Node Daemon </span>
+## Verify the Registration Node Daemon 
 
 Use the `vxrdctl vxlans` ****command to see the configured VNIs, the
 local address being used to source the VXLAN tunnel, and the service
@@ -84,7 +84,7 @@ option to *True*. Otherwise, replication is done by the service node.
 
 {{%/notice%}}
 
-## Verify the Service Node Daemon</span>
+## Verify the Service Node Daemon
 
 Use the `vxsndctl fdb` command to verify which VNIs belong to which VTEP
 (leaf switches).
@@ -99,7 +99,7 @@ Use the `vxsndctl fdb` command to verify which VNIs belong to which VTEP
     2000    10.2.1.1        82
     2000    10.2.1.2        77
 
-## Verify Traffic Flow and Check Counters</span>
+## Verify Traffic Flow and Check Counters
 
 VXLAN transit traffic information is stored in a flat file located in
 `/cumulus/switchd/run/stats/vxlan/all`.
@@ -147,7 +147,7 @@ VXLAN transit traffic information is stored in a flat file located in
     Total In Packets                : 15
     Total Out Octets                : 446
 
-## Ping to Test Connectivity</span>
+## Ping to Test Connectivity
 
 To test the connectivity across the VXLAN tunnel with an ICMP echo
 request (ping), make sure to ping from the server rather than the switch
@@ -213,7 +213,7 @@ server1:
     4 packets transmitted, 4 received, 0% packet loss, time 3000ms
     rtt min/avg/max/mdev = 0.185/0.622/1.853/0.711 ms
 
-## Troubleshoot with MAC Addresses</span>
+## Troubleshoot with MAC Addresses
 
 Because there is no SVI, there is no way to ping from the server to the
 directly attached leaf (top of rack) switch without cabling the switch
@@ -237,7 +237,7 @@ Next, check the MAC address table of the leaf switch:
 *90:e2:ba:55:f0:85* appears in the MAC address table, which indicates
 that connectivity is occurring between leaf1 and server1.
 
-## Check the Service Node Configuration</span>
+## Check the Service Node Configuration
 
 Use the `ip -d link show` command to verify the service node, VNI, and
 administrative state of a particular logical VNI interface:

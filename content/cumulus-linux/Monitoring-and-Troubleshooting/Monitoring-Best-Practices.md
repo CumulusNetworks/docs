@@ -16,7 +16,7 @@ reviewing and troubleshooting potential issues with Cumulus Linux
 environments. In addition, several of the more common issues have been
 listed, with potential solutions included.
 
-## Overview</span>
+## Overview
 
 This document describes:
 
@@ -25,7 +25,7 @@ This document describes:
 
   - Critical log messages that you can monitor for triggered alerts
 
-### Trend Analysis Using Metrics</span>
+### Trend Analysis Using Metrics
 
 A metric is a quantifiable measure that is used to track and assess the
 status of a specific infrastructure component. It is a check collected
@@ -34,7 +34,7 @@ utilization, and total number of routes.
 
 Metrics are more valuable when used for trend analysis.
 
-### Generate Alerts with Triggered Logging</span>
+### Generate Alerts with Triggered Logging
 
 Triggered issues are normally sent to `syslog`, but can go to another
 log file depending on the feature. In Cumulus Linux, `rsyslog` handles
@@ -45,7 +45,7 @@ stable steady state.
 Sending logs to a centralized collector, then creating alerts based on
 critical logs is an optimal solution for alerting.
 
-### Log Formatting</span>
+### Log Formatting
 
 Most log files in Cumulus Linux use a standard presentation format. For
 example, consider this `syslog` entry:
@@ -63,7 +63,7 @@ example, consider this `syslog` entry:
 For brevity and legibility, the timestamp and hostname have been omitted
 from the examples in this chapter.
 
-## Hardware</span>
+## Hardware
 
 The `smond` process provides monitoring functionality for various switch
 hardware elements. Minimum or maximum values are output depending on the
@@ -180,12 +180,12 @@ for details.
 </tbody>
 </table>
 
-## System Data</span>
+## System Data
 
 Cumulus Linux includes a number of ways to monitor various aspects of
 system data. In addition, alerts are issued in high risk situations.
 
-### CPU Idle Time</span>
+### CPU Idle Time
 
 When a CPU reports five high CPU alerts within a span of five minutes,
 an alert is logged.
@@ -298,7 +298,7 @@ In Cumulus Linux 2.5, CPU and memory warnings are generated with `jdoo`.
 The configuration for the thresholds is stored in
 `/etc/jdoo/jdoorc.d/cl-utilities.rc`.
 
-### Disk Usage</span>
+### Disk Usage
 
 When monitoring disk utilization, you can exclude `tmpfs` from
 monitoring.
@@ -325,7 +325,7 @@ monitoring.
 </tbody>
 </table>
 
-## Process Restart </span>
+## Process Restart
 
 In Cumulus Linux 3.0 and later, `systemd` is responsible for monitoring
 and restarting processes.
@@ -383,7 +383,7 @@ called `jdoo` to monitor processes. If the process fails, `jdoo` invokes
 </tbody>
 </table>
 </details>
-## Layer 1 Protocols and Interfaces</span>
+## Layer 1 Protocols and Interfaces
 
 Link and port state interface transitions are logged to
 `/var/log/syslog` and `/var/log/switchd.log`.
@@ -672,7 +672,7 @@ documentation](/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Man
 </tbody>
 </table>
 
-## Layer 2 Protocols</span>
+## Layer 2 Protocols
 
 Spanning tree is a protocol that prevents loops in a layer 2
 infrastructure. In a stable state, the spanning tree protocol should
@@ -767,7 +767,7 @@ mstpd: MSTP_OUT_flush_all_fids: bridge:swp2:0 Flushing forwarding database</code
 </tbody>
 </table>
 
-## Layer 3 Protocols</span>
+## Layer 3 Protocols
 
 When FRRouting boots up for the first time, there is a different log
 file for each daemon that is activated. If the log file is ever edited
@@ -777,7 +777,7 @@ configuration sends all logs to the same file.
 To send FRRouting logs to syslog, apply the configuration `log syslog`
 in `vtysh`.
 
-### BGP</span>
+### BGP
 
 When monitoring BGP, check if BGP peers are operational. There is not
 much value in alerting on the current operational state of the peer;
@@ -842,7 +842,7 @@ bgpd[3000]: %ADJCHANGE: neighbor swp1 Down BGP Notification send</code></pre></t
 </tbody>
 </table>
 
-### OSPF</span>
+### OSPF
 
 When monitoring OSPF, check if OSPF peers are operational. There is not
 much value in alerting on the current operational state of the peer;
@@ -882,7 +882,7 @@ cumulus@switch:~$ cl-ospf summary show json</code></pre></td>
 </tbody>
 </table>
 
-### Route and Host Entries</span>
+### Route and Host Entries
 
 <table>
 <colgroup>
@@ -913,7 +913,7 @@ cumulus@switch:~$ cl-resource-query -k</code></pre></td>
 </tbody>
 </table>
 
-### Routing Logs</span>
+### Routing Logs
 
 <table>
 <colgroup>
@@ -949,7 +949,7 @@ watchfrr[1853]: watchfrr: Notifying Systemd we are up and running</code></pre></
 </tbody>
 </table>
 
-## Logging</span>
+## Logging
 
 The table below describes the various log files.
 
@@ -997,16 +997,16 @@ However, when you manually define a log target with the <code>log file /var/log/
 </tbody>
 </table>
 
-## Protocols and Services</span>
+## Protocols and Services
 
 Run the following command to confirm that the NTP process is working
 correctly and that the switch clock is in sync with NTP:
 
     cumulus@switch:~$ /usr/bin/ntpq -p
 
-## Device Management</span>
+## Device Management
 
-### Device Access Logs</span>
+### Device Access Logs
 
 <table>
 <colgroup>
@@ -1031,7 +1031,7 @@ sshd[31830]: pam_unix(sshd:session): session opened for user cumulus by (uid=0)<
 </tbody>
 </table>
 
-### Device Super User Command Logs</span>
+### Device Super User Command Logs
 
 <table>
 <colgroup>

@@ -27,6 +27,9 @@ solutions, and monitoring and troubleshooting recommendations. In
 addition, the quick start guide provides an end-to-end setup process to
 get you started.
 
+### User Guide
+A link to download the Cumulus Linux 3.7.7 Documentation User Guide is [here](/Cumulus_Linux_3-7-7_User_Guide.pdf)
+
 ### What's New in this Release?
 
 For information on new features, bug fixes, and known issues present in

@@ -39,7 +39,7 @@ NetQ helps answer questions such as:
   - Open ports? What image is being used?
   - Which containers are part of this service? How are they connected?
 
-## Use NetQ with Kubernetes Clusters</span>
+## Use NetQ with Kubernetes Clusters
 
 The NetQ Agent interfaces with a Kubernetes API server and listens to
 Kubernetes events. The NetQ Agent monitors network identity and physical
@@ -64,7 +64,7 @@ on the network performance (caused by a noisy neighbor for example).
 Additionally, NetQ helps the infrastructure administrator determine how
 Kubernetes workloads are distributed within a network.
 
-### Requirements</span>
+### Requirements
 
 The NetQ Agent supports Kubernetes version 1.9.2 or later.
 
@@ -72,7 +72,7 @@ Due to the higher memory requirements to run containers, Cumulus
 Networks recommends you run the NetQ Platform on a host with at least
 64G RAM.
 
-### Command Summary</span>
+### Command Summary
 
 There is a large set of commands available to monitor Kubernetes
 configurations, including the ability to monitor clusters, nodes,
@@ -98,7 +98,7 @@ kubernetes help` to see all the possible commands:
     netq config del agent kubernetes-monitor
     netq config show agent kubernetes-monitor [json]
 
-### Enable Kubernetes Monitoring</span>
+### Enable Kubernetes Monitoring
 
 For NetQ to monitor the containers on a host, you must configure the
 following on the Kubernetes master node:
@@ -122,7 +122,7 @@ Next, you must enable the NetQ Agent on all the worker nodes, as
 described in the [Install NetQ](/cumulus-netq/install-netq)
 topic, for complete insight into your container network.
 
-### View Status of Kubernetes Clusters</span>
+### View Status of Kubernetes Clusters
 
 You can get the status of all Kubernetes clusters in the fabric using
 the `netq show kubernetes cluster` command:
@@ -175,7 +175,7 @@ Optionally, you can output the results in JSON format:
         "truncatedResult":false
     }
 
-### View Changes to a Cluster</span>
+### View Changes to a Cluster
 
 If data collection from the NetQ Agents is not occurring as it once was,
 you can verify that no changes have been made to the Kubernetes cluster
@@ -194,7 +194,7 @@ that have been made in the last hour.
     server11:3.0.0.68        default          Healthy              Healthy          server11                                 Add      Fri Feb  8 01:50:50 2019
     server12:3.0.0.69        default          Healthy              Healthy          server12                                 Add      Fri Feb  8 01:50:50 2019
 
-### View Kubernetes Pod Information </span>
+### View Kubernetes Pod Information
 
 You can show configuration and status of the pods in a cluster,
 including the names, labels, addresses, associated cluster and
@@ -401,7 +401,7 @@ You can filter this information to focus on a particular pod:
                                           r11                                                omponent:kube-schedu          3cb
                                                                                              ler
 
-### View Kubernetes Node Information</span>
+### View Kubernetes Node Information
 
 You can view a lot of information about a node, including the pod CIDR
 and kubelet status.
@@ -542,7 +542,7 @@ replication set name or label:
     server11:3.0.0.68        default      kube-system      calico-kube-controllers-d669cc k8s-app:calico-kube- 1                                  1              14h:30m:41s
                                                            78f                            controllers
 
-### View Container Connectivity</span>
+### View Container Connectivity
 
 You can view the connectivity graph of a Kubernetes pod, seeing its
 replica set, deployment or service level. The impact/connectivity graph
@@ -561,7 +561,7 @@ each server interface.
                                   -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
                                   -- server24:swp1:swp1 -- swp8:VlanA-1:tor-2
 
-### View Kubernetes Service Connectivity and Impact</span>
+### View Kubernetes Service Connectivity and Impact
 
 You can show the Kubernetes services in a cluster:
 
@@ -611,7 +611,7 @@ To see the impact of a given Kubernetes service, run:
                                      -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01
                                      -- server11:swp4:NetQBond-2 -- swp16:NetQBond-16:edge02
 
-### View Kubernetes Cluster Configuration in the Past</span>
+### View Kubernetes Cluster Configuration in the Past
 
 You can use the ["time machine"
 features](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues)

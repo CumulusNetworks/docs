@@ -40,7 +40,7 @@ Cumulus Linux uses version 1 of the LAG control protocol (LACP).
 To temporarily bring up a bond even when there is no LACP partner, use
 [LACP Bypass](/cumulus-linux/Layer-2/LACP-Bypass).
 
-## Hash Distribution</span>
+## Hash Distribution
 
 Egress traffic through a bond is distributed to a slave based on a
 packet hash calculation, providing load balancing over the slaves; many
@@ -64,7 +64,7 @@ over available slaves.
 
 {{%/notice%}}
 
-## Create a Bond</span>
+## Create a Bond
 
 You can create and configure a bond with the Network Command Line
 Utility
@@ -82,7 +82,7 @@ Follow the steps below to create a new bond:
 
     The bond is configured by default in IEEE 802.3ad link aggregation
     mode. To configure the bond in balance-xor mode, see [bond
-    mode](#src-8362653_Bonding-LinkAggregation-bond_mode) below.
+    mode](#configuration-options) below.
 
 {{%notice note%}}
 
@@ -90,7 +90,7 @@ The name of the bond must be compliant with Linux interface naming conventions a
 
 {{%/notice%}}
 
-### Configuration Options</span>
+### Configuration Options
 
 The configuration options and their default values are listed in the
 table below.
@@ -101,7 +101,7 @@ Each bond configuration option, except for `bond slaves,` is set to the
 recommended value by default in Cumulus Linux. Only configure an option
 if a different setting is needed. For more information on configuration
 values, refer to the [Related
-Information](#src-8362653_Bonding-LinkAggregation-related-information)
+Information](#elated-information)
 section below.
 
 {{%/notice%}}
@@ -190,7 +190,7 @@ cumulus@switch:~$ net commit</code></pre></td>
 </tbody>
 </table>
 
-### Enable balance-xor Mode</span>
+### Enable balance-xor Mode
 
 When you enable *balance-xor mode*, the bonding of slave interfaces are
 static and all slave interfaces are active for load balancing and fault
@@ -277,7 +277,7 @@ To view the bond, use
       inet6 fe80::202:ff:fe00:12/64
       Interface Type Other
 
-## Example Configuration: Bonding 4 Slaves</span>
+## Example Configuration: Bonding 4 Slaves
 
 In the following example, the front panel port interfaces swp1 thru swp4
 are slaves in bond0, while swp5 and swp6 are not part of bond0.
@@ -347,7 +347,7 @@ address traffic to the bond.
 
 {{%/notice%}}
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - An interface cannot belong to multiple bonds.
 
@@ -381,7 +381,7 @@ On Cumulus RMP switches, which are built with two Hurricane2 ASICs,
 
     {{%/notice%}}
 
-## Related Information</span>
+## Related Information
 
   - [Linux Foundation -
     Bonding](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)

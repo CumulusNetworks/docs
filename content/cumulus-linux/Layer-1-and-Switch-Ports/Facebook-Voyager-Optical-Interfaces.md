@@ -210,8 +210,7 @@ system; L1, L2, L3, or L4.
 Using NCLU commands is the preferred way to configure the transponder
 modules. However, as an alternative, you can edit the
 `/etc/cumulus/transponders.ini` file to make configuration changes. See
-[Edit the transponder.ini
-file](#src-8363049_FacebookVoyagerOpticalInterfaces-edit_transponders.ini)
+[Edit the transponder.ini file](#edit-the-transponders-ini-file)
 below.
 
 {{%/notice%}}
@@ -382,7 +381,7 @@ completion:
 To see a complete list of the frequencies, channels, and wavelengths,
 run the `net show transponder frequency-map` command (described in
 [Display Available
-Frequencies](#src-8363049_FacebookVoyagerOpticalInterfaces-display_channel_freq)).
+Frequencies](#display-available-channel-frequencies).
 
 ### Set the Transmit Power
 
@@ -558,7 +557,7 @@ on the L1, L2, L3, and L4 network interfaces:
 To enable loopback on the client interface (internal loopback for DWDM
 testing), edit the `/etc/cumulus/transponders.ini` file. See [Edit the
 transponder.ini
-file](#src-8363049_FacebookVoyagerOpticalInterfaces-edit_transponders.ini)
+file](#edit-the-transponders-ini-file)
 below
 
 {{%/notice%}}
@@ -817,7 +816,7 @@ following command:
 As an alternative to using NCLU commands to configure the transponder
 modules (described above), you can edit the
 `/etc/cumulus/transponders.ini` file, then [Initiate a hardware
-update](#src-8363049_FacebookVoyagerOpticalInterfaces-initiate-hardware-update).
+update](#initiate-a-hardware-update).
 
 {{%notice note%}}
 

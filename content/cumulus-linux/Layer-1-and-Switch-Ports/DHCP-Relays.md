@@ -26,10 +26,8 @@ finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
 [VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF),
 including the [management VRF](/cumulus-linux/Layer-3/Management-VRF),
-follow [these
-steps](Management-VRF.html#src-8362940_ManagementVRF-services) for
-configuring them. See also the [VRF
-chapter](Virtual-Routing-and-Forwarding-VRF.html#src-8362942_VirtualRoutingandForwarding-VRF-dhcp).
+follow [these steps](/cumulus-linux/Layer-3/Management-VRF/#run-services-within-the-management-vrf) for
+configuring them. See also the [VRF chapter](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf).
 
 {{%/notice%}}
 

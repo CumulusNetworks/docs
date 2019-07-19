@@ -723,7 +723,8 @@ ECN is supported on [Broadcom Tomahawk, Tomahawk2, Trident II, Trident
 II+ and Trident3, and Mellanox Spectrum
 switches](https://cumulusnetworks.com/hcl).
 
-<summary>Click to learn how to configure ECN ... </summary>
+<details>
+  <summary>Click to learn how to configure ECN ... </summary>
 
 ECN is disabled by default in Cumulus Linux. You can enable ECN for
 individual switch priorities on specific switch ports. ECN requires
@@ -775,6 +776,7 @@ through swp4 and swp6:
 to allow the ECN configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
+</details>
 
 ## Check Interface Buffer Status
 

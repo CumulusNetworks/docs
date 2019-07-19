@@ -22,7 +22,7 @@ available in NetQ 2.2.x.
 This feature is bundled into the `netq-apps` package; there is no
 specific EA package like there typically is with Cumulus Linux.
 
-## <span>Enable Early Access Features</span>
+## Enable Early Access Features
 
 You enable early access features by running the `netq config add
 experimental` command on any node running NetQ.
@@ -30,7 +30,7 @@ experimental` command on any node running NetQ.
     cumulus@switch:~$ netq config add experimental
     Experimental config added
 
-## <span>View Interface Statistics</span>
+## View Interface Statistics
 
 NetQ Agents collect performance statistics every 30 seconds for the
 physical interfaces on switches and hosts in your network. The NetQ
@@ -77,7 +77,7 @@ all of their physical interfaces.
     exit02            swp44                     20               3040                 0                    0                    3824                 0                    0                    Mon Jun  3 23:03:07 2019
     ...
 
-## <span>Disable Early Access Features</span>
+## Disable Early Access Features
 
 You disable the early access features by running the `netq config del`
 `experimental` command on any node running NetQ.

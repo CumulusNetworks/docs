@@ -22,7 +22,7 @@ topology](https://github.com/cumulusnetworks/cldemo-vagrant). This
 section provides high level instructions for installing and configuring
 the virtual environment.
 
-## <span>Setting up the Demo Environment with Vagrant and VirtualBox</span>
+## Setting up the Demo Environment with Vagrant and VirtualBox</span>
 
 {{%notice note%}}
 

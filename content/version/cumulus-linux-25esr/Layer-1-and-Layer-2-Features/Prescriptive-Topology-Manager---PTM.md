@@ -27,7 +27,7 @@ PTM runs as a daemon, named `ptmd`.
 
 For more information, see `man ptmd(8)`.
 
-## <span>Supported Features</span>
+## Supported Features</span>
 
   - Topology verification using LLDP. `ptmd` creates a client connection
     to the LLDP daemon, `lldpd`, and retrieves the neighbor relationship
@@ -59,7 +59,7 @@ For more information, see `man ptmd(8)`.
 
 <span id="src-5116005_PrescriptiveTopologyManager-PTM-configuring"></span>
 
-## <span>Configuring PTM</span>
+## Configuring PTM</span>
 
 `ptmd` verifies the physical network topology against a DOT-specified
 network graph file, `/etc/ptm.d/topology.dot`.
@@ -90,7 +90,7 @@ information.
 
 <span id="src-5116005_PrescriptiveTopologyManager-PTM-example"></span>
 
-## <span>Basic Topology Example</span>
+## Basic Topology Example</span>
 
 This is a basic example DOT file and its corresponding topology diagram.
 You should use the same `topology.dot` file on all switches, and don't
@@ -112,12 +112,12 @@ pushing/pulling the same exact file on each device\!
 
 <span id="src-5116005_PrescriptiveTopologyManager-PTM-advanced"></span>
 
-## <span>Advanced PTM Configuration</span>
+## Advanced PTM Configuration</span>
 
 PTM allows for more advanced configuration of the topology file using
 parameters you specify in the topology file.
 
-### <span>Scripts</span>
+### Scripts</span>
 
 `ptmd` executes scripts at `/etc/ptm.d/if-topo-pass` and
 ` /etc/ptm.d/if-topo-fail  `for each interface that goes through a
@@ -129,12 +129,12 @@ below](#src-5116005_PrescriptiveTopologyManager-PTM-ptmd_commands).
 
 You should modify these default scripts as needed.
 
-### <span>Configuration Parameters</span>
+### Configuration Parameters</span>
 
 You can configure `ptmd` parameters in the topology file. The parameters
 are classified as host-only, global, per-port/node and templates.
 
-#### <span>Host-only Parameters</span>
+#### Host-only Parameters</span>
 
 *Host-only parameters* apply to the entire host on which PTM is running.
 You can include the `hostnametype` host-only parameter, which specifies
@@ -174,7 +174,7 @@ running on:
              "cumulus":"swp46" -- "switch05.cumulusnetworks.com":"swp22"
     }
 
-#### <span>Global Parameters</span>
+#### Global Parameters</span>
 
 *Global parameters* apply to every port listed in the topology file.
 There are two global parameters: LLDP and BFD. LLDP is enabled by
@@ -189,7 +189,7 @@ is a per-port override configured. For example:
              "cumulus":"swp46" -- "qct-ly2-04":"swp22"
     }
 
-#### <span>Per-port Parameters</span>
+#### Per-port Parameters</span>
 
 *Per-port parameters* provide finer-grained control at the port level.
 These parameters override any global or compiled defaults. For example:
@@ -201,7 +201,7 @@ These parameters override any global or compiled defaults. For example:
              "cumulus":"swp46" -- "qct-ly2-04":"swp22"
     }
 
-#### <span>Templates</span>
+#### Templates</span>
 
 *Templates* provide flexibility in choosing different parameter
 combinations and applying them to a given port. A template instructs
@@ -229,7 +229,7 @@ For example:
 In this template, LLDP1 and LLDP2 are templates for LLDP parameters
 while BFD1 and BFD2 are templates for BFD parameters.
 
-#### <span>Supported BFD and LLDP Parameters</span>
+#### Supported BFD and LLDP Parameters</span>
 
 `ptmd` supports the following BFD parameters:
 
@@ -297,7 +297,7 @@ hostname only, like *cumulus-3* below, and ignore the rest of the URL:
 
 <span id="src-5116005_PrescriptiveTopologyManager-PTM-bfd"></span>
 
-### <span>Bidirectional Forwarding Detection (BFD)</span>
+### Bidirectional Forwarding Detection (BFD)</span>
 
 BFD provides low overhead and rapid detection of failures in the paths
 between two network devices. It provides a unified mechanism for link
@@ -305,7 +305,7 @@ detection over all media and protocol layers. Use BFD to detect failures
 for IPv4 and IPv6 single or multihop paths between any two network
 devices, including unidirectional path failure detection. For more
 information, see the [BFD
-chapter](/version/cumulus-linux-25esr/Layer-3-Features/Bidirectional-Forwarding-Detection---BFD).
+chapter](/version/cumulus-linux-25esr/Layer-3-Features/Bidirectional-Forwarding-Detection-BFD).
 
 {{%notice note%}}
 
@@ -325,11 +325,11 @@ to configure multihop sessions.
 
 {{%/notice%}}
 
-#### <span>Configuring BFD</span>
+#### Configuring BFD</span>
 
 You configure BFD one of two ways: by specifying the configuration in
 the `topology.dot` file, or using
-[Quagga](/version/cumulus-linux-25esr/Layer-3-Features/Bidirectional-Forwarding-Detection---BFD).
+[Quagga](/version/cumulus-linux-25esr/Layer-3-Features/Bidirectional-Forwarding-Detection-BFD).
 However, the topology file has some limitations:
 
   - The `topology.dot` file supports creating BFD IPv4 and IPv6 single
@@ -340,7 +340,7 @@ However, the topology file has some limitations:
     peers; BFD sessions for global IPv6 peers discovered on the link
     will not be created.
 
-#### <span>Echo Function</span>
+#### Echo Function</span>
 
 Cumulus Linux supports the *echo function* for IPv4 single hops only,
 and with the a synchronous operating mode only (Cumulus Linux does not
@@ -364,7 +364,7 @@ are sent out at this required minimum echo Rx interval. This indicates
 to the peer that the local system can loop back the echo packets. Echo
 packets are transmitted if the peer supports receiving echo packets.
 
-##### <span>About the Echo Packet</span>
+##### About the Echo Packet</span>
 
 BFD echo packets are encapsulated into UDP packets over destination and
 source UDP port number 3785. The BFD echo packet format is
@@ -459,7 +459,7 @@ Where:
     receives the packet after being looped back by the receiving system,
     this value uniquely identifies the BFD session.
 
-##### <span>Transmitting and Receiving Echo Packets</span>
+##### Transmitting and Receiving Echo Packets</span>
 
 BFD echo packets are transmitted for a BFD session only when the peer
 has advertised a non-zero value for the required minimum echo Rx
@@ -471,7 +471,7 @@ BFD echo packets are looped back to the originating node for a BFD
 session only if locally the `echoMinRx` and `echoSupport` are configured
 to a non-zero values.
 
-##### <span>Using Echo Function Parameters</span>
+##### Using Echo Function Parameters</span>
 
 You configure the echo function by setting the following parameters in
 the topology file at the global, template and port level:
@@ -491,7 +491,7 @@ the topology file at the global, template and port level:
 
 <span id="src-5116005_PrescriptiveTopologyManager-PTM-quagga"></span>
 
-## <span>Enabling Quagga to Check Link State</span>
+## Enabling Quagga to Check Link State</span>
 
 The Quagga routing suite enables additional checks to ensure that
 routing adjacencies are formed only on links that have connectivity
@@ -535,7 +535,7 @@ adjacency based on this flag. To check the per-interface `ptm-status`:
 
 <span id="src-5116005_PrescriptiveTopologyManager-PTM-ptmd_commands"></span>
 
-## <span>Using ptmd Service Commands</span>
+## Using ptmd Service Commands</span>
 
 PTM sends client notifications in CSV format.
 
@@ -552,7 +552,7 @@ configuration to the running state.
 `cumulus@switch:~$ sudo service ptmd status`: Retrieves the current
 running state of `ptmd`.
 
-## <span>Using ptmctl Commands</span>
+## Using ptmctl Commands</span>
 
 `ptmctl` is a client of `ptmd`; it retrieves the daemon’s operational
 state. It connects to `ptmd` over a Unix socket and listens for
@@ -560,7 +560,7 @@ notifications. `ptmctl` parses the CSV notifications sent by `ptmd`.
 
 See `man ptmctl` for more information.
 
-### <span>ptmctl Examples</span>
+### ptmctl Examples</span>
 
 For basic output, use `ptmctl` without any options:
 
@@ -628,7 +628,7 @@ swp1  fe80::202:ff:fe00:1  Up     N/A    singlehop  N/A   3     300         900 
 swp1  3101:abc:bcad::2     Up     N/A    singlehop  N/A   3     300         900         0           0           N/A      501      533      0        0       
 ```
 
-### <span>ptmctl Error Outputs</span>
+### ptmctl Error Outputs</span>
 
 If there are errors in the topology file or there isn’t a session, PTM
 will return appropriate outputs. Typical error strings are:
@@ -671,7 +671,7 @@ graph from working correctly.
 
 {{%/notice%}}
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/ptm.d/topology.dot
 
@@ -679,7 +679,7 @@ graph from working correctly.
 
   - /etc/ptm.d/if-topo-fail
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [Bidirectional Forwarding Detection
     (BFD)](http://tools.ietf.org/html/rfc5880)
@@ -691,7 +691,7 @@ graph from working correctly.
 
   - [PTMd GitHub repo](https://github.com/CumulusNetworks/ptm)
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - Prior to version 2.1, Cumulus Linux stored the `ptmd` configuration
     files in `/etc/cumulus/ptm.d`. When you upgrade to version 2.1 or

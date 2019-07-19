@@ -21,17 +21,17 @@ Only one backup file is supported, and can be restored as needed. The
 backup can be created from one running cluster and restored to another
 cluster. The backup snapshot file is stored on a local drive.
 
-<span style="color: #ff0000;"> Any pre-reqs? Stop any services? </span>
+ Any pre-reqs? Stop any services?
 
-<span style="color: #ff0000;"> Any recommendations on when to backup,
-where to save the file, or other tips? </span>
+ Any recommendations on when to backup,
+where to save the file, or other tips?
 
-<span style="color: #ff0000;"> Does this save agent data? </span>
+ Does this save agent data?
 
-<span style="color: #ff0000;"> Same steps for NetQ Appliance and NetQ
-Cloud Appliance? </span>
+ Same steps for NetQ Appliance and NetQ
+Cloud Appliance?
 
-## <span>Create a Backup File</span>
+## Create a Backup File
 
 To create a backup manually:
 
@@ -41,18 +41,18 @@ To create a backup manually:
 2.  Navigate to the new directory.
 
 3.  Run the backup script.
-    
+
         cumulus@<netq-platform/netq-appliance>:~/opt/netq-backup# ./backuprestore.sh --backup --localdir /opt/netq-backup
-    
+
     {{%notice tip%}}
-    
+
     You can simplify this command to `./backuprestore.sh -b -l
     /opt/netq-backup` to reduce typing.
-    
+
     {{%/notice%}}
 
 4.  Verify the backup file has been created.
-    
+
         cumulus@<netq-platform/netq-appliance>:~/opt/netq-backup# ls
         netq_master_snapshot_2019-06-04_07_24_50_UTC.tar.gz
 
@@ -60,26 +60,26 @@ To create a scheduled backup, add `./backuprestore.sh --backup
 --localdir /opt/<backup-directory>` to an existing cron job or create a
 new one.
 
-## <span>Restore NetQ from Your Backup File</span>
+## Restore NetQ from Your Backup File
 
 To restore NetQ on the same Cassandra pod as the backup file:
 
 1.  Navigate to your backup directory. For example, netq-backup.
 
 2.  Run the restore script.
-    
+
         cumulus@<netq-platform/netq-appliance>:~/opt/netq-backup# ./backuprestore.sh --restore --localdir /opt/netq-backup
-    
+
     {{%notice tip%}}
-    
+
     You can simplify this command to `./backuprestore.sh -r -l
     /opt/netq-backup` to reduce typing.
-    
+
     {{%/notice%}}
 
-3.  <span style="color: #ff0000;"> Install the backup file.... </span>  
-    <span style="color: #ff0000;"> use instruction from upgrading
-    procedure? </span>
+3.   Install the backup file....   
+     use instruction from upgrading
+    procedure?
 
 To restore NetQ on a different Cassandra pod on another server:
 
@@ -89,19 +89,7 @@ To restore NetQ on a different Cassandra pod on another server:
 2.  Navigate to the backup directory on the target server.
 
 3.  Run the restore script.
-    
+
         cumulus@<netq-platform/netq-appliance>:~/opt/netq-backup# ./backuprestore.sh --restore --localdir /opt/netq-backup
 
-4.  <span style="color: #ff0000;"> Install the backup file... </span>
-
-  
-[<span style="color: #707070;">
-</span>](https://wiki.cumulusnetworks.com/display/N2/Backup+and+Restore)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+4.   Install the [backup file](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/)...

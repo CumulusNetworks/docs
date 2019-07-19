@@ -33,7 +33,7 @@ Platform.
 
 {{%/notice%}}
 
-## <span>Prerequisites</span>
+## Prerequisites</span>
 
 Before you begin the upgrade process, please note the following:
 
@@ -55,7 +55,7 @@ issues without being affected itself.
 
 {{%/notice%}}
 
-## <span>Upgrade the NetQ Appliance</span>
+## Upgrade the NetQ Appliance</span>
 
 To upgrade the NetQ Appliance software:
 
@@ -218,7 +218,7 @@ continue.
 
 {{%/notice%}}
 
-### <span>Verify the Installation</span>
+### Verify the Installation</span>
 
 Verify you can access the NetQ CLI.
 
@@ -312,7 +312,7 @@ Verify you can access the NetQ CLI.
     switch or host you want to monitor. Refer to the next section for
     instructions.
 
-## <span>Upgrade the NetQ Agents</span>
+## Upgrade the NetQ Agents</span>
 
 The NetQ Agent should be upgraded on each of the existing nodes you want
 to monitor. The node can be a:
@@ -348,7 +348,7 @@ can access the meta package on the Cumulus Networks repository.
 
 {{%/notice%}}
 
-### <span id="src-12321037_UpgradetheNetQAppliance-AgentCL" class="confluence-anchor-link"></span><span> Upgrade NetQ Agent on a Cumulus Linux Switch</span>
+### <span id="src-12321037_UpgradetheNetQAppliance-AgentCL" class="confluence-anchor-link"></span> Upgrade NetQ Agent on a Cumulus Linux Switch</span>
 
 A simple process installs the NetQ Agent on a Cumulus switch.
 
@@ -411,7 +411,7 @@ A simple process installs the NetQ Agent on a Cumulus switch.
 7.  Repeat these steps for each Cumulus switch, or use an automation
     tool to install NetQ Agent on multiple Cumulus Linux switches.
 
-### <span id="src-12321037_UpgradetheNetQAppliance-AgentUbuntu" class="confluence-anchor-link"></span><span>Upgrade NetQ Agent on an Ubuntu Server (Optional)</span>
+### <span id="src-12321037_UpgradetheNetQAppliance-AgentUbuntu" class="confluence-anchor-link"></span>Upgrade NetQ Agent on an Ubuntu Server (Optional)</span>
 
 To install the NetQ Agent on an Ubuntu server:
 
@@ -471,7 +471,7 @@ To install the NetQ Agent on an Ubuntu server:
 9.  Repeat these steps for each switch/host running Ubuntu, or use an
     automation tool to install NetQ Agent on multiple switches/hosts.
 
-### <span id="src-12321037_UpgradetheNetQAppliance-AgentRHC" class="confluence-anchor-link"></span><span>Upgrade NetQ Agent on a Red Hat or CentOS Server (Optional)</span>
+### <span id="src-12321037_UpgradetheNetQAppliance-AgentRHC" class="confluence-anchor-link"></span>Upgrade NetQ Agent on a Red Hat or CentOS Server (Optional)</span>
 
 To install the NetQ Agent on a Red Hat or CentOS server:
 
@@ -535,7 +535,7 @@ To install the NetQ Agent on a Red Hat or CentOS server:
 9.  Repeat these steps for each switch/host running Ubuntu, or use an
     automation tool to install NetQ Agent on multiple switches/hosts.
 
-## <span>Configure Optional NetQ Agent Settings</span>
+## Configure Optional NetQ Agent Settings</span>
 
 Once the NetQ Agents have been installed on the network nodes you want
 to monitor, the NetQ Agents must be configured to obtain useful and
@@ -550,7 +550,7 @@ settings, you do not need to do so again.
   - [Configuring the Agent to Communicate over a Specific
     Port](http://docs.cumulusnetworks.com#port)
 
-### <span id="src-12321037_UpgradetheNetQAppliance-AgentVRF" class="confluence-anchor-link"></span><span>Configure the Agent to Use a VRF Interface</span>
+### <span id="src-12321037_UpgradetheNetQAppliance-AgentVRF" class="confluence-anchor-link"></span>Configure the Agent to Use a VRF Interface</span>
 
 While optional, Cumulus strongly recommends that you configure NetQ
 Agents to communicate with the NetQ Platform only via a
@@ -569,7 +569,7 @@ You then restart the agent: <span style="color: #222222;"> </span>
     cumulus@leaf01:~$ netq config restart agent
     cumulus@leaf01:~$ netq config restart cli
 
-### <span id="src-12321037_UpgradetheNetQAppliance-port" class="confluence-anchor-link"></span><span>Configure the Agent to Communicate over a Specific Port</span>
+### <span id="src-12321037_UpgradetheNetQAppliance-port" class="confluence-anchor-link"></span>Configure the Agent to Communicate over a Specific Port</span>
 
 By default, NetQ uses port 8981 for communication between the NetQ
 Platform and NetQ Agents. If you want the NetQ Agent to communicate with
@@ -582,7 +582,7 @@ You then restart the agent: <span style="color: #222222;"> </span>
 
     cumulus@leaf01:~$ netq config restart agent
 
-## <span>Upgrade Tips</span>
+## Upgrade Tips</span>
 
 After you have upgraded NetQ, if you find that some issues remain,
 review these commonly encountered scenarios. If NetQ is still not
@@ -590,7 +590,7 @@ operating as expected, please open a [support
 ticket](https://cumulusnetworks.com/support/file-a-ticket/) with a
 detailed description of your issues.
 
-### <span>No IP Address Assigned to the NetQ Appliance on Boot</span>
+### No IP Address Assigned to the NetQ Appliance on Boot</span>
 
 A user did not configure an IP address when the system was first booted.
 Later the user assigned an IP address to eth0, but the NetQ appliance

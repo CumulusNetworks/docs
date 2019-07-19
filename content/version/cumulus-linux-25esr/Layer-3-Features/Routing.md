@@ -13,11 +13,11 @@ siteSlug: cumulus-linux-25esr
 ---
 This chapter discusses routing on switches running Cumulus Linux.
 
-## <span>Commands</span>
+## Commands</span>
 
   - ip route
 
-## <span>Static Routing via ip route</span>
+## Static Routing via ip route</span>
 
 The `ip route` command allows manipulating the kernel routing table
 directly from the Linux shell. See `man ip(8)` for details. `quagga`
@@ -90,7 +90,7 @@ To delete a static route (does not persist across reboots):
     198.51.100.10/24 dev swp4  proto kernel  scope link  src 198.51.100.11
     198.51.100.20/24 dev br0  proto kernel  scope link  src 198.51.100.21
 
-### <span>Persistently Adding a Static Route</span>
+### Persistently Adding a Static Route</span>
 
 A static route can be persistently added by adding `up ip route add ..`
 into `/etc/network/interfaces`. For example:
@@ -117,7 +117,7 @@ ifupdown](/version/cumulus-linux-25esr/Configuring-and-Managing-Network-Interfac
 
 {{%/notice%}}
 
-## <span>Static Routing via quagga</span>
+## Static Routing via quagga</span>
 
 Static routes can also be managed via the `quagga` CLI. The routes are
 added to the `quagga` routing table, and then will be updated into the
@@ -199,7 +199,7 @@ To delete a static route (does not persist across reboot):
     C>* 127.0.0.0/8 is directly connected, lo
     switch#
 
-### <span>Persistent Configuration</span>
+### Persistent Configuration</span>
 
 From the quagga CLI, the running configuration can be saved so it
 persists between reboots:
@@ -208,7 +208,7 @@ persists between reboots:
     Configuration saved to /etc/quagga/zebra.conf
     switch# end
 
-## <span>Supported Route Table Entries</span>
+## Supported Route Table Entries</span>
 
 Cumulus Linux supports different numbers of route entries, depending
 upon your switch platform (Trident, Trident+, or Trident II; see the
@@ -237,19 +237,19 @@ switches:
 
   - 16K total routes (both IPv4 and IPv6)
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/network/interfaces
 
   - /etc/quagga/zebra.conf
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - <http://linux-ip.net/html/tools-ip-route.html>
 
   - <http://www.nongnu.org/quagga/docs/docs-info.html#Static-Route-Commands>
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - Static routes added via `quagga` can be deleted via Linux shell.
     This operation, while possible, should be avoided. Routes added by

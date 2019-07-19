@@ -26,7 +26,7 @@ You can upgrade to NetQ 2.2.0 through any of the following paths:
 
 If you are installing Cumulus NetQ software for the first time, please
 refer to [Install
-NetQ](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Install-NetQ).
+NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ).
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

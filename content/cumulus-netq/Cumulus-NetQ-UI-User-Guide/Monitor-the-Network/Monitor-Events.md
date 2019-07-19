@@ -17,11 +17,9 @@ Alarms card workflow tracks critical severity events, whereas the Info
 card workflow tracks all warning, info, and debug severity events.
 
 To focus on events from a single device perspective, refer to
-<span style="color: #ff0000;"> [Monitor
-Switches](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-Switches)
-</span> .
+[Monitor Switches](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
 
-## <span>Monitor Alarms</span>
+## Monitor Alarms
 
 You can easily monitor critical events occurring across your network
 using the Alarms card. You can determine the number of events for the
@@ -30,7 +28,7 @@ in the network. The content of the cards in the workflow is described
 first, and then followed by common tasks you would perform using this
 card workflow.
 
-### <span>Alarms Card Workflow Summary</span>
+### Alarms Card Workflow Summary
 
 The small Alarms card displays:
 
@@ -38,8 +36,8 @@ The small Alarms card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -88,8 +86,8 @@ The medium Alarms card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -138,8 +136,8 @@ The *System, Trace and Interfaces* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -153,8 +151,7 @@ The *System, Trace and Interfaces* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 6 %}}</p></td>
+<td><p>{{% imgOld 6 %}}</p></td>
 <td><p>Indicates data is for all system, trace and interface critical events in the network</p></td>
 </tr>
 <tr class="odd">
@@ -183,8 +180,8 @@ The full screen Alarms card provides tabs for all events.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -224,14 +221,13 @@ The full screen Alarms card provides tabs for all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 9 %}}</p></td>
+<td><p>{{% imgOld 9 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
 </table>
 
-### <span>View Alarm Status Summary</span>
+### View Alarm Status Summary
 
 A summary of the critical alarms in the network includes the number of
 alarms, a trend indicator, a performance indicator, and a distribution
@@ -247,7 +243,7 @@ average number of alarms during this time period. This would indicate a
 need to investigate further. Note that with such a small number of
 alarms, the rating may be a bit skewed.
 
-### <span>View the Distribution of Alarms</span>
+### View the Distribution of Alarms
 
 It is helpful to know where and when alarms are occurring in your
 network. The Alarms card workflow enables you to see the distribution of
@@ -259,12 +255,12 @@ to view all of the charts.
 
 {{% imgOld 11 %}}
 
-### <span>Monitor System and Interface Alarm Details</span>
+### Monitor System and Interface Alarm Details
 
 The Alarms card workflow enables users to easily view and track critical
 severity system and interface alarms occurring anywhere in your network.
 
-#### <span>View All System and Interface Alarms</span>
+#### View All System and Interface Alarms
 
 You can view the alarms associated with the system and interfaces using
 the Alarms card workflow. You can sort alarms based on their occurrence
@@ -281,7 +277,7 @@ the associated alarms is also displayed.
 By default, the list of the most recent alarms for the systems and
 interfaces is displayed when viewing the large cards.
 
-#### <span>View Devices with the Most Alarms</span>
+#### View Devices with the Most Alarms
 
 You can filter instead for the devices that have the most alarms.
 
@@ -290,29 +286,26 @@ then select **Devices by event count** from the dropdown.
 
 {{% imgOld 13 %}}
 
-#### <span>Filter Alarms by System or Interface</span>
+#### Filter Alarms by System or Interface
 
 You can focus your view to include alarms for selected system or
 interface categories.
 
 To filter for selected categories:
 
-1.  Click the checkbox to the left of one or more charts to remove those
+1.  Click the checkbox to the left of one or more charts to remove that
     set of alarms from the table on the right.
-
 2.  Select the **Devices by event count** to view the devices with the
     most alarms for the selected categories.
-
 3.  Switch back to most recent events by selecting **Events by most
     recent**.
-
 4.  Click the checkbox again to return a category's data to the table.
 
 In this example, we removed the Services from the event listing.
 
 {{% imgOld 14 %}}
 
-#### <span>Compare Alarms with a Prior Time</span>
+#### Compare Alarms with a Prior Time
 
 You can change the time period for the data to compare with a prior
 time. If the same devices are consistently indicating the most alarms,
@@ -323,34 +316,28 @@ To compare two time periods:
 
 1.  Open a second Alarm Events card. Remember it goes to the bottom of
     the workbench.
-
 2.  Switch to the large size view.
-
 3.  Move the card to be next to the original Alarm Events card. Note
     that moving large cards can take a few extra seconds since they
     contain a large amount of data.
+4.  Hover over the card and click {{% imgOld 15 %}}.
 
-4.  Hover over the card and click <span style="color: #353744;"> </span>
-    
-    {{% imgOld 15 %}}
-    
-    .
-    
     {{% imgOld 16 %}}
 
 5.  Select a different time period.  
-    
+
     {{% imgOld 17 %}}
-    
+
     {{% imgOld 18 %}}
 
 6.  Compare the two cards with the **Devices by event count** filter
-    applied.  
+    applied.
+
     In this example, the total alarm count is down, but the same device
     has the most alarms in each time period, so it might be worth
     investigating this device in more detail.
 
-### <span>View All Events</span>
+### View All Events
 
 You can view all events in the network either by clicking the **Show All
 Events** link under the table on the large Alarm Events card, or by
@@ -362,13 +349,9 @@ OR
 
 {{% imgOld 20 %}}
 
-To return to your workbench, click
+To return to your workbench, click {{% imgOld 21 %}} in the top right corner of the card.
 
-{{% imgOld 21 %}}
-
-in the top right corner of the card.
-
-## <span>Monitor Info Events</span>
+## Monitor Info Events
 
 You can easily monitor warning, info, and debug severity events
 occurring across your network using the Info card. You can determine the
@@ -377,7 +360,7 @@ protocols and services components in the network. The content of the
 cards in the workflow is described first, and then followed by common
 tasks you would perform using this card workflow.
 
-### <span>Info Card Workflow Summary</span>
+### Info Card Workflow Summary
 
 The Info card workflow enables users to easily view and track
 informational alarms occurring anywhere in your network.
@@ -388,8 +371,8 @@ The small Info card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -399,8 +382,7 @@ The small Info card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 23 %}}</p></td>
+<td><p>{{% imgOld 23 %}}</p></td>
 <td><p>Indicates data is for all warning, info, and debug severity events in the network</p></td>
 </tr>
 <tr class="even">
@@ -424,8 +406,8 @@ The medium Info card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -439,8 +421,7 @@ The medium Info card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 25 %}}</p></td>
+<td><p>{{% imgOld 25 %}}</p></td>
 <td><p>Indicates data is for all warning, info, and debug severity events in the network</p></td>
 </tr>
 <tr class="odd">
@@ -469,8 +450,8 @@ The large Alarms card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -484,8 +465,7 @@ The large Alarms card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 27 %}}</p></td>
+<td><p>{{% imgOld 27 %}}</p></td>
 <td><p>Indicates data is for all warning, info, and debug severity events in the network</p></td>
 </tr>
 <tr class="odd">
@@ -526,8 +506,8 @@ The full screen Info card provides tabs for all events.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -567,14 +547,13 @@ The full screen Info card provides tabs for all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 30 %}}</p></td>
+<td><p>{{% imgOld 30 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
 </table>
 
-### <span>View Info Status Summary</span>
+### View Info Status Summary
 
 A summary of the informational events occurring in the network can be
 found on the small, medium, and large Info cards. Additional details are
@@ -605,7 +584,7 @@ Hover over segment of chart to view the count for each type.
 To view the summary with the large Info card, open the card. The left
 side of the card provides the same capabilities as the medium Info card.
 
-### <span>Compare Timing of Info and Alarm Events</span>
+### Compare Timing of Info and Alarm Events
 
 While you can see the relative relationship between info and alarm
 events on the small Info card, the medium and large cards provide
@@ -619,16 +598,14 @@ and distributions. Some other possible scenarios:
 
   - When a critical alarm is resolved, you may see a temporary increase
     in info events as a result.
-
   - When you get a burst of info events, you may see a follow-on
     increase in critical alarms, as the info events may have been
     warning you of something beginning to go wrong.
-
   - You set logging to debug, and a large number of info events of
     severity debug are seen. You would not expect to see an increase in
     critical alarms.
 
-### <span>View All Info Events Sorted by Time of Occurrence</span>
+### View All Info Events Sorted by Time of Occurrence
 
 You can view all info events using the large Info card. Open the large
 card and confirm the **Events By Most Recent** option is selected in the
@@ -639,7 +616,7 @@ an earlier time within the selected time period for the card.
 
 {{% imgOld 34 %}}
 
-### <span>View Devices with the Most Info Events</span>
+### View Devices with the Most Info Events
 
 You can filter instead for the devices that have the most info events by
 selecting the **Devices by Event Count** option from the filter above
@@ -649,7 +626,7 @@ the table.
 
 {{% imgOld 36 %}}
 
-### <span>View All Events</span>
+### View All Events
 
 You can view all events in the network either by clicking the **Show All
 Events** link under the table on the large Info Events card, or by
@@ -661,38 +638,30 @@ OR
 
 {{% imgOld 38 %}}
 
-To return to your workbench, click
+To return to your workbench, click {{% imgOld 39 %}} in the top right corner of the card.
 
-{{% imgOld 39 %}}
-
-in the top right corner of the card.
-
-## <span>Events Reference</span>
+## Events Reference
 
 The following table lists all event messages organized by type, by
 default. Click the column header to sort the list by that
-characteristic. Click
+characteristic. Click {{% imgOld 40 %}} in any column header to toggle the sort order between A-Z and Z-A.
 
-{{% imgOld 40 %}}
-
-in any column header to toggle the sort order between A-Z and Z-A.
-
-{{%notice info%}}
+{{%notice note%}}
 
 The messages can be viewed through third-party notification
 applications. For details about configuring notifications using the NetQ
 CLI, refer to [Integrate with Third-party Software and
-Hardware](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware).
+Hardware](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware).
 
 {{%/notice%}}
 
 <table>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
+<col style="width: 10%" />
+<col style="width: 30%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">

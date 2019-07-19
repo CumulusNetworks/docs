@@ -18,7 +18,7 @@ nodes, notification integrations, and NetQ Agents for example. You might
 also need to restore NetQ to a prior version or upgrade to a new
 version.
 
-## <span>Manage the Telemetry Server</span>
+## Manage the Telemetry Server</span>
 
 <span style="color: #36424a;"> Because the Telemetry Server (TS)
 contains the configurations for event notification integrations and NetQ
@@ -28,7 +28,7 @@ filters are described in [Configure Optional NetQ
 Capabilities](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Configure-Optional-NetQ-Capabilities).
 Removing them is described here. </span>
 
-### <span>Remove an Event Notification Integration</span>
+### Remove an Event Notification Integration</span>
 
 You can delete an event notification integration using the `netq config
 ts del notifier integration INTEGRATION` command. You can verify it has
@@ -52,7 +52,7 @@ the configuration:
     default        output       ALL
                    rule
 
-### <span>Delete a NetQ Notifier Filter</span>
+### Delete a NetQ Notifier Filter</span>
 
 To delete a filter, use the following command, then restart the Notifier
 service:
@@ -61,7 +61,7 @@ service:
     cumulus@ts:~$ netq config ts restart notifier 
     cumulus@ts:~$ netq config ts show notifier integration
 
-## <span>Manage the NetQ Agents</span>
+## Manage the NetQ Agents</span>
 
 At various points in time, you might want to change which network nodes
 are being monitored by NetQ or look more closely at a network node for
@@ -71,7 +71,7 @@ NetQ](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ).
 Removing or simply decommissioning an Agent is described here. Managing
 NetQ Agent logging is also presented in this section.
 
-### <span id="src-10453451_MaintainNetQ-decom" class="confluence-anchor-link"></span><span>Remove NetQ Agent from a Node</span>
+### <span id="src-10453451_MaintainNetQ-decom" class="confluence-anchor-link"></span>Remove NetQ Agent from a Node</span>
 
 You can decommission NetQ Agent on a given node. You might need to do
 this when you:
@@ -97,7 +97,7 @@ on that node and then run the following command on the TS:
      
     cumulus@ts:~$ netq ts decommission [hostname] purge
 
-### <span>Disable NetQ Agent on a Node</span>
+### Disable NetQ Agent on a Node</span>
 
 You can temporarily disable NetQ Agent on a node. Disabling the agent
 maintains the activity history in the NetQ database.
@@ -107,7 +107,7 @@ node:
 
     cumulus@switch:~$ netq config stop agent
 
-### <span id="src-10453451_MaintainNetQ-AgentLog" class="confluence-anchor-link"></span><span>Configure Logging for a NetQ Agent</span>
+### <span id="src-10453451_MaintainNetQ-AgentLog" class="confluence-anchor-link"></span>Configure Logging for a NetQ Agent</span>
 
 The logging level used for a NetQ Agent determines what types of events
 are logged about the NetQ Agent on the switch or host.
@@ -193,7 +193,7 @@ To disable all logging:
     cumulus@switch:~$ netq config del agent loglevel 
     cumulus@switch:~$ netq config restart agent
 
-## <span id="src-10453451_MaintainNetQ-Backup" class="confluence-anchor-link"></span><span>Restore NetQ from Backup Files</span>
+## <span id="src-10453451_MaintainNetQ-Backup" class="confluence-anchor-link"></span>Restore NetQ from Backup Files</span>
 
 NetQ automatically takes snapshots of the NetQ Telemetry Server at five
 minute intervals. These snapshots can be used to restore to a previous
@@ -219,7 +219,7 @@ warranted. These include:
 
   - NetQ Telemetry Server becomes unavailable.
 
-### <span>Backup Locations</span>
+### Backup Locations</span>
 
 Backup snapshots can be found in two file locations on the NetQ
 Telemetry Server:
@@ -228,7 +228,7 @@ Telemetry Server:
 
   - `/var/backup`: Directory of previous snapshots.
 
-### <span>Restore NetQ from a Snapshot</span>
+### Restore NetQ from a Snapshot</span>
 
 To restore the NetQ Telemetry Server from a snapshot:
 
@@ -267,7 +267,7 @@ To restore the NetQ Telemetry Server from a snapshot:
     
         root@cumulus:~# sudo systemctl start netq-appliance
 
-## <span>Upgrade NetQ</span>
+## Upgrade NetQ</span>
 
 This section covers the process for upgrading NetQ. The upgrade process
 involves upgrading each of the NetQ components (the NetQ Telemetry
@@ -299,7 +299,7 @@ Before upgrading NetQ, consider the following:
 
   - You can upgrade to NetQ 1.4.0 without upgrading Cumulus Linux.
 
-### <span>Upgrade the NetQ Telemetry Server</span>
+### Upgrade the NetQ Telemetry Server</span>
 
 The first step in upgrading NetQ is to update your Telemetry Server (or
 servers if you are running in HA mode). If you are installing a *new*
@@ -376,13 +376,13 @@ current version of NetQ as well.
 
 {{%/notice%}}
 
-### <span>Upgrade the NetQ Agents</span>
+### Upgrade the NetQ Agents</span>
 
 The second step in the NetQ upgrade process is to upgrade the NetQ
 Agents on each monitored node. Follow the steps for the relevant OS
 below to upgrade the NetQ Agents:
 
-#### <span>Cumulus Linux</span>
+#### Cumulus Linux</span>
 
 To upgrade the NetQ Agent on a Cumulus Linux switch, do the following:
 
@@ -396,7 +396,7 @@ To upgrade the NetQ Agent on a Cumulus Linux switch, do the following:
     
         cumulus@switch:~$ sudo apt-get update && sudo apt-get install cumulus-netq
 
-#### <span>Ubuntu 16.04</span>
+#### Ubuntu 16.04</span>
 
 To upgrade the NetQ Agent on an Ubuntu host, do the following:
 
@@ -426,7 +426,7 @@ To upgrade the NetQ Agent on an Ubuntu host, do the following:
               D     : show the differences between the versions
               Z     : start a shell to examine the situation
 
-#### <span>Red Hat Enterprise Linux 7 / CentOS 7</span>
+#### Red Hat Enterprise Linux 7 / CentOS 7</span>
 
 To upgrade the NetQ Agent on a Red Hat or CentOS host, do the following:
 
@@ -460,7 +460,7 @@ To upgrade the NetQ Agent on a Red Hat or CentOS host, do the following:
     
         root@rhel7:~# yum install cumulus-netq
 
-### <span>Connect the NetQ Telemetry Server to the Network</span>
+### Connect the NetQ Telemetry Server to the Network</span>
 
 1.  Once the NetQ Telemetry Server and NetQ agents have been upgraded,
     connect the NetQ Telemetry Server to the network. For more

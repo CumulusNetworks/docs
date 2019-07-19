@@ -46,7 +46,7 @@ that determine rules and specify where to forward the packets.
 
 {{%/notice%}}
 
-## <span>Configure PBR</span>
+## Configure PBR</span>
 
 A PBR policy contains one or more policy maps. Each policy map:
 
@@ -80,7 +80,7 @@ operate in non-atomic mode, which offers better scaling as all TCAM
 resources are used to actively impact traffic. Add the line
 `acl.non_atomic_update_mode = TRUE` to the `/etc/cumulus/switchd.conf`
 file. For more information, see [Nonatomic Update Mode vs. Atomic Update
-Mode](Netfilter---ACLs.html#src-8362563_Netfilter-ACLs-nonatomic).
+Mode](Netfilter-ACLs.html#src-8362563_Netfilter-ACLs-nonatomic).
 
 {{%/notice%}}
 
@@ -156,7 +156,7 @@ You can only set one policy per interface.
 
     {{%/notice%}}
 
-## <span>Configuration Example</span>
+## Configuration Example</span>
 
 In the following example, the PBR-enabled switch has a PBR policy to
 route all traffic from the Internet to a server that performs anti-DDOS.
@@ -182,7 +182,7 @@ file.
     match src-ip 0.0.0.0/0
     set nexthop 192.168.0.32
 
-## <span>Review Your Configuration</span>
+## Review Your Configuration</span>
 
 Use the following commands to see the configured PBR policies.
 
@@ -242,7 +242,7 @@ A new Linux routing table ID is used for each nexthop and nexthop group.
 
 {{%/notice%}}
 
-## <span>Delete PBR Rules and Policies</span>
+## Delete PBR Rules and Policies</span>
 
 You can delete a PBR rule, a nexthop group, or a policy with the `net
 del` command.  

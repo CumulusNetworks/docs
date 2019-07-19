@@ -37,7 +37,7 @@ forwarding).
 
 {{%/notice%}}
 
-## <span id="src-5118739_ManagementVRF-enablevrf" class="confluence-anchor-link"></span><span>Enabling Management VRF</span>
+## <span id="src-5118739_ManagementVRF-enablevrf" class="confluence-anchor-link"></span>Enabling Management VRF</span>
 
 To enable management VRF on eth0, complete the following steps:
 
@@ -59,7 +59,7 @@ To enable management VRF on eth0, complete the following steps:
     
         cumulus@switch:~$ sudo reboot
 
-### <span>Enabling NTP</span>
+### Enabling NTP</span>
 
 To enable NTP to run in the mgmt VRF:
 
@@ -110,7 +110,7 @@ To enable NTP to run in the mgmt VRF:
     
         cumulus@switch:~$ sudo systemctl enable ntp@mgmt
 
-### <span>Enabling snmpd</span>
+### Enabling snmpd</span>
 
 To enable `snmpd` to run in the mgmt VRF:
 
@@ -146,7 +146,7 @@ To enable `snmpd` to run in the mgmt VRF:
     
         cumulus@switch:~$ sudo systemctl enable snmpd@mgmt
 
-### <span>Using ping or traceroute</span>
+### Using ping or traceroute</span>
 
 By default, issuing a `ping` or `traceroute` assumes the packet should
 be sent to the dataplane network (the main routing table). If you wish
@@ -159,7 +159,7 @@ or
 
     cumulus@switch:~$ sudo traceroute -i mgmt
 
-## <span>SNMP Traps Use eth0 Only</span>
+## SNMP Traps Use eth0 Only</span>
 
 SNMP cannot use a switch port to send data. For any SNMP traps, this
 traffic gets sent out to eth0. Cumulus Networks plans to support switch
@@ -172,7 +172,7 @@ affected.
 
 {{%/notice%}}
 
-## <span>sFlow and Management VRF</span>
+## sFlow and Management VRF</span>
 
 With management VRF enabled, sFlow can send and receive packets through
 switch ports as well as the management port, as long as `hsflowd` has a
@@ -180,7 +180,7 @@ route available out of the main table. To enable this, contact the
 [Cumulus Networks support
 team](https://support.cumulusnetworks.com/hc/en-us/requests/new).
 
-## <span>Using SSH within a Management VRF Context</span>
+## Using SSH within a Management VRF Context</span>
 
 If you SSH to the switch through a switch port, it works as expected. If
 you need to SSH from the device out a switch port, use `vrf exec default
@@ -195,7 +195,7 @@ ssh <ip_address_of_swp_port>`. For example:
     
     cumulus@switch:~$ sudo vrf exec default ssh 10.23.23.2 10.3.3.3
 
-## <span>Viewing the Routing Tables</span>
+## Viewing the Routing Tables</span>
 
 When you look at the routing table with `ip route show`, you are looking
 at the switch port (*main*) table. You can also see the data plane
@@ -213,7 +213,7 @@ To look at information about eth0 (the management routing table), use
     10.23.23.0/24 dev swp17  proto kernel  scope link  src 10.23.23.2
     192.168.0.0/24 dev eth0  proto kernel  scope link  src 192.168.0.11
 
-### <span>Viewing a Single Route</span>
+### Viewing a Single Route</span>
 
 Note that if you use `ip route get` to return information about a single
 route, the command resolves over the *mgmt* table by default. To get
@@ -230,7 +230,7 @@ So to get the route for the mgmt VRF, run:
 
     cumulus@switch:~$ ip route get <addr> oif mgmt
 
-## <span>Using the mgmt Interface Class</span>
+## Using the mgmt Interface Class</span>
 
 In `ifupdown2` [interface
 classes](Configuring-and-Managing-Network-Interfaces.html#src-5118733_ConfiguringandManagingNetworkInterfaces-classes)
@@ -273,7 +273,7 @@ To reload the configurations for interfaces in the mgmt class, run:
 However, you can still bring the management interface up and down using
 `ifup eth0` and `ifdown eth0`.
 
-## <span>Management VRF and DNS</span>
+## Management VRF and DNS</span>
 
 Cumulus Linux supports both DHCP and static DNS entries over management
 VRF through IP FIB rules. These rules are added to direct lookups to the

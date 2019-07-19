@@ -48,7 +48,7 @@ and verify the value in the **Platforms** tab \> **CPU** column. </span>
 
 {{%/notice%}}
 
-## <span>CLI Access</span>
+## CLI Access</span>
 
 Once you have enabled the IPM service (refer to the [Activate and
 Initialize
@@ -81,7 +81,7 @@ commands at the prompt. <span style="color: #353744;"> </span>
         Cumulus@ts:~$ tipctl config setup
         Cumulus@ts:~$ tipctl add ztp 
 
-## <span>Command Line Structure</span>
+## Command Line Structure</span>
 
 <span style="color: #353744;"> The Cumulus NetQ IPM command line has a
 flat structure as opposed to a modal structure. This means that all
@@ -95,7 +95,7 @@ switch between modes to run commands which can be tedious and time
 consuming. Cumulus NetQ IPM command line enables the administrator to
 run all of its commands at the same level. </span>
 
-## <span>Command Syntax</span>
+## Command Syntax</span>
 
 <span style="color: #353744;"> IPM CLI commands all begin with `tipctl`.
 </span> The TIPCTL syntax is organized around the command actions–add,
@@ -114,7 +114,7 @@ follows:
 | Angle brackets \< \>  | Variable value for a keyword or option; required, enter according to your deployment nomenclature |
 | Pipe |                | Separates keyword options, also separates value options; enter one keyword and zero or one value  |
 
-## <span>Command Prompt</span>
+## Command Prompt</span>
 
 <span style="color: #353744;"> IPM code examples use the following
 prompt: </span>
@@ -127,7 +127,7 @@ The TS must be running the Cumulus Linux operating system (OS) and NetQ
 NetQ](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
 topic for details.
 
-## <span>Command Help</span>
+## Command Help</span>
 
 <span style="color: #353744;"> As you enter commands, you can get help
 with command syntax by entering --*help* or *-h* at various points
@@ -152,7 +152,7 @@ possible commands related to DHCP configuration. </span>
      
     cumulus@ts:~$
 
-## <span>Command History</span>
+## Command History</span>
 
 The CLI stores commands issued within a session, which enables you to
 review and rerun commands that have already been run. At the command

@@ -16,7 +16,7 @@ siteSlug: cumulus-linux-332
 Setting the time zone, date and time requires root privileges; use
 `sudo`.
 
-## <span>Setting the Time Zone</span>
+## Setting the Time Zone</span>
 
 To see the current time zone, list the contents of `/etc/timezone`:
 
@@ -31,7 +31,7 @@ Use the following command to apply the new time zone immediately.
 
     cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata
 
-### <span>Alternative: Use the Guided Wizard to Find and Apply a Time Zone</span>
+### Alternative: Use the Guided Wizard to Find and Apply a Time Zone</span>
 
 To set the time zone, run `dpkg-reconfigure tzdata` as root:
 
@@ -68,7 +68,7 @@ example selects the US/Pacific time zone:
 For more info see the Debian [System Administrator’s Manual –
 Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
 
-## <span>Setting the Date and Time</span>
+## Setting the Date and Time</span>
 
 The switch contains a battery backed hardware clock that maintains the
 time while the switch is powered off and in between reboots. When the
@@ -111,7 +111,7 @@ Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.ht
 specifically the section [Setting and showing hardware
 clock](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html#s16.2).
 
-## <span>Setting Time Using NTP and NCLU</span>
+## Setting Time Using NTP and NCLU</span>
 
 The `ntpd` daemon running on the switch implements the NTP protocol. It
 synchronizes the system time with time servers listed in
@@ -165,7 +165,7 @@ To check the NTP peer status:
     *chl.la          216.218.192.202  2 u  210 1024  377    4.008    1.277   1.628
     +vps3.drown.org  17.253.2.125     2 u  743 1024  377   39.319   -0.316   1.384
 
-## <span>Specifying the NTP Source Interface</span>
+## Specifying the NTP Source Interface</span>
 
 You can change the source interface that NTP uses if you want to use an
 interface other than eth0, the default.
@@ -184,7 +184,7 @@ These commands create the following configuration snippet in the
      
     ...
 
-## <span>Forcing NTP Syncronization</span>
+## Forcing NTP Syncronization</span>
 
 NTP is a notoriously slow protocol that takes significant time to
 converge. It is possible to jumpstart the process by just accepting the
@@ -209,7 +209,7 @@ name above
 
 {{%/notice%}}
 
-## <span>NTP Default Configuration</span>
+## NTP Default Configuration</span>
 
 The default NTP configuration comprises the following servers, which are
 listed in the `/etc/ntpd.conf` file:
@@ -286,7 +286,7 @@ listed below.
     # Specify interfaces, don't listen on switch ports
     interface listen eth0
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Debian System Administrator’s Manual –
     Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)

@@ -18,13 +18,13 @@ connectivity checks to occur on a scheduled basis. There are three card
 workflows which enable you to view connectivity, the Trace Request,
 On-demand Trace Results, and Scheduled Trace Results.
 
-## <span>Create a Trace Request</span>
+## Create a Trace Request
 
 Two types of connectivity checks can be run–an immediate (on-demand)
 trace and a scheduled trace. The Trace Request card workflow is used to
 configure and run both of these trace types.
 
-### <span>Trace Request Card Workflow Summary</span>
+### Trace Request Card Workflow Summary
 
 The small Trace Request card displays:
 
@@ -227,7 +227,7 @@ The full screen Trace Request card displays:
 </tbody>
 </table>
 
-### <span>Create a Layer 3 On-demand Trace Request</span>
+### Create a Layer 3 On-demand Trace Request
 
 It is helpful to verify the connectivity between two devices when you
 suspect an issue is preventing proper communication between them. It you
@@ -266,7 +266,7 @@ To create a layer 3 trace request:
     Results](#src-12321680_MonitorNetworkConnectivity-ODTL3) for
     details.
 
-### <span>Create a Layer 3 Trace Through a Given VRF</span>
+### Create a Layer 3 Trace Through a Given VRF
 
 If you want to guide a trace through a particular VRF interface, you can
 do so using the large New Trace Request card.
@@ -294,7 +294,7 @@ To create the trace request:
     Results](#src-12321680_MonitorNetworkConnectivity-ODTL3) for
     details.
 
-### <span>Create a Layer 2 Trace</span>
+### Create a Layer 2 Trace
 
 It is helpful to verify the connectivity between two devices when you
 suspect an issue is preventing proper communication between them. It you
@@ -326,7 +326,7 @@ To create a layer 2 trace request:
     Results](#src-12321680_MonitorNetworkConnectivity-ODTL2) for
     details.
 
-### <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI01vZFNjaFRyYWNl" class="confluence-anchor-link"></span><span>Create a Trace to Run on a Regular Basis (Scheduled Trace)</span>
+### Create a Trace to Run on a Regular Basis (Scheduled Trace)
 
 There may be paths through your network that you consider critical to
 your everyday or particularly important operations. In that case, it
@@ -378,7 +378,7 @@ To schedule a trace:
     from the dropdown list, or wait for it to run on its defined
     schedule.
 
-### <span>Run a Scheduled Trace on Demand</span>
+### Run a Scheduled Trace on Demand
 
 You may find that, although you have a schedule for a particular trace,
 you want to have visibility into the connectivity data now. You can run
@@ -403,14 +403,14 @@ To run a scheduled trace now:
 3.  Click **Go** or **Run Now**. A corresponding Trace Results card is
     opened on your workbench.
 
-## <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI09EVHJlc3VsdHM" class="confluence-anchor-link"></span><span>View On-demand Trace Results</span>
+## View On-demand Trace Results
 
 <span style="color: #333333;"> Once you have started an on-demand trace,
 the results are displayed in the medium Trace Results card by default.
 You may view the results in more or less detail by switching to the
 large or small Trace Results card, respectively. </span>
 
-### <span>On-demand Trace Results Card Workflow Summary</span>
+### On-demand Trace Results Card Workflow Summary
 
 <span style="color: #333333;"> The small On-demand Trace Results card
 displays: </span>
@@ -628,7 +628,7 @@ Results card displays:
 </tbody>
 </table>
 
-### <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI09EVEwy" class="confluence-anchor-link"></span><span>View Layer 2 Trace Results</span>
+### View Layer 2 Trace Results
 
 When you start the trace, the corresponding results card is opened on
 your workbench. While it is working on the trace, a notice is shown on
@@ -658,7 +658,7 @@ each path had a value of four hops. Similarly, you can view the MTU
 data. If there had been any warnings, the count would have been visible
 in the table.
 
-### <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI09EVEwz" class="confluence-anchor-link"></span><span>View Layer 3 Trace Results</span>
+### View Layer 3 Trace Results
 
 When you start the trace, the corresponding results card is opened on
 your workbench. While it is working on the trace, a notice is shown on
@@ -685,7 +685,7 @@ each path had a value of five hops. Similarly, you can view the MTU
 data. If there had been any warnings, the count would have been visible
 in the table.
 
-### <span>View All On-demand Trace Results</span>
+### View All On-demand Trace Results
 
 If you have run multiple on-demand traces, you may find it easier to
 view the results all together in a single view. The full screen Trace
@@ -699,12 +699,12 @@ Trace Results card.
 Ordered by most recent trace, you can now view all recent traces
 together.
 
-## <span>View Scheduled Trace Results</span>
+## View Scheduled Trace Results
 
 You can view the results of scheduled traces at any time. Results are
 displayed on the Scheduled Trace Results cards.
 
-### <span>Scheduled Trace Results Card Workflow Summary</span>
+### Scheduled Trace Results Card Workflow Summary
 
 The small Scheduled Trace Results card displays:
 
@@ -985,7 +985,7 @@ The full screen Scheduled Trace Results card displays:
 </tbody>
 </table>
 
-### <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI0RhdGFHcmFu" class="confluence-anchor-link"></span><span>Granularity of Data Shown Based on Time Period</span>
+### Granularity of Data Shown Based on Time Period
 
 On the medium and large Trace Result cards, the status of the runs is
 represented in heat maps stacked vertically; one for runs with warnings
@@ -1013,7 +1013,7 @@ common time periods in the table showing the resulting time blocks.
 | 1 month     | 2,086          | 30                 | 1 day                        |
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
 
-### <span>View Scheduled Trace Results</span>
+### View Scheduled Trace Results
 
 Once a scheduled trace request has completed, the results are available
 in the corresponding Trace Result card.

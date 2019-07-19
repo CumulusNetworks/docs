@@ -24,7 +24,7 @@ Cumulus Linux does not support demand mode in BFD.
 
 {{%/notice%}}
 
-## <span>Using BFD Multihop Routed Paths</span>
+## Using BFD Multihop Routed Paths</span>
 
 BFD multihop sessions are built over arbitrary paths between two
 systems, which results in some complexity that does not exist for single
@@ -44,7 +44,7 @@ hop sessions. Here are some best practices for using multihop paths:
 Multihop BFD sessions are supported for both IPv4 and IPv6 peers. See
 below for more details.
 
-## <span>BFD Parameters</span>
+## BFD Parameters</span>
 
 You can configure the following BFD parameters for both IPv4 and IPv6
 sessions:
@@ -56,11 +56,11 @@ sessions:
 
   - The detection time multiplier.
 
-## <span>Configuring BFD</span>
+## Configuring BFD</span>
 
 You configure BFD one of two ways: by specifying the configuration in
 the [PTM `topology.dot`
-file](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager---PTM),
+file](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM),
 or using
 [Quagga](/version/cumulus-linux-25esr/Layer-3-Features/Quagga-Overview).
 
@@ -83,11 +83,11 @@ that has been created by both topology file and client (Quagga).
 
 {{%/notice%}}
 
-### <span>BFD in BGP</span>
+### BFD in BGP</span>
 
 For Quagga when using **BGP**, neighbors are registered and
 de-registered with
-[PTM](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager---PTM)
+[PTM](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM)
 dynamically when you enable BFD in BGP:
 
     quagga(config)# router bgp X
@@ -155,11 +155,11 @@ neighbors <IP address>`.
         Detect Mul: 3, Min Rx interval: 300, Min Tx interval: 300
         Status: Down, Last update: 0:00:00:13
 
-### <span>BFD in OSPF</span>
+### BFD in OSPF</span>
 
 For Quagga using **OSFP**, neighbors are registered and de-registered
 dynamically with
-[PTM](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager---PTM)
+[PTM](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM)
 when you enable or disable BFD in OSPF. A neighbor is registered with
 BFD when two-way adjacency is established and deregistered when
 adjacency goes down if the BFD is enabled on the interface. The BFD
@@ -178,7 +178,7 @@ discovered on that interface inherit the configuration.
         <cr>
     quagga(config-if)# ipv6 ospf6 bfd 5 500 500
 
-### <span>OSPF Show Commands</span>
+### OSPF Show Commands</span>
 
 The BFD lines at the end of each code block shows the corresponding IPv6
 or IPv4 OSPF interface or neighbor information.
@@ -254,11 +254,11 @@ or IPv4 OSPF interface or neighbor information.
           Detect Mul: 5, Min Rx interval: 500, Min Tx interval: 500
           Status: Down, Last update: 0:00:01:29
 
-## <span>Troubleshooting BFD</span>
+## Troubleshooting BFD</span>
 
 To troubleshoot BFD, use `ptmctl -b`. For more information, see
 [Prescriptive Topology Manager -
-PTM](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager---PTM).
+PTM](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM).
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

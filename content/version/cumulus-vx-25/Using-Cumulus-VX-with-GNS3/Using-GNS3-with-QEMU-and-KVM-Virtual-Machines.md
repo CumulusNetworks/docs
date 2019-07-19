@@ -133,7 +133,7 @@ Start all the VMs.
 You should be able to ping between the VMs, and between the virtual PCs
 as well.
 
-## <span>Caveats</span>
+## Caveats</span>
 
   - Once you start the VMs, they run headless. You can SSH into a VM
     as:  
@@ -148,7 +148,7 @@ as well.
     workaround, run QEMU/KVM from the command line; see below for
     details.
 
-## <span>KVM/QEMU from the Command Line</span>
+## KVM/QEMU from the Command Line</span>
 
 In order to use console access with GNS3 and QEMU/KVM VMs, you use the
 qemu binary that is bundled with GNS3. On OSX, this binary is located

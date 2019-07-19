@@ -3,7 +3,7 @@ title: Libvirt and KVM - QEMU
 author: Cumulus Networks
 weight: 45
 aliases:
- - /display/VX/Libvirt-and-KVM---QEMU
+ - /display/VX/Libvirt-and-KVM-QEMU
  - /pages/viewpage.action?pageId=5126704
 pageID: 5126704
 product: Cumulus VX
@@ -23,7 +23,7 @@ detailed instructions, refer to the
 
 {{%/notice%}}
 
-## <span>Overview</span>
+## Overview</span>
 
 Performing virtualization in Linux requires three components:
 
@@ -38,7 +38,7 @@ Performing virtualization in Linux requires three components:
     emulate the CPU architecture of the guest machine. Because QEMU does
     not provide hardware acceleration, it works well with KVM.
 
-## <span>Install libvirt</span>
+## Install libvirt</span>
 
 1.  Review the Linux version of the host:
 
@@ -110,7 +110,7 @@ In this guide, `libvirt` 1.2.16 was verified.
         local@host:~# libvirtd --version
         libvirtd (libvirt) 1.2.16
 
-## <span>Configure Cumulus VX VMs with QEMU/KVM</span>
+## Configure Cumulus VX VMs with QEMU/KVM</span>
 
 {{%notice note%}}
 
@@ -239,14 +239,14 @@ follows:
 
     {{%/notice%}}
 
-## <span>Next Steps</span>
+## Next Steps</span>
 
 {{%notice note%}}
 
 This section assumes that you are configuring a two-leaf/two-spine
 network topology, that you have completed the steps in [Create a Cumulus
 VX Virtual Machine with VMware vSphere - ESXi
-5.5](VMware-vSphere---ESXi-5.5.html#src-5126689_VMwarevSphere-ESXi5.5-CreateaCumulusVXVirtualMachinewithVMwarevSphere-ESXi5.5)
+5.5](VMware-vSphere-ESXi-5.5.html#src-5126689_VMwarevSphere-ESXi5.5-CreateaCumulusVXVirtualMachinewithVMwarevSphere-ESXi5.5)
 above, and that you now have a VM called `CumulusVX-leaf1`.
 
 {{%/notice%}}

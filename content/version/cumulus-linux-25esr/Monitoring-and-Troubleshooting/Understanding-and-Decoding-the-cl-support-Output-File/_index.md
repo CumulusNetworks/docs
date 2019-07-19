@@ -13,7 +13,7 @@ siteSlug: cumulus-linux-25esr
 ---
 <details>
 
-## <span>The cl-support command generates a tar archive of useful information for troubleshooting that can be auto-generated or manually created. To manually create it, run the cl-support command. The cl-support file is automatically generated when:</span>
+## The cl-support command generates a tar archive of useful information for troubleshooting that can be auto-generated or manually created. To manually create it, run the cl-support command. The cl-support file is automatically generated when:</span>
 
   - There is a [core file dump](http://linux.die.net/man/5/core) of any
     application (not specific to Cumulus Linux, but something all Linux
@@ -47,7 +47,7 @@ Example output:
 
 <summary>(Click to expand) </summary>
 
-## <span>Understanding the File Naming Scheme </span>
+## Understanding the File Naming Scheme </span>
 
 The `cl-support` command generates a file under `/var/support` with the
 following naming scheme. The following example describes the file called
@@ -58,7 +58,7 @@ following naming scheme. The following example describes the file called
 | **cl\_support**                                  | **switch**                                                          | **20141204**                                                      | **203833**                                                                                               |
 | This is always prepended to the `tar.gz` output. | This is the hostname of the switch where `cl-support` was executed. | The date in year, month, day; so 20141204 is December, 4th, 2014. | The time in hours, minutes, seconds; so 203833 is 20, 38, 33 (20:38:33) or the equivalent to 8:38:33 PM. |
 
-## <span>Decoding the Output</span>
+## Decoding the Output</span>
 
 Decoding a `cl_support` file is a simple process performed using the
 `tar` ******command. The following example illustrates extracting the

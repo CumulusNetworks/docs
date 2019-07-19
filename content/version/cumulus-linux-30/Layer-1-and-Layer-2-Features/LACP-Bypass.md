@@ -12,7 +12,7 @@ imgData: cumulus-linux-30
 siteSlug: cumulus-linux-30
 ---
 On Cumulus Linux, *LACP Bypass* is a feature that allows a
-[bond](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Bonding---Link-Aggregation)
+[bond](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Bonding-Link-Aggregation)
 configured in 802.3ad mode to become active and forward traffic even
 when there is no LACP partner. A typical use case for this feature is to
 enable a host, without the capability to run LACP, to PXE boot while
@@ -20,7 +20,7 @@ connected to a switch on a bond configured in 802.3ad mode. Once the
 pre-boot process finishes and the host is capable of running LACP, the
 normal 802.3ad link aggregation operation takes over.
 
-## <span>Understanding the LACP Bypass All-active Mode</span>
+## Understanding the LACP Bypass All-active Mode</span>
 
 When a bond has multiple slave interfaces, each bond slave interface
 operates as an active link while the bond is in bypass mode. This is
@@ -48,26 +48,26 @@ supported.
 
 {{%/notice%}}
 
-### <span>LACP Bypass and MLAG Deployments</span>
+### LACP Bypass and MLAG Deployments</span>
 
 In an [MLAG
-deployment](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation---MLAG)
+deployment](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG)
 where bond slaves of a host are connected to two switches and the bond
 is in all-active mode, all the slaves of bond are active on both the
 primary and secondary MLAG nodes.
 
-## <span>Configuring LACP Bypass</span>
+## Configuring LACP Bypass</span>
 
 You configure LACP bypass in the `/etc/network/interfaces` file.
 
 To enable LACP bypass on the host-facing bond, under the bond interface
 stanza, set `bond-lacp-bypass-allow` to *1*.
 
-### <span>VLAN-aware Bridge Mode Configuration</span>
+### VLAN-aware Bridge Mode Configuration</span>
 
 The following configuration shows LACP bypass enabled for a bridge in
 [VLAN-aware
-mode](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments):
+mode](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments):
 
     auto bond1
     iface bond1
@@ -110,11 +110,11 @@ and its slave interfaces:
     cumulus@switch:~$ cat /sys/class/net/swp51s3/bonding_slave/ad_rx_bypass 
     1
 
-### <span>Traditional Bridge Mode Configuration</span>
+### Traditional Bridge Mode Configuration</span>
 
 The following configuration shows LACP bypass enabled for multiple
 active interfaces (all-active mode) with a bridge in [traditional bridge
-mode](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/):
+mode](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/):
 
     auto bond1
     iface bond1 

@@ -37,7 +37,7 @@ article](https://support.cumulusnetworks.com/hc/en-us/articles/217132357-Cumulus
 
 {{%/notice%}}
 
-## <span>Monitor Virtual Extensible LANs</span>
+## Monitor Virtual Extensible LANs
 
 Virtual Extensible LANs (VXLANs) provide a way to create a virtual
 network on top of layer 2 and layer 3 technologies. It is intended for
@@ -69,7 +69,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### <span>View All VXLANs in Your Network</span>
+### View All VXLANs in Your Network
 
 You can view a list of configured VXLANs for all devices, including the
 VNI (VXLAN network identifier), protocol, address of associated VTEPs
@@ -165,7 +165,7 @@ particular VNI. This example shows the configured VXLANs for *VNI 24*.
     leaf03            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
     leaf04            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
 
-### <span>View the Interfaces Associated with VXLANs</span>
+### View the Interfaces Associated with VXLANs
 
 You can view detailed information about the VXLAN interfaces using the
 `netq show interface` command. You can also view this information for a
@@ -184,7 +184,7 @@ shows the detailed VXLAN interface information for the *leaf02* switch.
                                                                                             Master: bridge, VTEP: 10.0.0.112,
                                                                                             MTU: 1500
 
-## <span>Monitor EVPN</span>
+## Monitor EVPN
 
 EVPN (Ethernet Virtual Private Network) enables network administrators
 in the data center to deploy a virtual layer 2 bridge overlay on top of
@@ -221,7 +221,7 @@ same unit of measure.
 For more information about and configuration of EVPN in your data
 center, refer to the [Cumulus Linux EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/) topic.
 
-### <span>View the Status of EVPN</span>
+### View the Status of EVPN
 
 You can view the configuration and status of your EVPN overlay across
 your network or for a particular device. This example shows the
@@ -257,7 +257,7 @@ single device.
     leaf02            42         27.0.0.23        yes       198:42           198:42           Thu Feb  7 18:31:41 2019
     ...
 
-### <span>View the Status of EVPN for a Given VNI</span>
+### View the Status of EVPN for a Given VNI
 
 You can filter the full device view to focus on a single VNI. This
 example only shows the EVPN configuration and status for VNI *42*.
@@ -273,7 +273,7 @@ example only shows the EVPN configuration and status for VNI *42*.
     leaf21            42         36.0.0.26        yes       201:42           201:42           Wed Feb 13 18:14:33 2019
     leaf22            42         36.0.0.26        yes       202:42           202:42           Wed Feb 13 18:14:37 2019
 
-### <span>View EVPN Events</span>
+### View EVPN Events
 
 You can view status and configuration change events for the EVPN
 protocol service using the `netq show events` command. This example
@@ -297,7 +297,7 @@ shows the events that have occurred in the last 48 hours.
                                             p
     ...
 
-## <span>Monitor LNV</span>
+## Monitor LNV
 
 Lightweight Network Virtualization (LNV) is a technique for deploying
 [VXLANs](/cumulus-linux/Network-Virtualization)
@@ -313,7 +313,7 @@ command is:
     netq [<hostname>] show lnv [around <text-time>] [json]
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type lnv [between <text-time> and <text-endtime>] [json]
 
-### <span>View LNV Status</span>
+### View LNV Status
 
 You can view the configuration and status of your LNV overlay across
 your network or for a particular device. This example shows the
@@ -335,7 +335,7 @@ last time the configuration was changed.
     leaf21            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
     leaf22            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
 
-### <span>View LNV Status in the Past</span>
+### View LNV Status in the Past
 
 You can view the status in the past using the `around` option. This
 example shows the status of LNV about 30 minutes ago.

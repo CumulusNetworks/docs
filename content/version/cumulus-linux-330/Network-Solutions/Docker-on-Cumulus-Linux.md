@@ -17,9 +17,9 @@ directly on a Cumulus Linux switch, and Docker containers can be run
 natively on the switch. This section covers the installation and set up
 instructions for Docker.
 
-## <span>Setting up Docker on Cumulus Linux</span>
+## Setting up Docker on Cumulus Linux</span>
 
-### <span>Configure the Repositories</span>
+### Configure the Repositories</span>
 
 1.  Add the following line to the end of
     `/etc/apt/sources.list.d/jessie.list` in a text editor, and save the
@@ -39,20 +39,20 @@ instructions for Docker.
          
         deb https://apt.dockerproject.org/repo debian-jessie main
 
-### <span>Install the Authentication Key</span>
+### Install the Authentication Key</span>
 
 1.  Install the authentication key for Docker:
     
         cumulus@switch:$ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
-### <span>Install the docker-engine Package</span>
+### Install the docker-engine Package</span>
 
 1.  Install Docker:
     
         cumulus@switch:$ sudo apt-get update -y
         cumulus@switch:$ sudo apt-get install docker-engine -qy
 
-### <span>Configure systemd for Docker</span>
+### Configure systemd for Docker</span>
 
 1.  Add `docker` as a new line at the bottom of `/etc/vrf/systemd.conf`,
     and save the file.
@@ -77,7 +77,7 @@ instructions for Docker.
         ExecStart=
         ExecStart=/usr/bin/docker daemon --iptables=false --ip-masq=false --ip-forward=false
 
-### <span>Stop/Disable the Docker Services</span>
+### Stop/Disable the Docker Services</span>
 
 1.  Stop the various Docker services:
     
@@ -87,7 +87,7 @@ instructions for Docker.
         cumulus@switch:$ sudo systemctl stop docker.service
         cumulus@switch:$ sudo systemctl disable docker.service
 
-### <span>Launch Docker and the Ubuntu Container</span>
+### Launch Docker and the Ubuntu Container</span>
 
 1.  Enable the Docker management daemon so it starts when the switch
     boots:
@@ -102,7 +102,7 @@ instructions for Docker.
     
         cumulus@switch:$ docker run -i -t ubuntu /bin/bash
 
-## <span>Performance Notes</span>
+## Performance Notes</span>
 
 Keep in mind switches are not servers, in terms of the hardware that
 drives them. As such, you should be mindful of the types of applications

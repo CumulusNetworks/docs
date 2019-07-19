@@ -31,7 +31,7 @@ for this version.
 
 {{%/notice%}}
 
-## <span>Access the NetQ UI</span>
+## Access the NetQ UI
 
 Logging in to the NetQ UI is as easy as opening any web page.
 
@@ -74,7 +74,7 @@ To log out of the UI:
     {{% imgOld 3 %}}
 
 
-## <span>Application Layout</span>
+## Application Layout
 
 The NetQ UI contains two areas:
 
@@ -88,7 +88,7 @@ The NetQ UI contains two areas:
 
 {{% imgOld 4 %}}
 
-## <span>Main Menu</span>
+## Main Menu
 
 Found in the application header, click {{% imgOld 5 %}} to open the main menu which provides navigation to:
 
@@ -104,7 +104,7 @@ Found in the application header, click {{% imgOld 5 %}} to open the main menu wh
 
 {{% imgOld 6 %}}
 
-## <span>Recent Actions</span>
+## Recent Actions
 
 Found in the header, the Recent Actions keeps track of every action you
 take on your workbench. This enables you to go back to a previous state
@@ -114,12 +114,12 @@ To open Recent Actions, click {{% imgOld 7 %}}. Click on any of the actions to p
 
 {{% imgOld 8 %}}
 
-## <span>Search</span>
+## Search
 
 The Global Search field in the UI header enables you to search for
 devices.
 
-### <span>Create a Search</span>
+### Create a Search
 
 As with most search fields, simply begin entering the criteria in the
 search field. As you type, items that match the search criteria are
@@ -148,7 +148,7 @@ If you have more matches than fit in the window, click the **See All
 
     {{%/notice%}}
 
-### <span>Run a Recent Search</span>
+### Run a Recent Search
 
 You can re-run a recent search, saving time if you are comparing data
 from two or more devices.
@@ -170,7 +170,7 @@ You may need to click **See All \# Results** to find the desired
 
     {{%/notice%}}
 
-## <span>Quick Network Health View</span>
+## Quick Network Health View
 
 Found in the header, the graph and performance rating provide a view
 into the health of your network at a glance.
@@ -185,7 +185,7 @@ minutes.
 
 {{%/notice%}}
 
-## <span>Workbenches</span>
+## Workbenches
 
 A workbench is comprised of a given set of cards. In this release, a
 preconfigured default workbench, Cumulus Workbench, is available to get
@@ -195,7 +195,7 @@ is opened. You can modify a workbench by adding or removing cards or
 card decks, as described in [Add or
 Remove a Card](#src-12321856_NetQUserInterfaceOverview-AddDelCard).
 
-## <span>Cards</span>
+## Cards
 
 Cards present information about your network for monitoring and
 troubleshooting. This is where you can expect to spend most of your
@@ -209,7 +209,7 @@ tasks. You can add and remove cards from a workbench, move between cards
 and card sizes, and make copies of cards to show different levels of
 data at the same time.
 
-### <span>Card Sizes</span>
+### Card Sizes
 
 The various sizes of cards enables you to view your content at just the
 right level. For each aspect that you are monitoring there is typically
@@ -218,7 +218,7 @@ sizes. For example, a snapshot of your total inventory may be
 sufficient, but to monitor the distribution of hardware vendors may
 requires a bit more space.
 
-#### <span>Small Cards</span>
+#### Small Cards
 
 Small cards are most effective at providing a quick view of the
 performance or statistical value of a given aspect of your network. They
@@ -231,7 +231,7 @@ card, and a Network Health card, as shown here:
 
 {{% imgOld 12 %}}
 
-#### <span>Medium Cards</span>
+#### Medium Cards
 
 Medium cards are most effective at providing the key measurements for a
 given aspect of your network. They are commonly comprised of an icon to
@@ -244,7 +244,7 @@ these with their related small- and large-sized cards.
 
 {{% imgOld 13 %}}
 
-#### <span>Large Cards</span>
+#### Large Cards
 
 Large cards are most effective at providing the detailed information for
 monitoring specific components or functions of a given aspect of your
@@ -258,7 +258,7 @@ small- and medium-sized cards.
 
 {{% imgOld 14 %}}
 
-#### <span>Full-Screen Cards</span>
+#### Full-Screen Cards
 
 Full-screen cards are most effective for viewing all available data
 about an aspect of your network all in one place. When you cannot find
@@ -271,7 +271,7 @@ Events card and All Switches card, as shown here.
 
 {{% imgOld 16 %}}
 
-#### <span>Data Grid Settings</span>
+#### Data Grid Settings
 
 You can manipulate the data in a data grid in a full screen card in
 several ways.
@@ -347,7 +347,7 @@ The actions vary based on the card displayed.
 
 To return to original display of results, click the associated tab.
 
-#### <span>Export Data</span>
+#### Export Data
 
 You can export tabular data from a full screen card to a CSV- or
 JSON-formatted file.
@@ -377,7 +377,7 @@ You can quickly export all data to a .csv file in one of two ways:
 
 {{%/notice%}}
 
-#### <span>Card Size Summary</span>
+#### Card Size Summary
 
 <table>
 <colgroup>
@@ -420,7 +420,7 @@ You can quickly export all data to a .csv file in one of two ways:
 </tbody>
 </table>
 
-### <span>Card Interactions</span>
+### Card Interactions
 
 Every card contains a standard set of interactions, including the
 ability to switch between card sizes, and change the time period of the
@@ -436,7 +436,7 @@ To access the time period, card size, and additional actions, hover over
 the card. These options appear, covering the card header, enabling you
 to select the desired option.
 
-#### <span>Change the Time Period for the Card Data</span>
+#### Change the Time Period for the Card Data
 
 All cards have a default time period for the data shown on the card,
 typically the last 24 hours. You can change the time period to view the
@@ -458,7 +458,7 @@ the given card.
 
 {{%/notice%}}
 
-#### <span>Switch to a Different Card Size</span>
+#### Switch to a Different Card Size
 
 You can switch between the different card sizes at any time. Only one
 size is visible at a time. To view the same card in different sizes,
@@ -479,7 +479,7 @@ To change the card size:
     The card changes to the selected size, and may move its location on
     the workbench.
 
-#### <span>View a Description of the Card Content</span>
+#### View a Description of the Card Content
 
 When you hover over a medium or large card, the bottom right corner
 turns up and is highlighted. Clicking the corner turns the card over
@@ -490,7 +490,7 @@ Hover and click again to turn it back to the front side.
 
 {{% imgOld 31 %}}
 
-#### <span>Reposition a Card on Your Workbench</span>
+#### Reposition a Card on Your Workbench
 
 You can also move cards around on the workbench, using a simple drag and
 drop method.
@@ -510,7 +510,7 @@ To move a card:
 
     {{% imgOld 34 %}}
 
-### <span id="src-12321856_NetQUserInterfaceOverview-AddDelCard" class="confluence-anchor-link"></span><span>Add or Remove a Card</span>
+### Add or Remove a Card
 
 You can add or remove cards from a workbench at any time.
 
@@ -537,7 +537,7 @@ To remove a card:
 
 The card is removed from the workbench, but not from the application.
 
-## <span>Card Workflows</span>
+## Card Workflows
 
 The UI provides a number of card workflows. Card workflows focus on a
 particular aspect of your network and are a linked set of each size
@@ -561,7 +561,7 @@ more full screen cards. The following card workflows are available:
   - **Trace Request** (and Results): find available paths between two
     devices in the network fabric
 
-### <span>Access a Card Workflow</span>
+### Access a Card Workflow
 
 You can access a card workflow in multiple ways:
 
@@ -613,7 +613,7 @@ To access the card workflow by searching for the card:
 
     The card appears on a current workbench, at the bottom.
 
-## <span>Card Decks</span>
+## Card Decks
 
 A card deck is a collection of related cards that can be added and
 removed from a workbench all at once. They are distinct from card
@@ -633,12 +633,12 @@ To add a card deck:
 1.  Click {{% imgOld 43 %}} in the workbench task bar.
 2.  Select the deck you want to add to your workbench.
 
-## <span id="src-12321856_safe-id-TmV0UVVzZXJJbnRlcmZhY2VPdmVydmlldy0jVXNyU2V0" class="confluence-anchor-link"></span><span>User Settings</span>
+## User Settings
 
 You can customize the NetQ application display, change their account
 password, and manage their workbenches.
 
-### <span>Configure Display Settings</span>
+### Configure Display Settings
 
 The Display card contains the options for setting the application theme,
 language, time zone, and date formats. There are two themes available: a
@@ -723,7 +723,7 @@ To configure the display settings:
 
 7.  Return to your workbench by clicking {{% imgOld 52 %}} and selecting a workbench from the NetQ list.
 
-### <span>Change Your Password</span>
+### Change Your Password
 
 You can change your account password at any time should you suspect
 someone has hacked your account or your administrator requests you to do
@@ -750,7 +750,7 @@ To change your password:
     discard your changes.
 8.  Return to your workbench by clicking {{% imgOld 57 %}} and selecting a workbench from the NetQ list.
 
-### <span>Manage Your Workbenches</span>
+### Manage Your Workbenches
 
 You can view all of your workbenches in a list form, making it possible
 to manage various aspects of them. There are public and private
@@ -798,7 +798,7 @@ To manage your workbenches:
     and public workbenches.
 7.  Return to your workbench by clicking {{% imgOld 62 %}} and selecting a workbench from the NetQ list.
 
-## <span>Basic Terminology and Acronyms</span>
+## Basic Terminology and Acronyms
 
 The following table covers some basic terms used throughout the NetQ
 user documentation.
@@ -976,7 +976,7 @@ user documentation.
 | VXLAN | Virtual Extensible Local Area Network |
 | ZTP | Zero Touch Provisioning |
 
-## <span>Format Cues</span>
+## Format Cues
 
 Color is used to indicate links, options, and status within the UI.
 
@@ -993,7 +993,7 @@ Color is used to indicate links, options, and status within the UI.
 | Result with medium severity event   | Orange |
 | Result with low severity event      | Yellow |
 
-## <span>Get Help</span>
+## Get Help
 
 You can access the online user documentation for the UI from the Main
 Menu. Just click {{% imgOld 63 %}} and select *Help Documentation* under the ADMIN category.

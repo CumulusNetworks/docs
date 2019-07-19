@@ -26,10 +26,10 @@ To enable STP, configure `brctl stp <bridge> on`.
 
 The STP modes Cumulus RMP supports vary depending upon which [bridge
 driver
-mode](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/)
+mode](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
 is in use. For a bridge configured in *traditional* mode, STP, RSTP,
 PVST and PVRST are supported; with the default set to PVRST.
-*[VLAN-aware](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)*
+*[VLAN-aware](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)*
 bridges only operate in RSTP mode.
 
 If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU,
@@ -40,7 +40,7 @@ You can configure `mstpd` to be in common STP mode only, by setting
 
 {{%/notice%}}
 
-## <span>Commands</span>
+## Commands</span>
 
   - brctl
 
@@ -49,7 +49,7 @@ You can configure `mstpd` to be in common STP mode only, by setting
 `mstpctl` is a utility to configure STP. `mstpd` is started by default
 on bootup. `mstpd` logs and errors are located in `/var/log/daemon.log`.
 
-## <span>PVST/PVRST</span>
+## PVST/PVRST</span>
 
 Per VLAN Spanning Tree (PVST) creates a spanning tree instance for a
 bridge. Rapid PVST (PVRST) supports RSTP enhancements for each spanning
@@ -60,14 +60,14 @@ configuration, the native VLAN **must** be configured to be VLAN 1 only.
 
 Cumulus RMP supports the RSTP/PVRST/PVST modes of STP natively when the
 bridge is configured in [traditional
-mode](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/).
+mode](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/).
 
-## <span>Creating a Bridge and Configuring STP</span>
+## Creating a Bridge and Configuring STP</span>
 
 To create a bridge, configure the bridge stanza under
 `/etc/network/interfaces`. More information on configuring bridges [can
 be found
-here](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/).
+here](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/).
 To enable STP on the bridge, include the keyword `bridge-stp on`.
 
     auto br2
@@ -149,7 +149,7 @@ To get the `mstpd` bridge port state, use:
       Num RX BPDU        0                       Num RX TCN           0
       Num Transition FWD 2                       Num Transition BLK   2
 
-## <span>Configuring Spanning Tree Parameters</span>
+## Configuring Spanning Tree Parameters</span>
 
 The persistent configuration for a bridge is set in
 `/etc/network/interfaces`. The configuration below shows every possible
@@ -177,7 +177,7 @@ options:
       mstpctl-portnetwork swp1=no
       mstpctl-treeportprio swp3=128
 
-### <span>Understanding Spanning Tree Parameters</span>
+### Understanding Spanning Tree Parameters</span>
 
 The spanning tree parameters are defined in the IEEE
 [802.1D](http://standards.ieee.org/getieee802/download/802.1D-2004.pdf),
@@ -391,7 +391,7 @@ Examples are included below:
 </tbody>
 </table>
 
-## <span>Bridge Assurance</span>
+## Bridge Assurance</span>
 
 On a point-to-point link where RSTP is running, if you want to detect
 unidirectional links and put the port in a discarding state (in error),
@@ -408,7 +408,7 @@ type network on both the ends of the link:
     cumulus@switch:~$ sudo grep -in assurance /var/log/daemon.log | grep mstp
      1365:Jun 25 18:03:17 mstpd: br1007:swp1.1007 Bridge assurance inconsistent
 
-## <span id="src-5118731_SpanningTreeandRapidSpanningTree-bpdu" class="confluence-anchor-link"></span><span>BPDU Guard</span>
+## <span id="src-5118731_SpanningTreeandRapidSpanningTree-bpdu" class="confluence-anchor-link"></span>BPDU Guard</span>
 
 To protect the spanning tree topology from unauthorized switches
 affecting the forwarding path, you can configure *BPDU guard* (Bridge
@@ -417,7 +417,7 @@ new switch to an access port off of a leaf switch. If this new switch is
 configured with a low priority, it could become the new root switch and
 affect the forwarding path for the entire Layer 2 topology.
 
-### <span>Configuring BPDU Guard</span>
+### Configuring BPDU Guard</span>
 
 You configure BPDU guard under the bridge stanza in
 `/etc/network/interfaces`:
@@ -432,7 +432,7 @@ To load the new configuration, run `ifreload -a`:
 
     cumulus@switch:~$ sudo ifreload -a
 
-#### <span>Non-Persistent Configuration</span>
+#### Non-Persistent Configuration</span>
 
 You can also configure BPDU guard on an individual port using a runtime
 configuration.
@@ -451,7 +451,7 @@ you create here does not persist after you reboot the switch.
     cumulus@switch:~$ sudo mstpctl setbpduguard br2 swp3 yes
     cumulus@switch:~$ sudo mstpctl setbpduguard br2 swp4 yes
 
-### <span>Recovering a Port Disabled by BPDU Guard</span>
+### Recovering a Port Disabled by BPDU Guard</span>
 
 If a BPDU is received on the port, STP will bring down the port and log
 an error in `/var/log/syslog`. The following is a sample error:
@@ -527,7 +527,7 @@ configuration on the connected end-station has not been rectified.
       clag role          unknown                 clag dual conn mac   0:0:0:0:0:0
       clag remote portID F.FFF                   clag system mac      0:0:0:0:0:0
 
-## <span>BPDU Filter</span>
+## BPDU Filter</span>
 
 You can enable `bpdufilter` on a switch port, which filters BPDUs in
 both directions. This effectively disables STP on the port.
@@ -560,7 +560,7 @@ To enable BPDU filter at runtime, run `mstpctl`:
 
     cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 
-## <span>Storm Control</span>
+## Storm Control</span>
 
 *Storm control* provides protection against excessive inbound BUM
 (broadcast, unknown unicast, multicast) traffic on layer 2 switch port
@@ -582,11 +582,11 @@ enable broadcast and multicast storm control at 400 packets per second
     interface.swp1.storm_control.broadcast = 400
     interface.swp1.storm_control.multicast = 3000
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/network/interfaces
 
-## <span>Man Pages</span>
+## Man Pages</span>
 
   - brctl(8)
 
@@ -598,7 +598,7 @@ enable broadcast and multicast storm control at 400 packets per second
 
   - mstpctl-utils-interfaces(5)
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
 The source code for ` mstpd/mstpctl  `was written by [Vitalii
 Demianets](mailto:vitas%40nppfactor.kiev.ua) and is hosted at the
@@ -608,7 +608,7 @@ sourceforge URL below.
 
   - <http://en.wikipedia.org/wiki/Spanning_Tree_Protocol>
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - MSTP is not supported currently. However, interoperability with MSTP
     networks can be accomplished using PVRSTP or PVSTP.

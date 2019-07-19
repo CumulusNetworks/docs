@@ -35,7 +35,7 @@ ensures a consistent view of LSDB on each node in the network in a
 distributed fashion (eventual consistency model); this is key to the
 protocol’s correctness.
 
-## <span>Scalability and Areas</span>
+## Scalability and Areas</span>
 
 An increase in the number of nodes affects OSPF scalability in the
 following ways:
@@ -77,7 +77,7 @@ coming up with area addresses.
 
 {{%/notice%}}
 
-## <span>Configuring OSPFv2</span>
+## Configuring OSPFv2</span>
 
 Configuring OSPF involves the following tasks:
 
@@ -87,7 +87,7 @@ Configuring OSPF involves the following tasks:
 
   - Defining (Custom) OSPF parameters on the interfaces
 
-### <span>Enabling the OSPF and Zebra Daemons</span>
+### Enabling the OSPF and Zebra Daemons</span>
 
 To enable OSPF, enable the `zebra` and `ospf` daemons, as described in
 [Configuring
@@ -97,7 +97,7 @@ then start the Quagga service:
     cumulus@switch:~$ sudo systemctl enable quagga.service
     cumulus@switch:~$ sudo systemctl start quagga.service
 
-### <span>Configuring OSPF</span>
+### Configuring OSPF</span>
 
 As we discussed in [Introduction to Routing
 Protocols](/version/cumulus-linux-31/Layer-3-Features/Introduction-to-Routing-Protocols),
@@ -199,7 +199,7 @@ a single message when a peer transitions to/from FULL state.
 
 {{%/notice%}}
 
-### <span>Defining (Custom) OSPF Parameters on the Interfaces</span>
+### Defining (Custom) OSPF Parameters on the Interfaces</span>
 
 1.  Network type, such as point-to-point, broadcast.
 
@@ -220,7 +220,7 @@ Or through `cl-ospf`, from the Cumulus Linux shell:
 
 The OSPF configuration is saved in `/etc/quagga/ospfd.conf`.
 
-### <span>OSP SPF Timer Defaults</span>
+### OSP SPF Timer Defaults</span>
 
 OSPF uses the following three timers as an exponential backoff, to
 prevent consecutive SPFs from hammering the CPU:
@@ -232,7 +232,7 @@ prevent consecutive SPFs from hammering the CPU:
 
   - 5000 ms maximum between SPFs
 
-### <span>Configure MD5 Authentication for OSPF Neighbors</span>
+### Configure MD5 Authentication for OSPF Neighbors</span>
 
 Simple text passwords have largely been deprecated in Quagga, in favor
 of MD5 hash authentication; the following section covers the setup
@@ -275,11 +275,11 @@ message-digest-key` command.
 
 {{%/notice%}}
 
-## <span>Scaling Tips</span>
+## Scaling Tips</span>
 
 Here are some tips for how to scale out OSPF.
 
-### <span>Summarization</span>
+### Summarization</span>
 
 By default, an ABR creates a summary (type-3) LSA for each route in an
 area and advertises it in adjacent areas. Prefix range configuration
@@ -317,7 +317,7 @@ As a result, other backbone routers shift traffic destined to
 10.1.0.0/16 towards R6. This breaks ECMP and is an under-utilization of
 network capacity for traffic destined to 10.1.1.0/24.
 
-### <span>Stub Areas</span>
+### Stub Areas</span>
 
 Nodes in an area receive and store intra-area routing information and
 summarized information about other areas from the ABRs. In particular, a
@@ -357,12 +357,12 @@ Here is a brief tabular summary of the area type differences:
 | Stub area             | LSA types 1, 2, 3, 4 area-scoped, No type 5 externals, inter-area routes summarized |
 | Totally stubby area   | LSA types 1, 2 area-scoped, default summary, No type 3, 4, 5 LSA types allowed      |
 
-### <span id="src-5122126_OpenShortestPathFirst-OSPF-Protocol-multi-instance" class="confluence-anchor-link"></span><span>Running Multiple ospfd Instances</span>
+### <span id="src-5122126_OpenShortestPathFirst-OSPF-Protocol-multi-instance" class="confluence-anchor-link"></span>Running Multiple ospfd Instances</span>
 
 The `ospfd` daemon is VRF-aware and a single instance of it can have
 multiple independent processes, each tied to its own VRF. The best way
 to configure multi-process (multi-VRF) OSPF is discussed in the [VRF
-chapter](/version/cumulus-linux-31/Layer-3-Features/Virtual-Routing-and-Forwarding---VRF).
+chapter](/version/cumulus-linux-31/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF).
 
 However, you can configure multi-process OSPF using multiple `ospfd`
 instances, but this is a legacy method and is not recommended in most
@@ -490,7 +490,7 @@ following:
         21160 ?        S<s    0:01 /usr/lib/quagga/watchquagga -adz -r /usr/sbin/servicebBquaggabBrestartbB%s -s /usr/sbin/servicebBquaggabBstartbB%s -k /usr/sbin/servicebBquaggabBstopbB%s -b bB -t 30 zebra ospfd-11 ospfd-22 pimd
         22021 pts/3    S+     0:00 grep ospf
 
-#### <span>Caveats</span>
+#### Caveats</span>
 
 You can use the `redistribute ospf` option in your Quagga.conf file
 works with this so you can route between the instances. Specify the
@@ -597,7 +597,7 @@ ID in the file name. Continuing with our example, you would create
 
 {{%/notice%}}
 
-## <span id="src-5122126_OpenShortestPathFirst-OSPF-Protocol-ospf_unnum" class="confluence-anchor-link"></span><span>Unnumbered Interfaces</span>
+## <span id="src-5122126_OpenShortestPathFirst-OSPF-Protocol-ospf_unnum" class="confluence-anchor-link"></span>Unnumbered Interfaces</span>
 
 Unnumbered interfaces are interfaces without unique IP addresses. In
 OSPFv2, configuring unnumbered interfaces reduces the links between
@@ -655,14 +655,14 @@ To enable OSPF on an unnumbered interface from within Quagga's `vtysh`:
     R3(config)# interface swp1
     R3(config-if)# ip ospf area 0.0.0.1
 
-## <span>ECMP</span>
+## ECMP</span>
 
 During SPF computation for an area, if OSPF finds multiple paths with
 equal cost (metric), all those paths are used for forwarding. For
 example, in the reference topology diagram, R8 uses both R3 and R4 as
 next hops to reach a destination attached to R9.
 
-## <span>Topology Changes and OSPF Reconvergence</span>
+## Topology Changes and OSPF Reconvergence</span>
 
 Topology changes usually occur due to one of four events:
 
@@ -687,7 +687,7 @@ failed link or node to each of the destinations. The reconvergence
 depends on layer 1 failure detection capabilities and at the worst case
 *DeadInterval* OSPF timer.
 
-### <span>Example Configurations</span>
+### Example Configurations</span>
 
 Example configuration for event 1, using `vtysh`:
 
@@ -707,7 +707,7 @@ Or, with the non-modal shell command approach:
 
     cumulus@switch:~$ sudo cl-ospf interface swp1 set cost 65535
 
-## <span id="src-5122126_OpenShortestPathFirst-OSPF-Protocol-ospf_debug" class="confluence-anchor-link"></span><span>Debugging OSPF</span>
+## <span id="src-5122126_OpenShortestPathFirst-OSPF-Protocol-ospf_debug" class="confluence-anchor-link"></span>Debugging OSPF</span>
 
 [OperState](http://www.nongnu.org/quagga/docs/docs-info.html#Showing-OSPF-information)
 lists all the commands to view the operational state of OSPF.
@@ -772,11 +772,11 @@ Using `tcpdump` to capture OSPF packets:
 
     cumulus@switch:~$ sudo tcpdump -v -i swp1 ip proto ospf
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/quagga/ospfd.conf
 
-## <span>Supported RFCs</span>
+## Supported RFCs</span>
 
   - 
     
@@ -790,10 +790,10 @@ Using `tcpdump` to capture OSPF packets:
 
   - [RFC5309](http://tools.ietf.org/rfc/rfc5309)
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [Bidirectional forwarding
-    detection](/version/cumulus-linux-31/Layer-3-Features/Bidirectional-Forwarding-Detection---BFD)
+    detection](/version/cumulus-linux-31/Layer-3-Features/Bidirectional-Forwarding-Detection-BFD)
     (BFD) and OSPF
 
   - [en.wikipedia.org/wiki/Open\_Shortest\_Path\_First](http://en.wikipedia.org/wiki/Open_Shortest_Path_First)

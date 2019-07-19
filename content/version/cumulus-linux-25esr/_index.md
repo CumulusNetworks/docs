@@ -12,7 +12,7 @@ imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 subsection: true
 ---
-## <span>Welcome to Cumulus Networks</span>
+## Welcome to Cumulus Networks</span>
 
 We are transforming networking with Cumulus Linux, the industry's first,
 full-featured Linux operating system for networking hardware. Cumulus
@@ -34,7 +34,7 @@ Read the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/223501348)
 for new features and known issues in this release.
 
-## <span>Extended Support Release</span>
+## Extended Support Release</span>
 
 This version of Cumulus Linux is an Extended Support Release (ESR).
 Cumulus Linux 2.5 ESR started with Cumulus Linux 2.5.6 and all future

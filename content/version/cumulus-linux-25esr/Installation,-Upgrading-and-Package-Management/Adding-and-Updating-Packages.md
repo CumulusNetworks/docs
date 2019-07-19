@@ -15,7 +15,7 @@ You use the Advanced Packaging Tool (APT) to manage additional
 applications (in the form of packages) and to install the latest
 updates.
 
-## <span>Commands</span>
+## Commands</span>
 
   - apt-get
 
@@ -23,7 +23,7 @@ updates.
 
   - dpkg
 
-## <span>Updating the Package Cache</span>
+## Updating the Package Cache</span>
 
 To work properly, APT relies on a local cache of the available packages.
 You must populate the cache initially, and then periodically update it
@@ -42,7 +42,7 @@ with `apt-get update`:
     Ign http://repo.cumulusnetworks.com CumulusLinux-2.5/updates Translation-en
     Fetched 413 kB in 3s (117 kB/s)Reading package lists... Done
 
-## <span>Listing Available Packages</span>
+## Listing Available Packages</span>
 
 Once the cache is populated, use `apt-cache` to search the cache to find
 the packages you are interested in or to get information about an
@@ -115,7 +115,7 @@ will match on more packages than you would expect.
 
 {{%/notice%}}
 
-## <span>Adding a Package</span>
+## Adding a Package</span>
 
 In order to add a new package, first ensure the package is not already
 installed in the system:
@@ -153,7 +153,7 @@ For example, the following adds the package `tcpreplay` to the system:
     Setting up tcpreplay (3.4.3-2+wheezy1) ...
     cumulus@switch:~$ 
 
-## <span>Listing Installed Packages</span>
+## Listing Installed Packages</span>
 
 The APT cache contains information about all the packages available on
 the repository. To see which packages are actually installed on your
@@ -171,9 +171,9 @@ system that have "tcp" in their package names:
     ii  tcpreplay      3.4.3-2+whee powerpc      Tool to replay saved tcpdump file
     cumulus@switch:~$
 
-## <span>Upgrading to Newer Versions of Installed Packages</span>
+## Upgrading to Newer Versions of Installed Packages</span>
 
-### <span>Upgrading a Single Package</span>
+### Upgrading a Single Package</span>
 
 A single package can be upgraded by simply installing that package again
 with `apt-get install`. You should perform an update first so that the
@@ -191,13 +191,13 @@ Support](https://cumulusnetworks.com/support/overview/).
 
 {{%/notice%}}
 
-### <span>Upgrading All Packages</span>
+### Upgrading All Packages</span>
 
 You can update all packages on the system by running `apt-get update`,
 then `apt-get dist-upgrade`. This upgrades all installed versions with
 their latest versions but will not install any new packages.
 
-## <span>Adding Packages from Another Repository</span>
+## Adding Packages from Another Repository</span>
 
 As shipped, Cumulus Linux searches the Cumulus Linux repository for
 available packages. You can add additional repositories to search by
@@ -268,7 +268,7 @@ To install a new package, please complete the following steps:
         cumulus@switch:~$ sudo apt-get update
         cumulus@switch:~$ sudo apt-get install {name of package}
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/apt/apt.conf
 
@@ -276,7 +276,7 @@ To install a new package, please complete the following steps:
 
   - /etc/apt/sources.list
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [Debian GNU/Linux FAQ, Ch 8 Package management
     tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)

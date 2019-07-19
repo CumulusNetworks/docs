@@ -28,7 +28,7 @@ It helps answer questions such as:
   - Is OSPF working as expected?
   - Can device A reach device B using IP addresses?
 
-## <span>Monitor IP Configuration</span>
+## Monitor IP Configuration
 
 NetQ enables you to view the current status and the status an earlier
 point in time. From this information, you can:
@@ -72,7 +72,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### <span>View IP Address Information</span>
+### View IP Address Information
 
 You can view the IPv4 and IPv6 address information for all of your
 devices, including the interface and VRF for each device. Additionally,
@@ -243,7 +243,7 @@ leaf01. Note that you must specify a hostname to use the count option.
     cumulus@switch:~$ netq leaf01 show ipv6 addresses count
     Count of matching address records: 42
 
-### <span>View IP Neighbor Information</span>
+### View IP Neighbor Information
 
 You can view the IPv4 and IPv6 neighbor information for all of your
 devices, including the interface port, MAC address, VRF assignment, and
@@ -309,7 +309,7 @@ This example shows the IPv6 neighbors for leaf02 switch.
     fe80::a200:ff:fe00:33     leaf02            eth0                      a0:00:00:00:00:33  default         no     Thu Feb  7 22:49:26 2019
     fe80::a200:ff:fe00:34     leaf02            eth0                      a0:00:00:00:00:34  default         no     Thu Feb  7 22:49:26 2019
 
-### <span>View IP Routes Information</span>
+### View IP Routes Information
 
 You can view the IPv4 and IPv6 routes for all of your devices, including
 the IP address (with or without mask), the destination (by hostname) of
@@ -415,7 +415,7 @@ node.
     cumulus@switch:~$ netq leaf01 show ipv6 routes count
     Count of matching routes records: 5
 
-## <span>Monitor BGP Configuration</span>
+## Monitor BGP Configuration
 
 If you have BGP running on your switches and hosts, you can monitor its
 operation using the NetQ CLI. For each device, you can view its
@@ -451,7 +451,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### <span>View BGP Configuration Information</span>
+### View BGP Configuration Information
 
 NetQ enables you to view the BGP configuration of a single device or
 across all of your devices at once. You can filter the results based on
@@ -737,7 +737,7 @@ days ago on this network.
      
     ...
 
-### <span>Validate BGP Operation</span>
+### Validate BGP Operation
 
 A single command enables you to validate that all configured route
 peering is established across the network. The command checks for
@@ -786,7 +786,7 @@ This example shows 24 failed BGP sessions with a variety of reasons.
                                                                           SAFI evpn not activated on peer              
     ...
 
-## <span>Monitor OSPF Configuration</span>
+## Monitor OSPF Configuration
 
 If you have OSPF running on your switches and hosts, you can monitor its
 operation using the NetQ CLI. For each device, you can view its
@@ -822,7 +822,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### <span>View OSPF Configuration Information</span>
+### View OSPF Configuration Information
 
 NetQ enables you to view the OSPF configuration of a single device or
 across all of your devices at once. You can filter the results based on
@@ -903,7 +903,7 @@ five minutes ago.
     leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      Thu Feb  7 14:42:16 2019
     leaf04            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp4                      Thu Feb  7 14:42:16 2019
 
-### <span>Validate OSPF Operation</span>
+### Validate OSPF Operation
 
 A single command, `netq check ospf`, enables you to validate that all
 configured route peering is established across the network. The command
@@ -939,7 +939,7 @@ mismatched MTU for two links.
     spine03           swp6                      0.0.0.23                  27.0.0.23                 mtu mismatch, mtu mismatch                    Thu Feb  7 14:42:16 2019
     leaf22            swp5                      0.0.0.17                  27.0.0.17                 mtu mismatch, mtu mismatch                    Thu Feb  7 14:42:16 2019
 
-## <span>View Paths between Devices</span>
+## View Paths between Devices
 
 You can view the available paths between two devices on the network
 currently and at a time in the past using their IPv4 or IPv6 addresses.
@@ -970,7 +970,7 @@ to ping the identified device so that its address becomes known.
 
 {{%/notice%}}
 
-### <span>View Paths between Two Switches with Pretty Output</span>
+### View Paths between Two Switches with Pretty Output
 
 This example first determines the IP addresses of the leaf01 and leaf03
 switches, then shows the available paths between them. The results
@@ -1009,7 +1009,7 @@ Path MTU: 1500
         swp51 -- swp1 spine01 swp3 -- swp51 leaf03 <lo>  
 ```
 
-### <span>View Paths between Two Switches with Detailed Output</span>
+### View Paths between Two Switches with Detailed Output
 
 This example provides the same path information as the pretty output,
 but displays the information in a tabular output. In this case there, no

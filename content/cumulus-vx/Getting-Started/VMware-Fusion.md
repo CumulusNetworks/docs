@@ -22,7 +22,7 @@ documentation](https://www.vmware.com/support/pubs/fusion_pubs.html).
 
 {{%/notice%}}
 
-## <span>Create a Cumulus VX VM with VMware Fusion</span>
+## Create a Cumulus VX VM with VMware Fusion</span>
 
 {{%notice note%}}
 
@@ -69,7 +69,7 @@ Started](/cumulus-vx/Getting-Started/) page.
         
         {{% imgOld 0 %}}
 
-## <span>Next Steps</span>
+## Next Steps</span>
 
 {{%notice note%}}
 

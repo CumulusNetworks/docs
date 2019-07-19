@@ -188,7 +188,7 @@ To complete the transition to FRR:
         cumulus@switch:~$ sudo systemctl start frr.service
         cumulus@switch:~$ sudo systemctl -l status frr.service
 
-## <span>Troubleshooting</span>
+## Troubleshooting</span>
 
 If the `systemctl -l status frr` output shows an issue, edit the
 configuration files to correct it, and repeat the process. If issues

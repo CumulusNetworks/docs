@@ -16,7 +16,7 @@ you may want to configure some of the additional capabilities that NetQ
 offers. This topic describes how to install, setup, and configure these
 capabilities.
 
-## <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-IntegrateNotification" class="confluence-anchor-link"></span><span>Integrate NetQ with an Event Notification Application</span>
+## <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-IntegrateNotification" class="confluence-anchor-link"></span>Integrate NetQ with an Event Notification Application</span>
 
 To take advantage of the numerous event messages generated and processed
 by NetQ, you must integrate with third-party event notification
@@ -98,7 +98,7 @@ events:
 
 *\* This type of event can only be viewed in the CLI with this release.*
 
-### <span>Event Message Format</span>
+### Event Message Format</span>
 
 Messages have the following structure:
 `<message-type><timestamp><opid><hostname><severity><message>`
@@ -124,7 +124,7 @@ accomplished using the NetQ CLI in the following order:
 
 {{% imgOld 2 %}}
 
-### <span>Notification Commands Overview</span>
+### Notification Commands Overview</span>
 
 The NetQ Command Line Interface (CLI) is used to filter and send
 notifications to third-party tools based on severity, service,
@@ -152,7 +152,7 @@ to assist when needed. The command syntax is:
 
 The options are described in the following sections where they are used.
 
-### <span>Configure a Proxy Server</span>
+### Configure a Proxy Server</span>
 
 To send notification messages through a proxy server instead of directly
 to a notification channel, you configure NetQ with the hostname and
@@ -181,12 +181,12 @@ to the notification channels.
     cumulus@switch:~$ netq del notification proxy
     Successfully overwrote notifier proxy to null
 
-### <span>Create Channels</span>
+### Create Channels</span>
 
 Create one or more PagerDuty and Slack channels to present the
 notifications.
 
-#### <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-PDcli" class="confluence-anchor-link"></span><span>Configure a PagerDuty Channel</span>
+#### <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-PDcli" class="confluence-anchor-link"></span>Configure a PagerDuty Channel</span>
 
 NetQ sends notifications to PagerDuty as PagerDuty events.
 
@@ -220,7 +220,7 @@ To configure the NetQ notifier to send notifications to PagerDuty:
                                                       210a8425298ef7abde0d1998      
     ```
 
-#### <span>Configure a Slack Channel</span>
+#### Configure a Slack Channel</span>
 
 NetQ Notifier sends notifications to Slack as incoming webhooks for a
 Slack channel you configure. For example:
@@ -307,7 +307,7 @@ To configure NetQ to send notifications to Slack:
     
     {{% imgOld 5 %}}
 
-### <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-FilterRule" class="confluence-anchor-link"></span><span>Create Rules </span>
+### <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-FilterRule" class="confluence-anchor-link"></span>Create Rules </span>
 
 Each rule is comprised of a single key-value pair. The key-value pair
 indicates what messages to include or drop from event information sent
@@ -2255,7 +2255,7 @@ Use Tab completion to view the command options syntax.
 
 {{%/notice%}}
 
-#### <span>Example Rules</span>
+#### Example Rules</span>
 
 Create a BGP Rule Based on Hostname:
 
@@ -2292,7 +2292,7 @@ Create an Interface Rule Based on Port:
     cumulus@switch:~$ netq add notification rule swp52 key port value swp52 
     Successfully added/updated rule swp52 
 
-#### <span>View the Rule Configurations</span>
+#### View the Rule Configurations</span>
 
 Use the `netq show notification` command to view the rules on your
 platform.
@@ -2311,7 +2311,7 @@ platform.
     swp52           port             swp52
     sysconf         configdiff       updated
 
-### <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-NotifierFilters" class="confluence-anchor-link"></span><span>Create Filters</span>
+### <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-NotifierFilters" class="confluence-anchor-link"></span>Create Filters</span>
 
 You can limit or direct event messages using filters. Filters are
 created based on rules you define; like those in the previous section.
@@ -2350,7 +2350,7 @@ Filter names are also case sensitive.
 
 {{%/notice%}}
 
-#### <span>Example Filters</span>
+#### Example Filters</span>
 
 Create a filter for BGP Events on a Particular Device:
 
@@ -2390,7 +2390,7 @@ filter, do not specify a channel. To put the filter first, use the
     cumulus@switch:~$ netq add notification filter swp52Drop severity error rule swp52 before bgpSpine
     Successfully added/updated filter swp52Drop
 
-#### <span>View the Filter Configurations</span>
+#### View the Filter Configurations</span>
 
 Use the `netq show notification` command to view the filters on your
 platform.
@@ -2409,7 +2409,7 @@ platform.
     svcDown         6          critical         slk-netq-events  svcStatus
     critTemp        7          critical         pd-netq-events   overTemp
 
-#### <span>Reorder Filters</span>
+#### Reorder Filters</span>
 
 When you look at the results of the `netq show notification filter`
 command above, you might notice that although you have the drop-based
@@ -2451,7 +2451,7 @@ Run the `netq show notification` command again to verify the changes:
     configChange    6          info             slk-netq-events  sysconf
     newFEC          7          info             slk-netq-events  fecSupport
 
-## <span>Example Notification Configurations</span>
+## Example Notification Configurations</span>
 
 Putting all of these channel, rule, and filter definitions together you
 create a complete notification configuration. The following are example
@@ -2460,7 +2460,7 @@ outlined above. Refer to [Integrate NetQ with an Event Notification
 Application](#src-12320911_IntegratewithThird-partySoftwareandHardware-IntegrateNotification)
 for details and instructions for creating channels, rules, and filters.
 
-### <span>Create a Notification for BGP Events from a Selected Switch</span>
+### Create a Notification for BGP Events from a Selected Switch</span>
 
 In this example, we created a notification integration with a PagerDuty
 channel called *pd-netq-events*. We then created a rule *bgpHostname*
@@ -2495,7 +2495,7 @@ filtered to the *pd-netq-events* ** channel.
     bgpSpine        1          info             pd-netq-events   bgpHostnam
                                                                  e
 
-### <span>Create a Notification for Warnings on a Given EVPN VNI</span>
+### Create a Notification for Warnings on a Given EVPN VNI</span>
 
 In this example, we created a notification integration with a PagerDuty
 channel called *pd-netq-events*. We then created a rule *evpnVni* and a
@@ -2534,7 +2534,7 @@ from VNI 42 are filtered to the *pd-netq-events* ** channel.
                                                                  e
     vni42           2          warning          pd-netq-events   evpnVni
 
-### <span>Create a Notification for Configuration File Changes</span>
+### Create a Notification for Configuration File Changes</span>
 
 In this example, we created a notification integration with a Slack
 channel called *slk-netq-events*. We then created a rule *sysconf* and a
@@ -2576,7 +2576,7 @@ The result is that any configuration update messages are filtered to the
     vni42           2          warning          pd-netq-events   evpnVni
     configChange    3          info             slk-netq-events  sysconf
 
-### <span>Create a Notification for When a Service Goes Down</span>
+### Create a Notification for When a Service Goes Down</span>
 
 In this example, we created a notification integration with a Slack
 channel called *slk-netq-events*. We then created a rule *svcStatus* and
@@ -2620,7 +2620,7 @@ messages are filtered to the *slk-netq-events* ** channel.
     configChange    3          info             slk-netq-events  sysconf
     svcDown         4          critical         slk-netq-events  svcStatus
 
-### <span>Create a Filter to Drop Notifications from a Given Interface</span>
+### Create a Filter to Drop Notifications from a Given Interface</span>
 
 In this example, we created a notification integration with a Slack
 channel called *slk-netq-events*. We then created a rule *swp52* and a
@@ -2666,7 +2666,7 @@ interface *swp52*.
     configChange    4          info             slk-netq-events  sysconf
     svcDown         5          critical         slk-netq-events  svcStatus
 
-### <span>Create a Notification for a Given Device that has a Tendency to Overheat (using multiple rules)</span>
+### Create a Notification for a Given Device that has a Tendency to Overheat (using multiple rules)</span>
 
 In this example, we created a notification when switch *leaf04* has
 passed over the high temperature threshold. Two rules were needed to
@@ -2722,7 +2722,7 @@ critTemp        6          critical         pd-netq-events   switchLeaf
                                                              overTemp                                                
 ```
 
-### <span>View Notification Configurations in JSON Format</span>
+### View Notification Configurations in JSON Format</span>
 
 You can view configured integrations using the `netq show notification`
 commands. To view the channels, filters, and rules, run the three
@@ -2830,13 +2830,13 @@ For example:
         "truncatedResult":false
     }
 
-## <span>Manage Event Notification Integrations</span>
+## Manage Event Notification Integrations</span>
 
 <span style="color: #36424a;"> You might need to modify event
 notification configurations at some point in the lifecycle of your
 deployment. Optionally, you might want to configure a proxy. </span>
 
-### <span>Remove an Event Notification Channel</span>
+### Remove an Event Notification Channel</span>
 
 You can delete an event notification integration using the `netq config
 del notification` command. You can verify it has been removed using the
@@ -2853,7 +2853,7 @@ the configuration:
     pd-netq-events  pagerduty        info             integration-key: 1234567
                                                       890
 
-### <span>Delete an Event Notification Rule</span>
+### Delete an Event Notification Rule</span>
 
 To delete a rule, use the following command, then verify it has been
 removed:
@@ -2870,7 +2870,7 @@ removed:
     switchLeaf04    hostname         leaf04
     sysconf         configdiff       updated
 
-### <span>Delete an Event Notification Filter</span>
+### Delete an Event Notification Filter</span>
 
 To delete a filter, use the following command, then verify it has been
 removed:
@@ -2889,7 +2889,7 @@ removed:
                                                                  04
                                                                  overTemp
 
-## <span>Integrate with a Hardware Chassis</span>
+## Integrate with a Hardware Chassis</span>
 
 NetQ can run within a [Facebook Backpack
 chassis](https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/),

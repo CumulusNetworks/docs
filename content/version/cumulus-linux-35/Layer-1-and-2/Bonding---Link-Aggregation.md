@@ -23,7 +23,7 @@ Cumulus Linux supports two bonding modes:
   - The balance-xor mode, where the bonding of slave interfaces are
     static and all slave interfaces are active for load balancing and
     fault tolerance purposes. This is useful for
-    [MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation---MLAG)
+    [MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG)
     deployments.
 
 The benefits of link aggregation include:
@@ -39,7 +39,7 @@ Cumulus Linux uses version 1 of the LAG control protocol (LACP).
 To temporarily bring up a bond even when there is no LACP partner, use
 [LACP Bypass](/version/cumulus-linux-35/Layer-1-and-2/LACP-Bypass).
 
-## <span>Hash Distribution</span>
+## Hash Distribution</span>
 
 Egress traffic through a bond is distributed to a slave based on a
 packet hash calculation, providing load balancing over the slaves; many
@@ -63,11 +63,11 @@ over available slaves.
 
 {{%/notice%}}
 
-## <span>Creating a Bond</span>
+## Creating a Bond</span>
 
 Bonds can be created and configured using the Network Command Line
 Utility
-([NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility---NCLU/)).
+([NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/)).
 Follow the steps below to create a new bond:
 
 1.  SSH into the switch.
@@ -89,7 +89,7 @@ The name of the bond must be:
 
 {{%/notice%}}
 
-### <span>Configuration Options</span>
+### Configuration Options</span>
 
 The configuration options, and their default values, are listed in the
 table below.
@@ -164,7 +164,7 @@ configuration values, refer to the Related Information section below.
 <tr class="odd">
 <td><p><code>bond lacp-rate</code></p></td>
 <td><p>Sets the rate to ask the link partner to transmit LACP control packets.</p>
-<p>You can set the LACP rate to slow using <a href="/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility---NCLU/">NCLU</a>:</p>
+<p>You can set the LACP rate to slow using <a href="/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/">NCLU</a>:</p>
 <pre><code>cumulus@switch:~$ net add bond bond01 bond lacp-rate slow</code></pre></td>
 <td><p>1</p></td>
 </tr>
@@ -179,7 +179,7 @@ configuration values, refer to the Related Information section below.
 </tbody>
 </table>
 
-### <span id="src-8357435_Bonding-LinkAggregation-balance_xor" class="confluence-anchor-link"></span><span>Enabling balance-xor Mode</span>
+### <span id="src-8357435_Bonding-LinkAggregation-balance_xor" class="confluence-anchor-link"></span>Enabling balance-xor Mode</span>
 
 When you enable *balance-xor mode*, the bonding of slave interfaces are
 static and all slave interfaces are active for load balancing and fault
@@ -187,7 +187,7 @@ tolerance purposes. Packet transmission on the bond is based on the hash
 policy specified by `xmit-hash-policy`.
 
 When using balance-xor mode to dual-connect host-facing bonds in an
-[MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG)
 environment, the `clag_id` parameter **must** be configured on the MLAG
 bonds and must be the same on both MLAG switches. Otherwise, the bonds
 are treated by the MLAG switch pair as if they were single-connected.
@@ -218,7 +218,7 @@ These commands create the following configuration in the
         bond-slaves swp3 swp4
 
 To view the bond, use
-[NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility---NCLU/):
+[NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/):
 
     cumulus@switch:~$ net show interface bond1 
         Name    MAC                Speed    MTU    Mode
@@ -257,7 +257,7 @@ To view the bond, use
       inet6 fe80::202:ff:fe00:12/64
       Interface Type Other
 
-## <span>Example Configuration: Bonding 4 Slaves</span>
+## Example Configuration: Bonding 4 Slaves</span>
 
 In the following example, the front panel port interfaces swp1-swp4 are
 slaves in bond0, while swp5 and swp6 are not part of bond0.
@@ -336,7 +336,7 @@ address traffic to the bond.
 
 {{%/notice%}}
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - An interface cannot belong to multiple bonds.
 
@@ -347,7 +347,7 @@ address traffic to the bond.
   - Slave ports within a bond should all be set to the same
     speed/duplex, and should match the link partner’s slave ports.
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Linux Foundation -
     Bonding](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)

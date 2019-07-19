@@ -13,11 +13,11 @@ siteSlug: cumulus-rmp-25esr
 ---
 This chapter discusses routing on switches running Cumulus RMP.
 
-## <span>Commands</span>
+## Commands</span>
 
   - ip route
 
-## <span>Configuring Static Routing</span>
+## Configuring Static Routing</span>
 
 The `ip route` command allows manipulating the kernel routing table
 directly from the Linux shell. See `man ip(8)` for details.
@@ -31,7 +31,7 @@ To display the routing table:
     10.168.2.0/24 dev swp2  proto kernel  scope link  src 10.168.2.1 
     10.168.26.0/24 dev swp26  proto kernel  scope link  src 10.168.26.1 
 
-### <span>Persistently Adding a Static Route</span>
+### Persistently Adding a Static Route</span>
 
 A static route can be persistently added by adding `up ip route add ..`
 into `/etc/network/interfaces`. For example:
@@ -65,7 +65,7 @@ Configuration Files
 
   - /etc/network/interfaces
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - <http://linux-ip.net/html/tools-ip-route.html>
 

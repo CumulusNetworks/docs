@@ -14,7 +14,7 @@ siteSlug: cumulus-rmp-25esr
 Setting the time zone, date and time requires root privileges; use
 `sudo`.
 
-## <span>Commands</span>
+## Commands</span>
 
   - date
 
@@ -26,7 +26,7 @@ Setting the time zone, date and time requires root privileges; use
 
   - ntpq
 
-## <span>Setting the Time Zone</span>
+## Setting the Time Zone</span>
 
 To see the current time zone, list the contents of `/etc/timezone`:
 
@@ -68,7 +68,7 @@ example selects the US/Pacific time zone:
 For more info see the Debian [System Administrator’s Manual –
 Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
 
-## <span>Setting the Date and Time</span>
+## Setting the Date and Time</span>
 
 The switch contains a battery backed hardware clock that maintains the
 time while the switch is powered off and in between reboots. When the
@@ -92,7 +92,7 @@ Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.ht
 specifically the section [Setting and showing hardware
 clock](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html#s16.2).
 
-## <span>Setting Time Using NTP</span>
+## Setting Time Using NTP</span>
 
 The `ntpd` daemon running on the switch implements the NTP protocol. It
 synchronizes the system time with time servers listed in
@@ -118,7 +118,7 @@ To verify that `ntpd` is running on the system:
     cumulus@switch:~$ ps -ef | grep ntp
     ntp       4074     1  0 Jun20 ?        00:00:33 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -u 101:102
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/default/ntp — `ntpd init.d` configuration variables
 
@@ -126,7 +126,7 @@ To verify that `ntpd` is running on the system:
 
   - /etc/init.d/ntp — `ntpd init` script
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [Debian System Administrator’s Manual –
     Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)

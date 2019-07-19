@@ -57,7 +57,7 @@ destination.
 
 {{%/notice%}}
 
-## <span>Commands</span>
+## Commands</span>
 
   - brctl
 
@@ -71,7 +71,7 @@ destination.
 
   - vtep-ctl
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [VXLAN IETF
     draft](http://tools.ietf.org/html/draft-mahalingam-dutt-dcops-vxlan-06)

@@ -28,7 +28,7 @@ The summary of steps required to do this is a follows:
 
   - Check that your command works by typing `netq <TAB>`
 
-## <span>Sample File with Custom Command</span>
+## Sample File with Custom Command</span>
 
 To help you get started, here is the Hello World of NetQ command
 extension:
@@ -56,7 +56,7 @@ extension:
 
 Let's break down each part of the code.
 
-### <span>Command Specification With Help</span>
+### Command Specification With Help</span>
 
 The lines at the start of the file within the triple quotes (''')
 constitute what is called the *docstring* of the file or module.
@@ -139,7 +139,7 @@ a module loaded previously.
 
 {{%/notice%}}
 
-### <span>Associating the Command with the Function</span>
+### Associating the Command with the Function</span>
 
 After configuring the command, you need to associate or *bind* that
 command with the function to be called when a user runs the command.
@@ -170,7 +170,7 @@ Keep in mind the following when matching the command to the function:
     longer command strings bound to a function either silently fail or a
     shorter string version is matched.
 
-### <span>Using the cli and netq Parameters</span>
+### Using the cli and netq Parameters</span>
 
 The function that is called to execute a command expects to received two
 parameters, *cli* and *netq*, in the order shown in the example above.
@@ -192,13 +192,13 @@ example, as shown in `netq show macs [vlan <1-4096>]`, then the value of
 the VLAN to search for a MAC address can be found using
 `cli.get('<1-4096>')`, not via `cli.get('vlan')`.
 
-### <span>Return Values</span>
+### Return Values</span>
 
 The function returns either *RC\_SUCCESS* if successful or *RC\_FAIL* if
 not. The code snippet shows how to import these values from the standard
 NetQ libraries.
 
-## <span>Querying the NetQ Database</span>
+## Querying the NetQ Database</span>
 
 While the code snippet above was sufficient to illustrate the general
 skeleton, if you want to extend the commands, you typically will want to
@@ -258,12 +258,12 @@ via `show ip routes`. The code to do so is shown below.
 Much of this code is similar to the hello world example, but the new
 items are discussed below.
 
-### <span>The Imports</span>
+### The Imports</span>
 
 There are two additional imports, one for *netq\_show* and the other for
 *Route*.
 
-#### <span>netq\_show</span>
+#### netq\_show</span>
 
 *netq\_show* is the decorator that takes care of wrapping the output in
 a format native to NetQ. For example, it generates the JSON for you
@@ -278,7 +278,7 @@ generated from the dictionary key, as are the JSON keys.
 By wrapping the code with the *netq\_show*, all these display
 complexities are covered for you.
 
-#### <span>Route</span>
+#### Route</span>
 
 *Route* is the database object that holds all the pertinent information
 about a route. Its contents are defined in the
@@ -286,7 +286,7 @@ about a route. Its contents are defined in the
 There are other database objects defined in the file, but this example
 only involves the *Route* object.
 
-### <span>The Function Handler</span>
+### The Function Handler</span>
 
 The function that satisfies the command `show myroutes` is
 *cli\_show\_myroutes*, and because of the decorator, takes an additional
@@ -295,7 +295,7 @@ main NetQ command module and the specific modules, such as this one.
 This particular case uses the *context* to update the column sizes to be
 used in the display.
 
-### <span>The Query Functions</span>
+### The Query Functions</span>
 
 The meat of the code is the query. Objects are queried using the model
 of *\<object\>.query.\<query function\>. T*his particular example uses
@@ -329,7 +329,7 @@ iteration. `query.get()` and `query.latest()` both return a single
 object of the type the query is on while `query.count()` returns an
 integer.
 
-## <span>Debugging</span>
+## Debugging</span>
 
 Inevitably when writing code, coding errors need to be debugged and the
 fixes tried again. When a module doesn't load or returns an error, it is
@@ -341,7 +341,7 @@ required nodes.
 To reload the modules after making fixes, run the command `netq config
 reload parser`.
 
-## <span>Caveats</span>
+## Caveats</span>
 
 This feature is an early access feature, and must be treated as such.
 There may be obscure failures which will require Cumulus Networks

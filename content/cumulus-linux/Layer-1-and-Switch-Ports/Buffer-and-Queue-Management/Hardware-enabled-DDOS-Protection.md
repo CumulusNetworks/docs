@@ -52,7 +52,7 @@ incurring no performance impact:
 
   - IPv6 fragment lower than programmed minimum IPv6 packet size
 
-## <span>Supported ASICs</span>
+## Supported ASICs</span>
 
 DDOS protection is available for the following Broadcom ASICs:
 
@@ -81,7 +81,7 @@ None of them are enabled by default.
 DDOS protection is not supported on Broadcom Hurricane2 and Mellanox
 Spectrum ASICs.
 
-## <span>Configure Persistent DDOS Protection</span>
+## Configure Persistent DDOS Protection</span>
 
 1.  Open the `/etc/cumulus/datapath/traffic.conf` file in a text editor.
 
@@ -118,7 +118,7 @@ Spectrum ASICs.
     {{%notice note%}}
 
 Configuring any of the following settings affects the [BFD
-    echo](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection---BFD)
+    echo](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)
     function. For example, if you enable `dos.udp_ports_eq`, all the BFD
     packets will get dropped because the BFD protocol uses the same
     source and destination UDP ports.

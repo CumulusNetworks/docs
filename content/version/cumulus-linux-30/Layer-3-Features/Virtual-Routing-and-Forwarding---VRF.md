@@ -76,7 +76,7 @@ ASICs](https://cumulusnetworks.com/hcl).
 
 {{%/notice%}}
 
-## <span>Configuring VRF</span>
+## Configuring VRF</span>
 
 Each routing table is called a *VRF table*, and has its own table ID.
 You configure VRF using ` ifupdown2  `or the `vrf` command.
@@ -112,7 +112,7 @@ Here is a sample VRF configuration in `/etc/network/interfaces`:
         ... 
         vrf <vrf-name>
 
-### <span>Specifying a Table ID</span>
+### Specifying a Table ID</span>
 
 Instead of having Cumulus Linux assign a table ID for the VRF table, you
 can specify your own table ID in the configuration. The table ID to name
@@ -127,7 +127,7 @@ table ID like this:
 Note that if you do specify a table ID, it **must** be in the range of
 1001 to 1255.
 
-### <span id="src-5118407_VirtualRoutingandForwarding-VRF-vrf_cmd" class="confluence-anchor-link"></span><span>Using the vrf Command</span>
+### <span id="src-5118407_VirtualRoutingandForwarding-VRF-vrf_cmd" class="confluence-anchor-link"></span>Using the vrf Command</span>
 
 The `vrf` command returns information about VRF tables. You can also use
 it to execute non-VRF-specific commands and perform other tasks related
@@ -230,7 +230,7 @@ To determine which VRF table is associated with a particular PID, run
     
     red
 
-## <span>Quagga Operation in a VRF</span>
+## Quagga Operation in a VRF</span>
 
 In Cumulus Linux 3.0, BGP and static routing (IPv4 and IPv6) are
 supported within a VRF context. Various Quagga routing constructs, such
@@ -253,9 +253,9 @@ overlapping address spaces in different VRFs. Each VRF can have its own
 parameters, such as address families and redistribution. Incoming
 connections rely on the Linux kernel for VRF-global sockets. BGP
 neighbors can be tracked using
-[BFD](/version/cumulus-linux-30/Layer-3-Features/Bidirectional-Forwarding-Detection---BFD),
+[BFD](/version/cumulus-linux-30/Layer-3-Features/Bidirectional-Forwarding-Detection-BFD),
 both for single and multiple hops. You can configure multiple
-[BGP](/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol---BGP)
+[BGP](/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP)
 instances, associating each with a VRF.
 
 As mentioned above, VRFs are provisioned through
@@ -277,7 +277,7 @@ but they become active only when configured through
     exist for this configuration to be accepted - either already defined
     through `/etc/network/interfaces` or pre-provisioned in Quagga.
 
-### <span>Example Configuration</span>
+### Example Configuration</span>
 
 Here's an example VRF configuration in BGP:
 
@@ -306,12 +306,12 @@ Here's an example VRF configuration in BGP:
       exit-address-family
     !
 
-## <span>Example Quagga Commands</span>
+## Example Quagga Commands</span>
 
 You can view VRF data either directly in Cumulus Linux with `ip`
 commands or with the `vtysh` shell.
 
-### <span>Showing VRF Data with vtysh</span>
+### Showing VRF Data with vtysh</span>
 
 You run the following Quagga commands are run in the `vtysh` terminal.
 
@@ -487,7 +487,7 @@ BGP IPv6 routes in the VRF:
     switch# exit
     (jessie-switch-amd64)root@switch:/home/cumulus$
 
-### <span>Showing VRF Data Using ip Commands</span>
+### Showing VRF Data Using ip Commands</span>
 
 To list all VRFs provisioned, showing the VRF ID (14, 21, 28 below) as
 well as the table ID:
@@ -584,10 +584,10 @@ To show IPv6 routes in a VRF:
     unreachable default dev lo  metric 240  error -101 pref medium
     cumulus@switch:~$
 
-## <span>Using BGP Unnumbered Interfaces with VRF</span>
+## Using BGP Unnumbered Interfaces with VRF</span>
 
 [BGP unnumbered interface
-configurations](/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol---BGP)
+configurations](/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP)
 are supported with VRF. In BGP unnumbered, there are no addresses on any
 interface. However, debugging tools like `traceroute` need at least a
 single IP address per node as the node's source IP address. Typically,
@@ -652,7 +652,7 @@ Quagga BGP configuration:
      exit-address-family
     !
 
-## <span>Using DHCP with VRF</span>
+## Using DHCP with VRF</span>
 
 Since you can use VRF to bind IPv4 and IPv6 sockets to non-default VRF
 tables, you have the ability to start DHCP servers and relays in any
@@ -696,7 +696,7 @@ file for each instance. The files must be named as follows:
 
 See the example configuration below for more details.
 
-### <span>Caveats for DHCP with VRF</span>
+### Caveats for DHCP with VRF</span>
 
   - Cumulus Linux does **not** support DHCP server and relay across
     VRFs, so the server and host cannot be in different VRF tables. In
@@ -713,7 +713,7 @@ See the example configuration below for more details.
 
   - This method only works with `systemd`-based services.
 
-### <span>Example Configuration</span>
+### Example Configuration</span>
 
 In the following example, there is one IPv4 network with a VRF named
 *red* and one IPv6 network with a VRF named *blue*.
@@ -876,7 +876,7 @@ or<br />
 </tbody>
 </table>
 
-## <span>Caveats</span>
+## Caveats</span>
 
   - The Penguin Computing Arctica 4804IP switch does not support VRFs.
 

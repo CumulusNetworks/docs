@@ -24,7 +24,7 @@ the account.
 
 {{%/notice%}}
 
-## <span>Generate an SSH Key Pair</span>
+## Generate an SSH Key Pair</span>
 
 1.  Run the `ssh-keygen` command, and follow the prompts, to generate
     the key pair:
@@ -102,7 +102,7 @@ the account.
         basis.
         Last login: Thu Sep 29 16:56:54 2016
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Debian Documentation - Password-less logins with
     OpenSSH](http://www.debian-administration.org/articles/152)

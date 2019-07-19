@@ -34,7 +34,7 @@ It helps answer questions such as:
 
   - Can device A reach device B using IP addresses?
 
-## <span>Monitor IP Configuration</span>
+## Monitor IP Configuration</span>
 
 NetQ enables you to view the current status and the status an earlier
 point in time. From this information, you can:
@@ -86,7 +86,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### <span>View IP Address Information</span>
+### View IP Address Information</span>
 
 You can view the IPv4 and IPv6 address information for all of your
 devices, including the interface and VRF for each device. Additionally,
@@ -247,7 +247,7 @@ This example shows the number of IPv4 and IPv6 addresses in the network.
     cumulus@switch:~$ netq show ipv6 addresses count
     Count of matching address records: 42
 
-### <span>View IP Neighbor Information</span>
+### View IP Neighbor Information</span>
 
 You can view the IPv4 and IPv6 neighbor information for all of your
 devices, including the interface port, MAC address, VRF assignment, and
@@ -363,7 +363,7 @@ matching neighbor records found* message shows as the result.
     192.168.0.13              leaf01            eth0                      a0:00:00:00:00:13  mgmt            no     Add        4d:21h:31m:30s
     192.168.0.254             leaf01            eth0                      44:38:39:00:00:57  default         no     Del        4d:21h:31m:38s
 
-### <span>View IP Routes Information</span>
+### View IP Routes Information</span>
 
 You can view the IPv4 and IPv6 routes for all of your devices, including
 the IP address (with or without mask), the destination (by hostname) of
@@ -478,7 +478,7 @@ network.
     cumulus@switch:~$ netq show ipv6 routes count
     Count of matching routes records: 5
 
-## <span>Monitor BGP Configuration</span>
+## Monitor BGP Configuration</span>
 
 If you have BGP running on your switches and hosts, you can monitor its
 operation using the NetQ CLI. For each device, you can view its
@@ -523,7 +523,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### <span>View BGP Configuration Information</span>
+### View BGP Configuration Information</span>
 
 NetQ enables you to view the BGP configuration of a single device or
 across all of your devices at once. You can filter the results based on
@@ -640,7 +640,7 @@ days ago on this network.
     spine01           swp2(leaf02)                 default         65020      65012      2/-/10       Add        5d:1h:41m:31s
     ...
 
-### <span>Validate BGP Operation</span>
+### Validate BGP Operation</span>
 
 A single command enables you to validate that all configured route
 peering is established across the network. The command checks for
@@ -690,7 +690,7 @@ configured and possibly because an RA was not configured.
     spine-1           default         downlink-5        mlx-2700-03       Peer not configured                           0.155377s
     spine-2           default         downlink-5        mlx-2700-03       Peer not configured                           0.155410s
 
-## <span>Monitor OSPF Configuration</span>
+## Monitor OSPF Configuration</span>
 
 If you have OSPF running on your switches and hosts, you can monitor its
 operation using the NetQ CLI. For each device, you can view its
@@ -735,7 +735,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### <span>View OSPF Configuration Information</span>
+### View OSPF Configuration Information</span>
 
 NetQ enables you to view the OSPF configuration of a single device or
 across all of your devices at once. You can filter the results based on
@@ -822,7 +822,7 @@ for all leaf switches about five minutes ago. </span> </span> </span>
     leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      9m:9.546s
     leaf04            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp4                      9m:9.545s
 
-### <span>Validate OSPF Operation</span>
+### Validate OSPF Operation</span>
 
 A single command, `netq check ospf`, enables you to validate that all
 configured route peering is established across the network. The command
@@ -861,7 +861,7 @@ mismatched MTU for two links .
     spine-3           swp6                      0.0.0.23                  27.0.0.23                 mtu mismatch, mtu mismatch                    4.915650s
     torc-22           swp5                      0.0.0.17                  27.0.0.17                 mtu mismatch, mtu mismatch                    11.452045s
 
-## <span>View Paths between Devices</span>
+## View Paths between Devices</span>
 
 You can <span style="color: #353744;"> view the available paths between
 two devices on the network currently and at a time in the past using
@@ -899,7 +899,7 @@ to ping the identified device so that its address becomes known.
 
 {{%/notice%}}
 
-### <span>View Paths between Two Switches with Pretty Output</span>
+### View Paths between Two Switches with Pretty Output</span>
 
 This example first determines the IP addresses of the leaf01 and leaf03
 switches, then shows the available paths between them. The results
@@ -938,7 +938,7 @@ Path MTU: 1500
         swp51 -- swp1 spine01 swp3 -- swp51 leaf03 <lo>  
 ```
 
-### <span>View Forward and Reverse Paths between Two Switches with Pretty Output</span>
+### View Forward and Reverse Paths between Two Switches with Pretty Output</span>
 
 Like the previous example, this shows the paths between leaf01 and
 leaf03 switches, but by adding the *bidir* keyword both the forward and
@@ -962,7 +962,7 @@ hostname to achieve the same results.
      leaf03 swp52 -- swp3 spine02 swp1 -- swp52 leaf01 <lo>  
             swp51 -- swp3 spine01 swp1 -- swp51 leaf01 <lo>  
 
-### <span>View Paths between Two Switches with Detailed Output</span>
+### View Paths between Two Switches with Detailed Output</span>
 
 This example provides the same path information as the pretty output,
 but displays the information in a tabular output. In this case there, no

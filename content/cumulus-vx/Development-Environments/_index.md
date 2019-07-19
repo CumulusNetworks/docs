@@ -26,7 +26,7 @@ environments:
     VirtualBox](/cumulus-vx/Development-Environments/GNS3-and-VirtualBox)
 
   - [GNS3 and QEMU -
-    KVM](/cumulus-vx/Development-Environments/GNS3-and-QEMU---KVM)
+    KVM](/cumulus-vx/Development-Environments/GNS3-and-QEMU-KVM)
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

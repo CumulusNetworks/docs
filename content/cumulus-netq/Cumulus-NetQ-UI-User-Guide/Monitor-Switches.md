@@ -21,7 +21,7 @@ helps isolate performance issues.
 For network-wide monitoring, refer to [Monitor the
 Network](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/).
 
-## <span>Monitor Switch Performance</span>
+## Monitor Switch Performance
 
 Viewing detail about a particular switch is essential when
 troubleshooting performance issues. With NetQ you can view the overall
@@ -29,7 +29,7 @@ performance and drill down to view attributes of the switch, interface
 performance and the events associated with a switch. This is
 accomplished through the Switches card.
 
-### <span>Switch Card Workflow Summary</span>
+### Switch Card Workflow Summary
 
 The small Switch card displays:
 
@@ -332,7 +332,7 @@ addresses, and all interfaces.
 </tbody>
 </table>
 
-### <span>View the Overall Health of a Switch</span>
+### View the Overall Health of a Switch
 
 When you want to monitor the health of a particular switch, open the
 small Switch card. It is unlikely that you would have this card open for
@@ -368,7 +368,7 @@ In this example, we see that the leaf01 switch has had very few alarms
 overall, but the number is trending upward, with a total count of 24
 alarms currently.
 
-### <span>View Health Performance Metrics</span>
+### View Health Performance Metrics
 
 When you are monitoring switches that have been problematic or are newly
 installed, you might want to view more than a summary. Instead, seeing
@@ -395,7 +395,7 @@ metrics. You can view the key performance metrics as numerical scores or
 as line charts over time, by clicking **Charts** or **Score** at the top
 of the card.
 
-### <span>View Attributes of a Switch</span>
+### View Attributes of a Switch
 
 For a quick look at the key attributes of a particular switch, open the
 large Switch card. Attributes are displayed as the default tab.
@@ -405,7 +405,7 @@ large Switch card. Attributes are displayed as the default tab.
 In this example, the items of interest might be the five interfaces that
 are down and what version of OS and NetQ Agent the switch is running.
 
-### <span>View Current Resource Utilization for a Switch</span>
+### View Current Resource Utilization for a Switch
 
 The NetQ GUI enables you to easily view the performance of various
 hardware components and the network tables. This enables you to
@@ -456,7 +456,7 @@ To view the resource utilization on a particular switch:
     focus on; the charts that match the filter remain, while the others
     are hidden from view. Delete the filter to see all charts again.
 
-### <span>View All Addresses for a Switch</span>
+### View All Addresses for a Switch
 
 It can be useful to view all of the configured addresses that this
 switch is using. You can view all IP addresses or all MAC addresses
@@ -497,7 +497,7 @@ To view all MAC addresses:
 
     in the top right corner.
 
-### <span>View All Interfaces on a Switch</span>
+### View All Interfaces on a Switch
 
 You can view all of the configured interfaces on a switch in one place
 making it easier to see inconsistencies in the configuration, quickly
@@ -530,13 +530,13 @@ To view all interfaces:
 
     in the top right corner.
 
-## <span>Monitor Switch Component Inventory</span>
+## Monitor Switch Component Inventory
 
 Knowing what components are included on all of your switches aids in
 upgrade, compliance, and other planning tasks. Viewing this data is
 accomplished through the Switch Inventory card.
 
-### <span>Switch Inventory Card Workflow Summary</span>
+### Switch Inventory Card Workflow Summary
 
 The small Switch Inventory card displays:
 
@@ -756,7 +756,7 @@ ASIC, platform, CPU, memory, disk, and OS components.
 There are a multitude of ways to view and analyze the available data
 within this workflow. A few examples are provided here.
 
-### <span>View a Summary of Communication Status for All Switches </span>
+### View a Summary of Communication Status for All Switches
 
 A communication status summary for all of your switches across the
 network is available from the small Switch Inventory card.
@@ -766,7 +766,7 @@ network is available from the small Switch Inventory card.
 In this example, we see all 13 switches have been heard from recently
 (they are fresh).
 
-### <span>View the Number of Types of Any Component Deployed</span>
+### View the Number of Types of Any Component Deployed
 
 For each of the components monitored on a switch, NetQ displays the
 variety of those component by way of a count. For example, if you have
@@ -795,7 +795,7 @@ could select **Rotten Switches** from the dropdown at the top of the
 card and see if they all use the same OS (count would be 1). It may not
 be the cause of the lack of communication, but you get the idea.
 
-### <span>View the Distribution of Any Component Deployed</span>
+### View the Distribution of Any Component Deployed
 
 NetQ monitors a number of switch components. For each component you can
 view the distribution of versions or models or vendors deployed across
@@ -826,7 +826,7 @@ To view the distribution:
 
 4.  Scroll down to view additional components.
 
-### <span>View the Number of Switches with Invalid or Missing Licenses</span>
+### View the Number of Switches with Invalid or Missing Licenses
 
 It is important to know when you have switches that have invalid or
 missing Cumulus Linux licenses, as not all of the features are
@@ -861,7 +861,7 @@ column to locate the switches with bad or missing licenses.
 
 {{% imgOld 49 %}}
 
-### <span>View the Most Commonly Deployed ASIC</span>
+### View the Most Commonly Deployed ASIC
 
 It can be useful to know the quantity and ratio of many components
 deployed in your network to determine the scope of upgrade tasks,
@@ -923,7 +923,7 @@ To view the most commonly deployed ASIC, for example:
 
     on the filter tag.
 
-### <span>View the Number of Switches with a Particular NetQ Agent</span>
+### View the Number of Switches with a Particular NetQ Agent
 
 It is recommended that when you upgrade NetQ that you also upgrade the
 NetQ Agents. You can determine if you have covered all of your agents
@@ -978,7 +978,7 @@ distribution by version:
     communicating, by selecting *Rotten Switches* from the dropdown
     above the charts.
 
-### <span>View a List of All Data for a Specific Component</span>
+### View a List of All Data for a Specific Component
 
 When the small, medium and large Switch Inventory cards do not provide
 either enough information or are not organized in a fashion that

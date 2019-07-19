@@ -15,11 +15,11 @@ siteSlug: cumulus-rmp-31
 
 This chapter discusses routing on switches running Cumulus RMP.
 
-## <span>Commands</span>
+## Commands</span>
 
   - ip route
 
-## <span>Static Routing via ip route</span>
+## Static Routing via ip route</span>
 
 A static route can be persistently added by adding `up ip route add ..`
 into `/etc/network/interfaces`. For example:
@@ -126,7 +126,7 @@ Configuration Files
 
   - /etc/network/interfaces
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [linux-ip.net/html/tools-ip-route.html](http://linux-ip.net/html/tools-ip-route.html)
 

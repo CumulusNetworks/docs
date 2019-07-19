@@ -12,13 +12,13 @@ imgData: cumulus-rmp-30
 siteSlug: cumulus-rmp-30
 ---
 This article shows two examples of [VLAN
-tagging](Ethernet-Bridging---VLANs.html#src-5118717_EthernetBridging-VLANs-vlan_tagging),
+tagging](Ethernet-Bridging-VLANs.html#src-5118717_EthernetBridging-VLANs-vlan_tagging),
 one basic and one more advanced. They both demonstrate the streamlined
 interface configuration from `ifupdown2`. For more information, see
 [Configuring and Managing Network
 Interfaces](/version/cumulus-rmp-30/Configuring-and-Managing-Network-Interfaces/).
 
-## <span>VLAN Tagging, a Basic Example</span>
+## VLAN Tagging, a Basic Example</span>
 
 A simple configuration demonstrating VLAN tagging involves two hosts
 connected to a switch.
@@ -31,7 +31,7 @@ connected to a switch.
   - *host2* connects to swp2 with 802.1Q frames tagged for *vlan120* and
     *vlan130*.
 
-### <span>Persistent Configuration</span>
+### Persistent Configuration</span>
 
 To configure the above example persistently, configure
 `/etc/network/interfaces` like this:
@@ -56,7 +56,7 @@ To configure the above example persistently, configure
     auto swp2.130
     iface swp2.130
 
-## <span>VLAN Tagging, an Advanced Example</span>
+## VLAN Tagging, an Advanced Example</span>
 
 This example of VLAN tagging is more complex, involving three hosts and
 two switches, with a number of bridges and a bond connecting them all.
@@ -96,7 +96,7 @@ Cumulus RMP with a traditional Cisco device:
   - Bridges *br-untagged*, *br-tag100*, *br-vlan120*, and *v130* are
     equivalent to SVIs (switched virtual interfaces).
 
-### <span>Persistent Configuration</span>
+### Persistent Configuration</span>
 
 From `/etc/network/interfaces` :
 
@@ -290,7 +290,7 @@ an error:
 
 {{%/notice%}}
 
-### <span>VLAN Translation</span>
+### VLAN Translation</span>
 
 By default, Cumulus RMP does not allow VLAN subinterfaces associated
 with different VLAN IDs to be part of the same bridge. Base interfaces
@@ -317,7 +317,7 @@ with the VLAN ID translated.
 {{%notice note%}}
 
 A bridge in [VLAN-aware
-mode](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+mode](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 cannot have VLAN translation enabled for it; only bridges configured in
 traditional mode can utilize VLAN translation.
 

@@ -25,12 +25,12 @@ most relevant information to a network administrator.
 `netshow` can be used on any distribution of Linux, not just Cumulus
 Linux.
 
-## <span>Installing netshow</span>
+## Installing netshow</span>
 
 Starting with Cumulus Linux 3.0.0, `netshow` is installed by default in
 Cumulus Linux.
 
-### <span>Installing netshow on a Linux Server or in OpenStack</span>
+### Installing netshow on a Linux Server or in OpenStack</span>
 
 To install `netshow` on a Linux server, run:
 
@@ -42,7 +42,7 @@ Debian and Red Hat packages will be available in the near future.
 
 {{%/notice%}}
 
-## <span>Using netshow</span>
+## Using netshow</span>
 
 Running `netshow` with no arguments displays all available command line
 arguments usable by `netshow`. (Running `netshow --help` gives you the
@@ -110,7 +110,7 @@ the networking industry, where most command troubleshooting tools are
 designed by developers and are most useful in the network application
 development process.
 
-## <span>Showing Interfaces</span>
+## Showing Interfaces</span>
 
 To show all available interfaces that are physically UP, run `netshow
 interface`:
@@ -191,7 +191,7 @@ system`:
       
     cumulus@leaf1$
 
-## <span>Troubleshooting Example: OpenStack</span>
+## Troubleshooting Example: OpenStack</span>
 
 Looking at an OpenStack Environment, here is the physical diagram:
 
@@ -268,7 +268,7 @@ simplifies understanding basic network troubleshooting, making the Linux
 administrator more productive and improving time to resolution while
 investigating network problems.
 
-## <span>Other Useful netshow Features</span>
+## Other Useful netshow Features</span>
 
 `netshow` uses the [python
 network-docopt](https://pypi.python.org/pypi/network-docopt) package.
@@ -284,7 +284,7 @@ near future, if you run `netshow int tap123` and there is only one
 interface starting with `tap123`, `netshow` will autocomplete the
 command option with the full interface.
 
-## <span>Contributions Welcome\!</span>
+## Contributions Welcome\!</span>
 
 `netshow` is an open source project licensed under GPLv2. To contribute
 please contact Cumulus Networks through the [Cumulus Community

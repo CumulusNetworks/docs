@@ -34,7 +34,7 @@ their:
     connectivity for a container, including adjacency, and can identify
     containers that can be affected by a top of rack switch.
 
-## <span>NetQ Container Support</span>
+## NetQ Container Support</span>
 
 The NetQ Agent supports Docker version 1.13 (Jan 2017), 17.04.0-ce
 (April 2017).
@@ -57,7 +57,7 @@ Currently, the NetQ Agent does not support:
 
   - Docker Swarm service
 
-### <span>Telemetry Server Memory Requirement</span>
+### Telemetry Server Memory Requirement</span>
 
 Due to the higher memory requirements to run containers, Cumulus
 Networks recommends you run the NetQ Telemetry Server on a host with at
@@ -65,7 +65,7 @@ least 32G RAM. For more information, read the [Performing Network
 Diagnostics](Performing-Network-Diagnostics.html#src-6488212_PerformingNetworkDiagnostics-matrix)
 chapter.
 
-## <span id="src-6488224_MonitoringContainerEnvironmentswithNetQ-enable" class="confluence-anchor-link"></span><span>Configuring the Container Host</span>
+## <span id="src-6488224_MonitoringContainerEnvironmentswithNetQ-enable" class="confluence-anchor-link"></span>Configuring the Container Host</span>
 
 In order for NetQ to be able to monitor the containers on a host, you
 need to do three things:
@@ -127,7 +127,7 @@ server, the last three lines enable Docker:
       enable: true
       poll_period: 15
 
-## <span>Starting and Stopping Containers</span>
+## Starting and Stopping Containers</span>
 
 If you need to start or stop a single container on a host, use the
 `docker-compose` command. In the example below, the container is called
@@ -136,7 +136,7 @@ If you need to start or stop a single container on a host, use the
     cumulus@server01:~$ sudo docker-compose -f /appliance/cfg/docker/netq-base-compose.yml -p netq_cont_a stop netq-notifier
     cumulus@server01:~$ sudo docker-compose -f /appliance/cfg/docker/netq-base-compose.yml -p netq_cont_a start netq-notifier
 
-## <span>Showing Container Summary Information</span>
+## Showing Container Summary Information</span>
 
 To see a high level view of the network, including the number of
 containers installed and running on the network, run `netq show docker
@@ -154,7 +154,7 @@ summary`:
     server01    17.03.1-ce           13         13         1                   3
     server02    17.03.1-ce            0          0         0                   3
 
-## <span>Identifying Containers on the Network</span>
+## Identifying Containers on the Network</span>
 
 To view the different container networks and the containers in them, run
 `netq show docker network`:
@@ -307,7 +307,7 @@ following command, where the container network is named *host*:
                                     27.0.0.3/32,
                                     192.168.0.15/24
 
-## <span>Showing Container Adjacency</span>
+## Showing Container Adjacency</span>
 
 NetQ can list all the containers running on hosts adjacent to a top of
 rack switch. This helps in analyzing what impact the ToR switch can have
@@ -424,7 +424,7 @@ And you can go back in time to check adjacency around a given moment:
     swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8089          172.17.0.11          bridge
     swp8:VlanA-1         server03   mac:00:02:00:00:00:2d netcat-8081          172.17.0.3           bridge
 
-## <span>Showing Container-specific Information</span>
+## Showing Container-specific Information</span>
 
 You can see information about a given container by running `netq show
 docker container name NAME`:
@@ -436,7 +436,7 @@ docker container name NAME`:
                                     27.0.0.3/32,
                                     192.168.0.15/24
 
-## <span>Showing Containers with a Specific Image</span>
+## Showing Containers with a Specific Image</span>
 
 To search for all the containers on the network with a specific Docker
 image, run `netq show docker container image IMAGE_NAME`:
@@ -510,7 +510,7 @@ image, run `netq show docker container image IMAGE_NAME`:
                                     27.0.0.3/32,
                                     192.168.0.15/24
 
-## <span>Showing Container Connectivity</span>
+## Showing Container Connectivity</span>
 
 To determine how a particular container is attached to a network, run
 `netq HOST show docker container network NAME connectivity`. The output
@@ -598,7 +598,7 @@ tells you what host it's launched on, adjacent nodes, adjacent ports.
                                                                                                         te  Node/s hosts-11
                                                                                                         and Ports swp1
 
-## <span>Checking Network Traffic over a Given Protocol</span>
+## Checking Network Traffic over a Given Protocol</span>
 
 You can include the protocol when you observe a given flow of traffic on
 the network and want to identify which container sent or received

@@ -28,7 +28,7 @@ by default into `/var/log/daemon.log` with an `lldpd` prefix.
 statistics, and other running configuration information. See `man
 lldpcli(8)` for details.
 
-## <span>Configure LLDP</span>
+## Configure LLDP</span>
 
 You configure `lldpd` settings in `/etc/lldpd.conf` or `/etc/lldpd.d/`.
 
@@ -59,7 +59,7 @@ uses the `-I` option to disable LLDP on swp43:
     Aug  7 17:26:17 switch lldpcli[1711]: lldpd should resume operations
     Aug  7 17:26:32 switch lldpd[1805]: NET-SNMP version 5.4.3 AgentX subagent connected
 
-## <span>Example lldpcli Commands</span>
+## Example lldpcli Commands</span>
 
 To show all neighbors on all ports/interfaces:
 
@@ -271,7 +271,7 @@ To reset any interface list to none:
 
     cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
 </details>
-## <span id="src-8362650_LinkLayerDiscoveryProtocol-snmp" class="confluence-anchor-link"></span><span>Enable the SNMP Subagent in LLDP</span>
+## Enable the SNMP Subagent in LLDP</span>
 
 LLDP does not enable the SNMP subagent by default. You need to edit
 `/etc/default/lldpd` and enable the `-x` option.
@@ -283,11 +283,11 @@ LLDP does not enable the SNMP subagent by default. You need to edit
     # Enable CDP by default
     DAEMON_ARGS="-c"
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - Annex E (and hence Annex D) of IEEE802.1AB (lldp) is not supported.
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [GitHub - lldpd project](http://vincentbernat.github.io/lldpd/)
 

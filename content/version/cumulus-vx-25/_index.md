@@ -23,7 +23,7 @@ You can use Cumulus VX to learn about and evaluate Cumulus Linux,
 anytime, anywhere. Use it to build sandbox environments for prototyping,
 pre-production rollouts and developing scripts.
 
-## <span>Supported Platforms</span>
+## Supported Platforms
 
   - Integrates with [KVM](http://www.linux-kvm.org/page/Downloads),
     [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and
@@ -32,11 +32,11 @@ pre-production rollouts and developing scripts.
   - Runs within [GNS3](http://www.gns3.com) and
     [Vagrant](https://www.vagrantup.com) environments
 
-## <span>About the Virtual Machine</span>
+## About the Virtual Machine
 
 Cumulus VX runs in a virtual machine (VM) on a standard x86 environment.
 The VM is a 64-bit operating system, built on the same foundation as
-[Cumulus Linux](http://docs.cumulusnetworks.com/display/DOCS), running
+[Cumulus Linux](/cumulus-linux), running
 the Linux 3.2.65-1+deb7u2+cl2.5+2 kernel, using `virtio` drivers for
 network and HDD interfaces as well as the logical volume manager (LVM).
 
@@ -51,13 +51,13 @@ various hypervisors:
 
   - A Box image for use with Vagrant.
 
-## <span>Comparisons with Other Cumulus Networks Products</span>
+## Comparisons with Other Cumulus Networks Products
 
 Cumulus VX is a virtual appliance that simulates a Cumulus Linux or
 Cumulus RMP environment. To see how these systems compare, [read this
 article](/version/cumulus-vx-25/Comparing-Cumulus-VX-with-Other-Cumulus-Networks-Products).
 
-## <span>Community Support</span>
+## Community Support
 
 Cumulus VX is a [community-supported
 product](https://support.cumulusnetworks.com/hc/en-us/articles/206382248).
@@ -65,7 +65,7 @@ Join the [Cumulus Networks
 community](https://community.cumulusnetworks.com/cumulus/categories/cumulus_vx)
 and ask for or offer help.
 
-## <span>Downloading the Cumulus VX Image</span>
+## Downloading the Cumulus VX Image
 
 To get started, you need to download some software as well as the
 [Cumulus VX disk
@@ -90,7 +90,7 @@ read the appropriate steps below:
   - [Using Cumulus VX with
     GNS3](http://docs.cumulusnetworks.com/display/VX/Using+Cumulus+VX+with+GNS3)
 
-## <span>Logging in to the VM</span>
+## Logging in to the VM
 
 The Cumulus VX VM has these default login credentials:
 
@@ -101,7 +101,7 @@ The Cumulus VX VM has these default login credentials:
 The cumulus user has `sudo` privileges, just like a Cumulus Linux
 switch.
 
-## <span>Useful Links</span>
+## Useful Links
 
 For more information about Cumulus VX, Cumulus Linux and supported
 environments, visit these links:
@@ -109,8 +109,7 @@ environments, visit these links:
   - [Cumulus VX release
     notes](https://support.cumulusnetworks.com/hc/en-us/articles/115002082808)
 
-  - [Cumulus Linux
-    documentation](http://docs.cumulusnetworks.com/display/DOCS)
+  - [Cumulus Linux documentation](/cumulus-linux)
 
   - [Cumulus Networks knowledge
     base](https://support.cumulusnetworks.com/hc/en-us/)
@@ -128,50 +127,3 @@ environments, visit these links:
     documentation](https://community.gns3.com/community/software/documentation)
 
 {{% imgOld 0 %}}
-
-## <span>Recently Updated Pages</span>
-
-  - Cumulus VX Getting Started GuideMay 13, 2019 • updated by [Dan
-    Cawley](https://docs.cumulusnetworks.com/display/~dcawley) • [view
-    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=5115387&selectedPageVersions=3&selectedPageVersions=2)
-
-  - Cumulus VX Getting Started GuideJan 31, 2017 • updated by [Pete
-    Bratach](https://docs.cumulusnetworks.com/display/~pete) • [view
-    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=5115387&selectedPageVersions=2&selectedPageVersions=1)
-
-  - [Using Cumulus VX with
-    VirtualBox](/version/cumulus-vx-25/Using-Cumulus-VX-with-VirtualBox/)May
-    09, 2016 • created by [Pete
-    Bratach](https://docs.cumulusnetworks.com/display/~pete)
-
-  - [Using Cumulus VX with
-    KVM](/version/cumulus-vx-25/Using-Cumulus-VX-with-KVM)Apr 21, 2016 •
-    created by [Tom
-    Wells](https://docs.cumulusnetworks.com/display/~tom)
-
-  - [Using Cumulus VX with
-    Vagrant](/version/cumulus-vx-25/Using-Cumulus-VX-with-Vagrant)Mar
-    31, 2016 • created by [Eric
-    Pulvino](https://docs.cumulusnetworks.com/display/~eric)
-
-[Show
-More](https://docs.cumulusnetworks.com/plugins/recently-updated/changes.action?theme=concise&pageSize=5&startIndex=5&searchToken=78331&spaceKeys=VX25&contentType=page)
-
-![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/wait.gif](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/wait.gif)  
-<span class="caption">Please wait</span>
-
-## <span>Space Contributors</span>
-
-  - [Pete Bratach](https://docs.cumulusnetworks.com/display/~pete) (890
-    days ago)
-
-  - [Dan Cawley](https://docs.cumulusnetworks.com/display/~dcawley) (58
-    days ago)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

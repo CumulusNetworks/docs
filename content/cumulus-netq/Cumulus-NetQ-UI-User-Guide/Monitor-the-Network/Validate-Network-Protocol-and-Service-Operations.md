@@ -238,18 +238,10 @@ Each has a slightly different flow through the Validation Request card,
 and is therefore described separately. The types are based on the intent
 of the request:
 
-  - [Run an Existing Scheduled Validation Request On
-    Demand](#src-12321612_ValidateNetworkProtocolandServiceOperations-SchValNow)
-  - [Create a New On-demand Validation
-    Request](#src-12321612_ValidateNetworkProtocolandServiceOperations-OndNow)
-  - [Modify an On-demand Validation
-    Request](#src-12321612_ValidateNetworkProtocolandServiceOperations-ModOndNow)
-  - [Save and Schedule an On-demand Validation
-    Request](#src-12321612_ValidateNetworkProtocolandServiceOperations-SchOnd)
-  - [Create a New Scheduled Validation
-    Request](#src-12321612_ValidateNetworkProtocolandServiceOperations-SchNew)
-  - [Modify a Scheduled Validation
-    Request](#src-12321612_ValidateNetworkProtocolandServiceOperations-EditSchedVal)
+  - [Run an Existing Scheduled Validation Request On Demand](#run-an-existing-scheduled-validation-request-on-demand)
+  - [Create a New On-demand Validation Request](#create-a-new-on-demand-validation-request)
+  - [Create a New Scheduled Validation Request](#create-a-new-scheduled-validation-request)
+  - [Modify an Existing Scheduled Validation Request](#modify-an-existing-scheduled-validation-request)
 
 ### Run an Existing Scheduled Validation Request On Demand
 
@@ -267,8 +259,7 @@ To run a scheduled validation now:
 
 3.  Click **Go** or **Run Now**.  
     The associated Validation Result card is opened on your workbench.
-    Refer to [View On-demand Validation
-    Results](#src-12321612_ValidateNetworkProtocolandServiceOperations-OndValRes).
+    Refer to [View On-demand Validation Results](#view-on-demand-validation-results).
 
     {{% imgOld 11 %}}
 
@@ -287,8 +278,7 @@ To create and run a request for *a single* protocol or service:
 
 3.  Click **Go** or **Run Now**.  
     The associated Validation Result card is opened on your workbench.
-    Refer to [View On-demand Validation
-    Results](#src-12321612_ValidateNetworkProtocolandServiceOperations-OndValRes).
+    Refer to [View On-demand Validation Results](#view-on-demand-validation-results).
 
 To create and run a request for *more than one* protocol and/or service,
 essentially a custom validation request, you must first save it as a
@@ -324,8 +314,7 @@ scheduled request. After which you can run it on demand.
 8.  Click **Run Now** to start the validation.  
     The associated on-demand validation result cards (one per protocol
     or service selected) are opened on your current workbench. Refer to
-    [View On-demand Validation
-    Results](#src-12321612_ValidateNetworkProtocolandServiceOperations-OndValRes).
+    [View On-demand Validation Results](#view-on-demand-validation-results).
 
     {{% imgOld 19 %}}
 
@@ -357,7 +346,6 @@ To create and run a new scheduled validation:
     {{% imgOld 23 %}}
 
 5.  Verify the selections were made correctly.
-
 6.  Click **Save As New**.
 
     {{% imgOld 24 %}}
@@ -371,8 +359,7 @@ To create and run a new scheduled validation:
 The validation can now be selected from the Validation listing (on the
 small, medium or large size card) and run immediately using **Run Now**,
 or you can wait for it to run the first time according to the schedule
-you specified. Refer to [View Scheduled Validation
-Results](#src-12321612_ValidateNetworkProtocolandServiceOperations-SchValRes).
+you specified. Refer to [View Scheduled Validation Results](#view-scheduled-validation-results).
 
 {{% imgOld 26 %}}
 
@@ -401,8 +388,7 @@ To modify a scheduled validation:
 The validation can now be selected from the Validation listing (on the
 small, medium or large size card) and run immediately using **Run Now**,
 or you can wait for it to run the first time according to the schedule
-you specified. Refer to [View Scheduled Validation
-Results](#src-12321612_ValidateNetworkProtocolandServiceOperations-SchValRes).
+you specified. Refer to [View Scheduled Validation Results](#view-scheduled-validation-results).
 
 ## View On-demand Validation Results
 
@@ -421,8 +407,8 @@ The small Validation Result card displays:
 
 <table>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -773,8 +759,8 @@ The small Validation Result card displays:
 
 <table>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -819,8 +805,8 @@ The medium Validation Result card displays:
 
 <table>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -858,7 +844,7 @@ The medium Validation Result card displays:
 <td><p>Validation results, where:</p>
 <ul>
 <li><p><strong>Time period</strong>: Range of time in which the data on the heat map was collected</p></li>
-<li><p><strong>Heat map</strong>: A time segmented view of the results. For each time segment, the color represents the percentage of warning, passing, and failed results. Refer to <a href="#src-12321612_ValidateNetworkProtocolandServiceOperations-DataGran">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p></li>
+<li><p><strong>Heat map</strong>: A time segmented view of the results. For each time segment, the color represents the percentage of warning, passing, and failed results. Refer to <a href="#granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p></li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -876,8 +862,8 @@ The large Validation Result card contains two tabs.
 
 <table>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -912,7 +898,7 @@ The large Validation Result card contains two tabs.
 <td><p>Validation results, where:</p>
 <ul>
 <li><p><strong>Time period</strong>: Range of time in which the data on the heat map was collected</p></li>
-<li><p><strong>Heat map</strong>: A time segmented view of the results. For each time segment, the color represents the percentage of warning, passing, and failed results. Refer to <a href="#src-12321612_ValidateNetworkProtocolandServiceOperations-DataGran">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p></li>
+<li><p><strong>Heat map</strong>: A time segmented view of the results. For each time segment, the color represents the percentage of warning, passing, and failed results. Refer to <a href="#granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -943,8 +929,8 @@ The *Configuration* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -987,8 +973,8 @@ validation results for the service.
 
 <table>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1126,9 +1112,7 @@ To view the results:
     results shown on this card workflow, by hovering over the card and
     clicking {{% imgOld 86 %}}. If you want to change the configuration, click **Edit Config** to
     open the large Validation Request card, pre-populated with the
-    current configuration. Follow the instructions in [Modify an
-    Existing Scheduled Validation
-    Request](#src-12321612_ValidateNetworkProtocolandServiceOperations-EditSchedVal)
+    current configuration. Follow the instructions in [Modify an Existing Scheduled Validation Request](#modify-an-existing-scheduled-validation-request)
     to make your changes.
 14. To view all data available for all scheduled validation results for
     the given protocol or service, click **Show All Results** or switch

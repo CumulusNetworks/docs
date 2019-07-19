@@ -37,8 +37,8 @@ The small Switch card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -48,8 +48,7 @@ The small Switch card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 1 %}}</p></td>
+<td><p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -94,8 +93,8 @@ The medium Switch card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -105,8 +104,7 @@ The medium Switch card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 5 %}}</p></td>
+<td><p>{{% imgOld 5 %}}</p></td>
 <td><p>Indicates data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -132,8 +130,8 @@ The *Attributes* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -143,8 +141,7 @@ The *Attributes* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 7 %}}</p></td>
+<td><p>{{% imgOld 7 %}}</p></td>
 <td><p>Indicates data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -208,8 +205,8 @@ The *Utilization* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -219,8 +216,7 @@ The *Utilization* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 9 %}}</p></td>
+<td><p>{{% imgOld 9 %}}</p></td>
 <td><p>Indicates utilization data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -249,8 +245,8 @@ addresses, and all interfaces.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -325,8 +321,7 @@ addresses, and all interfaces.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 12 %}}</p></td>
+<td><p>{{% imgOld 12 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -343,11 +338,7 @@ status and summary performance score and trend.
 
 To view the summary:
 
-1.  Click <span style="color: #353744;"> </span>
-
-    {{% imgOld 13 %}}
-
-    , and select Devices|Switch. A dialog box opens.
+1.  Click {{% imgOld 13 %}}, and select Devices|Switch. A dialog box opens.
 
     {{% imgOld 14 %}}
 
@@ -381,11 +372,8 @@ comprise that score. The key metric scores are based on the number of
 alarms attributed to the following activities on the switch:
 
   - network services, such as BGP, EVPN, CLAG, NTP, and so forth
-
   - scheduled traces
-
   - interface performance
-
   - platform performance
 
 {{% imgOld 18 %}}
@@ -415,13 +403,7 @@ performance with other switches.
 To view the resource utilization on a particular switch:
 
 1.  Open the large Switch card.
-
-2.  Hover over the card and click
-
-    {{% imgOld 20 %}}
-
-    .
-
+2.  Hover over the card and click {{% imgOld 20 %}}.
 3.  The card is divided into two sections, one displaying
     hardware-related performance through a series of charts, and one
     displaying the performance of the network tables, also through a
@@ -432,25 +414,20 @@ To view the resource utilization on a particular switch:
 4.  Look at the hardware performance charts. Are there any that are
     reaching critical usage levels? Scroll down to view all available
     charts.
-
 5.  Open a new large Switch card for the same switch and change the time
     period. Is the performance about the same? Better? Worse? The
     results can guide your decisions about upgrade options or just times
     of day when the system is more heavily used.
-
 6.  Optionally, filter for a particular chart, by clicking **Filter**
     above the charts. Begin typing the name of the chart you want to
     focus on; the charts that match the filter remain, while the others
     are hidden from view. Delete the filter to see all charts again.
-
 7.  Look at the network table performance. Are there any tables that are
     reaching their maximum size? Does it stay at that level or spike at
     peak times? Scroll down to view all available charts.
-
 8.  Compare this data with that in the second card you opened in step 5.
     Is the performance about the same? Better? Worse? The results can
     guide you toward any next steps if needed.
-
 9.  Optionally, filter for a particular chart, by clicking **Filter**
     above the charts. Begin typing the name of the chart you want to
     focus on; the charts that match the filter remain, while the others
@@ -473,12 +450,7 @@ To view all IP addresses:
     information, determine if it is an IPv4 or IPv6 address, and so
     forth.
 
-3.  To return to the workbench, click <span style="color: #353744;">
-    </span>
-
-    {{% imgOld 23 %}}
-
-    in the top right corner.
+3.  To return to the workbench, click {{% imgOld 23 %}} in the top right corner.
 
 To view all MAC addresses:
 
@@ -490,12 +462,7 @@ To view all MAC addresses:
 2.  Review the addresses for any anomalies, to see the associated egress
     port, associated VLANs, and so forth.
 
-3.  To return to the workbench, click <span style="color: #353744;">
-    </span>
-
-    {{% imgOld 25 %}}
-
-    in the top right corner.
+3.  To return to the workbench, click {{% imgOld 25 %}} in the top right corner.
 
 ### View All Interfaces on a Switch
 
@@ -511,24 +478,14 @@ To view all interfaces:
     {{% imgOld 26 %}}
 
 2.  Look for interfaces that are down, shown in the **State** column.
-
 3.  Look for recent changes to the interfaces, shown in the **Last
     Changed** column.
-
 4.  View details about each interface, shown in the **Details** column.
-
 5.  Verify they are of the correct kind for their intended function,
     shown in the **Type** column.
-
 6.  Verify the correct VRF interface is assigned to an interface, shown
     in the **VRF** column.
-
-7.  To return to the workbench, click <span style="color: #353744;">
-    </span>
-
-    {{% imgOld 27 %}}
-
-    in the top right corner.
+7.  To return to the workbench, click {{% imgOld 27 %}} in the top right corner.
 
 ## Monitor Switch Component Inventory
 
@@ -554,8 +511,8 @@ The medium Switch Inventory card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -565,8 +522,7 @@ The medium Switch Inventory card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 31 %}}</p></td>
+<td><p>{{% imgOld 31 %}}</p></td>
 <td><p>Indicates data is for switch inventory</p></td>
 </tr>
 <tr class="even">
@@ -593,8 +549,8 @@ The *Summary* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -618,7 +574,7 @@ The *Summary* tab displays:
 </tr>
 <tr class="even">
 <td><p>Unique</p></td>
-<td><p>Number of unique versions of the various switch components. For example, for OS, you might have CL 3.7.1 and CL 3.7.4 making the unique value two.</p></td>
+<td><p>Number of unique versions of the various switch components. For example, for OS, you might have CL 3.7.6 and CL 3.7.4 making the unique value two.</p></td>
 </tr>
 </tbody>
 </table>
@@ -629,8 +585,8 @@ The *ASIC* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -640,8 +596,7 @@ The *ASIC* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 35 %}}</p></td>
+<td><p>{{% imgOld 35 %}}</p></td>
 <td><p>Indicates data is for ASIC information</p></td>
 </tr>
 <tr class="even">
@@ -669,8 +624,8 @@ The *Platform* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -680,8 +635,7 @@ The *Platform* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 37 %}}</p></td>
+<td><p>{{% imgOld 37 %}}</p></td>
 <td><p>Indicates data is for platform information</p></td>
 </tr>
 <tr class="even">
@@ -713,8 +667,8 @@ The *Software* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -724,8 +678,7 @@ The *Software* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 39 %}}</p></td>
+<td><p>{{% imgOld 39 %}}</p></td>
 <td><p>Indicates data is for software information</p></td>
 </tr>
 <tr class="even">
@@ -836,25 +789,12 @@ count.
 
 {{% imgOld 46 %}}
 
-To view which vendors and platforms have bad or missing licenses, open
-the large Switch Inventory card, <span style="color: #000000;"> and
-click </span>
-
-{{% imgOld 47 %}}
-
-to open the **Platform Details** tab. Hover over the License State bar
-chart to highlight the vendor and platforms with the various states.
+To view which vendors and platforms have bad or missing licenses, open the large Switch Inventory card, and click {{% imgOld 47 %}} to open the **Platform Details** tab. Hover over the License State bar chart to highlight the vendor and platforms with the various states.
 
 To view *which* switches have invalid or missing licenses, either:
 
-  - hover over the large Switch Inventory card and click
-
-    {{% imgOld 48 %}}
-
-    to open the **Platform Details** tab. Above the Licenses State or
-    the Vendor chart, click **Show All**.
-
-  - open the full screen Switch Inventory card .
+  - hover over the large Switch Inventory card and click {{% imgOld 48 %}} to open the **Platform Details** tab. Above the Licenses State or the Vendor chart, click **Show All**.
+  - open the full screen Switch Inventory card.
 
 Then sort the **All Switches** tab data table by the **License State**
 column to locate the switches with bad or missing licenses.
@@ -883,45 +823,27 @@ To view the most commonly deployed ASIC, for example:
     Click on any other component in a similar fashion to see the most
     common type of that component.
 
-3.  <span style="color: #000000;"> If you opened the medium
-    <span style="color: #000000;"> Switch Inventory </span> card, s
-    </span> witch to the large card.
+3.  If you opened the medium Switch Inventory card, switch to the large card.
 
-4.  Hover over the card, and click <span style="color: #353744;">
-    </span>
-
-    {{% imgOld 51 %}}
-
-    to open the **ASIC Details** tab. Here you can more easily view the
+4.  Hover over the card, and click {{% imgOld 51 %}} to open the **ASIC Details** tab. Here you can more easily view the
     various vendors and platforms based on the ASIC deployed.
 
-5.  <span style="color: #353744;"> *Hover* over the **Vendor** pie chart
+5.  *Hover* over the **Vendor** pie chart
     to highlight which platforms are supported by the vendor; and vice
     versa, hover over the **Platform** pie chart to see which vendor
     supports that platform. Moving your cursor off of the carts removes
-    the highlight.  
-    </span>
+    the highlight.
 
     {{% imgOld 52 %}}
 
-
-
-6.  <span style="color: #353744;"> *Click* on a segment of the
+6.  *Click* on a segment of the
     **Vendor** pie chart to drill down and see only that Vendor and its
-    supported models. A <span style="color: #353744;"> filter tag is
-    placed at the top of the charts </span> .  
-    </span>
+    supported models. A filter tag is
+    placed at the top of the charts.
 
     {{% imgOld 53 %}}
 
-
-
-7.  <span style="color: #353744;"> To return to the complete view of
-    vendors and platforms, click </span>
-
-    {{% imgOld 54 %}}
-
-    on the filter tag.
+7.  To return to the complete view of vendors and platforms, click {{% imgOld 54 %}} on the filter tag.
 
 ### View the Number of Switches with a Particular NetQ Agent
 
@@ -936,8 +858,6 @@ distribution by version:
 
     {{% imgOld 55 %}}
 
-
-
 3.  If the number is greater than one, you have multiple NetQ Agent
     versions deployed.
 
@@ -946,15 +866,9 @@ distribution by version:
 
 5.  For more detail, switch to the large Switch Inventory card.
 
-6.  Hover over the card and click
-
-    {{% imgOld 56 %}}
-
-    to open the **Software Details** tab.  
+6.  Hover over the card and click {{% imgOld 56 %}} to open the **Software Details** tab.  
 
     {{% imgOld 57 %}}
-
-
 
 7.  Hover over the chart on the right to view the number of switches
     using the various versions of the NetQ Agent.
@@ -964,15 +878,9 @@ distribution by version:
 
     {{% imgOld 58 %}}
 
-
-
 9.  Click either chart to focus on a particular OS or agent version.
 
-10. To return to the full view, click
-
-    {{% imgOld 59 %}}
-
-    in the filter tag.
+10. To return to the full view, click {{% imgOld 59 %}} in the filter tag.
 
 11. Filter the data on the card by switches that are having trouble
     communicating, by selecting *Rotten Switches* from the dropdown

@@ -27,7 +27,7 @@
     {{ if .Content }}
       {{ template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}
     {{ else }}
-      {{ template "title" . }}</span>
+      <span>{{ template "title" . }}</span>
     {{ end }}
 
     {{ template "book-section-children" (dict "Section" . "CurrentPage" $.CurrentPage) }}

@@ -74,14 +74,10 @@ available:
   - [Cumulus NetQ Deployment Guide](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/)
   - [Cumulus NetQ CLI User Guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/)
   - Cumulus NetQ UI User Guide (this guide)
-  - [<span style="color: #00AD69;">Cumulus NetQ Release
-    Notes</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374)
-  - [<span style="color: #00AD69;">What the NetQ Validation System
-    Checks</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360021961394)
-  - [<span style="color: #00AD69;">Cumulus NetQ Release Versioning and Support
-    Policy</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
-  - [<span style="color: #00AD69;">Cumulus NetQ Cloud Release Versioning and Support
-    Policy</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
+  - [Cumulus NetQ Release Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374)
+  - [What the NetQ Validation System Checks](https://support.cumulusnetworks.com/hc/en-us/articles/360021961394)
+  - [Cumulus NetQ Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
+  - [Cumulus NetQ Cloud Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
 
 ## Document Formatting
 

@@ -70,8 +70,8 @@ boots. Here is a sample configuration:
      
     INTERFACES="swp1"
 
-After you've finished configuring the DHCP server, enable and start the
-` dhcpd  `service immediately:
+After you finish configuring the DHCP server, enable and start the
+`dhcpd` service immediately:
 
     cumulus@switch:~$ sudo systemctl enable dhcpd.service
     cumulus@switch:~$ sudo systemctl start dhcpd.service
@@ -109,7 +109,7 @@ You cannot use NCLU to configure IPv6 DHCP servers.
 {{%/notice%}}
 
 After you've finished configuring the DHCP server, enable and start the
-` dhcpd6  `service immediately:
+`dhcpd6` service immediately:
 
     cumulus@switch:~$ sudo systemctl enable dhcpd6.service
     cumulus@switch:~$ sudo systemctl start dhcpd6.service

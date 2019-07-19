@@ -192,7 +192,7 @@ clicking the Default ACL Configuration link:
 
     Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 </details>
-## IP Tables</span>
+## IP Tables
 
 <table>
 <colgroup>
@@ -306,7 +306,7 @@ bits.
 
 {{%/notice%}}
 
-## IPv6 Tables</span>
+## IPv6 Tables
 
 <table>
 <colgroup>
@@ -437,7 +437,7 @@ bits.
 
 {{%/notice%}}
 
-## EB Tables</span>
+## EB Tables
 
 <table>
 <colgroup>

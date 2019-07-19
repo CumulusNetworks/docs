@@ -17,7 +17,7 @@ on Cumulus Linux.
 
 The `switchd` configuration is stored in `/etc/cumulus/switchd.conf`.
 
-## The switchd File System</span>
+## The switchd File System
 
 `switchd` also exports a file system, mounted on `/cumulus/switchd`,
 that presents all the `switchd` configuration options as a series of
@@ -89,7 +89,7 @@ a switch with one switch port configured:
     |           `-- max_total
     `-- version
 
-## Configure switchd Parameters</span>
+## Configure switchd Parameters
 
 You can use `cl-cfg` to configure many `switchd` parameters at runtime
 (like ACLs, interfaces, and route table utilization), which minimizes
@@ -121,7 +121,7 @@ though you cannot update the `switchd` configuration with it.
 
 {{%/notice%}}
 
-## Restart switchd</span>
+## Restart switchd
 
 Whenever you modify any `switchd` hardware configuration file (typically
 changing any `*.conf` file that requires making a change to the

@@ -60,7 +60,7 @@ In the following procedures:
 <<<<<<< Updated upstream
 ## Install Using a DHCP/Web Server with DHCP Options
 =======
-## Install Using a DHCP/Web Server with DHCP Options</span>
+## Install Using a DHCP/Web Server with DHCP Options
 >>>>>>> Stashed changes
 
 To install Cumulus Linux using a DHCP/web server *with* DHCP options,
@@ -114,7 +114,7 @@ example](https://www.apachefriends.org/index.html).
 <<<<<<< Updated upstream
 ## Install Using a DHCP/Web Server without DHCP Options
 =======
-## Install Using a DHCP/Web Server without DHCP Options</span>
+## Install Using a DHCP/Web Server without DHCP Options
 >>>>>>> Stashed changes
 
 Follow the steps below if you have a laptop on the same network and the
@@ -143,7 +143,7 @@ DHCP options (maybe it is controlled by another team).
 <<<<<<< Updated upstream
 ## Install Using a Web Server with no DHCP
 =======
-## Install Using a Web Server with no DHCP</span>
+## Install Using a Web Server with no DHCP
 >>>>>>> Stashed changes
 
 Follow the steps below if your laptop is on the same network as the
@@ -195,7 +195,7 @@ this procedure remotely.
 <<<<<<< Updated upstream
 ## Install Using FTP Without a Web Server
 =======
-## Install Using FTP Without a Web Server</span>
+## Install Using FTP Without a Web Server
 >>>>>>> Stashed changes
 
 Follow the steps below if your laptop is on the same network as the
@@ -246,7 +246,7 @@ switch eth0 interface but *no* DHCP server is available.
 >>>>>>> Stashed changes
 ## Install Using a Local File
 =======
-## Install Using a Local File</span>
+## Install Using a Local File
 >>>>>>> Stashed changes
 
 Follow the steps below to install the disk image referencing a local
@@ -295,7 +295,7 @@ file.
 >>>>>>> Stashed changes
 ## Install Using a USB Drive
 =======
-## Install Using a USB Drive</span>
+## Install Using a USB Drive
 >>>>>>> Stashed changes
 
 Follow the steps below to install the Cumulus Linux disk image using a

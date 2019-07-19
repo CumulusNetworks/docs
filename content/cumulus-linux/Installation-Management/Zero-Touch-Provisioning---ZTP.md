@@ -40,7 +40,7 @@ ways, in this order:
 
 Each method is discussed in greater detail below.
 
-## Zero Touch Provisioning Using a Local File</span>
+## Zero Touch Provisioning Using a Local File
 
 ZTP only looks once for a ZTP script on the local file system when the
 switch boots. ZTP searches for an install script that matches an
@@ -70,7 +70,7 @@ For example:
 You can also trigger the ZTP process manually by running the `ztp --run
 <URL>` command, where the URL is the path to the ZTP script.
 
-## Zero Touch Provisioning Using a USB Drive (ZTP-USB)</span>
+## Zero Touch Provisioning Using a USB Drive (ZTP-USB)
 
 {{%notice note%}}
 
@@ -108,8 +108,7 @@ Follow these steps to perform zero touch provisioning using a USB drive:
     name first, and ending at the most generic.
 
 3.  The contents of the script are parsed to ensure it contains the
-    `CUMULUS-AUTOPROVISIONING` flag (see [example
-    scripts](#src-8362632_ZeroTouchProvisioning-ZTP-example_scripts)).
+    `CUMULUS-AUTOPROVISIONING` flag.
 
 {{%notice note%}}
 
@@ -120,7 +119,7 @@ partition.
 
 {{%/notice%}}
 
-## Zero Touch Provisioning over DHCP</span>
+## Zero Touch Provisioning over DHCP
 
 If the `ztp` process does not discover a local/ONIE script or applicable
 USB drive, it checks DHCP every ten seconds for up to five minutes for
@@ -262,7 +261,7 @@ and applies a configuration:
      
     # Log all output from this script
     exec >> /var/log/autoprovision 2>&1
-    date "+%FT%T ztp starting script $0" 
+    date "+%FT%T ztp starting script $0"
      
     trap error ERR
      
@@ -309,14 +308,14 @@ installation.
 
     function install_license(){
         # Install license
-        echo "$(date) INFO: Installing License..." 
+        echo "$(date) INFO: Installing License..."
         echo $1 | /usr/cumulus/bin/cl-license -i
         return_code=$?
         if [ "$return_code" == "0" ]; then
-            echo "$(date) INFO: License Installed." 
+            echo "$(date) INFO: License Installed."
         else
             echo "$(date) ERROR: License not installed. Return code was: $return_code"
-            /usr/cumulus/bin/cl-license 
+            /usr/cumulus/bin/cl-license
             exit 1
         fi
     }
@@ -438,9 +437,9 @@ failed. Include the `-v` option when you run `ztp`:
 
     cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh
     Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
-                                                                                   
+
     Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 2016):  
-                                                                                   
+
     ZTP: Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
     ZTP Manual: URL response code 200
     ZTP Manual: Found Marker CUMULUS-AUTOPROVISIONING
@@ -453,7 +452,7 @@ execution, you can run the `ztp -s` command.
 
     cumulus@switch:~$ ztp -s
     ZTP INFO:
-     
+
     State              enabled
     Version            1.0
     Result             Script Failure
@@ -483,7 +482,7 @@ see if any failures occur:
     May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Script returned failure
     May 11 16:38:45 dell-s6000-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE
     May 11 16:38:45 dell-s6000-01 systemd[1]: Unit ztp.service entered failed state.
-    cumulus@switch:~$ 
+    cumulus@switch:~$
     cumulus@switch:~$ sudo journalctl -l -u ztp.service --no-pager
     -- Logs begin at Wed 2016-05-11 16:37:42 UTC, end at Wed 2016-05-11 16:40:39 UTC. --
     May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/lib/cumulus/ztp: Sate Directory does not exist. Creating it...
@@ -540,9 +539,9 @@ as above.
 
     cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh
     Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
-                                                                                   
+
     Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 2016):  
-                                                                                   
+
     ZTP: Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
     ZTP Manual: URL response code 200
     ZTP Manual: Found Marker CUMULUS-AUTOPROVISIONING
@@ -593,7 +592,7 @@ end-of-line encodings.
 Use the `cat -v ztp.sh` command to view the contents of the script and
 search for any hidden characters.
 
-    root@oob-mgmt-server:/var/www/html# cat -v ./ztp_oob_windows.sh 
+    root@oob-mgmt-server:/var/www/html# cat -v ./ztp_oob_windows.sh
     #!/bin/bash^M
     ^M
     ###################^M
@@ -609,7 +608,7 @@ search for any hidden characters.
     ^M
     # The line below is required to be a valid ZTP script^M
     #CUMULUS-AUTOPROVISIONING^M
-    root@oob-mgmt-server:/var/www/html# 
+    root@oob-mgmt-server:/var/www/html#
 
 The `^M` characters in the output of your ZTP script, as shown above,
 indicate the presence of Windows end-of-line encodings that you need to
@@ -619,7 +618,7 @@ Use the translate (`tr`) command on any Linux system to remove the
 `'\r'` characters from the file.
 
     root@oob-mgmt-server:/var/www/html# tr -d '\r' < ztp_oob_windows.sh > ztp_oob_unix.sh
-    root@oob-mgmt-server:/var/www/html# cat -v ./ztp_oob_unix.sh 
+    root@oob-mgmt-server:/var/www/html# cat -v ./ztp_oob_unix.sh
     #!/bin/bash
     ###################
     #   ZTP Script
@@ -630,7 +629,7 @@ Use the translate (`tr`) command on any Linux system to remove the
     exit 0
     # The line below is required to be a valid ZTP script
     #CUMULUS-AUTOPROVISIONING
-    root@oob-mgmt-server:/var/www/html# 
+    root@oob-mgmt-server:/var/www/html#
 
 ## Manually Use the ztp Command</span>
 
@@ -686,10 +685,10 @@ To see the current `ztp` state, use the `-s` option:
 
     cumulus@switch:~$ sudo ztp -s
     ZTP INFO:
-    State disabled 
-    Version 1.0 
-    Result success 
-    Date Thu May 5 16:49:33 2016 UTC 
+    State disabled
+    Version 1.0
+    Result success
+    Date Thu May 5 16:49:33 2016 UTC
     Method Switch manually configured  
     URL None
 

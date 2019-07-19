@@ -3,7 +3,10 @@ title: Cumulus Linux User Guide
 author: Cumulus Networks
 weight: 1
 aliases:
+ - /display/CL37/
+ - /display/DOCS/
  - /display/CL37/Cumulus-Linux-User-Guide
+ - /display/DOCS/Cumulus-Linux-User-Guide
  - /pages/viewpage.action?pageId=8362527
 pageID: 8362527
 product: Cumulus Linux
@@ -27,8 +30,10 @@ solutions, and monitoring and troubleshooting recommendations. In
 addition, the quick start guide provides an end-to-end setup process to
 get you started.
 
+
 ### User Guide
 A link to download the Cumulus Linux 3.7.7 Documentation User Guide is [here](/Cumulus_Linux_3-7-7_User_Guide.pdf)
+
 
 ### What's New in this Release?
 

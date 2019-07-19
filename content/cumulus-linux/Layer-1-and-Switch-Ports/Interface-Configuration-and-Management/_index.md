@@ -623,7 +623,7 @@ reload the configuration with `ifreload -a`. If this happens, you must
 shut down and restart the interface with `ifup` and `ifdown`, or
 manually delete superfluous addresses with `ip address delete
 specify.ip.address.here/mask dev DEVICE`. See also the [Caveats and
-Errata](#src-8363023_InterfaceConfigurationandManagement-caveats)
+Errata](#caveats-and-errata)
 section below for some cautions about using multiple `iface` stanzas for
 the same interface.
 

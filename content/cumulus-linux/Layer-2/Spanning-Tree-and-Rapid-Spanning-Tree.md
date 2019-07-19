@@ -16,7 +16,7 @@ as it prevents bridge loops and broadcast radiation on a bridged
 network. STP also provides redundant links for automatic failover when
 an active link fails. STP is enabled by default in Cumulus Linux.
 
-## Supported Modes</span>
+## Supported Modes
 
 The STP modes Cumulus Linux supports vary depending upon whether the
 traditional or VLAN-aware bridge driver mode is in use.
@@ -30,7 +30,7 @@ traditional or VLAN-aware bridge driver mode is in use.
     operate in both PVST and PVRST mode. The default is set to PVRST.
     Each traditional bridge has its own separate STP instance.
 
-### STP for a VLAN-aware Bridge</span>
+### STP for a VLAN-aware Bridge
 
 VLAN-aware ** bridges only operate in RSTP mode. STP bridge protocol
 data units (BPDUs) are transmitted on the native VLAN.
@@ -59,7 +59,7 @@ MAC address. The proprietary switch might be configured like this:
 
 {{%/notice%}}
 
-### STP within a Traditional Mode Bridge</span>
+### STP within a Traditional Mode Bridge
 
 Per VLAN Spanning Tree (PVST) creates a spanning tree instance for a
 bridge. Rapid PVST (PVRST) supports RSTP enhancements for each spanning
@@ -75,7 +75,7 @@ interoperability.
 
 {{%/notice%}}
 
-## View Bridge and STP Status and Logs</span>
+## View Bridge and STP Status and Logs
 
 To check STP status for a bridge, run the `net show bridge
 spanning-tree` command:
@@ -270,13 +270,13 @@ To show the `mstpd` bridge port state, run this command:
       Num RX BPDU        0                       Num RX TCN           0
       Num Transition FWD 2                       Num Transition BLK   2
 </details>
-## Customize Spanning Tree Protocol</span>
+## Customize Spanning Tree Protocol
 
 There are a number of ways you can customize STP in Cumulus Linux.
 Exercise extreme caution with many of the settings below to prevent
 malfunctions in STP loop avoidance.
 
-### Spanning Tree Priority</span>
+### Spanning Tree Priority
 
 If you have a multiple spanning tree instance (MSTI 0, also known as a
 common spanning tree, or CST), you can set the *tree priority* for a
@@ -297,7 +297,7 @@ Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through
 
 {{%/notice%}}
 
-### PortAdminEdge (PortFast Mode)</span>
+### PortAdminEdge (PortFast Mode)
 
 *PortAdminEdge* is equivalent to the PortFast feature offered by other
 vendors. It enables or disables the *initial edge state* of a port in a
@@ -360,7 +360,7 @@ To load the new configuration, run `ifreload -a`:
 
 {{%/notice%}}
 
-### PortAutoEdge</span>
+### PortAutoEdge
 
 *PortAutoEdge* is an enhancement to the standard PortAdminEdge
 (PortFast) mode, which allows for the automatic detection of edge ports.
@@ -402,7 +402,7 @@ re-enables PortAutoEdge on swp1:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-### BPDU Guard</span>
+### BPDU Guard
 
 To protect the spanning tree topology from unauthorized switches
 affecting the forwarding path, you can configure *BPDU guard* (Bridge
@@ -429,7 +429,7 @@ This creates the following stanza in the `/etc/network/interfaces` file:
 
 {{%/notice%}}
 
-#### Recover a Port Disabled by BPDU Guard</span>
+#### Recover a Port Disabled by BPDU Guard
 
 If a BPDU is received on the port, STP will bring down the port and log
 an error in `/var/log/syslog`. The following is a sample error:
@@ -505,7 +505,7 @@ configuration on the connected end-station has not been rectified.
       clag role          unknown                 clag dual conn mac   0:0:0:0:0:0
       clag remote portID F.FFF                   clag system mac      0:0:0:0:0:0
 
-### Bridge Assurance</span>
+### Bridge Assurance
 
 On a point-to-point link where RSTP is running, if you want to detect
 unidirectional links and put the port in a discarding state (in error),
@@ -544,7 +544,7 @@ following:
     cumulus@switch:~$ sudo grep -in assurance /var/log/syslog | grep mstp
      1365:Jun 25 18:03:17 mstpd: br1007:swp1.1007 Bridge assurance inconsistent
 
-### BPDU Filter</span>
+### BPDU Filter
 
 You can enable `bpdufilter` on a switch port, which filters BPDUs in
 both directions. This effectively disables STP on the port as no BPDUs
@@ -577,7 +577,7 @@ These commands create the following stanza in the
 
 {{%/notice%}}
 
-### Storm Control</span>
+### Storm Control
 
 *Storm control* provides protection against excessive inbound BUM
 (broadcast, unknown unicast, multicast) traffic on layer 2 switch port
@@ -593,7 +593,7 @@ following:
     cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
      
 
-### Spanning Tree Parameter List</span>
+### Spanning Tree Parameter List
 
 Spanning tree parameters are defined in the IEEE
 [802.1D](http://standards.ieee.org/findstds/standard/802.1D-2004.html),
@@ -741,13 +741,13 @@ to remove them from the blacklist.
 </tbody>
 </table>
 
-### Caveats and Errata</span>
+### Caveats and Errata
 
 MSTP is not supported currently because Cumulus Linux only supports MSTI
 0 (not MSTI 1 through 15). However, interoperability with MSTP networks
 can be accomplished using PVRSTP or PVSTP.
 
-## Related Information</span>
+## Related Information
 
 The source code for `mstpd`/`mstpctl` was written by [Vitalii
 Demianets](mailto:vitas%40nppfactor.kiev.ua) and is hosted at the URL

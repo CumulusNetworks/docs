@@ -117,8 +117,7 @@ to make the responses more readable. You may chose to do so as well or
 not.
 
 To view all of the endpoints and their associated requests and
-responses, refer to [View the
-API](#src-12321983_CumulusNetQAPIUserGuide-ViewApi).
+responses, refer to [View the API](#view-the-api).
 
 ### Get Network-wide Status of the BGP Service
 

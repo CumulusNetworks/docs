@@ -154,7 +154,7 @@ To change access permissions:
 You cannot edit a user's email address, because this is the identifier
 the system uses for authentication. If you need to change an email
 address, you must create a new one for this user. Refer to [Add a New
-User Account](#src-12321950_NetQManagement-AddUsrAct). You should delete
+User Account](#add-new-user-account). You should delete
 the incorrect user account. Select the user account, and click
 **Delete** in the Edit menu.
 

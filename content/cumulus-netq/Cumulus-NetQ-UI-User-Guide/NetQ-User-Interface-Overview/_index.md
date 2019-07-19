@@ -192,8 +192,7 @@ preconfigured default workbench, Cumulus Workbench, is available to get
 you started. It contains Device Inventory, Switch Inventory, Alarm and
 Info Events, and Network Health cards. On initial login, this workbench
 is opened. You can modify a workbench by adding or removing cards or
-card decks, as described in [Add or
-Remove a Card](#src-12321856_NetQUserInterfaceOverview-AddDelCard).
+card decks, as described in [Add or Remove a Card](#add-or-remove-a-card).
 
 ## Cards
 

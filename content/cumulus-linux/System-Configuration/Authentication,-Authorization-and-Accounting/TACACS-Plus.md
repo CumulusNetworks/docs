@@ -248,7 +248,7 @@ against the original TACACS+ login name.
 
 For more information, refer to the `audisp.8` and `auditd.8` man pages.
 
-## Configure NCLU for TACACS+ Users</span>
+## Configure NCLU for TACACS Plus Users
 
 When you install or upgrade TACACS+ packages, mapped user accounts are
 created automatically. All *tacacs0* through *tacacs15* users are added

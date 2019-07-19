@@ -17,7 +17,7 @@ plugged in, or automatically unconfigure it when a cable is removed.
 
 Follow the steps below to install and configure the `ifplugd` daemon.
 
-## Install ifplugd</span>
+## Install ifplugd
 
 1.  Update the switch before installing the daemon:
 
@@ -27,18 +27,13 @@ Follow the steps below to install and configure the `ifplugd` daemon.
 
         cumulus@switch:~$ sudo -E apt-get install ifplugd
 
-## Configure ifplugd</span>
+## Configure ifplugd
 
-Once `ifplugd` is installed, two configuration files must be edited to
-set up `ifplugd`:
+After `ifplugd` is installed, you must edit two configuration files to set up `ifplugd`:
 
   - `/etc/default/ifplugd`
 
   - `/etc/ifplugd/action.d/ifupdown`
-
-{{%notice info has%}}
-
-**Example ifplugd Configuration**
 
 The example `ifplugd` configuration below show that `ifplugd` has been
 configured to bring down all uplinks when the peerbond goes down in an
@@ -97,9 +92,7 @@ switches in this example.
 
         cumulus@switch:$ sudo systemctl restart ifplugd.service
 
-{{%/notice%}}
-
-## Caveats and Errata</span>
+## Caveats and Errata
 
 The default shell for `ifplugd` is `dash` (`/bin/sh`), rather than
 `bash`, as it provides a faster and more nimble shell. However, it

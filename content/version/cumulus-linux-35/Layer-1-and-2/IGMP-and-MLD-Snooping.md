@@ -36,7 +36,7 @@ ports interested in receiving multicast traffic destined to that group.
 
 {{% imgOld 0 %}}
 
-## <span>Configuring IGMP/MLD Querier</span>
+## Configuring IGMP/MLD Querier</span>
 
 If no multicast router is sending queries to configure IGMP/MLD querier
 on the switch, you can add a configuration similar to the following in
@@ -50,7 +50,7 @@ For an explanation of the relevant parameters, see the
 `ifupdown-addons-interfaces` man page.
 
 For a [VLAN-aware
-bridge](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments),
+bridge](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments),
 use a configuration like the following:
 
     auto bridge.100
@@ -77,7 +77,7 @@ You can specify a range of VLANs as well. For example:
       bridge-igmp-querier-src 123.1.1.1
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging---VLANs/),
+mode](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/),
 use a configuration like the following:
 
     auto br0
@@ -88,7 +88,7 @@ use a configuration like the following:
       bridge-mcquerier 1
       bridge-mcqifaddr 1
 
-## <span>Disable IGMP and MLD Snooping</span>
+## Disable IGMP and MLD Snooping</span>
 
 <span id="src-8357474_IGMPandMLDSnooping-igmp_disable"></span>To disable
 IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
@@ -118,7 +118,7 @@ example bridge in `/etc/network/interfaces`:
 
 {{%/notice%}}
 
-## <span>Debugging IGMP/MLD Snooping</span>
+## Debugging IGMP/MLD Snooping</span>
 
 To get the IGMP/MLD snooping bridge state, run `brctl showstp <bridge>`:
 
@@ -180,7 +180,7 @@ command. To display router ports and group information use the `bridge
      dev bridge port swp2 grp ff1a::9 permanent 0.00
      router ports on bridge: swp3
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [www.linuxfoundation.org/collaborate/workgroups/networking/bridge\#Snooping](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge#Snooping)
 

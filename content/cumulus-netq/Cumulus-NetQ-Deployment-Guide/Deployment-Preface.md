@@ -15,7 +15,7 @@ A variety of resources are available for you to become familiar with
 Cumulus NetQ and aid in its deployment. These are identified here along
 with information about how the content is presented.
 
-## <span>What's New in Cumulus NetQ 2.2</span>
+## What's New in Cumulus NetQ 2.2
 
 Cumulus NetQ is now available as a cloud service, making it even easier
 to scale with your network growth. Just like Cumulus NetQ deployed in
@@ -51,7 +51,7 @@ For further information regarding new features, improvements, bug fixes,
 and known issues present in this release, refer to the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).
 
-## <span>Available Documentation</span>
+## Available Documentation
 
 The NetQ
 documentation set has been reorganized and updated from prior releases.
@@ -71,9 +71,9 @@ available:
 
   - Cumulus NetQ Deployment Guide (this guide) </span>
   - [Cumulus NetQ CLI User
-    Guide](/version/cumulus-netq-22/Cumulus-NetQ-CLI-User-Guide/)
+    Guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/)
   - [Cumulus NetQ UI User
-    Guide](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/)
+    Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/)
   - [<span style="color: #00AD69;">Cumulus NetQ Release
     Notes</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374)
   - [<span style="color: #00AD69;">What the NetQ Validation System
@@ -83,12 +83,12 @@ available:
   - [<span style="color: #00AD69;">Cumulus NetQ Cloud Release Versioning and Support
     Policy</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
 
-## <span>Document Formatting</span>
+## Document Formatting
 
 The Cumulus NetQ Deployment Guide uses the following typographical and
 note conventions.
 
-### <span>Typographical Conventions</span>
+### Typographical Conventions
 
 Throughout the guide, text formatting is
 used to convey contextual information about the content.
@@ -100,7 +100,7 @@ used to convey contextual information about the content.
 |  \[`Text within square brackets`\] | Optional command parameters; may be presented in mixed case or all caps text  |
 |  \<`Text within angle brackets`\> | Required command parameter values–variables that are to be replaced with a relevant value; may be presented in mixed case or all caps text |
 
-### <span>Note Conventions </span>
+### Note Conventions
 
 Several note types are used throughout
 the document. The formatting of the note indicates its intent and

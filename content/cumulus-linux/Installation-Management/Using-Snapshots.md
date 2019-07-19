@@ -15,9 +15,11 @@ Cumulus Linux supports the ability to take snapshots of the complete
 file system as well as the ability to roll back to a previous snapshot.
 Snapshots are performed automatically right before and after you upgrade
 Cumulus Linux using [package
-install](Upgrading-Cumulus-Linux.html#src-8362647_UpgradingCumulusLinux-apt_upgrade),
+
+install](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/),
+
 and right before and after you commit a switch configuration using
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU).
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
 In addition, you can take a snapshot at any time. You can roll back the
 entire file system to a specific snapshot or just retrieve specific
 files.
@@ -34,12 +36,12 @@ The primary snapshot components include:
     back to earlier snapshots, view existing snapshots, or delete one or
     more snapshots.
 
-  - [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU)
+  - [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
     — takes snapshots automatically before and after committing network
     configurations. You can use NCLU to roll back to earlier snapshots,
     view existing snapshots, or delete one or more snapshots.
 
-## <span>Install the Snapshot Package</span>
+## Install the Snapshot Package
 
 If you are upgrading from a version of Cumulus Linux earlier than
 version 3.2, you need to install the `cumulus-snapshot` package before
@@ -49,7 +51,7 @@ you can use snapshots.
     cumulus@switch:~$ sudo -E apt-get install cumulus-snapshot
     cumulus@switch:~$ sudo -E apt-get upgrade
 
-## <span>Take and Manage Snapshots</span>
+## Take and Manage Snapshots
 
 Snapshots are taken automatically:
 
@@ -66,12 +68,12 @@ You can also take snapshots as needed using the `snapper` utility. Run:
 For more information about using `snapper`, run `snapper --help` or `man
 snapper(8)`.
 
-### <span>View Available Snapshots</span>
+### View Available Snapshots
 
 You can use both NCLU and `snapper` to view available snapshots on the
 switch.
 
-    cumulus@switch:~$ net show commit history 
+    cumulus@switch:~$ net show commit history
       #  Date                             Description
     ---  -------------------------------  --------------------------------------
      20  Thu 01 Dec 2016 01:43:29 AM UTC  nclu pre  'net commit' (user cumulus)
@@ -87,7 +89,7 @@ you update your switch configuration. It does not list any snapshots
 taken directly with `snapper`. To see all the snapshots on the switch,
 run the `sudo snapper list` command:
 
-``` 
+```
 cumulus@switch:~$ sudo snapper list
 Type   | #  | Pre # | Date                            | User | Cleanup | Description                            | Userdata     
 -------+----+-------+---------------------------------+------+---------+----------------------------------------+--------------
@@ -104,7 +106,7 @@ pre    | 31 |       | Fri 02 Dec 2016 12:18:08 AM UTC | root | number  | nclu pr
 post   | 32 | 31    | Fri 02 Dec 2016 12:18:10 AM UTC | root | number  | nclu post 'ACL' (user cumulus)         |            
 ```
 
-### <span>View Differences between Snapshots</span>
+### View Differences between Snapshots
 
 To see a line by line comparison of changes between two snapshots, run
 the `sudo snapper diff` command:
@@ -124,25 +126,25 @@ the `sudo snapper diff` command:
     +++ /.snapshots/21/snapshot/var/lib/cumulus/nclu/nclu_acl.conf  2016-12-01 00:23:10.096136000 +0000
     @@ -1,8 +1,3 @@
     -acl ipv4 EXAMPLE1 priority 10 accept tcp 10.0.0.11/32 10.0.0.12/32 pop3 outbound-interface swp2
-     
+
     -control-plane
     -    acl ipv4 EXAMPLE1 inbound
-     
+
     -iface swp1
     -    acl ipv4 EXAMPLE1 inbound
 
 You can view the diff for a single file by specifying the name in the
 command:
 
-    cumulus@switch:~$ sudo snapper diff 20..21 /var/lib/cumulus/nclu/nclu_acl.conf 
+    cumulus@switch:~$ sudo snapper diff 20..21 /var/lib/cumulus/nclu/nclu_acl.conf
     --- /.snapshots/20/snapshot/var/lib/cumulus/nclu/nclu_acl.conf  2016-11-30 23:00:18.030079000 +0000
     +++ /.snapshots/21/snapshot/var/lib/cumulus/nclu/nclu_acl.conf  2016-12-01 00:23:10.096136000 +0000
     @@ -1,8 +1,3 @@
     -acl ipv4 EXAMPLE1 priority 10 accept tcp 10.0.0.11/32 10.0.0.12/32 pop3 outbound-interface swp2
-     
+
     -control-plane
     -    acl ipv4 EXAMPLE1 inbound
-     
+
     -iface swp1
     -    acl ipv4 EXAMPLE1 inbound
 
@@ -153,7 +155,7 @@ added, or deleted files only, run the `sudo snapper status` command:
     c..... /etc/cumulus/acl/policy.d/50_nclu_acl.rules
     c..... /var/lib/cumulus/nclu/nclu_acl.conf
 
-### <span>Delete Snapshots</span>
+### Delete Snapshots
 
 You can remove one or more snapshots using NCLU or snapper.
 
@@ -212,7 +214,7 @@ after running `apt-get upgrade|install|remove|dist-upgrade`. Edit
 
     APT_SNAPSHOT_ENABLE=no
 
-## <span id="src-8362648_UsingSnapshots-rollback" class="confluence-anchor-link"></span><span>Roll Back to Earlier Snapshots</span>
+## Roll Back to Earlier Snapshots
 
 If you need to restore Cumulus Linux to an earlier state, you can roll
 back to an older snapshot.
@@ -234,17 +236,17 @@ description rolls the configuration back to the commit prior to the
 specified description. For example, consider the following commit
 history:
 
-    cumulus@switch:~$ net show commit history 
+    cumulus@switch:~$ net show commit history
      #  Date                             Description
     --  -------------------------------  --------------------------------
     10  Tue 06 Nov 2018 12:07:14 AM UTC  nclu "net commit" (user cumulus)
     12  Tue 06 Nov 2018 10:19:50 PM UTC  nclu rocket
-    14  Tue 06 Nov 2018 10:20:22 PM UTC  nclu turtle 
+    14  Tue 06 Nov 2018 10:20:22 PM UTC  nclu turtle
 
 Running `net rollback description turtle` rolls the configuration back
 to the state it was in when you ran `net commit description rocket`.
 
-### <span>Roll Back with snapper</span>
+### Roll Back with snapper
 
 For any snapshot on the switch, you can use `snapper` to roll back to a
 specific snapshot. When running `snapper rollback`, you must reboot the
@@ -266,7 +268,7 @@ You can also copy the file directly from the snapshot directory:
 
 {{%/notice%}}
 
-## <span>Configure Automatic Time-based Snapshots</span>
+## Configure Automatic Time-based Snapshots
 
 You can configure Cumulus Linux to take hourly snapshots. Enable
 `TIMELINE_CREATE` in the snapper configuration:
@@ -279,12 +281,12 @@ You can configure Cumulus Linux to take hourly snapshots. Enable
     ALLOW_USERS            |      
     BACKGROUND_COMPARISON  | yes  
     EMPTY_PRE_POST_CLEANUP | yes  
-    EMPTY_PRE_POST_MIN_AGE | 1800 
+    EMPTY_PRE_POST_MIN_AGE | 1800
     FSTYPE                 | btrfs
     NUMBER_CLEANUP         | yes  
     NUMBER_LIMIT           | 5    
     NUMBER_LIMIT_IMPORTANT | 10   
-    NUMBER_MIN_AGE         | 1800 
+    NUMBER_MIN_AGE         | 1800
     QGROUP                 |      
     SPACE_LIMIT            | 0.5  
     SUBVOLUME              | /    
@@ -295,9 +297,9 @@ You can configure Cumulus Linux to take hourly snapshots. Enable
     TIMELINE_LIMIT_HOURLY  | 5    
     TIMELINE_LIMIT_MONTHLY | 5    
     TIMELINE_LIMIT_YEARLY  | 5    
-    TIMELINE_MIN_AGE       | 1800 
+    TIMELINE_MIN_AGE       | 1800
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata
 
 You might notice that the root partition is mounted multiple times. This
 is due to the way the `btrfs` file system handles subvolumes, mounting

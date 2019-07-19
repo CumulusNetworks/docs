@@ -13,13 +13,13 @@ siteSlug: cumulus-linux-25esr
 ---
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 
-## <span>Commands</span>
+## Commands</span>
 
   - cl-support
 
   - fw\_setenv
 
-## <span>Using the Serial Console</span>
+## Using the Serial Console</span>
 
 The serial console can be a useful tool for debugging issues, especially
 when you find yourself rebooting the switch often or if you don’t have a
@@ -28,7 +28,7 @@ reliable network connection.
 The default serial console baud rate is 115200, which is the baud rate
 [ONIE](http://opencomputeproject.github.io/onie/) uses.
 
-### <span>Configuring the Serial Console on PowerPC or ARM Switches</span>
+### Configuring the Serial Console on PowerPC or ARM Switches</span>
 
 On PowerPC switches, the U-Boot environment variable `baudrate`
 identifies the baud rate of the serial console. To change the `baudrate`
@@ -60,7 +60,7 @@ The valid values for `baudrate` are:
 
   - 115200
 
-### <span>Configuring the Serial Console on x86 Switches</span>
+### Configuring the Serial Console on x86 Switches</span>
 
 On x86 switches, you configure serial console baud rate by editing
 `grub`.
@@ -115,7 +115,7 @@ To change the serial console baud rate:
 
 4.  Reboot the switch.
 
-## <span>Diagnostics Using cl-support</span>
+## Diagnostics Using cl-support</span>
 
 You can use `cl-support` to generate a single export file that contains
 various details and the configuration from a switch. This is useful for
@@ -173,7 +173,7 @@ File](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Understanding-
 
 <span id="src-5115962_MonitoringandTroubleshooting-syslog_server"></span>
 
-## <span>Sending Log Files to a syslog Server</span>
+## Sending Log Files to a syslog Server</span>
 
 All logging on Cumulus Linux is done with
 [rsyslog](http://www.rsyslog.com/). `rsyslog` provides both local
@@ -199,7 +199,7 @@ the rules in `/etc/rsyslog.d` and then dropped by the last line in
 
 {{%/notice%}}
 
-### <span>Local Logging</span>
+### Local Logging</span>
 
 Most logs within Cumulus Linux are sent through `rsyslog`, which then
 writes them to files in the `/var/log` directory. There are default
@@ -210,9 +210,9 @@ written:
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 10-rules.conf   | Sets defaults for log messages, include log format and log rate limits.                                                                                                         |
 | 15-crit.conf    | Logs crit, alert or emerg log messages to `/var/log/crit.log` to ensure they are not rotated away rapidly.                                                                      |
-| 20-clagd.conf   | Logs `clagd` messages to `/var/log/clagd.log` for [MLAG](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation---MLAG).                      |
+| 20-clagd.conf   | Logs `clagd` messages to `/var/log/clagd.log` for [MLAG](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG).                      |
 | 25-switchd.conf | Logs `switchd` messages to `/var/log/switchd.log`.                                                                                                                              |
-| 30-ptmd.conf    | Logs `ptmd` messages to `/var/log/ptmd.log` for [Prescription Topology Manager](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager---PTM). |
+| 30-ptmd.conf    | Logs `ptmd` messages to `/var/log/ptmd.log` for [Prescription Topology Manager](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM). |
 | 99-syslog.conf  | All remaining processes that use `rsyslog` are sent to `/var/log/syslog`.                                                                                                       |
 
 Log files that are rotated are compressed into an archive. Processes
@@ -221,7 +221,7 @@ that do not use `rsyslog` write to their own log files within the
 [Troubleshooting Log
 Files](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-Log-Files).
 
-### <span>Enabling Remote syslog</span>
+### Enabling Remote syslog</span>
 
 If you need to send other log files — such as `switchd` logs — to a
 `syslog` server, do the following:
@@ -298,7 +298,7 @@ In most cases, the settings to customize include:
 | $InputFileStateFile | A unique name for each file being watched. |
 | $InputFileTag       | A prefix to the log message on the server. |
 
-## <span>Next Steps</span>
+## Next Steps</span>
 
 The links below discuss more specific monitoring topics.
 

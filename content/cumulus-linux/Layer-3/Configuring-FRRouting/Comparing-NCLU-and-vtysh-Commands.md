@@ -12,7 +12,7 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
 Using
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU)
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
 is the primary way to [configure
 routing](/cumulus-linux/Layer-3/Configuring-FRRouting/) in Cumulus
 Linux. However, an alternative exists in the the `vtysh` modal CLI. The
@@ -66,7 +66,7 @@ switch(config-router)# redistribute static</code></pre></td>
 switch(config-if)# ipv6 address 3002:2123:1234:1abc::21/64</code></pre></td>
 </tr>
 <tr class="even">
-<td><p>Enable topology checking (<a href="/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM">PTM</a>)</p></td>
+<td><p>Enable topology checking (<a href="/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM">PTM</a>)</p></td>
 <td><pre><code>cumulus@switch:~$ net add routing ptm-enable</code></pre></td>
 <td><pre><code>switch(config)# ptm-enable</code></pre></td>
 </tr>
@@ -95,7 +95,7 @@ switch(config-ospf6)# timer throttle spf 40 50 60</code></pre></td>
 switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
 </tr>
 <tr class="odd">
-<td><p>Display <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP">BGP</a> information</p></td>
+<td><p>Display <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP">BGP</a> information</p></td>
 <td><pre><code>cumulus@switch:~$ net show bgp summary</code></pre></td>
 <td><pre><code>switch# show ip bgp summary</code></pre></td>
 </tr>

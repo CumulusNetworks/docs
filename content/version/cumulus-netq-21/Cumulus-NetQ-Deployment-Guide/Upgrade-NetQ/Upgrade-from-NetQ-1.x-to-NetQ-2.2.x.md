@@ -33,9 +33,9 @@ version requires a fresh install as described here.
 
 {{%/notice%}}
 
-## <span>Prerequisites</span>
+## Prerequisites</span>
 
-### <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-hwspec" class="confluence-anchor-link"></span><span>Hardware Requirements</span>
+### <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-hwspec" class="confluence-anchor-link"></span>Hardware Requirements</span>
 
 NetQ is supported a variety of hardware.
 
@@ -72,7 +72,7 @@ These ports have changed from NetQ 1.4 and earlier.
 
 {{%/notice%}}
 
-### <span>NetQ Platform HyperVisor Requirements</span>
+### NetQ Platform HyperVisor Requirements</span>
 
 The NetQ Platform can be installed as a Virtual Machine (VM) using one
 of the following hypervisors:
@@ -83,7 +83,7 @@ of the following hypervisors:
   - KVM/QCOW (QEMU Copy on Write) image for servers running CentOS,
     Ubuntu and RedHat operating systems.
 
-### <span>NetQ Agent Operating System Requirements</span>
+### NetQ Agent Operating System Requirements</span>
 
 NetQ 2.2 Agents are supported on the following switch and host operating
 systems:
@@ -96,12 +96,12 @@ systems:
 
   - CentOS 7
 
-### <span>NetQ Application Support</span>
+### NetQ Application Support</span>
 
 The NetQ CLI, UI, and RESTful API are supported on NetQ 2.1.0 and later.
 NetQ 1.4, and earlier, applications are not supported in NetQ 2.x.
 
-## <span>Upgrade Workflow</span>
+## Upgrade Workflow</span>
 
 The upgrade from NetQ 1.x involves installing the NetQ Platform, and
 installing and configuring the NetQ Agents. Additional steps are needed
@@ -114,7 +114,7 @@ integrating with event notification applications and monitoring hosts.
 
 {{% imgOld 0 %}}
 
-## <span>Upgrade the NetQ Platform</span>
+## Upgrade the NetQ Platform</span>
 
 The first step of the upgrade is to install the NetQ software onto your
 hardware (NetQ Platform).
@@ -150,7 +150,7 @@ specifics.
 
 {{%/notice%}}
 
-### <span>Install NetQ VM Image</span>
+### Install NetQ VM Image</span>
 
 To install the NetQ software onto your own hardware:
 
@@ -340,7 +340,7 @@ continue.
 
 {{%/notice%}}
 
-### <span>Verify the Installation</span>
+### Verify the Installation</span>
 
 1.  Verify you can access the NetQ CLI.
     
@@ -434,7 +434,7 @@ continue.
     switch or host you want to monitor. Refer to the next section for
     instructions.
 
-## <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-agent" class="confluence-anchor-link"></span><span>Upgrade the NetQ Agent</span>
+## <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-agent" class="confluence-anchor-link"></span>Upgrade the NetQ Agent</span>
 
 The NetQ Agent must be updated on each node you want to monitor. The
 node can be a:
@@ -473,7 +473,7 @@ access the meta package on the Cumulus Networks repository.
 
 {{%/notice%}}
 
-### <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentCL" class="confluence-anchor-link"></span><span>Upgrade NetQ Agent on a Cumulus Linux Switch</span>
+### <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentCL" class="confluence-anchor-link"></span>Upgrade NetQ Agent on a Cumulus Linux Switch</span>
 
 A simple process installs the NetQ Agent on a Cumulus switch.
 
@@ -553,7 +553,7 @@ A simple process installs the NetQ Agent on a Cumulus switch.
 Repeat these steps for each Cumulus switch, or use an automation tool to
 install NetQ Agent on multiple Cumulus Linux switches.
 
-### <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentUbuntu" class="confluence-anchor-link"></span><span>Upgrade NetQ Agent on an Ubuntu Server (Optional)</span>
+### <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentUbuntu" class="confluence-anchor-link"></span>Upgrade NetQ Agent on an Ubuntu Server (Optional)</span>
 
 To upgrade the NetQ Agent on an Ubuntu server:
 
@@ -626,7 +626,7 @@ To upgrade the NetQ Agent on an Ubuntu server:
     
         user@ubuntu:~# netq config restart cli
 
-### <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentRHC" class="confluence-anchor-link"></span><span>Upgrade NetQ Agent on a Red Hat or CentOS Server (Optional)</span>
+### <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentRHC" class="confluence-anchor-link"></span>Upgrade NetQ Agent on a Red Hat or CentOS Server (Optional)</span>
 
 To upgrade the NetQ Agent on a Red Hat or CentOS server:
 
@@ -698,7 +698,7 @@ To upgrade the NetQ Agent on a Red Hat or CentOS server:
     
         root@rhel7:~# netq config restart cli
 
-## <span>Configure Optional NetQ Agent Settings</span>
+## Configure Optional NetQ Agent Settings</span>
 
 Once the NetQ Agents have been installed on the network nodes you want
 to monitor, the NetQ Agents must be configured to obtain useful and
@@ -713,7 +713,7 @@ relevant additional instructions after the basic configuration steps:
   - [Configuring the Agent to Communicate over a Specific
     Port](#src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-port)
 
-### <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentVRF" class="confluence-anchor-link"></span><span>Configure the Agent to Use a VRF</span>
+### <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentVRF" class="confluence-anchor-link"></span>Configure the Agent to Use a VRF</span>
 
 While optional, Cumulus strongly recommends that you configure NetQ
 Agents to communicate with the NetQ Platform only via a
@@ -732,7 +732,7 @@ You then restart the agent: <span style="color: #222222;"> </span>
     cumulus@leaf01:~$ netq config restart agent
     cumulus@leaf01:~$ netq config restart cli
 
-### <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-port" class="confluence-anchor-link"></span><span>Configure the Agent to Communicate over a Specific Port</span>
+### <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-port" class="confluence-anchor-link"></span>Configure the Agent to Communicate over a Specific Port</span>
 
 By default, NetQ uses port 8981 for communication between the NetQ
 Platform and NetQ Agents. If you want the NetQ Agent to communicate with
@@ -745,7 +745,7 @@ You then restart the agent: <span style="color: #222222;"> </span>
 
     cumulus@leaf01:~$ netq config restart agent
 
-## <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-EvntNotifInt" class="confluence-anchor-link"></span><span>Integrate with Event Notification Tools</span>
+## <span id="src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-EvntNotifInt" class="confluence-anchor-link"></span>Integrate with Event Notification Tools</span>
 
 If you want to proactively monitor events in your network, you can
 integrate NetQ with the PagerDuty or Slack notification tools. To do so
@@ -755,7 +755,7 @@ send them. Refer to [Integrate NetQ with Event Notification
 Applications](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware)
 to use the CLI for configuration.
 
-## <span>Set Up Security</span>
+## Set Up Security</span>
 
 <span style="color: #ff0000;"> When you set up and configured your
 Cumulus Linux switches, you likely configured a number of the security

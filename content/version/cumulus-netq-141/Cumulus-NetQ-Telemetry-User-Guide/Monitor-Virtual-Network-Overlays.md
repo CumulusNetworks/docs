@@ -28,7 +28,7 @@ It helps answer questions such as:
 
   - Can device A reach device B?
 
-## <span>Monitor Virtual Extensible LANs</span>
+## Monitor Virtual Extensible LANs</span>
 
 Virtual Extensible LANs (VXLANs) provide a way to create a virtual
 network on top of layer 2 and layer 3 technologies. It is intended for
@@ -63,7 +63,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### <span>View All VXLANs in Your Network</span>
+### View All VXLANs in Your Network</span>
 
 You can view a list of configured VXLANs for all devices, including the
 VNI (VXLAN network identifier), protocol, address of associated VTEPs
@@ -160,7 +160,7 @@ particular VNI. This example shows the configured VXLANs for *VNI 24*.
     leaf03            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          23h:16m:44s
     leaf04            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          23h:13m:23s
 
-### <span>View the Interfaces Associated with VXLANs</span>
+### View the Interfaces Associated with VXLANs</span>
 
 You can view detailed information about the VXLAN interfaces using the
 netq show interface command. You can also view this information for a
@@ -179,7 +179,7 @@ shows the detailed VXLAN interface information for the leaf02 switch.
                                                                                             Master: bridge, VTEP: 10.0.0.112,
                                                                                             MTU: 1500
 
-## <span>Monitor EVPN</span>
+## Monitor EVPN</span>
 
 EVPN (Ethernet Virtual Private Network) enables network administrators
 in the data center to deploy a virtual layer 2 bridge overlay on top of
@@ -221,7 +221,7 @@ For more information about and configuration of EVPN in your data
 center, refer to the [Cumulus Linux
 EVPN](/display/NETQ141/Ethernet+Virtual+Private+Network+-+EVPN) topic.
 
-### <span>View the Status of EVPN</span>
+### View the Status of EVPN</span>
 
 You can view the configuration and status of your EVPN overlay across
 your network or for a particular device. This example shows the
@@ -250,7 +250,7 @@ single device.
     leaf04            24         10.0.0.134       yes       65014:24         65014:24         3d:17h:22m:22s
     leaf04            104001     10.0.0.134       yes       65014:104001     65014:104001     3d:17h:22m:22s
 
-### <span>View the Status of EVPN for a Given VNI</span>
+### View the Status of EVPN for a Given VNI</span>
 
 You can filter the full device view to focus on a single VNI. This
 example only shows the EVPN configuration and status for VNI 24.
@@ -264,7 +264,7 @@ example only shows the EVPN configuration and status for VNI 24.
     leaf03            24         10.0.0.134       yes       65013:24         65013:24         3d:17h:49m:53s
     leaf04            24         10.0.0.134       yes       65014:24         65014:24         3d:17h:46m:34s
 
-### <span>View Changes to the EVPN Configuration</span>
+### View Changes to the EVPN Configuration</span>
 
 You can view the changes that have been made to your EVPN configuration
 within the last hour or within a given timeframe. Perhaps you are seeing
@@ -293,7 +293,7 @@ the leaf switches and exit switches).
     leaf01            13         10.0.0.112       yes       65011:13         65011:13         Add        3d:18h:40m:23s
     leaf01            24         10.0.0.112       yes       65011:24         65011:24         Add        3d:18h:40m:23s
 
-## <span>Monitor LNV</span>
+## Monitor LNV</span>
 
 Lightweight Network Virtualization (LNV) is a technique for deploying
 VXLANs without a central controller on bare metal switches. LNV enables
@@ -308,7 +308,7 @@ command is:
     netq [<hostname>] show lnv [around <text-time>] [json]
     netq [<hostname>] show lnv changes [between <text-time> and <text-endtime>] [json]
 
-### <span>View LNV Status</span>
+### View LNV Status</span>
 
 You can view the configuration and status of your LNV overlay across
 your network or for a particular device. This example shows the
@@ -330,7 +330,7 @@ last time the configuration was changed.
     torc-21           RD         HER      up         4      6      45m:29.437s
     torc-22           RD         HER      up         4      6      45m:11.440s
 
-### <span>View LNV Status in the Past</span>
+### View LNV Status in the Past</span>
 
 You can view the status in the past using either the around or changes
 keywords. This example shows the status of LNV about 30 minutes ago.
@@ -354,7 +354,7 @@ For more information about and configuration of LNV, refer to the
 Overview](/display/NETQ141/Lightweight+Network+Virtualization+Overview)
 topic.
 
-## <span>View Communication Paths between Devices</span>
+## View Communication Paths between Devices</span>
 
 You can view the available paths between devices that communicate over
 virtual constructs using the netq trace command. The syntax of this

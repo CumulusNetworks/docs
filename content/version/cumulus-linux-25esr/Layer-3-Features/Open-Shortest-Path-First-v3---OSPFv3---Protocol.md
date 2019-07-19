@@ -13,7 +13,7 @@ siteSlug: cumulus-linux-25esr
 ---
 OSPFv3 is a revised version of OSPFv2 to support the IPv6 address
 family. Refer to [Open Shortest Path First (OSPF)
-Protocol](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First---OSPF---Protocol)
+Protocol](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol)
 for a discussion on the basic concepts, which remain the same between
 the two versions.
 
@@ -34,7 +34,7 @@ does not support it yet.
 
 {{%/notice%}}
 
-## <span>Configuring OSPFv3</span>
+## Configuring OSPFv3</span>
 
 Configuring OSPFv3 involves the following tasks:
 
@@ -91,17 +91,17 @@ Configuring OSPFv3 involves the following tasks:
 
 The OSPFv3 configuration is saved in `/etc/quagga/ospf6d.conf`.
 
-## <span>Unnumbered Interfaces</span>
+## Unnumbered Interfaces</span>
 
 Unlike OSPFv2, OSPFv3 intrinsically supports unnumbered interfaces.
 Forwarding to the next hop router is done entirely using IPv6 link local
 addresses. Therefore, you are not required to configure any global IPv6
 address to interfaces between routers.
 
-## <span>Debugging OSPF</span>
+## Debugging OSPF</span>
 
 See [Debugging
-OSPF](Open-Shortest-Path-First---OSPF---Protocol.html#src-5116109_OpenShortestPathFirst-OSPF-Protocol-ospf_debug)
+OSPF](Open-Shortest-Path-First-OSPF---Protocol.html#src-5116109_OpenShortestPathFirst-OSPF-Protocol-ospf_debug)
 for OSPFv2 for the troubleshooting discussion. The equivalent commands
 are:
 
@@ -119,22 +119,22 @@ Another helpful command is `show ipv6 ospf6 [area <id>] spf tree`. It
 dumps the node topology as computed by SPF to help visualize the network
 view.
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/quagga/daemons
 
   - /etc/quagga/ospf6d.conf
 
-## <span>Supported RFCs</span>
+## Supported RFCs</span>
 
   - [RFC5340](http://tools.ietf.org/rfc/rfc5340)
 
   - [RFC3137](http://tools.ietf.org/rfc/rfc3137)
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [Bidirectional forwarding
-    detection](/version/cumulus-linux-25esr/Layer-3-Features/Bidirectional-Forwarding-Detection---BFD)
+    detection](/version/cumulus-linux-25esr/Layer-3-Features/Bidirectional-Forwarding-Detection-BFD)
     (BFD) and OSPF
 
   - <http://en.wikipedia.org/wiki/Open_Shortest_Path_First>

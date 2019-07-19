@@ -17,10 +17,8 @@ updates.
 
 {{%notice warning%}}
 
-**Network Disruptions**
-
-Updating, upgrading, and installing packages with `apt` causes
-disruptions to network services:
+Updating, upgrading, and installing packages with `apt` **causes
+disruptions to network services**:
 
   - Upgrading a package might result in services being restarted or
     stopped as part of the upgrade process.
@@ -34,7 +32,7 @@ services to restart.
 
 {{%/notice%}}
 
-## <span>Update the Package Cache</span>
+## Update the Package Cache
 
 To work properly, `apt` relies on a local cache of the available
 packages. You must populate the cache initially, and then periodically
@@ -80,7 +78,7 @@ upgrade your distribution.
 
 {{%/notice%}}
 
-## <span>List Available Packages</span>
+## List Available Packages
 
 After the cache is populated, use the `apt-cache` command to search the
 cache and find the packages in which you are interested or to get
@@ -133,7 +131,7 @@ on more packages than you might expect.
 
 {{%/notice%}}
 
-## <span>List Installed Packages</span>
+## List Installed Packages
 
 The APT cache contains information about all the packages available in
 the repository. To see which packages are actually installed on your
@@ -150,7 +148,7 @@ the system that contain `tcp`:
     ii  tcpdump                       4.6.2-5+deb8u1      amd64               command-line network traffic analyzer
     cumulus@switch:~$
 
-## <span id="src-8362631_AddingandUpdatingPackages-versionDisplay" class="confluence-anchor-link"></span><span>Display the Version of a Package</span>
+## Display the Version of a Package
 
 To show the version of a specific package installed on the system, run
 the `net show package version <package>` command. For example, the
@@ -182,7 +180,7 @@ versions, run the `net show package version` command. For example:
     arptables                          0.0.3.4-1
     ...
 
-## <span id="src-8362631_AddingandUpdatingPackages-upgrade-packages" class="confluence-anchor-link"></span><span>Upgrade Packages</span>
+## Upgrade Packages
 
 To upgrade all the packages installed on the system to their latest
 versions, run the following commands:
@@ -200,18 +198,18 @@ Refer to [Upgrading Cumulus
 Linux](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux)
 for additional information.
 
-## <span>Add New Packages</span>
+## Add New Packages
 
 To add a new package:
 
 1.  First ensure the package is not already installed on the system:
-    
+
         cumulus@switch:~$ dpkg -l | grep <name of package>
-    
+
     If the package is installed already, you can update the package from
     the Cumulus Linux repository as part of the package upgrade process,
     which upgrades all packages on the system. See [Upgrade
-    Packages](#src-8362631_AddingandUpdatingPackages-upgrade-packages)
+    Packages](#upgrade-packages)
     above.
 
 2.  If the package is *not* already installed, add it by running `-E
@@ -219,7 +217,7 @@ To add a new package:
     the Cumulus Linux repository and installs it on your system together
     with any other packages on which this package might depend. The
     following example adds the `tcpreplay` package to the system:
-    
+
         cumulus@switch:~$ sudo -E apt-get install tcpreplay
         Reading package lists... Done
         Building dependency tree
@@ -237,21 +235,22 @@ To add a new package:
         Processing triggers for man-db ...
         Setting up tcpreplay (4.6.2-5+deb8u1) ...
         cumulus@switch:~$
-    
+
     You can install several packages at the same time:
-    
+
         cumulus@switch:~$ sudo -E apt-get install <package 1> <package 2> <package 3>
-    
+
     {{%notice tip%}}
-    
-    In some cases, installing a new package might also upgrade
+
+  In some cases, installing a new package might also upgrade
+
     additional existing packages due to dependencies. To view these
     additional packages before you install, run the `apt-get install
     --dry-run` command.
-    
+
     {{%/notice%}}
 
-## <span>Add Packages from Another Repository</span>
+## Add Packages from Another Repository
 
 As shipped, Cumulus Linux searches the Cumulus Linux repository for
 available packages. You can add additional repositories to search by
@@ -288,13 +287,13 @@ To install a new package, complete the following steps:
 
 1.  Run the `dpkg` command to ensure that the package is not already
     installed on the system:
-    
+
         cumulus@switch:~$ dpkg -l | grep {name of package}
 
 2.  If the package is installed already, ensure it is the version you
     need. If it is an older version, update the package from the Cumulus
     Linux repository:
-    
+
         cumulus@switch:~$ sudo -E apt-get update
         cumulus@switch:~$ sudo -E apt-get install {name of package}
         cumulus@switch:~$ sudo -E apt-get upgrade
@@ -305,28 +304,28 @@ To install a new package, complete the following steps:
     add the appropriate source to the file. For example, add the
     following if you want a package from the Debian repository that is
     **not** in the Cumulus Linux repository:
-    
+
         deb http://http.us.debian.org/debian jessie main
         deb http://security.debian.org/ jessie/updates main
-    
+
     Otherwise, the repository might be listed in `/etc/apt/sources.list`
     but is commented out, as can be the case with the early-access
     repository:
-    
+
         #deb http://repo3.cumulusnetworks.com/repo CumulusLinux-3-early-access cumulus
-    
+
     To uncomment the repository, remove the \# at the start of the line,
     then save the file:
-    
+
         deb http://repo3.cumulusnetworks.com/repo CumulusLinux-3-early-access cumulus
 
 4.  Run `-E apt-get update`, then install the package and upgrade:
-    
+
         cumulus@switch:~$ sudo -E apt-get update
         cumulus@switch:~$ sudo -E apt-get install {name of package}
         cumulus@switch:~$ sudo -E apt-get upgrade
 
-## <span>Cumulus Supplemental Repository</span>
+## Cumulus Supplemental Repository
 
 Cumulus Networks provides a *Supplemental Repository* that contains
 third party applications commonly installed on switches.
@@ -384,33 +383,25 @@ repository:
 To enable the Supplemental Repository:
 
 1.  In a file editor, open the `/etc/apt/sources.list` file.
-    
+
         cumulus@leaf01:~$ sudo nano /etc/apt/sources.list
 
 2.  Uncomment the following lines:
-    
+
         #deb http://repo3.cumulusnetworks.com/repo Jessie-supplemental upstream
         #deb-src http://repo3.cumulusnetworks.com/repo Jessie-supplemental upstream
 
 3.  Update the list of software packages:
-    
+
         cumulus@leaf01:~$ sudo -E apt-get update -y
 
 4.  Install the software in which you are interested:
-    
+
         cumulus@leaf01:~$ sudo -E apt-get install htop
 
-## <span>Related Information</span>
+## Related Information
 
   - [Debian GNU/Linux FAQ, Ch 8 Package management
     tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)
 
   - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

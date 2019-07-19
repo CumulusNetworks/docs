@@ -18,7 +18,7 @@ routing](/version/cumulus-linux-330/Layer-Three/Configuring-Quagga/) in
 Cumulus Linux. However, an alternative exists in the the `vtysh` modal
 CLI. The available commands are as follows:
 
-## <span>Comparing vtysh and NCLU Commands</span>
+## Comparing vtysh and NCLU Commands</span>
 
 The following table compares the various Quagga commands with their
 Cumulus Linux NCLU counterparts.
@@ -68,7 +68,7 @@ switch(config-router)# redistribute static</code></pre></td>
 switch(config-if)# ipv6 address 3002:2123:1234:1abc::21/64</code></pre></td>
 </tr>
 <tr class="even">
-<td><p>Enable topology checking (<a href="/version/cumulus-linux-330/Layer-One-and-Two/Prescriptive-Topology-Manager---PTM">PTM</a>)</p></td>
+<td><p>Enable topology checking (<a href="/version/cumulus-linux-330/Layer-One-and-Two/Prescriptive-Topology-Manager-PTM">PTM</a>)</p></td>
 <td><pre><code>cumulus@switch:~$ net add routing ptm-enable</code></pre></td>
 <td><pre><code>switch(config)# ptm-enable</code></pre></td>
 </tr>
@@ -97,7 +97,7 @@ switch(config-ospf6)# timer throttle spf 40 50 60</code></pre></td>
 switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
 </tr>
 <tr class="odd">
-<td><p>Display <a href="/version/cumulus-linux-330/Layer-Three/Border-Gateway-Protocol---BGP">BGP</a> information</p></td>
+<td><p>Display <a href="/version/cumulus-linux-330/Layer-Three/Border-Gateway-Protocol-BGP">BGP</a> information</p></td>
 <td><pre><code>cumulus@switch:~$ net show bgp summary</code></pre></td>
 <td><pre><code>switch# show ip bgp summary</code></pre></td>
 </tr>

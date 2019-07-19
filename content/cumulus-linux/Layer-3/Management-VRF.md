@@ -12,7 +12,7 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
 *Management VRF* is a subset of
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF)
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF)
 (virtual routing tables and forwarding) and provides a separation
 between the out-of-band management network and the in-band data plane
 network. For all VRFs, the *main* routing table is the default table for
@@ -45,7 +45,7 @@ expect the loopback IP address to exist in the VRF, such as NTP.
 
 {{%/notice%}}
 
-## <span id="src-8362940_ManagementVRF-enablevrf" class="confluence-anchor-link"></span><span>Enable Management VRF</span>
+## Enable Management VRF</span>
 
 To enable management VRF on eth0, complete the following steps.
 
@@ -97,7 +97,7 @@ configured as *auto*.
 
 {{%/notice%}}
 
-## <span id="src-8362940_ManagementVRF-services" class="confluence-anchor-link"></span><span>Run Services within the Management VRF</span>
+## Run Services within the Management VRF</span>
 
 You can run a variety of services within the management VRF instead of
 the default VRF. In most cases, you must stop and disable the instance
@@ -192,7 +192,7 @@ After you enable `ntp@mgmt`, you can verify that NTP peers are active:
     +45.79.10.228    200.98.196.212   2 u   44   64  377   42.998    0.115   0.585
     +74.207.240.206  127.67.113.92    2 u   43   64  377   73.240   -1.623   0.320
 
-### <span id="src-8362940_ManagementVRF-snmpd" class="confluence-anchor-link"></span><span>Enable Polling with snmpd in a Management VRF</span>
+### Enable Polling with snmpd in a Management VRF</span>
 
 When you enable `snmpd` to run in the management VRF, you need to
 specify that VRF with NCLU so that `snmpd` listens on eth0 in the
@@ -218,7 +218,7 @@ operation of the switch.
 
 {{%/notice%}}
 
-### <span>ping or traceroute on the Management VRF</span>
+### ping or traceroute on the Management VRF</span>
 
 By default, when you issue a `ping` or `traceroute`, the packet is sent
 to the dataplane network (the main routing table). To use `ping` or
@@ -236,7 +236,7 @@ For additional information on using `ping` and `traceroute`, see the
 [Network Troubleshooting
 chapter](/cumulus-linux/Monitoring-and-Troubleshooting/Network-Troubleshooting/).
 
-### <span>Run Services as a Non-root User</span>
+### Run Services as a Non-root User</span>
 
 Sometimes you may want to run services in the management VRF as a
 non-root user. To do so, you need to create a custom service based on
@@ -288,7 +288,7 @@ the original service file.
 
         cumulus@switch:~$ sudo systemctl daemon-reload
 
-## <span>OSPF and BGP</span>
+## OSPF and BGP</span>
 
 In general, no changes are required for either BGP or OSPF. FRRouting is
 VRF-aware and automatically sends packets based on the switch port
@@ -331,7 +331,7 @@ These commands produce the following configuration snippet in the
     !
     route-map REDISTRIBUTE-CONNECTED permit 1000
 
-## <span>SSH within a Management VRF Context</span>
+## SSH within a Management VRF Context</span>
 
 If you SSH to the switch through a switch port, SSH works as expected.
 If you need to SSH from the device out of a switch port, use `vrf exec
@@ -339,7 +339,7 @@ default ssh <ip_address_of_swp_port>`. For example:
 
     cumulus@switch:~$ sudo vrf exec default ssh 10.23.23.2 10.3.3.3
 
-## <span>View the Routing Tables</span>
+## View the Routing Tables</span>
 
 When you look at the routing table with `ip route show`, you are looking
 at the switch port (*main*) table. You can also see the dataplane
@@ -367,7 +367,7 @@ To get the route for any VRF, run the following command:
 
     cumulus@switch:~$ net show route vrf mgmt <addr>
 
-## <span>mgmt Interface Class</span>
+## mgmt Interface Class</span>
 
 In `ifupdown2`, [interface
 classes](Interface-Configuration-and-Management.html#src-8363023_InterfaceConfigurationandManagement-classes)
@@ -384,7 +384,7 @@ class and the *mgmt* interface class when the switch boots.
 
 The management VRF interface class is not supported if you are
 configuring Cumulus Linux using
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility---NCLU).
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
 
 {{%/notice%}}
 
@@ -419,7 +419,7 @@ To reload the configurations for interfaces in the mgmt class, run:
 You can still bring the management interface up and down using `ifup
 eth0` and `ifdown eth0`.
 
-## <span>Management VRF and DNS</span>
+## Management VRF and DNS</span>
 
 Cumulus Linux supports both DHCP and static DNS entries over management
 VRF through IP FIB rules. These rules are added to direct lookups to the
@@ -471,7 +471,7 @@ all DNS servers are reachable through the management VRF.
 
 {{%/notice%}}
 
-## <span>Incompatibility with cl-ns-mgmt</span>
+## Incompatibility with cl-ns-mgmt</span>
 
 {{%notice warning%}}
 

@@ -29,7 +29,7 @@ Cumulus Linux only supports PIM Sparse Mode.
 
 {{%/notice%}}
 
-## <span>PIM Overview</span>
+## PIM Overview</span>
 
 {{% imgOld 0 %}}
 
@@ -47,7 +47,7 @@ Cumulus Linux only supports PIM Sparse Mode.
 | Star-G mroute (\*,G)                              | The (\*,G) mroute represents the RP Tree. The \* is a wildcard indicating any multicast source. The G is the multicast group. An example (\*,G) would be (\*, 239.1.2.9).                                                                                                                                  |
 | S-G mroute (S,G)                                  | This is the mroute representing the SPT. The S is the multicast source IP. The G is the multicast group. An example (S,G) would be (10.1.1.1, 239.1.2.9).                                                                                                                                                  |
 
-### <span>PIM Messages</span>
+### PIM Messages</span>
 
 <table>
 <colgroup>
@@ -120,7 +120,7 @@ Cumulus Linux only supports PIM Sparse Mode.
 </tbody>
 </table>
 
-### <span>PIM Neighbors</span>
+### PIM Neighbors</span>
 
 When PIM is configured on an interface, `PIM Hello` messages are sent to
 the link local multicast group 224.0.0.13. Any other router configured
@@ -134,7 +134,7 @@ exchanged between PIM endpoints.
 
 {{%/notice%}}
 
-## <span>PIM Sparse Mode (PIM-SM)</span>
+## PIM Sparse Mode (PIM-SM)</span>
 
 PIM Sparse Mode (PIM-SM) is a "pull" multicast distribution method. This
 means that multicast traffic is only sent through the network if
@@ -176,13 +176,13 @@ are not currently supported.
 
 {{%/notice%}}
 
-### <span>Any-source Multicast Routing</span>
+### Any-source Multicast Routing</span>
 
 Multicast routing behaves differently depending on whether the source is
 sending before receivers request the multicast stream, or if a receiver
 tries to join a stream before there are any sources.
 
-#### <span>Receiver Joins First</span>
+#### Receiver Joins First</span>
 
 When a receiver joins a group, an IGMP Membership Join message is sent
 to the IGMPv3 multicast group, 224.0.0.22. The PIM multicast router for
@@ -220,7 +220,7 @@ will then begin the PIM Register process.
 
 {{%/notice%}}
 
-##### <span>PIM Register Process</span>
+##### PIM Register Process</span>
 
 When a First Hop Router (FHR) receives a multicast data packet from a
 source, the FHR does not know if there are any interested multicast
@@ -245,7 +245,7 @@ a PIM Register Stop to the FHR to end the register process.
 
 {{% imgOld 5 %}}
 
-##### <span>PIM SPT Switchover</span>
+##### PIM SPT Switchover</span>
 
 When the LHR receives the first multicast packet, in order to
 efficiently forward traffic through the network, it will send a PIM
@@ -266,7 +266,7 @@ will be forwarded along the shared tree.
 
 {{%/notice%}}
 
-#### <span>Sender Starts Before Receivers Join</span>
+#### Sender Starts Before Receivers Join</span>
 
 As previously mentioned, a multicast sender can send multicast data
 without any additional IGMP or PIM signaling. When the FHR receives the
@@ -291,7 +291,7 @@ is not sourced from the interface towards the RP.
 
 {{%/notice%}}
 
-### <span>PIM Null-Register</span>
+### PIM Null-Register</span>
 
 In order to notify the RP that multicast traffic is still flowing when
 the RP has no receiver, or if the RP is not on the SPT tree, the FHR
@@ -304,9 +304,9 @@ After receiving a PIM Null-Register, the RP immediately sends a PIM
 Register Stop to acknowledge the reception of the PIM Null Register
 message.
 
-## <span>Configuration</span>
+## Configuration</span>
 
-### <span>Getting Started</span>
+### Getting Started</span>
 
 The `cumulus-pim` package is included in Quagga. To configure PIM on a
 switch:
@@ -486,7 +486,7 @@ The following is example configuration
     !
     end
 
-### <span>Multicast Source Discovery Protocol (MSDP)</span>
+### Multicast Source Discovery Protocol (MSDP)</span>
 
 The Multicast Source Discovery Protocol (MSDP) is used to connect
 multiple PIM-SM multicast domains together, using the PIM-SM RPs. By
@@ -514,7 +514,7 @@ Cumulus Linux currently only supports one MSDP mesh-group.
 
 {{%/notice%}}
 
-#### <span>Configuration</span>
+#### Configuration</span>
 
 The steps below cover configuring a Cumulus switch to use the MSDP
 
@@ -568,7 +568,7 @@ hello source by setting the source:
 
 {{%/notice%}}
 
-### <span>Verifying PIM</span>
+### Verifying PIM</span>
 
 {{%notice note%}}
 
@@ -578,7 +578,7 @@ cldemo-pim.
 
 {{%/notice%}}
 
-#### <span>Source Starts First</span>
+#### Source Starts First</span>
 
 On the FHR, an mroute is built, but the upstream state is "Prune". The
 FHR flag is set on the interface receiving multicast.
@@ -670,7 +670,7 @@ transitions from "none" to the RPF interface of the RP:
     *                239.1.1.1        lo     swp1
     172.16.5.105     239.1.1.1        swp30  swp1
 
-#### <span>Receiver Joins First</span>
+#### Receiver Joins First</span>
 
 On the LHR attached to the receiver:
 
@@ -720,9 +720,9 @@ On the RP:
     Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
     swp1      *               239.2.2.2       no         yes   no         yes         yes
 
-## <span>Troubleshooting PIM</span>
+## Troubleshooting PIM</span>
 
-### <span>FHR Stuck in Registering Process</span>
+### FHR Stuck in Registering Process</span>
 
 When a multicast source starts, the FHR sends unicast PIM register
 messages from the RPF interface towards the source. After the PIM
@@ -783,7 +783,7 @@ To troubleshoot the issue:
         cumulus@exit01:~$ sudo tail -f /var/log/quagga/quagga.log
         2016/10/19 23:59:38 PIM: Recv PIM REGSTOP packet from 10.0.0.21 to 172.16.5.1 on swp51: ttl=255 pim_version=2 pim_msg_size=18 checksum=5a39
 
-### <span>No \*,G Is Built on LHR</span>
+### No \*,G Is Built on LHR</span>
 
 The most common reason for a \*,G to not be built on a LHR is for both
 PIM **and** IGMP to not be enabled on an interface facing a receiver.
@@ -805,7 +805,7 @@ To troubleshoot this issue:
         listening on br0, link-type EN10MB (Ethernet), capture size 262144 bytes
         00:03:55.789744 IP 172.16.1.101 > igmp.mcast.net: igmp v3 report, 1 group record(s)
 
-### <span>No mroute Created on FHR</span>
+### No mroute Created on FHR</span>
 
 To troubleshoot this issue:
 
@@ -839,7 +839,7 @@ To troubleshoot this issue:
         RP address       group/prefix-list   OIF         I am RP
         10.0.0.21        224.0.0.0/4         swp51       no
 
-### <span>No S,G on RP for an Active Group</span>
+### No S,G on RP for an Active Group</span>
 
 An RP will not build an mroute when there are no active receivers for a
 multicast group, even though the mroute was created on the FHR:
@@ -863,7 +863,7 @@ This is expected behavior. The active source can be seen on the RP with
     Source          Group           Proto  Input      Output     TTL  Uptime
     spine01#
 
-### <span>No mroute Entry Present in Hardware</span>
+### No mroute Entry Present in Hardware</span>
 
 Please verify that the hardware IP multicast entry is the maximum value
 already, using the `cl-resource-query` command:
@@ -874,13 +874,13 @@ already, using the `cl-resource-query` command:
 For Mellanox chipsets, please refer to [TCAM Resource Profiles for
 Mellanox Switches](Routing.html#src-5127036_Routing-tcam).
 
-### <span>Verify MSDP Session State</span>
+### Verify MSDP Session State</span>
 
 Run the following commands to verify the state of MSDP sessions:
 
     null
 
-### <span>View the Active Sources</span>
+### View the Active Sources</span>
 
 Review the active sources learned locally (via PIM registers) and from
 MSDP peers:
@@ -891,7 +891,7 @@ MSDP peers:
     44.1.11.2              239.1.1.2        100.1.1.1      n    n  00:00:25
     spine-2# 
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - Cumulus Linux 3.2.0 only supports PIM Sparse Mode - Any-source
     Multicast (PIM-SM ASM). Dense Mode, Bidirectional Multicast, and

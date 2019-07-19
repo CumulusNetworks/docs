@@ -43,7 +43,7 @@ The system uses a three-pronged approach to validating networks:
     state at a time in the past, review fabric-wide event changelogs and
     diagnose the root cause of state deviations.
 
-## <span>NetQ Components</span>
+## NetQ Components</span>
 
 {{% imgOld 0 %}}
 

@@ -13,7 +13,7 @@ siteSlug: cumulus-rmp
 subsection: true
 ---
 
-## <span>Introducing Cumulus RMP</span>
+## Introducing Cumulus RMP</span>
 
 Cumulus RMP is a network operating system in a ready-to-deploy solution
 that enables out-of-band management for web-scale networks. It provides
@@ -30,61 +30,54 @@ You can also find more information about Cumulus RMP
 
 {{% imgOld 0 %}}
 
-## <span>What's New in Cumulus RMP</span>
+## What's New in Cumulus RMP</span>
 
 Cumulus RMP 3.7.0 contains several bug fixes and the following new
 features:
 
-  - [RADIUS Change of Authorization (CoA)
-    requests](/display/RMP/802.1X+Interfaces#id-802.1XInterfaces-CoArequests)
+  - [RADIUS Change of Authorization (CoA) requests](/cumulus-linux/Layer-1-and-Switch-Ports/802.1X-Interfaces/#span-radius-change-of-authorization-and-disconnect-requests-span)
 
-  - [RADIUS AAA local fallback
-    authentication](/display/RMP/RADIUS+AAA#RADIUSAAA-local-fallback-auth)
+  - [RADIUS AAA local fallback authentication](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA/#span-local-fallback-authentication-span)
 
-  - [TACACS+ local fallback
-    authentication](/display/RMP/TACACS+Plus#TACACSPlus-fallback-auth)
+  - [TACACS+ local fallback authentication](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus/#span-id-src-8362558-tacacsplus-fallback-auth-class-confluence-anchor-link-span-span-local-fallback-authentication-span)
 
   - New NCLU commands:
 
-      - [Show the version of a
-        package](/display/RMP/Adding+and+Updating+Packages#AddingandUpdatingPackages-versionDisplay)
+      - [Show the version of a package](/cumulus-linux/Installation-Management/Adding-and-Updating-Packages/#span-id-src-8362631-addingandupdatingpackages-versiondisplay-class-confluence-anchor-link-span-span-display-the-version-of-a-package-span)
 
-      - [Show the interface description
-        (alias)](/display/RMP/Interface+Configuration+and+Management#InterfaceConfigurationandManagement-show_alias)
+      - [Show the interface description (alias)](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#span-add-descriptions-to-interfaces-span)
         for all interfaces on the switch
 
-      - [Change bond mode to IEEE
-        802.3ad](/display/RMP/Bonding+-+Link+Aggregation) link
-        aggregation mod
+      - [Change bond mode to IEEE 802.3ad](/cumulus-linux/Layer-2/Bonding-Link-Aggregation/) link
+        aggregation mode
 
 For further information regarding bug fixes and known issues present in
 the 3.7 release, refer to the [product release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360009508373-Cumulus-RMP-3-7-Release-Notes).
 
-<summary>What's New in Cumulus RMP 3.6.2 </summary>
+### What's New in Cumulus RMP 3.6.2
 
 Cumulus RMP 3.6.2 contains several bug fixes and the following new
 feature:
 
-  - NCLU commands available for [configuring traditional mode
-    bridges](/display/RMP/Traditional+Mode+Bridges)
+  - NCLU commands available for [configuring traditional mode bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/)
 
 For further information regarding bug fixes and known issues present in
 the 3.6.2 release, refer to the [product release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003646974-Cumulus-RMP-3-6-Release-Notes).
 
-<summary>What's New in Cumulus RMP 3.6.0 </summary>
+### What's New in Cumulus RMP 3.6.0
 
 Cumulus RMP 3.6.0 contains several bug fixes and the following new
 feature:
 
-  - Support for a combination of local-as and allowas-in commands
+  - Support for a combination of `local-as` and `allowas-in` commands
 
 For further information regarding bug fixes and known issues present in
 the 3.6.0 release, refer to the [product release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003646974-Cumulus-RMP-3-6-Release-Notes).
 
-## <span id="src-5122807_CumulusRMP-features" class="confluence-anchor-link"></span><span>Cumulus RMP Features</span>
+## Cumulus RMP Features</span>
 
 Cumulus RMP shares much of the same functionality as Cumulus Linux and
 comes preinstalled on your choice of [1G
@@ -92,28 +85,31 @@ switches](https://cumulusnetworks.com/products/hardware-compatibility-list/?Type
 For more information about each feature, follow the links below to the
 [Cumulus Linux user guide](/cumulus-linux):
 
-|                                                                                             |                 |                   |
+| **Layer 2 Support**                                                                                            | **Cumulus RMP**                | **Cumulus Linux**                   |
 | ------------------------------------------------------------------------------------------- | --------------- | ----------------- |
-| **Layer 2 Support**                                                                         | **Cumulus RMP** | **Cumulus Linux** |
 | [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/)                                          | ✓               | ✓                 |
-| [PTM](/display/RMP/Prescriptive+Topology+Manager+-+PTM)                                     | ✓               | ✓                 |
-| [Ethernet bridging](/display/RMP/Ethernet+Bridging+-+VLANs) (VLANs)                         | ✓               | ✓                 |
-| [Bonds/link aggregation](/display/RMP/Bonding+-+Link+Aggregation)                           | ✓               | ✓                 |
+| [PTM](/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/)                                     | ✓               | ✓                 |
+| [Ethernet bridging](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/)                         | ✓               | ✓                 |
+| [Bonds/link aggregation](/cumulus-linux/Layer-2/Bonding-Link-Aggregation/)                           | ✓               | ✓                 |
 | MLAG                                                                                        |                 | ✓                 |
 | LACP                                                                                        | ✓               | ✓                 |
 | LACP bypass                                                                                 |                 | ✓                 |
-| [Spanning tree protocol/RST](/display/RMP/Spanning+Tree+and+Rapid+Spanning+Tree)            | ✓               | ✓                 |
-| [802.1Q VLAN tagging](/display/RMP/VLAN+Tagging)                                            | ✓               | ✓                 |
-| [VLAN-aware bridging](/display/RMP/VLAN-aware+Bridge+Mode)                                  | ✓               | ✓                 |
-| [BPDU guard](/display/RMP/Spanning+Tree+and+Rapid+Spanning+Tree)                            | ✓               | ✓                 |
-| [Bridge assurance](/display/RMP/Spanning+Tree+and+Rapid+Spanning+Tree)                      | ✓               | ✓                 |
-| [BPDU filter](/display/RMP/Spanning+Tree+and+Rapid+Spanning+Tree)                           | ✓               | ✓                 |
+| [Spanning tree protocol/RST](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/)            | ✓               | ✓                 |
+| [802.1Q VLAN tagging](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging/)                                            | ✓               | ✓                 |
+| [VLAN-aware bridging](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/)                                  | ✓               | ✓                 |
+| [BPDU guard](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/)                            | ✓               | ✓                 |
+| [Bridge assurance](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/)                      | ✓               | ✓                 |
+| [BPDU filter](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/)                           | ✓               | ✓                 |
 | VRR                                                                                         |                 | ✓                 |
 | IGMP and MLD snooping                                                                       |                 | ✓                 |
 | Unicast/broadcast storm control                                                             |                 | ✓                 |
 | CDP                                                                                         |                 | ✓                 |
-| **Layer 3 Support**                                                                         | **Cumulus RMP** | **Cumulus Linux** |
-| [Static routing](/display/RMP/Routing)                                                      | ✓               | ✓                 |
+
+&nbsp;
+
+| **Layer 3 Support**                                                                                            | **Cumulus RMP**                | **Cumulus Linux**                   |
+| ------------------------------------------------------------------------------------------- | --------------- | ----------------- |
+| [Static routing](/cumulus-linux/Layer-3/Routing/)                                                      | ✓               | ✓                 |
 | ECMP                                                                                        |                 | ✓                 |
 | ECMP resilient hashing                                                                      |                 | ✓                 |
 | OSPF                                                                                        |                 | ✓                 |
@@ -123,21 +119,25 @@ For more information about each feature, follow the links below to the
 | IPv6                                                                                        |                 | ✓                 |
 | [Management VRF](/cumulus-linux/Layer-3/Management-VRF/)                                               | ✓               | ✓                 |
 | Virtual routing and forwarding (VRF)                                                        |                 | ✓                 |
+
+&nbsp;
+
 | **Additional Functionality**                                                                | **Cumulus RMP** | **Cumulus Linux** |
-| [Network command line utility](/display/RMP/Network+Command+Line+Utility+-+NCLU)            | ✓               | ✓                 |
-| [Interface configuration & management](/display/RMP/Interface+Configuration+and+Management) | ✓               | ✓                 |
-| [802.1X interfaces](/display/RMP/802.1X+Interfaces)                                         |                 | ✓                 |
-| [Zero-touch OS install & upgrade](/display/RMP/Zero+Touch+Provisioning+-+ZTP)               | ✓               | ✓                 |
-| [Installation and package management](/display/RMP/Installation+Management)                 | ✓               | ✓                 |
+| ------------------------------------------------------------------------------------------- | --------------- | ----------------- |
+| [Network command line utility](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU/)            | ✓               | ✓                 |
+| [Interface configuration & management](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/) | ✓               | ✓                 |
+| [802.1X interfaces](/cumulus-linux/Layer-1-and-Switch-Ports/802.1X-Interfaces/)                                         |                 | ✓                 |
+| [Zero-touch OS install & upgrade](/cumulus-linux/Installation-Management/Zero-Touch-Provisioning-ZTP/)               | ✓               | ✓                 |
+| [Installation and package management](/cumulus-linux/Installation-Management/)                 | ✓               | ✓                 |
 | Full Linux extensibility                                                                    | ✓               | ✓                 |
 | Network virtualization (VXLAN, LNV, EVPN, etc.)                                             |                 | ✓                 |
-| [Monitoring & troubleshooting](/display/RMP/Monitoring+and+Troubleshooting)                 | ✓               | ✓                 |
-| [AAA](/display/RMP/LDAP+Authentication+and+Authorization)                                   | ✓               | ✓                 |
-| [ACLs](/cumulus-linux/System-Configuration/Netfilter-ACLs)/)                                                       | ✓               | ✓                 |
+| [Monitoring & troubleshooting](/cumulus-linux/Monitoring-and-Troubleshooting/)                 | ✓               | ✓                 |
+| [AAA](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization/)                                   | ✓               | ✓                 |
+| [ACLs](/cumulus-linux/System-Configuration/Netfilter-ACLs/)                                                       | ✓               | ✓                 |
 | QoS                                                                                         |                 | ✓                 |
-| [Orchestration](/display/RMP/Upgrading+Cumulus+Linux)                                       | ✓               | ✓                 |
+| [Orchestration](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/)                                       | ✓               | ✓                 |
 
-## <span>Setting up a Cumulus RMP Switch</span>
+## Setting up a Cumulus RMP Switch</span>
 
 The [quick start guide](/cumulus-rmp/Quick-Start-Guide) walks you
 through the steps necessary for getting your Cumulus RMP switch up and

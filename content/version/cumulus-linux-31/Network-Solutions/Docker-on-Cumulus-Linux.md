@@ -19,7 +19,7 @@ containers natively on the switch.
     cumulus@switch:~$ uname -r
     4.1.0-cl-1-amd64
 
-## <span>Installing Docker</span>
+## Installing Docker</span>
 
 Before installing Docker, add the Debian Jessie `apt` repository to
 Cumulus Linux:
@@ -38,7 +38,7 @@ Cumulus Linux on
 
 {{%/notice%}}
 
-### <span>Verifying the Docker Install</span>
+### Verifying the Docker Install</span>
 
 Docker provides a "Hello World" testing application that can be run on
 Cumulus Linux to validate that Docker Engine was installed correctly.
@@ -46,9 +46,9 @@ Cumulus Linux to validate that Docker Engine was installed correctly.
     cumulus@switch:~$ docker run ubuntu /bin/echo 'Hello world'
     Hello world
 
-## <span>Caveats when Using Docker with Cumulus Linux</span>
+## Caveats when Using Docker with Cumulus Linux</span>
 
-### <span>iptables and Docker</span>
+### iptables and Docker</span>
 
 By default, Docker Engine creates `iptables` rules to manage Docker
 container connectivity and provide IP masquerade (NAT). Docker Engine
@@ -106,7 +106,7 @@ returned:
     cumulus@switch:~$ sudo iptables -L DOCKER
     iptables: No chain/target/match by that name.
 
-### <span>Management VRF and Docker</span>
+### Management VRF and Docker</span>
 
 If you have a management VRF configured on a Cumulus Linux 3.0.z switch,
 you cannot run Docker commands that go to another node (for example,

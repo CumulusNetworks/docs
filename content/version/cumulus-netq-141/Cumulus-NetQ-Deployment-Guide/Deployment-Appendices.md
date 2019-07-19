@@ -16,7 +16,7 @@ siteSlug: cumulus-netq-141
 This topic contains additional reference material that may be useful
 when deploying the Cumulus NetQ software.
 
-## <span id="src-10453427_DeploymentAppendices-example" class="confluence-anchor-link"></span><span>Example NetQ Switch Configuration File</span>
+## <span id="src-10453427_DeploymentAppendices-example" class="confluence-anchor-link"></span>Example NetQ Switch Configuration File</span>
 
 The following sample `netq.yml` file is located in /etc/netq/ on the
 NetQ Telemetry Server. Note that `netq.yml` looks different on a switch
@@ -280,7 +280,7 @@ YML files in the `/etc/netq` directory overrides the configuration in
         output:
           - ALL
 
-## <span id="src-10453427_DeploymentAppendices-PlaybkInstallNetq" class="confluence-anchor-link"></span><span>Example Ansible Playbook to Install NetQ on All Cumulus Switches</span>
+## <span id="src-10453427_DeploymentAppendices-PlaybkInstallNetq" class="confluence-anchor-link"></span>Example Ansible Playbook to Install NetQ on All Cumulus Switches</span>
 
 The following example installs NetQ on all of your Cumulus switches,
 including:

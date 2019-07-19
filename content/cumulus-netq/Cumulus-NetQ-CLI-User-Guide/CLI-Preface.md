@@ -16,7 +16,7 @@ Cumulus NetQ and to take advantage of its monitoring and analytic
 capabilities. These resources are identified here along with information
 about how the content is presented.
 
-## <span>What's New in Cumulus NetQ 2.2</span>
+## What's New in Cumulus NetQ 2.2
 
 Cumulus NetQ is now available as a cloud service, making it even easier
 to scale with your network growth. Just like Cumulus NetQ deployed in
@@ -49,9 +49,9 @@ improvements:
   - Added support for multiple data centers
 
 For further information regarding new features, improvements, bug fixes,
-and known issues present in this release, refer to the [<span style="color: #00AD69;">release notes</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).
+and known issues present in this release, refer to the [<span style="color: #00AD69;">release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).
 
-## <span>Available Documentation</span>
+## Available Documentation
 
 The NetQ documentation set has been reorganized and updated from prior
 releases. They still provide the information you need to proactively
@@ -71,7 +71,7 @@ The following NetQ documents are available:
   - [Cumulus NetQ UI User
     Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/)
   - [<span style="color: #00AD69;">Cumulus NetQ Release
-    Notes</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374)
+    Notes]</span>(https://support.cumulusnetworks.com/hc/en-us/articles/360025451374)
   - [<span style="color: #00AD69;">What the NetQ Validation System
     Checks</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360021961394)
   - [<span style="color: #00AD69;">Cumulus NetQ Release Versioning and Support
@@ -79,22 +79,22 @@ The following NetQ documents are available:
   - [<span style="color: #00AD69;">Cumulus NetQ Cloud Release Versioning and Support
     Policy</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
 
-## <span>Document Formatting</span>
+## Document Formatting
 
 This guide uses the following typographical and note conventions.
 
-### <span>Typographical Conventions</span>
+### Typographical Conventions
 
 Throughout the guide, text formatting is used to convey contextual information about the content.
 
 | **Text Format**                   | **Meaning**                                                                                                                                |
 | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <span style="color: #00AD69;"> Green text </span>                        | Link to additional content within the topic or to another topic                                                                                                                   |
+| <span style="color: #00AD69;"> Green text                         | Link to additional content within the topic or to another topic                                                                                                                   |
 | `Text in Monospace font`                                                 | Filename, directory and path names, and command usage                                                                                       |
 | \[`Text within square brackets`\] | Optional command parameters; may be presented in mixed case or all caps text                                                                |
 | \<`Text within angle brackets`\> | Required command parameter values–variables that are to be replaced with a relevant value; may be presented in mixed case or all caps text |
 
-### <span>Note Conventions </span>
+### Note Conventions
 
 Several note types are used throughout the document. The formatting of the note indicates its intent and urgency.
 

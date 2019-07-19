@@ -14,7 +14,7 @@ siteSlug: hostpack
 NetQ on the Host is the version of NetQ you install on physical servers
 and in container hosts.
 
-## <span>Install on an Ubuntu Server</span>
+## Install on an Ubuntu Server</span>
 
 Before you install the NetQ Agent on an Ubuntu server, make sure the
 following packages are installed and running these minimum versions:
@@ -88,7 +88,7 @@ To install the NetQ Agent on an Ubuntu server:
     
         root@ubuntu:~# systemctl enable netqd ; systemctl restart netqd
 
-## <span>Install on a Red Hat or CentOS Server</span>
+## Install on a Red Hat or CentOS Server</span>
 
 Before you install the NetQ Agent on a Red Hat or CentOS server, make
 sure the following packages are installed and running these minimum

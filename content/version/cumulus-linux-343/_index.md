@@ -12,7 +12,7 @@ imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 subsection: true
 ---
-## <span>Introducing Cumulus Linux</span>
+## Introducing Cumulus Linux</span>
 
 Cumulus Linux is the networking industry's first full-featured Linux
 operating system. The [Debian
@@ -36,25 +36,25 @@ Read the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115013055508)
 for new features and known issues in this release.
 
-### <span>What's New in Cumulus Linux 3.4.3</span>
+### What's New in Cumulus Linux 3.4.3</span>
 
 Cumulus Linux 3.4.3 contains critical bug fixes only. For more
 information on the issues that were fixed, read the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115014754307).
 
-### <span>What's New in Cumulus Linux 3.4.2</span>
+### What's New in Cumulus Linux 3.4.2</span>
 
 Cumulus Linux 3.4.2 contains critical bug fixes only. For more
 information on the issues that were fixed, read the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115013055508).
 
-### <span>What's New in Cumulus Linux 3.4.1</span>
+### What's New in Cumulus Linux 3.4.1</span>
 
 Cumulus Linux 3.4.1 contains critical bug fixes only. For more
 information on the issues that were fixed, read the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115012218847).
 
-### <span>What's New in Cumulus Linux 3.4.0</span>
+### What's New in Cumulus Linux 3.4.0</span>
 
 Cumulus Linux 3.4.0 contains a number of new platforms, features and
 improvements:
@@ -76,7 +76,7 @@ improvements:
 
   - [HTTP API](/version/cumulus-linux-343/System-Configuration/HTTP-API)
     to
-    [NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility---NCLU)
+    [NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU)
     and the [OpenStack ML2
     driver](/version/cumulus-linux-343/Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux)
 
@@ -85,12 +85,12 @@ improvements:
     is now generally available
 
   - [PIM
-    support](/version/cumulus-linux-343/Layer-Three/Protocol-Independent-Multicast---PIM)
+    support](/version/cumulus-linux-343/Layer-Three/Protocol-Independent-Multicast-PIM)
     expanded to include virtual routing and forwarding (VRF) and
     bidirectional forwarding detection (BFD) for PIM neighbors
 
   - The default [MAC ageing
-    time](Ethernet-Bridging---VLANs.html#src-7112411_EthernetBridging-VLANs-mac_ageing)
+    time](Ethernet-Bridging-VLANs.html#src-7112411_EthernetBridging-VLANs-mac_ageing)
     has been set to 30 minutes and the default [ARP base\_reachable
     time](VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments.html#src-7112421_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-arp)
     has been set to 18 minutes
@@ -118,7 +118,7 @@ For further information regarding bug fixes and known issues present in
 this release, refer to the [product release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115011217808).
 
-### <span>Open Source Contributions</span>
+### Open Source Contributions</span>
 
 Cumulus Networks has forked various software projects, like CFEngine,
 `Netdev` and some Puppet Labs packages in order to implement various
@@ -131,7 +131,7 @@ applications as well.
 The list of open source projects is on the [open source
 software](http://oss.cumulusnetworks.com/) page.
 
-### <span>Hardware Compatibility List</span>
+### Hardware Compatibility List</span>
 
 You can find the most up to date hardware compatibility list (HCL)
 [here](http://cumulusnetworks.com/hcl/). Use the HCL to confirm that

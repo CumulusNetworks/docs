@@ -38,7 +38,7 @@ Before upgrading NetQ, consider the following:
 
   - You can upgrade to NetQ 1.2 without upgrading Cumulus Linux.
 
-## <span>Upgrade the NetQ Telemetry Server</span>
+## Upgrade the NetQ Telemetry Server</span>
 
 {{%notice note%}}
 
@@ -92,11 +92,11 @@ current version of NetQ as well.
 
 {{%/notice%}}
 
-## <span>Upgrade the NetQ Agents</span>
+## Upgrade the NetQ Agents</span>
 
 Follow the steps for the relevant OS below to upgrade the NetQ Agents:
 
-### <span>Cumulus Linux</span>
+### Cumulus Linux</span>
 
 1.  Open the `/etc/apt/sources.list` file in a text editor.
 
@@ -108,7 +108,7 @@ Follow the steps for the relevant OS below to upgrade the NetQ Agents:
     
         cumulus@switch:~$ sudo apt-get update && apt-get install cumulus-netq
 
-### <span>Ubuntu 16.04</span>
+### Ubuntu 16.04</span>
 
 1.  Use the `wget` tool to retrieve the public key:
     
@@ -136,7 +136,7 @@ Follow the steps for the relevant OS below to upgrade the NetQ Agents:
               D     : show the differences between the versions
               Z     : start a shell to examine the situation
 
-### <span>Red Hat Enterprise Linux 7 / CentOS 7</span>
+### Red Hat Enterprise Linux 7 / CentOS 7</span>
 
 {{%notice warning%}}
 
@@ -179,7 +179,7 @@ To install the NetQ Agent on a Red Hat or CentOS host, do the following:
     
         root@rhel7:~# yum install cumulus-netq
 
-## <span>Connect the NetQ Telemetry Server to the Network</span>
+## Connect the NetQ Telemetry Server to the Network</span>
 
 1.  Once the NetQ Telemetry Server and NetQ agents have been upgraded,
     connect the NetQ Telemetry Server to the network. For more

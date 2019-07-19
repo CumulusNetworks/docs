@@ -48,13 +48,13 @@ Contents
 
 <summary>(Click to expand) </summary>
 
-## <span>Creating the Bridge</span>
+## Creating the Bridge</span>
 
 You need to configure only one VLAN-aware bridge, and you need to add
 only physical ports or bonds to the bridge. Use ` ifupdown2  `to create
 the configuration.
 
-## <span>Defining VLAN Memberships</span>
+## Defining VLAN Memberships</span>
 
 With the VLAN-aware bridge mode, VLAN membership is defined for each
 bridge member interface. This includes the allowed VLAN list and the
@@ -63,7 +63,7 @@ below, bond0 and bond1 are trunk ports with native VLAN of 10 and
 allowed VLAN list of 1-1000, 1010-1020. swp5 is an access port with
 access VLAN of 10.
 
-## <span>Configuring Router Interfaces</span>
+## Configuring Router Interfaces</span>
 
 In case L3 termination of any VLANs is required, you can configure a
 router interface as a VLAN subinterface of the bridge device itself.
@@ -82,7 +82,7 @@ To do this, run:
     cumulus@switch:~$ sudo bridge vlan add vid 10 dev br self
     cumulus@switch:~$ sudo bridge vlan add vid 1000 dev br self
 
-## <span>Using the Show Commands</span>
+## Using the Show Commands</span>
 
 To show all bridge VLANs:
 
@@ -119,7 +119,7 @@ To show MAC addresses, do one of the following:
     cumulus@switch:~$ sudo bridge fdb show | grep -v perm
     00:e0:ec:25:2f:5b dev bond0 vlan 10 port 0
 
-## <span>Configuring a VLAN-aware Bridge</span>
+## Configuring a VLAN-aware Bridge</span>
 
 To configure a VLAN-aware bridge, include the `bridge-vlan-aware`
 attribute, setting it to *yes*. Name the bridge *bridge* to help ensure
@@ -184,7 +184,7 @@ bridge.vlanid device with the `address` attribute:
 VLAN-aware bridges are backwards compatible with traditional bridge
 configurations.
 
-### <span>Example Basic Configuration</span>
+### Example Basic Configuration</span>
 
 The following is a basic example illustrating how to configure a
 VLAN-aware bridge using
@@ -234,7 +234,7 @@ Note the attributes used in the stanza:
           bridge-stp on
           bridge-vids 310 700 707 712 850 910
 
-### <span>Example Configuration with Access Ports and Pruned VLANs</span>
+### Example Configuration with Access Ports and Pruned VLANs</span>
 
 The following example contains an access port and a switch port that is
 *pruned*; that is, it only sends and receives traffic tagged to and from
@@ -300,7 +300,7 @@ defined VLANs.
           bridge-stp on
           bridge-vids 310 700 707 712 850 910
 
-### <span>Example Configuration with Bonds</span>
+### Example Configuration with Bonds</span>
 
 This configuration demonstrates a VLAN-aware bridge with a large set of
 bonds. The bond configurations are generated from a
@@ -401,7 +401,7 @@ bonds. The bond configurations are generated from a
 
 <span id="src-5116351_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-iproute2"></span>
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - **STP:** Because [Spanning Tree and Rapid Spanning
     Tree](/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree)
@@ -437,7 +437,7 @@ bonds. The bond configurations are generated from a
 
   - **VLAN translation:** A bridge in VLAN-aware mode cannot have VLAN
     translation enabled for it; only bridges configured in [traditional
-    mode](/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/)
+    mode](/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
     can utilize VLAN translation.
 
 <article id="html-search-results" class="ht-content" style="display: none;">

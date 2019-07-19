@@ -12,7 +12,7 @@ imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 subsection: true
 ---
-## <span>Welcome to Cumulus Networks</span>
+## Welcome to Cumulus Networks</span>
 
 We are transforming networking with Cumulus Linux, the industry's first,
 full-featured Linux operating system for networking hardware. Cumulus

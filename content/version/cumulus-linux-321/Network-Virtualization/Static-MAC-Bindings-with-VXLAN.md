@@ -13,7 +13,7 @@ siteSlug: cumulus-linux-321
 ---
 Cumulus Linux includes native Linux VXLAN kernel support.
 
-## <span>Requirements</span>
+## Requirements</span>
 
 A VXLAN configuration requires a switch with a Broadcom Tomahawk,
 Trident II+ or Trident II chipset running Cumulus Linux 2.0 or later, or
@@ -31,9 +31,9 @@ For a basic VXLAN configuration, you should ensure that:
     Linux does not support more than one VXLAN link in a bridge; however
     a switch can have multiple bridges only if you are using
     [traditional mode
-    bridges](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging---VLANs/Traditional-Mode-Bridges).
+    bridges](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges).
 
-## <span>Example VXLAN Configuration</span>
+## Example VXLAN Configuration</span>
 
 Consider the following example:
 
@@ -51,7 +51,7 @@ NSX](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=2722660).
 
 {{%/notice%}}
 
-## <span>Configuring the Static MAC Bindings VXLAN</span>
+## Configuring the Static MAC Bindings VXLAN</span>
 
 To configure the example illustrated above, first create the following
 configuration on switch1:
@@ -109,7 +109,7 @@ These commands create the following configuration in the
         post-up bridge fdb add 00:00:10:00:00:0A dev vtep1000 dst 172.10.1.1 vni 1000
         post-up bridge fdb add 00:00:10:00:00:0B dev vtep1000 dst 172.10.1.1 vni 1000
 
-## <span>Troubleshooting VXLANs in Cumulus Linux</span>
+## Troubleshooting VXLANs in Cumulus Linux</span>
 
 Use the following commands to troubleshoot issues on the switch:
 

@@ -36,13 +36,13 @@ traffic destined to that group.
 
 {{% imgOld 0 %}}
 
-## <span>Commands</span>
+## Commands</span>
 
   - brctl
 
   - bridge
 
-## <span>Creating a Bridge and Configuring IGMP/MLD Snooping</span>
+## Creating a Bridge and Configuring IGMP/MLD Snooping</span>
 
 You need to set a number of parameters for IGMP and MLD snooping, but
 the setting to enable it is `bridge-mcsnoop 1`. The following
@@ -184,7 +184,7 @@ IGMP and MLD snooping, use:
 
     cumulus@switch:~$ sudo brctl setmcsnoop br0 0
 
-## <span>Configuring IGMP/MLD Snooping Parameters</span>
+## Configuring IGMP/MLD Snooping Parameters</span>
 
 For an explanation of these parameters, see the `brctl` and
 `ifupdown-addons-interfaces` man pages:
@@ -201,7 +201,7 @@ For an explanation of these parameters, see the `brctl` and
     cumulus@switch:~$ sudo brctl setmcqri br0 10
     cumulus@switch:~$ sudo brctl setmsqi br0 31
 
-## <span>Querier and Fast Leave Configuration</span>
+## Querier and Fast Leave Configuration</span>
 
 If there is no multicast router in the VLAN, the IGMP/MLD snooping
 querier can be configured to generate query messages.
@@ -219,7 +219,7 @@ immediately:
 
     cumulus@switch:~$ sudo brctl setportmcfl br0 swp1 1
 
-## <span>Static Group and Router Port Configuration</span>
+## Static Group and Router Port Configuration</span>
 
 To configure static permanent multicast group on a port, use:
 
@@ -236,11 +236,11 @@ To configure a static router port, use:
 
     cumulus@switch:~$ sudo brctl setportmcrouter br0 swp3 2
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/network/interfaces
 
-## <span>Man Pages</span>
+## Man Pages</span>
 
   - brctl(8)
 
@@ -248,7 +248,7 @@ To configure a static router port, use:
 
   - ifupdown-addons-interfaces(5)
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge#Snooping>
 

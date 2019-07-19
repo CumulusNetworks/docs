@@ -18,7 +18,7 @@ Tomahawk chipsets.
 
 {{%/notice%}}
 
-## <span>Configure Persistent DDOS Protection</span>
+## Configure Persistent DDOS Protection</span>
 
 1.  Open the `/etc/cumulus/datapath/traffic.conf` file in a text editor.
 

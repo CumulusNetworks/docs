@@ -19,7 +19,7 @@ Features in the early access release of VXLAN routing include:
 
   - Centralized and asymmetric routing
 
-  - [VRF](/version/cumulus-linux-332/Layer-Three/Virtual-Routing-and-Forwarding---VRF)
+  - [VRF](/version/cumulus-linux-332/Layer-Three/Virtual-Routing-and-Forwarding-VRF)
     support for overlay networks
 
   - Anycast routing
@@ -45,7 +45,7 @@ Because it is an EA feature, it has these limitations:
 
 {{%/notice%}}
 
-## <span>Installing the VXLAN Routing Package</span>
+## Installing the VXLAN Routing Package</span>
 
 To install the VXLAN routing package on a Cumulus Linux switch, [follow
 these
@@ -53,7 +53,7 @@ steps](https://support.cumulusnetworks.com/hc/en-us/articles/202933878),
 using *cumulus-vxlan-routing* as the `EA_PACKAGENAME` in step 3. This
 article also has steps for removing the package.
 
-## <span>Configuring VXLAN Routing</span>
+## Configuring VXLAN Routing</span>
 
 1.  Configure VXLAN routing between two overlay subnets.:
     
@@ -73,7 +73,7 @@ article also has steps for removing the package.
         cumulus@switch:~$ net add vlan 1001 ip address 45.0.0.80/26
 
 3.  If you are using
-    [VRF](/version/cumulus-linux-332/Layer-Three/Virtual-Routing-and-Forwarding---VRF),
+    [VRF](/version/cumulus-linux-332/Layer-Three/Virtual-Routing-and-Forwarding-VRF),
     create a VRF and enable it on the SVIs:
     
         cumulus@switch:~$ net add vrf vrf1001
@@ -137,7 +137,7 @@ These commands create the following configuration in the
         vxlan-id 11001
         vxlan-local-tunnelip 27.0.0.15
 
-## <span>Viewing VXLAN Routing Information</span>
+## Viewing VXLAN Routing Information</span>
 
 You can use the following commands to display VXLAN routing-related
 information:

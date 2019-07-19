@@ -23,9 +23,9 @@ switches and you are ready to add these NetQ capabilities.
 
 For information about monitoring and troubleshooting your network, refer
 to the [Cumulus NetQ CLI User
-Guide](/version/cumulus-netq-22/Cumulus-NetQ-CLI-User-Guide/) or the
+Guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/) or the
 [Cumulus NetQ UI User
-Guide](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide).
+Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide).
 
 {{%notice tip%}}
 

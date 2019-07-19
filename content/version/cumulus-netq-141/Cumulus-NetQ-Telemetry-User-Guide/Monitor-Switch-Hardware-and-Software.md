@@ -36,7 +36,7 @@ Layer Discovery Protocol) to collect port information. NetQ can also
 identify peer ports connected to DACs ( Direct Attached Cables) and AOCs
 (Active Optical Cables) without using LLDP, even if the link is not UP.
 
-## <span>Monitor Switch and Host Hardware Information</span>
+## Monitor Switch and Host Hardware Information</span>
 
 NetQ enables you to view either a summary or details about key
 components on your switch or host, including the motherboard, ASIC,
@@ -64,7 +64,7 @@ that would also be an option for you.
 
 {{%/notice%}}
 
-### <span>View Information about the ASIC on a Switch</span>
+### View Information about the ASIC on a Switch</span>
 
 You can view the vendor, model, model identifier, core bandwidth
 capability, and ports of the ASIC installed on your switch motherboard.
@@ -114,7 +114,7 @@ a particular switch. This example shows the ASIC information for
     ----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
     st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
 
-### <span>View Information about the Motherboard in a Switch</span>
+### View Information about the Motherboard in a Switch</span>
 
 You can view the vendor, model, base MAC address, serial number, part
 number, revision, and manufacturing date for a switch motherboard on a
@@ -163,7 +163,7 @@ particular switch. This example shows the motherboard vendor for the
     ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
     st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
 
-### <span>View Information about the CPU on a Switch</span>
+### View Information about the CPU on a Switch</span>
 
 You can view the architecture, model, operating frequency, and the
 number of cores for the CPU on a single device or for all devices. This
@@ -231,7 +231,7 @@ as shown here for *server02*.
     server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                                ss Core i7)
 
-### <span>View Information about the Disk on a Switch</span>
+### View Information about the Disk on a Switch</span>
 
 You can view the name or operating system, type, transport, size,
 vendor, and model of the disk on a single device or all devices. This
@@ -263,7 +263,7 @@ for a particular device. This example shows disk information for
     ----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
     leaf03            vda             disk             N/A                6G         0x1af4               N/A
 
-### <span>View Memory Information for a Switch</span>
+### View Memory Information for a Switch</span>
 
 You can view the name, type, size, speed, vendor, and serial number for
 the memory installed in a single device or all devices. This example
@@ -321,7 +321,7 @@ switch, as shown here for leaf01.
     ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
     leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
 
-### <span>View a Summary of All Hardware Information for a Switch</span>
+### View a Summary of All Hardware Information for a Switch</span>
 
 While the detail can be very helpful, sometimes a simple overview of the
 hardware inventory is better. This example shows the basic hardware
@@ -344,7 +344,7 @@ information for all devices.
     spine01           VX                   Cumulus Linux   x86_64   N/A             N/A
     spine02           VX                   Cumulus Linux   x86_64   N/A             N/A
 
-## <span>Monitor Switch Software Information</span>
+## Monitor Switch Software Information</span>
 
 NetQ enables you to view either a summary or details about the operating
 system and license, and whether NetQ Agents are running on your switch
@@ -396,7 +396,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### <span>View OS Information for a Switch</span>
+### View OS Information for a Switch</span>
 
 You can view the name and version of the OS on a switch, and when it was
 last modified. This example shows the OS information for all devices.
@@ -447,7 +447,7 @@ time values.
     mlx-2100-05       Cumulus Linux   3.7.0~1533263174.bce9472             Add        20d:18h:49m:31s
     mlx-2700-11       Cumulus Linux   3.7.0~1533263174.bce9472             Add        20d:18h:49m:32s
 
-### <span>View License Information for a Switch</span>
+### View License Information for a Switch</span>
 
 <span style="color: #333333;"> You can view the name and current state
 of the license (whether it valid or not), and when it was last updated
@@ -501,7 +501,7 @@ weeks ago.
     cumulus@switch:~$ netq spine01 show inventory license changes between now and 2w
     No matching inventory records found
 
-### <span>View Summary of Operating System on a Switch</span>
+### View Summary of Operating System on a Switch</span>
 
 As with the hardware information, you can view a summary of the software
 information using the *brief* keyword. Specify a hostname to view the
@@ -524,7 +524,7 @@ summary for a specific device.
     spine01           VX                   Cumulus Linux   x86_64   N/A             N/A
     spine02           VX                   Cumulus Linux   x86_64   N/A             N/A
 
-### <span>Validate NetQ Agents are Running</span>
+### Validate NetQ Agents are Running</span>
 
 You can confirm that NetQ Agents are running on switches and hosts (if
 installed) using the `netq show agents` command. Viewing the **Status**
@@ -557,7 +557,7 @@ state for a single device using the *hostname* keyword.
 You can view the state of NetQ Agents at an earlier time using the
 *around* and *changes* keywords.
 
-## <span>Monitor Software Services</span>
+## Monitor Software Services</span>
 
 Cumulus Linux and NetQ run a number of services to deliver the various
 features of these products. You can monitor their status using the `netq
@@ -636,7 +636,7 @@ Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360005898274)
 
 {{%/notice%}}
 
-### <span>View All Services on All Devices</span>
+### View All Services on All Devices</span>
 
 This example shows all of the available services on each device and
 whether each is enabled, active, and monitored, along with how long the
@@ -712,7 +712,7 @@ You can also view services information in JSON format:
 If you want to view the service information for a given device, simply
 use the *hostname* variable to the command.
 
-### <span>View Information about a Given Service on All Devices</span>
+### View Information about a Given Service on All Devices</span>
 
 You can view the status of a given service at the current time, at a
 prior point in time, or view the changes that have occurred for the

@@ -110,7 +110,7 @@ Trident II switch:
 Ingress ACL and Egress ACL entries show the counts in single wide (*not*
 double-wide). For information about ACL entries, see [Estimate the
 Number of ACL
-Rules](Netfilter---ACLs.html#src-8362563_Netfilter-ACLs-estimate-rules).
+Rules](Netfilter-ACLs.html#src-8362563_Netfilter-ACLs-estimate-rules).
 
 {{%/notice%}}
 

@@ -3,7 +3,7 @@ title: Single User Mode - Boot Recovery
 author: Cumulus Networks
 weight: 215
 aliases:
- - /display/CL37/Single-User-Mode---Boot-Recovery
+ - /display/CL37/Single-User-Mode-Boot-Recovery
  - /pages/viewpage.action?pageId=8362606
 pageID: 8362606
 product: Cumulus Linux

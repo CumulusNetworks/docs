@@ -22,14 +22,14 @@ Cumulus Linux also supports integration with VMware NSX in high
 availability mode. Refer to [OVSDB Server High
 Availability](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/OVSDB-Server-High-Availability).
 
-## <span>Getting Started</span>
+## Getting Started</span>
 
 Before you integrate VXLANs with NSX-MH, make sure you have a layer 2
 gateway; a Broadcom Tomahawk, Trident II+, Trident II, Maverick, or
 Mellanox Spectrum switch running Cumulus Linux. Cumulus Linux includes
 OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support
 [VLAN-aware
-bridges](/cumulus-linux/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
 
 To integrate a VXLAN with NSX-MH, you need to:
 
@@ -51,14 +51,14 @@ command followed by the `net commit` command.
 
 {{%/notice%}}
 
-## <span>Configure the Switch for NSX-MH Integration</span>
+## Configure the Switch for NSX-MH Integration</span>
 
 Before you start configuring the gateway service, logical switches, and
 ports that comprise the VXLAN, you need to enable and start the
 `openvswitch-vtep` service, and configure the NSX integration on the
 switch, either using the script or performing the manual configuration.
 
-### <span>Start the openvswitch-vtep Service</span>
+### Start the openvswitch-vtep Service</span>
 
 To enable and start the `openvswitch-vtep` service, run the following
 command:
@@ -77,7 +77,7 @@ In previous versions of Cumulus Linux, you had to edit the
 
 {{%/notice%}}
 
-### <span>Configure the NSX-MH Integration Using the Configuration Script</span>
+### Configure the NSX-MH Integration Using the Configuration Script</span>
 
 A script is available so you can configure the NSX-MH integration on the
 switch automatically.
@@ -130,7 +130,7 @@ configuration process:
     cumulus@switch:~$ sudo ifreload -a
     cumulus@switch:~$ sudo systemctl restart networking.service
 
-### <span>Configure the NSX-MH Integration Manually</span>
+### Configure the NSX-MH Integration Manually</span>
 
 {{%notice note%}}
 
@@ -148,7 +148,7 @@ integration manually, which requires you to perform the following steps:
 
   - Configure the switch as a VTEP gateway.
 
-#### <span>Generate the Credentials Certificate</span>
+#### Generate the Credentials Certificate</span>
 
 In Cumulus Linux, generate a certificate that the NSX controller uses
 for authentication.
@@ -214,7 +214,7 @@ After you generate the certificate, keep the terminal session active;
 you need to paste the certificate into NSX Manager when you configure
 the VTEP gateway.
 
-#### <span>Enable ovs-vtepd to Use the VLAN-aware Bridge</span>
+#### Enable ovs-vtepd to Use the VLAN-aware Bridge</span>
 
 By default, in stand-alone mode, the ovs-vtep daemon creates traditional
 bridges for each VXLAN VTEP. To use the VLAN-aware bridge with the
@@ -230,9 +230,9 @@ Then restart the OVSDB server and VTEPd:
 
     cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
 
-## <span>Provision VMware NSX-V</span>
+## Provision VMware NSX-V</span>
 
-### <span>Configure the Switch as a VTEP Gateway</span>
+### Configure the Switch as a VTEP Gateway</span>
 
 After you create a certificate, connect to NSX Manager in a browser to
 configure a Cumulus Linux switch as a VTEP gateway. In this example, the
@@ -295,9 +295,9 @@ terminal connected to the switch, run this command:
     status              : {sec_since_connect="18223", sec_since_disconnect="18225", state=ACTIVE}
     target              : "ssl:192.168.100.17:6632"
 
-## <span id="src-8362796_IntegratingHardwareVTEPswithVMwareNSX-MH-config-transport-logical" class="confluence-anchor-link"></span><span>Configure the Transport and Logical Layers</span>
+## Configure the Transport and Logical Layers</span>
 
-### <span>Configure the Transport Layer</span>
+### Configure the Transport Layer</span>
 
 After you finish configuring the NSX-MH integration on the switch,
 configure the transport layer. For each host-facing switch port to be
@@ -335,7 +335,7 @@ The gateway service shows up as type *VTEP L2* in NSX.
 
 Next, configure the logical layer on NSX.
 
-### <span>Configure the Logical Layer</span>
+### Configure the Logical Layer</span>
 
 To complete the integration with NSX, you need to configure the logical
 layer, which requires defining a logical switch (the VXLAN instance) and
@@ -379,7 +379,7 @@ all the logical ports needed.
     
     {{% imgOld 9 %}}
 
-### <span>Define Logical Switch Ports</span>
+### Define Logical Switch Ports</span>
 
 Logical switch ports can be virtual machine VIF interfaces from a
 registered OVS or a VTEP gateway service instance on this switch, as
@@ -420,7 +420,7 @@ To define the logical switch ports:
     
     {{% imgOld 12 %}}
 
-## <span id="src-8362796_IntegratingHardwareVTEPswithVMwareNSX-MH-MH-verify-vxlan-config" class="confluence-anchor-link"></span><span>Verify the VXLAN Configuration</span>
+## Verify the VXLAN Configuration</span>
 
 After configuration is complete, verify the VXLAN configuration in a
 terminal connected to the switch using these Cumulus Linux commands:

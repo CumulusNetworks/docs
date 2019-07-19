@@ -19,10 +19,10 @@ label switching (MPLS) controllers program labels into the network for
 traffic engineering.
 
 Cumulus Linux provides full label-based forwarding, relying on
-[BGP](/version/cumulus-linux-343/Layer-Three/Border-Gateway-Protocol---BGP)
+[BGP](/version/cumulus-linux-343/Layer-Three/Border-Gateway-Protocol-BGP)
 for label exchange. However, Cumulus Linux does not provide LDP
 interoperability for MPLS and it does not support
-[VRFs](/version/cumulus-linux-343/Layer-Three/Virtual-Routing-and-Forwarding---VRF)
+[VRFs](/version/cumulus-linux-343/Layer-Three/Virtual-Routing-and-Forwarding-VRF)
 for tenant isolation.
 
 {{%notice note%}}
@@ -33,7 +33,7 @@ switches](https://cumulusnetworks.com/products/hardware-compatibility-list/?Bran
 
 {{%/notice%}}
 
-## <span>Features</span>
+## Features</span>
 
 Segment routing is MPLS for the data plane **only**. In this EA release,
 Cumulus Linux does not impose the labels, the host does. The MTUs should
@@ -42,7 +42,7 @@ Segment routing supports the following features:
 
   - MPLS label edge router (LER) functionality for IPv4 and IPv6 routing
     with
-    [ECMP](/version/cumulus-linux-343/Layer-Three/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP).
+    [ECMP](/version/cumulus-linux-343/Layer-Three/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP).
     An ingress LER first adds an MPLS label to an IP packet. An egress
     LER removes the outermost MPLS label (also called "popping" the
     label).
@@ -58,7 +58,7 @@ Segment routing supports the following features:
   - FRR support for BGP/MPLS segment routing based on
     [draft-ietf-idr-bgp-prefix-sid-06](https://datatracker.ietf.org/doc/draft-ietf-idr-bgp-prefix-sid/).
 
-## <span>Example Configuration</span>
+## Example Configuration</span>
 
 Consider the following topology. Typically, host1 sends traffic to host2
 via r1, r2 and r3. However, you can use segment routing to route traffic
@@ -93,11 +93,11 @@ an IP packet, and route it as usual.
 Switches r1 through r5 announce their loopbacks (the 10.1.1.\* addresses
 above) in BGP with a *label-index*.
 
-## <span>Configuring Segment Routing</span>
+## Configuring Segment Routing</span>
 
 To configure the segment routing example above, use the `label-index`
 option in
-[NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility---NCLU).
+[NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU).
 Configure the following on each node:
 
     cumulus@switch:~$ net add bgp network 10.1.1.1/32 label-index 1
@@ -134,7 +134,7 @@ plus the label-index.
     !
     mpls label global-block 100 200
 
-## <span>Viewing the Configuration</span>
+## Viewing the Configuration</span>
 
 You can see the label-index when you show the BGP configuration on a
 router.

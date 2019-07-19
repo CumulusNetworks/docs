@@ -16,13 +16,13 @@ dynamic routing. FRRouting provides many routing protocols, of which
 Cumulus Linux supports the following:
 
   - Open Shortest Path First
-    ([v2](/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF) and
-    [v3](/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3---OSPFv3))
+    ([v2](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF) and
+    [v3](/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3))
 
   - [Border Gateway
-    Protocol](/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP)
+    Protocol](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP)
 
-## <span>Architecture</span>
+## Architecture</span>
 
 {{% imgOld 0 %}}
 
@@ -35,12 +35,12 @@ the information exchanged.
 It is not uncommon to have more than one protocol daemon running at the
 same time. For example, at the edge of an enterprise, protocols internal
 to an enterprise (called IGP for Interior Gateway Protocol) such as
-[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF) or RIP
+[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF) or RIP
 run alongside the protocols that connect an enterprise to the rest of
 the world (called EGP or Exterior Gateway Protocol) such as
-[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol---BGP).
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP).
 
-## <span>About zebra</span>
+## About zebra</span>
 
 `zebra` is the daemon that resolves the routes provided by multiple
 protocols (including static routes specified by the user) and programs
@@ -51,7 +51,7 @@ documentation](https://frrouting.org/user-guide/zebra.html) defines
 routing table updates, interface lookups, and redistribution of routes
 between different routing protocols."
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [frrouting.org](https://frrouting.org)
 

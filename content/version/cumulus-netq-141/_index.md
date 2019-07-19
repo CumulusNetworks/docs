@@ -62,7 +62,7 @@ Please visit the [Cumulus Networks Web
 site](http://docs.cumulusnetworks.com) for the most up to date
 documentation.
 
-## <span>Cumulus NetQ Components</span>
+## Cumulus NetQ Components</span>
 
 NetQ contains the following applications and key components:
 
@@ -89,12 +89,12 @@ NetQ contains the following applications and key components:
 NetQ interfaces with Cumulus Linux and Cumulus Routing on the Host
 products.
 
-## <span>Telemetry Components</span>
+## Telemetry Components</span>
 
 Each of the Telemetry components used to gather, store and process data
 about the network state are described here.
 
-### <span>NetQ Agents</span>
+### NetQ Agents</span>
 
 NetQ Agents are back-end Python software installed on every monitored
 *node* in the network — including Cumulus® Linux® switches, Linux
@@ -102,7 +102,7 @@ bare-metal hosts and virtual machines, and Docker containers. The NetQ
 Agents push network data every 15 seconds and event information
 immediately to the NetQ Telemetry Server.
 
-#### <span>Switch Agents</span>
+#### Switch Agents</span>
 
 The NetQ Agents running on Cumulus Linux switches gather the following
 network data via [Netlink](https://tools.ietf.org/html/rfc3549):
@@ -131,7 +131,7 @@ for the following protocols:
 <span style="color: #353744;"> The NetQ Agent is supported on </span>
 <span style="color: #353744;"> Cumulus Linux 3.3.0 and later. </span>
 
-#### <span>Host Agents</span>
+#### Host Agents</span>
 
 The NetQ Agents running on hosts gather the same information as that for
 switches, plus the following network data:
@@ -150,7 +150,7 @@ tools. </span>
 running </span> Ubuntu 16.04, Red Hat® Enterprise Linux 7, and CentOS 7
 Operating Systems.
 
-### <span>NetQ Telemetry Server</span>
+### NetQ Telemetry Server</span>
 
 The NetQ Telemetry Server provides the validation and notification
 capabilities of NetQ. It hosts a database/key-value store, NetQ
@@ -169,7 +169,7 @@ Notifier, Analysis Engine, and Trace Engine.
   - The Trace Engine tracks faults across available paths between two
     switches or servers in the network
 
-### <span>NetQ Telemetry User Interfaces</span>
+### NetQ Telemetry User Interfaces</span>
 
 <span style="color: #353744;"> NetQ telemetry functionality is available
 through several user interfaces: </span>
@@ -189,7 +189,7 @@ through several user interfaces: </span>
 Telemetry Server database for network state and event information.
 </span>
 
-## <span>Data Center Network Deployments</span>
+## Data Center Network Deployments</span>
 
 There are three key deployment types that are commonly deployed for
 network management in the data center:
@@ -202,7 +202,7 @@ network management in the data center:
 
 A summary of each type is provided here.
 
-### <span>Out-of-Band Management Deployment</span>
+### Out-of-Band Management Deployment</span>
 
 Cumulus Networks recommends deploying NetQ on an out-of-band (OOB)
 management network to separate network management traffic from standard
@@ -262,7 +262,7 @@ through a virtual network overlay, shown with purple lines.
 
 {{% imgOld 2 %}}
 
-### <span>Inband Management Deployment</span>
+### Inband Management Deployment</span>
 
 While not the preferred deployment method, you might choose to implement
 NetQ within your data network. In this scenario, there is no overlay and
@@ -275,7 +275,7 @@ have access to the Telemetry Server for troubleshooting.
 
 {{% imgOld 3 %}}
 
-### <span>High Availability Deployment</span>
+### High Availability Deployment</span>
 
 NetQ supports a high availability deployment for users who prefer a
 solution in which the collected data and processing provided by the
@@ -290,7 +290,7 @@ NetQ.
 
 {{% imgOld 4 %}}
 
-## <span>Telemetry Operation</span>
+## Telemetry Operation</span>
 
 In any of the above deployments, NetQ offers preventative management and
 proactive monitoring capabilities in the form of integration with
@@ -300,7 +300,7 @@ configuration. <span style="color: #36424a;"> </span>
 
 {{% imgOld 5 %}}
 
-### <span>The NetQ Agent</span>
+### The NetQ Agent</span>
 
 <span style="color: #36424a;"> From a software perspective, a network
 switch has software associated with the hardware platform, the operating
@@ -363,7 +363,7 @@ Chassis are also supported with four or eight line cards (a switch on a
 circuit board), where each line card has its own NetQ Agent to provide
 the same level of information as if it were a standalone switch.
 
-### <span>The Telemetry Server</span>
+### The Telemetry Server</span>
 
 Once the collected data is sent to and stored in the NetQ Telemetry
 Server database, you can:
@@ -532,7 +532,7 @@ switch *leaf04* interface *swp2* has gone down.
 
 {{% imgOld 8 %}}
 
-### <span>Timestamps in NetQ</span>
+### Timestamps in NetQ</span>
 
 Every event or entry in the NetQ database is stored with a timestamp of
 when the event was captured by the NetQ Agent on the switch or server.
@@ -594,7 +594,7 @@ time is once again relative to the start time of the Agent.
 
 {{%/notice%}}
 
-### <span>Exporting NetQ Data</span>
+### Exporting NetQ Data</span>
 
 Data from the NetQ Telemetry Server can be exported in a number of ways.
 First, you can use the `json` option to output check and show commands
@@ -639,7 +639,7 @@ this: <span style="color: #353744;"> </span>
         }
     }
 
-### <span>Telemetry File Locations</span>
+### Telemetry File Locations</span>
 
 <span style="color: #353744;"> The primary configuration file for all
 Cumulus NetQ tools, </span> `netq.yml` <span style="color: #353744;"> ,
@@ -654,14 +654,14 @@ Issues](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issu
 for a complete listing of configuration files and logs for use in issue
 resolution. </span>
 
-## <span>Image and Provisioning Management Components</span>
+## Image and Provisioning Management Components</span>
 
 The NetQ Telemetry Server hosts the Image and Provisioning Management
 (IPM) components, including a DHCP server, ONIE installation manager,
 and ZTP provisioning manager. Each of the IPM components used to manage
 images and configuration are described here.
 
-### <span>DHCP Server </span>
+### DHCP Server </span>
 
 The DHCP server uses the Dynamic Host Configuration Protocol to
 dynamically assign IP addresses to network devices and to provide a
@@ -670,7 +670,7 @@ to use the embedded server for all of your DHCP services or integrate
 with your own. For more detail about how DHCP works, refer to the
 [RFC 2131](https://tools.ietf.org/html/rfc2131) standard.
 
-### <span>Network Installation Manager</span>
+### Network Installation Manager</span>
 
 <span style="color: #ff0000;"> The Network Install manager uses ONIE
 (Open Network Install Environment) <span style="color: #000000;"> to
@@ -684,7 +684,7 @@ interface and locates and executes the Cumulus Networks OS installation
 program. For more detail about the ONIE standard, refer to
 [ONIE](https://opencomputeproject.github.io/onie/index.html). </span>
 
-### <span>Provisioning Manager </span>
+### Provisioning Manager </span>
 
 <span style="color: #000000;"> The Provisioning manager uses </span> ZTP
 (Zero Touch Provisioning) to store and distribute provisioning scripts.
@@ -698,7 +698,7 @@ designated location. For more detail about how ZTP works and tips for
 writing your own scripts, refer to
 [ZTP](/display/NETQ141/Zero+Touch+Provisioning+-+ZTP).
 
-### <span>Command Line Interface</span>
+### Command Line Interface</span>
 
 IPM provides a command line interface, TIPCTL, for NOS image management
 and ZTP script management. While initial boot and configuration is
@@ -707,7 +707,7 @@ operators to manage <span style="color: #000000;"> network </span>
 <span style="color: #000000;"> switch </span> software over the entire
 lifecycle of <span style="color: #000000;"> these devices </span> .
 
-## <span>Image and Provisioning Management Operation</span>
+## Image and Provisioning Management Operation</span>
 
 <span style="color: #ff0000;"> IPM installs and provisions bare metal
 servers to quickly transform them into Cumulus Linux switches. On the
@@ -728,7 +728,7 @@ Server for requests. Objects shown in purple are components of IPM.
 After the switch is configured, subsequent configuration and upgrades
 are performed using the IPM CLI.
 
-### <span>IPM File Locations</span>
+### IPM File Locations</span>
 
 <span style="color: #353744;"> Log files are stored in `/var/logs/tips`
 by default. </span>
@@ -740,7 +740,7 @@ stored in </span> <span style="color: #222222;">
 <span style="color: #222222;"> Provisioning scripts are stored in
 `/var/tips/www/ztp/scripts/` by default. </span>
 
-## <span>NetQ Virtual</span>
+## NetQ Virtual</span>
 
 You can try out NetQ in two different virtual environments. These
 environments enable you to try out NetQ on your own, or to test/validate
@@ -769,7 +769,7 @@ they can push it to their production network.
 
 {{% imgOld 10 %}}
 
-## <span>Available Documentation</span>
+## Available Documentation</span>
 
 <span style="color: #36424a;"> <span style="color: #353744;"> A number
 of user documents are available. These documents provide the information

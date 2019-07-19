@@ -27,7 +27,7 @@ it were a single link. The benefits of link aggregation are:
 
 Cumulus Linux LAG control protocol is LACP version 1.
 
-## <span>Example: Bonding 4 Slaves</span>
+## Example: Bonding 4 Slaves</span>
 
 {{% imgOld 0 %}}
 
@@ -122,7 +122,7 @@ address to address traffic to the bond.
 
 {{%/notice%}}
 
-## <span>Hash Distribution</span>
+## Hash Distribution</span>
 
 Egress traffic through a bond is distributed to a slave based on a
 packet hash calculation. This distribution provides load balancing over
@@ -135,11 +135,11 @@ the same slave. Many flows will be distributed over all the slaves to
 load balance the total traffic. In a failover event, the hash
 calculation is adjusted to steer traffic over available slaves.
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/network/interfaces
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding>
 
@@ -149,7 +149,7 @@ calculation is adjusted to steer traffic over available slaves.
   - [Link aggregation from
     Wikipedia](http://en.wikipedia.org/wiki/Link_aggregation)
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - An interface cannot belong to multiple bonds.
 

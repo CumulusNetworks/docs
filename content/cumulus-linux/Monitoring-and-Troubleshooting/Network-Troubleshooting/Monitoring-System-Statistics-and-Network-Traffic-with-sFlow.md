@@ -25,7 +25,7 @@ automatically when the switch boots up.
 {{%notice note%}}
 
 If you intend to run this service within a
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF),
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF),
 including the [management VRF](/cumulus-linux/Layer-3/Management-VRF),
 follow [these
 steps](Management-VRF.html#src-8362940_ManagementVRF-services) for
@@ -33,7 +33,7 @@ configuring the service.
 
 {{%/notice%}}
 
-## <span>Configure sFlow</span>
+## Configure sFlow</span>
 
 To configure `hsflowd` to send to the designated collectors, either:
 
@@ -41,7 +41,7 @@ To configure `hsflowd` to send to the designated collectors, either:
 
   - Manually configure the `/etc/hsflowd.conf` file
 
-### <span>Configure sFlow via DNS-SD</span>
+### Configure sFlow via DNS-SD</span>
 
 You can configure your DNS zone to advertise the collectors and polling
 information to all interested clients.
@@ -83,7 +83,7 @@ Start the sFlow daemon:
 
 No additional configuration is required in `/etc/hsflowd.conf`.
 
-### <span>Manually Configure /etc/hsflowd.conf</span>
+### Manually Configure /etc/hsflowd.conf</span>
 
 You can set up the collectors and variables on each switch.
 
@@ -124,13 +124,13 @@ collector for more information.
 
 {{%/notice%}}
 
-## <span>Configure sFlow Visualization Tools</span>
+## Configure sFlow Visualization Tools</span>
 
 For information on configuring various sFlow visualization tools, read
 this [Help Center
 article](https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Configuring-and-using-sFlow-visualization-tools).
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [sFlow Collectors](http://www.sflow.org/products/collectors.php)
 

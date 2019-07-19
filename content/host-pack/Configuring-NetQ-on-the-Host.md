@@ -12,7 +12,7 @@ imgData: hostpack
 siteSlug: hostpack
 ---
 Once you [install the
-NetQ packages](/version/hostpack/Installing-NetQ-on-the-Host) and
+NetQ packages](/host-pack/Installing-NetQ-on-the-Host) and
 configure the NetQ Telemetry Server, you need to configure NetQ on each
 node (Linux host) to monitor that node on your network.
 

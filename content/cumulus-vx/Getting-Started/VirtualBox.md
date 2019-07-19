@@ -22,7 +22,7 @@ documentation](https://www.virtualbox.org/wiki/Documentation).
 
 {{%/notice%}}
 
-## <span>Create a Cumulus VX VM with VirtualBox</span>
+## Create a Cumulus VX VM with VirtualBox</span>
 
 {{%notice note%}}
 
@@ -44,7 +44,7 @@ Started](/cumulus-vx/Getting-Started/) page.
     
     {{% imgOld 0 %}}
 
-## <span>Next Steps</span>
+## Next Steps</span>
 
 {{%notice note%}}
 
@@ -95,7 +95,7 @@ prefer to clone VMs:
 
 {{%/notice%}}
 
-## <span>VirtualBox Caveats and Errata</span>
+## VirtualBox Caveats and Errata</span>
 
 Consider the following caveats and expected behaviors when using Cumulus
 VX with VirtualBox:
@@ -121,7 +121,7 @@ VX with VirtualBox:
     which might not be up and active on your system when you import the
     image, causing the error message.
 
-### <span>Network Interface Limitations</span>
+### Network Interface Limitations</span>
 
 By default, the VirtualBox Manager only displays the first 8 virtual
 NICs, and you can only modify the first 4. However, if you plan on using

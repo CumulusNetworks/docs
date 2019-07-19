@@ -26,16 +26,16 @@ dedicated server in your environment.
 The `dhcpd` and `dhcrelay` services are disabled by default. After you
 finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding---VRF),
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF),
 including the [management VRF](/cumulus-linux/Layer-3/Management-VRF),
 follow [these
 steps](Management-VRF.html#src-8362940_ManagementVRF-services) for
 configuring them. See also the [VRF
-chapter](Virtual-Routing-and-Forwarding---VRF.html#src-8362942_VirtualRoutingandForwarding-VRF-dhcp).
+chapter](Virtual-Routing-and-Forwarding-VRF.html#src-8362942_VirtualRoutingandForwarding-VRF-dhcp).
 
 {{%/notice%}}
 
-## <span>Configure the DHCP Server on Cumulus Linux Switches</span>
+## Configure the DHCP Server on Cumulus Linux Switches</span>
 
 You can use the following sample configurations for `dhcp.conf` and
 `dhcpd6.conf` to start both an IPv4 and an IPv6 DHCP server. The
@@ -46,7 +46,7 @@ pools:
 
   - Pool 2: Subnet that includes the addresses
 
-### <span>Configure the IPv4 DHCP Server</span>
+### Configure the IPv4 DHCP Server</span>
 
 In a text editor, edit the `dhcpd.conf` file with a configuration
 similar to the following:
@@ -78,7 +78,7 @@ After you've finished configuring the DHCP server, enable and start the
     cumulus@switch:~$ sudo systemctl enable dhcpd.service
     cumulus@switch:~$ sudo systemctl start dhcpd.service
 
-### <span>Configure the IPv6 DHCP Server</span>
+### Configure the IPv6 DHCP Server</span>
 
 In a text editor, edit the `dhcpd6.conf` file with a configuration
 similar to the following:
@@ -116,7 +116,7 @@ After you've finished configuring the DHCP server, enable and start the
     cumulus@switch:~$ sudo systemctl enable dhcpd6.service
     cumulus@switch:~$ sudo systemctl start dhcpd6.service
 
-## <span>Assign Port-Based IP Addresses</span>
+## Assign Port-Based IP Addresses</span>
 
 You can assign an IP address and other DHCP options based on physical
 location or port regardless of MAC address to clients that are attached
@@ -133,7 +133,7 @@ to assign an IP address through DHCP. The following provides an example:
          fixed_address = 10.10.10.10 ;
     }
 
-## <span>Troubleshooting</span>
+## Troubleshooting</span>
 
 The DHCP server knows whether a DHCP request is a relay or a non-relay
 DHCP request. On isc-dhcp-server, for example, it is possible to tail

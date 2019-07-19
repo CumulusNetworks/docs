@@ -55,7 +55,7 @@ features include:
   - Support for dual-attached hosts via [VXLAN active-active
     mode](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode).
     MAC synchronization between the peer switches is done using
-    [MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation---MLAG).
+    [MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG).
 
   - Support for ARP/ND suppression, which provides VTEPs with the
     ability to suppress ARP flooding over VXLAN tunnels.
@@ -86,7 +86,7 @@ over iBGP peering, OSPF can be used as the IGP or the next hops can also
 be resolved using iBGP.
 
 You can provision and manage EVPN using
-[NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility---NCLU/).
+[NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/).
 
 {{%notice note%}}
 
@@ -98,7 +98,7 @@ Overview](/display/CL35/FRRouting+Overview).
 
 {{%/notice%}}
 
-## <span>Basic EVPN Configuration</span>
+## Basic EVPN Configuration</span>
 
 The following three steps represent the fundamental configuration to use
 EVPN as the control plane for VXLAN. These steps are in addition to
@@ -119,10 +119,10 @@ provision inter-subnet routing, and so forth. These steps depend on the
 deployment scenario. Various other BGP parameters can also be
 configured, if desired.
 
-### <span>Enabling EVPN between BGP Neighbors</span>
+### Enabling EVPN between BGP Neighbors</span>
 
 You enable EVPN between
-[BGP](/version/cumulus-linux-35/Layer-3/Border-Gateway-Protocol---BGP)
+[BGP](/version/cumulus-linux-35/Layer-3/Border-Gateway-Protocol-BGP)
 neighbors by adding the address family *evpn* to the existing neighbor
 address-family activation command.
 
@@ -175,7 +175,7 @@ VNIs defined on the system and advertising them to peers. This requires
 additional configuration, [as described
 below](#src-8357510_EthernetVirtualPrivateNetwork-EVPN-allvnis).
 
-### <span id="src-8357510_EthernetVirtualPrivateNetwork-EVPN-allvnis" class="confluence-anchor-link"></span><span>Advertising All VNIs</span>
+### <span id="src-8357510_EthernetVirtualPrivateNetwork-EVPN-allvnis" class="confluence-anchor-link"></span>Advertising All VNIs</span>
 
 A single configuration variable enables the BGP control plane for all
 VNIs configured on the switch. Set the variable `advertise-all-vni` to
@@ -221,7 +221,7 @@ known.
 
 {{%/notice%}}
 
-### <span>Auto-derivation of RDs and RTs</span>
+### Auto-derivation of RDs and RTs</span>
 
 When a local VNI is learned by FRR and there is no explicit
 configuration for that VNI in FRR, the route distinguisher (RD) and
@@ -245,7 +245,7 @@ import RT is treated as "\*:VNI" to determine which received routes are
 applicable to a particular VNI. This only applies when the import RT is
 auto-derived and not configured.
 
-### <span>User-defined RDs and RTs</span>
+### User-defined RDs and RTs</span>
 
 EVPN also supports manual configuration of RDs and RTs, if you don't
 want them derived automatically. To manually define RDs and RTs, use the
@@ -303,10 +303,10 @@ The above commands create the following configuration snippet in the
         route-target import 65000:500
         route-target export 65000:500
 
-### <span>Enabling EVPN in an iBGP Environment with an OSPF Underlay</span>
+### Enabling EVPN in an iBGP Environment with an OSPF Underlay</span>
 
 EVPN can be deployed with an
-[OSPF](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First---OSPF---Protocol)
+[OSPF](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First-OSPF---Protocol)
 or static route underlay if needed. This is a more complex configuration
 than using eBGP. In this case, iBGP advertises EVPN routes directly
 between VTEPs, and the spines are unaware of EVPN or BGP.
@@ -365,7 +365,7 @@ These commands create the following configuration snippet in
         Ospf router-id 10.1.1.1
         Passive-interface lo
 
-### <span>Disabling Data Plane MAC Learning over VXLAN Tunnels</span>
+### Disabling Data Plane MAC Learning over VXLAN Tunnels</span>
 
 When EVPN is provisioned, data plane MAC learning should be disabled for
 VXLAN interfaces because the purpose of EVPN is to exchange MACs between
@@ -392,7 +392,7 @@ These commands create the following code snippet in the
 {{%notice tip%}}
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging---VLANs/Traditional-Mode-Bridges),
+mode](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file in a text editor:
 
@@ -403,7 +403,7 @@ file in a text editor:
 
 {{%/notice%}}
 
-### <span>Handling BUM Traffic</span>
+### Handling BUM Traffic</span>
 
 With EVPN, the only method of handling BUM traffic is [Head End
 Replication
@@ -413,7 +413,7 @@ Virtualization
 (LNV)](/display/CL35/Lightweight+Network+Virtualization+-+LNV+Overview)
 is used.
 
-## <span id="src-8357510_EthernetVirtualPrivateNetwork-EVPN-arp" class="confluence-anchor-link"></span><span>ARP and ND Suppression</span>
+## <span id="src-8357510_EthernetVirtualPrivateNetwork-EVPN-arp" class="confluence-anchor-link"></span>ARP and ND Suppression</span>
 
 ARP suppression in an EVPN context refers to the ability of a VTEP to
 suppress ARP flooding over VXLAN tunnels as much as possible. Instead, a
@@ -434,7 +434,7 @@ suppression on a VXLAN interface. You also need to create an SVI for the
 neighbor entry.
 
 To configure ARP or ND suppression, use
-[NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility---NCLU/).
+[NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/).
 Here's an example configuration using 2 VXLANs, 10100 and 10200, and 2
 VLANs, 100 and 200:
 
@@ -500,7 +500,7 @@ These commands create the following configuration in the
 {{%notice tip%}}
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging---VLANs/Traditional-Mode-Bridges),
+mode](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file in a text editor:
 
@@ -514,7 +514,7 @@ file in a text editor:
 
 {{%/notice%}}
 
-### <span>Using UFT Profiles Other than the Default</span>
+### Using UFT Profiles Other than the Default</span>
 
 When deploying EVPN and VXLAN using a hardware profile other than the
 default UFT profile, you need to ensure that the Linux kernel ARP sysctl
@@ -537,13 +537,13 @@ example below, change the sysctl entries accordingly.
 After you save your settings, reboot the switch to apply the new
 configuration.
 
-## <span>EVPN and VXLAN Active-Active Mode</span>
+## EVPN and VXLAN Active-Active Mode</span>
 
 No additional EVPN-specific configuration is needed for [VXLAN
 active-active
 mode](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode).
 Both switches in the
-[MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG)
 pair establish EVPN peering with other EVPN speakers (for example, with
 spine switches, if using hop-by-hop eBGP) and inform about their locally
 known VNIs and MACs. When MLAG is active, both switches announce this
@@ -571,7 +571,7 @@ The active-active configuration should include the following:
 MLAG syncs information between the two switches in the MLAG pair; EVPN
 does not synchronize.
 
-## <span>Inter-subnet Routing</span>
+## Inter-subnet Routing</span>
 
 There are multiple models in EVPN for routing between different subnets
 (VLANs). These models arise due to the following two main
@@ -608,7 +608,7 @@ EVPN in Cumulus Linux supports all of the routing models listed above.
 The models are described further in the following sections.
 
 All routing happens in the context of a tenant VRF ([virtual routing and
-forwarding](/version/cumulus-linux-35/Layer-3/Virtual-Routing-and-Forwarding---VRF)).
+forwarding](/version/cumulus-linux-35/Layer-3/Virtual-Routing-and-Forwarding-VRF)).
 A VRF instance is provisioned for each tenant, and the subnets of the
 tenant are associated with that VRF (the corresponding SVI is attached
 to the VRF). Inter-subnet routing for each tenant occurs within the
@@ -626,7 +626,7 @@ gateway.
 
 {{%/notice%}}
 
-### <span id="src-8357510_EthernetVirtualPrivateNetwork-EVPN-centralized" class="confluence-anchor-link"></span><span>Centralized Routing</span>
+### <span id="src-8357510_EthernetVirtualPrivateNetwork-EVPN-centralized" class="confluence-anchor-link"></span>Centralized Routing</span>
 
 In centralized routing, a specific VTEP is configured to act as the
 default gateway for all the hosts in a particular subnet throughout the
@@ -641,7 +641,7 @@ routing to the destinaion host and post-routing, the packet gets bridged
 to the egress VTEP (to which the destination host is attached). The
 egress VTEP then bridges the packet on to the destination host.
 
-#### <span>Advertising the Default Gateway</span>
+#### Advertising the Default Gateway</span>
 
 In order to enable centralized routing, the gateway VTEPs must be
 configured to advertise their IP/MAC address. This is done using the
@@ -674,7 +674,7 @@ These commands create the following configuration snippet in
 
 {{%/notice%}}
 
-### <span id="src-8357510_EthernetVirtualPrivateNetwork-EVPN-asymmetric" class="confluence-anchor-link"></span><span>Asymmetric Routing</span>
+### <span id="src-8357510_EthernetVirtualPrivateNetwork-EVPN-asymmetric" class="confluence-anchor-link"></span>Asymmetric Routing</span>
 
 In distributed asymmetric routing, each VTEP acts as a layer 3 gateway,
 performing routing for its attached hosts. The routing is called
@@ -696,7 +696,7 @@ with an anycast IP/MAC address.
 
 {{%/notice%}}
 
-### <span id="src-8357510_EthernetVirtualPrivateNetwork-EVPN-symmetric" class="confluence-anchor-link"></span><span>Symmetric Routing</span>
+### <span id="src-8357510_EthernetVirtualPrivateNetwork-EVPN-symmetric" class="confluence-anchor-link"></span>Symmetric Routing</span>
 
 In distributed symmetric routing, each VTEP acts as a layer 3 gateway,
 performing routing for its attached hosts. This is the same as in
@@ -752,7 +752,7 @@ follows:
 3.  Specify the mapping of VRF to L3-VNI. This configuration is for the
     BGP control plane.
 
-#### <span>VXLAN Interface Corresponding to the L3-VNI</span>
+#### VXLAN Interface Corresponding to the L3-VNI</span>
 
     cumulus@leaf01:~$ net add vxlan vni104001 vxlan id 104001
     cumulus@leaf01:~$ net add vxlan vni104001 bridge access 4001
@@ -779,7 +779,7 @@ The above commands create the following snippet in the
         bridge-ports vni104001
         bridge-vlan-aware yes
 
-#### <span>SVI for the L3-VNI</span>
+#### SVI for the L3-VNI</span>
 
     cumulus@leaf01:~$ net add vlan 4001 vrf blue
     cumulus@leaf01:~$ net pending
@@ -814,7 +814,7 @@ the `/etc/network/interfaces` file looks like this:
 
 {{%/notice%}}
 
-#### <span>VRF to L3-VNI Mapping</span>
+#### VRF to L3-VNI Mapping</span>
 
     cumulus@leaf01:~$ net add vrf blue vni 104001
     cumulus@leaf01:~$ net pending
@@ -827,7 +827,7 @@ These commands create the following configuration snippet in
      vni 104001
     !
 
-#### <span>Advertising the Locally-attached Subnets</span>
+#### Advertising the Locally-attached Subnets</span>
 
 Symmetric routing presents a problem in the presence of silent hosts. If
 the ingress VTEP does not have the destination subnet and the host route
@@ -864,7 +864,7 @@ command. This command has been deprecated and should not be used.
 
 {{%/notice%}}
 
-## <span id="src-8357510_EthernetVirtualPrivateNetwork-EVPN-type5" class="confluence-anchor-link"></span><span>Prefix-based Routing — EVPN Type-5 Routes</span>
+## <span id="src-8357510_EthernetVirtualPrivateNetwork-EVPN-type5" class="confluence-anchor-link"></span>Prefix-based Routing — EVPN Type-5 Routes</span>
 
 EVPN in Cumulus Linux supports prefix-based routing using EVPN type-5
 (prefix) routes. Type-5 routes (or prefix routes) are primarily used to
@@ -899,7 +899,7 @@ switches, not Tomahawk or Spectrum.
 
 {{%/notice%}}
 
-### <span>Configuring the Switch to Install EVPN Type-5 Routes</span>
+### Configuring the Switch to Install EVPN Type-5 Routes</span>
 
 In order for a switch to be able to install EVPN type-5 routes into the
 routing table, it must be configured with the L3-VNI related
@@ -917,7 +917,7 @@ symmetric routing. That is, you need to:
 3.  Specify the mapping of the VRF to L3-VNI. This configuration is for
     the BGP control plane.
 
-### <span>Announcing EVPN Type-5 Routes</span>
+### Announcing EVPN Type-5 Routes</span>
 
 The following configuration is needed in the tenant VRF in order to
 announce IP prefixes in BGP's RIB as EVPN type-5 routes.
@@ -935,7 +935,7 @@ file:
       exit-address-family
     end
 
-## <span>Static (Sticky) MAC Addresses</span>
+## Static (Sticky) MAC Addresses</span>
 
 MAC addresses that are intended to be pinned to a particular VTEP can be
 provisioned on the VTEP as a static bridge FDB entry. EVPN picks up
@@ -960,7 +960,7 @@ These commands create the following configuration in the
 {{%notice tip%}}
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging---VLANs/Traditional-Mode-Bridges),
+mode](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file in a text editor:
 
@@ -972,9 +972,9 @@ file in a text editor:
 
 {{%/notice%}}
 
-## <span>EVPN Operational Commands</span>
+## EVPN Operational Commands</span>
 
-### <span>General Linux Commands Related to EVPN</span>
+### General Linux Commands Related to EVPN</span>
 
 You can use various `iproute2` commands to examine links, VLAN mappings
 and the bridge MAC forwarding database known to the Linux kernel. You
@@ -1059,7 +1059,7 @@ information from this output includes:
     50.1.1.11 dev vlan100 lladdr 00:02:00:00:00:01 REACHABLE
     ...
 
-### <span>General BGP Operational Commands Relevant to EVPN</span>
+### General BGP Operational Commands Relevant to EVPN</span>
 
 The following commands are not unique to EVPN but help troubleshoot
 connectivity and route propagation. If BGP is used for the underlay
@@ -1166,7 +1166,7 @@ You can view the MAC forwarding database on the switch by running the
     untagged            vlan200      00:00:5e:00:01:01                permanent  self           never
     ...
 
-### <span>Displaying EVPN address-family Peers</span>
+### Displaying EVPN address-family Peers</span>
 
 The BGP peers participating in the L2VPN/EVPN address-family and their
 states can be shown using the ` net show bgp l2vpn evpn summary
@@ -1186,7 +1186,7 @@ sessions are in the *established* state.
     Total number of neighbors 2
     cumulus@leaf01:~$
 
-### <span>Displaying VNIs in EVPN</span>
+### Displaying VNIs in EVPN</span>
 
 You can display the configured VNIs on a network device participating in
 BGP EVPN by running the `show bgp evpn vni` command. This command is
@@ -1239,7 +1239,7 @@ VRF as well as the states of its underlying VXLAN interface and SVI.
       L2 VNIs: 10100 10200 
     cumulus@leaf01:~$
 
-### <span>Examining Local and Remote MAC Addresses for a VNI in EVPN</span>
+### Examining Local and Remote MAC Addresses for a VNI in EVPN</span>
 
 You can examine all local and remote MAC addresses for a VNI by running
 `net show evpn mac vni <vni>`. This command is only relevant for an
@@ -1283,7 +1283,7 @@ remote MAC addresses behind a specific VTEP:
     00:02:00:00:00:0a remote 110.0.0.3            
     cumulus@leaf01:~$
 
-### <span>Examining Local and Remote Neighbors for a VNI in EVPN</span>
+### Examining Local and Remote Neighbors for a VNI in EVPN</span>
 
 You can examine all local and remote neighbors (ARP entries) for a VNI
 by running `net show evpn arp-cache vni <vni>`. This command is only
@@ -1305,7 +1305,7 @@ entries:
 You can examine neighbor entries for all VNIs using `net show evpn
 arp-cache vni all.`
 
-### <span>Examining Remote Router MACs in EVPN</span>
+### Examining Remote Router MACs in EVPN</span>
 
 When symmetric routing is deployed, you can examine the router MACs
 corresponding to all remote VTEPs by running `net show evpn rmac vni
@@ -1322,7 +1322,7 @@ corresponding to all remote VTEPs by running `net show evpn rmac vni
 You can examine router MACs for all L3-VNIs using `net show evpn rmac
 vni all.`
 
-### <span>Examining Gateway Next Hops in EVPN</span>
+### Examining Gateway Next Hops in EVPN</span>
 
 When symmetric routing is deployed, you can examine the gateway next
 hops by running `net show evpn next-hops vni <vni>`. This command is
@@ -1355,7 +1355,7 @@ and prefix routes via this next hop:
         60.1.1.44/32
     cumulus@leaf01:~$
 
-### <span>Displaying the VRF Routing Table in FRR</span>
+### Displaying the VRF Routing Table in FRR</span>
 
 You can examine the VRF routing table by running `net show route vrf
 <vrf-name>`. This command is not specific to EVPN. In the context of
@@ -1389,7 +1389,7 @@ address, and even if it is configured with an IP address, the next hop
 would not be on the same subnet as it is usually the remote VTEP's IP
 address, and hence, part of the underlay IP network.
 
-### <span>Displaying the Global BGP EVPN Routing Table</span>
+### Displaying the Global BGP EVPN Routing Table</span>
 
 Run the `net show bgp l2vpn evpn route` command to display all EVPN
 routes, both local and remote. The routes displayed here are based on RD
@@ -1437,7 +1437,7 @@ available options are as shown below:
         prefix     :  An IPv4 or IPv6 prefix
     cumulus@leaf01:~$
 
-### <span>Displaying a Specific EVPN Route</span>
+### Displaying a Specific EVPN Route</span>
 
 To drill down on a specific route for more information, run the `net
 show bgp l2vpn evpn route rd <rd-value>` command. This displays all EVPN
@@ -1485,7 +1485,7 @@ address.
 
   - If the remote host is dual attached, the next hop for the EVPN route
     is the anycast IP address of the remote
-    [MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation---MLAG)
+    [MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG)
     pair, when MLAG is active.
 
 {{%/notice%}}
@@ -1520,7 +1520,7 @@ route is learned via two paths, one through each spine switch.
     Displayed 1 prefixes (2 paths) with this RD (of requested type)
     cumulus@leaf01:~$
 
-### <span>Displaying the per-VNI EVPN Routing Table</span>
+### Displaying the per-VNI EVPN Routing Table</span>
 
 Received EVPN routes are maintained in the global EVPN routing table
 (described above), even if there are no appropriate local VNIs to
@@ -1558,7 +1558,7 @@ vni <vni>` command:
 To display the VNI routing table for all VNIs, run `net show bgp l2vpn
 evpn route vni all.`
 
-### <span>Displaying the per-VRF BGP Routing Table</span>
+### Displaying the per-VRF BGP Routing Table</span>
 
 When symmetric routing is deployed, received type-2 and type-5 routes
 are imported into the VRF routing table (against the corresponding
@@ -1592,7 +1592,7 @@ route target attributes. You can examine BGP's VRF routing table using
     Displayed  8 routes and 16 total paths
     cumulus@leaf01:~$
 
-### <span>Examining MAC Moves</span>
+### Examining MAC Moves</span>
 
 The first time a MAC moves from behind one VTEP to behind another, BGP
 associates a MAC Mobility (MM) extended community attribute of sequence
@@ -1616,7 +1616,7 @@ below shows the type-2 route for a MAC that has moved three times:
      
     Displayed 1 paths for requested prefix
 
-### <span>Examining Sticky MAC Addresses</span>
+### Examining Sticky MAC Addresses</span>
 
 You can identify static or "sticky" MACs in EVPN by the presence of
 "MM:0, sticky MAC" in the Extended Community line of the output from
@@ -1636,7 +1636,7 @@ You can identify static or "sticky" MACs in EVPN by the presence of
      
     Displayed 1 paths for requested prefix
 
-## <span>Troubleshooting EVPN</span>
+## Troubleshooting EVPN</span>
 
 The primary way to troubleshoot EVPN is by enabling FRR debug logs. The
 relevant debug options are:
@@ -1654,7 +1654,7 @@ relevant debug options are:
   - `debug bgp zebra` — which traces interactions between BGP and zebra
     for EVPN (and other) routes.
 
-## <span>Caveats</span>
+## Caveats</span>
 
 The following caveats apply to EVPN in this version of Cumulus Linux:
 
@@ -1686,9 +1686,9 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
     separated from the underlay, which resides in the default VRF. An
     L3-VNI mapping for the default VRF is not supported.
 
-## <span>Example Configuration</span>
+## Example Configuration</span>
 
-### <span>Example Configuration for EVPN for Bridging</span>
+### Example Configuration for EVPN for Bridging</span>
 
 The following configurations are used throughout this chapter. You can
 find the flat-file configurations for the network devices in the Cumulus
@@ -1699,7 +1699,7 @@ for leaf03, leaf04, server03, server04). Here is the topology diagram:
 
 {{% imgOld 0 %}}
 
-#### <span>leaf01 and leaf02 Configurations</span>
+#### leaf01 and leaf02 Configurations</span>
 
 <table>
 <colgroup>
@@ -1898,7 +1898,7 @@ end</code></pre>
 </tbody>
 </table>
 
-#### <span>spine01 and spine02 Configurations</span>
+#### spine01 and spine02 Configurations</span>
 
 <table>
 <colgroup>
@@ -2067,7 +2067,7 @@ end</code></pre>
 </tbody>
 </table>
 
-#### <span>server01 and server02 Configurations</span>
+#### server01 and server02 Configurations</span>
 
 <table>
 <colgroup>
@@ -2114,10 +2114,10 @@ iface eth2.200
 </tbody>
 </table>
 
-### <span>Example Active-active Configuration</span>
+### Example Active-active Configuration</span>
 
 The following configurations demonstrate a dual-attached
-([MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation---MLAG))
+([MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG))
 EVPN scenario. You can find the flat-file configurations for the network
 devices in the Cumulus Networks [GitHub
 repository](https://github.com/CumulusNetworks/cldemo-evpn/). Only a
@@ -2126,7 +2126,7 @@ leaf03, leaf04, server02, server04). Here is the topology diagram:
 
 {{% imgOld 1 %}}
 
-#### <span>leaf01 and leaf02 Configurations</span>
+#### leaf01 and leaf02 Configurations</span>
 
 <table>
 <colgroup>
@@ -2373,7 +2373,7 @@ end</code></pre>
 </tbody>
 </table>
 
-#### <span>spine01 and spine02 Configurations</span>
+#### spine01 and spine02 Configurations</span>
 
 <table>
 <colgroup>
@@ -2536,7 +2536,7 @@ end</code></pre>
 </tbody>
 </table>
 
-#### <span>server01 and server03 Configurations</span>
+#### server01 and server03 Configurations</span>
 
 <table>
 <colgroup>

@@ -15,7 +15,7 @@ A variety of resources are available for you to become familiar with
 Cumulus NetQ and aid in its deployment. These are identified here along
 with information about how the content is presented.
 
-## <span>What's New in Cumulus NetQ 1.4.0</span>
+## What's New in Cumulus NetQ 1.4.0</span>
 
 Cumulus NetQ 1.4.0 includes the following new features and updates:
 
@@ -48,7 +48,7 @@ this release, refer to the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360005898274).
 <span style="color: #353744;"> </span>
 
-## <span>Available Documentation</span>
+## Available Documentation</span>
 
 <span style="color: #36424a;"> <span style="color: #353744;"> The NetQ
 documentation set has been reorganized and updated from prior releases.
@@ -86,12 +86,12 @@ available: </span>
   - [Cumulus NetQ Data
     Sheet](https://cumulusnetworks.com/learn/web-scale-networking-resources/product-collateral/netq-data-sheet/)
 
-## <span>Document Formatting</span>
+## Document Formatting</span>
 
 The Cumulus NetQ Deployment Guide uses the following typographical and
 note conventions.
 
-### <span>Typographical Conventions</span>
+### Typographical Conventions</span>
 
 <span style="color: #353744;"> Throughout the guide, text formatting is
 used to convey contextual information about the content. </span>
@@ -103,7 +103,7 @@ used to convey contextual information about the content. </span>
 | <span style="color: #353744;"> \[`Text within square brackets`\] </span> | <span style="color: #353744;"> Optional command parameters; may be presented in mixed case or all caps text </span>                                                                                                      |
 | <span style="color: #353744;"> \<`Text within angle brackets`\> </span>  | <span style="color: #353744;"> Required command parameter values–variables that are to be replaced with a relevant value; <span style="color: #353744;"> may be presented in mixed case or all caps text </span> </span> |
 
-### <span>Note Conventions </span>
+### Note Conventions </span>
 
 <span style="color: #353744;"> Several note types are used throughout
 the document. The formatting of the note indicates its intent and

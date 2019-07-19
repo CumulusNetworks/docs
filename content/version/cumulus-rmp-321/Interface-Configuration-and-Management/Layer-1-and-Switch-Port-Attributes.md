@@ -15,7 +15,7 @@ This chapter discusses the various network interfaces on a switch
 running Cumulus RMP, how to configure various interface-level settings
 (if needed) and some troubleshooting commands.
 
-## <span>Interface Types</span>
+## Interface Types</span>
 
 Cumulus RMP exposes network interfaces for several types of physical and
 logical devices:
@@ -31,7 +31,7 @@ logical devices:
   - (optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or
     port channels)
 
-## <span>Interface Settings</span>
+## Interface Settings</span>
 
 Each physical network interface has a number of configurable settings:
 
@@ -56,7 +56,7 @@ unsupported error gets returned.
 
 {{%/notice%}}
 
-### <span id="src-5127618_Layer1andSwitchPortAttributes-autoneg_enable" class="confluence-anchor-link"></span><span>Enabling Auto-negotiation</span>
+### <span id="src-5127618_Layer1andSwitchPortAttributes-autoneg_enable" class="confluence-anchor-link"></span>Enabling Auto-negotiation</span>
 
 To configure auto-negotiation, set `link-autoneg` to *on* for all the
 switch ports. For example, to enable auto-negotiation for swp1 through
@@ -99,7 +99,7 @@ link-duplex=full|half).
 
 {{%/notice%}}
 
-### <span id="src-5127618_Layer1andSwitchPortAttributes-settings" class="confluence-anchor-link"></span><span>Default Interface Configuration Settings</span>
+### <span id="src-5127618_Layer1andSwitchPortAttributes-settings" class="confluence-anchor-link"></span>Default Interface Configuration Settings</span>
 
 The configuration for each type of interface is described in the
 following table. Except as noted below, the settings for both sides of
@@ -162,7 +162,7 @@ iface swp1
 </tbody>
 </table>
 
-### <span>Port Speed and Duplexing</span>
+### Port Speed and Duplexing</span>
 
 Cumulus RMP supports both half- and
 [full-duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
@@ -193,7 +193,7 @@ snippet:
 
 {{%/notice%}}
 
-#### <span>Port Speed Limitations</span>
+#### Port Speed Limitations</span>
 
 Ports can be configured to one speed less than their maximum speed.
 
@@ -202,7 +202,7 @@ Ports can be configured to one speed less than their maximum speed.
 | 1G               | 100 Mb                    |
 | 10G              | 1 Gigabit (1000 Mb)       |
 
-### <span id="src-5127618_Layer1andSwitchPortAttributes-mtu" class="confluence-anchor-link"></span><span>MTU</span>
+### <span id="src-5127618_Layer1andSwitchPortAttributes-mtu" class="confluence-anchor-link"></span>MTU</span>
 
 Interface MTU ([maximum transmission
 unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)) applies
@@ -223,7 +223,7 @@ You can override this default value by specifying a policy file in
         }
     }
 
-#### <span>MTU for a Bridge</span>
+#### MTU for a Bridge</span>
 
 The MTU setting is the lowest MTU setting of any interface that is a
 member of that bridge (that is, every interface specified in
@@ -309,9 +309,9 @@ To view the MTU setting, use `net show interface <interface>`:
     --  ------  -----------------  -------  -----  ---------
     UP  swp1    44:38:39:00:00:04  1G        1500  Access/L2
 
-## <span>Verification and Troubleshooting Commands</span>
+## Verification and Troubleshooting Commands</span>
 
-### <span>Statistics</span>
+### Statistics</span>
 
 High-level interface statistics are available with the `net show
 interface` command:
@@ -371,7 +371,7 @@ Low-level interface statistics are available with `ethtool`:
          SoftOutTxFifoFull: 0
          HwIfOutQLen: 0
 
-### <span>Querying SFP Port Information</span>
+### Querying SFP Port Information</span>
 
 You can verify SFP settings using ` ethtool -m  `. The following example
 shows the output for 1G and 10G modules:
@@ -387,7 +387,7 @@ shows the output for 1G and 10G modules:
                   RXPower : -3.2532dBm
                   TXPower : -2.0817dBm
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Debian - Network
     Configuration](http://wiki.debian.org/NetworkConfiguration)

@@ -132,7 +132,7 @@ that is part of an out-of-band management network to ensure it can
 monitor in-band network issues without being affected itself. You should
 run the software on a separate, powerful server to ensure proper
 operation and for maximum usability and performance. Refer to [Hardware
-Requirements](#src-12320951_InstallNetQ-hwspec) for specifics.
+Requirements](#hardware-requirements) for specifics.
 
 {{%/notice%}}
 
@@ -142,7 +142,7 @@ To install the NetQ Platform software onto your own hardware using a VM
 image:
 
 1.  **IMPORTANT**: Confirm that your server hardware meets the
-    requirements set out [here](#src-12320951_InstallNetQ-hwspec).
+    requirements set out [here](#hardware-Requirements).
 2.  Download the NetQ Platform image.
 
     1.  On the [Cumulus
@@ -414,8 +414,7 @@ attach the output of the `opta-support` command.
     in the *Cumulus Linux User Guide* for details and instructions.
 
 3.  Continue the NetQ installation by loading the NetQ Agent on each
-    switch or host you want to monitor. Refer to [Install NetQ
-    Agent](#src-12320951_InstallNetQ-agent) for instructions.
+    switch or host you want to monitor. Refer to [Install NetQ Agent](#install-the-netq-agent) for instructions.
 
 ## Install the NetQ Agent
 
@@ -436,12 +435,9 @@ used by both the NetQ Agent and the CLI.
 Instructions for installing the meta package on each node type are
 included here:
 
-  - [Install NetQ Agent on a Cumulus Linux
-    Switch](#src-12320951_InstallNetQ-AgentCL)
-  - [Install NetQ Agent on an Ubuntu
-    Server](#src-12320951_InstallNetQ-AgentUbuntu)
-  - [Install NetQ Agent on a Red Hat or CentOS
-    Server](#src-12320951_InstallNetQ-AgentRHC)
+  - [Install NetQ Agent on a Cumulus Linux Switch](#sinstall-netq-agent-on-a-cumulus-linux-switch)
+  - [Install NetQ Agent on an Ubuntu Server](#install-netq-on-an-ubuntu-server-optional)
+  - [Install NetQ Agent on a Red Hat or CentOS Server](#install-netq-on-a-red-hat-or-centos-server-optional)
 
 {{%notice note%}}
 
@@ -497,10 +493,8 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb
 
 5.  Configure the NetQ Agent to send telemetry data to the NetQ
     Platform, NetQ Appliance, or NetQ Cloud Appliance.  
-    **Note**: If you intend to use VRF, skip to [Configure the Agent to
-    Use VRF](#src-12320951_InstallNetQ-AgentVRF). If you intend to
-    specify a port for communication, skip to [Configure the Agent to
-    Communicate over a Specific Port](#src-12320951_InstallNetQ-port).  
+    **Note**: If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-the-agent-to-use-a-vrf). If you intend to
+    specify a port for communication, skip to [Configure the Agent to Communicate over a Specific Port](#configure-the-agent-to-communicate-over-a-specific-port).  
     In this example, the IP address for the NetQ hardware is
     *192.168.1.254*.
 
@@ -615,9 +609,9 @@ The use of `netq-latest` in this example means that a `get` to the
 8.  Configure the NetQ Agent to send telemetry data to the NetQ
     Platform, NetQ Appliance, or NetQ Cloud Appliance.  
     **Note**: If you intend to use VRF, skip to [Configure the Agent to
-    Use VRF](#src-12320951_InstallNetQ-AgentVRF). If you intend to
+    Use VRF](#configure-the-agent-to-use-a-vrf). If you intend to
     specify a port for communication, skip to [Configure the Agent to
-    Communicate over a Specific Port](#src-12320951_InstallNetQ-port).  
+    Communicate over a Specific Port](#configure-the-agent-to-communicate-over-a-specific-port).  
     In this example, the IP address for the NetQ hardware is
     *192.168.1.254*.
 
@@ -733,9 +727,9 @@ To install the NetQ Agent on a Red Hat or CentOS server:
 8.  Configure the NetQ Agent to send telemetry data to the NetQ
     Platform, NetQ Appliance, or NetQ Cloud Appliance.  
     **Note**: If you intend to use VRF, skip to [Configure the Agent to
-    Use VRF](#src-12320951_InstallNetQ-AgentVRF). If you intend to
+    Use VRF](#configure-the-agent-to-use-a-vrf). If you intend to
     specify a port for communication, skip to [Configure the Agent to
-    Communicate over a Specific Port](#src-12320951_InstallNetQ-port).  
+    Communicate over a Specific Port](#configure-the-agent-to-communicate-over-a-specific-port).  
     In this example, the IP address for the NetQ hardware is
     *192.168.1.254*.
 
@@ -775,10 +769,8 @@ configure the NetQ Agent on a Cumulus switch, but it is exactly the same
 for the other type of nodes. Depending on your deployment, follow the
 relevant additional instructions after the basic configuration steps:
 
-  - [Configuring the Agent to Use a
-    VRF](#src-12320951_InstallNetQ-AgentVRF)
-  - [Configuring the Agent to Communicate over a Specific
-    Port](#src-12320951_InstallNetQ-port)
+  - [Configuring the Agent to Use a VRF](#configure-the-agent-to-use-a-vrf)
+  - [Configuring the Agent to Communicate over a Specific Port](#configure-the-agent-to-communicate-over-a-specific-port)
 
 ### Configure the Agent to Use a VRF
 

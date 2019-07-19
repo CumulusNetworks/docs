@@ -108,7 +108,7 @@ You cannot use NCLU to configure IPv6 DHCP servers.
 
 {{%/notice%}}
 
-After you've finished configuring the DHCP server, enable and start the
+After you finish configuring the DHCP server, enable and start the
 `dhcpd6` service immediately:
 
     cumulus@switch:~$ sudo systemctl enable dhcpd6.service

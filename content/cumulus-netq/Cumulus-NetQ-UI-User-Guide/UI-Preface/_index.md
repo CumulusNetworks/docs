@@ -79,6 +79,8 @@ available:
   - [Cumulus NetQ Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
   - [Cumulus NetQ Cloud Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
 
+This Cumulus NetQ CLI User Guide is available in [PDF](/pdfs/Cumulus_NetQ_220_UI_User_Guide.pdf) for offline viewing 
+
 ## Document Formatting
 
 This guide uses the following typographical and note conventions.

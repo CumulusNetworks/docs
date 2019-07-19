@@ -20,11 +20,3 @@ components of the network, the network as a whole, and the NetQ software
 itself using the NetQ command line interface (CLI). If you prefer to use
 a graphical interface, refer to the [Cumulus NetQ UI User
 Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/).
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

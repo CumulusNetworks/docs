@@ -668,7 +668,7 @@ information with the shared anycast IP address.
 The active-active configuration, make sure that:
 
   - The `clagd-vxlan-anycast-ip` parameter is under the [loopback
-    stanza](VXLAN-Active-Active-Mode.html#src-8362725_VXLANActive-ActiveMode-anycast)
+    stanza](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode/#active-active-vtep-anycast-ip-behavior)
     on both peers.
 
   - The anycast address is advertised to the routed fabric from both

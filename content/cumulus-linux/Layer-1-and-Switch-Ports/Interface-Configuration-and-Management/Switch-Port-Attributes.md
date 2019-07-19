@@ -50,19 +50,15 @@ unsupported error is shown.
 
 {{%/notice%}}
 
-<span style="color: #333333;"> For </span> **Mellanox switches**, MTU is
-the only port attribute you can directly configure. The Mellanox
-firmware configures FEC, link speed, duplex mode and auto-negotiation
-automatically, following a predefined list of parameter settings until
-the link comes up. However, you can disable FEC if necessary, which
-forces the firmware to not try any FEC options.
+For **Mellanox switches**, MTU is the only port attribute you can directly configure. The Mellanox firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until
+the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
 For **Broadcom-based switches,** Cumulus Networks recommends that you
 enable auto-negotiation on each port. When enabled, Cumulus Linux
 automatically configures the best link parameter settings based on the
 module type (speed, duplex, auto-negotiation, and FEC where supported).
 To understand the default configuration for the various port and cable
-types, see the [tablebelow](#interface-configuration-recommendations-for-broadcom-platforms). If you need to
+types, see the [table below](#interface-configuration-recommendations-for-broadcom-platforms). If you need to
 troubleshoot further to bring the link up, follow the sections below to
 set the specific link parameters.
 
@@ -84,7 +80,7 @@ By default on a Broadcom-based switch, auto-negotiation is disabled —
 except on 10G and 1000BASE-T fixed copper switch ports, where it is
 required for links to work. For RJ-45 SFP adapters, you need to manually
 configure the desired link speed and auto-negotiation as described in
-the [default settings table below]()#interface-configuration-recommendations-for-broadcom-platforms).
+the [default settings table below](#interface-configuration-recommendations-for-broadcom-platforms).
 
 If you disable auto-negotiation later or never enable it, then you have
 to configure any settings that deviate from the port default — such as
@@ -147,10 +143,6 @@ You can configure ports to one speed less than their maximum speed.
 [Configuring Breakout Ports](#breakout-ports)
 below.
 
-{{%notice info%}}
-
-**Example Port Speed and Duplexing Configuration**
-
 The following NCLU commands configure the port speed for the swp1
 interface:
 
@@ -165,10 +157,6 @@ snippet:
     iface swp1
        link-speed 10000
 
-{{%/notice%}}
-
-{{%notice note%}}
-
 **Platform Limitations**
 
   - On Lenovo NE2572O switches, swp1 thru swp8 only support 25G speed.
@@ -176,8 +164,6 @@ snippet:
   - For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform,
     you must edit the `/etc/cumulus/ports.conf` file and configure the
     four ports in the same core to be 10G. See [Caveats and Errata](#caveats-and-errata) below.
-
-{{%/notice%}}
 
 ## MTU
 
@@ -276,10 +262,6 @@ MTU of the physical interfaces on the switch, as those 50 bytes are
 required for various headers and other data. Also, consider setting the
 MTU much higher than the default 1500.
 
-{{%notice info%}}
-
-**Example MTU Configuration**
-
 In general, the policy file specified above handles default MTU settings
 for all interfaces on the switch. If you need to configure a different
 MTU setting for a subset of interfaces, use
@@ -297,25 +279,9 @@ These commands create the following code snippet:
     iface swp1
        mtu 9000
 
-<div class="confbox admonition admonition-warning">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
-{{%notice info%}}
-
 You must take care to ensure there are no MTU mismatches in the
 conversation path. MTU mismatches result in dropped or truncated
 packets, degrading or blocking network performance.
-
-{{%/notice%}}
-
-</div>
-
-</div>
-
-{{%/notice%}}
 
 {{%notice note%}}
 

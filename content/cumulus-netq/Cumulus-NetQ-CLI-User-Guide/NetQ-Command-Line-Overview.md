@@ -22,7 +22,7 @@ resolve.
 {{%notice note%}}
 
 The NetQ command line interface only runs on switches and server hosts
-implemented with Intel x86 or ARM-based architectures. If you are unsure what architecture your switch or server employs, check the Cumulus [<span style="color: #00AD69;">Hardware Compatibility List</span>](https://cumulusnetworks.com/products/hardware-compatibility-list/) and verify the value in the **Platforms** tab \> **CPU** column.
+implemented with Intel x86 or ARM-based architectures. If you are unsure what architecture your switch or server employs, check the Cumulus [Hardware Compatibility List](https://cumulusnetworks.com/products/hardware-compatibility-list/) and verify the value in the **Platforms** tab \> **CPU** column.
 
 {{%/notice%}}
 
@@ -59,13 +59,13 @@ To access the CLI from a switch or server:
 
 This section describes the core structure and behavior of the NetQ CLI. It includes the following:
 
-  - [Command Line Structure](#src-12321059_NetQCommandLineOverview-ComStruct)
-  - [Command Syntax](#src-12321059_NetQCommandLineOverview-ComSyntax)
-  - [Command Output](#src-12321059_NetQCommandLineOverview-ComOut)
-  - [Command Prompts](#src-12321059_NetQCommandLineOverview-ComPrompt)
-  - [Command Completion](#src-12321059_NetQCommandLineOverview-ComComp)
-  - [Command Help](#src-12321059_NetQCommandLineOverview-ComHelp)
-  - [Command History](#src-12321059_NetQCommandLineOverview-ComHist)
+  - [Command Line Structure](#command-line-structure)
+  - [Command Syntax](#command-syntax)
+  - [Command Output](#commnad-output)
+  - [Command Prompts](#command-prompts)
+  - [Command Completion](#command-completion)
+  - [Command Help](#command-help)
+  - [Command History](#command-history)
 
 ### Command Line Structure
 
@@ -172,10 +172,10 @@ modify the command before you run it.
 
 While the CLI has a flat structure, the commands can be conceptually grouped into four functional categories:
 
-  - [Validation Commands](#src-12321059_NetQCommandLineOverview-ChkCmds)
-  - [Monitoring Commands](#src-12321059_NetQCommandLineOverview-ShowCmds)
-  - [Configuration Commands](#src-12321059_NetQCommandLineOverview-ConfigCmds)
-  - [Trace Commands](#src-12321059_NetQCommandLineOverview-TraceCmds)
+  - [Validation Commands](#validation-commands)
+  - [Monitoring Commands](#monitoring-commands)
+  - [Configuration Commands](#configuration-commands)
+  - [Trace Commands](#trace-commands)
 
 ### Validation Commands
 

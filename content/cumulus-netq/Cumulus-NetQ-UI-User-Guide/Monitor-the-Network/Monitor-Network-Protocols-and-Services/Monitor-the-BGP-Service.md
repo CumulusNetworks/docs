@@ -35,8 +35,8 @@ The small BGP Service card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -46,13 +46,12 @@ The small BGP Service card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 2 %}}</p></td>
+<td><p>{{% imgOld 2 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
 <td><p>Title</p></td>
-<td><p><strong>BGP</strong>: All BGP Sessions, or the BGP Service</p></td>
+<td><p>BGP: All BGP Sessions, or the BGP Service</p></td>
 </tr>
 <tr class="odd">
 <td><p>{{% imgOld 3 %}}</p></td>
@@ -71,16 +70,14 @@ The small BGP Service card displays:
 
 The medium BGP Service card displays:
 
-<span style="color: #ff0000;"> </span>
-
 {{% imgOld 5 %}}
 
 {{% imgOld 6 %}}
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -94,8 +91,7 @@ The medium BGP Service card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 7 %}}</p></td>
+<td><p>{{% imgOld 7 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -135,8 +131,8 @@ The *Sessions Summary* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -150,8 +146,7 @@ The *Sessions Summary* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 12 %}}</p></td>
+<td><p>{{% imgOld 12 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -192,8 +187,8 @@ The *Alarms* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -207,8 +202,7 @@ The *Alarms* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 16 %}}</p></td>
+<td><p>{{% imgOld 16 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -245,8 +239,8 @@ sessions, and all alarms.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -265,8 +259,7 @@ sessions, and all alarms.
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 21 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 21 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -285,15 +278,15 @@ sessions, and all alarms.
 <ul>
 <li><p>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</p></li>
 <li><p>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</p></li>
-<li><p>Model Id: Identifier of networking ASIC model. Example values include <span style="color: #222222;"> BCM56960 and BCM56854. </span></p></li>
-<li><p>Ports: Indicates port configuration of the switch. Example values include <span style="color: #222222;"> 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+. </span></p></li>
+<li><p>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</p></li>
+<li><p>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</p></li>
 <li><p>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</p></li>
 </ul></li>
 <li><p><strong>CPU</strong></p>
 <ul>
 <li><p>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</p></li>
-<li><p>Max Freq: Highest rated frequency for CPU. Example values include <span style="color: #222222;"> 2.40 GHz and 1.74 GHz. </span></p></li>
-<li><p>Model: Chip family. Example values include <span style="color: #222222;"> Intel Atom C2538 and Intel Atom C2338. </span></p></li>
+<li><p>Max Freq: Highest rated frequency for CPU. Example values include 2.40 GHz and 1.74 GHz.</p></li>
+<li><p>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</p></li>
 <li><p>Nos: Number of cores. Example values include 2, 4, and 8.</p></li>
 </ul></li>
 <li><p><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</p></li>
@@ -308,8 +301,8 @@ sessions, and all alarms.
 <li><p><strong>Platform</strong></p>
 <ul>
 <li><p>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</p></li>
-<li><p>MAC: System MAC address. Example value: <span style="color: #545454;"> 17:01:AB:EE:C3:F5. </span></p></li>
-<li><p>Model: <span style="color: #222222;"> Manufacturer's model name. Examples values include AS7712-32X and S4048-ON. </span></p></li>
+<li><p>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</p></li>
+<li><p>Model: Manufacturer's model name. Examples values include AS7712-32X and S4048-ON. </span></p></li>
 <li><p>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</p></li>
 <li><p>Revision: Release version of the platform</p></li>
 <li><p>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</p></li>
@@ -364,8 +357,7 @@ sessions, and all alarms.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 22 %}}</p></td>
+<td><p>{{% imgOld 22 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -411,8 +403,7 @@ an earlier time to look for any differences.
 To view switches and hosts with the most BGP sessions:
 
 1.  Open the large BGP Service card.
-
-2.  Select **SWITCHES WITH MOST SESSIONS** from the filter above the
+2.  Select **Switches With Most Sessions** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
     running the most BGP sessions at the top. Scroll down to view those
@@ -423,23 +414,15 @@ To view switches and hosts with the most BGP sessions:
 To compare this data with the same data at a previous time:
 
 1.  Open another large BGP Service card.
-
 2.  Move the new card next to the original card if needed.
-
 3.  Change the time period for the data on the new card by hovering over
-    the card and clicking <span style="color: #353744;"> </span>
-
-    {{% imgOld 26 %}}
-
-    .
-
+    the card and clicking {{% imgOld 26 %}}.
 4.  Select the time period that you want to compare with the original
     time. We chose *Past Week* for this example.  
 
     {{% imgOld 27 %}}
 
     {{% imgOld 28 %}}
-
 
     You can now see whether there are significant differences between
     this time and the original time. If the changes are unexpected, you
@@ -456,7 +439,7 @@ To view switches with the most unestablished BGP sessions:
 
 1.  Open the large BGP Service card.
 
-2.  Select **SWITCHES WITH MOST UNESTABLISHED SESSIONS** from the filter
+2.  Select **Switches with Most Unestablished Sessions** from the filter
     above the table.  
     The table content is sorted by this characteristic, listing nodes
     with the most unestablished BGP sessions at the top. Scroll down to
@@ -499,14 +482,9 @@ information about possible causes for the alarms.
 To view switches with the most BGP alarms:
 
 1.  Open the large BGP Service card.
+2.  Hover over the header and click {{% imgOld 32 %}}.
 
-2.  Hover over the header and click
-
-    {{% imgOld 32 %}}
-
-    .
-
-3.  Select **SWITCHES WITH MOST ALARMS** from the filter above the
+3.  Select **Switches with Most Alarms** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
     with the most BGP alarms at the top. Scroll down to view those with
@@ -533,7 +511,6 @@ include:
 
     {{% imgOld 36 %}}
 
-
     In this example, the total alarm count has reduced significantly
     from one week ago.
 
@@ -548,7 +525,6 @@ BGP events in the designated time period.
 To view all BGP events:
 
 1.  Open the full screen BGP Service card.
-
 2.  Click **All Alarms** tab in the navigation panel.  
     By default, events are listed in most recent to least recent order.
 
@@ -559,7 +535,6 @@ include:
 
   - Open one of the other full screen tabs in this flow to focus on
     devices or sessions.
-
   - Export the data for use in another analytics tool, by clicking
     **Export** and providing a name for the data file.
 
@@ -573,11 +548,7 @@ click the **All Switches** tab.
 
 {{% imgOld 38 %}}
 
-To return to your workbench, click
-
-{{% imgOld 39 %}}
-
-in the top right corner.
+To return to your workbench, click {{% imgOld 39 %}} in the top right corner.
 
 ### View Details for All BGP Sessions
 
@@ -589,11 +560,7 @@ click the **All Sessions** tab.
 
 {{% imgOld 40 %}}
 
-To return to your workbench, click
-
-{{% imgOld 41 %}}
-
-in the top right corner.
+To return to your workbench, click {{% imgOld 41 %}} in the top right corner.
 
 ### Take Actions on Data Displayed in Results List
 
@@ -631,7 +598,7 @@ the configuration file. For an overview and how to configure BGP to run
 in your data center network, refer to
 [Border Gateway Protocol - BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/).
 
-{{%notice info%}}
+{{%notice note%}}
 
 To access the single session cards, you must open the full screen BGP
 Service (all sessions) card, click the All Sessions tab, and
@@ -668,7 +635,7 @@ common time periods in the table showing the resulting time blocks.
 | 1 month     | 2,086          | 30                 | 1 day                        |
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
 
-<span style="color: #36424a;"> BGP Session Card Workflow Summary </span>
+### BGP Session Card Workflow Summary
 
 The small BGP Session card displays:
 
@@ -676,8 +643,8 @@ The small BGP Session card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -687,24 +654,19 @@ The small BGP Session card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 46 %}}</p></td>
+<td><p>{{% imgOld 46 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
 <td><p>Title</p></td>
-<td><p><strong>BGP Session</strong></p></td>
+<td><p>BGP Session</p></td>
 </tr>
 <tr class="odd">
 <td><p> </p></td>
 <td><p>Hostnames of the two devices in a session. Arrow points from the host to the peer.</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 47 %}}</p>
-, <span style="color: #353744;"> </span>
-<p>{{% imgOld 48 %}}</p>
-</span></td>
+<td><p>{{% imgOld 47 %}}, {{% imgOld 48 %}}</p></td>
 <td><p>Current status of the session, either established or not established</p></td>
 </tr>
 </tbody>
@@ -716,8 +678,8 @@ The medium BGP Session card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -743,10 +705,7 @@ The medium BGP Session card displays:
 <td><p>Hostnames of the two devices in a session. Arrow points in the direction of the session.</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 51 %}}</p>
-,
-<p>{{% imgOld 52 %}}</p></td>
+<td><p>{{% imgOld 51 %}}, {{% imgOld 52 %}}</p></td>
 <td><p>Current status of the session, either established or not established</p></td>
 </tr>
 <tr class="even">
@@ -755,7 +714,7 @@ The medium BGP Session card displays:
 </tr>
 <tr class="odd">
 <td><p>Session State Changes Chart</p></td>
-<td><p>Heat map of the state of the given session over the given time period. The status is sampled at a rate consistent with the time period. For example, for a 24 hour period, a status is collected every hour. Refer to <a href="#src-12321221_MonitortheBGPService-TimePerGran">Granularity of Data Shown Based on Time Period</a>.</p></td>
+<td><p>Heat map of the state of the given session over the given time period. The status is sampled at a rate consistent with the time period. For example, for a 24 hour period, a status is collected every hour. Refer to <a href="#granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</a>.</p></td>
 </tr>
 <tr class="even">
 <td><p>Peer Name</p></td>
@@ -780,11 +739,13 @@ The large BGP Session card contains two tabs.
 
 The *Session Summary* tab displays:
 
-<span style="color: #000000;"> </span>
-
 {{% imgOld 53 %}}
 
 <table class="confluenceTable">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
 
 <thead class=" ">
 
@@ -907,8 +868,7 @@ Session State Changes Chart
 Heat map of the state of the given session over the given time period.
 The status is sampled at a rate consistent with the time period. For
 example, for a 24 hour period, a status is collected every hour. Refer
-to [Granularity of Data Shown Based on Time
-Period](#src-12321221_MonitortheBGPService-TimePerGran) .
+to <a href="#granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</a>.
 
 </td>
 
@@ -1070,8 +1030,8 @@ The *Configuration File Evolution* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1085,30 +1045,20 @@ The *Configuration File Evolution* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 58 %}}</p></td>
+<td><p>{{% imgOld 58 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>(Network Services | BGP Session) <strong>Configuration File Evolution</strong></p></td>
+<td><p>(Network Services | BGP Session) Configuration File Evolution</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 59 %}}</p></td>
-<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 60 %}}</p>
-to open associated device card.</td>
+<td><p>{{% imgOld 59 %}}</p></td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on {{% imgOld 60 %}} to open associated device card.</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 61 %}}</p>
-,
-<p>{{% imgOld 62 %}}</p></td>
-<td><p>Indication of host role, primary</p>
-<p>{{% imgOld 63 %}}</p>
-or secondary
-<p>{{% imgOld 64 %}}</p></td>
+<td><p>{{% imgOld 61 %}}, {{% imgOld 62 %}}</p></td>
+<td><p>Indication of host role, primary {{% imgOld 63 %}} or secondary {{% imgOld 64 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Timestamps</p></td>
@@ -1129,8 +1079,8 @@ all events.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1157,11 +1107,10 @@ all events.
 <li><p><strong>DB State</strong>: Session state of DB</p></li>
 <li><p><strong>Evpn Pfx Rcvd</strong>: Address prefix for EVPN traffic. Examples include 115, 35.</p></li>
 <li><p><strong>Ipv4, and Ipv6 Pfx Rcvd</strong>: Address prefix for IPv4 or IPv6 traffic. Examples include 31, 14, 12.</p></li>
-<li><p><strong>Last Reset Time</strong>: Time at which the session was last established or reset</p>
-<ul>
+<li><p><strong>Last Reset Time</strong>: Time at which the session was last established or reset</p></li>
 <li><p><strong>Objid</strong>: Object identifier for service</p></li>
-</ul>
-<p><strong>OPID</strong>: Customer identifier. This is always zero.<strong>Peer</strong></p>
+<li><p><strong>OPID</strong>: Customer identifier. This is always zero.</p></li>
+<li><p><strong>Peer</strong></p>
 <ul>
 <li><p>ASN: Autonomous System Number for peer device</p></li>
 <li><p>Hostname: User-defined name for peer device</p></li>
@@ -1194,8 +1143,7 @@ all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 66 %}}</p></td>
+<td><p>{{% imgOld 66 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -1209,14 +1157,10 @@ workflow, showing the node and its peer and current status.
 To view the summary:
 
 1.  Add the Network Services | All BGP Sessions card.
-
 2.  Switch to the full screen card.
-
 3.  Click the **All Sessions** tab.
-
 4.  Double-click the session of interest. The full screen card closes
     automatically.
-
 5.  Optionally, switch to the small BGP Session card.  
 
     {{% imgOld 67 %}}
@@ -1237,13 +1181,9 @@ To view the state transitions for a given BGP session, on the *medium*
 BGP Session card:
 
 1.  Add the Network Services | All BGP Sessions card.
-
 2.  Switch to the full screen card.
-
 3.  Open the large BGP Service card.
-
 4.  Click the **All Sessions** tab.
-
 5.  Double-click the session of interest. The full screen card closes
     automatically.
 
@@ -1277,13 +1217,7 @@ causes for alarms or sessions losing their connections.
 To view the configuration file changes:
 
 1.  Open the large BGP Session card.
-
-2.  Hover over the card and click
-
-    {{% imgOld 71 %}}
-
-    to open the **BGP Configuration File Evolution** tab.
-
+2.  Hover over the card and click {{% imgOld 71 %}} to open the **BGP Configuration File Evolution** tab.
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
 
@@ -1311,11 +1245,7 @@ click the **All BGP Sessions** tab.
 
 {{% imgOld 75 %}}
 
-To return to your workbench, click
-
-{{% imgOld 76 %}}
-
-in the top right corner.
+To return to your workbench, click {{% imgOld 76 %}} in the top right corner.
 
 ### View All Events
 
@@ -1327,11 +1257,7 @@ the **All Events** tab.
 
 {{% imgOld 77 %}}
 
-To return to your workbench, click
-
-{{% imgOld 78 %}}
-
-in the top right corner.
+To return to your workbench, click {{% imgOld 78 %}} in the top right corner.
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

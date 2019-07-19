@@ -477,26 +477,17 @@ The values at 0x00c0 are:
 In each example below, the *Compliance* field is derived using the
 method described above and is not visible in the `ethool -m` output.
 
-{{%notice info%}}
+    3meter cable that does not require FEC
+    (CA-N)  
+    Cost : More expensive  
+    Cable size : 26AWG (Note that AWG does not necessarily correspond to overall dB loss or BER performance)  
+    Compliance Code : 25GBASE-CR CA-N
 
-****Cable Class** Example 1**: 3meter cable that does not require FEC
-(CA-N)  
-Cost : More expensive  
-Cable size : 26AWG (Note that AWG does not necessarily correspond to
-overall dB loss or BER performance)  
-Compliance Code : 25GBASE-CR CA-N
-
-{{%/notice%}}
-
-{{%notice info%}}
-
-****Cable Class** Example 2**: 3meter cable that requires Base-R FEC
-(CA-S)  
-Cost: Less expensive  
-Cable size : 26AWG  
-Compliance Code : 25GBASE-CR CA-S
-
-{{%/notice%}}
+    3meter cable that requires Base-R FEC
+    (CA-S)  
+    Cost: Less expensive  
+    Cable size : 26AWG  
+    Compliance Code : 25GBASE-CR CA-S
 
 When in doubt, consult the manufacturer directly to determine the cable
 classification.

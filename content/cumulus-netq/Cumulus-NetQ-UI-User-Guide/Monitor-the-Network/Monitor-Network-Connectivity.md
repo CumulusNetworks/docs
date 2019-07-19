@@ -28,7 +28,7 @@ configure and run both of these trace types.
 
 The small Trace Request card displays:
 
-{{% imgOld 0 %}}
+{{<figure src="/images/uploads/trace-request-small-card.png" width="200">}}
 
 <table>
 <colgroup>
@@ -385,20 +385,14 @@ To run a scheduled trace now:
 Once you have started an on-demand trace,
 the results are displayed in the medium Trace Results card by default.
 You may view the results in more or less detail by switching to the
-<<<<<<< HEAD
 large or small Trace Results card, respectively.
-=======
-large or small Trace Results card, respectively. </span>
-
-### On-demand Trace Results Card Workflow Summary
->>>>>>> 9803eae31041a73c5b79f19917c2c3188bfdd559
 
 ### On-demand Trace Results Card Workflow Summary
 
 The small On-demand Trace Results card
 displays:
 
-{{% imgOld 23 %}}
+{{<figure src="/images/uploads/sch-trace-request-small-card.png" width="200" padding="0">}}
 
 <table>
 <colgroup>
@@ -949,11 +943,7 @@ common time periods in the table showing the resulting time blocks.
 | 1 month     | 2,086          | 30                 | 1 day                        |
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
 
-<<<<<<< HEAD
 ### View Detailed Scheduled Trace Results
-=======
-### View Scheduled Trace Results
->>>>>>> 9803eae31041a73c5b79f19917c2c3188bfdd559
 
 Once a scheduled trace request has completed, the results are available
 in the corresponding Trace Result card.

@@ -2425,7 +2425,7 @@ Putting all of these channel, rule, and filter definitions together you
 create a complete notification configuration. The following are example
 notification configurations are created using the three-step process
 outlined above. Refer to [Integrate NetQ with an Event Notification
-Application](#src-12320911_IntegratewithThird-partySoftwareandHardware-IntegrateNotification)
+Application](#integrate-netq-with-an-event-notification-application)
 for details and instructions for creating channels, rules, and filters.
 
 ### Create a Notification for BGP Events from a Selected Switch

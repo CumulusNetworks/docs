@@ -321,12 +321,9 @@ on hosts. The meta package contains the NetQ Agent, the NetQ command
 line interface (CLI), and the NetQ library. The library contains modules
 used by both the NetQ Agent and the CLI.
 
-  - [Upgrade NetQ Agent on a Cumulus Linux
-    Switch](#src-12321037_UpgradetheNetQAppliance-AgentCL)
-  - [Upgrade NetQ Agent on an Ubuntu
-    Server](#src-12321037_UpgradetheNetQAppliance-AgentUbuntu)
-  - [Upgrade NetQ Agent on a Red Hat or CentOS
-    Server](#src-12321037_UpgradetheNetQAppliance-AgentRHC)
+  - [Upgrade NetQ Agent on a Cumulus Linux Switch](#upgrade-netq-agent-on-a-cumulus-linux-switch)
+  - [Upgrade NetQ Agent on an Ubuntu Server](#upgrade-netq-agent-on-an-ubuntu-server-optional)
+  - [Upgrade NetQ Agent on a Red Hat or CentOS Server](#upgrade-netq-agent-on-a-red-hat-or-centos-server-optional)
 
 {{%notice info%}}
 
@@ -381,10 +378,10 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb
     {{%notice info%}}
 
 If you intend to use VRF, skip to [Configure the Agent to
-    Use VRF](#src-12321037_UpgradetheNetQAppliance-AgentVRF). If you
+    Use VRF](#configure-the-agent-to-use-a-vrf-interface). If you
     intend to specify a port for communication, skip to [Configure the
     Agent to Communicate over a Specific
-    Port](#src-12321037_UpgradetheNetQAppliance-port).
+    Port](#configure-the-agent-to-communicate-over-a-specific-port).
 
     {{%/notice%}}
 

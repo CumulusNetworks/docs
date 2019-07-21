@@ -65,13 +65,15 @@ Cumulus NetQ Primer before reading the other available documents.
 
 The following NetQ documents are available:
 
-  - [Cumulus NetQ Deployment Guide](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/)
+  - [Cumulus NetQ Deployment Guide](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/)
   - Cumulus NetQ CLI User Guide (this guide)
-  - [Cumulus NetQ UI User Guide](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/)
+  - [Cumulus NetQ UI User Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/)
   - [Cumulus NetQ Release Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374)
   - [What the NetQ Validation System Checks](https://support.cumulusnetworks.com/hc/en-us/articles/360021961394)
   - [Cumulus NetQ Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
-    - [Cumulus NetQ Cloud Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
+  - [Cumulus NetQ Cloud Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
+
+This Cumulus NetQ CLI User Guide is available in [PDF](/pdfs/Cumulus_NetQ_220_CLI_User_Guide.pdf) for offline viewing 
 
 ## Document Formatting
 
@@ -88,7 +90,7 @@ Throughout the guide, text formatting is used to convey contextual information a
 | \[`Text within square brackets`\] | Optional command parameters; may be presented in mixed case or all caps text                                                                |
 | \<`Text within angle brackets`\> | Required command parameter values–variables that are to be replaced with a relevant value; may be presented in mixed case or all caps text |
 
-### Note Conventions 
+### Note Conventions
 
 Several note types are used throughout the document. The formatting of the note indicates its intent and urgency.
 
@@ -118,11 +120,3 @@ Advises that failure to take or avoid specific action can result in
 possible physical harm to yourself, hardware equipment, or facility
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

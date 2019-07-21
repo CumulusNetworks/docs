@@ -132,7 +132,7 @@ that is part of an out-of-band management network to ensure it can
 monitor in-band network issues without being affected itself. You should
 run the software on a separate, powerful server to ensure proper
 operation and for maximum usability and performance. Refer to [Hardware
-Requirements](#src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-hwspec) for
+Requirements](#hardware-requirements) for
 specifics.
 
 {{%/notice%}}
@@ -143,7 +143,7 @@ To install the NetQ software onto your own hardware:
 
 1.  **IMPORTANT**: Confirm that your server hardware meets the
     requirements set out
-    [here](#src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-hwspec).
+    [here](#hardware-requirements).
 2.  Download the NetQ Platform image.
     1.  On the [Cumulus
         Downloads](https://cumulusnetworks.com/downloads/) page, select
@@ -432,12 +432,9 @@ used by both the NetQ Agent and the CLI.
 Instructions for installing the meta package on each node type are
 included here:
 
-  - [Upgrade NetQ Agent on a Cumulus Linux
-    Switch](#src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentCL)
-  - [Upgrade NetQ Agent on an Ubuntu
-    Server](#src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentUbuntu)
-  - [Upgrade NetQ Agent on a Red Hat or CentOS
-    Server](#src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentRHC)
+  - [Upgrade NetQ Agent on a Cumulus Linux Switch](#upgrade-netq-agent-on-a-cumulus-linux-switch)
+  - [Upgrade NetQ Agent on an Ubuntu Server](#upgrade-netq-agent-on-an-ubuntu-server-optional)
+  - [Upgrade NetQ Agent on a Red Hat or CentOS Server](#upgrade-netq-agent-on-a-red-hat-or-centos-server-optional)
 
 {{%notice note%}}
 
@@ -510,10 +507,10 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb
     {{%notice info%}}
 
 If you intend to use VRF, skip to [Configure the Agent to
-    Use VRF](#src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentVRF). If
+    Use VRF](#configure-the-agent-to-use-a-vrf). If
     you intend to specify a port for communication, skip to [Configure
     the Agent to Communicate over a Specific
-    Port](#src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-port).
+    Port](#configure-the-agent-to-communicate-over-a-specific-port).
 
     {{%/notice%}}
 
@@ -685,10 +682,8 @@ configure the NetQ Agent on a Cumulus switch, but it is exactly the same
 for the other type of nodes. Depending on your deployment, follow the
 relevant additional instructions after the basic configuration steps:
 
-  - [Configuring the Agent to Use a
-    VRF](#src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-AgentVRF)
-  - [Configuring the Agent to Communicate over a Specific
-    Port](#src-12321015_UpgradefromNetQ1.xtoNetQ2.2.x-port)
+  - [Configuring the Agent to Use a VRF](#configure-the-agent-to-use-a-vrf)
+  - [Configuring the Agent to Communicate over a Specific Port](#configure-the-agent-to-communicate-over-a-specific-port)
 
 ### Configure the Agent to Use a VRF
 

@@ -335,12 +335,9 @@ on hosts. The meta package contains the NetQ Agent, the NetQ command
 line interface (CLI), and the NetQ library. The library contains modules
 used by both the NetQ Agent and the CLI.
 
-  - [Upgrade NetQ Agent on a Cumulus Linux
-    Switch](#src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50Q0w)
-  - [Upgrade NetQ Agent on an Ubuntu
-    Server](#src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50VWJ1bnR1)
-  - [Upgrade NetQ Agent on a Red Hat or CentOS
-    Server](#src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50UkhD)
+  - [Upgrade NetQ Agent on a Cumulus Linux Switch](#upgrade-netq-agent-on-a-cumulus-linux-switch)
+  - [Upgrade NetQ Agent on an Ubuntu Server](#upgrade-netq-agent-on-an-ubuntu-server-optional)
+  - [Upgrade NetQ Agent on a Red Hat or CentOS Server](#upgrade-netq-agent-on-a-red-hat-or-centos-server-optional)
 
 {{%notice info%}}
 
@@ -396,10 +393,10 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb
     {{%notice info%}}
 
 If you intend to use VRF, skip to [Configure the Agent to Use
-    VRF](#src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LUFnZW50VlJG).
+    VRF](#configure-the-agent-to-use-a-vrf-interface).
     If you intend to specify a port for communication, skip to
     [Configure the Agent to Communicate over a Specific
-    Port](#src-12321007_safe-id-VXBncmFkZWZyb21OZXRRMi4wLzIuMXRvTmV0UTIuMi54LXBvcnQ).
+    Port](#configure-the-agent-to-communicate-over-a-specific-port).
 
     {{%/notice%}}
 
@@ -550,8 +547,8 @@ configure the NetQ Agent on a Cumulus switch, but it is exactly the same
 for the other type of nodes. If you have already configured these
 settings, you do not need to do so again.
 
-  - [Configuring the Agent to Use a VRF](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/#span-id-src-12320951-installnetq-agentvrf-class-confluence-anchor-link-span-span-configure-the-agent-to-use-a-vrf-span)
-  - [Configuring the Agent to Communicate over a Specific Port](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/#span-id-src-12320951-installnetq-port-class-confluence-anchor-link-span-span-configure-the-agent-to-communicate-over-a-specific-port-span)
+  - [Configuring the Agent to Use a VRF](#configure-the-agent-to-use-a-vrf-interface)
+  - [Configuring the Agent to Communicate over a Specific Port](#configure-the-agent-to-communicate-over-a-specific-port)
 
 ### Configure the Agent to Use a VRF Interface
 

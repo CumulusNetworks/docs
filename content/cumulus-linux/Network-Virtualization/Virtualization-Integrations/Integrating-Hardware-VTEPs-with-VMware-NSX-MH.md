@@ -22,7 +22,7 @@ Cumulus Linux also supports integration with VMware NSX in high
 availability mode. Refer to [OVSDB Server High
 Availability](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/OVSDB-Server-High-Availability).
 
-## Getting Started</span>
+## Getting Started
 
 Before you integrate VXLANs with NSX-MH, make sure you have a layer 2
 gateway; a Broadcom Tomahawk, Trident II+, Trident II, Maverick, or
@@ -51,14 +51,14 @@ command followed by the `net commit` command.
 
 {{%/notice%}}
 
-## Configure the Switch for NSX-MH Integration</span>
+## Configure the Switch for NSX-MH Integration
 
 Before you start configuring the gateway service, logical switches, and
 ports that comprise the VXLAN, you need to enable and start the
 `openvswitch-vtep` service, and configure the NSX integration on the
 switch, either using the script or performing the manual configuration.
 
-### Start the openvswitch-vtep Service</span>
+### Start the openvswitch-vtep Service
 
 To enable and start the `openvswitch-vtep` service, run the following
 command:
@@ -66,18 +66,15 @@ command:
     cumulus@switch:~$ sudo systemctl enable openvswitch-vtep.service
     cumulus@switch:~$ sudo systemctl start openvswitch-vtep.service
 
-<span style="color: #36424a;"> </span>
-
 {{%notice note%}}
 
 In previous versions of Cumulus Linux, you had to edit the
-`/etc/default/openvswitch-vtep` file and then start the
-`openvswitch-vtep` service . Now, you just have to enable and start the
-` openvswitch-vtep  ` service .
+`/etc/default/openvswitch-vtep` file and then start the `openvswitch-vtep`
+service. Now, you just have to enable and start the `openvswitch-vtep` service.
 
 {{%/notice%}}
 
-### Configure the NSX-MH Integration Using the Configuration Script</span>
+### Configure the NSX-MH Integration Using the Configuration Script
 
 A script is available so you can configure the NSX-MH integration on the
 switch automatically.
@@ -100,26 +97,26 @@ command with these options:
 <!-- end list -->
 
     cumulus@switch:~$ vtep-bootstrap --controller_ip 192.168.100.17 vtep7 172.16.20.157 192.168.100.157
-    Executed: 
+    Executed:
         create certificate on a switch, to be used for authentication with controller
          ().
-    Executed: 
+    Executed:
         sign certificate
          (vtep-req.pem  Tue Sep 11 21:11:27 UTC 2018
             fingerprint a4cda030fe5e458c0d7ba44e22f52650f01bcd75).
-    Executed: 
+    Executed:
         define physical switch
          ().
-    Executed: 
+    Executed:
         define NSX controller IP address in OVSDB
          ().
-    Executed: 
+    Executed:
         define local tunnel IP address on the switch
          ().
-    Executed: 
+    Executed:
         define management IP address on the switch
          ().
-    Executed: 
+    Executed:
         restart a service
          ().
 
@@ -130,7 +127,7 @@ configuration process:
     cumulus@switch:~$ sudo ifreload -a
     cumulus@switch:~$ sudo systemctl restart networking.service
 
-### Configure the NSX-MH Integration Manually</span>
+### Configure the NSX-MH Integration Manually
 
 {{%notice note%}}
 
@@ -148,14 +145,14 @@ integration manually, which requires you to perform the following steps:
 
   - Configure the switch as a VTEP gateway.
 
-#### Generate the Credentials Certificate</span>
+#### Generate the Credentials Certificate
 
 In Cumulus Linux, generate a certificate that the NSX controller uses
 for authentication.
 
 1.  In a terminal session connected to the switch, run the following
     commands:
-    
+
         cumulus@switch:~$ sudo ovs-pki init
         Creating controllerca...
         Creating switchca...
@@ -175,7 +172,7 @@ for authentication.
     **bootstrap-ca-cert** point to the correct files;
     **bootstrap-ca-cert** is obtained dynamically the first time the
     switch talks to the controller:
-    
+
         # Start ovsdb-server.
         set ovsdb-server "$DB_FILE"
         set "$@" -vANY:CONSOLE:EMER -vANY:SYSLOG:ERR -vANY:FILE:INFO
@@ -185,36 +182,36 @@ for authentication.
         set "$@" --private-key=/root/cumulus-privkey.pem
         set "$@" --certificate=/root/cumulus-cert.pem
         set "$@" --bootstrap-ca-cert=/root/controller.cacert
-    
+
     If files have been moved or regenerated, restart the OVSDB server
     and VTEPd:
-    
+
         cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
 
 3.  Define the NSX controller cluster IP address in OVSDB. This causes
     the OVSDB server to start contacting the NSX controller:
-    
+
         cumulus@switch:~$ sudo vtep-ctl set-manager ssl:192.168.100.17:6632
 
 4.  Define the local IP address on the VTEP for VXLAN tunnel
     termination. First, find the physical switch name as recorded in
     OVSDB:
-    
+
         cumulus@switch:~$ sudo vtep-ctl list-ps
         vtep7
-    
+
     Then set the tunnel source IP address of the VTEP. This is the
     datapath address of the VTEP, which is typically an address on a
     loopback interface on the switch that is reachable from the
     underlying layer 3 network:
-    
+
         cumulus@switch:~$ sudo vtep-ctl set Physical_Switch vtep7 tunnel_ips=172.16.20.157
 
 After you generate the certificate, keep the terminal session active;
 you need to paste the certificate into NSX Manager when you configure
 the VTEP gateway.
 
-#### Enable ovs-vtepd to Use the VLAN-aware Bridge</span>
+#### Enable ovs-vtepd to Use the VLAN-aware Bridge
 
 By default, in stand-alone mode, the ovs-vtep daemon creates traditional
 bridges for each VXLAN VTEP. To use the VLAN-aware bridge with the
@@ -230,9 +227,9 @@ Then restart the OVSDB server and VTEPd:
 
     cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
 
-## Provision VMware NSX-V</span>
+## Provision VMware NSX-V
 
-### Configure the Switch as a VTEP Gateway</span>
+### Configure the Switch as a VTEP Gateway
 
 After you create a certificate, connect to NSX Manager in a browser to
 configure a Cumulus Linux switch as a VTEP gateway. In this example, the
@@ -242,7 +239,7 @@ IP address of the NSX Manager is 192.168.100.12.
     tab, then the **Transport Layer** category. Under **Transport
     Node**, click **Add**, then select **Manually Enter All Fields**.
     The Create Gateway wizard opens.
-    
+
     {{% imgOld 1 %}}
 
 2.  In the Create Gateway dialog, select *Gateway* for the **Transport
@@ -259,11 +256,11 @@ IP address of the NSX Manager is 192.168.100.12.
     the **Security Certificate** text field. Copy only the bottom
     portion, including the `BEGIN CERTIFICATE` and `END CERTIFICATE`
     lines. For example, copy all the highlighted text in the terminal:
-    
+
     {{% imgOld 2 %}}
-    
+
     Paste it into NSX Manager, then click **Next**:
-    
+
     {{% imgOld 3 %}}
 
 6.  In the Connectors dialog, click **Add Connector** to add a transport
@@ -295,9 +292,9 @@ terminal connected to the switch, run this command:
     status              : {sec_since_connect="18223", sec_since_disconnect="18225", state=ACTIVE}
     target              : "ssl:192.168.100.17:6632"
 
-## Configure the Transport and Logical Layers</span>
+## Configure the Transport and Logical Layers
 
-### Configure the Transport Layer</span>
+### Configure the Transport Layer
 
 After you finish configuring the NSX-MH integration on the switch,
 configure the transport layer. For each host-facing switch port to be
@@ -310,7 +307,7 @@ port.
 
 2.  In the Create Gateway Service dialog, select *VTEP L2 Gateway
     Service* as the **Gateway Service Type**.
-    
+
     {{% imgOld 4 %}}
 
 3.  Provide a **Display Name** for the service to represent the VTEP in
@@ -335,13 +332,13 @@ The gateway service shows up as type *VTEP L2* in NSX.
 
 Next, configure the logical layer on NSX.
 
-### Configure the Logical Layer</span>
+### Configure the Logical Layer
 
 To complete the integration with NSX, you need to configure the logical
 layer, which requires defining a logical switch (the VXLAN instance) and
 all the logical ports needed.
 
-<span style="color: #36424a;"> To define the logical switch: </span>
+To define the logical switch:
 
 1.  In NSX Manager, add a new logical switch. Click the **Network
     Components** tab, then the **Logical Layer** category. Under
@@ -350,7 +347,7 @@ all the logical ports needed.
 
 2.  In the **Display Name** field, enter a name for the logical switch,
     then click **Next**.
-    
+
     {{% imgOld 6 %}}
 
 3.  Under **Replication Mode**, select **Service Nodes**, then click
@@ -358,28 +355,28 @@ all the logical ports needed.
 
 4.  Specify the transport zone bindings for the logical switch. Click
     **Add Binding**. The Create Transport Zone Binding dialog opens.
-    
+
     {{% imgOld 7 %}}
 
 5.  In the **Transport Type** list, select *VXLAN*, then click **OK** to
     add the binding to the logical switch.
-    
+
     {{% imgOld 8 %}}
 
 6.  In the **VNI** field, assign the switch a VNI ID, then click **OK**.
-    
+
     {{%notice note%}}
-    
+
     Do not use 0 or 16777215 as the VNI ID; these are reserved values
     under Cumulus Linux.
-    
+
     {{%/notice%}}
 
 7.  Click **Save** to save the logical switch configuration.  
-    
+
     {{% imgOld 9 %}}
 
-### Define Logical Switch Ports</span>
+### Define Logical Switch Ports
 
 Logical switch ports can be virtual machine VIF interfaces from a
 registered OVS or a VTEP gateway service instance on this switch, as
@@ -393,12 +390,12 @@ To define the logical switch ports:
     Components** tab, then the **Logical Layer** category. Under
     **Logical Switch Port**, click **Add**. The Create Logical Switch
     Port wizard opens.
-    
+
     {{% imgOld 10 %}}
 
 2.  In the **Logical Switch UUID** list, select the logical switch you
     created above, then click **Create**.
-    
+
     {{% imgOld 11 %}}
 
 3.  In the **Display Name** field, provide a name for the port that
@@ -417,10 +414,10 @@ To define the logical switch ports:
 7.  Click **Save** to save the logical switch port. Connectivity is
     established. Repeat this procedure for each logical switch port you
     want to define.
-    
+
     {{% imgOld 12 %}}
 
-## Verify the VXLAN Configuration</span>
+## Verify the VXLAN Configuration
 
 After configuration is complete, verify the VXLAN configuration in a
 terminal connected to the switch using these Cumulus Linux commands:
@@ -440,10 +437,10 @@ or
     44:38:39:00:48:0e dev swp2s1.100 permanent
     44:38:39:00:48:0d dev swp2s0.100 permanent
 
-Use the `ovsdb-client dump` <span style="color: #333333;"> command to
+Use the `ovsdb-client dump` command to
 troubleshoot issues on the switch. This command verifies that the
 controller and switch handshake is successful (and works only for VXLANs
-integrated with NSX): </span>
+integrated with NSX):
 
     cumulus@switch:~$ sudo ovsdb-client dump -f list | grep -A 7 "Manager"
     Manager table
@@ -454,11 +451,3 @@ integrated with NSX): </span>
     other_config        : {}
     status              : {sec_since_connect="18223", sec_since_disconnect="18225", state=ACTIVE}
     target              : "ssl:192.168.100.17:6632"
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

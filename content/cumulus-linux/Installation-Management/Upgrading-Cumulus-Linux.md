@@ -181,8 +181,7 @@ you might have updated the `/usr/share/openvswitch/scripts/ovs-ctl-vtep`
 file. This file is not marked as a configuration file; therefore, if the
 file contents change in a newer release of Cumulus Linux, they overwrite
 any changes you made to the file. Be sure to back up this file and the
-database file `conf.db` before upgrading. <span style="color: #36424a;">
-</span>
+database file `conf.db` before upgrading. 
 </details>
 
 ## Upgrade Cumulus Linux

@@ -452,29 +452,15 @@ IPv6-connected peer):
 
 ## Related Information
 
-  - <span style="color: #222222;"> [RFC 5880 - Bidirectional Forwarding
+  -  [RFC 5880 - Bidirectional Forwarding
     Detection](https://tools.ietf.org/html/rfc5880)
 
-  - <span style="color: #222222;"> <span style="color: #222222;">
-    [RFC 5881 - BFD for IPv4 and IPv6 (Single
-    Hop)](https://tools.ietf.org/html/rfc5881) </span>
+  - [RFC 5881 - BFD for IPv4 and IPv6 (Single
+    Hop)](https://tools.ietf.org/html/rfc5881)
 
-  - <span style="color: #222222;"> <span style="color: #222222;">
-    <span style="color: #222222;"> [RFC 5882 - Generic Application of
-    BFD](https://tools.ietf.org/html/rfc5882) </span> </span> </span>
+  - [RFC 5882 - Generic Application of
+    BFD](https://tools.ietf.org/html/rfc5882)   
 
-  - <span style="color: #222222;"> <span style="color: #222222;">
-    <span style="color: #222222;"> [RFC 5883 - Bidirectional Forwarding
+  - [RFC 5883 - Bidirectional Forwarding
     Detection (BFD) for Multihop
-    Paths](https://tools.ietf.org/html/rfc5883) </span> </span> </span>
-    <span style="color: #222222;"> <span style="color: #222222;">
-    <span style="color: #222222;">  
-    </span> </span> </span>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+    Paths](https://tools.ietf.org/html/rfc5883)   

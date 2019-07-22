@@ -127,9 +127,7 @@ write the results to a snapshot file. When the size of the queue reaches
 
 To monitor queue lengths using a histogram:
 
-1.  <span style="color: #333333;"> Open the </span>
-    ` /etc/cumulus/datapath/monitor.conf  `
-    <span style="color: #333333;"> file in a text editor. </span>
+1.  Open the `/etc/cumulus/datapath/monitor.conf` file in a text editor.
 
         cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
 

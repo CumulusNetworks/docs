@@ -313,8 +313,7 @@ spacing on L2 to 12.5GHz:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<span style="color: #36424a;"> </span> This command creates the
-following configuration snippet in the `/etc/cumulus/transponders.ini`
+This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini`
 file:
 
     cumulus@switch:~$ cat /etc/cumulus/transponders.ini
@@ -396,8 +395,7 @@ sets the transmit power for L1 to 10.0 dBm.
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<span style="color: #36424a;"> </span> This command creates the
-following configuration snippet in the `/etc/cumulus/transponders.ini`
+This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini`
 file:
 
     cumulus@switch:~$ cat /etc/cumulus/transponders.ini
@@ -535,9 +533,8 @@ Line side loopback mode enables you to send and receive data from the
 same network interface port to verify that the port is operational.
 
 To enable line side loopback mode, run the `net add interface
-<interface> facility-loopback` command. You can enable
-<span style="color: #000000;"> line side loopback mode on one or
-multiple interfaces. </span> The following example enables loopback mode
+<interface> facility-loopback` command. You can enable line side loopback mode on one or
+multiple interfaces. The following example enables loopback mode
 on the L1, L2, L3, and L4 network interfaces:
 
     cumulus@switch:~$ net add interface L1-4 facility-loopback
@@ -555,10 +552,8 @@ on the L1, L2, L3, and L4 network interfaces:
 {{%notice note%}}
 
 To enable loopback on the client interface (internal loopback for DWDM
-testing), edit the `/etc/cumulus/transponders.ini` file. See [Edit the
-transponder.ini
-file](#edit-the-transponders-ini-file)
-below
+testing), edit the `/etc/cumulus/transponders.ini` file. See
+[Edit the transponder.ini file](#edit-the-transponders-ini-file) below.
 
 {{%/notice%}}
 
@@ -1086,7 +1081,7 @@ represents a transponder in the system. There must be a group within the
 file that has the same name as each value in the list.
 
 The following example shows that there are two modules in the system
-named AC400\_1 and AC400\_2. The `transponders.ini` file must conain
+named AC400\_1 and AC400\_2. The `transponders.ini` file must contain
 these two groups.
 
     [Modules]
@@ -1094,9 +1089,8 @@ these two groups.
 
 #### Module Groups
 
-The **module groups** are i <span style="color: #222222;"> ndividual
-groups for each of the predefined modules and </span> define the
-attributes of the transponders in the system. The name of a module group
+The **module groups** are individual groups for each of the predefined modules
+and define the attributes of the transponders in the system. The name of a module group
 is defined in the values of the `Names` key in the Modules group (shown
 above).
 
@@ -2323,11 +2317,3 @@ messages.
     2018-04-24T18:18:49.965701+00:00 cumulus voyager_tai_adapter[5793]: Setting FecEncoder (268435459) to false, was true
     ...
     2018-04-24T18:21:24.164981+00:00 cumulus voyager_tai_adapter[5793]: Config has been reloaded
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

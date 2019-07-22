@@ -14,7 +14,7 @@ siteSlug: cumulus-linux
 Cumulus Linux contains a number of command line and analytical tools to
 help you troubleshoot issues with your network.
 
-## Check Reachability Using ping</span>
+## Check Reachability Using ping
 
 `ping` is used to check reachability of a host. `ping` also calculates
 the time it takes for packets to travel the round trip. See `man ping`
@@ -38,7 +38,7 @@ To test the connection to an IPv6 host:
 When troubleshooting intermittent connectivity issues, it is helpful to
 send continuous pings to a host.
 
-## Print Route Trace Using traceroute</span>
+## Print Route Trace Using traceroute
 
 `traceroute` tracks the route that packets take from an IP network on
 their way to a given host. See `man traceroute` for details.
@@ -54,7 +54,7 @@ To track the route to an IPv4 host:
     7  72.14.232.35 (72.14.232.35)  27.505 ms  22.925 ms  22.323 ms
     8  nuq04s19-in-f17.1e100.net (74.125.239.49)  23.544 ms  21.851 ms  22.604 ms
 
-## Run Commands in a Non-default VRF</span>
+## Run Commands in a Non-default VRF
 
 You can use `ip vrf exec` to run commands in a non-default VRF context.
 This is particularly useful for network utilities like `ping`,
@@ -121,7 +121,7 @@ global unicast address is assigned to it. But it is worth mentioning
 since, as stated earlier, you cannot specify both a source interface and
 a source IP address with `ping -I`.
 
-## Manipulate the System ARP Cache</span>
+## Manipulate the System ARP Cache
 
 `arp` manipulates or displays the kernel’s IPv4 network neighbor cache.
 See `man arp` for details.
@@ -154,7 +154,7 @@ you can disable dynamic ARP learning:
 
     cumulus@switch:~$ ip link set arp off dev INTERFACE
 
-## Generate Traffic Using mz</span>
+## Generate Traffic Using mz
 
 `mz` is a fast traffic generator. It can generate a large variety of
 packet types at high speed. See `man mz` for details.
@@ -191,7 +191,7 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
      TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
 
-## Create Counter ACL Rules</span>
+## Create Counter ACL Rules
 
 In Linux, all ACL rules are always counted. To create an ACL rule for
 counting purposes only, set the rule action to ACCEPT. See the
@@ -236,7 +236,7 @@ to reinstall all the rules.
 
 {{%/notice%}}
 
-## Configure SPAN and ERSPAN</span>
+## Configure SPAN and ERSPAN
 
 SPAN (Switched Port Analyzer) provides for the mirroring of all packets
 coming in from or going out of an interface (the *SPAN source*), and
@@ -252,7 +252,7 @@ lookup of the destination IP address in its routing table. The original
 L2 packet is encapsulated with GRE for IP delivery. The encapsulated
 packets have the following format:
 
-``` 
+```
  ----------------------------------------------------------
 | MAC_HEADER | IP_HEADER | GRE_HEADER | L2_Mirrored_Packet |
  ----------------------------------------------------------
@@ -265,16 +265,14 @@ packets might be discarded.
 
 {{%/notice%}}
 
-SPAN and ERSPAN are configured via `cl-acltool`, the [same utility for
-security ACL
-configuration](/cumulus-linux/System-Configuration/Netfilter-ACLs/).
+SPAN and ERSPAN are configured via `cl-acltool`, the
+[same utility for security ACL configuration](/cumulus-linux/System-Configuration/Netfilter-ACLs/).
 The match criteria for SPAN and ERSPAN is usually an interface; for more
-granular match terms, use [selective
-spanning](#src-8362596_NetworkTroubleshooting-selective_spanning). The
+granular match terms, use [selective spanning](#selective-spanning). The
 SPAN source interface can be a port, a subinterface or a bond interface.
 Ingress traffic on interfaces can be matched, and on Mellanox Spectrum
-switches, egress traffic can be matched. See the [list of
-limitations](#src-8362596_NetworkTroubleshooting-span_limits) below.
+switches, egress traffic can be matched. See the
+[list of limitations](#limitations-for-span/erspan) below.
 
 Cumulus Linux supports a maximum of 2 SPAN destinations. Multiple rules
 (SPAN sources) can point to the same SPAN destination, although a given
@@ -290,7 +288,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
 
 {{%/notice%}}
 
-### Limitations for SPAN/ERSPAN</span>
+### Limitations for SPAN/ERSPAN
 
   - For Broadcom switches, Cumulus Linux supports a maximum of two SPAN
     destinations.
@@ -329,7 +327,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
     to manually resolve this before mirrored traffic is sent (using ping
     or arping).
 
-### Configure SPAN for Switch Ports</span>
+### Configure SPAN for Switch Ports
 
 This section describes how to set up, install, verify and uninstall SPAN
 rules. In the examples that follow, you will span (mirror) switch port
@@ -338,7 +336,7 @@ swp19.
 
 First, create a rules file in `/etc/cumulus/acl/policy.d/`:
 
-    cumulus@switch:~$ sudo bash -c 'cat <<EOF > /etc/cumulus/acl/policy.d/span.rules 
+    cumulus@switch:~$ sudo bash -c 'cat <<EOF > /etc/cumulus/acl/policy.d/span.rules
     [iptables]
     -A FORWARD --in-interface swp4 -j SPAN --dport swp19
     -A FORWARD --out-interface swp4 -j SPAN --dport swp19
@@ -400,7 +398,7 @@ Next, verify all the rules that are currently installed:
 
 Install the rules:
 
-    cumulus@switch:~$ sudo cl-acltool -i 
+    cumulus@switch:~$ sudo cl-acltool -i
     [sudo] password for cumulus:
     Reading rule file /etc/cumulus/acl/policy.d/00control_plane.rules ...
     Processing rules in file /etc/cumulus/acl/policy.d/00control_plane.rules ...
@@ -427,7 +425,7 @@ Verify that the SPAN rules were installed:
     38025 7034K SPAN       all  --  swp4   any     anywhere             anywhere             dport:swp19
     50832   55M SPAN       all  --  any    swp4    anywhere             anywhere             dport:swp19
 
-#### SPAN Sessions that Reference an Outgoing Interface</span>
+#### SPAN Sessions that Reference an Outgoing Interface
 
 SPAN sessions that reference an outgoing interface create the mirrored
 packets based on the ingress interface before the routing/switching
@@ -439,14 +437,14 @@ originally received on swp3.
 
     -A FORWARD --out-interface swp2 -j SPAN --dport swp1
 
-### Configure SPAN for Bonds</span>
+### Configure SPAN for Bonds
 
 This section describes how to configure SPAN for all packets going out
 of `bond0` locally to `bond1`.
 
 First, create a rules file in `/etc/cumulus/acl/policy.d/`:
 
-    cumulus@switch:~$ sudo bash -c 'cat <<EOF > /etc/cumulus/acl/policy.d/span_bond.rules 
+    cumulus@switch:~$ sudo bash -c 'cat <<EOF > /etc/cumulus/acl/policy.d/span_bond.rules
     [iptables]
     -A FORWARD --out-interface bond0 -j SPAN --dport bond1
     EOF'
@@ -460,7 +458,7 @@ traffic only; it does not apply to traffic sourced from the switch.
 
 Install the rules:
 
-    cumulus@switch:~$ sudo cl-acltool -i 
+    cumulus@switch:~$ sudo cl-acltool -i
     [sudo] password for cumulus:
     Reading rule file /etc/cumulus/acl/policy.d/00control_plane.rules ...
     Processing rules in file /etc/cumulus/acl/policy.d/00control_plane.rules ...
@@ -476,7 +474,7 @@ Verify that the SPAN rules were installed:
     cumulus@switch:~$ sudo iptables -L -v | grep SPAN
        19  1938 SPAN       all  --  any    bond0   anywhere             anywhere             dport:bond1
 
-### Configure ERSPAN</span>
+### Configure ERSPAN
 
 This section describes how to configure ERSPAN for all packets coming in
 from `swp1` to 12.0.0.2.
@@ -496,14 +494,14 @@ switches using Mellanox Spectrum ASICs.
 {{%/notice%}}
 
 1.  First, create a rules file in `/etc/cumulus/acl/policy.d/`:
-    
-        cumulus@switch:~$ sudo bash -c 'cat <<EOF > /etc/cumulus/acl/policy.d/erspan.rules 
+
+        cumulus@switch:~$ sudo bash -c 'cat <<EOF > /etc/cumulus/acl/policy.d/erspan.rules
         [iptables]
         -A FORWARD --in-interface swp1 -j ERSPAN --src-ip 12.0.0.1 --dst-ip 12.0.0.2  --ttl 64
         EOF'
 
 2.  Install the rules:
-    
+
         cumulus@switch:~$ sudo cl-acltool -i
         Reading rule file /etc/cumulus/acl/policy.d/00control_plane.rules ...
         Processing rules in file /etc/cumulus/acl/policy.d/00control_plane.rules ...
@@ -515,10 +513,10 @@ switches using Mellanox Spectrum ASICs.
         done.
 
 3.  Verify that the ERSPAN rules were installed:
-    
+
         cumulus@switch:~$ sudo iptables -L -v | grep SPAN
            69  6804 ERSPAN     all  --  swp1   any     anywhere             anywhere             ERSPAN src-ip:12.0.0.1 dst-ip:12.0.0.2
-    
+
     The `src-ip` option can be any IP address, whether it exists in the
     routing table or not. The `dst-ip` option must be an IP address
     reachable via the routing table. The destination IP address must be
@@ -537,7 +535,7 @@ frame** option.
 
 {{%/notice%}}
 
-### Selective Spanning</span>
+### Selective Spanning
 
 SPAN/ERSPAN traffic rules can be configured to limit the traffic that is
 spanned, to reduce the volume of copied data.
@@ -569,55 +567,55 @@ Exceeding this limit produces an error when you install the rules with
 
 {{%/notice%}}
 
-#### SPAN Examples</span>
+#### SPAN Examples
 
   - To mirror forwarded packets from all ports matching SIP 20.0.1.0 and
     DIP 20.0.1.2 to port swp1s1:
-    
+
         -A FORWARD --in-interface swp+ -s 20.0.0.2 -d 20.0.1.2 -j SPAN --dport swp1s2
 
   - To mirror icmp packets from all ports to swp1s2:
-    
+
         -A FORWARD --in-interface swp+ -s 20.0.0.2 -p icmp -j SPAN --dport swp1s2
 
   - To mirror forwarded UDP packets received from port swp1s0, towards
     DIP 20.0.1.2 and destination port 53:
-    
+
         -A FORWARD --in-interface swp1s0 -d 20.0.1.2 -p udp --dport 53 -j SPAN --dport swp1s2
 
   - To mirror all forwarded TCP packets with only SYN set:
-    
+
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL SYN -j SPAN --dport swp1s2
 
   - To mirror all forwarded TCP packets with only FIN set:
-    
+
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j SPAN --dport swp1s2
 
-#### ERSPAN Examples</span>
+#### ERSPAN Examples
 
   - To mirror forwarded packets from all ports matching SIP 20.0.1.0 and
     DIP 20.0.1.2:
-    
+
         -A FORWARD --in-interface swp+ -s 20.0.0.2 -d 20.0.1.2 -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
 
   - To mirror ICMP packets from all ports:
-    
+
         -A FORWARD --in-interface swp+ -s 20.0.0.2 -p icmp -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
 
   - To mirror forwarded UDP packets received from port swp1s0, towards
     DIP 20.0.1.2 and destination port 53:
-    
+
         -A FORWARD --in-interface swp1s0 -d 20.0.1.2 -p udp --dport 53 -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
 
   - To mirror all forwarded TCP packets with only SYN set:
-    
+
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL SYN -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
 
   - To mirror all forwarded TCP packets with only FIN set:
-    
+
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
 
-### Remove SPAN Rules</span>
+### Remove SPAN Rules
 
 To remove your SPAN rules, run:
 
@@ -632,7 +630,7 @@ To verify that the SPAN rules were removed:
     cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
     cumulus@switch:~$
 
-### Monitor Control Plane Traffic with tcpdump</span>
+### Monitor Control Plane Traffic with tcpdump
 
 You can use `tcpdump` to monitor control plane traffic — traffic sent to
 and coming from the switch CPUs. `tcpdump` does **not** monitor data
@@ -671,7 +669,7 @@ The following example incorporates a few `tcpdump` options:
     12 packets received by filter
     0 packets dropped by kernel
 
-## Related Information</span>
+## Related Information
 
   - [en.wikipedia.org/wiki/Ping](http://en.wikipedia.org/wiki/Ping)
 

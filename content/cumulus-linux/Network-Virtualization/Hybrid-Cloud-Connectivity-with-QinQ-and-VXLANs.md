@@ -41,7 +41,7 @@ QinQ is available on the following switches:
     bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
     with 802.1ad and only with single tag translation.
 
-## Remove the Early Access QinQ Metapackage</span>
+## Remove the Early Access QinQ Metapackage
 
 If you are upgrading Cumulus Linux from a version earlier than 3.4.0 and
 had installed the early access QinQ metapackage, you need to remove the
@@ -50,7 +50,7 @@ later. To remove the `cumulus-qinq` metapackage, read the [early access
 feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
 article.
 
-## Configure Single Tag Translation</span>
+## Configure Single Tag Translation
 
 Single tag translation adheres to traditional QinQ service model. The
 customer-facing interface is a QinQ access port with the outer S-tag
@@ -78,7 +78,7 @@ All edges need to support QinQ with VXLANs to correctly interoperate.
 
 {{%/notice%}}
 
-### Configure the Public Cloud-facing Switch</span>
+### Configure the Public Cloud-facing Switch
 
 For the switch facing the public cloud:
 
@@ -123,7 +123,7 @@ These commands create the following configuration in the
         bridge-learning off
         vxlan-id 3000
         vxlan-local-tunnelip 10.0.0.1
-        
+
     auto bridge
     iface bridge
         bridge-ports swp3 vni-1000 vni-3000
@@ -131,7 +131,7 @@ These commands create the following configuration in the
         bridge-vlan-aware yes
         bridge-vlan-protocol 802.1ad
 
-### Configure the Customer-facing Edge Switch</span>
+### Configure the Customer-facing Edge Switch
 
 For the switch facing the customer:
 
@@ -171,22 +171,22 @@ These commands create the following configuration in the
         bridge-learning off
         vxlan-id 1000
         vxlan-local-tunnelip 10.0.0.1
-        
+
     auto vni-3000
     iface vni-3000
         bridge-access 200
         bridge-learning off
         vxlan-id 3000
         vxlan-local-tunnelip 10.0.0.1
-     
+
     auto swp3
     iface swp3
         bridge-access 100
-     
+
     auto swp4
     iface swp4
         bridge-access 200
-      
+
     auto bridge
     iface bridge
         bridge-ports swp3 swp4 vni-1000 vni-3000
@@ -194,7 +194,7 @@ These commands create the following configuration in the
         bridge-vlan-aware yes
         bridge-vlan-protocol 802.1ad
 
-### View the Configuration</span>
+### View the Configuration
 
 In the output below, customer A is on VLAN 100 (S-TAG) and customer B is
 on VLAN 200 (S-TAG).
@@ -202,7 +202,7 @@ on VLAN 200 (S-TAG).
 To check the public cloud-facing switch, use `net show bridge vlan`:
 
     cumulus@switch:~$ net show bridge vlan
-     
+
     Interface      VLAN   Flags                  VNI
     -----------  ------   ---------------------  -----
     swp3               1  PVID, Egress Untagged
@@ -225,11 +225,11 @@ To verify that the bridge is configured for QinQ, run `ip -d link show
 bridge` and look for *vlan\_protocol 802.1ad* in the output:
 
     cumulus@switch:~$ sudo ip -d link show bridge
-    287: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default 
-        link/ether 06:a2:ae:de:e3:43 brd ff:ff:ff:ff:ff:ff promiscuity 0 
-        bridge forward_delay 1500 hello_time 200 max_age 2000 ageing_time 30000 stp_state 2 priority 32768 vlan_filtering 1 vlan_protocol 802.1ad bridge_id 8000.6:a2:ae:de:e3:43 designated_root 8000.6:a2:ae:de:e3:43 root_port 0 root_path_cost 0 topology_change 0 topology_change_detected 0 hello_timer    0.00 tcn_timer    0.00 topology_change_timer    0.00 gc_timer   64.29 vlan_default_pvid 1 vlan_stats_enabled 1 group_fwd_mask 0 group_address 01:80:c2:00:00:08 mcast_snooping 0 mcast_router 1 mcast_query_use_ifaddr 0 mcast_querier 0 mcast_hash_elasticity 4096 mcast_hash_max 4096 mcast_last_member_count 2 mcast_startup_query_count 2 mcast_last_member_interval 100 mcast_membership_interval 26000 mcast_querier_interval 25500 mcast_query_interval 12500 mcast_query_response_interval 1000 mcast_startup_query_interval 3125 mcast_stats_enabled 1 mcast_igmp_version 2 mcast_mld_version 1 nf_call_iptables 0 nf_call_ip6tables 0 nf_call_arptables 0 addrgenmode eui64 
+    287: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
+        link/ether 06:a2:ae:de:e3:43 brd ff:ff:ff:ff:ff:ff promiscuity 0
+        bridge forward_delay 1500 hello_time 200 max_age 2000 ageing_time 30000 stp_state 2 priority 32768 vlan_filtering 1 vlan_protocol 802.1ad bridge_id 8000.6:a2:ae:de:e3:43 designated_root 8000.6:a2:ae:de:e3:43 root_port 0 root_path_cost 0 topology_change 0 topology_change_detected 0 hello_timer    0.00 tcn_timer    0.00 topology_change_timer    0.00 gc_timer   64.29 vlan_default_pvid 1 vlan_stats_enabled 1 group_fwd_mask 0 group_address 01:80:c2:00:00:08 mcast_snooping 0 mcast_router 1 mcast_query_use_ifaddr 0 mcast_querier 0 mcast_hash_elasticity 4096 mcast_hash_max 4096 mcast_last_member_count 2 mcast_startup_query_count 2 mcast_last_member_interval 100 mcast_membership_interval 26000 mcast_querier_interval 25500 mcast_query_interval 12500 mcast_query_response_interval 1000 mcast_startup_query_interval 3125 mcast_stats_enabled 1 mcast_igmp_version 2 mcast_mld_version 1 nf_call_iptables 0 nf_call_ip6tables 0 nf_call_arptables 0 addrgenmode eui64
 
-## Configure Double Tag Translation</span>
+## Configure Double Tag Translation
 
 Double tag translation involves a bridge with double-tagged member
 interfaces, where a combination of the C-tag and S-tag map to a VNI. You
@@ -271,26 +271,25 @@ An example configuration could look like the following:
 {{% imgOld 1 %}}
 
 To configure the switch for double tag translation using the above
-example, edit the `/etc/network/interfaces`
-<span style="color: #333333;"> file in a text editor and add the
-following: </span>
+example, edit the `/etc/network/interfaces` file in a text editor and add the
+following:
 
     auto swp3.100
     iface swp3.100
         vlan_protocol 802.1ad
-      
+
     auto swp3.100.10
     iface swp3.100.10
         mstpctl-portbpdufilter yes
         mstpctl-bpduguard yes
-     
+
     auto vni1000
     iface vni1000
         vxlan-local-tunnelip  10.0.0.1
         mstpctl-portbpdufilter yes
         mstpctl-bpduguard yes
         vxlan-id 1000
-     
+
     auto custA-10-azr
     iface custA-10-azr
         bridge-ports swp3.100.10 vni1000
@@ -318,7 +317,7 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
     iface swp5.100.10
         mstpctl-portbpdufilter yes
         mstpctl-bpduguard yes
-     
+
     auto br10
     iface br10
         bridge-ports swp3.10  swp4  swp5.100.10
@@ -328,9 +327,9 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
 
 {{%/notice%}}
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
-### Feature Limitations</span>
+### Feature Limitations
 
   - `iptables` match on double-tagged interfaces is not supported.
 
@@ -349,25 +348,25 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
     `vlan_protocol`.
 
   - When using switches with Mellanox Spectrum ASICs in an MLAG pair:
-    
+
       - The peerlink (peerlink.4094) between the MLAG pair should be
         configured for VLAN protocol 802.1ad.
-    
+
       - The peerlink cannot be used as a backup datapath in the event
         that one of the MLAG peers loses all uplinks.
 
   - For switches with the Spectrum ASIC (but not the Spectrum 2), when
     the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, either:
-    
+
       - All bridge ports are access ports, except for the MLAG peerlink.
-    
+
       - All bridge ports are VLAN trunks.
-    
+
     This means the switch terminating the cloud provider connections
     (double-tagged) cannot have local clients; these clients must be on
     a separate switch.
 
-### Long Interface Names</span>
+### Long Interface Names
 
 The Linux kernel limits interface names to 15 characters in length. For
 QinQ interfaces, this limit can be reached fairly easily.
@@ -393,11 +392,3 @@ configuration like the following:
     auto bridge101
     iface bridge101
         bridge-ports vlan1001-101 vxlan1000101
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

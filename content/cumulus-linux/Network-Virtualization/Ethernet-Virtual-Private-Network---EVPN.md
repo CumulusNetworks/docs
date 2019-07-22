@@ -441,10 +441,8 @@ different VNIs of VXLAN tunnels between 2 VTEPs.
 
 ### BUM Traffic and Head End Replication
 
-
-<span style="color: #333333;"> With EVPN, the only method of generating
-BUM traffic in hardware is *head end replication*. Head end replication
-is enabled by default in Cumulus Linux.</span>
+With EVPN, the only method of generating BUM traffic in hardware is *head end replication*. Head end replication
+is enabled by default in Cumulus Linux.
 
 Broadcom switches with Tomahawk, Trident3, Trident II+, and Trident II
 ASICs and Mellanox switches with Spectrum ASICs are capable of head end
@@ -1147,9 +1145,8 @@ advertised to all the other leafs within the pod. Any leaf within the
 pod follows the default route towards the border leaf for all external
 traffic (towards the Internet or a different pod).
 
-<span style="color: #000000;"> To originate a default type-5 route in
-EVPN, you need to execute <span style="color: #000000;"> FRRouting
-</span> commands. The following shows an example: </span>
+To originate a default type-5 route in EVPN, you need to execute FRRouting
+commands. The following shows an example: 
 
     switch(config)# router bgp 650030 vrf vrf1
     switch(config-router)# address-family l2vpn evpn
@@ -1370,28 +1367,25 @@ duplicate.
 
 {{%/notice%}}
 
-**<span style="color: #222222;"> When Does Duplicate Address Detection
-Trigger? </span>**
+**When Does Duplicate Address Detection Trigger?**
 
-<span style="color: #222222;"> The VTEP that sees an address move from
-remote to local begins the detection process by starting a timer. E
-</span> ach VTEP runs duplicate address detection independently.
+The VTEP that sees an address move from remote to local begins the detection
+process by starting a timer. Each VTEP runs duplicate address detection independently.
 Detection always starts with the first mobility event from *remote* to
 *local*. If the address is initially remote, the detection count can
 start with the very first move for the address. If the address is
 initially local, the detection count starts only with the second or
-higher move for the address <span style="color: #36424a;"> .
-<span style="color: #222222;"> If an address is undergoing a mobility
-event between remote VTEPs, duplicate detection is not started. </span>
-</span>
+higher move for the address.
+
+If an address is undergoing a mobility
+event between remote VTEPs, duplicate detection is not started.
+
 
 The following illustration shows VTEP-A, VTEP-B, and VTEP-C in an EVPN
 configuration. Duplicate address detection triggers on VTEP-A when there
 is a duplicate MAC address for two hosts attached to VTEP-A and VTEP-B.
 However, duplicate detection does *not* trigger on VTEP-A when mobility
 events occur between two remote VTEPs (VTEP-B and VTEP-C).
-
-<span style="color: #36424a;"> </span>
 
 {{% imgOld 0 %}}
 
@@ -1420,10 +1414,10 @@ update:
 
     2018/11/06 18:55:29.463327 ZEBRA: [EC 4043309149] VNI 1001: MAC 00:01:02:03:04:11 detected as duplicate during local update, last VTEP 172.16.0.16
 
-<span style="color: #36424a;"> The following example shows the syslog
+The following example shows the syslog
 message that is generated when Cumulus Linux detects an IP address as a
-duplicate during a remote update: </span> <span style="color: #36424a;">
-</span>
+duplicate during a remote update:
+
 
     2018/11/09 22:47:15.071381 ZEBRA: [EC 4043309151] VNI 1002: MAC aa:22:aa:aa:aa:aa IP 10.0.0.9 detected as duplicate during remote update, from VTEP 172.16.0.16
 

@@ -290,7 +290,7 @@ as described above.
 
 If you are using 4x10G DAC or AOC cables, or want to break out 100G or
 40G switch ports, configure the breakout ports. For more details, see
-[Layer 1 and Switch Port Attributes](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#span-id-src-8363026-switchportattributes-breakout-class-confluence-anchor-link-span-span-breakout-ports-span).
+[Layer 1 and Switch Port Attributes](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#breakout-ports).
 
 ## Test Cable Connectivity
 
@@ -515,11 +515,3 @@ The commands above produce the following snippet in the
     iface lo inet loopback
         address 10.1.1.1/32
         address 172.16.2.1/24
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

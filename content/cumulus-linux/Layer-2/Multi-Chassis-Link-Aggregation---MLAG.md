@@ -348,12 +348,6 @@ This creates the following configuration in the
       bridge-ports peerlink
       bridge-vlan-aware yes
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
 {{%notice tip%}}
 
 If you change the MLAG configuration by editing the `interfaces` file,

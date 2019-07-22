@@ -60,7 +60,7 @@ Cumulus HCS has two major components:
     VLAN has no other VMs, the VLAN is automatically removed from the
     bridge, peer link and dynamic bond.
 
-## Prerequisites</span>
+## Prerequisites
 
   - 2 [Cumulus Networks-compatible
     switches](https://cumulusnetworks.com/hcl) running Cumulus Linux
@@ -103,12 +103,11 @@ for spine01 and spine02 are not included.
 
 {{% imgOld 0 %}}
 
-## Configure Cumulus HCS and Nutanix</span>
+## Configure Cumulus HCS and Nutanix
 
 The method you choose for configuring Cumulus HCS and Nutanix depends
 upon whether or not you already have Cumulus Linux installed on your
-switches, which are named <span style="color: #000000;"> *leaf01* and
-*leaf02* </span> in the example configuration above.
+switches, which are named *leaf01* and *leaf02* in the example configuration above.
 
   - If you have bare-metal switches without Cumulus Linux installed,
     follow the steps below for configuring a bare-metal switch with ZTP.
@@ -117,11 +116,10 @@ switches, which are named <span style="color: #000000;"> *leaf01* and
     steps below for manually configuring an existing Cumulus Linux
     switch.
 
-### Configure the Service with ZTP</span>
+### Configure the Service with ZTP
 
-The following steps describe how to <span style="color: #000000;"> use
-zero touch provisioning </span> to install Cumulus Linux and fully
-configure Cumulus HCS and Nutanix on your network.
+The following steps describe how to use zero touch provisioning to install
+Cumulus Linux and fully configure Cumulus HCS and Nutanix on your network.
 
 To do this, you need a [Cumulus on a
 Stick](https://cumulusnetworks.com/cumulus-on-a-stick/) disk image and a
@@ -130,11 +128,10 @@ USB stick with at least 1GB of storage.
 1.  Insert the USB stick into your computer and copy the Cumulus on a
     Stick files onto it.
 
-2.  <span style="color: #000000;"> On the USB stick, open the
+2.  On the USB stick, open the
     `ztp_config.txt` file in a text editor and set your Nutanix username
     and password and the server IP address, then save and close the
     file.  
-    </span>
 
         # Fill in the parameters below to allow for ZTP to
         # automatically configure the switch for Nutanix
@@ -167,7 +164,7 @@ USB stick with at least 1GB of storage.
 4.  When the installation completes, remove the USB stick and repeat
     this procedure on the other Cumulus Linux switch (leaf02).
 
-### Configure the Service Manually</span>
+### Configure the Service Manually
 
 If Cumulus Linux is already installed on your switches, follow the steps
 below to configure Cumulus Linux, Nutanix and Cumulus HCS.
@@ -296,7 +293,7 @@ If the service fails to start, you may find more information in the
 At this point, the service is fully configured. It may take up to 60
 seconds for LLDP frames to be received to trigger Cumulus HCS.
 
-### Cumulus HCS Configuration Settings</span>
+### Cumulus HCS Configuration Settings
 
 Some of the settings you can configure include:
 
@@ -322,7 +319,7 @@ Some of the settings you can configure include:
     dynamic configurations without contacting the Nutanix API. The
     default is *60* seconds.
 
-## Configure Uplinks</span>
+## Configure Uplinks
 
 How you configure uplinks depends upon whether you configured Cumulus
 HCS with ZTP or manually.
@@ -354,7 +351,7 @@ VLAN ID (`pvid`) *1*. Change the VLAN ID as needed.
 
 {{%/notice%}}
 
-## Add Local Default Gateways</span>
+## Add Local Default Gateways
 
 You can add one or more local default gateways on both switches to
 provide a redundant solution, as shown below. It does not matter whether
@@ -395,7 +392,7 @@ between 00 and ff. Both leaf01 and leaf02 must have the same MAC
 address. Outside of this switch pair, this MAC address must be unique
 and only be assigned to a single switch pair in your network.
 
-## Out-of-band Solutions</span>
+## Out-of-band Solutions
 
 You can configure out-of-band management in one of two ways:
 
@@ -404,7 +401,7 @@ You can configure out-of-band management in one of two ways:
   - Running Cumulus Linux on a [supported 1G non-Cumulus RMP
     switch](https://cumulusnetworks.com/products/hardware-compatibility-list/?Speed=1G).
 
-### Cumulus RMP</span>
+### Cumulus RMP
 
 Cumulus RMP is a ready-to-deploy solution that enables out-of-band
 management for web-scale networks. With Cumulus RMP, you can directly
@@ -421,7 +418,7 @@ switch rely on traditional [spanning tree
 protocol](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree)
 for redundancy.
 
-### Other Cumulus Linux 1G Switches</span>
+### Other Cumulus Linux 1G Switches
 
 If you want to use a non-Cumulus RMP 1G switch that supports Cumulus
 Linux for out-of-band management, you must manually install the Cumulus
@@ -453,7 +450,7 @@ both commands with the desired VLAN ID.
 
 {{%/notice%}}
 
-## Troubleshoot Cumulus HCS</span>
+## Troubleshoot Cumulus HCS
 
 Some ways you can troubleshoot Cumulus HCS include:
 
@@ -463,7 +460,7 @@ Some ways you can troubleshoot Cumulus HCS include:
 
   - Verifying the Cumulus HCS configuration.
 
-### Verify Dynamic Bonds Are Being Created</span>
+### Verify Dynamic Bonds Are Being Created
 
 Use the `net show interface bonds` command to verify that bonds are
 being dynamically created. The following example shows that three bonds,
@@ -480,7 +477,7 @@ with the interface name.
     UP  bond_swp3  1G     1500  802.3ad  Bond Members: swp3(UP)
     UP  peerlink   2G     1500  802.3ad  Bond Members: swp49(UP), swp50(UP)
 
-### Verify LLDP Messages Are Being Received</span>
+### Verify LLDP Messages Are Being Received
 
 If bonds are not being created, then
 [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) messages
@@ -498,7 +495,7 @@ may not be getting through. You can check for this possibility using the
     swp52      1G     NotConfigured  spine01          swp1
     swp52      1G     NotConfigured  spine02          swp1
 
-### View Detailed Nutanix LLDP Information</span>
+### View Detailed Nutanix LLDP Information
 
 Cumulus HCS replies on the LLDP `SysDescr` field to identify a Nutanix
 host. Run the `net show lldp <swp>` command to view the complete LLDP
@@ -530,24 +527,14 @@ details of the Nutanix node and verify the `SysDescr` field.
           MAU oper type: 1000BaseTFD - Four-pair Category 5 UTP, full duplex mode
     -------------------------------------------------------------------------------
 
-## Caveats</span>
+## Caveats
 
   - Reloading Cumulus HCS causes the bond interfaces to rebuild. For the
     stability of the Nutanix cluster, do not reload the service on both
     leaf switches simultaneously.
 
-## More Information</span>
+## More Information
 
   - [Hyperconverged infrastructure
     site](https://cumulusnetworks.com/networking-solutions/converged-infrastructure/)
     on the Cumulus Networks website
-
-
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

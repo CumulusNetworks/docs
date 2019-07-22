@@ -3,7 +3,7 @@ title: Using Nutanix Prism as a Monitoring Tool
 author: Cumulus Networks
 weight: 485
 aliases:
- - /display/CL37/Using-Nutanix-Prism-as-a-Monitoring-Tool
+ - /display/DOCS/Using+Nutanix+Prism+as+a+Monitoring+Tool
  - /pages/viewpage.action?pageId=8362618
 pageID: 8362618
 product: Cumulus Linux
@@ -62,7 +62,7 @@ take special steps within Cumulus Linux before you can configure Prism.
         cumulus@switch:~$ sudo systemctl restart snmpd.service
         Restarting network management services: snmpd.
 
-## Configure Nutanix 
+## Configure Nutanix
 
 1.  Log into the Nutanix Prism. Nutanix defaults to the Home menu,
     referred to as the Dashboard:

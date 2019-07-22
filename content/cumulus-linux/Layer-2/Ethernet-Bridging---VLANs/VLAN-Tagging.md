@@ -3,7 +3,7 @@ title: VLAN Tagging
 author: Cumulus Networks
 weight: 351
 aliases:
- - /display/CL37/VLAN-Tagging
+ - /display/DOCS/VLAN+Tagging
  - /pages/viewpage.action?pageId=8362668
 pageID: 8362668
 product: Cumulus Linux
@@ -306,8 +306,8 @@ can utilize VLAN translation.
 
 The following example enables the VLAN translation `sysctl`:
 
-    cumulus@switch:~$ echo net.bridge.bridge-allow-multiple-vlans = 1 | sudo tee /etc/sysctl.d/multiple_vlans.conf 
-    net.bridge.bridge-allow-multiple-vlans = 1 
+    cumulus@switch:~$ echo net.bridge.bridge-allow-multiple-vlans = 1 | sudo tee /etc/sysctl.d/multiple_vlans.conf
+    net.bridge.bridge-allow-multiple-vlans = 1
     cumulus@switch:~$ sudo sysctl -p /etc/sysctl.d/multiple_vlans.conf
     net.bridge.bridge-allow-multiple-vlans = 1
 

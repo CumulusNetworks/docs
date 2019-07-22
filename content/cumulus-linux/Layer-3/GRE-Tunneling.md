@@ -3,7 +3,7 @@ title: GRE Tunneling
 author: Cumulus Networks
 weight: 199
 aliases:
- - /display/CL37/GRE-Tunneling
+ - /display/DOCS/GRE+Tunneling
  - /pages/viewpage.action?pageId=8362966
 pageID: 8362966
 product: Cumulus Linux

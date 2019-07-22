@@ -3,7 +3,7 @@ title: UI Preface
 author: Cumulus Networks
 weight: 87
 aliases:
- - /display/NETQ22/UI-Preface
+ - /display/NETQ/UI+Preface
  - /pages/viewpage.action?pageId=12321978
 pageID: 12321978
 product: Cumulus NetQ
@@ -79,7 +79,7 @@ available:
   - [Cumulus NetQ Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
   - [Cumulus NetQ Cloud Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
 
-This Cumulus NetQ CLI User Guide is available in [PDF](/pdfs/Cumulus_NetQ_220_UI_User_Guide.pdf) for offline viewing 
+This Cumulus NetQ CLI User Guide is available in [PDF](/pdfs/Cumulus_NetQ_220_UI_User_Guide.pdf) for offline viewing
 
 ## Document Formatting
 

@@ -3,7 +3,7 @@ title: Monitor Overall Network Health
 author: Cumulus Networks
 weight: 33
 aliases:
- - /display/NETQ22/Monitor-Overall-Network-Health
+ - /display/NETQ/Monitor+Overall+Network+Health
  - /pages/viewpage.action?pageId=12321047
 pageID: 12321047
 product: Cumulus NetQ
@@ -22,7 +22,7 @@ identify and resolve them. You can also see when changes have occurred
 to the network, devices, and interfaces by viewing their operation,
 configuration, and status at an earlier point in time.
 
-## Validate Network Health 
+## Validate Network Health
 
 NetQ `check` commands validate the various elements of your network
 fabric, looking for inconsistencies in configuration across your fabric,

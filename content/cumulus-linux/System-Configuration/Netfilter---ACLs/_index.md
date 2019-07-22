@@ -3,7 +3,7 @@ title: Netfilter - ACLs
 author: Cumulus Networks
 weight: 69
 aliases:
- - /display/CL37/Netfilter-ACLs
+ - /display/DOCS/Netfilter+ACLs
  - /pages/viewpage.action?pageId=8362563
 pageID: 8362563
 product: Cumulus Linux

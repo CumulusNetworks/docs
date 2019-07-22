@@ -3,7 +3,7 @@ title: Upgrading from Quagga to FRRouting
 author: Cumulus Networks
 weight: 407
 aliases:
- - /display/CL37/Upgrading-from-Quagga-to-FRRouting
+ - /display/DOCS/Upgrading+from+Quagga+to+FRRouting
  - /pages/viewpage.action?pageId=8362918
 pageID: 8362918
 product: Cumulus Linux

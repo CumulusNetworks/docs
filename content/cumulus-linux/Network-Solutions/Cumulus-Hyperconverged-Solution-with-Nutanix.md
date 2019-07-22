@@ -3,7 +3,7 @@ title: Cumulus Hyperconverged Solution with Nutanix
 author: Cumulus Networks
 weight: 261
 aliases:
- - /display/CL37/Cumulus-Hyperconverged-Solution-with-Nutanix
+ - /display/DOCS/Cumulus+Hyperconverged+Solution+with+Nutanix
  - /pages/viewpage.action?pageId=9012165
 pageID: 9012165
 product: Cumulus Linux

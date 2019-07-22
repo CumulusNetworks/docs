@@ -3,7 +3,7 @@ title: Upgrading Cumulus Linux
 author: Cumulus Networks
 weight: 45
 aliases:
- - /display/CL37/Upgrading-Cumulus-Linux
+ - /display/DOCS/Upgrading+Cumulus+Linux
  - /pages/viewpage.action?pageId=8362647
 pageID: 8362647
 product: Cumulus Linux
@@ -181,7 +181,7 @@ you might have updated the `/usr/share/openvswitch/scripts/ovs-ctl-vtep`
 file. This file is not marked as a configuration file; therefore, if the
 file contents change in a newer release of Cumulus Linux, they overwrite
 any changes you made to the file. Be sure to back up this file and the
-database file `conf.db` before upgrading. 
+database file `conf.db` before upgrading.
 </details>
 
 ## Upgrade Cumulus Linux

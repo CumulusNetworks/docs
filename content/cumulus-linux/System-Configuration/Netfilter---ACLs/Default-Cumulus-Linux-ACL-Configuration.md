@@ -3,7 +3,7 @@ title: Default Cumulus Linux ACL Configuration
 author: Cumulus Networks
 weight: 295
 aliases:
- - /display/CL37/Default-Cumulus-Linux-ACL-Configuration
+ - /display/DOCS/Default+Cumulus+Linux+ACL+Configuration
  - /pages/viewpage.action?pageId=8362574
 pageID: 8362574
 product: Cumulus Linux

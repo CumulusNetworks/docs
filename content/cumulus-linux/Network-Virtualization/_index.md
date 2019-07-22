@@ -3,7 +3,7 @@ title: Network Virtualization
 author: Cumulus Networks
 weight: 21
 aliases:
- - /display/CL37/Network-Virtualization
+ - /display/DOCS/Network+Virtualization
  - /pages/viewpage.action?pageId=8362704
 pageID: 8362704
 product: Cumulus Linux

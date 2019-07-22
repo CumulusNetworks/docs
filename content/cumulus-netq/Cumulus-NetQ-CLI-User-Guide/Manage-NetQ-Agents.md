@@ -3,7 +3,7 @@ title: Manage NetQ Agents
 author: Cumulus Networks
 weight: 49
 aliases:
- - /display/NETQ22/Manage-NetQ-Agents
+ - /display/NETQ/Manage+NetQ+Agents
  - /pages/viewpage.action?pageId=12321061
 pageID: 12321061
 product: Cumulus NetQ

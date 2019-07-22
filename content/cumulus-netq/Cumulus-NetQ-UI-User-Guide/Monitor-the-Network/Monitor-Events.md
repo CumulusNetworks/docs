@@ -3,7 +3,7 @@ title: Monitor Events
 author: Cumulus Networks
 weight: 145
 aliases:
- - /display/NETQ22/Monitor-Events
+ - /display/NETQ/Monitor+Events
  - /pages/viewpage.action?pageId=12321771
 pageID: 12321771
 product: Cumulus NetQ

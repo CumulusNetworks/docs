@@ -3,7 +3,7 @@ title: Troubleshooting the etc Directory
 author: Cumulus Networks
 weight: 445
 aliases:
- - /display/CL37/Troubleshooting-the-etc-Directory
+ - /display/DOCS/Troubleshooting+the+etc+Directory
  - /pages/viewpage.action?pageId=8362601
 pageID: 8362601
 product: Cumulus Linux

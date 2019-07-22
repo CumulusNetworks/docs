@@ -3,7 +3,7 @@ title: Monitor Virtual Network Overlays
 author: Cumulus Networks
 weight: 43
 aliases:
- - /display/NETQ22/Monitor-Virtual-Network-Overlays
+ - /display/NETQ/Monitor+Virtual+Network+Overlays
  - /pages/viewpage.action?pageId=12321050
 pageID: 12321050
 product: Cumulus NetQ

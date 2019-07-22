@@ -313,8 +313,12 @@ spacing on L2 to 12.5GHz:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
+<<<<<<< HEAD
 This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini`
 file:
+=======
+This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini` file:
+>>>>>>> 9be8c962f37bd6bbb7d15dc43fdd17944b97f884
 
     cumulus@switch:~$ cat /etc/cumulus/transponders.ini
     ...
@@ -395,8 +399,12 @@ sets the transmit power for L1 to 10.0 dBm.
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
+<<<<<<< HEAD
 This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini`
 file:
+=======
+This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini` file:
+>>>>>>> 9be8c962f37bd6bbb7d15dc43fdd17944b97f884
 
     cumulus@switch:~$ cat /etc/cumulus/transponders.ini
     ...
@@ -533,8 +541,12 @@ Line side loopback mode enables you to send and receive data from the
 same network interface port to verify that the port is operational.
 
 To enable line side loopback mode, run the `net add interface
+<<<<<<< HEAD
 <interface> facility-loopback` command. You can enable line side loopback mode on one or
 multiple interfaces. The following example enables loopback mode
+=======
+<interface> facility-loopback` command. You can enable line side loopback mode on one or multiple interfaces. The following example enables loopback mode
+>>>>>>> 9be8c962f37bd6bbb7d15dc43fdd17944b97f884
 on the L1, L2, L3, and L4 network interfaces:
 
     cumulus@switch:~$ net add interface L1-4 facility-loopback
@@ -833,7 +845,9 @@ file. Key-value pairs have the form `key=value`. Spaces before and after
 the = character are ignored. Lines beginning with \# and blank lines are
 considered comments.
 
-Here is an example `/etc/cumulus/transponders.ini` file:
+<details>
+
+<summary>Here is an example `/etc/cumulus/transponders.ini` file:</summary>
 
     #
     # Configuration file for Voyager transponder modules
@@ -1059,6 +1073,8 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     RxTributaryCoupled=65535
     Loopback=false
 
+</details>
+
 The file contains four configuration groups:
 
   - The Modules group
@@ -1089,8 +1105,12 @@ these two groups.
 
 #### Module Groups
 
+<<<<<<< HEAD
 The **module groups** are individual groups for each of the predefined modules
 and define the attributes of the transponders in the system. The name of a module group
+=======
+The **module groups** are in ndividual groups for each of the predefined modules and define the attributes of the transponders in the system. The name of a module group
+>>>>>>> 9be8c962f37bd6bbb7d15dc43fdd17944b97f884
 is defined in the values of the `Names` key in the Modules group (shown
 above).
 

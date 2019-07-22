@@ -85,32 +85,12 @@ interface is carried on both of the network interfaces.
 For each of the five supported modulation configurations, the client
 interface to network interface connections are as follows:
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>{{% imgOld 1 %}}</p></td>
-<td><p>In this configuration, two client interfaces, 0 and 2, are mapped to the two network interfaces. Client interfaces 1 and 3 are not used.</p></td>
-</tr>
-<tr class="even">
-<td><p>{{% imgOld 2 %}}</p></td>
-<td><p>In this configuration, two client interfaces are mapped to each network interface. Each network interface, therefore, has two tributaries.</p></td>
-</tr>
-<tr class="odd">
-<td><p>{{% imgOld 3 %}}</p>
-<p>{{% imgOld 4 %}}</p></td>
-<td><p>These configurations are combinations of the previous two.</p>
-<p>The network interface configured for QPSK connects to one client interface and the network interface configured for 16-QAM connects to two client interfaces.</p></td>
-</tr>
-<tr class="even">
-<td><p>{{% imgOld 5 %}}</p></td>
-<td><p>This configuration uses three client interfaces, for a total of 300Gbps; 150Gbps on each network interface. Because the network interfaces are coupled, they cannot be connected to different far-end systems. Each network interface carries three tributaries.</p></td>
-</tr>
-</tbody>
-</table>
+|||
+|--- |--- |
+|{{% imgOld 1 %}}|In this configuration, two client interfaces, 0 and 2, are mapped to the two network interfaces. Client interfaces 1 and 3 are not used.|
+|{{% imgOld 2 %}}|In this configuration, two client interfaces are mapped to each network interface. Each network interface, therefore, has two tributaries.|
+|{{% imgOld 3 %}} <br /> {{% imgOld 4 %}}|These configurations are combinations of the previous two. The network interface configured for QPSK connects to one client interface and the network interface configured for 16-QAM connects to two client interfaces.|
+|{{% imgOld 5 %}}|This configuration uses three client interfaces, for a total of 300Gbps; 150Gbps on each network interface. Because the network interfaces are coupled, they cannot be connected to different far-end systems. Each network interface carries three tributaries.|
 
 ## Configure the Voyager Ports
 
@@ -122,80 +102,35 @@ The file has lines for the 12 QSPF28 ports. The four DWDM Line ports are
 labeled labeled **L1** thru **L4**. To program the AC400 modulation and
 coupling into the five configurations, configure these ports as follows:
 
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>ports.conf</p></th>
-<th><p>L1 Modulation</p></th>
-<th><p>L2 Modulation</p></th>
-<th><p>Independent/Coupled</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>L1=1x<br />
-L2=1x</p></td>
-<td><p>QPSK</p></td>
-<td><p>QPSK</p></td>
-<td><p>Independent</p></td>
-</tr>
-<tr class="even">
-<td><p>L1=1x<br />
-L2=2x</p></td>
-<td><p>QPSK</p></td>
-<td><p>16-QAM</p></td>
-<td><p>Independent</p></td>
-</tr>
-<tr class="odd">
-<td><p>L1=2x<br />
-L2=1x</p></td>
-<td><p>16-QAM</p></td>
-<td><p>QPSK</p></td>
-<td><p>Independent</p></td>
-</tr>
-<tr class="even">
-<td><p>L1=2x<br />
-L2=2x</p></td>
-<td><p>16-QAM</p></td>
-<td><p>16-QAM</p></td>
-<td><p>Independent</p></td>
-</tr>
-<tr class="odd">
-<td><p>L1=3/2<br />
-L2=3/2</p></td>
-<td><p>8-QAM</p></td>
-<td><p>8-QAM</p></td>
-<td><p>Coupled</p></td>
-</tr>
-</tbody>
-</table>
+|ports.conf|L1 Modulation|L2 Modulation|Independent/Coupled|
+|--- |--- |--- |--- |
+|L1=1x <br /><br /> L2=1x|QPSK|QPSK|Independent|
+|L1=1x <br /><br /> L2=2x|QPSK|16-QAM|Independent|
+|L1=2x <br /><br /> L2=1x|16-QAM|QPSK|Independent|
+|L1=2x <br /><br /> L2=2x|16-QAM|16-QAM|Independent|
+|L1=3/2 <br /><br /> L2=3/2|8-QAM|8-QAM|Coupled|
 
 The following example `/etc/cumulus/ports.conf` file shows configuration
 for all of the modes.
 
-    1=1x    # Creates swp1
-    2=2x    # Creates swp2s0 and swp2s1
-    3=4x    # Creates four 25G ports: swp3s0, swp3s1, swp3s2, and swp3s3
-    4=1x40G # Creates swp4
-    5=4x10G # Creates four 10G ports: swp5s0, swp5s1, swp5s2, and swp5s3
-    6=1x
-    7=1x
-    8=1x
-    9=1x
-    10=1x
-    11=1x
-    12=1x
-    L1=2x   # Creates swpL1s0 and swpL1s1
-    L2=1x   # Creates swpL2
-    L3=3/2  # Creates swpL3s0, swpL3s1, and swpL3s2
-    L4=3/2  # Creates no "swpL4" ports since L4 is ganged with L3
-
+```
+1=1x    # Creates swp1
+2=2x    # Creates swp2s0 and swp2s1
+3=4x    # Creates four 25G ports: swp3s0, swp3s1, swp3s2, and swp3s3
+4=1x40G # Creates swp4
+5=4x10G # Creates four 10G ports: swp5s0, swp5s1, swp5s2, and swp5s3
+6=1x
+7=1x
+8=1x
+9=1x
+10=1x
+11=1x
+12=1x
+L1=2x   # Creates swpL1s0 and swpL1s1
+L2=1x   # Creates swpL2
+L3=3/2  # Creates swpL3s0, swpL3s1, and swpL3s2
+L4=3/2  # Creates no "swpL4" ports since L4 is ganged with L3
+```
 ## Configure the Transponder Modules
 
 The Voyager platform contains two AC400 transponder modules, which you
@@ -313,12 +248,8 @@ spacing on L2 to 12.5GHz:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<<<<<<< HEAD
 This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini`
 file:
-=======
-This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini` file:
->>>>>>> 9be8c962f37bd6bbb7d15dc43fdd17944b97f884
 
     cumulus@switch:~$ cat /etc/cumulus/transponders.ini
     ...
@@ -399,12 +330,8 @@ sets the transmit power for L1 to 10.0 dBm.
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<<<<<<< HEAD
 This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini`
 file:
-=======
-This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini` file:
->>>>>>> 9be8c962f37bd6bbb7d15dc43fdd17944b97f884
 
     cumulus@switch:~$ cat /etc/cumulus/transponders.ini
     ...
@@ -541,12 +468,8 @@ Line side loopback mode enables you to send and receive data from the
 same network interface port to verify that the port is operational.
 
 To enable line side loopback mode, run the `net add interface
-<<<<<<< HEAD
 <interface> facility-loopback` command. You can enable line side loopback mode on one or
 multiple interfaces. The following example enables loopback mode
-=======
-<interface> facility-loopback` command. You can enable line side loopback mode on one or multiple interfaces. The following example enables loopback mode
->>>>>>> 9be8c962f37bd6bbb7d15dc43fdd17944b97f884
 on the L1, L2, L3, and L4 network interfaces:
 
     cumulus@switch:~$ net add interface L1-4 facility-loopback
@@ -1105,12 +1028,8 @@ these two groups.
 
 #### Module Groups
 
-<<<<<<< HEAD
 The **module groups** are individual groups for each of the predefined modules
 and define the attributes of the transponders in the system. The name of a module group
-=======
-The **module groups** are in ndividual groups for each of the predefined modules and define the attributes of the transponders in the system. The name of a module group
->>>>>>> 9be8c962f37bd6bbb7d15dc43fdd17944b97f884
 is defined in the values of the `Names` key in the Modules group (shown
 above).
 

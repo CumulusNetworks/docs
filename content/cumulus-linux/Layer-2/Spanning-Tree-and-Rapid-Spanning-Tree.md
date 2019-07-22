@@ -32,7 +32,7 @@ traditional or VLAN-aware bridge driver mode is in use.
 
 ### STP for a VLAN-aware Bridge
 
-VLAN-aware ** bridges only operate in RSTP mode. STP bridge protocol
+VLAN-aware bridges only operate in RSTP mode. STP bridge protocol
 data units (BPDUs) are transmitted on the native VLAN.
 
 If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU,
@@ -49,7 +49,9 @@ VLAN. This is because only VLAN
 1 enables the switches to address the BPDU frames to the IEEE multicast
 MAC address. The proprietary switch might be configured like this:
 
-    switchport trunk allowed vlan 1-100
+```
+switchport trunk allowed vlan 1-100
+```
 
 {{%/notice%}}
 
@@ -184,7 +186,7 @@ spanning-tree` command:
       clag role          primary                 clag dual conn mac   00:00:00:00:00:00
       clag remote portID F.FFF                   clag system mac      44:38:39:FF:40:90
 </details>
-Use Linux to check spanning tree status (advanced):
+
 <details>
 <summary>Using Linux to check STP status ... </summary>
 
@@ -200,8 +202,7 @@ errors are located in `/var/log/syslog`.
 `mstpd` is the preferred utility for interacting with STP on Cumulus
 Linux. `brctl` also provides certain methods for configuring STP;
 however, they are not as complete as the tools offered in `mstpd` and
-[output from brctl can be
-misleading](https://support.cumulusnetworks.com/hc/en-us/articles/212153658-brctl-showstp-Shows-Carrier-Down-Ports-as-Blocking)
+[output from brctl can be misleading](https://support.cumulusnetworks.com/hc/en-us/articles/212153658-brctl-showstp-Shows-Carrier-Down-Ports-as-Blocking)
 in some cases.
 
 {{%/notice%}}
@@ -303,8 +304,7 @@ learning states to move immediately to forwarding.
 {{%notice warning%}}
 
 Using PortAdminEdge mode has the potential to cause loops if it is not
-accompanied by the [BPDU
-guard](#src-8362689_SpanningTreeandRapidSpanningTree-bpdu) feature.
+accompanied by the [BPDU guard](#bpdu-guard) feature.
 
 {{%/notice%}}
 
@@ -603,9 +603,7 @@ article](https://support.cumulusnetworks.com/hc/en-us/articles/206908397).
 
 Most of these parameters are blacklisted in the `ifupdown_blacklist`
 section of the`  /etc/ ``netd.conf` file. Before you configure these
-parameters, you must [edit the
-file](Network-Command-Line-Utility-NCLU.html#src-8362580_NetworkCommandLineUtility-NCLU-conf)
-to remove them from the blacklist.
+parameters, you must [edit the file](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU/#advanced-configuration) to remove them from the blacklist.
 
 {{%/notice%}}
 

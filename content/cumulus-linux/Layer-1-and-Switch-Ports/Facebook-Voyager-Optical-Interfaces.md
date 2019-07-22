@@ -1083,11 +1083,6 @@ above).
 The following table describes the key-value pairs in the module groups.
 
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th><p>Key</p></th>
@@ -1182,7 +1177,7 @@ interface groups.
 <td><p><code>Location</code></p></td>
 <td><p>Integer: 0-1</p></td>
 <td><p>The location or index of the network interface within a module. The Voyager AC400 modules each have two network interfaces that are connected to the external ports as follows:</p>
-<div class="tablewrap">
+
 <table>
 <thead>
 <tr class="header">
@@ -1214,7 +1209,7 @@ interface groups.
 </tr>
 </tbody>
 </table>
-</div></td>
+</td>
 </tr>
 <tr class="even">
 <td><p><code>TxEnable</code></p></td>
@@ -1233,7 +1228,6 @@ interface groups.
 <td><details>
 <p>The channel number upon which the network interface transmits and receives data.</p>
 <summary>Click here to see the frequency and wavelength per channel </summary>
-<div class="tablewrap">
 <table>
 <colgroup>
 <col style="width: 33%" />
@@ -1753,7 +1747,6 @@ Number</p></th>
 </tr>
 </tbody>
 </table>
-</div>
 </details></td>
 </tr>
 <tr class="odd">
@@ -1913,8 +1906,6 @@ The location or index of the client interface within a module. The
 Voyager AC400 modules each have four network interfaces that are
 connected to the Tomahawk ASIC as follows:
 
-<div class="tablewrap">
-
 | Module Location | Network Interface Location | Tomahawk Falcon Core |
 | --------------- | -------------------------- | -------------------- |
 | 1               | 0                          | fc11                 |
@@ -1926,28 +1917,16 @@ connected to the Tomahawk ASIC as follows:
 | 2               | 2                          | fc17                 |
 | 2               | 3                          | fc16                 |
 
-</div>
-
 </td>
-
 </tr>
-
 <tr>
-
 <td class="confluenceTd" rowspan="1" colspan="1">
-
 `Rate`
-
 </td>
-
 <td class="confluenceTd" rowspan="1" colspan="1">
-
 String: `otu4` or `100ge`
-
 </td>
-
 <td class="confluenceTd" rowspan="1" colspan="1">
-
 The rate at which the client interface operates. Because the client
 interfaces on Voyager are always connected to a Tomahawk ASIC, always
 set this value to `100ge`.

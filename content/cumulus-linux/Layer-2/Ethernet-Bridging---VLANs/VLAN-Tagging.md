@@ -56,11 +56,7 @@ and add a configuration like the following:
 This example of VLAN tagging is more complex, involving three hosts and
 two switches, with a number of bridges and a bond connecting them all.
 
-**
-
-*{{% imgOld 1 %}}*
-
-**
+{{% imgOld 1 %}}
 
   - *host1* connects to bridge *br-untagged* with bare Ethernet frames
     and to bridge *br-tag100* with 802.1q frames tagged for *vlan100*.
@@ -306,8 +302,8 @@ can utilize VLAN translation.
 
 The following example enables the VLAN translation `sysctl`:
 
-    cumulus@switch:~$ echo net.bridge.bridge-allow-multiple-vlans = 1 | sudo tee /etc/sysctl.d/multiple_vlans.conf 
-    net.bridge.bridge-allow-multiple-vlans = 1 
+    cumulus@switch:~$ echo net.bridge.bridge-allow-multiple-vlans = 1 | sudo tee /etc/sysctl.d/multiple_vlans.conf
+    net.bridge.bridge-allow-multiple-vlans = 1
     cumulus@switch:~$ sudo sysctl -p /etc/sysctl.d/multiple_vlans.conf
     net.bridge.bridge-allow-multiple-vlans = 1
 

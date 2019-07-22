@@ -56,7 +56,7 @@ For more information, see `man ptmd(8)`.
   - Event notifications: see Scripts below.
 
   - User configuration via a `topology.dot` file; [see
-    below](#configure-PTM).
+    below](#configure-ptm).
 
 ## Configure PTM
 
@@ -87,16 +87,18 @@ You should use the same `topology.dot` file on all switches, and don't
 split the file per device; this allows for easy automation by
 pushing/pulling the same exact file on each device\!
 
-    graph G {
-        "spine1":"swp1" -- "leaf1":"swp1";
-        "spine1":"swp2" -- "leaf2":"swp1";
-        "spine2":"swp1" -- "leaf1":"swp2";
-        "spine2":"swp2" -- "leaf2":"swp2";
-        "leaf1":"swp3" -- "leaf2":"swp3";
-        "leaf1":"swp4" -- "leaf2":"swp4";
-        "leaf1":"swp5s0" -- "server1":"eth1";
-        "leaf2":"swp5s0" -- "server2":"eth1";
-    }
+```
+graph G {
+    "spine1":"swp1" -- "leaf1":"swp1";
+    "spine1":"swp2" -- "leaf2":"swp1";
+    "spine2":"swp1" -- "leaf1":"swp2";
+    "spine2":"swp2" -- "leaf2":"swp2";
+    "leaf1":"swp3" -- "leaf2":"swp3";
+    "leaf1":"swp4" -- "leaf2":"swp4";
+    "leaf1":"swp5s0" -- "server1":"eth1";
+    "leaf2":"swp5s0" -- "server2":"eth1";
+}
+```
 
 {{% imgOld 0 %}}
 
@@ -140,22 +142,26 @@ using in the `topology.dot` file.
 
 {{%/notice%}}
 
-    graph G {
-             hostnametype="hostname"
-             BFD="upMinTx=150,requiredMinRx=250"
-             "cumulus":"swp44" -- "switch04.cumulusnetworks.com":"swp20"
-             "cumulus":"swp46" -- "switch04.cumulusnetworks.com":"swp22"
-    }
+```
+graph G {
+          hostnametype="hostname"
+          BFD="upMinTx=150,requiredMinRx=250"
+          "cumulus":"swp44" -- "switch04.cumulusnetworks.com":"swp20"
+          "cumulus":"swp46" -- "switch04.cumulusnetworks.com":"swp22"
+}
+```
 
 However, in this next example, PTM will compare using the FQDN and look
 for *switch05.cumulusnetworks.com*, which is the FQDN of the switch it’s
 running on:
 
-    graph G {
-             hostnametype="fqdn"
-             "cumulus":"swp44" -- "switch05.cumulusnetworks.com":"swp20"
-             "cumulus":"swp46" -- "switch05.cumulusnetworks.com":"swp22"
-    }
+```
+graph G {
+         hostnametype="fqdn"
+         "cumulus":"swp44" -- "switch05.cumulusnetworks.com":"swp20"
+         "cumulus":"swp46" -- "switch05.cumulusnetworks.com":"swp22"
+}
+```
 
 ### Global Parameters
 
@@ -165,24 +171,28 @@ default; if no keyword is present, default values are used for all
 ports. However, BFD is disabled if no keyword is present, unless there
 is a per-port override configured. For example:
 
-    graph G {
-             LLDP=""
-             BFD="upMinTx=150,requiredMinRx=250,afi=both"
-             "cumulus":"swp44" -- "qct-ly2-04":"swp20"
-             "cumulus":"swp46" -- "qct-ly2-04":"swp22"
-    }
+```
+graph G {
+          LLDP=""
+          BFD="upMinTx=150,requiredMinRx=250,afi=both"
+          "cumulus":"swp44" -- "qct-ly2-04":"swp20"
+          "cumulus":"swp46" -- "qct-ly2-04":"swp22"
+}
+```
 
 ### Per-port Parameters
 
 *Per-port parameters* provide finer-grained control at the port level.
 These parameters override any global or compiled defaults. For example:
 
-    graph G {
-             LLDP=""
-             BFD="upMinTx=300,requiredMinRx=100"
-             "cumulus":"swp44" -- "qct-ly2-04":"swp20" [BFD="upMinTx=150,requiredMinRx=250,afi=both"]
-             "cumulus":"swp46" -- "qct-ly2-04":"swp22"
-    }
+```
+graph G {
+          LLDP=""
+          BFD="upMinTx=300,requiredMinRx=100"
+          "cumulus":"swp44" -- "qct-ly2-04":"swp20" [BFD="upMinTx=150,requiredMinRx=250,afi=both"]
+          "cumulus":"swp46" -- "qct-ly2-04":"swp22"
+}
+```
 
 ### Templates
 
@@ -197,17 +207,19 @@ There are two parameter strings `ptmd` supports:
 
 For example:
 
-    graph G {
-             LLDP=""
-             BFD="upMinTx=300,requiredMinRx=100"
-             BFD1="upMinTx=200,requiredMinRx=200"
-             BFD2="upMinTx=100,requiredMinRx=300"
-             LLDP1="match_type=ifname"
-             LLDP2="match_type=portdescr"
-             "cumulus":"swp44" -- "qct-ly2-04":"swp20" [BFD="bfdtmpl=BFD1", LLDP="lldptmpl=LLDP1"]
-             "cumulus":"swp46" -- "qct-ly2-04":"swp22" [BFD="bfdtmpl=BFD2", LLDP="lldptmpl=LLDP2"]
-             "cumulus":"swp46" -- "qct-ly2-04":"swp22"
-    }
+```
+graph G {
+          LLDP=""
+          BFD="upMinTx=300,requiredMinRx=100"
+          BFD1="upMinTx=200,requiredMinRx=200"
+          BFD2="upMinTx=100,requiredMinRx=300"
+          LLDP1="match_type=ifname"
+          LLDP2="match_type=portdescr"
+          "cumulus":"swp44" -- "qct-ly2-04":"swp20" [BFD="bfdtmpl=BFD1", LLDP="lldptmpl=LLDP1"]
+          "cumulus":"swp46" -- "qct-ly2-04":"swp22" [BFD="bfdtmpl=BFD2", LLDP="lldptmpl=LLDP2"]
+          "cumulus":"swp46" -- "qct-ly2-04":"swp22"
+}
+```
 
 In this template, LLDP1 and LLDP2 are templates for LLDP parameters
 while BFD1 and BFD2 are templates for BFD parameters.
@@ -239,10 +251,12 @@ while BFD1 and BFD2 are templates for BFD parameters.
 The following is an example of a topology with BFD applied at the port
 level:
 
-    graph G {
-             "cumulus-1":"swp44" -- "cumulus-2":"swp20" [BFD="upMinTx=300,requiredMinRx=100,afi=v6"]
-             "cumulus-1":"swp46" -- "cumulus-2":"swp22" [BFD="detectMult=4"]
-    }
+```
+graph G {
+          "cumulus-1":"swp44" -- "cumulus-2":"swp20" [BFD="upMinTx=300,requiredMinRx=100,afi=v6"]
+          "cumulus-1":"swp46" -- "cumulus-2":"swp22" [BFD="detectMult=4"]
+}
+```
 
 `ptmd` supports the following LLDP parameters:
 
@@ -259,10 +273,12 @@ level:
 The following is an example of a topology with LLDP applied at the port
 level:
 
-    graph G {
-             "cumulus-1":"swp44" -- "cumulus-2":"swp20" [LLDP="match_hostname=fqdn"]
-             "cumulus-1":"swp46" -- "cumulus-2":"swp22" [LLDP="match_type=portdescr"]
-    }
+```
+graph G {
+         "cumulus-1":"swp44" -- "cumulus-2":"swp20" [LLDP="match_hostname=fqdn"]
+         "cumulus-1":"swp46" -- "cumulus-2":"swp22" [LLDP="match_type=portdescr"]
+}
+```
 
 {{%notice note%}}
 
@@ -271,11 +287,12 @@ FQDN, like *cumulus-2.domain.com* in the example below. If you do not
 specify anything for `match_hostname`, `ptmd` will match based on
 hostname only, like *cumulus-3* below, and ignore the rest of the URL:
 
-    graph G {
-             "cumulus-1":"swp44" -- "cumulus-2.domain.com":"swp20" [LLDP="match_hostname=fqdn"]
-             "cumulus-1":"swp46" -- "cumulus-3":"swp22" [LLDP="match_type=portdescr"]
-    }
-
+```
+graph G {
+          "cumulus-1":"swp44" -- "cumulus-2.domain.com":"swp20" [LLDP="match_hostname=fqdn"]
+          "cumulus-1":"swp46" -- "cumulus-3":"swp22" [LLDP="match_type=portdescr"]
+}
+```
 {{%/notice%}}
 
 ## Bidirectional Forwarding Detection (BFD)
@@ -308,27 +325,33 @@ file.
 To enable the global `ptm-enable` option, run the following FRRouting
 command:
 
-    cumulus@switch:~$ sudo vtysh
+```
+cumulus@switch:~$ sudo vtysh
 
-    switch# configure terminal
-    switch(config)# ptm-enable
-    switch(config)# end
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$
+switch# configure terminal
+switch(config)# ptm-enable
+switch(config)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
 
 To disable the checks, delete the `ptm-enable` parameter from the
 interface. For example:
 
-    cumulus@switch:~$ net del interface swp51 ptm-enable
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net del interface swp51 ptm-enable
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 If you need to re-enable PTM for that interface, run:
 
-    cumulus@switch:~$ net add interface swp51 ptm-enable
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface swp51 ptm-enable
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 With PTM enabled on an interface, the `zebra` daemon connects to `ptmd`
 over a Unix socket. Any time there is a change of status for an
@@ -336,16 +359,18 @@ interface, `ptmd` sends notifications to `zebra`. Zebra maintains a
 `ptm-status` flag per interface and evaluates routing adjacency based on
 this flag. To check the per-interface `ptm-status`:
 
-    cumulus@switch:~$ net show interface swp1
+```
+cumulus@switch:~$ net show interface swp1
      
-    Interface swp1 is up, line protocol is up
-      Link ups:       0    last: (never)
-      Link downs:     0    last: (never)
-      PTM status: disabled
-      vrf: Default-IP-Routing-Table
-      index 3 metric 0 mtu 1550
-      flags: <UP,BROADCAST,RUNNING,MULTICAST>
-      HWaddr: c4:54:44:bd:01:41
+Interface swp1 is up, line protocol is up
+Link ups:       0    last: (never)
+  Link downs:     0    last: (never)
+  PTM status: disabled
+  vrf: Default-IP-Routing-Table
+  index 3 metric 0 mtu 1550
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  HWaddr: c4:54:44:bd:01:41
+```
 
 ## ptmd Service Commands
 
@@ -378,34 +403,13 @@ See `man ptmctl` for more information.
 The examples below contain the following keywords in the output of the
 cbl status column, which are described here:
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>cbl status Keyword</p></th>
-<th><p>Definition</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>pass</p></td>
-<td><p>The interface is defined in the topology file, LLDP information is received on the interface, and the LLDP information for the interface matches the information in the topology file.</p></td>
-</tr>
-<tr class="even">
-<td><p>fail</p></td>
-<td><p>The interface is defined in the topology file, LLDP information is received on the interface, and the LLDP information for the interface does <strong>not</strong> match the information in the topology file.</p></td>
-</tr>
-<tr class="odd">
-<td><p>N/A</p></td>
-<td><p>The interface is defined in the topology file, but no LLDP information is received on the interface. The interface may be down or disconnected, or the neighbor is not sending LLDP packets.</p>
-<p>The "N/A" and "fail" statuses may indicate a wiring problem to investigate.</p>
-<p>The "N/A" status is not shown when using the <code>-l</code> option with <code>ptmctl</code>. If you specify the <code>-l</code> option, <code>ptmctl</code> displays only those interfaces that are receiving LLDP information.</p></td>
-</tr>
-</tbody>
-</table>
+|cbl status Keyword  |Definition|
+|--------------------|----------|
+|pass|The interface is defined in the topology file, LLDP information is received on the interface, and the LLDP information for the interface matches the information in the topology file.|
+|fail|The interface is defined in the topology file, LLDP information is received on the interface, and the LLDP information for the interface does not match the information in the topology file.|
+|N/A|The interface is defined in the topology file, but no LLDP information is received on the interface. The interface may be down or disconnected, or the neighbor is not sending LLDP packets.
+The `N/A` and `fail` statuses may indicate a wiring problem to investigate.
+The `N/A` status is not shown when using the -l option with ptmctl. If you specify the -l option, ptmctl displays only those interfaces that are receiving LLDP information.|
 
 For basic output, use `ptmctl` without any options:
 
@@ -423,23 +427,25 @@ swp3  pass    N/A     N/A                  N/A    N/A
 
 For more detailed output, use the `-d` option:
 
-    cumulus@switch:~$ sudo ptmctl -d
+```
+cumulus@switch:~$ sudo ptmctl -d
      
-    --------------------------------------------------------------------------------------
-    port  cbl    exp     act      sysname  portID  portDescr  match  last    BFD   BFD    
-          status nbr     nbr                                  on     upd     Type  state  
-    --------------------------------------------------------------------------------------
-    swp45 pass   h1:swp1 h1:swp1  h1       swp1    swp1       IfName 5m: 5s  N/A   N/A    
-    swp46 fail   h2:swp1 h2:swp1  h2       swp1    swp1       IfName 5m: 5s  N/A   N/A    
+--------------------------------------------------------------------------------------
+port  cbl    exp     act      sysname  portID  portDescr  match  last    BFD   BFD    
+      status nbr     nbr                                  on     upd     Type  state  
+--------------------------------------------------------------------------------------
+swp45 pass   h1:swp1 h1:swp1  h1       swp1    swp1       IfName 5m: 5s  N/A   N/A    
+swp46 fail   h2:swp1 h2:swp1  h2       swp1    swp1       IfName 5m: 5s  N/A   N/A    
      
-    #continuation of the output
-    -------------------------------------------------------------------------------------------------
-    BFD   BFD       det_mult  tx_timeout  rx_timeout  echo_tx_timeout  echo_rx_timeout  max_hop_cnt
-    peer  DownDiag
-    -------------------------------------------------------------------------------------------------
-    N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A
-    N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A
-     
+#continuation of the output
+-------------------------------------------------------------------------------------------------
+BFD   BFD       det_mult  tx_timeout  rx_timeout  echo_tx_timeout  echo_rx_timeout  max_hop_cnt
+peer  DownDiag
+-------------------------------------------------------------------------------------------------
+N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A
+N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A
+cumulus@switch:~$
+```
 
 To return information on active BFD sessions `ptmd` is tracking, use the
 `-b` option:
@@ -458,14 +464,16 @@ N/A   12.12.12.1  Up     12.12.12.4    multihop   N/A
 To return LLDP information, use the `-l` option. It returns only the
 active neighbors currently being tracked by `ptmd`.
 
-    cumulus@switch:~$ sudo ptmctl -l
+```
+cumulus@switch:~$ sudo ptmctl -l
      
-    ---------------------------------------------
-    port  sysname  portID  port   match  last
+---------------------------------------------
+port  sysname  portID  port   match  last
                            descr  on     upd
-    ---------------------------------------------
-    swp45 h1       swp1    swp1   IfName 5m:59s
-    swp46 h2       swp1    swp1   IfName 5m:59s
+---------------------------------------------
+swp45 h1       swp1    swp1   IfName 5m:59s
+swp46 h2       swp1    swp1   IfName 5m:59s
+```
 
 To return detailed information on active BFD sessions `ptmd` is
 tracking, use the `-b` and `-d` options (results are for an
@@ -512,13 +520,15 @@ will return appropriate outputs. Typical error strings are:
 
 For example:
 
-    cumulus@switch:~$ sudo ptmctl
-    -------------------------------------------------------------------------
-    cmd         error
-    -------------------------------------------------------------------------
-    get-status  Topology file error [/etc/ptm.d/topology.dot] 
-                [cannot open file (errno 2)] - please check /var/log/ptmd.log 
-                for more info
+```
+cumulus@switch:~$ sudo ptmctl
+-------------------------------------------------------------------------
+cmd         error
+-------------------------------------------------------------------------
+get-status  Topology file error [/etc/ptm.d/topology.dot] 
+            [cannot open file (errno 2)] - please check /var/log/ptmd.log 
+            for more info
+```
 
 {{%notice tip%}}
 
@@ -571,11 +581,3 @@ graph from working correctly.
     Wikipedia](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
 
   - [PTMd GitHub repo](https://github.com/CumulusNetworks/ptm)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

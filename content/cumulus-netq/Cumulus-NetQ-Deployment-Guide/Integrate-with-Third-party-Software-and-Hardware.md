@@ -417,8 +417,6 @@ Text description
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
-
 </td>
 
 </tr>
@@ -2434,7 +2432,7 @@ In this example, we created a notification integration with a PagerDuty
 channel called *pd-netq-events*. We then created a rule *bgpHostname*
 and a filter called *4bgpSpine* for any notifications from *spine-01*.
 The result is that any info severity event messages from Spine-01 are
-filtered to the *pd-netq-events* ** channel.
+filtered to the *pd-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events

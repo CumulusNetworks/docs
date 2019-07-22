@@ -43,19 +43,13 @@ giant switch.
 
 {{%notice note%}}
 
-When connecting a VLAN-aware bridge to a <span style="color: #303030;">
-proprietary </span> PVST+ switch using STP,
-<span style="color: #303030;"> VLAN 1 must be allowed on all 802.1Q
-trunks that interconnect them, regardless of the configured *native*
-VLAN </span> . This is because only <span style="color: #303030;"> VLAN
+When connecting a VLAN-aware bridge to a proprietary PVST+ switch using STP,
+VLAN 1 must be allowed on all 802.1Q trunks that interconnect them, regardless of the configured *native*
+VLAN. This is because only VLAN
 1 enables the switches to address the BPDU frames to the IEEE multicast
 MAC address. The proprietary switch might be configured like this:
-</span>
 
     switchport trunk allowed vlan 1-100
-
-<span style="color: #303030;">  
-</span>
 
 {{%/notice%}}
 

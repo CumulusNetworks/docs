@@ -11,22 +11,18 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-Address Resolution Protocol <span style="color: #222222;"> ( </span> ARP
-<span style="color: #222222;"> ) is a </span> communication protocol
-<span style="color: #222222;"> used for discovering the </span> link
-layer <span style="color: #222222;"> address, such as a </span> MAC
-address <span style="color: #222222;"> , associated with a given </span>
-network layer <span style="color: #222222;"> address </span>
-<span style="color: #222222;"> . ARP is defined by </span>
-[RFC 826](https://tools.ietf.org/html/rfc826).
-<span style="color: #222222;"> The </span> Cumulus Linux ARP
-implementation differs from standard Debian Linux ARP behavior in a few
+Address Resolution Protocol (ARP) is a communication protocol used for discovering
+the link layer  address, such as a MAC address, associated with a given network
+layer  address. ARP is defined by [RFC 826](https://tools.ietf.org/html/rfc826).
+
+The  Cumulus Linux ARP implementation differs from standard Debian Linux ARP
+behavior in a few
 ways because Cumulus Linux is an operating system for routers/switches
 rather than servers. This chapter describes the differences in ARP
 behavior, why the changes were made, where the changes were implemented,
 and how to change port-specific values.
 
-## Standard Debian ARP Behavior and the Tunable ARP Parameters</span>
+## Standard Debian ARP Behavior and the Tunable ARP Parameters
 
 Debian has these five tunable ARP parameters:
 
@@ -58,7 +54,7 @@ matching the interfaces on which they reside. With these tunable ARP
 parameters, Cumulus Linux has been able to specify the behavior to match
 the expectations of a router.
 
-## ARP Tunable Parameter Settings in Cumulus Linux</span>
+## ARP Tunable Parameter Settings in Cumulus Linux
 
 The ARP tunable parameters are set to the following values by default in
 Cumulus Linux. Each parameter is described in detail, including why
@@ -139,7 +135,7 @@ Cumulus Networks chose the value used.
 </tbody>
 </table>
 
-## Change Tunable ARP Parameters</span>
+## Change Tunable ARP Parameters
 
 You can change the ARP parameter settings in several places, including:
 
@@ -233,13 +229,13 @@ Note that Cumulus Linux implements this change at boot time using the
     net.ipv4.conf.default.arp_ignore=1
     cumulus@switch:~$
 
-## Change Port-specific ARP Parameters</span>
+## Change Port-specific ARP Parameters
 
 The simplest way to configure port-specific ARP parameters in a running
 device is with the following command:
 
     cumulus@switch:~$ sudo sh -c "echo 0 > /proc/sys/net/ipv4/conf/swp1/arp_ignore"
-    cumulus@switch:~$ sudo grep . /proc/sys/net/ipv4/conf/swp1/arp* 
+    cumulus@switch:~$ sudo grep . /proc/sys/net/ipv4/conf/swp1/arp*
     /proc/sys/net/ipv4/conf/swp1/arp_accept:0
     /proc/sys/net/ipv4/conf/swp1/arp_announce:2
     /proc/sys/net/ipv4/conf/swp1/arp_filter:0
@@ -250,7 +246,7 @@ device is with the following command:
 To make the change persist through reboots, edit the
 `/etc/sysctl.d/arp.conf` file and add your port-specific ARP setting.
 
-## Configure Proxy ARP</span>
+## Configure Proxy ARP
 
 The proxy ARP setting is a kernel setting that you can manipulate using
 `sysctl` or `sysfs`. Proxy ARP works with IPv4 only, since ARP is an
@@ -304,11 +300,3 @@ vlan100 is the VRR interface for the configuration above:
     cumulus@switch:~$ net add vlan 100 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp && echo 1 > /proc/sys/net/ipv4/conf/swp1-v0/proxy_arp && echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id && echo 2 > /proc/sys/net/ipv4/conf/swp1-v0/medium_id"
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

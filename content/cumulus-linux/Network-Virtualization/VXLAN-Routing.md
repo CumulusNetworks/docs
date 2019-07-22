@@ -35,7 +35,7 @@ Also, VXLAN routing is supported for dual-attached hosts where the
 associated VTEPs function in [active-active
 mode](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode).
 
-## Supported Platforms</span>
+## Supported Platforms
 
 The following chipsets support VXLAN routing:
 
@@ -61,9 +61,9 @@ The following chipsets support VXLAN routing:
 
 {{%/notice%}}
 
-## VXLAN Routing Data Plane and the Broadcom Trident II+, Trident3, Maverick, Tomahawk, and Tomahawk+ Platforms</span>
+## VXLAN Routing Data Plane and the Broadcom Trident II+, Trident3, Maverick, Tomahawk, and Tomahawk+ Platforms
 
-### Trident II+, Trident3, and Maverick</span>
+### Trident II+, Trident3, and Maverick
 
 The Trident II+, Trident3, and Maverick ASICs provide native support for
 VXLAN routing, also referred to as Routing In and Out of Tunnels (RIOT).
@@ -75,7 +75,7 @@ file to control the maximum number of overlay next hops (adjacency
 entries). The profile is one of the following:
 
   - *default*: 15% of the underlay next hops are set apart for overlay
-    (8k next hops <span style="color: #222222;"> are reserved) </span>
+    (8k next hops are reserved)
 
   - *mode-1*: 25% of the underlay next hops are set apart for overlay
 
@@ -112,7 +112,7 @@ VXLAN SVI interfaces.
 To disable the VXLAN routing capability on a Trident II+ or Trident3
 switch, set the `vxlan_routing_overlay.profile` field to *disable*.
 
-### Tomahawk and Tomahawk+</span>
+### Tomahawk and Tomahawk+
 
 The Tomahawk and Tomahawk+ ASICs do not support RIOT natively; you must
 configure the switch ports for VXLAN routing to use internal loopback
@@ -120,15 +120,13 @@ configure the switch ports for VXLAN routing to use internal loopback
 facilitates the recirculation of packets through the ingress pipeline to
 achieve VXLAN routing.
 
-F <span style="color: #222222;"> or routing **into** a VXLAN tunnel, the
-first pass of the ASIC performs routing and routing rewrites of the
-packet MAC source and destination address and VLAN, then packets
-recirculate through the internal hyperloop for VXLAN encapsulation and
-underlay forwarding on the second pass. </span>
+For routing **into** a VXLAN tunnel, the first pass of the ASIC performs routing
+and routing rewrites of the packet MAC source and destination address and VLAN,
+then packets recirculate through the internal hyperloop for VXLAN encapsulation
+and underlay forwarding on the second pass.
 
-<span style="color: #222222;"> For routing **out of** a VXLAN tunnel,
-the first pass performs VXLAN decapsulation, then packets recirculate
-through the hyperloop for routing on the second pass. </span>
+For routing **out of** a VXLAN tunnel, the first pass performs VXLAN decapsulation,
+then packets recirculate through the hyperloop for routing on the second pass.
 
 You only need to configure a number of switch ports that must be in
 internal loopback mode based on the amount of bandwidth required. No
@@ -163,7 +161,7 @@ mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode).
 
 {{%/notice%}}
 
-## VXLAN Routing Data Plane and Broadcom Trident II Platforms</span>
+## VXLAN Routing Data Plane and Broadcom Trident II Platforms
 
 The Trident II ASIC does not support RIOT natively or VXLAN routing
 using internal loopback. To achieve VXLAN routing in a deployment using
@@ -220,17 +218,17 @@ relevant interface configuration on *exit01* is as follows:
     auto outside
     iface outside
         bond-slaves swp45 swp47
-        alias hyperloop outside 
+        alias hyperloop outside
         mstpctl-bpduguard yes
         mstpctl-portbpdufilter yes
      
     auto inside
     iface inside
         bond-slaves swp46 swp48
-        alias hyperloop inside 
+        alias hyperloop inside
         mstpctl-bpduguard yes
         mstpctl-portbpdufilter yes
-     
+
     auto VLAN100GW
     iface VLAN100GW
         bridge-ports outside.100
@@ -274,7 +272,7 @@ ASIC.
 
 {{%/notice%}}
 
-## VXLAN Routing Data Plane and the Mellanox Spectrum Platform</span>
+## VXLAN Routing Data Plane and the Mellanox Spectrum Platform
 
 There is no special configuration required for VXLAN routing on the
 Mellanox Spectrum platform.

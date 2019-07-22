@@ -277,8 +277,8 @@ To configure multiple DHCP relay daemons on a switch:
 ## Configure a DHCP Relay with VRR
 
 The configuration procedure for DHCP relay with VRR is the same as
-documented above. Note that D <span style="color: #222222;"> HCP relay
-must run on the SVI and not on the -v0 interface. </span>
+documented above. Note that D HCP relay
+must run on the SVI and not on the -v0 interface.
 
 ## Configure the DHCP Relay Service Manually (Advanced)
 <details>
@@ -360,6 +360,7 @@ These commands create the following configuration in the
     # Additional options that are passed to the DHCP relay daemon?
     OPTIONS="--giaddr-src"
 </details>
+
 ## Troubleshooting
 
 If you are experiencing issues with the DHCP relay, run the following
@@ -402,9 +403,9 @@ a time period:
 ### Configuration Errors
 
 If you configure DHCP relays by editing the
-`/etc/default/isc-dhcp-relay` <span style="color: #333333;"> file
+`/etc/default/isc-dhcp-relay` file
 manually instead of running NCLU commands, you might introduce
-configuration errors that can cause the switch to crash. </span>
+configuration errors that can cause the switch to crash.
 
 For example, if you see an error similar to the following, there might
 be a space between the DHCP server address and the interface used as the

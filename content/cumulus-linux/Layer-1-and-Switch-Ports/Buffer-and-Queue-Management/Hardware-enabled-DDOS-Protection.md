@@ -52,7 +52,7 @@ incurring no performance impact:
 
   - IPv6 fragment lower than programmed minimum IPv6 packet size
 
-## Supported ASICs</span>
+## Supported ASICs
 
 DDOS protection is available for the following Broadcom ASICs:
 
@@ -81,7 +81,7 @@ None of them are enabled by default.
 DDOS protection is not supported on Broadcom Hurricane2 and Mellanox
 Spectrum ASICs.
 
-## Configure Persistent DDOS Protection</span>
+## Configure Persistent DDOS
 
 1.  Open the `/etc/cumulus/datapath/traffic.conf` file in a text editor.
 
@@ -96,6 +96,7 @@ Spectrum ASICs.
     file in a text editor and set the following checks to *true*, and
     save the file:
 
+```
         cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf
         # Enabling/disabling Denial of service (DOS) prevetion checks
         # To change the default configuration:
@@ -114,6 +115,8 @@ Spectrum ASICs.
         dos.icmpv4_length = true
         dos.icmpv6_length = true
         dos.ipv6_min_frag = true
+
+```        
 
     {{%notice note%}}
 

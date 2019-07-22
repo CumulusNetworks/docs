@@ -50,19 +50,15 @@ unsupported error is shown.
 
 {{%/notice%}}
 
-<span style="color: #333333;"> For </span> **Mellanox switches**, MTU is
-the only port attribute you can directly configure. The Mellanox
-firmware configures FEC, link speed, duplex mode and auto-negotiation
-automatically, following a predefined list of parameter settings until
-the link comes up. However, you can disable FEC if necessary, which
-forces the firmware to not try any FEC options.
+For **Mellanox switches**, MTU is the only port attribute you can directly configure. The Mellanox firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until
+the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
 For **Broadcom-based switches,** Cumulus Networks recommends that you
 enable auto-negotiation on each port. When enabled, Cumulus Linux
 automatically configures the best link parameter settings based on the
 module type (speed, duplex, auto-negotiation, and FEC where supported).
 To understand the default configuration for the various port and cable
-types, see the [tablebelow](#interface-configuration-recommendations-for-broadcom-platforms). If you need to
+types, see the [table below](#interface-configuration-recommendations-for-broadcom-platforms). If you need to
 troubleshoot further to bring the link up, follow the sections below to
 set the specific link parameters.
 
@@ -84,7 +80,7 @@ By default on a Broadcom-based switch, auto-negotiation is disabled —
 except on 10G and 1000BASE-T fixed copper switch ports, where it is
 required for links to work. For RJ-45 SFP adapters, you need to manually
 configure the desired link speed and auto-negotiation as described in
-the [default settings table below]()#interface-configuration-recommendations-for-broadcom-platforms).
+the [default settings table below](#interface-configuration-recommendations-for-broadcom-platforms).
 
 If you disable auto-negotiation later or never enable it, then you have
 to configure any settings that deviate from the port default — such as
@@ -147,10 +143,6 @@ You can configure ports to one speed less than their maximum speed.
 [Configuring Breakout Ports](#breakout-ports)
 below.
 
-{{%notice info%}}
-
-**Example Port Speed and Duplexing Configuration**
-
 The following NCLU commands configure the port speed for the swp1
 interface:
 
@@ -165,10 +157,6 @@ snippet:
     iface swp1
        link-speed 10000
 
-{{%/notice%}}
-
-{{%notice note%}}
-
 **Platform Limitations**
 
   - On Lenovo NE2572O switches, swp1 thru swp8 only support 25G speed.
@@ -176,8 +164,6 @@ snippet:
   - For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform,
     you must edit the `/etc/cumulus/ports.conf` file and configure the
     four ports in the same core to be 10G. See [Caveats and Errata](#caveats-and-errata) below.
-
-{{%/notice%}}
 
 ## MTU
 
@@ -276,10 +262,6 @@ MTU of the physical interfaces on the switch, as those 50 bytes are
 required for various headers and other data. Also, consider setting the
 MTU much higher than the default 1500.
 
-{{%notice info%}}
-
-**Example MTU Configuration**
-
 In general, the policy file specified above handles default MTU settings
 for all interfaces on the switch. If you need to configure a different
 MTU setting for a subset of interfaces, use
@@ -297,25 +279,9 @@ These commands create the following code snippet:
     iface swp1
        mtu 9000
 
-<div class="confbox admonition admonition-warning">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
-{{%notice info%}}
-
 You must take care to ensure there are no MTU mismatches in the
 conversation path. MTU mismatches result in dropped or truncated
 packets, degrading or blocking network performance.
-
-{{%/notice%}}
-
-</div>
-
-</div>
-
-{{%/notice%}}
 
 {{%notice note%}}
 
@@ -511,26 +477,17 @@ The values at 0x00c0 are:
 In each example below, the *Compliance* field is derived using the
 method described above and is not visible in the `ethool -m` output.
 
-{{%notice info%}}
+    3meter cable that does not require FEC
+    (CA-N)  
+    Cost : More expensive  
+    Cable size : 26AWG (Note that AWG does not necessarily correspond to overall dB loss or BER performance)  
+    Compliance Code : 25GBASE-CR CA-N
 
-****Cable Class** Example 1**: 3meter cable that does not require FEC
-(CA-N)  
-Cost : More expensive  
-Cable size : 26AWG (Note that AWG does not necessarily correspond to
-overall dB loss or BER performance)  
-Compliance Code : 25GBASE-CR CA-N
-
-{{%/notice%}}
-
-{{%notice info%}}
-
-****Cable Class** Example 2**: 3meter cable that requires Base-R FEC
-(CA-S)  
-Cost: Less expensive  
-Cable size : 26AWG  
-Compliance Code : 25GBASE-CR CA-S
-
-{{%/notice%}}
+    3meter cable that requires Base-R FEC
+    (CA-S)  
+    Cost: Less expensive  
+    Cable size : 26AWG  
+    Compliance Code : 25GBASE-CR CA-S
 
 When in doubt, consult the manufacturer directly to determine the cable
 classification.
@@ -629,8 +586,8 @@ command:
     FEC parameters for swp12:
     FEC encodings : RS
 
-<span style="color: #333333;"> To disable FEC on a link, run the
-following NCLU commands: </span>
+To disable FEC on a link, run the
+following NCLU commands:
 
     cumulus@switch:~$ sudo net add interface swp23 link fec off
     cumulus@switch:~$ sudo net commit
@@ -715,7 +672,7 @@ iface swp1
   link-speed 100</code></pre></td>
 <td><ul>
 <li><p>10M or 100M speeds are possible with auto-negotiation OFF on both sides. Testing on an Edgecore AS4610-54P revealed the ASIC reporting auto-negotiation as ON.</p></li>
-<li><p><a href="/cumulus-linux/System-Configuration/Power-over-Ethernet-PoE">Power over Ethernet</a> may require auto-negotiation to be ON.</p></li>
+<li><p>Power over Ethernet may require auto-negotiation to be ON.</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -774,7 +731,7 @@ iface swp1
 <td><ul>
 <li><p>Without auto-negotiation, the link stays up when there is a single fiber break.</p></li>
 </ul>
-<p>See the limitation discussed in <a href="#src-8363026_SwitchPortAttributes-10Gand1GSFPsInsertedina25GPort">10G and 1G SFPs Inserted in a 25G Port</a>, below</p></td>
+<p>See the limitation discussed in 10G and 1G SFPs Inserted in a 25G Port, below</p></td>
 </tr>
 <tr class="odd">
 <td><p>10GBASE-T<br />
@@ -1210,10 +1167,9 @@ switch.
 The Mellanox SN2700, SN2700B, SN2410 and SN2410B switches all have a
 limit of 64 logical ports in total.
 
-<span style="color: #333333;"> Before you configure any logical/unganged
-ports on a switch, check the limitations listed in </span>
-`/etc/cumulus/ports.conf` <span style="color: #333333;"> ; this file is
-specific to each manufacturer. </span>
+Before you configure any logical/unganged
+ports on a switch, check the limitations listed in `/etc/cumulus/ports.conf`; this file is
+specific to each manufacturer.
 
 For example, the Dell S6000 `ports.conf` file indicates the logical port
 limitation like this:
@@ -1272,13 +1228,9 @@ configuration in `/etc/cumulus/ports.conf`:
 There is no limitation on any port if interfaces are configured in 2x50G
 mode.
 
-{{%notice tip%}}
-
 Here is an example showing how to configure breakout cables for the
 [Mellanox Spectrum
 SN2700](https://community.mellanox.com/docs/DOC-2685).
-
-{{%/notice%}}
 
 ## Configure Interfaces with ethtool
 
@@ -1298,6 +1250,8 @@ To view the FEC setting on an interface, run:
     FEC encodings : RS
 
 ## Verification and Troubleshooting Commands
+
+This section provides troublshooting tips.
 
 ### Statistics
 
@@ -1426,7 +1380,7 @@ order; for example, swp1, swp2, swp3, and swp4.
         ...
 
 2.  [Restart
-    `switchd`](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=8366282).
+    `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd).
 
 3.  If you want to set the speed of any SFPs to 1G, set the port speed
     to 1000 Mbps using NCLU commands; this is *not* necessary for 10G
@@ -1638,11 +1592,3 @@ second to come down.
 
   - [Linux Foundation -
     Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

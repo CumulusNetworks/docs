@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321065
 pageID: 12321065
 product: Cumulus NetQ
-version: 2.2.1
+version: 2.2.0
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
@@ -49,7 +49,7 @@ improvements:
   - Added support for multiple data centers
 
 For further information regarding new features, improvements, bug fixes,
-and known issues present in this release, refer to the [<span style="color: #00AD69;">release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).
+and known issues present in this release, refer to the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).
 
 ## Available Documentation
 
@@ -65,19 +65,15 @@ Cumulus NetQ Primer before reading the other available documents.
 
 The following NetQ documents are available:
 
-  - [Cumulus NetQ Deployment
-    Guide](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/)
+  - [Cumulus NetQ Deployment Guide](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/)
   - Cumulus NetQ CLI User Guide (this guide)
-  - [Cumulus NetQ UI User
-    Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/)
-  - [<span style="color: #00AD69;">Cumulus NetQ Release
-    Notes]</span>(https://support.cumulusnetworks.com/hc/en-us/articles/360025451374)
-  - [<span style="color: #00AD69;">What the NetQ Validation System
-    Checks</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360021961394)
-  - [<span style="color: #00AD69;">Cumulus NetQ Release Versioning and Support
-    Policy</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
-  - [<span style="color: #00AD69;">Cumulus NetQ Cloud Release Versioning and Support
-    Policy</span>](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
+  - [Cumulus NetQ UI User Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/)
+  - [Cumulus NetQ Release Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374)
+  - [What the NetQ Validation System Checks](https://support.cumulusnetworks.com/hc/en-us/articles/360021961394)
+  - [Cumulus NetQ Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
+  - [Cumulus NetQ Cloud Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
+
+This Cumulus NetQ CLI User Guide is available in [PDF](/pdfs/Cumulus_NetQ_220_CLI_User_Guide.pdf) for offline viewing 
 
 ## Document Formatting
 
@@ -89,7 +85,7 @@ Throughout the guide, text formatting is used to convey contextual information a
 
 | **Text Format**                   | **Meaning**                                                                                                                                |
 | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <span style="color: #00AD69;"> Green text                         | Link to additional content within the topic or to another topic                                                                                                                   |
+| <span style="color: #00AD69;"> Green text </span>                        | Link to additional content within the topic or to another topic                                                                                                                   |
 | `Text in Monospace font`                                                 | Filename, directory and path names, and command usage                                                                                       |
 | \[`Text within square brackets`\] | Optional command parameters; may be presented in mixed case or all caps text                                                                |
 | \<`Text within angle brackets`\> | Required command parameter values–variables that are to be replaced with a relevant value; may be presented in mixed case or all caps text |
@@ -124,11 +120,3 @@ Advises that failure to take or avoid specific action can result in
 possible physical harm to yourself, hardware equipment, or facility
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

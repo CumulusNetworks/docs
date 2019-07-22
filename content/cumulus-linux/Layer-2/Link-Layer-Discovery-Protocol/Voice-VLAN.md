@@ -29,7 +29,7 @@ with a specific value (typically 5 is assigned for voice traffic).
 Data traffic is always
 [untagged](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging).
 
-## Cumulus Linux Voice VLAN Example</span>
+## Cumulus Linux Voice VLAN Example
 
 {{% imgOld 0 %}}
 
@@ -85,7 +85,7 @@ These commands create the following configuration snippet in the
       bridge-vids 1-1000
       bridge-vlan-aware yes
 
-## Configure LLDP</span>
+## Configure LLDP
 
 Configuring voice VLAN with NCLU does not configure `lldpd` in Cumulus
 Linux, so LLDP-MED does not provide data and voice VLAN information. You
@@ -102,7 +102,7 @@ You can also use the `lldpcli` command to configure an LLDP-MED network
 policy. However, `lldpcli` commands do not persist across reboots of the
 switch.
 
-## Troubleshooting</span>
+## Troubleshooting
 
 The `bridge-vids` can be reviewed with the `net show bridge vlan`
 command:
@@ -120,10 +120,9 @@ command:
     swp3              1  PVID, Egress Untagged
                     300
 
-<span style="color: #333333;"> You can get MAC address information using
-the `net show bridge macs` command: </span>
+You can get MAC address information using the `net show bridge macs` command:
 
-``` 
+```
 cumulus@switch:~$ net show bridge macs
  
 VLAN      Master    Interface    MAC                   TunnelDest  State      Flags    LastSeen
@@ -137,18 +136,10 @@ untagged  bridge    swp3         08:00:27:9e:98:86                 permanent    
 You can capture LLDP information by checking `syslog` or using `tcpdump`
 on an interface.
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - A static voice VLAN configuration overwrites a switch port's
     existing configuration.
 
   - Removing the `bridge-vids` or `bridge-pvid` configuration from a
     voice VLAN does not remove the VLAN from the bridge.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -27,7 +27,7 @@ known issues present in this release, refer to the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).
 
 This Cumulus NetQ API User Guide is available in
-[PDF](attachments_12321982_1_Cumulus-NetQ-220-API-User-Guide.pdf) for
+[PDF](/pdfs/Cumulus_NetQ_220_API_User_Guide.pdf) for
 offline viewing.
 
 ## API Organization
@@ -117,8 +117,7 @@ to make the responses more readable. You may chose to do so as well or
 not.
 
 To view all of the endpoints and their associated requests and
-responses, refer to [View the
-API](#src-12321983_CumulusNetQAPIUserGuide-ViewApi).
+responses, refer to [View the API](#view-the-api).
 
 ### Get Network-wide Status of the BGP Service
 

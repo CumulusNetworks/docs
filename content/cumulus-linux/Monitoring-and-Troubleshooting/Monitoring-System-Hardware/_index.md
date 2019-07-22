@@ -3,7 +3,7 @@ title: Monitoring System Hardware
 author: Cumulus Networks
 weight: 219
 aliases:
- - /display/CL37/Monitoring-System-Hardware
+ - /display/DOCS/Monitoring+System+Hardware
  - /pages/viewpage.action?pageId=8362594
 pageID: 8362594
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: Monitor Network Layer Protocols
 author: Cumulus Networks
 weight: 41
 aliases:
- - /display/NETQ22/Monitor-Network-Layer-Protocols
+ - /display/NETQ/Monitor+Network+Layer+Protocols
  - /pages/viewpage.action?pageId=12321049
 pageID: 12321049
 product: Cumulus NetQ

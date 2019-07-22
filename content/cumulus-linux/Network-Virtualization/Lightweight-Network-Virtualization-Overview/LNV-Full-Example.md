@@ -3,7 +3,7 @@ title: LNV Full Example
 author: Cumulus Networks
 weight: 377
 aliases:
- - /display/CL37/LNV-Full-Example
+ - /display/DOCS/LNV+Full+Example
  - /pages/viewpage.action?pageId=8362715
 pageID: 8362715
 product: Cumulus Linux
@@ -101,15 +101,15 @@ iface eth0 inet dhcp
 auto swp49
 iface swp49
   address 10.1.1.2/30
- 
+
 auto swp50
 iface swp50
   address 10.1.1.6/30
- 
+
 auto swp51
 iface swp51
   address 10.1.1.50/30
- 
+
 auto swp52
 iface swp52
   address 10.1.1.54/30</code></pre></td>
@@ -118,24 +118,24 @@ iface swp52
 iface lo inet loopback
   address 10.2.1.4/32
   address 10.10.10.10/32
- 
+
 auto eth0
 iface eth0 inet dhcp
  
 auto swp49
-iface swp49 
+iface swp49
  address 10.1.1.18/30
- 
+
 auto swp50
-iface swp50 
+iface swp50
  address 10.1.1.22/30
- 
+
 auto swp51
-iface swp51 
+iface swp51
 address 10.1.1.34/30
- 
+
 auto swp52
-iface swp52 
+iface swp52
 address 10.1.1.38/30</code></pre></td>
 </tr>
 <tr class="even">

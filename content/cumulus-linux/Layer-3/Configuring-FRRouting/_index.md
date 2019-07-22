@@ -3,7 +3,7 @@ title: Configuring FRRouting
 author: Cumulus Networks
 weight: 177
 aliases:
- - /display/CL37/Configuring-FRRouting
+ - /display/DOCS/Configuring+FRRouting
  - /pages/viewpage.action?pageId=8362919
 pageID: 8362919
 product: Cumulus Linux
@@ -54,7 +54,7 @@ you are enabling. For example, to enable BGP, set both `zebra` and
 Once you enable the appropriate daemons, then you need to enable and
 start the FRRouting service.
 
-    cumulus@switch:~$ sudo systemctl enable frr.service 
+    cumulus@switch:~$ sudo systemctl enable frr.service
     cumulus@switch:~$ sudo systemctl start frr.service
 
 {{%notice tip%}}
@@ -103,7 +103,7 @@ You save the current configuration by running:
     Integrated configuration saved to /etc/frr/frr.conf
     [OK]
     switch# exit
-    cumulus@switch:~$ 
+    cumulus@switch:~$
 
 {{%notice note%}}
 
@@ -129,18 +129,18 @@ configuration files you may remove, see the note below) before
 proceeding.
 
 1.  Confirm `service integrated-vtysh-config` is enabled:
-    
-    ``` 
+
+    ```
     cumulus@switch:~$ net show configuration | grep integrated
               service integrated-vtysh-config  
     ```
 
 2.  Remove `/etc/frr/frr.conf`:
-    
+
         cumulus@switch:~$ sudo rm /etc/frr/frr.conf
 
 3.  Restart FRRouting:
-    
+
         cumulus@switch:~$ sudo systemctl restart frr.service
 
 {{%notice note%}}

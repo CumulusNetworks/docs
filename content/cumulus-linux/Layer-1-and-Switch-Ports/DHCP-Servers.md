@@ -3,7 +3,7 @@ title: DHCP Servers
 author: Cumulus Networks
 weight: 97
 aliases:
- - /display/CL37/DHCP-Servers
+ - /display/DOCS/DHCP+Servers
  - /pages/viewpage.action?pageId=8363042
 pageID: 8363042
 product: Cumulus Linux

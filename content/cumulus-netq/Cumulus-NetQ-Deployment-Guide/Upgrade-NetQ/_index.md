@@ -3,7 +3,7 @@ title: Upgrade NetQ
 author: Cumulus Networks
 weight: 73
 aliases:
- - /display/NETQ22/Upgrade-NetQ
+ - /display/NETQ/Upgrade+NetQ
  - /pages/viewpage.action?pageId=12321005
 pageID: 12321005
 product: Cumulus NetQ

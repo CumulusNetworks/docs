@@ -3,7 +3,7 @@ title: Resolve Issues
 author: Cumulus Networks
 weight: 51
 aliases:
- - /display/NETQ22/Resolve-Issues
+ - /display/NETQ/Resolve+Issues
  - /pages/viewpage.action?pageId=12321052
 pageID: 12321052
 product: Cumulus NetQ

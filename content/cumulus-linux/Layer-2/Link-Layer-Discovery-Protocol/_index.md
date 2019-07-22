@@ -3,7 +3,7 @@ title: Link Layer Discovery Protocol
 author: Cumulus Networks
 weight: 117
 aliases:
- - /display/CL37/Link-Layer-Discovery-Protocol
+ - /display/DOCS/Link+Layer+Discovery+Protocol
  - /pages/viewpage.action?pageId=8362650
 pageID: 8362650
 product: Cumulus Linux

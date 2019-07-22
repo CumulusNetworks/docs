@@ -3,7 +3,7 @@ title: Troubleshooting VXLANs
 author: Cumulus Networks
 weight: 155
 aliases:
- - /display/CL37/Troubleshooting-VXLANs
+ - /display/DOCS/Troubleshooting+VXLANs
  - /pages/viewpage.action?pageId=9014338
 pageID: 9014338
 product: Cumulus Linux
@@ -14,7 +14,7 @@ siteSlug: cumulus-linux
 This topic discusses various ways you can verify and troubleshoot
 VXLANs.
 
-## Verify the Registration Node Daemon 
+## Verify the Registration Node Daemon
 
 Use the `vxrdctl vxlans` ****command to see the configured VNIs, the
 local address being used to source the VXLAN tunnel, and the service

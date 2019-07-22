@@ -3,7 +3,7 @@ title: Management VRF
 author: Cumulus Networks
 weight: 197
 aliases:
- - /display/CL37/Management-VRF
+ - /display/DOCS/Management+VRF
  - /pages/viewpage.action?pageId=8362940
 pageID: 8362940
 product: Cumulus Linux

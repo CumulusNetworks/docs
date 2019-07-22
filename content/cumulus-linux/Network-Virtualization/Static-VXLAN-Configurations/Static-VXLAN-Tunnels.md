@@ -3,7 +3,7 @@ title: Static VXLAN Tunnels
 author: Cumulus Networks
 weight: 363
 aliases:
- - /display/CL37/Static-VXLAN-Tunnels
+ - /display/DOCS/Static+VXLAN+Tunnels
  - /pages/viewpage.action?pageId=8362793
 pageID: 8362793
 product: Cumulus Linux

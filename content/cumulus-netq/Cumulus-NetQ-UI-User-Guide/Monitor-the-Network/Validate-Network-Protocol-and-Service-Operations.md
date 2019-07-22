@@ -3,7 +3,7 @@ title: Validate Network Protocol and Service Operations
 author: Cumulus Networks
 weight: 141
 aliases:
- - /display/NETQ22/Validate-Network-Protocol-and-Service-Operations
+ - /display/NETQ/Validate+Network+Protocol+and+Service+Operations
  - /pages/viewpage.action?pageId=12321612
 pageID: 12321612
 product: Cumulus NetQ

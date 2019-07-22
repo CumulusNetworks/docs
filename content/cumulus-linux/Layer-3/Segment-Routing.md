@@ -3,7 +3,7 @@ title: Segment Routing
 author: Cumulus Networks
 weight: 203
 aliases:
- - /display/CL37/Segment-Routing
+ - /display/DOCS/Segment+Routing
  - /pages/viewpage.action?pageId=8362962
 pageID: 8362962
 product: Cumulus Linux
@@ -119,27 +119,27 @@ The table below contains the configuration for all five nodes.
 <pre><code>auto lo
 iface lo inet loopback
     address 10.1.1.1/32
- 
+
 auto swp2
 iface swp2
     mpls-enable yes
- 
+
 auto swp4
 iface swp4
     mpls-enable yes
- 
+
 auto swp10
 iface swp10
     address 192.168.11.1/24
     mpls-enable yes
- 
+
 auto vagrant
 iface vagrant inet dhcp
- 
+
 auto eth0
 iface eth0 inet dhcp
  vrf mgmt
- 
+
 auto mgmt
 iface mgmt
   address 127.0.0.1/8
@@ -189,26 +189,26 @@ line vty
 <pre><code>auto lo
 iface lo inet loopback
     address 10.1.1.2/32
- 
+
 auto swp1
 iface swp1
     mpls-enable yes
- 
+
 auto swp3
 iface swp3
     mpls-enable yes
- 
+
 auto swp5
 iface swp5
     mpls-enable yes
- 
+
 auto vagrant
 iface vagrant inet dhcp
- 
+
 auto eth0
 iface eth0 inet dhcp
  vrf mgmt
- 
+
 auto mgmt
 iface mgmt
   address 127.0.0.1/8
@@ -259,27 +259,27 @@ line vty
 <pre><code>auto lo
 iface lo inet loopback
     address 10.1.1.3/32
- 
+
 auto swp2
 iface swp2
     mpls-enable yes
- 
+
 auto swp5
 iface swp5
     mpls-enable yes
- 
+
 auto swp10
 iface swp10
     address 192.168.22.1/24
     mpls-enable yes
- 
+
 auto vagrant
 iface vagrant inet dhcp
- 
+
 auto eth0
 iface eth0 inet dhcp
  vrf mgmt
- 
+
 auto mgmt
 iface mgmt
   address 127.0.0.1/8
@@ -329,22 +329,22 @@ line vty
 <pre><code>auto lo
 iface lo inet loopback
     address 10.1.1.4/32
- 
+
 auto swp1
 iface swp1
     mpls-enable yes
- 
+
 auto swp5
 iface swp5
     mpls-enable yes
- 
+
 auto vagrant
 iface vagrant inet dhcp
- 
+
 auto eth0
 iface eth0 inet dhcp
  vrf mgmt
- 
+
 auto mgmt
 iface mgmt
   address 127.0.0.1/8
@@ -394,27 +394,27 @@ line vty
 <pre><code>auto lo
 iface lo inet loopback
     address 10.1.1.5/32
- 
+
 auto swp2
 iface swp2
     mpls-enable yes
- 
+
 auto swp5
 iface swp5
     mpls-enable yes
- 
+
 auto swp10
 iface swp10
     address 192.168.22.1/24
     mpls-enable yes
- 
+
 auto vagrant
 iface vagrant inet dhcp
- 
+
 auto eth0
 iface eth0 inet dhcp
  vrf mgmt
- 
+
 auto mgmt
 iface mgmt
   address 127.0.0.1/8
@@ -533,7 +533,7 @@ Or from another node in the network:
           Label Index: 4
           AddPath ID: RX 0, TX 14
           Last update: Tue Aug 15 13:57:45 2017
-    cumulus@r1:~$ 
+    cumulus@r1:~$
 
 You can see the FRR MPLS table in the output below, where r1 receives a
 packet with label 104. Its outbound label is 3, which appears as
@@ -552,30 +552,30 @@ swp3, the interface to r4:
          106      BGP  fe80::202:ff:fe00:1         3
          107      BGP  fe80::202:ff:fe00:6       107
      
-    cumulus@r1:~$ 
-    cumulus@r1:~$ 
+    cumulus@r1:~$
+    cumulus@r1:~$
     cumulus@r1:~$ net show mpls table 104
     Local label: 104 (installed)
      type: BGP remote label: implicit-null distance: 150
       via fe80::202:ff:fe00:c dev swp3 (installed)
-    cumulus@r1:~$ 
+    cumulus@r1:~$
 
 You can see the MPLS routing table that is installed in the kernel as
 well:
 
     cumulus@r1:~$ ip -f mpls route show
-    102 via inet6 fe80::202:ff:fe00:6 dev swp2  proto zebra 
-    103 as to 103 via inet6 fe80::202:ff:fe00:6 dev swp2  proto zebra 
-    104 via inet6 fe80::202:ff:fe00:c dev swp3  proto zebra 
-    105  proto zebra 
+    102 via inet6 fe80::202:ff:fe00:6 dev swp2  proto zebra
+    103 as to 103 via inet6 fe80::202:ff:fe00:6 dev swp2  proto zebra
+    104 via inet6 fe80::202:ff:fe00:c dev swp3  proto zebra
+    105  proto zebra
         nexthop as to 105  via inet6 fe80::202:ff:fe00:6  dev swp2
         nexthop as to 105  via inet6 fe80::202:ff:fe00:c  dev swp3
-    106 via inet6 fe80::202:ff:fe00:1 dev swp1  proto zebra 
+    106 via inet6 fe80::202:ff:fe00:1 dev swp1  proto zebra
     107 as to 107 via inet6 fe80::202:ff:fe00:6 dev swp2  proto zebra  
-    cumulus@r1:~$ 
+    cumulus@r1:~$
     cumulus@r1:~$ ip -f mpls route show 104
-    104 via inet6 fe80::202:ff:fe00:c dev swp3  proto zebra 
-    cumulus@r1:~$ 
+    104 via inet6 fe80::202:ff:fe00:c dev swp3  proto zebra
+    cumulus@r1:~$
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

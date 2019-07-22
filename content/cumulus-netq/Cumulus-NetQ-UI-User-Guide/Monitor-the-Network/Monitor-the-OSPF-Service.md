@@ -3,7 +3,7 @@ title: Monitor the OSPF Service
 author: Cumulus Networks
 weight: 169
 aliases:
- - /display/NETQ22/Monitor-the-OSPF-Service
+ - /display/NETQ/Monitor+the+OSPF+Service
  - /pages/viewpage.action?pageId=12321517
 pageID: 12321517
 product: Cumulus NetQ

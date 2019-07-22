@@ -3,7 +3,7 @@ title: NetQ Management
 author: Cumulus Networks
 weight: 91
 aliases:
- - /display/NETQ22/NetQ-Management
+ - /display/NETQ/NetQ+Management
  - /pages/viewpage.action?pageId=12321950
 pageID: 12321950
 product: Cumulus NetQ

@@ -3,7 +3,7 @@ title: Monitor the EVPN Service
 author: Cumulus Networks
 weight: 163
 aliases:
- - /display/NETQ22/Monitor-the-EVPN-Service
+ - /display/NETQ/Monitor+the+EVPN+Service
  - /pages/viewpage.action?pageId=12321294
 pageID: 12321294
 product: Cumulus NetQ

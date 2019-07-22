@@ -3,7 +3,7 @@ title: Early Access Features
 author: Cumulus Networks
 weight: 53
 aliases:
- - /display/NETQ22/Early-Access-Features
+ - /display/NETQ/Early+Access+Features
  - /pages/viewpage.action?pageId=12321063
 pageID: 12321063
 product: Cumulus NetQ

@@ -3,7 +3,7 @@ title: NetQ Command Line Overview
 author: Cumulus Networks
 weight: 31
 aliases:
- - /display/NETQ22/NetQ-Command-Line-Overview
+ - /display/NETQ/NetQ+Command+Line+Overview
  - /pages/viewpage.action?pageId=12321059
 pageID: 12321059
 product: Cumulus NetQ

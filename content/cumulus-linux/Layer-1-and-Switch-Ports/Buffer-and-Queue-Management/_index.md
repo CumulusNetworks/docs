@@ -3,7 +3,7 @@ title: Buffer and Queue Management
 author: Cumulus Networks
 weight: 93
 aliases:
- - /display/CL37/Buffer-and-Queue-Management
+ - /display/DOCS/Buffer+and+Queue+Management
  - /pages/viewpage.action?pageId=8363032
 pageID: 8363032
 product: Cumulus Linux

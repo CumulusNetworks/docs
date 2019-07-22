@@ -3,7 +3,7 @@ title: Policy-based Routing
 author: Cumulus Networks
 weight: 187
 aliases:
- - /display/CL37/Policy-based-Routing
+ - /display/DOCS/Policy+based+Routing
  - /pages/viewpage.action?pageId=8362974
 pageID: 8362974
 product: Cumulus Linux

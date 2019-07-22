@@ -13,24 +13,26 @@ siteSlug: cumulus-linux
 ---
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 
-## Serial Console</span>
+## Serial Console
 
 The serial console can be a useful tool for debugging issues, especially
-when you find yourself rebooting the switch often or if you don’t have a
+when you find yourself rebooting the switch often or if you do not have a
 reliable network connection.
 
 The default serial console baud rate is 115200, which is the baud rate
 [ONIE](http://opencomputeproject.github.io/onie/) uses.
 
-### Configure the Serial Console on ARM Switches</span>
+### Configure the Serial Console on ARM Switches
 
 On ARM switches, the U-Boot environment variable `baudrate` identifies
 the baud rate of the serial console. To change the `baudrate` variable,
 use the `fw_setenv` command:
 
-    cumulus@switch:~$ sudo fw_setenv baudrate 9600
-    Updating environment variable: `baudrate'
-    Proceed with update [N/y]? y
+```
+cumulus@switch:~$ sudo fw_setenv baudrate 9600
+Updating environment variable: `baudrate'
+Proceed with update [N/y]? y
+```
 
 You must reboot the switch for the `baudrate` change to take effect.
 
@@ -54,7 +56,7 @@ The valid values for `baudrate` are:
 
   - 115200
 
-### Configure the Serial Console on x86 Switches</span>
+### Configure the Serial Console on x86 Switches
 
 On x86 switches, you configure serial console baud rate by editing
 `grub`.
@@ -93,23 +95,54 @@ To change the serial console baud rate:
     `/etc/default/grub` are as follows; replace the *115200* value with
     a valid value specified above in the `--speed` variable in the first
     line and in the `console` variable in the second line:
-
-        GRUB_SERIAL_COMMAND="serial --port=0x2f8 --speed=115200 --word=8 --parity=no --stop=1"              
-        GRUB_CMDLINE_LINUX="console=ttyS1,115200n8 cl_platform=accton_as5712_54x"
-
+```
+    GRUB_SERIAL_COMMAND="serial --port=0x2f8 --speed=115200 --word=8 --parity=no --stop=1"              
+    GRUB_CMDLINE_LINUX="console=ttyS1,115200n8 cl_platform=accton_as5712_54x"
+```
 2.  After you save your changes to the grub configuration, type the
     following at the command prompt:
-
-        cumulus@switch:~$ update-grub
-
-3.  If you plan on accessing your switch's BIOS over the serial console,
+```
+    cumulus@switch:~$ update-grub
+```
+3.  If you plan on accessing the switch BIOS over the serial console,
     you need to update the baud rate in the switch BIOS. For more
     information, see [this knowledge base
     article](https://support.cumulusnetworks.com/hc/en-us/articles/203884473).
 
 4.  Reboot the switch.
 
-## Show General System Information</span>
+### Change the Console Log level
+
+By default, the console prints all log messages except debug messages. To tune console logging to be less verbose so that certain levels of messages are not printed, run the `dmesg -n <level>` command, where the log levels are:
+
+Level   |  Description
+--------|  -----------
+0       |   Emergency messages (the system is about to crash or is unstable).       
+1       |   Serious conditions; you must take action immediately.
+2       |   Critical conditions (serious hardware or software failures).
+3       |   Error conditions (often used by drivers to indicate difficulties with the hardware).
+4       |   Warning messages (nothing serious but might indicate problems).
+5       |   Message notifications for many conditions, including security events.
+6       |   Informational messages.
+7       |   Debug messages.
+
+Only messages with a value lower than the level specified are printed to the console. For example, if you specify level **3**, only level 2 (critical conditions), level 1 (serious conditions), and level 0 (emergency messages) are printed to the console:
+
+```
+cumulus@switch:~$ sudo dmesg -n 3
+```
+
+Alternatively, you can run the the `dmesg --console-level <level>` command, where the log levels are `emerg`, `alert`, `crit`, `err`, `warn`,  `notice`, `info`, or `debug`. For example, to print critical conditions, run the following command:
+
+```
+cumulus@switch:~$ sudo dmesg --console-level crit
+```
+
+The `dmesg` command is applied until the next reboot.
+
+For more details about the `dmesg` command, run `man dmesg`.
+
+## Show General System Information
 
 Two commands are helpful for getting general information about the
 switch and the version of Cumulus Linux you are running. These are
@@ -119,33 +152,34 @@ request to Cumulus Networks.
 For information about the version of Cumulus Linux running on the
 switch, run `net show version`, which displays the contents of
 `/etc/lsb-release`:
-
-    cumulus@switch:~$ net show version
-    NCLU_VERSION=1.0
-    DISTRIB_ID="Cumulus Linux"
-    DISTRIB_RELEASE=3.4.0
-    DISTRIB_DESCRIPTION="Cumulus Linux 3.4.0"
-
+```
+cumulus@switch:~$ net show version
+NCLU_VERSION=1.0
+DISTRIB_ID="Cumulus Linux"
+DISTRIB_RELEASE=3.4.0
+DISTRIB_DESCRIPTION="Cumulus Linux 3.4.0"
+```
 For general information about the switch, run `net show system`, which
 gathers information about the switch from a number of files in the
 system:
-
-    cumulus@switch:~$ net show system
-    Hostname......... celRED
+```
+cumulus@switch:~$ net show system
+Hostname......... celRED
      
-    Build............ Cumulus Linux 3.7.4~1551312781.35d3264
-    Uptime........... 8 days, 12:24:01.770000
+Build............ Cumulus Linux 3.7.4~1551312781.35d3264
+Uptime........... 8 days, 12:24:01.770000
 
-    Model............ Cel REDSTONE
-    CPU.............. x86_64 Intel Atom C2538 2.4 GHz
-    Memory........... 4GB
-    Disk............. 14.9GB
-    ASIC............. Broadcom Trident2 BCM56854
-    Ports............ 48 x 10G-SFP+ & 6 x 40G-QSFP+
-    Base MAC Address. a0:00:00:00:00:50
-    Serial Number.... A1010B2A011212AB000001
+Model............ Cel REDSTONE
+CPU.............. x86_64 Intel Atom C2538 2.4 GHz
+Memory........... 4GB
+Disk............. 14.9GB
+ASIC............. Broadcom Trident2 BCM56854
+Ports............ 48 x 10G-SFP+ & 6 x 40G-QSFP+
+Base MAC Address. a0:00:00:00:00:50
+Serial Number.... A1010B2A011212AB000001
+```
 
-## Diagnostics Using cl-support</span>
+## Diagnostics Using cl-support
 
 You can use `cl-support` to generate a single export file that contains
 various details and the configuration from a switch. This is useful for
@@ -155,56 +189,60 @@ File](/cumulus-linux/Monitoring-and-Troubleshooting/Understanding-the-cl-support
 
 You should run `cl-support` before you submit a support request to
 Cumulus Networks as this file helps in the investigation of issues.
-
-    cumulus@switch:~$ sudo cl-support -h
-    Usage: cl-support [-h] [-s] [-t] [-v] [reason]...
+```
+cumulus@switch:~$ sudo cl-support -h
+Usage: cl-support [-h] [-s] [-t] [-v] [reason]...
      
-    Args:
-    [reason]: Optional reason to give for invoking cl-support.
+Args:
+[reason]: Optional reason to give for invoking cl-support.
              Saved into tarball's cmdline.args file.
-    Options:
-    -h: Print this usage statement
-    -s: Security sensitive collection
-    -t: User filename tag
-    -v: Verbose
-    -e MODULES: Enable modules. Comma separated module list (run with -e help for module names)
-    -d MODULES: Disable modules. Comma separated module list (run with -d help for module names)
+Options:
+-h: Print this usage statement
+-s: Security sensitive collection
+-t: User filename tag
+-v: Verbose
+-e MODULES: Enable modules. Comma separated module list (run with -e help for module names)
+-d MODULES: Disable modules. Comma separated module list (run with -d help for module names)
+```
 
-## Send Log Files to a syslog Server</span>
+## Send Log Files to a syslog Server
 
-### NCLU</span>
+### NCLU
 
 The remote syslog server can be configured on the switch using the
 following configuration:
-
-    cumulus@switch:~$ net add syslog host ipv4 192.168.0.254 port udp 514
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add syslog host ipv4 192.168.0.254 port udp 514
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 This creates a file called `/etc/rsyslog.d/11-remotesyslog.conf` in the
 `rsyslog` directory. The file has the following content:
-
-    cumulus@switch:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
-    # This file was automatically generated by NCLU.
-    *.*   @192.168.0.254:514   # UDP
+```
+cumulus@switch:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
+# This file was automatically generated by NCLU.
+*.*   @192.168.0.254:514   # UDP
+```
 
 {{%notice note%}}
 
 NCLU cannot configure a remote syslog if management VRF is enabled on
 the switch. Refer to [Writing to syslog with Management VRF
-Enabled](#src-8362592_MonitoringandTroubleshooting-mgmtvrf) below.
+Enabled](#write-to-syslog-with-management-vrf-enabled) below.
 
 {{%/notice%}}
 
-### Log Technical Details</span>
+### Log Technical Details
 
 Logging on Cumulus Linux is done with
 [rsyslog](http://www.rsyslog.com/). `rsyslog` provides both local
 logging to the `syslog` file as well as the ability to export logs to an
 external `syslog` server. High precision timestamps are enabled for all
 `rsyslog` log files; here's an example:
-
-    2015-08-14T18:21:43.337804+00:00 cumulus switchd[3629]: switchd.c:1409 switchd version 1.0-cl2.5+5
+```
+2015-08-14T18:21:43.337804+00:00 cumulus switchd[3629]: switchd.c:1409 switchd version 1.0-cl2.5+5
+```
 
 There are applications in Cumulus Linux that could write directly to a
 log file without going through `rsyslog`. These files are typically
@@ -221,15 +259,15 @@ by the last line in `/etc/rsyslog.d/99-syslog.conf`.
 
 {{%/notice%}}
 
-### Local Logging</span>
+### Local Logging
 
 Most logs within Cumulus Linux are sent through `rsyslog`, which then
 writes them to files in the `/var/log` directory. There are default
 rules in the `/etc/rsyslog.d/` directory that define where the logs are
 written:
 
-| Rule              | Purpose                                                                                                                                                       |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Rule              | Purpose                             |
+| ----------------- | ------------------------------------------------------------------------------|
 | 10-rules.conf     | Sets defaults for log messages, include log format and log rate limits.                                                                                       |
 | 15-crit.conf      | Logs crit, alert or emerg log messages to `/var/log/crit.log` to ensure they are not rotated away rapidly.                                                    |
 | 20-clagd.conf     | Logs `clagd` messages to `/var/log/clagd.log` for [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG).                                       |
@@ -247,7 +285,7 @@ that do not use `rsyslog` write to their own log files within the
 [Troubleshooting Log
 Files](/cumulus-linux/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files).
 
-### Enable Remote syslog</span>
+### Enable Remote syslog
 
 If you need to send other log files — such as `switchd` logs — to a
 `syslog` server, do the following:
@@ -297,19 +335,21 @@ Do not use the `imfile` module with any file written by `rsyslogd`.
     {{%/notice%}}
 
 2.  Restart `rsyslog`.
+```
+   cumulus@switch:~$ sudo systemctl restart rsyslog.service
+```
 
-        cumulus@switch:~$ sudo systemctl restart rsyslog.service
-
-### Write to syslog with Management VRF Enabled</span>
+### Write to syslog with Management VRF Enabled
 
 You can write to syslog with [management
 VRF](/cumulus-linux/Layer-3/Management-VRF) enabled by applying the
 following configuration; this configuration is commented out in the
 `/etc/rsyslog.d/11-remotesyslog.conf` file:
-
-    cumulus@switch:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
-    ## Copy all messages to the remote syslog server at 192.168.0.254 port 514
-    action(type="omfwd" Target="192.168.0.254" Device="mgmt" Port="514" Protocol="udp")
+```
+cumulus@switch:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
+## Copy all messages to the remote syslog server at 192.168.0.254 port 514
+action(type="omfwd" Target="192.168.0.254" Device="mgmt" Port="514" Protocol="udp")
+```
 
 For each syslog server, configure a unique ` action  `line. For example,
 to configure two syslog servers at 192.168.0.254 and 10.0.0.1:
@@ -319,7 +359,7 @@ to configure two syslog servers at 192.168.0.254 and 10.0.0.1:
     action(type="omfwd" Target="192.168.0.254" Device="mgmt" Port="514" Protocol="udp")
     action(type="omfwd" Target="10.0.0.1" Device="mgmt" Port="514" Protocol="udp")
 
-### Rate-limit syslog Messages</span>
+### Rate-limit syslog Messages
 
 If you want to limit the number of `syslog` messages that can be written
 to the `syslog` file from individual processes, add the following
@@ -332,43 +372,44 @@ documentation](http://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxso
           SysSock.RateLimit.Interval="2" SysSock.RateLimit.Burst="50")
 <details>
 <summary>The following test script shows an example of rate-limit output
-in Cumulus Linux ... </summary>
+in Cumulus Linux</summary>
+```
+root@leaf1:mgmt-vrf:/home/cumulus# cat ./syslog.py
+#!/usr/bin/python
+import syslog
+message_count=100
+print "Sending %s Messages..."%(message_count)
+for i in range(0,message_count):
+syslog.syslog("Message Number:%s"%(i))
+print "DONE."
 
-    root@leaf1:mgmt-vrf:/home/cumulus# cat ./syslog.py
-    #!/usr/bin/python
-    import syslog
-    message_count=100
-    print "Sending %s Messages..."%(message_count)
-    for i in range(0,message_count):
-    syslog.syslog("Message Number:%s"%(i))
-    print "DONE."
+root@leaf1:mgmt-vrf:/home/cumulus# ./syslog.py
+Sending 100 Messages...
+DONE.
 
-    root@leaf1:mgmt-vrf:/home/cumulus# ./syslog.py
-    Sending 100 Messages...
-    DONE.
-
-    root@leaf1:mgmt-vrf:/home/cumulus# tail -n 60 /var/log/syslog
-    2017-02-22T19:59:50.043342+00:00 leaf1 syslog.py[22830]: Message Number:0
-    2017-02-22T19:59:50.043723+00:00 leaf1 syslog.py[22830]: Message Number:1
-    2017-02-22T19:59:50.043941+00:00 leaf1 syslog.py[22830]: Message Number:2
-    2017-02-22T19:59:50.044565+00:00 leaf1 syslog.py[22830]: Message Number:3
-    2017-02-22T19:59:50.044830+00:00 leaf1 syslog.py[22830]: Message Number:4
-    2017-02-22T19:59:50.045680+00:00 leaf1 syslog.py[22830]: Message Number:5
-    <...snip...>
-    2017-02-22T19:59:50.056727+00:00 leaf1 syslog.py[22830]: Message Number:45
-    2017-02-22T19:59:50.057599+00:00 leaf1 syslog.py[22830]: Message Number:46
-    2017-02-22T19:59:50.057741+00:00 leaf1 syslog.py[22830]: Message Number:47
-    2017-02-22T19:59:50.057936+00:00 leaf1 syslog.py[22830]: Message Number:48
-    2017-02-22T19:59:50.058125+00:00 leaf1 syslog.py[22830]: Message Number:49
-    2017-02-22T19:59:50.058324+00:00 leaf1 rsyslogd-2177: imuxsock[pid 22830]: begin to drop messages due to rate-limiting
+root@leaf1:mgmt-vrf:/home/cumulus# tail -n 60 /var/log/syslog
+2017-02-22T19:59:50.043342+00:00 leaf1 syslog.py[22830]: Message Number:0
+2017-02-22T19:59:50.043723+00:00 leaf1 syslog.py[22830]: Message Number:1
+2017-02-22T19:59:50.043941+00:00 leaf1 syslog.py[22830]: Message Number:2
+2017-02-22T19:59:50.044565+00:00 leaf1 syslog.py[22830]: Message Number:3
+2017-02-22T19:59:50.044830+00:00 leaf1 syslog.py[22830]: Message Number:4
+2017-02-22T19:59:50.045680+00:00 leaf1 syslog.py[22830]: Message Number:5
+<...snip...>
+2017-02-22T19:59:50.056727+00:00 leaf1 syslog.py[22830]: Message Number:45
+2017-02-22T19:59:50.057599+00:00 leaf1 syslog.py[22830]: Message Number:46
+2017-02-22T19:59:50.057741+00:00 leaf1 syslog.py[22830]: Message Number:47
+2017-02-22T19:59:50.057936+00:00 leaf1 syslog.py[22830]: Message Number:48
+2017-02-22T19:59:50.058125+00:00 leaf1 syslog.py[22830]: Message Number:49
+2017-02-22T19:59:50.058324+00:00 leaf1 rsyslogd-2177: imuxsock[pid 22830]: begin to drop messages due to rate-limiting
+```
 </details>
-### Harmless syslog Error: Failed to reset devices.list</span>
+### Harmless syslog Error: Failed to reset devices.list
 
 The following message gets logged to `/var/log/syslog` when you run
 `systemctl daemon-reload` and during system boot:
-
-    systemd[1]: Failed to reset devices.list on /system.slice: Invalid argument
-
+```
+systemd[1]: Failed to reset devices.list on /system.slice: Invalid argument
+```
 This message is harmless, and can be ignored. It is logged when
 `systemd` attempts to change cgroup attributes that are read only. The
 upstream version of systemd has been modified to not log this message by
@@ -378,28 +419,29 @@ The `systemctl daemon-reload` command is often issued when Debian
 packages are installed, so the message may be seen multiple times when
 upgrading packages.
 
-### Syslog Troubleshooting Tips</span>
+### Syslog Troubleshooting Tips
 
 You can use the following commands to troubleshoot `syslog` issues.
 
-#### Verifying that rsyslog is Running</span>
+#### Verifying that rsyslog is Running
 
 To verify that the `rsyslog` service is running, use the `sudo systemctl
 status rsyslog.service` command:
-
-     cumulus@leaf01:mgmt-vrf:~$ sudo systemctl status rsyslog.service
-     rsyslog.service - System Logging Service
-       Loaded: loaded (/lib/systemd/system/rsyslog.service; enabled)
-       Active: active (running) since Sat 2017-12-09 00:48:58 UTC; 7min ago
-         Docs: man:rsyslogd(8)
-               http://www.rsyslog.com/doc/
-     Main PID: 11751 (rsyslogd)
-       CGroup: /system.slice/rsyslog.service
-               └─11751 /usr/sbin/rsyslogd -n
+```
+cumulus@leaf01:mgmt-vrf:~$ sudo systemctl status rsyslog.service
+rsyslog.service - System Logging Service
+  Loaded: loaded (/lib/systemd/system/rsyslog.service; enabled)
+  Active: active (running) since Sat 2017-12-09 00:48:58 UTC; 7min ago
+    Docs: man:rsyslogd(8)
+          http://www.rsyslog.com/doc/
+Main PID: 11751 (rsyslogd)
+  CGroup: /system.slice/rsyslog.service
+         └─11751 /usr/sbin/rsyslogd -n
      
-    Dec 09 00:48:58 leaf01 systemd[1]: Started System Logging Service.
+Dec 09 00:48:58 leaf01 systemd[1]: Started System Logging Service.
+```
 
-#### Verify your rsyslog Configuration.</span>
+#### Verify your rsyslog Configuration
 
 After making manual changes to any files in the `/etc/rsyslog.d`
 directory, use the `sudo rsyslogd -N1` command to identify any errors in
@@ -409,60 +451,64 @@ starting.
 In the following example, a closing parenthesis is missing in the
 `11-remotesyslog.conf` file, which is used to configure `syslog` for
 management VRF:
-
-    cumulus@leaf01:mgmt-vrf:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
-    action(type="omfwd" Target="192.168.0.254" Device="mgmt" Port="514" Protocol="udp"
+```
+cumulus@leaf01:mgmt-vrf:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
+action(type="omfwd" Target="192.168.0.254" Device="mgmt" Port="514" Protocol="udp"
      
-    cumulus@leaf01:mgmt-vrf:~$ sudo rsyslogd -N1
-    rsyslogd: version 8.4.2, config validation run (level 1), master config /etc/rsyslog.conf
-    rsyslogd: error during parsing file /etc/rsyslog.d/15-crit.conf, on or before line 3: invalid character '$' in object definition - is there an invalid escape sequence somewhere? [try http://www.rsyslog.com/e/2207 ]
-    rsyslogd: error during parsing file /etc/rsyslog.d/15-crit.conf, on or before line 3: syntax error on token 'crit_log' [try http://www.rsyslog.com/e/2207 ]
-
+cumulus@leaf01:mgmt-vrf:~$ sudo rsyslogd -N1
+rsyslogd: version 8.4.2, config validation run (level 1), master config /etc/rsyslog.conf
+rsyslogd: error during parsing file /etc/rsyslog.d/15-crit.conf, on or before line 3: invalid character '$' in object definition - is there an invalid escape sequence somewhere? [try http://www.rsyslog.com/e/2207 ]
+rsyslogd: error during parsing file /etc/rsyslog.d/15-crit.conf, on or before line 3: syntax error on token 'crit_log' [try http://www.rsyslog.com/e/2207 ]
+```
 After correcting the invalid syntax, issuing the ` sudo  ``rsyslogd -N1`
 command produces the following output.
+```
+cumulus@leaf01:mgmt-vrf:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
+action(type="omfwd" Target="192.168.0.254" Device="mgmt" Port="514" Protocol="udp")
+cumulus@leaf01:mgmt-vrf:~$ sudo rsyslogd -N1
+rsyslogd: version 8.4.2, config validation run (level 1), master config /etc/rsyslog.conf
+rsyslogd: End of config validation run. Bye.
+```
 
-    cumulus@leaf01:mgmt-vrf:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
-    action(type="omfwd" Target="192.168.0.254" Device="mgmt" Port="514" Protocol="udp")
-    cumulus@leaf01:mgmt-vrf:~$ sudo rsyslogd -N1
-    rsyslogd: version 8.4.2, config validation run (level 1), master config /etc/rsyslog.conf
-    rsyslogd: End of config validation run. Bye.
-
-#### tcpdump</span>
+#### tcpdump
 
 If a syslog server is not accessible to validate that `syslog` messages
 are being exported, you can use `tcpdump`.
 
 In the following example, a syslog server has been configured at
 192.168.0.254 for UDP syslogs on port 514:
-
-    cumulus@leaf01:mgmt-vrf:~$ sudo tcpdump -i eth0 host 192.168.0.254 and udp port 514
+```
+cumulus@leaf01:mgmt-vrf:~$ sudo tcpdump -i eth0 host 192.168.0.254 and udp port 514
+```
 
 A simple way to generate `syslog` messages is to use `sudo` in another
 session, such as `sudo date`. Using `sudo` generates an `authpriv` log.
-
-    cumulus@leaf01:mgmt-vrf:~$ sudo tcpdump -i eth0 host 192.168.0.254 and udp port 514
-    tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
-    listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
-    00:57:15.356836 IP leaf01.lab.local.33875 > 192.168.0.254.syslog: SYSLOG authpriv.notice, length: 105
-    00:57:15.364346 IP leaf01.lab.local.33875 > 192.168.0.254.syslog: SYSLOG authpriv.info, length: 103
-    00:57:15.369476 IP leaf01.lab.local.33875 > 192.168.0.254.syslog: SYSLOG authpriv.info, length: 85
+```
+cumulus@leaf01:mgmt-vrf:~$ sudo tcpdump -i eth0 host 192.168.0.254 and udp port 514
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
+00:57:15.356836 IP leaf01.lab.local.33875 > 192.168.0.254.syslog: SYSLOG authpriv.notice, length: 105
+00:57:15.364346 IP leaf01.lab.local.33875 > 192.168.0.254.syslog: SYSLOG authpriv.info, length: 103
+00:57:15.369476 IP leaf01.lab.local.33875 > 192.168.0.254.syslog: SYSLOG authpriv.info, length: 85
+```
 
 To see the contents of the `syslog` file, use the `tcpdump -X` option:
+```
+cumulus@leaf01:mgmt-vrf:~$ sudo tcpdump -i eth0 host 192.168.0.254 and udp port 514 -X -c 3
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
+00:59:15.980048 IP leaf01.lab.local.33875 > 192.168.0.254.syslog: SYSLOG authpriv.notice, length: 105
+0x0000: 4500 0085 33ee 4000 4011 8420 c0a8 000b E...3.@.@.......
+0x0010: c0a8 00fe 8453 0202 0071 9d18 3c38 353e .....S...q..<85>
+0x0020: 4465 6320 2039 2030 303a 3539 3a31 3520 Dec..9.00:59:15.
+0x0030: 6c65 6166 3031 2073 7564 6f3a 2020 6375 leaf01.sudo:..cu
+0x0040: 6d75 6c75 7320 3a20 5454 593d 7074 732f mulus.:.TTY=pts/
+0x0050: 3120 3b20 5057 443d 2f68 6f6d 652f 6375 1.;.PWD=/home/cu
+0x0060: 6d75 6c75 7320 3b20 5553 4552 3d72 6f6f mulus.;.USER=roo
+0x0070: 7420 3b20 434f 4d4d 414e 443d 2f62 696e t.;.COMMAND=/bin
+0x0080: 2f64 6174 65 /date
+```
 
-    cumulus@leaf01:mgmt-vrf:~$ sudo tcpdump -i eth0 host 192.168.0.254 and udp port 514 -X -c 3
-    tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
-    listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
-    00:59:15.980048 IP leaf01.lab.local.33875 > 192.168.0.254.syslog: SYSLOG authpriv.notice, length: 105
-    0x0000: 4500 0085 33ee 4000 4011 8420 c0a8 000b E...3.@.@.......
-    0x0010: c0a8 00fe 8453 0202 0071 9d18 3c38 353e .....S...q..<85>
-    0x0020: 4465 6320 2039 2030 303a 3539 3a31 3520 Dec..9.00:59:15.
-    0x0030: 6c65 6166 3031 2073 7564 6f3a 2020 6375 leaf01.sudo:..cu
-    0x0040: 6d75 6c75 7320 3a20 5454 593d 7074 732f mulus.:.TTY=pts/
-    0x0050: 3120 3b20 5057 443d 2f68 6f6d 652f 6375 1.;.PWD=/home/cu
-    0x0060: 6d75 6c75 7320 3b20 5553 4552 3d72 6f6f mulus.;.USER=roo
-    0x0070: 7420 3b20 434f 4d4d 414e 443d 2f62 696e t.;.COMMAND=/bin
-    0x0080: 2f64 6174 65 /date
-
-## Next Steps</span>
+## Next Steps
 
 The links below discuss more specific monitoring topics.

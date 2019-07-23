@@ -3,7 +3,7 @@ title: Equal Cost Multipath Load Sharing - Hardware ECMP
 author: Cumulus Networks
 weight: 191
 aliases:
- - /display/CL37/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP
+ - /display/DOCS/Equal+Cost+Multipath+Load+Sharing+Hardware+ECMP
  - /pages/viewpage.action?pageId=8362929
 pageID: 8362929
 product: Cumulus Linux
@@ -100,12 +100,12 @@ destination IP, layer 4 source port and layer 4 destination port.
 
 If any field is omitted, `cl-ecmpcalc` fails.
 
-    $ sudo cl-ecmpcalc -i swp1 -s 10.0.0.1 -d 10.0.0.1 -p tcp 
+    $ sudo cl-ecmpcalc -i swp1 -s 10.0.0.1 -d 10.0.0.1 -p tcp
     ecmpcalc: will query hardware
-    usage: cl-ecmpcalc [-h] [-v] [-p PROTOCOL] [-s SRC] [--sport SPORT] [-d DST] 
+    usage: cl-ecmpcalc [-h] [-v] [-p PROTOCOL] [-s SRC] [--sport SPORT] [-d DST]
                        [--dport DPORT] [--vid VID] [-i IN_INTERFACE]
                        [--sportid SPORTID] [--smodid SMODID] [-o OUT_INTERFACE]
-                       [--dportid DPORTID] [--dmodid DMODID] [--hardware] 
+                       [--dportid DPORTID] [--dmodid DMODID] [--hardware]
                        [--nohardware] [-hs HASHSEED]
                        [-hf HASHFIELDS [HASHFIELDS ...]]
                        [--hashfunction {crc16-ccitt,crc16-bisync}] [-e EGRESS]
@@ -143,7 +143,7 @@ when additional next hops are added.
 
 {{% imgOld 2 %}}
 
-  
+
 A new next hop is added and a new hash bucket is created. As a result,
 the hash and hash bucket assignment changed, causing the existing flows
 to be sent to different next hops.
@@ -158,7 +158,7 @@ existing flow.
 
 {{% imgOld 4 %}}
 
-  
+
 A next hop fails and the next hop and hash bucket are removed. The
 remaining next hops may be reassigned.
 
@@ -256,7 +256,7 @@ number of hash buckets does not change.
 
 {{% imgOld 6 %}}
 
-  
+
 With 12 buckets assigned and four next hops, instead of reducing the
 number of buckets — which would impact flows to known good hosts — the
 remaining next hops replace the failed next hop.
@@ -319,19 +319,19 @@ routes log an error and are not installed.
 To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 1.  Enable resilient hashing:
-    
+
         # Enable resilient hashing
         resilient_hash_enable = TRUE
 
 2.  **(Optional)** Edit the number of hash buckets:
-    
+
         # Resilient hashing flowset entries per ECMP group
         # Valid values - 64, 128, 256, 512, 1024
         resilient_hash_entries_ecmp = 256
 
 3.  [Restart](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd)
     the `switchd` service:
-    
+
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
 <article id="html-search-results" class="ht-content" style="display: none;">

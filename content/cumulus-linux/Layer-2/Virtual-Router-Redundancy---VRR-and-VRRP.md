@@ -3,7 +3,7 @@ title: Virtual Router Redundancy - VRR and VRRP
 author: Cumulus Networks
 weight: 127
 aliases:
- - /display/CL37/Virtual-Router-Redundancy-VRR-and-VRRP
+ - /display/DOCS/Virtual+Router+Redundancy+VRR+and+VRRP
  - /pages/viewpage.action?pageId=8362691
 pageID: 8362691
 product: Cumulus Linux

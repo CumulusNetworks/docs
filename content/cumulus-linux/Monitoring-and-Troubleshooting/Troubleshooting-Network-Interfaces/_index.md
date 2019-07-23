@@ -3,7 +3,7 @@ title: Troubleshooting Network Interfaces
 author: Cumulus Networks
 weight: 227
 aliases:
- - /display/CL37/Troubleshooting-Network-Interfaces
+ - /display/DOCS/Troubleshooting+Network+Interfaces
  - /pages/viewpage.action?pageId=8362603
 pageID: 8362603
 product: Cumulus Linux
@@ -112,27 +112,27 @@ An easy way to debug and get details about template errors is to use the
     cumulus@switch:~$ sudo mako-render /etc/network/interfaces
     # This file describes the network interfaces available on your system
     # and how to activate them. For more information, see interfaces(5).
-      
+
     # The loopback network interface
     auto lo
     iface lo inet loopback
-      
+
     # The primary network interface
     auto eth0
     iface eth0 inet dhcp
     #auto eth1
     #iface eth1 inet dhcp
-      
+
     # Include any platform-specific interface configuration
     source /etc/network/interfaces.d/*.if
-      
+
     # ssim2 added
     auto swp45
     iface swp45
      
     auto swp46
     iface swp46
-      
+
     cumulus@switch:~$ sudo mako-render /etc/network/interfaces.d/<interfaces_stub_file>
 
 ## ifdown Cannot Find an Interface that Exists
@@ -151,7 +151,7 @@ was interrupted before it updated the state database. For example:
     br0     8000.44383900279f   yes     downlink
                                 peerlink
      
-    cumulus@switch:~$ sudo ifdown br0 --use-current-config 
+    cumulus@switch:~$ sudo ifdown br0 --use-current-config
 
 ## Remove All References to a Child Interface
 
@@ -202,11 +202,11 @@ to physical interface swp1. If you want to change the MTU to 9000 on the
 VLAN interface, you must include the new MTU on the lower interface swp1
 as well.
 
-    auto swp1.100 
-    iface swp1.100 
-        mtu 9000 
+    auto swp1.100
+    iface swp1.100
+        mtu 9000
      
-    auto swp1 
+    auto swp1
     iface swp1  
         mtu 9000
 
@@ -224,9 +224,9 @@ bridge`. There was an error adding the bond *host2* to the bridge named
     addr flush dev host2
     link set dev host1 master bridge
     addr flush dev host1
-    ]'(RTNETLINK answers: Invalid argument 
-    Command failed -:1) 
-    warning: bridge configuration failed (missing ports) 
+    ]'(RTNETLINK answers: Invalid argument
+    Command failed -:1)
+    warning: bridge configuration failed (missing ports)
 
 ## "RTNETLINK answers: Invalid argument" Error when Adding a Port to a Bridge
 

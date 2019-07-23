@@ -3,7 +3,7 @@ title: Upgrade from NetQ 2.0/2.1 to NetQ 2.2.x
 author: Cumulus Networks
 weight: 125
 aliases:
- - /display/NETQ22/Upgrade-from-NetQ-2.0+2.1-to-NetQ-2.2.x
+ - /display/NETQ/Upgrade+from+NetQ+2.0+2.1+to+NetQ+2.2.x
  - /pages/viewpage.action?pageId=12321007
 pageID: 12321007
 product: Cumulus NetQ

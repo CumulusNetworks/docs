@@ -3,7 +3,7 @@ title: Voice VLAN
 author: Cumulus Networks
 weight: 335
 aliases:
- - /display/CL37/Voice-VLAN
+ - /display/DOCS/Voice+VLAN
  - /pages/viewpage.action?pageId=8362651
 pageID: 8362651
 product: Cumulus Linux

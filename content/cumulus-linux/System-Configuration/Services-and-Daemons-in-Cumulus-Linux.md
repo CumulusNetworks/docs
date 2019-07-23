@@ -3,7 +3,7 @@ title: Services and Daemons in Cumulus Linux
 author: Cumulus Networks
 weight: 71
 aliases:
- - /display/CL37/Services-and-Daemons-in-Cumulus-Linux
+ - /display/DOCS/Services+and+Daemons+in+Cumulus+Linux
  - /pages/viewpage.action?pageId=8362578
 pageID: 8362578
 product: Cumulus Linux

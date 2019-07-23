@@ -3,7 +3,7 @@ title: Hardware-enabled DDOS Protection
 author: Cumulus Networks
 weight: 323
 aliases:
- - /display/CL37/Hardware-enabled-DDOS-Protection
+ - /display/DOCS/Hardware+enabled+DDOS+Protection
  - /pages/viewpage.action?pageId=8363034
 pageID: 8363034
 product: Cumulus Linux

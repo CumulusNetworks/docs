@@ -3,7 +3,7 @@ title: Monitor Physical Layer Components
 author: Cumulus Networks
 weight: 37
 aliases:
- - /display/NETQ22/Monitor-Physical-Layer-Components
+ - /display/NETQ/Monitor+Physical+Layer+Components
  - /pages/viewpage.action?pageId=12321045
 pageID: 12321045
 product: Cumulus NetQ

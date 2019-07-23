@@ -3,7 +3,7 @@ title: Hybrid Cloud Connectivity with QinQ and VXLANs
 author: Cumulus Networks
 weight: 153
 aliases:
- - /display/CL37/Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs
+ - /display/DOCS/Hybrid+Cloud+Connectivity+with+QinQ+and+VXLANs
  - /pages/viewpage.action?pageId=8362784
 pageID: 8362784
 product: Cumulus Linux

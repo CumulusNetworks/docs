@@ -3,7 +3,7 @@ title: Using NCLU to Troubleshoot Your Network Configuration
 author: Cumulus Networks
 weight: 471
 aliases:
- - /display/CL37/Using-NCLU-to-Troubleshoot-Your-Network-Configuration
+ - /display/DOCS/Using+NCLU+to+Troubleshoot+Your+Network+Configuration
  - /pages/viewpage.action?pageId=8362599
 pageID: 8362599
 product: Cumulus Linux
@@ -21,7 +21,7 @@ configuration.
 Running `net show` and pressing TAB displays all available command line
 arguments usable by `net`. The output looks like this:
 
-    cumulus@switch:~$ net show <TAB> 
+    cumulus@switch:~$ net show <TAB>
         bgp            :  Border Gateway Protocol
         bridge         :  A layer2 bridge
         clag           :  Multi-Chassis Link Aggregation
@@ -71,7 +71,7 @@ interface`:
 Whereas `net show interface all` displays every interface regardless of
 state:
 
-    cumulus@switch:~$ net show interface all 
+    cumulus@switch:~$ net show interface all
            Name     Speed    MTU    Mode           Summary
     -----  -------  -------  -----  -------------  --------------------------------------
     UP     lo       N/A      65536  Loopback       IP: 10.0.0.11/32, 127.0.0.1/8, ::1/128
@@ -102,7 +102,7 @@ system`:
      
     Build............ Cumulus Linux 3.7.4~1551312781.35d3264
     Uptime........... 8 days, 12:24:01.770000
-     
+
     Model............ Cel REDSTONE
     CPU.............. x86_64 Intel Atom C2538 2.4 GHz
     Memory........... 4GB

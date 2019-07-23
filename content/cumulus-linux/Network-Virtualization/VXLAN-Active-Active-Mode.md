@@ -3,7 +3,7 @@ title: VXLAN Active-Active Mode
 author: Cumulus Networks
 weight: 147
 aliases:
- - /display/CL37/VXLAN-Active-Active-Mode
+ - /display/DOCS/VXLAN+Active+Active+Mode
  - /pages/viewpage.action?pageId=8362725
 pageID: 8362725
 product: Cumulus Linux
@@ -59,7 +59,7 @@ to work correctly.
 </tr>
 <tr class="even">
 <td><p>OSPF or BGP</p></td>
-<td><p>Refer to the <a href="/display/CL37/Open+Shortest+Path+First+-+OSPF+-+Protocol">OSPF chapter</a> or the <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP">BGP chapter</a> for more detailed configuration information. Configurations for the BGP demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF">OSPF chapter</a> or the <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP">BGP chapter</a> for more detailed configuration information. Configurations for the BGP demonstration are provided below.</p></td>
 </tr>
 <tr class="odd">
 <td><p>STP</p></td>

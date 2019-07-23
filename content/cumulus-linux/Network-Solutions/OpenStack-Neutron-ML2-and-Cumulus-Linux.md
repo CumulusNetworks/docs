@@ -3,7 +3,7 @@ title: OpenStack Neutron ML2 and Cumulus Linux
 author: Cumulus Networks
 weight: 255
 aliases:
- - /display/CL37/OpenStack-Neutron-ML2-and-Cumulus-Linux
+ - /display/DOCS/OpenStack+Neutron+ML2+and+Cumulus+Linux
  - /pages/viewpage.action?pageId=8362989
 pageID: 8362989
 product: Cumulus Linux
@@ -40,7 +40,7 @@ Cumulus Linux switches, you need the following:
 ## Configure the REST API
 
 1.  Configure the relevant settings in `/etc/restapi.conf`:
-    
+
         [ML2]
         #local_bind = 10.40.10.122
         #service_node = 10.40.10.1
@@ -52,7 +52,7 @@ Cumulus Linux switches, you need the following:
 
 2.  Restart the REST API service for the configuration changes to take
     effect:
-    
+
         cumulus@switch:~$ sudo systemctl restart restserver
 
 Additional REST API calls have been added to support the configuration

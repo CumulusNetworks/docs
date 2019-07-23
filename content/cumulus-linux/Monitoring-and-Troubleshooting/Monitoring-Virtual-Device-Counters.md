@@ -3,7 +3,7 @@ title: Monitoring Virtual Device Counters
 author: Cumulus Networks
 weight: 221
 aliases:
- - /display/CL37/Monitoring-Virtual-Device-Counters
+ - /display/DOCS/Monitoring+Virtual+Device+Counters
  - /pages/viewpage.action?pageId=8362605
 pageID: 8362605
 product: Cumulus Linux
@@ -47,7 +47,7 @@ To get VNI statistics, run:
     cumulus@switch:~$ ip -s link show br-vxln16757104
     62: br-vxln16757104: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT
         link/ether 44:38:39:00:69:88 brd ff:ff:ff:ff:ff:ff
-        RX: bytes  packets  errors  dropped overrun mcast 
+        RX: bytes  packets  errors  dropped overrun mcast
         10848      158      0       0       0       0     
         TX: bytes  packets  errors  dropped carrier collsns
         27816      541      0       0       0       0
@@ -57,7 +57,7 @@ To get access statistics, run:
     cumulus@switch:~$ ip -s link show swp2s0.6       
     63: swp2s0.6@swp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln16757104 state UP mode DEFAULT
         link/ether 44:38:39:00:69:88 brd ff:ff:ff:ff:ff:ff
-        RX: bytes  packets  errors  dropped overrun mcast 
+        RX: bytes  packets  errors  dropped overrun mcast
         2680       39       0       0       0       0     
         TX: bytes  packets  errors  dropped carrier collsns
         7558       140      0       0       0       0
@@ -67,7 +67,7 @@ To get network statistics, run:
     cumulus@switch:~$ ip -s link show vxln16757104
     61: vxln16757104: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln16757104 state UNKNOWN mode DEFAULT
         link/ether e2:37:47:db:f1:94 brd ff:ff:ff:ff:ff:ff
-        RX: bytes  packets  errors  dropped overrun mcast 
+        RX: bytes  packets  errors  dropped overrun mcast
         0          0        0       0       0       0     
         TX: bytes  packets  errors  dropped carrier collsns
         0          0        0       9       0       0
@@ -118,7 +118,7 @@ bridge netdev stats.
     cumulus@switch:~$ ip -s link show br0
     42: br0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT
         link/ether 44:38:39:00:69:89 brd ff:ff:ff:ff:ff:ff
-        RX: bytes  packets  errors  dropped overrun mcast 
+        RX: bytes  packets  errors  dropped overrun mcast
         23201498   227514   0       0       0       0     
         TX: bytes  packets  errors  dropped carrier collsns
         18198262   178443   0       0       0       0
@@ -183,8 +183,8 @@ Since `ethtool` is not supported for virtual devices, you cannot clear
 the statistics cache maintained by the kernel. You can clear the
 hardware statistics via `switchd`:
 
-    cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vlan 
-    cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vxlan 
+    cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vlan
+    cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vxlan
     cumulus@switch:~$
 
 ## Caveats and Errata

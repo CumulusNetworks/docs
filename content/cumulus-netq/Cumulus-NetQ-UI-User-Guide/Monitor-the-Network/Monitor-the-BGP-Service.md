@@ -3,7 +3,7 @@ title: Monitor the BGP Service
 author: Cumulus Networks
 weight: 161
 aliases:
- - /display/NETQ22/Monitor-the-BGP-Service
+ - /display/NETQ/Monitor+the+BGP+Service
  - /pages/viewpage.action?pageId=12321221
 pageID: 12321221
 product: Cumulus NetQ

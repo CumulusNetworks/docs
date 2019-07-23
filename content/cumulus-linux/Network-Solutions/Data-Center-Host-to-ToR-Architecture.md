@@ -3,7 +3,7 @@ title: Data Center Host to ToR Architecture
 author: Cumulus Networks
 weight: 249
 aliases:
- - /display/CL37/Data-Center-Host-to-ToR-Architecture
+ - /display/DOCS/Data+Center+Host+to+ToR+Architecture
  - /pages/viewpage.action?pageId=8362991
 pageID: 8362991
 product: Cumulus Linux
@@ -648,35 +648,35 @@ iface eth2 inet static
 <p><strong>leaf01 Config</strong></p>
 <p><code>/etc/network/interfaces</code></p>
 <pre><code>auto lo
-iface lo inet loopback 
+iface lo inet loopback
   address 10.0.0.11/32
   vxrd-src-ip 10.0.0.11
   vxrd-svcnode-ip 10.10.10.10
   clagd-vxlan-anycast-ip 36.0.0.11
  
 auto vni-10
-iface vni-10 
-  vxlan-id 10 
+iface vni-10
+  vxlan-id 10
   vxlan-local-tunnelip 10.0.0.11
  
-auto br-10 
+auto br-10
 iface br-10
   bridge-ports swp1 vni-10</code></pre>
 <p><strong>leaf02 Config</strong></p>
 <p><code>/etc/network/interfaces</code></p>
 <pre><code>auto lo
-iface lo inet loopback 
+iface lo inet loopback
   address 10.0.0.12/32
   Vxrd-src-ip 10.0.0.12
   vxrd-svcnode-ip 10.10.10.10
   clagd-vxlan-anycast-ip 36.0.0.11
  
 auto vni-10
-iface vni-10 
-  vxlan-id 10 
+iface vni-10
+  vxlan-id 10
   vxlan-local-tunnelip 10.0.0.12
  
-auto br-10 
+auto br-10
 iface br-10
   bridge-ports swp1 vni-10</code></pre></td>
 <td><p><strong><strong>Benefits</strong></strong></p>

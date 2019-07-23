@@ -3,7 +3,7 @@ title: Routing
 author: Cumulus Networks
 weight: 169
 aliases:
- - /display/CL37/Routing
+ - /display/DOCS/Routing
  - /pages/viewpage.action?pageId=8362912
 pageID: 8362912
 product: Cumulus Linux

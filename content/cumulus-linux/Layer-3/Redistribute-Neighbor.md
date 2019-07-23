@@ -3,7 +3,7 @@ title: Redistribute Neighbor
 author: Cumulus Networks
 weight: 193
 aliases:
- - /display/CL37/Redistribute-Neighbor
+ - /display/DOCS/Redistribute+Neighbor
  - /pages/viewpage.action?pageId=8362959
 pageID: 8362959
 product: Cumulus Linux

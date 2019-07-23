@@ -3,7 +3,7 @@ title: Static MAC Bindings with VXLAN
 author: Cumulus Networks
 weight: 365
 aliases:
- - /display/CL37/Static-MAC-Bindings-with-VXLAN
+ - /display/DOCS/Static+MAC+Bindings+with+VXLAN
  - /pages/viewpage.action?pageId=8362790
 pageID: 8362790
 product: Cumulus Linux
@@ -55,10 +55,10 @@ configuration on switch1:
     cumulus@switch1:~$ net add loopback lo vxrd-src-ip 172.10.1.1
     cumulus@switch1:~$ net add bridge bridge ports swp1-2
     cumulus@switch1:~$ net add bridge post-up bridge fdb add 0:00:10:00:00:0C dev vtep1000 dst 172.20.1.1 vni 1000
-    cumulus@switch1:~$ net add vxlan vtep1000 vxlan id 1000 
+    cumulus@switch1:~$ net add vxlan vtep1000 vxlan id 1000
     cumulus@switch1:~$ net add vxlan vtep1000 vxlan local-tunnelip 172.10.1.1
     cumulus@switch1:~$ net add vxlan vtep1000 bridge access 10
-    cumulus@switch1:~$ net pending 
+    cumulus@switch1:~$ net pending
     cumulus@switch1:~$ net commit 
 
 These commands create the following configuration in the
@@ -74,7 +74,7 @@ These commands create the following configuration in the
         bridge-ports swp1 swp2 vtep1000
         bridge-vids 10
         bridge-vlan-aware yes
-        post-up bridge fdb add 0:00:10:00:00:0C dev vtep1000 dst 172.20.1.1 vni 1000 
+        post-up bridge fdb add 0:00:10:00:00:0C dev vtep1000 dst 172.20.1.1 vni 1000
 
 Then create the following configuration on switch2:
 
@@ -83,10 +83,10 @@ Then create the following configuration on switch2:
     cumulus@switch1:~$ net add bridge bridge ports swp1-2
     cumulus@switch2:~$ net add bridge post-up bridge fdb add 00:00:10:00:00:0A dev vtep1000 dst 172.10.1.1 vni 1000
     cumulus@switch2:~$ net add bridge post-up bridge fdb add 00:00:10:00:00:0B dev vtep1000 dst 172.10.1.1 vni 1000
-    cumulus@switch2:~$ net add vxlan vtep1000 vxlan id 1000 
+    cumulus@switch2:~$ net add vxlan vtep1000 vxlan id 1000
     cumulus@switch2:~$ net add vxlan vtep1000 vxlan local-tunnelip 172.10.1.1
     cumulus@switch2:~$ net add vxlan vtep1000 bridge access 10
-    cumulus@switch2:~$ net pending 
+    cumulus@switch2:~$ net pending
     cumulus@switch2:~$ net commit
 
 These commands create the following configuration in the
@@ -109,7 +109,7 @@ These commands create the following configuration in the
 Use the following commands to troubleshoot issues on the switch:
 
   - `brctl show` verifies the VXLAN configuration in a bridge:
-    
+
         cumulus@switch:~$ brctl show
         bridge name bridge id           STP enabled   interfaces
         bridge      8000.2a179a8cc471   yes           swp1
@@ -118,7 +118,7 @@ Use the following commands to troubleshoot issues on the switch:
                                                       vni-2000
 
   - `bridge fdb show` displays the list of MAC addresses in an FDB:
-    
+
         cumulus@switch1:~$ bridge fdb show
         44:38:39:00:00:18 dev swp1 master bridge permanent
         44:38:39:00:00:1c dev swp2 master bridge permanent
@@ -127,12 +127,12 @@ Use the following commands to troubleshoot issues on the switch:
         00:00:10:00:00:0c dev vni-10 dst 172.20.1.1 self permanent
 
   - `ip -d link show` displays information about the VXLAN link:
-    
+
         cumulus@switch1:~$ ip –d link show vni-10
-        15: vni-10: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master bridge state UNKNOWN mode DEFAULT group default 
-            link/ether 9a:e8:ef:a1:9d:6f brd ff:ff:ff:ff:ff:ff promiscuity 1 
-            vxlan id 10 remote 10.2.1.3 local 10.2.1.1 srcport 0 0 dstport 4789 ageing 1800 
-            bridge_slave state forwarding priority 8 cost 100 hairpin off guard off root_block off fastleave off learning on flood on port_id 0x8004 port_no 0x4 designated_port 32772 designated_cost 0 designated_bridge 8000.2a:17:9a:8c:c4:71 designated_root 8000.2a:17:9a:8c:c4:71 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on addrgenmode eui64 
+        15: vni-10: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master bridge state UNKNOWN mode DEFAULT group default
+            link/ether 9a:e8:ef:a1:9d:6f brd ff:ff:ff:ff:ff:ff promiscuity 1
+            vxlan id 10 remote 10.2.1.3 local 10.2.1.1 srcport 0 0 dstport 4789 ageing 1800
+            bridge_slave state forwarding priority 8 cost 100 hairpin off guard off root_block off fastleave off learning on flood on port_id 0x8004 port_no 0x4 designated_port 32772 designated_cost 0 designated_bridge 8000.2a:17:9a:8c:c4:71 designated_root 8000.2a:17:9a:8c:c4:71 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on addrgenmode eui64
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

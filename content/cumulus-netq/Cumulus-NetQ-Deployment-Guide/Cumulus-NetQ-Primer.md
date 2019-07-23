@@ -3,7 +3,7 @@ title: Cumulus NetQ Primer
 author: Cumulus Networks
 weight: 67
 aliases:
- - /display/NETQ22/Cumulus-NetQ-Primer
+ - /display/NETQ/Cumulus+NetQ+Primer
  - /pages/viewpage.action?pageId=12320801
 pageID: 12320801
 product: Cumulus NetQ

@@ -3,7 +3,7 @@ title: VLAN-aware Bridge Mode
 author: Cumulus Networks
 weight: 347
 aliases:
- - /display/CL37/VLAN-aware-Bridge-Mode
+ - /display/DOCS/VLAN+aware+Bridge+Mode
  - /pages/viewpage.action?pageId=8362673
 pageID: 8362673
 product: Cumulus Linux
@@ -356,7 +356,7 @@ When you check VLAN membership for that port, it shows that there is
                     100
                     200
 
-### VLAN Layer 3 Addressing — Switch Virtual Interfaces and Other VLAN Attributes 
+### VLAN Layer 3 Addressing — Switch Virtual Interfaces and Other VLAN Attributes
 
 When configuring the VLAN attributes for the bridge, specify the
 attributes for each VLAN interface, each of which is named

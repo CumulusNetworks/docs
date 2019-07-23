@@ -3,7 +3,7 @@ title: Traditional Bridge Mode
 author: Cumulus Networks
 weight: 349
 aliases:
- - /display/CL37/Traditional-Bridge-Mode
+ - /display/DOCS/Traditional+Bridge+Mode
  - /pages/viewpage.action?pageId=8362670
 pageID: 8362670
 product: Cumulus Linux
@@ -28,9 +28,9 @@ NCLU has limited support for configuring bridges in traditional mode.
 
 {{%notice note%}}
 
-The traditional bridge must be named something other than *bridge*, ****
-as that name is reserved for the single [VLAN-aware
-bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
+The traditional bridge must be named something other than *bridge*, as that name
+is reserved for the single
+[VLAN-aware bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
 that you can configure on the switch.
 
 {{%/notice%}}
@@ -50,7 +50,7 @@ following elements to the configuration:
 
     {{%notice note%}}
 
-The **** *portautoedge* attribute defaults to *yes*; to use a
+The *portautoedge* attribute defaults to *yes*; to use a
     setting other than the default, you must set this attribute to *no*. The *portrestrrole* attribute defaults to *no*, but to use a setting
     other than the default, you must specify this attribute **without**
     setting an option.
@@ -301,11 +301,3 @@ internal resource ID to the subinterface, which is expected for each
 VLAN subinterface.  
 To work around this issue, add a VXLAN on the bridge so that it does not
 require a real tunnel IP address.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -3,7 +3,7 @@ title: Address Resolution Protocol - ARP
 author: Cumulus Networks
 weight: 179
 aliases:
- - /display/CL37/Address-Resolution-Protocol-ARP
+ - /display/DOCS/Address+Resolution+Protocol+ARP
  - /pages/viewpage.action?pageId=8362976
 pageID: 8362976
 product: Cumulus Linux

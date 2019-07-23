@@ -3,7 +3,7 @@ title: Cumulus NetQ UI User Guide
 author: Cumulus Networks
 weight: 17
 aliases:
- - /display/NETQ22/Cumulus-NetQ-UI-User-Guide
+ - /display/NETQ/Cumulus+NetQ+UI+User+Guide
  - /pages/viewpage.action?pageId=12321069
 pageID: 12321069
 product: Cumulus NetQ

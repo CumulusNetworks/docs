@@ -3,7 +3,7 @@ title: Monitor Data Link Layer Devices and Protocols
 author: Cumulus Networks
 weight: 39
 aliases:
- - /display/NETQ22/Monitor-Data-Link-Layer-Devices-and-Protocols
+ - /display/NETQ/Monitor+Data+Link+Layer+Devices+and+Protocols
  - /pages/viewpage.action?pageId=12321048
 pageID: 12321048
 product: Cumulus NetQ

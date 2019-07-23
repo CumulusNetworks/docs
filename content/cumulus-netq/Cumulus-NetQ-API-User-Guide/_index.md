@@ -3,7 +3,7 @@ title: Cumulus NetQ API User Guide
 author: Cumulus Networks
 weight: 11
 aliases:
- - /display/NETQ22/Cumulus-NetQ-API-User-Guide
+ - /display/NETQ/Cumulus+NetQ+API+User+Guide
  - /pages/viewpage.action?pageId=12321983
 pageID: 12321983
 product: Cumulus NetQ

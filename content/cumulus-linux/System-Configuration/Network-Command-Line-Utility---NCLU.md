@@ -3,7 +3,7 @@ title: Network Command Line Utility - NCLU
 author: Cumulus Networks
 weight: 63
 aliases:
- - /display/CL37/Network-Command-Line-Utility-NCLU
+ - /display/DOCS/Network+Command+Line+Utility+NCLU
  - /pages/viewpage.action?pageId=8362580
 pageID: 8362580
 product: Cumulus Linux

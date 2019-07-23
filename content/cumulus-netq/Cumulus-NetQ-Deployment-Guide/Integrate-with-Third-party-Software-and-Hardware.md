@@ -3,7 +3,7 @@ title: Integrate with Third-party Software and Hardware
 author: Cumulus Networks
 weight: 71
 aliases:
- - /display/NETQ22/Integrate-with-Third-party-Software-and-Hardware
+ - /display/NETQ/Integrate+with+Third+party+Software+and+Hardware
  - /pages/viewpage.action?pageId=12320911
 pageID: 12320911
 product: Cumulus NetQ

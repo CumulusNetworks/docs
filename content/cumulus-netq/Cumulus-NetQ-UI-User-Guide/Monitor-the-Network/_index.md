@@ -3,7 +3,7 @@ title: Monitor the Network
 author: Cumulus Networks
 weight: 93
 aliases:
- - /display/NETQ22/Monitor-the-Network
+ - /display/NETQ/Monitor+the+Network
  - /pages/viewpage.action?pageId=12321070
 pageID: 12321070
 product: Cumulus NetQ

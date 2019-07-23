@@ -3,7 +3,7 @@ title: Monitoring Best Practices
 author: Cumulus Networks
 weight: 233
 aliases:
- - /display/CL37/Monitoring-Best-Practices
+ - /display/DOCS/Monitoring+Best+Practices
  - /pages/viewpage.action?pageId=8362625
 pageID: 8362625
 product: Cumulus Linux

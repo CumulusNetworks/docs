@@ -3,7 +3,7 @@ title: ifplugd
 author: Cumulus Networks
 weight: 311
 aliases:
- - /display/CL37/ifplugd
+ - /display/DOCS/ifplugd
  - /pages/viewpage.action?pageId=8362693
 pageID: 8362693
 product: Cumulus Linux

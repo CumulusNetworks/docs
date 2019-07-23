@@ -3,7 +3,7 @@ title: FRRouting Overview
 author: Cumulus Networks
 weight: 175
 aliases:
- - /display/CL37/FRRouting-Overview
+ - /display/DOCS/FRRouting+Overview
  - /pages/viewpage.action?pageId=8362917
 pageID: 8362917
 product: Cumulus Linux

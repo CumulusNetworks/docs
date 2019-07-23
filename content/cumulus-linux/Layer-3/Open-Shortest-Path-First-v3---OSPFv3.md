@@ -3,7 +3,7 @@ title: Open Shortest Path First v3 - OSPFv3
 author: Cumulus Networks
 weight: 183
 aliases:
- - /display/CL37/Open-Shortest-Path-First-v3-OSPFv3
+ - /display/DOCS/Open+Shortest+Path+First+v3+OSPFv3
  - /pages/viewpage.action?pageId=8362924
 pageID: 8362924
 product: Cumulus Linux
@@ -42,27 +42,27 @@ Configuring OSPFv3 involves the following tasks:
     [Configuring
     FRRouting](/cumulus-linux/Layer-3/Configuring-FRRouting/) then start
     the FRRouting service:
-    
+
         cumulus@switch:~$ sudo systemctl enable frr.service
         cumulus@switch:~$ sudo systemctl start frr.service
 
 2.  Enabling OSPFv3 and map interfaces to areas:
-    
+
         cumulus@switch:~$ net add ospf6 router-id 0.0.0.1
         cumulus@switch:~$ net add ospf6 interface swp1 area 0.0.0.0
         cumulus@switch:~$ net add ospf6 interface swp2 area 0.0.0.1
 
 3.  Defining (custom) OSPFv3 parameters on the interfaces, such as:
-    
+
     1.  Network type (such as point-to-point, broadcast)
-    
+
     2.  Timer tuning (for example, hello interval)
-    
+
     <!-- end list -->
-    
+
         cumulus@switch:~$ net add interface swp1 ospf6 network point-to-point
         cumulus@switch:~$ net add interface swp1 ospf6 hello-interval 5
-    
+
     The OSPFv3 configuration is saved in `/etc/frr/frr.conf`.
 
 {{%notice note%}}
@@ -87,7 +87,7 @@ The following example command removes the `3:3::/64` route from the
 routing table. Without a route in the table, any destinations in that
 network are not reachable.
 
-    cumulus@switch:~$ net add ospf6 area 0.0.0.0 range 3:3::/64 not-advertise 
+    cumulus@switch:~$ net add ospf6 area 0.0.0.0 range 3:3::/64 not-advertise
 
 The following example command creates a summary route for all the routes
 in the range 2001::/64:

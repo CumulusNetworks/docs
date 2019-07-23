@@ -3,7 +3,7 @@ title: Quick Start Guide
 author: Cumulus Networks
 weight: 5
 aliases:
- - /display/CL37/Quick-Start-Guide
+ - /display/DOCS/Quick+Start+Guide
  - /pages/viewpage.action?pageId=8362542
 pageID: 8362542
 product: Cumulus Linux
@@ -163,10 +163,12 @@ address with the Network Command Line Utility (NCLU).
 Set the static IP address with the `interface address` and `interface
 gateway` NCLU commands:
 
-    cumulus@switch:~$ net add interface eth0 ip address 192.0.2.42/24
-    cumulus@switch:~$ net add interface eth0 ip gateway 192.0.2.1
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface eth0 ip address 192.0.2.42/24
+cumulus@switch:~$ net add interface eth0 ip gateway 192.0.2.1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 These commands produce the following snippet in the
 [/etc/network/interfaces](http://manpages.debian.net/man/5/interfaces)
@@ -231,8 +233,8 @@ are incorrect. The wrong date and time can have impacts on the switch,
 such as the inability to synchronize with Puppet or return errors like
 this one after you restart `switchd`:
 
-> Warning: Unit file of switchd.service changed on disk, 'systemctl
-> daemon-reload' recommended.
+> Warning: Unit file of switchd.service changed on disk, `systemctl
+> daemon-reload` recommended.
 
 ### Install the License
 

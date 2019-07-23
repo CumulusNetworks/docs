@@ -3,7 +3,7 @@ title: Ethernet Virtual Private Network - EVPN
 author: Cumulus Networks
 weight: 143
 aliases:
- - /display/CL37/Ethernet-Virtual-Private-Network-EVPN
+ - /display/DOCS/Ethernet+Virtual+Private+Network+EVPN
  - /pages/viewpage.action?pageId=8362732
 pageID: 8362732
 product: Cumulus Linux
@@ -1146,7 +1146,7 @@ pod follows the default route towards the border leaf for all external
 traffic (towards the Internet or a different pod).
 
 To originate a default type-5 route in EVPN, you need to execute FRRouting
-commands. The following shows an example: 
+commands. The following shows an example:
 
     switch(config)# router bgp 650030 vrf vrf1
     switch(config-router)# address-family l2vpn evpn

@@ -3,7 +3,7 @@ title: Anycast Design Guide
 author: Cumulus Networks
 weight: 257
 aliases:
- - /display/CL37/Anycast-Design-Guide
+ - /display/DOCS/Anycast+Design+Guide
  - /pages/viewpage.action?pageId=8363010
 pageID: 8363010
 product: Cumulus Linux

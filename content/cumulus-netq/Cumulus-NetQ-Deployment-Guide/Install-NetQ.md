@@ -3,7 +3,7 @@ title: Install NetQ
 author: Cumulus Networks
 weight: 69
 aliases:
- - /display/NETQ22/Install-NetQ
+ - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
 pageID: 12320951
 product: Cumulus NetQ

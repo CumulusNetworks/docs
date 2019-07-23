@@ -3,7 +3,7 @@ title: VXLAN Scale
 author: Cumulus Networks
 weight: 151
 aliases:
- - /display/CL37/VXLAN-Scale
+ - /display/DOCS/VXLAN+Scale
  - /pages/viewpage.action?pageId=8362768
 pageID: 8362768
 product: Cumulus Linux

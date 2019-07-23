@@ -3,7 +3,7 @@ title: OVSDB Server High Availability
 author: Cumulus Networks
 weight: 395
 aliases:
- - /display/CL37/OVSDB-Server-High-Availability
+ - /display/DOCS/OVSDB+Server+High+Availability
  - /pages/viewpage.action?pageId=8362860
 pageID: 8362860
 product: Cumulus Linux

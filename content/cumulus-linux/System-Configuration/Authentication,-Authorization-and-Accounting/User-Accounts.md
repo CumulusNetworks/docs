@@ -3,7 +3,7 @@ title: User Accounts
 author: Cumulus Networks
 weight: 275
 aliases:
- - /display/CL37/User-Accounts
+ - /display/DOCS/User+Accounts
  - /pages/viewpage.action?pageId=8362553
 pageID: 8362553
 product: Cumulus Linux

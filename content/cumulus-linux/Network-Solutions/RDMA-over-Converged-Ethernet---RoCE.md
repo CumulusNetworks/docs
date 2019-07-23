@@ -37,7 +37,7 @@ stack:
     (ECN) with RoCEv2 since ECN bits are communicated end-to-end across
     a routed network.
 
-## Enable RDMA over Converged Ethernet with PFC</span>
+## Enable RDMA over Converged Ethernet with PFC
 
 RoCEv1 uses the Infiniband (IB) Protocol over converged Ethernet. The IB
 global route header rides directly on top of the Ethernet header. The
@@ -100,7 +100,7 @@ a given CoS group, rather than the entire link.
 
 {{%/notice%}}
 
-## Enable RDMA over Converged Ethernet with ECN</span>
+## Enable RDMA over Converged Ethernet with ECN
 
 RoCEv2 requires flow control for lossless Ethernet. RoCEv2 uses the
 Infiniband (IB) Transport Protocol over UDP. The IB transport protocol
@@ -156,7 +156,7 @@ packet to **not** be ECT-capable.
 
 {{%/notice%}}
 
-## Related Information</span>
+## Related Information
 
   - [RoCE
     introduction](http://www.roceinitiative.org/roce-introduction/) —

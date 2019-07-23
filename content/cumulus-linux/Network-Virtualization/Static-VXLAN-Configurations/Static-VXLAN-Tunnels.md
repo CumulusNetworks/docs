@@ -33,7 +33,7 @@ which VTEPs are in a particular VNI, you can avoid the tedious process
 of defining connections to every VLAN on every other VTEP on every other
 rack.
 
-## Requirements</span>
+## Requirements
 
 Cumulus Networks supports static VXLAN tunnels only on switches in the
 [Cumulus Linux HCL](http://cumulusnetworks.com/hcl/) using the Broadcom
@@ -66,14 +66,14 @@ When deploying VXLAN with a VLAN-aware bridge, there is no
 
         cumulus@switch:~ sudo systemctl stop vxrd.service
 
-## Example Configuration</span>
+## Example Configuration
 
 The following topology is used in this chapter. Each IP address
 corresponds to the loopback address of the switch.
 
 {{% imgOld 0 %}}
 
-## Configure Static VXLAN Tunnels</span>
+## Configure Static VXLAN Tunnels
 
 To configure static VXLAN tunnels, do the following for each leaf:
 
@@ -280,7 +280,7 @@ iface vni-10
 </tbody>
 </table>
 
-## Verify the Configuration</span>
+## Verify the Configuration
 
 After you configure all the leaf switches, check for replication
 entries:
@@ -290,7 +290,7 @@ entries:
     00:00:00:00:00:00 dev vni-10 dst 10.0.0.12 self permanent
     00:00:00:00:00:00 dev vni-10 dst 10.0.0.13 self permanent
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
 Cumulus Linux does not support different `bridge-learning` settings for
 different VNIs of VXLAN tunnels between 2 VTEPs. For example, the

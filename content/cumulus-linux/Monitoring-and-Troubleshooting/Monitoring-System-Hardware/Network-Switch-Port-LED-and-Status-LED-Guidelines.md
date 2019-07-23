@@ -19,7 +19,7 @@ network switch. This provides a network operator with a standard way to
 identify the state of a switch and its ports by looking at its front
 panel, irrespective of the hardware vendor or NOS.
 
-## Network Port LEDs</span>
+## Network Port LEDs
 
 A network port LED indicates the state of the link, such as link UP or
 Tx/Rx activity. Here are the requirements for these LEDs:
@@ -80,7 +80,7 @@ Tx/Rx activity. Here are the requirements for these LEDs:
         | Fault               | Slow Blinking Amber  | Slow Blinking Amber    |
         
 
-## Status LEDs</span>
+## Status LEDs
 
 A set of status LEDs are typically located on one side of a network
 switch. The status LEDs provide a visual indication on what is
@@ -161,7 +161,7 @@ an LED is known as a *unit* below.
     | Locate disabled | Off           |
     
 
-## Locate a Switch</span>
+## Locate a Switch
 
 Cumulus Linux supports the locator LED functionality for identifying a
 switch, by blinking a single LED on a specified network port, on the
@@ -194,9 +194,9 @@ management interfaces.
 
 {{%/notice%}}
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
-### Dell-N3048EP-ON LED Colors at Low Speeds</span>
+### Dell-N3048EP-ON LED Colors at Low Speeds
 
 Across all 48 ports on a Dell-N3048EP-ON switch, if the link speed of a
 device is 10Mbps, the link light does not come on and only the activity

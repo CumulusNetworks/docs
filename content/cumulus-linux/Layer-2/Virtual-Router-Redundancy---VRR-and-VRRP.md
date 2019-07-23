@@ -38,7 +38,7 @@ configuration.
 
 {{%/notice%}}
 
-## VRR</span>
+## VRR
 
 The diagram below illustrates a basic VRR-enabled network configuration.
 The network includes several hosts and two routers running Cumulus Linux
@@ -93,9 +93,9 @@ Router Redundancy Protocol (VRRP), as they serve similar purposes.
 
 {{%/notice%}}
 
-### Configure VRR</span>
+### Configure VRR
 
-#### Configure the Routers</span>
+#### Configure the Routers
 
 The routers implement the layer 2 network interconnecting the hosts and
 the redundant routers. To configure the routers, add a bridge with the
@@ -158,7 +158,7 @@ snippet:
         vlan-id 500
         vlan-raw-device bridge
 
-#### Configure the Hosts</span>
+#### Configure the Hosts
 
 Each host should have two network interfaces. The routers configure the
 interfaces as bonds running LACP; the hosts should also configure its
@@ -170,7 +170,7 @@ router; this default gateway address never changes.
 Configure the links between the hosts and the routers in *active-active*
 mode for First Hop Redundancy Protocol.
 
-### Example VRR Configuration with MLAG</span>
+### Example VRR Configuration with MLAG
 
 To create an
 [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
@@ -430,7 +430,7 @@ iface uplink:400 inet static
 </tbody>
 </table>
 
-## VRRP</span>
+## VRRP
 
 VRRP allows for a single virtual default gateway to be shared among two
 or more network devices in an active/standby configuration. The VRRP
@@ -471,7 +471,7 @@ The following example illustrates a basic VRRP configuration.
 
 {{% imgOld 1 %}}
 
-### Configure VRRP</span>
+### Configure VRRP
 
 To configure VRRP, you need to specify the following information on each
 switch:
@@ -531,7 +531,7 @@ file. For example:
      vrrp 44 ipv6 2001:0db8::1
     ...
 
-### Show VRRP Configuration</span>
+### Show VRRP Configuration
 
 To show virtual router information on a switch, run the `net show vrrp
 <VRID>` command. For example:

@@ -52,7 +52,7 @@ at the same time.
 
 {{%/notice%}}
 
-## LNV Concepts</span>
+## LNV Concepts
 
 Consider the following example deployment:
 
@@ -67,7 +67,7 @@ tunnel end points). The IP address associated with this VTEP is most
 commonly configured as its loopback address; in the image above, the
 loopback address is 10.2.1.1 for leaf1 and 10.2.1.2 for leaf2.
 
-### Acquire the Forwarding Database at the Service Node</span>
+### Acquire the Forwarding Database at the Service Node
 
 To connect these two VXLANs together and forward BUM (Broadcast,
 Unknown-unicast, Multicast) packets to members of a VXLAN, the service
@@ -77,7 +77,7 @@ running on each leaf switch that contains a VTEP participating in LNV.
 The registration process informs the service node of all the VXLANs to
 which the switch belongs.
 
-### MAC Learning and Flooding</span>
+### MAC Learning and Flooding
 
 With LNV, as with traditional bridging of physical LANs or VLANs, a
 bridge automatically learns the location of hosts as a side effect of
@@ -98,7 +98,7 @@ VTEP that belongs to the same VXLAN. This is called *service node
 replication* and is one of two techniques for handling BUM (Broadcast
 Unknown-unicast and Multicast) traffic.
 
-### BUM Traffic</span>
+### BUM Traffic
 
 Cumulus Linux has two ways of handling BUM (Broadcast Unknown-unicast
 and Multicast) traffic:
@@ -118,7 +118,7 @@ to every remote VTEP.
 
 {{%/notice%}}
 
-#### Head End Replication</span>
+#### Head End Replication
 
 The Broadcom switch with the Tomahawk, Trident II+, and Trident II ASIC
 and the Mellanox switch with the Spectrum ASIC are capable of head end
@@ -134,7 +134,7 @@ replication.
 To disable head end replication, edit the `/etc/vxrd.conf` file and set
 `head_rep` to *False*.
 
-#### Service Node Replication</span>
+#### Service Node Replication
 
 Cumulus Linux also supports service node replication for VXLAN BUM
 packets. This is useful with LNV if you have more than 128 VTEPs.
@@ -174,9 +174,9 @@ You only specify this parameter when head end replication is
 
             enable_vxlan_listen = true
 
-## Requirements</span>
+## Requirements
 
-### Hardware Requirements</span>
+### Hardware Requirements
 
   - Broadcom switches with the Tomahawk, Trident II+, or Trident II ASIC
     or Mellanox switches with the Spectrum ASIC running Cumulus Linux
@@ -185,7 +185,7 @@ You only specify this parameter when head end replication is
     list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/)
     for a list of supported switch models.
 
-### Configuration Requirements</span>
+### Configuration Requirements
 
   - The VXLAN has an associated **V**XLAN **N**etwork **I**dentifier
     (VNI), also interchangeably called a VXLAN ID.
@@ -205,13 +205,13 @@ You only specify this parameter when head end replication is
     the leaf2 SVI through the VXLAN tunnel; you need to use server1 and
     server2 to verify.
 
-### Install the LNV Packages</span>
+### Install the LNV Packages
 
 `vxfld` is installed by default on all new installations of Cumulus
 Linux 3.x. If you are upgrading from an earlier version, run `sudo -E
 apt-get install python-vxfld` to install the LNV package.
 
-## Sample LNV Configuration</span>
+## Sample LNV Configuration
 
 The following images illustrate the configuration that is referenced
 throughout this chapter.
@@ -238,7 +238,7 @@ Check out [Cumulus VX](https://cumulusnetworks.com/cumulus-vx/).
 
 {{%/notice%}}
 
-### Network Connectivity</span>
+### Network Connectivity
 
 There must be full network connectivity before you can configure LNV.
 The layer 3 IP addressing information as well as the OSPF configuration
@@ -253,7 +253,7 @@ routes, OSPF or BGP.
 
 {{%/notice%}}
 
-### Layer 3 IP Addressing</span>
+### Layer 3 IP Addressing
 
 Here is the configuration for the IP addressing information used in this
 example.
@@ -401,7 +401,7 @@ iface swp1s3
 </tbody>
 </table>
 
-### Layer 3 Fabric</span>
+### Layer 3 Fabric
 
 The service nodes and registration nodes must all be routable between
 each other. The layer 3 fabric on Cumulus Linux can either be
@@ -619,7 +619,7 @@ Linux):
     Set name-type for VLAN subsystem. Should be visible in /proc/net/vlan/config
     Added VLAN with VID == 30 to IF -:eth3:-
 
-## Configure the VLAN to VXLAN Mapping</span>
+## Configure the VLAN to VXLAN Mapping
 
 Configure the VLANs and associated VXLANs. In this example, there are 3
 VLANs and 3 VXLAN IDs (VNIs). VLANs 10, 20 and 30 are used and
@@ -756,7 +756,7 @@ completely up to you.
 
 {{%/notice%}}
 
-## Verify the VLAN to VXLAN Mapping</span>
+## Verify the VLAN to VXLAN Mapping
 
 Use the `brctl show` command to see the physical and logical interfaces
 associated with that bridge:
@@ -781,14 +781,14 @@ name, use the `ip -d link show` command:
 The *vxlan id 10* indicates the VXLAN ID/VNI is indeed 10 as the logical
 name suggests.
 
-## Enable and Manage Service Node and Registration Daemons</span>
+## Enable and Manage Service Node and Registration Daemons
 
 Every VTEP must run the registration daemon (`vxrd`). Typically, every
 leaf switch acts as a VTEP. A minimum of 1 switch (a switch not already
 acting as a VTEP) must run the service node daemon (`vxsnd`). The
 instructions for enabling these daemons follows.
 
-### Enable the Service Node Daemon</span>
+### Enable the Service Node Daemon
 
 The service node daemon (`vxsnd)` is included in the Cumulus Linux
 repository as `vxfld-vxsnd`. The service node daemon can run on any
@@ -805,7 +805,7 @@ Do not run `vxsnd` on a switch that is already acting as a VTEP.
 
 {{%/notice%}}
 
-### Enable the Registration Daemon</span>
+### Enable the Registration Daemon
 
 The registration daemon (`vxrd`) is included in the Cumulus Linux
 package as `vxfld-vxrd`. The registration daemon must run on each VTEP
@@ -820,7 +820,7 @@ Then enable and restart the `vxrd` daemon on leaf2:
     cumulus@leaf2:~$ sudo systemctl enable vxrd.service
     cumulus@leaf2:~$ sudo systemctl restart vxrd.service
 
-### Check the Daemon Status</span>
+### Check the Daemon Status
 
 To determine if the daemon is running, use the `systemctl status <daemon
 name>.service` command.
@@ -849,7 +849,7 @@ For the registration daemon:
      
     May 11 11:42:55 cumulus vxrd[929]: INFO: Starting (pid 929) ...
 
-## Configure the Registration Node</span>
+## Configure the Registration Node
 
 The registration node was configured earlier in
 `/etc/network/interfaces` in the [VXLAN
@@ -913,7 +913,7 @@ Use *1*, *yes*, *true*, or *on* for True for each relevant option. Use
 
 {{%/notice%}}
 
-## Configure the Service Node</span>
+## Configure the Service Node
 
 To configure the service node daemon, edit the `/etc/vxsnd.conf`
 configuration file.
@@ -964,9 +964,9 @@ Use *1*, *yes*, *true,* or *on* for True for each relevant option. Use
 
 {{%/notice%}}
 
-## Advanced LNV Usage</span>
+## Advanced LNV Usage
 
-### Scale LNV by Load Balancing with Anycast</span>
+### Scale LNV by Load Balancing with Anycast
 
 The above configuration assumes a single service node, which can quickly
 be overwhelmed by BUM traffic. To load balance BUM traffic across
@@ -975,9 +975,9 @@ multiple service nodes, use
 traffic to reach the topologically nearest service node instead of
 overwhelming a single service node.
 
-#### </span>
+#### 
 
-#### Enable the Service Node Daemon on Additional Spine Switches</span>
+#### Enable the Service Node Daemon on Additional Spine Switches
 
 In this example, spine1 already has the service node daemon enabled.
 Enable it on the spine2 switch, then restart the `vxsnd` daemon:
@@ -985,7 +985,7 @@ Enable it on the spine2 switch, then restart the `vxsnd` daemon:
     cumulus@spine2:~$ sudo systemctl enable vxsnd.service
     cumulus@spine2:~$ sudo systemctl restart vxsnd.service
 
-#### Configure the Anycast Address on All Participating Service Nodes</span>
+#### Configure the Anycast Address on All Participating Service Nodes
 
 <table>
 <colgroup>
@@ -1036,7 +1036,7 @@ iface lo inet loopback
 </tbody>
 </table>
 
-#### Configure the Service Node vxsnd.conf File</span>
+#### Configure the Service Node vxsnd.conf File
 
 <table>
 <colgroup>
@@ -1075,7 +1075,7 @@ cumulus@spine1:~$ sudo systemctl restart vxsnd.service</code></pre></td>
 </tbody>
 </table>
 
-#### Reconfigure the VTEPs (Leafs) to Use the Anycast Address</span>
+#### Reconfigure the VTEPs (Leafs) to Use the Anycast Address
 
 <table>
 <colgroup>
@@ -1164,7 +1164,7 @@ VNI     Local Addr       Svc Node
 </tbody>
 </table>
 
-#### Test Connectivity</span>
+#### Test Connectivity
 
 Repeat the ping tests from the previous section. Here is the table again
 for reference:
@@ -1201,7 +1201,7 @@ for reference:
     2 packets transmitted, 2 received, 0% packet loss, time 1001ms
     rtt min/avg/max/mdev = 0.191/0.913/1.635/0.722 ms
 
-### Restart Network Removes vxsnd Anycast IP Address from Loopback Interface</span>
+### Restart Network Removes vxsnd Anycast IP Address from Loopback Interface
 
 If you have not configured a loopback anycast IP address in the
 `/etc/network/interfaces` file, but you have enabled the `vxsnd`
@@ -1214,7 +1214,7 @@ the loopback interface in both the `/etc/network/interfaces` file and
 the `vxsnd.conf` file. This way, in case `vxsnd` fails, you can withdraw
 the IP address.
 
-## Related Information</span>
+## Related Information
 
   - [tools.ietf.org/html/rfc7348](https://tools.ietf.org/html/rfc7348)
 

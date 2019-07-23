@@ -38,7 +38,7 @@ protocol](http://en.wikipedia.org/wiki/Link-state_routing_protocol) for
 IPv4. For IPv6 commands, refer to [Open Shortest Path First v3 -
 OSPFv3](/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3)
 
-## Scalability and Areas</span>
+## Scalability and Areas
 
 An increase in the number of nodes affects:
 
@@ -72,7 +72,7 @@ divide the leaf-spine topology into the following areas:
 
 {{%/notice%}}
 
-## Configure OSPFv2</span>
+## Configure OSPFv2
 
 To configure OSPF, you need to:
 
@@ -82,7 +82,7 @@ To configure OSPF, you need to:
 
   - Define custom OSPF parameters on the interfaces
 
-### Enable the OSPF and Zebra Daemons</span>
+### Enable the OSPF and Zebra Daemons
 
 To enable OSPF, enable the `zebra` and `ospf` daemons, as described in
 [Configuring FRRouting](/cumulus-linux/Layer-3/Configuring-FRRouting/),
@@ -91,7 +91,7 @@ then start the FRRouting service:
     cumulus@switch:~$ sudo systemctl enable frr.service
     cumulus@switch:~$ sudo systemctl start frr.service
 
-### Configure OSPF</span>
+### Configure OSPF
 
 Before you configure OSPF, you need to identify:
 
@@ -151,7 +151,7 @@ local prefixes using `network` and/or `passive-interface` statements.
 
     cumulus@switch:~$ net add ospf redistribute connected
 
-### Define Custom OSPF Parameters on the Interfaces</span>
+### Define Custom OSPF Parameters on the Interfaces
 
 You can define additional custom parameters for OSPF, such as the
 network type (point-to-point or broadcast) and the timer tuning, such as
@@ -162,7 +162,7 @@ a hello interval.
 
 The OSPF configuration is saved in the `/etc/frr/frr.conf` file.
 
-### OSPF SPF Timer Defaults</span>
+### OSPF SPF Timer Defaults
 
 OSPF uses the following timers to prevent consecutive SPFs from
 overburdening the CPU:
@@ -174,7 +174,7 @@ overburdening the CPU:
 
   - 5000 ms maximum between SPFs
 
-### Configure MD5 Authentication for OSPF Neighbors</span>
+### Configure MD5 Authentication for OSPF Neighbors
 
 Simple text passwords have largely been deprecated in FRRouting, in
 favor of MD5 hash authentication.
@@ -222,11 +222,11 @@ You can remove existing MD5 authentication hashes with the `net del
          ip ospf network point-to-point
          ...
 
-## Scaling Tips</span>
+## Scaling Tips
 
 Here are some tips for how to scale out OSPF.
 
-### Summarization</span>
+### Summarization
 
 By default, an ABR creates a summary (type-3) LSA for each route in an
 area and advertises it in adjacent areas. Prefix range configuration
@@ -271,7 +271,7 @@ As a result, other backbone routers shift traffic destined to
 10.1.0.0/16 towards R6. This breaks ECMP and is an under-utilization of
 network capacity for traffic destined to 10.1.1.0/24.
 
-### Stub Areas</span>
+### Stub Areas
 
 Nodes in an area receive and store intra-area routing information and
 summarized information about other areas from the ABRs. In particular, a
@@ -309,7 +309,7 @@ Here is a brief tabular summary of the area type differences:
 | Stub area             | LSA types 1, 2, 3, 4 area-scoped, No type 5 externals, inter-area routes summarized |
 | Totally stubby area   | LSA types 1, 2 area-scoped, default summary, No type 3, 4, 5 LSA types allowed      |
 
-### Multiple ospfd Instances</span>
+### Multiple ospfd Instances
 
 The `ospfd` daemon can have multiple independent processes.
 
@@ -426,7 +426,7 @@ To configure multi-instance OSPF:
         21160 ?        S<s    0:01 /usr/lib/frr/watchfrr -adz -r /usr/sbin/servicebBfrrbBrestartbB%s -s /usr/sbin/servicebBquaggabBstartbB%s -k /usr/sbin/servicebBfrrbBstopbB%s -b bB -t 30 zebra ospfd-11 ospfd-22 pimd
         22021 pts/3    S+     0:00 grep ospf
 
-#### Caveats</span>
+#### Caveats
 
 You can use the `redistribute ospf` option in your `frr.conf` file works
 with this so you can route between the instances. Specify the instance
@@ -532,7 +532,7 @@ create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
 
 {{%/notice%}}
 
-### Auto-cost Reference Bandwidth</span>
+### Auto-cost Reference Bandwidth
 
 *Auto-cost reference bandwidth* provides the ability to dynamically
 calculate the OSPF interface cost to cater for higher speed links. You
@@ -567,7 +567,7 @@ These commands create the following configuration in the
      
     ...
 
-## Unnumbered Interfaces</span>
+## Unnumbered Interfaces
 
 Unnumbered interfaces are interfaces without unique IP addresses. In
 OSPFv2, configuring unnumbered interfaces reduces the links between
@@ -631,21 +631,21 @@ To enable OSPF on an unnumbered interface:
 
     cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.1
 
-## Apply a Route Map for Route Updates</span>
+## Apply a Route Map for Route Updates
 
 To apply a [route map](https://frrouting.org/user-guide/routemap.html)
 to filter route updates from Zebra into the Linux kernel:
 
     cumulus@switch:$ net add routing protocol ospf route-map <route-map-name>
 
-## ECMP</span>
+## ECMP
 
 During SPF computation for an area, if OSPF finds multiple paths with
 equal cost (metric), all those paths are used for forwarding. For
 example, in the reference topology diagram, R8 uses both R3 and R4 as
 next hops to reach a destination attached to R9.
 
-## Topology Changes and OSPF Reconvergence</span>
+## Topology Changes and OSPF Reconvergence
 
 Topology changes usually occur due to one of four events:
 
@@ -686,7 +686,7 @@ depends on layer 1 failure detection capabilities and at the worst case
 
     cumulus@switch:~$ net add interface swp1 ospf cost 65535
 
-## Troubleshooting</span>
+## Troubleshooting
 
   - To debug neighbor states, run the `net show ospf neighbor` command.
 
@@ -703,7 +703,7 @@ depends on layer 1 failure detection capabilities and at the worst case
 [Debugging-OSPF](http://docs.frrouting.org/en/latest/ospfd.html#id7)
 lists all of the OSPF debug options.
 
-## Related Information</span>
+## Related Information
 
   - [Bidirectional forwarding
     detection](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)

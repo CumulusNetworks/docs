@@ -22,7 +22,7 @@ Cumulus Linux supports the following:
   - [Border Gateway
     Protocol](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP)
 
-## Architecture</span>
+## Architecture
 
 {{% imgOld 0 %}}
 
@@ -40,7 +40,7 @@ run alongside the protocols that connect an enterprise to the rest of
 the world (called EGP or Exterior Gateway Protocol) such as
 [BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP).
 
-## About zebra</span>
+## About zebra
 
 `zebra` is the daemon that resolves the routes provided by multiple
 protocols (including static routes specified by the user) and programs
@@ -51,7 +51,7 @@ documentation](https://frrouting.org/user-guide/zebra.html) defines
 routing table updates, interface lookups, and redistribution of routes
 between different routing protocols."
 
-## Related Information</span>
+## Related Information
 
   - [frrouting.org](https://frrouting.org)
 

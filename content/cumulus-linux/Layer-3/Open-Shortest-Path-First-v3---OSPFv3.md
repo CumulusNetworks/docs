@@ -34,7 +34,7 @@ yet.
 
 {{%/notice%}}
 
-## Configure OSPFv3</span>
+## Configure OSPFv3
 
 Configuring OSPFv3 involves the following tasks:
 
@@ -74,7 +74,7 @@ address to interfaces between routers.
 
 {{%/notice%}}
 
-## Configure the OSPFv3 Area</span>
+## Configure the OSPFv3 Area
 
 Different areas can be used to control routing. You can:
 
@@ -101,7 +101,7 @@ determine the shortest paths to the destination. For example:
 
 The value for cost must be between 0 and 16777215.
 
-## Configure the OSPFv3 Distance</span>
+## Configure the OSPFv3 Distance
 
 Cumulus Linux provides several commands to change the administrative
 distance for OSPF routes.
@@ -150,7 +150,7 @@ part:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## Configure OSPFv3 Interfaces</span>
+## Configure OSPFv3 Interfaces
 
 You can configure an interface, a bond interface, or a VLAN with an
 advertise prefix list.  
@@ -170,7 +170,7 @@ swp2.
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## Troubleshooting</span>
+## Troubleshooting
 
 See [Debugging
 OSPF](Open-Shortest-Path-First-OSPF.html#src-8362922_OpenShortestPathFirst-OSPF-ospf_debug)
@@ -184,7 +184,7 @@ are:
 Another helpful command is `net show ospf6 spf tree`. It dumps the node
 topology as computed by SPF to help visualize the network view.
 
-## Related Information</span>
+## Related Information
 
   - [Bidirectional forwarding
     detection](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)

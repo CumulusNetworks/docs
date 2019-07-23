@@ -41,7 +41,7 @@ Cumulus Linux.
 
 {{%/notice%}}
 
-## Example LNV Configuration</span>
+## Example LNV Configuration
 
 The following images illustrate the configuration:
 
@@ -77,7 +77,7 @@ get instructor-led training\!
 
 {{%/notice%}}
 
-### Layer 3 IP Addressing</span>
+### Layer 3 IP Addressing
 
 Here is the configuration for the IP addressing information used in this
 example:
@@ -259,7 +259,7 @@ iface br-30
 </tbody>
 </table>
 
-### FRRouting Configuration</span>
+### FRRouting Configuration
 
 The service nodes and registration nodes must all be routable between
 each other. The layer 3 fabric on Cumulus Linux can either be
@@ -386,7 +386,7 @@ router ospf
 </tbody>
 </table>
 
-### Host Configuration</span>
+### Host Configuration
 
 In this example, the servers are running Ubuntu 14.04. You must map a
 trunk from server1 and server2 to the respective switch. In Ubuntu, this
@@ -427,7 +427,7 @@ iface eth3.30 inet static
 </tbody>
 </table>
 
-### Service Node Configuration</span>
+### Service Node Configuration
 
 <table>
 <colgroup>
@@ -524,7 +524,7 @@ svcnode_peers = 10.2.1.3
 </tbody>
 </table>
 
-## Related Information</span>
+## Related Information
 
   - [tools.ietf.org/html/rfc7348](https://tools.ietf.org/html/rfc7348)
 

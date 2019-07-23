@@ -14,7 +14,7 @@ siteSlug: cumulus-linux
 This chapter discusses the various routing protocols, and how to
 configure them.
 
-## Routing Protocols</span>
+## Routing Protocols
 
 A *routing protocol* dynamically computes reachability between various
 end points. This enables communication to work around link and node
@@ -36,7 +36,7 @@ this information to determine the routes to each end station. To scale
 the amount of information that needs to be exchanged, routes are
 computed on address prefixes rather than on every end point address.
 
-## Configure Routing Protocols</span>
+## Configure Routing Protocols
 
 A routing protocol needs to know three pieces of information, at a
 minimum:
@@ -68,7 +68,7 @@ Besides the two critical pieces of information mentioned above,
 protocols have other parameters that can be configured. These are
 usually specific to each protocol.
 
-## Protocol Tuning</span>
+## Protocol Tuning
 
 Most protocols provide certain tunable parameters that are specific to
 convergence during changes.

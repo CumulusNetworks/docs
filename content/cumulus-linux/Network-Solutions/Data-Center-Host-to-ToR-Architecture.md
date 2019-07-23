@@ -15,9 +15,9 @@ This chapter discusses the various architectures and strategies
 available from the top of rack (ToR) switches all the way down to the
 server hosts.
 
-## Layer 2 - Architecture</span>
+## Layer 2 - Architecture
 
-### Traditional Spanning Tree - Single Attached</span>
+### Traditional Spanning Tree - Single Attached
 
 ****
 
@@ -140,7 +140,7 @@ iface br-20 inet manual
 </tbody>
 </table>
 
-### MLAG</span>
+### MLAG
 
 ****
 
@@ -253,9 +253,9 @@ iface vm-br10 inet manual
 </tbody>
 </table>
 
-## Layer 3 Architecture</span>
+## Layer 3 Architecture
 
-### Single-attached Hosts</span>
+### Single-attached Hosts
 
 {{% imgOld 2 %}}
 
@@ -338,7 +338,7 @@ iface eth1 inet static
 </tbody>
 </table>
 
-### Redistribute Neighbor</span>
+### Redistribute Neighbor
 
 {{% imgOld 3 %}}
 
@@ -387,7 +387,7 @@ iface eth1 inet static
 </tbody>
 </table>
 
-### Routing on the Host</span>
+### Routing on the Host
 
 ****
 
@@ -441,7 +441,7 @@ iface eth1 inet static
 </tbody>
 </table>
 
-### Routing on the VM</span>
+### Routing on the VM
 
 {{% imgOld 5 %}}
 
@@ -492,7 +492,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </tbody>
 </table>
 
-### Virtual Router</span>
+### Virtual Router
 
 {{% imgOld 6 %}}
 
@@ -539,7 +539,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </tbody>
 </table>
 
-### Anycast with Manual Redistribution</span>
+### Anycast with Manual Redistribution
 
 {{% imgOld 7 %}}
 
@@ -621,7 +621,7 @@ iface eth2 inet static
 </tbody>
 </table>
 
-## Network Virtualization</span>
+## Network Virtualization
 
 **LNV with MLAG**
 

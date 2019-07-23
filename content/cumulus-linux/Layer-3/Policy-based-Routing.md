@@ -46,7 +46,7 @@ that determine rules and specify where to forward the packets.
 
 {{%/notice%}}
 
-## Configure PBR</span>
+## Configure PBR
 
 A PBR policy contains one or more policy maps. Each policy map:
 
@@ -156,7 +156,7 @@ You can only set one policy per interface.
 
     {{%/notice%}}
 
-## Configuration Example</span>
+## Configuration Example
 
 In the following example, the PBR-enabled switch has a PBR policy to
 route all traffic from the Internet to a server that performs anti-DDOS.
@@ -182,7 +182,7 @@ file.
     match src-ip 0.0.0.0/0
     set nexthop 192.168.0.32
 
-## Review Your Configuration</span>
+## Review Your Configuration
 
 Use the following commands to see the configured PBR policies.
 
@@ -242,7 +242,7 @@ A new Linux routing table ID is used for each nexthop and nexthop group.
 
 {{%/notice%}}
 
-## Delete PBR Rules and Policies</span>
+## Delete PBR Rules and Policies
 
 You can delete a PBR rule, a nexthop group, or a policy with the `net
 del` command.  

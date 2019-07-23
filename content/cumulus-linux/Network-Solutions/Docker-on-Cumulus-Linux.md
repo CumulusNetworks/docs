@@ -17,9 +17,9 @@ directly on a Cumulus Linux switch, and Docker containers can be run
 natively on the switch. This section covers the installation and set up
 instructions for Docker.
 
-## Set up Docker on Cumulus Linux</span>
+## Set up Docker on Cumulus Linux
 
-### Configure the Repositories</span>
+### Configure the Repositories
 
 1.  Add the following line to the end of
     `/etc/apt/sources.list.d/jessie.list` in a text editor, and save the
@@ -39,20 +39,20 @@ instructions for Docker.
          
         deb https://apt.dockerproject.org/repo debian-jessie main
 
-### Install the Authentication Key</span>
+### Install the Authentication Key
 
 Install the authentication key for Docker:
 
         cumulus@switch:$ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
-### Install the docker-engine Package</span>
+### Install the docker-engine Package
 
 Install Docker:
 
         cumulus@switch:$ sudo -E apt-get update -y
         cumulus@switch:$ sudo -E apt-get install docker-engine -qy
 
-### Configure systemd for Docker</span>
+### Configure systemd for Docker
 
 1.  Add `docker` as a new line at the bottom of `/etc/vrf/systemd.conf`,
     and save the file.
@@ -77,7 +77,7 @@ Install Docker:
         ExecStart=
         ExecStart=/usr/bin/docker daemon --iptables=false --ip-masq=false --ip-forward=false
 
-### Stop/Disable the Docker Services</span>
+### Stop/Disable the Docker Services
 
 Stop the various Docker services:
 
@@ -87,7 +87,7 @@ Stop the various Docker services:
         cumulus@switch:$ sudo systemctl stop docker.service
         cumulus@switch:$ sudo systemctl disable docker.service
 
-### Launch Docker and the Ubuntu Container</span>
+### Launch Docker and the Ubuntu Container
 
 1.  Enable the Docker management daemon so it starts when the switch
     boots:
@@ -102,7 +102,7 @@ Stop the various Docker services:
 
         cumulus@switch:$ docker run -i -t ubuntu /bin/bash
 
-## Performance Notes</span>
+## Performance Notes
 
 Keep in mind switches are not servers, in terms of the hardware that
 drives them. As such, you should be mindful of the types of applications

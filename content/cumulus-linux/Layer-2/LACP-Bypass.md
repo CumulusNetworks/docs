@@ -20,7 +20,7 @@ switch on a bond configured in 802.3ad mode. Once the pre-boot process
 finishes and the host is capable of running LACP, the normal 802.3ad
 link aggregation operation takes over.
 
-## LACP Bypass All-active Mode</span>
+## LACP Bypass All-active Mode
 
 When a bond has multiple slave interfaces, each bond slave interface
 operates as an active link while the bond is in bypass mode. This is
@@ -64,7 +64,7 @@ primary and secondary MLAG nodes.
 
 {{%/notice%}}
 
-## Configure LACP Bypass</span>
+## Configure LACP Bypass
 
 To enable LACP bypass on the host-facing bond, set
 `bond-lacp-bypass-allow` to *yes*.

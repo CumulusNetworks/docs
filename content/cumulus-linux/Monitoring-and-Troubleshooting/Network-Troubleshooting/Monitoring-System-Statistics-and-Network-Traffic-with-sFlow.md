@@ -33,7 +33,7 @@ configuring the service.
 
 {{%/notice%}}
 
-## Configure sFlow</span>
+## Configure sFlow
 
 To configure `hsflowd` to send to the designated collectors, either:
 
@@ -41,7 +41,7 @@ To configure `hsflowd` to send to the designated collectors, either:
 
   - Manually configure the `/etc/hsflowd.conf` file
 
-### Configure sFlow via DNS-SD</span>
+### Configure sFlow via DNS-SD
 
 You can configure your DNS zone to advertise the collectors and polling
 information to all interested clients.
@@ -83,7 +83,7 @@ Start the sFlow daemon:
 
 No additional configuration is required in `/etc/hsflowd.conf`.
 
-### Manually Configure /etc/hsflowd.conf</span>
+### Manually Configure /etc/hsflowd.conf
 
 You can set up the collectors and variables on each switch.
 
@@ -124,13 +124,13 @@ collector for more information.
 
 {{%/notice%}}
 
-## Configure sFlow Visualization Tools</span>
+## Configure sFlow Visualization Tools
 
 For information on configuring various sFlow visualization tools, read
 this [Help Center
 article](https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Configuring-and-using-sFlow-visualization-tools).
 
-## Related Information</span>
+## Related Information
 
   - [sFlow Collectors](http://www.sflow.org/products/collectors.php)
 

@@ -66,7 +66,7 @@ the MLAG secondary switch stops communicating with the NSX controller,
 synchronizes with the now active OVSDB server, and takes the standby
 role again.
 
-## Getting Started</span>
+## Getting Started
 
 Before you configure OVSDB server high availability, make sure you have
 **two switches running Cumulus Linux in an MLAG configuration**. Cumulus
@@ -150,7 +150,7 @@ command followed by the `net commit` command.
 
 {{%/notice%}}
 
-## Configure the NSX Integration on the Switch</span>
+## Configure the NSX Integration on the Switch
 
 Before you start configuring the gateway service, the logical switches,
 and ports that comprise the VXLAN, you need to enable and start the
@@ -276,7 +276,7 @@ The certificate and key pairs for authenticating with the NSX
 For information about the configuration script, read `man
 vtep-bootstrap` or run the command `vtep-bootstrap --help`.
 
-## Configure the Transport and Logical Layers</span>
+## Configure the Transport and Logical Layers
 
 After you finish configuring the NSX integration on both the MLAG
 primary and MLAG secondary switch, you need to configure the transport
@@ -286,7 +286,7 @@ Transport and Logical Layers
 or [Configuring the Transport and Logical Layers
 (NSX-V](Integrating-Hardware-VTEPs-with-VMware-NSX-V.html#src-8362823_IntegratingHardwareVTEPswithVMwareNSX-V-V-config-transport-logical)).
 
-## Troubleshooting</span>
+## Troubleshooting
 
 After you configure OVSDB server high availability, you can check that
 configuration is successful.

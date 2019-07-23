@@ -19,7 +19,7 @@ HCL](http://cumulusnetworks.com/hcl/) for a list of supported platforms.
 You can retrieve the data from these counters using tools like `ip -s
 link show`, `ifconfig`, `/proc/net/dev`, or `netstat -i`.
 
-## Sample VXLAN Statistics</span>
+## Sample VXLAN Statistics
 
 VXLAN statistics are available as follows:
 
@@ -72,9 +72,9 @@ To get network statistics, run:
         TX: bytes  packets  errors  dropped carrier collsns
         0          0        0       9       0       0
 
-## Sample VLAN Statistics</span>
+## Sample VLAN Statistics
 
-### For VLANs Using the VLAN-aware Bridge Mode Driver</span>
+### For VLANs Using the VLAN-aware Bridge Mode Driver
 
 For a bridge using the [VLAN-aware bridge
 mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
@@ -103,7 +103,7 @@ instead:
     Total Out Octets                : 387
     Total Out Packets               : 3
 
-### For VLANs Using the Traditional Bridge Mode Driver</span>
+### For VLANs Using the Traditional Bridge Mode Driver
 
 For a bridge using the [traditional bridge
 mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
@@ -123,7 +123,7 @@ bridge netdev stats.
         TX: bytes  packets  errors  dropped carrier collsns
         18198262   178443   0       0       0       0
 
-## Configure the Counters in switchd</span>
+## Configure the Counters in switchd
 
 These counters are enabled by default. To configure them, use `cl-cfg`
 and configure them as you would any other [`switchd`
@@ -160,7 +160,7 @@ changed; previously allocated counters remain as is.
 
 {{%/notice%}}
 
-### Configure the Poll Interval</span>
+### Configure the Poll Interval
 
 The virtual device counters are polled periodically. This can be CPU
 intensive, so the interval is configurable in `switchd`, with a default
@@ -169,7 +169,7 @@ of 2 seconds.
     # Virtual devices hw-stat poll interval (in seconds)
     #stats.vdev_hw_poll_interval = 2
 
-### Configure Internal VLAN Statistics</span>
+### Configure Internal VLAN Statistics
 
 For debugging purposes, you may need to access packet statistics
 associated with internal VLAN IDs. These statistics are hidden by
@@ -177,7 +177,7 @@ default, but can be configured in `switchd`:
 
     #stats.vlan.show_internal_vlans = FALSE
 
-### Clear Statistics</span>
+### Clear Statistics
 
 Since `ethtool` is not supported for virtual devices, you cannot clear
 the statistics cache maintained by the kernel. You can clear the
@@ -187,7 +187,7 @@ hardware statistics via `switchd`:
     cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vxlan 
     cumulus@switch:~$
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - Currently the CPU port is internally added as a member of all VLANs.
     Because of this, packets sent to the CPU are counted against the

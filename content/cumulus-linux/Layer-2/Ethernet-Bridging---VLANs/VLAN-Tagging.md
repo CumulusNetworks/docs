@@ -15,7 +15,7 @@ This topic shows two examples of VLAN tagging, one basic and one more
 advanced. They both demonstrate the streamlined interface configuration
 from `ifupdown2`.
 
-## VLAN Tagging, a Basic Example</span>
+## VLAN Tagging, a Basic Example
 
 A simple configuration demonstrating VLAN tagging involves two hosts
 connected to a switch.
@@ -51,7 +51,7 @@ and add a configuration like the following:
     auto swp2.130
     iface swp2.130
 
-## VLAN Tagging, an Advanced Example</span>
+## VLAN Tagging, an Advanced Example
 
 This example of VLAN tagging is more complex, involving three hosts and
 two switches, with a number of bridges and a bond connecting them all.
@@ -277,7 +277,7 @@ an error:
 
 {{%/notice%}}
 
-## VLAN Translation</span>
+## VLAN Translation
 
 By default, Cumulus Linux does not allow VLAN subinterfaces associated
 with different VLAN IDs to be part of the same bridge. Base interfaces

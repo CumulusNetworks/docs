@@ -35,11 +35,11 @@ contains all the layer 3 information that's needed. This is where
 redistribute neighbor comes in, as it is a mechanism of formatting and
 syncing this table into the routing protocol.
 
-## Availability</span>
+## Availability
 
 Redistribute neighbor is distributed as `python-rdnbrd`.
 
-## Target Use Cases and Best Practices</span>
+## Target Use Cases and Best Practices
 
 Redistribute neighbor was created with these use cases in mind:
 
@@ -73,7 +73,7 @@ neighbor:
     operating systems may work, but Cumulus Networks has not actively
     tested any at this stage.
 
-## How It Works</span>
+## How It Works
 
 Redistribute neighbor works as follows:
 
@@ -97,7 +97,7 @@ Redistribute neighbor works as follows:
 7.  BGP, OSPF and so forth are then configured to redistribute the table
     10 routes.
 
-## Example Configuration</span>
+## Example Configuration
 
 The following example configuration is based on the [reference
 topology](https://github.com/cumulusnetworks/cldemo-vagrant) created by
@@ -106,7 +106,7 @@ cases outlined above. Here is a diagram of the topology:
 
 {{% imgOld 0 %}}
 
-### Configure the Leaf(s)</span>
+### Configure the Leaf(s)
 
 The following steps demonstrate how to configure leaf01, but the same
 steps can be applied to any of the leafs.
@@ -204,7 +204,7 @@ This configuration uses OSPF as the routing protocol.
     line vty
     !
 </details>
-### Configure the Host(s)</span>
+### Configure the Host(s)
 
 There are a few possible host configurations that range in complexity.
 This document only covers the basic use case: dual-connected Linux hosts
@@ -213,7 +213,7 @@ with static IP addresses assigned.
 Additional host configurations will be covered in future separate
 knowledge base articles.
 
-#### Configure a Dual-connected Host</span>
+#### Configure a Dual-connected Host
 
 Configure a host with the same /32 IP address on its loopback (lo) and
 uplinks (in this example, eth1 and eth2). This is done so both leaf
@@ -261,7 +261,7 @@ via eth2. You should note:
           post-up for i in {1..3}; do arping -q -c 1 -w 0 -i eth2 10.0.0.12; sleep 1; done
           post-up ip route add 0.0.0.0/0 nexthop via 10.0.0.11 dev eth1 onlink nexthop via 10.0.0.12 dev eth2 onlink || true
 
-#### Install ifplugd</span>
+#### Install ifplugd
 
 Additionally, install and use
 [ifplugd](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/ifplugd).
@@ -283,9 +283,9 @@ connect to the leaves.
 For full instructions on installing `ifplugd` on Ubuntu, [follow this
 guide](https://support.cumulusnetworks.com/hc/en-us/articles/204473717).
 
-## Known Limitations</span>
+## Known Limitations
 
-### TCAM Route Scale</span>
+### TCAM Route Scale
 
 This feature adds each ARP entry as a /32 host route into the routing
 table of all switches within a summarization domain. Take care to keep
@@ -296,35 +296,35 @@ limits of your chosen hardware platforms. If in doubt, contact Cumulus
 Networks support or your Cumulus Networks CSE; they will be happy to
 help.
 
-### Possible Uneven Traffic Distribution</span>
+### Possible Uneven Traffic Distribution
 
 Linux uses *source* L3 addresses only to do load balancing on most older
 distributions.
 
-### Silent Hosts Never Receive Traffic</span>
+### Silent Hosts Never Receive Traffic
 
 Freshly provisioned hosts that have never sent traffic may not ARP for
 their default gateways. The post-up ARPing in `/etc/network/interfaces`
 on the host should take care of this. If the host does not ARP, then
 `rdnbrd` on the leaf cannot learn about the host.
 
-### Support for IPv4 Only</span>
+### Support for IPv4 Only
 
 This release of redistribute neighbor supports IPv4 only.
 
-### VRFs Are not Supported</span>
+### VRFs Are not Supported
 
 This release of redistribute neighbor does not support
 [VRFs](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF).
 
-### Only 1024 Interfaces Supported</span>
+### Only 1024 Interfaces Supported
 
 Redistribute neighbor does not work with more than 1024 interfaces.
 Doing so can cause the `rdnbrd` service to crash.
 
-## Troubleshooting</span>
+## Troubleshooting
 
-### How do I determine if rdnbrd (the redistribute neighbor daemon) is running?</span>
+### How do I determine if rdnbrd (the redistribute neighbor daemon) is running?
 
 Use `systemd` to check:
 
@@ -336,7 +336,7 @@ Use `systemd` to check:
      CGroup: /system.slice/rdnbrd.service
      `-1501 /usr/bin/python /usr/sbin/rdnbrd -d
 
-### How do I change rdnbrd's default configuration?</span>
+### How do I change rdnbrd's default configuration?
 
 Editing the `/etc/rdnbrd.conf` file, then run `systemctl restart
 rdnbrd.service`:
@@ -369,7 +369,7 @@ rdnbrd.service`:
     unicast_arp_requests = True
     cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
 
-### What is table 10? Why was table 10 chosen?</span>
+### What is table 10? Why was table 10 chosen?
 
 The Linux kernel supports multiple routing tables and can utilize 0
 through 255 as table IDs. However, tables 0, 253, 254 and 255 are
@@ -396,7 +396,7 @@ tables](http://linux-ip.net/html/routing-tables.html), or you can read
 the [Ubuntu man pages for ip
 route](http://manpages.ubuntu.com/manpages/quantal/man8/ip-route.8.html).
 
-### How do I determine that the /32 redistribute neighbor routes are being advertised to my neighbor?</span>
+### How do I determine that the /32 redistribute neighbor routes are being advertised to my neighbor?
 
 For BGP, check the advertised routes to the neighbor.
 
@@ -417,7 +417,7 @@ For BGP, check the advertised routes to the neighbor.
      
     Total number of prefixes 4
 
-### How do I verify that the kernel routing table is being correctly populated?</span>
+### How do I verify that the kernel routing table is being correctly populated?
 
 Use the following workflow to verify that the kernel routing table is
 being populated correctly and that routes are being correctly

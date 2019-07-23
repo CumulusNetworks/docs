@@ -17,7 +17,7 @@ to monitor and troubleshoot the chassis. However, some commands work a little
 differently and there are some chassis-specific commands you can
 utilize. Those differences are discussed in this chapter.
 
-## Using the sensors Command</span>
+## Using the sensors Command
 
 The `sensors` command displays data from all the sensors in the chassis.
 The `bmcd` daemon gathers this data from the local node and remote
@@ -70,7 +70,7 @@ BMC.
 
 {{%/notice%}}
 
-### Example sensors Output</span>
+### Example sensors Output
 
 Here is the complete output, which is about 1200 lines long:
 
@@ -1253,7 +1253,7 @@ Here is the complete output, which is about 1200 lines long:
                            (crit = +95.0°C, hyst = +95.0°C)
     cumulus@omp-800-fc402:~$
 
-### About the bmcd Service</span>
+### About the bmcd Service
 
 The main purpose of the `bmcd` service is to distribute the sensor
 information among all of the cards in a chassis so that every card sees
@@ -1269,7 +1269,7 @@ every sensor. If you are having trouble getting information from the
        CGroup: /system.slice/bmcd.service
                └─1288 /usr/bin/python /usr/sbin/bmcd
 
-## Generating the cl-support Script</span>
+## Generating the cl-support Script
 
 If you're submitting a ticket to the Cumulus Networks support team for
 an issue with the chassis, you can generate the `cl-support` script for

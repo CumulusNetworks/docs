@@ -11,6 +11,7 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
+
 Multi-Chassis Link Aggregation (MLAG) enables a server or switch with a
 two-port bond, such as a link aggregation group/LAG, EtherChannel, port
 group or trunk, to connect those ports to different switches and operate
@@ -81,8 +82,7 @@ MLAG has these requirements:
     {{%notice tip%}}
 
 If for some reason you cannot use LACP, you can also use
-    [balance-xor
-    mode](Bonding-Link-Aggregation.html#src-8362653_Bonding-LinkAggregation-balance_xor)
+    [balance-xor mode](/cumulus-linux/Layer-2/Bonding-Link-Aggregation#enable-balance-xor-mode)
     to dual-connect host-facing bonds in an MLAG environment. If you do,
     you must still configure the same `clag_id` parameter on the MLAG
     bonds, and it must be the same on both MLAG switches. Otherwise, the
@@ -126,7 +126,7 @@ configuration requirement is to create a bond that is managed by LACP.
 
 However, if for some reason you cannot use LACP in your environment, you
 can configure the bonds in [balance-xor
-mode](Bonding-Link-Aggregation.html#src-8362653_Bonding-LinkAggregation-balance_xor).
+mode](/cumulus-linux/Layer-2/Bonding-Link-Aggregation/#enable-balance-xor-mode).
 When using balance-xor mode to dual-connect host-facing bonds in an MLAG
 environment, you must configure the `clag_id` parameter on the MLAG
 bonds, which must be the same on both MLAG switches. Otherwise, the
@@ -178,7 +178,7 @@ configuration on the other peer switch. This applies to all
 configuration changes, including:
 
   - Port configuration; for example, VLAN membership,
-    [MTU](#src-8362677_Multi-ChassisLinkAggregation-MLAG-mtu), and
+    [MTU](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#mtu-in-an-mlag-configuration), and
     bonding parameters.
 
   - Bridge configuration; for example, spanning tree parameters or
@@ -356,10 +356,6 @@ the changes take effect when you bring the peer link interface up with
 new configuration.
 
 {{%/notice%}}
-
-</div>
-
-</div>
 
 {{%/notice%}}
 

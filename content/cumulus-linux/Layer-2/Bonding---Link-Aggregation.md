@@ -124,7 +124,7 @@ section below.
 <td><p><code>bond mode</code></p></td>
 <td><p>The bonding mode. Cumulus Linux supports IEEE 802.3ad link aggregation mode and balance-xor mode. IEEE 802.3ad link aggregation is the default mode.</p>
 <p>You can change the bond mode using NCLU. The following example changes bond1 to balance-xor mode.</p>
-<p><strong>Note</strong>: Use balance-xor mode only if you cannot use LACP. <a href="#src-8362653_Bonding-LinkAggregation-balance_xor">See below</a> for more information.</p>
+<p><strong>Note</strong>: Use balance-xor mode only if you cannot use LACP. <a href="xs#enable-balance-xor-mode">See below</a> for more information.</p>
 <pre><code>cumulus@switch:~$ net add bond bond1 bond mode balance-xor
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit</code></pre>

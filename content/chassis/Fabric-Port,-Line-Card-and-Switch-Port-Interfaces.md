@@ -43,7 +43,7 @@ configuration is 100G, full-duplex and MTU 9216, with auto-negotiation
 off. The configuration is stored in the
 `/etc/network/interfaces.d/fabric.intf` file.
 
-## Internal Network</span>
+## Internal Network
 
 All chassis CPUs are connected via an internal management network
 comprising a number of 1G switches. This configuration provides a single

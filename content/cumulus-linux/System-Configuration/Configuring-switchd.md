@@ -3,13 +3,13 @@ title: Configuring switchd
 author: Cumulus Networks
 weight: 73
 aliases:
- - /display/CL37/Configuring-switchd
+ - /display/DOCS/Configuring+switchd
  - /pages/viewpage.action?pageId=8362561
 pageID: 8362561
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 `switchd` is the daemon at the heart of Cumulus Linux. It communicates
 between the switch and Cumulus Linux, and all the applications running
@@ -17,7 +17,7 @@ on Cumulus Linux.
 
 The `switchd` configuration is stored in `/etc/cumulus/switchd.conf`.
 
-## <span>The switchd File System</span>
+## The switchd File System
 
 `switchd` also exports a file system, mounted on `/cumulus/switchd`,
 that presents all the `switchd` configuration options as a series of
@@ -89,7 +89,7 @@ a switch with one switch port configured:
     |           `-- max_total
     `-- version
 
-## <span>Configure switchd Parameters</span>
+## Configure switchd Parameters
 
 You can use `cl-cfg` to configure many `switchd` parameters at runtime
 (like ACLs, interfaces, and route table utilization), which minimizes
@@ -121,7 +121,7 @@ though you cannot update the `switchd` configuration with it.
 
 {{%/notice%}}
 
-## <span id="src-8362561_Configuringswitchd-restartswitchd" class="confluence-anchor-link"></span><span>Restart switchd</span>
+## Restart switchd
 
 Whenever you modify any `switchd` hardware configuration file (typically
 changing any `*.conf` file that requires making a change to the

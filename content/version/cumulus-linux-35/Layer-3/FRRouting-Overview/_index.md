@@ -3,7 +3,7 @@ title: FRRouting Overview
 author: Cumulus Networks
 weight: 169
 aliases:
- - /display/CL35/FRRouting-Overview
+ - /display/CL35/FRRouting+Overview
  - /pages/viewpage.action?pageId=8357713
 pageID: 8357713
 product: Cumulus Linux
@@ -16,14 +16,14 @@ dynamic routing. FRRouting provides many routing protocols, of which
 Cumulus Linux supports the following:
 
   - Open Shortest Path First
-    ([v2](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First---OSPF---Protocol)
+    ([v2](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First-OSPF---Protocol)
     and
-    [v3](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First-v3---OSPFv3---Protocol))
+    [v3](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First-v3-OSPFv3---Protocol))
 
   - [Border Gateway
-    Protocol](/version/cumulus-linux-35/Layer-3/Border-Gateway-Protocol---BGP)
+    Protocol](/version/cumulus-linux-35/Layer-3/Border-Gateway-Protocol-BGP)
 
-## <span>Architecture</span>
+## Architecture</span>
 
 {{% imgOld 0 %}}
 
@@ -36,12 +36,12 @@ the information exchanged.
 It is not uncommon to have more than one protocol daemon running at the
 same time. For example, at the edge of an enterprise, protocols internal
 to an enterprise (called IGP for Interior Gateway Protocol) such as
-[OSPF](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First---OSPF---Protocol)
+[OSPF](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First-OSPF---Protocol)
 or RIP run alongside the protocols that connect an enterprise to the
 rest of the world (called EGP or Exterior Gateway Protocol) such as
-[BGP](/version/cumulus-linux-35/Layer-3/Border-Gateway-Protocol---BGP).
+[BGP](/version/cumulus-linux-35/Layer-3/Border-Gateway-Protocol-BGP).
 
-## <span>About zebra</span>
+## About zebra</span>
 
 `zebra` is the daemon that resolves the routes provided by multiple
 protocols (including static routes specified by the user) and programs
@@ -52,7 +52,7 @@ documentation](https://frrouting.org/user-guide/zebra.html) defines
 routing table updates, interface lookups, and redistribution of routes
 between different routing protocols."
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [frrouting.org](https://frrouting.org)
 

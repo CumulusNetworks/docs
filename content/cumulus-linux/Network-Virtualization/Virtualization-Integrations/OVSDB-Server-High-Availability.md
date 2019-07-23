@@ -3,13 +3,13 @@ title: OVSDB Server High Availability
 author: Cumulus Networks
 weight: 395
 aliases:
- - /display/CL37/OVSDB-Server-High-Availability
+ - /display/DOCS/OVSDB+Server+High+Availability
  - /pages/viewpage.action?pageId=8362860
 pageID: 8362860
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 {{%notice warning%}}
 
@@ -27,9 +27,9 @@ running in active-active mode). For information about VMware NSX in
 standalone mode and for a description of the components that work
 together to integrate VMware NSX and Cumulus Linux, see [Integrating
 Hardware VTEPs with VMware
-NSX-MH](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
+NSX-MH](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
 or [Integrating Hardware VTEPs with VMware
-NSX-V](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V).
+NSX-V](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V).
 
 With OVSDB server high availability mode, you use two peer Cumulus Linux
 switches in an MLAG configuration. Both the MLAG primary and MLAG
@@ -66,13 +66,13 @@ the MLAG secondary switch stops communicating with the NSX controller,
 synchronizes with the now active OVSDB server, and takes the standby
 role again.
 
-## <span>Getting Started</span>
+## Getting Started
 
 Before you configure OVSDB server high availability, make sure you have
 **two switches running Cumulus Linux in an MLAG configuration**. Cumulus
 Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`),
 which support [VLAN-aware
-bridges](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
+bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
 
 The following example configuration in the `/etc/network/interfaces`
 file shows the *minimum* MLAG configuration required (the MLAG peerlink
@@ -119,7 +119,7 @@ configurations are provisioned by the NSX controller.
        mtu  9152
        alias Local Node/s leaf01 and Ports swp7 <==> Remote  Node/s hostd-01 and Ports swp1
        clag-id 1
-     
+
     auto hostbond5
     iface hostbond5
        bond-slaves swp8
@@ -150,7 +150,7 @@ command followed by the `net commit` command.
 
 {{%/notice%}}
 
-## <span>Configure the NSX Integration on the Switch</span>
+## Configure the NSX Integration on the Switch
 
 Before you start configuring the gateway service, the logical switches,
 and ports that comprise the VXLAN, you need to enable and start the
@@ -158,117 +158,117 @@ and ports that comprise the VXLAN, you need to enable and start the
 the MLAG primary and MLAG secondary switches**. Follow these steps:
 
 1.  Enable and start the `openvswitch-vtep` service:
-    
+
         cumulus@switch:~$ sudo systemctl enable openvswitch-vtep.service
         cumulus@switch:~$ sudo systemctl start openvswitch-vtep.service
 
 2.  Run the configuration script provided with Cumulus Linux:
-    
+
     1.  On the switch where you want to run the active OVSDB server, run
         the `vtep-bootstrap` command with these options:
-        
+
           - `db_ha active` specifies that the OVSDB server on this
             switch is the *active* server.
-        
+
           - `db_ha_vip` is any unused IP address in the subnet used by
             the peerlink control subinterface (4094 is typically used).
             This creates a /32 route that can be reached from either
             MLAG switch (`169.254.0.11:9998` in the example below).
-        
+
           - `db_ha_repl_sv` specifies the IP address of the **active**
             OVSDB server (`169.254.0.9:9999` in the example command
             below). The standby OVSDB server uses this IP address to
             synchronize the database.
-        
+
           - `controller_port` is the port used to communicate with the
             NSX controller.
-        
+
           - `controller_ip` is the IP address of the NSX controller
             (192.168.100.17 in the example command below).
-        
+
           - The ID for the VTEP (`vtep7` in the example command below).
-        
+
           - The datapath IP address of the VTEP (`172.16.20.157` in the
             example command below). This is the VXLAN anycast IP
             address.
-        
+
           - The IP address of the management interface on the switch
             (`192.168.100.157` in the example command below). This
             interface is used for control traffic.
-        
+
         <!-- end list -->
-        
+
             cumulus@switch:~$ vtep-bootstrap  --db_ha active  --db_ha_vip 169.254.0.11:9998  --db_ha_repl_sv 169.254.0.9:9999 --controller_ip 192.168.100.17 vtep7 172.16.20.157 192.168.100.157
-            Executed: 
+            Executed:
                 create certificate on a switch, to be used for authentication with controller
                  ().
-            Executed: 
+            Executed:
                 sign certificate
                  (vtep7-req.pem Tue Sep 11 21:11:27 UTC 2018
                     fingerprint a4cda030fe5e458c0d7ba44e22f52650f01bcd75).
-            Executed: 
+            Executed:
                 define physical switch
                  ().
-            Executed: 
+            Executed:
                 define NSX controller IP address in OVSDB
                  ().
-            Executed: 
+            Executed:
                 define local tunnel IP address on the switch
                  ().
-            Executed: 
+            Executed:
                 define management IP address on the switch
                  ().
-            Executed: 
+            Executed:
                 restart a service
                  ().
-    
+
     2.  On the switch where you want to run the standby OVSDB server,
         run the the `vtep-bootstrap` command with the same options as
         above but replace `db_ha active` with `db_ha standby`:
-        
+
             cumulus@switch:~$ vtep-bootstrap  --db_ha standby  --db_ha_vip 169.254.0.11:9998  --db_ha_repl_sv 169.254.0.9:9999 --controller_ip 192.168.100.17 vtep7 172.16.20.157 192.168.100.157
-            Executed: 
+            Executed:
                 create certificate on a switch, to be used for authentication with controller
                  ().
-            Executed: 
+            Executed:
                 sign certificate
                  (vtep7-req.pem Tue Sep 11 21:11:27 UTC 2018
                     fingerprint a4cda030fe5e458c0d7ba44e22f52650f01bcd75).
-            Executed: 
+            Executed:
                 define physical switch
                  ().
-            Executed: 
+            Executed:
                 define NSX controller IP address in OVSDB
                  ().
-            Executed: 
+            Executed:
                 define local tunnel IP address on the switch
                  ().
-            Executed: 
+            Executed:
                 define management IP address on the switch
                  ().
-            Executed: 
+            Executed:
                 restart a service
                  ().
-    
+
     3.  From the switch running the active OVSDB server, copy the
         certificate files (`hostname-cert.pem` and
         `hostname-privkey.pem`) to the same location on the switch with
         the standby OVSDB server.
-        
+
         {{%notice note%}}
-        
-        The certificate and key pairs for authenticating with the NSX
+
+The certificate and key pairs for authenticating with the NSX
         controller are generated automatically when you run the
         configuration script and are stored in the `/home/cumulus`
         directory. The same certificate must be used for both switches.
-        
+
         {{%/notice%}}
-    
+
     4.  On the switch running the *active* OVSDB server and then the
         switch running the *standby* OVSDB server, run the following
         commands in the order shown to complete the configuration
         process:
-        
+
             cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
             cumulus@switch:~$ sudo ifreload -a
             cumulus@switch:~$ sudo systemctl restart networking.service
@@ -276,7 +276,7 @@ the MLAG primary and MLAG secondary switches**. Follow these steps:
 For information about the configuration script, read `man
 vtep-bootstrap` or run the command `vtep-bootstrap --help`.
 
-## <span id="src-8362860_OVSDBServerHighAvailability-active-config-transport-logical" class="confluence-anchor-link"></span><span>Configure the Transport and Logical Layers</span>
+## Configure the Transport and Logical Layers
 
 After you finish configuring the NSX integration on both the MLAG
 primary and MLAG secondary switch, you need to configure the transport
@@ -286,7 +286,7 @@ Transport and Logical Layers
 or [Configuring the Transport and Logical Layers
 (NSX-V](Integrating-Hardware-VTEPs-with-VMware-NSX-V.html#src-8362823_IntegratingHardwareVTEPswithVMwareNSX-V-V-config-transport-logical)).
 
-## <span>Troubleshooting</span>
+## Troubleshooting
 
 After you configure OVSDB server high availability, you can check that
 configuration is successful.

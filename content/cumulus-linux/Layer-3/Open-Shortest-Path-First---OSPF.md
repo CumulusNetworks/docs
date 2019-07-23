@@ -3,13 +3,13 @@ title: Open Shortest Path First - OSPF
 author: Cumulus Networks
 weight: 181
 aliases:
- - /display/CL37/Open-Shortest-Path-First---OSPF
+ - /display/DOCS/Open+Shortest+Path+First+OSPF
  - /pages/viewpage.action?pageId=8362922
 pageID: 8362922
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 OSPF maintains the view of the network topology conceptually as a
 directed graph. Each router represents a vertex in the graph. Each link
@@ -36,9 +36,9 @@ protocol’s correctness.
 This topic describes OSPFv2, which is a [link-state routing
 protocol](http://en.wikipedia.org/wiki/Link-state_routing_protocol) for
 IPv4. For IPv6 commands, refer to [Open Shortest Path First v3 -
-OSPFv3](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First-v3---OSPFv3)
+OSPFv3](/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3)
 
-## <span>Scalability and Areas</span>
+## Scalability and Areas
 
 An increase in the number of nodes affects:
 
@@ -72,7 +72,7 @@ divide the leaf-spine topology into the following areas:
 
 {{%/notice%}}
 
-## <span>Configure OSPFv2</span>
+## Configure OSPFv2
 
 To configure OSPF, you need to:
 
@@ -82,17 +82,16 @@ To configure OSPF, you need to:
 
   - Define custom OSPF parameters on the interfaces
 
-### <span>Enable the OSPF and Zebra Daemons</span>
+### Enable the OSPF and Zebra Daemons
 
 To enable OSPF, enable the `zebra` and `ospf` daemons, as described in
-[Configuring
-FRRouting](/version/cumulus-linux-377/Layer-3/Configuring-FRRouting/),
+[Configuring FRRouting](/cumulus-linux/Layer-3/Configuring-FRRouting/),
 then start the FRRouting service:
 
     cumulus@switch:~$ sudo systemctl enable frr.service
     cumulus@switch:~$ sudo systemctl start frr.service
 
-### <span>Configure OSPF</span>
+### Configure OSPF
 
 Before you configure OSPF, you need to identify:
 
@@ -152,7 +151,7 @@ local prefixes using `network` and/or `passive-interface` statements.
 
     cumulus@switch:~$ net add ospf redistribute connected
 
-### <span>Define Custom OSPF Parameters on the Interfaces</span>
+### Define Custom OSPF Parameters on the Interfaces
 
 You can define additional custom parameters for OSPF, such as the
 network type (point-to-point or broadcast) and the timer tuning, such as
@@ -163,7 +162,7 @@ a hello interval.
 
 The OSPF configuration is saved in the `/etc/frr/frr.conf` file.
 
-### <span>OSPF SPF Timer Defaults</span>
+### OSPF SPF Timer Defaults
 
 OSPF uses the following timers to prevent consecutive SPFs from
 overburdening the CPU:
@@ -175,7 +174,7 @@ overburdening the CPU:
 
   - 5000 ms maximum between SPFs
 
-### <span>Configure MD5 Authentication for OSPF Neighbors</span>
+### Configure MD5 Authentication for OSPF Neighbors
 
 Simple text passwords have largely been deprecated in FRRouting, in
 favor of MD5 hash authentication.
@@ -193,29 +192,29 @@ To configure MD5 authentication:
     The following example command creates key ID *1* with the message
     digest key *__thisisthekey:  
     __*
-    
+
         cumulus@switch:~$ net add interface swp1 ospf message-digest-key 1 md5 thisisthekey
-    
+
     {{%notice info%}}
-    
-    You can remove existing MD5 authentication hashes with the `net del
+
+You can remove existing MD5 authentication hashes with the `net del
     interface <interface> ospf message-digest-key <KEYID> md5 <KEY>`
     command.
-    
+
     {{%/notice%}}
 
 2.  Enable authorization with the `net add interface <interface> ospf
     authentication message-digest` command.
-    
+
         cumulus@switch:~$ net add interface swp1 ospf authentication message-digest
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
-    
+
     These commands creates the following configuration in the
     `/etc/frr/frr.conf` file:
-    
+
         cumulus@switch:~$ sudo cat /etc/frr/frr.conf 
-        ... 
+        ...
         interface swp1
          ip ospf area 0.0.0.0
          ip ospf authentication message-digest
@@ -223,11 +222,11 @@ To configure MD5 authentication:
          ip ospf network point-to-point
          ...
 
-## <span>Scaling Tips</span>
+## Scaling Tips
 
 Here are some tips for how to scale out OSPF.
 
-### <span>Summarization</span>
+### Summarization
 
 By default, an ABR creates a summary (type-3) LSA for each route in an
 area and advertises it in adjacent areas. Prefix range configuration
@@ -244,7 +243,7 @@ To configure a range:
     switch(config)# exit
     switch# write mem
     switch# exit
-    cumulus@switch:~$ 
+    cumulus@switch:~$
 
 {{%notice tip%}}
 
@@ -272,7 +271,7 @@ As a result, other backbone routers shift traffic destined to
 10.1.0.0/16 towards R6. This breaks ECMP and is an under-utilization of
 network capacity for traffic destined to 10.1.1.0/24.
 
-### <span>Stub Areas</span>
+### Stub Areas
 
 Nodes in an area receive and store intra-area routing information and
 summarized information about other areas from the ABRs. In particular, a
@@ -310,7 +309,7 @@ Here is a brief tabular summary of the area type differences:
 | Stub area             | LSA types 1, 2, 3, 4 area-scoped, No type 5 externals, inter-area routes summarized |
 | Totally stubby area   | LSA types 1, 2 area-scoped, default summary, No type 3, 4, 5 LSA types allowed      |
 
-### <span id="src-8362922_OpenShortestPathFirst-OSPF-multi-instance" class="confluence-anchor-link"></span><span>Multiple ospfd Instances</span>
+### Multiple ospfd Instances
 
 The `ospfd` daemon can have multiple independent processes.
 
@@ -331,7 +330,7 @@ To configure multi-instance OSPF:
     instance2 ..."* to the `ospfd` line, specifying an instance ID for
     each separate instance. For example, the following configuration has
     OSPF enabled with 2 `ospfd` instances, 11 and 22:
-    
+
         cumulus@switch:~$ cat /etc/frr/daemons
         zebra=yes
         bgpd=no
@@ -342,20 +341,20 @@ To configure multi-instance OSPF:
         isisd=no
 
 2.  After you modify the `daemons` file, restart FRRouting:
-    
+
         cumulus@switch:~$ sudo systemctl restart frr.service
 
 3.  Configure each instance:
-    
+
         cumulus@switch:~$ net add interface swp1 ospf instance-id 11 
-        cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0 
+        cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
         cumulus@switch:~$ net add ospf router-id 1.1.1.1
         cumulus@switch:~$ net add interface swp2 ospf instance-id 22
         cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
         cumulus@switch:~$ net add ospf router-id 1.1.1.1
 
 4.  Confirm the configuration:
-    
+
         cumulus@switch:~$ net show configuration ospf
          
         hostname zebra
@@ -420,14 +419,14 @@ To configure multi-instance OSPF:
         end
 
 5.  Confirm that all the OSPF instances are running:
-    
+
         cumulus@switch:~$ ps -ax | grep ospf
         21135 ?        S<s    0:00 /usr/lib/frr/ospfd --daemon -A 127.0.0.1 -n 11
         21139 ?        S<s    0:00 /usr/lib/frr/ospfd --daemon -A 127.0.0.1 -n 22
         21160 ?        S<s    0:01 /usr/lib/frr/watchfrr -adz -r /usr/sbin/servicebBfrrbBrestartbB%s -s /usr/sbin/servicebBquaggabBstartbB%s -k /usr/sbin/servicebBfrrbBstopbB%s -b bB -t 30 zebra ospfd-11 ospfd-22 pimd
         22021 pts/3    S+     0:00 grep ospf
 
-#### <span>Caveats</span>
+#### Caveats
 
 You can use the `redistribute ospf` option in your `frr.conf` file works
 with this so you can route between the instances. Specify the instance
@@ -469,7 +468,7 @@ configuration file for each instance. The `ospfd.conf` file must include
 the instance ID in the file name. Continuing with our example, you would
 create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
 
-    cumulus@switch:~$ cat /etc/frr/ospfd-11.conf 
+    cumulus@switch:~$ cat /etc/frr/ospfd-11.conf
     !
     hostname zebra
     log file /var/log/frr/zebra.log
@@ -533,7 +532,7 @@ create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
 
 {{%/notice%}}
 
-### <span id="src-8362922_OpenShortestPathFirst-OSPF-acrb" class="confluence-anchor-link"></span><span>Auto-cost Reference Bandwidth</span>
+### Auto-cost Reference Bandwidth
 
 *Auto-cost reference bandwidth* provides the ability to dynamically
 calculate the OSPF interface cost to cater for higher speed links. You
@@ -568,7 +567,7 @@ These commands create the following configuration in the
      
     ...
 
-## <span id="src-8362922_OpenShortestPathFirst-OSPF-ospf_unnum" class="confluence-anchor-link"></span><span>Unnumbered Interfaces</span>
+## Unnumbered Interfaces
 
 Unnumbered interfaces are interfaces without unique IP addresses. In
 OSPFv2, configuring unnumbered interfaces reduces the links between
@@ -632,21 +631,21 @@ To enable OSPF on an unnumbered interface:
 
     cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.1
 
-## <span>Apply a Route Map for Route Updates</span>
+## Apply a Route Map for Route Updates
 
 To apply a [route map](https://frrouting.org/user-guide/routemap.html)
 to filter route updates from Zebra into the Linux kernel:
 
     cumulus@switch:$ net add routing protocol ospf route-map <route-map-name>
 
-## <span>ECMP</span>
+## ECMP
 
 During SPF computation for an area, if OSPF finds multiple paths with
 equal cost (metric), all those paths are used for forwarding. For
 example, in the reference topology diagram, R8 uses both R3 and R4 as
 next hops to reach a destination attached to R9.
 
-## <span>Topology Changes and OSPF Reconvergence</span>
+## Topology Changes and OSPF Reconvergence
 
 Topology changes usually occur due to one of four events:
 
@@ -681,13 +680,13 @@ depends on layer 1 failure detection capabilities and at the worst case
     switch(config)# exit
     switch# write mem
     switch# exit
-    cumulus@switch:~$ 
+    cumulus@switch:~$
 
 **Example configuration for event 2**:
 
     cumulus@switch:~$ net add interface swp1 ospf cost 65535
 
-## <span id="src-8362922_OpenShortestPathFirst-OSPF-ospf_debug" class="confluence-anchor-link"></span><span>Troubleshooting</span>
+## Troubleshooting
 
   - To debug neighbor states, run the `net show ospf neighbor` command.
 
@@ -704,10 +703,10 @@ depends on layer 1 failure detection capabilities and at the worst case
 [Debugging-OSPF](http://docs.frrouting.org/en/latest/ospfd.html#id7)
 lists all of the OSPF debug options.
 
-## <span>Related Information</span>
+## Related Information
 
   - [Bidirectional forwarding
-    detection](/version/cumulus-linux-377/Layer-3/Bidirectional-Forwarding-Detection---BFD)
+    detection](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)
     (BFD) and OSPF
 
   - [en.wikipedia.org/wiki/Open\_Shortest\_Path\_First](http://en.wikipedia.org/wiki/Open_Shortest_Path_First)

@@ -3,7 +3,7 @@ title: Using netq to Troubleshoot the Network
 author: Cumulus Networks
 weight: 395
 aliases:
- - /display/CL321/Using-netq-to-Troubleshoot-the-Network
+ - /display/CL321/Using+netq+to+Troubleshoot+the+Network
  - /pages/viewpage.action?pageId=5126783
 pageID: 5126783
 product: Cumulus Linux
@@ -58,7 +58,7 @@ to debug it.
 Because `netq` is a Linux application, it's easy to automate with tools
 like Ansible, Puppet or Chef.
 
-## <span>Components</span>
+## Components</span>
 
 `netq` has three primary components:
 
@@ -90,7 +90,7 @@ like Ansible, Puppet or Chef.
 
 {{% imgOld 0 %}}
 
-## <span>Feature Limitations</span>
+## Feature Limitations</span>
 
 `netq` is an [early access
 feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878).
@@ -112,7 +112,7 @@ If you are interested in trying out this or any other early access
 feature, contact your Cumulus Networks account representative to let us
 know you are testing it.
 
-## <span>Installing netq</span>
+## Installing netq</span>
 
 To install the `netq` package — `cumulus-netq` — on a switch, follow the
 instructions below. The `cumulus-netq` package contains `netq` and the
@@ -133,7 +133,7 @@ the redis server.
         cumulus@switch:~$ sudo apt-get update
         cumulus@switch:~$ sudo apt-get install cumulus-netq
 
-### <span>Installing redis Server</span>
+### Installing redis Server</span>
 
 Cumulus Networks recommends you install the `redis` server on its own
 server or VM. Ideally, you should run the `redis` server on a separate,
@@ -181,7 +181,7 @@ You cannot specify a port number for the `redis` server at this time.
 Once you install the redis server, you must configure it before you can
 configure `netq` on the switch.
 
-## <span>Configuring the redis Server</span>
+## Configuring the redis Server</span>
 
 Depending upon the operating system of the redis server host, you may
 need to modify its configuration before it can start monitoring the
@@ -202,7 +202,7 @@ server is listening to external-facing ports, and not the localhost.
     
         root@redis-server:~# systemctl restart redis-server
 
-## <span>Configuring netq</span>
+## Configuring netq</span>
 
 Once you install the `netq` packages and configure the redis server, you
 need to configure `netq` to monitor your network.
@@ -242,7 +242,7 @@ The `netq` configuration is stored in the following files:
     are being pushed to the agent, as determined when the agent starts,
     as well as the `redis` server IP address and more.
 
-### <span>Configuring NetQ in Management VRF</span>
+### Configuring NetQ in Management VRF</span>
 
 To configure NetQ in the management VRF, after you configure the
 management VRF, start the `netq` service as followed:
@@ -259,7 +259,7 @@ Only one instance of `netq-agent` can run at a time. If the
 
 {{%/notice%}}
 
-## <span>Using netq</span>
+## Using netq</span>
 
 `netq` has a number of options to use with the command to return various
 kinds of data about your network — press the *Tab* key at any time to
@@ -278,7 +278,7 @@ each one:
     trace    :  Control plane trace path across fabric
     view     :  Show output of pre-defined commands on specific node
 
-### <span>Checking the Health of the Network</span>
+### Checking the Health of the Network</span>
 
 It's best to start with ` netq check agents  `to see the status of every
 network node, based on the whether the agent missed receiving any
@@ -320,7 +320,7 @@ You can also check the health of BGP and MLAG in the network:
     leafc-11         Peer Connectivity failed
     leafc-11         Singly Attached Bonds: hostbond4, hostbond5
 
-### <span>Using netq show</span>
+### Using netq show</span>
 
 The `netq show` command can return information regarding the network
 fabric overall, including:
@@ -432,7 +432,7 @@ To view the routes originated from a VRF on specific node, run:
 {{%notice note%}}
 
 The
-[VRR](/version/cumulus-linux-321/Layer-One-and-Two/Virtual-Router-Redundancy---VRR/)
+[VRR](/version/cumulus-linux-321/Layer-One-and-Two/Virtual-Router-Redundancy-VRR/)
 IPv6 link local address is not displayed when you run `netq show ipv6
 address`. `netq` only displays the SVI link local address.
 
@@ -443,7 +443,7 @@ address`. `netq` only displays the SVI link local address.
 
 {{%/notice%}}
 
-### <span>Using netq view</span>
+### Using netq view</span>
 
 The `netq view` command provides information about a specific node in
 the network. The available options are:
@@ -481,7 +481,7 @@ For example, to see the `top` output on leaf-2, run:
      1391 root      20   0   24632   6476   3436 S   0.0  0.3   0:00.11 ts
      1837 quagga    15  -5   48540   5940   3180 S   0.0  0.3   0:00.77 bgpd
 
-## <span>Monitoring the redis Server</span>
+## Monitoring the redis Server</span>
 
 You can use the `redis-cli info` command to determine how much memory is
 consumed by the `redis` server, how many connections there are, and so
@@ -497,7 +497,7 @@ To use the [`redis` CLI](http://redis.io/topics/rediscli), you need to
 
 {{%/notice%}}
 
-### <span>Specifying a Different redis Server</span>
+### Specifying a Different redis Server</span>
 
 If you need to change the IP address of the `redis` server, run `netq
 add server` again, specifying the IP address of the new server, then
@@ -511,7 +511,7 @@ monitoring with `netq`. Cumulus Networks recommends you use an
 automation tool like Ansible or Puppet to quickly update the server
 across all switches.
 
-## <span>Troubleshooting netq</span>
+## Troubleshooting netq</span>
 
 `netq` agent logs to `/var/log/netq-agent.log`. The logs are logrotated.
 

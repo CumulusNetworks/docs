@@ -3,7 +3,7 @@ title: Open Shortest Path First - OSPF - Protocol
 author: Cumulus Networks
 weight: 137
 aliases:
- - /display/CL30/Open-Shortest-Path-First---OSPF---Protocol
+ - /display/CL30/Open+Shortest+Path+First+++OSPF+++Protocol
  - /pages/viewpage.action?pageId=5118389
 pageID: 5118389
 product: Cumulus Linux
@@ -35,7 +35,7 @@ ensures a consistent view of LSDB on each node in the network in a
 distributed fashion (eventual consistency model); this is key to the
 protocol’s correctness.
 
-## <span>Scalability and Areas</span>
+## Scalability and Areas</span>
 
 An increase in the number of nodes affects OSPF scalability in the
 following ways:
@@ -77,7 +77,7 @@ coming up with area addresses.
 
 {{%/notice%}}
 
-## <span>Configuring OSPFv2</span>
+## Configuring OSPFv2</span>
 
 Configuring OSPF involves the following tasks:
 
@@ -87,7 +87,7 @@ Configuring OSPF involves the following tasks:
 
   - Defining (Custom) OSPF parameters on the interfaces
 
-### <span>Enabling the OSPF and Zebra Daemons</span>
+### Enabling the OSPF and Zebra Daemons</span>
 
 To enable OSPF, enable the `zebra` and `ospf` daemons, as described in
 [Configuring
@@ -96,7 +96,7 @@ then start the Quagga service:
 
     cumulus@switch:~$ sudo systemctl start quagga.service
 
-### <span>Configuring OSPF</span>
+### Configuring OSPF</span>
 
 As we discussed in [Introduction to Routing
 Protocols](/version/cumulus-linux-30/Layer-3-Features/Introduction-to-Routing-Protocols),
@@ -193,7 +193,7 @@ There are two ways to achieve (2) and (3) in the Quagga OSPF:
     a good practice to generate local prefixes using `network` and/or
     `passive-interface` statements.
 
-### <span>Defining (Custom) OSPF Parameters on the Interfaces</span>
+### Defining (Custom) OSPF Parameters on the Interfaces</span>
 
 1.  Network type, such as point-to-point, broadcast.
 
@@ -214,7 +214,7 @@ Or through `cl-ospf`, from the Cumulus Linux shell:
 
 The OSPF configuration is saved in `/etc/quagga/ospfd.conf`.
 
-## <span>Scaling Tip: Summarization</span>
+## Scaling Tip: Summarization</span>
 
 By default, an ABR creates a summary (type-3) LSA for each route in an
 area and advertises it in adjacent areas. Prefix range configuration
@@ -252,7 +252,7 @@ As a result, other backbone routers shift traffic destined to
 10.1.0.0/16 towards R6. This breaks ECMP and is an under-utilization of
 network capacity for traffic destined to 10.1.1.0/24.
 
-## <span>Scaling Tip: Stub Areas</span>
+## Scaling Tip: Stub Areas</span>
 
 Nodes in an area receive and store intra-area routing information and
 summarized information about other areas from the ABRs. In particular, a
@@ -292,7 +292,7 @@ Here is a brief tabular summary of the area type differences:
 | Stub area             | LSA types 1, 2, 3, 4 area-scoped, No type 5 externals, inter-area routes summarized |
 | Totally stubby area   | LSA types 1, 2 area-scoped, default summary, No type 3, 4, 5 LSA types allowed      |
 
-## <span>Configuration Tip: Unnumbered Interfaces</span>
+## Configuration Tip: Unnumbered Interfaces</span>
 
 Unnumbered interfaces are interfaces without unique IP addresses. In
 OSPFv2, configuring unnumbered interfaces reduces the links between
@@ -350,14 +350,14 @@ To enable OSPF on an unnumbered interface from within Quagga's `vtysh`:
     R3(config)# interface swp1
     R3(config-if)# ip ospf area 0.0.0.1
 
-## <span>ECMP</span>
+## ECMP</span>
 
 During SPF computation for an area, if OSPF finds multiple paths with
 equal cost (metric), all those paths are used for forwarding. For
 example, in the reference topology diagram, R8 uses both R3 and R4 as
 next hops to reach a destination attached to R9.
 
-## <span>Topology Changes and OSPF Reconvergence</span>
+## Topology Changes and OSPF Reconvergence</span>
 
 Topology changes usually occur due to one of four events:
 
@@ -382,7 +382,7 @@ failed link or node to each of the destinations. The reconvergence
 depends on layer 1 failure detection capabilities and at the worst case
 *DeadInterval* OSPF timer.
 
-### <span>Example Configurations</span>
+### Example Configurations</span>
 
 Example configuration for event 1, using `vtysh`:
 
@@ -404,7 +404,7 @@ Or, with the non-modal shell command approach:
 
 <span id="src-5118389_OpenShortestPathFirst-OSPF-Protocol-ospf_debug"></span>
 
-## <span>Debugging OSPF</span>
+## Debugging OSPF</span>
 
 [OperState](http://www.nongnu.org/quagga/docs/docs-info.html#Showing-OSPF-information)
 lists all the commands to view the operational state of OSPF.
@@ -469,11 +469,11 @@ Using `tcpdump` to capture OSPF packets:
 
     cumulus@switch:~$ sudo tcpdump -v -i swp1 ip proto ospf
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/quagga/ospfd.conf
 
-## <span>Supported RFCs</span>
+## Supported RFCs</span>
 
   - 
     
@@ -487,10 +487,10 @@ Using `tcpdump` to capture OSPF packets:
 
   - [RFC5309](http://tools.ietf.org/rfc/rfc5309)
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [Bidirectional forwarding
-    detection](/version/cumulus-linux-30/Layer-3-Features/Bidirectional-Forwarding-Detection---BFD)
+    detection](/version/cumulus-linux-30/Layer-3-Features/Bidirectional-Forwarding-Detection-BFD)
     (BFD) and OSPF
 
   - <http://en.wikipedia.org/wiki/Open_Shortest_Path_First>

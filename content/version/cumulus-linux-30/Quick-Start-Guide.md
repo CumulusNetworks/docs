@@ -3,7 +3,7 @@ title: Quick Start Guide
 author: Cumulus Networks
 weight: 13
 aliases:
- - /display/CL30/Quick-Start-Guide
+ - /display/CL30/Quick+Start+Guide
  - /pages/viewpage.action?pageId=5118207
 pageID: 5118207
 product: Cumulus Linux
@@ -14,14 +14,14 @@ siteSlug: cumulus-linux-30
 This chapter helps you get up and running with Cumulus Linux quickly and
 easily.
 
-## <span>What's New in Cumulus Linux 3.0.1</span>
+## What's New in Cumulus Linux 3.0.1</span>
 
 Cumulus Linux 3.0.1 contains bug fixes only. The [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/222822047)
 contain information about the release as well as the fixed and known
 issues.
 
-## <span>Open Source Contributions</span>
+## Open Source Contributions</span>
 
 Cumulus Networks has forked various software projects, like CFEngine,
 `Netdev` and some Puppet Labs packages in order to implement various
@@ -34,7 +34,7 @@ applications as well.
 The list of open source projects is on the [open source
 software](http://oss.cumulusnetworks.com) page.
 
-## <span>Prerequisites</span>
+## Prerequisites</span>
 
 Prior intermediate Linux knowledge is assumed for this guide. You should
 be familiar with basic text editing, Unix file permissions, and process
@@ -59,7 +59,7 @@ Linux in general and some Cumulus Linux-specific concepts in particular.
 
 {{%/notice%}}
 
-## <span>Hardware Compatibility List</span>
+## Hardware Compatibility List</span>
 
 You can find the most up to date hardware compatibility list (HCL)
 [here](http://cumulusnetworks.com/hcl/). Use the HCL to confirm that
@@ -69,7 +69,7 @@ part number.
 
 <span id="src-5118207_QuickStartGuide-install"></span>
 
-## <span>Installing Cumulus Linux</span>
+## Installing Cumulus Linux</span>
 
 This quick start guide walks you through the steps necessary for getting
 Cumulus Linux up and running on your switch, which includes:
@@ -158,7 +158,7 @@ After installing Cumulus Linux, you are ready to:
   - Configure Cumulus Linux. This quick start guide provides
     instructions on configuring switch ports and a loopback interface.
 
-## <span id="src-5118207_QuickStartGuide-upgrading-cumulus-linux" class="confluence-anchor-link"></span><span>Upgrading Cumulus Linux</span>
+## <span id="src-5118207_QuickStartGuide-upgrading-cumulus-linux" class="confluence-anchor-link"></span>Upgrading Cumulus Linux</span>
 
 To install Cumulus Linux 3.0.0 or later and you're running a version
 earlier than 3.0.0, you must perform a complete install, as [described
@@ -168,7 +168,7 @@ Cumulus
 Linux](Managing-Cumulus-Linux-Disk-Images.html#src-5118256_ManagingCumulusLinuxDiskImages-upgrade)
 for considerations before start the process.
 
-## <span>Configuring Cumulus Linux</span>
+## Configuring Cumulus Linux</span>
 
 When bringing up Cumulus Linux for the first time, the management port
 makes a DHCPv4 request. To determine the IP address of the switch, you
@@ -176,7 +176,7 @@ can cross reference the MAC address of the switch with your DHCP server.
 The MAC address should be located on the side of the switch or on the
 box in which the unit was shipped.
 
-### <span>Login Credentials</span>
+### Login Credentials</span>
 
 The default installation includes one system account, *root*, with full
 system privileges, and one user account, *cumulus*, with `sudo`
@@ -203,7 +203,7 @@ change the system configuration require this elevated level of access.
 For more information about sudo, read [Using sudo to Delegate
 Privileges](/version/cumulus-linux-30/System-Management/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
 
-### <span>Serial Console Management</span>
+### Serial Console Management</span>
 
 Users are encouraged to perform management and configuration over the
 network, [either in band or out of
@@ -214,7 +214,7 @@ prefer the convenience of network-based management.
 Typically, switches will ship from the manufacturer with a mating DB9
 serial cable. Switches with ONIE are always set to a 115200 baud rate.
 
-### <span>Wired Ethernet Management</span>
+### Wired Ethernet Management</span>
 
 Switches supported in Cumulus Linux always contain at least one
 dedicated Ethernet management port, which is named eth0. This interface
@@ -229,7 +229,7 @@ file:
         address 192.0.2.42/24
         gateway 192.0.2.1
 
-### <span>Configuring the Hostname and Time Zone</span>
+### Configuring the Hostname and Time Zone</span>
 
 To change the hostname, modify the ` /etc/hostname  `and `/etc/hosts`
 files with the desired hostname and reboot the switch. First, edit
@@ -264,7 +264,7 @@ site](https://github.com/CumulusNetworks/customer-scripts/blob/master/change_hos
 
 {{%/notice%}}
 
-### <span>Installing the License</span>
+### Installing the License</span>
 
 Cumulus Linux is licensed on a per-instance basis. Each network system
 is fully operational, enabling any capability to be utilized on the
@@ -306,7 +306,7 @@ will show up as swp1, swp2, and so forth.
 
 {{%/notice%}}
 
-## <span>Configuring 4x10G Port Configuration (Splitter Cables)</span>
+## Configuring 4x10G Port Configuration (Splitter Cables)</span>
 
 If you are using 4x10G DAC or AOC cables, edit the
 `/etc/cumulus/ports.conf` to enable support for these cables then
@@ -316,7 +316,7 @@ using the `sudo systemctl restart switchd.service` command. For more
 details, see [Layer 1 and Switch Port
 Attributes](/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes).
 
-## <span>Testing Cable Connectivity</span>
+## Testing Cable Connectivity</span>
 
 By default, all data plane ports (every Ethernet port except the
 management interface, eth0) are disabled.
@@ -344,16 +344,16 @@ output of a port in "admin down", "down" and "up" mode, respectively:
     # Administratively Up, Layer 2 protocol is Up
     swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
 
-## <span>Configuring Switch Ports</span>
+## Configuring Switch Ports</span>
 
-### <span>Layer 2 Port Configuration</span>
+### Layer 2 Port Configuration</span>
 
 Cumulus Linux does not put all ports into a bridge by default. To
 configure a front panel port or create a bridge, edit the
 `/etc/network/interfaces` file. After saving the file, to activate the
 change, use the `ifup` command.
 
-#### <span>Examples</span>
+#### Examples</span>
 
 In the following configuration example, the front panel port swp1 is
 placed into a bridge called br0:
@@ -393,7 +393,7 @@ bridge](https://support.cumulusnetworks.com/hc/en-us/articles/203508477).
 
 {{%/notice%}}
 
-### <span>Layer 3 Port Configuration</span>
+### Layer 3 Port Configuration</span>
 
 To configure a front panel port or bridge interface as a Layer 3 port,
 edit the `/etc/network/interfaces` file.
@@ -432,7 +432,7 @@ To view the changes in the kernel use the `ip addr show` command:
     link/ether 44:38:39:00:6e:fe brd ff:ff:ff:ff:ff:ff
     inet 10.1.1.1/30 scope global swp1
 
-## <span>Configuring a Loopback Interface</span>
+## Configuring a Loopback Interface</span>
 
 Cumulus Linux has a loopback preconfigured in `/etc/network/interfaces`.
 When the switch boots up, it has a loopback interface, called *lo*,

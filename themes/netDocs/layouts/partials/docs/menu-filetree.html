@@ -9,7 +9,11 @@
 
 {{ $sections := .Scratch.Get "BookSections" }}
 {{/* If there is only one section to render then render its children, else render all sections */}}
+<<<<<<< HEAD
 {{ if eq (len $sections) 1 }} 
+=======
+{{ if eq (len $sections) 1 }}
+>>>>>>> 5e2d3601b51f5f1614cb71d1cb308b6571aca21a
   {{ with index $sections 0 }}
     {{ template "book-section-children" (dict "Section" . "CurrentPage" $.Permalink) }}
   {{ end }}

@@ -3,7 +3,7 @@ title: Network Command Line Utility
 author: Cumulus Networks
 weight: 57
 aliases:
- - /display/CL321/Network-Command-Line-Utility
+ - /display/CL321/Network+Command+Line+Utility
  - /pages/viewpage.action?pageId=5126772
 pageID: 5126772
 product: Cumulus Linux
@@ -41,7 +41,7 @@ monitoring and troubleshooting functionality for these features.
 configured with `net`, in addition to running show and clear commands
 related to `ifupdown2` and Quagga.
 
-## <span>Installing NCLU</span>
+## Installing NCLU</span>
 
 If you upgraded Cumulus Linux from a version earlier than 3.2 instead of
 performing a full binary install, you need to install the `nclu` package
@@ -60,7 +60,7 @@ the following message when it is manually installed:
 
 {{%/notice%}}
 
-## <span>Getting Started</span>
+## Getting Started</span>
 
 NCLU uses the following workflow for staging and committing changes to
 Cumulus Linux:
@@ -95,7 +95,7 @@ using:
   - `net rollback`: Provides a mechanism to revert back to an earlier
     configuration.
 
-### <span>Tab Completion, Verification and Inline Help</span>
+### Tab Completion, Verification and Inline Help</span>
 
 NCLU provides a number of features to assist users. In addition to tab
 completion and partial keyword commands identification, verification
@@ -194,7 +194,7 @@ Multiple interfaces can be configured at once:
 
 {{%/notice%}}
 
-### <span>Built-In Examples</span>
+### Built-In Examples</span>
 
 The NCLU has a number of built in examples to guide users through basic
 configuration setup:
@@ -258,7 +258,7 @@ configuration setup:
     switch1# net show interface
     switch1# net show bridge macs
 
-## <span>Adding More NCLU Users or Groups</span>
+## Adding More NCLU Users or Groups</span>
 
 If you've created custom users or groups on your Cumulus Linux switches,
 you can configure those users to be able to run NCLU commands.
@@ -283,14 +283,14 @@ the file.
 Similarly, to configure a new user group to use NCLU, add that group to
 the *groups\_with\_edit* and *groups\_with\_show* lines in the file.
 
-## <span>Restarting the netd Service</span>
+## Restarting the netd Service</span>
 
 Whenever you modify `netd.conf`, you must restart the `netd` service for
 the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart netd.service
 
-## <span>Advanced Configuration</span>
+## Advanced Configuration</span>
 
 NCLU needs no initial configuration; it's ready to go in Cumulus Linux.
 However, if you need to modify its configuration, you must manually

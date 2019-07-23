@@ -3,7 +3,7 @@ title: SSH for Remote Access
 author: Cumulus Networks
 weight: 279
 aliases:
- - /display/CL36/SSH-for-Remote-Access
+ - /display/CL36/SSH+for+Remote+Access
  - /pages/viewpage.action?pageId=8362046
 pageID: 8362046
 product: Cumulus Linux
@@ -16,7 +16,7 @@ securely with the `ssh-keygen` component of the Secure Shell (SSH)
 protocol. Cumulus Linux uses the OpenSSH package to provide this
 functionality. This section describes how to generate an SSH key pair.
 
-## <span>Generating an SSH Key Pair</span>
+## Generating an SSH Key Pair</span>
 
 1.  To generate the SSH key pair, run the `ssh-keygen` command and
     follow the prompts:
@@ -94,7 +94,7 @@ functionality. This section describes how to generate an SSH key pair.
         basis.
         Last login: Thu Sep 29 16:56:54 2016
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Debian Documentation - Password-less logins with
     OpenSSH](https://debian-administration.org/article/152/Password-less_logins_with_OpenSSH)

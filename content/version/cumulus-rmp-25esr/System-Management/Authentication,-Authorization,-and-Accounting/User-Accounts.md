@@ -3,7 +3,7 @@ title: User Accounts
 author: Cumulus Networks
 weight: 115
 aliases:
- - /display/RMP25ESR/User-Accounts
+ - /display/RMP25ESR/User+Accounts
  - /pages/viewpage.action?pageId=5116312
 pageID: 5116312
 product: Cumulus RMP
@@ -48,7 +48,7 @@ so be sure to include them in the *sudo* group.
 
 To access the switch without any password requires booting into a single
 shell/user mode. [Here are the
-instructions](/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Single-User-Mode---Boot-Recovery)
+instructions](/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery)
 on how to do this using PowerPC and x86 switches.
 
 <article id="html-search-results" class="ht-content" style="display: none;">

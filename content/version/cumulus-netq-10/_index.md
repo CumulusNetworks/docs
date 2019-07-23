@@ -3,7 +3,7 @@ title: Cumulus NetQ
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/NETQ10/Cumulus-NetQ
+ - /display/NETQ10/Cumulus+NetQ
  - /pages/viewpage.action?pageId=6488198
 pageID: 6488198
 product: Cumulus NetQ
@@ -43,7 +43,7 @@ The system uses a three-pronged approach to validating networks:
     state at a time in the past, review fabric-wide event changelogs and
     diagnose the root cause of state deviations.
 
-## <span>NetQ Components</span>
+## NetQ Components</span>
 
 {{% imgOld 0 %}}
 

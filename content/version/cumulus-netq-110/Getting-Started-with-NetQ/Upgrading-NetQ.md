@@ -3,7 +3,7 @@ title: Upgrading NetQ
 author: Cumulus Networks
 weight: 47
 aliases:
- - /display/NETQ110/Upgrading-NetQ
+ - /display/NETQ110/Upgrading+NetQ
  - /pages/viewpage.action?pageId=7111302
 pageID: 7111302
 product: Cumulus NetQ
@@ -46,7 +46,7 @@ until the next NetQ version is released.
 
 {{%/notice%}}
 
-## <span>Upgrade the NetQ Telemetry Server</span>
+## Upgrade the NetQ Telemetry Server</span>
 
 {{%notice note%}}
 
@@ -109,11 +109,11 @@ guide](Getting-Started-with-NetQ.html#src-7111298_GettingStartedwithNetQ-notifie
 
 {{%/notice%}}
 
-## <span>Upgrade the NetQ Agents</span>
+## Upgrade the NetQ Agents</span>
 
 Follow the steps for the relevant OS below to upgrade the NetQ Agents:
 
-### <span>Cumulus Linux</span>
+### Cumulus Linux</span>
 
 1.  Open the `/etc/apt/sources.list` file in a text editor.
 
@@ -125,7 +125,7 @@ Follow the steps for the relevant OS below to upgrade the NetQ Agents:
     
         cumulus@switch:~$ sudo apt-get update && apt-get install cumulus-netq
 
-### <span>Ubuntu 16.04</span>
+### Ubuntu 16.04</span>
 
 1.  Use the `wget` tool to retrieve the public key:
     
@@ -141,7 +141,7 @@ Follow the steps for the relevant OS below to upgrade the NetQ Agents:
     
         cumulus@switch:~$ sudo apt-get update && apt-get install cumulus-netq
 
-### <span>Red Hat Enterprise Linux 7 / CentOS 7</span>
+### Red Hat Enterprise Linux 7 / CentOS 7</span>
 
 1.  Import the public key:
     
@@ -174,7 +174,7 @@ Follow the steps for the relevant OS below to upgrade the NetQ Agents:
     
         cumulus@switch:~$ sudo yum install cumulus-netq
 
-## <span>Connect the NetQ Telemetry Server to the Network</span>
+## Connect the NetQ Telemetry Server to the Network</span>
 
 1.  Once the NetQ Telemetry Server and NetQ agents have been upgraded,
     connect the NetQ Telemetry Server to the network. For more

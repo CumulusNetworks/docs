@@ -3,7 +3,7 @@ title: Resource Diagnostics Using cl-resource-query
 author: Cumulus Networks
 weight: 105
 aliases:
- - /display/RMP31/Resource-Diagnostics-Using-cl-resource-query
+ - /display/RMP31/Resource+Diagnostics+Using+cl+resource+query
  - /pages/viewpage.action?pageId=5122750
 pageID: 5122750
 product: Cumulus RMP

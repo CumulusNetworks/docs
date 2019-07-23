@@ -3,7 +3,7 @@ title: NetQ Command Line Overview
 author: Cumulus Networks
 weight: 51
 aliases:
- - /display/NETQ141/NetQ-Command-Line-Overview
+ - /display/NETQ141/NetQ+Command+Line+Overview
  - /pages/viewpage.action?pageId=10453454
 pageID: 10453454
 product: Cumulus NetQ
@@ -30,7 +30,7 @@ and verify the value in the **Platforms** tab \> **CPU** column. </span>
 
 {{%/notice%}}
 
-## <span>CLI Access</span>
+## CLI Access</span>
 
 When NetQ is installed, the CLI is also installed and enabled (refer to
 the [Install
@@ -115,7 +115,7 @@ Server: </span> <span style="color: #353744;"> </span> </span> </span>
         Cumulus@ts:~$ netq check agents
         Checked nodes: 12, Rotten nodes: 0
 
-## <span>Command Line Basics</span>
+## Command Line Basics</span>
 
 <span style="color: #353744;"> This section describes the core structure
 and behavior of the NetQ CLI. It includes the following: </span>
@@ -139,7 +139,7 @@ and behavior of the NetQ CLI. It includes the following: </span>
 
   - [Command History](#src-10453454_NetQCommandLineOverview-ComHist)
 
-### <span>Command Line Structure</span>
+### Command Line Structure</span>
 
 <span style="color: #353744;"> The Cumulus NetQ command line has a flat
 structure as opposed to a modal structure. This means that all commands
@@ -153,7 +153,7 @@ to run commands which can be tedious and time consuming. Cumulus NetQ
 command line enables the administrator to run all of its commands at the
 same level. </span>
 
-### <span>Command Syntax</span>
+### Command Syntax</span>
 
 <span style="color: #353744;"> NetQ CLI commands all begin with `netq`.
 </span> Their basic syntax is as follows:
@@ -190,7 +190,7 @@ Thus some valid commands are:
 
   - `netq agent restart`
 
-### <span>Command Output</span>
+### Command Output</span>
 
 <span style="color: #353744;"> The command output presents results in
 color for many commands. </span> Results with errors are shown in
@@ -214,7 +214,7 @@ of BGP three hours ago. Running `netq show bgp changes between now
 and 3h` shows changes that have been made to BGP configuration in the
 past three hours. </span>
 
-### <span>Command Prompts</span>
+### Command Prompts</span>
 
 <span style="color: #353744;"> NetQ code examples use the following
 prompts: </span>
@@ -231,7 +231,7 @@ NetQ. Refer to the [Install
 NetQ](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
 topic for details.
 
-### <span>Command Completion</span>
+### Command Completion</span>
 
 <span style="color: #353744;"> <span style="color: #353744;"> As you
 enter commands, you can get help with the valid keywords or options
@@ -255,7 +255,7 @@ the command prompt to complete the command. </span>
         vxlan       :  VXLAN data path
     cumulus@oob-mgmt-server:~$ netq check 
 
-### <span>Command Help</span>
+### Command Help</span>
 
 <span style="color: #353744;"> As you enter commands, you can get help
 with command syntax by entering *help* at various points within a
@@ -277,7 +277,7 @@ To see an exhaustive list of commands, run:
 
     cumulus@switch:~$ netq help list verbose
 
-### <span id="src-10453454_NetQCommandLineOverview-ComHist" class="confluence-anchor-link"></span><span>Command History</span>
+### <span id="src-10453454_NetQCommandLineOverview-ComHist" class="confluence-anchor-link"></span>Command History</span>
 
 The CLI stores commands issued within a session, which enables you to
 review and rerun commands that have already been run. At the command
@@ -287,7 +287,7 @@ found a given command, you can run the command by pressing **Enter**,
 just as you would if you had entered it manually. Optionally you can
 modify the command before you run it.
 
-## <span>Command Categories</span>
+## Command Categories</span>
 
 <span style="color: #353744;"> While the CLI has a flat structure, the
 commands can be conceptually grouped into four functional categories:
@@ -306,7 +306,7 @@ commands can be conceptually grouped into four functional categories:
   - <span style="color: #353744;"> [Resolve
     Command](#src-10453454_NetQCommandLineOverview-ResolveCmd) </span>
 
-### <span>Check and Show Commands</span>
+### Check and Show Commands</span>
 
 <span style="color: #353744;"> The `check` and `show` commands enable
 the network administrator to view the current and historical state of
@@ -436,7 +436,7 @@ This example shows all three cases for the `netq show agents` command.
     ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
     spine01           Fresh            yes      1.3.0-cl3u9~1522970647.b08ca60       7d:22h:48m:47s            7d:17h:48m:39s            13h:59m:10s                34.242092s
 
-### <span>Agent and Notifier Commands</span>
+### Agent and Notifier Commands</span>
 
 <span style="color: #353744;"> The agent and notifier commands
 <span style="color: #353744;"> enable the network administrator to
@@ -499,7 +499,7 @@ presented twice here because the `api-access-key` and the
 `api-integration-key` are not order dependent. Either can be entered
 first. The rest of the syntax is the same. </span>
 
-### <span>Trace Command</span>
+### Trace Command</span>
 
 <span style="color: #353744;"> The `trace` command enables the network
 administrator to view the available paths between two nodes on the
@@ -571,7 +571,7 @@ Example**: View the detailed usage example for the trace command </span>
      
     ...
 
-### <span>Resolve Command</span>
+### Resolve Command</span>
 
 <span style="color: #353744;"> <span style="color: #353744;"> The
 `resolve` command enables the network administrator to view Cumulus
@@ -697,7 +697,7 @@ piping the output through `netq resolve` so the output looks like this:
     eth0    
      )
 
-## <span>Detailed Usage Examples </span>
+## Detailed Usage Examples </span>
 
 Additional help is available to understand key commands using the
 examples provided with NetQ. Each example includes details about a
@@ -744,14 +744,14 @@ Run any of the example commands to view its detailed information:
      
     ...
 
-## <span>Command Changes</span>
+## Command Changes</span>
 
 A number of commands have changed in this release to accommodate the
 addition of new keywords and options or to simplify their syntax.
 Additionally, new commands have been added and others have been removed.
 A summary of those changes is provided here.
 
-### <span>New Commands</span>
+### New Commands</span>
 
 The following table summarizes the new commands available with this
 release.
@@ -767,7 +767,7 @@ release.
 | 7 | netq config ts del notifier integration (slack|pagerduty) \<text-integration-name-anchor\>                       | Remove an event notification integration using its anchor name                                                                                                  |
 | 8 | netq config ts del notifier filter \<text-filter-name-anchor\>                                                   | Remove an event filter using its anchor name                                                                                                                    |
 
-### <span>Modified Commands</span>
+### Modified Commands</span>
 
 The following table summarizes the commands that have been changed with
 this release.
@@ -840,7 +840,7 @@ this release.
 </tbody>
 </table>
 
-### <span>Deprecated commands</span>
+### Deprecated commands</span>
 
 The following table summarizes the commands that have been removed and a
 recommended alternative, if appropriate.

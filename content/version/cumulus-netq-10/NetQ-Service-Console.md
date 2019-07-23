@@ -3,7 +3,7 @@ title: NetQ Service Console
 author: Cumulus Networks
 weight: 21
 aliases:
- - /display/NETQ10/NetQ-Service-Console
+ - /display/NETQ10/NetQ+Service+Console
  - /pages/viewpage.action?pageId=6488214
 pageID: 6488214
 product: Cumulus NetQ
@@ -23,7 +23,7 @@ read the Portainer license file
 
 {{%/notice%}}
 
-## <span>Connecting to the Service Console</span>
+## Connecting to the Service Console</span>
 
 To connect to the service console, open a browser, and go to the IP
 address of the [telemetry
@@ -34,7 +34,7 @@ password is *CumulusNetQ\!*.
 
 {{% imgOld 0 %}}
 
-## <span>Configuring Users</span>
+## Configuring Users</span>
 
 By default, the service console is configured with an administrator
 account named *admin*, but you can add more users as needed. To add a
@@ -54,7 +54,7 @@ new user:
 
 5.  Click **Add user** to create the account.
 
-### <span>Other User Account Actions</span>
+### Other User Account Actions</span>
 
 You can edit a user's role. On the **Users** tab, select the account
 under **Users**, then click **Edit**.
@@ -65,7 +65,7 @@ remaining administrator account.
 
 To change an account password, click the **Password** tab.
 
-## <span>Accessing the NetQ Command Line</span>
+## Accessing the NetQ Command Line</span>
 
 The service console provides access to a standard Bash shell, so you can
 run NetQ commands — or any Linux command — directly on a given node.

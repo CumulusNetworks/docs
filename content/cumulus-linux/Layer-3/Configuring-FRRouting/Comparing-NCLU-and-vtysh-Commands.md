@@ -3,20 +3,20 @@ title: Comparing NCLU and vtysh Commands
 author: Cumulus Networks
 weight: 419
 aliases:
- - /display/CL37/Comparing-NCLU-and-vtysh-Commands
+ - /display/DOCS/Comparing+NCLU+and+vtysh+Commands
  - /pages/viewpage.action?pageId=8362920
 pageID: 8362920
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Using
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
 is the primary way to [configure
-routing](/version/cumulus-linux-377/Layer-3/Configuring-FRRouting/) in
-Cumulus Linux. However, an alternative exists in the the `vtysh` modal
-CLI. The available commands are as follows:
+routing](/cumulus-linux/Layer-3/Configuring-FRRouting/) in Cumulus
+Linux. However, an alternative exists in the the `vtysh` modal CLI. The
+available commands are as follows:
 
 The following table compares the various FRRouting commands with their
 Cumulus Linux NCLU counterparts.
@@ -54,7 +54,7 @@ switch(config-router)# neighbor 14.0.0.22</code></pre></td>
 switch(config-router)# redistribute static</code></pre></td>
 </tr>
 <tr class="even">
-<td><p>Define a <a href="/version/cumulus-linux-377/Layer-3/Routing">static route</a></p></td>
+<td><p>Define a <a href="/cumulus-linux/Layer-3/Routing">static route</a></p></td>
 <td><pre><code>cumulus@switch:~$ net add routing route 155.1.2.20/24 bridge 45
  </code></pre></td>
 <td><pre><code>switch(config)# ip route 155.1.2.20/24 bridge 45</code></pre></td>
@@ -66,7 +66,7 @@ switch(config-router)# redistribute static</code></pre></td>
 switch(config-if)# ipv6 address 3002:2123:1234:1abc::21/64</code></pre></td>
 </tr>
 <tr class="even">
-<td><p>Enable topology checking (<a href="/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager---PTM">PTM</a>)</p></td>
+<td><p>Enable topology checking (<a href="/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM">PTM</a>)</p></td>
 <td><pre><code>cumulus@switch:~$ net add routing ptm-enable</code></pre></td>
 <td><pre><code>switch(config)# ptm-enable</code></pre></td>
 </tr>
@@ -95,7 +95,7 @@ switch(config-ospf6)# timer throttle spf 40 50 60</code></pre></td>
 switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
 </tr>
 <tr class="odd">
-<td><p>Display <a href="/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP">BGP</a> information</p></td>
+<td><p>Display <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP">BGP</a> information</p></td>
 <td><pre><code>cumulus@switch:~$ net show bgp summary</code></pre></td>
 <td><pre><code>switch# show ip bgp summary</code></pre></td>
 </tr>

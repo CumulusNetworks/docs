@@ -3,7 +3,7 @@ title: Troubleshooting the support Directory
 author: Cumulus Networks
 weight: 165
 aliases:
- - /display/RMP25ESR/Troubleshooting-the-support-Directory
+ - /display/RMP25ESR/Troubleshooting+the+support+Directory
  - /pages/viewpage.action?pageId=5116333
 pageID: 5116333
 product: Cumulus RMP

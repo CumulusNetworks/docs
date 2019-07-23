@@ -3,7 +3,7 @@ title: Cumulus NetQ
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/NETQ110/Cumulus-NetQ
+ - /display/NETQ110/Cumulus+NetQ
  - /pages/viewpage.action?pageId=7111294
 pageID: 7111294
 product: Cumulus NetQ
@@ -43,7 +43,7 @@ The system uses a three-pronged approach to validating networks:
     state at a time in the past, review fabric-wide event changelogs and
     diagnose the root cause of state deviations.
 
-## <span>What's New in NetQ 1.1.0</span>
+## What's New in NetQ 1.1.0</span>
 
 NetQ 1.1 includes the following new features and enhancements:
 
@@ -97,7 +97,7 @@ For further information regarding bug fixes and known issues present in
 this release, refer to the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115012060387).
 
-## <span>NetQ Components</span>
+## NetQ Components</span>
 
 {{% imgOld 0 %}}
 

@@ -3,7 +3,7 @@ title: Data Center Host to ToR Architecture
 author: Cumulus Networks
 weight: 229
 aliases:
- - /display/CL33/Data-Center-Host-to-ToR-Architecture
+ - /display/CL33/Data+Center+Host+to+ToR+Architecture
  - /pages/viewpage.action?pageId=5866483
 pageID: 5866483
 product: Cumulus Linux
@@ -15,9 +15,9 @@ This chapter discusses the various architectures and strategies
 available from the top of rack (ToR) switches all the way down to the
 server hosts.
 
-## <span>Layer 2 - Architecture</span>
+## Layer 2 - Architecture</span>
 
-### <span>Traditional Spanning Tree - Single Attached</span>
+### Traditional Spanning Tree - Single Attached</span>
 
 ****
 
@@ -38,7 +38,7 @@ server hosts.
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><a href="/version/cumulus-linux-330/Layer-One-and-Two/Bonding---Link-Aggregation">Bond</a>/Etherchannel is not configured on host to multiple switches (bonds can still occur but only to one switch at a time), so leaf01 and leaf02 see two different MAC addresses.</p>
+<td><p><a href="/version/cumulus-linux-330/Layer-One-and-Two/Bonding-Link-Aggregation">Bond</a>/Etherchannel is not configured on host to multiple switches (bonds can still occur but only to one switch at a time), so leaf01 and leaf02 see two different MAC addresses.</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
 <pre><code>auto bridge
@@ -123,7 +123,7 @@ iface br-20 inet manual
 <li><p>None (not possible with traditional spanning tree)</p></li>
 </ul></td>
 <td><ul>
-<li><p><a href="/version/cumulus-linux-330/Layer-One-and-Two/Virtual-Router-Redundancy---VRR/">VRR</a></p></li>
+<li><p><a href="/version/cumulus-linux-330/Layer-One-and-Two/Virtual-Router-Redundancy-VRR/">VRR</a></p></li>
 </ul>
 <p><strong><br />
 </strong></p></td>
@@ -140,7 +140,7 @@ iface br-20 inet manual
 </tbody>
 </table>
 
-### <span id="src-5866483_DataCenterHosttoToRArchitecture-mlag" class="confluence-anchor-link"></span><span>MLAG</span>
+### <span id="src-5866483_DataCenterHosttoToRArchitecture-mlag" class="confluence-anchor-link"></span>MLAG</span>
 
 ****
 
@@ -161,7 +161,7 @@ iface br-20 inet manual
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><a href="/version/cumulus-linux-330/Layer-One-and-Two/Multi-Chassis-Link-Aggregation---MLAG">MLAG</a> (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and <a href="/version/cumulus-linux-330/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode">active-active mode</a> (both are being used at the same time).</p>
+<td><p><a href="/version/cumulus-linux-330/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG">MLAG</a> (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and <a href="/version/cumulus-linux-330/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode">active-active mode</a> (both are being used at the same time).</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
 <pre><code>auto bridge
@@ -217,7 +217,7 @@ iface vm-br10 inet manual
 </ul>
 <p><strong>Additional Comments</strong></p>
 <ul>
-<li><p>Can be done with either the <a href="/version/cumulus-linux-330/Layer-One-and-Two/Ethernet-Bridging---VLANs/">traditional</a> or <a href="/version/cumulus-linux-330/Layer-One-and-Two/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments">VLAN-aware</a> bridge driver depending on overall STP needs</p></li>
+<li><p>Can be done with either the <a href="/version/cumulus-linux-330/Layer-One-and-Two/Ethernet-Bridging-VLANs/">traditional</a> or <a href="/version/cumulus-linux-330/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments">VLAN-aware</a> bridge driver depending on overall STP needs</p></li>
 <li><p>There are a few different solutions including Cisco VPC and Arista MLAG, but none of them interoperate and are very vendor specific</p></li>
 <li><p><a href="https://cumulusnetworks.com/media/resources/validated-design-guides/Cumulus-Linux-Layer-2-HA-Validated-Design-Guide_v1.0.0.pdf" class="external-link">Cumulus Networks Layer 2 HA validated design guide</a></p></li>
 </ul></td>
@@ -241,7 +241,7 @@ iface vm-br10 inet manual
 <tbody>
 <tr class="odd">
 <td><ul>
-<li><p><a href="/version/cumulus-linux-330/Layer-One-and-Two/Virtual-Router-Redundancy---VRR/">VRR</a></p></li>
+<li><p><a href="/version/cumulus-linux-330/Layer-One-and-Two/Virtual-Router-Redundancy-VRR/">VRR</a></p></li>
 </ul></td>
 <td><p>None</p></td>
 <td><ul>
@@ -253,9 +253,9 @@ iface vm-br10 inet manual
 </tbody>
 </table>
 
-## <span>Layer 3 Architecture</span>
+## Layer 3 Architecture</span>
 
-### <span>Single-attached Hosts</span>
+### Single-attached Hosts</span>
 
 {{% imgOld 2 %}}
 
@@ -338,7 +338,7 @@ iface eth1 inet static
 </tbody>
 </table>
 
-### <span>Redistribute Neighbor</span>
+### Redistribute Neighbor</span>
 
 {{% imgOld 3 %}}
 
@@ -387,7 +387,7 @@ iface eth1 inet static
 </tbody>
 </table>
 
-### <span>Routing on the Host</span>
+### Routing on the Host</span>
 
 ****
 
@@ -442,7 +442,7 @@ iface eth1 inet static
 </tbody>
 </table>
 
-### <span>Routing on the VM</span>
+### Routing on the VM</span>
 
 {{% imgOld 5 %}}
 
@@ -494,7 +494,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </tbody>
 </table>
 
-### <span>Virtual Router</span>
+### Virtual Router</span>
 
 {{% imgOld 6 %}}
 
@@ -511,7 +511,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="#src-5866483" class="unresolved">BGP</a> or <a href="/version/cumulus-linux-330/Layer-Three/Open-Shortest-Path-First---OSPF---Protocol">OSPF</a>.</p></td>
+<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="#src-5866483" class="unresolved">BGP</a> or <a href="/version/cumulus-linux-330/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol">OSPF</a>.</p></td>
 <td><p><strong><strong>Benefits</strong></strong></p>
 <p>In addition to routing on a host:</p>
 <ul>
@@ -520,7 +520,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </ul>
 <p><strong><strong>Caveats</strong></strong></p>
 <ul>
-<li><p><a href="/version/cumulus-linux-330/Layer-Three/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP">ECMP</a> might not work correctly (load balancing to multiple ToRs); Linux kernel in older versions is not capable of ECMP per flow (does it per packet)</p></li>
+<li><p><a href="/version/cumulus-linux-330/Layer-Three/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP">ECMP</a> might not work correctly (load balancing to multiple ToRs); Linux kernel in older versions is not capable of ECMP per flow (does it per packet)</p></li>
 <li><p>No L2 adjacency between servers without VXLAN</p></li>
 </ul></td>
 </tr>
@@ -542,7 +542,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </tbody>
 </table>
 
-### <span>Anycast with Manual Redistribution</span>
+### Anycast with Manual Redistribution</span>
 
 {{% imgOld 7 %}}
 
@@ -624,9 +624,9 @@ iface eth2 inet static
 </tbody>
 </table>
 
-## <span>Network Virtualization</span>
+## Network Virtualization</span>
 
-### <span>LNV with MLAG</span>
+### LNV with MLAG</span>
 
 {{% imgOld 8 %}}
 
@@ -713,7 +713,7 @@ iface br-10
 <tbody>
 <tr class="odd">
 <td><ul>
-<li><p><a href="/version/cumulus-linux-330/Layer-One-and-Two/Virtual-Router-Redundancy---VRR/">VRR</a></p></li>
+<li><p><a href="/version/cumulus-linux-330/Layer-One-and-Two/Virtual-Router-Redundancy-VRR/">VRR</a></p></li>
 </ul></td>
 <td><p>None</p></td>
 <td><ul>

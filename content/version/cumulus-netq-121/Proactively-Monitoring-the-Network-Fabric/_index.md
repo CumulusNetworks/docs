@@ -3,7 +3,7 @@ title: Proactively Monitoring the Network Fabric
 author: Cumulus Networks
 weight: 19
 aliases:
- - /display/NETQ121/Proactively-Monitoring-the-Network-Fabric
+ - /display/NETQ121/Proactively+Monitoring+the+Network+Fabric
  - /pages/viewpage.action?pageId=8356545
 pageID: 8356545
 product: Cumulus NetQ
@@ -21,7 +21,7 @@ precisely where the fault occurred so you can remediate quickly.
 You can create filters for how to handle notifications and you can also
 ignore notifications.
 
-## <span>NetQ Notifier</span>
+## NetQ Notifier</span>
 
 The NetQ Notifier's role within the NetQ suite of applications is to
 deliver alerts to users through mediums such as Slack and syslog,
@@ -58,7 +58,7 @@ for more information. For a thorough example, read about troubleshooting
 [MLAG node
 failures](/version/cumulus-netq-121/Proactively-Monitoring-the-Network-Fabric/MLAG-Troubleshooting-with-NetQ).
 
-### <span>Log Message Format</span>
+### Log Message Format</span>
 
 Messages have the following structure:
 
@@ -68,7 +68,7 @@ For example:
 
     2017-08-28T22:43:32.794669+00:00 spine01 netq-notifier[13232]: INFO: filter#default: BGP: leaf01 peerlink-1.4094: session state changed from failed to established
 
-### <span>Supported Integrations</span>
+### Supported Integrations</span>
 
 NetQ supports the ability to send notifications to the following
 applications:
@@ -113,7 +113,7 @@ applications:
     
     {{% imgOld 5 %}}
 
-### <span>Configuring an Integration</span>
+### Configuring an Integration</span>
 
 You need to define to which applications NetQ sends notifications. By
 default, NetQ sends notifications only to `syslog`.
@@ -163,7 +163,7 @@ After you modify the NetQ configuration, you must restart the
 
     cumulus@switch:~$ sudo systemctl restart netq-notifier.service
 
-### <span>Filtering Notifications</span>
+### Filtering Notifications</span>
 
 By default, NetQ sends all notifications in response to network events.
 You can filter this according to your needs.
@@ -247,7 +247,7 @@ from leaf01 by configuring the following:
      
     ...
 
-### <span>Example netq.yml File</span>
+### Example netq.yml File</span>
 
 <summary>/etc/netq/netq.yml file contents </summary>
 
@@ -492,7 +492,7 @@ from leaf01 by configuring the following:
         output:
           - ALL
 
-### <span id="src-8356545_ProactivelyMonitoringtheNetworkFabric-elk" class="confluence-anchor-link"></span><span>Exporting to ELK</span>
+### <span id="src-8356545_ProactivelyMonitoringtheNetworkFabric-elk" class="confluence-anchor-link"></span>Exporting to ELK</span>
 
 To export NetQ Notifier data to ELK via Logstash, on the host running
 the NetQ Telemetry Server and NetQ Notifier, configure the notifier to
@@ -532,7 +532,7 @@ Then restart Logstash:
 NetQ Notifier logs now appear in `/tmp/logstash_notifier.log` on the
 Logstash host.
 
-### <span id="src-8356545_ProactivelyMonitoringtheNetworkFabric-splunk" class="confluence-anchor-link"></span><span>Exporting to Splunk</span>
+### <span id="src-8356545_ProactivelyMonitoringtheNetworkFabric-splunk" class="confluence-anchor-link"></span>Exporting to Splunk</span>
 
 To export NetQ Notifier data to Splunk, on the host running the NetQ
 Telemetry Server and NetQ Notifier, configure the notifier to send the
@@ -557,7 +557,7 @@ To configure Splunk, do the following:
 
 NetQ Notifier messages now appear in Splunk.
 
-### <span>Precisely Locating an Issue on the Network</span>
+### Precisely Locating an Issue on the Network</span>
 
 NetQ helps you locate exactly where you have an issue on your network.
 Use `netq check` or `netq trace` to locate a fault, then run `netq show
@@ -586,7 +586,7 @@ see where some nodes have mismatched VLANs with their peers:
 </tbody>
 </table>
 
-### <span id="src-8356545_ProactivelyMonitoringtheNetworkFabric-ntp" class="confluence-anchor-link"></span><span>Detecting Out of Sync Nodes</span>
+### <span id="src-8356545_ProactivelyMonitoringtheNetworkFabric-ntp" class="confluence-anchor-link"></span>Detecting Out of Sync Nodes</span>
 
 NetQ includes commands to assist in determining if any nodes are out of
 sync. Use `netq check ntp` to determine if any nodes are out of sync,
@@ -646,7 +646,7 @@ These commands require `systemd` in order to run correctly.
 
 {{%/notice%}}
 
-## <span>Extending NetQ with Custom Services Using curl</span>
+## Extending NetQ with Custom Services Using curl</span>
 
 You can extend NetQ to monitor parameters beyond what it monitors by
 default. For example, you can create a service that runs a series of
@@ -713,7 +713,7 @@ capability regarding `netq show services`.
     
         cumulus@leaf01:~$ netq show services web
 
-## <span>Exporting NetQ Data</span>
+## Exporting NetQ Data</span>
 
 Data from the NetQ Telemetry Server can be exported in a number of ways.
 First, you can use the `json` option to output check and show commands

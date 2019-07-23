@@ -3,7 +3,7 @@ title: LNV Full Example
 author: Cumulus Networks
 weight: 283
 aliases:
- - /display/CL25ESR/LNV-Full-Example
+ - /display/CL25ESR/LNV+Full+Example
  - /pages/viewpage.action?pageId=5116058
 pageID: 5116058
 product: Cumulus Linux
@@ -31,7 +31,7 @@ Cumulus Linux.
 
 {{%/notice%}}
 
-## <span>Example LNV Configuration</span>
+## Example LNV Configuration</span>
 
 The following images illustrate the configuration:
 
@@ -45,7 +45,7 @@ The following images illustrate the configuration:
 <td><p>Physical Cabling Diagram</p>
 <p>{{% imgOld 0 %}}</p></td>
 <td><p>Network Virtualization Diagram</p>
-<h5 id="src-5116058_LNVFullExample-" class="heading"><span></span></h5></td>
+<h5 id="src-5116058_LNVFullExample-" class="heading"></span></h5></td>
 </tr>
 </tbody>
 </table>
@@ -67,7 +67,7 @@ get instructor-led training\!
 
 {{%/notice%}}
 
-### <span>Layer 3 IP Addressing</span>
+### Layer 3 IP Addressing</span>
 
 Here is the configuration for the IP addressing information used in this
 example:
@@ -249,13 +249,13 @@ iface br-30
 </tbody>
 </table>
 
-### <span>Quagga Configuration</span>
+### Quagga Configuration</span>
 
 The service nodes and registration nodes must all be routable between
 each other. The L3 fabric on Cumulus Linux can either be
-[BGP](/version/cumulus-linux-25esr/Layer-3-Features/Configuring-Border-Gateway-Protocol---BGP)
+[BGP](/version/cumulus-linux-25esr/Layer-3-Features/Configuring-Border-Gateway-Protocol-BGP)
 or
-[OSPF](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First---OSPF---Protocol).
+[OSPF](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol).
 In this example, OSPF is used to demonstrate full reachability.
 
 Here is the Quagga configuration using OSPF:
@@ -381,7 +381,7 @@ router ospf
 </tbody>
 </table>
 
-### <span>Host Configuration</span>
+### Host Configuration</span>
 
 In this example, the servers are running Ubuntu 14.04. A trunk must be
 mapped from server1 and server2 to the respective switch. In Ubuntu this
@@ -422,7 +422,7 @@ iface eth3.30 inet static
 </tbody>
 </table>
 
-### <span>Service Node Configuration</span>
+### Service Node Configuration</span>
 
 <table>
 <colgroup>
@@ -519,7 +519,7 @@ svcnode_peers = 10.2.1.3
 </tbody>
 </table>
 
-## <span>See Also</span>
+## See Also</span>
 
   - <https://tools.ietf.org/html/rfc7348>
 

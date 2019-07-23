@@ -3,13 +3,13 @@ title: Voice VLAN
 author: Cumulus Networks
 weight: 335
 aliases:
- - /display/CL37/Voice-VLAN
+ - /display/DOCS/Voice+VLAN
  - /pages/viewpage.action?pageId=8362651
 pageID: 8362651
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 In Cumulus Linux, a *voice VLAN* is a VLAN dedicated to voice traffic on
 a switch port. However, the term can mean different things to different
@@ -27,14 +27,14 @@ VLAN ID (which may or may not be 0) and an 802.1p (3-bit layer 2 COS)
 with a specific value (typically 5 is assigned for voice traffic).
 
 Data traffic is always
-[untagged](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-Tagging).
+[untagged](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging).
 
-## <span>Cumulus Linux Voice VLAN Example</span>
+## Cumulus Linux Voice VLAN Example
 
 {{% imgOld 0 %}}
 
 You can configure the topology above using the following
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
 commands. In this configuration:
 
   - swp1 data traffic traverses the bridge's native VLAN and the voice
@@ -85,7 +85,7 @@ These commands create the following configuration snippet in the
       bridge-vids 1-1000
       bridge-vlan-aware yes
 
-## <span>Configure LLDP</span>
+## Configure LLDP
 
 Configuring voice VLAN with NCLU does not configure `lldpd` in Cumulus
 Linux, so LLDP-MED does not provide data and voice VLAN information. You
@@ -102,7 +102,7 @@ You can also use the `lldpcli` command to configure an LLDP-MED network
 policy. However, `lldpcli` commands do not persist across reboots of the
 switch.
 
-## <span>Troubleshooting</span>
+## Troubleshooting
 
 The `bridge-vids` can be reviewed with the `net show bridge vlan`
 command:
@@ -120,10 +120,9 @@ command:
     swp3              1  PVID, Egress Untagged
                     300
 
-<span style="color: #333333;"> You can get MAC address information using
-the `net show bridge macs` command: </span>
+You can get MAC address information using the `net show bridge macs` command:
 
-``` 
+```
 cumulus@switch:~$ net show bridge macs
  
 VLAN      Master    Interface    MAC                   TunnelDest  State      Flags    LastSeen
@@ -137,18 +136,10 @@ untagged  bridge    swp3         08:00:27:9e:98:86                 permanent    
 You can capture LLDP information by checking `syslog` or using `tcpdump`
 on an interface.
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata
 
   - A static voice VLAN configuration overwrites a switch port's
     existing configuration.
 
   - Removing the `bridge-vids` or `bridge-pvid` configuration from a
     voice VLAN does not remove the VLAN from the bridge.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

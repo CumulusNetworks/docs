@@ -3,13 +3,13 @@ title: Link Layer Discovery Protocol
 author: Cumulus Networks
 weight: 117
 aliases:
- - /display/CL37/Link-Layer-Discovery-Protocol
+ - /display/DOCS/Link+Layer+Discovery+Protocol
  - /pages/viewpage.action?pageId=8362650
 pageID: 8362650
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery
 Protocol, or LLDP) standard. LLDP enables you to know which ports are
@@ -28,7 +28,7 @@ by default into `/var/log/daemon.log` with an `lldpd` prefix.
 statistics, and other running configuration information. See `man
 lldpcli(8)` for details.
 
-## <span>Configure LLDP</span>
+## Configure LLDP
 
 You configure `lldpd` settings in `/etc/lldpd.conf` or `/etc/lldpd.d/`.
 
@@ -59,7 +59,7 @@ uses the `-I` option to disable LLDP on swp43:
     Aug  7 17:26:17 switch lldpcli[1711]: lldpd should resume operations
     Aug  7 17:26:32 switch lldpd[1805]: NET-SNMP version 5.4.3 AgentX subagent connected
 
-## <span>Example lldpcli Commands</span>
+## Example lldpcli Commands
 
 To show all neighbors on all ports/interfaces:
 
@@ -271,7 +271,7 @@ To reset any interface list to none:
 
     cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
 </details>
-## <span id="src-8362650_LinkLayerDiscoveryProtocol-snmp" class="confluence-anchor-link"></span><span>Enable the SNMP Subagent in LLDP</span>
+## Enable the SNMP Subagent in LLDP
 
 LLDP does not enable the SNMP subagent by default. You need to edit
 `/etc/default/lldpd` and enable the `-x` option.
@@ -283,23 +283,13 @@ LLDP does not enable the SNMP subagent by default. You need to edit
     # Enable CDP by default
     DAEMON_ARGS="-c"
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata
 
   - Annex E (and hence Annex D) of IEEE802.1AB (lldp) is not supported.
 
-## <span>Related Information</span>
+## Related Information
 
   - [GitHub - lldpd project](http://vincentbernat.github.io/lldpd/)
 
   - [Wikipedia - Link Layer Discovery
     Protocol](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

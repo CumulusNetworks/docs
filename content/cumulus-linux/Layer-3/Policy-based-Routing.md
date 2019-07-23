@@ -3,13 +3,13 @@ title: Policy-based Routing
 author: Cumulus Networks
 weight: 187
 aliases:
- - /display/CL37/Policy-based-Routing
+ - /display/DOCS/Policy+based+Routing
  - /pages/viewpage.action?pageId=8362974
 pageID: 8362974
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Typical routing systems and protocols forward traffic based on the
 destination address in the packet, which is used to look up an entry in
@@ -46,7 +46,7 @@ that determine rules and specify where to forward the packets.
 
 {{%/notice%}}
 
-## <span>Configure PBR</span>
+## Configure PBR
 
 A PBR policy contains one or more policy maps. Each policy map:
 
@@ -56,10 +56,10 @@ A PBR policy contains one or more policy maps. Each policy map:
 
   - Contains a match source IP rule or a match destination IP rule, and
     a set rule.
-    
+
       - To match on a source and destination address, a policy map can
         contain both match source and match destination IP rules.
-    
+
       - A set rule determines the PBR nexthop for the policy. The set
         rule can contain a single nexthop IP address or it can contain a
         nexthop group. A nexthop group has more than one nexthop IP
@@ -80,7 +80,7 @@ operate in non-atomic mode, which offers better scaling as all TCAM
 resources are used to actively impact traffic. Add the line
 `acl.non_atomic_update_mode = TRUE` to the `/etc/cumulus/switchd.conf`
 file. For more information, see [Nonatomic Update Mode vs. Atomic Update
-Mode](Netfilter---ACLs.html#src-8362563_Netfilter-ACLs-nonatomic).
+Mode](Netfilter-ACLs.html#src-8362563_Netfilter-ACLs-nonatomic).
 
 {{%/notice%}}
 
@@ -91,19 +91,19 @@ To configure a PBR policy:
     The example commands below configure a policy map called `map1` with
     sequence number 1, that matches on destination address 10.1.2.0/24
     and source address 10.1.4.1/24.
-    
+
         cumulus@switch:~$ net add pbr-map map1 seq 1 match dst-ip 10.1.2.0/24
         cumulus@switch:~$ net add pbr-map map1 seq 1 match src-ip 10.1.4.1/24
-    
+
     {{%notice note%}}
-    
-    If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address
+
+If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address
     is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
-    
+
     {{%/notice%}}
 
 2.  Either apply a *nexthop* or a *nexthop* group to the policy map:
-    
+
       - To apply a nexthop to the policy map, use the ` net add pbr-map
         <name> seq <1-700> set nexthop <ipaddress> [<interface>]
         [nexthop-vrf <vrfname>]  `command.  
@@ -113,13 +113,13 @@ To configure a PBR policy:
         The example command below applies the nexthop 192.168.0.31 on
         the output interface swp2 and VRF `rocket` to the `map1` policy
         map:
-        
+
             cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
-    
+
       - To apply a nexthop group (for ECMP) to the policy map, first
         create the nexthop group, then apply the group to the policy
         map:
-        
+
         1.  Create the nexthop group with the `net add nexthop-group
             <groupname> nexthop <ipaddress> [<interface>] [nexthop-vrf
             <vrfname>]` command.  
@@ -129,34 +129,34 @@ To configure a PBR policy:
             `group1` that contains the nexthop 192.168.0.21 on output
             interface swp1 and VRF `rocket`, and the nexthop
             192.168.0.22.
-            
+
                 cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.21 swp1 nexthop-vrf rocket
                 cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.22
-        
+
         2.  Apply the nexthop group to the policy map with the `net add
             pbr-map <name> seq <1-700> set nexthop-group <groupname>`
             command.  
             The example command below applies the nexthop group `group1`
             to the `map1` policy map:
-            
+
                 cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop-group group1
 
 3.  Assign the PBR policy to an ingress interface with the `net add
     interface <interface> pbr-policy <name>` command.  
     The example command below assigns the PBR policy `map1` to interface
     swp51:
-    
+
         cumulus@switch:~$ net add interface swp51 pbr-policy map1
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
-    
+
     {{%notice note%}}
-    
-    You can only set one policy per interface.
-    
+
+You can only set one policy per interface.
+
     {{%/notice%}}
 
-## <span>Configuration Example</span>
+## Configuration Example
 
 In the following example, the PBR-enabled switch has a PBR policy to
 route all traffic from the Internet to a server that performs anti-DDOS.
@@ -182,7 +182,7 @@ file.
     match src-ip 0.0.0.0/0
     set nexthop 192.168.0.32
 
-## <span>Review Your Configuration</span>
+## Review Your Configuration
 
 Use the following commands to see the configured PBR policies.
 
@@ -242,7 +242,7 @@ A new Linux routing table ID is used for each nexthop and nexthop group.
 
 {{%/notice%}}
 
-## <span>Delete PBR Rules and Policies</span>
+## Delete PBR Rules and Policies
 
 You can delete a PBR rule, a nexthop group, or a policy with the `net
 del` command.  

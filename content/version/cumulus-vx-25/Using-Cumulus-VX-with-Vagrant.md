@@ -3,7 +3,7 @@ title: Using Cumulus VX with Vagrant
 author: Cumulus Networks
 weight: 17
 aliases:
- - /display/VX25/Using-Cumulus-VX-with-Vagrant
+ - /display/VX25/Using+Cumulus+VX+with+Vagrant
  - /pages/viewpage.action?pageId=5115405
 pageID: 5115405
 product: Cumulus VX
@@ -11,7 +11,7 @@ version: '2.5'
 imgData: cumulus-vx-25
 siteSlug: cumulus-vx-25
 ---
-## <span>Requirements</span>
+## Requirements</span>
 
   - Cumulus VX requires [Vagrant 1.7 or
     newer](https://www.vagrantup.com/downloads.html)
@@ -19,7 +19,7 @@ siteSlug: cumulus-vx-25
   - Understand these [VirtualBox
     considerations](Using-Cumulus-VX-with-VirtualBox.html#src-5115389_UsingCumulusVXwithVirtualBox-reqs)
 
-## <span>Setting Up the Vagrant Environment</span>
+## Setting Up the Vagrant Environment</span>
 
 You can use Cumulus VX within a Vagrant environment, running the VMs
 with VirtualBox. To get started you need to download some software as
@@ -56,7 +56,7 @@ repository](https://github.com/CumulusNetworks/cumulus-vx-vagrant).
     newer](https://pypi.python.org/pypi/ansible), which Vagrant uses to
     configure the virtual machines.
 
-## <span>Configuring a Cumulus VX Virtual Machine with Vagrant</span>
+## Configuring a Cumulus VX Virtual Machine with Vagrant</span>
 
 Vagrant uses a configuration file (`Vagrantfile`) to create and
 configure one or more virtual machines. Create a `Vagrantfile` with the
@@ -96,7 +96,7 @@ machine:
     ==> default: Mounting shared folders...
         default: /vagrant => /Users/cumulus/vx-example
 
-### <span>Logging in to the VM</span>
+### Logging in to the VM</span>
 
 Once you create the virtual machine, log in to it using:
 
@@ -115,7 +115,7 @@ running:
 You can find all the documentation for configuring virtual machines with
 Vagrant at [docs.vagrantup.com/v2/](https://docs.vagrantup.com/v2/).
 
-### <span>Adding Switch Port Interfaces to a Cumulus VX Virtual Machine</span>
+### Adding Switch Port Interfaces to a Cumulus VX Virtual Machine</span>
 
 By default Vagrant only configures the first network interface (eth0)
 for its own use. Additional network interfaces, such as the Cumulus
@@ -143,7 +143,7 @@ You can find more information on creating and using private networks at
 and
 [docs.vagrantup.com/v2/virtualbox/networking.html](https://docs.vagrantup.com/v2/virtualbox/networking.html).
 
-### <span>Creating Multiple Cumulus VX Virtual Machines</span>
+### Creating Multiple Cumulus VX Virtual Machines</span>
 
 Vagrant can create and configure multiple virtual machines with a single
 command. For example, you can use Vagrant to create multiple Cumulus VX
@@ -184,7 +184,7 @@ log in to each virtual machine and configure the interfaces as you wish,
 and the interfaces will pass traffic between themselves as though they
 were two physical switches connected together by four cables.
 
-## <span>Limitations</span>
+## Limitations</span>
 
 At this time, there are some limitations to using Vagrant with Cumulus
 VX:
@@ -196,7 +196,7 @@ VX:
   - The first network interface (eth0) is always managed by Vagrant and
     must be connected to a NAT network.
 
-## <span>Test Configuration</span>
+## Test Configuration</span>
 
 Cumulus VX for Vagrant has been tested in the following environments:
 
@@ -240,7 +240,7 @@ Cumulus VX demos that use Ansible will not work on Windows.</p></td>
 </tbody>
 </table>
 
-## <span>Preconfigured Cumulus VX Examples</span>
+## Preconfigured Cumulus VX Examples</span>
 
 Cumulus Networks makes it easy to build a two-leaf/two-spine topology
 within a Vagrant environment, requiring very little programming
@@ -288,7 +288,7 @@ iface peer16.4000 inet static
 </tbody>
 </table>
 
-### <span>Getting the Demos from GitHub</span>
+### Getting the Demos from GitHub</span>
 
 The demos are stored on GitHub, so you can just run `git clone` to get
 them all:
@@ -303,7 +303,7 @@ them all:
     $ ls
     CumulusVX-2.5.3-4eb681f3df86c478.box cumulus-vx-vagrant
 
-### <span>Modifying the Demos</span>
+### Modifying the Demos</span>
 
 You can modify the two leaf/two spine topology by changing the
 `numSpines` and `numLeaves` variables in `properties.yml`:
@@ -324,7 +324,7 @@ You can modify the MLAG demo by changing the variables in the
     :racksPerPod:  2
     :podsPerDC:    1
 
-### <span>About the OSPF Unnumbered Interfaces Configuration</span>
+### About the OSPF Unnumbered Interfaces Configuration</span>
 
 For the OSPF unnumbered configuration, the basic idea is to assign *the
 same* IP address for each network node. Assign the IP address first to
@@ -332,7 +332,7 @@ the loopback interface, then assign that same IP address to every other
 network interface except the management interface, eth0, as it is on a
 separate network and requires its own IP address.
 
-### <span>About the BGP Unnumbered Interfaces Configuration</span>
+### About the BGP Unnumbered Interfaces Configuration</span>
 
 Cumulus Networks introduced the ability to configure BGP using interface
 names instead of the IP address of the remote peer. The remote peer's

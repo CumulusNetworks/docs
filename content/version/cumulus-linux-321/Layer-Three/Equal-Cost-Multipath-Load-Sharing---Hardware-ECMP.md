@@ -3,7 +3,7 @@ title: Equal Cost Multipath Load Sharing - Hardware ECMP
 author: Cumulus Networks
 weight: 171
 aliases:
- - /display/CL321/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP
+ - /display/CL321/Equal+Cost+Multipath+Load+Sharing+++Hardware+ECMP
  - /pages/viewpage.action?pageId=5127052
 pageID: 5127052
 product: Cumulus Linux
@@ -17,7 +17,7 @@ multipath](http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing)
 sharing occurs automatically for all routes with multiple next hops
 installed. ECMP load sharing supports both IPv4 and IPv6 routes.
 
-## <span>Understanding Equal Cost Routing</span>
+## Understanding Equal Cost Routing</span>
 
 ECMP operates only on equal cost routes in the Linux routing table.
 
@@ -42,12 +42,12 @@ For routes to be considered equal they must:
 
 As of Cumulus Linux 3.0, the BGP `maximum-paths` setting is enabled, so
 multiple routes are installed by default. See the [ECMP
-section](Border-Gateway-Protocol---BGP.html#src-5127049_BorderGatewayProtocol-BGP-ecmp)
+section](Border-Gateway-Protocol-BGP.html#src-5127049_BorderGatewayProtocol-BGP-ecmp)
 of the BGP chapter for more information.
 
 {{%/notice%}}
 
-## <span>Understanding ECMP Hashing</span>
+## Understanding ECMP Hashing</span>
 
 Once multiple routes are installed in the routing table, a hash is used
 to determine which path a packet follows.
@@ -80,7 +80,7 @@ ECMP hashing does not keep a record of packets that have hashed to each
 next hop and does not guarantee that traffic sent to each next hop is
 equal.
 
-### <span>Using cl-ecmpcalc to Determine the Hash Result</span>
+### Using cl-ecmpcalc to Determine the Hash Result</span>
 
 Since the hash is deterministic and always provides the same result for
 the same input, you can query the hardware and determine the hash result
@@ -112,7 +112,7 @@ If any field is omitted, `cl-ecmpcalc` fails.
                        [-c MCOUNT]
     cl-ecmpcalc: error: --sport and --dport required for TCP and UDP frames
 
-### <span>cl-ecmpcalc Limitations</span>
+### cl-ecmpcalc Limitations</span>
 
 `cl-ecmpcalc` can only take input interfaces that can be converted to a
 single physical port in the port tab file, like the physical switch
@@ -123,7 +123,7 @@ are not supported.
 Tomahawk, Trident II+ and Trident II](http://cumulusnetworks.com/hcl/)
 chipsets.
 
-### <span>ECMP Hash Buckets</span>
+### ECMP Hash Buckets</span>
 
 When multiple routes are installed in the routing table, each route is
 assigned to an ECMP *bucket*. When the ECMP hash is executed the result
@@ -135,7 +135,7 @@ hash bucket.
 
 {{% imgOld 1 %}}
 
-#### <span>Adding a Next Hop</span>
+#### Adding a Next Hop</span>
 
 When a next hop is added, a new hash bucket is created. The assignment
 of next hops to hash buckets, as well as the hash result, may change
@@ -148,7 +148,7 @@ A new next hop is added and a new hash bucket is created. As a result,
 the hash and hash bucket assignment changed, causing the existing flows
 to be sent to different next hops.
 
-#### <span>Removing a Next Hop</span>
+#### Removing a Next Hop</span>
 
 When a next hop is removed, the remaining hash bucket assignments may
 change, again, potentially changing the next hop selected for an
@@ -169,7 +169,7 @@ where multiple end hosts are using the same IP address (anycast),
 
 <span id="src-5127052_EqualCostMultipathLoadSharing-HardwareECMP-resilient_hashing"></span>
 
-## <span>Resilient Hashing</span>
+## Resilient Hashing</span>
 
 In Cumulus Linux when a next hop fails or is removed from an ECMP pool,
 the hashing or hash bucket assignment can change. For deployments where
@@ -192,7 +192,7 @@ It does not prevent disruption when next hops are added.
 
 {{%/notice%}}
 
-### <span>Resilient Hash Buckets</span>
+### Resilient Hash Buckets</span>
 
 When resilient hashing is configured, a fixed number of buckets are
 defined. Next hops are then assigned in round robin fashion to each of
@@ -201,7 +201,7 @@ hops are assigned.
 
 {{% imgOld 5 %}}
 
-### <span>Removing Next Hops</span>
+### Removing Next Hops</span>
 
 Unlike default ECMP hashing, when a next hop needs to be removed, the
 number of hash buckets does not change.
@@ -219,7 +219,7 @@ After the failed next hop is removed, the remaining next hops are
 installed as replacements. This prevents impact to any flows that hash
 to working next hops.
 
-### <span>Adding Next Hops</span>
+### Adding Next Hops</span>
 
 Resilient hashing does not prevent possible impact to existing flows
 when new next hops are added. Due to the fact there are a fixed number
@@ -230,7 +230,7 @@ of buckets, a new next hop requires reassigning next hops to buckets.
 As a result, some flows may hash to new next hops, which can impact
 anycast deployments.
 
-### <span>Configuring Resilient Hashing</span>
+### Configuring Resilient Hashing</span>
 
 Resilient hashing is not enabled by default. When resilient hashing is
 enabled, 65,536 buckets are created to be shared among all ECMP groups.
@@ -286,7 +286,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
     
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
 Resilient hashing is supported only on switches with the [Tomahawk,
 Trident II+ and Trident II](http://cumulusnetworks.com/hcl/) chipsets.

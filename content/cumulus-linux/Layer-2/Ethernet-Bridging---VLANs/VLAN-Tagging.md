@@ -3,19 +3,19 @@ title: VLAN Tagging
 author: Cumulus Networks
 weight: 351
 aliases:
- - /display/CL37/VLAN-Tagging
+ - /display/DOCS/VLAN+Tagging
  - /pages/viewpage.action?pageId=8362668
 pageID: 8362668
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 This topic shows two examples of VLAN tagging, one basic and one more
 advanced. They both demonstrate the streamlined interface configuration
 from `ifupdown2`.
 
-## <span>VLAN Tagging, a Basic Example</span>
+## VLAN Tagging, a Basic Example
 
 A simple configuration demonstrating VLAN tagging involves two hosts
 connected to a switch.
@@ -51,16 +51,12 @@ and add a configuration like the following:
     auto swp2.130
     iface swp2.130
 
-## <span>VLAN Tagging, an Advanced Example</span>
+## VLAN Tagging, an Advanced Example
 
 This example of VLAN tagging is more complex, involving three hosts and
 two switches, with a number of bridges and a bond connecting them all.
 
-**
-
-*{{% imgOld 1 %}}*
-
-**
+{{% imgOld 1 %}}
 
   - *host1* connects to bridge *br-untagged* with bare Ethernet frames
     and to bridge *br-tag100* with 802.1q frames tagged for *vlan100*.
@@ -277,7 +273,7 @@ an error:
 
 {{%/notice%}}
 
-## <span>VLAN Translation</span>
+## VLAN Translation
 
 By default, Cumulus Linux does not allow VLAN subinterfaces associated
 with different VLAN IDs to be part of the same bridge. Base interfaces
@@ -296,18 +292,18 @@ with the VLAN ID translated.
 {{%notice note%}}
 
 A bridge in [VLAN-aware
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
 cannot have VLAN translation enabled for it; only bridges configured in
 [traditional
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode)
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
 can utilize VLAN translation.
 
 {{%/notice%}}
 
 The following example enables the VLAN translation `sysctl`:
 
-    cumulus@switch:~$ echo net.bridge.bridge-allow-multiple-vlans = 1 | sudo tee /etc/sysctl.d/multiple_vlans.conf 
-    net.bridge.bridge-allow-multiple-vlans = 1 
+    cumulus@switch:~$ echo net.bridge.bridge-allow-multiple-vlans = 1 | sudo tee /etc/sysctl.d/multiple_vlans.conf
+    net.bridge.bridge-allow-multiple-vlans = 1
     cumulus@switch:~$ sudo sysctl -p /etc/sysctl.d/multiple_vlans.conf
     net.bridge.bridge-allow-multiple-vlans = 1
 

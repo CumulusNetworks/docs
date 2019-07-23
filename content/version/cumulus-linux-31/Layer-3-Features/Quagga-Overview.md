@@ -3,7 +3,7 @@ title: Quagga Overview
 author: Cumulus Networks
 weight: 135
 aliases:
- - /display/CL31/Quagga-Overview
+ - /display/CL31/Quagga+Overview
  - /pages/viewpage.action?pageId=5122122
 pageID: 5122122
 product: Cumulus Linux
@@ -21,14 +21,14 @@ Quagga provides many routing protocols, of which Cumulus Linux supports
 the following:
 
   - Open Shortest Path First
-    ([v2](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First---OSPF---Protocol)
+    ([v2](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol)
     and
-    [v3](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-v3---OSPFv3---Protocol))
+    [v3](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-v3-OSPFv3---Protocol))
 
   - [Border Gateway
-    Protocol](/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol---BGP)
+    Protocol](/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP)
 
-## <span>Architecture</span>
+## Architecture</span>
 
 {{% imgOld 0 %}}
 
@@ -41,17 +41,17 @@ on the information exchanged.
 It is not uncommon to have more than one protocol daemon running at the
 same time. For example, at the edge of an enterprise, protocols internal
 to an enterprise (called IGP for Interior Gateway Protocol) such as
-[OSPF](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First---OSPF---Protocol)
+[OSPF](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol)
 or RIP run alongside the protocols that connect an enterprise to the
 rest of the world (called EGP or Exterior Gateway Protocol) such as
-[BGP](/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol---BGP).
+[BGP](/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP).
 
 `zebra` is the daemon that resolves the routes provided by multiple
 protocols (including static routes specified by the user) and programs
 these routes in the Linux kernel via `netlink` (in Linux). `zebra` does
 more than this, of course.
 
-## <span>Zebra</span>
+## Zebra</span>
 
 The [Quagga
 documentation](http://www.nongnu.org/quagga/docs/docs-info.html#Zebra)
@@ -59,7 +59,7 @@ defines `zebra` as the IP routing manager for `quagga` that "provides
 kernel routing table updates, interface lookups, and redistribution of
 routes between different routing protocols."
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/quagga/bgpd.conf
 
@@ -73,7 +73,7 @@ routes between different routing protocols."
 
   - /etc/quagga/zebra.conf
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [www.quagga.net/](http://www.quagga.net/)
 

@@ -3,7 +3,7 @@ title: Configuring DHCP Relays
 author: Cumulus Networks
 weight: 93
 aliases:
- - /display/CL332/Configuring-DHCP-Relays
+ - /display/CL332/Configuring+DHCP+Relays
  - /pages/viewpage.action?pageId=5869183
 pageID: 5869183
 product: Cumulus Linux
@@ -29,7 +29,7 @@ services.
 
 {{%/notice%}}
 
-## <span>Configuring IPv4 DHCP Relays</span>
+## Configuring IPv4 DHCP Relays</span>
 
 Configure `isc-dhcp-relay` using
 [NCLU](/version/cumulus-linux-332/System-Configuration/Network-Command-Line-Utility),
@@ -84,7 +84,7 @@ dhcrelay.service` command:
        CGroup: /system.slice/dhcrelay.service
                └─1997 /usr/sbin/dhcrelay --nl -d -q -i vlan1 -i swp51 -i swp52 172.16.1.102
 
-### <span id="src-5869183_ConfiguringDHCPRelays-82" class="confluence-anchor-link"></span><span>Using DHCP Option 82</span>
+### <span id="src-5869183_ConfiguringDHCPRelays-82" class="confluence-anchor-link"></span>Using DHCP Option 82</span>
 
 DHCP relays can be configured to inject the `circuit-id` field with the
 `-a` option, which you add to the `OPTIONS` line in
@@ -95,7 +95,7 @@ into this field. You can change this behavior by adding the
 port (swp) that the discover packet arrives on is placed in the
 `circuit-id` field.
 
-## <span>Configuring IPv6 DHCP Relays</span>
+## Configuring IPv6 DHCP Relays</span>
 
 If you're configuring IPv6, the `/etc/default/isc-dhcp-relay6` variables
 file has a different format than the `/etc/default/isc-dhcp-relay` file
@@ -131,7 +131,7 @@ dhcrelay6.service` command:
        CGroup: /system.slice/dhcrelay6.service
                └─6152 /usr/sbin/dhcrelay -6 --nl -d -q -l vlan1 -u 2001:db8:100::2 swp51 -u 2001:db8:100::2 swp52
 
-## <span>Configuring Multiple DHCP Relays</span>
+## Configuring Multiple DHCP Relays</span>
 
 Cumulus Linux supports configuring multiple DHCP relay daemons on a
 switch, to enable relaying of packets from different bridges to
@@ -169,7 +169,7 @@ different upstreams.
     
         cumulus@switch:~$ sudo systemctl start dhcrelay@<dhcp-name>
 
-## <span>Configuring the DHCP Relay Service Manually (Advanced)</span>
+## Configuring the DHCP Relay Service Manually (Advanced)</span>
 
 <summary>Configuring the DHCP service manually ... </summary>
 
@@ -201,11 +201,11 @@ interfaces participating in DHCP relay (facing the server and facing the
 client) and the IP address of the server. If the client-facing interface
 is a bridge port, specify the switch virtual interface (SVI) name if
 using a [VLAN-aware
-bridge](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+bridge](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 (for example, vlan100), or the bridge name if using traditional bridging
 (for example, br100).
 
-## <span>Troubleshooting the DHCP Relays</span>
+## Troubleshooting the DHCP Relays</span>
 
 If you are experiencing issues with the DHCP relay, you can run the
 following commands to determine whether or not the issue is with
@@ -222,7 +222,7 @@ For example:
 
 See `man dhcrelay` for more information.
 
-### <span>Looking at the Log on Switch where DHCP Relay Is Configured</span>
+### Looking at the Log on Switch where DHCP Relay Is Configured</span>
 
 Use the `journalctl` command to look at the behavior on the Cumulus
 Linux switch that is providing the DHCP relay functionality:

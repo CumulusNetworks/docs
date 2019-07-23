@@ -3,7 +3,7 @@ title: Investigate NetQ Issues
 author: Cumulus Networks
 weight: 129
 aliases:
- - /display/NETQ141/Investigate-NetQ-Issues
+ - /display/NETQ141/Investigate+NetQ+Issues
  - /pages/viewpage.action?pageId=10453531
 pageID: 10453531
 product: Cumulus NetQ
@@ -17,7 +17,7 @@ and log files, verifying NetQ Agent health, and verifying Telemetry
 Server configuration. If these do not produce a resolution, you can
 capture a log to use in discussion with Cumulus Networks support team.
 
-## <span>Browse Configuration and Log Files</span>
+## Browse Configuration and Log Files</span>
 
 To aid in troubleshooting issues with NetQ, there are several
 configuration and log files on the **telemetry server** that can provide
@@ -49,7 +49,7 @@ log files:
 | `/etc/netq/config.d/netq-agent-commands.yml` | Contains key-value command pairs and relevant custom configuration settings. |
 | `/run/netq-agent-running.json`               | Contains the full command list that will be pushed when the agent starts.    |
 
-## <span>Check NetQ Agent Health</span>
+## Check NetQ Agent Health</span>
 
 Checking the health of the NetQ agents is a good way to start
 troubleshooting NetQ on your network. If any agents are rotten, meaning
@@ -109,7 +109,7 @@ so you know where to start looking for problems:
 
 </div>
 
-## <span>Verify Telemetry Server Configuration on a Node</span>
+## Verify Telemetry Server Configuration on a Node</span>
 
 If you get an error when your run the `netq config add server` command
 on a node, it is usually due to one of two reasons:
@@ -121,7 +121,7 @@ on a node, it is usually due to one of two reasons:
   - The Telemetry Server is not responding. Try pinging the IP address
     you entered and see if the ping works.
 
-## <span>Generate a Support File</span>
+## Generate a Support File</span>
 
 The `cts-support` command generates an archive of useful information for
 troubleshooting issues with NetQ. It is an extension of the `cl-support`

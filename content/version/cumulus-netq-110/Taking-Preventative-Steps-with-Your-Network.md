@@ -3,7 +3,7 @@ title: Taking Preventative Steps with Your Network
 author: Cumulus Networks
 weight: 17
 aliases:
- - /display/NETQ110/Taking-Preventative-Steps-with-Your-Network
+ - /display/NETQ110/Taking+Preventative+Steps+with+Your+Network
  - /pages/viewpage.action?pageId=7111329
 pageID: 7111329
 product: Cumulus NetQ
@@ -29,7 +29,7 @@ in NetQ Virtual, the topology can then be rolled into production.
 PETE: Just about every output on this page needs to be updated. The
 output of check, show etc have all changed.
 
-## <span>netq check and netq show</span>
+## netq check and netq show</span>
 
 The `netq check` and `netq show` commands validate network state before
 and after configuration changes. Based on results returned by NetQ, you
@@ -84,7 +84,7 @@ network:
         sensors     :  Temperature/Fan/PSU sensors
         services    :  System services
 
-### <span>netq show agents</span>
+### netq show agents</span>
 
 To get the health of the NetQ agents running in the fabric, run `netq
 show agents`. A *Fresh* status indicates the agent is running as
@@ -107,7 +107,7 @@ consecutive heartbeats are missed, its status changes to *Rotten*.
     spine01          Fresh     2h ago        2h ago
     spine02          Fresh     2h ago        2h ago
 
-## <span>Using NetQ with Automation</span>
+## Using NetQ with Automation</span>
 
 Using NetQ for preventative care of your network pairs well with
 automation scripts and playbooks to prevent errors on your network
@@ -139,7 +139,7 @@ Later, it can check IP addresses to verify the connections:
            delegate_to: localhost
            run_once: true
 
-## <span>Using NetQ Virtual</span>
+## Using NetQ Virtual</span>
 
 The NetQ Virtual environment provides another way for you to verify your
 network configuration before deploying it into production. For more

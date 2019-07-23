@@ -3,7 +3,7 @@ title: Network Command Line Utility
 author: Cumulus Networks
 weight: 267
 aliases:
- - /display/CL36/Network-Command-Line-Utility
+ - /display/CL36/Network+Command+Line+Utility
  - /pages/viewpage.action?pageId=8362077
 pageID: 8362077
 product: Cumulus Linux

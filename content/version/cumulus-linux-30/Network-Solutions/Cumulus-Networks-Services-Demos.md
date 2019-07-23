@@ -3,7 +3,7 @@ title: Cumulus Networks Services Demos
 author: Cumulus Networks
 weight: 189
 aliases:
- - /display/CL30/Cumulus-Networks-Services-Demos
+ - /display/CL30/Cumulus+Networks+Services+Demos
  - /pages/viewpage.action?pageId=5118421
 pageID: 5118421
 product: Cumulus Linux
@@ -18,18 +18,18 @@ Vagrant and Cumulus VX can be used together to build virtual simulations
 of production networks to validate configurations, develop automation
 code and simulate failure scenarios.
 
-## <span>Reference Topology</span>
+## Reference Topology</span>
 
 The Cumulus Networks *reference topology* includes cabling (in DOT
 format for dual use with
-[PTM](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager---PTM)),
+[PTM](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM)),
 MAC addressing, IP addressing, switches and servers. This topology is
 blessed by the Professional Services Team at Cumulus Networks to fit a
 majority of designs seen in the field.
 
 {{% imgOld 0 %}}
 
-### <span>IP and MAC Addressing</span>
+### IP and MAC Addressing</span>
 
 | Hostname        | eth0 IP       | eth0 MAC          | Interface Count                                                  |
 | --------------- | ------------- | ----------------- | ---------------------------------------------------------------- |
@@ -50,9 +50,9 @@ majority of designs seen in the field.
 | edge01          | 192.168.0.51  | A0:00:00:00:00:51 | 10g NICs (customer edge device, firewall, load balancer, etc.)   |
 | internet        | 192.168.0.253 | any               | (represents internet provider edge device)                       |
 
-### <span>Building the Topology</span>
+### Building the Topology</span>
 
-#### <span>Virtual Appliance</span>
+#### Virtual Appliance</span>
 
 You can build out the reference topology in hardware or using Cumulus VX
 (the free Cumulus Networks virtual appliance). The [Cumulus Reference
@@ -64,7 +64,7 @@ up the entire reference topology on a laptop or server are on the
 [cldemo-vagrant GitHub
 repo](https://github.com/CumulusNetworks/cldemo-vagrant).
 
-#### <span>Hardware</span>
+#### Hardware</span>
 
 Any switch from the [hardware compatibility
 list](https://cumulusnetworks.com/support/linux-hardware-compatibility-list/)
@@ -73,7 +73,7 @@ count from the table above. Of course, in your own production
 environment, you don't have to use exactly the same devices and cabling
 as outlined above.
 
-### <span>Demos</span>
+### Demos</span>
 
 You can find an up to date list of all the demos in the [cldemo-vagrant
 GitHub

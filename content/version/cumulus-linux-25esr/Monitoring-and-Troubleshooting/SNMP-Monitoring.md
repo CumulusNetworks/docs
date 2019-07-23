@@ -3,7 +3,7 @@ title: SNMP Monitoring
 author: Cumulus Networks
 weight: 175
 aliases:
- - /display/CL25ESR/SNMP-Monitoring
+ - /display/CL25ESR/SNMP+Monitoring
  - /pages/viewpage.action?pageId=5115976
 pageID: 5115976
 product: Cumulus Linux
@@ -23,7 +23,7 @@ monitoring environments, rather than SNMP.
 
 {{%/notice%}}
 
-## <span>Starting the SNMP Daemon</span>
+## Starting the SNMP Daemon</span>
 
 `snmpd` is disabled by default in Cumulus Linux 2.5.x. The following
 procedure is the recommended process to start `snmpd`, and monitor it
@@ -95,7 +95,7 @@ To start the SNMP daemon:
 Once the service is started, SNMP can be used to manage various
 components on the Cumulus Linux switch.
 
-## <span>Configuring SNMP</span>
+## Configuring SNMP</span>
 
 Cumulus Linux ships with a production usable default `snmpd.conf` file
 included. This section covers a few basic configuration options in
@@ -116,7 +116,7 @@ for v1 or v2c environments.
 
 {{%/notice%}}
 
-### <span>Setting up the Custom Cumulus Networks MIBs</span>
+### Setting up the Custom Cumulus Networks MIBs</span>
 
 {{%notice note%}}
 
@@ -141,7 +141,7 @@ custom Cumulus MIB to be recognized on the destination NMS server.
 
   - `/usr/share/snmp/Cumulus-Resource-Query-MIB.txt`
 
-### <span>Enabling the .1.3.6.1.2.1 Range</span>
+### Enabling the .1.3.6.1.2.1 Range</span>
 
 Some MIBs, including storage information, are not included by default in
 `snmpd.conf` in Cumulus Linux. This results in some default views on
@@ -187,7 +187,7 @@ To enable the .1.3.6.1.2.1 range:
     
         # sudo service snmpd start
 
-### <span>Enabling Public Community</span>
+### Enabling Public Community</span>
 
 Public community is disabled by default in Cumulus Linux. To enable
 querying by agent:
@@ -202,12 +202,12 @@ querying by agent:
     
         cumulus@switch:~$ sudo service snmpd restart
 
-## <span>Configuring Nutanix Prism</span>
+## Configuring Nutanix Prism</span>
 
 Nutanix Prism is a graphical user interface (GUI) for managing
 infrastructures and virtual environments.
 
-### <span>Cumulus Linux Configuration</span>
+### Cumulus Linux Configuration</span>
 
 1.  SSH to the Cumulus Linux switch that needs to be configured,
     replacing `[switch]` below as appropriate:
@@ -245,7 +245,7 @@ infrastructures and virtual environments.
         Restarting network management services: snmpd.
         cumulus@switch$
 
-### <span>Nutanix Configuration</span>
+### Nutanix Configuration</span>
 
 1.  Log into the Nutanix Prism. Nutanix defaults to the Home menu,
     referred to as the Dashboard:
@@ -308,7 +308,7 @@ Nutanix hosts are visible.
 
 {{%/notice%}}
 
-## <span>Switch Information Displayed on Nutanix Prism</span>
+## Switch Information Displayed on Nutanix Prism</span>
 
   - Physical Interface (e.g. swp1, swp2). This will only display swp
     interfaces connected to Nutanix hosts by default.
@@ -353,7 +353,7 @@ CLI, login using the default username **nutanix**, and the password
         Switch Vendor Name        : Unknown
         Port Ids                  : 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:52, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:53, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:54, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:55
 
-## <span>Troubleshooting</span>
+## Troubleshooting</span>
 
 To help visualize the following diagram is provided:
 
@@ -366,7 +366,7 @@ To help visualize the following diagram is provided:
 | Node C (Red)    | vmnic2        | swp51              |
 | Node D (Yellow) | vmnic2        | swp52              |
 
-## <span>Enabling LLDP/CDP on VMware ESXi (Hypervisor on Nutanix)</span>
+## Enabling LLDP/CDP on VMware ESXi (Hypervisor on Nutanix)</span>
 
 1.  Follow the directions on one of the following websites to enable
     CDP:
@@ -433,7 +433,7 @@ To help visualize the following diagram is provided:
         swp51         10G(SFP+)    Access/L2  ====  vmnic2         NX-1050-C          Untagged: br-ntnx
         swp52         10G(SFP+)    Access/L2  ====  vmnic2         NX-1050-D          Untagged: br-ntnx
 
-## <span>Enabling LLDP/CDP on Nutanix Acropolis (Hypervisor on Nutanix Acropolis)</span>
+## Enabling LLDP/CDP on Nutanix Acropolis (Hypervisor on Nutanix Acropolis)</span>
 
 [Nutanix Acropolis](http://www.nutanix.com/products/acropolis/) is an
 alternate hypervisor that Nutanix supports. Acropolis Hypervisor uses
@@ -442,7 +442,7 @@ daemons to operating just like Cumulus Linux. LLDP should be enabled for
 each interface on the host. Refer to
 <https://community.mellanox.com/docs/DOC-1522> for setup instructions.
 
-## <span>snmpwalk the Switch from Another Linux Device</span>
+## snmpwalk the Switch from Another Linux Device</span>
 
 One of the most important ways to troubleshoot is to snmpwalk the switch
 from another Linux device that can reach the switch running Cumulus
@@ -479,7 +479,7 @@ within the network is used.
     
         cumulus@switch2$ snmpwalk -c public -v2c 192.168.0.111
     
-    ##### <span>Output Examples</span>
+    ##### Output Examples</span>
     
         IF-MIB::ifPhysAddress.2 = STRING: 74:e6:e2:f5:a2:80
         IF-MIB::ifPhysAddress.3 = STRING: 0:e0:ec:25:b8:54
@@ -504,7 +504,7 @@ Any information gathered here should verify that snmpd is running
 correctly on the Cumulus Linux side, reducing locations where a problem
 may reside.
 
-### <span>Troubleshooting Tips Table for snmp walks</span>
+### Troubleshooting Tips Table for snmp walks</span>
 
 <table>
 <colgroup>
@@ -541,7 +541,7 @@ Is there an iptables rule blocking? Is the snmp walk being run correctly?</p></t
 </tbody>
 </table>
 
-## <span>Troubleshooting Connections without LLDP or CDP</span>
+## Troubleshooting Connections without LLDP or CDP</span>
 
 1.  Find the MAC address information in the Prism GUI, located in:
     **Hardware -\> Table -\> Host -\> Host NICs**
@@ -612,14 +612,14 @@ Is there an iptables rule blocking? Is the snmp walk being run correctly?</p></t
         -------------------------------------------------------------------------------
         cumulus@switch$
 
-## <span>Generating Event Notification Traps</span>
+## Generating Event Notification Traps</span>
 
 The Net-SNMP agent provides a method to generate SNMP trap events, via
 the Distributed Management (DisMan) Event MIB, for various system
 events, including linkup/down, exceeding the temperature sensor
 threshold, CPU load, or memory threshold, or other SNMP MIBs.
 
-### <span>Enabling MIB to OID Translation</span>
+### Enabling MIB to OID Translation</span>
 
 MIB names can be used instead of OIDs, by installing the
 `snmp-mibs-downloader`, to download SNMP MIBs to the switch prior to
@@ -663,13 +663,13 @@ enabling traps. This greatly improves the readability of the
     
         #deb http://ftp.us.debian.org/debian/ wheezy main non-free
 
-### <span>Configuring Trap Events</span>
+### Configuring Trap Events</span>
 
 The following configurations should be made in `/etc/snmp/snmp.conf`, in
 order to enable specific types of traps. Once configured, restart the
 `snmpd` service to apply the changes.
 
-#### <span>Defining Access Credentials</span>
+#### Defining Access Credentials</span>
 
 An SNMPv3 username is required to authorize the DisMan service. The
 example code below uses `cumulusUser` as the username.
@@ -678,7 +678,7 @@ example code below uses `cumulusUser` as the username.
     iquerySecName cumulusUser
     rouser cumulusUser
 
-#### <span>Defining Trap Receivers</span>
+#### Defining Trap Receivers</span>
 
 The example code below creates a trap receiver that is capable of
 receiving SNMPv2 traps.
@@ -699,7 +699,7 @@ name instead of IP address in the `trap2sink` directive.
 
 {{%/notice%}}
 
-#### <span>Configuring LinkUp/Down Notifications</span>
+#### Configuring LinkUp/Down Notifications</span>
 
 The `linkUpDownNotifications` directive is used to configure linkup/down
 notifications when the operational status of the link changes.
@@ -715,7 +715,7 @@ for details.
 
 {{%/notice%}}
 
-#### <span>Configuring Temperature Notifications</span>
+#### Configuring Temperature Notifications</span>
 
 Temperature sensor information for each available sensor is maintained
 in the the lmSensors MIB. Each platform may contain a different number
@@ -756,7 +756,7 @@ used to monitor only temperature sensor three at five minute intervals.
 
     monitor -I -r 300 lmTemSensor3 -o lmTempSensorsDevice.3 lmTempSensorsValue.3 > 68000
 
-#### <span>Configuring Free Memory Notifications</span>
+#### Configuring Free Memory Notifications</span>
 
 You can monitor free memory using the following directives. The example
 below generates a trap when free memory drops below 1,000,000KB. The
@@ -764,7 +764,7 @@ free memory trap also includes the amount of total real memory:
 
     monitor MemFreeTotal -o memTotalReal memTotalFree <  1000000
 
-#### <span>Configuring Processor Load Notifications</span>
+#### Configuring Processor Load Notifications</span>
 
 To monitor CPU load for 1, 5 or 15 minute intervals, use the `load`
 directive in conjunction with the `monitor` directive. The following
@@ -774,7 +774,7 @@ example will generate a trap when the 1 minute interval reaches 12%, the
     load 12 10 5
     monitor -r 60 -o laNames -o laErrMessage "laTable" laErrorFlag !=0
 
-#### <span>Configuring Disk Utilization Notifications</span>
+#### Configuring Disk Utilization Notifications</span>
 
 To monitor disk utilization for all disks, use the `includeAllDisks`
 directive in conjunction with the `monitor` directive. The example code
@@ -783,14 +783,14 @@ below generates a trap when a disk is 99% full:
     includeAllDisks 1%
     monitor -r 60 -o dskPath -o DiskErrMsg "dskTable" diskErrorFlag !=0
 
-#### <span>Configuring Authentication Notifications</span>
+#### Configuring Authentication Notifications</span>
 
 To generate authentication failure traps, use the `authtrapenable`
 directive:
 
     authtrapenable 1
 
-## <span id="src-5115976_SNMPMonitoring-supported_mibs" class="confluence-anchor-link"></span><span>Supported MIBs</span>
+## <span id="src-5115976_SNMPMonitoring-supported_mibs" class="confluence-anchor-link"></span>Supported MIBs</span>
 
 Below are the MIBs supported by Cumulus Linux, as well as suggested uses
 for them. The overall Cumulus Linux MIB is defined in

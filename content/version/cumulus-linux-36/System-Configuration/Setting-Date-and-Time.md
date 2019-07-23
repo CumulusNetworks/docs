@@ -3,7 +3,7 @@ title: Setting Date and Time
 author: Cumulus Networks
 weight: 65
 aliases:
- - /display/CL36/Setting-Date-and-Time
+ - /display/CL36/Setting+Date+and+Time
  - /pages/viewpage.action?pageId=8362040
 pageID: 8362040
 product: Cumulus Linux
@@ -16,7 +16,7 @@ siteSlug: cumulus-linux-36
 Setting the time zone, date and time requires root privileges; use
 `sudo`.
 
-## <span>Setting the Time Zone</span>
+## Setting the Time Zone</span>
 
 To see the current time zone, list the contents of `/etc/timezone`:
 
@@ -31,7 +31,7 @@ Use the following command to apply the new time zone immediately.
 
     cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata
 
-### <span>Alternative: Use the Guided Wizard to Find and Apply a Time Zone</span>
+### Alternative: Use the Guided Wizard to Find and Apply a Time Zone</span>
 
 To set the time zone, run `dpkg-reconfigure tzdata` as root:
 
@@ -68,7 +68,7 @@ example selects the US/Pacific time zone:
 For more info see the Debian [System Administrator’s Manual –
 Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
 
-## <span>Setting the Date and Time</span>
+## Setting the Date and Time</span>
 
 The switch contains a battery backed hardware clock that maintains the
 time while the switch is powered off and in between reboots. When the
@@ -111,7 +111,7 @@ Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.ht
 specifically the section [Setting and showing hardware
 clock](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html#s16.2).
 
-## <span>Setting Time Using NTP and NCLU</span>
+## Setting Time Using NTP and NCLU</span>
 
 The `ntpd` daemon running on the switch implements the NTP protocol. It
 synchronizes the system time with time servers listed in
@@ -122,7 +122,7 @@ explanation of the output.
 
 By default, `/etc/ntp.conf` contains some default time servers. You can
 specify the NTP server or servers you want to use with
-[NCLU](/version/cumulus-linux-36/System-Configuration/Network-Command-Line-Utility---NCLU/);
+[NCLU](/version/cumulus-linux-36/System-Configuration/Network-Command-Line-Utility-NCLU/);
 include the `iburst` option to increase the sync speed.
 
     cumulus@switch:~$ net add time ntp server 4.cumulusnetworks.pool.ntp.org iburst
@@ -176,7 +176,7 @@ To remove one or more NTP servers:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## <span>Specifying the NTP Source Interface</span>
+## Specifying the NTP Source Interface</span>
 
 You can change the source interface that NTP uses if you want to use an
 interface other than eth0, which is the default.
@@ -195,7 +195,7 @@ These commands create the following configuration snippet in the
      
     ...
 
-## <span>NTP Default Configuration</span>
+## NTP Default Configuration</span>
 
 The default NTP configuration comprises the following servers, which are
 listed in the `/etc/ntpd.conf` file:
@@ -279,7 +279,7 @@ The contents of the `/etc/ntpd.conf` file are listed below.
     # Specify interfaces, don't listen on switch ports
     interface listen eth0
 
-## <span id="src-8362040_SettingDateandTime-PTP" class="confluence-anchor-link"></span><span>Precision Time Protocol (PTP) Boundary Clock</span>
+## <span id="src-8362040_SettingDateandTime-PTP" class="confluence-anchor-link"></span>Precision Time Protocol (PTP) Boundary Clock</span>
 
 With the growth of low latency and high performance applications,
 precision timing has become increasingly important. Precision Time
@@ -339,7 +339,7 @@ receive the time.
 
   
 
-### <span>Enabling the PTP Boundary Clock on the Switch</span>
+### Enabling the PTP Boundary Clock on the Switch</span>
 
 To enable the PTP boundary clock on the switch:
 
@@ -352,7 +352,7 @@ To enable the PTP boundary clock on the switch:
     
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
-### <span>Configuring the PTP Boundary Clock</span>
+### Configuring the PTP Boundary Clock</span>
 
 To configure a boundary clock:
 
@@ -415,7 +415,7 @@ To configure a boundary clock:
     
         cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
 
-### <span>Example Configuration</span>
+### Example Configuration</span>
 
 In the following example, the boundary clock on the switch receives time
 from Master 1 (the grandmaster) on PTP slave port swp3s0, sets its clock
@@ -441,7 +441,7 @@ assumes that you have already configured the layer 3 routed interfaces
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-### <span>Verifying PTP Boundary Clock Configuration</span>
+### Verifying PTP Boundary Clock Configuration</span>
 
 To view a summary of the PTP configuration on the switch, run the `net
 show configuration ptp` command:
@@ -487,7 +487,7 @@ show configuration ptp` command:
       swp15s1
     ...
 
-### <span>Viewing PTP Status Information</span>
+### Viewing PTP Status Information</span>
 
 To view PTP status information, run the `net show ptp parent_data_set`
 command:
@@ -540,7 +540,7 @@ TIME_STATUS_NP'` command:
             gmPresent                  true
             gmIdentity                 000200.fffe.000005
 
-### <span>Deleting PTP Boundary Clock Configuration</span>
+### Deleting PTP Boundary Clock Configuration</span>
 
 To delete PTP configuration, delete the PTP master and slave interfaces.
 The following example commands delete the PTP interfaces `swp3s0`,
@@ -552,7 +552,7 @@ The following example commands delete the PTP interfaces `swp3s0`,
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## <span>Using NTP in a DHCP Environment</span>
+## Using NTP in a DHCP Environment</span>
 
 If you use DHCP and want to specify your NTP servers, you must specify
 an alternate configuration file for NTP.
@@ -604,7 +604,7 @@ configuration file.
 
 {{%/notice%}}
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Debian System Administrator’s Manual –
     Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)

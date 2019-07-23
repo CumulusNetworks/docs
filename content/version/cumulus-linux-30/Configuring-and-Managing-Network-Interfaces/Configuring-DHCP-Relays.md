@@ -3,7 +3,7 @@ title: Configuring DHCP Relays
 author: Cumulus Networks
 weight: 85
 aliases:
- - /display/CL30/Configuring-DHCP-Relays
+ - /display/CL30/Configuring+DHCP+Relays
  - /pages/viewpage.action?pageId=5118376
 pageID: 5118376
 product: Cumulus Linux
@@ -25,7 +25,7 @@ host, leaf and DHCP server using the following topology:
 
 <summary>Contents </summary>
 
-## <span>Configuring the Relays </span>
+## Configuring the Relays </span>
 
 Here is the host configuration:
 

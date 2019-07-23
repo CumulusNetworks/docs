@@ -3,13 +3,13 @@ title: LNV Full Example
 author: Cumulus Networks
 weight: 377
 aliases:
- - /display/CL37/LNV-Full-Example
+ - /display/DOCS/LNV+Full+Example
  - /pages/viewpage.action?pageId=8362715
 pageID: 8362715
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 {{%notice warning%}}
 
@@ -17,16 +17,16 @@ As of Cumulus Linux 3.7.4, the lightweight network virtualization
 feature (LNV) has been deprecated. The feature will be removed in
 Cumulus Linux 4.0. Cumulus Networks recommends you use [Ethernet virtual
 private network
-(EVPN)](/version/cumulus-linux-377/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+(EVPN)](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
 for network virtualization.
 
 {{%/notice%}}
 
 Lightweight Network Virtualization (LNV) is a technique for deploying
-[VXLANs](/version/cumulus-linux-377/Network-Virtualization/) without a
-central controller on bare metal switches. This a full example complete
-with diagram. Refer to the [Lightweight Network Virtualization
-chapter](/version/cumulus-linux-377/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+[VXLANs](/cumulus-linux/Network-Virtualization/) without a central
+controller on bare metal switches. This a full example complete with
+diagram. Refer to the [Lightweight Network Virtualization
+chapter](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 for more detailed information. This full example uses the **recommended
 way** of deploying LNV, which is to use anycast to load balance the
 service nodes.
@@ -41,7 +41,7 @@ Cumulus Linux.
 
 {{%/notice%}}
 
-## <span>Example LNV Configuration</span>
+## Example LNV Configuration
 
 The following images illustrate the configuration:
 
@@ -77,7 +77,7 @@ get instructor-led training\!
 
 {{%/notice%}}
 
-### <span>Layer 3 IP Addressing</span>
+### Layer 3 IP Addressing
 
 Here is the configuration for the IP addressing information used in this
 example:
@@ -101,15 +101,15 @@ iface eth0 inet dhcp
 auto swp49
 iface swp49
   address 10.1.1.2/30
- 
+
 auto swp50
 iface swp50
   address 10.1.1.6/30
- 
+
 auto swp51
 iface swp51
   address 10.1.1.50/30
- 
+
 auto swp52
 iface swp52
   address 10.1.1.54/30</code></pre></td>
@@ -118,24 +118,24 @@ iface swp52
 iface lo inet loopback
   address 10.2.1.4/32
   address 10.10.10.10/32
- 
+
 auto eth0
 iface eth0 inet dhcp
  
 auto swp49
-iface swp49 
+iface swp49
  address 10.1.1.18/30
- 
+
 auto swp50
-iface swp50 
+iface swp50
  address 10.1.1.22/30
- 
+
 auto swp51
-iface swp51 
+iface swp51
 address 10.1.1.34/30
- 
+
 auto swp52
-iface swp52 
+iface swp52
 address 10.1.1.38/30</code></pre></td>
 </tr>
 <tr class="even">
@@ -259,14 +259,13 @@ iface br-30
 </tbody>
 </table>
 
-### <span>FRRouting Configuration</span>
+### FRRouting Configuration
 
 The service nodes and registration nodes must all be routable between
 each other. The layer 3 fabric on Cumulus Linux can either be
-[BGP](/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP)
-or
-[OSPF](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF).
-In this example, OSPF is used to demonstrate full reachability.
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP) or
+[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF). In this
+example, OSPF is used to demonstrate full reachability.
 
 Here is the FRRouting configuration using OSPF:
 
@@ -387,7 +386,7 @@ router ospf
 </tbody>
 </table>
 
-### <span>Host Configuration</span>
+### Host Configuration
 
 In this example, the servers are running Ubuntu 14.04. You must map a
 trunk from server1 and server2 to the respective switch. In Ubuntu, this
@@ -428,7 +427,7 @@ iface eth3.30 inet static
 </tbody>
 </table>
 
-### <span>Service Node Configuration</span>
+### Service Node Configuration
 
 <table>
 <colgroup>
@@ -525,20 +524,20 @@ svcnode_peers = 10.2.1.3
 </tbody>
 </table>
 
-## <span>Related Information</span>
+## Related Information
 
   - [tools.ietf.org/html/rfc7348](https://tools.ietf.org/html/rfc7348)
 
   - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
 
   - [Detailed LNV Configuration
-    Guide](/version/cumulus-linux-377/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+    Guide](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 
   - [Cumulus Networks
     Training](http://cumulusnetworks.com/education/instructor-led-training/)
 
   - [Network virtualization chapter, Cumulus Linux user
-    guide](/version/cumulus-linux-377/Network-Virtualization/)
+    guide](/cumulus-linux/Network-Virtualization/)
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

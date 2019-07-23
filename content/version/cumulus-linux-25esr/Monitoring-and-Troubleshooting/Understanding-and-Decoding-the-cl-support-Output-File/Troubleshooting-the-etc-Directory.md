@@ -3,7 +3,7 @@ title: Troubleshooting the etc Directory
 author: Cumulus Networks
 weight: 267
 aliases:
- - /display/CL25ESR/Troubleshooting-the-etc-Directory
+ - /display/CL25ESR/Troubleshooting+the+etc+Directory
  - /pages/viewpage.action?pageId=5115970
 pageID: 5115970
 product: Cumulus Linux

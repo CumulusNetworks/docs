@@ -3,13 +3,13 @@ title: DHCP Servers
 author: Cumulus Networks
 weight: 97
 aliases:
- - /display/CL37/DHCP-Servers
+ - /display/DOCS/DHCP+Servers
  - /pages/viewpage.action?pageId=8363042
 pageID: 8363042
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 To run DHCP for both IPv4 and IPv6, you need to initiate the DHCP server
 twice: once for IPv4 and once for IPv6. The following configuration uses
@@ -26,16 +26,14 @@ dedicated server in your environment.
 The `dhcpd` and `dhcrelay` services are disabled by default. After you
 finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
-[VRF](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF),
-including the [management
-VRF](/version/cumulus-linux-377/Layer-3/Management-VRF), follow [these
-steps](Management-VRF.html#src-8362940_ManagementVRF-services) for
-configuring them. See also the [VRF
-chapter](Virtual-Routing-and-Forwarding---VRF.html#src-8362942_VirtualRoutingandForwarding-VRF-dhcp).
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF),
+including the [management VRF](/cumulus-linux/Layer-3/Management-VRF),
+follow [these steps](/cumulus-linux/Layer-3/Management-VRF/#run-services-within-the-management-vrf) for
+configuring them. See also the [VRF chapter](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf).
 
 {{%/notice%}}
 
-## <span>Configure the DHCP Server on Cumulus Linux Switches</span>
+## Configure the DHCP Server on Cumulus Linux Switches
 
 You can use the following sample configurations for `dhcp.conf` and
 `dhcpd6.conf` to start both an IPv4 and an IPv6 DHCP server. The
@@ -46,7 +44,7 @@ pools:
 
   - Pool 2: Subnet that includes the addresses
 
-### <span>Configure the IPv4 DHCP Server</span>
+### Configure the IPv4 DHCP Server
 
 In a text editor, edit the `dhcpd.conf` file with a configuration
 similar to the following:
@@ -72,13 +70,13 @@ boots. Here is a sample configuration:
      
     INTERFACES="swp1"
 
-After you've finished configuring the DHCP server, enable and start the
-` dhcpd  `service immediately:
+After you finish configuring the DHCP server, enable and start the
+`dhcpd` service immediately:
 
     cumulus@switch:~$ sudo systemctl enable dhcpd.service
     cumulus@switch:~$ sudo systemctl start dhcpd.service
 
-### <span>Configure the IPv6 DHCP Server</span>
+### Configure the IPv6 DHCP Server
 
 In a text editor, edit the `dhcpd6.conf` file with a configuration
 similar to the following:
@@ -110,13 +108,13 @@ You cannot use NCLU to configure IPv6 DHCP servers.
 
 {{%/notice%}}
 
-After you've finished configuring the DHCP server, enable and start the
-` dhcpd6  `service immediately:
+After you finish configuring the DHCP server, enable and start the
+`dhcpd6` service immediately:
 
     cumulus@switch:~$ sudo systemctl enable dhcpd6.service
     cumulus@switch:~$ sudo systemctl start dhcpd6.service
 
-## <span>Assign Port-Based IP Addresses</span>
+## Assign Port-Based IP Addresses
 
 You can assign an IP address and other DHCP options based on physical
 location or port regardless of MAC address to clients that are attached
@@ -133,7 +131,7 @@ to assign an IP address through DHCP. The following provides an example:
          fixed_address = 10.10.10.10 ;
     }
 
-## <span>Troubleshooting</span>
+## Troubleshooting
 
 The DHCP server knows whether a DHCP request is a relay or a non-relay
 DHCP request. On isc-dhcp-server, for example, it is possible to tail

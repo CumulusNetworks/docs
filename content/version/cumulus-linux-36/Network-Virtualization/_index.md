@@ -3,7 +3,7 @@ title: Network Virtualization
 author: Cumulus Networks
 weight: 21
 aliases:
- - /display/CL36/Network-Virtualization
+ - /display/CL36/Network+Virtualization
  - /pages/viewpage.action?pageId=8362196
 pageID: 8362196
 product: Cumulus Linux
@@ -58,9 +58,9 @@ at least one layer 3 hop between the VXLAN source and destination.
 
 {{%/notice%}}
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
-### <span>Cut-through Mode and Store and Forward Switching</span>
+### Cut-through Mode and Store and Forward Switching</span>
 
 [Cut-through
 mode](Buffer-and-Queue-Management.html#src-8362498_BufferandQueueManagement-cut_through_mode)
@@ -72,7 +72,7 @@ Cut-through mode **is** supported for VXLANs in Cumulus Linux on
 switches using Mellanox Spectrum ASICs. However, store and forward
 switching is **not** supported on Spectrum.
 
-### <span>MTU Size for Virtual Network Interfaces</span>
+### MTU Size for Virtual Network Interfaces</span>
 
 The maximum transmission unit (MTU) size for a virtual network interface
 should be 50 bytes smaller than the MTU for the physical interfaces on
@@ -80,7 +80,7 @@ the switch. For more information on setting MTU, read [Layer 1 and
 Switch Port
 Attributes](Switch-Port-Attributes.html#src-8362492_SwitchPortAttributes-mtu_vxlan).
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [VXLAN - RFC 7348](https://tools.ietf.org/html/rfc7348)
 

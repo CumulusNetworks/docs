@@ -16,7 +16,7 @@ the chassis that you would use on any other Cumulus Linux switch.
 However, there is a new suite of commands called `cl-chassis`. In
 addition, SSH works a little differently within a chassis.
 
-## <span>cl-chassis Commands</span>
+## cl-chassis Commands
 
 Cumulus Linux has a number of chassis-specific commands that can execute
 against one or all cards in the chassis. The cl-chassis command provides
@@ -63,7 +63,7 @@ The `cl-chassis` commands use a REST API on the back end.
         net run [<ipv6>|all] nos-install path <text>
         net run [<ipv6>|all] reboot
 
-## <span>Using SSH within the Chassis</span>
+## Using SSH within the Chassis
 
 Once you are logged into any fabric or line card in the chassis, you can
 use `ssh` and `scp` to connect to any other card without a password. SSH

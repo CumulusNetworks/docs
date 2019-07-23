@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "Cumulus Networks Documentation"
 theme =["netDocs", "book"]
+=======
+
+languageCode = "en-us"
+title = "Cumulus Networks Documentation"
+theme = "netDocs"
+baseURL = "/"
+relURLs = true
+>>>>>>> 5e2d3601b51f5f1614cb71d1cb308b6571aca21a
 
 #Book configuration
 disablePathToLower = true
@@ -64,12 +73,20 @@ showVisitedLinks = true
 
   # Set source repository location.
   # Used for 'Last Modified' and 'Edit this page' links.
+<<<<<<< HEAD
   BookRepo = "https://github.com/CumulusNetworks/docs-internal"
+=======
+  BookRepo = "https://github.com/CumulusNetworks/docs"
+>>>>>>> 5e2d3601b51f5f1614cb71d1cb308b6571aca21a
 
   # Enable "Edit this page" links for 'doc' page type.
   # Disabled by default. Uncomment to enable. Requires 'BookRepo' param.
   # Path must point to 'content' directory of repo.
+<<<<<<< HEAD
   BookEditPath = "edit/develop/content"
+=======
+  BookEditPath = "edit/master/content"
+>>>>>>> 5e2d3601b51f5f1614cb71d1cb308b6571aca21a
 
   # Configure the date format used on the pages
   # - In git information

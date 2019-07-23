@@ -3,7 +3,7 @@ title: Getting Started with NetQ
 author: Cumulus Networks
 weight: 11
 aliases:
- - /display/NETQ110/Getting-Started-with-NetQ
+ - /display/NETQ110/Getting+Started+with+NetQ
  - /pages/viewpage.action?pageId=7111298
 pageID: 7111298
 product: Cumulus NetQ
@@ -36,7 +36,7 @@ for this version.
 
 {{%/notice%}}
 
-## <span>Install the NetQ Telemetry Server</span>
+## Install the NetQ Telemetry Server</span>
 
 The NetQ Telemetry Server comprises a set of individual Docker
 containers that each contain a separate service for the `redis`
@@ -106,7 +106,7 @@ server.
 
 {{%/notice%}}
 
-## <span id="src-7111298_GettingStartedwithNetQ-agent" class="confluence-anchor-link"></span><span>Install the NetQ Agent</span>
+## <span id="src-7111298_GettingStartedwithNetQ-agent" class="confluence-anchor-link"></span>Install the NetQ Agent</span>
 
 In order to manage a node with NetQ Agent and send notifications with
 NetQ Notifier, you need to install an OS-specific metapackage on each
@@ -125,7 +125,7 @@ interface.
 Install the metapackage on each node to monitor, then configure the NetQ
 Agent on the node.
 
-### <span>Installing on a Cumulus Linux Switch</span>
+### Installing on a Cumulus Linux Switch</span>
 
 1.  Edit `/etc/apt/sources.list` and add the following line:
     
@@ -137,13 +137,13 @@ Agent on the node.
     
         cumulus@switch:~$ sudo apt-get update && sudo apt-get install cumulus-netq
 
-### <span>Installing on an Ubuntu, Red Hat or CentOS Server</span>
+### Installing on an Ubuntu, Red Hat or CentOS Server</span>
 
 To install NetQ on Linux servers running Ubuntu, Red Hat or CentOS,
 please read the [Host Pack
 documentation](https://docs.cumulusnetworks.com/display/HOSTPACK/Installing+NetQ+on+the+Host).
 
-## <span id="src-7111298_GettingStartedwithNetQ-nodeconfig" class="confluence-anchor-link"></span><span>Configuring the NetQ Agent on a Node</span>
+## <span id="src-7111298_GettingStartedwithNetQ-nodeconfig" class="confluence-anchor-link"></span>Configuring the NetQ Agent on a Node</span>
 
 Once you install the NetQ packages and configure the NetQ Telemetry
 Server, you need to configure NetQ on each Cumulus Linux switch to
@@ -181,7 +181,7 @@ monitor that node on your network.
     
     {{%/notice%}}
 
-### <span id="src-7111298_GettingStartedwithNetQ-vrf" class="confluence-anchor-link"></span><span>Configuring the Agent to Use a VRF</span>
+### <span id="src-7111298_GettingStartedwithNetQ-vrf" class="confluence-anchor-link"></span>Configuring the Agent to Use a VRF</span>
 
 If you want the NetQ Agent to communicate with the telemetry server only
 via a [VRF](/display/NETQ110/Virtual+Routing+and+Forwarding+-+VRF),
@@ -200,7 +200,7 @@ start the service in the VRF:
     cumulus@switch:~$ sudo systemctl enable netqd@mgmt.service
     cumulus@switch:~$ sudo systemctl start netqd@mgmt.service
 
-### <span id="src-7111298_GettingStartedwithNetQ-port" class="confluence-anchor-link"></span><span>Configuring the Agent to Communicate over a Specific Port</span>
+### <span id="src-7111298_GettingStartedwithNetQ-port" class="confluence-anchor-link"></span>Configuring the Agent to Communicate over a Specific Port</span>
 
 By default, NetQ uses port 6379 for communication between the telemetry
 server and NetQ Agents. If you want the NetQ Agent to communicate with
@@ -209,7 +209,7 @@ number when configuring the NetQ Agent like this:
 
     cumulus@switch:~$ netq config add server 198.51.100.10 port 7379
 
-## <span id="src-7111298_GettingStartedwithNetQ-notifier" class="confluence-anchor-link"></span><span>Configuring NetQ Notifier on the Telemetry Server</span>
+## <span id="src-7111298_GettingStartedwithNetQ-notifier" class="confluence-anchor-link"></span>Configuring NetQ Notifier on the Telemetry Server</span>
 
 NetQ Notifier listens to events from the telemetry server database. When
 NetQ Notifier is running on the NetQ Telemetry Server, it sends out
@@ -331,7 +331,7 @@ To configure alerts and integrations on the NetQ Telemetry Server:
     
     {{%/notice%}}
 
-## <span id="src-7111298_GettingStartedwithNetQ-example" class="confluence-anchor-link"></span><span>Example /etc/cts/netq/netq.yml Configuration</span>
+## <span id="src-7111298_GettingStartedwithNetQ-example" class="confluence-anchor-link"></span>Example /etc/cts/netq/netq.yml Configuration</span>
 
 In the following sample `/etc/cts/netq/netq.yml` file on the NetQ
 Telemetry Server itself. Note that the `netq.yml` looks different on a

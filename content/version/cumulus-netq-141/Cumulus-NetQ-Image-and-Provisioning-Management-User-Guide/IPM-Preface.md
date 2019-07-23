@@ -3,7 +3,7 @@ title: IPM Preface
 author: Cumulus Networks
 weight: 27
 aliases:
- - /display/NETQ141/IPM-Preface
+ - /display/NETQ141/IPM+Preface
  - /pages/viewpage.action?pageId=10453547
 pageID: 10453547
 product: Cumulus NetQ
@@ -16,7 +16,7 @@ Cumulus Linux and Cumulus NetQ applications. These resources are
 identified here along with information about how the document contents
 are presented.
 
-## <span>What's New in Cumulus NetQ 1.4.0</span>
+## What's New in Cumulus NetQ 1.4.0</span>
 
 Cumulus NetQ 1.4.0 includes the following new features:
 
@@ -49,7 +49,7 @@ this release, refer to the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360005898274).
 <span style="color: #353744;"> </span>
 
-## <span>Available Documentation</span>
+## Available Documentation</span>
 
 <span style="color: #36424a;"> <span style="color: #353744;"> All of the
 IPM documentation assumes you have already installed Cumulus Linux and
@@ -86,12 +86,12 @@ available: </span>
   - [Cumulus NetQ Release
     Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360005898274)
 
-## <span>Document Formatting</span>
+## Document Formatting</span>
 
 The Cumulus IPM User Guide uses the following typographical and note
 conventions.
 
-### <span>Typographical Conventions</span>
+### Typographical Conventions</span>
 
 <span style="color: #353744;"> Throughout the guide, text formatting is
 used to convey contextual information about the content. </span>
@@ -103,7 +103,7 @@ used to convey contextual information about the content. </span>
 | <span style="color: #353744;"> \[`Text within square brackets`\] </span> | <span style="color: #353744;"> Optional command parameters; may be presented in mixed case or all caps text </span>                                                                                                      |
 | <span style="color: #353744;"> \<`Text within angle brackets`\> </span>  | <span style="color: #353744;"> Required command parameter values–variables that are to be replaced with a relevant value; <span style="color: #353744;"> may be presented in mixed case or all caps text </span> </span> |
 
-### <span>Note Conventions </span>
+### Note Conventions </span>
 
 <span style="color: #353744;"> Several note types are used throughout
 the document. The formatting of the note indicates its intent and

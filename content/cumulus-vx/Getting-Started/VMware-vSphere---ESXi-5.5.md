@@ -3,13 +3,13 @@ title: VMware vSphere - ESXi 5.5
 author: Cumulus Networks
 weight: 37
 aliases:
- - /display/VX/VMware-vSphere---ESXi-5.5
+ - /display/VX/VMware-vSphere-ESXi-5.5
  - /pages/viewpage.action?pageId=5126689
 pageID: 5126689
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 The following sections describe how to import and set up a
 two-leaf/two-spine Cumulus VX topology with VMware vSphere.
@@ -22,14 +22,14 @@ documentation](https://pubs.vmware.com/vsphere-55/index.jsp).
 
 {{%/notice%}}
 
-## <span>Create a Cumulus VX VM with VMware vSphere - ESXi 5.5</span>
+## Create a Cumulus VX VM with VMware vSphere - ESXi 5.5</span>
 
 {{%notice note%}}
 
 This section assumes that you have downloaded the Cumulus VX disk image
 for VMware hypervisors and that the VMware vSphere is installed. For
 more download locations and steps, refer to the [Getting
-Started](/version/cumulus-vx-34/Getting-Started/) page.
+Started](/cumulus-vx/Getting-Started/) page.
 
 {{%/notice%}}
 
@@ -81,7 +81,7 @@ pane.
 
 {{% imgOld 2 %}}
 
-## <span>Next Steps</span>
+## Next Steps</span>
 
 {{%notice note%}}
 
@@ -108,8 +108,8 @@ above, and that you now have a VM called `CumulusVX-leaf1`.
 
 2.  After you have created all four VMs, follow the steps detailed in
     [Create a Two-Leaf, Two-Spine
-    Topology](/version/cumulus-vx-34/Create-a-Two-Leaf-Two-Spine-Topology)
-    to configure the network interfaces and routing.
+    Topology](/cumulus-vx/Create-a-Two-Leaf-Two-Spine-Topology) to
+    configure the network interfaces and routing.
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

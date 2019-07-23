@@ -5,15 +5,22 @@ name = "netDocs"
 license = "MIT"
 licenselink = ""
 description = ""
+<<<<<<< HEAD
 homepage = "http://example.com/"
+=======
+homepage = ""
+>>>>>>> 5e2d3601b51f5f1614cb71d1cb308b6571aca21a
 tags = []
 features = []
 min_version = "0.41"
 
+<<<<<<< HEAD
 [author]
   name = "Daniel Cawley"
   homepage = "https://github.com/cawleyflower/testDocs"
 
+=======
+>>>>>>> 5e2d3601b51f5f1614cb71d1cb308b6571aca21a
 # If porting an existing theme
 [original]
   name = "hugo-book"

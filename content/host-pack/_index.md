@@ -12,7 +12,6 @@ imgData: hostpack
 siteSlug: hostpack
 subsection: true
 ---
-Pete Bratach
 
 [Cumulus Host Pack](https://cumulusnetworks.com/products/netq/) brings
 the host to the network for fabric-wide *visibility* and *connectivity*.
@@ -37,18 +36,14 @@ Cumulus Host Pack enables a web-scale network by providing connectivity
 through **FRRouting on the Host** and **Container Advertiser** and
 visibility through **NetQ on the Host**.
 
-[](https://cumulusnetworks.com/products/host-pack/)
-
 [{{% imgOld 0 %}}](https://cumulusnetworks.com/products/host-pack/)
 
-[](https://cumulusnetworks.com/products/host-pack/)
-
-## <span>Web-scale Connectivity</span>
+## Web-scale Connectivity
 
 [FRRouting on the Host](https://frrouting.org) — the suite of routing
 protocols in Cumulus Linux — delivers layer 3 routing on host servers;
 it also enables the
-[BGP](/display/HOSTPACK/Border+Gateway+Protocol+-+BGP) unnumbered
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/) unnumbered
 interfaces standard to be implemented in both the network infrastructure
 and in host networking, eliminating the issues that can be posed by a
 layer 2 network and enabling you to move to layer 3 from the container
@@ -68,11 +63,11 @@ past the first step of automated configuration management.
 
 {{% imgOld 2 %}}
 
-  
+
 ***Host Pack connectivity is provided through FRRouting on the Host and
 Container Advertiser***
 
-## <span>Web-scale Visibility</span>
+## Web-scale Visibility
 
 In addition to enhanced connectivity support, Host Pack ensures
 real-time reliability and uptime to hosts and containers with visibility
@@ -116,7 +111,7 @@ including:
     connectivity for a container, including adjacency, and can identify
     containers that can be affected by a top of rack switch.
 
-## <span>Supported Environments</span>
+## Supported Environments
 
 Host Pack requires Cumulus Linux 3.3 and later and is supported on the
 following hosts and systems:
@@ -313,32 +308,25 @@ Docker Swarm
 
 </table>
 
-## <span>Getting Started</span>
+## Getting Started
 
 Where you get started with Host Pack depends upon which features you
 intend to use.
 
   - If you want to use routing on your servers, or with the containers
     on a host, you need to
-    [install](/version/hostpack/Installing-FRRouting-on-the-Host) and
-    [configure](/version/hostpack/Configuring-FRRouting-on-the-Host)
+
+    [install](/host-pack/Installing-FRRouting-on-the-Host) and
+    [configure](/host-pack/Configuring-FRRouting-on-the-Host)
     FRRouting on the Host.
 
   - If you are using containers on your host servers, make sure [Docker
-    is installed](/version/hostpack/Installing-Docker).
+    is installed](/host-pack/Installing-Docker).
 
   - If you want to use Container Advertiser, you need to [install and
-    configure](/version/hostpack/Configuring-Container-Advertiser) it.
+    configure](/host-pack/Configuring-Container-Advertiser) it.
 
   - If you plan on using NetQ on the Host to monitor the hosts and
     containers, you need to
-    [install](/version/hostpack/Installing-NetQ-on-the-Host) and
-    [configure](/version/hostpack/Configuring-NetQ-on-the-Host) it.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+    [install](/host-pack/Installing-NetQ-on-the-Host) and
+    [configure](/host-pack/Configuring-NetQ-on-the-Host) it.

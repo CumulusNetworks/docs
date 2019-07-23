@@ -3,7 +3,7 @@ title: NetQ Service Console
 author: Cumulus Networks
 weight: 15
 aliases:
- - /display/NETQ110/NetQ-Service-Console
+ - /display/NETQ110/NetQ+Service+Console
  - /pages/viewpage.action?pageId=7111316
 pageID: 7111316
 product: Cumulus NetQ
@@ -23,7 +23,7 @@ read the Portainer license file
 
 {{%/notice%}}
 
-## <span>Connecting to the Service Console</span>
+## Connecting to the Service Console</span>
 
 To connect to the service console, open a browser, and go to the IP
 address of the [telemetry
@@ -35,7 +35,7 @@ the telemetry server itself, just like any Linux user account.
 
 {{% imgOld 0 %}}
 
-## <span>Getting Service Console Information</span>
+## Getting Service Console Information</span>
 
 The lower lefthand corner of the service console window displays
 information about
@@ -59,7 +59,7 @@ information about
   - **Redis availability**: Indicates whether or not the Redis database
     on the telemetry server VM is reachable.
 
-## <span>Accessing the NetQ Command Line</span>
+## Accessing the NetQ Command Line</span>
 
 The service console provides access to a standard Bash shell, so you can
 run NetQ commands — or any Linux command — directly on a given node.

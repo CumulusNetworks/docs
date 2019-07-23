@@ -3,7 +3,7 @@ title: Getting Started with NetQ
 author: Cumulus Networks
 weight: 11
 aliases:
- - /display/NETQ10/Getting-Started-with-NetQ
+ - /display/NETQ10/Getting+Started+with+NetQ
  - /pages/viewpage.action?pageId=6488202
 pageID: 6488202
 product: Cumulus NetQ
@@ -36,7 +36,7 @@ for this version.
 
 {{%/notice%}}
 
-## <span>Install the NetQ Telemetry Server</span>
+## Install the NetQ Telemetry Server</span>
 
 The NetQ Telemetry Server is a VMware ESXi 6.5 virtual machine,
 comprising a set of individual Docker containers that each contain a
@@ -98,7 +98,7 @@ server.
 
 {{%/notice%}}
 
-## <span>Install the NetQ Agent</span>
+## Install the NetQ Agent</span>
 
 In order to manage a node with NetQ Agent and send notifications with
 NetQ Notifier, you need to install an OS-specific metapackage on each
@@ -117,7 +117,7 @@ interface.
 Install the metapackage on each node to monitor, then configure the NetQ
 Agent on the node.
 
-### <span>Installing on a Cumulus Linux Switch</span>
+### Installing on a Cumulus Linux Switch</span>
 
   - Update the local `apt` repository, then install the metapackage on
     the switch:
@@ -125,7 +125,7 @@ Agent on the node.
         cumulus@switch:~$ sudo apt-get update
         cumulus@switch:~$ sudo apt-get install cumulus-netq
 
-### <span>Installing on an Ubuntu Server</span>
+### Installing on an Ubuntu Server</span>
 
   - Reference and update the local `apt` repository, then install the
     metapackage on the server:
@@ -134,7 +134,7 @@ Agent on the node.
         root@ubuntu:~# wget -O- https://hostapps3.cumulusnetworks.com/setup/cumulus-host-ubuntu-xenial.list > /etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list
         root@ubuntu:~# apt-get update ; apt-get install cumulus-netq
 
-### <span>Installing on a Red Hat or CentOS Server</span>
+### Installing on a Red Hat or CentOS Server</span>
 
   - Reference and update the local `yum` repository, then install the
     metapackage on the server:
@@ -143,7 +143,7 @@ Agent on the node.
         root@rhel7:~# wget -O- https://hostapps3.cumulusnetworks.com/setup/cumulus-host-el.repo > /etc/yum.repos.d/cumulus-host-el.repo
         root@rhel7:~# yum install cumulus-netq
 
-## <span id="src-6488202_GettingStartedwithNetQ-nodeconfig" class="confluence-anchor-link"></span><span>Configuring the NetQ Agent on a Node</span>
+## <span id="src-6488202_GettingStartedwithNetQ-nodeconfig" class="confluence-anchor-link"></span>Configuring the NetQ Agent on a Node</span>
 
 Once you install the NetQ packages and configure the NetQ Telemetry
 Server, you need to configure NetQ on each node (Cumulus Linux switch or
@@ -197,7 +197,7 @@ Linux host) to monitor that node on your network.
     
     {{%/notice%}}
 
-### <span id="src-6488202_GettingStartedwithNetQ-vrf" class="confluence-anchor-link"></span><span>Configuring the Agent to Use a VRF</span>
+### <span id="src-6488202_GettingStartedwithNetQ-vrf" class="confluence-anchor-link"></span>Configuring the Agent to Use a VRF</span>
 
 If you want the NetQ Agent to communicate with the telemetry server only
 via a VRF, including a management VRF, you need to specify the VRF name
@@ -207,7 +207,7 @@ server over it, configure the agent like this:
 
     cumulus@switch:~$ netq add server 198.51.100.10 vrf mgmt
 
-### <span id="src-6488202_GettingStartedwithNetQ-port" class="confluence-anchor-link"></span><span>Configuring the Agent to Communicate over a Specific Port</span>
+### <span id="src-6488202_GettingStartedwithNetQ-port" class="confluence-anchor-link"></span>Configuring the Agent to Communicate over a Specific Port</span>
 
 By default, NetQ uses port 6379 for communication between the telemetry
 server and NetQ Agents. If you want the NetQ Agent to communicate with
@@ -216,7 +216,7 @@ number when configuring the NetQ Agent like this:
 
     cumulus@switch:~$ netq add server 198.51.100.10 port 7379
 
-## <span>Configuring NetQ Notifier on the Telemetry Server</span>
+## Configuring NetQ Notifier on the Telemetry Server</span>
 
 NetQ Notifier listens to events from the telemetry server database. When
 NetQ Notifier is running on the NetQ Telemetry Server, it sends out
@@ -319,7 +319,7 @@ To configure alerts and integrations on the NetQ Telemetry Server:
         cumulus@netq-appliance:~$ docker exec -it netq_netq-notifier_1 systemctl stop netq-notifier
         cumulus@netq-appliance:~$ docker exec -it netq_netq-notifier_1 systemctl start netq-notifier
 
-## <span id="src-6488202_GettingStartedwithNetQ-example" class="confluence-anchor-link"></span><span>Example /etc/netq/netq.yml Configuration</span>
+## <span id="src-6488202_GettingStartedwithNetQ-example" class="confluence-anchor-link"></span>Example /etc/netq/netq.yml Configuration</span>
 
 In the following sample `/etc/netq/netq.yml` file, notice that the NetQ
 Telemetry Server is on a server with the IP address 198.51.100.10.

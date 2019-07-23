@@ -3,7 +3,7 @@ title: Activate and Initialize IPM
 author: Cumulus Networks
 weight: 31
 aliases:
- - /display/NETQ141/Activate-and-Initialize-IPM
+ - /display/NETQ141/Activate+and+Initialize+IPM
  - /pages/viewpage.action?pageId=10453539
 pageID: 10453539
 product: Cumulus NetQ
@@ -16,7 +16,7 @@ on the NetQ Telemetry Server when NetQ is installed. However, there are
 a few simple steps needed to activate and configure the application for
 your environment. These are described in this topic.
 
-## <span>Activation and Initialization Task Flow</span>
+## Activation and Initialization Task Flow</span>
 
 The following steps are required to fully activate and perform the
 initial configuration needed to run the IPM application.
@@ -30,7 +30,7 @@ leases) or add and map additional ONIE and ZTP scripts, you can do so.
 Please refer to the corresponding topics for instructions for these
 tasks.
 
-## <span>Open VM Network Ports</span>
+## Open VM Network Ports</span>
 
 The primary IPM services are located in Docker containers. They are
 configured to run in network *host mode*, meaning the internal ports
@@ -57,7 +57,7 @@ hypervisors.
 <span style="color: #ff0000;"> How to configure these ports is outside
 the scope of this document. </span>
 
-## <span>Start the Image and Provisioning Management Application</span>
+## Start the Image and Provisioning Management Application</span>
 
 The application is activated in a similar manner as most UNIX services,
 using the `systemctrl` command to start the application service.
@@ -93,7 +93,7 @@ Once the IPM application is running, the IPM Command Line Interface,
 *TIPCTL*, is available. TIPCTL is the key user interface used to
 activate, configure, and monitor the IPM application and services.
 
-## <span>Perform Initial Configuration</span>
+## Perform Initial Configuration</span>
 
 The next step in setting up IPM is to use TIPCTL to configure key
 application and service parameters. Configuration is performed using the
@@ -115,7 +115,7 @@ Running the configuration setup sequence:
     middle of the address range, two pools are created, each excluding
     the server IP address)
 
-### <span>Use Prompt Mode</span>
+### Use Prompt Mode</span>
 
 To perform the initial configuration in prompt mode:
 
@@ -152,7 +152,7 @@ To perform the initial configuration in prompt mode:
         --------    -------------------------- 
         error       Cannot connect to backend.
 
-### <span>Use Command Line Mode</span>
+### Use Command Line Mode</span>
 
 To perform the initial configuration in traditional command line mode:
 

@@ -3,7 +3,7 @@ title: Troubleshooting Log Files
 author: Cumulus Networks
 weight: 175
 aliases:
- - /display/RMP31/Troubleshooting-Log-Files
+ - /display/RMP31/Troubleshooting+Log+Files
  - /pages/viewpage.action?pageId=5122758
 pageID: 5122758
 product: Cumulus RMP

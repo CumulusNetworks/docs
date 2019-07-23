@@ -3,7 +3,7 @@ title: Power over Ethernet - PoE
 author: Cumulus Networks
 weight: 63
 aliases:
- - /display/CL25ESR/Power-over-Ethernet---PoE
+ - /display/CL25ESR/Power+over+Ethernet+++PoE
  - /pages/viewpage.action?pageId=5115909
 pageID: 5115909
 product: Cumulus Linux
@@ -26,7 +26,7 @@ PoE+ and uPoE are not supported at this time.
 
 {{%/notice%}}
 
-## <span>How It Works</span>
+## How It Works</span>
 
 When a powered device is connected to the switch via an Ethernet cable:
 
@@ -62,18 +62,18 @@ The AS4610-54P has an LED on the front panel to indicate PoE status:
   - Yellow: One or more errors are detected or the `poed` daemon is not
     running
 
-### <span>About Link State and PoE State</span>
+### About Link State and PoE State</span>
 
 Link state and PoE state are completely independent of each other. When
 a link is brought down on particular port using `ip link <port> down`,
 power on that port is not turned off.
 
-### <span>LLDP with POE Attributes not Supported</span>
+### LLDP with POE Attributes not Supported</span>
 
 Cumulus Linux does not support LLDP auto discovery and negotiation of
 PoE attributes via LLDP between the powered device and the switch.
 
-## <span>Configuring PoE</span>
+## Configuring PoE</span>
 
 You use the `poectl` command utility to configure PoE on a [switch that
 supports](http://cumulusnetworks.com/hcl/) the feature. You can:
@@ -122,7 +122,7 @@ Or to see all the PoE information for a switch, run `poectl -s`:
 The set commands (priority, enable, disable) either succeed silently or
 display an error message if the command fails.
 
-### <span>poectl Arguments</span>
+### poectl Arguments</span>
 
 The `poectl` command takes the following arguments:
 
@@ -182,7 +182,7 @@ The `poectl` command takes the following arguments:
 </tbody>
 </table>
 
-## <span>Logging poed Events</span>
+## Logging poed Events</span>
 
 The `poed` service logs the following events to syslog:
 
@@ -194,7 +194,7 @@ The `poed` service logs the following events to syslog:
 
   - Errors
 
-## <span>Man Pages</span>
+## Man Pages</span>
 
 man poectl
 

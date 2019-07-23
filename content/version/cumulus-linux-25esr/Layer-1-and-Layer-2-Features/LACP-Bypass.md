@@ -3,7 +3,7 @@ title: LACP Bypass
 author: Cumulus Networks
 weight: 103
 aliases:
- - /display/CL25ESR/LACP-Bypass
+ - /display/CL25ESR/LACP+Bypass
  - /pages/viewpage.action?pageId=5116086
 pageID: 5116086
 product: Cumulus Linux
@@ -12,7 +12,7 @@ imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---
 On Cumulus Linux, *LACP Bypass* is a feature that allows a
-[bond](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Bonding---Link-Aggregation)
+[bond](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Bonding-Link-Aggregation)
 configured in 802.3ad mode to become active and forward traffic even
 when there is no LACP partner. A typical use case for this feature is to
 enable a host, without the capability to run LACP, to PXE boot while
@@ -20,7 +20,7 @@ connected to a switch on a bond configured in 802.3ad mode. Once the
 pre-boot process finishes and the host is capable of running LACP, the
 normal 802.3ad link aggregation operation takes over.
 
-## <span>Understanding LACP Bypass Modes</span>
+## Understanding LACP Bypass Modes</span>
 
 When a bond has multiple slave interfaces, you can control which of them
 should go into LACP bypass using one of two modes:
@@ -33,7 +33,7 @@ should go into LACP bypass using one of two modes:
     are equal; the string with the lower ASCII values wins. Note that
     the priority value is significant within a switch; there is no
     coordination between two switches in an
-    [MLAG](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation---MLAG)
+    [MLAG](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG)
     peering relationship.
 
   - *All-active mode*: In this mode, each bond slave interface operates
@@ -60,7 +60,7 @@ should go into LACP bypass using one of two modes:
     
     {{%/notice%}}
 
-### <span>LACP Bypass Timeout</span>
+### LACP Bypass Timeout</span>
 
 As a safeguard, you can configure a timeout period to limit the duration
 in which bypass is enabled. The timeout period works with both modes.
@@ -74,10 +74,10 @@ aborts the bypass, and normal LACP protocol negotiation takes over.
 Enabling or disabling bypass during LACP exchange does not affect link
 aggregation.
 
-## <span>LACP Bypass and MLAG Deployments</span>
+## LACP Bypass and MLAG Deployments</span>
 
 In an [MLAG
-deployment](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation---MLAG)
+deployment](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG)
 where bond slaves of a host are connected to two switches and the bond
 is in ***priority mode*** , the bypass priority is determined using the
 MLAG switch role. The bond on the switch with the primary role has a
@@ -90,7 +90,7 @@ will not be active during bypass mode.
 When a dual-connected (MLAG) bond is in ***all-active mode*** , all the
 slaves of bond are active on both the primary and secondary MLAG nodes.
 
-## <span>Configuring LACP Bypass</span>
+## Configuring LACP Bypass</span>
 
 You configure LACP bypass in the `/etc/network/interfaces` file.
 
@@ -110,9 +110,9 @@ of the following:
 `bond-lacp-bypass-period` to a valid value (0-900); however, it is
 recommended to not configure this, and use the default value of 0.
 
-## <span>Configuration Examples</span>
+## Configuration Examples</span>
 
-### <span>Default Configuration with Priority Mode and Optional Timeout Period</span>
+### Default Configuration with Priority Mode and Optional Timeout Period</span>
 
 The following configuration shows LACP bypass enabled in the default
 priority mode, with a timeout period set. Here there are two slave
@@ -173,11 +173,11 @@ bond is operationally down:
     Bypass priority: 1
     Slave queue ID: 0
 
-### <span>All-active Mode Configuration with Multiple Simultaneous Active Interfaces</span>
+### All-active Mode Configuration with Multiple Simultaneous Active Interfaces</span>
 
 The following configuration shows LACP bypass enabled for multiple
 active interfaces (all-active mode) with a bridge in [VLAN-aware
-mode](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments):
+mode](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments):
 
     auto bond1
     iface bond1 inet static
@@ -255,7 +255,7 @@ mode](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridgin
 
 The following configuration shows LACP bypass enabled for multiple
 active interfaces (all-active mode) with a bridge in [traditional bridge
-mode](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/):
+mode](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/):
 
     auto bond1
     iface bond1 inet static

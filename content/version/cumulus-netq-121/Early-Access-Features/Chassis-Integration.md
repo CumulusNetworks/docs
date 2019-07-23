@@ -3,7 +3,7 @@ title: Chassis Integration
 author: Cumulus Networks
 weight: 73
 aliases:
- - /display/NETQ121/Chassis-Integration
+ - /display/NETQ121/Chassis+Integration
  - /pages/viewpage.action?pageId=8356590
 pageID: 8356590
 product: Cumulus NetQ

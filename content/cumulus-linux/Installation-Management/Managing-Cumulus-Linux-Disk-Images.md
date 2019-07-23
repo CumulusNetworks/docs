@@ -3,24 +3,24 @@ title: Managing Cumulus Linux Disk Images
 author: Cumulus Networks
 weight: 41
 aliases:
- - /display/CL37/Managing-Cumulus-Linux-Disk-Images
+ - /display/DOCS/Managing+Cumulus+Linux+Disk+Images
  - /pages/viewpage.action?pageId=8362634
 pageID: 8362634
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The Cumulus Linux operating system resides on a switch as a *disk
 image*. This section discusses how to manage the disk image.
 
 For information on installing a new Cumulus Linux disk image, refer to
 [Installing a New Cumulus Linux
-Image](/version/cumulus-linux-377/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
+Image](/cumulus-linux/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
 For information on upgrading Cumulus Linux, refer to [Upgrading Cumulus
-Linux](/version/cumulus-linux-377/Installation-Management/Upgrading-Cumulus-Linux).
+Linux](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux).
 
-## <span>Determine the Switch Platform</span>
+## Determine the Switch Platform
 
 To determine if your switch is on an x86 or ARM platform, run the `uname
 -m` command.
@@ -39,7 +39,7 @@ You can also visit the HCL ([hardware compatibility
 list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
 to look at your hardware and determine the processor type.
 
-## <span>Reprovision the System (Restart the Installer)</span>
+## Reprovision the System (Restart the Installer)
 
 Reprovisioning the system deletes all system data from the switch.
 
@@ -61,17 +61,13 @@ A reboot is required for the reinstall to begin.
 
 {{%/notice%}}
 
-{{%notice tip%}}
-
 To cancel a pending reinstall operation, run the `onie-select -c`
 command:
 
     cumulus@switch:~$ sudo onie-select -c
     Cancelling pending install at next reboot...done.
 
-{{%/notice%}}
-
-## <span>Uninstall All Images and Remove the Configuration</span>
+## Uninstall All Images and Remove the Configuration
 
 To remove all installed images and configurations and return the switch
 to its factory defaults, run the `onie-select -k` command:
@@ -91,17 +87,13 @@ A reboot is required for the uninstall to begin.
 
 {{%/notice%}}
 
-{{%notice tip%}}
-
 To cancel a pending uninstall operation, run the `onie-select -c`
 command:
 
     cumulus@switch:~$ sudo onie-select -c
     Cancelling pending uninstall at next reboot...done.
 
-{{%/notice%}}
-
-## <span>Boot into Rescue Mode</span>
+## Boot into Rescue Mode
 
 If your system becomes broken is some way, you can correct certain
 issues by booting into ONIE rescue mode. In rescue mode, the file
@@ -125,42 +117,35 @@ A reboot is required to boot into rescue mode.
 
 {{%/notice%}}
 
-{{%notice tip%}}
-
 To cancel a pending rescue boot operation, run the `onie-select -c`
 command:
 
     cumulus@switch:~$ sudo onie-select -c
     Cancelling pending rescue at next reboot...done.
 
-{{%/notice%}}
-
-## <span>Inspect the Image File</span>
+## Inspect the Image File
 
 The Cumulus Linux installation disk image file is executable. From a
-running <span style="color: #333333;"> switch, you can display, extract,
-and verify the contents of the image file. </span>
+running switch, you can display, extract,
+and verify the contents of the image file.
 
-<span style="color: #333333;"> To display the contents of the Cumulus
-Linux image file, pass the `info` option to the image file. For example,
-to display the contents of an image file called `onie-installer` located
-in the `/var/lib/cumulus/installer` directory: </span>
+To display the contents of the Cumulus Linux image file, pass the `info` option to the image file. For example, to display the contents of an image file called `onie-installer` located in the `/var/lib/cumulus/installer` directory:
 
-    cumulus@switch:~$ sudo /var/lib/cumulus/installer/onie-installer info 
-    Verifying image checksum ...OK. 
-    Preparing image archive ... OK. 
-    Control File Contents 
-    ===================== 
-    Description: Cumulus Linux 3.7.6 
-    Release: 3.7.6 
-    Architecture: amd64 
-    Switch-Architecture: bcm-amd64 
-    Build-Id: 03bbebdzc4d0ff5 
-    Build-Date: 2019-05-01T19:04:25+0000 
-    Build-User: clbuilder 
-    Homepage: http://www.cumulusnetworks.com/ 
-    Min-Disk-Size: 1073741824 
-    Min-Ram-Size: 536870912 
+    cumulus@switch:~$ sudo /var/lib/cumulus/installer/onie-installer info
+    Verifying image checksum ...OK.
+    Preparing image archive ... OK.
+    Control File Contents
+    =====================
+    Description: Cumulus Linux 3.7.6
+    Release: 3.7.6
+    Architecture: amd64
+    Switch-Architecture: bcm-amd64
+    Build-Id: 03bbebdzc4d0ff5
+    Build-Date: 2019-05-01T19:04:25+0000
+    Build-User: clbuilder
+    Homepage: http://www.cumulusnetworks.com/
+    Min-Disk-Size: 1073741824
+    Min-Ram-Size: 536870912
     mkimage-version: 0.11.118_gf541
 
 To extract the contents of the image file, use with the `extract <path>`
@@ -168,26 +153,26 @@ option. For example, to extract an image file called `onie-installer`
 located in the `/var/lib/cumulus/installer` directory to the `mypath`
 directory:
 
-    cumulus@switch:~$ sudo /var/lib/cumulus/installer/onie-installer extract mypath 
-    total 181860 
-    -rw-r--r-- 1 4000 4000 308 May 16 19:04 control 
-    drwxr-xr-x 5 4000 4000 4096 Apr 26 21:28 embedded-installer 
-    -rw-r--r-- 1 4000 4000 13273936 May 16 19:04 initrd 
-    -rw-r--r-- 1 4000 4000 4239088 May 16 19:04 kernel 
+    cumulus@switch:~$ sudo /var/lib/cumulus/installer/onie-installer extract mypath
+    total 181860
+    -rw-r--r-- 1 4000 4000 308 May 16 19:04 control
+    drwxr-xr-x 5 4000 4000 4096 Apr 26 21:28 embedded-installer
+    -rw-r--r-- 1 4000 4000 13273936 May 16 19:04 initrd
+    -rw-r--r-- 1 4000 4000 4239088 May 16 19:04 kernel
     -rw-r--r-- 1 4000 4000 168701528 May 16 19:04 sysroot.tar
 
 To verify the contents of the image file, use with the `verify` option.
 For example, to verify the contents of an image file called
 `onie-installer` located in the `/var/lib/cumulus/installer` directory:
 
-    cumulus@switch:~$ sudo /var/lib/cumulus/installer/onie-installer verify 
-    Verifying image checksum ...OK. 
-    Preparing image archive ... OK. 
-    ./cumulus-linux-bcm-amd64.bin.1: 161: ./cumulus-linux-bcm-amd64.bin.1: onie-sysinfo: not found 
-    Verifying image compatibility ...OK. 
+    cumulus@switch:~$ sudo /var/lib/cumulus/installer/onie-installer verify
+    Verifying image checksum ...OK.
+    Preparing image archive ... OK.
+    ./cumulus-linux-bcm-amd64.bin.1: 161: ./cumulus-linux-bcm-amd64.bin.1: onie-sysinfo: not found
+    Verifying image compatibility ...OK.
     Verifying system ram ...OK.
 
-## <span>Related Information</span>
+## Related Information
 
 [Open Network Install Environment (ONIE) Home
 Page](http://opencomputeproject.github.io/onie/)

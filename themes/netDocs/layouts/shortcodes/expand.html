@@ -1,7 +1,11 @@
 <div class="expand">
     <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
         <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
+<<<<<<< HEAD
         <span>
+=======
+      <span>
+>>>>>>> 5e2d3601b51f5f1614cb71d1cb308b6571aca21a
         {{$expandMessage := T "Expand-title"}}
     	{{ if .IsNamedParams }}
     	{{.Get "default" | default $expandMessage}}
@@ -13,4 +17,8 @@
     <div class="expand-content" style="display: none;">
         {{.Inner | safeHTML}}
     </div>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> 5e2d3601b51f5f1614cb71d1cb308b6571aca21a

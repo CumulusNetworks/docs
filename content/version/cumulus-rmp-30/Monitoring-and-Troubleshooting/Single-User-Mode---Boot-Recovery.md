@@ -3,7 +3,7 @@ title: Single User Mode - Boot Recovery
 author: Cumulus Networks
 weight: 103
 aliases:
- - /display/RMP30/Single-User-Mode---Boot-Recovery
+ - /display/RMP30/Single+User+Mode+++Boot+Recovery
  - /pages/viewpage.action?pageId=5118701
 pageID: 5118701
 product: Cumulus RMP
@@ -14,7 +14,7 @@ siteSlug: cumulus-rmp-30
 Use single user mode to assist in troubleshooting system boot issues or
 for password recovery.
 
-## <span>Entering Single User Mode</span>
+## Entering Single User Mode</span>
 
 1.  Boot the switch, as soon as you see the GRUB menu.
     

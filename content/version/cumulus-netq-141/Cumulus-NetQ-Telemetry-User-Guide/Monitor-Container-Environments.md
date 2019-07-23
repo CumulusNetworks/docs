@@ -3,7 +3,7 @@ title: Monitor Container Environments
 author: Cumulus Networks
 weight: 69
 aliases:
- - /display/NETQ141/Monitor-Container-Environments
+ - /display/NETQ141/Monitor+Container+Environments
  - /pages/viewpage.action?pageId=10453489
 pageID: 10453489
 product: Cumulus NetQ
@@ -44,7 +44,7 @@ NetQ helps answer questions such as:
 
   - Which containers are part of this service? How are they connected?
 
-## <span>Use NetQ with Kubernetes Clusters</span>
+## Use NetQ with Kubernetes Clusters</span>
 
 The NetQ Agent interfaces with a Kubernetes API server and listens to
 Kubernetes events. The NetQ Agent monitors network identity and physical
@@ -72,7 +72,7 @@ on the network performance (caused by a noisy neighbor for example).
 Additionally, NetQ helps the infrastructure administrator determine how
 Kubernetes workloads are distributed within a network.
 
-### <span>Requirements</span>
+### Requirements</span>
 
 The NetQ Agent supports Kubernetes version 1.9.2 or later.
 
@@ -83,7 +83,7 @@ in Time Can You
 Travel?](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues)
 topic.
 
-### <span>Command Summary</span>
+### Command Summary</span>
 
 There is a large set of commands available to monitor Kubernetes
 configurations, including the ability to monitor clusters, nodes,
@@ -118,7 +118,7 @@ daemon-set, deployment, pods, replication, and services:
     netq [<hostname>] show kubernetes service [name <kube-service-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-service-label>] [service-cluster-ip <kube-service-cluster-ip>] [service-external-ip <kube-service-external-ip>] changes [between <text-time> and <text-endtime>] [json]
     netq <hostname>  show impact kubernetes service [master <kube-master-node>] [name <kube-service-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-service-label>] [service-cluster-ip <kube-service-cluster-ip>] [service-external-ip <kube-service-external-ip>] [around <text-time>] [json]
 
-### <span id="src-10453489_MonitorContainerEnvironments-enable_k8s" class="confluence-anchor-link"></span><span>Enable Kubernetes Monitoring</span>
+### <span id="src-10453489_MonitorContainerEnvironments-enable_k8s" class="confluence-anchor-link"></span>Enable Kubernetes Monitoring</span>
 
 For NetQ to monitor the containers on a host, you must configure the
 following on the Kubernetes master node:
@@ -143,7 +143,7 @@ described in the [Install
 NetQ](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
 topic, for complete insight into your container network.
 
-### <span>View Status of Kubernetes Clusters</span>
+### View Status of Kubernetes Clusters</span>
 
 You can get the status of all Kubernetes clusters in the fabric using
 the `netq show kubernetes cluster` command:
@@ -196,7 +196,7 @@ Optionally, you can output the results in JSON format:
         "truncatedResult":false
     }
 
-### <span>View Changes to a Cluster</span>
+### View Changes to a Cluster</span>
 
 If data collection from the NetQ Agents is not occurring as it once was,
 you can verify that no changes have been made to the Kubernetes cluster
@@ -477,7 +477,7 @@ You can filter this information to focus on a particular pod:
                                           -11                                                omponent:kube-schedu          3cb
                                                                                              ler
 
-### <span>View Kubernetes Node Information</span>
+### View Kubernetes Node Information</span>
 
 You can view a lot of information about a node, including the pod CIDR
 and kubelet status.
@@ -618,7 +618,7 @@ replication set name or label:
     hostd-11:3.0.0.68        default      kube-system      calico-kube-controllers-d669cc k8s-app:calico-kube- 1                                  1              14h:30m:41s
                                                            78f                            controllers
 
-### <span>View Container Connectivity</span>
+### View Container Connectivity</span>
 
 You can view the connectivity graph of a Kubernetes pod, seeing its
 replica set, deployment or service level. The impact/connectivity graph
@@ -637,7 +637,7 @@ each server interface.
                                   -- hosts-24:swp3:NetQBond-1 -- swp29:NetQBond-29:noc-se
                                   -- hosts-24:swp1:swp1 -- swp8:VlanA-1:tor-2
 
-### <span>View Kubernetes Service Connectivity and Impact</span>
+### View Kubernetes Service Connectivity and Impact</span>
 
 You can show the Kubernetes services in a cluster:
 
@@ -687,7 +687,7 @@ To see the impact of a given Kubernetes service, run:
                                      -- hostd-11:swp3:NetQBond-2 -- swp16:NetQBond-16:noc-pr
                                      -- hostd-11:swp4:NetQBond-2 -- swp16:NetQBond-16:noc-se
 
-### <span>View Kubernetes Cluster Configuration in the Past</span>
+### View Kubernetes Cluster Configuration in the Past</span>
 
 You can use the ["time machine"
 features](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues)
@@ -754,7 +754,7 @@ yellow shows partial impact, and red shows full impact.
           -- nginx-8586cf59-26pj5 -- hosts-24:swp2:NetQBond-1 -- swp29:NetQBond-29:noc-pr
                                   -- hosts-24:swp3:NetQBond-1 -- swp29:NetQBond-29:noc-se
 
-## <span>Use NetQ with Docker Swarm</span>
+## Use NetQ with Docker Swarm</span>
 
 The NetQ Agent parses the following Docker events:
 
@@ -772,7 +772,7 @@ Currently, the NetQ Agent does not support:
 
   - Third party network configuration through plugins like Calico
 
-### <span>Requirements</span>
+### Requirements</span>
 
 The NetQ Agent supports Docker version 1.13 (Jan 2017), 17.03 or later,
 including Docker Swarm.
@@ -784,7 +784,7 @@ You
 Travel?](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues)
 topic.
 
-### <span>Command Summary</span>
+### Command Summary</span>
 
 NetQ provides a set of commands to monitor Docker configurations,
 including the ability to monitor network, service, Swarm cluster,
@@ -811,7 +811,7 @@ network, and nodes:
     netq [<hostname>] show docker swarm node [<node-name> | role <role>] [cluster <cluster-name>] [around <text-time>] [json]
     netq <hostname> show docker swarm node [<node-name> | role <role>] [cluster <cluster-name>] changes [between <text-time> and <text-endtime>] [json]
 
-### <span id="src-10453489_MonitorContainerEnvironments-enable" class="confluence-anchor-link"></span><span>Enable Docker Container Monitoring</span>
+### <span id="src-10453489_MonitorContainerEnvironments-enable" class="confluence-anchor-link"></span>Enable Docker Container Monitoring</span>
 
 For NetQ to monitor the Docker containers on a host, you must configure
 the following on the host:
@@ -831,7 +831,7 @@ the following on the host:
     
         cumulus@server01:~$ netq config restart agent
 
-### <span>View Container Summary Information</span>
+### View Container Summary Information</span>
 
 To see a high level view of the network, including the number of
 containers installed and running on the network, run the `netq show
@@ -849,7 +849,7 @@ docker summary` command:
     server01    17.06.0-ce           13         13         1  default                   3
     server02    17.06.0-ce            0          0         0                            3
 
-### <span>Identify Containers on the Network</span>
+### Identify Containers on the Network</span>
 
 To view the different container networks and the containers in them, run
 `netq show docker network`:
@@ -890,7 +890,7 @@ none             server03                                   Disabled  False
 none             server04                                   Disabled  False    
 ```
 
-### <span>View Deployed Container Network Drivers</span>
+### View Deployed Container Network Drivers</span>
 
 To view all the hosts using a specific container network driver, use
 `netq show docker network driver NAME`. Use the `brief` keyword for a
@@ -960,7 +960,7 @@ shorter summary. Docker supports many network drivers.
     bridge           server03   bridge    172.17.0.0/16                   True
     bridge           server04   bridge    172.17.0.0/16                   True
 
-### <span>View All Containers in a Network</span>
+### View All Containers in a Network</span>
 
 To see all the containers on a given container network, run the
 following command, where the container network is named *host*:
@@ -1029,7 +1029,7 @@ Docker Swarm for a service:
     3mee6pr8d11
     Web.3.kv0icnnh7fxb45 hosts-21   10.255.0.11       False    ingress        Web             14:31:58
 
-### <span>View Container Adjacency</span>
+### View Container Adjacency</span>
 
 NetQ can list all the containers running on hosts adjacent to a top of
 rack switch. This helps in analyzing what impact the ToR switch can have
@@ -1099,7 +1099,7 @@ You can filter this output for a given interface:
     swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9089                               host                                
     swp6:VlanA-1         server01   mac:00:02:00:00:00:27 netcat-9092                               host
 
-### <span>Show Container-Specific Information</span>
+### Show Container-Specific Information</span>
 
 You can see information about a given container by running `netq show
 docker container name NAME`:
@@ -1111,7 +1111,7 @@ docker container name NAME`:
                                     27.0.0.3/32,
                                     192.168.0.15/24
 
-### <span>Show Containers with a Specific Image</span>
+### Show Containers with a Specific Image</span>
 
 To search for all the containers on the network with a specific Docker
 image, run `netq show docker container image IMAGE_NAME`:
@@ -1185,7 +1185,7 @@ image, run `netq show docker container image IMAGE_NAME`:
                                     27.0.0.3/32,
                                     192.168.0.15/24
 
-### <span>Show Container Connectivity</span>
+### Show Container Connectivity</span>
 
 Run `netq HOST show docker container network NAME connectivity` to
 determine how a particular container is attached to a network. The
@@ -1274,7 +1274,7 @@ nodes, and adjacent ports.
                                                                                                         te  Node/s hosts-11
                                                                                                         and Ports swp1
 
-### <span>Check Network Traffic over a Given Protocol</span>
+### Check Network Traffic over a Given Protocol</span>
 
 You can specify either the TCP or UDP protocol when you observe a given
 flow of traffic on the network and want to identify which container sent
@@ -1310,7 +1310,7 @@ or received traffic using that protocol from a given port.
     netcat-9092          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
     netcat-9092          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
 
-### <span>Show Docker Swarm Clusters and Networks</span>
+### Show Docker Swarm Clusters and Networks</span>
 
 To see the elements of a Docker Swarm cluster, run:
 
@@ -1390,7 +1390,7 @@ For details about a Docker Swarm network, run:
     --------------  -------------------------  --------------  --------------
     nginx           tcp:9080:80, tcp:9443:443  10.255.0.12/16  ingress
 
-### <span>Show Docker Service Connectivity and Impact</span>
+### Show Docker Service Connectivity and Impact</span>
 
 You can show the Docker services in a cluster:
 
@@ -1471,7 +1471,7 @@ yellow shows partial impact, and red shows full impact.
                                                         -- exit01
                                                         -- leaf05
 
-### <span>View Docker Configuration in the Past</span>
+### View Docker Configuration in the Past</span>
 
 You can use the ["time machine"
 features](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues)

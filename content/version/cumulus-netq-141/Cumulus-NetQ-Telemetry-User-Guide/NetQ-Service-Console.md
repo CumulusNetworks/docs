@@ -3,7 +3,7 @@ title: NetQ Service Console
 author: Cumulus Networks
 weight: 53
 aliases:
- - /display/NETQ141/NetQ-Service-Console
+ - /display/NETQ141/NetQ+Service+Console
  - /pages/viewpage.action?pageId=10453456
 pageID: 10453456
 product: Cumulus NetQ
@@ -23,7 +23,7 @@ read the Portainer license file
 
 {{%/notice%}}
 
-## <span>Connect to the Service Console</span>
+## Connect to the Service Console</span>
 
 To connect to the Service Console:
 
@@ -45,7 +45,7 @@ To connect to the Service Console:
     
     {{% imgOld 1 %}}
 
-### <span>View Service Console Information</span>
+### View Service Console Information</span>
 
 The lower lefthand corner of the Service Console window displays
 information about the Telemetry Server:
@@ -81,7 +81,7 @@ information about the Telemetry Server:
   - **Version**: Indicates the Service Console version installed. This
     should match your NetQ version.
 
-## <span>Access the NetQ Command Line</span>
+## Access the NetQ Command Line</span>
 
 The Service Console runs within the NetQ CLI container. You can use it
 to connect to the NetQ command line locally within the container. You
@@ -99,7 +99,7 @@ In the Services window of the console, verify the NetQ CLI **State** is
 
 You are logged in to the Telemetry Server with root user privileges.
 
-## <span>Run NetQ Commands</span>
+## Run NetQ Commands</span>
 
 You can run all NetQ `check` and `show` commands, agent configuration
 commands, and the `trace` and `resolve` commands from within the
@@ -130,7 +130,7 @@ Note that in this example, BGP is not configured, so no information was
 found, NetQ Agents status is all good, and that multiple nodes are not
 time synchronized (which you would want to fix\!).
 
-## <span>Exit the Service Console</span>
+## Exit the Service Console</span>
 
 When you're finished with the session, click **Back to Services** to
 close the console window, then click **log out** to close the Service

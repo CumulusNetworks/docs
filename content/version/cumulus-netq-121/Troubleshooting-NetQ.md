@@ -3,7 +3,7 @@ title: Troubleshooting NetQ
 author: Cumulus Networks
 weight: 35
 aliases:
- - /display/NETQ121/Troubleshooting-NetQ
+ - /display/NETQ121/Troubleshooting+NetQ
  - /pages/viewpage.action?pageId=8356581
 pageID: 8356581
 product: Cumulus NetQ
@@ -36,7 +36,7 @@ log files:
 | `/etc/netq/config.d/netq-agent-commands.yml` | Contains key-value command pairs and relevant custom configuration settings. |
 | `/run/netq-agent-running.json`               | Contains the full command list that will be pushed when the agent starts.    |
 
-## <span>Checking Agent Health</span>
+## Checking Agent Health</span>
 
 Checking the health of the NetQ agents is a good way to start
 troubleshooting NetQ on your network. If any agents are rotten, meaning
@@ -96,7 +96,7 @@ so you know where to start looking for problems:
 
 </div>
 
-## <span>Error Configuring the Telemetry Server on a Node</span>
+## Error Configuring the Telemetry Server on a Node</span>
 
 If you get an error when your run the `netq config add server` command
 on a node, it's usually due to one of two reasons:
@@ -108,7 +108,7 @@ on a node, it's usually due to one of two reasons:
   - The telemetry server isn't responding. Try pinging the IP address
     you entered and see if the ping works.
 
-## <span>cts-support</span>
+## cts-support</span>
 
 The `cts-support` command generates an archive of useful information for
 troubleshooting issues with NetQ. It is an extension of the `cl-support`
